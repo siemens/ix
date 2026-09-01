@@ -1295,7 +1295,7 @@ export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEven
         icon: 'icon',
         ariaLabelIcon: 'aria-label-icon',
         ariaLabelDragGripper: 'aria-label-drag-gripper',
-        ariaLabelSelect: 'aria-label-select',
+        ariaLabelCheckbox: 'aria-label-checkbox',
         selected: 'selected',
         disabled: 'disabled',
         checkbox: 'checkbox',

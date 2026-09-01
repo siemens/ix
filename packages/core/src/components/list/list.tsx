@@ -164,6 +164,7 @@ export class List {
   private dragPlaceholder?: HTMLDivElement;
   private dragPointerId?: number;
   private dragStartY = 0;
+  private itemsSynchronized = false;
   private readonly originalActionTabIndex = new WeakMap<HTMLElement, string>();
   private readonly inheritedItemValues = new WeakMap<
     HTMLIxListItemElement,
@@ -178,11 +179,13 @@ export class List {
     HTMLIxListItemElement,
     Set<InheritedItemProperty>
   >();
-  private readonly mutationObserver = createMutationObserver(() =>
-    this.synchronizeItems()
-  );
+  private readonly mutationObserver = createMutationObserver(() => {
+    if (this.itemsSynchronized) {
+      this.synchronizeItems();
+    }
+  });
 
-  componentDidLoad() {
+  connectedCallback() {
     this.mutationObserver.observe(this.hostElement, {
       attributeFilter: [
         'action-on-hover',
@@ -198,7 +201,12 @@ export class List {
       childList: true,
       subtree: true,
     });
+  }
+
+  componentDidLoad() {
     this.synchronizeItems();
+    this.mutationObserver.takeRecords();
+    this.itemsSynchronized = true;
   }
 
   disconnectedCallback() {

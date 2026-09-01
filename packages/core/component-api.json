@@ -5949,28 +5949,30 @@
           "deprecated": false
         },
         {
-          "name": "ariaLabelDragGripper",
-          "attribute": "aria-label-drag-gripper",
-          "type": "string | undefined",
+          "name": "ariaLabelCheckbox",
+          "attribute": "aria-label-checkbox",
+          "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
-          "optional": true,
+          "default": "'Select list item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelDragGripper",
+          "attribute": "aria-label-drag-gripper",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Reorder list item'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
         {
           "name": "ariaLabelIcon",
           "attribute": "aria-label-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "ariaLabelSelect",
-          "attribute": "aria-label-select",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,

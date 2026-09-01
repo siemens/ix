@@ -44,6 +44,35 @@ regressionTest('renders', async ({ mount, page }) => {
   );
 });
 
+regressionTest(
+  'synchronizes items after the list reconnects',
+  async ({ mount, page }) => {
+    await mount(`
+      <div>
+        <ix-list>
+          <ix-list-item label="Project Alpha"></ix-list-item>
+          <ix-list-item label="Project Beta"></ix-list-item>
+        </ix-list>
+      </div>
+    `);
+
+    const items = page.locator('ix-list-item');
+    await expect(items.first()).toHaveAttribute('tabindex', '0');
+
+    await page.evaluate(() => {
+      const list = document.querySelector('ix-list');
+      list?.remove();
+      document.querySelector('div')?.append(list!);
+    });
+
+    await items.first().evaluate((element) => {
+      element.setAttribute('disabled', '');
+    });
+
+    await expect(items.nth(1)).toHaveAttribute('tabindex', '0');
+  }
+);
+
 regressionTest('renders draggable grippers', async ({ mount, page }) => {
   await mount(
     `
