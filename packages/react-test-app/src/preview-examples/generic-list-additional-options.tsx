@@ -19,9 +19,17 @@ import {
   iconProject,
   iconTrashcan,
 } from '@siemens/ix-icons/icons';
+import { useState } from 'react';
 
 export default function GenericListAdditionalOptions() {
   addIcons({ iconEditDocument, iconProject, iconTrashcan });
+
+  const [selected, setSelected] = useState([false, false, false]);
+
+  const setItemSelected = (index: number, value: boolean) =>
+    setSelected((current) =>
+      current.map((item, i) => (i === index ? value : item))
+    );
 
   return (
     <IxList checkbox>
@@ -29,6 +37,8 @@ export default function GenericListAdditionalOptions() {
         icon="project"
         label="Item 1"
         description="Some description 1"
+        selected={selected[0]}
+        onSelectedChange={(event) => setItemSelected(0, event.detail)}
       >
         <div slot="action">
           <IxIconButton
@@ -46,6 +56,8 @@ export default function GenericListAdditionalOptions() {
         icon="project"
         label="Item 2"
         description="Some description 2"
+        selected={selected[1]}
+        onSelectedChange={(event) => setItemSelected(1, event.detail)}
       >
         <div slot="action">
           <IxIconButton
@@ -62,6 +74,8 @@ export default function GenericListAdditionalOptions() {
         icon="project"
         label="Item 3"
         description="Some description 3"
+        selected={selected[2]}
+        onSelectedChange={(event) => setItemSelected(2, event.detail)}
       >
         <div slot="action">
           <IxIconButton

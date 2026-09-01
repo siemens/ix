@@ -25,6 +25,12 @@ LICENSE file in the root directory of this source tree.
         iconEditDocument,
         iconTrashcan,
       });
+
+      document.querySelectorAll('ix-list-item').forEach((item) => {
+        item.addEventListener('selectedChange', (event) => {
+          item.selected = event.detail;
+        });
+      });
     </script>
   </head>
   <body>

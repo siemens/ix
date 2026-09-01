@@ -20,13 +20,22 @@ import {
   iconProject,
   iconTrashcan,
 } from '@siemens/ix-icons/icons';
+import { ref } from 'vue';
 
 addIcons({ iconEditDocument, iconProject, iconTrashcan });
+
+const selected = ref([false, false, false]);
 </script>
 
 <template>
   <IxList checkbox>
-    <IxListItem icon="project" label="Item 1" description="Some description 1">
+    <IxListItem
+      icon="project"
+      label="Item 1"
+      description="Some description 1"
+      :selected="selected[0]"
+      @selectedChange="selected[0] = $event.detail"
+    >
       <div slot="action">
         <IxIconButton
           icon="edit-document"
@@ -36,7 +45,13 @@ addIcons({ iconEditDocument, iconProject, iconTrashcan });
       </div>
     </IxListItem>
     <IxListItemSeparator></IxListItemSeparator>
-    <IxListItem icon="project" label="Item 2" description="Some description 2">
+    <IxListItem
+      icon="project"
+      label="Item 2"
+      description="Some description 2"
+      :selected="selected[1]"
+      @selectedChange="selected[1] = $event.detail"
+    >
       <div slot="action">
         <IxIconButton
           icon="edit-document"
@@ -45,7 +60,13 @@ addIcons({ iconEditDocument, iconProject, iconTrashcan });
         <IxIconButton icon="trashcan" variant="subtle-tertiary"></IxIconButton>
       </div>
     </IxListItem>
-    <IxListItem icon="project" label="Item 3" description="Some description 3">
+    <IxListItem
+      icon="project"
+      label="Item 3"
+      description="Some description 3"
+      :selected="selected[2]"
+      @selectedChange="selected[2] = $event.detail"
+    >
       <div slot="action">
         <IxIconButton
           icon="edit-document"

@@ -21,6 +21,8 @@ import {
   templateUrl: './generic-list-additional-options.html',
 })
 export default class GenericListAdditionalOptions {
+  selected = [false, false, false];
+
   constructor() {
     addIcons({ iconEditDocument, iconProject, iconTrashcan });
   }
