@@ -70,15 +70,46 @@ this skill. From the installed skill root, run:
 
 ```sh
 node scripts/search.mjs \
-  --query "<component, example, block, or Figma ID>" \
-  --version "<resolved iX version or registry tag>" \
+  --query "<component or behavior>" \
+  --project-dir "<consumer project>" \
   --framework "<html|react|angular|angular-standalone|vue>"
 ```
 
-Add `--kind component`, `--limit`, `--registry-url`, or `--local-index <path>`
-as needed. The helper emits concise JSON results with version-canonical detail
-paths and normalizes Figma IDs from `123-456` to `123:456`. A query without
-`--kind` can discover components, examples, and blocks together.
+At least one of `--query`, `--figma-id`, or `--component-name` is required.
+The default (and explicit `--kind component`) searches only components and
+returns enriched records containing the canonical detail path, documentation
+links, aliases, normalized Figma main IDs, and React example name/path
+references. Results are a stable JSON envelope:
+
+```json
+{
+  "status": "ok",
+  "version": "v5.2.1",
+  "source": "registry",
+  "results": []
+}
+```
+
+Use `--kind example` or `--kind block` for direct framework-specific discovery.
+`--limit`, `--registry-url`, and `--local-index <path>` remain available.
+Figma IDs and component names are repeatable:
+
+```sh
+node scripts/search.mjs \
+  --figma-id 225:5535 --figma-id 308:1151 \
+  --component-name Button --component-name Avatar
+```
+
+Composed selections are merged, deduplicated by component ID, and retain the
+strongest match. Partial matches have `status: "ok"` and an `unmatched` array
+with one diagnostic per missed input. Operational statuses include
+`version_unavailable`, `no_match`, `figma_main_id_unregistered`, and
+`figma_mapping_unavailable`.
+
+When `--version` is omitted, the helper resolves the installed IX version from
+`--project-dir`, preferring `@siemens/ix` and then an installed compatible
+framework wrapper. An explicit `--version` always wins. `--local-index` is
+fully portable and bypasses package and registry resolution.
 
 1. Open `https://siemens.github.io/ix/llms.txt` only to select or verify the
    registry version matching the resolved iX version, normally
@@ -94,9 +125,21 @@ If the exact version is unavailable:
 1. Use installed package metadata from the consumer's target application or
    workspace, not from this installed skill directory, where possible:
    - `node_modules/@siemens/ix/component-doc.json`
-   - `node_modules/@siemens/ix/api-docs/components/<component-name>/readme.md`
+   - published declarations such as
+     `node_modules/@siemens/ix/dist/types/components.d.ts` and
+     `node_modules/@siemens/ix/components/*.d.ts`
+   - installed `@siemens/ix-react` declarations/exports when React aliases
+     need confirmation
 2. Use the broad documentation site only for version-independent guidance.
-3. If local metadata is also unavailable, state the limitation and ask before using the nearest or latest registry version as an approximation.
+3. Declaration-only fallback provides API text and implementation aliases, but
+   relationships and Figma mappings are explicitly unavailable. It returns no
+   documentation URLs.
+4. If local metadata is also unavailable, state the limitation and ask before
+   using the nearest or latest registry version as an approximation.
+
+Documentation URLs are never inferred from package names, homepages, or
+declaration paths. Use only URLs present in component/search metadata or
+discovered through `llms.txt`.
 
 ## Example Workflow
 
@@ -234,7 +277,7 @@ When the task includes a Figma resource:
 1. Extract the main component ID when available.
 2. Normalize `123-456` to `123:456` for comparison.
 3. Search Figma IDs in the matching version with
-   `node scripts/search.mjs --kind component --figma-id <id>`.
+   `node scripts/search.mjs --kind component --figma-id <id> --project-dir <path>`.
 4. Treat the ID only as a design-system mapping, never as a runtime API.
 5. If one component matches, open its full component detail, usage guide, and a target-framework example before implementation.
 6. If multiple components match, compare their documentation and intended use instead of selecting arbitrarily.
@@ -243,8 +286,11 @@ When the task includes a Figma resource:
 Installed `node_modules/@siemens/ix/component-doc.json` in the consumer's
 target application or workspace is the fallback source for
 `figmaMainComponentIds` and documentation links when a matching registry version
-is not available. It is not expected to be present in this installed skill
-directory.
+is not available. If it is missing, published declarations can provide API text
+and confirmed aliases, but cannot authoritatively verify Figma mappings or
+component relationships. A declarations-only search reports
+`figma_mapping_unavailable` rather than treating an ID as unmapped. Installed
+metadata is not expected to be present in this skill directory.
 
 ## General Guidance, Migration, and Review
 

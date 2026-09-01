@@ -128,6 +128,22 @@ with:
 pnpm check:ix-search
 ```
 
+The bundled helper requires `--query`, `--figma-id`, or `--component-name`.
+Without `--kind` it searches components only; use `--kind example` or
+`--kind block` for direct discovery. Repeated `--figma-id` and
+`--component-name` values support composed Figma selections. JSON output is an
+envelope with `status`, `version`, `source`, and `results`; partial composed
+matches also include `unmatched` diagnostics. The stable failure statuses are
+`version_unavailable`, `no_match`, `figma_main_id_unregistered`, and
+`figma_mapping_unavailable`.
+
+When `--version` is omitted, the helper resolves the installed IX version
+relative to `--project-dir`, preferring `@siemens/ix` and then compatible
+framework wrappers. If registry metadata is unavailable, it falls back to the
+installed `component-doc.json`, then to published declarations. Declaration
+fallbacks expose API text and confirmed aliases only: relationships and Figma
+mappings remain unavailable, and documentation URLs are never synthesized.
+
 ## Deployment safety
 
 The workflow:
