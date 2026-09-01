@@ -29,7 +29,7 @@ const createItem = (
 
 const renderList = (
   args: Element,
-  items: HTMLIxListItemElement[] = [
+  items: HTMLElement[] = [
     createItem('Factory overview', {
       description: 'Updated 5 minutes ago',
       icon: 'project',
@@ -54,7 +54,11 @@ const meta = {
   tags: [],
   render: (args) => renderList(args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-list', {}),
-  parameters: {},
+  parameters: {
+    a11y: {
+      test: 'error',
+    },
+  },
 } satisfies Meta<Element>;
 
 export default meta;
@@ -118,6 +122,56 @@ export const Draggable: Story = {
   args: {
     dragBehavior: 'dynamic',
     draggable: true,
+    itemGap: 4,
+  },
+};
+
+export const Separator: Story = {
+  render: (args) => {
+    const separator = document.createElement('ix-list-item-separator');
+
+    return renderList(args, [
+      createItem('Factory overview', {
+        description: 'Updated 5 minutes ago',
+        icon: 'project',
+      }),
+      createItem('Production line 1', {
+        description: 'Running normally',
+        icon: 'project',
+      }),
+      separator,
+      createItem('Archived project', { disabled: true }),
+    ]);
+  },
+  args: {
+    itemGap: 8,
+  },
+};
+
+export const ActionOnHover: Story = {
+  render: (args) => {
+    const createItemWithAction = (label: string) => {
+      const item = createItem(label, {
+        description: 'Updated 5 minutes ago',
+        icon: 'project',
+        actionOnHover: true,
+      });
+      const action = document.createElement('ix-icon-button');
+      action.slot = 'action';
+      action.variant = 'subtle-tertiary';
+      action.textContent = 'Open';
+      action.icon = 'edit';
+      item.append(action);
+
+      return item;
+    };
+
+    return renderList(args, [
+      createItemWithAction('Factory overview'),
+      createItemWithAction('Production line 1'),
+    ]);
+  },
+  args: {
     itemGap: 4,
   },
 };
