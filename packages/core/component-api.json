@@ -6033,16 +6033,6 @@
           "deprecated": false
         },
         {
-          "name": "tooltipText",
-          "attribute": "tooltip-text",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "variant",
           "attribute": "variant",
           "type": "\"filled\" | \"ghost\" | \"outline\"",

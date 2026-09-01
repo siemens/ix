@@ -2762,11 +2762,6 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * Tooltip text for the primary item surface. Uses the item label by default.
-          * @since 6.0.0
-         */
-        "tooltipText"?: string;
-        /**
           * Visual variant of the item.
           * @since 6.0.0
           * @default 'filled'
@@ -10017,11 +10012,6 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * Tooltip text for the primary item surface. Uses the item label by default.
-          * @since 6.0.0
-         */
-        "tooltipText"?: string;
-        /**
           * Visual variant of the item.
           * @since 6.0.0
           * @default 'filled'
@@ -13119,7 +13109,6 @@ declare namespace LocalJSX {
         "description": string;
         "icon": string;
         "ariaLabelIcon": string;
-        "tooltipText": string;
         "selected": boolean;
         "disabled": boolean;
         "checkbox": boolean;

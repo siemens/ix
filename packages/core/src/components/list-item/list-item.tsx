@@ -99,12 +99,6 @@ export class ListItem
   @Prop() ariaLabelIcon?: string;
 
   /**
-   * Tooltip text for the primary item surface. Uses the item label by default.
-   * @since 6.0.0
-   */
-  @Prop() tooltipText?: string;
-
-  /**
    * Show the item as selected.
    * @since 6.0.0
    */
