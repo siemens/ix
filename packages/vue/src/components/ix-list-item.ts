@@ -12,6 +12,8 @@ export const IxListItem: StencilVueComponent<JSX.IxListItem> = /*@__PURE__*/ def
   'description',
   'icon',
   'ariaLabelIcon',
+  'ariaLabelDragGripper',
+  'ariaLabelSelect',
   'selected',
   'disabled',
   'checkbox',

@@ -122,7 +122,7 @@ regressionTest(
   'changes selection only when the checkbox is activated',
   async ({ mount, page }) => {
     await mount(
-      `<ix-list-item label="Selectable" checkbox selected></ix-list-item>`
+      `<ix-list-item label="Selectable" checkbox selected aria-label-checkbox="Select this item"></ix-list-item>`
     );
 
     const item = page.locator('ix-list-item');
@@ -145,7 +145,7 @@ regressionTest(
     await expect(primaryAction).not.toHaveAttribute('role', 'checkbox');
     await expect(primaryAction).not.toHaveAttribute('aria-checked', 'true');
     await expect(checkbox).toHaveAttribute('checked', '');
-    await expect(checkbox).toHaveAttribute('aria-label', 'Select Selectable');
+    await expect(checkbox).toHaveAttribute('aria-label', 'Select this item');
     await primaryAction.click();
     expect(await selectedChanges.evaluate((details) => details)).toEqual([]);
     await expect(primaryAction).toBeFocused();

@@ -2718,10 +2718,20 @@ export namespace Components {
          */
         "actionSlotAlignment": ListItemActionSlotAlignment1;
         /**
+          * Accessible label for the drag gripper.
+          * @since 6.0.0
+         */
+        "ariaLabelDragGripper"?: string;
+        /**
           * Accessible label for the item icon.
           * @since 6.0.0
          */
         "ariaLabelIcon"?: string;
+        /**
+          * Accessible label for the selection checkbox.
+          * @since 6.0.0
+         */
+        "ariaLabelSelect"?: string;
         /**
           * Display selection with checkbox semantics.
           * @since 6.0.0
@@ -9958,10 +9968,20 @@ declare namespace LocalJSX {
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment1;
         /**
+          * Accessible label for the drag gripper.
+          * @since 6.0.0
+         */
+        "ariaLabelDragGripper"?: string;
+        /**
           * Accessible label for the item icon.
           * @since 6.0.0
          */
         "ariaLabelIcon"?: string;
+        /**
+          * Accessible label for the selection checkbox.
+          * @since 6.0.0
+         */
+        "ariaLabelSelect"?: string;
         /**
           * Display selection with checkbox semantics.
           * @since 6.0.0
@@ -13109,6 +13129,8 @@ declare namespace LocalJSX {
         "description": string;
         "icon": string;
         "ariaLabelIcon": string;
+        "ariaLabelDragGripper": string;
+        "ariaLabelSelect": string;
         "selected": boolean;
         "disabled": boolean;
         "checkbox": boolean;

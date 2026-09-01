@@ -99,6 +99,18 @@ export class ListItem
   @Prop() ariaLabelIcon?: string;
 
   /**
+   * Accessible label for the drag gripper.
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelDragGripper = 'Reorder list item';
+
+  /**
+   * Accessible label for the selection checkbox.
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelCheckbox = 'Select list item';
+
+  /**
    * Show the item as selected.
    * @since 6.0.0
    */
@@ -262,9 +274,7 @@ export class ListItem
             tabindex={-1}
             disabled={this.disabled}
             aria-pressed="false"
-            aria-label={
-              this.label ? `Reorder ${this.label}` : 'Reorder list item'
-            }
+            aria-label={this.ariaLabelDragGripper}
           >
             <ix-icon name={iconDragGripper} aria-hidden="true"></ix-icon>
           </button>
@@ -273,9 +283,7 @@ export class ListItem
               class="selection-checkbox"
               checked={this.selected}
               disabled={this.disabled}
-              aria-label={
-                this.label ? `Select ${this.label}` : 'Select list item'
-              }
+              aria-label={this.ariaLabelCheckbox}
               onCheckedChange={(event) => this.handleSelectedChange(event)}
             ></ix-checkbox>
           ) : null}
@@ -283,11 +291,6 @@ export class ListItem
             <slot name="action"></slot>
           </div>
         </div>
-        {/* {tooltip ? (
-          <ix-tooltip for={this.primaryActionRef.waitForCurrent()}>
-            {tooltip}
-          </ix-tooltip>
-        ) : null} */}
         <div class="drag-announcement" aria-live="polite" aria-atomic="true" />
       </Host>
     );
