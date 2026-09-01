@@ -18,6 +18,11 @@ const schemaDirectory = path.resolve(
   '../schemas'
 );
 const schemaPath = path.join(schemaDirectory, 'block.schema.json');
+const exampleSchemaPath = path.join(schemaDirectory, 'example.schema.json');
+const authoredBlockSchemaPath = path.join(
+  schemaDirectory,
+  'authored-block.schema.json'
+);
 
 test('accepts dependency metadata and safe relative paths', async () => {
   const validate = await compileJsonSchema(schemaPath);
@@ -31,8 +36,7 @@ test('accepts dependency metadata and safe relative paths', async () => {
         react: {
           files: [
             {
-              source: 'react-blocks/src/example.tsx',
-              target: 'react/example.tsx',
+              path: 'react/example.tsx',
             },
           ],
           dependencies: [{ name: '@siemens/ix-react', version: '^5.2.0' }],
@@ -45,8 +49,9 @@ test('accepts dependency metadata and safe relative paths', async () => {
 
 test('rejects paths that the CLI cannot safely consume', async () => {
   const validate = await compileJsonSchema(schemaPath);
-  for (const target of [
+  for (const pathValue of [
     '../../../../outside.ts',
+    'example.tsx',
     'react/./card.ts',
     'react//card.ts',
     'react/card.ts?raw',
@@ -63,17 +68,154 @@ test('rejects paths that the CLI cannot safely consume', async () => {
           react: {
             files: [
               {
-                source: 'react-blocks/src/example.ts',
-                target,
+                path: pathValue,
               },
             ],
           },
         },
       }),
       false,
-      `expected '${target}' to be rejected`
+      `expected '${pathValue}' to be rejected`
     );
   }
+});
+
+test('public schemas require path-only file entries', async () => {
+  const validateBlock = await compileJsonSchema(schemaPath);
+  const validateExample = await compileJsonSchema(exampleSchemaPath);
+  const block = {
+    name: 'example',
+    description: 'Example block',
+    keywords: ['example'],
+    preview: 'react-blocks/dist/example',
+    variants: { react: { files: [{ path: 'react/example.tsx' }] } },
+  };
+  const example = {
+    name: 'example',
+    variants: { react: { files: [{ path: 'react/example.tsx' }] } },
+  };
+
+  assert.equal(validateBlock(block), true);
+  assert.equal(validateExample(example), true);
+  assert.equal(
+    validateBlock({
+      ...block,
+      variants: {
+        react: {
+          files: [
+            {
+              source: 'react-blocks/src/example.tsx',
+              target: 'react/example.tsx',
+            },
+          ],
+        },
+      },
+    }),
+    false
+  );
+  assert.equal(
+    validateExample({
+      ...example,
+      variants: {
+        react: {
+          files: [
+            {
+              source: 'react-examples/src/example.tsx',
+              target: 'react/example.tsx',
+            },
+          ],
+        },
+      },
+    }),
+    false
+  );
+  assert.equal(
+    validateExample({
+      ...example,
+      variants: {
+        react: {
+          files: [{ path: '../outside.ts' }],
+        },
+      },
+    }),
+    false
+  );
+  assert.equal(
+    validateBlock({
+      ...block,
+      variants: {
+        react: {
+          files: [{ path: 'angular/example.tsx' }],
+        },
+      },
+    }),
+    false
+  );
+  assert.equal(
+    validateExample({
+      ...example,
+      variants: {
+        react: {
+          files: [{ path: 'examples/example.tsx' }],
+        },
+      },
+    }),
+    false
+  );
+  assert.equal(
+    validateBlock({
+      ...block,
+      variants: {
+        react: {
+          files: [{ path: 'react/example.tsx' }, { path: 'react/example.tsx' }],
+        },
+      },
+    }),
+    false
+  );
+  assert.equal(
+    validateExample({
+      ...example,
+      variants: {
+        react: {
+          files: [{ path: 'react/example.tsx' }, { path: 'react/example.tsx' }],
+        },
+      },
+    }),
+    false
+  );
+});
+
+test('authored block schema keeps repository source metadata private', async () => {
+  const validateAuthored = await compileJsonSchema(authoredBlockSchemaPath);
+  assert.equal(
+    validateAuthored({
+      name: 'example',
+      description: 'Example block',
+      keywords: ['example'],
+      preview: 'react-blocks/dist/example',
+      variants: {
+        react: {
+          files: [{ sourcePath: 'react-blocks/src/example.tsx' }],
+        },
+      },
+    }),
+    true
+  );
+  assert.equal(
+    validateAuthored({
+      name: 'example',
+      description: 'Example block',
+      keywords: ['example'],
+      preview: 'react-blocks/dist/example',
+      variants: {
+        react: {
+          files: [{ source: 'react-blocks/src/example.tsx' }],
+        },
+      },
+    }),
+    false
+  );
 });
 
 test('accepts a self-describing documentation search index', async () => {

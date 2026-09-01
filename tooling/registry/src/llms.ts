@@ -47,8 +47,7 @@ type ComponentDocJson = {
 };
 
 type BlockFile = {
-  source: string;
-  target: string;
+  path: string;
 };
 
 type ExampleVariant = {
@@ -242,8 +241,8 @@ function renderRelatedExamples(
       const sourceLinks = variants
         .map(([framework, variant]) => {
           const links = (variant.files ?? []).map((file) => {
-            const href = `../../examples/${file.source}`;
-            return `    - \`${file.target}\`: ${markdownLink('source', href)}`;
+            const href = `../../examples/${file.path}`;
+            return `    - \`${file.path}\`: ${markdownLink('file', href)}`;
           });
 
           return links.length > 0
@@ -283,8 +282,8 @@ function renderRelatedBlocks(
       const sourceLinks = variants
         .map(([framework, variant]) => {
           const links = (variant.files ?? []).map((file) => {
-            const href = `../../blocks/${file.source}`;
-            return `    - \`${file.target}\`: ${markdownLink('source', href)}`;
+            const href = `../../blocks/${file.path}`;
+            return `    - \`${file.path}\`: ${markdownLink('file', href)}`;
           });
 
           return links.length > 0
@@ -345,13 +344,13 @@ ${listOrNone(figma)}
 
 ## Related examples
 
-Example source links are relative to this Markdown file.
+Example file links are relative to this Markdown file.
 
 ${renderRelatedExamples(examples, examplesByName)}
 
 ## Related blocks
 
-Block and source links are relative to this Markdown file.
+Block and file links are relative to this Markdown file.
 
 ${renderRelatedBlocks(blocks, blocksByName)}
 
@@ -433,16 +432,13 @@ function renderExample(
           .map(([framework, variant]) => {
             const files = sortByName(
               (variant.files ?? []).map((file) => ({
-                name: file.target,
+                name: file.path,
                 ...file,
               }))
             )
               .map((file) => {
-                const href = `../examples/${file.source}`;
-                return `  - \`${file.target}\`: ${markdownLink(
-                  'source',
-                  href
-                )}`;
+                const href = `../examples/${file.path}`;
+                return `  - \`${file.path}\`: ${markdownLink('file', href)}`;
               })
               .join('\n');
             return `### ${framework}
@@ -474,7 +470,7 @@ function renderExamples(
 
 > Example-focused LLM documentation generated from registry example JSON metadata and component relationships.
 
-Each example includes related iX component tags, framework variants, and source files. Source and component links are relative to this Markdown file. A missing component relationship means the relationship map does not list one; it does not prove that the example uses no iX components.
+Each example includes related iX component tags, framework variants, and files. File and component links are relative to this Markdown file. A missing component relationship means the relationship map does not list one; it does not prove that the example uses no iX components.
 
 ${examples
   .map((example) =>
@@ -503,16 +499,13 @@ function renderBlock(
           .map(([framework, variant]) => {
             const files = sortByName(
               (variant.files ?? []).map((file) => ({
-                name: file.target,
+                name: file.path,
                 ...file,
               }))
             )
               .map((file) => {
-                const href = `../blocks/${file.source}`;
-                return `  - \`${file.target}\`: ${markdownLink(
-                  'source',
-                  href
-                )}`;
+                const href = `../blocks/${file.path}`;
+                return `  - \`${file.path}\`: ${markdownLink('file', href)}`;
               })
               .join('\n');
             return `### ${framework}
@@ -551,7 +544,7 @@ function renderBlocks(
 
 > Block-focused LLM documentation generated from registry block JSON metadata and component relationships.
 
-Each block includes a description of when to use it, searchable keywords, previews, related iX components, framework variants, and source files. Source and component links are relative to this Markdown file.
+Each block includes a description of when to use it, searchable keywords, previews, related iX components, framework variants, and files. File and component links are relative to this Markdown file.
 
 ${blocks
   .map((block) => renderBlock(block, relatedComponents, availableComponentTags))
@@ -568,16 +561,16 @@ Use this file as the entrypoint for this registry version. For exact component A
 
 Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, related blocks, and Figma main component IDs. Use related examples to validate generated component code and related blocks to discover complete UI patterns.
 
-Examples provide direct access to framework variants, source files, and related iX components without first navigating through a component detail page.
+Examples provide direct access to framework variants, files, and related iX components without first navigating through a component detail page.
 
-Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and source files. Use blocks when generating larger page sections or reusable patterns.
+Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and files. Use blocks when generating larger page sections or reusable patterns.
 
 Figma IDs come from component \`figma-main-component-id\` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
 
 ## Registry LLM docs
 
 - [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
-- [Examples](llms/examples.md): Start here for practical framework code; includes related iX components, variants, and source files.
+- [Examples](llms/examples.md): Start here for practical framework code; includes related iX components, variants, and files.
 - [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block descriptions, keywords, previews, related iX components, framework variants, and files.
 
 ## Optional

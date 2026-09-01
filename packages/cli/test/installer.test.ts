@@ -22,9 +22,7 @@ const baseUrl = 'https://registry.example/root';
 const blockEntryPath = 'v1/blocks/card.json';
 
 function blockDefinition(
-  files: Array<{ source: string; target: string }> = [
-    { source: 'payload/card.tsx', target: 'react/card.tsx' },
-  ]
+  files: Array<{ path: string }> = [{ path: 'react/card.tsx' }]
 ): BlockDefinition {
   return {
     name: 'card',
@@ -81,7 +79,7 @@ async function prepare(
     fetchImpl:
       options.fetchImpl ??
       fetchFiles({
-        [`${baseUrl}/v1/blocks/payload/card.tsx`]: content,
+        [`${baseUrl}/v1/blocks/react/card.tsx`]: content,
       }),
   });
 }
@@ -108,6 +106,17 @@ test('performs a clean install and clean tracked update', async () => {
   await applyInstallPlan(updatePlan, firstConfig, 'v2');
   assert.equal(await fs.readFile(output, 'utf8'), 'second');
   assert.equal((await loadConfig(cwd)).blocks[0].version, 'v2');
+});
+
+test('rejects block files that are not prefixed with the selected framework', async () => {
+  const { cwd, config } = await createProject('wrong-framework-path');
+
+  await assert.rejects(
+    prepare(cwd, config, 'content', {
+      definition: blockDefinition([{ path: 'angular/card.tsx' }]),
+    }),
+    /must be prefixed with framework 'react'/
+  );
 });
 
 test('rejects a customized tracked file and preserves it', async () => {
@@ -157,16 +166,16 @@ test('leaves zero project writes when any fetch fails', async () => {
     'utf8'
   );
   const definition = blockDefinition([
-    { source: 'payload/card.tsx', target: 'react/card.tsx' },
-    { source: 'payload/card.css', target: 'react/card.css' },
+    { path: 'react/card.tsx' },
+    { path: 'react/card.css' },
   ]);
 
   await assert.rejects(
     prepare(cwd, config, '', {
       definition,
       fetchImpl: fetchFiles({
-        [`${baseUrl}/v1/blocks/payload/card.tsx`]: 'ok',
-        [`${baseUrl}/v1/blocks/payload/card.css`]: 503,
+        [`${baseUrl}/v1/blocks/react/card.tsx`]: 'ok',
+        [`${baseUrl}/v1/blocks/react/card.css`]: 503,
       }),
     }),
     /503/
@@ -218,14 +227,14 @@ test('rolls back earlier writes when applying a later file fails', async () => {
     'utf8'
   );
   const definition = blockDefinition([
-    { source: 'payload/card.tsx', target: 'react/card.tsx' },
-    { source: 'payload/card.css', target: 'react/card.css' },
+    { path: 'react/card.tsx' },
+    { path: 'react/card.css' },
   ]);
   const plan = await prepare(cwd, config, '', {
     definition,
     fetchImpl: fetchFiles({
-      [`${baseUrl}/v1/blocks/payload/card.tsx`]: 'component',
-      [`${baseUrl}/v1/blocks/payload/card.css`]: 'styles',
+      [`${baseUrl}/v1/blocks/react/card.tsx`]: 'component',
+      [`${baseUrl}/v1/blocks/react/card.css`]: 'styles',
     }),
   });
 

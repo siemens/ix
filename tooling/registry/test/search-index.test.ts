@@ -83,19 +83,19 @@ test('builds a deterministic central index for all documentation kinds', async (
       keywords: ['workflow', 'submit'],
       variants: {
         react: {
-          files: [{ source: 'button.tsx', target: 'react/button.tsx' }],
+          files: [{ path: 'react/button.tsx' }],
         },
         html: {
-          files: [{ source: 'button.html', target: 'html/button.html' }],
+          files: [{ path: 'html/button.html' }],
         },
       },
     });
     await fs.outputFile(
-      path.join(blocksDir, 'button.tsx'),
+      path.join(blocksDir, 'react/button.tsx'),
       'export const button = <ix-button variant="primary" />;'
     );
     await fs.outputFile(
-      path.join(blocksDir, 'button.html'),
+      path.join(blocksDir, 'html/button.html'),
       '<ix-button variant="primary"></ix-button>'
     );
 
@@ -103,19 +103,19 @@ test('builds a deterministic central index for all documentation kinds', async (
       name: 'button-basic',
       variants: {
         vue: {
-          files: [{ source: 'button.vue', target: 'vue/button.vue' }],
+          files: [{ path: 'vue/button.vue' }],
         },
         react: {
-          files: [{ source: 'button.tsx', target: 'react/button.tsx' }],
+          files: [{ path: 'react/button.tsx' }],
         },
       },
     });
     await fs.outputFile(
-      path.join(examplesDir, 'button.vue'),
+      path.join(examplesDir, 'vue/button.vue'),
       '<ix-button @buttonClick="submit" />'
     );
     await fs.outputFile(
-      path.join(examplesDir, 'button.tsx'),
+      path.join(examplesDir, 'react/button.tsx'),
       "import { IxButton } from '@siemens/ix-react';\nexport const Button = () => <IxButton />;"
     );
 

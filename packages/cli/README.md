@@ -33,6 +33,15 @@ ix add change-password --force
 - `--force` permits overwriting modified tracked files and untracked file
   collisions. Without it, either conflict aborts the installation.
 
+Registry example and block manifests use path-only file entries:
+
+```json
+{ "path": "react/event-list.tsx" }
+```
+
+Each path is resolved relative to the manifest URL. Repository source paths are
+build-only metadata and are not accepted by the CLI.
+
 Use `--framework react|angular|auto` to override framework detection and
 `--tokens '{"__IX_PREFIX__":"Ix"}'` for string token replacement.
 

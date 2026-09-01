@@ -81,7 +81,7 @@ export const blockTools: ToolDefinition[] = [
 
           if (frameworkVariant) {
             const files = frameworkVariant.files
-              .map((f: { target: string }) => `  - ${f.target}`)
+              .map((f: { path: string }) => `  - ${f.path}`)
               .join('\n');
 
             blockDetails = dedent`

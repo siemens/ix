@@ -73,7 +73,8 @@ Supporting roots:
 - `component-doc.json` – Generated component metadata from core (used for docs, wrappers, registry, and CLI)
 - `documentation-search-index.json` – Versioned, self-describing MiniSearch catalog for components, examples, and blocks
 - `llms.txt` / `llms/*.md` – Generated registry LLM entrypoint and split Markdown context files
-- `blocks/*.json` – Registry manifests that map block names to framework-specific source files and dependencies
+- `blocks/*.json` – Authored registry manifests that map block names to
+  framework-specific repository `sourcePath` files and dependencies
 - `.changeset/` – Release intent & pre-release state
 - `playwright.config.ts` – Shared test configuration
 
@@ -165,9 +166,15 @@ Regeneration triggers on every `pnpm build` of core.
 
 ## 8. Registry, Blocks & CLI
 
-- `blocks/*.json` are the source of truth for block registry entries; each manifest points to framework-specific source files under `blocks/*-blocks/`.
+- `blocks/*.json` are the source of truth for block registry entries; each
+  authored manifest points to framework-specific repository `sourcePath` files
+  under `blocks/*-blocks/`. Published manifests contain only framework-prefixed
+  `files[].path` values, resolved relative to the manifest URL.
 - `examples/*-examples/src/preview-examples` provide example source that is transformed into registry example entries and docs snippets.
-- `tooling/registry` builds a versioned deployable registry containing block manifests, example manifests, schemas, copied source files, component metadata, related-example mappings, and the central MiniSearch index.
+- `tooling/registry` builds a versioned deployable registry containing block
+  manifests, example manifests, schemas, materialized canonical files,
+  component metadata, related-example mappings, and the central MiniSearch
+  index.
 - Registry builds are parameterized by `REGISTRY_VERSION`, `REGISTRY_PATH_PREFIX`, and `REGISTRY_LATEST_TAG`; CI deploys the merged registry output to GitHub Pages.
 - `packages/cli` consumes the registry to initialize projects, add blocks/examples, search components, and expose MCP tools for code-generation clients.
 

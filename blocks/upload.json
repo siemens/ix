@@ -1,5 +1,5 @@
 {
-  "$schema": "./../tooling/registry/schemas/block.schema.json",
+  "$schema": "./../tooling/registry/schemas/authored-block.schema.json",
   "name": "upload",
   "description": "Use this block to provide a file upload area with a list of uploaded files and remove actions for each file.",
   "keywords": [
@@ -15,28 +15,23 @@
     "react": {
       "files": [
         {
-          "target": "react/upload.tsx",
-          "source": "react-blocks/src/routes/upload/upload.tsx"
+          "sourcePath": "react-blocks/src/routes/upload/upload.tsx"
         },
         {
-          "target": "react/upload.module.css",
-          "source": "react-blocks/src/routes/upload/upload.module.css"
+          "sourcePath": "react-blocks/src/routes/upload/upload.module.css"
         }
       ]
     },
     "angular": {
       "files": [
         {
-          "target": "angular/upload.ts",
-          "source": "angular-standalone-blocks/src/routes/upload/upload.ts"
+          "sourcePath": "angular-standalone-blocks/src/routes/upload/upload.ts"
         },
         {
-          "target": "angular/upload.html",
-          "source": "angular-standalone-blocks/src/routes/upload/upload.html"
+          "sourcePath": "angular-standalone-blocks/src/routes/upload/upload.html"
         },
         {
-          "target": "angular/upload.css",
-          "source": "angular-standalone-blocks/src/routes/upload/upload.css"
+          "sourcePath": "angular-standalone-blocks/src/routes/upload/upload.css"
         }
       ]
     }
