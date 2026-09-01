@@ -26,9 +26,22 @@ test('builds a deterministic central index for all documentation kinds', async (
   const componentDocPath = path.join(root, 'component-doc.json');
   const relatedExamplesPath = path.join(root, 'related-examples.json');
   const relatedBlocksPath = path.join(root, 'related-blocks.json');
+  const reactTypesPath = path.join(
+    root,
+    'packages',
+    'react',
+    'dist',
+    'types',
+    'components',
+    'components.d.ts'
+  );
 
   try {
     await fs.ensureDir(distDir);
+    await fs.outputFile(
+      reactTypesPath,
+      'export declare const IxButton: unknown;\n'
+    );
     await fs.outputJson(componentDocPath, {
       components: [
         {
@@ -92,11 +105,18 @@ test('builds a deterministic central index for all documentation kinds', async (
         vue: {
           files: [{ source: 'button.vue', target: 'vue/button.vue' }],
         },
+        react: {
+          files: [{ source: 'button.tsx', target: 'react/button.tsx' }],
+        },
       },
     });
     await fs.outputFile(
       path.join(examplesDir, 'button.vue'),
       '<ix-button @buttonClick="submit" />'
+    );
+    await fs.outputFile(
+      path.join(examplesDir, 'button.tsx'),
+      "import { IxButton } from '@siemens/ix-react';\nexport const Button = () => <IxButton />;"
     );
 
     const firstFile = await buildDocumentationSearchIndex({
@@ -138,6 +158,7 @@ test('builds a deterministic central index for all documentation kinds', async (
       'kind',
       'name',
       'tag',
+      'aliases',
       'description',
       'keywords',
       'relatedComponents',
@@ -146,6 +167,8 @@ test('builds a deterministic central index for all documentation kinds', async (
       'files',
       'sourceText',
     ]);
+    assert.ok(index.storeFields.includes('aliases'));
+    assert.ok(index.storeFields.includes('reactExamples'));
 
     const search = MiniSearch.loadJSON<DocumentationSearchDocument>(
       JSON.stringify(index.payload),
@@ -189,7 +212,11 @@ test('builds a deterministic central index for all documentation kinds', async (
     const component = search.search('ix-button', options)[0];
     assert.ok(component);
     assert.deepEqual(component.relatedComponents, ['ix-card', 'ix-icon']);
+    assert.deepEqual(component.aliases, ['ix-button', 'IxButton']);
     assert.deepEqual(component.relatedExamples, ['button-basic']);
+    assert.deepEqual(component.reactExamples, [
+      { name: 'button-basic', path: 'examples/button-basic.json' },
+    ]);
     assert.deepEqual(component.relatedBlocks, ['button-basic']);
     assert.deepEqual(component.documentation, [
       'https://ix.siemens.io/docs/button',
