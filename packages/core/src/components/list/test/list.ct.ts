@@ -722,7 +722,7 @@ regressionTest(
 );
 
 regressionTest(
-  'traverses active item actions and exits the list',
+  'traverses active item actions with arrow keys and exits the list with Tab',
   async ({ mount, page }) => {
     await mount(`
     <div>
@@ -752,18 +752,18 @@ regressionTest(
     await primaryAction.press('Tab');
     await expect(firstAction).toBeFocused();
 
-    await firstAction.press('Tab');
+    await firstAction.press('ArrowRight');
     await expect(secondAction).toBeFocused();
 
-    await secondAction.press('Shift+Tab');
+    await secondAction.press('ArrowLeft');
     await expect(firstAction).toBeFocused();
 
     await firstAction.press('ArrowLeft');
     await expect(primaryAction).toBeFocused();
 
     await primaryAction.press('Tab');
+    await expect(firstAction).toBeFocused();
     await firstAction.press('Tab');
-    await secondAction.press('Tab');
     await expect(page.locator('#after-list')).toBeFocused();
   }
 );

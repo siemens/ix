@@ -165,7 +165,6 @@ export class List {
   private dragPointerId?: number;
   private dragStartY = 0;
   private itemsSynchronized = false;
-  private readonly originalActionTabIndex = new WeakMap<HTMLElement, string>();
   private readonly inheritedItemValues = new WeakMap<
     HTMLIxListItemElement,
     Partial<
@@ -310,26 +309,9 @@ export class List {
       : actionElements;
   }
 
-  private setActionTabOrder(item: HTMLIxListItemElement, enabled: boolean) {
+  private setActionTabOrder(item: HTMLIxListItemElement) {
     this.getActionElements(item).forEach((element) => {
-      if (!this.originalActionTabIndex.has(element)) {
-        this.originalActionTabIndex.set(
-          element,
-          element.getAttribute('tabindex') ?? ''
-        );
-      }
-
-      if (!enabled) {
-        element.tabIndex = -1;
-        return;
-      }
-
-      const originalTabIndex = this.originalActionTabIndex.get(element);
-      if (originalTabIndex) {
-        element.setAttribute('tabindex', originalTabIndex);
-      } else {
-        element.removeAttribute('tabindex');
-      }
+      element.tabIndex = -1;
     });
   }
 
@@ -407,7 +389,7 @@ export class List {
         gripper.disabled = !isGripperEnabled;
         gripper.tabIndex = isActive && isGripperEnabled ? 0 : -1;
       }
-      this.setActionTabOrder(item, isActive);
+      this.setActionTabOrder(item);
     });
   }
 
@@ -850,16 +832,6 @@ export class List {
 
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
-      primaryAction?.focus();
-      return;
-    }
-
-    if (event.key !== 'Tab') {
-      return;
-    }
-
-    if (event.shiftKey) {
-      event.preventDefault();
       if (actionIndex === 0) {
         primaryAction?.focus();
       } else {
@@ -868,10 +840,15 @@ export class List {
       return;
     }
 
-    if (actionIndex < actionElements.length - 1) {
-      event.preventDefault();
-      actionElements[actionIndex + 1].focus();
+    if (
+      event.key !== 'ArrowRight' ||
+      actionIndex === actionElements.length - 1
+    ) {
+      return;
     }
+
+    event.preventDefault();
+    actionElements[actionIndex + 1].focus();
   }
 
   render() {
