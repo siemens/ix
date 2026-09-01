@@ -50,7 +50,7 @@ const interactiveElementSelector = [
 ].join(',');
 
 /**
- * @slot default - Non-interactive custom content replacing the standard icon, label, description, and status layout.
+ * @slot default - Non-interactive custom content rendered after the standard icon, label, and description layout.
  * @slot action - Interactive trailing controls that do not activate the item.
  * @since 6.0.0
  */
