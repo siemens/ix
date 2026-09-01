@@ -6,7 +6,7 @@ import { addBlockToConfig, IxBlocksConfig, saveConfig } from './config';
 import {
   assertRegistryFetchResponse,
   BlockDefinition,
-  resolveBlockSourceUrl,
+  resolveManifestFileUrl,
 } from './registry';
 import {
   assertSafeRelativePath,
@@ -156,18 +156,23 @@ function resolveOutputPath(
   installRoot: string,
   blockName: string,
   framework: Framework,
-  target: string
+  filePath: string
 ): { path: string; targetPath: string } {
-  assertSafeRelativePath('block target path', target);
-  const segments = target.split('/');
-  if (segments[0] === framework) segments.shift();
+  assertSafeRelativePath('block file path', filePath);
+  const segments = filePath.split('/');
+  if (segments[0] !== framework) {
+    throw new Error(
+      `Block file '${filePath}' must be prefixed with framework '${framework}'.`
+    );
+  }
+  segments.shift();
   const nestedTarget = segments.join('/');
-  assertSafeRelativePath('block target path', nestedTarget);
+  assertSafeRelativePath('block file path', nestedTarget);
 
   const targetPath = path.resolve(installRoot, blockName, nestedTarget);
   if (targetPath === installRoot || !isPathInside(installRoot, targetPath)) {
     throw new Error(
-      `Block target '${target}' resolves outside the install root.`
+      `Block file '${filePath}' resolves outside the install root.`
     );
   }
   return { path: toLockPath(cwd, targetPath), targetPath };
@@ -306,18 +311,18 @@ export async function prepareBlockInstall(
       installRoot,
       expectedBlockName,
       args.framework,
-      file.target
+      file.path
     );
     if (plannedPaths.has(output.path)) {
-      throw new Error(`Block defines duplicate target '${output.path}'.`);
+      throw new Error(`Block defines duplicate file path '${output.path}'.`);
     }
     plannedPaths.add(output.path);
     await assertNoSymlinks(installRoot, output.targetPath);
 
-    const sourceUrl = resolveBlockSourceUrl(
+    const sourceUrl = resolveManifestFileUrl(
       args.baseUrl,
       args.blockEntryPath,
-      file.source
+      file.path
     );
     const raw = await fetchText(sourceUrl, args.fetchImpl ?? fetch);
     const content = applyTokens(raw, args.tokens);

@@ -99,6 +99,21 @@ pnpm --filter registry build
 
 Build output is written to `tooling/registry/dist`.
 
+## Manifest file paths
+
+Published example and block manifests contain path-only file entries. The path
+is both the consumer-facing output path and the registry resource path:
+
+```json
+{ "path": "react/event-list.tsx" }
+```
+
+For `/v5.2.1/examples/event-list.json`, this file is materialized at
+`/v5.2.1/examples/react/event-list.tsx`. Block files follow the same
+manifest-relative rule under `/blocks/`. Authored block definitions may use
+repository-only `sourcePath` metadata; generation strips it from the published
+manifest.
+
 For local development, `pnpm --filter registry dev` builds the `development`
 entry with unprefixed artifact paths and serves `dist` directly. Deployment
 builds set `REGISTRY_PATH_PREFIX` explicitly before the merge step.

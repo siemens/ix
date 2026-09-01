@@ -25,6 +25,7 @@ export function isSafeRelativePath(value: string): boolean {
     value.includes(':') ||
     value.includes('?') ||
     value.includes('#') ||
+    value.includes('%') ||
     path.posix.isAbsolute(value) ||
     /^[a-zA-Z]:/.test(value)
   ) {
