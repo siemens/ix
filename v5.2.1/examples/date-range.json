@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"date-range","variants":{"html":{"files":[{"path":"html/date-range.html"}]},"react":{"files":[{"path":"react/date-range.tsx"}]},"angular":{"files":[{"path":"angular/date-range.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/date-range.ts"}]},"vue":{"files":[{"path":"vue/date-range.vue"}]}}}

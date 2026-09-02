@@ -1,0 +1,23 @@
+# Siemens iX Registry
+
+> Siemens iX is a multi-framework design system. This registry provides versioned LLM-readable component, example, and block documentation generated from existing registry JSON metadata.
+
+Use this file as the entrypoint for this registry version. For exact component API usage, open the component docs first; for practical framework code, open the example docs first; for complete copyable UI patterns, open the block docs first.
+
+Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, related blocks, and Figma main component IDs. Use related examples to validate generated component code and related blocks to discover complete UI patterns.
+
+Examples provide direct access to framework variants, files, and related iX components without first navigating through a component detail page.
+
+Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and files. Use blocks when generating larger page sections or reusable patterns.
+
+Figma IDs come from component `figma-main-component-id` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
+
+## Registry LLM docs
+
+- [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
+- [Examples](llms/examples.md): Start here for practical framework code; includes related iX components, variants, and files.
+- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block descriptions, keywords, previews, related iX components, framework variants, and files.
+
+## Optional
+
+- [Registry manifest](registry.json): Machine-readable registry manifest with versioned artifact paths.

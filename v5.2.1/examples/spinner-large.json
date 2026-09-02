@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"spinner-large","variants":{"html":{"files":[{"path":"html/spinner-large.html"}]},"react":{"files":[{"path":"react/spinner-large.tsx"}]},"angular":{"files":[{"path":"angular/spinner-large.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/spinner-large.ts"}]},"vue":{"files":[{"path":"vue/spinner-large.vue"}]}}}

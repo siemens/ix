@@ -1,0 +1,69 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings example</title>
+  </head>
+  <body>
+    <ix-application>
+      <ix-application-header>
+        <div class="placeholder-logo" slot="logo"></div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-settings suppress-legacy-tabs>
+          <ix-tabs active-tab-key="tab-1">
+            <ix-tab-item tab-key="tab-1">Example Setting 1</ix-tab-item>
+            <ix-tab-item tab-key="tab-2">Example Setting 2</ix-tab-item>
+          </ix-tabs>
+          <section
+            role="tabpanel"
+            aria-label="Settings content"
+            data-tab-content="tab-1"
+          >
+            Example Setting 1 content
+          </section>
+          <section
+            role="tabpanel"
+            aria-label="Settings content"
+            data-tab-content="tab-2"
+            hidden
+          >
+            Example Setting 2 content
+          </section>
+        </ix-menu-settings>
+      </ix-menu>
+    </ix-application>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-menu');
+        await window.customElements.whenDefined('ix-tabs');
+        const menu = document.querySelector('ix-menu');
+        const settings = menu.querySelector('ix-menu-settings');
+        const tabs = settings.querySelector('ix-tabs');
+        const updateVisibleContent = (tabKey) => {
+          settings.querySelectorAll('[data-tab-content]').forEach((content) => {
+            content.hidden = content.dataset.tabContent !== tabKey;
+          });
+        };
+
+        updateVisibleContent(tabs.activeTabKey ?? 'tab-1');
+        tabs.addEventListener('tabChange', (event) => {
+          updateVisibleContent(event.detail ?? 'tab-1');
+        });
+        await menu.toggleSettings(true);
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

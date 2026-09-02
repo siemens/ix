@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"toast","variants":{"html":{"files":[{"path":"html/toast.html"}]},"react":{"files":[{"path":"react/toast.tsx"}]},"angular":{"files":[{"path":"angular/toast.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/toast.ts"}]},"vue":{"files":[{"path":"vue/toast.vue"}]}}}

@@ -1,0 +1,376 @@
+# ix-button
+
+> Triggers an action or event when activated by the user.
+
+## Documentation
+
+- https://ix.siemens.io//docs/components/button/guide.md
+
+## Figma IDs
+
+- 225:5535
+
+## Related examples
+
+Example file links are relative to this Markdown file.
+
+- button-danger-primary
+  - angular:
+    - `angular/button-danger-primary.css`: [file](../../examples/angular/button-danger-primary.css)
+    - `angular/button-danger-primary.html`: [file](../../examples/angular/button-danger-primary.html)
+    - `angular/button-danger-primary.ts`: [file](../../examples/angular/button-danger-primary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-danger-primary.css`: [file](../../examples/angular-standalone/button-danger-primary.css)
+    - `angular-standalone/button-danger-primary.html`: [file](../../examples/angular-standalone/button-danger-primary.html)
+    - `angular-standalone/button-danger-primary.ts`: [file](../../examples/angular-standalone/button-danger-primary.ts)
+  - html:
+    - `html/button-danger-primary.css`: [file](../../examples/html/button-danger-primary.css)
+    - `html/button-danger-primary.html`: [file](../../examples/html/button-danger-primary.html)
+  - react:
+    - `react/button-danger-primary.scoped.css`: [file](../../examples/react/button-danger-primary.scoped.css)
+    - `react/button-danger-primary.tsx`: [file](../../examples/react/button-danger-primary.tsx)
+  - vue:
+    - `vue/button-danger-primary.css`: [file](../../examples/vue/button-danger-primary.css)
+    - `vue/button-danger-primary.vue`: [file](../../examples/vue/button-danger-primary.vue)
+- button-danger-secondary
+  - angular:
+    - `angular/button-danger-secondary.css`: [file](../../examples/angular/button-danger-secondary.css)
+    - `angular/button-danger-secondary.html`: [file](../../examples/angular/button-danger-secondary.html)
+    - `angular/button-danger-secondary.ts`: [file](../../examples/angular/button-danger-secondary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-danger-secondary.css`: [file](../../examples/angular-standalone/button-danger-secondary.css)
+    - `angular-standalone/button-danger-secondary.html`: [file](../../examples/angular-standalone/button-danger-secondary.html)
+    - `angular-standalone/button-danger-secondary.ts`: [file](../../examples/angular-standalone/button-danger-secondary.ts)
+  - html:
+    - `html/button-danger-secondary.css`: [file](../../examples/html/button-danger-secondary.css)
+    - `html/button-danger-secondary.html`: [file](../../examples/html/button-danger-secondary.html)
+  - react:
+    - `react/button-danger-secondary.scoped.css`: [file](../../examples/react/button-danger-secondary.scoped.css)
+    - `react/button-danger-secondary.tsx`: [file](../../examples/react/button-danger-secondary.tsx)
+  - vue:
+    - `vue/button-danger-secondary.css`: [file](../../examples/vue/button-danger-secondary.css)
+    - `vue/button-danger-secondary.vue`: [file](../../examples/vue/button-danger-secondary.vue)
+- button-danger-tertiary
+  - angular:
+    - `angular/button-danger-tertiary.css`: [file](../../examples/angular/button-danger-tertiary.css)
+    - `angular/button-danger-tertiary.html`: [file](../../examples/angular/button-danger-tertiary.html)
+    - `angular/button-danger-tertiary.ts`: [file](../../examples/angular/button-danger-tertiary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-danger-tertiary.css`: [file](../../examples/angular-standalone/button-danger-tertiary.css)
+    - `angular-standalone/button-danger-tertiary.html`: [file](../../examples/angular-standalone/button-danger-tertiary.html)
+    - `angular-standalone/button-danger-tertiary.ts`: [file](../../examples/angular-standalone/button-danger-tertiary.ts)
+  - html:
+    - `html/button-danger-tertiary.css`: [file](../../examples/html/button-danger-tertiary.css)
+    - `html/button-danger-tertiary.html`: [file](../../examples/html/button-danger-tertiary.html)
+  - react:
+    - `react/button-danger-tertiary.scoped.css`: [file](../../examples/react/button-danger-tertiary.scoped.css)
+    - `react/button-danger-tertiary.tsx`: [file](../../examples/react/button-danger-tertiary.tsx)
+  - vue:
+    - `vue/button-danger-tertiary.css`: [file](../../examples/vue/button-danger-tertiary.css)
+    - `vue/button-danger-tertiary.vue`: [file](../../examples/vue/button-danger-tertiary.vue)
+- button-group
+  - angular:
+    - `angular/button-group.ts`: [file](../../examples/angular/button-group.ts)
+  - angular-standalone:
+    - `angular-standalone/button-group.ts`: [file](../../examples/angular-standalone/button-group.ts)
+  - html:
+    - `html/button-group.html`: [file](../../examples/html/button-group.html)
+  - react:
+    - `react/button-group.tsx`: [file](../../examples/react/button-group.tsx)
+  - vue:
+    - `vue/button-group.vue`: [file](../../examples/vue/button-group.vue)
+- button-secondary
+  - angular:
+    - `angular/button-secondary.css`: [file](../../examples/angular/button-secondary.css)
+    - `angular/button-secondary.ts`: [file](../../examples/angular/button-secondary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-secondary.css`: [file](../../examples/angular-standalone/button-secondary.css)
+    - `angular-standalone/button-secondary.ts`: [file](../../examples/angular-standalone/button-secondary.ts)
+  - html:
+    - `html/button-secondary.css`: [file](../../examples/html/button-secondary.css)
+    - `html/button-secondary.html`: [file](../../examples/html/button-secondary.html)
+  - react:
+    - `react/button-secondary.scoped.css`: [file](../../examples/react/button-secondary.scoped.css)
+    - `react/button-secondary.tsx`: [file](../../examples/react/button-secondary.tsx)
+  - vue:
+    - `vue/button-secondary.css`: [file](../../examples/vue/button-secondary.css)
+    - `vue/button-secondary.vue`: [file](../../examples/vue/button-secondary.vue)
+- button-subtle-primary
+  - angular:
+    - `angular/button-subtle-primary.css`: [file](../../examples/angular/button-subtle-primary.css)
+    - `angular/button-subtle-primary.ts`: [file](../../examples/angular/button-subtle-primary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-subtle-primary.css`: [file](../../examples/angular-standalone/button-subtle-primary.css)
+    - `angular-standalone/button-subtle-primary.ts`: [file](../../examples/angular-standalone/button-subtle-primary.ts)
+  - html:
+    - `html/button-subtle-primary.css`: [file](../../examples/html/button-subtle-primary.css)
+    - `html/button-subtle-primary.html`: [file](../../examples/html/button-subtle-primary.html)
+  - react:
+    - `react/button-subtle-primary.scoped.css`: [file](../../examples/react/button-subtle-primary.scoped.css)
+    - `react/button-subtle-primary.tsx`: [file](../../examples/react/button-subtle-primary.tsx)
+  - vue:
+    - `vue/button-subtle-primary.css`: [file](../../examples/vue/button-subtle-primary.css)
+    - `vue/button-subtle-primary.vue`: [file](../../examples/vue/button-subtle-primary.vue)
+- button-subtle-secondary
+  - angular:
+    - `angular/button-subtle-secondary.css`: [file](../../examples/angular/button-subtle-secondary.css)
+    - `angular/button-subtle-secondary.ts`: [file](../../examples/angular/button-subtle-secondary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-subtle-secondary.css`: [file](../../examples/angular-standalone/button-subtle-secondary.css)
+    - `angular-standalone/button-subtle-secondary.ts`: [file](../../examples/angular-standalone/button-subtle-secondary.ts)
+  - html:
+    - `html/button-subtle-secondary.css`: [file](../../examples/html/button-subtle-secondary.css)
+    - `html/button-subtle-secondary.html`: [file](../../examples/html/button-subtle-secondary.html)
+  - react:
+    - `react/button-subtle-secondary.scoped.css`: [file](../../examples/react/button-subtle-secondary.scoped.css)
+    - `react/button-subtle-secondary.tsx`: [file](../../examples/react/button-subtle-secondary.tsx)
+  - vue:
+    - `vue/button-subtle-secondary.css`: [file](../../examples/vue/button-subtle-secondary.css)
+    - `vue/button-subtle-secondary.vue`: [file](../../examples/vue/button-subtle-secondary.vue)
+- button-subtle-tertiary
+  - angular:
+    - `angular/button-subtle-tertiary.css`: [file](../../examples/angular/button-subtle-tertiary.css)
+    - `angular/button-subtle-tertiary.ts`: [file](../../examples/angular/button-subtle-tertiary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-subtle-tertiary.css`: [file](../../examples/angular-standalone/button-subtle-tertiary.css)
+    - `angular-standalone/button-subtle-tertiary.ts`: [file](../../examples/angular-standalone/button-subtle-tertiary.ts)
+  - html:
+    - `html/button-subtle-tertiary.css`: [file](../../examples/html/button-subtle-tertiary.css)
+    - `html/button-subtle-tertiary.html`: [file](../../examples/html/button-subtle-tertiary.html)
+  - react:
+    - `react/button-subtle-tertiary.scoped.css`: [file](../../examples/react/button-subtle-tertiary.scoped.css)
+    - `react/button-subtle-tertiary.tsx`: [file](../../examples/react/button-subtle-tertiary.tsx)
+  - vue:
+    - `vue/button-subtle-tertiary.css`: [file](../../examples/vue/button-subtle-tertiary.css)
+    - `vue/button-subtle-tertiary.vue`: [file](../../examples/vue/button-subtle-tertiary.vue)
+- button-tertiary
+  - angular:
+    - `angular/button-tertiary.css`: [file](../../examples/angular/button-tertiary.css)
+    - `angular/button-tertiary.ts`: [file](../../examples/angular/button-tertiary.ts)
+  - angular-standalone:
+    - `angular-standalone/button-tertiary.css`: [file](../../examples/angular-standalone/button-tertiary.css)
+    - `angular-standalone/button-tertiary.ts`: [file](../../examples/angular-standalone/button-tertiary.ts)
+  - html:
+    - `html/button-tertiary.css`: [file](../../examples/html/button-tertiary.css)
+    - `html/button-tertiary.html`: [file](../../examples/html/button-tertiary.html)
+  - react:
+    - `react/button-tertiary.scoped.css`: [file](../../examples/react/button-tertiary.scoped.css)
+    - `react/button-tertiary.tsx`: [file](../../examples/react/button-tertiary.tsx)
+  - vue:
+    - `vue/button-tertiary.css`: [file](../../examples/vue/button-tertiary.css)
+    - `vue/button-tertiary.vue`: [file](../../examples/vue/button-tertiary.vue)
+- buttons
+  - angular:
+    - `angular/buttons.css`: [file](../../examples/angular/buttons.css)
+    - `angular/buttons.ts`: [file](../../examples/angular/buttons.ts)
+  - angular-standalone:
+    - `angular-standalone/buttons.css`: [file](../../examples/angular-standalone/buttons.css)
+    - `angular-standalone/buttons.ts`: [file](../../examples/angular-standalone/buttons.ts)
+  - html:
+    - `html/buttons.css`: [file](../../examples/html/buttons.css)
+    - `html/buttons.html`: [file](../../examples/html/buttons.html)
+  - react:
+    - `react/buttons.scoped.css`: [file](../../examples/react/buttons.scoped.css)
+    - `react/buttons.tsx`: [file](../../examples/react/buttons.tsx)
+  - vue:
+    - `vue/buttons.css`: [file](../../examples/vue/buttons.css)
+    - `vue/buttons.vue`: [file](../../examples/vue/buttons.vue)
+- content-header
+  - angular:
+    - `angular/content-header.html`: [file](../../examples/angular/content-header.html)
+    - `angular/content-header.ts`: [file](../../examples/angular/content-header.ts)
+  - angular-standalone:
+    - `angular-standalone/content-header.html`: [file](../../examples/angular-standalone/content-header.html)
+    - `angular-standalone/content-header.ts`: [file](../../examples/angular-standalone/content-header.ts)
+  - html:
+    - `html/content-header.html`: [file](../../examples/html/content-header.html)
+  - react:
+    - `react/content-header.tsx`: [file](../../examples/react/content-header.tsx)
+  - vue:
+    - `vue/content-header.vue`: [file](../../examples/vue/content-header.vue)
+- content-header-text-overflow
+  - angular:
+    - `angular/content-header-text-overflow.html`: [file](../../examples/angular/content-header-text-overflow.html)
+    - `angular/content-header-text-overflow.ts`: [file](../../examples/angular/content-header-text-overflow.ts)
+  - angular-standalone:
+    - `angular-standalone/content-header-text-overflow.html`: [file](../../examples/angular-standalone/content-header-text-overflow.html)
+    - `angular-standalone/content-header-text-overflow.ts`: [file](../../examples/angular-standalone/content-header-text-overflow.ts)
+  - html:
+    - `html/content-header-text-overflow.html`: [file](../../examples/html/content-header-text-overflow.html)
+  - react:
+    - `react/content-header-text-overflow.tsx`: [file](../../examples/react/content-header-text-overflow.tsx)
+  - vue:
+    - `vue/content-header-text-overflow.vue`: [file](../../examples/vue/content-header-text-overflow.vue)
+- dropdown
+  - angular:
+    - `angular/dropdown.ts`: [file](../../examples/angular/dropdown.ts)
+  - angular-standalone:
+    - `angular-standalone/dropdown.ts`: [file](../../examples/angular-standalone/dropdown.ts)
+  - html:
+    - `html/dropdown.html`: [file](../../examples/html/dropdown.html)
+  - react:
+    - `react/dropdown.tsx`: [file](../../examples/react/dropdown.tsx)
+  - vue:
+    - `vue/dropdown.vue`: [file](../../examples/vue/dropdown.vue)
+- form-layout-auto
+  - angular:
+    - `angular/form-layout-auto.html`: [file](../../examples/angular/form-layout-auto.html)
+    - `angular/form-layout-auto.ts`: [file](../../examples/angular/form-layout-auto.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-auto.html`: [file](../../examples/angular-standalone/form-layout-auto.html)
+    - `angular-standalone/form-layout-auto.ts`: [file](../../examples/angular-standalone/form-layout-auto.ts)
+  - html:
+    - `html/form-layout-auto.html`: [file](../../examples/html/form-layout-auto.html)
+  - react:
+    - `react/form-layout-auto.tsx`: [file](../../examples/react/form-layout-auto.tsx)
+  - vue:
+    - `vue/form-layout-auto.vue`: [file](../../examples/vue/form-layout-auto.vue)
+- form-layout-grid
+  - angular:
+    - `angular/form-layout-grid.css`: [file](../../examples/angular/form-layout-grid.css)
+    - `angular/form-layout-grid.html`: [file](../../examples/angular/form-layout-grid.html)
+    - `angular/form-layout-grid.ts`: [file](../../examples/angular/form-layout-grid.ts)
+  - angular-standalone:
+    - `angular-standalone/form-layout-grid.css`: [file](../../examples/angular-standalone/form-layout-grid.css)
+    - `angular-standalone/form-layout-grid.html`: [file](../../examples/angular-standalone/form-layout-grid.html)
+    - `angular-standalone/form-layout-grid.ts`: [file](../../examples/angular-standalone/form-layout-grid.ts)
+  - html:
+    - `html/form-layout-grid.css`: [file](../../examples/html/form-layout-grid.css)
+    - `html/form-layout-grid.html`: [file](../../examples/html/form-layout-grid.html)
+  - react:
+    - `react/form-layout-grid.scoped.css`: [file](../../examples/react/form-layout-grid.scoped.css)
+    - `react/form-layout-grid.tsx`: [file](../../examples/react/form-layout-grid.tsx)
+  - vue:
+    - `vue/form-layout-grid.css`: [file](../../examples/vue/form-layout-grid.css)
+    - `vue/form-layout-grid.vue`: [file](../../examples/vue/form-layout-grid.vue)
+- group-custom-entry
+  - angular:
+    - `angular/group-custom-entry.ts`: [file](../../examples/angular/group-custom-entry.ts)
+  - angular-standalone:
+    - `angular-standalone/group-custom-entry.ts`: [file](../../examples/angular-standalone/group-custom-entry.ts)
+  - html:
+    - `html/group-custom-entry.html`: [file](../../examples/html/group-custom-entry.html)
+  - react:
+    - `react/group-custom-entry.tsx`: [file](../../examples/react/group-custom-entry.tsx)
+  - vue:
+    - `vue/group-custom-entry.vue`: [file](../../examples/vue/group-custom-entry.vue)
+- message-bar
+  - angular:
+    - `angular/message-bar.css`: [file](../../examples/angular/message-bar.css)
+    - `angular/message-bar.html`: [file](../../examples/angular/message-bar.html)
+    - `angular/message-bar.ts`: [file](../../examples/angular/message-bar.ts)
+  - angular-standalone:
+    - `angular-standalone/message-bar.css`: [file](../../examples/angular-standalone/message-bar.css)
+    - `angular-standalone/message-bar.ts`: [file](../../examples/angular-standalone/message-bar.ts)
+  - html:
+    - `html/message-bar.css`: [file](../../examples/html/message-bar.css)
+    - `html/message-bar.html`: [file](../../examples/html/message-bar.html)
+  - react:
+    - `react/message-bar.scoped.css`: [file](../../examples/react/message-bar.scoped.css)
+    - `react/message-bar.tsx`: [file](../../examples/react/message-bar.tsx)
+  - vue:
+    - `vue/message-bar.css`: [file](../../examples/vue/message-bar.css)
+    - `vue/message-bar.vue`: [file](../../examples/vue/message-bar.vue)
+- modal-non-blocking
+  - angular:
+    - `angular/modal-non-blocking.ts`: [file](../../examples/angular/modal-non-blocking.ts)
+  - angular-standalone:
+    - `angular-standalone/modal-non-blocking.ts`: [file](../../examples/angular-standalone/modal-non-blocking.ts)
+  - html:
+    - `html/modal-non-blocking.html`: [file](../../examples/html/modal-non-blocking.html)
+  - react:
+    - `react/modal-non-blocking.tsx`: [file](../../examples/react/modal-non-blocking.tsx)
+- pane
+  - angular:
+    - `angular/pane.html`: [file](../../examples/angular/pane.html)
+    - `angular/pane.ts`: [file](../../examples/angular/pane.ts)
+  - angular-standalone:
+    - `angular-standalone/pane.html`: [file](../../examples/angular-standalone/pane.html)
+    - `angular-standalone/pane.ts`: [file](../../examples/angular-standalone/pane.ts)
+  - html:
+    - `html/pane.html`: [file](../../examples/html/pane.html)
+  - react:
+    - `react/pane.tsx`: [file](../../examples/react/pane.tsx)
+  - vue:
+    - `vue/pane.vue`: [file](../../examples/vue/pane.vue)
+- pane-layout
+  - angular:
+    - `angular/pane-layout.html`: [file](../../examples/angular/pane-layout.html)
+    - `angular/pane-layout.ts`: [file](../../examples/angular/pane-layout.ts)
+  - angular-standalone:
+    - `angular-standalone/pane-layout.html`: [file](../../examples/angular-standalone/pane-layout.html)
+    - `angular-standalone/pane-layout.ts`: [file](../../examples/angular-standalone/pane-layout.ts)
+  - html:
+    - `html/pane-layout.html`: [file](../../examples/html/pane-layout.html)
+  - react:
+    - `react/pane-layout.tsx`: [file](../../examples/react/pane-layout.tsx)
+  - vue:
+    - `vue/pane-layout.vue`: [file](../../examples/vue/pane-layout.vue)
+- tooltip
+  - angular:
+    - `angular/tooltip.css`: [file](../../examples/angular/tooltip.css)
+    - `angular/tooltip.html`: [file](../../examples/angular/tooltip.html)
+    - `angular/tooltip.ts`: [file](../../examples/angular/tooltip.ts)
+  - angular-standalone:
+    - `angular-standalone/tooltip.css`: [file](../../examples/angular-standalone/tooltip.css)
+    - `angular-standalone/tooltip.html`: [file](../../examples/angular-standalone/tooltip.html)
+    - `angular-standalone/tooltip.ts`: [file](../../examples/angular-standalone/tooltip.ts)
+  - html:
+    - `html/tooltip.css`: [file](../../examples/html/tooltip.css)
+    - `html/tooltip.html`: [file](../../examples/html/tooltip.html)
+  - react:
+    - `react/tooltip.scoped.css`: [file](../../examples/react/tooltip.scoped.css)
+    - `react/tooltip.tsx`: [file](../../examples/react/tooltip.tsx)
+  - vue:
+    - `vue/tooltip.css`: [file](../../examples/vue/tooltip.css)
+    - `vue/tooltip.vue`: [file](../../examples/vue/tooltip.vue)
+
+## Related blocks
+
+Block and file links are relative to this Markdown file.
+
+- [change-password](../blocks.md#change-password)
+  - angular:
+    - `angular/change-password.ts`: [file](../../blocks/angular/change-password.ts)
+    - `angular/change-password.html`: [file](../../blocks/angular/change-password.html)
+    - `angular/change-password.css`: [file](../../blocks/angular/change-password.css)
+  - react:
+    - `react/change-password.tsx`: [file](../../blocks/react/change-password.tsx)
+    - `react/change-password.module.css`: [file](../../blocks/react/change-password.module.css)
+- [error-page](../blocks.md#error-page)
+  - angular:
+    - `angular/error-page.ts`: [file](../../blocks/angular/error-page.ts)
+    - `angular/error-page.html`: [file](../../blocks/angular/error-page.html)
+    - `angular/error-page.css`: [file](../../blocks/angular/error-page.css)
+  - react:
+    - `react/error-page.tsx`: [file](../../blocks/react/error-page.tsx)
+    - `react/error-page.module.css`: [file](../../blocks/react/error-page.module.css)
+- [login-overlay](../blocks.md#login-overlay)
+  - angular:
+    - `angular/login-overlay.ts`: [file](../../blocks/angular/login-overlay.ts)
+    - `angular/login-overlay.html`: [file](../../blocks/angular/login-overlay.html)
+    - `angular/login-overlay.css`: [file](../../blocks/angular/login-overlay.css)
+  - react:
+    - `react/login-overlay.tsx`: [file](../../blocks/react/login-overlay.tsx)
+    - `react/login-overlay.module.css`: [file](../../blocks/react/login-overlay.module.css)
+
+## Properties
+
+- `disabled`; attr: `disabled`; type: `boolean`; default: `false` - Disable the button
+- `form`; attr: `form`; type: `string | undefined` - Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
+- `href`; attr: `href`; type: `string | undefined` - URL for the button link. When provided, the button will render as an anchor tag.
+- `icon`; attr: `icon`; type: `string | undefined` - Icon name
+- `iconRight`; attr: `icon-right`; type: `string | undefined` - Icon name for the right side of the button
+- `loading`; attr: `loading`; type: `boolean`; default: `false` - Loading button
+- `rel`; attr: `rel`; type: `string | undefined` - Specifies the relationship between the current document and the linked document when href is provided.
+- `target`; attr: `target`; type: `"_blank" | "_parent" | "_self" | "_top" | undefined`; default: `'_self'` - Specifies where to open the linked document when href is provided.
+- `type`; attr: `type`; type: `"button" | "submit"`; default: `'button'` - Type of the button
+- `variant`; attr: `variant`; type: `"danger-primary" | "danger-secondary" | "danger-tertiary" | "primary" | "secondary" | "subtle-primary" | "subtle-secondary" | "subtle-tertiary" | "tertiary"`; default: `'primary'` - Button variant
+
+## Events
+
+- None
+
+## Slots
+
+- `` - Button label.

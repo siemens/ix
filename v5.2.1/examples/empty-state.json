@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"empty-state","variants":{"html":{"files":[{"path":"html/empty-state.html"}]},"react":{"files":[{"path":"react/empty-state.tsx"}]},"angular":{"files":[{"path":"angular/empty-state.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/empty-state.ts"}]},"vue":{"files":[{"path":"vue/empty-state.vue"}]}}}

@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"input-legacy","variants":{"html":{"files":[{"path":"html/input-legacy.html"}]},"react":{"files":[{"path":"react/input-legacy.tsx"}]},"angular":{"files":[{"path":"angular/input-legacy.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/input-legacy.ts"}]},"vue":{"files":[{"path":"vue/input-legacy.vue"}]}}}

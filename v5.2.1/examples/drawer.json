@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"drawer","variants":{"react":{"files":[{"path":"react/drawer.tsx"}]},"angular":{"files":[{"path":"angular/drawer.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/drawer.ts"}]},"vue":{"files":[{"path":"vue/drawer.vue"}]}}}

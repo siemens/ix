@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-application>
+  <ix-application-header>
+    <div class="placeholder-logo" slot="logo"></div>
+  </ix-application-header>
+  <ix-menu #menu>
+    <ix-menu-about suppressLegacyTabs>
+      <ix-tabs
+        [activeTabKey]="activeTabKey"
+        (tabChange)="activeTabKey = $event.detail ?? 'tab-1'"
+      >
+        <ix-tab-item tabKey="tab-1">Tab 1</ix-tab-item>
+        <ix-tab-item tabKey="tab-2">Tab 2</ix-tab-item>
+      </ix-tabs>
+      @if (activeTabKey === 'tab-1') {
+      <section role="tabpanel" aria-label="About and legal content">
+        Content 1
+      </section>
+      } @else {
+      <section role="tabpanel" aria-label="About and legal content">
+        Content 2
+      </section>
+      }
+    </ix-menu-about>
+  </ix-menu>
+</ix-application>

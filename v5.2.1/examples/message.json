@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"message","variants":{"html":{"files":[{"path":"html/message.html"}]},"react":{"files":[{"path":"react/message.tsx"}]},"angular":{"files":[{"path":"angular/message.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/message.ts"}]},"vue":{"files":[{"path":"vue/message.vue"}]}}}

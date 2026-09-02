@@ -1,0 +1,55 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-chat class="chat-example__chat">
+  <ix-chat-ai-message>
+    <h3>Recommended maintenance actions</h3>
+    <p>
+      The compressor is operating within the expected range. Schedule the next
+      inspection during the Friday service window and keep monitoring the
+      vibration trend.
+    </p>
+    <ul>
+      <li>Review the acknowledged alarms from the last shift.</li>
+      <li>Confirm that spare parts are available before the service window.</li>
+      <li>Share the summary with the maintenance lead.</li>
+    </ul>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Copy response"
+      icon="copy"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Helpful response"
+      icon="thumb-up"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Not helpful response"
+      icon="thumb-down"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-icon-button
+      slot="actions"
+      aria-label="Regenerate response"
+      icon="refresh"
+      size="24"
+      variant="subtle-tertiary"
+    ></ix-icon-button>
+    <ix-chip slot="sources" icon="globe" outline variant="neutral">
+      Sources
+    </ix-chip>
+  </ix-chat-ai-message>
+</ix-chat>

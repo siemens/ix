@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"select","variants":{"html":{"files":[{"path":"html/select.html"}]},"react":{"files":[{"path":"react/select.tsx"}]},"angular":{"files":[{"path":"angular/select.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/select.ts"}]},"vue":{"files":[{"path":"vue/select.vue"}]}}}

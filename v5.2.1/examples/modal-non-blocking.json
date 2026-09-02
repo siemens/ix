@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"modal-non-blocking","variants":{"html":{"files":[{"path":"html/modal-non-blocking.html"}]},"react":{"files":[{"path":"react/modal-non-blocking.tsx"}]},"angular":{"files":[{"path":"angular/modal-non-blocking.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/modal-non-blocking.ts"}]}}}

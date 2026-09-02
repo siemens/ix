@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"input-form-validation","variants":{"angular":{"files":[{"path":"angular/input-form-validation.html"},{"path":"angular/input-form-validation.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/input-form-validation.html"},{"path":"angular-standalone/input-form-validation.ts"}]}}}

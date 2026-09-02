@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"event-list","variants":{"html":{"files":[{"path":"html/event-list.html"}]},"react":{"files":[{"path":"react/event-list.tsx"}]},"angular":{"files":[{"path":"angular/event-list.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/event-list.ts"}]},"vue":{"files":[{"path":"vue/event-list.vue"}]}}}

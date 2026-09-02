@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"pagination","variants":{"html":{"files":[{"path":"html/pagination.html"}]},"react":{"files":[{"path":"react/pagination.tsx"}]},"angular":{"files":[{"path":"angular/pagination.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/pagination.ts"}]},"vue":{"files":[{"path":"vue/pagination.vue"}]}}}

@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"modal","variants":{"html":{"files":[{"path":"html/modal.html"}]},"react":{"files":[{"path":"react/modal.tsx"}]},"vue":{"files":[{"path":"vue/modal.vue"}]}}}

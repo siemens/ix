@@ -1,0 +1,122 @@
+# Siemens iX components
+
+> Component-focused LLM documentation generated from registry component JSON metadata.
+
+This index links to all 114 generated component detail files. Each detail file includes API metadata, related examples and blocks from generated relationship maps, and Figma IDs.
+
+## Components
+
+- [ix-action-card](components/ix-action-card.md): Card that represents a selectable action or option to start a task or workflow.
+- [ix-application](components/ix-application.md): Root container that sets up the overall application shell and layout.
+- [ix-application-header](components/ix-application-header.md): Top header bar of the application shell holding branding, navigation, and actions.
+- [ix-avatar](components/ix-avatar.md): Displays a user's profile image, initials, or a placeholder icon.
+- [ix-badge](components/ix-badge.md): Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge-max-width`.
+- [ix-blind](components/ix-blind.md): Collapsible container that expands and collapses to show or hide its content.
+- [ix-breadcrumb](components/ix-breadcrumb.md): Navigation trail that shows the user's location within a hierarchy.
+- [ix-breadcrumb-item](components/ix-breadcrumb-item.md): A single entry within a breadcrumb navigation trail.
+- [ix-button](components/ix-button.md): Triggers an action or event when activated by the user.
+- [ix-card](components/ix-card.md): Flexible container that groups related content and actions.
+- [ix-card-accordion](components/ix-card-accordion.md): Expandable card section that shows or hides content within a card list.
+- [ix-card-content](components/ix-card-content.md): Content region of a card.
+- [ix-card-list](components/ix-card-list.md): Container that arranges multiple cards in a list or grid layout.
+- [ix-card-title](components/ix-card-title.md): Title area of a card.
+- [ix-category-filter](components/ix-category-filter.md): Input for building and refining searches using category-based filter criteria.
+- [ix-chat](components/ix-chat.md): No component summary available.
+- [ix-chat-ai-message](components/ix-chat-ai-message.md): No component summary available.
+- [ix-chat-attachment](components/ix-chat-attachment.md): No component summary available.
+- [ix-chat-input](components/ix-chat-input.md): No component summary available.
+- [ix-chat-user-message](components/ix-chat-user-message.md): No component summary available.
+- [ix-checkbox](components/ix-checkbox.md): Lets users select an option or toggle a single value on or off.
+- [ix-checkbox-group](components/ix-checkbox-group.md): Groups related checkboxes together.
+- [ix-chip](components/ix-chip.md): Compact element that represents an attribute, tag, or entity, optionally dismissible.
+- [ix-col](components/ix-col.md): Column within the responsive layout grid.
+- [ix-content](components/ix-content.md): Main content region of an application page.
+- [ix-content-header](components/ix-content-header.md): Header area of a content page showing the title and page-level actions.
+- [ix-custom-field](components/ix-custom-field.md): Wrapper that adds label, helper text, and validation handling around custom form controls.
+- [ix-date-dropdown](components/ix-date-dropdown.md): Dropdown for selecting a date or a relative date range.
+- [ix-date-input](components/ix-date-input.md): Text input for entering and validating a date value.
+- [ix-date-picker](components/ix-date-picker.md): Calendar for selecting a single date or a date range.
+- [ix-datetime-input](components/ix-datetime-input.md): Text input for entering and validating a combined date and time value.
+- [ix-datetime-picker](components/ix-datetime-picker.md): Combined calendar and time selector for picking a date and time.
+- [ix-divider](components/ix-divider.md): Thin line that visually separates content.
+- [ix-dropdown](components/ix-dropdown.md): Floating overlay that displays a list of options or actions anchored to a trigger.
+- [ix-dropdown-button](components/ix-dropdown-button.md): Button that opens an attached dropdown menu.
+- [ix-dropdown-header](components/ix-dropdown-header.md): Non-interactive heading that labels a group of dropdown items.
+- [ix-dropdown-item](components/ix-dropdown-item.md): Selectable entry within a dropdown menu.
+- [ix-dropdown-quick-actions](components/ix-dropdown-quick-actions.md): Container for quick action buttons displayed within a dropdown.
+- [ix-empty-state](components/ix-empty-state.md): Placeholder shown when there is no content or data to display.
+- [ix-event-list](components/ix-event-list.md): List that displays a sequence of events or status entries.
+- [ix-event-list-item](components/ix-event-list-item.md): A single entry within an event list.
+- [ix-expanding-search](components/ix-expanding-search.md): Search input that expands from an icon when activated.
+- [ix-field-label](components/ix-field-label.md): Label for a form field.
+- [ix-filter-chip](components/ix-filter-chip.md): Dismissible chip that represents an applied filter.
+- [ix-flip-tile](components/ix-flip-tile.md): Tile that flips between a front and back side to reveal additional content.
+- [ix-flip-tile-content](components/ix-flip-tile-content.md): Content for a single side of a flip tile.
+- [ix-group](components/ix-group.md): Collapsible list group with a selectable header and nested items.
+- [ix-group-context-menu](components/ix-group-context-menu.md): Context menu that provides actions for a group.
+- [ix-group-item](components/ix-group-item.md): A single selectable item within a group.
+- [ix-helper-text](components/ix-helper-text.md): Supplementary text that provides guidance or validation feedback for a form field.
+- [ix-icon-button](components/ix-icon-button.md): Button that displays only an icon to trigger an action.
+- [ix-icon-toggle-button](components/ix-icon-toggle-button.md): Icon button that toggles between a pressed and unpressed state.
+- [ix-input](components/ix-input.md): Text input for entering and validating a single-line value.
+- [ix-key-value](components/ix-key-value.md): Displays a labeled key together with its value.
+- [ix-key-value-list](components/ix-key-value-list.md): Container that arranges multiple key-value pairs in a list.
+- [ix-kpi](components/ix-kpi.md): Displays a key performance indicator with a label, value, and status.
+- [ix-layout-auto](components/ix-layout-auto.md): Responsive form layout that automatically adjusts columns to the available width.
+- [ix-layout-grid](components/ix-layout-grid.md): Column-based grid layout for arranging content responsively.
+- [ix-link-button](components/ix-link-button.md): Button styled as a hyperlink that navigates to a target.
+- [ix-menu](components/ix-menu.md): Primary side navigation menu of the application shell.
+- [ix-menu-about](components/ix-menu-about.md): Overlay that shows application information such as version and legal details.
+- [ix-menu-about-item](components/ix-menu-about-item.md): A single tab or entry within the about overlay.
+- [ix-menu-about-news](components/ix-menu-about-news.md): News panel shown within the application menu.
+- [ix-menu-avatar](components/ix-menu-avatar.md): Menu entry that displays the current user's avatar and account actions.
+- [ix-menu-avatar-item](components/ix-menu-avatar-item.md): A single action within the avatar menu.
+- [ix-menu-category](components/ix-menu-category.md): Expandable category that groups related items in the side menu.
+- [ix-menu-item](components/ix-menu-item.md): Navigation entry within the side menu.
+- [ix-menu-settings](components/ix-menu-settings.md): Settings overlay opened from the application menu.
+- [ix-menu-settings-item](components/ix-menu-settings-item.md): A single tab or entry within the settings overlay.
+- [ix-message-bar](components/ix-message-bar.md): Inline bar that displays a contextual message or notification.
+- [ix-modal](components/ix-modal.md): Dialog overlay that presents content or requires user interaction on top of the page.
+- [ix-modal-content](components/ix-modal-content.md): Content region of a modal dialog.
+- [ix-modal-footer](components/ix-modal-footer.md): Footer region of a modal dialog, typically holding action buttons.
+- [ix-modal-header](components/ix-modal-header.md): Header region of a modal dialog showing the title and close control.
+- [ix-modal-loading](components/ix-modal-loading.md): Modal that indicates a loading or processing state.
+- [ix-number-input](components/ix-number-input.md): Text input for entering and validating a numeric value.
+- [ix-pagination](components/ix-pagination.md): Control for navigating between pages of content.
+- [ix-pane](components/ix-pane.md): Collapsible side panel docked to an edge of the layout.
+- [ix-pane-layout](components/ix-pane-layout.md): Layout container that arranges collapsible panes around a content area.
+- [ix-pill](components/ix-pill.md): Compact label that highlights a status, count, or category.
+- [ix-playground](components/ix-playground.md): Internal development playground for previewing and testing components.
+- [ix-popover](components/ix-popover.md): Floating panel anchored to a trigger element.
+- [ix-popover-content](components/ix-popover-content.md): Main body section of the popover.
+- [ix-popover-footer](components/ix-popover-footer.md): Footer section for actions and optional leading metadata.
+- [ix-popover-header](components/ix-popover-header.md): Header section with optional icon, title, additional items, and close button.
+- [ix-popover-image](components/ix-popover-image.md): Optional image section for the popover.
+- [ix-progress-indicator](components/ix-progress-indicator.md): Shows progress through a sequence of steps.
+- [ix-push-card](components/ix-push-card.md): Card that highlights a notification or push message with an icon and value.
+- [ix-radio](components/ix-radio.md): Lets users select a single option from a set.
+- [ix-radio-group](components/ix-radio-group.md): Groups related radio buttons so only one can be selected.
+- [ix-range-field](components/ix-range-field.md): Field that combines two inputs to capture a date, time, or datetime range.
+- [ix-row](components/ix-row.md): Row within the responsive layout grid.
+- [ix-select](components/ix-select.md): Dropdown control for selecting one or more options from a list.
+- [ix-select-item](components/ix-select-item.md): A selectable option within a select control.
+- [ix-slider](components/ix-slider.md): Lets users choose a numeric value by dragging along a track.
+- [ix-spinner](components/ix-spinner.md): Animated indicator that signals an ongoing loading process.
+- [ix-split-button](components/ix-split-button.md): Button combined with an attached dropdown for related actions.
+- [ix-tab-item](components/ix-tab-item.md): A single selectable tab within a tab set.
+- [ix-tabs](components/ix-tabs.md): Tabbed navigation for switching between related views.
+- [ix-textarea](components/ix-textarea.md): Multi-line text input for entering and validating longer text.
+- [ix-tile](components/ix-tile.md): Container that presents grouped information in a compact tile.
+- [ix-time-input](components/ix-time-input.md): Text input for entering and validating a time value.
+- [ix-time-picker](components/ix-time-picker.md): Selector for picking a time value.
+- [ix-toast](components/ix-toast.md): Transient notification message that appears temporarily.
+- [ix-toast-container](components/ix-toast-container.md): Container that positions and manages toast notifications.
+- [ix-toggle](components/ix-toggle.md): Switch control for toggling a single setting on or off.
+- [ix-toggle-button](components/ix-toggle-button.md): Button that toggles between a pressed and unpressed state.
+- [ix-tooltip](components/ix-tooltip.md): Small overlay that shows contextual information when hovering or focusing an element.
+- [ix-tree](components/ix-tree.md): Displays hierarchical data as an expandable tree.
+- [ix-tree-item](components/ix-tree-item.md): A single node within a tree.
+- [ix-typography](components/ix-typography.md): Applies consistent text styling based on the design system's typography scale.
+- [ix-upload](components/ix-upload.md): Control for selecting and uploading files.
+- [ix-workflow-step](components/ix-workflow-step.md): A single step within a workflow step sequence.
+- [ix-workflow-steps](components/ix-workflow-steps.md): Displays the steps of a workflow and the user's progress through them.

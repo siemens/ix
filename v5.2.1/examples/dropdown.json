@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"dropdown","variants":{"html":{"files":[{"path":"html/dropdown.html"}]},"react":{"files":[{"path":"react/dropdown.tsx"}]},"angular":{"files":[{"path":"angular/dropdown.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/dropdown.ts"}]},"vue":{"files":[{"path":"vue/dropdown.vue"}]}}}

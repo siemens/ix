@@ -1,0 +1,71 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date dropdown presets example</title>
+  </head>
+  <body>
+    <ix-date-dropdown
+      date-range-id="last-7"
+      format="yyyy/LL/dd"
+    ></ix-date-dropdown>
+
+    <script>
+      function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}/${month}/${day}`;
+      }
+
+      function getDateDaysAgo(numberOfDays) {
+        const date = new Date();
+        date.setDate(date.getDate() - numberOfDays);
+
+        return formatDate(date);
+      }
+
+      const today = formatDate(new Date());
+
+      document.querySelector('ix-date-dropdown').dateRangeOptions = [
+        { id: 'today', label: 'Today', from: today, to: today },
+        {
+          id: 'last-7',
+          label: 'Last 7 days',
+          from: getDateDaysAgo(6),
+          to: today,
+        },
+        {
+          id: 'last-30',
+          label: 'Last 30 days',
+          from: getDateDaysAgo(29),
+          to: today,
+        },
+        {
+          id: 'last-90',
+          label: 'Last 90 days',
+          from: getDateDaysAgo(89),
+          to: today,
+        },
+        {
+          id: 'last-365',
+          label: 'Last 365 days',
+          from: getDateDaysAgo(364),
+          to: today,
+        },
+      ];
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

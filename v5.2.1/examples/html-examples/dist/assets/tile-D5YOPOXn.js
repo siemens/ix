@@ -1,0 +1,8 @@
+import "./global-Do6maBom.js";
+import { a as addIcons } from "./ix-icon.entry-BdQBfvO9.js";
+import { O as iconChevronRightSmall, h as iconContextMenu } from "./index-lQqpelqO.js";
+import "./init-BB6hGSJy.js";
+addIcons({
+  iconContextMenu,
+  iconChevronRightSmall
+});

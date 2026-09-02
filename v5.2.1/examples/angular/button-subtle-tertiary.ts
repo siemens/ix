@@ -1,0 +1,29 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { Component } from '@angular/core';
+
+@Component({
+  standalone: false,
+  selector: 'app-example',
+  template: buttonSubtleTertiary(),
+  styleUrls: ['./button-subtle-tertiary.css'],
+})
+export default class Buttons {}
+
+function buttonSubtleTertiary(): string | undefined {
+  return `
+      <ix-button variant="subtle-tertiary">
+        Button
+      </ix-button>
+      <ix-button disabled variant="subtle-tertiary">
+        Button
+      </ix-button>
+  `;
+}
