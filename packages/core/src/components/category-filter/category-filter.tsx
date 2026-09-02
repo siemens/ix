@@ -931,6 +931,8 @@ export class CategoryFilter {
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
+            keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
+            keyboardItemTriggerKeys={['Enter']}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>
