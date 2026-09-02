@@ -25,6 +25,9 @@ const undeclaredCustomPropertyAllowlist = new Set([
   '--ix-badge-custom-background',
   '--ix-badge-custom-color',
   '--ix-layout-grid-columns',
+  '--ix-list-drag-left',
+  '--ix-list-drag-top',
+  '--ix-list-drag-width',
   '--ix-tab-active-indicator-offset',
   '--ix-tab-active-indicator-width',
 ]);
@@ -62,8 +65,8 @@ function findFiles(directory: string, suffix: string): string[] {
     return entry.isDirectory()
       ? findFiles(entryPath, suffix)
       : entryPath.endsWith(suffix)
-      ? [entryPath]
-      : [];
+        ? [entryPath]
+        : [];
   });
 }
 
