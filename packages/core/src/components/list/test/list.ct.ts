@@ -61,8 +61,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const list = document.querySelector('ix-list');
-      list?.remove();
-      document.querySelector('div')?.append(list!);
+      if (!list) {
+        throw new Error('Expected ix-list to exist');
+      }
+
+      list.remove();
+      document.querySelector('div')?.append(list);
     });
 
     await items.first().evaluate((element) => {
