@@ -772,17 +772,6 @@ export class List {
 
     if (
       isPrimaryAction &&
-      isActivationKey &&
-      this.draggable &&
-      !dragGripper?.disabled
-    ) {
-      event.preventDefault();
-      this.beginReorder(item, 'keyboard');
-      return;
-    }
-
-    if (
-      isPrimaryAction &&
       event.key === 'ArrowLeft' &&
       this.draggable &&
       !dragGripper?.disabled
