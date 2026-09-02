@@ -582,12 +582,12 @@ export class List {
     );
   }
 
-  private cancelReorder() {
+  private cancelReorder(restoreFocus = true) {
     const item = this.draggedItem;
     if (!item) {
       return;
     }
-    const shouldRestoreFocus = this.dragMode === 'keyboard';
+    const shouldRestoreFocus = restoreFocus && this.dragMode === 'keyboard';
 
     const nextSibling = this.dragOriginalNextSibling;
     if (nextSibling?.parentNode === this.hostElement) {
@@ -692,6 +692,18 @@ export class List {
 
     this.activeItem = item;
     this.synchronizeItems();
+  }
+
+  private handleFocusOut() {
+    if (!this.draggedItem) {
+      return;
+    }
+
+    queueMicrotask(() => {
+      if (this.draggedItem && !this.hostElement.matches(':focus-within')) {
+        this.cancelReorder(false);
+      }
+    });
   }
 
   private isActivationKey(event: KeyboardEvent) {
@@ -880,6 +892,7 @@ export class List {
       <Host
         role="list"
         onFocusin={(event: FocusEvent) => this.handleFocusIn(event)}
+        onFocusout={() => this.handleFocusOut()}
         onKeydown={(event: KeyboardEvent) => this.handleKeyDown(event)}
         onPointerDown={(event: PointerEvent) => this.handlePointerDown(event)}
         onPointerMove={(event: PointerEvent) => this.handlePointerMove(event)}

@@ -536,6 +536,44 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'cancels keyboard reorder when Tab moves focus outside the list',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <div>
+          <ix-list draggable>
+            <ix-list-item label="Project Alpha"></ix-list-item>
+            <ix-list-item label="Project Beta"></ix-list-item>
+            <ix-list-item label="Project Gamma"></ix-list-item>
+          </ix-list>
+          <button id="after-list">After list</button>
+        </div>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const list = page.locator('ix-list');
+    const items = list.locator('ix-list-item');
+    const gripper = items.nth(1).locator('.drag-gripper');
+    await gripper.focus();
+    await gripper.press('Space');
+    await gripper.press('ArrowUp');
+    await page.keyboard.press('Tab');
+
+    await expect(page.locator('#after-list')).toBeFocused();
+    await expect(items.nth(0)).toHaveAttribute('label', 'Project Alpha');
+    await expect(items.nth(1)).toHaveAttribute('label', 'Project Beta');
+    await expect(items.nth(1)).not.toHaveClass(/\bdragging\b/);
+    await expect(gripper).toHaveAttribute('aria-pressed', 'false');
+
+    await gripper.focus();
+    await gripper.press('Space');
+    await expect(gripper).toHaveAttribute('aria-pressed', 'true');
+    await gripper.press('Escape');
+  }
+);
+
 regressionTest('applies item gap and dividers', async ({ mount, page }) => {
   await mount(`
     <ix-list item-gap="8" has-divider>
