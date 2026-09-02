@@ -25,10 +25,12 @@ export default function GenericListActionOnHover() {
           <IxIconButton
             icon="edit-document"
             variant="subtle-tertiary"
+            aria-label="Edit Item 1"
           ></IxIconButton>
           <IxIconButton
             icon="trashcan"
             variant="subtle-tertiary"
+            aria-label="Delete Item 1"
           ></IxIconButton>
         </div>
       </IxListItem>
@@ -37,10 +39,12 @@ export default function GenericListActionOnHover() {
           <IxIconButton
             icon="edit-document"
             variant="subtle-tertiary"
+            aria-label="Edit Item 2"
           ></IxIconButton>
           <IxIconButton
             icon="trashcan"
             variant="subtle-tertiary"
+            aria-label="Delete Item 2"
           ></IxIconButton>
         </div>
       </IxListItem>
@@ -49,10 +53,12 @@ export default function GenericListActionOnHover() {
           <IxIconButton
             icon="edit-document"
             variant="subtle-tertiary"
+            aria-label="Edit Item 3"
           ></IxIconButton>
           <IxIconButton
             icon="trashcan"
             variant="subtle-tertiary"
+            aria-label="Delete Item 3"
           ></IxIconButton>
         </div>
       </IxListItem>
