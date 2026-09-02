@@ -21,6 +21,10 @@ const categories: NonNullable<Element['categories']> = {
     label: 'Product',
     options: ['iPhone X', 'Windows', 'APS'],
   },
+  ID_3: {
+    label: 'Asset group',
+    options: ['Line 1', 'Bay 2'],
+  },
 };
 
 const meta = {
@@ -72,7 +76,7 @@ export const WithCategories: Story = {
     docs: {
       description: {
         story:
-          'Click the input and type a value that contains a space, e.g. `env 1`. The space must appear. Press Enter to commit a token. Click the input or press ArrowDown to open the category list (Vendor, Product; Product includes `iPhone X`).',
+          'Click the input and type a value that contains a space, e.g. `env 1`. The space must appear. Press Enter to commit a token. Click the input or press ArrowDown to open the category list (Vendor, Product, **Asset group**). Open Product to see a value with a space (`iPhone X`).',
       },
     },
   },
