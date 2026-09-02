@@ -101,6 +101,15 @@ regressionTest.describe('input', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('tooltip when input focused', async ({ page }) => {
+    await page.goto('input/tooltip');
+
+    await page.locator('ix-input').locator('input').focus();
+
+    await expect(page.locator('ix-tooltip')).toHaveClass(/visible/);
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('text-alignment property', async ({ page }) => {
     await page.goto('input/text-alignment');
     await expect(page).toHaveScreenshot();
