@@ -9,27 +9,27 @@
 
 const textStyleDefault = {
   color: '#000028',
-  fontFamily: 'Siemens Sans, sans-serif',
+  fontFamily: 'Siemens Sans, "Siemens Sans", Arial, Helvetica, sans-serif',
 };
 
 const colors = [
-  '#009999' /* theme-chart-3 */,
-  '#005159' /* theme-chart-2 */,
-  '#00004A' /* theme-chart-8 */,
-  '#1A747D' /* theme-chart-1 */,
-  '#3664C6' /* theme-chart-6 */,
-  '#002949' /* theme-chart-4 */,
-  '#7353E5' /* theme-chart-10 */,
-  '#553BA3' /* theme-chart-9 */,
-  '#740089' /* theme-chart-11 */,
-  '#BE5925' /* theme-chart-14 */,
-  '#4F153D' /* theme-chart-13 */,
-  '#C04774' /* theme-chart-12 */,
-  '#00237A' /* theme-chart-7 */,
-  '#801100' /* theme-chart-15 */,
-  '#805800' /* theme-chart-16 */,
-  '#5E5E4A' /* theme-chart-17 */,
-  '#4C4C68' /* theme-chart-5 */,
+  '#009999' /* si.sys.data.categorical.3 */,
+  '#1A747D' /* si.sys.data.categorical.2 */,
+  '#00237A' /* si.sys.data.categorical.8 */,
+  '#005159' /* si.sys.data.categorical.1 */,
+  '#3664C6' /* si.sys.data.categorical.6 */,
+  '#002949' /* si.sys.data.categorical.4 */,
+  '#7353E5' /* si.sys.data.categorical.10 */,
+  '#553BA3' /* si.sys.data.categorical.9 */,
+  '#740089' /* si.sys.data.categorical.11 */,
+  '#BE5925' /* si.sys.data.categorical.14 */,
+  '#C04774' /* si.sys.data.categorical.13 */,
+  '#4F153D' /* si.sys.data.categorical.12 */,
+  '#00237A' /* si.sys.data.categorical.7 */,
+  '#FFBC66' /* si.sys.data.categorical.15 */,
+  '#C5C5B8' /* si.sys.data.categorical.16 */,
+  '#757563' /* si.sys.data.categorical.17 */,
+  '#4C4C68' /* si.sys.data.categorical.5 */,
 ];
 
 const axisCommon = {
@@ -67,11 +67,14 @@ export default {
   themeName: 'theme-brand-light',
   theme: {
     color: colors,
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'transparent',
     textStyle: textStyleDefault,
     title: {
       textStyle: textStyleDefault,
-      subtextStyle: textStyleDefault,
+      subtextStyle: {
+        ...textStyleDefault,
+        color: '#4C4C68',
+      },
     },
     line: {
       itemStyle: {
@@ -98,49 +101,49 @@ export default {
     bar: {
       itemStyle: {
         barBorderWidth: 0,
-        barBorderColor: '#000028',
+        barBorderColor: '#9999A9',
       },
     },
     pie: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
     },
     scatter: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
     },
     boxplot: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
     },
     parallel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
     },
     sankey: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
     },
     funnel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
     },
     gauge: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9',
       },
       axisLabel: {
         color: '#000028',
@@ -148,28 +151,28 @@ export default {
     },
     candlestick: {
       itemStyle: {
-        color: '#01893a',
-        color0: '#d72339',
-        borderColor: '#01893a',
-        borderColor0: '#d72339',
+        color: '#D72339',
+        color0: '#1C703F',
+        borderColor: '#D72339',
+        borderColor0: '#1C703F',
         borderWidth: 1,
       },
     },
     graph: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#009999',
       },
       lineStyle: {
         width: '1',
-        color: '#000028',
+        color: '#009999',
       },
       symbolSize: 4,
       symbol: 'circle',
       smooth: false,
       color: colors,
       label: {
-        color: '#ffffff',
+        color: '#FFFFFF',
       },
     },
     categoryAxis: axisCommon,
@@ -178,11 +181,11 @@ export default {
     timeAxis: axisCommon,
     toolbox: {
       iconStyle: {
-        borderColor: '#000028',
+        borderColor: '#4C4C68',
       },
       emphasis: {
         iconStyle: {
-          borderColor: '#196269',
+          borderColor: '#005159',
         },
       },
     },
@@ -190,8 +193,11 @@ export default {
       textStyle: textStyleDefault,
     },
     tooltip: {
-      backgroundColor: '#ffffffcc',
-      borderColor: '#00002833',
+      textStyle: {
+        color: '#000028',
+      },
+      backgroundColor: '#FFFFFF',
+      borderColor: '#FFFFFF',
       axisPointer: {
         lineStyle: {
           color: '#000028',
@@ -209,28 +215,28 @@ export default {
         width: '1',
       },
       itemStyle: {
-        color: '#000028',
+        color: '#009999',
         borderWidth: '1',
       },
       controlStyle: {
-        color: '#007993',
-        borderColor: '#007993',
+        color: '#006B80',
+        borderColor: '#006B80',
         borderWidth: '1',
       },
       checkpointStyle: {
-        color: '#196269',
-        borderColor: '#ffffff',
+        color: '#005159',
+        borderColor: '#FFFFFF',
       },
       label: {
         color: '#000028',
       },
       emphasis: {
         itemStyle: {
-          color: '#000028',
+          color: '#009999',
         },
         controlStyle: {
-          color: '#007993',
-          borderColor: '#007993',
+          color: '#006B80',
+          borderColor: '#006B80',
           borderWidth: '1',
         },
         label: {
@@ -239,7 +245,7 @@ export default {
       },
     },
     visualMap: {
-      color: ['#d72339', '#e96401', '#e9c32a'],
+      color: ['#D72339', '#C75300', '#EDBF00'],
     },
     dataZoom: {
       handleSize: 'undefined%',
@@ -248,21 +254,21 @@ export default {
     markPoint: {
       label: {
         color: '#000028',
-        textBorderColor: '#fff',
+        textBorderColor: '#FFFFFF',
         textBorderWidth: 1,
       },
     },
     markLine: {
       label: {
         color: '#000028',
-        textBorderColor: '#fff',
+        textBorderColor: '#FFFFFF',
         textBorderWidth: 1,
       },
     },
     markArea: {
       label: {
         color: '#000028',
-        textBorderColor: '#fff',
+        textBorderColor: '#FFFFFF',
         textBorderWidth: 1,
       },
     },
