@@ -36,7 +36,6 @@ regressionTest(
 
     const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
     await expect(checkbox).toHaveAttribute('aria-checked', 'false');
-    await expect(checkbox).toHaveAttribute('aria-required', 'false');
 
     await expect(page.getByRole('button')).toHaveCount(0);
   }
@@ -54,59 +53,139 @@ regressionTest(
   }
 );
 
-regressionTest(
-  'space key toggles checked state while focused',
-  async ({ mount, page }) => {
-    await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+for (const key of ['Space', 'Enter'] as const) {
+  regressionTest(
+    `${key} key toggles checked state while focused`,
+    async ({ mount, page }) => {
+      await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
 
-    const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
-    await checkbox.focus();
+      const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+      await checkbox.focus();
 
-    await page.keyboard.press('Space');
-    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+      await page.keyboard.press(key);
+      await expect(checkbox).toHaveAttribute('aria-checked', 'true');
 
-    await page.keyboard.press('Space');
-    await expect(checkbox).toHaveAttribute('aria-checked', 'false');
-  }
-);
+      await page.keyboard.press(key);
+      await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+    }
+  );
+}
 
-regressionTest(
-  'enter key toggles checked state while focused',
-  async ({ mount, page }) => {
-    await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+regressionTest.describe('keyboard and click activation safety', () => {
+  regressionTest(
+    'keyboard activation is not undone by a follow-up click',
+    async ({ mount, page }) => {
+      await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
 
-    const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
-    await checkbox.focus();
+      const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+      await checkbox.focus();
 
-    await page.keyboard.press('Enter');
-    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+      await page.keyboard.down('Space');
+      await expect(checkbox).toHaveAttribute('aria-checked', 'true');
 
-    await page.keyboard.press('Enter');
-    await expect(checkbox).toHaveAttribute('aria-checked', 'false');
-  }
-);
+      await checkbox.dispatchEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        detail: 0,
+      });
 
-regressionTest(
-  'keyboard activation is not undone by a follow-up click',
-  async ({ mount, page }) => {
-    await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+      await page.keyboard.up('Space');
+      await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    }
+  );
 
-    const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
-    await checkbox.focus();
+  regressionTest(
+    'holding down space does not repeatedly toggle checked state',
+    async ({ mount, page }) => {
+      await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
 
-    await page.keyboard.down('Space');
-    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+      const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+      await checkbox.focus();
 
-    await checkbox.dispatchEvent('click', {
-      bubbles: true,
-      cancelable: true,
-      detail: 0,
-    });
+      await checkbox.evaluate((el) => {
+        el.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            code: 'Space',
+            bubbles: true,
+            cancelable: true,
+            repeat: false,
+          })
+        );
+        el.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            code: 'Space',
+            bubbles: true,
+            cancelable: true,
+            repeat: true,
+          })
+        );
+        el.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            code: 'Space',
+            bubbles: true,
+            cancelable: true,
+            repeat: true,
+          })
+        );
+      });
 
-    await page.keyboard.up('Space');
-    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
-  }
-);
+      await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+
+      await page.keyboard.up('Space');
+      await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    }
+  );
+
+  regressionTest(
+    'a real click still toggles state after a keydown with no matching keyup',
+    async ({ mount, page }) => {
+      await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+
+      const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+      await checkbox.focus();
+      await checkbox.evaluate((el) => {
+        el.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            code: 'Space',
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      });
+      await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+      await checkbox.click();
+      await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+    }
+  );
+
+  regressionTest(
+    'space and enter are ignored while disabled',
+    async ({ mount, page }) => {
+      await mount(`<ix-checkbox label="Accept terms" disabled></ix-checkbox>`);
+
+      const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+
+      await checkbox.evaluate((el) => {
+        el.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            code: 'Space',
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+        el.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            code: 'Enter',
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      });
+
+      await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+    }
+  );
+});
 
 regressionTest(
   'clicking disabled checkbox does not toggle state',
@@ -159,12 +238,17 @@ regressionTest(
 );
 
 regressionTest(
-  'required state is reflected on the host',
+  'aria-required reflects the required prop',
   async ({ mount, page }) => {
-    await mount(`<ix-checkbox label="Accept terms" required></ix-checkbox>`);
+    await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+    await expect(
+      page.getByRole('checkbox', { name: 'Accept terms' })
+    ).toHaveAttribute('aria-required', 'false');
 
-    const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
-    await expect(checkbox).toHaveAttribute('aria-required', 'true');
+    await mount(`<ix-checkbox label="Accept terms" required></ix-checkbox>`);
+    await expect(
+      page.getByRole('checkbox', { name: 'Accept terms' })
+    ).toHaveAttribute('aria-required', 'true');
   }
 );
 
@@ -307,17 +391,4 @@ test('Checkbox should not cause layout shift when checked', async ({
 
   expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
   expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
-});
-
-test.describe('accessibility', () => {
-  test('should expose aria-label for accessibility queries', async ({
-    mount,
-    page,
-  }) => {
-    await mount(`<ix-checkbox label="Accept Terms"></ix-checkbox>`);
-    const checkbox = page.getByRole('checkbox', { name: 'Accept Terms' });
-    await expect(checkbox).toBeVisible();
-    await checkbox.click();
-    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
-  });
 });

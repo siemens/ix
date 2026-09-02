@@ -125,6 +125,10 @@ export class Checkbox implements IxFormComponent<string> {
 
     if (event.code === 'Space' || event.code === 'Enter') {
       event.preventDefault();
+      if (event.repeat) {
+        return;
+      }
+
       this.keyboardActivationPending = true;
       this.toggleCheckedState();
     }
@@ -136,12 +140,13 @@ export class Checkbox implements IxFormComponent<string> {
     }
   }
 
-  private onClick() {
-    if (this.keyboardActivationPending) {
+  private onClick(event: MouseEvent) {
+    if (this.keyboardActivationPending && event.detail === 0) {
       this.clearKeyboardActivationPending();
       return;
     }
 
+    this.clearKeyboardActivationPending();
     this.toggleCheckedState();
   }
 
@@ -272,7 +277,7 @@ export class Checkbox implements IxFormComponent<string> {
           indeterminate: this.indeterminate,
           'label-less': this.isLabelLess,
         }}
-        onClick={() => this.onClick()}
+        onClick={(event: MouseEvent) => this.onClick(event)}
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
         onKeyUp={(event: KeyboardEvent) => this.onKeyUp(event)}
         onFocus={() => (this.touched = true)}
