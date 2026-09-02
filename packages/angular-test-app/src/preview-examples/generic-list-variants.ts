@@ -15,15 +15,6 @@ import { iconProject } from '@siemens/ix-icons/icons';
   standalone: false,
   selector: 'app-example',
   templateUrl: './generic-list-variants.html',
-  styles: [
-    `
-      :host {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-    `,
-  ],
 })
 export default class GenericListVariants {
   constructor() {

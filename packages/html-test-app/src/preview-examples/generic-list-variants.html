@@ -13,13 +13,6 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>List example</title>
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-    </style>
     <script type="module">
       import { addIcons } from '@siemens/ix-icons';
       import { iconProject } from '@siemens/ix-icons/icons';
@@ -28,7 +21,7 @@ LICENSE file in the root directory of this source tree.
       });
     </script>
   </head>
-  <body>
+  <body style="display: flex; flex-direction: column; gap: 24px">
     <ix-list has-divider item-gap="0" variant="ghost">
       <ix-list-item icon="project" label="Item 1"> </ix-list-item>
       <ix-list-item icon="project" label="Item 2"></ix-list-item>

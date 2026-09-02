@@ -16,15 +16,6 @@ import { iconProject } from '@siemens/ix-icons/icons';
   selector: 'app-example',
   imports: [IxList, IxListItem],
   templateUrl: './generic-list-variants.html',
-  styles: [
-    `
-      :host {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-    `,
-  ],
 })
 export default class GenericListVariants {
   constructor() {
