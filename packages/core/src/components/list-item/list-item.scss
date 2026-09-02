@@ -8,12 +8,13 @@
  */
 @use 'legacy/mixins/fonts';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: block;
   width: 100%;
   min-width: 0;
-  color: var(--theme-color-std-text);
+  color: #{sys.$si-sys-text-primary};
   outline: none;
 
   @include component.ix-component;
@@ -33,56 +34,56 @@
   border-bottom-right-radius: var(--ix-list-item-bottom-radius, 0.25rem);
   border-bottom-left-radius: var(--ix-list-item-bottom-radius, 0.25rem);
   border-bottom-color: var(--ix-list-item-divider-color, transparent);
-  background-color: var(--theme-color-ghost);
+  background-color: #{sys.$si-sys-background-accent-secondary};
 }
 
 :host([variant='outline']) .item-surface {
-  border-color: var(--theme-color-soft-bdr);
+  border-color: #{sys.$si-sys-border-3};
 }
 
 :host([variant='filled']) .item-surface {
-  background-color: var(--theme-color-component-1);
+  background-color: #{sys.$si-sys-background-1};
 }
 
 :host(.selected) .item-surface {
-  background-color: var(--theme-color-component-1--hover);
+  background-color: #{sys.$si-sys-background-active};
 }
 
 :host(:not(.disabled)) .item-surface:hover {
-  background-color: var(--theme-color-ghost--hover);
+  background-color: #{sys.$si-sys-background-hover};
 }
 
 :host(:not(.disabled))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
-  background-color: var(--theme-color-ghost--active);
+  background-color: #{sys.$si-sys-background-active};
 }
 
 :host([variant='filled']:not(.disabled):not(.selected)) .item-surface:hover {
-  background-color: var(--theme-color-component-1--hover);
+  background-color: #{sys.$si-sys-background-hover};
 }
 
 :host(.selected:not(.disabled)) .item-surface:hover {
-  background-color: var(--theme-color-component-1--hover);
+  background-color: #{sys.$si-sys-background-hover};
 }
 
 :host([variant='filled']:not(.disabled):not(.selected))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
-  background-color: var(--theme-color-component-1--active);
+  background-color: #{sys.$si-sys-background-active};
 }
 
 :host(.selected:not(.disabled))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
-  background-color: var(--theme-color-ghost--selected-active);
+  background-color: #{sys.$si-sys-background-hover};
 }
 
 :host(.has-divider) .item-surface {
-  border-bottom-color: var(--theme-color-soft-bdr);
+  border-bottom-color: #{sys.$si-sys-border-3};
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -106,7 +107,7 @@
 .primary-action:focus-visible::after {
   position: absolute;
   inset: 0;
-  border: 1px solid var(--theme-color-focus-bdr);
+  border: 1px solid #{sys.$si-sys-effects-focus};
   border-radius: 0.25rem;
   content: '';
   pointer-events: none;
@@ -143,7 +144,7 @@
 }
 
 :host(.dragging) .item-surface {
-  background-color: var(--theme-color-component-1--active);
+  background-color: #{sys.$si-sys-background-active};
 }
 
 :host(.dragging) .drag-gripper {
@@ -153,7 +154,7 @@
 .drag-gripper:focus-visible::after {
   position: absolute;
   inset: -0.125rem;
-  border: 1px solid var(--theme-color-focus-bdr);
+  border: 1px solid #{sys.$si-sys-effects-focus};
   border-radius: 0.25rem;
   content: '';
   pointer-events: none;
@@ -228,7 +229,7 @@
 .description {
   @include fonts.text-s;
 
-  color: var(--theme-color-soft-text);
+  color: #{sys.$si-sys-text-secondary};
 }
 
 .action {
@@ -246,7 +247,7 @@
 }
 
 :host(.disabled) {
-  color: var(--theme-color-weak-text);
+  color: #{sys.$si-sys-text-disabled};
   cursor: default;
 }
 
@@ -255,11 +256,11 @@
 }
 
 :host(.disabled) .description {
-  color: var(--theme-color-weak-text);
+  color: #{sys.$si-sys-text-disabled};
 }
 
 :host(.disabled) .label {
-  color: var(--theme-color-weak-text);
+  color: #{sys.$si-sys-text-disabled};
 }
 
 @media (hover: hover) and (pointer: fine) {

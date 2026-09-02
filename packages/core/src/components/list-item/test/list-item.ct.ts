@@ -283,18 +283,23 @@ regressionTest(
   `);
 
     const item = page.locator('ix-list-item');
-    const weakTextColor = await item.evaluate((element) =>
-      getComputedStyle(element)
-        .getPropertyValue('--theme-color-weak-text')
-        .trim()
-    );
+    const disabledTextColor = await item.evaluate((element) => {
+      const resolver = document.createElement('span');
+      resolver.style.color = getComputedStyle(element)
+        .getPropertyValue('--si-sys-text-disabled')
+        .trim();
+      element.append(resolver);
+      const color = getComputedStyle(resolver).color;
+      resolver.remove();
+      return color;
+    });
     await expect(item.locator('.primary-action')).toBeDisabled();
     await expect(item.locator('.action')).toHaveAttribute('inert', '');
     await expect(item).toHaveAttribute('aria-disabled', 'true');
-    await expect(item.locator('.label')).toHaveCSS('color', weakTextColor);
+    await expect(item.locator('.label')).toHaveCSS('color', disabledTextColor);
     await expect(item.locator('.description')).toHaveCSS(
       'color',
-      weakTextColor
+      disabledTextColor
     );
   }
 );
@@ -303,11 +308,16 @@ regressionTest('uses selected state colors', async ({ mount, page }) => {
   await mount(`<ix-list-item label="Selected" selected></ix-list-item>`);
 
   const item = page.locator('ix-list-item');
-  const selectedColor = await item.evaluate((element) =>
-    getComputedStyle(element)
-      .getPropertyValue('--theme-color-ghost--selected')
-      .trim()
-  );
+  const selectedColor = await item.evaluate((element) => {
+    const resolver = document.createElement('span');
+    resolver.style.backgroundColor = getComputedStyle(element)
+      .getPropertyValue('--si-sys-background-active')
+      .trim();
+    element.append(resolver);
+    const color = getComputedStyle(resolver).backgroundColor;
+    resolver.remove();
+    return color;
+  });
 
   await expect(item.locator('.item-surface')).toHaveCSS(
     'background-color',

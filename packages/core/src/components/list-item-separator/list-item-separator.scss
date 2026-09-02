@@ -7,11 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: block;
   width: 100%;
-  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  border-bottom: 1px solid #{sys.$si-sys-border-3};
 
   @include component.ix-component;
 }

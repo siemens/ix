@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
 :host {
@@ -39,7 +40,7 @@
   top: var(--ix-list-drag-top);
   left: var(--ix-list-drag-left);
   width: var(--ix-list-drag-width);
-  box-shadow: var(--theme-shadow-1);
+  box-shadow: #{sys.$si-sys-effects-shadow-1};
   cursor: grabbing;
   pointer-events: none;
   transform: translateY(var(--ix-list-drag-y, 0));
@@ -47,7 +48,7 @@
 
 :host(.has-divider) ::slotted(.ix-list-drag-placeholder) {
   height: 0.25rem !important;
-  border-top: 1px solid var(--theme-color-std-bdr);
+  border-top: 1px solid #{sys.$si-sys-border-2};
   border-radius: 0;
 }
 
@@ -59,6 +60,6 @@
   left: 0;
   height: 0 !important;
   margin: 0;
-  border-top: 1px solid var(--theme-color-contrast-bdr);
+  border-top: 1px solid #{sys.$si-sys-border-1};
   border-radius: 0;
 }
