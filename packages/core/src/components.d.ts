@@ -1227,6 +1227,11 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
+          * Clears the input value and resets the touched state.  Unlike clearing the value directly, this method restores the initial, non-invalid state and removes visible validation errors.
+          * @since 5.2.0
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute.
           * @default false
          */
@@ -1262,6 +1267,12 @@ export namespace Components {
           * @default 'Date is not valid'
          */
         "i18nErrorDateUnparsable": string;
+        /**
+          * I18n string for the error message when the date field is empty.
+          * @since 5.2.0
+          * @default 'Date is required'
+         */
+        "i18nErrorRequired": string;
         /**
           * Info text below the input field.
          */
@@ -1306,6 +1317,12 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * Trigger validation and show visual error state immediately, independently of user interaction — for example, in AJAX submissions or manual validation.  Not suppressed by `<form novalidate>` — errors surface regardless.
+          * @returns `true` if valid, `false` otherwise.
+          * @since 5.2.0
+         */
+        "reportValidity": () => Promise<boolean>;
         /**
           * Required attribute.
          */
@@ -8231,6 +8248,12 @@ declare namespace LocalJSX {
          */
         "i18nErrorDateUnparsable"?: string;
         /**
+          * I18n string for the error message when the date field is empty.
+          * @since 5.2.0
+          * @default 'Date is required'
+         */
+        "i18nErrorRequired"?: string;
+        /**
           * Info text below the input field.
          */
         "infoText"?: string;
@@ -12450,6 +12473,7 @@ declare namespace LocalJSX {
         "validText": string;
         "showTextAsTooltip": boolean;
         "i18nErrorDateUnparsable": string;
+        "i18nErrorRequired": string;
         "showWeekNumbers": boolean;
         "weekStartIndex": number;
         "ariaLabelPreviousMonthButton": string;
