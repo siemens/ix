@@ -71,6 +71,22 @@ regressionTest(
 );
 
 regressionTest(
+  'enter key toggles checked state while focused',
+  async ({ mount, page }) => {
+    await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+
+    const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+    await checkbox.focus();
+
+    await page.keyboard.press('Enter');
+    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+
+    await page.keyboard.press('Enter');
+    await expect(checkbox).toHaveAttribute('aria-checked', 'false');
+  }
+);
+
+regressionTest(
   'keyboard activation is not undone by a follow-up click',
   async ({ mount, page }) => {
     await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);

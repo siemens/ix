@@ -123,7 +123,7 @@ export class Checkbox implements IxFormComponent<string> {
       return;
     }
 
-    if (event.code === 'Space') {
+    if (event.code === 'Space' || event.code === 'Enter') {
       event.preventDefault();
       this.keyboardActivationPending = true;
       this.toggleCheckedState();
@@ -131,7 +131,7 @@ export class Checkbox implements IxFormComponent<string> {
   }
 
   private onKeyUp(event: KeyboardEvent) {
-    if (event.code === 'Space') {
+    if (event.code === 'Space' || event.code === 'Enter') {
       this.clearKeyboardActivationPending();
     }
   }
