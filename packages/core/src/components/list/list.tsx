@@ -694,125 +694,102 @@ export class List {
     this.synchronizeItems();
   }
 
-  private handleKeyDown(event: KeyboardEvent) {
-    const item = this.getItemFromEvent(event);
-    if (!item || item.disabled) {
-      return;
-    }
-
-    const eventPath = event.composedPath();
-    const primaryAction = this.getPrimaryAction(item);
-    const dragGripper = this.getDragGripper(item);
-    const isDragGripperFocused =
-      !!dragGripper && item.shadowRoot?.activeElement === dragGripper;
-    const isDragGripper =
-      !!dragGripper &&
-      (eventPath.includes(dragGripper) || isDragGripperFocused);
-    const actionElements = this.getActionElements(item);
-    const actionIndex = actionElements.findIndex((element) =>
-      eventPath.includes(element)
-    );
-    const isPrimaryActionFocused =
-      !!primaryAction && item.shadowRoot?.activeElement === primaryAction;
-    const isPrimaryAction =
-      !!primaryAction &&
-      (eventPath.includes(primaryAction) || isPrimaryActionFocused);
-    const isActivationKey =
+  private isActivationKey(event: KeyboardEvent) {
+    return (
       event.key === 'Enter' ||
       event.key === ' ' ||
       event.key === 'Spacebar' ||
-      event.code === 'Space';
+      event.code === 'Space'
+    );
+  }
 
-    const isKeyboardDraggingCurrentItem =
-      this.draggedItem === item && this.dragMode === 'keyboard';
-
-    if (isKeyboardDraggingCurrentItem && (isDragGripper || isPrimaryAction)) {
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        this.moveKeyboardItem(item, event.key === 'ArrowDown' ? 1 : -1);
-        return;
-      }
-      if (isActivationKey) {
-        event.preventDefault();
-        this.finishReorder();
-        return;
-      }
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        this.cancelReorder();
-        return;
-      }
-    }
-
-    if (isDragGripper) {
-      if (isActivationKey) {
-        event.preventDefault();
-        this.beginReorder(item, 'keyboard');
-        return;
-      }
-
-      if (event.key === 'ArrowRight') {
-        event.preventDefault();
-        primaryAction?.focus();
-        return;
-      }
-
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        this.focusRelativeItem(item, 1);
-        return;
-      }
-
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        this.focusRelativeItem(item, -1);
-      }
-      return;
-    }
-
+  private handleKeyboardReorderKey(
+    event: KeyboardEvent,
+    item: HTMLIxListItemElement,
+    isDragGripper: boolean,
+    isPrimaryAction: boolean
+  ) {
     if (
-      isPrimaryAction &&
-      event.key === 'ArrowLeft' &&
-      this.draggable &&
-      !dragGripper?.disabled
+      this.draggedItem !== item ||
+      this.dragMode !== 'keyboard' ||
+      (!isDragGripper && !isPrimaryAction)
     ) {
+      return false;
+    }
+
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      dragGripper?.focus();
+      this.moveKeyboardItem(item, event.key === 'ArrowDown' ? 1 : -1);
+      return true;
+    }
+    if (this.isActivationKey(event)) {
+      event.preventDefault();
+      this.finishReorder();
+      return true;
+    }
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.cancelReorder();
+      return true;
+    }
+
+    return false;
+  }
+
+  private handleDragGripperKey(
+    event: KeyboardEvent,
+    item: HTMLIxListItemElement,
+    primaryAction?: HTMLButtonElement | null
+  ) {
+    if (this.isActivationKey(event)) {
+      event.preventDefault();
+      this.beginReorder(item, 'keyboard');
       return;
     }
 
-    if (event.key === 'ArrowDown') {
+    if (event.key === 'ArrowRight') {
       event.preventDefault();
-      this.focusRelativeItem(item, 1);
+      primaryAction?.focus();
       return;
     }
 
-    if (event.key === 'ArrowUp') {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      this.focusRelativeItem(item, -1);
-      return;
+      this.focusRelativeItem(item, event.key === 'ArrowDown' ? 1 : -1);
+    }
+  }
+
+  private handleItemNavigationKey(
+    event: KeyboardEvent,
+    item: HTMLIxListItemElement
+  ) {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.focusRelativeItem(item, event.key === 'ArrowDown' ? 1 : -1);
+      return true;
     }
 
-    if (event.key === 'Home') {
+    if (event.key === 'Home' || event.key === 'End') {
       event.preventDefault();
-      const firstItem = this.enabledItems[0];
-      if (firstItem) {
-        this.focusItem(firstItem);
+      const target =
+        event.key === 'Home' ? this.enabledItems[0] : this.enabledItems.at(-1);
+      if (target) {
+        this.focusItem(target);
       }
-      return;
+      return true;
     }
 
-    if (event.key === 'End') {
-      event.preventDefault();
-      const lastItem = this.enabledItems.at(-1);
-      if (lastItem) {
-        this.focusItem(lastItem);
-      }
-      return;
-    }
+    return false;
+  }
 
+  private handleActionNavigationKey(
+    event: KeyboardEvent,
+    primaryAction: HTMLButtonElement | undefined,
+    actionElements: HTMLElement[],
+    actionIndex: number
+  ) {
     if (
-      isPrimaryAction &&
+      primaryAction &&
       (event.key === 'ArrowRight' ||
         (event.key === 'Tab' && !event.shiftKey)) &&
       actionElements.length > 0
@@ -836,15 +813,66 @@ export class List {
       return;
     }
 
+    if (event.key === 'ArrowRight' && actionIndex < actionElements.length - 1) {
+      event.preventDefault();
+      actionElements[actionIndex + 1].focus();
+    }
+  }
+
+  private handleKeyDown(event: KeyboardEvent) {
+    const item = this.getItemFromEvent(event);
+    if (!item || item.disabled) {
+      return;
+    }
+
+    const eventPath = event.composedPath();
+    const primaryAction = this.getPrimaryAction(item);
+    const dragGripper = this.getDragGripper(item);
+    const isDragGripper =
+      !!dragGripper &&
+      (eventPath.includes(dragGripper) ||
+        item.shadowRoot?.activeElement === dragGripper);
+    const isPrimaryAction =
+      !!primaryAction &&
+      (eventPath.includes(primaryAction) ||
+        item.shadowRoot?.activeElement === primaryAction);
+    const actionElements = this.getActionElements(item);
+    const actionIndex = actionElements.findIndex((element) =>
+      eventPath.includes(element)
+    );
+
     if (
-      event.key !== 'ArrowRight' ||
-      actionIndex === actionElements.length - 1
+      this.handleKeyboardReorderKey(event, item, isDragGripper, isPrimaryAction)
     ) {
       return;
     }
 
-    event.preventDefault();
-    actionElements[actionIndex + 1].focus();
+    if (isDragGripper) {
+      this.handleDragGripperKey(event, item, primaryAction);
+      return;
+    }
+
+    if (
+      isPrimaryAction &&
+      event.key === 'ArrowLeft' &&
+      this.draggable &&
+      !dragGripper?.disabled
+    ) {
+      event.preventDefault();
+      dragGripper?.focus();
+      return;
+    }
+
+    if (this.handleItemNavigationKey(event, item)) {
+      return;
+    }
+
+    this.handleActionNavigationKey(
+      event,
+      isPrimaryAction ? primaryAction : undefined,
+      actionElements,
+      actionIndex
+    );
   }
 
   render() {
