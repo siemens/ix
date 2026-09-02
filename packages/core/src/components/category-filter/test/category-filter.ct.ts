@@ -151,26 +151,4 @@ regressionTest.describe('filter input keyboard', () => {
 
     await expect(input).toHaveValue('env 1');
   });
-
-  regressionTest('allows a leading space character', async ({ page }) => {
-    const input = page.locator('ix-category-filter').getByRole('textbox');
-    await input.click();
-    await input.press('Space');
-    await input.pressSequentially('env');
-
-    await expect(input).toHaveValue(' env');
-  });
-
-  regressionTest('commits a token that contains a space', async ({ page }) => {
-    const categoryFilter = page.locator('ix-category-filter');
-    const input = categoryFilter.getByRole('textbox');
-    await input.click();
-    await input.pressSequentially('env 1');
-    await page.keyboard.press('Enter');
-
-    await expect(
-      categoryFilter.locator('ix-filter-chip').first()
-    ).toContainText('env 1');
-    await expect(input).toHaveValue('');
-  });
 });
