@@ -13,11 +13,11 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-event-list item-height="L">
-      <ix-event-list-item item-color="--si-sys-background-accent"
+    <ix-event-list itemHeight="L">
+      <ix-event-list-item itemColor="--si-sys-background-accent"
         >Test 1</ix-event-list-item
       >
-      <ix-event-list-item item-color="--si-sys-background-accent"
+      <ix-event-list-item itemColor="--si-sys-background-accent"
         >Test 2</ix-event-list-item
       >
     </ix-event-list>
