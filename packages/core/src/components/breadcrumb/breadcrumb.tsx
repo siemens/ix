@@ -157,6 +157,8 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
 
   override render() {
     const labelLastItem = this.items?.[this.items.length - 1];
+    const labelLastItemText =
+      labelLastItem?.label ?? labelLastItem?.textContent?.trim();
 
     this.inheritAriaAttributes['aria-label'] =
       this.inheritAriaAttributes['aria-label'] ?? 'Breadcrumbs';
@@ -203,11 +205,12 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
 
         {this.shouldRenderNextDropdown && (
           <ix-dropdown-button
-            label={labelLastItem.label ?? labelLastItem.innerText}
+            label={labelLastItemText}
             class="next-button"
             variant="tertiary"
             enableTopLayer={this.enableTopLayer}
             aria-current="page"
+            aria-label={`Show ${labelLastItemText} next items`}
           >
             <ix-icon
               slot="button-label"
