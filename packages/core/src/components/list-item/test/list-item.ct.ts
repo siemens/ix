@@ -140,16 +140,16 @@ regressionTest(
       return count;
     });
 
-    const checkbox = item.locator('ix-checkbox');
+    const checkbox = item.locator('ix-checkbox input');
 
     await expect(primaryAction).not.toHaveAttribute('role', 'checkbox');
     await expect(primaryAction).not.toHaveAttribute('aria-checked', 'true');
-    await expect(checkbox).toHaveAttribute('checked', '');
+    await expect(checkbox).toBeChecked();
     await expect(checkbox).toHaveAttribute('aria-label', 'Select this item');
     await primaryAction.click();
     expect(await selectedChanges.evaluate((details) => details)).toEqual([]);
     await expect(primaryAction).toBeFocused();
-    await checkbox.locator('button').click();
+    await checkbox.click();
 
     expect(await selectedChanges.evaluate((details) => details)).toEqual([
       false,
@@ -179,7 +179,7 @@ regressionTest(
     await item.locator('.primary-action').click();
     await item.locator('.custom-content').click();
     await item.locator('.item-surface').click({ position: { x: 2, y: 2 } });
-    await item.locator('ix-checkbox button').click();
+    await item.locator('ix-checkbox input').click();
     await item.locator('[slot="action"]').click();
 
     expect(await eventCounter.evaluate((counter) => counter.itemClick)).toBe(3);
@@ -234,7 +234,7 @@ regressionTest(
 
     const itemSurface = page.locator('ix-list-item .item-surface');
     const controls = [
-      page.locator('ix-list-item ix-checkbox button'),
+      page.locator('ix-list-item ix-checkbox input'),
       page.locator('ix-list-item [slot="action"]'),
     ];
 
