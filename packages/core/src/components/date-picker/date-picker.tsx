@@ -123,19 +123,16 @@ export class DatePicker
    */
   @Prop() minDate = '';
 
-  @Watch('minDate')
-  onMinDateChange() {
-    this.refreshBoundDates();
-  }
-
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
   @Prop() maxDate = '';
 
+  @Watch('minDate')
+  @Watch('format')
   @Watch('maxDate')
-  onMaxDateChange() {
+  onDateBoundOrFormatChange() {
     this.refreshBoundDates();
   }
 
@@ -191,11 +188,6 @@ export class DatePicker
    */
   @Prop() locale?: string;
 
-  @Watch('format')
-  onFormatChange() {
-    this.refreshBoundDates();
-  }
-
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
@@ -210,11 +202,6 @@ export class DatePicker
     this._maxDateObj = this.maxDate
       ? parseWithLocale(this.maxDate, this.format, this.locale)
       : undefined;
-  }
-
-  @Watch('weekStartIndex')
-  onWeekStartIndexChange() {
-    this.calendarDirty = true;
   }
 
   /**
@@ -435,6 +422,7 @@ export class DatePicker
 
   @Watch('selectedYear')
   @Watch('selectedMonth')
+  @Watch('weekStartIndex')
   onCalendarStateChange() {
     this.calendarDirty = true;
   }
