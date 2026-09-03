@@ -180,6 +180,7 @@ export const testIds = [
   "dropdown-button-icon",
   "divider",
   "datetimepicker",
+  "datetimepicker-locale",
   "datetime-range",
   "datetime-input",
   "datetime-input-with-slots",
