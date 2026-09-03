@@ -327,8 +327,8 @@ regressionTest(
       [options]
     );
 
-    const range = await dateDropdown.evaluate(
-      (el: HTMLIxDateDropdownElement) => el.getDateRange()
+    const range = await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+      el.getDateRange()
     );
 
     expect(range.isoFrom).toBe('2023-03-01');
