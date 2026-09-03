@@ -241,6 +241,53 @@ regressionTest(
 );
 
 regressionTest(
+  'updates group tab stops when focus moves to another item',
+  async ({ mount, page }) => {
+    await mount(`
+      <div>
+        <ix-list checkbox>
+          <ix-list-item label="Project Alpha">
+            <ix-icon-button
+              slot="action"
+              aria-label="First action"
+            ></ix-icon-button>
+          </ix-list-item>
+          <ix-list-item label="Project Beta">
+            <ix-icon-button
+              slot="action"
+              aria-label="Second action"
+            ></ix-icon-button>
+          </ix-list-item>
+        </ix-list>
+        <button id="after-list">After list</button>
+      </div>
+    `);
+
+    const items = page.locator('ix-list-item');
+    const secondPrimaryAction = items.nth(1).locator('.primary-action');
+    const secondCheckbox = items.nth(1).locator('ix-checkbox input');
+    const secondAction = items.nth(1).getByLabel('Second action');
+
+    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
+    await expect(items.nth(1)).toHaveClass(/\bhydrated\b/);
+    const firstPrimaryAction = items.first().locator('.primary-action');
+    await firstPrimaryAction.focus();
+    await firstPrimaryAction.press('ArrowDown');
+
+    await expect(secondPrimaryAction).toBeFocused();
+    await expect(secondCheckbox).toHaveAttribute('tabindex', '0');
+    await expect(secondAction).toHaveAttribute('tabindex', '0');
+
+    await page.keyboard.press('Tab');
+    await expect(secondCheckbox).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(secondAction).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(page.locator('#after-list')).toBeFocused();
+  }
+);
+
+regressionTest(
   'roves to previous and next items from drag gripper with arrow keys',
   async ({ mount, page }) => {
     await mount(

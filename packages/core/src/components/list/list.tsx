@@ -340,6 +340,19 @@ export class List {
       });
   }
 
+  private setElementTabIndex(element: HTMLElement, tabIndex: number) {
+    element.tabIndex = tabIndex;
+
+    const shadowFocusTargets = Array.from(
+      element.shadowRoot?.querySelectorAll<HTMLElement>(
+        actionFocusableSelector
+      ) ?? []
+    );
+    shadowFocusTargets.forEach((target, index) => {
+      this.setElementTabIndex(target, index === 0 ? tabIndex : -1);
+    });
+  }
+
   private setFocusGroupTabOrder(
     item: HTMLIxListItemElement,
     group: ItemFocusGroup,
@@ -357,7 +370,10 @@ export class List {
     }
 
     elements.forEach((element) => {
-      element.tabIndex = isActive && element === focusState[group] ? 0 : -1;
+      this.setElementTabIndex(
+        element,
+        isActive && element === focusState[group] ? 0 : -1
+      );
     });
   }
 
@@ -376,7 +392,7 @@ export class List {
     focusState[group] = target;
     this.itemFocusStates.set(item, focusState);
     elements.forEach((element) => {
-      element.tabIndex = element === target ? 0 : -1;
+      this.setElementTabIndex(element, element === target ? 0 : -1);
     });
     target.focus();
   }
