@@ -8,6 +8,7 @@
  */
 
 @use '../../misc/common-variables' as vars;
+@use '../../tokens/system' as sys;
 
 @mixin radio-basic() {
   $size: 1.25rem;
@@ -36,7 +37,7 @@
     position: relative;
     user-select: none;
 
-    color: var(--theme-color-std-text);
+    color: #{sys.$si-sys-text-primary};
     margin-right: vars.$default-space;
   }
 
@@ -64,46 +65,44 @@
 
   .ix-form-control[type='radio'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid var(--theme-color-focus-bdr);
+      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid var(--theme-color-focus-bdr);
+      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:not(:checked) {
     & + label:before {
-      background-color: var(--theme-color-secondary);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-contrast-bdr);
+      background-color: #{sys.$si-sys-background-accent-secondary};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-1};
     }
 
     &:hover + label:before {
-      background-color: var(--theme-color-secondary--hover);
-      border: var(--theme-border-width-default) solid var(--theme-color-dynamic);
+      background-color: #{sys.$si-sys-background-accent-secondary-hover};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
     }
 
     &:active + label:before {
-      background-color: var(--theme-color-secondary--active);
-      border: var(--theme-border-width-default) solid var(--theme-color-dynamic);
+      background-color: #{sys.$si-sys-background-accent-secondary-active};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
     }
 
     &:disabled + label::before {
-      background-color: var(--theme-color-ghost);
-      border: var(--theme-border-width-default) solid
-        var(--theme-color-component-4);
+      background-color: transparent;
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-text-disabled};
     }
   }
 
   .ix-form-control[type='radio']:checked {
     & + label:before {
-      background-color: var(--theme-color-dynamic);
-      border: var(--theme-border-width-default) solid var(--theme-color-0);
+      background-color: #{sys.$si-sys-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     & + label:after {
@@ -111,7 +110,7 @@
       width: vars.$small-space;
       height: vars.$small-space;
       display: block;
-      background-color: var(--theme-color-primary--contrast);
+      background-color: #{sys.$si-sys-text-on-accent};
       border-radius: 100%;
       position: absolute;
       top: 0.5rem;
@@ -119,22 +118,22 @@
     }
 
     &:hover + label:before {
-      background-color: var(--theme-color-dynamic--hover);
-      border: var(--theme-border-width-default) solid var(--theme-color-0);
+      background-color: #{sys.$si-sys-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: var(--theme-color-dynamic--active);
-      border: var(--theme-border-width-default) solid var(--theme-color-0);
+      background-color: #{sys.$si-sys-background-accent-active};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label:before {
-      background-color: var(--theme-color-component-4);
-      border: var(--theme-border-width-default) solid var(--theme-color-0);
+      background-color: #{sys.$si-sys-text-disabled};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: var(--theme-color-primary--contrast);
+      border-color: #{sys.$si-sys-text-inverse};
     }
   }
 
@@ -144,7 +143,7 @@
   }
 
   .ix-form-control[type='radio']:disabled + label {
-    color: var(--theme-color-weak-text);
+    color: #{sys.$si-sys-text-disabled};
   }
 }
 
