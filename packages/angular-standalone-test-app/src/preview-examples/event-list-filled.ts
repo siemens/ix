@@ -16,18 +16,18 @@ import { IxEventList, IxEventListItem } from '@siemens/ix-angular/standalone';
   template: `
     <ix-event-list>
       @for (item of items; track i; let i = $index) {
-        <ix-event-list-item variant="filled" [itemColor]="item.color">
-          {{ item.text }}
-        </ix-event-list-item>
+      <ix-event-list-item variant="filled" [itemColor]="item.color">
+        {{ item.text }}
+      </ix-event-list-item>
       }
     </ix-event-list>
   `,
 })
 export default class EventListFilled {
   items = [
-    { text: 'Text 1', color: 'color-primary' },
-    { text: 'Text 2', color: 'color-primary' },
-    { text: 'Text 3', color: 'color-alarm' },
-    { text: 'Text 4', color: 'color-success' },
+    { text: 'Text 1', color: '--si-sys-background-accent' },
+    { text: 'Text 2', color: '--si-sys-background-accent' },
+    { text: 'Text 3', color: '--si-sys-background-danger' },
+    { text: 'Text 4', color: '--si-sys-background-success' },
   ];
 }

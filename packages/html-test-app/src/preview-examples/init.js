@@ -25,22 +25,22 @@ const scrollbarOverwrite = `
   /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 5px;
-    background: var(--theme-scrollbar-track--background);
+    background: var(--si-sys-background-1);
   }
 
   ::-webkit-scrollbar-track:hover {
-    background: var(--theme-scrollbar-track--background--hover);
+    background: var(--si-sys-background-1);
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: var(--theme-scrollbar-thumb--background);
+    background: var(--si-sys-border-4);
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar-thumb--background--hover);
+    background: var(--si-sys-border-2);
   }
 
   ::-webkit-scrollbar-corner {
