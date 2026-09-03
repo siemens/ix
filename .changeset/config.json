@@ -13,7 +13,7 @@
     ]
   ],
   "access": "public",
-  "baseBranch": "main",
+  "baseBranch": "release-5.2.2",
   "updateInternalDependencies": "patch",
   "privatePackages": false,
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
