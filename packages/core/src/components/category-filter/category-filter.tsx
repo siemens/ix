@@ -965,6 +965,8 @@ export class CategoryFilter {
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
+            keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
+            keyboardItemTriggerKeys={['Enter']}
             onShowChanged={(event) => {
               this.showDropdown = event.detail;
             }}
