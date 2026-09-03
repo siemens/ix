@@ -40,6 +40,7 @@ import {
 } from './time-picker-display';
 import { isFormat12Hour, LUXON_FORMAT_PATTERNS } from './time-picker-format';
 import { isSelectableForUnitWithinBounds } from './time-picker-range';
+import { toISOTime } from '../utils/date-time-locale';
 import { findNextSelectableRingValue } from './time-picker-step-focus';
 import type {
   TimePickerCorners,
@@ -426,9 +427,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @Method()
   async getCurrentIsoTime(): Promise<string | undefined> {
-    return this._time?.isValid
-      ? (this._time.toISOTime() ?? undefined)
-      : undefined;
+    return toISOTime(this._time);
   }
 
   @State() private _time?: DateTime;
