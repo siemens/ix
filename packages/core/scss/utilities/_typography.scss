@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use '../mixins/fonts';
+@use '../tokens/system' as sys;
 
 .typography-weight-bold {
   --ix-typography--emphasis-font-weight: 700;
 }
 
 a {
-  --ix-typography--link-color: var(--theme-color-primary);
+  --ix-typography--link-color: #{sys.$si-sys-text-accent};
 }
 
 @mixin font-label {
