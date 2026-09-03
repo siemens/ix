@@ -793,6 +793,47 @@ regressionTest(
 );
 
 regressionTest(
+  'scrolls collapsed category dropdown when nested items overflow',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1280, height: 500 });
+
+    const nestedItems = Array.from(
+      { length: 20 },
+      (_, index) => `<ix-menu-item>Overflow Item ${index + 1}</ix-menu-item>`
+    ).join('');
+
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-item>Other</ix-menu-item>
+          <ix-menu-category label="Category label">
+            ${nestedItems}
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const { dropdown } = await openCollapsedCategoryDropdown(page);
+    const dropdownBody = dropdown.locator('.category-dropdown-body');
+    const lastItem = page
+      .locator('ix-menu-item')
+      .filter({ hasText: 'Overflow Item 20' });
+
+    await expect(dropdown).toBeVisible();
+    await expect(dropdownBody).toHaveCSS('overflow-y', 'auto');
+    await expect(lastItem).not.toBeInViewport();
+
+    const { clientHeight, scrollHeight } = await dropdownBody.evaluate(
+      (element) => ({
+        clientHeight: element.clientHeight,
+        scrollHeight: element.scrollHeight,
+      })
+    );
+    expect(scrollHeight).toBeGreaterThan(clientHeight);
+  }
+);
+
+regressionTest(
   'can disable tooltip on category parent',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });

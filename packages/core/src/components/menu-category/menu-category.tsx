@@ -587,6 +587,7 @@ export class MenuCategory
           onShowChange={({ detail }) => this.onDropdownShowChange(detail)}
           onShowChanged={({ detail }) => this.onDropdownShowChanged(detail)}
           class={'category-dropdown'}
+          suppressOverflowBehavior
           anchor={this.hostElement}
           placement="right-start"
           offset={{
@@ -617,7 +618,9 @@ export class MenuCategory
             </ix-typography>
           </ix-dropdown-item>
           <ix-divider></ix-divider>
-          <slot></slot>
+          <div class="category-dropdown-body">
+            <slot></slot>
+          </div>
         </ix-dropdown>
       </Host>
     );
