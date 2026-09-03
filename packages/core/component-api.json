@@ -5806,6 +5806,305 @@
       "cssStates": []
     },
     {
+      "tag": "ix-list",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "actionOnHover",
+          "attribute": "action-on-hover",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "actionSlotAlignment",
+          "attribute": "action-slot-alignment",
+          "type": "\"center\" | \"start\" | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "checkbox",
+          "attribute": "checkbox",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "dragBehavior",
+          "attribute": "drag-behavior",
+          "type": "\"dynamic\" | \"separator\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'dynamic'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "draggable",
+          "attribute": "draggable",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "hasDivider",
+          "attribute": "has-divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "itemGap",
+          "attribute": "item-gap",
+          "type": "0 | 12 | 4 | 8",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "12",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"filled\" | \"ghost\" | \"outline\" | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "itemOrderChange",
+          "detail": "ListItemOrderChangeEvent",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "default"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-list-item",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "actionOnHover",
+          "attribute": "action-on-hover",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "actionSlotAlignment",
+          "attribute": "action-slot-alignment",
+          "type": "\"center\" | \"start\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'center'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelCheckbox",
+          "attribute": "aria-label-checkbox",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Select list item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelDragGripper",
+          "attribute": "aria-label-drag-gripper",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Reorder list item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "attribute": "aria-label-icon",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "checkbox",
+          "attribute": "checkbox",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "hasDivider",
+          "attribute": "has-divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "selected",
+          "attribute": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"filled\" | \"ghost\" | \"outline\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'filled'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "itemClick",
+          "detail": "HTMLIxListItemElement",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
+          "name": "selectedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "action",
+        "default"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-list-item-separator",
+      "deprecated": false,
+      "properties": [],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
       "tag": "ix-menu",
       "deprecated": false,
       "properties": [

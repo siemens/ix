@@ -43,6 +43,9 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
+import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item";
+import { ListItemActionSlotAlignment as ListItemActionSlotAlignment1, ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -100,6 +103,9 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
+export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item";
+export { ListItemActionSlotAlignment as ListItemActionSlotAlignment1, ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -2641,6 +2647,145 @@ export namespace Components {
          */
         "url"?: string;
     }
+    /**
+     * @since 6.0.0
+     */
+    interface IxList {
+        /**
+          * Show action content on hover or focus for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Default action slot alignment for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
+          * Display selection checkboxes on list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "checkbox"?: boolean;
+        /**
+          * Default disabled state for list items that do not define their own state.
+          * @since 6.0.0
+         */
+        "disabled"?: boolean;
+        /**
+          * Visual behavior used while dragging a list item.
+          * @since 6.0.0
+          * @default 'dynamic'
+         */
+        "dragBehavior": ListDragBehavior;
+        /**
+          * Enable drag-and-drop reordering of direct list items.
+          * @since 6.0.0
+          * @default false
+         */
+        "draggable": boolean;
+        /**
+          * Display dividers between direct list items.
+          * @since 6.0.0
+          * @default false
+         */
+        "hasDivider": boolean;
+        /**
+          * Space in pixels between direct list items.
+          * @since 6.0.0
+          * @default 12
+         */
+        "itemGap": ListItemGap;
+        /**
+          * Default visual variant for list items that do not define their own variant.
+          * @since 6.0.0
+         */
+        "variant"?: ListItemVariant;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxListItem {
+        /**
+          * Show action slot content only when the item is hovered or focused.
+          * @since 6.0.0
+          * @default false
+         */
+        "actionOnHover": boolean;
+        /**
+          * Vertical alignment of the action slot content.
+          * @since 6.0.0
+          * @default 'center'
+         */
+        "actionSlotAlignment": ListItemActionSlotAlignment1;
+        /**
+          * Accessible label for the selection checkbox.
+          * @since 6.0.0
+          * @default 'Select list item'
+         */
+        "ariaLabelCheckbox": string;
+        /**
+          * Accessible label for the drag gripper.
+          * @since 6.0.0
+          * @default 'Reorder list item'
+         */
+        "ariaLabelDragGripper": string;
+        /**
+          * Accessible label for the item icon.
+          * @since 6.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Display selection with checkbox semantics.
+          * @since 6.0.0
+          * @default false
+         */
+        "checkbox": boolean;
+        /**
+          * Supporting text displayed below the label.
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
+          * Disable item activation and action controls.
+          * @since 6.0.0
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Display a divider below this item.
+          * @since 6.0.0
+          * @default false
+         */
+        "hasDivider": boolean;
+        /**
+          * Icon displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "icon"?: string;
+        /**
+          * Label displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "label"?: string;
+        /**
+          * Show the item as selected.
+          * @since 6.0.0
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Visual variant of the item.
+          * @since 6.0.0
+          * @default 'filled'
+         */
+        "variant": ListItemVariant1;
+    }
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 6.0.0
+     */
+    interface IxListItemSeparator {
+    }
     interface IxMenu {
         /**
           * Should only be set if you use ix-menu standalone
@@ -5091,6 +5236,14 @@ export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
 }
+export interface IxListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxListElement;
+}
+export interface IxListItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxListItemElement;
+}
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuElement;
@@ -6025,6 +6178,57 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    interface HTMLIxListElementEventMap {
+        "itemOrderChange": ListItemOrderChangeEvent;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface HTMLIxListElement extends Components.IxList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxListElement: {
+        prototype: HTMLIxListElement;
+        new (): HTMLIxListElement;
+    };
+    interface HTMLIxListItemElementEventMap {
+        "itemClick": HTMLIxListItemElement;
+        "selectedChange": boolean;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface HTMLIxListItemElement extends Components.IxListItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxListItemElement: {
+        prototype: HTMLIxListItemElement;
+        new (): HTMLIxListItemElement;
+    };
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 6.0.0
+     */
+    interface HTMLIxListItemSeparatorElement extends Components.IxListItemSeparator, HTMLStencilElement {
+    }
+    var HTMLIxListItemSeparatorElement: {
+        prototype: HTMLIxListItemSeparatorElement;
+        new (): HTMLIxListItemSeparatorElement;
+    };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
@@ -6937,6 +7141,9 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
+        "ix-list": HTMLIxListElement;
+        "ix-list-item": HTMLIxListItemElement;
+        "ix-list-item-separator": HTMLIxListItemSeparatorElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -9686,6 +9893,160 @@ declare namespace LocalJSX {
           * Url for the link button
          */
         "url"?: string;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxList {
+        /**
+          * Show action content on hover or focus for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Default action slot alignment for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
+          * Display selection checkboxes on list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "checkbox"?: boolean;
+        /**
+          * Default disabled state for list items that do not define their own state.
+          * @since 6.0.0
+         */
+        "disabled"?: boolean;
+        /**
+          * Visual behavior used while dragging a list item.
+          * @since 6.0.0
+          * @default 'dynamic'
+         */
+        "dragBehavior"?: ListDragBehavior;
+        /**
+          * Enable drag-and-drop reordering of direct list items.
+          * @since 6.0.0
+          * @default false
+         */
+        "draggable"?: boolean;
+        /**
+          * Display dividers between direct list items.
+          * @since 6.0.0
+          * @default false
+         */
+        "hasDivider"?: boolean;
+        /**
+          * Space in pixels between direct list items.
+          * @since 6.0.0
+          * @default 12
+         */
+        "itemGap"?: ListItemGap;
+        /**
+          * Emitted after a list item has been reordered.
+          * @since 6.0.0
+         */
+        "onItemOrderChange"?: (event: IxListCustomEvent<ListItemOrderChangeEvent>) => void;
+        /**
+          * Default visual variant for list items that do not define their own variant.
+          * @since 6.0.0
+         */
+        "variant"?: ListItemVariant;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxListItem {
+        /**
+          * Show action slot content only when the item is hovered or focused.
+          * @since 6.0.0
+          * @default false
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Vertical alignment of the action slot content.
+          * @since 6.0.0
+          * @default 'center'
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment1;
+        /**
+          * Accessible label for the selection checkbox.
+          * @since 6.0.0
+          * @default 'Select list item'
+         */
+        "ariaLabelCheckbox"?: string;
+        /**
+          * Accessible label for the drag gripper.
+          * @since 6.0.0
+          * @default 'Reorder list item'
+         */
+        "ariaLabelDragGripper"?: string;
+        /**
+          * Accessible label for the item icon.
+          * @since 6.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Display selection with checkbox semantics.
+          * @since 6.0.0
+          * @default false
+         */
+        "checkbox"?: boolean;
+        /**
+          * Supporting text displayed below the label.
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
+          * Disable item activation and action controls.
+          * @since 6.0.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Display a divider below this item.
+          * @since 6.0.0
+          * @default false
+         */
+        "hasDivider"?: boolean;
+        /**
+          * Icon displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "icon"?: string;
+        /**
+          * Label displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "label"?: string;
+        /**
+          * Emitted when the primary item surface is activated.
+          * @since 6.0.0
+         */
+        "onItemClick"?: (event: IxListItemCustomEvent<HTMLIxListItemElement>) => void;
+        /**
+          * Requests a controlled selection update when a checkbox item is activated.
+          * @since 6.0.0
+         */
+        "onSelectedChange"?: (event: IxListItemCustomEvent<boolean>) => void;
+        /**
+          * Show the item as selected.
+          * @since 6.0.0
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Visual variant of the item.
+          * @since 6.0.0
+          * @default 'filled'
+         */
+        "variant"?: ListItemVariant1;
+    }
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 6.0.0
+     */
+    interface IxListItemSeparator {
     }
     interface IxMenu {
         /**
@@ -12755,6 +13116,32 @@ declare namespace LocalJSX {
         "url": string;
         "target": '_self' | '_blank' | '_parent' | '_top';
     }
+    interface IxListAttributes {
+        "hasDivider": boolean;
+        "itemGap": ListItemGap;
+        "variant": ListItemVariant;
+        "disabled": boolean;
+        "checkbox": boolean;
+        "actionOnHover": boolean;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
+        "draggable": boolean;
+        "dragBehavior": ListDragBehavior;
+    }
+    interface IxListItemAttributes {
+        "variant": ListItemVariant;
+        "label": string;
+        "description": string;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "ariaLabelDragGripper": string;
+        "ariaLabelCheckbox": string;
+        "selected": boolean;
+        "disabled": boolean;
+        "checkbox": boolean;
+        "hasDivider": boolean;
+        "actionOnHover": boolean;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
+    }
     interface IxMenuAttributes {
         "showSettings": boolean;
         "showAbout": boolean;
@@ -13352,6 +13739,9 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": Omit<IxLayoutGrid, keyof IxLayoutGridAttributes> & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes]?: IxLayoutGrid[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `attr:${K}`]?: IxLayoutGridAttributes[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `prop:${K}`]?: IxLayoutGrid[K] };
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
+        "ix-list": Omit<IxList, keyof IxListAttributes> & { [K in keyof IxList & keyof IxListAttributes]?: IxList[K] } & { [K in keyof IxList & keyof IxListAttributes as `attr:${K}`]?: IxListAttributes[K] } & { [K in keyof IxList & keyof IxListAttributes as `prop:${K}`]?: IxList[K] };
+        "ix-list-item": Omit<IxListItem, keyof IxListItemAttributes> & { [K in keyof IxListItem & keyof IxListItemAttributes]?: IxListItem[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `attr:${K}`]?: IxListItemAttributes[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `prop:${K}`]?: IxListItem[K] };
+        "ix-list-item-separator": IxListItemSeparator;
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -13522,6 +13912,19 @@ declare module "@stencil/core" {
             "ix-layout-auto": LocalJSX.IntrinsicElements["ix-layout-auto"] & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             "ix-layout-grid": LocalJSX.IntrinsicElements["ix-layout-grid"] & JSXBase.HTMLAttributes<HTMLIxLayoutGridElement>;
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * @since 6.0.0
+             */
+            "ix-list": LocalJSX.IntrinsicElements["ix-list"] & JSXBase.HTMLAttributes<HTMLIxListElement>;
+            /**
+             * @since 6.0.0
+             */
+            "ix-list-item": LocalJSX.IntrinsicElements["ix-list-item"] & JSXBase.HTMLAttributes<HTMLIxListItemElement>;
+            /**
+             * Standalone horizontal separator for list content.
+             * @since 6.0.0
+             */
+            "ix-list-item-separator": LocalJSX.IntrinsicElements["ix-list-item-separator"] & JSXBase.HTMLAttributes<HTMLIxListItemSeparatorElement>;
             "ix-menu": LocalJSX.IntrinsicElements["ix-menu"] & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IntrinsicElements["ix-menu-about"] & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             /**

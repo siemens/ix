@@ -17,6 +17,78 @@ SPDX-License-Identifier: MIT
     <script type="module" src="./build/siemens-ix.esm.js"></script>
     <script nomodule src="./build/siemens-ix.js"></script>
     <link rel="stylesheet" href="./build/siemens-ix.css" />
+    <style>
+      .custom-content-examples {
+        width: 800px;
+        margin: 40px 12px 12px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .custom-content-examples h2 {
+        grid-column: 1 / -1;
+        margin: 0;
+      }
+
+      .custom-list-content {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .custom-list-content ix-icon {
+        flex: 0 0 auto;
+      }
+
+      .custom-list-text {
+        display: flex;
+        min-width: 0;
+        flex: 1 1 auto;
+        flex-direction: column;
+      }
+
+      .custom-list-title,
+      .custom-list-description,
+      .custom-list-meta {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .custom-list-title {
+        font-weight: 700;
+      }
+
+      .custom-list-description,
+      .custom-list-meta {
+        color: var(--theme-color-soft-text);
+      }
+
+      .custom-list-meta {
+        font-size: 0.75rem;
+      }
+
+      .custom-list-value {
+        flex: 0 0 5rem;
+        color: var(--theme-color-soft-text);
+        text-align: end;
+      }
+
+      .custom-list-unread {
+        width: 12px;
+        height: 12px;
+        flex: 0 0 12px;
+        border-radius: 50%;
+        background-color: var(--theme-color-primary);
+      }
+
+      .custom-content-examples .wide-list {
+        grid-column: 1 / -1;
+      }
+    </style>
     <script type="module">
       import { defineCustomElement } from '/node_modules/@siemens/ix-icons/components/ix-icon.js';
       import { addIcons } from '/node_modules/@siemens/ix-icons/dist/index.js';
@@ -31,6 +103,321 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-playground></ix-playground>
+    <h2 style="margin-left: 12px">Variants using props and action slot</h2>
+    <div
+      style="
+        width: 1200px;
+        margin: 12px;
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+      "
+    >
+      <ix-list has-divider item-gap="0" variant="ghost">
+        <ix-list-item icon="project" label="test"> </ix-list-item>
+        <ix-list-item icon="project" label="test 2"></ix-list-item>
+        <ix-list-item icon="project" label="test 3"></ix-list-item>
+        <ix-list-item
+          icon="project"
+          label="test 4"
+          has-divider="false"
+        ></ix-list-item>
+      </ix-list>
+      <ix-list variant="outline" item-gap="4">
+        <ix-list-item icon="success" label="test">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="success" label="test 2">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="success" label="test 3">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item icon="success" label="test 4">
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+          ></ix-icon-button>
+        </ix-list-item>
+      </ix-list>
+      <ix-list variant="filled">
+        <ix-list-item icon="info" label="test"
+          ><div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button></div
+        ></ix-list-item>
+        <ix-list-item icon="info" label="test 2"
+          ><div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button></div
+        ></ix-list-item>
+        <ix-list-item icon="info" label="test 3"
+          ><div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button></div
+        ></ix-list-item>
+        <ix-list-item icon="info" label="test 4"
+          ><div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button></div
+        ></ix-list-item>
+      </ix-list>
+    </div>
+
+    <h2 style="margin-left: 12px; margin-top: 40px">Drag & Drop</h2>
+    <div
+      style="
+        width: 800px;
+        margin: 12px;
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+      "
+    >
+      <ix-list draggable>
+        <ix-list-item icon="project" label="test"></ix-list-item>
+        <ix-list-item icon="project" label="test 2"></ix-list-item>
+        <ix-list-item icon="project" label="test 3"></ix-list-item>
+        <ix-list-item icon="project" label="test 4"></ix-list-item>
+      </ix-list>
+
+      <ix-list draggable drag-behavior="separator">
+        <ix-list-item icon="project" label="test"></ix-list-item>
+        <ix-list-item icon="project" label="test 2"></ix-list-item>
+        <ix-list-item icon="project" label="test 3"></ix-list-item>
+        <ix-list-item icon="project" label="test 4"></ix-list-item>
+      </ix-list>
+    </div>
+
+    <h2 style="margin-left: 12px; margin-top: 40px">More options</h2>
+    <div style="width: 400px; margin-left: 12px">
+      <ix-list>
+        <ix-list-item checkbox icon="project" label="test"></ix-list-item>
+        <ix-list-item-separator></ix-list-item-separator>
+        <ix-list-item checkbox icon="project" label="test 2"></ix-list-item>
+        <ix-list-item checkbox icon="project" label="test 3"></ix-list-item>
+        <ix-list-item checkbox icon="project" label="test 4"></ix-list-item>
+      </ix-list>
+    </div>
+
+    <h2 style="margin-left: 12px; margin-top: 40px">States</h2>
+    <div style="width: 400px; margin-left: 12px">
+      <ix-list item-gap="4">
+        <ix-list-item
+          icon="project"
+          label="Description"
+          description="Supporting information for this item"
+        ></ix-list-item>
+        <ix-list-item
+          selected
+          icon="project"
+          label="Selected"
+          description="This item is currently selected"
+        ></ix-list-item>
+        <ix-list-item
+          disabled
+          icon="project"
+          label="Disabled"
+          description="This item cannot be activated"
+        ></ix-list-item>
+      </ix-list>
+    </div>
+
+    <h2 style="margin-left: 12px; margin-top: 40px">Action on hover</h2>
+    <div style="width: 400px; margin: 12px">
+      <ix-list action-on-hover>
+        <ix-list-item icon="project" label="test">
+          <div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+          </div>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 2">
+          <div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+          </div>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 3">
+          <div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+          </div>
+        </ix-list-item>
+        <ix-list-item icon="project" label="test 4">
+          <div slot="action">
+            <ix-icon-button
+              icon="edit-document"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+            <ix-icon-button
+              icon="trashcan"
+              variant="subtle-tertiary"
+            ></ix-icon-button>
+          </div>
+        </ix-list-item>
+      </ix-list>
+    </div>
+
+    <section class="custom-content-examples">
+      <h2>Custom default slot content</h2>
+
+      <ix-list variant="outline" item-gap="4">
+        <ix-list-item aria-label="Compressor station overview">
+          <div class="custom-list-content">
+            <ix-icon name="project" aria-hidden="true"></ix-icon>
+            <span class="custom-list-text">
+              <strong class="custom-list-title">Compressor station</strong>
+              <span class="custom-list-description">12 connected assets</span>
+            </span>
+            <ix-pill variant="success">Online</ix-pill>
+          </div>
+        </ix-list-item>
+        <ix-list-item aria-label="Cooling circuit overview">
+          <div class="custom-list-content">
+            <ix-icon name="project" aria-hidden="true"></ix-icon>
+            <span class="custom-list-text">
+              <strong class="custom-list-title">Cooling circuit</strong>
+              <span class="custom-list-description">Maintenance due today</span>
+            </span>
+            <ix-pill variant="warning">Due</ix-pill>
+          </div>
+        </ix-list-item>
+      </ix-list>
+
+      <ix-list variant="filled" item-gap="2">
+        <ix-list-item aria-label="New pressure warning, just now">
+          <div class="custom-list-content">
+            <span class="custom-list-unread" aria-hidden="true"></span>
+            <ix-icon name="info-filled" aria-hidden="true"></ix-icon>
+            <span class="custom-list-text">
+              <span class="custom-list-meta">Just now</span>
+              <strong class="custom-list-title">Pressure warning</strong>
+              <span class="custom-list-description">
+                Threshold exceeded at inlet valve
+              </span>
+            </span>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+            aria-label="Open pressure warning actions"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item aria-label="Inspection completed, five minutes ago">
+          <div class="custom-list-content">
+            <ix-icon name="success-filled" aria-hidden="true"></ix-icon>
+            <span class="custom-list-text">
+              <span class="custom-list-meta">5 minutes ago</span>
+              <strong class="custom-list-title">Inspection completed</strong>
+              <span class="custom-list-description">
+                No issues found in production line 2
+              </span>
+            </span>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+            aria-label="Open inspection actions"
+          ></ix-icon-button>
+        </ix-list-item>
+      </ix-list>
+
+      <ix-list class="wide-list" variant="ghost" item-gap="0" has-divider>
+        <ix-list-item aria-label="Motor 104, running, 68 percent load">
+          <div class="custom-list-content">
+            <ix-icon name="project" aria-hidden="true"></ix-icon>
+            <strong class="custom-list-title">Motor 104</strong>
+            <span class="custom-list-text">
+              <span class="custom-list-meta">Operating state</span>
+              <span class="custom-list-description">Running</span>
+            </span>
+            <span class="custom-list-value">68% load</span>
+            <ix-pill variant="success">Healthy</ix-pill>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+            aria-label="Open Motor 104 actions"
+          ></ix-icon-button>
+        </ix-list-item>
+        <ix-list-item aria-label="Pump 205, idle, 12 percent load">
+          <div class="custom-list-content">
+            <ix-icon name="project" aria-hidden="true"></ix-icon>
+            <strong class="custom-list-title">Pump 205</strong>
+            <span class="custom-list-text">
+              <span class="custom-list-meta">Operating state</span>
+              <span class="custom-list-description">Idle</span>
+            </span>
+            <span class="custom-list-value">12% load</span>
+            <ix-pill>Standby</ix-pill>
+          </div>
+          <ix-icon-button
+            slot="action"
+            icon="context-menu"
+            variant="subtle-tertiary"
+            aria-label="Open Pump 205 actions"
+          ></ix-icon-button>
+        </ix-list-item>
+      </ix-list>
+    </section>
   </body>
 </html>
