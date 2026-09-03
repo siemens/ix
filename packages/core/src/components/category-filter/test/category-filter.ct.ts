@@ -12,7 +12,7 @@ import { expect } from '@playwright/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-category-filter></ix-category-filter>`);
   const categoryFilter = page.locator('ix-category-filter');
-  await expect(categoryFilter).toHaveClass(/hydrated/);
+  await expect(categoryFilter).toHaveClass(/\bhydrated\b/);
 });
 
 regressionTest.describe('category-preview test', () => {
@@ -122,4 +122,33 @@ regressionTest.describe('focus behavior', () => {
       await expect(input).toBeFocused();
     }
   );
+});
+
+regressionTest.describe('filter input keyboard', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-category-filter></ix-category-filter>`);
+
+    const categoryFilter = page.locator('ix-category-filter');
+    await expect(categoryFilter).toHaveClass(/\bhydrated\b/);
+    await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+      el.categories = {
+        ID_1: {
+          label: 'Vendor',
+          options: ['Apple', 'MS', 'Siemens'],
+        },
+        ID_2: {
+          label: 'Product',
+          options: ['iPhone X', 'Windows', 'APS'],
+        },
+      };
+    });
+  });
+
+  regressionTest('allows space characters while typing', async ({ page }) => {
+    const input = page.locator('ix-category-filter').getByRole('textbox');
+    await input.click();
+    await input.pressSequentially('env 1');
+
+    await expect(input).toHaveValue('env 1');
+  });
 });
