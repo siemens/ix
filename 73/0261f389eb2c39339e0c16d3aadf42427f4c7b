@@ -1,0 +1,18 @@
+packages/core/src/components/menu-category/menu-category.scss
+  h_c5a773bf2fda8b 66-68,87-92
+packages/core/src/components/menu-category/menu-category.tsx
+  h_c5a773bf2fda8b 590,621-623
+packages/core/src/components/menu-category/test/menu-category.ct.ts
+  h_c5a773bf2fda8b 795-835
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "730261f389eb2c39339e0c16d3aadf42427f4c7b",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
