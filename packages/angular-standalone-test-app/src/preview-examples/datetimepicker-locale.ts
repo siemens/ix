@@ -9,6 +9,15 @@
 
 import { Component } from '@angular/core';
 import type { DateTimeSelectEvent } from '@siemens/ix';
+import {
+  IxCol,
+  IxDatetimePicker,
+  IxLayoutGrid,
+  IxRow,
+  IxSelect,
+  IxSelectItem,
+  IxSelectValueAccessorDirective,
+} from '@siemens/ix-angular/standalone';
 
 type EventLog = {
   from?: string;
@@ -21,7 +30,7 @@ type EventLog = {
 
 type EventLogRow = {
   key: keyof EventLog;
-label: string
+  label: string;
   note?: string;
 };
 
@@ -61,8 +70,16 @@ const I18N_SEC: Record<string, string> = {
 };
 
 @Component({
-  standalone: false,
   selector: 'app-example',
+  imports: [
+    IxCol,
+    IxDatetimePicker,
+    IxLayoutGrid,
+    IxRow,
+    IxSelect,
+    IxSelectItem,
+    IxSelectValueAccessorDirective,
+  ],
   templateUrl: './datetimepicker-locale.html',
 })
 export default class DatetimepickerLocale {

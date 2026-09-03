@@ -276,6 +276,67 @@ regressionTest(
 );
 
 regressionTest(
+  'locale-dependent format produces correct isoFrom/isoTo',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
+    );
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveClass(/hydrated/);
+
+    await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+      el.from = '05 März 2023';
+      el.to = '10 März 2023';
+    });
+
+    const range = await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+      el.getDateRange()
+    );
+
+    expect(range.from).toBe('05 März 2023');
+    expect(range.to).toBe('10 März 2023');
+    expect(range.isoFrom).toBe('2023-03-05');
+    expect(range.isoTo).toBe('2023-03-10');
+  }
+);
+
+regressionTest(
+  'date range options with locale produce correct ISO dates',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
+    );
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveClass(/hydrated/);
+
+    const options: DateDropdownOption[] = [
+      {
+        id: 'march',
+        label: 'March 2023',
+        from: '01 März 2023',
+        to: '31 März 2023',
+      },
+    ];
+
+    await dateDropdown.evaluate(
+      (el, [opts]) => {
+        const dropdown = el as HTMLIxDateDropdownElement;
+        dropdown.dateRangeOptions = opts;
+        dropdown.dateRangeId = 'march';
+      },
+      [options]
+    );
+
+    const range = await dateDropdown.evaluate(
+      (el: HTMLIxDateDropdownElement) => el.getDateRange()
+    );
+
+    expect(range.isoFrom).toBe('2023-03-01');
+    expect(range.isoTo).toBe('2023-03-31');
+  }
+);
+
+regressionTest(
   'marks the trigger expanded while the dropdown is open',
   async ({ mount, page }) => {
     await mount(`<ix-date-dropdown></ix-date-dropdown>`);

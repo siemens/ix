@@ -86,6 +86,7 @@ import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale.vue';
 import Divider from './preview-examples/divider.vue';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon.vue';
 import DropdownButton from './preview-examples/dropdown-button.vue';
@@ -330,6 +331,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,

@@ -164,6 +164,10 @@ export class DateDropdown
    */
   @Prop() locale?: string;
 
+  @Watch('locale') watchLocalePropHandler() {
+    this.updateCurrentDate();
+  }
+
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
@@ -267,8 +271,8 @@ export class DateDropdown
       id: this.selectedDateRangeId,
       from: this.from,
       to: this.to,
-      isoFrom: toISODate(DateTime.fromFormat(this.from, this.format)),
-      isoTo: toISODate(DateTime.fromFormat(this.to, this.format)),
+      isoFrom: toISODate(parseWithLocale(this.from, this.format, this.locale)),
+      isoTo: toISODate(parseWithLocale(this.to, this.format, this.locale)),
     };
   }
 
@@ -308,9 +312,11 @@ export class DateDropdown
         this.currentRangeValue = {
           ...option,
           isoFrom: toISODate(
-            DateTime.fromFormat(option.from ?? '', this.format)
+            parseWithLocale(option.from ?? '', this.format, this.locale)
           ),
-          isoTo: toISODate(DateTime.fromFormat(option.to ?? '', this.format)),
+          isoTo: toISODate(
+            parseWithLocale(option.to ?? '', this.format, this.locale)
+          ),
         };
       }
     }

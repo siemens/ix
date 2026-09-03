@@ -102,6 +102,10 @@ export class DatetimeInput
   /** Locale for date/time formatting (e.g., 'en-US', 'de-DE') */
   @Prop() locale?: string;
 
+  @Watch('locale') watchLocalePropHandler() {
+    this.onInput(this.value);
+  }
+
   /** Whether the field is required */
   @Prop() required: boolean = false;
 

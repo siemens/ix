@@ -200,6 +200,7 @@ export class DatePicker
   onLocaleChange() {
     this.setTranslations();
     this.refreshBoundDates();
+    this.calendarDirty = true;
   }
 
   private refreshBoundDates() {
@@ -1123,7 +1124,7 @@ export class DatePicker
                         autofocus={util.isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
-                        aria-label={`${day} ${Info.months()[this.selectedMonth]} ${this.selectedYear}`}
+                        aria-label={`${day} ${this.monthNames[this.selectedMonth]} ${this.selectedYear}`}
                       >
                         {day}
                       </div>

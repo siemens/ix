@@ -261,6 +261,10 @@ export class TimeInput
    */
   @Prop() locale?: string;
 
+  @Watch('locale') watchLocalePropHandler() {
+    this.onInput(this.value);
+  }
+
   /**
    * Label for the AM button in 12-hour mode.
    *
