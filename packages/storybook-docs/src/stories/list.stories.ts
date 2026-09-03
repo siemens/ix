@@ -97,24 +97,50 @@ export const Selection: Story = {
 
 export const Actions: Story = {
   render: (args) => {
-    const firstItem = createItem('Factory overview', {
-      description: 'Updated 5 minutes ago',
-    });
-    const action = document.createElement('ix-icon-button');
-    action.slot = 'action';
-    action.variant = 'subtle-tertiary';
-    action.textContent = 'Open';
-    action.icon = 'edit';
-    firstItem.append(action);
+    const createActionSlot = () => {
+      const actionSlot = document.createElement('div');
+      actionSlot.slot = 'action';
 
-    return renderList(args, [
-      firstItem,
-      createItem('Production line 1'),
-      createItem('Production line 2'),
-    ]);
+      const editButton = document.createElement('ix-icon-button');
+      editButton.icon = 'edit-document';
+      editButton.variant = 'subtle-tertiary';
+      editButton.setAttribute('aria-label', 'Edit item');
+
+      const deleteButton = document.createElement('ix-icon-button');
+      deleteButton.icon = 'trashcan';
+      deleteButton.variant = 'subtle-tertiary';
+      deleteButton.setAttribute('aria-label', 'Delete item');
+
+      actionSlot.append(editButton, deleteButton);
+      return actionSlot;
+    };
+
+    return renderList(
+      args,
+      [
+        Object.assign(createItem('test', { icon: 'info', checkbox: true }), {
+          variant: 'filled',
+        }),
+        Object.assign(createItem('test 2', { icon: 'info', checkbox: true }), {
+          variant: 'filled',
+        }),
+        Object.assign(createItem('test 3', { icon: 'info', checkbox: true }), {
+          variant: 'filled',
+        }),
+        Object.assign(createItem('test 4', { icon: 'info', checkbox: true }), {
+          variant: 'filled',
+        }),
+      ].map((item) => {
+        item.append(createActionSlot());
+        return item;
+      })
+    );
   },
   args: {
-    itemGap: 4,
+    checkbox: true,
+    draggable: true,
+    itemGap: '8',
+    variant: 'filled',
   },
 };
 
