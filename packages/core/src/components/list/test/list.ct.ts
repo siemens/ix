@@ -93,7 +93,7 @@ regressionTest('renders draggable grippers', async ({ mount, page }) => {
   await expect(grippers.first()).toBeVisible();
   await expect(grippers.first()).toHaveAttribute(
     'aria-label',
-    'Reorder Project Alpha'
+    'Reorder list item'
   );
   await expect(grippers.nth(1)).toBeDisabled();
 });
@@ -135,15 +135,22 @@ regressionTest(
 );
 
 regressionTest(
-  'tabs from active item to drag gripper and reverse-tabs out of the list',
+  'uses one remembered tab stop per item focus group',
   async ({ mount, page }) => {
     await mount(
       `
         <div>
           <button id="before-list">Before list</button>
           <ix-list draggable aria-label="Projects">
-            <ix-list-item label="Project Alpha"></ix-list-item>
-            <ix-list-item label="Project Beta"></ix-list-item>
+            <ix-list-item label="Project Alpha" checkbox>
+              <div slot="action">
+                <button>First action</button>
+                <button>Second action</button>
+              </div>
+            </ix-list-item>
+            <ix-list-item label="Project Beta" checkbox>
+              <button slot="action">Inactive action</button>
+            </ix-list-item>
           </ix-list>
           <button id="after-list">After list</button>
         </div>
@@ -151,17 +158,68 @@ regressionTest(
       { icons: { iconDragGripper } }
     );
 
-    const firstGripper = page.getByLabel('Reorder Project Alpha');
-    const firstPrimaryAction = page
-      .locator('ix-list-item .primary-action')
-      .first();
+    const items = page.locator('ix-list-item');
+    const firstItem = items.first();
+    const firstPrimaryAction = firstItem.locator('.primary-action');
+    const firstGripper = firstItem.locator('.drag-gripper');
+    const firstCheckbox = firstItem.locator('ix-checkbox input');
+    const firstAction = firstItem.locator('[slot="action"] button').first();
+    const secondAction = firstItem.locator('[slot="action"] button').last();
 
     await expect(firstGripper).toHaveAttribute('tabindex', '0');
+    await expect(firstCheckbox).toHaveAttribute('tabindex', '-1');
+    await expect(firstAction).toHaveAttribute('tabindex', '0');
+    await expect(secondAction).toHaveAttribute('tabindex', '-1');
+    await expect(items.nth(1).locator('.drag-gripper')).toHaveAttribute(
+      'tabindex',
+      '-1'
+    );
+    await expect(items.nth(1).locator('ix-checkbox input')).toHaveAttribute(
+      'tabindex',
+      '-1'
+    );
+    await expect(items.nth(1).locator('[slot="action"]')).toHaveAttribute(
+      'tabindex',
+      '-1'
+    );
+
     await page.locator('#before-list').focus();
     await page.keyboard.press('Tab');
-
     await expect(firstPrimaryAction).toBeFocused();
+
     await page.keyboard.press('Tab');
+    await expect(firstGripper).toBeFocused();
+
+    await firstGripper.press('ArrowRight');
+    await expect(firstCheckbox).toBeFocused();
+    await expect(firstGripper).toHaveAttribute('tabindex', '-1');
+    await expect(firstCheckbox).toHaveAttribute('tabindex', '0');
+
+    await firstCheckbox.press('ArrowRight');
+    await expect(firstGripper).toBeFocused();
+    await firstGripper.press('ArrowLeft');
+    await expect(firstCheckbox).toBeFocused();
+
+    await page.keyboard.press('Tab');
+    await expect(firstAction).toBeFocused();
+
+    await firstAction.press('ArrowLeft');
+    await expect(secondAction).toBeFocused();
+    await expect(firstAction).toHaveAttribute('tabindex', '-1');
+    await expect(secondAction).toHaveAttribute('tabindex', '0');
+
+    await page.keyboard.press('Tab');
+    await expect(page.locator('#after-list')).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(secondAction).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(firstCheckbox).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(firstPrimaryAction).toBeFocused();
+
+    await firstPrimaryAction.press('ArrowLeft');
+    await expect(firstPrimaryAction).toBeFocused();
+    await firstPrimaryAction.press('ArrowRight');
     await expect(firstGripper).toBeFocused();
 
     await expect
@@ -179,14 +237,6 @@ regressionTest(
         )
       )
       .not.toBe('0px');
-
-    await firstPrimaryAction.focus();
-    await page.keyboard.press('Shift+Tab');
-    await expect(page.locator('#before-list')).toBeFocused();
-
-    await firstGripper.focus();
-    await page.keyboard.press('Tab');
-    await expect(page.locator('#after-list')).toBeFocused();
   }
 );
 
@@ -204,7 +254,9 @@ regressionTest(
       { icons: { iconDragGripper } }
     );
 
-    const firstGripper = page.getByLabel('Reorder Project Alpha');
+    const firstGripper = page.locator(
+      'ix-list-item[label="Project Alpha"] .drag-gripper'
+    );
     const secondPrimaryAction = page
       .locator('ix-list-item .primary-action')
       .nth(1);
@@ -216,8 +268,10 @@ regressionTest(
     await firstGripper.press('ArrowDown');
     await expect(secondPrimaryAction).toBeFocused();
 
-    await secondPrimaryAction.press('ArrowLeft');
-    const secondGripper = page.getByLabel('Reorder Project Beta');
+    await secondPrimaryAction.press('ArrowRight');
+    const secondGripper = page.locator(
+      'ix-list-item[label="Project Beta"] .drag-gripper'
+    );
     await expect(secondGripper).toBeFocused();
 
     await secondGripper.press('ArrowUp');
@@ -310,7 +364,7 @@ regressionTest(
 
     await expect(items.nth(0)).toHaveAttribute('label', 'Project Beta');
     await expect(items.nth(2)).toHaveAttribute('label', 'Project Alpha');
-    await expect(page.getByLabel('Reorder Project Alpha')).not.toBeFocused();
+    await expect(items.nth(2).locator('.drag-gripper')).not.toBeFocused();
     expect(await eventPromise).toEqual({
       oldIndex: 0,
       newIndex: 2,
@@ -444,9 +498,11 @@ regressionTest(
 
     const primaryAction = page.locator('.primary-action').first();
     await primaryAction.focus();
-    await primaryAction.press('ArrowLeft');
+    await primaryAction.press('ArrowRight');
 
-    const gripper = page.getByLabel('Reorder Project Alpha');
+    const gripper = page.locator(
+      'ix-list-item[label="Project Alpha"] .drag-gripper'
+    );
     await expect(gripper).toBeFocused();
     await expect
       .poll(() =>
@@ -493,9 +549,11 @@ regressionTest(
     const items = list.locator('ix-list-item');
     const firstPrimaryAction = items.first().locator('.primary-action');
     await firstPrimaryAction.focus();
-    await firstPrimaryAction.press('ArrowLeft');
+    await firstPrimaryAction.press('ArrowRight');
 
-    const firstGripper = page.getByLabel('Reorder Project Alpha');
+    const firstGripper = list.locator(
+      'ix-list-item[label="Project Alpha"] .drag-gripper'
+    );
     await expect(firstGripper).toBeFocused();
     await firstGripper.press('Space');
     await firstGripper.press('ArrowDown');
@@ -528,7 +586,9 @@ regressionTest(
       element.addEventListener('itemOrderChange', () => counter.count++);
       return counter;
     });
-    const gripper = page.getByLabel('Reorder Project Beta');
+    const gripper = list.locator(
+      'ix-list-item[label="Project Beta"] .drag-gripper'
+    );
     await gripper.focus();
     await gripper.press('Space');
     await gripper.press('ArrowUp');
@@ -764,7 +824,7 @@ regressionTest(
 );
 
 regressionTest(
-  'traverses active item actions with arrow keys and exits the list with Tab',
+  'cycles action slot controls and falls back to them from the item surface',
   async ({ mount, page }) => {
     await mount(`
     <div>
@@ -791,7 +851,7 @@ regressionTest(
     await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
     await expect(firstItem).toHaveClass(/\bhydrated\b/);
     await primaryAction.focus();
-    await primaryAction.press('Tab');
+    await primaryAction.press('ArrowRight');
     await expect(firstAction).toBeFocused();
 
     await firstAction.press('ArrowRight');
@@ -801,17 +861,15 @@ regressionTest(
     await expect(firstAction).toBeFocused();
 
     await firstAction.press('ArrowLeft');
-    await expect(primaryAction).toBeFocused();
+    await expect(secondAction).toBeFocused();
 
-    await primaryAction.press('Tab');
-    await expect(firstAction).toBeFocused();
-    await firstAction.press('Tab');
+    await secondAction.press('Tab');
     await expect(page.locator('#after-list')).toBeFocused();
   }
 );
 
 regressionTest(
-  'traverses the selection checkbox separately from the primary action',
+  'falls back to the selection checkbox from the item surface',
   async ({ mount, page }) => {
     await mount(`
     <ix-list>
@@ -821,13 +879,40 @@ regressionTest(
 
     const item = page.locator('ix-list-item');
     const primaryAction = item.locator('.primary-action');
-    const checkboxButton = item.locator('ix-checkbox button');
+    const checkboxButton = item.locator('ix-checkbox input');
 
     await expect(item).toHaveClass(/\bhydrated\b/);
     await primaryAction.focus();
-    await primaryAction.press('Tab');
+    await primaryAction.press('ArrowRight');
 
     await expect(checkboxButton).toBeFocused();
+  }
+);
+
+regressionTest(
+  'resets a removed action group tab stop',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-list>
+        <ix-list-item label="Project Alpha">
+          <button slot="action">First action</button>
+          <button slot="action">Second action</button>
+        </ix-list-item>
+      </ix-list>
+    `);
+
+    const item = page.locator('ix-list-item');
+    const primaryAction = item.locator('.primary-action');
+    const firstAction = item.locator('[slot="action"]').first();
+    const secondAction = item.locator('[slot="action"]').last();
+
+    await primaryAction.press('ArrowRight');
+    await firstAction.press('ArrowRight');
+    await expect(secondAction).toBeFocused();
+
+    await secondAction.evaluate((element) => element.remove());
+
+    await expect(firstAction).toHaveAttribute('tabindex', '0');
   }
 );
 
@@ -868,16 +953,20 @@ regressionTest(
     const items = list.locator('ix-list-item');
     const firstPrimaryAction = items.first().locator('.primary-action');
     await firstPrimaryAction.focus();
-    await firstPrimaryAction.press('ArrowLeft');
+    await firstPrimaryAction.press('ArrowRight');
 
-    const firstGripper = page.getByLabel('Reorder Project Alpha');
+    const firstGripper = list.locator(
+      'ix-list-item[label="Project Alpha"] .drag-gripper'
+    );
     await expect(firstGripper).toBeFocused();
     await firstGripper.press('Space');
     await firstGripper.press('ArrowDown');
 
     await list.dispatchEvent('pointercancel', { pointerId: 999 });
 
-    await expect(items.first()).toHaveClass(/\bdragging\b/);
+    await expect(
+      list.locator('ix-list-item[label="Project Alpha"]')
+    ).toHaveClass(/\bdragging\b/);
 
     await firstGripper.press('Enter');
 

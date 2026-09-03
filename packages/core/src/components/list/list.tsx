@@ -56,6 +56,13 @@ type InheritedItemProperty =
   | 'actionSlotAlignment'
   | 'hasDivider';
 
+type ItemFocusGroup = 'primaryControls' | 'actions';
+
+interface ItemFocusState {
+  primaryControls?: HTMLElement;
+  actions?: HTMLElement;
+}
+
 const inheritedItemProperties: Array<{
   property: InheritedItemProperty;
   attribute: string;
@@ -178,6 +185,10 @@ export class List {
     HTMLIxListItemElement,
     Set<InheritedItemProperty>
   >();
+  private readonly itemFocusStates = new WeakMap<
+    HTMLIxListItemElement,
+    ItemFocusState
+  >();
   private readonly mutationObserver = createMutationObserver(() => {
     if (this.itemsSynchronized) {
       this.synchronizeItems();
@@ -267,6 +278,12 @@ export class List {
     return item.shadowRoot?.querySelector<HTMLButtonElement>('.drag-gripper');
   }
 
+  private getSelectionCheckbox(item: HTMLIxListItemElement) {
+    return item.shadowRoot
+      ?.querySelector<HTMLIxCheckboxElement>('.selection-checkbox')
+      ?.shadowRoot?.querySelector<HTMLInputElement>('input[type="checkbox"]');
+  }
+
   private announce(item: HTMLIxListItemElement, message: string) {
     const announcement =
       item.shadowRoot?.querySelector<HTMLElement>('.drag-announcement');
@@ -286,33 +303,82 @@ export class List {
     );
   }
 
+  private getPrimaryControlElements(item: HTMLIxListItemElement) {
+    const dragGripper = this.getDragGripper(item);
+    const selectionCheckbox = this.getSelectionCheckbox(item);
+
+    return [
+      dragGripper && !dragGripper.disabled ? dragGripper : undefined,
+      selectionCheckbox && !selectionCheckbox.disabled
+        ? selectionCheckbox
+        : undefined,
+    ].filter((element): element is HTMLButtonElement | HTMLInputElement =>
+      Boolean(element)
+    );
+  }
+
   private getActionElements(item: HTMLIxListItemElement) {
-    const selectionCheckbox = item.shadowRoot
-      ?.querySelector<HTMLIxCheckboxElement>('.selection-checkbox')
-      ?.shadowRoot?.querySelector<HTMLButtonElement>('button');
     const slotElements = Array.from(
       item.querySelectorAll<HTMLElement>(':scope > [slot="action"]')
     );
 
-    const actionElements = slotElements.flatMap((element) => {
-      if (element.matches(actionFocusableSelector)) {
-        return [element];
-      }
+    return slotElements
+      .flatMap((element) => {
+        if (element.matches(actionFocusableSelector)) {
+          return [element];
+        }
 
-      return Array.from(
-        element.querySelectorAll<HTMLElement>(actionFocusableSelector)
-      );
-    });
-
-    return selectionCheckbox
-      ? [selectionCheckbox, ...actionElements]
-      : actionElements;
+        return Array.from(
+          element.querySelectorAll<HTMLElement>(actionFocusableSelector)
+        );
+      })
+      .filter((element) => {
+        const disableableElement = element as HTMLElement & {
+          disabled?: boolean;
+        };
+        return !disableableElement.disabled;
+      });
   }
 
-  private setActionTabOrder(item: HTMLIxListItemElement) {
-    this.getActionElements(item).forEach((element) => {
-      element.tabIndex = -1;
+  private setFocusGroupTabOrder(
+    item: HTMLIxListItemElement,
+    group: ItemFocusGroup,
+    elements: HTMLElement[],
+    isActive: boolean
+  ) {
+    let focusState = this.itemFocusStates.get(item);
+    if (!focusState) {
+      focusState = {};
+      this.itemFocusStates.set(item, focusState);
+    }
+
+    if (!focusState[group] || !elements.includes(focusState[group])) {
+      focusState[group] = elements[0];
+    }
+
+    elements.forEach((element) => {
+      element.tabIndex = isActive && element === focusState[group] ? 0 : -1;
     });
+  }
+
+  private focusGroupElement(
+    item: HTMLIxListItemElement,
+    group: ItemFocusGroup,
+    elements: HTMLElement[],
+    index: number
+  ) {
+    const target = elements[index];
+    if (!target) {
+      return;
+    }
+
+    const focusState = this.itemFocusStates.get(item) ?? {};
+    focusState[group] = target;
+    this.itemFocusStates.set(item, focusState);
+    elements.forEach((element) => {
+      element.tabIndex = element === target ? 0 : -1;
+    });
+    target.focus();
   }
 
   private applyItemDefaults(item: HTMLIxListItemElement) {
@@ -387,9 +453,19 @@ export class List {
           this.draggable && !item.disabled && !item.hidden
         );
         gripper.disabled = !isGripperEnabled;
-        gripper.tabIndex = isActive && isGripperEnabled ? 0 : -1;
       }
-      this.setActionTabOrder(item);
+      this.setFocusGroupTabOrder(
+        item,
+        'primaryControls',
+        this.getPrimaryControlElements(item),
+        isActive
+      );
+      this.setFocusGroupTabOrder(
+        item,
+        'actions',
+        this.getActionElements(item),
+        isActive
+      );
     });
   }
 
@@ -750,25 +826,21 @@ export class List {
 
   private handleDragGripperKey(
     event: KeyboardEvent,
-    item: HTMLIxListItemElement,
-    primaryAction?: HTMLButtonElement | null
+    item: HTMLIxListItemElement
   ) {
     if (this.isActivationKey(event)) {
       event.preventDefault();
       this.beginReorder(item, 'keyboard');
-      return;
-    }
-
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      primaryAction?.focus();
-      return;
+      return true;
     }
 
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       this.focusRelativeItem(item, event.key === 'ArrowDown' ? 1 : -1);
+      return true;
     }
+
+    return false;
   }
 
   private handleItemNavigationKey(
@@ -794,41 +866,26 @@ export class List {
     return false;
   }
 
-  private handleActionNavigationKey(
+  private handleFocusGroupNavigationKey(
     event: KeyboardEvent,
-    primaryAction: HTMLButtonElement | undefined,
-    actionElements: HTMLElement[],
-    actionIndex: number
+    item: HTMLIxListItemElement,
+    group: ItemFocusGroup,
+    elements: HTMLElement[],
+    currentIndex: number
   ) {
     if (
-      primaryAction &&
-      (event.key === 'ArrowRight' ||
-        (event.key === 'Tab' && !event.shiftKey)) &&
-      actionElements.length > 0
+      currentIndex === -1 ||
+      (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')
     ) {
-      event.preventDefault();
-      actionElements[0].focus();
-      return;
+      return false;
     }
 
-    if (actionIndex === -1) {
-      return;
-    }
-
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      if (actionIndex === 0) {
-        primaryAction?.focus();
-      } else {
-        actionElements[actionIndex - 1].focus();
-      }
-      return;
-    }
-
-    if (event.key === 'ArrowRight' && actionIndex < actionElements.length - 1) {
-      event.preventDefault();
-      actionElements[actionIndex + 1].focus();
-    }
+    event.preventDefault();
+    const offset = event.key === 'ArrowRight' ? 1 : -1;
+    const nextIndex =
+      (currentIndex + offset + elements.length) % elements.length;
+    this.focusGroupElement(item, group, elements, nextIndex);
+    return true;
   }
 
   private handleKeyDown(event: KeyboardEvent) {
@@ -848,6 +905,10 @@ export class List {
       !!primaryAction &&
       (eventPath.includes(primaryAction) ||
         item.shadowRoot?.activeElement === primaryAction);
+    const primaryControlElements = this.getPrimaryControlElements(item);
+    const primaryControlIndex = primaryControlElements.findIndex((element) =>
+      eventPath.includes(element)
+    );
     const actionElements = this.getActionElements(item);
     const actionIndex = actionElements.findIndex((element) =>
       eventPath.includes(element)
@@ -859,19 +920,22 @@ export class List {
       return;
     }
 
-    if (isDragGripper) {
-      this.handleDragGripperKey(event, item, primaryAction);
+    if (isDragGripper && this.handleDragGripperKey(event, item)) {
       return;
     }
 
-    if (
-      isPrimaryAction &&
-      event.key === 'ArrowLeft' &&
-      this.draggable &&
-      !dragGripper?.disabled
-    ) {
+    if (isPrimaryAction && event.key === 'ArrowRight') {
+      const targetGroup = primaryControlElements.length
+        ? primaryControlElements
+        : actionElements;
+      const group = primaryControlElements.length
+        ? 'primaryControls'
+        : 'actions';
+      if (!targetGroup.length) {
+        return;
+      }
       event.preventDefault();
-      dragGripper?.focus();
+      this.focusGroupElement(item, group, targetGroup, 0);
       return;
     }
 
@@ -879,9 +943,22 @@ export class List {
       return;
     }
 
-    this.handleActionNavigationKey(
+    if (
+      this.handleFocusGroupNavigationKey(
+        event,
+        item,
+        'primaryControls',
+        primaryControlElements,
+        primaryControlIndex
+      )
+    ) {
+      return;
+    }
+
+    this.handleFocusGroupNavigationKey(
       event,
-      isPrimaryAction ? primaryAction : undefined,
+      item,
+      'actions',
       actionElements,
       actionIndex
     );
