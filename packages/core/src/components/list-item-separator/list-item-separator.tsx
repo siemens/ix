@@ -20,6 +20,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class ListItemSeparator {
   render() {
-    return <Host role="separator"></Host>;
+    return <Host aria-hidden="true"></Host>;
   }
 }

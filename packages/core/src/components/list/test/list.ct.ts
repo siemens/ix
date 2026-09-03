@@ -681,7 +681,6 @@ regressionTest(
 
     await expect(list.locator('.list')).toHaveCSS('gap', '8px');
     await expect(separator).toBeVisible();
-    await expect(separator).toHaveAttribute('role', 'separator');
     await expect(separator).toHaveCSS('border-bottom-width', '1px');
     await expect(separator).toHaveCSS('border-bottom-style', 'solid');
   }

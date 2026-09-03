@@ -29,7 +29,7 @@ regressionTest('renders', async ({ mount, page }) => {
   const separator = page.locator('ix-list-item-separator');
   await expect(separator).toHaveClass(/\bhydrated\b/);
   await expect(separator).toBeVisible();
-  await expect(separator).toHaveAttribute('role', 'separator');
+  await expect(separator).toHaveAttribute('aria-hidden', 'true');
   await expect(separator).toHaveCSS('border-bottom-width', '1px');
   await expect(separator).toHaveCSS('border-bottom-style', 'solid');
 });
