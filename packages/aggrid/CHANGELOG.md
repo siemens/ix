@@ -1,5 +1,14 @@
 # @siemens/ix-aggrid
 
+## 6.0.0
+
+### Patch Changes
+
+- [#2632](https://github.com/siemens/ix/pull/2632) [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a) Thanks [@danielleroux](https://github.com/danielleroux)! - Keep the IX AG Grid theme compatible with the updated IX design-token output by replacing removed component aliases with supported system and common tokens.
+
+- Updated dependencies [[`a2f9f7d`](https://github.com/siemens/ix/commit/a2f9f7dc8930bf4c587b5dfac18a4da98ba131e7), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00), [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642), [`8434d9f`](https://github.com/siemens/ix/commit/8434d9f4fc83fe1d01cc4d8aaa9666e0f8802425), [`bcd17fc`](https://github.com/siemens/ix/commit/bcd17fcba1499663610c08d1dff08c6423e8e1f4), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642)]:
+  - @siemens/ix@6.0.0
+
 ## 5.1.0
 
 ### Minor Changes
