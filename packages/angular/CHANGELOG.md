@@ -1,5 +1,16 @@
 # @siemens/ix-angular
 
+## 6.0.0
+
+### Major Changes
+
+- [#2702](https://github.com/siemens/ix/pull/2702) [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking change:** `ix-content-header` titles and subtitles now wrap by default. Set `textOverflow="ellipsis"` to preserve the previous single-line ellipsis behavior without native tooltips.
+
+### Patch Changes
+
+- Updated dependencies [[`a2f9f7d`](https://github.com/siemens/ix/commit/a2f9f7dc8930bf4c587b5dfac18a4da98ba131e7), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00), [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642), [`8434d9f`](https://github.com/siemens/ix/commit/8434d9f4fc83fe1d01cc4d8aaa9666e0f8802425), [`bcd17fc`](https://github.com/siemens/ix/commit/bcd17fcba1499663610c08d1dff08c6423e8e1f4), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642)]:
+  - @siemens/ix@6.0.0
+
 ## 5.2.1
 
 ### Patch Changes

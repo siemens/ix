@@ -1,5 +1,43 @@
 # @siemens/ix
 
+## 6.0.0
+
+### Major Changes
+
+- [#2632](https://github.com/siemens/ix/pull/2632) [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a) Thanks [@danielleroux](https://github.com/danielleroux)! - Change the default IX stylesheet to include the classic theme, foundation styles, and the button-group, link, table, and typography utilities. Native element normalization, the body margin reset, scoped scrollbars, utility shadows and input-group styles, and native form styles are no longer applied by default. Import `@siemens/ix/css/globals.css` for the complete supported global styles, or combine `@siemens/ix/css/default.css` with `@siemens/ix/css/legacy.css` to retain the previous behavior while migrating.
+
+  Replace deep Sass imports with the explicit foundation, global, theme, token, mixin, or deprecated compatibility entry points. Unsupported legacy component modules and implementation-specific mixins have been removed; migration guidance is available in `BREAKING_CHANGES/v6.md`.
+
+- [#2702](https://github.com/siemens/ix/pull/2702) [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking change:** `ix-content-header` titles and subtitles now wrap by default. Set `textOverflow="ellipsis"` to preserve the previous single-line ellipsis behavior without native tooltips.
+
+- [#2632](https://github.com/siemens/ix/pull/2632) [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a) Thanks [@danielleroux](https://github.com/danielleroux)! - Rename Siemens system custom properties from `--theme-si-sys-*` to `--si-sys-*` and reference custom properties from `--theme-si-classic-ref-*` or `--theme-si-ref-*` to `--si-ref-*`.
+
+  Generated `--theme-<component>-*` aliases are no longer included in the standard IX styles and no longer customize migrated components. Replace component overrides with the corresponding scoped `--ix-*` custom properties. The `@siemens/ix/scss/deprecated/components` Sass mixin remains available for downstream styles that temporarily require the generated aliases.
+
+  Color-valued component properties, including `iconColor` and event-list `itemColor`, now require a complete CSS custom-property name such as `--si-sys-text-danger`. The exported `NotificationColor` values include the leading `--`.
+
+  Components now use the SI Theme 6 system mappings. Warning, critical, and neutral states and component shadows can therefore render differently. See `BREAKING_CHANGES/v6.md` for migration guidance.
+
+### Minor Changes
+
+- [#2632](https://github.com/siemens/ix/pull/2632) [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a) Thanks [@danielleroux](https://github.com/danielleroux)! - Expose component-scoped `--ix-*` CSS custom properties for `ix-action-card`, `ix-chat-input`, `ix-chat-ai-message`, and `ix-chat-user-message`, allowing their appearance and interaction states to be customized without overriding internal selectors.
+
+### Patch Changes
+
+- [#2756](https://github.com/siemens/ix/pull/2756) [`a2f9f7d`](https://github.com/siemens/ix/commit/a2f9f7dc8930bf4c587b5dfac18a4da98ba131e7) Thanks [@danielleroux](https://github.com/danielleroux)! - Align remaining legacy form controls and global style utilities with SI Theme 6 system colors.
+
+- [#2632](https://github.com/siemens/ix/pull/2632) [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a) Thanks [@danielleroux](https://github.com/danielleroux)! - Align date picker day, range, and today states with the system-token colors.
+
+- [#2762](https://github.com/siemens/ix/pull/2762) [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix filled status-icon **ix-badge** to use semantic status background and on-status colors.
+
+- [#2735](https://github.com/siemens/ix/pull/2735) [`8434d9f`](https://github.com/siemens/ix/commit/8434d9f4fc83fe1d01cc4d8aaa9666e0f8802425) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Keep the Active look on `ix-group-context-menu` and header `ix-avatar` triggers while their dropdown is open. Header avatar uses `subtle-tertiary` button styling.
+
+- [#2736](https://github.com/siemens/ix/pull/2736) [`bcd17fc`](https://github.com/siemens/ix/commit/bcd17fcba1499663610c08d1dff08c6423e8e1f4) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Keep `ix-button` / `ix-icon-button` popover triggers in the Active look while the popover is open.
+
+  Fixes [#1402](https://github.com/siemens/ix/issues/1402)
+
+- [#2762](https://github.com/siemens/ix/pull/2762) [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642) Thanks [@danielleroux](https://github.com/danielleroux)! - Completed and selected **ix-workflow-step** now use the correct accent colors on hover and press.
+
 ## 5.2.1
 
 ### Patch Changes
