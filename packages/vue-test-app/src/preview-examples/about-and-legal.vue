@@ -36,10 +36,10 @@ onMounted(() => {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuAbout suppressLegacyTabs>
-        <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
-          <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
-          <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
+      <IxMenuAbout suppress-legacy-tabs>
+        <IxTabs :active-tab-key="activeTabKey" @tabChange="setActiveTabKey">
+          <IxTabItem tab-key="tab-1">Tab 1</IxTabItem>
+          <IxTabItem tab-key="tab-2">Tab 2</IxTabItem>
         </IxTabs>
         <section
           v-if="activeTabKey === 'tab-1'"

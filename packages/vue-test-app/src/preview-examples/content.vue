@@ -15,7 +15,7 @@ import { IxContent, IxContentHeader } from '@siemens/ix-vue';
   <IxContent>
     <IxContentHeader
       slot="header"
-      headerTitle="My Content Page"
+      header-title="My Content Page"
     ></IxContentHeader>
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam

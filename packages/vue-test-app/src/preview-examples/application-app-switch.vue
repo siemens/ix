@@ -46,7 +46,7 @@ const appSwitchConfig: AppSwitchConfiguration = {
 </script>
 
 <template>
-  <IxApplication :appSwitchConfig="appSwitchConfig">
+  <IxApplication :app-switch-config="appSwitchConfig">
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
 

@@ -14,7 +14,7 @@ import { IxGroup, IxGroupItem, IxButton } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxGroup, IxGroupItem, IxButton],
   template: `
-    <ix-group header="Header text" sub-header="Subheader text">
+    <ix-group header="Header text" subHeader="Subheader text">
       <ix-group-item text="Example text 1"></ix-group-item>
       <ix-group-item text="Example text 2"></ix-group-item>
       <ix-group-item><ix-button>Test</ix-button></ix-group-item>
