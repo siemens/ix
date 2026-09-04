@@ -361,6 +361,24 @@ regressionTest('label', async ({ mount, page }) => {
   await expect(checkboxElement).toHaveCount(0);
 });
 
+regressionTest(
+  'accessible name updates when label is removed and slotted text is added',
+  async ({ mount, page }) => {
+    await mount(`<ix-checkbox label="First"></ix-checkbox>`);
+
+    await expect(page.getByRole('checkbox', { name: 'First' })).toBeVisible();
+
+    await page.locator('ix-checkbox').evaluate((element) => {
+      element.removeAttribute('label');
+      element.textContent = 'Second';
+    });
+
+    await expect(
+      page.getByRole('checkbox', { name: 'Second', exact: true })
+    ).toBeVisible();
+  }
+);
+
 test('Checkbox should not cause layout shift when checked', async ({
   mount,
   page,

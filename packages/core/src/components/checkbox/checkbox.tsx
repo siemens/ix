@@ -13,6 +13,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  forceUpdate,
   Fragment,
   h,
   Host,
@@ -100,6 +101,7 @@ export class Checkbox implements IxFormComponent<string> {
   @State() private hasDefaultSlotElements = false;
 
   private defaultSlotElement?: HTMLSlotElement;
+  private authorAriaLabel?: string;
 
   private setCheckedState(newChecked: boolean) {
     this.checked = newChecked;
@@ -166,6 +168,8 @@ export class Checkbox implements IxFormComponent<string> {
   }
 
   componentWillLoad() {
+    this.authorAriaLabel =
+      this.hostElement.getAttribute('aria-label') ?? undefined;
     this.updateFormInternalValue();
   }
 
@@ -175,6 +179,7 @@ export class Checkbox implements IxFormComponent<string> {
 
   private updateDefaultSlotElements() {
     this.hasDefaultSlotElements = hasSlottedContent(this.defaultSlotElement);
+    forceUpdate(this);
   }
 
   private get isLabelLess() {
@@ -184,7 +189,7 @@ export class Checkbox implements IxFormComponent<string> {
   private get ariaLabel() {
     return (
       this.label ||
-      this.hostElement.getAttribute('aria-label') ||
+      this.authorAriaLabel ||
       this.hostElement.textContent?.trim() ||
       undefined
     );
