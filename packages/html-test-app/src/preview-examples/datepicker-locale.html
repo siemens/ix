@@ -15,29 +15,147 @@ LICENSE file in the root directory of this source tree.
     <title>Datepicker locale example</title>
   </head>
   <body>
-    <span style="margin-right: 1rem">Language:</span>
-    <ix-select style="margin: 1rem 0">
-      <ix-select-item value="de" label="de"></ix-select-item>
-      <ix-select-item value="en" label="en"></ix-select-item>
-    </ix-select>
-    <ix-date-picker range="false"></ix-date-picker>
+    <ix-layout-grid>
+      <ix-row>
+        <ix-col size="3">
+          <span style="margin-right: 0.5rem">Language:</span>
+          <ix-select id="locale-select">
+            <ix-select-item value="de" label="de"></ix-select-item>
+            <ix-select-item value="en" label="en"></ix-select-item>
+            <ix-select-item value="fr" label="fr"></ix-select-item>
+            <ix-select-item value="ja" label="ja"></ix-select-item>
+          </ix-select>
+        </ix-col>
+        <ix-col size="4">
+          <span style="margin-right: 0.5rem">Format:</span>
+          <ix-select id="format-select">
+            <ix-select-item
+              value="yyyy/LL/dd"
+              label="yyyy/LL/dd (default)"
+            ></ix-select-item>
+            <ix-select-item
+              value="EEEE, dd MMMM yyyy"
+              label="EEEE, dd MMMM yyyy (all locale names)"
+            ></ix-select-item>
+            <ix-select-item
+              value="dd MMMM yyyy"
+              label="dd MMMM yyyy (month name)"
+            ></ix-select-item>
+            <ix-select-item
+              value="dd MMM yyyy"
+              label="dd MMM yyyy (short month)"
+            ></ix-select-item>
+            <ix-select-item
+              value="LL/dd/yyyy"
+              label="LL/dd/yyyy"
+            ></ix-select-item>
+          </ix-select>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="12">
+          <div style="width: fit-content; max-width: 100%">
+            <ix-date-picker id="datepicker"></ix-date-picker>
+            <div
+              id="event-log"
+              style="
+                margin-top: 0.5rem;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--theme-color-weak-bdr);
+                border-radius: 4px;
+                background: var(--theme-color-2);
+              "
+            >
+              <span
+                style="
+                  display: block;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Last date-picker event
+              </span>
+              <span
+                id="event-placeholder"
+                style="color: var(--theme-color-soft-text)"
+              >
+                Select a date to see event values
+              </span>
+              <ix-layout-grid
+                id="event-values"
+                no-margin
+                style="display: none"
+              ></ix-layout-grid>
+            </div>
+          </div>
+        </ix-col>
+      </ix-row>
+    </ix-layout-grid>
+
     <script>
-      const select = document.querySelector('ix-select');
-      const datepicker = document.querySelector('ix-date-picker');
+      const localeSelect = document.getElementById('locale-select');
+      const formatSelect = document.getElementById('format-select');
+      const datepicker = document.getElementById('datepicker');
+      const eventPlaceholder = document.getElementById('event-placeholder');
+      const eventValues = document.getElementById('event-values');
 
       let locale = 'de';
+      let format = 'yyyy/LL/dd';
 
-      function setLocale(newLocale) {
-        locale = newLocale;
-        datepicker.locale = locale;
-        select.value = locale;
+      localeSelect.value = locale;
+      formatSelect.value = format;
+      datepicker.locale = locale;
+      datepicker.format = format;
+
+      localeSelect.addEventListener('valueChange', ({ detail }) => {
+        if (!Array.isArray(detail)) {
+          locale = detail;
+          datepicker.locale = locale;
+        }
+      });
+
+      formatSelect.addEventListener('valueChange', ({ detail }) => {
+        if (!Array.isArray(detail)) {
+          format = detail;
+          datepicker.format = format;
+        }
+      });
+
+      const eventRows = [
+        { key: 'from', note: '(locale-aware)' },
+        { key: 'to', note: '(locale-aware)' },
+        { key: 'isoFrom', note: '(ISO 8601, stable)' },
+        { key: 'isoTo', note: '(ISO 8601, stable)' },
+      ];
+
+      function renderEvent(detail) {
+        eventPlaceholder.style.display = 'none';
+        eventValues.style.display = '';
+        eventValues.innerHTML = eventRows
+          .map(
+            ({ key, note }) => `
+          <ix-row>
+            <ix-col size="2" style="font-weight: 600; color: var(--theme-color-std-text)">
+              ${key}
+            </ix-col>
+            <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
+              ${detail[key] ?? '—'}
+            </ix-col>
+            <ix-col style="color: var(--theme-color-soft-text); font-size: 0.8em">
+              ${note}
+            </ix-col>
+          </ix-row>`
+          )
+          .join('');
       }
 
-      setLocale(locale);
-
-      select.addEventListener('valueChange', ({ detail }) => {
-        setLocale(detail);
-      });
+      datepicker.addEventListener('dateChange', ({ detail }) =>
+        renderEvent(detail)
+      );
+      datepicker.addEventListener('dateRangeChange', ({ detail }) =>
+        renderEvent(detail)
+      );
     </script>
     <script type="module" src="./init.js"></script>
   </body>

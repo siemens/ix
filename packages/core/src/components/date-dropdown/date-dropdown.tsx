@@ -22,6 +22,7 @@ import {
   Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { parseWithLocale, toISODate } from '../utils/date-time-locale';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
@@ -163,6 +164,10 @@ export class DateDropdown
    */
   @Prop() locale?: string;
 
+  @Watch('locale') watchLocalePropHandler() {
+    this.updateCurrentDate();
+  }
+
   /**
    * The index of which day to start the week on, based on the Locale#weekdays array.
    * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
@@ -204,6 +209,8 @@ export class DateDropdown
     from?: string;
     to?: string;
     id: string;
+    isoFrom?: string;
+    isoTo?: string;
   };
   @State() private show = false;
 
@@ -232,7 +239,7 @@ export class DateDropdown
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {
-    return this.currentRangeValue || { id: '', from: '', to: '' };
+    return { ...(this.currentRangeValue ?? { id: '', from: '', to: '' }) };
   }
 
   private initialize() {
@@ -264,11 +271,22 @@ export class DateDropdown
       id: this.selectedDateRangeId,
       from: this.from,
       to: this.to,
+      isoFrom: toISODate(parseWithLocale(this.from, this.format, this.locale)),
+      isoTo: toISODate(parseWithLocale(this.to, this.format, this.locale)),
     };
   }
 
   private onDateSelect(rangeValue: { from?: string; to?: string; id: string }) {
-    this.dateRangeChange.emit(rangeValue);
+    const isoFrom = toISODate(
+      parseWithLocale(rangeValue.from ?? '', this.format, this.locale)
+    );
+    const isoTo = toISODate(
+      parseWithLocale(rangeValue.to ?? '', this.format, this.locale)
+    );
+    if (this.currentRangeValue) {
+      this.currentRangeValue = { ...this.currentRangeValue, isoFrom, isoTo };
+    }
+    this.dateRangeChange.emit({ ...rangeValue, isoFrom, isoTo });
   }
 
   private onRangeListSelect(id: string) {
@@ -284,10 +302,22 @@ export class DateDropdown
     if (option) {
       if (option.from && option?.from === this.currentRangeValue?.from) {
         // Show the correct month in the date picker if the same range is selected again
-        const formattedDate = DateTime.fromFormat(option.from, this.format);
+        const formattedDate = parseWithLocale(
+          option.from,
+          this.format,
+          this.locale
+        );
         this.datePickerRef.current?.updateSelectedYearMonth(formattedDate);
       } else {
-        this.currentRangeValue = option;
+        this.currentRangeValue = {
+          ...option,
+          isoFrom: toISODate(
+            parseWithLocale(option.from ?? '', this.format, this.locale)
+          ),
+          isoTo: toISODate(
+            parseWithLocale(option.to ?? '', this.format, this.locale)
+          ),
+        };
       }
     }
 

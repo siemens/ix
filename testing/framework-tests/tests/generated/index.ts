@@ -155,6 +155,8 @@ import './datetime-input.spec.ts';
 import './datetime-range-axe.spec.ts';
 import './datetime-range.spec.ts';
 import './datetimepicker-axe.spec.ts';
+import './datetimepicker-locale-axe.spec.ts';
+import './datetimepicker-locale.spec.ts';
 import './datetimepicker.spec.ts';
 import './dropdown-axe.spec.ts';
 import './dropdown-button-axe.spec.ts';
