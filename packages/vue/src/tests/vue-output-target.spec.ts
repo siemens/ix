@@ -25,7 +25,7 @@ const TestContainer = defineContainer(testElementTag, defineTestElement);
 
 describe('Vue output target', () => {
   it('reconciles reactive classes separated by DOM whitespace', async () => {
-    const classBinding = ref('initial\nshared');
+    const classBinding = ref(' \ninitial\nshared\t ');
     const TestComponent = defineComponent({
       setup: () => () =>
         h(TestContainer, {
@@ -40,11 +40,20 @@ describe('Vue output target', () => {
     expect(element?.classList.contains('initial')).toBe(true);
     expect(element?.classList.contains('shared')).toBe(true);
 
+    element?.classList.add('ix-invalid');
+    classBinding.value = '';
+    await nextTick();
+
+    expect(element?.classList.contains('ix-invalid')).toBe(true);
+    expect(element?.classList.contains('initial')).toBe(false);
+    expect(element?.classList.contains('shared')).toBe(false);
+
     classBinding.value = 'updated\tshared';
     await nextTick();
 
     expect(element?.classList.contains('initial')).toBe(false);
     expect(element?.classList.contains('updated')).toBe(true);
     expect(element?.classList.contains('shared')).toBe(true);
+    expect(element?.classList.contains('ix-invalid')).toBe(true);
   });
 });
