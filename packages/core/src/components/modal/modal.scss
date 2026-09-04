@@ -9,7 +9,7 @@
 
 @use './modal.vars' as *;
 ::backdrop {
-  background: var(--ix-modal-backdrop--background, #0000008c);
+  background: var(--ix-modal-backdrop--background);
 }
 
 :focus-visible {
@@ -86,12 +86,12 @@
     max-width: calc(100% - var(--ix-dialog-padding) * 2);
 
     min-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% -
+        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
     );
     max-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% -
+        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
     );
   }
 
