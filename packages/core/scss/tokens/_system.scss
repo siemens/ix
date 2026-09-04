@@ -22,12 +22,8 @@ $si-sys-background-accent: var(--si-sys-background-accent);
 $si-sys-background-accent-active: var(--si-sys-background-accent-active);
 $si-sys-background-accent-hover: var(--si-sys-background-accent-hover);
 $si-sys-background-accent-secondary: var(--si-sys-background-accent-secondary);
-$si-sys-background-accent-secondary-active: var(
-  --si-sys-background-accent-secondary-active
-);
-$si-sys-background-accent-secondary-hover: var(
-  --si-sys-background-accent-secondary-hover
-);
+$si-sys-background-accent-secondary-active: var(--si-sys-background-accent-secondary-active);
+$si-sys-background-accent-secondary-hover: var(--si-sys-background-accent-secondary-hover);
 $si-sys-background-active: var(--si-sys-background-active);
 $si-sys-background-caution: var(--si-sys-background-caution);
 $si-sys-background-caution-active: var(--si-sys-background-caution-active);
@@ -44,20 +40,14 @@ $si-sys-background-danger-secondary: var(--si-sys-background-danger-secondary);
 $si-sys-background-danger-subtle: var(--si-sys-background-danger-subtle);
 $si-sys-background-hover: var(--si-sys-background-hover);
 $si-sys-background-information: var(--si-sys-background-information);
-$si-sys-background-information-active: var(
-  --si-sys-background-information-active
-);
-$si-sys-background-information-hover: var(
-  --si-sys-background-information-hover
-);
-$si-sys-background-information-subtle: var(
-  --si-sys-background-information-subtle
-);
+$si-sys-background-information-active: var(--si-sys-background-information-active);
+$si-sys-background-information-hover: var(--si-sys-background-information-hover);
+$si-sys-background-information-subtle: var(--si-sys-background-information-subtle);
 $si-sys-background-inverse: var(--si-sys-background-inverse);
 $si-sys-background-neutral: var(--si-sys-background-neutral);
 $si-sys-background-neutral-active: var(--si-sys-background-neutral-active);
 $si-sys-background-neutral-hover: var(--si-sys-background-neutral-hover);
-$si-sys-background-selected: var(--si-sys-background-active);
+$si-sys-background-selected: var(--si-sys-background-selected);
 $si-sys-background-success: var(--si-sys-background-success);
 $si-sys-background-success-active: var(--si-sys-background-success-active);
 $si-sys-background-success-hover: var(--si-sys-background-success-hover);
@@ -65,9 +55,7 @@ $si-sys-background-success-subtle: var(--si-sys-background-success-subtle);
 $si-sys-background-warning: var(--si-sys-background-warning);
 $si-sys-background-warning-active: var(--si-sys-background-warning-active);
 $si-sys-background-warning-hover: var(--si-sys-background-warning-hover);
-$si-sys-background-warning-secondary: var(
-  --si-sys-background-warning-secondary
-);
+$si-sys-background-warning-secondary: var(--si-sys-background-warning-secondary);
 $si-sys-background-warning-subtle: var(--si-sys-background-warning-subtle);
 $si-sys-border-1: var(--si-sys-border-1);
 $si-sys-border-2: var(--si-sys-border-2);
@@ -136,18 +124,10 @@ $si-sys-data-sequential-green-1: var(--si-sys-data-sequential-green-1);
 $si-sys-data-sequential-green-2: var(--si-sys-data-sequential-green-2);
 $si-sys-data-sequential-green-3: var(--si-sys-data-sequential-green-3);
 $si-sys-data-sequential-green-4: var(--si-sys-data-sequential-green-4);
-$si-sys-data-sequential-interactive-coral-1: var(
-  --si-sys-data-sequential-interactive-coral-1
-);
-$si-sys-data-sequential-interactive-coral-2: var(
-  --si-sys-data-sequential-interactive-coral-2
-);
-$si-sys-data-sequential-interactive-coral-3: var(
-  --si-sys-data-sequential-interactive-coral-3
-);
-$si-sys-data-sequential-interactive-coral-4: var(
-  --si-sys-data-sequential-interactive-coral-4
-);
+$si-sys-data-sequential-interactive-coral-1: var(--si-sys-data-sequential-interactive-coral-1);
+$si-sys-data-sequential-interactive-coral-2: var(--si-sys-data-sequential-interactive-coral-2);
+$si-sys-data-sequential-interactive-coral-3: var(--si-sys-data-sequential-interactive-coral-3);
+$si-sys-data-sequential-interactive-coral-4: var(--si-sys-data-sequential-interactive-coral-4);
 $si-sys-data-sequential-orange-1: var(--si-sys-data-sequential-orange-1);
 $si-sys-data-sequential-orange-2: var(--si-sys-data-sequential-orange-2);
 $si-sys-data-sequential-orange-3: var(--si-sys-data-sequential-orange-3);
@@ -168,18 +148,10 @@ $si-sys-data-sequential-red-1: var(--si-sys-data-sequential-red-1);
 $si-sys-data-sequential-red-2: var(--si-sys-data-sequential-red-2);
 $si-sys-data-sequential-red-3: var(--si-sys-data-sequential-red-3);
 $si-sys-data-sequential-red-4: var(--si-sys-data-sequential-red-4);
-$si-sys-data-sequential-royal-blue-1: var(
-  --si-sys-data-sequential-royal-blue-1
-);
-$si-sys-data-sequential-royal-blue-2: var(
-  --si-sys-data-sequential-royal-blue-2
-);
-$si-sys-data-sequential-royal-blue-3: var(
-  --si-sys-data-sequential-royal-blue-3
-);
-$si-sys-data-sequential-royal-blue-4: var(
-  --si-sys-data-sequential-royal-blue-4
-);
+$si-sys-data-sequential-royal-blue-1: var(--si-sys-data-sequential-royal-blue-1);
+$si-sys-data-sequential-royal-blue-2: var(--si-sys-data-sequential-royal-blue-2);
+$si-sys-data-sequential-royal-blue-3: var(--si-sys-data-sequential-royal-blue-3);
+$si-sys-data-sequential-royal-blue-4: var(--si-sys-data-sequential-royal-blue-4);
 $si-sys-data-sequential-sand-1: var(--si-sys-data-sequential-sand-1);
 $si-sys-data-sequential-sand-2: var(--si-sys-data-sequential-sand-2);
 $si-sys-data-sequential-sand-3: var(--si-sys-data-sequential-sand-3);
@@ -210,17 +182,14 @@ $si-sys-text-information: var(--si-sys-text-information);
 $si-sys-text-inverse: var(--si-sys-text-inverse);
 $si-sys-text-on-accent: var(--si-sys-text-on-accent);
 $si-sys-text-on-accent-secondary: var(--si-sys-text-on-accent-secondary);
-$si-sys-text-on-accent-secondary-active: var(
-  --si-sys-text-on-accent-secondary-active
-);
-$si-sys-text-on-accent-secondary-hover: var(
-  --si-sys-text-on-accent-secondary-hover
-);
+$si-sys-text-on-accent-secondary-active: var(--si-sys-text-on-accent-secondary-active);
+$si-sys-text-on-accent-secondary-hover: var(--si-sys-text-on-accent-secondary-hover);
 $si-sys-text-on-caution: var(--si-sys-text-on-caution);
 $si-sys-text-on-critical: var(--si-sys-text-on-critical);
 $si-sys-text-on-danger: var(--si-sys-text-on-danger);
 $si-sys-text-on-danger-secondary: var(--si-sys-text-on-danger-secondary);
 $si-sys-text-on-information: var(--si-sys-text-on-information);
+$si-sys-text-on-neutral: var(--si-sys-text-on-neutral);
 $si-sys-text-on-success: var(--si-sys-text-on-success);
 $si-sys-text-on-warning: var(--si-sys-text-on-warning);
 $si-sys-text-on-warning-secondary: var(--si-sys-text-on-warning-secondary);
@@ -232,9 +201,7 @@ $si-sys-typography-body: var(--si-sys-typography-body);
 $si-sys-typography-body-lg: var(--si-sys-typography-body-lg);
 $si-sys-typography-body-lg-sbold: var(--si-sys-typography-body-lg-sbold);
 $si-sys-typography-body-paragraph: var(--si-sys-typography-body-paragraph);
-$si-sys-typography-body-paragraph-sbold: var(
-  --si-sys-typography-body-paragraph-sbold
-);
+$si-sys-typography-body-paragraph-sbold: var(--si-sys-typography-body-paragraph-sbold);
 $si-sys-typography-body-sbold: var(--si-sys-typography-body-sbold);
 $si-sys-typography-body-sm: var(--si-sys-typography-body-sm);
 $si-sys-typography-body-sm-sbold: var(--si-sys-typography-body-sm-sbold);
@@ -248,9 +215,7 @@ $si-sys-typography-display-sbold: var(--si-sys-typography-display-sbold);
 $si-sys-typography-display-xl: var(--si-sys-typography-display-xl);
 $si-sys-typography-display-xl-sbold: var(--si-sys-typography-display-xl-sbold);
 $si-sys-typography-display-xxl: var(--si-sys-typography-display-xxl);
-$si-sys-typography-display-xxl-sbold: var(
-  --si-sys-typography-display-xxl-sbold
-);
+$si-sys-typography-display-xxl-sbold: var(--si-sys-typography-display-xxl-sbold);
 $si-sys-typography-h1: var(--si-sys-typography-h1);
 $si-sys-typography-h2: var(--si-sys-typography-h2);
 $si-sys-typography-h3: var(--si-sys-typography-h3);
