@@ -132,16 +132,15 @@
   },
   "siemensix": {
     "dependencies": [
-      "@stencil/core"
+      "@floating-ui/dom",
+      "@stencil/core",
+      "animejs",
+      "luxon"
     ]
-  },
-  "dependencies": {
-    "@floating-ui/dom": "^1.6.13",
-    "animejs": "^4.1.2",
-    "luxon": "^3.4.4"
   },
   "devDependencies": {
     "@axe-core/playwright": "catalog:",
+    "@floating-ui/dom": "^1.6.13",
     "@playwright/test": "catalog:",
     "@siemens/ix-icons": "catalog:",
     "@stencil-community/eslint-plugin": "^0.10.0",
@@ -162,6 +161,7 @@
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "animate.css": "~4.1.1",
+    "animejs": "^4.1.2",
     "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
@@ -172,6 +172,7 @@
     "http-server": "^14.1.1",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
+    "luxon": "^3.4.4",
     "mustache": "^4.2.0",
     "postcss": "^8.4.40",
     "puppeteer": "21.1.1",
@@ -183,7 +184,25 @@
     "vitest": "^4.1.4"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.5.0"
+    "@floating-ui/dom": "^1.6.13",
+    "@siemens/ix-icons": "^3.5.0",
+    "@stencil/core": "^4.43.5",
+    "animejs": "^4.1.2",
+    "luxon": "^3.4.4"
+  },
+  "peerDependenciesMeta": {
+    "@floating-ui/dom": {
+      "optional": true
+    },
+    "@stencil/core": {
+      "optional": true
+    },
+    "animejs": {
+      "optional": true
+    },
+    "luxon": {
+      "optional": true
+    }
   },
   "config": {
     "commitizen": {
