@@ -10,7 +10,6 @@
 import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import {
   Component,
-  Element,
   Event,
   EventEmitter,
   h,
@@ -29,8 +28,6 @@ import { IxButtonComponent } from '../button/button-component';
 export class ExpandingSearch
   implements Omit<IxButtonComponent, 'type' | 'icon' | 'disabled' | 'loading'>
 {
-  @Element() hostElement!: HTMLIxExpandingSearchElement;
-
   /**
    * Search icon
    */
@@ -83,7 +80,6 @@ export class ExpandingSearch
   @State() isFieldChanged = false;
   @State() expanded = false;
   @State() hasFocus = false;
-  @State() expandsToLeft = false;
 
   /**
    * Value changed
@@ -91,24 +87,8 @@ export class ExpandingSearch
   @Event() valueChange!: EventEmitter<string>;
 
   private expandInput() {
-    this.expandsToLeft = this.isRightAligned();
-    requestAnimationFrame(() => {
-      setTimeout(this.focusTextInput, 300);
-      this.expanded = true;
-    });
-  }
-
-  private isRightAligned() {
-    const parent = this.hostElement.parentElement;
-
-    if (!parent) {
-      return false;
-    }
-
-    const { right: componentRight } = this.hostElement.getBoundingClientRect();
-    const { right: parentRight } = parent.getBoundingClientRect();
-
-    return Math.abs(componentRight - parentRight) < 1;
+    setTimeout(this.focusTextInput, 300);
+    this.expanded = true;
   }
 
   private collapseInput() {
@@ -139,10 +119,6 @@ export class ExpandingSearch
     this.focusTextInput = this.focusTextInput.bind(this);
   }
 
-  componentDidLoad() {
-    this.expandsToLeft = this.isRightAligned();
-  }
-
   private focusTextInput() {
     this.textInput?.focus();
   }
@@ -158,7 +134,6 @@ export class ExpandingSearch
       <Host
         class={{
           expanded: this.expanded,
-          'right-position': this.expandsToLeft,
           fullWidth: this.fullWidth,
         }}
       >
