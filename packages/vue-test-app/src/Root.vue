@@ -75,6 +75,11 @@ import DateDropdown from './preview-examples/date-dropdown.vue';
 import DateRange from './preview-examples/date-range.vue';
 import DatetimeRange from './preview-examples/datetime-range.vue';
 import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
+import DateInputMinMaxDate from './preview-examples/date-input-min-max-date.vue';
+import DateInputDisabled from './preview-examples/date-input-disabled.vue';
+import DateInputLabel from './preview-examples/date-input-label.vue';
+import DateInputReadonly from './preview-examples/date-input-readonly.vue';
+import DateInputValidation from './preview-examples/date-input-validation.vue';
 import DateInput from './preview-examples/date-input.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatetimeInput from './preview-examples/datetime-input.vue';
@@ -114,6 +119,7 @@ import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
+import EventListCustomItemHeightInNumber from './preview-examples/event-list-custom-item-height-in-number.vue';
 import EventListFilled from './preview-examples/event-list-filled.vue';
 import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
@@ -179,6 +185,7 @@ import NumberInputLabel from './preview-examples/number-input-label.vue';
 import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
 import NumberInputStepperButton from './preview-examples/number-input-stepper-button.vue';
 import NumberInputWithSlots from './preview-examples/number-input-with-slots.vue';
+import NumberInputValidation from './preview-examples/number-input-validation.vue';
 import NumberInput from './preview-examples/number-input.vue';
 import PaginationAdvanced from './preview-examples/pagination-advanced.vue';
 import Pagination from './preview-examples/pagination.vue';
@@ -223,8 +230,16 @@ import TextareaFieldValidation from './preview-examples/textarea-validation.vue'
 import TextareaField from './preview-examples/textarea.vue';
 import ThemeSwitcher from './preview-examples/theme-switcher.vue';
 import Tile from './preview-examples/tile.vue';
+import TimeInput from './preview-examples/time-input.vue';
+import TimeInputDisabled from './preview-examples/time-input-disabled.vue';
+import TimeInputLabel from './preview-examples/time-input-label.vue';
+import TimeInputReadonly from './preview-examples/time-input-readonly.vue';
+import TimeInputValidation from './preview-examples/time-input-validation.vue';
+import TimeInputWithSlots from './preview-examples/time-input-with-slots.vue';
 import TimeRange from './preview-examples/time-range.vue';
 import Timepicker from './preview-examples/timepicker.vue';
+import TimepickerFormatAdjusted from './preview-examples/timepicker-format-adjusted.vue';
+import TimepickerIntervals from './preview-examples/timepicker-intervals.vue';
 import TimepickerMinMaxTime from './preview-examples/timepicker-min-max-time.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
 import ToastPosition from './preview-examples/toast-position.vue';
@@ -360,6 +375,7 @@ const routes: IxPreviewRoutes = {
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
+  '/preview/event-list-custom-item-height-in-number': EventListCustomItemHeightInNumber,
   '/preview/event-list-filled': EventListFilled,
   '/preview/event-list-selected': EventListSelected,
   '/preview/expanding-search': ExpandingSearch,
@@ -424,8 +440,16 @@ const routes: IxPreviewRoutes = {
   '/preview/input-validation': InputValidation,
   '/preview/input-with-slots': InputWithSlots,
   '/preview/tile': Tile,
+  '/preview/time-input': TimeInput,
+  '/preview/time-input-disabled': TimeInputDisabled,
+  '/preview/time-input-label': TimeInputLabel,
+  '/preview/time-input-readonly': TimeInputReadonly,
+  '/preview/time-input-validation': TimeInputValidation,
+  '/preview/time-input-with-slots': TimeInputWithSlots,
   '/preview/time-range': TimeRange,
   '/preview/timepicker': Timepicker,
+  '/preview/timepicker-format-adjusted': TimepickerFormatAdjusted,
+  '/preview/timepicker-intervals': TimepickerIntervals,
   '/preview/timepicker-min-max-time': TimepickerMinMaxTime,
   '/preview/toast': Toast,
   '/preview/toast-custom': ToastCustom,
@@ -449,8 +473,14 @@ const routes: IxPreviewRoutes = {
   '/preview/number-input-readonly': NumberInputReadOnly,
   '/preview/number-input-stepper-button': NumberInputStepperButton,
   '/preview/number-input-with-slots': NumberInputWithSlots,
+  '/preview/number-input-validation': NumberInputValidation,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/date-input-min-max-date': DateInputMinMaxDate,
+  '/preview/date-input-disabled': DateInputDisabled,
+  '/preview/date-input-label': DateInputLabel,
+  '/preview/date-input-readonly': DateInputReadonly,
+  '/preview/date-input-validation': DateInputValidation,
   '/preview/datetime-input': DatetimeInput,
   '/preview/datetime-input-disabled': DatetimeInputDisabled,
   '/preview/datetime-input-label': DatetimeInputLabel,

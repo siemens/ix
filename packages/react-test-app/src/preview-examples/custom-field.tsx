@@ -9,14 +9,20 @@
 
 import { useRef } from 'react';
 import { IxCustomField, IxIconButton, IxInput } from '@siemens/ix-react';
+import { addIcons } from '@siemens/ix-icons';
+import { iconOpenFile } from '@siemens/ix-icons/icons';
+addIcons({ iconOpenFile });
 
 export default () => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <IxCustomField helper-text="Choose file">
-      <IxInput value="Enter text here" readonly></IxInput>
-      <IxIconButton icon="open-file" variant="subtle-primary" onClick={() => {
+    <IxCustomField helperText="Choose file">
+      <IxInput value="No file chosen" readonly></IxInput>
+      <IxIconButton
+        icon="open-file"
+        variant="subtle-primary"
+        onClick={() => {
           ref.current?.click();
         }}
       ></IxIconButton>

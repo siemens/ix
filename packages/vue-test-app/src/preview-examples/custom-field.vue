@@ -10,6 +10,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { IxCustomField, IxInput, IxIconButton } from '@siemens/ix-vue';
+import { addIcons } from '@siemens/ix-icons';
+import { iconOpenFile } from '@siemens/ix-icons/icons';
+addIcons({ iconOpenFile });
 
 const input = ref();
 const openFileBrowser = () => {
@@ -19,7 +22,7 @@ const openFileBrowser = () => {
 
 <template>
   <IxCustomField helper-text="Choose file">
-    <IxInput value="Enter text here" readonly></IxInput>
+    <IxInput value="No file chosen" readonly></IxInput>
     <IxIconButton icon="open-file" variant="subtle-primary" @click="openFileBrowser()"></IxIconButton>
     <input
       ref="input"
