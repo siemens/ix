@@ -7,7 +7,7 @@ index 8d1b57d4d3581b3681075b35380659f969469f35..29c3763e94e90ce26043aae72ac927ee
  const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
  const getComponentClasses = (classes) => {
 -    return classes?.split(' ') || [];
-+    return (classes?.split(' ') || []).filter(Boolean);
++    return (classes?.split(/[ \t\n\f\r]+/) || []).filter(Boolean);
  };
  const syncElementClasses = (ref, componentClasses, defaultClasses = []) => {
      if (ref?.value) {
@@ -37,7 +37,7 @@ index 7efe4d9bba43a0533f2d3f6d17d5ed6f816ee04e..b483fcbde01193a76869b9a2c96b4868
  const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
  const getComponentClasses = (classes) => {
 -    return classes?.split(' ') || [];
-+    return (classes?.split(' ') || []).filter(Boolean);
++    return (classes?.split(/[ \t\n\f\r]+/) || []).filter(Boolean);
  };
  const syncElementClasses = (ref, componentClasses, defaultClasses = []) => {
      if (ref?.value) {
