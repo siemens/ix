@@ -18,6 +18,12 @@ import {
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { IconButtonVariant } from './icon-button.types';
 
+/**
+ * Button that displays only an icon to trigger an action.
+ *
+ * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
+ * @figma-main-component-id 270:941
+ */
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',

@@ -13,7 +13,11 @@ import { Config } from '@stencil/core';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
-import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
+import {
+  componentIndexDocGenerator,
+  customComponentDocGenerator,
+  getDevAssets,
+} from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
 import { vueComponentOutputTarget } from './scripts/build/vue-output-target';
 const corePackageName = '@siemens/ix';
@@ -35,9 +39,7 @@ function getAngularConfig() {
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents,
       outputType: 'component',
-      valueAccessorConfigs: [
-        /** Value accessors should not be generated */
-      ],
+      valueAccessorConfigs: [/** Value accessors should not be generated */],
     }),
     angularOutputTarget({
       componentCorePackage: corePackageName,
@@ -59,7 +61,11 @@ export const config: Config = {
   },
   excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
-  watchIgnoredRegex: [/component-(api|doc).json/],
+  watchIgnoredRegex: [
+    /component-(api|doc)\.json/,
+    /component-index\.json/,
+    /component-search-index\.json/,
+  ],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [
@@ -137,6 +143,10 @@ export const config: Config = {
     {
       type: 'docs-custom',
       generator: customComponentDocGenerator,
+    },
+    {
+      type: 'docs-custom',
+      generator: componentIndexDocGenerator,
     },
     {
       type: 'docs-readme',

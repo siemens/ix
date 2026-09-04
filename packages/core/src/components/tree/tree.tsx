@@ -33,7 +33,9 @@ import {
 import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 
 /**
- * @slot default - Tree items.
+ * Displays hierarchical data as an expandable tree.
+ *
+ * @slot - Tree items.
  */
 @Component({
   tag: 'ix-tree',

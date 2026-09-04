@@ -15,6 +15,11 @@ import type {
 } from './content-header.types';
 
 /**
+ * Header area of a content page showing the title and page-level actions.
+ *
+ * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
+ * @figma-main-component-id 4727:112521
+ *
  * @slot header - Content to be placed in the header area next to the title
  * @slot default - Default slot for action buttons or other content
  */

@@ -27,10 +27,14 @@ import {
 } from '@siemens/ix-icons/icons';
 
 /**
- * @slot header - Content displayed in the group header.
- * @slot dropdown - Dropdown used for the group context menu.
- * @slot default - Group items.
- * @slot footer - Content displayed below the group items.
+ * Collapsible list group with a selectable header and nested items.
+ *
+ * @figma-main-component-id 1274:38298
+ *
+ * @slot header - Additional header content.
+ * @slot dropdown - Dropdown content displayed in the group header.
+ * @slot - Group content.
+ * @slot footer - Footer content.
  */
 @Component({
   tag: 'ix-group',

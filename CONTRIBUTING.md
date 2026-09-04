@@ -55,6 +55,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
     - [Visual regression testing](#visual-regression-testing)
     - [Modify and preview documentation](#modify-and-preview-documentation)
       - [Preview and example code](#preview-and-example-code)
+      - [Registry overview: blocks vs examples](#registry-overview-blocks-vs-examples)
     - [Submit Pull Request](#submit-pull-request)
   - [Attribution](#attribution)
 
@@ -312,6 +313,29 @@ If you need to update only the preview or code examples, you can do so by follow
 These packages contain playground applications to explore and test the respective `ix` components.
 The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
 These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
+
+#### Registry overview: unified catalog
+
+The registry content for `blocks`, `examples` and component API metadata is exposed through a single registry file and built from different sources:
+
+| Topic             | Unified registry                                                                                                                          |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Registry file     | `tooling/registry/registry.json` (template)                                                                                               |
+| Blocks source     | Manual JSON files in `./blocks/*.json`                                                                                                    |
+| Examples source   | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                                           |
+| Components source | `packages/core/component-doc.json`, `component-index.json`, `component-search-index.json`                                                 |
+| LLM docs          | Generated `tooling/registry/dist/llms.txt` and split Markdown files in `tooling/registry/dist/llms/`                                     |
+| Schemas           | `tooling/registry/registry.schema.json`, plus `block.schema.json` and `example.schema.json` for entry files                               |
+| Build steps       | `updateBlocksRegistry(...)`, `updateExamplesRegistry(...)`, and `updateComponentsRegistry(...)` update sections of the same version entry |
+| Template behavior | `dist-tags` and `versions` are overwritten during build/deploy                                                                            |
+
+Contributor guidance:
+
+- For a **new block**, add or update a JSON definition in `./blocks` and ensure its `variants` map to the block source files (for example from `react-blocks` / `angular-standalone-blocks`).
+- For a **new example**, add matching preview files in `./examples/<framework>-examples/src/preview-examples`; do not hand-write JSON in `dist/examples`.
+- `tooling/registry/registry.json` is a template; runtime entries are generated dynamically during registry build/deployment.
+- Generated LLM docs use existing registry JSON only; relationships not represented in JSON, such as block-to-component usage, are marked unavailable.
+- Rebuild the registry (`pnpm --filter registry build`) to refresh the generated `registry.json` in `tooling/registry/dist`.
 
 ### Submit Pull Request
 

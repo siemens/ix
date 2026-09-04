@@ -22,19 +22,19 @@
     "@types/node": "^20.16.0",
     "@types/react": "^18.3.10",
     "@types/tar": "^6.1.13",
-    "angular-test-app": "workspace:*",
-    "angular-standalone-test-app": "workspace:*",
+    "angular-examples": "workspace:*",
+    "angular-standalone-examples": "workspace:*",
     "fs-extra": "^11.3.0",
     "glob": "catalog:",
-    "html-test-app": "workspace:*",
+    "html-examples": "workspace:*",
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
-    "react-test-app": "workspace:*",
+    "react-examples": "workspace:*",
     "rimraf": "catalog:",
     "storybook-docs": "workspace:*",
     "tsx": "^4.15.4",
     "typedoc": "^0.27.9",
     "typescript": "~5.5.2",
-    "vue-test-app": "workspace:*"
+    "vue-examples": "workspace:*"
   }
 }

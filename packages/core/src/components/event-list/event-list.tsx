@@ -13,7 +13,11 @@ import { convertToRemString } from '../utils/rwd.util';
 import { animate } from 'animejs';
 
 /**
- * @slot default - Event list items.
+ * List that displays a sequence of events or status entries.
+ *
+ * @figma-main-component-id 1433:43161
+ *
+ * @slot - Event list items.
  */
 @Component({
   tag: 'ix-event-list',

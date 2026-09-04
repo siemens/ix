@@ -10,8 +10,11 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
+ * Item placed within a CSS grid container.
+ *
  * @internal
- * @slot default - Grid item content.
+ *
+ * @slot - Grid item content.
  */
 @Component({
   tag: 'ix-css-grid-item',

@@ -17,8 +17,14 @@ import { IxComponentInterface } from '../utils/internal';
 import { makeRef } from '../utils/make-ref';
 
 /**
+ * Groups related checkboxes together.
+ *
+ * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
+ * @figma-main-component-id 84992:87199
+ *
  * @form-ready
- * @slot default - Checkboxes displayed in the group.
+ *
+ * @slot - Checkbox components.
  */
 @Component({
   tag: 'ix-checkbox-group',

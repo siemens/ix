@@ -15,7 +15,12 @@ import type {
 } from './typography.types';
 
 /**
- * @slot default - Text content.
+ * Applies consistent text styling based on the design system's typography scale.
+ *
+ * @documentation https://ix.siemens.io//docs/styles/typography/guide.md
+ * @figma-main-component-id 40211:13267
+ *
+ * @slot - Typography content.
  */
 @Component({
   tag: 'ix-typography',
