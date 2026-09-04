@@ -12,19 +12,11 @@
   - img "Online"
   - img "Alarm"
   - img "Success"
-  - text: Label
-  - tooltip "Label"
-  - text: Label
-  - tooltip "Label"
-  - text: /\d+/
-  - tooltip /\d+/
-  - text: /\d+/
+  - text: /Label Label \d+ \d+/
   - tooltip "Twelve notifications"
-  - img "Unread":
-    - tooltip "Unread"
+  - img "Unread"
   - img "Unread":
     - tooltip "Custom tooltip text"
-  - img "Warning":
-    - tooltip "Warning"
+  - img "Warning"
   - img "Warning":
     - tooltip "Custom tooltip text"
