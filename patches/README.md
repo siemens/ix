@@ -1,6 +1,17 @@
-# Stencil Core Patch
+# Stencil Patches
 
-## Why This Patch Exists
+## Vue Output Target
+
+`@stencil__vue-output-target.patch` reconciles reactive Vue class bindings in
+the generated component runtime. Without the patch, classes are added when a
+binding becomes active but are not removed when the binding becomes inactive.
+
+The patch updates both the ESM and CommonJS runtime bundles and should be
+removed after the fix is available in an upstream release.
+
+## Stencil Core
+
+### Why This Patch Exists
 
 This patch modifies `@stencil/core@4.38.3` to comment out the broad `*.css` module declaration in `internal/stencil-ext-modules.d.ts`.
 
@@ -33,7 +44,7 @@ If you want to avoid patches entirely, the only option is to:
 1. Not use CSS Modules in packages that depend on `@siemens/ix-react`
 2. Or publish `@siemens/ix` without Stencil's internal types (requires build config changes)
 
-## References
+### References
 
 - Stencil issue: https://github.com/ionic-team/stencil/issues/3315
 - Related pnpm monorepo type issues with Stencil
