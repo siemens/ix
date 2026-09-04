@@ -1865,7 +1865,7 @@ export namespace Components {
     }
     interface IxDropdownButton {
         /**
-          * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the dropdown button. Set as `aria-label` on the host, which is the interactive control. The nested button is inert and is not exposed to assistive technology.
           * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
@@ -8863,7 +8863,7 @@ declare namespace LocalJSX {
     }
     interface IxDropdownButton {
         /**
-          * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the dropdown button. Set as `aria-label` on the host, which is the interactive control. The nested button is inert and is not exposed to assistive technology.
           * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
