@@ -111,9 +111,25 @@ function createSeries(
 }
 
 function getOptions(): EChartsOption {
-  const themeChartList = Array.from({ length: 17 }, (_, i) =>
-    getComputedCSSProperty(`chart-${i + 1}`)
-  );
+  const themeChartList = [
+    getComputedCSSProperty('--si-sys-data-categorical-2'),
+    getComputedCSSProperty('--si-sys-data-categorical-4'),
+    getComputedCSSProperty('--si-sys-data-categorical-1'),
+    getComputedCSSProperty('--si-sys-data-categorical-6'),
+    getComputedCSSProperty('--si-sys-data-categorical-17'),
+    getComputedCSSProperty('--si-sys-data-categorical-5'),
+    getComputedCSSProperty('--si-sys-data-categorical-13'),
+    getComputedCSSProperty('--si-sys-data-sequential-royal-blue-4'),
+    getComputedCSSProperty('--si-sys-data-categorical-8'),
+    getComputedCSSProperty('--si-sys-data-categorical-7'),
+    getComputedCSSProperty('--si-sys-data-categorical-9'),
+    getComputedCSSProperty('--si-sys-data-categorical-11'),
+    getComputedCSSProperty('--si-sys-data-categorical-12'),
+    getComputedCSSProperty('--si-sys-data-sequential-orange-4'),
+    getComputedCSSProperty('--si-sys-data-sequential-orange-1'),
+    getComputedCSSProperty('--si-sys-data-sequential-sand-1'),
+    getComputedCSSProperty('--si-sys-data-categorical-16'),
+  ];
 
   return {
     tooltip: {
@@ -136,7 +152,13 @@ function getOptions(): EChartsOption {
     ],
     yAxis: [
       createYAxis('Evaporation', 'right', themeChartList[0], '{value} ml'),
-      createYAxis('Precipitation', 'right', themeChartList[7], '{value} ml', 80),
+      createYAxis(
+        'Precipitation',
+        'right',
+        themeChartList[7],
+        '{value} ml',
+        80
+      ),
       createYAxis('Temperature', 'left', themeChartList[12], '{value} °C'),
     ],
     series: [

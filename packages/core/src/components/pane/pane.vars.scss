@@ -1,0 +1,35 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-pane-title--gap: var(--theme-space-1);
+  --ix-pane-header--gap: var(--theme-space-1);
+  --ix-pane-top-bottom-title--margin-block: var(--theme-space--1);
+  --ix-pane-top-bottom-title--margin-inline: var(--theme-space-2);
+  --ix-pane-title-finished--margin: var(--theme-space-2);
+  --ix-pane-title-collapsed--margin: var(--theme-space-2);
+  --ix-pane-left-right-title--margin-block: var(--theme-space-2);
+  --ix-pane-left-right-title--margin-inline: var(--theme-space--1);
+  --ix-pane-mobile-title--margin-block: var(--theme-space-1);
+  --ix-pane-mobile-title--margin-inline: var(--theme-space-2);
+  --ix-pane-content--padding-block-start: var(--theme-space-1);
+  --ix-pane-content--padding-inline: var(--theme-space-2);
+  --ix-pane-content--padding-block-end: var(--theme-space-3);
+  --ix-pane--border-width: var(--theme-border-width-default);
+  --ix-pane-floating--background: #{sys.$si-sys-background-1};
+  --ix-pane-floating--border-color: #{sys.$si-sys-border-4};
+  --ix-pane-floating--box-shadow: #{sys.$si-sys-effects-shadow-4};
+  --ix-pane-floating--color: #{sys.$si-sys-text-primary};
+  --ix-pane-inline--background: #{sys.$si-sys-background-0};
+  --ix-pane-inline--border-color: #{sys.$si-sys-border-3};
+  --ix-pane-inline--box-shadow: none;
+  --ix-pane-inline--color: #{sys.$si-sys-text-primary};
+}
