@@ -1,8 +1,6 @@
 ---
 name: ix-installation
 description: 'Install, configure, repair, or verify Siemens iX in an existing React, Angular, Vue, web-components, or native HTML project. Detect the framework, Angular standalone or module style, and package manager; add the correct iX packages and required wiring; then optionally install the official iX MCP server.'
-argument-hint: 'Provide the application or workspace path and any preferred iX version'
-user-invocable: true
 ---
 
 # iX Installation

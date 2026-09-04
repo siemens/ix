@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "pnpm typecheck && tsx src/build.ts",
+    "build": "pnpm typecheck && pnpm run bundle:ix-search && tsx src/build.ts",
+    "bundle:ix-search": "node scripts/build-ix-search-bundle.mjs",
+    "check:ix-search": "node scripts/check-ix-search-bundle.mjs",
     "dev": "pnpm build && http-server dist",
     "init-version": "tsx scripts/init-version.ts",
     "test": "tsx --test test/*.test.ts",
@@ -26,6 +28,7 @@
     "minisearch": "^7.2.0",
     "react-blocks": "workspace:",
     "react-examples": "workspace:",
+    "tsdown": "^0.20.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vue-examples": "workspace:"

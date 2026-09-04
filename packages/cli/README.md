@@ -3,16 +3,17 @@
 `@siemens/ix-cli` is a private workspace tool for installing Siemens IX blocks.
 It exposes the `ix` executable and is not published as a public package.
 
-## Initialize a project
+## Initialize a project (optional)
 
 Run the CLI from the project root:
 
 ```sh
-ix init
 ix init --target-folder src/features/blocks
 ```
 
-This creates `ix-blocks-lock.json`. `targetFolder` must be a safe path inside the
+`ix add` automatically creates `ix-blocks-lock.json` with the default target
+folder `src/blocks` when it does not exist. Run `ix init` first when you want to
+choose a custom target folder. `targetFolder` must be a safe path inside the
 project.
 
 ## Add or update a block
@@ -30,8 +31,18 @@ ix add change-password --force
   treated as untrusted and validated before use.
 - `--dry-run` fetches, validates, transforms, and hashes the complete block,
   then reports writes and conflicts without changing project files or the lock.
+  When the lock is absent, it uses the default target folder in memory.
 - `--force` permits overwriting modified tracked files and untracked file
   collisions. Without it, either conflict aborts the installation.
+
+Registry example and block manifests use path-only file entries:
+
+```json
+{ "path": "react/event-list.tsx" }
+```
+
+Each path is resolved relative to the manifest URL. Repository source paths are
+build-only metadata and are not accepted by the CLI.
 
 Use `--framework react|angular|auto` to override framework detection and
 `--tokens '{"__IX_PREFIX__":"Ix"}'` for string token replacement.

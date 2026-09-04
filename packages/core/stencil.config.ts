@@ -14,7 +14,6 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
 import {
-  componentIndexDocGenerator,
   customComponentDocGenerator,
   getDevAssets,
 } from './scripts/build/dev';
@@ -63,8 +62,6 @@ export const config: Config = {
   namespace: 'siemens-ix',
   watchIgnoredRegex: [
     /component-(api|doc)\.json/,
-    /component-index\.json/,
-    /component-search-index\.json/,
   ],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
@@ -143,10 +140,6 @@ export const config: Config = {
     {
       type: 'docs-custom',
       generator: customComponentDocGenerator,
-    },
-    {
-      type: 'docs-custom',
-      generator: componentIndexDocGenerator,
     },
     {
       type: 'docs-readme',

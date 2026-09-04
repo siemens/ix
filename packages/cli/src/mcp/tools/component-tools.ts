@@ -39,6 +39,8 @@ export const componentTools: ToolDefinition[] = [
         const parsedArgs = searchComponentApiSchema.parse(args);
 
         const results = await searchComponents(parsedArgs.query, {
+          baseUrl: context.registryUrl,
+          version: context.registryRef,
           limit: parsedArgs.limit || 10,
         });
 
@@ -112,7 +114,10 @@ export const componentTools: ToolDefinition[] = [
     handler: async (args, context) => {
       try {
         const parsedArgs = getComponentDetailsSchema.parse(args);
-        const details = await getComponentDetails(parsedArgs.componentTag);
+        const details = await getComponentDetails(parsedArgs.componentTag, {
+          baseUrl: context.registryUrl,
+          version: context.registryRef,
+        });
 
         if (!details) {
           return {
@@ -257,9 +262,12 @@ export const componentTools: ToolDefinition[] = [
     description:
       'List all available Siemens IX components with their descriptions. Use this to get a complete overview of available components.',
     schema: listAllComponentsSchema,
-    handler: async () => {
+    handler: async (_args, context) => {
       try {
-        const components = await listAllComponents();
+        const components = await listAllComponents({
+          baseUrl: context.registryUrl,
+          version: context.registryRef,
+        });
 
         const componentsList = components
           .map((c, i) => `${i + 1}. **${c.tag}** - ${c.description}`)

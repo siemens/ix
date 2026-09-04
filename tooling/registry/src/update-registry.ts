@@ -24,11 +24,10 @@ type UnifiedRegistry = {
       examples?: Array<{ name: string; path: string }>;
       components?: {
         componentDoc: string;
-        componentIndex: string;
-        componentSearchIndex: string;
         componentRelatedExamples: string;
         componentRelatedBlocks?: string;
       };
+      documentationSearchIndex?: string;
       llms?: {
         entrypoint: string;
         components: string;
@@ -45,11 +44,14 @@ type UnifiedRegistry = {
 interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
   components: {
     componentDoc: string;
-    componentIndex: string;
-    componentSearchIndex: string;
     componentRelatedExamples: string;
     componentRelatedBlocks: string;
   };
+}
+
+interface DocumentationSearchIndexRegistryUpdateOptions
+  extends RegistryUpdateOptions {
+  documentationSearchIndex: string;
 }
 
 interface LlmsRegistryUpdateOptions extends RegistryUpdateOptions {
@@ -186,6 +188,32 @@ export async function updateComponentsRegistry(
   await fs.writeJson(registryPath, registry, { spaces: 2 });
 
   console.log('✅ Updated components registry with IX component metadata');
+}
+
+/**
+ * Update registry.json with the versioned central documentation search index.
+ */
+export async function updateDocumentationSearchIndexRegistry(
+  registryPath: string,
+  options: DocumentationSearchIndexRegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json documentation search index...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+  const indexPath = normalizedPrefix
+    ? `${normalizedPrefix}/${options.documentationSearchIndex}`
+    : options.documentationSearchIndex;
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.documentationSearchIndex = indexPath;
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log('✅ Updated registry with central documentation search index');
 }
 
 /**

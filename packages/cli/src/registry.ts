@@ -8,32 +8,21 @@ export type RegistryIndex = {
       examples: Array<{ name: string; path: string }>;
       components: {
         componentDoc: string;
-        componentIndex: string;
-        componentSearchIndex: string;
         componentRelatedExamples?: string;
         componentRelatedBlocks?: string;
+        componentIndex?: string;
+        componentSearchIndex?: string;
       };
+      documentationSearchIndex?: string;
+      searchIndex?: Record<
+        string,
+        Record<string, string | undefined> | undefined
+      >;
       llms?: {
         entrypoint: string;
         components: string;
         examples?: string;
         blocks: string;
-      };
-      searchIndex?: {
-        blocks?: {
-          html?: string;
-          react?: string;
-          angular?: string;
-          'angular-standalone'?: string;
-          vue?: string;
-        };
-        examples?: {
-          html?: string;
-          react?: string;
-          angular?: string;
-          'angular-standalone'?: string;
-          vue?: string;
-        };
       };
     }
   >;
@@ -54,7 +43,7 @@ export type BlockDefinition = {
 };
 
 export type BlockVariant = {
-  files: Array<{ source: string; target: string }>;
+  files: Array<{ path: string }>;
   dependencies?: Array<{ name: string; version: string }>;
 };
 
@@ -71,8 +60,108 @@ export type ExampleDefinition = {
 
 export type ExampleVariant = {
   preview?: string;
-  files: Array<{ source: string; target: string; type?: string }>;
+  files: Array<{ path: string }>;
 };
+
+const registryBlocksSchema = z.array(
+  z.object({
+    name: z.string().regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+    path: z.string().refine(isSafeRelativePath, 'must be a safe relative path'),
+  })
+);
+
+const registryExamplesSchema = z.array(
+  z.object({
+    name: z.string().min(1),
+    path: z.string().refine(isSafeRelativePath, 'must be a safe relative path'),
+  })
+);
+
+const registryLlmsSchema = z
+  .object({
+    entrypoint: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
+    components: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
+    examples: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path')
+      .optional(),
+    blocks: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path')
+      .optional(),
+  })
+  .strict()
+  .optional();
+
+const currentRegistryVersionSchema = z
+  .object({
+    blocks: registryBlocksSchema,
+    examples: registryExamplesSchema,
+    components: z
+      .object({
+        componentDoc: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentRelatedExamples: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path')
+          .optional(),
+        componentRelatedBlocks: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path')
+          .optional(),
+      })
+      .strict(),
+    documentationSearchIndex: z
+      .string()
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
+    llms: registryLlmsSchema,
+  })
+  .strict();
+
+const legacyRegistryVersionSchema = z
+  .object({
+    blocks: registryBlocksSchema,
+    examples: registryExamplesSchema,
+    components: z
+      .object({
+        componentDoc: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentIndex: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentSearchIndex: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentRelatedExamples: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path'),
+        componentRelatedBlocks: z
+          .string()
+          .refine(isSafeRelativePath, 'must be a safe relative path')
+          .optional(),
+      })
+      .strict(),
+    searchIndex: z
+      .object({
+        blocks: z.record(
+          z.string(),
+          z.string().refine(isSafeRelativePath, 'must be a safe relative path')
+        ),
+        examples: z.record(
+          z.string(),
+          z.string().refine(isSafeRelativePath, 'must be a safe relative path')
+        ),
+      })
+      .strict(),
+    llms: registryLlmsSchema,
+  })
+  .strict();
 
 const RegistryIndexSchema = z
   .object({
@@ -80,20 +169,7 @@ const RegistryIndexSchema = z
     'dist-tags': z.record(z.string(), z.string()),
     versions: z.record(
       z.string(),
-      z
-        .object({
-          blocks: z.array(
-            z.object({
-              name: z
-                .string()
-                .regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
-              path: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-            })
-          ),
-        })
-        .passthrough()
+      z.union([currentRegistryVersionSchema, legacyRegistryVersionSchema])
     ),
   })
   .passthrough();
@@ -104,61 +180,136 @@ const BlockDefinitionSchema = z
     description: z.string().optional(),
     keywords: z.array(z.string()).optional(),
     preview: z.string().optional(),
-    variants: z.object({
-      react: z
-        .object({
-          files: z.array(
-            z.object({
-              source: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-              target: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-            })
-          ),
-          dependencies: z
-            .array(z.object({ name: z.string().min(1), version: z.string() }))
-            .optional(),
-        })
-        .optional(),
-      angular: z
-        .object({
-          files: z.array(
-            z.object({
-              source: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-              target: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-            })
-          ),
-          dependencies: z
-            .array(z.object({ name: z.string().min(1), version: z.string() }))
-            .optional(),
-        })
-        .optional(),
-      vue: z
-        .object({
-          files: z.array(
-            z.object({
-              source: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-              target: z
-                .string()
-                .refine(isSafeRelativePath, 'must be a safe relative path'),
-            })
-          ),
-          dependencies: z
-            .array(z.object({ name: z.string().min(1), version: z.string() }))
-            .optional(),
-        })
-        .optional(),
-    }),
+    variants: z
+      .object({
+        react: z
+          .object({
+            files: z.array(
+              z
+                .object({
+                  path: z
+                    .string()
+                    .refine(isSafeRelativePath, 'must be a safe relative path'),
+                })
+                .strict()
+            ),
+            dependencies: z
+              .array(z.object({ name: z.string().min(1), version: z.string() }))
+              .optional(),
+          })
+          .strict()
+          .optional(),
+        angular: z
+          .object({
+            files: z.array(
+              z
+                .object({
+                  path: z
+                    .string()
+                    .refine(isSafeRelativePath, 'must be a safe relative path'),
+                })
+                .strict()
+            ),
+            dependencies: z
+              .array(z.object({ name: z.string().min(1), version: z.string() }))
+              .optional(),
+          })
+          .strict()
+          .optional(),
+        vue: z
+          .object({
+            files: z.array(
+              z
+                .object({
+                  path: z
+                    .string()
+                    .refine(isSafeRelativePath, 'must be a safe relative path'),
+                })
+                .strict()
+            ),
+            dependencies: z
+              .array(z.object({ name: z.string().min(1), version: z.string() }))
+              .optional(),
+          })
+          .strict()
+          .optional(),
+      })
+      .strict(),
   })
-  .passthrough();
+  .passthrough()
+  .superRefine((value, context) => {
+    const paths = new Set<string>();
+    for (const [framework, variant] of Object.entries(value.variants)) {
+      for (const file of variant?.files ?? []) {
+        if (!file.path.startsWith(`${framework}/`)) {
+          context.addIssue({
+            code: 'custom',
+            path: ['variants', framework, 'files'],
+            message: `file path '${file.path}' must be prefixed with framework '${framework}'`,
+          });
+        }
+        if (paths.has(file.path)) {
+          context.addIssue({
+            code: 'custom',
+            path: ['variants'],
+            message: `duplicate public file path '${file.path}'`,
+          });
+        }
+        paths.add(file.path);
+      }
+    }
+  });
+
+const ExampleFileSchema = z
+  .object({
+    path: z.string().refine(isSafeRelativePath, 'must be a safe relative path'),
+  })
+  .strict();
+
+const ExampleVariantSchema = z
+  .object({
+    preview: z.string().optional(),
+    files: z.array(ExampleFileSchema),
+  })
+  .strict();
+
+const ExampleDefinitionSchema = z
+  .object({
+    $schema: z.string().optional(),
+    name: z.string().min(1),
+    variants: z
+      .object({
+        html: ExampleVariantSchema.optional(),
+        react: ExampleVariantSchema.optional(),
+        angular: ExampleVariantSchema.optional(),
+        'angular-standalone': ExampleVariantSchema.optional(),
+        vue: ExampleVariantSchema.optional(),
+      })
+      .strict(),
+  })
+  .strict()
+  .superRefine((value, context) => {
+    const paths = new Set<string>();
+    for (const [framework, variant] of Object.entries(value.variants)) {
+      for (const file of variant?.files ?? []) {
+        if (!file.path.startsWith(`${framework}/`)) {
+          context.addIssue({
+            code: 'custom',
+            path: ['variants', framework, 'files'],
+            message: `file path '${file.path}' must be prefixed with framework '${framework}'`,
+          });
+        }
+        if (paths.has(file.path)) {
+          context.addIssue({
+            code: 'custom',
+            path: ['variants'],
+            message: `duplicate public file path '${file.path}'`,
+          });
+        }
+        paths.add(file.path);
+      }
+    }
+  });
 
 function registryRootUrl(baseUrl: string): URL {
   let root: URL;
@@ -218,17 +369,19 @@ export function resolveRegistryResourceUrl(
   return resolved.href;
 }
 
-export function resolveBlockSourceUrl(
+export function resolveManifestFileUrl(
   baseUrl: string,
-  blockEntryPath: string,
-  sourcePath: string
+  manifestPath: string,
+  filePath: string
 ): string {
-  const entryUrl = new URL(resolveRegistryResourceUrl(baseUrl, blockEntryPath));
-  assertSafeRelativePath('block source path', sourcePath);
-  const payloadRoot = new URL('./', entryUrl);
-  const sourceUrl = new URL(sourcePath, payloadRoot);
-  assertUrlInside(payloadRoot, sourceUrl, 'Block source path');
-  return sourceUrl.href;
+  const manifestUrl = new URL(
+    resolveRegistryResourceUrl(baseUrl, manifestPath)
+  );
+  assertSafeRelativePath('manifest file path', filePath);
+  const manifestDirectory = new URL('./', manifestUrl);
+  const fileUrl = new URL(filePath, manifestDirectory);
+  assertUrlInside(manifestDirectory, fileUrl, 'Manifest file path');
+  return fileUrl.href;
 }
 
 function parseRegistryData<T>(
@@ -254,6 +407,21 @@ async function fetchJson<T>(baseUrl: string, resourcePath: string): Promise<T> {
   assertRegistryFetchResponse(res, url, root.href);
   if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
   return (await res.json()) as T;
+}
+
+async function fetchManifestFile(
+  baseUrl: string,
+  manifestPath: string,
+  filePath: string
+): Promise<string> {
+  const url = resolveManifestFileUrl(baseUrl, manifestPath, filePath);
+  const root = registryRootUrl(baseUrl);
+  const response = await fetch(url, { redirect: 'error' });
+  assertRegistryFetchResponse(response, url, root.href);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status}`);
+  }
+  return response.text();
 }
 
 type VersionedRegistry = {
@@ -286,122 +454,6 @@ function resolveVersionKey(
   }
 
   return null;
-}
-
-function normalizePath(value: string): string {
-  return value.replace(/^\.\//, '').replace(/^\/+/, '');
-}
-
-function getVersionPrefixFromEntryPath(entryPath: string): string | null {
-  const normalizedPath = normalizePath(entryPath);
-  const segments = normalizedPath.split('/');
-
-  if (segments.length < 2) {
-    return null;
-  }
-
-  if (segments[0] === 'examples' || segments[0] === 'blocks') {
-    return null;
-  }
-
-  if (segments[1] === 'examples' || segments[1] === 'blocks') {
-    return segments[0];
-  }
-
-  return null;
-}
-
-function toVersionScopedPath(
-  pathValue: string,
-  versionPrefix: string | null
-): string {
-  const normalizedPath = normalizePath(pathValue);
-
-  if (!versionPrefix) {
-    return normalizedPath;
-  }
-
-  if (normalizedPath.startsWith(`${versionPrefix}/`)) {
-    return normalizedPath;
-  }
-
-  return `${versionPrefix}/${normalizedPath}`;
-}
-
-function getEntryBaseDir(entryPath: string): string {
-  const normalizedPath = normalizePath(entryPath);
-  const parts = normalizedPath.split('/');
-  if (parts.length <= 1) {
-    return '';
-  }
-
-  return parts.slice(0, -1).join('/');
-}
-
-function removeVersionPrefix(
-  pathValue: string,
-  versionPrefix: string | null
-): string {
-  if (!versionPrefix) {
-    return pathValue;
-  }
-
-  const prefix = `${versionPrefix}/`;
-  if (pathValue.startsWith(prefix)) {
-    return pathValue.slice(prefix.length);
-  }
-
-  return pathValue;
-}
-
-function resolveExampleSourcePath(
-  exampleEntryPath: string,
-  fileSourcePath: string,
-  versionPrefix: string | null
-): string {
-  const entryBaseDir = getEntryBaseDir(exampleEntryPath);
-  const sourcePath = normalizePath(fileSourcePath);
-
-  if (!entryBaseDir) {
-    return toVersionScopedPath(sourcePath, versionPrefix);
-  }
-
-  if (sourcePath.startsWith(`${entryBaseDir}/`)) {
-    return sourcePath;
-  }
-
-  const entryBaseDirWithoutVersion = removeVersionPrefix(
-    entryBaseDir,
-    versionPrefix
-  );
-
-  if (
-    entryBaseDirWithoutVersion &&
-    sourcePath.startsWith(`${entryBaseDirWithoutVersion}/`)
-  ) {
-    return toVersionScopedPath(sourcePath, versionPrefix);
-  }
-
-  return `${entryBaseDir}/${sourcePath}`;
-}
-
-function withVersionPrefix(
-  value: string,
-  version: string,
-  knownVersions: string[]
-): string {
-  const normalizedValue = normalizePath(value);
-
-  if (normalizedValue.startsWith(`${version}/`)) {
-    return normalizedValue;
-  }
-
-  const [head, ...rest] = normalizedValue.split('/');
-  if (knownVersions.includes(head) && rest.length > 0) {
-    return `${version}/${rest.join('/')}`;
-  }
-
-  return `${version}/${normalizedValue}`;
 }
 
 export function resolveRegistryVersion(
@@ -441,52 +493,17 @@ export function resolveRegistryVersion(
   );
 }
 
-export function resolveBlocksSearchIndexPath(
-  registry: RegistryIndex,
-  framework: 'react' | 'angular' | 'vue',
-  versionRef?: string
-): string {
-  const version = resolveRegistryVersion(registry, versionRef);
-  const sourceIndex = registry.versions[version]?.searchIndex?.blocks;
-
-  const frameworkIndexPath = sourceIndex?.[framework];
-  if (!frameworkIndexPath) {
-    throw new Error(`No search index available for framework: ${framework}`);
-  }
-
-  return withVersionPrefix(
-    frameworkIndexPath,
-    version,
-    Object.keys(registry.versions)
-  );
-}
-
-export function resolveExamplesSearchIndexPath(
-  registry: ExamplesRegistryIndex,
-  framework: 'html' | 'react' | 'angular' | 'angular-standalone' | 'vue',
-  versionRef?: string
-): string {
-  const version = resolveRegistryVersion(registry, versionRef);
-  const sourceIndex = registry.versions[version]?.searchIndex?.examples;
-
-  const frameworkIndexPath = sourceIndex?.[framework];
-  if (!frameworkIndexPath) {
-    throw new Error(
-      `No search index available for framework: ${framework} in examples registry`
-    );
-  }
-
-  return withVersionPrefix(
-    frameworkIndexPath,
-    version,
-    Object.keys(registry.versions)
-  );
-}
-
 export async function fetchRegistryIndex(
   baseUrl: string
 ): Promise<RegistryIndex> {
   return await fetchJson<RegistryIndex>(baseUrl, 'registry.json');
+}
+
+export async function fetchRegistryArtifact<T>(
+  baseUrl: string,
+  resourcePath: string
+): Promise<T> {
+  return await fetchJson<T>(baseUrl, resourcePath);
 }
 
 export async function fetchValidatedRegistryIndex(
@@ -504,19 +521,19 @@ export async function fetchBlockDefinition(
   baseUrl: string,
   blockPath: string
 ): Promise<BlockDefinition> {
-  return await fetchJson<BlockDefinition>(baseUrl, blockPath);
-}
-
-export async function fetchValidatedBlockDefinition(
-  baseUrl: string,
-  blockPath: string
-): Promise<BlockDefinition> {
   const value = await fetchJson<unknown>(baseUrl, blockPath);
   return parseRegistryData(
     BlockDefinitionSchema,
     value,
     `block definition '${blockPath}'`
   ) as BlockDefinition;
+}
+
+export async function fetchValidatedBlockDefinition(
+  baseUrl: string,
+  blockPath: string
+): Promise<BlockDefinition> {
+  return fetchBlockDefinition(baseUrl, blockPath);
 }
 
 export async function listAllBlocks(
@@ -557,7 +574,12 @@ export async function fetchExampleDefinition(
   baseUrl: string,
   examplePath: string
 ): Promise<ExampleDefinition> {
-  return await fetchJson<ExampleDefinition>(baseUrl, examplePath);
+  const value = await fetchJson<unknown>(baseUrl, examplePath);
+  return parseRegistryData(
+    ExampleDefinitionSchema,
+    value,
+    `example definition '${examplePath}'`
+  ) as ExampleDefinition;
 }
 
 export interface ExampleCodeFile {
@@ -578,7 +600,6 @@ export async function getExampleCode(
 ): Promise<ExampleCode> {
   const exampleDef = await fetchExampleDefinition(baseUrl, examplePath);
   const variant = exampleDef.variants[framework];
-  const versionPrefix = getVersionPrefixFromEntryPath(examplePath);
 
   if (!variant) {
     throw new Error(
@@ -589,26 +610,16 @@ export async function getExampleCode(
   const files: ExampleCodeFile[] = [];
   for (const file of variant.files) {
     try {
-      const sourcePath = resolveExampleSourcePath(
-        examplePath,
-        file.source,
-        versionPrefix
-      );
-      const sourceUrl = `${baseUrl}/${sourcePath}`;
-      const response = await fetch(sourceUrl);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch ${sourcePath}: ${response.status}`);
-      }
-      const content = await response.text();
+      const content = await fetchManifestFile(baseUrl, examplePath, file.path);
       files.push({
-        path: file.target,
+        path: file.path,
         content,
       });
     } catch (err) {
-      console.error(`Failed to fetch file ${file.source}:`, err);
+      console.error(`Failed to fetch file ${file.path}:`, err);
       // Include error info in the file
       files.push({
-        path: file.target,
+        path: file.path,
         content: `// Error loading file: ${
           err instanceof Error ? err.message : String(err)
         }`,
