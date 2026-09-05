@@ -1,0 +1,66 @@
+.changeset/align-legacy-controls-global-colors.md
+  h_c5a773bf2fda8b 1-5
+.changeset/fix-badge-status-icon-colors.md
+  h_c5a773bf2fda8b 1-5
+.changeset/workflow-step-interaction-colors.md
+  h_c5a773bf2fda8b 1-5
+packages/core/scripts/build/component-vars.spec.ts
+  h_c5a773bf2fda8b 23-24,126-141
+packages/core/scss/globals/_reset.scss
+  h_c5a773bf2fda8b 14-15,119
+packages/core/scss/legacy/_fonts.scss
+  h_c5a773bf2fda8b 10,70
+packages/core/scss/legacy/components/_checkboxes.scss
+  h_c5a773bf2fda8b 11,31,58,65,72-73,77-78,82-83,87-88,94-95,105-106,114-115,119-120,124-125,129,144,150-151,155-156,160-161,165-166,170,175
+packages/core/scss/legacy/components/_forms.scss
+  h_c5a773bf2fda8b 14,22,27-28,37,42-43,48-49,52,58,86,101,103,128,147
+packages/core/scss/legacy/components/_input.scss
+  h_c5a773bf2fda8b 11,14,25-26,29,39,52-53,67-68,76,88,127,132,138-139,143-144,148,154-155,159-160,164,179,184,192-193
+packages/core/scss/legacy/components/_radiobuttons.scss
+  h_c5a773bf2fda8b 11,40,68,75,82-83,87-88,92-93,97-98,104-105,113,121-122,126-127,131-132,136,146
+packages/core/scss/legacy/mixins/_fonts.scss
+  h_c5a773bf2fda8b 11,30,32
+packages/core/scss/mixins/_input.scss
+  h_c5a773bf2fda8b 210,221,228
+packages/core/scss/mixins/internal/_input-control.scss
+  h_c5a773bf2fda8b 13,17,25-26,36,43,47,55,59,66,71,99,114,117
+packages/core/scss/utilities/_input-group.scss
+  h_c5a773bf2fda8b 10-11,13
+packages/core/scss/utilities/_links.scss
+  h_c5a773bf2fda8b 11,14-18
+packages/core/scss/utilities/_table.scss
+  h_c5a773bf2fda8b 10,13-22
+packages/core/scss/utilities/_typography.scss
+  h_c5a773bf2fda8b 10,17
+packages/core/src/components/badge/badge.scss
+  h_c5a773bf2fda8b 226-252
+packages/core/src/components/menu-about/menu-about.vars.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/menu-settings/menu-settings.vars.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/modal/modal.scss
+  h_c5a773bf2fda8b 12,89-90,93-94
+packages/core/src/components/pane/pane.vars.scss
+  h_c5a773bf2fda8b 29
+packages/core/src/components/tab-item/tab-item.scss
+  h_c5a773bf2fda8b 14-51,263-270
+packages/core/src/components/tabs/tabs.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/workflow-step/workflow-step.scss
+  h_c5a773bf2fda8b 163-171,176-184
+packages/core/src/components/workflow-step/workflow-step.vars.scss
+  h_c5a773bf2fda8b 25-27,29-30,34-36
+packages/storybook-docs/src/stories/application.stories.tsx
+  h_c5a773bf2fda8b 23-34,36-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a8c1c076211979f09f542a31e83950a3809ee272",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
