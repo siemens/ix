@@ -20,9 +20,24 @@ const meta = {
         name="Industrial Experience"
         slot="application-header"
       ></ix-application-header>
+      <ix-menu expand={true} slot="menu">
+        <ix-menu-item home icon="home" active>
+          Home
+        </ix-menu-item>
+        <ix-menu-item icon="alarm-bell">Alarms</ix-menu-item>
+        <ix-menu-category label="Analysis" icon="piechart">
+          <ix-menu-item icon="plant">Plants</ix-menu-item>
+          <ix-menu-item icon="network-device">Networks</ix-menu-item>
+        </ix-menu-category>
+        <ix-menu-about></ix-menu-about>
+        <ix-menu-settings></ix-menu-settings>
+      </ix-menu>
       <ix-content>
-        <ix-content-header headerTitle="Application"></ix-content-header>
-        <p>Application content</p>
+        <ix-content-header
+          headerTitle="Operations overview"
+          slot="header"
+        ></ix-content-header>
+        <p>Monitor operations and manage your industrial applications.</p>
       </ix-content>
     </ix-application>
   )),
