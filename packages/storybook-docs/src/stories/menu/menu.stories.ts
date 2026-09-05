@@ -20,7 +20,11 @@ const meta = {
     return html`<ix-menu expand="${args.expand}">
       <ix-menu-item home icon="home">Home</ix-menu-item>
       <ix-menu-item icon="globe">Item 1</ix-menu-item>
-      <ix-menu-category label="Top level Category" icon="rocket">
+      <ix-menu-category
+        label="Top level Category"
+        icon="rocket"
+        disable-tooltip
+      >
         <ix-menu-item icon="globe">Item 2</ix-menu-item>
         <ix-menu-item icon="globe">Item 3</ix-menu-item>
       </ix-menu-category>

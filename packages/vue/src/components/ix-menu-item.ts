@@ -15,6 +15,7 @@ export const IxMenuItem: StencilVueComponent<JSX.IxMenuItem> = /*@__PURE__*/ def
   'active',
   'disabled',
   'tooltipText',
+  'disableTooltip',
   'href',
   'target',
   'rel',

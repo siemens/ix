@@ -60,7 +60,36 @@
     display: none;
   }
 
+  // Hit-area over the 3px Floating UI offset (mainAxis: 3). Use px, not rem:
+  // the offset is CSS pixels. 4px = 3px gap + 1px for subpixel rounding.
   .category-dropdown {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(50vh - 3rem);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      pointer-events: auto;
+    }
+
+    &[data-ix-dropdown-placement^='right']::before {
+      left: -4px;
+    }
+
+    &[data-ix-dropdown-placement^='left']::before {
+      right: -4px;
+    }
+
+    .category-dropdown-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+    }
+
     ::slotted(ix-menu-item) {
       --ix-menu-item-height: 2.5rem;
     }

@@ -1383,7 +1383,8 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
         label: 'label',
         icon: 'icon',
         notifications: 'notifications',
-        tooltipText: 'tooltip-text'
+        tooltipText: 'tooltip-text',
+        disableTooltip: 'disable-tooltip'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMenuCategory as StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents, Components.IxMenuCategory>,
@@ -1403,6 +1404,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         active: 'active',
         disabled: 'disabled',
         tooltipText: 'tooltip-text',
+        disableTooltip: 'disable-tooltip',
         href: 'href',
         target: 'target',
         rel: 'rel',

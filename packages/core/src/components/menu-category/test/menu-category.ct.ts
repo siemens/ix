@@ -6,7 +6,54 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { Page } from '@playwright/test';
 import { regressionTest, test, expect } from '@utils/test';
+
+const collapsedMenuWithCategory = `
+  <ix-application>
+    <ix-menu>
+      <ix-menu-item>Other</ix-menu-item>
+      <ix-menu-category label="Category label">
+        <ix-menu-item>Test Item 1</ix-menu-item>
+        <ix-menu-item>Test Item 2</ix-menu-item>
+        <ix-menu-item>Test Item 3</ix-menu-item>
+      </ix-menu-category>
+    </ix-menu>
+  </ix-application>
+`;
+
+async function collapseApplicationMenu(page: Page) {
+  await page
+    .locator('ix-application')
+    .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['md']));
+}
+
+async function openCollapsedCategoryDropdown(page: Page) {
+  const category = page.locator('ix-menu-category');
+  await expect(category).toHaveClass(/hydrated/);
+  await collapseApplicationMenu(page);
+  await category.hover();
+
+  const dropdown = category.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  return { category, dropdown };
+}
+
+async function requireBoundingBox(locator: {
+  boundingBox: () => Promise<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  } | null>;
+}) {
+  const box = await locator.boundingBox();
+  if (!box) {
+    throw new Error('Expected locator to have a bounding box');
+  }
+  return box;
+}
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
@@ -664,5 +711,151 @@ regressionTest(
     // Press ArrowUp should wrap around to last item (not exit to category)
     await page.keyboard.press('ArrowUp');
     await expect(items.nth(0)).toHaveVisibleFocus();
+  }
+);
+
+regressionTest(
+  'keeps collapsed category dropdown open when pointer slowly crosses the gap',
+  async ({ mount, page }) => {
+    await mount(collapsedMenuWithCategory);
+    const { category, dropdown } = await openCollapsedCategoryDropdown(page);
+
+    const categoryBox = await requireBoundingBox(category);
+    const dropdownBox = await requireBoundingBox(dropdown);
+    const y = categoryBox.y + categoryBox.height / 2;
+    const gapX = (categoryBox.x + categoryBox.width + dropdownBox.x) / 2;
+
+    await page.mouse.move(categoryBox.x + categoryBox.width - 1, y);
+    await page.mouse.move(gapX, y, { steps: 10 });
+    await page.waitForTimeout(400);
+    await expect(dropdown).toBeVisible();
+    await page.mouse.move(dropdownBox.x + 8, y, { steps: 20 });
+
+    await expect(dropdown).toBeVisible();
+    await expect(
+      page.locator('ix-menu-item').filter({ hasText: 'Test Item 1' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest(
+  'keeps collapsed category dropdown open during diagonal pointer movement',
+  async ({ mount, page }) => {
+    await mount(collapsedMenuWithCategory);
+    const { category, dropdown } = await openCollapsedCategoryDropdown(page);
+
+    const nestedItem = page
+      .locator('ix-menu-item')
+      .filter({ hasText: 'Test Item 3' });
+    const categoryBox = await requireBoundingBox(category);
+    const itemBox = await requireBoundingBox(nestedItem);
+
+    await page.mouse.move(
+      categoryBox.x + categoryBox.width / 2,
+      categoryBox.y + categoryBox.height / 2
+    );
+    await page.mouse.move(
+      itemBox.x + itemBox.width / 2,
+      itemBox.y + itemBox.height / 2,
+      { steps: 40 }
+    );
+
+    await expect(dropdown).toBeVisible();
+    await expect(nestedItem).toBeVisible();
+  }
+);
+
+regressionTest(
+  'keeps second-level navigation selectable after moving onto a nested item',
+  async ({ mount, page }) => {
+    await mount(collapsedMenuWithCategory);
+    const { category, dropdown } = await openCollapsedCategoryDropdown(page);
+
+    const nestedItem = page
+      .locator('ix-menu-item')
+      .filter({ hasText: 'Test Item 2' });
+    const categoryBox = await requireBoundingBox(category);
+    const itemBox = await requireBoundingBox(nestedItem);
+
+    await page.mouse.move(
+      categoryBox.x + categoryBox.width - 1,
+      categoryBox.y + categoryBox.height / 2
+    );
+    await page.mouse.move(itemBox.x + 12, itemBox.y + itemBox.height / 2, {
+      steps: 30,
+    });
+
+    await expect(dropdown).toBeVisible();
+    await nestedItem.hover();
+    await expect(nestedItem).toBeVisible();
+    await expect(dropdown).toBeVisible();
+  }
+);
+
+regressionTest(
+  'scrolls collapsed category dropdown when nested items overflow',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1280, height: 500 });
+
+    const nestedItems = Array.from(
+      { length: 20 },
+      (_, index) => `<ix-menu-item>Overflow Item ${index + 1}</ix-menu-item>`
+    ).join('');
+
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-item>Other</ix-menu-item>
+          <ix-menu-category label="Category label">
+            ${nestedItems}
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const { dropdown } = await openCollapsedCategoryDropdown(page);
+    const dropdownBody = dropdown.locator('.category-dropdown-body');
+    const lastItem = page
+      .locator('ix-menu-item')
+      .filter({ hasText: 'Overflow Item 20' });
+
+    await expect(dropdown).toBeVisible();
+    await expect(dropdownBody).toHaveCSS('overflow-y', 'auto');
+    await expect(lastItem).not.toBeInViewport();
+
+    const { clientHeight, scrollHeight } = await dropdownBody.evaluate(
+      (element) => ({
+        clientHeight: element.clientHeight,
+        scrollHeight: element.scrollHeight,
+      })
+    );
+    expect(scrollHeight).toBeGreaterThan(clientHeight);
+  }
+);
+
+regressionTest(
+  'can disable tooltip on category parent',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
+
+    await mount(`
+      <ix-application>
+        <ix-menu start-expanded>
+          <ix-menu-category label="Category label" disable-tooltip>
+            <ix-menu-item>Test Item 1</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const categoryParent = page
+      .locator('ix-menu-category')
+      .locator('.category-parent');
+    await expect(categoryParent).toHaveClass(/hydrated/);
+
+    await categoryParent.hover();
+    await page.waitForTimeout(1500);
+
+    await expect(categoryParent.locator('ix-tooltip')).toHaveCount(0);
   }
 );
