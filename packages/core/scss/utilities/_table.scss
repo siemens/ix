@@ -7,18 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use '../legacy/mixins/fonts';
+@use '../tokens/system' as sys;
 
 .ix-table {
-  --ix-table--background: var(--theme-color-0);
-  --ix-table--border-color: var(--theme-color-0);
-  --ix-table--color: var(--theme-color-std-text);
-  --ix-table-cell--border-color: var(--theme-color-weak-bdr);
-  --ix-table-header--background: var(--theme-color-0);
-  --ix-table-row--background: var(--theme-color-0);
-  --ix-table-row--background--active: var(--theme-color-ghost-alt--active);
-  --ix-table-row--background--hover: var(--theme-color-ghost-alt--hover);
-  --ix-table-row--background--striped-even: var(--theme-color-1);
-  --ix-table-row--background--striped-odd: var(--theme-color-2);
+  --ix-table--background: transparent;
+  --ix-table--border-color: transparent;
+  --ix-table--color: #{sys.$si-sys-text-primary};
+  --ix-table-cell--border-color: #{sys.$si-sys-border-4};
+  --ix-table-header--background: transparent;
+  --ix-table-row--background: transparent;
+  --ix-table-row--background--active: #{sys.$si-sys-background-selected};
+  --ix-table-row--background--hover: #{sys.$si-sys-background-hover};
+  --ix-table-row--background--striped-even: #{sys.$si-sys-background-0};
+  --ix-table-row--background--striped-odd: #{sys.$si-sys-background-1};
 
   --bs-table-color-type: initial;
   --bs-table-bg-type: initial;

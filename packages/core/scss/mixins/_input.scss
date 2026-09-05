@@ -199,7 +199,7 @@
       );
       border-color: var(
         --ix-input--border-color--warning--active,
-        var(--theme-color-warning-bdr)
+        #{sys.$si-sys-background-warning}
       ) !important;
     }
 
@@ -210,14 +210,14 @@
       );
       border-color: var(
         --ix-input--border-color--warning--hover,
-        var(--theme-color-warning-bdr)
+        #{sys.$si-sys-background-warning}
       ) !important;
     }
 
     &:active {
       border-color: var(
         --ix-input--border-color--warning--active,
-        var(--theme-color-warning-bdr)
+        #{sys.$si-sys-background-warning}
       ) !important;
     }
   }
