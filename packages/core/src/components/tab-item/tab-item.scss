@@ -11,6 +11,44 @@
 @use 'mixins/shadow-dom/component';
 
 @use './tab-item.vars' as *;
+
+@mixin tab-border($position) {
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--ix-tabs-indicator--background);
+    width: 100%;
+    height: var(--ix-tabs-indicator--height);
+    left: 0;
+    bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: var(--ix-tabs-indicator--background--selected);
+    width: var(--ix-tab-active-indicator-width);
+    height: var(--ix-tabs-indicator--height);
+    left: 0;
+    bottom: 0;
+    transform: translateX(var(--ix-tab-active-indicator-offset));
+  }
+
+  @if $position == 'top' {
+    &::before,
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+  } @else if $position == 'bottom' {
+    &::before,
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+  }
+}
+
 :host {
   position: relative;
   display: flex;
@@ -221,4 +259,12 @@
     outline-offset: 0.125rem;
     outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
   }
+}
+
+:host(.bottom) {
+  @include tab-border('bottom');
+}
+
+:host(.top) {
+  @include tab-border('top');
 }

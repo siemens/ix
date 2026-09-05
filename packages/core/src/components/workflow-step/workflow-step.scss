@@ -160,10 +160,28 @@
     &.clickable {
       &:hover {
         background-color: var(--ix-workflow-step--background--hover);
+        --ix-workflow-step-icon-default--color--selected: var(
+          --ix-workflow-step-icon-default--color--selected--hover
+        );
+        --ix-workflow-step-icon-done--color: var(
+          --ix-workflow-step-icon-done--color--hover
+        );
+        --ix-workflow-step-icon-done--color--selected: var(
+          --ix-workflow-step-icon-done--color--selected--hover
+        );
       }
 
       &:active {
         background-color: var(--ix-workflow-step--background--active);
+        --ix-workflow-step-icon-default--color--selected: var(
+          --ix-workflow-step-icon-default--color--selected--active
+        );
+        --ix-workflow-step-icon-done--color: var(
+          --ix-workflow-step-icon-done--color--active
+        );
+        --ix-workflow-step-icon-done--color--selected: var(
+          --ix-workflow-step-icon-done--color--selected--active
+        );
       }
     }
 
