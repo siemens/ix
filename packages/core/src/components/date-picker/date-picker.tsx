@@ -26,6 +26,18 @@ import {
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import {
+  type MonthIndex,
+  addMonths,
+  daysInMonth,
+  fromMonthIndex,
+  isDayWithinRange,
+  isMonthWithinRange,
+  isYearWithinRange,
+  localFromMonthIndex,
+  monthIndexOf,
+  weekdayColumnOf,
+} from '../utils/calendar-units';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -340,9 +352,7 @@ export class DatePicker
   }
 
   private getDaysInCurrentMonth(): number {
-    return (
-      DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth || 0
-    );
+    return daysInMonth(this.selectedYear, this.selectedMonth);
   }
 
   private getFirstDayOfWeek(day: number): number {
@@ -385,7 +395,7 @@ export class DatePicker
   @Method()
   async updateSelectedYearMonth(date: DateTime) {
     this.selectedYear = date.year;
-    this.selectedMonth = date.month - 1;
+    this.selectedMonth = monthIndexOf(date);
   }
 
   onDayBlur() {
@@ -410,8 +420,9 @@ export class DatePicker
     this.startYear = year - 101;
     this.endYear = year + 101;
 
-    this.selectedMonth =
-      (this.currFromDate?.month ?? this.getDateTimeNow().month) - 1;
+    this.selectedMonth = monthIndexOf(
+      this.currFromDate ?? this.getDateTimeNow()
+    );
     this.selectedYear = year;
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
@@ -526,27 +537,18 @@ export class DatePicker
 
   private calculateCalendar() {
     const calendar: CalendarWeek[] = [];
-    const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
+    const month = fromMonthIndex(this.selectedYear, this.selectedMonth);
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
     let startWeek = monthStart.weekNumber;
     let endWeek = monthEnd.weekNumber;
-    let monthStartWeekDayIndex = monthStart.weekday - 1;
-    let monthEndWeekDayIndex = monthEnd.weekday - 1;
-
-    if (this.weekStartIndex !== 0) {
-      // Find the positions where to start/stop counting the day-numbers based on which day the week starts
-      const weekdays = Info.weekdays();
-      const monthStartWeekDayName = weekdays[monthStart.weekday];
-
-      monthStartWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthStartWeekDayName
-      );
-      const monthEndWeekDayName = weekdays[monthEnd.weekday];
-      monthEndWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthEndWeekDayName
-      );
-    }
+    // Positions where to start/stop counting the day-numbers, based on which
+    // day the week starts.
+    const monthStartWeekDayIndex = weekdayColumnOf(
+      monthStart,
+      this.weekStartIndex
+    );
+    const monthEndWeekDayIndex = weekdayColumnOf(monthEnd, this.weekStartIndex);
 
     let correctLastWeek = false;
     if (endWeek === 1) {
@@ -618,39 +620,29 @@ export class DatePicker
   }
 
   private changeCalendarView(number: -1 | 1) {
-    if (this.selectedMonth + number < 0) {
-      this.selectedYear--;
-      this.selectedMonth = 11;
-    } else if (this.selectedMonth + number > 11) {
-      this.selectedYear++;
-      this.selectedMonth = 0;
-    } else {
-      this.selectedMonth += number;
-    }
+    const { year, month } = addMonths(
+      this.selectedYear,
+      this.selectedMonth,
+      number
+    );
+
+    this.selectedYear = year;
+    this.selectedMonth = month;
 
     this.tempMonth = this.selectedMonth;
     this.tempYear = this.selectedYear;
   }
 
   private navigateByMonthOrYear(unit: 'month' | 'year', direction: -1 | 1) {
-    let targetYear = this.selectedYear;
-    let targetMonth = this.selectedMonth;
+    const { year: targetYear, month: targetMonth } =
+      unit === 'year'
+        ? {
+            year: this.selectedYear + direction,
+            month: this.selectedMonth,
+          }
+        : addMonths(this.selectedYear, this.selectedMonth, direction);
 
-    if (unit === 'year') {
-      targetYear += direction;
-    } else {
-      targetMonth += direction;
-      if (targetMonth < 0) {
-        targetMonth = 11;
-        targetYear--;
-      } else if (targetMonth > 11) {
-        targetMonth = 0;
-        targetYear++;
-      }
-    }
-
-    const daysInTargetMonth =
-      DateTime.utc(targetYear, targetMonth + 1).daysInMonth || 0;
+    const daysInTargetMonth = daysInMonth(targetYear, targetMonth);
     this.focusedDay = Math.min(this.focusedDay, daysInTargetMonth);
 
     this.selectedYear = targetYear;
@@ -665,8 +657,10 @@ export class DatePicker
       return;
     }
 
-    const date = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
+    const date = localFromMonthIndex(
+      this.selectedYear,
+      this.selectedMonth,
+      selectedDay
     );
 
     if (this.singleSelection || this.currFromDate === undefined) {
@@ -710,8 +704,10 @@ export class DatePicker
 
   private getUtilitiesBasedOnDay(day: number) {
     const todayObj = this.getDateTimeNow();
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
+    const selectedDayObj = localFromMonthIndex(
+      this.selectedYear,
+      this.selectedMonth,
+      day
     );
     return {
       isFirstDay: () => day === 1,
@@ -732,8 +728,10 @@ export class DatePicker
   }
 
   private getDayClasses(day: number): Record<string, boolean> {
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
+    const selectedDayObj = localFromMonthIndex(
+      this.selectedYear,
+      this.selectedMonth,
+      day
     );
 
     const util = this.getUtilitiesBasedOnDay(day);
@@ -748,53 +746,36 @@ export class DatePicker
     };
   }
 
-  private isWithinMinMaxYear(year: number): boolean {
-    const minDateYear = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format).year
-      : undefined;
-    const maxDateYear = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format).year
-      : undefined;
-    const isBefore = minDateYear ? year < minDateYear : false;
-    const isAfter = maxDateYear ? year > maxDateYear : false;
-
-    return !isBefore && !isAfter;
-  }
-
-  private isWithinMinMaxMonth(month: number): boolean {
-    const minDateObj = this.minDate
+  private getMinDateObj(): DateTime | undefined {
+    return this.minDate
       ? DateTime.fromFormat(this.minDate, this.format)
       : undefined;
-    const maxDateObj = this.maxDate
+  }
+
+  private getMaxDateObj(): DateTime | undefined {
+    return this.maxDate
       ? DateTime.fromFormat(this.maxDate, this.format)
       : undefined;
-    const minDateMonth = minDateObj?.month;
-    const maxDateMonth = maxDateObj?.month;
-    const isBefore = minDateMonth
-      ? this.tempYear === minDateObj.year && month < minDateMonth
-      : false;
-    const isAfter = maxDateMonth
-      ? this.tempYear === maxDateObj.year && month > maxDateMonth
-      : false;
+  }
 
-    return !isBefore && !isAfter;
+  private isWithinMinMaxYear(year: number): boolean {
+    return isYearWithinRange(year, this.getMinDateObj(), this.getMaxDateObj());
+  }
+
+  /**
+   * `month` is a 0-based month index, as used by `monthNames` and `tempMonth`.
+   */
+  private isWithinMinMaxMonth(month: MonthIndex): boolean {
+    return isMonthWithinRange(
+      this.tempYear,
+      month,
+      this.getMinDateObj(),
+      this.getMaxDateObj()
+    );
   }
 
   private isWithinMinMaxDate(date: DateTime): boolean {
-    const _minDate = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format)
-      : undefined;
-    const _maxDate = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format)
-      : undefined;
-    const isBefore = _minDate
-      ? date.startOf('day') < _minDate.startOf('day')
-      : false;
-    const isAfter = _maxDate
-      ? date.startOf('day') > _maxDate.startOf('day')
-      : false;
-
-    return !isBefore && !isAfter;
+    return isDayWithinRange(date, this.getMinDateObj(), this.getMaxDateObj());
   }
 
   private renderMonths() {
