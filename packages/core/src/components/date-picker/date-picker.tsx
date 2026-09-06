@@ -29,6 +29,7 @@ import {
   formatWithLocale,
   parseWithLocale,
   toISODate,
+  tryParseWithLocale,
 } from '../utils/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import { queryElements } from '../utils/focus/focus-utilities';
@@ -87,7 +88,7 @@ export class DatePicker
       return;
     }
 
-    const date = this.parseDateString(newValue);
+    const date = tryParseWithLocale(newValue, this.format, this.locale);
 
     if (date) {
       this.currFromDate = date;
@@ -109,7 +110,7 @@ export class DatePicker
       return;
     }
 
-    const date = this.parseDateString(newValue);
+    const date = tryParseWithLocale(newValue, this.format, this.locale);
 
     if (date) {
       this.currToDate = date;
@@ -129,11 +130,11 @@ export class DatePicker
    */
   @Prop() maxDate = '';
 
-  @Watch('minDate')
   @Watch('format')
+  @Watch('minDate')
   @Watch('maxDate')
   onDateBoundOrFormatChange() {
-    this.refreshBoundDates();
+    this.refreshDates();
   }
 
   /**
@@ -191,8 +192,17 @@ export class DatePicker
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
-    this.refreshBoundDates();
+    this.refreshDates();
     this.calendarDirty = true;
+  }
+
+  /**
+   * Re-parse every date the component holds as a string with the current
+   * `format` and `locale`.
+   */
+  private refreshDates() {
+    this.refreshBoundDates();
+    this.refreshSelectedDates();
   }
 
   private refreshBoundDates() {
@@ -201,6 +211,18 @@ export class DatePicker
       : undefined;
     this._maxDateObj = this.maxDate
       ? parseWithLocale(this.maxDate, this.format, this.locale)
+      : undefined;
+  }
+
+  /**
+   * Re-parse `from`/`to` with the current `format` and `locale`.
+   */
+  private refreshSelectedDates() {
+    this.currFromDate = this.from
+      ? tryParseWithLocale(this.from, this.format, this.locale)
+      : undefined;
+    this.currToDate = this.to
+      ? tryParseWithLocale(this.to, this.format, this.locale)
       : undefined;
   }
 
@@ -399,18 +421,6 @@ export class DatePicker
     return DateTime.fromISO(this.today);
   }
 
-  private parseDateString(dateString: string): DateTime | undefined {
-    const date = parseWithLocale(dateString, this.format, this.locale);
-
-    if (!date.isValid) {
-      console.error(date.invalidExplanation);
-
-      return undefined;
-    }
-
-    return date;
-  }
-
   /**
    * @internal
    */
@@ -437,14 +447,7 @@ export class DatePicker
 
   override componentWillLoad() {
     this.setTranslations();
-    this.refreshBoundDates();
-
-    this.currFromDate = this.from
-      ? parseWithLocale(this.from, this.format, this.locale)
-      : undefined;
-    this.currToDate = this.to
-      ? parseWithLocale(this.to, this.format, this.locale)
-      : undefined;
+    this.refreshDates();
 
     const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
     this.startYear = year - 101;

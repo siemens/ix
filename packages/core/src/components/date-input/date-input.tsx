@@ -119,15 +119,17 @@ export class DateInput
    */
   @Prop() locale?: string;
 
-  @Watch('locale') watchLocalePropHandler() {
-    this.onInput(this.value);
-  }
-
   /**
    * Date format string.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
+
+  @Watch('locale')
+  @Watch('format')
+  watchLocaleFormatHandler() {
+    this.onInput(this.value);
+  }
 
   /**
    * Required attribute.

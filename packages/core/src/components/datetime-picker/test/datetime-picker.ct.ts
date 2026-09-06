@@ -179,6 +179,104 @@ regressionTest(
   }
 );
 
+regressionTest.describe('locale support', () => {
+  regressionTest(
+    'dateSelect emits locale-formatted values and locale-independent ISO fields',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker locale="de" date-format="dd MMMM yyyy" from="05 März 2023" to="10 März 2023" time-format="HH:mm:ss" time="14:30:00"></ix-datetime-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datetimePicker = page.locator(DATE_TIME_PICKER_SELECTOR);
+      const dateSelectEvent = datetimePicker.evaluate((element) => {
+        return new Promise<string>((resolve) => {
+          element.addEventListener('dateSelect', (event: any) =>
+            // Using JSON.stringify to deserialize js object between chrome instance and test
+            resolve(JSON.stringify(event.detail))
+          );
+        });
+      });
+
+      await datetimePicker.getByRole('button', { name: 'Done' }).click();
+
+      const detail = JSON.parse(await dateSelectEvent);
+      expect(detail.from).toBe('05 März 2023');
+      expect(detail.to).toBe('10 März 2023');
+      expect(detail.isoFrom).toBe('2023-03-05');
+      expect(detail.isoTo).toBe('2023-03-10');
+      expect(detail.time).toBe('14:30:00');
+      expect(detail.isoTime).toMatch(/^14:30:00/);
+    }
+  );
+
+  regressionTest(
+    'dateChange emits locale-formatted values and locale-independent ISO fields',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker single-selection locale="de" date-format="dd MMMM yyyy" from="05 März 2023" time-format="HH:mm:ss" time="14:30:00"></ix-datetime-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datetimePicker = page.locator(DATE_TIME_PICKER_SELECTOR);
+      const dateChangeEvent = datetimePicker.evaluate((element) => {
+        return new Promise<string>((resolve) => {
+          element.addEventListener('dateChange', (event: any) =>
+            resolve(JSON.stringify(event.detail))
+          );
+        });
+      });
+
+      await datetimePicker.getByText(/^17$/).first().click();
+
+      const detail = JSON.parse(await dateChangeEvent);
+      expect(detail.from).toBe('17 März 2023');
+      expect(detail.isoFrom).toBe('2023-03-17');
+    }
+  );
+
+  regressionTest(
+    'isoTime stays in 24h ISO format for a 12h time format',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker single-selection locale="en-US" date-format="yyyy/LL/dd" from="2023/03/05" time-format="hh:mm:ss a" time="02:30:00 PM"></ix-datetime-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datetimePicker = page.locator(DATE_TIME_PICKER_SELECTOR);
+      const dateSelectEvent = datetimePicker.evaluate((element) => {
+        return new Promise<string>((resolve) => {
+          element.addEventListener('dateSelect', (event: any) =>
+            resolve(JSON.stringify(event.detail))
+          );
+        });
+      });
+
+      await datetimePicker.getByRole('button', { name: 'Done' }).click();
+
+      const detail = JSON.parse(await dateSelectEvent);
+      expect(detail.time).toBe('02:30:00 PM');
+      expect(detail.isoTime).toMatch(/^14:30:00/);
+      expect(detail.isoFrom).toBe('2023-03-05');
+    }
+  );
+
+  regressionTest(
+    'localized month names are rendered in the date picker header',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker single-selection locale="de" date-format="dd MMMM yyyy" from="05 März 2023"></ix-datetime-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const monthButton = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Select month' });
+      await expect(monthButton).toHaveText(/März/);
+    }
+  );
+});
+
 regressionTest.describe('datetime picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(

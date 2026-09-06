@@ -409,6 +409,184 @@ regressionTest.describe('locale support', () => {
   );
 });
 
+regressionTest.describe('runtime locale and format updates', () => {
+  regressionTest(
+    'locale change re-parses from value that was invalid under the previous locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 March 2023" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      // "March" is not a German month name, so nothing is selected yet
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'en');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: '05 March 2023',
+        to: undefined,
+        isoFrom: '2023-03-05',
+        isoTo: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'locale change re-parses from and to of a range',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 March 2023" to="10 March 2023" locale="de" format="dd MMMM yyyy"></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'en');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: '05 March 2023',
+        to: '10 March 2023',
+        isoFrom: '2023-03-05',
+        isoTo: '2023-03-10',
+      });
+    }
+  );
+
+  regressionTest(
+    'locale change invalidates a from value that no longer parses',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 March 2023" locale="en" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toMatchObject({ isoFrom: '2023-03-05' });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'de');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'format change re-parses from value immediately',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05.09.2023" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      // Does not match the default format yyyy/LL/dd
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('format', 'dd.LL.yyyy');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: '05.09.2023',
+        to: undefined,
+        isoFrom: '2023-09-05',
+        isoTo: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'locale change translates the header without leaving the browsed month',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 September 2023" locale="en" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const monthLabel = datePicker.locator(
+        '.month-selector [slot="button-label"]'
+      );
+
+      await expect(monthLabel).toHaveText('September');
+
+      await page.locator('ix-icon-button').nth(1).click();
+      await expect(monthLabel).toHaveText('October');
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'de');
+      });
+
+      // Translated, but still on the month the user navigated to
+      await expect(monthLabel).toHaveText('Oktober');
+    }
+  );
+});
+
 regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input embedded value="2023/09/05"></ix-date-input>`);

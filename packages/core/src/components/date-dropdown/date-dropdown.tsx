@@ -164,8 +164,10 @@ export class DateDropdown
    */
   @Prop() locale?: string;
 
-  @Watch('locale') watchLocalePropHandler() {
-    this.updateCurrentDate();
+  @Watch('locale')
+  @Watch('format')
+  watchLocalePropHandler() {
+    this.refreshIsoValues();
   }
 
   /**
@@ -273,6 +275,30 @@ export class DateDropdown
       to: this.to,
       isoFrom: toISODate(parseWithLocale(this.from, this.format, this.locale)),
       isoTo: toISODate(parseWithLocale(this.to, this.format, this.locale)),
+    };
+  }
+
+  private refreshIsoValues() {
+    if (!this.currentRangeValue) {
+      return;
+    }
+
+    this.currentRangeValue = {
+      ...this.currentRangeValue,
+      isoFrom: toISODate(
+        parseWithLocale(
+          this.currentRangeValue.from ?? '',
+          this.format,
+          this.locale
+        )
+      ),
+      isoTo: toISODate(
+        parseWithLocale(
+          this.currentRangeValue.to ?? '',
+          this.format,
+          this.locale
+        )
+      ),
     };
   }
 

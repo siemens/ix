@@ -248,6 +248,79 @@ regressionTest('locale-aware input parsing', async ({ mount, page }) => {
   await expect(dateInputElement).toHaveAttribute('value', '05 März 2023');
 });
 
+regressionTest.describe('runtime locale and format updates', () => {
+  const expectValueParsable = async (dateInput: Locator, parsable: boolean) => {
+    await expect
+      .poll(() =>
+        dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
+          const { valid } = await el.getValidityState();
+          return valid;
+        })
+      )
+      .toBe(parsable);
+  };
+
+  const patchAttribute = (dateInput: Locator, name: string, value: string) =>
+    dateInput.evaluate(
+      (el, [attr, next]) => el.setAttribute(attr, next),
+      [name, value]
+    );
+
+  regressionTest('locale', async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="05 März 2023" locale="en" format="dd MMMM yyyy"></ix-date-input>`
+    );
+
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput).toHaveClass(/hydrated/);
+
+    // "März" is unknown to the English locale
+    await expectValueParsable(dateInput, false);
+
+    await patchAttribute(dateInput, 'locale', 'de');
+
+    await expectValueParsable(dateInput, true);
+    await expect(dateInput.locator('input')).not.toHaveClass(/is-invalid/);
+  });
+
+  regressionTest('format', async ({ mount, page }) => {
+    await mount(`<ix-date-input value="05.09.2023"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput).toHaveClass(/hydrated/);
+
+    // Does not match the default format yyyy/LL/dd
+    await expectValueParsable(dateInput, false);
+
+    await patchAttribute(dateInput, 'format', 'dd.LL.yyyy');
+
+    await expectValueParsable(dateInput, true);
+    await expect(dateInput.locator('input')).not.toHaveClass(/is-invalid/);
+  });
+
+  regressionTest('reaches the nested picker', async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2023/09/05" locale="en"></ix-date-input>`
+    );
+
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput).toHaveClass(/hydrated/);
+
+    const accessor = await createDateInputAccessor(dateInput);
+    await accessor.openByCalender();
+
+    // Weekday headers are rendered Monday-first, so index 1 is Tuesday
+    const tuesdayHeader = dateInput.locator('ix-dropdown .week-day').nth(1);
+    await expect(tuesdayHeader).toHaveText('Tue');
+
+    await patchAttribute(dateInput, 'locale', 'de');
+
+    await expect(tuesdayHeader).toHaveText('Die');
+    // The numeric value still parses, so the selection is kept
+    await expect(dateInput.locator('.calendar-item.selected')).toHaveText('5');
+  });
+});
+
 regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);
