@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use '../tokens/system' as sys;
+
 .input-group-label {
-  --ix-input-group-label--color: var(--theme-color-soft-text);
+  --ix-input-group-label--color: #{sys.$si-sys-text-secondary};
   --ix-input-group-label--margin-left: 2px;
   --ix-input-group-label--margin-right: 2px;
 }

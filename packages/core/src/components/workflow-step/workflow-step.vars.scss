@@ -22,11 +22,17 @@
   --ix-workflow-step--color--disabled: #{sys.$si-sys-text-disabled};
   --ix-workflow-step-icon-default--color: #{sys.$si-sys-text-secondary};
   --ix-workflow-step-icon-default--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-workflow-step-icon-default--color--selected: #{sys.$si-sys-text-accent-hover};
+  --ix-workflow-step-icon-default--color--selected: #{sys.$si-sys-text-accent-active};
+  --ix-workflow-step-icon-default--color--selected--hover: #{sys.$si-sys-text-accent-active};
+  --ix-workflow-step-icon-default--color--selected--active: #{sys.$si-sys-text-accent-active};
   --ix-workflow-step-icon-done--color: #{sys.$si-sys-text-accent};
+  --ix-workflow-step-icon-done--color--hover: #{sys.$si-sys-text-accent-hover};
+  --ix-workflow-step-icon-done--color--active: #{sys.$si-sys-text-accent-active};
   --ix-workflow-step-icon-error--color: #{sys.$si-sys-text-danger};
   --ix-workflow-step-icon-success--color: #{sys.$si-sys-text-success};
   --ix-workflow-step-icon-warning--color: #{sys.$si-sys-text-warning};
-  --ix-workflow-step-icon-done--color--selected: #{sys.$si-sys-text-accent};
+  --ix-workflow-step-icon-done--color--selected: #{sys.$si-sys-text-accent-active};
+  --ix-workflow-step-icon-done--color--selected--hover: #{sys.$si-sys-text-accent-active};
+  --ix-workflow-step-icon-done--color--selected--active: #{sys.$si-sys-text-accent-active};
   --ix-workflow-step-icon-status--color--disabled: #{sys.$si-sys-text-disabled};
 }
