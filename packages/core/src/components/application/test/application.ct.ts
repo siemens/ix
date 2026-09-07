@@ -26,8 +26,9 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
       <ix-menu>
         <ix-menu-item>Home</ix-menu-item>
       </ix-menu>
-      <ix-content>Page content</ix-content>
-      <button slot="bottom">Footer action</button>
+      <ix-content>
+        <button type="button">Page action</button>
+      </ix-content>
     </ix-application>
   `);
 
