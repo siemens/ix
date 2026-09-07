@@ -35,7 +35,7 @@
     inset-inline-start: calc(
       var(--ix-safe-area-inset-left, 0rem)
         + var(--theme-focus--border-thickness)
-        + var(--theme-btn--focus--outline-offset)
+        + var(--theme-focus-outline-offset)
     );
     z-index: calc(var(--theme-z-index-fixed) + 1);
     padding: var(--theme-space-1) var(--theme-space-3);
@@ -47,14 +47,14 @@
       inset-block-start: calc(
         var(--ix-safe-area-inset-top, 0rem)
           + var(--theme-focus--border-thickness)
-          + var(--theme-btn--focus--outline-offset)
+          + var(--theme-focus-outline-offset)
       );
     }
 
     &:focus-visible {
       outline: var(--theme-focus--border-thickness) solid
         var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
@@ -111,7 +111,7 @@
   inset-inline-start: calc(
     var(--ix-safe-area-inset-right, 0rem)
       + var(--theme-focus--border-thickness)
-      + var(--theme-btn--focus--outline-offset)
+      + var(--theme-focus-outline-offset)
   );
 }
 
