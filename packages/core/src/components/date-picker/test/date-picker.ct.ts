@@ -644,3 +644,92 @@ regressionTest.describe('keyboard navigation', () => {
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
 });
+
+regressionTest.describe('week start index', () => {
+  const getColumnOfFirstDay = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) => {
+      const cell = picker.shadowRoot?.querySelector('[data-calendar-day="1"]');
+      const row = cell?.closest('[role="row"]');
+      if (!cell || !row) {
+        return -1;
+      }
+      return [...row.querySelectorAll('[role="gridcell"]')].indexOf(cell);
+    });
+  };
+
+  const getColumnHeaders = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [
+        ...(picker.shadowRoot?.querySelectorAll('[role="columnheader"]') ?? []),
+      ].map((header) => header.textContent?.trim() ?? '')
+    );
+  };
+
+  regressionTest(
+    'places the first day correctly by default',
+    async ({ mount, page }) => {
+      // 1 April 2026 is a Wednesday, the third column of a Monday-first grid.
+      await mount(`<ix-date-picker from="2026/04/01"></ix-date-picker>`);
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(2);
+    }
+  );
+
+  regressionTest(
+    'shifts the first day when the week starts later',
+    async ({ mount, page }) => {
+      // weekStartIndex 1 makes Tuesday the first column, so Wednesday moves to
+      // the second.
+      await mount(
+        `<ix-date-picker from="2026/04/01" week-start-index="1"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(1);
+    }
+  );
+
+  regressionTest(
+    'places a month that starts on a Sunday',
+    async ({ mount, page }) => {
+      // Sunday is Luxon weekday 7, the value that used to index past the end of
+      // the weekday-name array.
+      await mount(
+        `<ix-date-picker from="2026/03/01" week-start-index="1"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(5);
+    }
+  );
+
+  regressionTest(
+    'places the first day in a non-English locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(1);
+    }
+  );
+
+  regressionTest(
+    'lines the day grid up with the column headers',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[0]).toBe('Die');
+
+      // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+    }
+  );
+});

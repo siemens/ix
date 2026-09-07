@@ -173,8 +173,10 @@ export class DatePicker
   @Prop() ariaLabelYearSelection?: string = 'Select year';
 
   /**
-   * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+   * The index of the day the week starts on, as a 0-based index into Luxon's
+   * `Info.weekdays()` array. That array is always ordered Monday-first
+   * regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday.
+   * E.g. weekStartIndex = 6 results in starting the week on Sunday.
    */
   @Prop() weekStartIndex = 0;
 
@@ -570,6 +572,25 @@ export class DatePicker
     this.dateSelect.emit(date);
   }
 
+  /**
+   * The column `date` occupies in a calendar grid whose first column is
+   * `weekStartIndex`, a 0-based index into the Monday-first `Info.weekdays()`
+   * ordering.
+   *
+   * Arithmetic on indices rather than a weekday-name lookup, so it cannot be
+   * thrown off by the locale used to render the column headers. Note that
+   * Luxon's `weekday` counts 1-7 while the name arrays are 0-based.
+   */
+  private weekdayColumnOf(date: DateTime): number {
+    const weekdayIndex = date.weekday - 1;
+
+    return (
+      (((weekdayIndex - this.weekStartIndex) % this.DAYS_IN_WEEK) +
+        this.DAYS_IN_WEEK) %
+      this.DAYS_IN_WEEK
+    );
+  }
+
   private calculateCalendar() {
     const calendar: CalendarWeek[] = [];
     const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
@@ -577,22 +598,8 @@ export class DatePicker
     const monthEnd = month.endOf('month');
     let startWeek = monthStart.weekNumber;
     let endWeek = monthEnd.weekNumber;
-    let monthStartWeekDayIndex = monthStart.weekday - 1;
-    let monthEndWeekDayIndex = monthEnd.weekday - 1;
-
-    if (this.weekStartIndex !== 0) {
-      // Find the positions where to start/stop counting the day-numbers based on which day the week starts
-      const weekdays = Info.weekdays();
-      const monthStartWeekDayName = weekdays[monthStart.weekday];
-
-      monthStartWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthStartWeekDayName
-      );
-      const monthEndWeekDayName = weekdays[monthEnd.weekday];
-      monthEndWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthEndWeekDayName
-      );
-    }
+    const monthStartWeekDayIndex = this.weekdayColumnOf(monthStart);
+    const monthEndWeekDayIndex = this.weekdayColumnOf(monthEnd);
 
     let correctLastWeek = false;
     if (endWeek === 1) {
