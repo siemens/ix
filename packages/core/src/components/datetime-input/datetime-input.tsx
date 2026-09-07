@@ -504,6 +504,10 @@ export class DatetimeInput
     );
   }
 
+  private get isInteractive() {
+    return !this.readonly && !this.disabled;
+  }
+
   private async openDropdown() {
     this.initPickerValues();
     return openDropdownUtil(this.dropdownElementRef);
@@ -806,6 +810,11 @@ export class DatetimeInput
           show={this.show}
           suppressOverflowBehavior
           trigger={this.inputElementRef.waitForCurrent()}
+          onShowChange={(event) => {
+            if (!this.isInteractive) {
+              event.preventDefault();
+            }
+          }}
           onShowChanged={(event) => {
             this.show = event.detail;
           }}
