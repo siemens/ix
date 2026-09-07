@@ -6,30 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+@use '../button/button.vars';
 @use '../button/button-variants' as button-variants;
 
-// Component token aliases. Keep --theme-* references in this file only.
-// Variant names come from button-variants.$btn-variants (single source of truth).
 $dropdown-button-variants: button-variants.$btn-variants;
 
-@mixin dropdown-button-variant-aliases($name) {
-  --ix-dropdown-button-#{$name}-color: var(--theme-btn-#{$name}--color);
-  --ix-dropdown-button-#{$name}-color-disabled: var(
-    --theme-btn-#{$name}--color--disabled
-  );
-  --ix-dropdown-button-#{$name}-color-active: var(
-    --theme-btn-#{$name}--color--active
-  );
-}
-
 :host {
-  --ix-dropdown-button-border-radius: var(--theme-btn--border-radius);
-  --ix-dropdown-button-focus-outline-color: var(--theme-color-focus-bdr);
-  --ix-dropdown-button-focus-outline-offset: var(
-    --theme-btn--focus--outline-offset
-  );
-
-  @each $variant in $dropdown-button-variants {
-    @include dropdown-button-variant-aliases($variant);
-  }
+  --ix-dropdown-button-border-radius-left: var(--ix-button--border-radius);
+  --ix-dropdown-button-border-radius-right: var(--ix-button--border-radius);
 }

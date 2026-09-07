@@ -102,6 +102,8 @@ import './content-axe.spec.ts';
 import './content-header-axe.spec.ts';
 import './content-header-no-back-axe.spec.ts';
 import './content-header-no-back.spec.ts';
+import './content-header-text-overflow-axe.spec.ts';
+import './content-header-text-overflow.spec.ts';
 import './content-header-with-slot-axe.spec.ts';
 import './content-header-with-slot.spec.ts';
 import './content-header.spec.ts';

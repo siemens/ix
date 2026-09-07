@@ -23,7 +23,7 @@ const meta = {
     ) as HTMLIxEventListElement;
 
     const event1 = document.createElement('ix-event-list-item');
-    event1.itemColor = '--theme-color-alarm';
+    event1.itemColor = '--si-sys-background-danger';
     event1.textContent = 'Event List Item 1';
     eventList.appendChild(event1);
 

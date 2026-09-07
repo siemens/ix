@@ -60,7 +60,7 @@ export class Kpi {
       case 'alarm':
         return (
           <ix-icon
-            color="kpi-display-icon--color"
+            style={{ color: 'var(--ix-kpi-display-icon--color)' }}
             name={iconAlarm}
             size="16"
             aria-label={this.ariaLabelAlarmIcon}
@@ -70,7 +70,7 @@ export class Kpi {
       case 'warning':
         return (
           <ix-icon
-            color="kpi-display-icon--color"
+            style={{ color: 'var(--ix-kpi-display-icon--color)' }}
             name={iconWarning}
             size="16"
             aria-label={this.ariaLabelWarningIcon}

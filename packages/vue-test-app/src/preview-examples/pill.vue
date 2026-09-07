@@ -17,9 +17,10 @@ import { IxPill } from '@siemens/ix-vue';
 <template>
   <IxPill
     variant="custom"
-    pill-color="var(--theme-color-inv-std-text)"
-    background="var(--theme-color-dynamic)"
-    >Label</IxPill>
+    pill-color="var(--si-sys-text-inverse)"
+    background="var(--si-sys-background-accent-hover)"
+    >Label</IxPill
+  >
 
   <IxPill tooltip-text="Custom tooltip text">Label</IxPill>
   <IxPill class="styled">Label</IxPill>
@@ -27,7 +28,9 @@ import { IxPill } from '@siemens/ix-vue';
   <IxPill :icon="iconStar">Label</IxPill>
   <IxPill :icon="iconStar" aria-label="Featured"></IxPill>
   <IxPill :icon="iconStar" class="styled">Label</IxPill>
-  <IxPill variant="primary" outline alignLeft :icon="iconStar" class="styled">Label</IxPill>
+  <IxPill variant="primary" outline alignLeft :icon="iconStar" class="styled"
+    >Label</IxPill
+  >
 
   <IxPill variant="alarm">Label</IxPill>
   <IxPill variant="alarm" class="styled">Label</IxPill>
@@ -38,7 +41,9 @@ import { IxPill } from '@siemens/ix-vue';
     Label
   </IxPill>
   <IxPill :icon="iconStar" class="styled-ellipsis-4">Label</IxPill>
-  <IxPill variant="primary" outline :icon="iconStar" class="styled-ellipsis-4">Label</IxPill>
+  <IxPill variant="primary" outline :icon="iconStar" class="styled-ellipsis-4"
+    >Label</IxPill
+  >
   <IxPill class="styled-ellipsis-3">Label</IxPill>
   <IxPill variant="primary" outline class="styled-ellipsis-3">Label</IxPill>
 </template>

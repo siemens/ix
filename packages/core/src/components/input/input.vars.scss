@@ -1,0 +1,66 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-input--background: #{sys.$si-sys-background-1};
+  --ix-input--background--autofill: rgba(0, 0, 0, 0);
+  --ix-input--background--disabled: rgba(0, 0, 0, 0);
+  --ix-input--background--focus: #{sys.$si-sys-background-4};
+  --ix-input--background--hover: #{sys.$si-sys-background-4};
+  --ix-input--background--invalid: #{sys.$si-sys-background-1};
+  --ix-input--background--invalid--focus: #{sys.$si-sys-background-4};
+  --ix-input--background--invalid--hover: #{sys.$si-sys-background-4};
+  --ix-input--background--readonly: rgba(0, 0, 0, 0);
+  --ix-input--background--warning: #{sys.$si-sys-background-1};
+  --ix-input--background--warning--focus: #{sys.$si-sys-background-4};
+  --ix-input--background--warning--hover: #{sys.$si-sys-background-4};
+  --ix-input--border-color: #{sys.$si-sys-border-2};
+  --ix-input--border-color--autofill: #{sys.$si-sys-border-2};
+  --ix-input--border-color--disabled: #{sys.$si-sys-border-4};
+  --ix-input--border-color--focus: #{sys.$si-sys-border-1};
+  --ix-input--border-color--hover: #{sys.$si-sys-border-1};
+  --ix-input--border-color--info: #{sys.$si-sys-border-information};
+  --ix-input--border-color--info--active: #{sys.$si-sys-border-information};
+  --ix-input--border-color--info--hover: #{sys.$si-sys-border-information};
+  --ix-input--border-color--invalid: #{sys.$si-sys-border-danger};
+  --ix-input--border-color--invalid--active: #{sys.$si-sys-border-danger};
+  --ix-input--border-color--invalid--hover: #{sys.$si-sys-border-danger};
+  --ix-input--border-color--readonly: #{sys.$si-sys-border-4};
+  --ix-input--border-color--warning: #{sys.$si-sys-background-warning};
+  --ix-input--border-color--warning--active: #{sys.$si-sys-background-warning};
+  --ix-input--border-color--warning--hover: #{sys.$si-sys-background-warning};
+  --ix-input--border-color-bottom--disabled: #{sys.$si-sys-border-4};
+  --ix-input--border-color-bottom--readonly: #{sys.$si-sys-border-4};
+  --ix-input--border-radius: var(--theme-small-border-radius);
+  --ix-input--border-width: var(--theme-border-width-default);
+  --ix-input--box-shadow: none;
+  --ix-input--color: #{sys.$si-sys-text-primary};
+  --ix-input--color--autofill: #{sys.$si-sys-text-primary};
+  --ix-input--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-input--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-input-error--background: #{sys.$si-sys-background-1};
+  --ix-input-error--border-color: #{sys.$si-sys-border-danger};
+  --ix-input-error-icon--color: #{sys.$si-sys-text-danger};
+  --ix-input-extra--background--active: #{sys.$si-sys-background-4};
+  --ix-input-extra--background--hover: #{sys.$si-sys-background-4};
+  --ix-input-gripper--color: #{sys.$si-sys-text-disabled};
+  --ix-input-gripper--color--focus: #{sys.$si-sys-text-disabled};
+  --ix-input-gripper--color--hover: #{sys.$si-sys-text-disabled};
+  --ix-input-hint--color: #{sys.$si-sys-text-secondary};
+  --ix-input-search-icon--color: #{sys.$si-sys-text-accent};
+  --ix-input-search-icon--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-input-search-icon--color--focus: #{sys.$si-sys-text-accent};
+  --ix-input-search-icon--color--hover: #{sys.$si-sys-text-accent-hover};
+  --ix-input-select-icon--color: #{sys.$si-sys-text-primary};
+  --ix-input-select-icon--color--active: #{sys.$si-sys-text-primary};
+  --ix-input-select-icon--color--hover: #{sys.$si-sys-text-primary};
+  --ix-input-unit--color: #{sys.$si-sys-text-secondary};
+}

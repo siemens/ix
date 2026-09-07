@@ -10,6 +10,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/fonts';
 
+@use './application.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -58,7 +59,7 @@
   }
 
   ix-application-header {
-    z-index: calc(var(--theme-z-index-sticky) + 1);
+    z-index: calc(var(--ix-application-child-header--z-index) + 1);
   }
 
   .logo-wrapper {

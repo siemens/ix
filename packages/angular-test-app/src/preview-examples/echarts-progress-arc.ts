@@ -41,7 +41,14 @@ export default class EchartsProgressArc implements OnDestroy, OnInit {
             show: true,
             lineStyle: {
               width: 15,
-              color: [[1, getComputedCSSProperty('color-neutral-40')]],
+              color: [
+                [
+                  1,
+                  getComputedCSSProperty(
+                    '--si-sys-data-sequential-deep-blue-4'
+                  ),
+                ],
+              ],
             },
           },
           axisTick: {
@@ -62,7 +69,7 @@ export default class EchartsProgressArc implements OnDestroy, OnInit {
             width: 35,
             itemStyle: {
               borderMiterLimit: 16,
-              color: getComputedCSSProperty('color-success'),
+              color: getComputedCSSProperty('--si-sys-background-success'),
             },
           },
           pointer: {
@@ -76,7 +83,7 @@ export default class EchartsProgressArc implements OnDestroy, OnInit {
                 overflow: 'break',
                 fontSize: '2rem',
                 fontWeight: 'normal',
-                color: getComputedCSSProperty('color-soft-text'),
+                color: getComputedCSSProperty('--si-sys-text-secondary'),
                 width: 250,
                 lineHeight: 35,
                 formatter: '{value} / 100 \n completed',

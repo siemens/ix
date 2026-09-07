@@ -1,0 +1,6 @@
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-key-value-list-item--border-color: #{sys.$si-sys-border-4};
+  --ix-key-value-list-item--background--alternating: #{sys.$si-sys-background-1};
+}

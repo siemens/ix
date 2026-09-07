@@ -1,0 +1,46 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '../theme/core/common' as common;
+@use '../foundation/body';
+@use '../foundation/scrollbar';
+
+:root {
+  --ix-safe-area-inset-top: 0rem;
+  --ix-safe-area-inset-right: 0rem;
+  --ix-safe-area-inset-bottom: 0rem;
+  --ix-safe-area-inset-left: 0rem;
+
+  --theme-z-index-sticky: 1020;
+  --theme-z-index-fixed: 1030;
+  --theme-z-index-modal-backdrop: 1040;
+  --theme-z-index-modal: 1050;
+  --theme-z-index-dropdown: 1060;
+  --theme-z-index-tooltip: 1070;
+  --theme-z-index-toast: 1080;
+}
+
+[data-ix-theme] {
+  --animate-duration: var(--theme-default-time);
+  --theme-font-family: 'SiemensSans Pro VF', 'SiemensSans Pro', helvetica,
+    arial, sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  font-family: var(--theme-font-family);
+
+  @include common.setVars;
+
+  @media (prefers-reduced-motion: reduce) {
+    --theme-x-slow-time: 0;
+    --theme-slow-time: 0;
+    --theme-medium-time: 0;
+    --theme-default-time: 0;
+    --theme-short-time: 0;
+  }
+}

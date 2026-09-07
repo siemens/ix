@@ -1,0 +1,5 @@
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-empty-state-label--color: #{sys.$si-sys-text-secondary};
+}

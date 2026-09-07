@@ -130,7 +130,7 @@ export const With_Image: Story = {
     popover.setAttribute('aria-label', "What's new popover");
 
     popover.innerHTML = `
-      <ix-popover-header icon="info" icon-color="color-info">
+      <ix-popover-header icon="info" icon-color="--si-sys-text-information">
         Release highlights
         <ix-pill slot="additional-items" variant="info">New</ix-pill>
       </ix-popover-header>

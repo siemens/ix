@@ -6,15 +6,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use '../tokens/system' as sys;
+
 @mixin _scrollbar-rules {
+  & {
+    --ix-scrollbar-border: #{sys.$si-sys-border-4};
+    --ix-scrollbar-background: #{sys.$si-sys-background-1};
+  }
+
   &::-webkit-scrollbar-button {
     display: none;
   }
 
   @-moz-document url-prefix() {
     & {
-      scrollbar-color: var(--theme-scrollbar-thumb--background)
-        var(--theme-scrollbar-track--background);
+      scrollbar-color: var(--ix-scrollbar-border) var(--ix-scrollbar-background);
       scrollbar-width: thin;
     }
   }
@@ -28,22 +34,22 @@
   /* Track */
   &::-webkit-scrollbar-track {
     border-radius: 5px;
-    background: var(--theme-scrollbar-track--background);
+    background: sys.$si-sys-background-1;
   }
 
   &::-webkit-scrollbar-track:hover {
-    background: var(--theme-scrollbar-track--background--hover);
+    background: sys.$si-sys-background-1;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: var(--theme-scrollbar-thumb--background);
+    background: sys.$si-sys-border-4;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar-thumb--background--hover);
+    background: sys.$si-sys-border-2;
   }
 
   &::-webkit-scrollbar-corner {

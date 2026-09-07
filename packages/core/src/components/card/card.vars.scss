@@ -1,0 +1,102 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+$card-variants: outline filled alarm critical warning success info neutral
+  primary;
+
+:host {
+  --ix-card--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion--color: #{sys.$si-sys-text-primary};
+  --ix-card--border-radius: var(--theme-default-border-radius);
+  --ix-card--border-width: var(--theme-border-width-default);
+  --ix-card--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-card-alarm--background: #{sys.$si-sys-background-danger};
+  --ix-card-alarm--background--active: #{sys.$si-sys-background-danger-active};
+  --ix-card-alarm--background--hover: #{sys.$si-sys-background-danger-hover};
+  --ix-card-alarm--background--selected: #{sys.$si-sys-background-danger};
+  --ix-card-alarm--border-color: rgba(0, 0, 0, 0);
+  --ix-card-alarm--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-alarm--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-alarm--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-alarm--color: #{sys.$si-sys-text-on-danger};
+  --ix-card-critical--background: #{sys.$si-sys-background-critical};
+  --ix-card-critical--background--active: #{sys.$si-sys-background-critical-active};
+  --ix-card-critical--background--hover: #{sys.$si-sys-background-critical-hover};
+  --ix-card-critical--background--selected: #{sys.$si-sys-background-critical};
+  --ix-card-critical--border-color: rgba(0, 0, 0, 0);
+  --ix-card-critical--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-critical--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-critical--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-critical--color: #{sys.$si-sys-text-on-critical};
+  --ix-card-filled--background: #{sys.$si-sys-background-1};
+  --ix-card-filled--background--active: #{sys.$si-sys-background-selected};
+  --ix-card-filled--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-filled--background--selected: #{sys.$si-sys-background-selected};
+  --ix-card-filled--border-color: rgba(0, 0, 0, 0);
+  --ix-card-filled--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-filled--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-filled--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-filled--color: #{sys.$si-sys-text-primary};
+  --ix-card-info--background: #{sys.$si-sys-background-information};
+  --ix-card-info--background--active: #{sys.$si-sys-background-information-active};
+  --ix-card-info--background--hover: #{sys.$si-sys-background-information-hover};
+  --ix-card-info--background--selected: #{sys.$si-sys-background-information};
+  --ix-card-info--border-color: rgba(0, 0, 0, 0);
+  --ix-card-info--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-info--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-info--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-info--color: #{sys.$si-sys-text-on-information};
+  --ix-card-neutral--background: #{sys.$si-sys-background-neutral};
+  --ix-card-neutral--background--active: #{sys.$si-sys-background-selected};
+  --ix-card-neutral--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-neutral--background--selected: #{sys.$si-sys-background-neutral};
+  --ix-card-neutral--border-color: rgba(0, 0, 0, 0);
+  --ix-card-neutral--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-neutral--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-neutral--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-neutral--color: #{sys.$si-sys-text-primary};
+  --ix-card-outline--background: rgba(0, 0, 0, 0);
+  --ix-card-outline--background--active: #{sys.$si-sys-background-selected};
+  --ix-card-outline--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-outline--background--selected: #{sys.$si-sys-background-selected};
+  --ix-card-outline--border-color: #{sys.$si-sys-border-3};
+  --ix-card-outline--border-color--active: #{sys.$si-sys-border-3};
+  --ix-card-outline--border-color--hover: #{sys.$si-sys-border-3};
+  --ix-card-outline--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-outline--color: #{sys.$si-sys-text-primary};
+  --ix-card-primary--background: #{sys.$si-sys-background-accent};
+  --ix-card-primary--background--active: #{sys.$si-sys-background-accent-active};
+  --ix-card-primary--background--hover: #{sys.$si-sys-background-accent-hover};
+  --ix-card-primary--background--selected: #{sys.$si-sys-background-accent};
+  --ix-card-primary--border-color: rgba(0, 0, 0, 0);
+  --ix-card-primary--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-primary--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-primary--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-primary--color: #{sys.$si-sys-text-on-accent};
+  --ix-card-success--background: #{sys.$si-sys-background-success};
+  --ix-card-success--background--active: #{sys.$si-sys-background-success-active};
+  --ix-card-success--background--hover: #{sys.$si-sys-background-success-hover};
+  --ix-card-success--background--selected: #{sys.$si-sys-background-success};
+  --ix-card-success--border-color: rgba(0, 0, 0, 0);
+  --ix-card-success--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-success--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-success--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-success--color: #{sys.$si-sys-text-on-success};
+  --ix-card-warning--background: #{sys.$si-sys-background-warning};
+  --ix-card-warning--background--active: #{sys.$si-sys-background-warning-active};
+  --ix-card-warning--background--hover: #{sys.$si-sys-background-warning-hover};
+  --ix-card-warning--background--selected: #{sys.$si-sys-background-warning};
+  --ix-card-warning--border-color: rgba(0, 0, 0, 0);
+  --ix-card-warning--border-color--active: rgba(0, 0, 0, 0);
+  --ix-card-warning--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-card-warning--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-card-warning--color: #{sys.$si-sys-text-on-warning};
+}

@@ -1,0 +1,104 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-card-accordion--transition-duration: var(--theme-default-time);
+  --ix-card-accordion-expand-icon--transition-duration: var(
+    --theme-default-time
+  );
+  --ix-card-accordion-content--transition-duration: var(--theme-default-time);
+  --ix-card-accordion--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-card-accordion-content--color: #{sys.$si-sys-text-primary};
+  --ix-card-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-footer--border-radius: var(--theme-default-border-radius);
+  --ix-card-accordion--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-card-accordion-alarm-accordion--background: #{sys.$si-sys-background-danger};
+  --ix-card-accordion-alarm-accordion--background--active: #{sys.$si-sys-background-danger-active};
+  --ix-card-accordion-alarm-accordion--background--hover: #{sys.$si-sys-background-danger-hover};
+  --ix-card-accordion-alarm-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-alarm-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-alarm-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-alarm-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-card-accordion-critical-accordion--background: #{sys.$si-sys-background-critical};
+  --ix-card-accordion-critical-accordion--background--active: #{sys.$si-sys-background-critical-active};
+  --ix-card-accordion-critical-accordion--background--hover: #{sys.$si-sys-background-critical-hover};
+  --ix-card-accordion-critical-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-critical-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-critical-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-critical-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-card-accordion-filled-accordion--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-filled-accordion--background--active: #{sys.$si-sys-background-selected};
+  --ix-card-accordion-filled-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-accordion-filled-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-filled-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-filled-accordion-frame--border-color: rgba(0, 0, 0, 0);
+  --ix-card-accordion-filled-accordion-frame--border-width: var(
+    --theme-border-width-none
+  );
+  --ix-card-accordion-info-accordion--background: #{sys.$si-sys-background-information};
+  --ix-card-accordion-info-accordion--background--active: #{sys.$si-sys-background-information-active};
+  --ix-card-accordion-info-accordion--background--hover: #{sys.$si-sys-background-information-hover};
+  --ix-card-accordion-info-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-info-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-info-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-info-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-card-accordion-neutral-accordion--background: #{sys.$si-sys-background-neutral};
+  --ix-card-accordion-neutral-accordion--background--active: #{sys.$si-sys-background-selected};
+  --ix-card-accordion-neutral-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-accordion-neutral-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-neutral-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-neutral-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-neutral-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-card-accordion-outline-accordion--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-outline-accordion--background--active: #{sys.$si-sys-background-selected};
+  --ix-card-accordion-outline-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-accordion-outline-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-outline-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-outline-accordion-frame--border-color: rgba(0, 0, 0, 0);
+  --ix-card-accordion-outline-accordion-frame--border-width: var(
+    --theme-border-width-none
+  );
+  --ix-card-accordion-primary-accordion--background: #{sys.$si-sys-background-accent};
+  --ix-card-accordion-primary-accordion--background--active: #{sys.$si-sys-background-accent-active};
+  --ix-card-accordion-primary-accordion--background--hover: #{sys.$si-sys-background-accent-hover};
+  --ix-card-accordion-primary-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-primary-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-primary-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-primary-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-card-accordion-success-accordion--background: #{sys.$si-sys-background-success};
+  --ix-card-accordion-success-accordion--background--active: #{sys.$si-sys-background-success-active};
+  --ix-card-accordion-success-accordion--background--hover: #{sys.$si-sys-background-success-hover};
+  --ix-card-accordion-success-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-success-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-success-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-success-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+  --ix-card-accordion-warning-accordion--background: #{sys.$si-sys-background-warning};
+  --ix-card-accordion-warning-accordion--background--active: #{sys.$si-sys-background-warning-active};
+  --ix-card-accordion-warning-accordion--background--hover: #{sys.$si-sys-background-warning-hover};
+  --ix-card-accordion-warning-accordion-footer--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-warning-accordion-frame--background: #{sys.$si-sys-background-1};
+  --ix-card-accordion-warning-accordion-frame--border-color: #{sys.$si-sys-border-3};
+  --ix-card-accordion-warning-accordion-frame--border-width: var(
+    --theme-border-width-default
+  );
+}
