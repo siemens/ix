@@ -141,7 +141,7 @@ $container-width: 11.5625rem;
     opacity: 1;
     &::placeholder {
       opacity: 1;
-      transition-delay: var(--theme-default-time);
+      transition-delay: var(--ix-expanding-search-button--transition-duration);
     }
   }
 }
