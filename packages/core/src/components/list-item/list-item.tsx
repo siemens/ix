@@ -175,6 +175,8 @@ export class ListItem
   }
 
   override componentDidLoad() {
+    super.componentDidLoad?.();
+
     if (!this.hostElement.hasAttribute('tabindex')) {
       this.hostElement.tabIndex = 0;
     }
