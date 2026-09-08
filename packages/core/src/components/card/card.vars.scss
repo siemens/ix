@@ -62,7 +62,7 @@ $card-variants: outline filled alarm critical warning success info neutral
   --ix-card-neutral--border-color--active: rgba(0, 0, 0, 0);
   --ix-card-neutral--border-color--hover: rgba(0, 0, 0, 0);
   --ix-card-neutral--border-color--selected: #{sys.$si-sys-border-accent-hover};
-  --ix-card-neutral--color: #{sys.$si-sys-text-primary};
+  --ix-card-neutral--color: #{sys.$si-sys-text-on-neutral};
   --ix-card-outline--background: rgba(0, 0, 0, 0);
   --ix-card-outline--background--active: #{sys.$si-sys-background-selected};
   --ix-card-outline--background--hover: #{sys.$si-sys-background-hover};
