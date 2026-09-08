@@ -19,6 +19,7 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { formatWithLocale } from '../utils/date-time-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -100,6 +101,10 @@ export class DatetimeInput
 
   /** Locale for date/time formatting (e.g., 'en-US', 'de-DE') */
   @Prop() locale?: string;
+
+  @Watch('locale') watchLocalePropHandler() {
+    this.onInput(this.value);
+  }
 
   /** Whether the field is required */
   @Prop() required: boolean = false;
@@ -288,8 +293,8 @@ export class DatetimeInput
     });
 
     if (dateTime.isValid) {
-      this.from = dateTime.toFormat(this.dateOnlyFormat);
-      this.time = dateTime.toFormat(this.timeOnlyFormat);
+      this.from = formatWithLocale(dateTime, this.dateOnlyFormat, this.locale);
+      this.time = formatWithLocale(dateTime, this.timeOnlyFormat, this.locale);
     } else {
       this.from = null;
       this.time = null;
@@ -323,8 +328,8 @@ export class DatetimeInput
     this.invalidReason = validationResult.reason;
 
     if (dateTime.isValid) {
-      this.from = dateTime.toFormat(this.dateOnlyFormat);
-      this.time = dateTime.toFormat(this.timeOnlyFormat);
+      this.from = formatWithLocale(dateTime, this.dateOnlyFormat, this.locale);
+      this.time = formatWithLocale(dateTime, this.timeOnlyFormat, this.locale);
     } else {
       this.from = null;
       this.time = null;
@@ -415,7 +420,8 @@ export class DatetimeInput
       this.minTime,
       this.maxTime,
       this.timeOnlyFormat,
-      dateTime.startOf('day')
+      dateTime.startOf('day'),
+      this.locale
     );
 
     const hasDateBounds = !!(minDateTime?.isValid || maxDateTime?.isValid);
@@ -489,8 +495,8 @@ export class DatetimeInput
     if (!this.value) {
       const now = DateTime.now();
       if (now.isValid) {
-        this.from = now.toFormat(this.dateOnlyFormat);
-        this.time = now.toFormat(this.timeOnlyFormat);
+        this.from = formatWithLocale(now, this.dateOnlyFormat, this.locale);
+        this.time = formatWithLocale(now, this.timeOnlyFormat, this.locale);
       }
     }
   }
@@ -690,7 +696,11 @@ export class DatetimeInput
       millisecond: timeOnly.millisecond,
     });
 
-    const displayValue = dateTimeCombined.toFormat(this.format);
+    const displayValue = formatWithLocale(
+      dateTimeCombined,
+      this.format,
+      this.locale
+    );
     this.onInput(displayValue);
     this.emitChange(displayValue);
     this.closeDropdown();

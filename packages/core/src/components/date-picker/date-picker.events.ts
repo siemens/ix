@@ -9,4 +9,6 @@
 export type DateChangeEvent = {
   from?: string;
   to?: string;
+  isoFrom?: string;
+  isoTo?: string;
 };

@@ -982,22 +982,22 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
-The property strings are formatted according to the `format` property and not affected by the `locale` property.
-The locale applied is always `en-US`.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+formatted according to the `format` and `locale` properties.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
-The property strings are formatted according to the `format` property and not affected by the `locale` property.
-The locale applied is always `en-US`.
+   * Date range change event. Emitted when the date range selection changes and the component is in range mode.
+The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
-The property strings are formatted according to the `format` property and not affected by the `locale` property.
-The locale applied is always `en-US`.
+   * Date selection event. Emitted when the selection is confirmed via the date select button.
+The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
 }
@@ -1066,14 +1066,14 @@ Does NOT fire when:
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDatetimePicker,
-  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nAm', 'i18nDone', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nAm', 'i18nDone', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
   outputs: ['timeChange', 'dateChange', 'dateSelect'],
 })
 export class IxDatetimePicker {
@@ -3075,7 +3075,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTimeInput,
-  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
+  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -3083,7 +3083,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
+  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange', 'ixChange'],
 })
 export class IxTimeInput {
@@ -3118,15 +3118,15 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTimePicker,
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
-  methods: ['getCurrentTime']
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
+  methods: ['getCurrentTime', 'getCurrentIsoTime']
 })
 @Component({
   selector: 'ix-time-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nSecondColumnHeader', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
   outputs: ['timeSelect', 'timeChange'],
 })
 export class IxTimePicker {
