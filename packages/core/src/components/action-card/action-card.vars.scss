@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-action-card--border-radius: var(--theme-default-border-radius);
+  --ix-action-card--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-action-card--outline-color--focus: #{sys.$si-sys-effects-focus};
+}

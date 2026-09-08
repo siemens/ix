@@ -68,6 +68,10 @@ import './generated/popover-axe.spec';
 // Chip tests
 import './generated/chip-axe.spec';
 
+// Content header tests
+import './generated/content-header-axe.spec';
+import './generated/content-header-text-overflow-axe.spec';
+
 // Chat tests
 import './generated/chat-axe.spec';
 import './generated/chat-ai-message-axe.spec';

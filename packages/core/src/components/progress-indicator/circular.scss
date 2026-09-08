@@ -8,10 +8,11 @@
  */
 @use './progress-indicator-vars' as progress-vars;
 
+@use './circular.vars' as *;
 @mixin circular {
   .circular-progress-container {
     --ix-progress-indicator-track-color: var(
-      --theme-progress-indicator-track--background
+      --ix-progress-indicator-track--background
     );
 
     display: flex;
@@ -36,7 +37,7 @@
   @each $state in progress-vars.$progress-indicator-states {
     .circular-progress-container.#{$state} {
       --ix-progress-indicator-track-color: var(
-        --theme-progress-indicator-track-#{$state}--background
+        --ix-progress-indicator-track-#{$state}--background
       );
     }
   }

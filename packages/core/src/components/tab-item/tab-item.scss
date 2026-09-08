@@ -10,6 +10,45 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 
+@use './tab-item.vars' as *;
+
+@mixin tab-border($position) {
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--ix-tabs-indicator--background);
+    width: 100%;
+    height: var(--ix-tabs-indicator--height);
+    left: 0;
+    bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: var(--ix-tabs-indicator--background--selected);
+    width: var(--ix-tab-active-indicator-width);
+    height: var(--ix-tabs-indicator--height);
+    left: 0;
+    bottom: 0;
+    transform: translateX(var(--ix-tab-active-indicator-offset));
+  }
+
+  @if $position == 'top' {
+    &::before,
+    &::after {
+      top: 0;
+      bottom: auto;
+    }
+  } @else if $position == 'bottom' {
+    &::before,
+    &::after {
+      top: auto;
+      bottom: 0;
+    }
+  }
+}
+
 :host {
   position: relative;
   display: flex;
@@ -18,8 +57,8 @@
   line-height: 20px;
   font-size: 14px;
   font-weight: bold;
-  background-color: var(--theme-tab--background);
-  color: var(--theme-tab--color);
+  background-color: var(--ix-tab-item--background);
+  color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
 
   height: 2.5rem;
@@ -52,18 +91,18 @@
     align-items: center;
     height: 3rem;
     width: 3rem;
-    background-color: var(--theme-animated-tab-circle--background);
+    background-color: var(--ix-tab-item-animated-circle--background);
     border-radius: 50%;
-    border: 2px solid var(--theme-animated-tab-circle--border-color);
-    color: var(--theme-animated-tab-icon--color);
+    border: 2px solid var(--ix-tab-item-animated-circle--border-color);
+    color: var(--ix-tab-item-animated-icon--color);
     cursor: pointer;
 
     &:hover {
-      background-color: var(--theme-animated-tab-circle--background--hover);
+      background-color: var(--ix-tab-item-animated-circle--background--hover);
     }
 
     &:active {
-      background-color: var(--theme-animated-tab-circle--background--active);
+      background-color: var(--ix-tab-item-animated-circle--background--active);
     }
   }
 
@@ -72,8 +111,8 @@
     z-index: 1;
     height: 16px;
     width: auto;
-    background-color: var(--theme-color-1);
-    border: 1px solid var(--theme-tab-pill--border-color);
+    background-color: var(--ix-tab-item-pill--background);
+    border: 1px solid var(--ix-tab-item-pill--border-color);
     border-radius: 100px;
     bottom: 6px;
     display: flex;
@@ -83,15 +122,15 @@
     padding-right: 0.25rem;
     font-size: 12px;
     line-height: 14px;
-    color: var(--theme-pill-outline--color);
+    color: var(--ix-tab-item-pill-outline--color);
     cursor: pointer;
 
     &.selected {
-      border-color: var(--theme-tab-pill--border-color--selected);
+      border-color: var(--ix-tab-item-pill--border-color--selected);
     }
 
     &.disabled {
-      border-color: var(--theme-tab-pill--border-color--disabled);
+      border-color: var(--ix-tab-item-pill--border-color--disabled);
       cursor: default;
     }
   }
@@ -123,8 +162,8 @@
 }
 
 :host(.selected:not(.disabled)) {
-  background-color: var(--theme-tab--background--selected);
-  color: var(--theme-tab--color--selected);
+  background-color: var(--ix-tab-item--background--selected);
+  color: var(--ix-tab-item--color--selected);
 
   &::after {
     content: '';
@@ -132,23 +171,25 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--theme-tab-indicator--background--selected);
+    background-color: var(--ix-tab-item-indicator--background--selected);
   }
 
   .circle {
-    background-color: var(--theme-animated-tab-circle--background--selected);
-    color: var(--theme-animated-tab-icon--color--selected);
-    border-color: var(--theme-animated-tab-circle--border-color--selected);
+    background-color: var(--ix-tab-item-animated-circle--background--selected);
+    color: var(--ix-tab-item-animated-icon--color--selected);
+    border-color: var(--ix-tab-item-animated-circle--border-color--selected);
 
     &:hover {
-      background-color: var(--theme-animated-tab-circle--background--selected);
+      background-color: var(
+        --ix-tab-item-animated-circle--background--selected
+      );
     }
   }
 }
 
 :host(.selected.bottom:not(.disabled)) {
-  background-color: var(--theme-tab--background--selected);
-  color: var(--theme-tab--color--selected);
+  background-color: var(--ix-tab-item--background--selected);
+  color: var(--ix-tab-item--color--selected);
 
   &::after {
     bottom: 0px;
@@ -162,28 +203,28 @@
 }
 
 :host(:hover:not(.circle):not(.disabled)) {
-  background-color: var(--theme-tab--background--hover);
-  color: var(--theme-tab-color-hover);
+  background-color: var(--ix-tab-item--background--hover);
+  color: var(--ix-tab-item--color--hover);
 }
 
 :host(:active:not(.circle):not(.disabled)) {
-  background-color: var(--theme-tab--background--active);
-  color: var(--theme-tab-color--active);
+  background-color: var(--ix-tab-item--background--active);
+  color: var(--ix-tab-item--color--active);
 }
 
 :host(.disabled) {
   cursor: default;
-  color: var(--theme-tab--color--disabled);
-  background-color: var(--theme-tab--background--disabled);
+  color: var(--ix-tab-item--color--disabled);
+  background-color: var(--ix-tab-item--background--disabled);
   pointer-events: none;
 
   &::after {
-    background-color: var(--theme-tab-indicator--background--disabled);
+    background-color: var(--ix-tab-item-indicator--background--disabled);
   }
 
   .circle {
-    background-color: var(--theme-animated-tab-circle--background--disabled);
-    border-color: var(--theme-animated-tab-circle--border-color--disabled);
+    background-color: var(--ix-tab-item-animated-circle--background--disabled);
+    border-color: var(--ix-tab-item-animated-circle--border-color--disabled);
     cursor: default;
   }
 }
@@ -208,7 +249,7 @@
 
 :host(:not(.circle):focus-visible) {
   outline-offset: -0.0625rem;
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
 }
 
 :host(.circle:focus-visible) {
@@ -216,6 +257,14 @@
 
   .circle {
     outline-offset: 0.125rem;
-    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
   }
+}
+
+:host(.bottom) {
+  @include tab-border('bottom');
+}
+
+:host(.top) {
+  @include tab-border('top');
 }

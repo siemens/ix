@@ -1,5 +1,25 @@
 # @siemens/ix
 
+## 5.2.1
+
+### Patch Changes
+
+- [#2726](https://github.com/siemens/ix/pull/2726) [`5d02ab3`](https://github.com/siemens/ix/commit/5d02ab3c3eea160d19037a5759729311e1252b7a) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Keep the Active look on the `ix-date-dropdown` trigger while the picker is open.
+
+- [#2734](https://github.com/siemens/ix/pull/2734) [`e360630`](https://github.com/siemens/ix/commit/e36063060e068961793f91b38c33cfbcfa93e9c8) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix Angular NgModule menu initialization so interpolated ARIA attributes no longer cause `ariaAttributeChanged` runtime errors. Reliably forward dynamic ARIA attribute updates and removals to internal elements, and keep an explicit `role` on `ix-tabs` from overriding its internal `tablist` role.
+
+  Fixes [#2716](https://github.com/siemens/ix/issues/2716)
+
+- [#2647](https://github.com/siemens/ix/pull/2647) [`b911a9c`](https://github.com/siemens/ix/commit/b911a9c5f1633c4042b20f2d01415517e4c54a08) Thanks [@lakshmi-priya-b](https://github.com/lakshmi-priya-b)! - Improve clickable **ix-workflow-steps** with keyboard activation, accessible semantics, and visible focus styling.
+
+- [#2706](https://github.com/siemens/ix/pull/2706) [`717182a`](https://github.com/siemens/ix/commit/717182a683d9ec7c97fc27b795e7b4ef46c3355d) Thanks [@benjgil](https://github.com/benjgil)! - Fix navigation sub-menu dropdown scroll so that it is available in all navigation scenarios
+
+  Fixes [#2664](https://github.com/siemens/ix/issues/2664)
+
+- [#2742](https://github.com/siemens/ix/pull/2742) [`008bc32`](https://github.com/siemens/ix/commit/008bc3230884845eb37d30ae887824d4ab79cf0a) Thanks [@1307-Dev](https://github.com/1307-Dev)! - Change `ix-category-filter`'s clear button from oval to rectangular.
+
+- [#2732](https://github.com/siemens/ix/pull/2732) [`ebeb523`](https://github.com/siemens/ix/commit/ebeb523a3bd0908afd152be31a925a61e887600e) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Reduce the spacing between checkbox group options from `1rem` to `0.5rem`.
+
 ## 5.2.0
 
 ### Minor Changes

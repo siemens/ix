@@ -21,6 +21,11 @@ regressionTest.describe('date picker', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('today inside range', async ({ page }) => {
+    await page.goto('date-picker/today-in-range');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('locales', async ({ page }) => {
     await page.goto('date-picker/i18n');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

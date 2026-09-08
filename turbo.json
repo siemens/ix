@@ -13,6 +13,7 @@
         "dist/**",
         "dist-css/**",
         "build/**",
+        "sboms/**",
         "storybook-static/**",
         "www/**",
         "loader/**",

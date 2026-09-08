@@ -52,6 +52,20 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(tab).toHaveClass(/\bselected\b/);
 });
 
+regressionTest('preserves the tablist role', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs role="navigation" aria-label="Process steps">
+      <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+    </ix-tabs>
+  `);
+  const tabs = page.locator('ix-tabs');
+  const tablist = tabs.getByRole('tablist');
+
+  await expect(tabs).toHaveAttribute('role', 'navigation');
+  await expect(tablist).toHaveAttribute('role', 'tablist');
+  await expect(tablist).toHaveAttribute('aria-label', 'Process steps');
+});
+
 regressionTest('should change tab', async ({ mount, page }) => {
   await mount(`
     <ix-tabs active-tab-key="tab-1">

@@ -8,10 +8,10 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 @use '~animate.css/animate.min';
 
+@use './menu.vars' as *;
 $menu-expanded-width: 16rem;
 
 :host {
@@ -20,7 +20,7 @@ $menu-expanded-width: 16rem;
   position: absolute;
   height: 100%;
   min-height: min-content;
-  z-index: var(--theme-z-index-sticky);
+  z-index: var(--ix-menu--z-index);
   width: auto;
 
   bottom: 0;
@@ -42,7 +42,7 @@ $menu-expanded-width: 16rem;
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
+      outline: 1px solid var(--ix-menu-tabs--outline-color--focus);
       outline-offset: -1px;
     }
   }
@@ -74,7 +74,7 @@ $menu-expanded-width: 16rem;
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
+      outline: 1px solid var(--ix-menu-navigation--outline-color--focus);
       outline-offset: -1px;
     }
   }
@@ -83,23 +83,23 @@ $menu-expanded-width: 16rem;
     opacity: 0;
     position: absolute;
     width: 100%;
-    height: 0.625rem;
+    height: 0.0625rem;
 
-    background: linear-gradient(var(--theme-color-shadow-1), transparent);
+    background-color: var(--ix-menu--background);
+    box-sizing: border-box;
+    box-shadow: var(--ix-menu-tabs-shadow--box-shadow);
     pointer-events: none;
-    z-index: var(--theme-z-index-sticky);
+    z-index: var(--ix-menu--z-index);
 
-    transition: opacity var(--theme-default-time);
+    transition: opacity var(--ix-menu-tabs-shadow--transition-duration);
   }
 
   .tabs--shadow-top {
     top: 0;
-    background: linear-gradient(var(--theme-color-shadow-1), transparent);
   }
 
   .tabs--shadow-bottom {
-    bottom: 0;
-    background: linear-gradient(transparent, var(--theme-color-shadow-1));
+    transform: rotate(180deg);
   }
 
   .tabs--shadow--show {
@@ -118,11 +118,11 @@ $menu-expanded-width: 16rem;
     padding-left: var(--ix-application-menu-safe-area-left, 0rem);
 
     &.expanded {
-      box-shadow: var(--theme-navigation--box-shadow);
+      box-shadow: var(--ix-menu--box-shadow);
     }
 
-    background-color: var(--theme-nav--background);
-    transition: width var(--theme-default-time) ease-in-out;
+    background-color: var(--ix-menu--background);
+    transition: width var(--ix-menu-panel--transition-duration) ease-in-out;
   }
 
   .menu-overlay {
@@ -133,8 +133,8 @@ $menu-expanded-width: 16rem;
     left: 3.25rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
-    background-color: var(--theme-sidebar-overlay-blur);
-    transition: left var(--theme-default-time) ease-in-out;
+    background-color: var(--ix-menu-overlay--background);
+    transition: left var(--ix-menu-overlay--transition-duration) ease-in-out;
   }
 
   .menu-overlay.visible {

@@ -1,0 +1,41 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-tab-item-pill--background: #{sys.$si-sys-background-0};
+  --ix-tab-item--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-tab-item-pill-outline--color: #{sys.$si-sys-text-primary};
+  --ix-tab-item-animated-circle--background: #{sys.$si-sys-background-1};
+  --ix-tab-item-animated-circle--background--active: #{sys.$si-sys-background-accent-secondary-active};
+  --ix-tab-item-animated-circle--background--disabled: rgba(0, 0, 0, 0);
+  --ix-tab-item-animated-circle--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
+  --ix-tab-item-animated-circle--background--selected: rgba(0, 0, 0, 0);
+  --ix-tab-item-animated-circle--border-color: rgba(0, 0, 0, 0);
+  --ix-tab-item-animated-circle--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-tab-item-animated-circle--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-tab-item-animated-icon--color: #{sys.$si-sys-text-primary};
+  --ix-tab-item-animated-icon--color--selected: #{sys.$si-sys-text-accent-hover};
+  --ix-tab-item--background: rgba(0, 0, 0, 0);
+  --ix-tab-item--background--active: #{sys.$si-sys-background-accent-secondary-active};
+  --ix-tab-item--background--disabled: rgba(0, 0, 0, 0);
+  --ix-tab-item--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
+  --ix-tab-item--background--selected: rgba(0, 0, 0, 0);
+  --ix-tab-item--color: #{sys.$si-sys-text-primary};
+  --ix-tab-item--color--active: #{sys.$si-sys-text-primary};
+  --ix-tab-item--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-tab-item--color--hover: #{sys.$si-sys-text-primary};
+  --ix-tab-item--color--selected: #{sys.$si-sys-text-accent-hover};
+  --ix-tab-item-indicator--background--disabled: #{sys.$si-sys-border-3};
+  --ix-tab-item-indicator--background--selected: #{sys.$si-sys-background-accent-hover};
+  --ix-tab-item-pill--border-color: #{sys.$si-sys-border-3};
+  --ix-tab-item-pill--border-color--disabled: #{sys.$si-sys-border-3};
+  --ix-tab-item-pill--border-color--selected: #{sys.$si-sys-border-accent-hover};
+}

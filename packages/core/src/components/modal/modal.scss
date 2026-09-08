@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './modal.vars' as *;
 ::backdrop {
-  background: var(--theme-color-lightbox, #0000008c);
+  background: var(--ix-modal-backdrop--background);
 }
 
 :focus-visible {
@@ -35,10 +36,10 @@
     flex-direction: column;
     position: fixed;
     border: none;
-    border-radius: var(--theme-default-border-radius);
-    background: var(--theme-modal--background);
-    box-shadow: var(--theme-shadow-4);
-    color: var(--theme-color-std-text);
+    border-radius: var(--ix-modal--border-radius);
+    background: var(--ix-modal--background);
+    box-shadow: var(--ix-modal--box-shadow);
+    color: var(--ix-modal--color);
     overflow: visible;
     max-height: 80vh;
     pointer-events: all;
@@ -95,7 +96,7 @@
   }
 
   dialog.modal-size-full-screen::backdrop {
-    background: var(--theme-modal--background);
+    background: var(--ix-modal--background);
   }
 
   .dialog-backdrop {
