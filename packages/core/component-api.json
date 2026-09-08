@@ -5908,7 +5908,7 @@
       "events": [
         {
           "name": "itemOrderChange",
-          "detail": "ListItemOrderChangeEvent",
+          "detail": "{ item: HTMLIxListItemElement; oldIndex: number; newIndex: number; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,

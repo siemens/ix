@@ -43,9 +43,8 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
-import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item";
-import { ListItemActionSlotAlignment as ListItemActionSlotAlignment1, ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
+import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
+import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -103,9 +102,8 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list";
-export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item";
-export { ListItemActionSlotAlignment as ListItemActionSlotAlignment1, ListItemVariant as ListItemVariant1 } from "./components/list-item/list-item";
+export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
+export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -2716,7 +2714,7 @@ export namespace Components {
           * @since 6.0.0
           * @default 'center'
          */
-        "actionSlotAlignment": ListItemActionSlotAlignment1;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
         /**
           * Accessible label for the selection checkbox.
           * @since 6.0.0
@@ -2778,7 +2776,7 @@ export namespace Components {
           * @since 6.0.0
           * @default 'filled'
          */
-        "variant": ListItemVariant1;
+        "variant": ListItemVariant;
     }
     /**
      * Standalone horizontal separator for list content.
@@ -9968,7 +9966,7 @@ declare namespace LocalJSX {
           * @since 6.0.0
           * @default 'center'
          */
-        "actionSlotAlignment"?: ListItemActionSlotAlignment1;
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
         /**
           * Accessible label for the selection checkbox.
           * @since 6.0.0
@@ -10040,7 +10038,7 @@ declare namespace LocalJSX {
           * @since 6.0.0
           * @default 'filled'
          */
-        "variant"?: ListItemVariant1;
+        "variant"?: ListItemVariant;
     }
     /**
      * Standalone horizontal separator for list content.

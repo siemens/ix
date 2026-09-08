@@ -17,20 +17,16 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { createMutationObserver } from '../utils/mutation-observer';
+import type {
+  ListDragBehavior,
+  ListItemGap,
+  ListItemOrderChangeEvent,
+} from './list.types';
 import type {
   ListItemActionSlotAlignment,
   ListItemVariant,
-} from '../list-item/list-item';
-import { createMutationObserver } from '../utils/mutation-observer';
-
-export type ListItemGap = 0 | 4 | 8 | 12;
-export type ListDragBehavior = 'dynamic' | 'separator';
-
-export interface ListItemOrderChangeEvent {
-  item: HTMLIxListItemElement;
-  oldIndex: number;
-  newIndex: number;
-}
+} from '../list-item/list-item.types';
 
 const actionFocusableSelector = [
   'button',

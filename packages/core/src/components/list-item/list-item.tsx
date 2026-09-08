@@ -31,9 +31,10 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 import { makeRef } from '../utils/make-ref';
-
-export type ListItemVariant = 'ghost' | 'outline' | 'filled';
-export type ListItemActionSlotAlignment = 'start' | 'center';
+import type {
+  ListItemActionSlotAlignment,
+  ListItemVariant,
+} from './list-item.types';
 
 const interactiveElementSelector = [
   'a[href]',
