@@ -1,0 +1,12 @@
+- main:
+  - heading "Recommended maintenance actions" [level=3]
+  - paragraph: The compressor is operating within the expected range. Schedule the next inspection during the Friday service window and keep monitoring the vibration trend.
+  - list:
+    - listitem: Review the acknowledged alarms from the last shift.
+    - listitem: Confirm that spare parts are available before the service window.
+    - listitem: Share the summary with the maintenance lead.
+  - button "Copy response"
+  - button "Helpful response"
+  - button "Not helpful response"
+  - button "Regenerate response"
+  - button "Sources"

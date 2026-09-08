@@ -27,6 +27,9 @@ import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
+/**
+ * @slot default - Range field controls.
+ */
 @Component({
   tag: 'ix-range-field',
   styleUrl: 'range-field.scss',

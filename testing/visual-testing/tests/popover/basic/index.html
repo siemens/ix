@@ -1,0 +1,39 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Popover basic</title>
+  </head>
+  <body style="padding: 12rem">
+    <ix-button id="trigger">Open</ix-button>
+    <ix-popover
+      id="popover"
+      trigger="trigger"
+      placement="bottom"
+      has-spike
+      close-on-click-outside
+    >
+      <ix-popover-header>Popover title</ix-popover-header>
+      <ix-popover-content>Popover body content</ix-popover-content>
+      <ix-popover-footer>
+        <ix-button variant="secondary">Cancel</ix-button>
+        <ix-button>Save</ix-button>
+      </ix-popover-footer>
+    </ix-popover>
+    <script type="module">
+      await customElements.whenDefined('ix-popover');
+      await document.querySelector('ix-popover')?.showPopover();
+    </script>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

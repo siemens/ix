@@ -1,5 +1,49 @@
 # @siemens/ix-vue
 
+## 5.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`5d02ab3`](https://github.com/siemens/ix/commit/5d02ab3c3eea160d19037a5759729311e1252b7a), [`e360630`](https://github.com/siemens/ix/commit/e36063060e068961793f91b38c33cfbcfa93e9c8), [`b911a9c`](https://github.com/siemens/ix/commit/b911a9c5f1633c4042b20f2d01415517e4c54a08), [`717182a`](https://github.com/siemens/ix/commit/717182a683d9ec7c97fc27b795e7b4ef46c3355d), [`008bc32`](https://github.com/siemens/ix/commit/008bc3230884845eb37d30ae887824d4ab79cf0a), [`ebeb523`](https://github.com/siemens/ix/commit/ebeb523a3bd0908afd152be31a925a61e887600e)]:
+  - @siemens/ix@5.2.1
+
+## 5.2.0
+
+### Minor Changes
+
+- [#2645](https://github.com/siemens/ix/pull/2645) [`09fa2b6`](https://github.com/siemens/ix/commit/09fa2b60e98b7bca57355f70267d0a8cd8e2dbe8) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Introduces `ix-badge` for overlay count and status indicators on anchors or as standalone badges, with semantic variants, outline mode, position/offset, optional attention animation, and standalone `tooltipText` support.
+
+### Patch Changes
+
+- [#2698](https://github.com/siemens/ix/pull/2698) [`38b9440`](https://github.com/siemens/ix/commit/38b9440c04d0995d2446fd6d843156d4f1c8c68b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Update ix-icons peer dependency to V3.5.0.
+
+- [#2676](https://github.com/siemens/ix/pull/2676) [`60d38b5`](https://github.com/siemens/ix/commit/60d38b50f2d2412aba1c491f799dc2d7e4bcb63c) Thanks [@benjgil](https://github.com/benjgil)! - Fix incorrect `types` path in published package by setting `rootDir` to `src` in tsconfig, so declaration files are emitted at `dist/index.d.ts` instead of `dist/src/index.d.ts`.
+
+- Updated dependencies [[`697b49f`](https://github.com/siemens/ix/commit/697b49fc3cd3db4029d346c8db71156c58a798c2), [`697b49f`](https://github.com/siemens/ix/commit/697b49fc3cd3db4029d346c8db71156c58a798c2), [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86), [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86), [`70e1c5c`](https://github.com/siemens/ix/commit/70e1c5cf686f8999a1de1ee8a91ba2bc1f9a9c86), [`8e7565b`](https://github.com/siemens/ix/commit/8e7565b144c127d0c5cb1b9e038d43a5eab56ee3), [`5c43ed5`](https://github.com/siemens/ix/commit/5c43ed51616a11dcf15519e7a5b16e05ec26cbb0), [`a14ae0a`](https://github.com/siemens/ix/commit/a14ae0ab7dccdcfa16b28a0bbf7b7c5dfb76d252), [`1ef341b`](https://github.com/siemens/ix/commit/1ef341b2e6258240fadf4699b2fa3e3dd8435703), [`38b9440`](https://github.com/siemens/ix/commit/38b9440c04d0995d2446fd6d843156d4f1c8c68b), [`09fa2b6`](https://github.com/siemens/ix/commit/09fa2b60e98b7bca57355f70267d0a8cd8e2dbe8), [`81e7e24`](https://github.com/siemens/ix/commit/81e7e24b6edf434f374447f0efe17dfad0f239e2), [`aea81f5`](https://github.com/siemens/ix/commit/aea81f579131e02bdf7e5cfb3f2e300321e3f965)]:
+  - @siemens/ix@5.2.0
+
+## 5.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`1eee43f`](https://github.com/siemens/ix/commit/1eee43f4abb64db905bca3254dc1965b13c6d067), [`31aec70`](https://github.com/siemens/ix/commit/31aec70c834f616fe99d68422dc96206b57ffe54)]:
+  - @siemens/ix@5.1.1
+
+## 5.1.0
+
+### Patch Changes
+
+- [#2586](https://github.com/siemens/ix/pull/2586) [`74d6524`](https://github.com/siemens/ix/commit/74d652426bfdbb188d8460dc025a352b67f99506) Thanks [@GayatriK2002](https://github.com/GayatriK2002)! - Disabled buttons are now correctly inaccessible, preventing unintended interactions.
+
+- [#2618](https://github.com/siemens/ix/pull/2618) [`d9fe735`](https://github.com/siemens/ix/commit/d9fe735dbc430d94ae63ad427710dfb484f502f3) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix `ix-select` so the hidden focus proxy no longer creates an unnecessary dropdown scrollbar when the select is rendered lower in the viewport.
+
+  Fixes [#2615](https://github.com/siemens/ix/issues/2615)
+
+- [#2575](https://github.com/siemens/ix/pull/2575) [`1342470`](https://github.com/siemens/ix/commit/1342470aed386d0ca9a28d85c0064b12be54b66c) Thanks [@danielleroux](https://github.com/danielleroux)! - Update stencil and stencil output target to latest version
+
+- Updated dependencies [[`a16ab0a`](https://github.com/siemens/ix/commit/a16ab0a66673340870cd66e2b394a0225dfd73e1), [`5ad2fc5`](https://github.com/siemens/ix/commit/5ad2fc5cf44056c28c1deea56aa8e974c79ef39f), [`d1c6895`](https://github.com/siemens/ix/commit/d1c68956f67726af2d2d59adafd1d82a233f60be), [`7c34939`](https://github.com/siemens/ix/commit/7c34939c4589d31ee51cf0564ff59bdc08121426), [`74d6524`](https://github.com/siemens/ix/commit/74d652426bfdbb188d8460dc025a352b67f99506), [`0648d8d`](https://github.com/siemens/ix/commit/0648d8dac0ca906892786503f2bba60ad2c6a37b), [`7a6cb52`](https://github.com/siemens/ix/commit/7a6cb52cbaf17997e482e5e2e14dd2d7485bf039), [`d9fe735`](https://github.com/siemens/ix/commit/d9fe735dbc430d94ae63ad427710dfb484f502f3), [`e727b72`](https://github.com/siemens/ix/commit/e727b72162027a8278dd518cebd952e9edd2ea93), [`1342470`](https://github.com/siemens/ix/commit/1342470aed386d0ca9a28d85c0064b12be54b66c), [`33c0eb9`](https://github.com/siemens/ix/commit/33c0eb9616610a62af194b5fba0eebdb4d26efe5), [`94017ad`](https://github.com/siemens/ix/commit/94017adda0e5a2d14c36c03d624d8e20f921dde8), [`3244cb6`](https://github.com/siemens/ix/commit/3244cb6f6444b7b1714f014d7fb1bac5b1f6741a), [`5f2fa82`](https://github.com/siemens/ix/commit/5f2fa82dba306886452dc0428fcfb83b94306fa4), [`6fed3ff`](https://github.com/siemens/ix/commit/6fed3ff443c38408735a46d165005d3932c74661), [`6fed3ff`](https://github.com/siemens/ix/commit/6fed3ff443c38408735a46d165005d3932c74661), [`a2f425c`](https://github.com/siemens/ix/commit/a2f425c4fa4d7eb4f47d11b2bdc760d287ef464d), [`ffd8c48`](https://github.com/siemens/ix/commit/ffd8c48a597aab7a5bb1a79cf92f5e84953510c9), [`64e649a`](https://github.com/siemens/ix/commit/64e649a2954aea5d694f6631c8e45a20bcc57c75), [`47d93f3`](https://github.com/siemens/ix/commit/47d93f33213ee841f181283fec99decd0b1f8a0a), [`f66d556`](https://github.com/siemens/ix/commit/f66d556d359719455765b66a603e4ab664b44ac2)]:
+  - @siemens/ix@5.1.0
+
 ## 5.0.0
 
 ### Major Changes

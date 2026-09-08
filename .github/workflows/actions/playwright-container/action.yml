@@ -1,0 +1,40 @@
+name: 'Run in Playwright container'
+description: 'Runs a command inside the pinned Playwright image. The workspace is bind-mounted, so installs and builds stay on the host runner and only browser work is containerized.'
+inputs:
+  run:
+    description: 'Command to execute inside the container. Must be a literal, never interpolated data. Pass dynamic values through the env input and reference them as shell variables.'
+    required: true
+  env:
+    description: 'Environment variables handed to the container as KEY=VALUE lines. Values are forwarded as data and are never parsed as shell.'
+    required: false
+    default: ''
+  image:
+    description: 'Playwright image to use. Keep aligned with the playwright version in pnpm-workspace.yaml.'
+    required: false
+    default: 'mcr.microsoft.com/playwright:v1.58.1-noble'
+runs:
+  using: 'composite'
+  steps:
+    - name: Run in Playwright container
+      shell: bash
+      env:
+        PLAYWRIGHT_IMAGE: ${{ inputs.image }}
+        PLAYWRIGHT_COMMAND: ${{ inputs.run }}
+        PLAYWRIGHT_ENV: ${{ inputs.env }}
+      run: |
+        echo "Running in $PLAYWRIGHT_IMAGE: $PLAYWRIGHT_COMMAND"
+
+        ENV_FILE="$(mktemp)"
+        trap 'rm -f "$ENV_FILE"' EXIT
+        printf '%s\n' "$PLAYWRIGHT_ENV" | grep -v '^[[:space:]]*$' > "$ENV_FILE" || true
+
+        docker run --rm --init --ipc=host \
+          --volume "$GITHUB_WORKSPACE":"$GITHUB_WORKSPACE" \
+          --workdir "$GITHUB_WORKSPACE" \
+          --env-file "$ENV_FILE" \
+          --env CI \
+          --env GITHUB_ACTIONS \
+          --env PLAYWRIGHT_COMMAND \
+          --env COREPACK_ENABLE_DOWNLOAD_PROMPT=0 \
+          "$PLAYWRIGHT_IMAGE" \
+          bash "$GITHUB_WORKSPACE/.github/workflows/actions/playwright-container/entrypoint.sh"

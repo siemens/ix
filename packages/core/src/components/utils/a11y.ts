@@ -129,7 +129,7 @@ export type A11yAttributeName =
   | 'aria-valuenow'
   | 'aria-valuetext';
 
-const a11yAttributes: A11yAttributeName[] = [
+export const a11yAttributes: A11yAttributeName[] = [
   'role',
   'aria-activedescendant',
   'aria-atomic',

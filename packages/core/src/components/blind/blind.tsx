@@ -26,6 +26,11 @@ import Animation from '../utils/animation';
 
 let sequentialInstanceId = 0;
 
+/**
+ * @slot custom-header - Custom content inside blind header.
+ * @slot header-actions - Actions displayed at the end of the header.
+ * @slot default - Expandable blind content.
+ */
 @Component({
   tag: 'ix-blind',
   styleUrl: 'blind.scss',
@@ -96,12 +101,16 @@ export class Blind {
   }
 
   private rotateChevronUp() {
-    animate(this.chevronRef!, {
+    if (!this.chevronRef || !this.content) {
+      return;
+    }
+
+    animate(this.chevronRef, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 180,
     });
-    animate(this.content!, {
+    animate(this.content, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 1,
@@ -109,12 +118,16 @@ export class Blind {
   }
 
   private rotateChevronDown() {
-    animate(this.chevronRef!, {
+    if (!this.chevronRef || !this.content) {
+      return;
+    }
+
+    animate(this.chevronRef, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 0,
     });
-    animate(this.content!, {
+    animate(this.content, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 0,
@@ -148,11 +161,6 @@ export class Blind {
             <ix-icon
               class="collapse-icon"
               name={iconChevronDownSmall}
-              color={
-                this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-std-text'
-                  : `color-${this.variant}--contrast`
-              }
               aria-hidden="true"
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
@@ -166,11 +174,6 @@ export class Blind {
                     <ix-icon
                       class="blind-header-title-icon"
                       name={this.icon}
-                      color={
-                        this.variant === 'filled' || this.variant === 'outline'
-                          ? 'color-std-text'
-                          : `color-${this.variant}--contrast`
-                      }
                     ></ix-icon>
                   )}
                   <div class={'blind-header-title-row'}>

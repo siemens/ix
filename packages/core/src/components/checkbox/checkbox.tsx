@@ -18,14 +18,17 @@ import {
   Host,
   Method,
   Prop,
+  State,
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import { hasSlottedContent } from '../utils/shadow-dom';
 
 /**
  * @form-ready
+ * @slot default - Checkbox label.
  */
 @Component({
   tag: 'ix-checkbox',
@@ -92,6 +95,10 @@ export class Checkbox implements IxFormComponent<string> {
 
   private touched = false;
 
+  @State() private hasDefaultSlotElements = false;
+
+  private defaultSlotElement?: HTMLSlotElement;
+
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
   });
@@ -114,6 +121,18 @@ export class Checkbox implements IxFormComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue();
+  }
+
+  componentDidLoad() {
+    this.updateDefaultSlotElements();
+  }
+
+  private updateDefaultSlotElements() {
+    this.hasDefaultSlotElements = hasSlottedContent(this.defaultSlotElement);
+  }
+
+  private get isLabelLess() {
+    return !this.label && !this.hasDefaultSlotElements;
   }
 
   updateFormInternalValue() {
@@ -164,7 +183,7 @@ export class Checkbox implements IxFormComponent<string> {
               y="8"
               width="12"
               height="2"
-              fill="var(--ix-checkbox-check-color)"
+              fill="var(--ix-checkbox-checkmark--color)"
             />
           </Fragment>
         )}
@@ -172,7 +191,7 @@ export class Checkbox implements IxFormComponent<string> {
         {this.checked && (
           <path
             d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
-            stroke="var(--ix-checkbox-check-color)"
+            stroke="var(--ix-checkbox-checkmark--color)"
             stroke-width="2"
           />
         )}
@@ -190,6 +209,7 @@ export class Checkbox implements IxFormComponent<string> {
           disabled: this.disabled,
           checked: this.checked,
           indeterminate: this.indeterminate,
+          'label-less': this.isLabelLess,
         }}
         onFocus={() => (this.touched = true)}
         onBlur={() => this.ixBlur.emit()}
@@ -204,21 +224,28 @@ export class Checkbox implements IxFormComponent<string> {
             type="checkbox"
             onChange={() => this.setCheckedState(!this.checked)}
           />
-          <button
-            disabled={this.disabled}
-            class={{
-              checked: this.checked,
-            }}
-            onClick={() => this.setCheckedState(!this.checked)}
-          >
-            {this.renderCheckmark()}
-          </button>
+          <div class="checkbox-button">
+            <button
+              disabled={this.disabled}
+              class={{
+                checked: this.checked,
+              }}
+              onClick={() => this.setCheckedState(!this.checked)}
+            >
+              {this.renderCheckmark()}
+            </button>
+          </div>
           <ix-typography
             format="label"
             textColor={this.disabled ? 'weak' : 'std'}
           >
             {this.label}
-            <slot></slot>
+            <slot
+              onSlotchange={() => this.updateDefaultSlotElements()}
+              ref={(element) =>
+                (this.defaultSlotElement = element as HTMLSlotElement)
+              }
+            ></slot>
           </ix-typography>
         </label>
       </Host>

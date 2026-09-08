@@ -10,6 +10,9 @@
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * @slot default - Link button label.
+ */
 @Component({
   tag: 'ix-link-button',
   styleUrl: 'link-button.scss',

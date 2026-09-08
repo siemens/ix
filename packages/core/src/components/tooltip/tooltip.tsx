@@ -49,6 +49,7 @@ let tooltipInstance = 0;
 /**
  * @slot title-icon - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title
+ * @slot default - Tooltip body content.
  */
 @Component({
   tag: 'ix-tooltip',
@@ -165,7 +166,13 @@ export class Tooltip {
     placement,
     middlewareData,
   }: ComputePositionReturn): ArrowPosition | undefined {
-    let { x, y } = middlewareData.arrow!;
+    const arrow = middlewareData.arrow;
+
+    if (!arrow) {
+      return undefined;
+    }
+
+    let { x, y } = arrow;
     const resetPosition = {
       top: 'unset',
       right: 'unset',

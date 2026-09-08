@@ -1,6 +1,9 @@
 import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponentInterface } from '../utils/internal';
 
+/**
+ * @slot default - Content arranged by the automatic layout.
+ */
 @Component({
   tag: 'ix-layout-auto',
   styleUrl: 'layout-auto.scss',

@@ -12,6 +12,7 @@ export const IxSelect: StencilVueComponent<JSX.IxSelect, JSX.IxSelect["value"]> 
   'label',
   'ariaLabelClearIconButton',
   'ariaLabelAddItem',
+  'i18nMoreItems',
   'warningText',
   'infoText',
   'invalidText',

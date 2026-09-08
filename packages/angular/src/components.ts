@@ -112,6 +112,29 @@ export declare interface IxAvatar extends Components.IxAvatar {}
 
 
 @ProxyCmp({
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant']
+})
+@Component({
+  selector: 'ix-badge',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignLeft', 'ariaLabelIcon', 'background', 'badgeColor', 'border', 'enableAnimation', 'icon', 'label', 'offsetX', 'offsetY', 'outline', 'position', 'tooltipText', 'type', 'variant'],
+  standalone: false
+})
+export class IxBadge {
+  protected el: HTMLIxBadgeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxBadge extends Components.IxBadge {}
+
+
+@ProxyCmp({
   inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
 })
 @Component({
@@ -308,7 +331,7 @@ export class IxCardList {
   protected el: HTMLIxCardListElement;
   @Output() collapseChanged = new EventEmitter<CustomEvent<boolean>>();
   @Output() showAllClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
-  @Output() showMoreCardClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>();
+  @Output() showMoreCardClick = new EventEmitter<CustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -328,7 +351,7 @@ export declare interface IxCardList extends Components.IxCardList {
   /**
    * Fire event when the show more card is clicked.
    */
-  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; }>>;
+  showMoreCardClick: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>;
 }
 
 
@@ -400,6 +423,154 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
    */
   filterCleared: EventEmitter<CustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChat {
+  protected el: HTMLIxChatElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChat extends Components.IxChat {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat-ai-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxChatAiMessage {
+  protected el: HTMLIxChatAiMessageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAiMessage extends Components.IxChatAiMessage {}
+
+
+@ProxyCmp({
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status']
+})
+@Component({
+  selector: 'ix-chat-attachment',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['fileName', 'hideRemoveButton', 'icon', 'previewSupported', 'removeAriaLabel', 'status'],
+  outputs: ['attachmentClick', 'removeClick'],
+  standalone: false
+})
+export class IxChatAttachment {
+  protected el: HTMLIxChatAttachmentElement;
+  @Output() attachmentClick = new EventEmitter<CustomEvent<void>>();
+  @Output() removeClick = new EventEmitter<CustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatAttachment extends Components.IxChatAttachment {
+  /**
+   * Event emitted when the attachment is clicked.
+   */
+  attachmentClick: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the remove action is clicked.
+   */
+  removeClick: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-chat-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
+  standalone: false
+})
+export class IxChatInput {
+  protected el: HTMLIxChatInputElement;
+  @Output() valueChange = new EventEmitter<CustomEvent<string>>();
+  @Output() ixBlur = new EventEmitter<CustomEvent<void>>();
+  @Output() ixChange = new EventEmitter<CustomEvent<string>>();
+  @Output() promptSubmit = new EventEmitter<CustomEvent<string>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatInput extends Components.IxChatInput {
+  /**
+   * Event emitted when the value of the chat input changes.
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the chat input loses focus.
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the chat input loses focus and the value has changed.
+   */
+  ixChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the prompt is submitted by the send button or Enter key.
+   */
+  promptSubmit: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['message']
+})
+@Component({
+  selector: 'ix-chat-user-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['message'],
+  standalone: false
+})
+export class IxChatUserMessage {
+  protected el: HTMLIxChatUserMessageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatUserMessage extends Components.IxChatUserMessage {}
 
 
 @ProxyCmp({
@@ -541,14 +712,14 @@ export declare interface IxContent extends Components.IxContent {}
 
 
 @ProxyCmp({
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant']
 })
 @Component({
   selector: 'ix-content-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant'],
   outputs: ['backButtonClick'],
   standalone: false
 })
@@ -1124,14 +1295,14 @@ export declare interface IxFieldLabel extends Components.IxFieldLabel {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly']
+  inputs: ['ariaLabelCloseIconButton', 'disabled', 'hideCloseButton', 'readonly']
 })
 @Component({
   selector: 'ix-filter-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCloseIconButton', 'disabled', 'readonly'],
+  inputs: ['ariaLabelCloseIconButton', 'disabled', 'hideCloseButton', 'readonly'],
   outputs: ['closeClick'],
   standalone: false
 })
@@ -1558,7 +1729,7 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
+  inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nAriaLabelMenu', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nNavigationHint', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1566,7 +1737,7 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
+  inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nAriaLabelMenu', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nNavigationHint', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   outputs: ['expandChange', 'mapExpandChange', 'openAppSwitch', 'openSettings', 'openAbout'],
   standalone: false
 })
@@ -2106,14 +2277,14 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
+  inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'noPadding', 'size', 'variant']
 })
 @Component({
   selector: 'ix-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
+  inputs: ['ariaLabelCollapseCloseButton', 'ariaLabelIcon', 'borderless', 'closeOnClickOutside', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'noPadding', 'size', 'variant'],
   outputs: ['expandedChanged', 'variantChanged', 'borderlessChanged'],
   standalone: false
 })
@@ -2193,6 +2364,142 @@ export class IxPill {
 
 
 export declare interface IxPill extends Components.IxPill {}
+
+
+@ProxyCmp({
+  inputs: ['closeOnClickOutside', 'hasSpike', 'placement', 'show', 'trigger', 'triggerMode'],
+  methods: ['showPopover', 'hidePopover']
+})
+@Component({
+  selector: 'ix-popover',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['closeOnClickOutside', 'hasSpike', 'placement', 'show', 'trigger', 'triggerMode'],
+  outputs: ['showChange', 'showChanged'],
+  standalone: false
+})
+export class IxPopover {
+  protected el: HTMLIxPopoverElement;
+  @Output() showChange = new EventEmitter<CustomEvent<boolean>>();
+  @Output() showChanged = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopover extends Components.IxPopover {
+  /**
+   * Fires before visibility changes. Cancel to prevent. @since 5.1.0
+   */
+  showChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Fires after visibility has changed @since 5.1.0
+   */
+  showChanged: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['noPadding']
+})
+@Component({
+  selector: 'ix-popover-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['noPadding'],
+  standalone: false
+})
+export class IxPopoverContent {
+  protected el: HTMLIxPopoverContentElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverContent extends Components.IxPopoverContent {}
+
+
+@ProxyCmp({
+  inputs: ['alignment']
+})
+@Component({
+  selector: 'ix-popover-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['alignment'],
+  standalone: false
+})
+export class IxPopoverFooter {
+  protected el: HTMLIxPopoverFooterElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverFooter extends Components.IxPopoverFooter {}
+
+
+@ProxyCmp({
+  inputs: ['ariaLabelCloseIconButton', 'hideClose', 'icon', 'iconColor']
+})
+@Component({
+  selector: 'ix-popover-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaLabelCloseIconButton', 'hideClose', 'icon', 'iconColor'],
+  outputs: ['closeClick'],
+  standalone: false
+})
+export class IxPopoverHeader {
+  protected el: HTMLIxPopoverHeaderElement;
+  @Output() closeClick = new EventEmitter<CustomEvent<MouseEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverHeader extends Components.IxPopoverHeader {
+  /**
+   * Fires when close button is clicked.
+Cancel to prevent closing. @since 5.1.0
+   */
+  closeClick: EventEmitter<CustomEvent<MouseEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['image', 'imageAlt']
+})
+@Component({
+  selector: 'ix-popover-image',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['image', 'imageAlt'],
+  standalone: false
+})
+export class IxPopoverImage {
+  protected el: HTMLIxPopoverImageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPopoverImage extends Components.IxPopoverImage {}
 
 
 @ProxyCmp({
@@ -2357,7 +2664,7 @@ export declare interface IxRow extends Components.IxRow {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'ariaLabelAddItem', 'ariaLabelClearIconButton', 'collapseMultipleSelection', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'enableTopLayer', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nRemoveSelectedItem', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'ariaLabelAddItem', 'ariaLabelClearIconButton', 'collapseMultipleSelection', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'enableTopLayer', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nMoreItems', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nRemoveSelectedItem', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2365,7 +2672,7 @@ export declare interface IxRow extends Components.IxRow {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'ariaLabelAddItem', 'ariaLabelClearIconButton', 'collapseMultipleSelection', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'enableTopLayer', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nRemoveSelectedItem', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'ariaLabelAddItem', 'ariaLabelClearIconButton', 'collapseMultipleSelection', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'enableTopLayer', 'helperText', 'hideListHeader', 'i18nAllSelected', 'i18nMoreItems', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nRemoveSelectedItem', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'inputChange', 'addItem', 'ixBlur'],
   standalone: false
 })

@@ -52,7 +52,12 @@ test('use brand logo if provided', async ({ mount, page }) => {
   await page.evaluate(() => {
     const header = document.createElement('ix-application-header');
     header.name = 'Test';
-    document.querySelector('#mount')!.appendChild(header);
+
+    const element = document.querySelector('#mount');
+    if (!element) {
+      throw new Error('Expected `#mount` element');
+    }
+    element.appendChild(header);
   });
 
   const header = page.locator('ix-application-header');
@@ -95,7 +100,7 @@ test('use custom logo over brand logo', async ({ mount, page }) => {
 
     const header = document.createElement(
       'ix-application-header'
-    ) as HTMLIxApplicationHeader;
+    ) as HTMLIxApplicationHeaderElement;
     header.name = 'Test';
 
     header.appendChild(alternativeLogo);
@@ -137,7 +142,11 @@ test('use company logo property over brand logo', async ({ mount, page }) => {
     const header = document.createElement('ix-application-header');
     header.companyLogo = 'MY CUSTOM IMAGE PATH';
     header.companyLogoAlt = 'MY CUSTOM IMAGE ALT TEXT';
-    document.querySelector('#mount')!.appendChild(header);
+    const element = document.querySelector('#mount');
+    if (!element) {
+      throw new Error('Expected `#mount` element');
+    }
+    element.appendChild(header);
   });
 
   const header = page.locator('ix-application-header');

@@ -28,7 +28,21 @@ SPDX-License-Identifier: MIT
     </script>
   </head>
   <body>
-    <ix-dropdown-button label="Dropdown" icon="checkboxes">
+    <ix-dropdown-button
+      id="collapsed"
+      label="Dropdown"
+      icon="checkboxes"
+      variant="tertiary"
+    >
+      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+    </ix-dropdown-button>
+    <ix-dropdown-button
+      id="expanded"
+      label="Dropdown"
+      icon="checkboxes"
+      variant="tertiary"
+    >
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
     </ix-dropdown-button>

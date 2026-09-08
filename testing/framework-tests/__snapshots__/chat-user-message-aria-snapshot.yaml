@@ -1,0 +1,7 @@
+- main:
+  - button "shift_report .pdf" [disabled]
+  - button "operator_notes .txt" [disabled]
+  - text: Summarize the attached shift report.
+  - button "Copy message"
+  - button "Edit message"
+  - button "Show more actions"

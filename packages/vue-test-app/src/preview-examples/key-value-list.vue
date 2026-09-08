@@ -13,8 +13,8 @@ import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
 
 <template>
   <IxKeyValueList>
-    <IxKeyValue label="Label" labelPosition="left" value="Value"></IxKeyValue>
-    <IxKeyValue label="Label" labelPosition="left" value="Value"></IxKeyValue>
-    <IxKeyValue label="Label" labelPosition="left" value="Value"></IxKeyValue>
+    <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>
+    <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>
+    <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>
   </IxKeyValueList>
 </template>

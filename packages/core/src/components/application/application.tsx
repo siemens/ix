@@ -20,6 +20,13 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { themeSwitcher, ThemeVariant } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @slot application-header - Header displayed at the top of the application.
+ * @slot menu - Main application navigation.
+ * @slot application-sidebar - Sidebar displayed next to the main content.
+ * @slot default - Main application content.
+ * @slot bottom - Footer displayed below the main content.
+ */
 @Component({
   tag: 'ix-application',
   styleUrl: 'application.scss',

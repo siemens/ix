@@ -20,6 +20,9 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 import { iconClose } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot default - Modal header content.
+ */
 @Component({
   tag: 'ix-modal-header',
   styleUrl: 'modal-header.scss',
@@ -65,7 +68,8 @@ export class ModalHeader {
   }
 
   /**
-   * Icon color
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -75,13 +79,12 @@ export class ModalHeader {
    */
   @Event() closeClick!: EventEmitter<MouseEvent>;
 
-  private parentDialog!: HTMLIxModalElement;
+  private parentDialog?: HTMLIxModalElement;
 
   componentDidLoad() {
-    this.parentDialog = closestPassShadow(
-      this.hostElement,
-      'ix-modal'
-    ) as HTMLIxModalElement;
+    this.parentDialog = closestPassShadow(this.hostElement, 'ix-modal') as
+      | HTMLIxModalElement
+      | undefined;
     this.onIconChange(this.icon);
   }
 
@@ -91,7 +94,7 @@ export class ModalHeader {
       return;
     }
 
-    this.parentDialog.dismissModal();
+    this.parentDialog?.dismissModal();
   }
 
   render() {
@@ -116,7 +119,7 @@ export class ModalHeader {
             onClick={(event) => this.onCloseClick(event)}
             variant="tertiary"
             icon={iconClose}
-            iconColor="color-soft-text"
+            iconColor="--si-sys-text-secondary"
             aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}

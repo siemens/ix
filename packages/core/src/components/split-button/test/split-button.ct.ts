@@ -102,9 +102,13 @@ regressionTest(
       'aria-activedescendant'
     );
 
+    if (!activeDescendant) {
+      throw new Error('Expected active descendant id');
+    }
+
     const item1 = splitButton.getByRole('menuitem', { name: 'Item 1' });
     await expect(item1).toBeVisible();
-    await expect(item1).toHaveAttribute('id', activeDescendant!);
+    await expect(item1).toHaveAttribute('id', activeDescendant);
 
     const dropdownItem1 = splitButton.locator('ix-dropdown-item', {
       hasText: /Item 1/,
@@ -114,7 +118,7 @@ regressionTest(
     await page.keyboard.press('ArrowDown');
     const item2 = splitButton.getByRole('menuitem', { name: 'Item 1' });
     await expect(item2).toBeVisible();
-    await expect(item2).toHaveAttribute('id', activeDescendant!);
+    await expect(item2).toHaveAttribute('id', activeDescendant);
 
     const dropdownItem2 = splitButton.locator('ix-dropdown-item', {
       hasText: /Item 2/,

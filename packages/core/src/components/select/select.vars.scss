@@ -1,0 +1,40 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-select--box-shadow: var(--theme-inset-shadow-1);
+  --ix-select--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-select--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-select--background: #{sys.$si-sys-background-1};
+  --ix-select--background--hover: #{sys.$si-sys-background-4};
+  --ix-select--background--invalid: #{sys.$si-sys-background-1};
+  --ix-select--background--warning: #{sys.$si-sys-background-1};
+  --ix-select--border-color: #{sys.$si-sys-border-2};
+  --ix-select--border-color--disabled: #{sys.$si-sys-border-4};
+  --ix-select--border-color--hover: #{sys.$si-sys-border-1};
+  --ix-select--border-color--info: #{sys.$si-sys-border-information};
+  --ix-select--border-color--info--active: #{sys.$si-sys-border-information};
+  --ix-select--border-color--info--hover: #{sys.$si-sys-border-information};
+  --ix-select--border-color--invalid: #{sys.$si-sys-border-danger};
+  --ix-select--border-color--invalid--active: #{sys.$si-sys-border-danger};
+  --ix-select--border-color--invalid--hover: #{sys.$si-sys-border-danger};
+  --ix-select--border-color--readonly: #{sys.$si-sys-border-4};
+  --ix-select--border-color--warning: #{sys.$si-sys-background-warning};
+  --ix-select--border-color--warning--active: #{sys.$si-sys-background-warning};
+  --ix-select--border-color--warning--hover: #{sys.$si-sys-background-warning};
+  --ix-select--border-radius: var(--theme-small-border-radius);
+  --ix-select--border-width: var(--theme-border-width-default);
+  --ix-select--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-select--color--readonly: #{sys.$si-sys-text-primary};
+  --ix-select-icon--color: #{sys.$si-sys-text-primary};
+  --ix-select-item-hint--color: #{sys.$si-sys-text-secondary};
+  --ix-select-overflow-button--color--active: #{sys.$si-sys-text-primary};
+}

@@ -15,12 +15,18 @@ import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
+import AgGridStriped from '../preview-examples/aggrid-striped';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
+import Badge from '../preview-examples/badge';
+import BadgeCounter from '../preview-examples/badge-counter';
+import BadgeDot from '../preview-examples/badge-dot';
+import BadgeLabel from '../preview-examples/badge-label';
+import BadgeStatusIcon from '../preview-examples/badge-status-icon';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import Blind from '../preview-examples/blind';
@@ -47,12 +53,17 @@ import Card from '../preview-examples/card';
 import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Chat from '../preview-examples/chat';
+import ChatAiMessage from '../preview-examples/chat-ai-message';
+import ChatInput from '../preview-examples/chat-input';
+import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import ContentHeaderTextOverflow from '../preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
@@ -182,6 +193,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
+import Popover from '../preview-examples/popover';
 import PopoverNews from '../preview-examples/popover-news';
 import TooltipWithIcon from '../preview-examples/tooltip-with-icon';
 import ProgressIndicator from '../preview-examples/progress-indicator';
@@ -321,6 +333,10 @@ const routes: Routes = [
         component: AgGrid,
       },
       {
+        path: 'aggrid-striped',
+        component: AgGridStriped,
+      },
+      {
         path: 'avatar-image',
         component: AvatarImage,
       },
@@ -331,6 +347,26 @@ const routes: Routes = [
       {
         path: 'avatar',
         component: Avatar,
+      },
+      {
+        path: 'badge',
+        component: Badge,
+      },
+      {
+        path: 'badge-counter',
+        component: BadgeCounter,
+      },
+      {
+        path: 'badge-dot',
+        component: BadgeDot,
+      },
+      {
+        path: 'badge-label',
+        component: BadgeLabel,
+      },
+      {
+        path: 'badge-status-icon',
+        component: BadgeStatusIcon,
       },
       {
         path: 'blind-header-actions',
@@ -418,6 +454,22 @@ const routes: Routes = [
         component: CategoryFilter,
       },
       {
+        path: 'chat',
+        component: Chat,
+      },
+      {
+        path: 'chat-ai-message',
+        component: ChatAiMessage,
+      },
+      {
+        path: 'chat-input',
+        component: ChatInput,
+      },
+      {
+        path: 'chat-user-message',
+        component: ChatUserMessage,
+      },
+      {
         path: 'checkbox-indeterminate',
         component: CheckboxIndeterminate,
       },
@@ -500,6 +552,10 @@ const routes: Routes = [
       {
         path: 'content-header',
         component: ContentHeader,
+      },
+      {
+        path: 'content-header-text-overflow',
+        component: ContentHeaderTextOverflow,
       },
       {
         path: 'content-header-with-slot',
@@ -824,6 +880,7 @@ const routes: Routes = [
       { path: 'pane-layout', component: PaneLayout },
       { path: 'pill', component: Pill },
       { path: 'pill-variants', component: PillVariants },
+      { path: 'popover', component: Popover },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'radio', component: Radio },
@@ -874,10 +931,6 @@ const routes: Routes = [
         component: Pill,
       },
       { path: 'pill-variants', component: PillVariants },
-      {
-        path: 'popover-news',
-        component: PopoverNews,
-      },
       {
         path: 'push-card',
         component: PushCard,

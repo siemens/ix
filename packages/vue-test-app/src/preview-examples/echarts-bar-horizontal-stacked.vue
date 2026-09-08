@@ -63,6 +63,9 @@ const series = seriesData.map(
 );
 
 const options: EChartsOption = {
+  grid: {
+    bottom: 100,
+  },
   xAxis: {
     type: 'value',
     name: 'Revenue (in Millions of USD)',
@@ -78,7 +81,7 @@ const options: EChartsOption = {
   legend: {
     show: true,
     bottom: '0',
-    left: '0',
+    padding: 16,
   },
   series: series,
 } as EChartsOption;

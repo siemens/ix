@@ -63,7 +63,7 @@ function getOptions(): EChartsOption {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: getComputedCSSProperty('color-primary'),
+              color: getComputedCSSProperty('--si-sys-background-accent'),
             },
             { offset: 1, color: 'transparent' },
           ]),
@@ -75,7 +75,7 @@ function getOptions(): EChartsOption {
           ],
           label: {
             fontWeight: 'bold',
-            color: getComputedCSSProperty('color-inv-contrast-text'),
+            color: getComputedCSSProperty('--si-sys-text-inverse'),
           },
         },
         markLine: {

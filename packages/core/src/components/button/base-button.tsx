@@ -167,6 +167,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     <button
       {...commonAttributes}
       aria-disabled={a11yBoolean(props.disabled)}
+      disabled={props.disabled || props.loading}
       onClick={(e: Event) => handleOnClick(e, props)}
       type={props.type}
     >

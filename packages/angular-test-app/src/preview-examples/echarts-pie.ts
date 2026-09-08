@@ -47,7 +47,6 @@ export default class EchartsPie implements OnDestroy, OnInit {
       legend: {
         icon: 'rect',
         bottom: '0',
-        left: '0',
       },
       series: [
         {
@@ -57,7 +56,7 @@ export default class EchartsPie implements OnDestroy, OnInit {
           data: this.data,
           label: {
             show: true,
-            color: getComputedCSSProperty('color-neutral'),
+            color: getComputedCSSProperty('--si-sys-background-neutral'),
           },
           emphasis: {
             itemStyle: {

@@ -10,7 +10,6 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'legacy/mixins/fonts' as legacy-fonts;
-@use 'components/fonts';
 @use 'mixins/fonts' as font-mixins;
 
 :host {
@@ -18,7 +17,6 @@
   position: relative;
 
   @include component.ix-component;
-
 }
 
 :host(.text-xs) {
@@ -77,23 +75,110 @@
   @include legacy-fonts.text-xl;
 }
 
-$typography-formats: label, label-xs, label-sm, label-lg, body, body-xs, body-sm,
-  body-lg, display, display-xs, display-sm, display-lg, display-xl, display-xxl,
-  h6, h5, h4, h3, h2, h1, code, code-sm, code-lg;
-
-@each $format in $typography-formats {
-  :host(.typography-#{$format}) {
-    @extend .typography-#{$format};
-  }
+:host(.typography-label) {
+  @include font-mixins.typography-label;
 }
 
-$typography-decoration: none, underline, line-through;
-@each $decoration in $typography-decoration {
-  :host(.typography-decoration-#{$decoration}) {
-    @extend .typography-decoration-#{$decoration};
-  }
+:host(.typography-label-xs) {
+  @include font-mixins.typography-label-xs;
+}
+
+:host(.typography-label-sm) {
+  @include font-mixins.typography-label-sm;
+}
+
+:host(.typography-label-lg) {
+  @include font-mixins.typography-label-lg;
+}
+
+:host(.typography-body) {
+  @include font-mixins.typography-body;
+}
+
+:host(.typography-body-xs) {
+  @include font-mixins.typography-body-xs;
+}
+
+:host(.typography-body-sm) {
+  @include font-mixins.typography-body-sm;
+}
+
+:host(.typography-body-lg) {
+  @include font-mixins.typography-body-lg;
+}
+
+:host(.typography-display) {
+  @include font-mixins.typography-display;
+}
+
+:host(.typography-display-xs) {
+  @include font-mixins.typography-display-xs;
+}
+
+:host(.typography-display-sm) {
+  @include font-mixins.typography-display-sm;
+}
+
+:host(.typography-display-lg) {
+  @include font-mixins.typography-display-lg;
+}
+
+:host(.typography-display-xl) {
+  @include font-mixins.typography-display-xl;
+}
+
+:host(.typography-display-xxl) {
+  @include font-mixins.typography-display-xxl;
+}
+
+:host(.typography-h6) {
+  @include font-mixins.typography-h6;
+}
+
+:host(.typography-h5) {
+  @include font-mixins.typography-h5;
+}
+
+:host(.typography-h4) {
+  @include font-mixins.typography-h4;
+}
+
+:host(.typography-h3) {
+  @include font-mixins.typography-h3;
+}
+
+:host(.typography-h2) {
+  @include font-mixins.typography-h2;
+}
+
+:host(.typography-h1) {
+  @include font-mixins.typography-h1;
+}
+
+:host(.typography-code) {
+  @include font-mixins.typography-code;
+}
+
+:host(.typography-code-sm) {
+  @include font-mixins.typography-code-sm;
+}
+
+:host(.typography-code-lg) {
+  @include font-mixins.typography-code-lg;
+}
+
+:host(.typography-decoration-none) {
+  text-decoration: none !important;
+}
+
+:host(.typography-decoration-underline) {
+  text-decoration: underline !important;
+}
+
+:host(.typography-decoration-line-through) {
+  text-decoration: line-through !important;
 }
 
 :host(.typography-weight-bold) {
-  @extend .typography-weight-bold;
+  font-weight: 700 !important;
 }

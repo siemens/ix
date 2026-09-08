@@ -9,6 +9,7 @@ import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/component
 export const IxFilterChip: StencilVueComponent<JSX.IxFilterChip> = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', defineIxFilterChip, [
   'disabled',
   'readonly',
+  'hideCloseButton',
   'ariaLabelCloseIconButton',
   'closeClick'
 ], [

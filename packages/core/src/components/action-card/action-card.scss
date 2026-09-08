@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use './action-card.vars';
 
 :host {
   display: block;
@@ -20,6 +21,29 @@
   margin: 0.25rem 0;
 
   @include component.ix-component;
+
+  button {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    padding: 0;
+    border: 0;
+    border-radius: var(--ix-action-card--border-radius);
+    box-shadow: initial;
+
+    &:focus-visible {
+      outline: 1px solid var(--ix-action-card--outline-color--focus);
+      outline-offset: var(--ix-action-card--focus--outline-offset);
+    }
+
+    &[disabled] {
+      cursor: default;
+    }
+  }
 
   ix-card {
     width: 100%;

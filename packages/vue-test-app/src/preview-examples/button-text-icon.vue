@@ -16,8 +16,8 @@ import { IxButton } from '@siemens/ix-vue';
 
 <template>
   <IxButton :icon="iconStar">Button</IxButton>
-  <IxButton :icon="iconStar" :iconRight="iconBulb">Button</IxButton>
-  <IxButton :iconRight="iconBulb">Button</IxButton>
+  <IxButton :icon="iconStar" :icon-right="iconBulb">Button</IxButton>
+  <IxButton :icon-right="iconBulb">Button</IxButton>
   <IxButton variant="subtle-primary" :icon="iconStar">Button</IxButton>
   <IxButton variant="subtle-primary" :icon="iconStar">Button</IxButton>
   <IxButton variant="tertiary" :icon="iconStar">Button</IxButton>

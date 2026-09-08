@@ -53,23 +53,9 @@ regressionTest.describe('select', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  regressionTest('mode-multiple-overflow scroll down', async ({ page }) => {
-    await page.goto('select/mode-multiple-overflow');
+  regressionTest('mode-multiple-long-item-label', async ({ page }) => {
+    await page.goto('select/mode-multiple-long-item-label');
 
-    const inputHandle = await page.waitForSelector('div.chips');
-    const select = page.locator('ix-select');
-    await select.locator('input').fill('123');
-    await select.locator('input').click();
-
-    page.evaluate((menuElement) => {
-      menuElement.scrollTop = 9999;
-      menuElement.classList.add('__SCROLLED__');
-    }, inputHandle);
-
-    await page.waitForSelector('div.chips.__SCROLLED__');
-    await select.locator('input').blur();
-
-    await page.waitForTimeout(500);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 

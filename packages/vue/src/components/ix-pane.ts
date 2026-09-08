@@ -12,6 +12,7 @@ export const IxPane: StencilVueComponent<JSX.IxPane> = /*@__PURE__*/ defineConta
   'hideOnCollapse',
   'size',
   'borderless',
+  'noPadding',
   'expanded',
   'composition',
   'icon',

@@ -340,6 +340,7 @@ export class DateDropdown
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
+          class={{ active: this.show }}
           variant={this.variant}
           loading={this.loading}
           icon={iconHistory}

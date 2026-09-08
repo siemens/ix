@@ -8,6 +8,9 @@
  */
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * @slot default - Quick action items.
+ */
 @Component({
   tag: 'ix-dropdown-quick-actions',
   styleUrl: 'dropdown-quick-actions.scss',

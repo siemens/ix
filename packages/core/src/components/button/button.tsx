@@ -31,6 +31,9 @@ export type ButtonVariant =
   | `${BaseButtonVariant}`
   | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
+/**
+ * @slot default - Button label.
+ */
 @Component({
   tag: 'ix-button',
   shadow: {

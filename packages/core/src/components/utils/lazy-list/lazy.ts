@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *

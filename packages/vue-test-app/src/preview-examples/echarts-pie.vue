@@ -53,7 +53,6 @@ function getOptions(): EChartsOption {
     legend: {
       icon: 'rect',
       bottom: '0',
-      left: '0',
     },
     series: [
       {
@@ -63,7 +62,7 @@ function getOptions(): EChartsOption {
         data: data,
         label: {
           show: true,
-          color: getComputedCSSProperty('color-neutral'),
+          color: getComputedCSSProperty('--si-sys-background-neutral'),
         },
         emphasis: {
           itemStyle: {

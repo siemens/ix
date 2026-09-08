@@ -9,6 +9,12 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 
+/**
+ * @slot header - Content displayed in the tile header.
+ * @slot subheader - Content displayed below the tile header.
+ * @slot default - Main tile content.
+ * @slot footer - Content displayed in the tile footer.
+ */
 @Component({
   tag: 'ix-tile',
   styleUrl: 'tile.scss',

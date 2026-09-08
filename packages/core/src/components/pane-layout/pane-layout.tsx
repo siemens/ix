@@ -22,6 +22,14 @@ import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
+/**
+ * @slot left - Pane displayed to the left of the content.
+ * @slot top - Pane displayed above the content.
+ * @slot content - Main layout content.
+ * @slot default - Additional main layout content.
+ * @slot bottom - Pane displayed below the content.
+ * @slot right - Pane displayed to the right of the content.
+ */
 @Component({
   tag: 'ix-pane-layout',
   styleUrl: 'pane-layout.scss',

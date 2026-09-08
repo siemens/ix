@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
+@use './toggle.vars' as *;
 :host {
   display: inline-flex;
   flex-direction: row;
@@ -54,8 +54,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--theme-switch-off--background);
-    transition: var(--theme-default-time);
+    background-color: var(--ix-toggle-off--background);
+    transition: var(--ix-toggle-track--transition-duration);
     border-radius: 1.5rem;
     border: 0.0625rem solid transparent;
   }
@@ -67,68 +67,68 @@
     width: 1.125rem;
     left: 0.125rem;
     bottom: 0.125rem;
-    background-color: var(--theme-switch-thumb-off--background);
-    transition: var(--theme-default-time);
+    background-color: var(--ix-toggle-thumb-off--background);
+    transition: var(--ix-toggle-thumb--transition-duration);
     border-radius: 50%;
-    border: 1px solid var(--theme-switch-thumb-off--border-color);
+    border: 1px solid var(--ix-toggle-thumb-off--border-color);
   }
 
   .switch.checked > .slider::before {
-    background-color: var(--theme-switch-thumb-on--background);
+    background-color: var(--ix-toggle-thumb-on--background);
     transform: translateX(1.5rem);
   }
 
   .switch > .slider {
-    border-color: var(--theme-switch-off--border-color);
+    border-color: var(--ix-toggle-off--border-color);
   }
 
   .switch:hover > .slider {
-    background-color: var(--theme-switch-off--background--hover);
-    border-color: var(--theme-switch-off--border-color--hover);
+    background-color: var(--ix-toggle-off--background--hover);
+    border-color: var(--ix-toggle-off--border-color--hover);
   }
 
   .switch:hover > .slider:before {
-    background-color: var(--theme-switch-thumb-off--background--hover);
-    border: 1px solid var(--theme-switch-thumb-off--border-color--hover);
+    background-color: var(--ix-toggle-thumb-off--background--hover);
+    border: 1px solid var(--ix-toggle-thumb-off--border-color--hover);
   }
 
   .switch:active > .slider {
-    background-color: var(--theme-switch-off--background--active);
-    border-color: var(--theme-switch-off--border-color--active);
+    background-color: var(--ix-toggle-off--background--active);
+    border-color: var(--ix-toggle-off--border-color--active);
   }
 
   .switch:active > .slider:before {
-    background-color: var(--theme-switch-thumb-off--background--active);
-    border: 1px solid var(--theme-switch-thumb-off--border-color--active);
+    background-color: var(--ix-toggle-thumb-off--background--active);
+    border: 1px solid var(--ix-toggle-thumb-off--border-color--active);
   }
 
   .switch.checked > .slider {
-    background-color: var(--theme-switch-on--background);
-    border-color: var(--theme-switch-on--border-color);
+    background-color: var(--ix-toggle-on--background);
+    border-color: var(--ix-toggle-on--border-color);
   }
 
   .switch.checked > .slider:before {
-    border: 1px solid var(--theme-switch-thumb-on--border-color);
+    border: 1px solid var(--ix-toggle-thumb-on--border-color);
   }
 
   .switch.checked:hover > .slider {
-    background-color: var(--theme-switch-on--background--hover);
-    border-color: var(--theme-switch-on--border-color--hover);
+    background-color: var(--ix-toggle-on--background--hover);
+    border-color: var(--ix-toggle-on--border-color--hover);
   }
 
   .switch.checked:hover > .slider:before {
-    background-color: var(--theme-switch-thumb-on--background--hover);
-    border: 1px solid var(--theme-switch-thumb-on--border-color--hover);
+    background-color: var(--ix-toggle-thumb-on--background--hover);
+    border: 1px solid var(--ix-toggle-thumb-on--border-color--hover);
   }
 
   .switch.checked:active > .slider {
-    background-color: var(--theme-switch-on--background--active);
-    border-color: var(--theme-switch-on--border-color--active);
+    background-color: var(--ix-toggle-on--background--active);
+    border-color: var(--ix-toggle-on--border-color--active);
   }
 
   .switch.checked:active > .slider:before {
-    background-color: var(--theme-switch-thumb-on--background--active);
-    border: 1px solid var(--theme-switch-thumb-on--border-color--active);
+    background-color: var(--ix-toggle-thumb-on--background--active);
+    border: 1px solid var(--ix-toggle-thumb-on--border-color--active);
   }
 
   .switch.indeterminate > .slider::before {
@@ -148,7 +148,7 @@
 }
 
 :host(:not(.disabled):focus-visible) .switch > .slider {
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline: 0.0625rem solid var(--ix-toggle--outline-color--focus);
   outline-offset: 0.0625rem;
 }
 
@@ -160,23 +160,23 @@
   }
 
   .switch > .slider {
-    background-color: var(--theme-switch-off--background--disabled);
+    background-color: var(--ix-toggle-off--background--disabled);
   }
 
   .switch > .slider:before {
-    background-color: var(--theme-switch-thumb-off--background--disabled);
+    background-color: var(--ix-toggle-thumb-off--background--disabled);
   }
 
   .switch.checked > .slider {
-    background-color: var(--theme-switch-on--background--disabled);
+    background-color: var(--ix-toggle-on--background--disabled);
   }
 
   .switch.checked > .slider:before {
-    background-color: var(--theme-switch-thumb-on--background--disabled);
+    background-color: var(--ix-toggle-thumb-on--background--disabled);
   }
 
   .label {
-    color: var(--theme-color-weak-text);
+    color: var(--ix-toggle-label--color--disabled);
   }
 }
 
@@ -189,44 +189,44 @@
 }
 
 @mixin define-toggle-vars($state, $type) {
-  --theme-switch-#{$state}--background: var(
-    --theme-switch-#{$state}--background--#{$type}
+  --ix-toggle-#{$state}--background: var(
+    --ix-toggle-#{$state}--background--#{$type}
   );
-  --theme-switch-#{$state}--background--hover: var(
-    --theme-switch-#{$state}--background--#{$type}--hover
+  --ix-toggle-#{$state}--background--hover: var(
+    --ix-toggle-#{$state}--background--#{$type}--hover
   );
-  --theme-switch-#{$state}--background--active: var(
-    --theme-switch-#{$state}--background--#{$type}--active
-  );
-
-  --theme-switch-thumb-#{$state}--border-color: var(
-    --theme-switch-thumb-#{$state}--border-color--#{$type}
-  );
-  --theme-switch-thumb-#{$state}--border-color--hover: var(
-    --theme-switch-thumb-#{$state}--border-color--#{$type}--hover
-  );
-  --theme-switch-thumb-#{$state}--border-color--active: var(
-    --theme-switch-thumb-#{$state}--border-color--#{$type}--active
+  --ix-toggle-#{$state}--background--active: var(
+    --ix-toggle-#{$state}--background--#{$type}--active
   );
 
-  --theme-switch-thumb-#{$state}--background: var(
-    --theme-switch-thumb-#{$state}--background--#{$type}
+  --ix-toggle-thumb-#{$state}--border-color: var(
+    --ix-toggle-thumb-#{$state}--border-color--#{$type}
   );
-  --theme-switch-thumb-#{$state}--background--hover: var(
-    --theme-switch-thumb-#{$state}--background--#{$type}--hover
+  --ix-toggle-thumb-#{$state}--border-color--hover: var(
+    --ix-toggle-thumb-#{$state}--border-color--#{$type}--hover
   );
-  --theme-switch-thumb-#{$state}--background--active: var(
-    --theme-switch-thumb-#{$state}--background--#{$type}--active
+  --ix-toggle-thumb-#{$state}--border-color--active: var(
+    --ix-toggle-thumb-#{$state}--border-color--#{$type}--active
   );
 
-  --theme-switch-#{$state}--border-color: var(
-    --theme-switch-#{$state}--border-color--#{$type}
+  --ix-toggle-thumb-#{$state}--background: var(
+    --ix-toggle-thumb-#{$state}--background--#{$type}
   );
-  --theme-switch-#{$state}--border-color--hover: var(
-    --theme-switch-#{$state}--border-color--#{$type}--hover
+  --ix-toggle-thumb-#{$state}--background--hover: var(
+    --ix-toggle-thumb-#{$state}--background--#{$type}--hover
   );
-  --theme-switch-#{$state}--border-color--active: var(
-    --theme-switch-#{$state}--border-color--#{$type}--active
+  --ix-toggle-thumb-#{$state}--background--active: var(
+    --ix-toggle-thumb-#{$state}--background--#{$type}--active
+  );
+
+  --ix-toggle-#{$state}--border-color: var(
+    --ix-toggle-#{$state}--border-color--#{$type}
+  );
+  --ix-toggle-#{$state}--border-color--hover: var(
+    --ix-toggle-#{$state}--border-color--#{$type}--hover
+  );
+  --ix-toggle-#{$state}--border-color--active: var(
+    --ix-toggle-#{$state}--border-color--#{$type}--active
   );
 }
 

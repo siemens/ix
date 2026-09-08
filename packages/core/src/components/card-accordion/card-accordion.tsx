@@ -20,6 +20,9 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
   return [prefix, accordionControlId++].join('-');
 };
 
+/**
+ * @slot default - Accordion content.
+ */
 @Component({
   tag: 'ix-card-accordion',
   styleUrl: 'card-accordion.scss',
@@ -80,7 +83,10 @@ export class CardAccordion {
 
   private scrollExpandedContentIntoView() {
     setTimeout(() => {
-      const rect = this.expandedContent!.getBoundingClientRect();
+      if (!this.expandedContent) {
+        return;
+      }
+      const rect = this.expandedContent.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
         this.hostElement
           .shadowRoot!.querySelector('.expand-content')!

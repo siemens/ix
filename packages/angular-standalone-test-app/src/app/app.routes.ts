@@ -34,6 +34,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/add-icons').then((m) => m.default),
   'preview/aggrid': () =>
     import('../preview-examples/aggrid').then((m) => m.default),
+  'preview/aggrid-striped': () =>
+    import('../preview-examples/aggrid-striped').then((m) => m.default),
   'preview/application': () =>
     import('../preview-examples/application').then((m) => m.default),
   'preview/application-advanced': () =>
@@ -52,6 +54,16 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/avatar-image').then((m) => m.default),
   'preview/avatar-initials': () =>
     import('../preview-examples/avatar-initials').then((m) => m.default),
+  'preview/badge': () =>
+    import('../preview-examples/badge').then((m) => m.default),
+  'preview/badge-counter': () =>
+    import('../preview-examples/badge-counter').then((m) => m.default),
+  'preview/badge-dot': () =>
+    import('../preview-examples/badge-dot').then((m) => m.default),
+  'preview/badge-label': () =>
+    import('../preview-examples/badge-label').then((m) => m.default),
+  'preview/badge-status-icon': () =>
+    import('../preview-examples/badge-status-icon').then((m) => m.default),
   'preview/blind': () =>
     import('../preview-examples/blind').then((m) => m.default),
   'preview/blind-header-actions': () =>
@@ -98,6 +110,14 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/category-filter-suggestions').then(
       (m) => m.default
     ),
+  'preview/chat': () =>
+    import('../preview-examples/chat').then((m) => m.default),
+  'preview/chat-ai-message': () =>
+    import('../preview-examples/chat-ai-message').then((m) => m.default),
+  'preview/chat-input': () =>
+    import('../preview-examples/chat-input').then((m) => m.default),
+  'preview/chat-user-message': () =>
+    import('../preview-examples/chat-user-message').then((m) => m.default),
   'preview/checkbox': () =>
     import('../preview-examples/checkbox').then((m) => m.default),
   'preview/checkbox-indeterminate': () =>
@@ -110,6 +130,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/content-header').then((m) => m.default),
   'preview/content-header-no-back': () =>
     import('../preview-examples/content-header-no-back').then((m) => m.default),
+  'preview/content-header-text-overflow': () =>
+    import('../preview-examples/content-header-text-overflow').then(
+      (m) => m.default
+    ),
   'preview/content-header-with-slot': () =>
     import('../preview-examples/content-header-with-slot').then(
       (m) => m.default
@@ -123,9 +147,7 @@ export const routePaths: IxPreviewRoutes = {
   'preview/date-dropdown': () =>
     import('../preview-examples/date-dropdown').then((m) => m.default),
   'preview/date-dropdown-presets': () =>
-    import('../preview-examples/date-dropdown-presets').then(
-      (m) => m.default
-    ),
+    import('../preview-examples/date-dropdown-presets').then((m) => m.default),
   'preview/date-range': () =>
     import('../preview-examples/date-range').then((m) => m.default),
   'preview/datetime-range': () =>
@@ -421,6 +443,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/pill').then((m) => m.default),
   'preview/pill-variants': () =>
     import('../preview-examples/pill-variants').then((m) => m.default),
+  'preview/popover': () =>
+    import('../preview-examples/popover').then((m) => m.default),
   'preview/popover-news': () =>
     import('../preview-examples/popover-news').then((m) => m.default),
   'preview/push-card': () =>

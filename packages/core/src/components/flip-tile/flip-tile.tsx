@@ -25,6 +25,11 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileVariant } from './flip-tile.types';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @slot header - Content displayed in the tile header.
+ * @slot default - Flip tile pages.
+ * @slot footer - Content displayed in the tile footer.
+ */
 @Component({
   tag: 'ix-flip-tile',
   styleUrl: 'flip-tile.scss',

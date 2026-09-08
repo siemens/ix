@@ -51,16 +51,16 @@ function getOptions(): EChartsOption {
     legend: {
       icon: 'rect',
       bottom: '0',
-      left: '0',
     },
     series: [
       {
+        bottom: 16,
         name: 'OS Share',
         type: 'pie',
         radius: ['60%', '90%'],
         label: {
           show: true,
-          color: getComputedCSSProperty('color-neutral'),
+          color: getComputedCSSProperty('--si-sys-background-neutral'),
         },
         emphasis: {
           label: {

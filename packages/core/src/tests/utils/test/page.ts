@@ -214,9 +214,16 @@ export const expect = baseExpect.extend({
           await activeDescendantElementLocator.evaluate((el) =>
             el.getAttribute('aria-activedescendant')
           );
+
+        if (activeDescendantId === null) {
+          throw new Error(
+            'Active descendant element does not have an aria-activedescendant attribute.'
+          );
+        }
+
         await baseExpect(activeDescendantElementLocator).toHaveAttribute(
           'aria-activedescendant',
-          activeDescendantId!
+          activeDescendantId
         );
       } catch (e: any) {
         pass = false;

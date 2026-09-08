@@ -58,7 +58,6 @@ export default function EchartsPie() {
     legend: {
       icon: 'rect',
       bottom: '0',
-      left: '0',
     },
     series: [
       {
@@ -68,7 +67,7 @@ export default function EchartsPie() {
         data: data,
         label: {
           show: true,
-          color: getComputedCSSProperty('color-neutral'),
+          color: getComputedCSSProperty('--si-sys-background-neutral'),
         },
         emphasis: {
           itemStyle: {

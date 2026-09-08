@@ -20,6 +20,9 @@ import {
 } from '@stencil/core';
 import { DefaultMixins } from '../utils/internal/component';
 
+/**
+ * @slot default - News content.
+ */
 @Component({
   tag: 'ix-menu-about-news',
   styleUrl: 'menu-about-news.scss',
@@ -77,7 +80,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
       >
         <div class="banner-container">
           <ix-icon
-            color="color-inv-contrast-text"
+            color="--si-sys-text-inverse"
             name={iconShout}
             size="32"
           ></ix-icon>
@@ -95,7 +98,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         <ix-icon-button
           size="24"
           icon={iconClose}
-          iconColor="color-soft-text"
+          iconColor="--si-sys-text-secondary"
           variant="tertiary"
           onClick={() => {
             this.show = false;
