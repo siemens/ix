@@ -8,13 +8,13 @@
  */
 @use 'legacy/mixins/fonts';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
+@use './list-item.vars' as *;
 
 :host {
   display: block;
   width: 100%;
   min-width: 0;
-  color: #{sys.$si-sys-text-primary};
+  color: var(--ix-list-item--color);
   outline: none;
 
   @include component.ix-component;
@@ -34,56 +34,56 @@
   border-bottom-right-radius: var(--ix-list-item-bottom-radius, 0.25rem);
   border-bottom-left-radius: var(--ix-list-item-bottom-radius, 0.25rem);
   border-bottom-color: var(--ix-list-item-divider-color, transparent);
-  background-color: #{sys.$si-sys-background-accent-secondary};
+  background-color: var(--ix-list-item--background);
 }
 
 :host([variant='outline']) .item-surface {
-  border-color: #{sys.$si-sys-border-3};
+  border-color: var(--ix-list-item--border-color--outline);
 }
 
 :host([variant='filled']) .item-surface {
-  background-color: #{sys.$si-sys-background-1};
+  background-color: var(--ix-list-item--background--filled);
 }
 
 :host(.selected) .item-surface {
-  background-color: #{sys.$si-sys-background-active};
+  background-color: var(--ix-list-item--background--selected);
 }
 
 :host(:not(.disabled)) .item-surface:hover {
-  background-color: #{sys.$si-sys-background-hover};
+  background-color: var(--ix-list-item--background--hover);
 }
 
 :host(:not(.disabled))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
-  background-color: #{sys.$si-sys-background-active};
+  background-color: var(--ix-list-item--background--selected);
 }
 
 :host([variant='filled']:not(.disabled):not(.selected)) .item-surface:hover {
-  background-color: #{sys.$si-sys-background-hover};
+  background-color: var(--ix-list-item--background--hover);
 }
 
 :host(.selected:not(.disabled)) .item-surface:hover {
-  background-color: #{sys.$si-sys-background-hover};
+  background-color: var(--ix-list-item--background--hover);
 }
 
 :host([variant='filled']:not(.disabled):not(.selected))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
-  background-color: #{sys.$si-sys-background-active};
+  background-color: var(--ix-list-item--background--selected);
 }
 
 :host(.selected:not(.disabled))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
-  background-color: #{sys.$si-sys-background-hover};
+  background-color: var(--ix-list-item--background--hover);
 }
 
 :host(.has-divider) .item-surface {
-  border-bottom-color: #{sys.$si-sys-border-3};
+  border-bottom-color: var(--ix-list-item--border-color--divider);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -107,7 +107,7 @@
 .primary-action:focus-visible::after {
   position: absolute;
   inset: 0;
-  border: 1px solid #{sys.$si-sys-effects-focus};
+  border: 1px solid var(--ix-list-item--outline-color--focus);
   border-radius: 0.25rem;
   content: '';
   pointer-events: none;
@@ -144,7 +144,7 @@
 }
 
 :host(.dragging) .item-surface {
-  background-color: #{sys.$si-sys-background-active};
+  background-color: var(--ix-list-item--background--selected);
 }
 
 :host(.dragging) .drag-gripper {
@@ -154,7 +154,7 @@
 .drag-gripper:focus-visible::after {
   position: absolute;
   inset: -0.125rem;
-  border: 1px solid #{sys.$si-sys-effects-focus};
+  border: 1px solid var(--ix-list-item--outline-color--focus);
   border-radius: 0.25rem;
   content: '';
   pointer-events: none;
@@ -230,7 +230,7 @@
 .description {
   @include fonts.text-s;
 
-  color: #{sys.$si-sys-text-secondary};
+  color: var(--ix-list-item-description--color);
 }
 
 .action {
@@ -248,7 +248,7 @@
 }
 
 :host(.disabled) {
-  color: #{sys.$si-sys-text-disabled};
+  color: var(--ix-list-item--color--disabled);
   cursor: default;
 }
 
@@ -257,11 +257,11 @@
 }
 
 :host(.disabled) .description {
-  color: #{sys.$si-sys-text-disabled};
+  color: var(--ix-list-item--color--disabled);
 }
 
 :host(.disabled) .label {
-  color: #{sys.$si-sys-text-disabled};
+  color: var(--ix-list-item--color--disabled);
 }
 
 @media (hover: hover) and (pointer: fine) {
