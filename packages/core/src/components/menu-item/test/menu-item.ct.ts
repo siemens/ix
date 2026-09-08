@@ -136,7 +136,9 @@ regressionTest(
         <ix-button id="retained-aria-host">Retained button</ix-button>
       </ix-application>
     `);
-    await expect(page.locator('#retained-aria-host')).toHaveAttribute('hydrated');
+    await expect(page.locator('#retained-aria-host')).toHaveAttribute(
+      'hydrated'
+    );
 
     await page.evaluate(async () => {
       let hostElement: HTMLIxButtonElement | null =
