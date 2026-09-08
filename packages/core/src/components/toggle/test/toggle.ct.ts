@@ -13,6 +13,24 @@ import {
   regressionTest,
 } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `<ix-toggle text-on="On" text-off="Off" aria-label="Wi-Fi"></ix-toggle>`
+  );
+
+  const unchecked = await makeAxeBuilder().analyze();
+  expect(unchecked.violations).toEqual([]);
+
+  await page.getByRole('switch', { name: 'Wi-Fi' }).click();
+  await expect(page.locator('ix-toggle')).toHaveAttribute(
+    'aria-checked',
+    'true'
+  );
+
+  const checked = await makeAxeBuilder().analyze();
+  expect(checked.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-toggle></ix-toggle>`);
   const toggle = page.locator('ix-toggle');

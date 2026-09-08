@@ -9,6 +9,18 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+      <ix-checkbox-group label="example">
+        <ix-checkbox label="Option 1" value="option1"></ix-checkbox>
+        <ix-checkbox label="Option 2" value="option2" checked></ix-checkbox>
+      </ix-checkbox-group>
+    `);
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `

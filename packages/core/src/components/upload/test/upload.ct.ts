@@ -9,6 +9,13 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`<ix-upload></ix-upload>`);
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-upload></ix-upload>`);
   const upload = page.locator('ix-upload');

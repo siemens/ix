@@ -9,6 +9,19 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`<ix-expanding-search></ix-expanding-search>`);
+
+  const collapsed = await makeAxeBuilder().analyze();
+  expect(collapsed.violations).toEqual([]);
+
+  await page.locator('button').click();
+  await expect(page.locator('ix-expanding-search')).toHaveClass(/expanded/);
+
+  const expanded = await makeAxeBuilder().analyze();
+  expect(expanded.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const button = page.locator('ix-expanding-search');

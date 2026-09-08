@@ -9,6 +9,20 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-flip-tile variant="none">
+      <div slot="header">Flip header</div>
+      <div slot="footer">Some footer content</div>
+      <ix-flip-tile-content aria-label="page-1">Example 1</ix-flip-tile-content>
+      <ix-flip-tile-content aria-label="page-2">Example 2</ix-flip-tile-content>
+    </ix-flip-tile>
+  `);
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-flip-tile variant="none">

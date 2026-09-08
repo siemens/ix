@@ -9,6 +9,19 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+    <ix-workflow-steps clickable>
+      <ix-workflow-step status='success'>Step A</ix-workflow-step>
+      <ix-workflow-step status='open'>Step B</ix-workflow-step>
+    </ix-workflow-steps>
+  `);
+  await expect(page.locator('ix-workflow-step').nth(1)).toBeVisible();
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps>
