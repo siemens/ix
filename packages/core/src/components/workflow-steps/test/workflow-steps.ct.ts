@@ -69,7 +69,7 @@ regressionTest(
     const workflowSteps = page.locator('ix-workflow-steps');
     const steps = page.locator('ix-workflow-step');
 
-    await expect(workflowSteps).toHaveClass(/hydrated/);
+    await expect(workflowSteps).toHaveAttribute('hydrated');
 
     await workflowSteps.evaluate(
       (el: HTMLIxWorkflowStepsElement) => (el.selectedIndex = 2)

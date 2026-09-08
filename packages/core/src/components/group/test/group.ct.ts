@@ -167,7 +167,7 @@ regressionTest(
     const trigger = group.locator('ix-group-context-menu ix-icon-button');
     const dropdown = group.locator('ix-dropdown');
 
-    await expect(group).toHaveClass(/hydrated/);
+    await expect(group).toHaveAttribute('hydrated');
     await expect(trigger).not.toHaveClass(/\bactive\b/);
 
     await trigger.click();

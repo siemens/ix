@@ -649,7 +649,7 @@ regressionTest(
 
     // Wait for hydration before programmatic focus — otherwise focus is lost when
     // Stencil replaces the light DOM / attaches the shadow button (delegatesFocus).
-    await expect(categoryButton).toHaveClass(/hydrated/);
+    await expect(categoryButton).toHaveAttribute('hydrated');
     await categoryButton.focus();
     await expect(categoryButton).toBeFocused();
 

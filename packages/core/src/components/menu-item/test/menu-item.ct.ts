@@ -77,7 +77,7 @@ regressionTest(
 
       const menuItems = page.locator('ix-menu-item');
       await expect(menuItems).toHaveCount(100);
-      await expect(menuItems.last()).toHaveClass(/hydrated/);
+      await expect(menuItems.last()).toHaveAttribute('hydrated');
 
       await menuItems.evaluateAll((elements) => {
         elements.forEach((element, index) =>
@@ -136,7 +136,7 @@ regressionTest(
         <ix-button id="retained-aria-host">Retained button</ix-button>
       </ix-application>
     `);
-    await expect(page.locator('#retained-aria-host')).toHaveClass(/hydrated/);
+    await expect(page.locator('#retained-aria-host')).toHaveAttribute('hydrated');
 
     await page.evaluate(async () => {
       let hostElement: HTMLIxButtonElement | null =
