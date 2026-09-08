@@ -16,6 +16,106 @@ const getDateObj = async (page: Page) => {
   });
 };
 
+const getCalendarRows = async (page: Page) => {
+  return page.locator('[role="grid"] [role="row"]').evaluateAll((rows) =>
+    rows.slice(1).map((row) =>
+      Array.from(row.querySelectorAll('[role="gridcell"]')).map((cell) => {
+        const day = (cell as HTMLElement).dataset.calendarDay;
+        return day ? Number(day) : undefined;
+      })
+    )
+  );
+};
+
+type CalendarLayoutTestState = {
+  name: string;
+  from: string;
+  weekStartIndex?: number;
+  expectedRows: (number | undefined)[][];
+};
+
+const calendarLayoutTestStates: CalendarLayoutTestState[] = [
+  {
+    name: 'default week start',
+    from: '2023/08/01',
+    expectedRows: [
+      [undefined, 1, 2, 3, 4, 5, 6],
+      [7, 8, 9, 10, 11, 12, 13],
+      [14, 15, 16, 17, 18, 19, 20],
+      [21, 22, 23, 24, 25, 26, 27],
+      [28, 29, 30, 31, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'custom week start',
+    from: '2023/08/01',
+    weekStartIndex: 2,
+    expectedRows: [
+      [undefined, undefined, undefined, undefined, undefined, undefined, 1],
+      [2, 3, 4, 5, 6, 7, 8],
+      [9, 10, 11, 12, 13, 14, 15],
+      [16, 17, 18, 19, 20, 21, 22],
+      [23, 24, 25, 26, 27, 28, 29],
+      [30, 31, undefined, undefined, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'four-row non-leap February',
+    from: '2021/02/01',
+    expectedRows: [
+      [1, 2, 3, 4, 5, 6, 7],
+      [8, 9, 10, 11, 12, 13, 14],
+      [15, 16, 17, 18, 19, 20, 21],
+      [22, 23, 24, 25, 26, 27, 28],
+    ],
+  },
+  {
+    name: 'leap February',
+    from: '2024/02/01',
+    expectedRows: [
+      [undefined, undefined, undefined, 1, 2, 3, 4],
+      [5, 6, 7, 8, 9, 10, 11],
+      [12, 13, 14, 15, 16, 17, 18],
+      [19, 20, 21, 22, 23, 24, 25],
+      [26, 27, 28, 29, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'six-row month starting in the last column',
+    from: '2026/03/01',
+    expectedRows: [
+      [undefined, undefined, undefined, undefined, undefined, undefined, 1],
+      [2, 3, 4, 5, 6, 7, 8],
+      [9, 10, 11, 12, 13, 14, 15],
+      [16, 17, 18, 19, 20, 21, 22],
+      [23, 24, 25, 26, 27, 28, 29],
+      [30, 31, undefined, undefined, undefined, undefined, undefined],
+    ],
+  },
+  {
+    name: 'negative week start wrapping to the last column',
+    from: '2023/08/01',
+    weekStartIndex: -1,
+    expectedRows: [
+      [undefined, undefined, 1, 2, 3, 4, 5],
+      [6, 7, 8, 9, 10, 11, 12],
+      [13, 14, 15, 16, 17, 18, 19],
+      [20, 21, 22, 23, 24, 25, 26],
+      [27, 28, 29, 30, 31, undefined, undefined],
+    ],
+  },
+];
+
+const getDatePickerMarkup = ({
+  from,
+  weekStartIndex,
+}: CalendarLayoutTestState) => {
+  const weekStartIndexAttribute =
+    weekStartIndex !== undefined ? ` week-start-index="${weekStartIndex}"` : '';
+
+  return `<ix-date-picker from="${from}"${weekStartIndexAttribute}></ix-date-picker>`;
+};
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
@@ -29,6 +129,21 @@ regressionTest('translation', async ({ mount, page }) => {
 
   const header = page.getByText('Januar').nth(0);
   await expect(header).toHaveCount(1);
+});
+
+regressionTest.describe('calendar layout', () => {
+  for (const testState of calendarLayoutTestStates) {
+    regressionTest(
+      `renders accurate rows with ${testState.name}`,
+      async ({ mount, page }) => {
+        await mount(getDatePickerMarkup(testState));
+
+        const datePicker = page.locator(DatePickerSelector);
+        await expect(datePicker).toHaveClass(/\bhydrated\b/);
+        expect(await getCalendarRows(page)).toEqual(testState.expectedRows);
+      }
+    );
+  }
 });
 
 regressionTest.describe('date picker tests single', () => {
@@ -157,6 +272,30 @@ regressionTest.describe('date picker tests single', () => {
         from: '2021/01/01',
         to: undefined,
       });
+    }
+  );
+
+  regressionTest(
+    'ArrowDown on the last year extends the list without wrapping',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
+
+      const yearSelection = page.getByLabel('Select year');
+      const activeYear = yearSelection.locator('ix-dropdown-item.ix-focused');
+
+      await yearSelection.focus();
+      await page.keyboard.press('Enter');
+
+      await page.keyboard.press('End');
+      await expect
+        .poll(async () => (await activeYear.textContent())?.trim())
+        .toBe('2124');
+
+      await page.keyboard.press('ArrowDown');
+
+      await expect
+        .poll(async () => (await activeYear.textContent())?.trim())
+        .toBe('2125');
     }
   );
 
