@@ -43,7 +43,7 @@
   box-shadow: var(--ix-list-drag--box-shadow);
   cursor: grabbing;
   pointer-events: none;
-  transform: translateY(var(--ix-list-drag-y, 0));
+  transform: translate(var(--ix-list-drag-x, 0), var(--ix-list-drag-y, 0));
 }
 
 :host(.has-divider) ::slotted(.ix-list-drag-placeholder) {

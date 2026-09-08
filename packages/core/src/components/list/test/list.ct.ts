@@ -531,6 +531,96 @@ regressionTest(
 );
 
 regressionTest(
+  'keeps the pointer preview aligned inside a transformed ancestor',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <div style="transform: translate(40px, 20px) scale(0.8); transform-origin: top left; width: 125%">
+          <ix-list draggable>
+            <ix-list-item label="Project Alpha"></ix-list-item>
+            <ix-list-item label="Project Beta"></ix-list-item>
+          </ix-list>
+        </div>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const item = page.locator('ix-list-item').first();
+    const gripper = item.locator('.drag-gripper');
+    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
+    await expect(item).toHaveClass(/\bhydrated\b/);
+    const itemBounds = await item.boundingBox();
+    const gripperBounds = await gripper.boundingBox();
+    assertNotNull(itemBounds);
+    assertNotNull(gripperBounds);
+
+    const pointerX = gripperBounds.x + gripperBounds.width / 2;
+    const pointerY = gripperBounds.y + gripperBounds.height / 2;
+    await page.mouse.move(pointerX, pointerY);
+    await page.mouse.down();
+
+    const initialPreviewBounds = await item.boundingBox();
+    assertNotNull(initialPreviewBounds);
+    expect(initialPreviewBounds.x).toBeCloseTo(itemBounds.x, 0);
+    expect(initialPreviewBounds.y).toBeCloseTo(itemBounds.y, 0);
+
+    await page.mouse.move(pointerX, pointerY + 30);
+    const movedPreviewBounds = await item.boundingBox();
+    assertNotNull(movedPreviewBounds);
+    expect(movedPreviewBounds.x).toBeCloseTo(itemBounds.x, 0);
+    expect(movedPreviewBounds.y).toBeCloseTo(itemBounds.y + 30, 0);
+    await page.mouse.up();
+  }
+);
+
+regressionTest(
+  'keeps the pointer preview aligned inside a modal',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-modal>
+          <ix-modal-content>
+            <ix-list draggable>
+              <ix-list-item label="Project Alpha"></ix-list-item>
+              <ix-list-item label="Project Beta"></ix-list-item>
+            </ix-list>
+          </ix-modal-content>
+        </ix-modal>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const modal = page.locator('ix-modal');
+    await modal.evaluate((element) => element.showModal());
+
+    const item = modal.locator('ix-list-item').first();
+    const gripper = item.locator('.drag-gripper');
+    await expect(item).toHaveClass(/\bhydrated\b/);
+    const itemBounds = await item.boundingBox();
+    const gripperBounds = await gripper.boundingBox();
+    assertNotNull(itemBounds);
+    assertNotNull(gripperBounds);
+
+    const pointerX = gripperBounds.x + gripperBounds.width / 2;
+    const pointerY = gripperBounds.y + gripperBounds.height / 2;
+    await page.mouse.move(pointerX, pointerY);
+    await page.mouse.down();
+
+    const initialPreviewBounds = await item.boundingBox();
+    assertNotNull(initialPreviewBounds);
+    expect(initialPreviewBounds.x).toBeCloseTo(itemBounds.x, 0);
+    expect(initialPreviewBounds.y).toBeCloseTo(itemBounds.y, 0);
+
+    await page.mouse.move(pointerX, pointerY + 30);
+    const movedPreviewBounds = await item.boundingBox();
+    assertNotNull(movedPreviewBounds);
+    expect(movedPreviewBounds.x).toBeCloseTo(itemBounds.x, 0);
+    expect(movedPreviewBounds.y).toBeCloseTo(itemBounds.y + 30, 0);
+    await page.mouse.up();
+  }
+);
+
+regressionTest(
   'hides the keyboard focus indicator during pointer drag',
   async ({ mount, page }) => {
     await mount(
