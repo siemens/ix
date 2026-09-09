@@ -50,7 +50,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.6.0",
-    "@vitest/browser": "^3.2.4",
+    "@vitest/browser": "^3.2.7",
     "eslint": "catalog:",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
