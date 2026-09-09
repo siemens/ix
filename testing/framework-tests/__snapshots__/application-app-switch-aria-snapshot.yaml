@@ -1,3 +1,7 @@
+- list:
+  - listitem:
+    - link "Skip to main content":
+      - /url: "#ix-application-main-content"
 - button "Apps"
 - text: My Application
 - button "Select config":
@@ -9,4 +13,3 @@
   - button "Item 2"
 - complementary
 - main: My Content Page
-- contentinfo

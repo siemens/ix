@@ -133,12 +133,55 @@
           "deprecated": false
         },
         {
+          "name": "disableSkipLinks",
+          "attribute": "disable-skip-links",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "forceBreakpoint",
           "attribute": "force-breakpoint",
           "type": "\"lg\" | \"md\" | \"sm\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToFooter",
+          "attribute": "i18n-skip-to-footer",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to footer'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToMain",
+          "attribute": "i18n-skip-to-main",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to main content'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "skipLinkMainTargetId",
+          "attribute": "skip-link-main-target-id",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },

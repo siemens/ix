@@ -1,3 +1,7 @@
+- list:
+  - listitem:
+    - link "Skip to main content":
+      - /url: "#ix-application-main-content"
 - navigation:
   - button "Settings" [expanded]
   - tooltip "Settings"
@@ -7,4 +11,3 @@
   - text: Example Setting 1 Example Setting 2
 - complementary
 - main
-- contentinfo
