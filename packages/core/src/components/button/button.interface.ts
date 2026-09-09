@@ -9,7 +9,7 @@
 
 export interface AnchorInterface {
   /**
-   * The URL of the link.
+   * The relative, HTTP(S), mailto, or tel URL of the link.
    * See [MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/href)
    */
   href?: string;

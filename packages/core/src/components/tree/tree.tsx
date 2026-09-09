@@ -202,19 +202,22 @@ export class Tree {
 
   private getContext(id: string): TreeItemContext {
     if (!this.context) {
-      return {
-        isExpanded: false,
-        isSelected: false,
-        isDisabled: this.model[id]?.disabled,
-      };
+      this.context = {};
     }
-    if (!this.context[id]) {
-      this.context[id] = {
-        isExpanded: false,
-        isSelected: false,
-        isDisabled: this.model[id]?.disabled,
-      };
+
+    if (!Object.prototype.hasOwnProperty.call(this.context, id)) {
+      Object.defineProperty(this.context, id, {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: {
+          isExpanded: false,
+          isSelected: false,
+          isDisabled: this.model[id]?.disabled,
+        },
+      });
     }
+
     return this.context[id];
   }
 

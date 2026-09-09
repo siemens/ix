@@ -23,6 +23,18 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(button).toHaveClass(/hydrated/);
 });
 
+regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
+  await mount(`<ix-button href="javascript:alert(1)">Unsafe link</ix-button>`);
+
+  const link = page.getByRole('button', { name: 'Unsafe link' });
+  await expect(link).not.toHaveAttribute('href');
+
+  await page.locator('ix-button').evaluate((element) => {
+    (element as HTMLIxButtonElement).href = 'https://example.com';
+  });
+  await expect(link).toHaveAttribute('href', 'https://example.com');
+});
+
 regressionTest('show icon', async ({ mount, page }) => {
   await mount(`<ix-button icon="rocket">Content</ix-button>`, {
     icons: { iconRocket },

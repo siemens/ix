@@ -9,6 +9,7 @@
 
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import { getSafeNavigationUrl } from '../utils/condition-checks';
 import { ButtonVariant } from './button';
 import { AnchorInterface } from './button.interface';
 
@@ -96,6 +97,9 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   const ariaAttributes = props.ariaAttributes ?? {};
 
   const iconIsDecorative = isIconDecorative(ariaAttributes, children);
+  const href = props.disabled
+    ? undefined
+    : getSafeNavigationUrl(props.href, 'ix-button');
 
   const commonAttributes = {
     ...ariaAttributes,
@@ -151,7 +155,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
       <a
         {...commonAttributes}
         aria-disabled={a11yBoolean(props.disabled)}
-        href={props.disabled ? undefined : props.href}
+        href={href}
         target={props.target}
         role="button"
         rel={props.rel}

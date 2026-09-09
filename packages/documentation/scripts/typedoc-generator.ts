@@ -470,13 +470,13 @@ function convertTagsToTSXElements(tags: Array<{ tag: string; text?: string }>) {
     .map((tag) => {
       if (tag.tag === 'deprecated') {
         return {
-          rTag: `<DeprecatedTag message={\`${escapeBackticks(
-            tag.text || ''
-          )}\`} />`,
+          rTag: `<DeprecatedTag message={${serializeMarkdownForJsx(
+            tag.text
+          )}} />`,
         };
       } else if (tag.tag === 'since') {
         return {
-          rTag: `<SinceTag version={\`${escapeBackticks(tag.text || '')}\`} />`,
+          rTag: `<SinceTag version={${serializeMarkdownForJsx(tag.text)}} />`,
         };
       }
       return null;

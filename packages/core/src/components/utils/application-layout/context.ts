@@ -25,6 +25,7 @@ export type AppSwitchConfiguration = {
     id: string;
     name: string;
     description: string;
+    /** Relative, HTTP(S), mailto, or tel URL for the application. */
     url: string;
     target: AppSwitchConfigurationTarget;
     iconSrc: string;

@@ -96,6 +96,27 @@ regressionTest('should change label', async ({ mount, page }) => {
   await expect(breadcrumbItem).toHaveText(/UPDATED/);
 });
 
+regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
+  await mount(`
+    <ix-breadcrumb>
+      <ix-breadcrumb-item
+        label="Unsafe link"
+        breadcrumb-key="unsafe"
+        href="javascript:alert(1)"
+      ></ix-breadcrumb-item>
+    </ix-breadcrumb>
+  `);
+
+  const breadcrumbItem = page.locator('ix-breadcrumb-item');
+  const link = breadcrumbItem.locator('a');
+  await expect(link).not.toHaveAttribute('href');
+
+  await breadcrumbItem.evaluate((element) => {
+    (element as HTMLIxBreadcrumbItemElement).href = '/safe';
+  });
+  await expect(link).toHaveAttribute('href', '/safe');
+});
+
 regressionTest('should show next items', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>

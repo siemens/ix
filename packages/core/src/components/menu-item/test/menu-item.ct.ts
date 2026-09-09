@@ -27,6 +27,21 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
 });
 
+regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
+  await mount(`
+    <ix-menu-item href="javascript:alert(1)">Unsafe link</ix-menu-item>
+  `);
+
+  const menuItem = page.locator('ix-menu-item');
+  const link = menuItem.locator('a');
+  await expect(link).not.toHaveAttribute('href');
+
+  await menuItem.evaluate((element) => {
+    (element as HTMLIxMenuItemElement).href = 'tel:+4912345';
+  });
+  await expect(link).toHaveAttribute('href', 'tel:+4912345');
+});
+
 regressionTest(
   'shares ARIA observation across hosts',
   async ({ mount, page }) => {

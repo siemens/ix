@@ -20,26 +20,10 @@ import {
 } from '../dependency-function';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
-import { ModalConfig } from './modal';
+import { applyModalConfig, ModalConfig } from './modal';
 
 export type MessageConfig<T> = Omit<ModalConfig<T, unknown>, 'content'> &
   MessageContent;
-
-function setA11yAttributes(element: HTMLElement, config: MessageContent) {
-  const ariaDescribedby = config.ariaDescribedby;
-  const ariaLabelledby = config.ariaLabelledby;
-
-  delete config['ariaDescribedby'];
-  delete config['ariaLabelledby'];
-
-  if (ariaDescribedby) {
-    element.setAttribute('aria-describedby', ariaDescribedby);
-  }
-
-  if (ariaLabelledby) {
-    element.setAttribute('aria-labelledby', ariaLabelledby);
-  }
-}
 
 function createConfirmButtons(
   textOkay: string,
@@ -140,11 +124,10 @@ export function createShowMessage(
     const content = document.createElement('ix-modal-content');
     const footer = document.createElement('ix-modal-footer');
 
-    setA11yAttributes(dialog, config);
-
-    Object.assign(header, config);
-    Object.assign(content, config);
-    Object.assign(footer, config);
+    header.icon = config.icon;
+    if (config.iconColor !== undefined) {
+      header.iconColor = config.iconColor;
+    }
 
     header.innerText = config.messageTitle;
     content.innerText = config.message;
@@ -208,8 +191,7 @@ export function createShowMessage(
       }
     );
 
-    setA11yAttributes(dialogRef, config);
-    Object.assign(dialogRef, config);
+    applyModalConfig(dialogRef, config);
 
     dialogRef.showModal();
     return onMessageAction;

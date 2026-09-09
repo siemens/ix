@@ -11,6 +11,16 @@ import { test, viewPorts } from '@utils/test';
 import { ApplicationLayoutContext } from '../../utils/application-layout/context';
 import { ContextType } from '../../utils/context';
 
+declare global {
+  interface Window {
+    __appSwitchOpenCalls: [
+      string | undefined,
+      string | undefined,
+      string | undefined,
+    ][];
+  }
+}
+
 test('renders', async ({ mount, page }) => {
   page.setViewportSize({
     height: 500,
@@ -177,6 +187,72 @@ test('should show product icon', async ({ mount, page }) => {
 });
 
 test.describe('cross app navigation', () => {
+  test('opens only safe URLs without opener access', async ({
+    page,
+    mount,
+  }) => {
+    await page.evaluate(() => {
+      window.__appSwitchOpenCalls = [];
+      window.open = (
+        url?: string | URL,
+        target?: string,
+        features?: string
+      ) => {
+        window.__appSwitchOpenCalls.push([url?.toString(), target, features]);
+        return null;
+      };
+
+      window.addEventListener('context-request', (event: any) => {
+        event.callback({
+          hideHeader: false,
+          sidebar: false,
+          appSwitchConfig: {
+            apps: [
+              {
+                id: 'safe',
+                description: 'Safe application',
+                iconSrc: '',
+                name: 'Safe application',
+                target: 'reports',
+                url: '/safe',
+              },
+              {
+                id: 'unsafe',
+                description: 'Unsafe application',
+                iconSrc: '',
+                name: 'Unsafe application',
+                target: '_blank',
+                url: 'java\tscript:alert(1)',
+              },
+            ],
+            currentAppId: 'safe',
+          },
+        } as ContextType<typeof ApplicationLayoutContext>);
+      });
+    });
+
+    await mount('<ix-application-header name="test"></ix-application-header>');
+
+    const appSwitchButton = page.locator(
+      'ix-application-header ix-icon-button.app-switch'
+    );
+    await appSwitchButton.click();
+    await page.getByRole('button', { name: /Safe application/ }).click();
+
+    expect(await page.evaluate(() => window.__appSwitchOpenCalls)).toEqual([
+      ['/safe', 'reports', 'noopener'],
+    ]);
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+
+    await appSwitchButton.click();
+    await page.getByRole('button', { name: /Unsafe application/ }).click();
+
+    expect(await page.evaluate(() => window.__appSwitchOpenCalls)).toEqual([
+      ['/safe', 'reports', 'noopener'],
+    ]);
+    await expect(page.getByRole('dialog')).toBeVisible();
+  });
+
   test(`should show app switch icon`, async ({ page, mount }) => {
     await page.evaluate(() => {
       window.addEventListener('context-request', (evt: any) => {
