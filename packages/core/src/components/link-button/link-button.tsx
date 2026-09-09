@@ -9,6 +9,7 @@
 
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Link button label.
@@ -40,14 +41,15 @@ export class LinkButton {
     return (
       <Host>
         <a
-          title={this.url}
-          tabindex="0"
+          aria-disabled={a11yBoolean(this.disabled)}
+          tabindex={this.disabled ? -1 : undefined}
           class={{
             'link-button': true,
             disabled: this.disabled,
           }}
           href={this.disabled ? undefined : this.url}
           target={this.target}
+          role={this.disabled ? 'link' : undefined}
         >
           <ix-icon
             class="icon"
