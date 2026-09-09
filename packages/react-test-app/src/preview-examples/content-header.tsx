@@ -16,9 +16,9 @@ export default () => {
       headerTitle="Content title"
       headerSubtitle="Subtitle"
     >
-      <IxButton variant="tertiary">Button1</IxButton>
-      <IxButton variant="tertiary">Button2</IxButton>
-      <IxButton variant="tertiary">Button3</IxButton>
+      <IxButton slot="secondary-actions" variant="tertiary">Button1</IxButton>
+      <IxButton slot="secondary-actions" variant="tertiary">Button2</IxButton>
+      <IxButton slot="secondary-actions" variant="tertiary">Button3</IxButton>
     </IxContentHeader>
   );
 };

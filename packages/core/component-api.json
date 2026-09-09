@@ -2291,7 +2291,8 @@
       "cssProperties": [],
       "slots": [
         "default",
-        "header"
+        "header",
+        "secondary-actions"
       ],
       "cssParts": [],
       "cssStates": []

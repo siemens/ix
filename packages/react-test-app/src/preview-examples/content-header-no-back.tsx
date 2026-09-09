@@ -21,13 +21,13 @@ export default () => {
       header-title="Content title"
       header-subtitle="Subtitle"
     >
-      <IxIconButton icon={iconPen} variant="tertiary">
+      <IxIconButton icon={iconPen} variant="tertiary" slot="secondary-actions">
         Button1
       </IxIconButton>
-      <IxIconButton icon={iconTrashcan} variant="tertiary">
+      <IxIconButton icon={iconTrashcan} variant="tertiary" slot="secondary-actions">
         Button2
       </IxIconButton>
-      <IxIconButton icon={iconContextMenu} variant="tertiary">
+      <IxIconButton icon={iconContextMenu} variant="tertiary" slot="secondary-actions">
         Button3
       </IxIconButton>
     </IxContentHeader>
