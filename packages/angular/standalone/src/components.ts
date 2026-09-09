@@ -200,14 +200,14 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 @ProxyCmp({
   defineCustomElementFn: defineIxAvatar,
-  inputs: ['ariaLabelTooltip', 'extra', 'image', 'initials', 'tooltipText', 'username']
+  inputs: ['ariaLabelTooltip', 'extra', 'image', 'initials', 'tooltipText', 'username', 'wrapUsername']
 })
 @Component({
   selector: 'ix-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelTooltip', 'extra', 'image', 'initials', 'tooltipText', 'username'],
+  inputs: ['ariaLabelTooltip', 'extra', 'image', 'initials', 'tooltipText', 'username', 'wrapUsername'],
 })
 export class IxAvatar {
   protected el: HTMLIxAvatarElement;

@@ -388,6 +388,17 @@
           "optional": true,
           "required": false,
           "deprecated": false
+        },
+        {
+          "name": "wrapUsername",
+          "attribute": "wrap-username",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
         }
       ],
       "methods": [],

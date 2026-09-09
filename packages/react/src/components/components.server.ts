@@ -196,7 +196,8 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents, Co
         username: 'username',
         extra: 'extra',
         tooltipText: 'tooltip-text',
-        ariaLabelTooltip: 'aria-label-tooltip'
+        ariaLabelTooltip: 'aria-label-tooltip',
+        wrapUsername: 'wrap-username'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxAvatar as StencilReactComponent<IxAvatarElement, IxAvatarEvents, Components.IxAvatar>,
