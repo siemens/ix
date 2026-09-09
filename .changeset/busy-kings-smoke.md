@@ -1,5 +1,5 @@
 ---
-'@siemens/ix': patch
+'@siemens/ix': minor
 ---
 
 Ix-expandingSearch animation mechanism
