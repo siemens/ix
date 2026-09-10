@@ -44,7 +44,6 @@
       .collapse-icon {
         color: var(--ix-blind-header--color);
       }
-
       .blind-header-title-sublabel {
         color: var(--ix-blind-header-sublabel--color);
       }
@@ -59,7 +58,6 @@
       .collapse-icon {
         color: var(--ix-blind-#{$variant}--color);
       }
-
       .header-actions {
         --ix-icon-button-color: var(--ix-blind-#{$variant}--color);
       }
@@ -183,6 +181,13 @@
     @include hover.focus-visible {
       border-color: var(--ix-blind-header--border-color--focus);
       outline: none;
+    }
+  }
+ &:has(.blind-header:focus-visible) {
+    .blind-header-wrapper {
+      outline: var(--theme-focus-border-thickness) solid
+        var(--theme-color-focus-bdr);
+      outline-offset: 0;
     }
   }
 
