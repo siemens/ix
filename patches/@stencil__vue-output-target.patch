@@ -1,0 +1,60 @@
+diff --git a/dist/runtime.cjs.js b/dist/runtime.cjs.js
+index 8d1b57d4d3581b3681075b35380659f969469f35..29c3763e94e90ce26043aae72ac927eeef91881c 100644
+--- a/dist/runtime.cjs.js
++++ b/dist/runtime.cjs.js
+@@ -119,7 +119,7 @@ const ARIA_PROP_PREFIX = 'aria';
+ const EMPTY_PROP = Symbol();
+ const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
+ const getComponentClasses = (classes) => {
+-    return classes?.split(' ') || [];
++    return (classes?.split(/[ \t\n\f\r]+/) || []).filter(Boolean);
+ };
+ const syncElementClasses = (ref, componentClasses, defaultClasses = []) => {
+     if (ref?.value) {
+@@ -258,9 +258,14 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+         };
+         return () => {
+             modelPropValue = props[modelProp];
+-            getComponentClasses(attrs.class).forEach((value) => {
+-                classes.add(value);
++            const nextClasses = new Set(getComponentClasses(attrs.class));
++            classes.forEach((value) => {
++                if (!nextClasses.has(value)) {
++                    containerRef.value?.classList.remove(value);
++                }
+             });
++            classes.clear();
++            nextClasses.forEach((value) => classes.add(value));
+             // @ts-expect-error
+             const oldClick = props.onClick;
+             const handleClick = (ev) => {
+diff --git a/dist/runtime.js b/dist/runtime.js
+index 7efe4d9bba43a0533f2d3f6d17d5ed6f816ee04e..b483fcbde01193a76869b9a2c96b48685ad9db92 100644
+--- a/dist/runtime.js
++++ b/dist/runtime.js
+@@ -117,7 +117,7 @@ const ARIA_PROP_PREFIX = 'aria';
+ const EMPTY_PROP = Symbol();
+ const DEFAULT_EMPTY_PROP = { default: EMPTY_PROP };
+ const getComponentClasses = (classes) => {
+-    return classes?.split(' ') || [];
++    return (classes?.split(/[ \t\n\f\r]+/) || []).filter(Boolean);
+ };
+ const syncElementClasses = (ref, componentClasses, defaultClasses = []) => {
+     if (ref?.value) {
+@@ -256,9 +256,14 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+         };
+         return () => {
+             modelPropValue = props[modelProp];
+-            getComponentClasses(attrs.class).forEach((value) => {
+-                classes.add(value);
++            const nextClasses = new Set(getComponentClasses(attrs.class));
++            classes.forEach((value) => {
++                if (!nextClasses.has(value)) {
++                    containerRef.value?.classList.remove(value);
++                }
+             });
++            classes.clear();
++            nextClasses.forEach((value) => classes.add(value));
+             // @ts-expect-error
+             const oldClick = props.onClick;
+             const handleClick = (ev) => {
