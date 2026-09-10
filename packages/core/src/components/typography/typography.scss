@@ -75,60 +75,60 @@
   @include legacy-fonts.text-xl;
 }
 
-:host(.typography-label) {
-  @include font-mixins.typography-label;
-}
-
-:host(.typography-label-xs) {
-  @include font-mixins.typography-label-xs;
-}
-
-:host(.typography-label-sm) {
-  @include font-mixins.typography-label-sm;
-}
-
-:host(.typography-label-lg) {
-  @include font-mixins.typography-label-lg;
-}
-
 :host(.typography-body) {
   @include font-mixins.typography-body;
 }
 
-:host(.typography-body-xs) {
-  @include font-mixins.typography-body-xs;
+:host(.typography-body-paragraph) {
+  @include font-mixins.typography-body-paragraph;
+}
+
+:host(.typography-body-paragraph-sbold) {
+  @include font-mixins.typography-body-paragraph-sbold;
 }
 
 :host(.typography-body-sm) {
   @include font-mixins.typography-body-sm;
 }
 
+:host(.typography-body-sm-sbold) {
+  @include font-mixins.typography-body-sm-sbold;
+}
+
 :host(.typography-body-lg) {
   @include font-mixins.typography-body-lg;
+}
+
+:host(.typography-body-lg-sbold) {
+  @include font-mixins.typography-body-lg-sbold;
 }
 
 :host(.typography-display) {
   @include font-mixins.typography-display;
 }
 
-:host(.typography-display-xs) {
-  @include font-mixins.typography-display-xs;
-}
-
-:host(.typography-display-sm) {
-  @include font-mixins.typography-display-sm;
-}
-
 :host(.typography-display-lg) {
   @include font-mixins.typography-display-lg;
+}
+
+:host(.typography-display-lg-sbold) {
+  @include font-mixins.typography-display-lg-sbold;
 }
 
 :host(.typography-display-xl) {
   @include font-mixins.typography-display-xl;
 }
 
+:host(.typography-display-xl-sbold) {
+  @include font-mixins.typography-display-xl-sbold;
+}
+
 :host(.typography-display-xxl) {
   @include font-mixins.typography-display-xxl;
+}
+
+:host(.typography-display-xxl-sbold) {
+  @include font-mixins.typography-display-xxl-sbold;
 }
 
 :host(.typography-h6) {
@@ -137,6 +137,10 @@
 
 :host(.typography-h5) {
   @include font-mixins.typography-h5;
+}
+
+:host(.typography-h5-bold) {
+  @include font-mixins.typography-h5-bold;
 }
 
 :host(.typography-h4) {

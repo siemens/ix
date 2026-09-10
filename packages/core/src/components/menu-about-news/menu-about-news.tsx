@@ -90,7 +90,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         </div>
 
         <div class="cui-popover-news-header">
-          <ix-typography format="label" bold>
+          <ix-typography format="body" bold>
             {this.label}
           </ix-typography>
         </div>

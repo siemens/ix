@@ -40,6 +40,7 @@
     "@siemens/ix-icons": "catalog:",
     "@siemens/ix": "workspace:*",
     "@types/node": "^24.0.3",
+    "ag-grid-community-36": "npm:ag-grid-community@^36.0.0",
     "ag-grid-community-35": "npm:ag-grid-community@^35.0.0",
     "ag-grid-community-34": "npm:ag-grid-community@^34.3.0",
     "ag-grid-community": "^33.3.2",
@@ -52,6 +53,6 @@
   },
   "peerDependencies": {
     "@siemens/ix": "^5.0.0",
-    "ag-grid-community": "^33 || ^34 || ^35"
+    "ag-grid-community": "^33 || ^34 || ^35 || ^36"
   }
 }

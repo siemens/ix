@@ -15,7 +15,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(fieldLabelElement).toHaveClass(/hydrated/);
   await expect(
     fieldLabelElement.locator('label').locator('ix-typography')
-  ).toHaveClass(/typography-label/);
+  ).toHaveClass(/typography-body/);
   await expect(fieldLabelElement.filter({ hasText: 'My Label' })).toHaveText(
     'My Label'
   );

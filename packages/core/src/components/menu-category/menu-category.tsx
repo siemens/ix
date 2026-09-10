@@ -557,7 +557,7 @@ export class MenuCategory
             tabindex={-1}
             aria-hidden="true"
           >
-            <ix-typography format="label" bold textColor="std">
+            <ix-typography format="body" bold textColor="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>
