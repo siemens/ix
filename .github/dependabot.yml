@@ -13,9 +13,4 @@ updates:
       # Wait two days between updates for dependencies that are not excluded
       default-days: 2
 
-    open-pull-requests-limit: 0
-    groups:
-      security-updates:
-        applies-to: security-updates
-        patterns:
-          - '*'
+    open-pull-requests-limit: 20
