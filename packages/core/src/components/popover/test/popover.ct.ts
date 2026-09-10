@@ -45,7 +45,7 @@ regressionTest.describe('ix-popover', () => {
           'data-ix-popover-trigger',
           ''
         );
-        await expect(popover.popoverElement).toHaveClass(/hydrated/);
+        await expect(popover.popoverElement).toHaveAttribute('hydrated');
         await expect(popover.popoverElement).not.toHaveClass(/visible/);
         await expect(
           await popover.dialog(popover.popoverElement)
@@ -953,8 +953,8 @@ regressionTest.describe('ix-popover', () => {
         });
 
         await page.waitForSelector('#shadow-trigger');
-        await expect(page.locator('ix-popover').first()).toHaveClass(
-          /hydrated/
+        await expect(page.locator('ix-popover').first()).toHaveAttribute(
+          'hydrated'
         );
 
         await page.locator('#shadow-trigger').click();

@@ -19,7 +19,7 @@ const getDateObj = async (page: Page) => {
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await expect(datePicker).toHaveAttribute('hydrated');
 });
 
 regressionTest('translation', async ({ mount, page }) => {
@@ -40,7 +40,7 @@ regressionTest.describe('date picker tests single', () => {
 
   regressionTest('select disabled date with enter', async ({ page }) => {
     const datePicker = page.locator(DatePickerSelector);
-    await expect(datePicker).toHaveClass(/hydrated/);
+    await expect(datePicker).toHaveAttribute('hydrated');
 
     await page.getByText(/^9$/).focus();
     await page.keyboard.press('Enter');
@@ -329,7 +329,7 @@ regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input embedded value="2023/09/05"></ix-date-input>`);
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
     await dateInputElement.locator('input').focus();
     await page.keyboard.press('ArrowDown');
     await expect(page.locator('[data-calendar-day="5"]')).toBeFocused();

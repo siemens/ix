@@ -28,7 +28,7 @@ regressionTest('renders', async ({ mount, page }) => {
   const breadcrumbItem1 = page.locator('ix-breadcrumb-item').nth(0);
   const breadcrumbItem2 = page.locator('ix-breadcrumb-item').nth(1);
   const breadcrumbItem3 = page.locator('ix-breadcrumb-item').nth(2);
-  await expect(breadcrumb).toHaveClass(/hydrated/);
+  await expect(breadcrumb).toHaveAttribute('hydrated');
   await expect(breadcrumbItem1).toBeVisible();
   await expect(breadcrumbItem2).toBeVisible();
   await expect(breadcrumbItem3).toBeVisible();
@@ -44,7 +44,7 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
 
   const breadcrumb = page.locator('ix-breadcrumb');
 
-  await expect(breadcrumb).toHaveClass(/hydrated/);
+  await expect(breadcrumb).toHaveAttribute('hydrated');
   await breadcrumb.evaluate((breadcrumbElement: HTMLIxBreadcrumbElement) => {
     const item = document.createElement('ix-breadcrumb-item');
     item.label = 'NewItem';

@@ -61,7 +61,7 @@ test('use brand logo if provided', async ({ mount, page }) => {
   });
 
   const header = page.locator('ix-application-header');
-  await expect(header).toHaveClass(/hydrated/);
+  await expect(header).toHaveAttribute('hydrated');
   await expect(header).toBeVisible();
 
   const companyLogo = page.locator('ix-application-header ix-siemens-logo');
@@ -217,7 +217,7 @@ test.describe('cross app navigation', () => {
         </ix-application-header>
       `
     );
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();
@@ -276,7 +276,7 @@ test.describe('cross app navigation', () => {
         </ix-application-header>
       `
     );
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();
@@ -322,7 +322,7 @@ test.describe('cross app navigation', () => {
     const header = page.locator('ix-application-header');
     const appSwitchButton = header.locator('ix-icon-button.app-switch');
 
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).not.toBeVisible();
 
     await application.evaluate((app) => {
@@ -389,7 +389,7 @@ test.describe('cross app navigation', () => {
     );
 
     const application = page.locator('ix-application');
-    await expect(application).toHaveClass(/hydrated/);
+    await expect(application).toHaveAttribute('hydrated');
     await application.evaluate((app) => {
       (app as any).appSwitchConfig = {
         i18nAppSwitch: 'some other language',
@@ -402,7 +402,7 @@ test.describe('cross app navigation', () => {
     const header = page.locator('ix-application-header');
     const appSwitchButton = header.locator('ix-icon-button.app-switch');
 
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();

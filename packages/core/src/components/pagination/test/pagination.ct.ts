@@ -29,7 +29,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
   const element = page.locator('ix-pagination');
 
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 });
 
 regressionTest('advanced', async ({ mount, page }) => {
@@ -39,7 +39,7 @@ regressionTest('advanced', async ({ mount, page }) => {
   `);
   const element = page.locator('ix-pagination[advanced]');
 
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 });
 
 regressionTest('open show number of page dropdown', async ({ mount, page }) => {
@@ -49,7 +49,7 @@ regressionTest('open show number of page dropdown', async ({ mount, page }) => {
   `);
   const element = page.locator('ix-pagination[advanced]');
   await element.locator('[data-select-dropdown]').click();
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   const dropdown = element.locator('ix-dropdown');
 
@@ -65,7 +65,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination');
-    await expect(pagination).toHaveClass(/hydrated/);
+    await expect(pagination).toHaveAttribute('hydrated');
 
     const itemChanged = pagination.evaluate((elm) => {
       return new Promise<number>((resolve) => {
@@ -90,7 +90,7 @@ regressionTest('should not change page', async ({ mount, page }) => {
     </ix-pagination>
   `);
   const pagination = page.locator('ix-pagination');
-  await expect(pagination).toHaveClass(/hydrated/);
+  await expect(pagination).toHaveAttribute('hydrated');
 
   await pagination.evaluate((elm) => {
     elm.addEventListener('pageSelected', (event) => event.preventDefault());
@@ -109,7 +109,7 @@ regressionTest('should handle valid page input', async ({ mount, page }) => {
     </ix-pagination>
   `);
   const pagination = page.locator('ix-pagination[advanced]');
-  await expect(pagination).toHaveClass(/hydrated/);
+  await expect(pagination).toHaveAttribute('hydrated');
   const input = pagination.getByLabel('Page selection input');
 
   const pageSelected$ = pagination.evaluate(
@@ -136,7 +136,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination[advanced]');
-    await expect(pagination).toHaveClass(/hydrated/);
+    await expect(pagination).toHaveAttribute('hydrated');
     const input = pagination.getByLabel('Page selection input');
 
     const pageSelected$ = createOnPageSelectedListener(pagination);
@@ -157,7 +157,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination[advanced]');
-    await expect(pagination).toHaveClass(/hydrated/);
+    await expect(pagination).toHaveAttribute('hydrated');
     const input = pagination.getByLabel('Page selection input');
 
     const pageSelected$ = createOnPageSelectedListener(pagination);
@@ -178,7 +178,7 @@ regressionTest(
     </ix-pagination>
   `);
     const pagination = page.locator('ix-pagination');
-    await expect(pagination).toHaveClass(/hydrated/);
+    await expect(pagination).toHaveAttribute('hydrated');
 
     await pagination.evaluate((elm: HTMLIxPaginationElement) => {
       elm.itemCountOptions = [5, 25, 50, 100];

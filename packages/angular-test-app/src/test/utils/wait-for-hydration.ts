@@ -4,7 +4,7 @@ export function waitForHydration(
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
-      if (element.classList.contains('hydrated')) {
+      if (element.hasAttribute('hydrated')) {
         clearInterval(interval);
         clearTimeout(timeoutId);
         resolve();

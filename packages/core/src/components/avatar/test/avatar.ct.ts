@@ -9,6 +9,23 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`<ix-avatar aria-label="User"></ix-avatar>`);
+
+  const avatar = page.locator('ix-avatar');
+  await expect(avatar).toHaveClass(/\bhydrated\b/);
+  await expect(avatar).toBeVisible();
+});
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-avatar aria-label="User" username="foo" extra="bar" aria-label-tooltip="myTooltip"></ix-avatar>`
+  );
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest.describe('embedded into header', () => {
   regressionTest('show avatar as clickable', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
@@ -175,7 +192,7 @@ regressionTest.describe('embedded into header', () => {
       await avatar.hover();
 
       const tooltip = avatar.getByLabel('myTooltip');
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/foo/);
 
@@ -183,7 +200,7 @@ regressionTest.describe('embedded into header', () => {
         avatar.setAttribute('tooltip-text', 'other text')
       );
 
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/other text/);
     }

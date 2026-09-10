@@ -21,14 +21,14 @@ regressionTest('renders', async ({ mount, page }) => {
     <ix-button class="test">button</ix-button>
   `);
   const tooltip = page.locator('ix-tooltip');
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
 
   const button = page.locator('ix-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   await expect(tooltip).toHaveClass(/visible/);
 });
 
@@ -54,13 +54,13 @@ regressionTest('renders in shadow DOM', async ({ mount, page }) => {
   });
 
   const tooltip = page.locator('ix-tooltip');
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   const button = page.locator('ix-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   await expect(tooltip).toHaveClass(/visible/);
 });
 
@@ -77,7 +77,7 @@ regressionTest('renders in slot', async ({ mount, page }) => {
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   await expect(tooltip).toHaveClass(/visible/);
 });
 

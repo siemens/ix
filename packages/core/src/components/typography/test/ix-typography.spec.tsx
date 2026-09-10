@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { render, h } from '@stencil/vitest';
 import { describe, expect, it } from 'vitest';
 
@@ -7,7 +16,7 @@ describe('ix-typography', () => {
       <ix-typography>Example content</ix-typography>
     );
 
-    expect(root).toHaveClass('hydrated');
+    expect(root).toHaveAttribute('hydrated');
     expect(root).toHaveClass('typography-body');
     expect(root).toHaveTextContent('Example content');
     expect(root.shadowRoot?.querySelector('slot')).not.toBeNull();

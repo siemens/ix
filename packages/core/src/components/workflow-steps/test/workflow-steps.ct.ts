@@ -9,6 +9,19 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+    <ix-workflow-steps clickable>
+      <ix-workflow-step status='success'>Step A</ix-workflow-step>
+      <ix-workflow-step status='open'>Step B</ix-workflow-step>
+    </ix-workflow-steps>
+  `);
+  await expect(page.locator('ix-workflow-step').nth(1)).toBeVisible();
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps>
@@ -25,7 +38,7 @@ regressionTest('renders', async ({ mount, page }) => {
     .locator('ix-workflow-step')
     .nth(1)
     .locator('.step .selected');
-  await expect(workflowSteps).toHaveClass(/hydrated/);
+  await expect(workflowSteps).toHaveAttribute('hydrated');
   await expect(step).toBeVisible();
 });
 
@@ -56,7 +69,7 @@ regressionTest(
     const workflowSteps = page.locator('ix-workflow-steps');
     const steps = page.locator('ix-workflow-step');
 
-    await expect(workflowSteps).toHaveClass(/hydrated/);
+    await expect(workflowSteps).toHaveAttribute('hydrated');
 
     await workflowSteps.evaluate(
       (el: HTMLIxWorkflowStepsElement) => (el.selectedIndex = 2)
@@ -93,7 +106,7 @@ regressionTest('should be clickable', async ({ mount, page }) => {
   const selectedDiv = lastStep.locator('.step');
   await lastStep.click();
 
-  await expect(workflowSteps).toHaveClass(/hydrated/);
+  await expect(workflowSteps).toHaveAttribute('hydrated');
   await expect(selectedDiv).toHaveClass(/selected/);
 });
 
@@ -120,7 +133,7 @@ regressionTest('should prevent click navigation', async ({ mount, page }) => {
 
   await lastStep.click();
 
-  await expect(workflowSteps).toHaveClass(/hydrated/);
+  await expect(workflowSteps).toHaveAttribute('hydrated');
   await expect(firstStepDiv).toHaveClass(/selected/);
   await expect(lastStepDiv).not.toHaveClass(/selected/);
 });
@@ -160,14 +173,14 @@ regressionTest(
     `);
 
     const workflowSteps = page.locator('ix-workflow-steps');
-    await expect(workflowSteps).toHaveClass(/hydrated/);
+    await expect(workflowSteps).toHaveAttribute('hydrated');
 
     const step1 = page.locator('#step1');
-    await expect(step1).toHaveClass(/hydrated/);
+    await expect(step1).toHaveAttribute('hydrated');
 
     const selectedDiv = step1.locator('.step');
 
-    await expect(workflowSteps).toHaveClass(/hydrated/);
+    await expect(workflowSteps).toHaveAttribute('hydrated');
     await expect(selectedDiv).toHaveClass(/selected/);
 
     let icon = page.locator('#step1 ix-icon').nth(1);

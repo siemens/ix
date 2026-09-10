@@ -62,7 +62,7 @@ regressionTest(
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-chip></ix-chip>`);
   const datePicker = page.locator('ix-chip');
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await expect(datePicker).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('default variant fallback', () => {
@@ -71,7 +71,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip>Default</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       await expect(chip).toHaveAttribute('variant', 'primary');
       await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
     }
@@ -82,7 +82,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="">Empty variant</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
     }
   );
@@ -92,7 +92,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="not-a-variant">Bad variant</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
     }
   );
@@ -102,7 +102,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip outline>Default outline</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       const wrap = chip.locator('.chip-wrap');
       await expect(wrap).toHaveClass(/primary/);
       await expect(wrap).toHaveClass(/outline/);
@@ -151,7 +151,8 @@ regressionTest.describe('chip test', () => {
 regressionTest('check inactive class', async ({ mount, page }) => {
   await mount(`<ix-chip inactive>test</ix-chip>`);
   const chip = page.locator('ix-chip');
-  await expect(chip).toHaveClass('inactive hydrated');
+  await expect(chip).toHaveClass('inactive');
+  await expect(chip).toHaveAttribute('hydrated');
 });
 
 regressionTest(
