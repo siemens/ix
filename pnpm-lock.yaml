@@ -870,8 +870,8 @@ importers:
         version: 19.1.1(react@19.1.1)
     devDependencies:
       '@stencil/ssr':
-        specifier: ^0.3.0
-        version: 0.3.0(next@16.2.6(@playwright/test@1.58.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.93.0))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.0))(webpack@5.99.9(esbuild@0.27.2))
+        specifier: ^0.4.0
+        version: 0.4.0(next@16.2.6(@playwright/test@1.58.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.93.0))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.0))(webpack@5.99.9(esbuild@0.27.2))
       '@types/node':
         specifier: ^20
         version: 20.16.5
@@ -4554,8 +4554,8 @@ packages:
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
 
-  '@stencil/ssr@0.3.0':
-    resolution: {integrity: sha512-0XkERTEsr5MJ9vrFJyrw6Rh/tTVwElaRYaYRI69z8Ym3L45sRf0gbFHIM+KFzp0Mp6E/uc1KYo7+xO+0JGlFtg==}
+  '@stencil/ssr@0.4.0':
+    resolution: {integrity: sha512-FVdqqEBanjP1pwceyHKBwT96DPUdNV6xNueUfKkVadwV9T/w8BraDzdyo2aBmEbS6e0gLyUuHcnCyIBKMBxPvA==}
     peerDependencies:
       next: 13 || 14 || 15
       vite: ^6.x
@@ -5893,8 +5893,8 @@ packages:
     resolution: {integrity: sha512-O0yuUDnZeQDL+ncNGlJ78BiO4jnYI3bvMsD5prT0/nsgijG/LpNBIr63gTjVTNsiGkgQhiyCShTgxt8oXOrklA==}
     engines: {node: '>=4'}
 
-  ast-types@0.16.1:
-    resolution: {integrity: sha512-6t10qk83GOG8p0vKmaCr8eiilZwO171AvbROMtvvNiwrTly62t+7XkA8RdIIVbpMhCASAsxgAzdRSwh6nw/5Dg==}
+  ast-types@0.16.3:
+    resolution: {integrity: sha512-FvWoWYfSCM6kRxCSH+MGLHIKKGRL6A6AW7Zek2O32REPQRdg131428uRTKMBYAeRd3XXAaHDS60Wpri7CdKDrA==}
     engines: {node: '>=4'}
 
   ast-v8-to-istanbul@0.3.10:
@@ -6778,8 +6778,8 @@ packages:
       supports-color:
         optional: true
 
-  decamelize@6.0.0:
-    resolution: {integrity: sha512-Fv96DCsdOgB6mdGl67MT5JaTNKRzrzill5OH5s8bjYJXVlcXyPYGyPsUkWyGV5p1TXI5esYIYMMeDJL0hEIwaA==}
+  decamelize@6.0.1:
+    resolution: {integrity: sha512-G7Cqgaelq68XHJNGlZ7lrNQyhZGsFqpwtGFexqUv4IQdjKoSYF7ipZ9UuTJZUSQXFj/XaoBLuEVIVqr8EJngEQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   decimal.js@10.4.3:
@@ -9236,6 +9236,9 @@ packages:
   mlly@1.7.4:
     resolution: {integrity: sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==}
 
+  mlly@1.8.2:
+    resolution: {integrity: sha512-d+ObxMQFmbt10sretNDytwt85VrbkhhUA/JBGm1MPaWJ65Cl4wOgLaB1NYvJSZ0Ef03MMEU/0xpPMXUIQ29UfA==}
+
   moo@0.5.2:
     resolution: {integrity: sha512-iSAJLHYKnX41mKcJKjqvnAN9sf0LMDTXDEvFv+ffuRR9a1MIuXLjMNL6EsnDHSkKLTWNqQQ5uo61P4EbU4NU+Q==}
 
@@ -10400,6 +10403,10 @@ packages:
   readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
+
+  recast@0.23.21:
+    resolution: {integrity: sha512-mFAyJq9vUbSTARLZUvAEf1z3YxlvAwswbmxMx2mPA/MSm4KmpwvwvhsH/NIrZhyOuwD60Lzyw2qh83uCbgTPYw==}
+    engines: {node: '>= 4'}
 
   recast@0.23.9:
     resolution: {integrity: sha512-Hx/BGIbwj+Des3+xy5uAtAbdCyqK9y9wbBcDFDYanLS9JnMqf7OeF87HQwUimE87OEc72mr6tkKUKMBBL+hF9Q==}
@@ -11745,6 +11752,9 @@ packages:
 
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
+
+  ufo@1.6.4:
+    resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
@@ -16796,15 +16806,15 @@ snapshots:
       '@stencil/core': 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
       sass-embedded: 1.93.0
 
-  '@stencil/ssr@0.3.0(next@16.2.6(@playwright/test@1.58.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.93.0))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.0))(webpack@5.99.9(esbuild@0.27.2))':
+  '@stencil/ssr@0.4.0(next@16.2.6(@playwright/test@1.58.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.93.0))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.0))(webpack@5.99.9(esbuild@0.27.2))':
     dependencies:
       ast-types: 0.14.2
-      decamelize: 6.0.0
+      decamelize: 6.0.1
       esbuild: 0.25.12
       imports-loader: 5.0.0(webpack@5.99.9(esbuild@0.27.2))
-      mlly: 1.7.4
+      mlly: 1.8.2
       next: 16.2.6(@playwright/test@1.58.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.93.0)
-      recast: 0.23.9
+      recast: 0.23.21
       vite: 8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.0)
       webpack: 5.99.9(esbuild@0.27.2)
 
@@ -18287,16 +18297,20 @@ snapshots:
 
   acorn-globals@7.0.1:
     dependencies:
-      acorn: 8.16.0
+      acorn: 8.18.0
       acorn-walk: 8.3.4
 
   acorn-jsx@5.3.2(acorn@8.16.0):
     dependencies:
       acorn: 8.16.0
 
+  acorn-jsx@5.3.2(acorn@8.18.0):
+    dependencies:
+      acorn: 8.18.0
+
   acorn-walk@8.3.4:
     dependencies:
-      acorn: 8.16.0
+      acorn: 8.18.0
 
   acorn-walk@8.3.5:
     dependencies:
@@ -18307,8 +18321,7 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  acorn@8.18.0:
-    optional: true
+  acorn@8.18.0: {}
 
   adjust-sourcemap-loader@4.0.0:
     dependencies:
@@ -18572,7 +18585,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  ast-types@0.16.1:
+  ast-types@0.16.3:
     dependencies:
       tslib: 2.8.1
 
@@ -19626,7 +19639,7 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  decamelize@6.0.0: {}
+  decamelize@6.0.1: {}
 
   decimal.js@10.4.3: {}
 
@@ -20339,8 +20352,8 @@ snapshots:
 
   espree@9.6.1:
     dependencies:
-      acorn: 8.16.0
-      acorn-jsx: 5.3.2(acorn@8.16.0)
+      acorn: 8.18.0
+      acorn-jsx: 5.3.2(acorn@8.18.0)
       eslint-visitor-keys: 3.4.3
 
   esprima@4.0.1: {}
@@ -22946,6 +22959,13 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.5.4
 
+  mlly@1.8.2:
+    dependencies:
+      acorn: 8.18.0
+      pathe: 2.0.3
+      pkg-types: 1.3.1
+      ufo: 1.6.4
+
   moo@0.5.2:
     optional: true
 
@@ -23766,7 +23786,7 @@ snapshots:
   pkg-types@1.3.1:
     dependencies:
       confbox: 0.1.8
-      mlly: 1.7.4
+      mlly: 1.8.2
       pathe: 2.0.3
 
   pkg-types@2.3.0:
@@ -24421,9 +24441,17 @@ snapshots:
 
   readdirp@4.1.2: {}
 
+  recast@0.23.21:
+    dependencies:
+      ast-types: 0.16.3
+      esprima: 4.0.1
+      source-map: 0.6.1
+      tiny-invariant: 1.3.3
+      tslib: 2.8.1
+
   recast@0.23.9:
     dependencies:
-      ast-types: 0.16.1
+      ast-types: 0.16.3
       esprima: 4.0.1
       source-map: 0.6.1
       tiny-invariant: 1.3.3
@@ -26074,6 +26102,8 @@ snapshots:
 
   ufo@1.5.4: {}
 
+  ufo@1.6.4: {}
+
   unbox-primitive@1.1.0:
     dependencies:
       call-bound: 1.0.4
@@ -26145,7 +26175,7 @@ snapshots:
   unplugin@2.3.11:
     dependencies:
       '@jridgewell/remapping': 2.3.5
-      acorn: 8.16.0
+      acorn: 8.18.0
       picomatch: 4.0.4
       webpack-virtual-modules: 0.6.2
 
