@@ -1,5 +1,12 @@
 # @siemens/ix-vue
 
+## 5.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`58b7da4`](https://github.com/siemens/ix/commit/58b7da438959739db7df1aacc6dbc57b164a6464)]:
+  - @siemens/ix@5.2.2
+
 ## 5.2.1
 
 ### Patch Changes
