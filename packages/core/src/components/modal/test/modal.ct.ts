@@ -204,6 +204,10 @@ regressionTest(
     });
 
     await waitForModalDialogOpen(page);
+    await expect(page.locator('ix-modal')).toHaveJSProperty(
+      'disableAnimation',
+      true
+    );
     await expect(page.locator('#injected')).toHaveCount(0);
     await expect(page.locator('ix-modal-header')).toContainText('Safe title');
     await expect(page.locator('ix-modal-content')).toHaveText('Safe message');
