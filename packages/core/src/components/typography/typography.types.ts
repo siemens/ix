@@ -6,7 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
 type TypographyFormatBody =
   | 'body'
   | 'body-paragraph'
@@ -17,8 +16,6 @@ type TypographyFormatBody =
   | 'body-lg-sbold';
 type TypographyFormatDisplay =
   | 'display'
-  | 'display-xs'
-  | 'display-sm'
   | 'display-lg'
   | 'display-lg-sbold'
   | 'display-xl'
@@ -70,7 +67,6 @@ export type TypographyColors =
   | 'weak';
 
 export type TypographyFormat =
-  | TypographyFormatLabel
   | TypographyFormatBody
   | TypographyFormatDisplay
   | TypographyFormatHeading

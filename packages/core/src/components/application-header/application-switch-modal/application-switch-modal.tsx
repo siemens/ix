@@ -62,11 +62,11 @@ function ApplicationItem(props: {
             <ix-icon
               size="12"
               name={iconOpenExternal}
-              color="color-soft-text"
+              color="--si-sys-text-secondary"
             ></ix-icon>
           )}
         </ix-typography>
-        <ix-typography format="label-sm" textColor="soft">
+        <ix-typography format="body-sm" textColor="soft">
           {props.description}
         </ix-typography>
       </div>

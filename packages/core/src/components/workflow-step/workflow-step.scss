@@ -8,8 +8,10 @@
  */
 
 @use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
+@use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
   width: 12rem;
   height: 4rem;
@@ -36,8 +38,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--theme-workflow-step--background);
-    border-radius: var(--theme-workflow--border-radius);
+    background-color: var(--ix-workflow-step--background);
+    border-radius: var(--ix-workflow-step--border-radius);
     padding: 1.125rem 0 vars.$small-space 0;
 
     .wrapper {
@@ -50,7 +52,7 @@
       .line {
         width: 100%;
         height: 0.125rem;
-        background-color: var(--theme-workflow-step-icon-default--color);
+        background-color: var(--ix-workflow-step-icon-default--color);
 
         &.first,
         &.last {
@@ -68,30 +70,30 @@
 
         &.selected {
           background-color: var(
-              --theme-workflow-step-icon-default--color--selected
+            --ix-workflow-step-icon-default--color--selected
           );
         }
 
         &.done {
-          background-color: var(--theme-workflow-step-icon-done--color);
+          background-color: var(--ix-workflow-step-icon-done--color);
 
           &.selected {
             background-color: var(
-                --theme-workflow-step-icon-done--color--selected
+              --ix-workflow-step-icon-done--color--selected
             );
           }
         }
 
         &.warning {
-          background-color: var(--theme-color-warning);
+          background-color: var(--ix-workflow-step-line--background--warning);
         }
 
         &.success {
-          background-color: var(--theme-color-success);
+          background-color: var(--ix-workflow-step-line--background--success);
         }
 
         &.error {
-          background-color: var(--theme-color-alarm);
+          background-color: var(--ix-workflow-step-line--background--error);
         }
       }
 
@@ -157,34 +159,52 @@
 
     &.clickable {
       &:hover {
-        background-color: var(--theme-workflow-step--background--hover);
+        background-color: var(--ix-workflow-step--background--hover);
+        --ix-workflow-step-icon-default--color--selected: var(
+          --ix-workflow-step-icon-default--color--selected--hover
+        );
+        --ix-workflow-step-icon-done--color: var(
+          --ix-workflow-step-icon-done--color--hover
+        );
+        --ix-workflow-step-icon-done--color--selected: var(
+          --ix-workflow-step-icon-done--color--selected--hover
+        );
       }
 
       &:active {
-        background-color: var(--theme-workflow-step--background--active);
+        background-color: var(--ix-workflow-step--background--active);
+        --ix-workflow-step-icon-default--color--selected: var(
+          --ix-workflow-step-icon-default--color--selected--active
+        );
+        --ix-workflow-step-icon-done--color: var(
+          --ix-workflow-step-icon-done--color--active
+        );
+        --ix-workflow-step-icon-done--color--selected: var(
+          --ix-workflow-step-icon-done--color--selected--active
+        );
       }
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid #{sys.$si-sys-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
 
     &.selected {
-      background-color: var(--theme-workflow-step--background--selected);
+      background-color: var(--ix-workflow-step--background--selected);
     }
 
     &.disabled {
-      background-color: var(--theme-workflow-step--background--disabled);
+      background-color: var(--ix-workflow-step--background--disabled);
 
       .line {
         background-color: var(
-          --theme-workflow-step-icon-default--color--disabled
+          --ix-workflow-step-icon-default--color--disabled
         ) !important;
       }
 
       .text {
-        color: var(--theme-workflow-step--color--disabled);
+        color: var(--ix-workflow-step--color--disabled);
       }
     }
   }

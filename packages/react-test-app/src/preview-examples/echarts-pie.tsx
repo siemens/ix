@@ -67,7 +67,7 @@ export default function EchartsPie() {
         data: data,
         label: {
           show: true,
-          color: getComputedCSSProperty('color-neutral'),
+          color: getComputedCSSProperty('--si-sys-background-neutral'),
         },
         emphasis: {
           itemStyle: {

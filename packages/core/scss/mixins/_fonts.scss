@@ -6,8 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-@use '../REMOVE_ME_LATER';
+@use '../tokens/system' as sys;
 
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
@@ -15,11 +14,13 @@
 }
 
 @mixin define-typography(
-  $font: var(--si-sys-typography-body),
+  $font: sys.$si-sys-typography-body,
   $letter-spacing: var(--si-ref-typography-letter-spacing-normal),
-  $text-decoration: none,
+  $text-decoration: none
 ) {
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
   font-style: normal;
   letter-spacing: #{$letter-spacing};
   text-decoration: $text-decoration;
@@ -29,145 +30,99 @@
 }
 
 @mixin typography-body {
-  @include define-typography(
-    $font: var(--si-sys-typography-body),
-  );
+  @include define-typography($font: sys.$si-sys-typography-body);
 }
 
 @mixin typography-body-paragraph {
-  @include define-typography(
-    $font: var(--si-sys-typography-body-paragraph),
-  );
+  @include define-typography($font: sys.$si-sys-typography-body-paragraph);
 }
 
 @mixin typography-body-paragraph-sbold {
   @include define-typography(
-    $font: var(--si-sys-typography-body-paragraph-sbold),
+    $font: sys.$si-sys-typography-body-paragraph-sbold
   );
 }
 
 @mixin typography-body-sm {
-  @include define-typography(
-    $font: var(--si-sys-typography-body-sm),
-  );
+  @include define-typography($font: sys.$si-sys-typography-body-sm);
 }
 
 @mixin typography-body-sm-sbold {
-  @include define-typography(
-    $font: var(--si-sys-typography-body-sm-sbold),
-  );
+  @include define-typography($font: sys.$si-sys-typography-body-sm-sbold);
 }
 
 @mixin typography-body-lg {
-  @include define-typography(
-    $font: var(--si-sys-typography-body-lg),
-  );
+  @include define-typography($font: sys.$si-sys-typography-body-lg);
 }
 
 @mixin typography-body-lg-sbold {
-  @include define-typography(
-    $font: var(--si-sys-typography-body-lg-sbold),
-  );
+  @include define-typography($font: sys.$si-sys-typography-body-lg-sbold);
 }
 
 @mixin typography-display {
-  @include define-typography(
-    $font: var(--si-sys-typography-display),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display);
 }
 
 @mixin typography-display-lg {
-  @include define-typography(
-    $font: var(--si-sys-typography-display-lg),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display-lg);
 }
 
 @mixin typography-display-lg-sbold {
-  @include define-typography(
-    $font: var(--si-sys-typography-display-lg-sbold),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display-lg-sbold);
 }
 
 @mixin typography-display-xl {
-  @include define-typography(
-    $font: var(--si-sys-typography-display-xl),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display-xl);
 }
 
 @mixin typography-display-xl-sbold {
-  @include define-typography(
-    $font: var(--si-sys-typography-display-xl-sbold),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display-xl-sbold);
 }
 
 @mixin typography-display-xxl {
-  @include define-typography(
-    $font: var(--si-sys-typography-display-xxl),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display-xxl);
 }
 
 @mixin typography-display-xxl-sbold {
-  @include define-typography(
-    $font: var(--si-sys-typography-display-xxl-sbold),
-  );
+  @include define-typography($font: sys.$si-sys-typography-display-xxl-sbold);
 }
 
 @mixin typography-h1 {
-  @include define-typography(
-    $font: var(--si-sys-typography-h1),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h1);
 }
 
 @mixin typography-h2 {
-  @include define-typography(
-    $font: var(--si-sys-typography-h2),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h2);
 }
 
 @mixin typography-h3 {
-  @include define-typography(
-    $font: var(--si-sys-typography-h3),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h3);
 }
 
 @mixin typography-h4 {
-  @include define-typography(
-   $font: var(--si-sys-typography-h4),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h4);
 }
 
 @mixin typography-h5 {
-  @include define-typography(
-    $font: var(--si-sys-typography-h5),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h5);
 }
 
 @mixin typography-h5-bold {
-  @include define-typography(
-    $font: var(--si-sys-typography-h5-bold),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h5-bold);
 }
 
 @mixin typography-h6 {
-  @include define-typography(
-    $font: var(--si-sys-typography-h6),
-  );
+  @include define-typography($font: sys.$si-sys-typography-h6);
 }
 
 @mixin typography-code {
-  @include define-typography(
-    $font: var(--si-sys-typography-code),
-  );
+  @include define-typography($font: sys.$si-sys-typography-code);
 }
 
 @mixin typography-code-sm {
-  @include define-typography(
-    $font: var(--si-sys-typography-code-sm),
-  );
+  @include define-typography($font: sys.$si-sys-typography-code-sm);
 }
 
 @mixin typography-code-lg {
-  @include define-typography(
-    $font: var(--si-sys-typography-code-lg),
-  );
+  @include define-typography($font: sys.$si-sys-typography-code-lg);
 }
