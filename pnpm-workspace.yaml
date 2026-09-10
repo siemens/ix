@@ -5,7 +5,7 @@ packages:
 
 catalog:
   '@axe-core/playwright': ^4.11.0
-  '@esbuild/linux-arm64': 0.27.2
+  '@esbuild/linux-arm64': 0.28.2
   '@playwright/test': ^1.58.1
   '@siemens/ix-icons': 0.0.0-20260811100620
   eslint: ^9.39.3
