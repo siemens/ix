@@ -763,8 +763,8 @@ importers:
         specifier: 6.1.1
         version: 6.1.1(@capacitor/core@6.1.1)
       '@capacitor/keyboard':
-        specifier: 6.0.3
-        version: 6.0.3(@capacitor/core@6.1.1)
+        specifier: 8.0.5
+        version: 8.0.5(@capacitor/core@6.1.1)
       '@capacitor/screen-orientation':
         specifier: ^6.0.1
         version: 6.0.2(@capacitor/core@6.1.1)
@@ -2428,10 +2428,10 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.1.0
 
-  '@capacitor/keyboard@6.0.3':
-    resolution: {integrity: sha512-V/mURxBI68HvClYjrGBlOriWkwYN7r+cWid/igJz/3scNc/V81DgQ9fpoLr4W0I5NY7YxOesjIJLuLO+LT18mQ==}
+  '@capacitor/keyboard@8.0.5':
+    resolution: {integrity: sha512-oFXygC4eKYA5l2MdpTR06L2M/4x6e2SLD5yS1T9+UBDKTkzyvhWKEhbYLUaTIBPpLKqlfGudJw1X73S1H9eUzQ==}
     peerDependencies:
-      '@capacitor/core': ^6.0.0
+      '@capacitor/core': '>=8.0.0'
 
   '@capacitor/screen-orientation@6.0.2':
     resolution: {integrity: sha512-CF+RFUIUYrvztlX+voHwvONdAbf/F9xuJWfMDnxjiGliu+oPTNLLTWxAFPmoyi3sVJcNoeQ+qwWzUfXa7ag59Q==}
@@ -14482,7 +14482,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/keyboard@6.0.3(@capacitor/core@6.1.1)':
+  '@capacitor/keyboard@8.0.5(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
