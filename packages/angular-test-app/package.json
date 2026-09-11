@@ -44,7 +44,7 @@
     "@angular/compiler-cli": "^20.1.4",
     "@playwright/test": "catalog:",
     "@types/jasmine": "~5.1.4",
-    "@types/node": "^20.16.0",
+    "@types/node": "^26.5.0",
     "framework-tests": "workspace:*",
     "http-server": "^14.1.1",
     "jasmine-core": "~5.1.2",

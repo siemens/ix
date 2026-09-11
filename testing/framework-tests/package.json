@@ -11,7 +11,7 @@
     "@axe-core/playwright": "catalog:",
     "@playwright/test": "catalog:",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.16.0",
+    "@types/node": "^26.5.0",
     "fs-extra": "^11.3.3",
     "glob": "catalog:",
     "html-test-app": "workspace:*",
