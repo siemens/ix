@@ -5244,6 +5244,73 @@
       "cssStates": []
     },
     {
+      "tag": "ix-info-page",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "copyText",
+          "attribute": "copy-text",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "iconWarning",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconColor",
+          "attribute": "icon-color",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'color-warning-text'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "instructions",
+          "attribute": "instructions",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "titleText",
+          "attribute": "title-text",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": false,
+          "required": true,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [
+        "actions",
+        "image"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
       "tag": "ix-input",
       "deprecated": false,
       "properties": [

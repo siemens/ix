@@ -65,6 +65,7 @@ import { IxGroup as IxGroupElement, defineCustomElement as defineIxGroup } from 
 import { IxHelperText as IxHelperTextElement, defineCustomElement as defineIxHelperText } from "@siemens/ix/components/ix-helper-text.js";
 import { IxIconButton as IxIconButtonElement, defineCustomElement as defineIxIconButton } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement, defineCustomElement as defineIxIconToggleButton } from "@siemens/ix/components/ix-icon-toggle-button.js";
+import { IxInfoPage as IxInfoPageElement, defineCustomElement as defineIxInfoPage } from "@siemens/ix/components/ix-info-page.js";
 import { IxInput as IxInputElement, defineCustomElement as defineIxInput } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement, defineCustomElement as defineIxKeyValueList } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement, defineCustomElement as defineIxKeyValue } from "@siemens/ix/components/ix-key-value.js";
@@ -804,6 +805,17 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
     react: React,
     events: { onPressedChange: 'pressedChange' } as IxIconToggleButtonEvents,
     defineCustomElement: defineIxIconToggleButton
+});
+
+export type IxInfoPageEvents = NonNullable<unknown>;
+
+export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage> = /*@__PURE__*/ createComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>({
+    tagName: 'ix-info-page',
+    elementClass: IxInfoPageElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxInfoPageEvents,
+    defineCustomElement: defineIxInfoPage
 });
 
 export type IxInputEvents = {
