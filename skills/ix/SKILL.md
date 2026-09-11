@@ -1,6 +1,6 @@
 ---
 name: ix
-description: 'Implement, review, migrate, or answer development questions about Siemens iX. Use version-matched registry documentation for component APIs, examples, blocks, and Figma mappings; use the official design-system documentation for usage guidance, accessibility, migrations, writing, charts, and icons.'
+description: 'Implement, review, migrate, or answer development questions about Siemens iX. Use version-matched registry documentation for component APIs, examples, patterns, and Figma mappings; use the official design-system documentation for usage guidance, accessibility, migrations, writing, charts, and icons.'
 license: 'MIT; see THIRD_PARTY_LICENSES.md for the bundled MiniSearch notice.'
 compatibility: 'Requires Node.js 22+ and network access to the Siemens iX registry and documentation. Local-index mode may work offline.'
 ---
@@ -11,7 +11,7 @@ compatibility: 'Requires Node.js 22+ and network access to the Siemens iX regist
 
 - Select and implement iX components in React, Angular, Vue, or web-components/native HTML applications.
 - Look up component properties, events, methods, slots, dependencies, examples, or related components.
-- Build a larger UI section from an available iX block.
+- Build a larger UI section from an available iX pattern.
 - Translate a Figma component into the matching iX implementation.
 - Find and use an iX icon.
 - Apply iX design, accessibility, UX writing, chart, or migration guidance.
@@ -21,7 +21,7 @@ If iX is not installed or configured correctly, use the `ix-installation` skill 
 
 ## Required Principles
 
-- For implementation, API, example, block, Figma, and migration work, detect the target application, framework, Angular mode, and iX version before choosing sources.
+- For implementation, API, example, pattern, Figma, and migration work, detect the target application, framework, Angular mode, and iX version before choosing sources.
 - Use version-matched API and example sources. Do not silently use the latest docs for an older project.
 - Before generating code with an iX component, open that component's detail documentation and at least one relevant example for the target framework.
 - Use the target framework's wrapper and conventions. Do not translate syntax mechanically from another framework when a matching example exists.
@@ -35,7 +35,7 @@ If iX is not installed or configured correctly, use the `ix-installation` skill 
 | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | Component discovery, exact API, related examples, Figma IDs                  | `https://siemens.github.io/ix/llms.txt` and its matching versioned registry docs | Installed `@siemens/ix` metadata                               |
 | Practical framework examples                                                 | Matching version's registry `llms/examples.md` and linked materialized files     | Related examples in component details                          |
-| Complete reusable UI blocks                                                  | Matching version's registry `llms/blocks.md` and linked materialized files       | Existing application patterns built from documented components |
+| Complete reusable UI patterns                                                  | Matching version's registry `llms/patterns.md` and linked materialized files       | Existing application patterns built from documented components |
 | Component usage and design guidance                                          | Documentation links from the versioned component detail                          | `https://ix.siemens.io/llms.txt`                               |
 | Installation, migration, accessibility, UX writing, charts, general guidance | `https://ix.siemens.io/llms.txt` and the relevant linked page                    | Repository-local guidance for the target project               |
 | Icon discovery                                                               | `https://ix.siemens.io/docs/icons/icon-library.md`                               | Installed `@siemens/ix-icons/dist/sample.json`                 |
@@ -52,7 +52,7 @@ When sources appear to conflict:
 
 For a general, version-independent design-system question, no application inspection is required. Use the relevant page linked from `https://ix.siemens.io/llms.txt` and state when the answer is not tied to a specific iX version.
 
-For implementation, API, example, block, Figma, or migration work:
+For implementation, API, example, pattern, Figma, or migration work:
 
 1. Identify the target application or workspace package.
 2. Read its `package.json`, lockfile resolution when needed, framework configuration, and nearby implementation patterns.
@@ -90,7 +90,7 @@ references. Results are a stable JSON envelope:
 }
 ```
 
-Use `--kind example` or `--kind block` for direct framework-specific discovery.
+Use `--kind example` or `--kind pattern` for direct framework-specific discovery.
 `--limit`, `--registry-url`, and `--local-index <path>` remain available.
 Figma IDs and component names are repeatable:
 
@@ -117,7 +117,7 @@ fully portable and bypasses package and registry resolution.
 2. Fetch the matched detail artifact at the `path` returned by the helper:
    - `llms/components/<component-tag>.md` for the complete component contract
    - `examples/<name>.json` for framework variants and their materialized files
-   - `blocks/<name>.json` for copyable multi-file UI patterns
+   - `patterns/<name>.json` for copyable multi-file UI patterns
 3. Do not substitute the `latest` registry version without saying so.
 
 If the exact version is unavailable:
@@ -209,11 +209,11 @@ When no related example exists, use the component API and usage guide directly a
 - **Web components/native HTML**: use `ix-*` elements and the HTML example; preserve the loader setup established by `ix-installation`.
 - Do not add custom-element loader calls when a framework wrapper is used.
 
-## Block Workflow
+## Pattern Workflow
 
-Use blocks for complete page sections or reusable multi-file patterns, not for a single component lookup.
+Use patterns for complete page sections or reusable multi-file patterns, not for a single component lookup.
 
-1. Search the matching version with `--kind block` and the target framework.
+1. Search the matching version with `--kind pattern` and the target framework.
 2. Inspect descriptions and keywords for the requested workflow.
 3. Inspect:
    - intended use
@@ -223,12 +223,12 @@ Use blocks for complete page sections or reusable multi-file patterns, not for a
      to that manifest URL
    - component relationship availability
 4. Use only the target framework variant.
-5. Read the linked files before adapting the block. Resolve each
-   `files[].path` relative to the block manifest URL; never infer a route or
+5. Read the linked files before adapting the pattern. Resolve each
+   `files[].path` relative to the pattern manifest URL; never infer a route or
    use a repository source path.
-6. Integrate the block with the application's routing, state, styling, and naming conventions.
-7. Do not infer used-component relationships when the block docs mark them unavailable.
-8. Do not depend on private registry commands or a private CLI to install the block.
+6. Integrate the pattern with the application's routing, state, styling, and naming conventions.
+7. Do not infer used-component relationships when the pattern docs mark them unavailable.
+8. Do not depend on private registry commands or a private CLI to install the pattern.
 
 ## Icon Workflow
 
@@ -322,7 +322,7 @@ When code changes are requested:
 
 1. Inspect nearby application patterns before editing.
 2. Make the smallest complete change that satisfies the requested behavior.
-3. Reuse documented components, blocks, icons, and existing project helpers.
+3. Reuse documented components, patterns, icons, and existing project helpers.
 4. Keep wrapper imports, event names, property names, slots, and methods consistent with the selected version's docs and example.
 5. Preserve accessibility requirements from component and general guidance.
 6. Do not add dependencies not required by the selected example or implementation.
@@ -348,7 +348,7 @@ Run the smallest existing type-check, build, lint, or targeted test command that
 - Component not found: broaden the purpose-based search; do not fabricate a tag.
 - API field or relationship unavailable: state that it is unavailable and avoid relying on it.
 - Matching framework example unavailable: use the API and usage guide, preserve framework conventions, and disclose the missing example.
-- Block framework variant unavailable: do not translate a different framework automatically; implement from documented components or ask the user.
+- Pattern framework variant unavailable: do not translate a different framework automatically; implement from documented components or ask the user.
 - Icon not found: suggest documented related icons, not an invented icon name.
 - Figma ID unmapped: report it as unmapped and continue with requirement-based discovery.
 
@@ -358,6 +358,6 @@ Report:
 
 1. Target framework, Angular mode when relevant, and iX version.
 2. Registry/documentation pages and examples used.
-3. Components, block, icons, or Figma mapping selected.
+3. Components, pattern, icons, or Figma mapping selected.
 4. Files changed and meaningful implementation decisions.
 5. Any unavailable version, relationship, example, or mapping that limited confidence.

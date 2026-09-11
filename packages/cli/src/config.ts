@@ -3,15 +3,15 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {
-  BLOCK_NAME_PATTERN,
+  PATTERN_NAME_PATTERN,
   formatZodIssues,
   isSafeRelativePath,
 } from './validation';
 
 export const defaultRegistry = 'https://siemens.github.io/ix' as const;
 
-// Schema for ix-blocks-lock.json
-export const IxBlocksConfigSchema = z.object({
+// Schema for ix-patterns-lock.json
+export const IxPatternsConfigSchema = z.object({
   $schema: z.string().optional(),
   targetFolder: z
     .string()
@@ -19,13 +19,13 @@ export const IxBlocksConfigSchema = z.object({
       isSafeRelativePath,
       'must be a safe path relative to the project root'
     )
-    .default('src/blocks'),
-  blocks: z
+    .default('src/patterns'),
+  patterns: z
     .array(
       z.object({
         name: z
           .string()
-          .regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+          .regex(PATTERN_NAME_PATTERN, 'must be a valid pattern name'),
         version: z.string().min(1),
         files: z
           .array(
@@ -47,9 +47,9 @@ export const IxBlocksConfigSchema = z.object({
     .default([]),
 });
 
-export type IxBlocksConfig = z.infer<typeof IxBlocksConfigSchema>;
+export type IxPatternsConfig = z.infer<typeof IxPatternsConfigSchema>;
 
-export const CONFIG_FILE_NAME = 'ix-blocks-lock.json';
+export const CONFIG_FILE_NAME = 'ix-patterns-lock.json';
 const LOCK_DIRECTORY_NAME = '.ix-cli.lock';
 const LOCK_OWNER_FILE_NAME = 'owner.json';
 
@@ -204,8 +204,8 @@ export async function withProjectLock<T>(
   }
 }
 
-function validateConfig(value: unknown): IxBlocksConfig {
-  const result = IxBlocksConfigSchema.safeParse(value);
+function validateConfig(value: unknown): IxPatternsConfig {
+  const result = IxPatternsConfigSchema.safeParse(value);
   if (!result.success) {
     throw new Error(
       `Invalid ${CONFIG_FILE_NAME}:\n${formatZodIssues(
@@ -217,9 +217,9 @@ function validateConfig(value: unknown): IxBlocksConfig {
 }
 
 /**
- * Load and validate ix-blocks-lock.json from the given directory
+ * Load and validate ix-patterns-lock.json from the given directory
  */
-export async function loadConfig(cwd: string): Promise<IxBlocksConfig> {
+export async function loadConfig(cwd: string): Promise<IxPatternsConfig> {
   const configPath = path.join(cwd, CONFIG_FILE_NAME);
 
   try {
@@ -255,18 +255,18 @@ export async function configExists(cwd: string): Promise<boolean> {
 }
 
 export function createDefaultConfig(
-  targetFolder: string = 'src/blocks'
-): IxBlocksConfig {
+  targetFolder: string = 'src/patterns'
+): IxPatternsConfig {
   return {
-    $schema: './node_modules/@siemens/ix-cli/dist/ix-blocks.schema.json',
+    $schema: './node_modules/@siemens/ix-cli/dist/ix-patterns.schema.json',
     targetFolder,
-    blocks: [],
+    patterns: [],
   };
 }
 
 export async function saveConfig(
   cwd: string,
-  config: IxBlocksConfig
+  config: IxPatternsConfig
 ): Promise<void> {
   const configPath = path.join(cwd, CONFIG_FILE_NAME);
   const validatedConfig = validateConfig(config);
@@ -289,8 +289,8 @@ export async function saveConfig(
 
 export async function initConfig(
   cwd: string,
-  targetFolder: string = 'src/blocks'
-): Promise<IxBlocksConfig> {
+  targetFolder: string = 'src/patterns'
+): Promise<IxPatternsConfig> {
   const config = createDefaultConfig(targetFolder);
 
   await saveConfig(cwd, config);
@@ -300,7 +300,7 @@ export async function initConfig(
 export async function loadConfigOrInit(
   cwd: string,
   dryRun = false
-): Promise<{ config: IxBlocksConfig; initialized: boolean }> {
+): Promise<{ config: IxPatternsConfig; initialized: boolean }> {
   if (await configExists(cwd)) {
     return { config: await loadConfig(cwd), initialized: false };
   }
@@ -312,23 +312,23 @@ export async function loadConfigOrInit(
   return { config: await initConfig(cwd), initialized: true };
 }
 
-export async function addBlockToConfig(
-  config: IxBlocksConfig,
-  blockName: string,
+export async function addPatternToConfig(
+  config: IxPatternsConfig,
+  patternName: string,
   version: string = '0.0.0',
   files?: { path: string; hash: string }[]
-): Promise<IxBlocksConfig> {
+): Promise<IxPatternsConfig> {
   const updatedConfig = structuredClone(config);
-  const existingIndex = updatedConfig.blocks.findIndex(
-    (b) => b.name === blockName
+  const existingIndex = updatedConfig.patterns.findIndex(
+    (pattern) => pattern.name === patternName
   );
   if (existingIndex >= 0) {
-    updatedConfig.blocks[existingIndex].version = version;
+    updatedConfig.patterns[existingIndex].version = version;
     if (files) {
-      updatedConfig.blocks[existingIndex].files = files;
+      updatedConfig.patterns[existingIndex].files = files;
     }
   } else {
-    updatedConfig.blocks.push({ name: blockName, version, files });
+    updatedConfig.patterns.push({ name: patternName, version, files });
   }
   return validateConfig(updatedConfig);
 }

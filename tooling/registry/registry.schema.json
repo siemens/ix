@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "IX Unified Registry",
-  "description": "Registry schema for Siemens IX blocks, examples and component metadata catalog",
+  "description": "Registry schema for Siemens IX patterns, examples and component metadata catalog",
   "type": "object",
   "required": ["name", "dist-tags", "versions"],
   "properties": {
@@ -44,18 +44,18 @@
         {
           "type": "object",
           "required": [
-            "blocks",
+            "patterns",
             "examples",
             "components",
             "documentationSearchIndex"
           ],
           "properties": {
-            "blocks": {
+            "patterns": {
               "type": "array",
-              "description": "List of blocks available in this version",
+              "description": "List of patterns available in this version",
               "minItems": 1,
               "items": {
-                "$ref": "#/definitions/blockReference"
+                "$ref": "#/definitions/patternReference"
               }
             },
             "examples": {
@@ -75,7 +75,7 @@
                   "type": "string",
                   "pattern": "\\.json$"
                 },
-                "componentRelatedBlocks": {
+                "componentRelatedPatterns": {
                   "type": "string",
                   "pattern": "\\.json$"
                 }
@@ -90,12 +90,12 @@
             "llms": {
               "type": "object",
               "description": "LLM-readable registry artifact files",
-              "required": ["entrypoint", "components", "blocks"],
+              "required": ["entrypoint", "components", "patterns"],
               "properties": {
                 "entrypoint": { "type": "string", "pattern": "\\.txt$" },
                 "components": { "type": "string", "pattern": "\\.md$" },
                 "examples": { "type": "string", "pattern": "\\.md$" },
-                "blocks": { "type": "string", "pattern": "\\.md$" }
+                "patterns": { "type": "string", "pattern": "\\.md$" }
               },
               "additionalProperties": false
             }
@@ -109,14 +109,14 @@
     },
     "legacyVersionEntry": {
       "type": "object",
-      "required": ["blocks", "examples", "components", "searchIndex"],
+      "required": ["patterns", "examples", "components", "searchIndex"],
       "properties": {
-        "blocks": {
+        "patterns": {
           "type": "array",
-          "description": "List of blocks available in a historical version",
+          "description": "List of patterns available in a historical version",
           "minItems": 1,
           "items": {
-            "$ref": "#/definitions/blockReference"
+            "$ref": "#/definitions/patternReference"
           }
         },
         "examples": {
@@ -146,7 +146,7 @@
               "type": "string",
               "pattern": "\\.json$"
             },
-            "componentRelatedBlocks": {
+            "componentRelatedPatterns": {
               "type": "string",
               "pattern": "\\.json$"
             }
@@ -156,21 +156,21 @@
         "llms": {
           "type": "object",
           "description": "LLM-readable registry artifact files",
-          "required": ["entrypoint", "components", "blocks"],
+          "required": ["entrypoint", "components", "patterns"],
           "properties": {
             "entrypoint": { "type": "string", "pattern": "\\.txt$" },
             "components": { "type": "string", "pattern": "\\.md$" },
             "examples": { "type": "string", "pattern": "\\.md$" },
-            "blocks": { "type": "string", "pattern": "\\.md$" }
+            "patterns": { "type": "string", "pattern": "\\.md$" }
           },
           "additionalProperties": false
         },
         "searchIndex": {
           "type": "object",
           "description": "Legacy framework-specific MiniSearch indexes retained for historical versions",
-          "required": ["blocks", "examples"],
+          "required": ["patterns", "examples"],
           "properties": {
-            "blocks": { "$ref": "#/definitions/frameworkSearchIndex" },
+            "patterns": { "$ref": "#/definitions/frameworkSearchIndex" },
             "examples": { "$ref": "#/definitions/frameworkSearchIndex" }
           },
           "additionalProperties": false
@@ -189,18 +189,18 @@
       },
       "additionalProperties": false
     },
-    "blockReference": {
+    "patternReference": {
       "type": "object",
       "required": ["name", "path"],
       "properties": {
         "name": {
           "type": "string",
-          "description": "Block identifier",
-          "pattern": "^[a-z0-9-]+$"
+          "description": "Pattern identifier",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "path": {
           "type": "string",
-          "description": "Relative path to block configuration file",
+          "description": "Relative path to pattern configuration file",
           "pattern": "\\.json$"
         }
       },

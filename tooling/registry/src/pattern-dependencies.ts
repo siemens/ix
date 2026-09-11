@@ -10,27 +10,27 @@ import fs from 'fs-extra';
 import { glob } from 'glob';
 import path from 'node:path';
 
-export type BlockDependency = {
+export type PatternDependency = {
   name: string;
   version: string;
 };
 
-type AuthoredBlockFile = {
+type AuthoredPatternFile = {
   sourcePath: string;
 };
 
-type BlockVariant = {
-  files: AuthoredBlockFile[];
-  dependencies?: BlockDependency[];
+type PatternVariant = {
+  files: AuthoredPatternFile[];
+  dependencies?: PatternDependency[];
 };
 
-type AuthoredBlockDefinition = {
+type AuthoredPatternDefinition = {
   $schema?: string;
   name: string;
   description?: string;
   keywords?: string[];
   preview?: string;
-  variants: Record<string, BlockVariant>;
+  variants: Record<string, PatternVariant>;
 };
 
 type PackageManifest = {
@@ -40,8 +40,8 @@ type PackageManifest = {
   peerDependencies?: Record<string, string>;
 };
 
-export type GenerateBlockDefinitionsOptions = {
-  blocksDir: string;
+export type GeneratePatternDefinitionsOptions = {
+  patternsDir: string;
   outputDir: string;
   registryVersion: string;
   workspaceRoot: string;
@@ -106,7 +106,7 @@ function assertSafePublicPath(publicPath: string): void {
       .some((segment) => !segment || segment === '.' || segment === '..')
   ) {
     throw new Error(
-      `Invalid canonical block path '${publicPath}'. Expected a safe framework-prefixed relative path.`
+      `Invalid canonical pattern path '${publicPath}'. Expected a safe framework-prefixed relative path.`
     );
   }
 }
@@ -121,7 +121,7 @@ function assertNoCanonicalPathConflicts(publicPaths: string[]): void {
       currentPath.startsWith(`${previousPath}/`)
     ) {
       throw new Error(
-        `Conflicting public block paths '${previousPath}' and '${currentPath}'.`
+        `Conflicting public pattern paths '${previousPath}' and '${currentPath}'.`
       );
     }
   }
@@ -134,7 +134,7 @@ async function assertNoSymlinks(
   const rootStat = await fs.lstat(root);
   if (rootStat.isSymbolicLink()) {
     throw new Error(
-      `Cannot materialize block through symbolic link '${root}'.`
+      `Cannot materialize pattern through symbolic link '${root}'.`
     );
   }
 
@@ -149,14 +149,14 @@ async function assertNoSymlinks(
     });
     if (stat?.isSymbolicLink()) {
       throw new Error(
-        `Cannot materialize block through symbolic link '${current}'.`
+        `Cannot materialize pattern through symbolic link '${current}'.`
       );
     }
   }
 }
 
-async function assertMaterializableBlockFile(
-  blocksDir: string,
+async function assertMaterializablePatternFile(
+  patternsDir: string,
   outputDir: string,
   publicPath: string,
   sourcePath: string
@@ -165,20 +165,20 @@ async function assertMaterializableBlockFile(
   assertContainedPath(
     outputDir,
     destination,
-    `Block public path escapes the output directory: ${publicPath}`
+    `Pattern public path escapes the output directory: ${publicPath}`
   );
   assertSafePublicPath(publicPath);
   await assertNoSymlinks(outputDir, destination);
 
-  const source = path.resolve(blocksDir, sourcePath);
+  const source = path.resolve(patternsDir, sourcePath);
   assertContainedPath(
-    blocksDir,
+    patternsDir,
     source,
-    `Block source escapes the blocks directory: ${source}`
+    `Pattern source escapes the patterns directory: ${source}`
   );
   const sourceStat = await fs.lstat(source);
   if (!sourceStat.isFile()) {
-    throw new Error(`Block source is not a regular file: ${sourcePath}`);
+    throw new Error(`Pattern source is not a regular file: ${sourcePath}`);
   }
 
   const destinationStat = await fs
@@ -192,7 +192,7 @@ async function assertMaterializableBlockFile(
   }
   if (!destinationStat.isFile()) {
     throw new Error(
-      `Cannot materialize block '${sourcePath}': already exists at canonical public path '${publicPath}'.`
+      `Cannot materialize pattern '${sourcePath}': already exists at canonical public path '${publicPath}'.`
     );
   }
 
@@ -202,21 +202,21 @@ async function assertMaterializableBlockFile(
   ]);
   if (Buffer.compare(sourceContent, existingContent) !== 0) {
     throw new Error(
-      `Cannot materialize block '${sourcePath}': already exists at canonical public path '${publicPath}'.`
+      `Cannot materialize pattern '${sourcePath}': already exists at canonical public path '${publicPath}'.`
     );
   }
 
   return true;
 }
 
-async function materializeBlockFile(
-  blocksDir: string,
+async function materializePatternFile(
+  patternsDir: string,
   outputDir: string,
   publicPath: string,
   sourcePath: string
 ): Promise<void> {
-  const alreadyMaterialized = await assertMaterializableBlockFile(
-    blocksDir,
+  const alreadyMaterialized = await assertMaterializablePatternFile(
+    patternsDir,
     outputDir,
     publicPath,
     sourcePath
@@ -226,7 +226,7 @@ async function materializeBlockFile(
   }
 
   const destination = path.join(outputDir, publicPath);
-  await fs.copy(path.join(blocksDir, sourcePath), destination, {
+  await fs.copy(path.join(patternsDir, sourcePath), destination, {
     dereference: true,
   });
 }
@@ -237,7 +237,7 @@ async function readWorkspacePackages(
   const manifestFiles = await glob(
     [
       path.join(workspaceRoot, 'packages', '*', 'package.json'),
-      path.join(workspaceRoot, 'blocks', '*', 'package.json'),
+      path.join(workspaceRoot, 'patterns', '*', 'package.json'),
     ],
     { absolute: true }
   );
@@ -284,21 +284,21 @@ function siemensRequirements(
 }
 
 async function dependenciesForVariant(
-  block: AuthoredBlockDefinition,
-  variant: BlockVariant,
-  blocksDir: string,
+  pattern: AuthoredPatternDefinition,
+  variant: PatternVariant,
+  patternsDir: string,
   registryVersion: string,
   manifests: Map<string, PackageManifest>
-): Promise<BlockDependency[]> {
+): Promise<PatternDependency[]> {
   const directPackages = new Set<string>();
   const declaredRanges = new Map<string, string>();
 
   for (const file of variant.files) {
-    const sourcePath = path.resolve(blocksDir, file.sourcePath);
+    const sourcePath = path.resolve(patternsDir, file.sourcePath);
     assertContainedPath(
-      blocksDir,
+      patternsDir,
       sourcePath,
-      `Block source escapes the blocks directory: ${sourcePath}`
+      `Pattern source escapes the patterns directory: ${sourcePath}`
     );
     const sourcePackageName = file.sourcePath.replace(/\\/g, '/').split('/')[0];
     const sourcePackage = manifests.get(sourcePackageName);
@@ -336,7 +336,7 @@ async function dependenciesForVariant(
       const declaredRange = declaredRanges.get(packageName);
       if (!declaredRange) {
         throw new Error(
-          `Cannot resolve a version for '${packageName}' used by block '${block.name}'`
+          `Cannot resolve a version for '${packageName}' used by pattern '${pattern.name}'`
         );
       }
       ranges.set(packageName, declaredRange);
@@ -367,11 +367,11 @@ async function dependenciesForVariant(
     .sort((left, right) => left.name.localeCompare(right.name));
 }
 
-export async function generateBlockDefinitions(
-  options: GenerateBlockDefinitionsOptions
+export async function generatePatternDefinitions(
+  options: GeneratePatternDefinitionsOptions
 ): Promise<number> {
-  const blockFiles = (
-    await glob(path.join(options.blocksDir, '*.json'), {
+  const patternFiles = (
+    await glob(path.join(options.patternsDir, '*.json'), {
       absolute: true,
     })
   ).sort();
@@ -379,32 +379,32 @@ export async function generateBlockDefinitions(
 
   await fs.ensureDir(options.outputDir);
 
-  const blocks = await Promise.all(
-    blockFiles.map(async (file) => ({
+  const patterns = await Promise.all(
+    patternFiles.map(async (file) => ({
       file,
-      block: (await fs.readJson(file)) as AuthoredBlockDefinition,
+      pattern: (await fs.readJson(file)) as AuthoredPatternDefinition,
     }))
   );
 
   const publicPaths = new Map<string, string>();
-  const generatedBlocks = [];
+  const generatedPatterns = [];
 
-  for (const { file, block } of blocks) {
+  for (const { file, pattern } of patterns) {
     const variants: Record<
       string,
       {
         files: Array<{ path: string }>;
-        dependencies?: BlockDependency[];
+        dependencies?: PatternDependency[];
       }
     > = {};
 
     for (const [framework, authoredVariant] of Object.entries(
-      block.variants
+      pattern.variants
     ).sort(([left], [right]) => left.localeCompare(right))) {
       const dependencies = await dependenciesForVariant(
-        block,
+        pattern,
         authoredVariant,
-        options.blocksDir,
+        options.patternsDir,
         options.registryVersion,
         manifests
       );
@@ -417,7 +417,7 @@ export async function generateBlockDefinitions(
         const previousSource = publicPaths.get(publicPath);
         if (previousSource) {
           throw new Error(
-            `Duplicate public block path '${publicPath}' for '${previousSource}' and '${file}'.`
+            `Duplicate public pattern path '${publicPath}' for '${previousSource}' and '${file}'.`
           );
         }
         publicPaths.set(publicPath, authoredFile.sourcePath);
@@ -430,11 +430,11 @@ export async function generateBlockDefinitions(
       };
     }
 
-    generatedBlocks.push({
+    generatedPatterns.push({
       file,
-      block: {
-        ...block,
-        $schema: '../schemas/block.schema.json',
+      pattern: {
+        ...pattern,
+        $schema: '../schemas/pattern.schema.json',
         variants,
       },
     });
@@ -443,8 +443,8 @@ export async function generateBlockDefinitions(
   assertNoCanonicalPathConflicts([...publicPaths.keys()]);
   await Promise.all(
     [...publicPaths.entries()].map(([publicPath, sourcePath]) =>
-      assertMaterializableBlockFile(
-        options.blocksDir,
+      assertMaterializablePatternFile(
+        options.patternsDir,
         options.outputDir,
         publicPath,
         sourcePath
@@ -453,8 +453,8 @@ export async function generateBlockDefinitions(
   );
   await Promise.all(
     [...publicPaths.entries()].map(async ([publicPath, sourcePath]) => {
-      await materializeBlockFile(
-        options.blocksDir,
+      await materializePatternFile(
+        options.patternsDir,
         options.outputDir,
         publicPath,
         sourcePath
@@ -463,12 +463,12 @@ export async function generateBlockDefinitions(
   );
 
   await Promise.all(
-    generatedBlocks.map(({ file, block }) =>
-      fs.writeJson(path.join(options.outputDir, path.basename(file)), block, {
+    generatedPatterns.map(({ file, pattern }) =>
+      fs.writeJson(path.join(options.outputDir, path.basename(file)), pattern, {
         spaces: 2,
       })
     )
   );
 
-  return blockFiles.length;
+  return patternFiles.length;
 }

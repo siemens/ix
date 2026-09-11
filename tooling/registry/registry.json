@@ -7,26 +7,26 @@
   "versions": {
     "template": {
       "documentationSearchIndex": "documentation-search-index.json",
-      "blocks": [
+      "patterns": [
         {
           "name": "change-password",
-          "path": "blocks/change-password.json"
+          "path": "patterns/change-password.json"
         },
         {
           "name": "error-page",
-          "path": "blocks/error-page.json"
+          "path": "patterns/error-page.json"
         },
         {
           "name": "upload",
-          "path": "blocks/upload.json"
+          "path": "patterns/upload.json"
         },
         {
           "name": "password-criteria",
-          "path": "blocks/password-criteria.json"
+          "path": "patterns/password-criteria.json"
         },
         {
           "name": "login-overlay",
-          "path": "blocks/login-overlay.json"
+          "path": "patterns/login-overlay.json"
         }
       ],
       "examples": [
@@ -1006,13 +1006,13 @@
       "components": {
         "componentDoc": "ix/component-doc.json",
         "componentRelatedExamples": "ix/component-related-examples.json",
-        "componentRelatedBlocks": "ix/component-related-blocks.json"
+        "componentRelatedPatterns": "ix/component-related-patterns.json"
       },
       "llms": {
         "entrypoint": "llms.txt",
         "components": "llms/components.md",
         "examples": "llms/examples.md",
-        "blocks": "llms/blocks.md"
+        "patterns": "llms/patterns.md"
       }
     }
   }

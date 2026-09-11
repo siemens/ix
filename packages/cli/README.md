@@ -1,6 +1,6 @@
 # Siemens Industrial Experience CLI
 
-`@siemens/ix-cli` is a private workspace tool for installing Siemens IX blocks.
+`@siemens/ix-cli` is a private workspace tool for installing Siemens IX patterns.
 It exposes the `ix` executable and is not published as a public package.
 
 ## Initialize a project (optional)
@@ -8,15 +8,15 @@ It exposes the `ix` executable and is not published as a public package.
 Run the CLI from the project root:
 
 ```sh
-ix init --target-folder src/features/blocks
+ix init --target-folder src/features/patterns
 ```
 
-`ix add` automatically creates `ix-blocks-lock.json` with the default target
-folder `src/blocks` when it does not exist. Run `ix init` first when you want to
+`ix add` automatically creates `ix-patterns-lock.json` with the default target
+folder `src/patterns` when it does not exist. Run `ix init` first when you want to
 choose a custom target folder. `targetFolder` must be a safe path inside the
 project.
 
-## Add or update a block
+## Add or update a pattern
 
 ```sh
 ix add change-password
@@ -29,13 +29,13 @@ ix add change-password --force
 - `--tag` selects a registry version or distribution tag (default: `latest`).
 - `--registry` selects a custom registry. Registry metadata and paths are
   treated as untrusted and validated before use.
-- `--dry-run` fetches, validates, transforms, and hashes the complete block,
+- `--dry-run` fetches, validates, transforms, and hashes the complete pattern,
   then reports writes and conflicts without changing project files or the lock.
   When the lock is absent, it uses the default target folder in memory.
 - `--force` permits overwriting modified tracked files and untracked file
   collisions. Without it, either conflict aborts the installation.
 
-Registry example and block manifests use path-only file entries:
+Registry example and pattern manifests use path-only file entries:
 
 ```json
 { "path": "react/event-list.tsx" }

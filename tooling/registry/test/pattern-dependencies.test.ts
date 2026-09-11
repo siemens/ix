@@ -11,7 +11,7 @@ import { afterEach, test } from 'node:test';
 import os from 'node:os';
 import path from 'node:path';
 import fs from 'fs-extra';
-import { generateBlockDefinitions } from '../src/block-dependencies';
+import { generatePatternDefinitions } from '../src/pattern-dependencies';
 
 const temporaryDirectories: string[] = [];
 
@@ -43,42 +43,42 @@ test('generates deterministic React dependency metadata', async () => {
     name: '@siemens/ix',
     version: '5.1.1',
   });
-  await writeJson(path.join(root, 'blocks/react-blocks/package.json'), {
-    name: 'react-blocks',
+  await writeJson(path.join(root, 'patterns/react-patterns/package.json'), {
+    name: 'react-patterns',
     dependencies: { '@siemens/ix-icons': '^3.3.0' },
   });
   await fs.outputFile(
-    path.join(root, 'blocks/react-blocks/src/block.tsx'),
+    path.join(root, 'patterns/react-patterns/src/pattern.tsx'),
     "import { IxButton } from '@siemens/ix-react';\nimport { iconAdd } from '@siemens/ix-icons/icons';"
   );
-  await writeJson(path.join(root, 'blocks/example.json'), {
+  await writeJson(path.join(root, 'patterns/example.json'), {
     name: 'example',
     variants: {
       react: {
         files: [
           {
-            sourcePath: 'react-blocks/src/block.tsx',
+            sourcePath: 'react-patterns/src/pattern.tsx',
           },
         ],
       },
     },
   });
 
-  await generateBlockDefinitions({
-    blocksDir: path.join(root, 'blocks'),
+  await generatePatternDefinitions({
+    patternsDir: path.join(root, 'patterns'),
     outputDir: path.join(root, 'dist'),
     registryVersion: 'v5.2.0',
     workspaceRoot: root,
   });
 
   const generated = await fs.readJson(path.join(root, 'dist/example.json'));
-  assert.equal(generated.$schema, '../schemas/block.schema.json');
+  assert.equal(generated.$schema, '../schemas/pattern.schema.json');
   assert.equal(
-    await fs.readFile(path.join(root, 'dist/react/block.tsx'), 'utf8'),
+    await fs.readFile(path.join(root, 'dist/react/pattern.tsx'), 'utf8'),
     "import { IxButton } from '@siemens/ix-react';\nimport { iconAdd } from '@siemens/ix-icons/icons';"
   );
   assert.deepEqual(generated.variants.react.files, [
-    { path: 'react/block.tsx' },
+    { path: 'react/pattern.tsx' },
   ]);
   assert.deepEqual(generated.variants.react.dependencies, [
     { name: '@siemens/ix', version: '^5.2.0' },
@@ -89,8 +89,8 @@ test('generates deterministic React dependency metadata', async () => {
     path.join(root, 'dist/example.json'),
     'utf8'
   );
-  await generateBlockDefinitions({
-    blocksDir: path.join(root, 'blocks'),
+  await generatePatternDefinitions({
+    patternsDir: path.join(root, 'patterns'),
     outputDir: path.join(root, 'dist'),
     registryVersion: 'v5.2.0',
     workspaceRoot: root,
@@ -104,24 +104,24 @@ test('generates deterministic React dependency metadata', async () => {
 test('omits dependency metadata when a variant has no Siemens imports', async () => {
   const root = await temporaryWorkspace();
   await fs.outputFile(
-    path.join(root, 'blocks/react-blocks/src/block.tsx'),
+    path.join(root, 'patterns/react-patterns/src/pattern.tsx'),
     "import React from 'react';"
   );
-  await writeJson(path.join(root, 'blocks/example.json'), {
+  await writeJson(path.join(root, 'patterns/example.json'), {
     name: 'example',
     variants: {
       react: {
         files: [
           {
-            sourcePath: 'react-blocks/src/block.tsx',
+            sourcePath: 'react-patterns/src/pattern.tsx',
           },
         ],
       },
     },
   });
 
-  await generateBlockDefinitions({
-    blocksDir: path.join(root, 'blocks'),
+  await generatePatternDefinitions({
+    patternsDir: path.join(root, 'patterns'),
     outputDir: path.join(root, 'dist'),
     registryVersion: 'main',
     workspaceRoot: root,
@@ -144,31 +144,31 @@ test('generates Angular standalone dependencies from package metadata', async ()
     version: '5.1.1',
   });
   await writeJson(
-    path.join(root, 'blocks/angular-standalone-blocks/package.json'),
+    path.join(root, 'patterns/angular-standalone-patterns/package.json'),
     {
-      name: 'angular-standalone-blocks',
+      name: 'angular-standalone-patterns',
       dependencies: { '@siemens/ix-icons': '^3.3.0' },
     }
   );
   await fs.outputFile(
-    path.join(root, 'blocks/angular-standalone-blocks/src/block.ts'),
+    path.join(root, 'patterns/angular-standalone-patterns/src/pattern.ts'),
     "import { IxButton } from '@siemens/ix-angular/standalone';"
   );
-  await writeJson(path.join(root, 'blocks/example.json'), {
+  await writeJson(path.join(root, 'patterns/example.json'), {
     name: 'example',
     variants: {
       angular: {
         files: [
           {
-            sourcePath: 'angular-standalone-blocks/src/block.ts',
+            sourcePath: 'angular-standalone-patterns/src/pattern.ts',
           },
         ],
       },
     },
   });
 
-  await generateBlockDefinitions({
-    blocksDir: path.join(root, 'blocks'),
+  await generatePatternDefinitions({
+    patternsDir: path.join(root, 'patterns'),
     outputDir: path.join(root, 'dist'),
     registryVersion: 'v5.2.0',
     workspaceRoot: root,
@@ -182,9 +182,9 @@ test('generates Angular standalone dependencies from package metadata', async ()
   ]);
 });
 
-test('rejects block sources outside the blocks directory', async () => {
+test('rejects pattern sources outside the patterns directory', async () => {
   const root = await temporaryWorkspace();
-  await writeJson(path.join(root, 'blocks/example.json'), {
+  await writeJson(path.join(root, 'patterns/example.json'), {
     name: 'example',
     variants: {
       react: {
@@ -198,48 +198,48 @@ test('rejects block sources outside the blocks directory', async () => {
   });
 
   await assert.rejects(
-    generateBlockDefinitions({
-      blocksDir: path.join(root, 'blocks'),
+    generatePatternDefinitions({
+      patternsDir: path.join(root, 'patterns'),
       outputDir: path.join(root, 'dist'),
       registryVersion: 'main',
       workspaceRoot: root,
     }),
-    /escapes the blocks directory/
+    /escapes the patterns directory/
   );
 });
 
-test('rejects duplicate canonical block paths without overwriting', async () => {
+test('rejects duplicate canonical pattern paths without overwriting', async () => {
   const root = await temporaryWorkspace();
   await fs.outputFile(
-    path.join(root, 'blocks/react-blocks/src/first.tsx'),
+    path.join(root, 'patterns/react-patterns/src/first.tsx'),
     'first'
   );
   await fs.outputFile(
-    path.join(root, 'blocks/other-blocks/src/first.tsx'),
+    path.join(root, 'patterns/other-patterns/src/first.tsx'),
     'second'
   );
-  await writeJson(path.join(root, 'blocks/first.json'), {
+  await writeJson(path.join(root, 'patterns/first.json'), {
     name: 'first',
     variants: {
-      react: { files: [{ sourcePath: 'react-blocks/src/first.tsx' }] },
+      react: { files: [{ sourcePath: 'react-patterns/src/first.tsx' }] },
     },
   });
 
-  await writeJson(path.join(root, 'blocks/second.json'), {
+  await writeJson(path.join(root, 'patterns/second.json'), {
     name: 'second',
     variants: {
-      react: { files: [{ sourcePath: 'other-blocks/src/first.tsx' }] },
+      react: { files: [{ sourcePath: 'other-patterns/src/first.tsx' }] },
     },
   });
 
   await assert.rejects(
-    generateBlockDefinitions({
-      blocksDir: path.join(root, 'blocks'),
+    generatePatternDefinitions({
+      patternsDir: path.join(root, 'patterns'),
       outputDir: path.join(root, 'dist'),
       registryVersion: 'main',
       workspaceRoot: root,
     }),
-    /Duplicate public block path 'react\/first\.tsx'/
+    /Duplicate public pattern path 'react\/first\.tsx'/
   );
   assert.equal(
     await fs.pathExists(path.join(root, 'dist/react/first.tsx')),
@@ -247,23 +247,23 @@ test('rejects duplicate canonical block paths without overwriting', async () => 
   );
 });
 
-test('preflights block collisions before materializing any canonical file', async () => {
+test('preflights pattern collisions before materializing any canonical file', async () => {
   const root = await temporaryWorkspace();
   await fs.outputFile(
-    path.join(root, 'blocks/react-blocks/src/first.tsx'),
+    path.join(root, 'patterns/react-patterns/src/first.tsx'),
     'first'
   );
   await fs.outputFile(
-    path.join(root, 'blocks/react-blocks/src/second.tsx'),
+    path.join(root, 'patterns/react-patterns/src/second.tsx'),
     'second from registry'
   );
-  await writeJson(path.join(root, 'blocks/example.json'), {
+  await writeJson(path.join(root, 'patterns/example.json'), {
     name: 'example',
     variants: {
       react: {
         files: [
-          { sourcePath: 'react-blocks/src/first.tsx' },
-          { sourcePath: 'react-blocks/src/second.tsx' },
+          { sourcePath: 'react-patterns/src/first.tsx' },
+          { sourcePath: 'react-patterns/src/second.tsx' },
         ],
       },
     },
@@ -274,8 +274,8 @@ test('preflights block collisions before materializing any canonical file', asyn
   );
 
   await assert.rejects(
-    generateBlockDefinitions({
-      blocksDir: path.join(root, 'blocks'),
+    generatePatternDefinitions({
+      patternsDir: path.join(root, 'patterns'),
       outputDir: path.join(root, 'dist'),
       registryVersion: 'main',
       workspaceRoot: root,
@@ -288,32 +288,32 @@ test('preflights block collisions before materializing any canonical file', asyn
   );
 });
 
-test('rejects a canonical block path outside the output directory', async () => {
+test('rejects a canonical pattern path outside the output directory', async () => {
   const root = await temporaryWorkspace();
   await fs.outputFile(
-    path.join(root, 'blocks/react-blocks/src/block.tsx'),
-    'block'
+    path.join(root, 'patterns/react-patterns/src/pattern.tsx'),
+    'pattern'
   );
-  await writeJson(path.join(root, 'blocks/example.json'), {
+  await writeJson(path.join(root, 'patterns/example.json'), {
     name: 'example',
     variants: {
       '../outside': {
-        files: [{ sourcePath: 'react-blocks/src/block.tsx' }],
+        files: [{ sourcePath: 'react-patterns/src/pattern.tsx' }],
       },
     },
   });
 
   await assert.rejects(
-    generateBlockDefinitions({
-      blocksDir: path.join(root, 'blocks'),
+    generatePatternDefinitions({
+      patternsDir: path.join(root, 'patterns'),
       outputDir: path.join(root, 'dist'),
       registryVersion: 'main',
       workspaceRoot: root,
     }),
-    /Block public path escapes the output directory/
+    /Pattern public path escapes the output directory/
   );
   assert.equal(
-    await fs.pathExists(path.join(root, 'outside/block.tsx')),
+    await fs.pathExists(path.join(root, 'outside/pattern.tsx')),
     false
   );
 });

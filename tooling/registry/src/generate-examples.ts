@@ -259,10 +259,10 @@ function getTargetFileName(file: ExampleFile, exampleName: string): string {
 }
 
 /**
- * Generate block JSON for a single example
+ * Generate an example definition JSON document for a single example
  */
-function generateBlockJson(example: ExampleMetadata): any {
-  const block: any = {
+function generateExampleDefinitionJson(example: ExampleMetadata): any {
+  const definition: any = {
     $schema: '../schemas/example.schema.json',
     name: example.name,
     variants: {},
@@ -284,10 +284,10 @@ function generateBlockJson(example: ExampleMetadata): any {
 
     const variantKey =
       framework === 'angular-standalone' ? 'angular-standalone' : framework;
-    block.variants[variantKey] = variant;
+    definition.variants[variantKey] = variant;
   }
 
-  return block;
+  return definition;
 }
 
 async function materializeExampleFile(
@@ -313,9 +313,9 @@ async function materializeExampleFile(
 }
 
 /**
- * Generate all example block JSON files
+ * Generate all example definition JSON files
  */
-export async function generateExampleBlocks(
+export async function generateExampleDefinitions(
   outputDir: string,
   examplesDir: string
 ): Promise<number> {
@@ -332,11 +332,11 @@ export async function generateExampleBlocks(
     .map(([name, example]) => ({
       name,
       example,
-      blockJson: generateBlockJson(example),
+      definitionJson: generateExampleDefinitionJson(example),
     }));
 
-  for (const { name, example, blockJson } of generatedExamples) {
-    if (Object.keys(blockJson.variants).length > 0) {
+  for (const { name, example, definitionJson } of generatedExamples) {
+    if (Object.keys(definitionJson.variants).length > 0) {
       for (const [framework, files] of example.files.entries()) {
         for (const file of files) {
           const targetFileName = getTargetFileName(file, name);
@@ -377,14 +377,14 @@ export async function generateExampleBlocks(
   );
 
   let count = 0;
-  for (const { name, blockJson } of generatedExamples) {
-    if (Object.keys(blockJson.variants).length > 0) {
+  for (const { name, definitionJson } of generatedExamples) {
+    if (Object.keys(definitionJson.variants).length > 0) {
       const outputPath = path.join(outputDir, `${name}.json`);
-      await fs.writeJson(outputPath, blockJson, { spaces: 2 });
+      await fs.writeJson(outputPath, definitionJson, { spaces: 2 });
       count++;
     }
   }
 
-  console.log(`✅ Generated ${count} example block definitions`);
+  console.log(`✅ Generated ${count} example definitions`);
   return count;
 }

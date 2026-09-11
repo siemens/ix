@@ -10,7 +10,7 @@ const program = new Command();
 
 program
   .name('ix')
-  .description('Siemens IX Blocks CLI')
+  .description('Siemens IX Patterns CLI')
   .version(getCliVersion());
 
 program.addCommand(initCommand);
