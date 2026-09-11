@@ -2,7 +2,7 @@ packages:
   - packages/*
   - tooling/*
   - testing/*
-  - blocks/*
+  - patterns/*
   - examples/*
 
 catalog:

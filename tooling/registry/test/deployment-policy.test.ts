@@ -16,15 +16,17 @@ import {
   resolveDeploymentVersion,
 } from '../src/deployment-policy';
 import {
+  copyRetainedVersionPayloads,
   copyVersionPayload,
   mergeRegistry,
+  retainPatternRegistry,
   type RegistryIndex,
   type RegistryVersionEntry,
 } from '../src/merge-pages-registry';
 
 function versionEntry(marker: string): RegistryVersionEntry {
   return {
-    blocks: [{ name: marker, path: `blocks/${marker}.json` }],
+    patterns: [{ name: marker, path: `patterns/${marker}.json` }],
     examples: [{ name: marker, path: `examples/${marker}.json` }],
     components: {
       componentDoc: 'components.json',
@@ -132,8 +134,8 @@ describe('registry merge policy', () => {
       'v1.0.0',
       'v2.0.0',
     ]);
-    assert.equal(secondMerge.versions['v2.0.0'].blocks[0].name, 'historical');
-    assert.equal(secondMerge.versions['v1.0.0'].blocks[0].name, 'new-update');
+    assert.equal(secondMerge.versions['v2.0.0'].patterns[0].name, 'historical');
+    assert.equal(secondMerge.versions['v1.0.0'].patterns[0].name, 'new-update');
     assert.equal(
       secondMerge.versions['v1.0.0'].documentationSearchIndex,
       'v1.0.0/documentation-search-index.json'
@@ -141,13 +143,13 @@ describe('registry merge policy', () => {
     assert.equal(secondMerge['dist-tags'].latest, 'v2.0.0');
   });
 
-  it('retains legacy historical manifests during the first central-index deployment', () => {
+  it('retains historical manifests using the pattern contract', () => {
     const existing: RegistryIndex = {
       name: 'ix',
       'dist-tags': { latest: 'v2.0.0' },
       versions: {
         'v2.0.0': {
-          blocks: [{ name: 'historical', path: 'blocks/historical.json' }],
+          patterns: [{ name: 'historical', path: 'patterns/historical.json' }],
           examples: [{ name: 'historical', path: 'examples/historical.json' }],
           components: {
             componentDoc: 'components.json',
@@ -156,7 +158,7 @@ describe('registry merge policy', () => {
             componentRelatedExamples: 'component-related-examples.json',
           },
           searchIndex: {
-            blocks: { react: 'search-index-react.json' },
+            patterns: { react: 'search-index-react.json' },
             examples: { react: 'examples-search-index-react.json' },
           },
         },
@@ -179,6 +181,65 @@ describe('registry merge policy', () => {
       merged.versions['v1.0.0'].documentationSearchIndex,
       'v1.0.0/documentation-search-index.json'
     );
+  });
+
+  it('discards historical manifests that do not use the pattern contract', () => {
+    const incompatible = {
+      name: 'ix',
+      'dist-tags': { latest: 'v2.0.0' },
+      versions: {
+        'v2.0.0': {
+          examples: [{ name: 'historical', path: 'examples/historical.json' }],
+          components: {
+            componentDoc: 'components.json',
+          },
+        },
+      },
+    } as unknown as RegistryIndex;
+
+    const merged = mergeRegistry(
+      incompatible,
+      registry('v1.0.0', 'current', 'v1.0.0'),
+      'v1.0.0'
+    );
+
+    assert.deepEqual(Object.keys(merged.versions), ['v1.0.0']);
+    assert.equal(merged['dist-tags'].latest, 'v1.0.0');
+  });
+
+  it('copies payloads only for retained pattern versions', async () => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-pages-'));
+    const pagesDir = path.join(root, 'pages');
+    const outDir = path.join(root, 'out');
+    const retained = registry('v2.0.0');
+
+    try {
+      await fs.outputFile(
+        path.join(pagesDir, 'v2.0.0', 'patterns', 'current.json'),
+        'current'
+      );
+      await fs.outputFile(
+        path.join(pagesDir, 'v1.0.0', 'obsolete', 'entry.json'),
+        'obsolete'
+      );
+
+      await copyRetainedVersionPayloads(
+        pagesDir,
+        outDir,
+        retainPatternRegistry(retained)
+      );
+
+      assert.equal(
+        await fs.readFile(
+          path.join(outDir, 'v2.0.0', 'patterns', 'current.json'),
+          'utf8'
+        ),
+        'current'
+      );
+      assert.equal(await fs.pathExists(path.join(outDir, 'v1.0.0')), false);
+    } finally {
+      await fs.remove(root);
+    }
   });
 
   it('fully replaces a mutable version payload', async () => {

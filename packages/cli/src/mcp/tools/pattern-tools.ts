@@ -1,15 +1,15 @@
 import dedent from 'dedent';
 import { z } from 'zod';
-import { searchBlocks } from '../../search';
-import { fetchBlockDefinition, listAllBlocks } from '../../registry';
+import { searchPatterns } from '../../search';
+import { fetchPatternDefinition, listAllPatterns } from '../../registry';
 import { ToolDefinition } from './types';
 
-const searchBlocksName = 'search_blocks' as const;
-const searchBlocksSchema = z.object({
+const searchPatternsName = 'search_patterns' as const;
+const searchPatternsSchema = z.object({
   query: z
     .string()
     .describe(
-      'Search query to find blocks (searches name, description, keywords, source code, and files)'
+      'Search query to find patterns (searches name, description, keywords, source code, and files)'
     ),
   limit: z
     .number()
@@ -17,20 +17,20 @@ const searchBlocksSchema = z.object({
     .describe('Maximum number of results to return (default: 10)'),
 });
 
-const listAllBlocksName = 'list_all_blocks' as const;
-const listAllBlocksSchema = z.object({});
+const listAllPatternsName = 'list_all_patterns' as const;
+const listAllPatternsSchema = z.object({});
 
-export const blockTools: ToolDefinition[] = [
+export const patternTools: ToolDefinition[] = [
   {
-    name: searchBlocksName,
+    name: searchPatternsName,
     description:
-      'Search the Siemens IX blocks registry. Searches across block names, descriptions, keywords, source code, and file paths to find matching UI blocks/components.',
-    schema: searchBlocksSchema,
+      'Search the Siemens IX patterns registry. Searches across pattern names, descriptions, keywords, source code, and file paths to find matching UI patterns/components.',
+    schema: searchPatternsSchema,
     handler: async (args, context) => {
       try {
-        const parsedArgs = searchBlocksSchema.parse(args);
+        const parsedArgs = searchPatternsSchema.parse(args);
 
-        const results = await searchBlocks({
+        const results = await searchPatterns({
           baseUrl: context.registryUrl,
           query: parsedArgs.query,
           framework: context.framework,
@@ -43,12 +43,12 @@ export const blockTools: ToolDefinition[] = [
             content: [
               {
                 type: 'text',
-                text: dedent`No blocks found matching "${parsedArgs.query}".
+                text: dedent`No patterns found matching "${parsedArgs.query}".
 
                 Try different search terms like:
                 - Component names (button, form, modal)
                 - Functionality keywords (upload, navigation, chart)
-                - Use "list_all_blocks" to get a complete list of available blocks
+                - Use "list_all_patterns" to get a complete list of available patterns
                 `,
               },
             ],
@@ -67,48 +67,48 @@ export const blockTools: ToolDefinition[] = [
           .join('\n\n');
 
         const topResult = results[0];
-        let blockDetails = '';
+        let patternDetails = '';
 
         try {
-          const blockDef = await fetchBlockDefinition(
+          const patternDef = await fetchPatternDefinition(
             context.registryUrl,
             topResult.path
           );
-          const variants = Object.keys(blockDef.variants).join(', ');
+          const variants = Object.keys(patternDef.variants).join(', ');
           const frameworkVariant =
-            blockDef.variants[context.framework] ||
-            Object.values(blockDef.variants)[0];
+            patternDef.variants[context.framework] ||
+            Object.values(patternDef.variants)[0];
 
           if (frameworkVariant) {
             const files = frameworkVariant.files
               .map((f: { path: string }) => `  - ${f.path}`)
               .join('\n');
 
-            blockDetails = dedent`
+            patternDetails = dedent`
 
-            **Top Result Details: ${blockDef.name}**
-            - Description: ${blockDef.description || 'No description'}
-            - Keywords: ${blockDef.keywords?.join(', ') || 'None'}
+            **Top Result Details: ${patternDef.name}**
+            - Description: ${patternDef.description || 'No description'}
+            - Keywords: ${patternDef.keywords?.join(', ') || 'None'}
             - Available frameworks: ${variants}
             - Files:
             ${files}
             `;
           }
         } catch (err) {
-          console.error('Could not fetch block details:', err);
+          console.error('Could not fetch pattern details:', err);
         }
 
         return {
           content: [
             {
               type: 'text',
-              text: dedent`Found ${results.length} block(s) matching "${parsedArgs.query}" for ${context.framework}:
+              text: dedent`Found ${results.length} pattern(s) matching "${parsedArgs.query}" for ${context.framework}:
 
               ${resultsList}
-              ${blockDetails}
+              ${patternDetails}
 
-              Use the block name with the 'add' command to install it to your project.
-              e.g: npx ix-cli add ${topResult.name}
+              Use the pattern name with the 'add' command to install it to your project.
+              e.g: ix add ${topResult.name}
               `,
             },
           ],
@@ -118,11 +118,11 @@ export const blockTools: ToolDefinition[] = [
           content: [
             {
               type: 'text',
-              text: dedent`Error searching blocks: ${
+              text: dedent`Error searching patterns: ${
                 error instanceof Error ? error.message : String(error)
               }
 
-              Please ensure the blocks registry is accessible and properly configured.
+              Please ensure the patterns registry is accessible and properly configured.
               `,
             },
           ],
@@ -131,48 +131,48 @@ export const blockTools: ToolDefinition[] = [
     },
   },
   {
-    name: listAllBlocksName,
+    name: listAllPatternsName,
     description:
-      'List all available Siemens IX blocks for the current framework. Use this to get a complete overview of available blocks.',
-    schema: listAllBlocksSchema,
+      'List all available Siemens IX patterns for the current framework. Use this to get a complete overview of available patterns.',
+    schema: listAllPatternsSchema,
     handler: async (_args, context) => {
       try {
-        const blocks = await listAllBlocks(
+        const patterns = await listAllPatterns(
           context.registryUrl,
           context.framework,
           context.registryRef
         );
 
-        if (blocks.length === 0) {
+        if (patterns.length === 0) {
           return {
             content: [
               {
                 type: 'text',
-                text: dedent`No blocks available for ${context.framework}.
+                text: dedent`No patterns available for ${context.framework}.
 
-                The blocks registry may be empty or unavailable.
+                The patterns registry may be empty or unavailable.
                 `,
               },
             ],
           };
         }
 
-        const blocksList = blocks
-          .map((b, i) => `${i + 1}. **${b.name}**`)
+        const patternsList = patterns
+          .map((pattern, i) => `${i + 1}. **${pattern.name}**`)
           .join('\n');
 
         return {
           content: [
             {
               type: 'text',
-              text: dedent`# All Siemens IX Blocks for ${context.framework} (${blocks.length} total)
+              text: dedent`# All Siemens IX Patterns for ${context.framework} (${patterns.length} total)
 
-              ${blocksList}
+              ${patternsList}
 
               **Next Steps:**
-              - Use "search_blocks" to find specific blocks
-              - Use the block name with the 'add' command to install it
-                e.g: npx ix-cli add ${blocks[0].name}
+              - Use "search_patterns" to find specific patterns
+              - Use the pattern name with the 'add' command to install it
+                e.g: ix add ${patterns[0].name}
               `,
             },
           ],
@@ -182,11 +182,11 @@ export const blockTools: ToolDefinition[] = [
           content: [
             {
               type: 'text',
-              text: dedent`Error listing blocks: ${
+              text: dedent`Error listing patterns: ${
                 error instanceof Error ? error.message : String(error)
               }
 
-              Please ensure the blocks registry is accessible and properly configured.
+              Please ensure the patterns registry is accessible and properly configured.
               `,
             },
           ],

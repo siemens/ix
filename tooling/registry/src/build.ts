@@ -15,13 +15,13 @@ import {
   buildDocumentationSearchIndex,
   DOCUMENTATION_SEARCH_INDEX_FILE,
 } from './search-index';
-import { generateExampleBlocks } from './generate-examples';
+import { generateExampleDefinitions } from './generate-examples';
 import { generateLlmsArtifacts } from './llms';
-import { generateBlockDefinitions } from './block-dependencies';
+import { generatePatternDefinitions } from './pattern-dependencies';
 import { validateJsonFiles } from './schema-validation';
 import {
   updateComponentsRegistry,
-  updateBlocksRegistry,
+  updatePatternsRegistry,
   updateExamplesRegistry,
   updateDocumentationSearchIndexRegistry,
   updateLlmsRegistry,
@@ -30,16 +30,16 @@ import {
 const __dirname = path.resolve();
 const __workspace_root = path.join(__dirname, '..', '..');
 const __node_modules = path.join(__dirname, 'node_modules');
-const __react_blocks = path.join(__node_modules, 'react-blocks');
+const __react_patterns = path.join(__node_modules, 'react-patterns');
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
 const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
-const __block_schema = path.join(__dirname, 'schemas', 'block.schema.json');
-const __authored_block_schema = path.join(
+const __pattern_schema = path.join(__dirname, 'schemas', 'pattern.schema.json');
+const __authored_pattern_schema = path.join(
   __dirname,
   'schemas',
-  'authored-block.schema.json'
+  'authored-pattern.schema.json'
 );
 const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
 const __documentation_search_index_schema = path.join(
@@ -48,19 +48,19 @@ const __documentation_search_index_schema = path.join(
   'documentation-search-index.schema.json'
 );
 const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
-const __blocks_root = path.join(__dirname, '..', '..', 'blocks');
+const __patterns_root = path.join(__dirname, '..', '..', 'patterns');
 const __html_examples_component_usage_by_component = path.join(
   __examples_root,
   'html-examples',
   'component-usage-by-component.json'
 );
-const __react_blocks_component_usage_by_component = path.join(
-  __blocks_root,
-  'react-blocks',
+const __react_patterns_component_usage_by_component = path.join(
+  __patterns_root,
+  'react-patterns',
   'component-usage-by-component.json'
 );
 
-type BlockDefinition = {
+type PatternDefinition = {
   name: string;
   variants?: Record<
     string,
@@ -109,26 +109,28 @@ function normalizeSourcePath(value: string): string {
   return value.replace(/\\/g, '/').replace(/^\/+/, '');
 }
 
-async function readBlockNamesByReactSource(): Promise<Map<string, string>> {
-  const blockFiles = await glob(path.join(__blocks_root, '*.json'), {
+async function readPatternNamesByReactSource(): Promise<Map<string, string>> {
+  const patternFiles = await glob(path.join(__patterns_root, '*.json'), {
     absolute: true,
   });
-  const blocks = await Promise.all(
-    blockFiles.map(async (file) => (await fs.readJson(file)) as BlockDefinition)
+  const patterns = await Promise.all(
+    patternFiles.map(
+      async (file) => (await fs.readJson(file)) as PatternDefinition
+    )
   );
-  const blockNamesBySource = new Map<string, string>();
+  const patternNamesBySource = new Map<string, string>();
 
-  for (const block of blocks) {
-    for (const file of block.variants?.react?.files ?? []) {
+  for (const pattern of patterns) {
+    for (const file of pattern.variants?.react?.files ?? []) {
       const source = normalizeSourcePath(file.sourcePath);
-      const relativeSource = source.startsWith('react-blocks/')
-        ? source.slice('react-blocks/'.length)
+      const relativeSource = source.startsWith('react-patterns/')
+        ? source.slice('react-patterns/'.length)
         : source;
-      blockNamesBySource.set(relativeSource, block.name);
+      patternNamesBySource.set(relativeSource, pattern.name);
     }
   }
 
-  return blockNamesBySource;
+  return patternNamesBySource;
 }
 
 interface Ctx {
@@ -162,12 +164,12 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Validate source block definitions',
+    title: 'Validate source pattern definitions',
     task: async () => {
-      const files = await glob(path.join(__blocks_root, '*.json'), {
+      const files = await glob(path.join(__patterns_root, '*.json'), {
         absolute: true,
       });
-      await validateJsonFiles(files, __authored_block_schema);
+      await validateJsonFiles(files, __authored_pattern_schema);
     },
   },
   {
@@ -190,11 +192,11 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy block preview assets to dist',
+    title: 'Copy pattern preview assets to dist',
     task: async (ctx) => {
-      const dest = path.join(ctx.dist, 'blocks', 'react-blocks');
+      const dest = path.join(ctx.dist, 'patterns', 'react-patterns');
       await fs.copy(
-        path.join(__react_blocks, 'dist'),
+        path.join(__react_patterns, 'dist'),
         path.join(dest, 'dist'),
         {
           dereference: true,
@@ -203,11 +205,11 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Generate example block definitions',
+    title: 'Generate example definitions',
     task: async (ctx) => {
       const examplesOutputDir = path.join(ctx.dist, 'examples');
       const examplesDir = path.join(__dirname, '..', '..', 'examples');
-      await generateExampleBlocks(examplesOutputDir, examplesDir);
+      await generateExampleDefinitions(examplesOutputDir, examplesDir);
     },
   },
   {
@@ -247,9 +249,9 @@ const task = new Listr<Ctx>([
         dest,
         'component-related-examples.json'
       );
-      const componentRelatedBlocksTarget = path.join(
+      const componentRelatedPatternsTarget = path.join(
         dest,
-        'component-related-blocks.json'
+        'component-related-patterns.json'
       );
 
       if (await fs.pathExists(__html_examples_component_usage_by_component)) {
@@ -269,52 +271,53 @@ const task = new Listr<Ctx>([
         await fs.outputJson(componentRelatedExamplesTarget, {}, { spaces: 2 });
       }
 
-      if (await fs.pathExists(__react_blocks_component_usage_by_component)) {
-        const [relatedBlocks, blockNamesBySource] = await Promise.all([
-          fs.readJson(__react_blocks_component_usage_by_component) as Promise<
+      if (await fs.pathExists(__react_patterns_component_usage_by_component)) {
+        const [relatedPatterns, patternNamesBySource] = await Promise.all([
+          fs.readJson(__react_patterns_component_usage_by_component) as Promise<
             Record<string, string[]>
           >,
-          readBlockNamesByReactSource(),
+          readPatternNamesByReactSource(),
         ]);
-        const unmappedBlockFiles = Array.from(
+        const unmappedPatternFiles = Array.from(
           new Set(
-            Object.values(relatedBlocks)
+            Object.values(relatedPatterns)
               .flat()
               .map(normalizeSourcePath)
-              .filter((file) => !blockNamesBySource.has(file))
+              .filter((file) => !patternNamesBySource.has(file))
           )
         ).sort();
 
-        if (unmappedBlockFiles.length > 0) {
+        if (unmappedPatternFiles.length > 0) {
           throw new Error(
-            `Component usage found in React files not declared by a block: ${unmappedBlockFiles.join(
+            `Component usage found in React files not declared by a pattern: ${unmappedPatternFiles.join(
               ', '
             )}`
           );
         }
 
         await fs.outputJson(
-          componentRelatedBlocksTarget,
+          componentRelatedPatternsTarget,
           normalizeRelationships(
-            relatedBlocks,
-            (file) => blockNamesBySource.get(normalizeSourcePath(file)) ?? null
+            relatedPatterns,
+            (file) =>
+              patternNamesBySource.get(normalizeSourcePath(file)) ?? null
           ),
           { spaces: 2 }
         );
       } else {
         console.warn(
-          `⚠️  Related blocks file not found: ${__react_blocks_component_usage_by_component}. Creating empty mapping.`
+          `⚠️  Related patterns file not found: ${__react_patterns_component_usage_by_component}. Creating empty mapping.`
         );
-        await fs.outputJson(componentRelatedBlocksTarget, {}, { spaces: 2 });
+        await fs.outputJson(componentRelatedPatternsTarget, {}, { spaces: 2 });
       }
     },
   },
   {
-    title: 'Update blocks registry.json',
+    title: 'Update patterns registry.json',
     task: async (ctx) => {
       const registryPath = path.join(ctx.dist, 'registry.json');
-      const blocksDir = path.join(__dirname, '..', '..', 'blocks');
-      await updateBlocksRegistry(registryPath, blocksDir, {
+      const patternsDir = path.join(__dirname, '..', '..', 'patterns');
+      await updatePatternsRegistry(registryPath, patternsDir, {
         version: ctx.registryVersion,
         latestTag: ctx.registryLatestTag,
         pathPrefix: ctx.registryPathPrefix,
@@ -332,7 +335,7 @@ const task = new Listr<Ctx>([
         components: {
           componentDoc: 'ix/component-doc.json',
           componentRelatedExamples: 'ix/component-related-examples.json',
-          componentRelatedBlocks: 'ix/component-related-blocks.json',
+          componentRelatedPatterns: 'ix/component-related-patterns.json',
         },
       });
     },
@@ -350,11 +353,11 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Generate block definitions with dependency metadata',
+    title: 'Generate pattern definitions with dependency metadata',
     task: async (ctx) => {
-      const dest = path.join(ctx.dist, 'blocks');
-      await generateBlockDefinitions({
-        blocksDir: __blocks_root,
+      const dest = path.join(ctx.dist, 'patterns');
+      await generatePatternDefinitions({
+        patternsDir: __patterns_root,
         outputDir: dest,
         registryVersion: ctx.registryVersion,
         workspaceRoot: __workspace_root,
@@ -371,7 +374,7 @@ const task = new Listr<Ctx>([
       await Promise.all(
         files
           .filter(
-            (file) => path.basename(file) !== 'authored-block.schema.json'
+            (file) => path.basename(file) !== 'authored-pattern.schema.json'
           )
           .map((file) =>
             fs.copy(file, path.join(dest, path.basename(file)), {
@@ -382,10 +385,10 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Fix schema $schema paths for block JSON files',
+    title: 'Fix schema $schema paths for pattern JSON files',
     task: async (ctx) => {
-      const blockDir = path.join(ctx.dist, 'blocks');
-      const files = await glob(path.join(blockDir, '*.json'), {
+      const patternDir = path.join(ctx.dist, 'patterns');
+      const files = await glob(path.join(patternDir, '*.json'), {
         absolute: true,
       });
       await Promise.all(
@@ -393,7 +396,7 @@ const task = new Listr<Ctx>([
           const content = await fs.readFile(file, 'utf-8');
           const json = JSON.parse(content);
           if (json.$schema) {
-            json.$schema = '../schemas/block.schema.json';
+            json.$schema = '../schemas/pattern.schema.json';
             await fs.writeFile(file, JSON.stringify(json, null, 2), 'utf-8');
           }
         })
@@ -420,14 +423,14 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Validate generated block and example definitions',
+    title: 'Validate generated pattern and example definitions',
     task: async (ctx) => {
-      const [blockFiles, exampleFiles] = await Promise.all([
-        glob(path.join(ctx.dist, 'blocks', '*.json'), { absolute: true }),
+      const [patternFiles, exampleFiles] = await Promise.all([
+        glob(path.join(ctx.dist, 'patterns', '*.json'), { absolute: true }),
         glob(path.join(ctx.dist, 'examples', '*.json'), { absolute: true }),
       ]);
       await Promise.all([
-        validateJsonFiles(blockFiles, __block_schema),
+        validateJsonFiles(patternFiles, __pattern_schema),
         validateJsonFiles(exampleFiles, __example_schema),
       ]);
     },
@@ -444,12 +447,12 @@ const task = new Listr<Ctx>([
           'ix',
           'component-related-examples.json'
         ),
-        componentRelatedBlocksPath: path.join(
+        componentRelatedPatternsPath: path.join(
           ctx.dist,
           'ix',
-          'component-related-blocks.json'
+          'component-related-patterns.json'
         ),
-        blocksDir: path.join(ctx.dist, 'blocks'),
+        patternsDir: path.join(ctx.dist, 'patterns'),
         examplesDir: path.join(ctx.dist, 'examples'),
       });
 
@@ -466,7 +469,7 @@ const task = new Listr<Ctx>([
     task: async (ctx) => {
       await buildDocumentationSearchIndex({
         distDir: ctx.dist,
-        blocksDir: path.join(ctx.dist, 'blocks'),
+        patternsDir: path.join(ctx.dist, 'patterns'),
         examplesDir: path.join(ctx.dist, 'examples'),
         componentDocPath: path.join(ctx.dist, 'ix', 'component-doc.json'),
         componentRelatedExamplesPath: path.join(
@@ -474,10 +477,10 @@ const task = new Listr<Ctx>([
           'ix',
           'component-related-examples.json'
         ),
-        componentRelatedBlocksPath: path.join(
+        componentRelatedPatternsPath: path.join(
           ctx.dist,
           'ix',
-          'component-related-blocks.json'
+          'component-related-patterns.json'
         ),
         workspaceRoot: __workspace_root,
       });

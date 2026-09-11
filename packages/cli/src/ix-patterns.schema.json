@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Siemens ix Blocks Lockfile",
-  "description": "Lockfile for ix blocks CLI tracking installed blocks and file hashes",
+  "title": "Siemens ix Patterns Lockfile",
+  "description": "Lockfile for ix patterns CLI tracking installed patterns and file hashes",
   "type": "object",
   "properties": {
     "$schema": {
@@ -10,26 +10,26 @@
     },
     "targetFolder": {
       "type": "string",
-      "description": "Target folder where blocks are installed",
+      "description": "Target folder where patterns are installed",
       "minLength": 1,
       "pattern": "^(?![A-Za-z]:)(?!.*[:?#\\\\%])(?!(?:.*/)?\\.{1,2}(?:/|$))[^/]+(?:/[^/]+)*$",
-      "default": "src/blocks"
+      "default": "src/patterns"
     },
-    "blocks": {
+    "patterns": {
       "type": "array",
-      "description": "List of installed blocks",
+      "description": "List of installed patterns",
       "items": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
             "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
-            "description": "Block name"
+            "description": "Pattern name"
           },
           "version": {
             "type": "string",
             "minLength": 1,
-            "description": "Block version"
+            "description": "Pattern version"
           },
           "files": {
             "type": "array",
@@ -60,6 +60,6 @@
       "default": []
     }
   },
-  "required": ["targetFolder", "blocks"],
+  "required": ["targetFolder", "patterns"],
   "additionalProperties": false
 }

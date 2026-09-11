@@ -11,7 +11,7 @@ import fs from 'fs-extra';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, test } from 'node:test';
-import { generateExampleBlocks } from '../src/generate-examples';
+import { generateExampleDefinitions } from '../src/generate-examples';
 
 const temporaryDirectories: string[] = [];
 
@@ -47,7 +47,7 @@ test('generates path-only example manifests and materializes canonical files', a
     '<ix-card></ix-card>'
   );
 
-  const count = await generateExampleBlocks(outputDir, examplesDir);
+  const count = await generateExampleDefinitions(outputDir, examplesDir);
   assert.equal(count, 1);
   assert.deepEqual(await fs.readJson(path.join(outputDir, 'card.json')), {
     $schema: '../schemas/example.schema.json',
@@ -76,7 +76,7 @@ test('generates path-only example manifests and materializes canonical files', a
     path.join(outputDir, 'card.json'),
     'utf8'
   );
-  await generateExampleBlocks(outputDir, examplesDir);
+  await generateExampleDefinitions(outputDir, examplesDir);
   assert.equal(
     await fs.readFile(path.join(outputDir, 'card.json'), 'utf8'),
     firstOutput
@@ -101,7 +101,7 @@ test('rejects an existing canonical example file collision', async () => {
   );
 
   await assert.rejects(
-    generateExampleBlocks(outputDir, examplesDir),
+    generateExampleDefinitions(outputDir, examplesDir),
     /already exists at canonical public path 'react\/card\.tsx'/
   );
   assert.equal(

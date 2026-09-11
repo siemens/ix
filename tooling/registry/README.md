@@ -45,7 +45,7 @@ gh workflow run registry.yml \
   -f registry_name=v4.3.0
 ```
 
-`<source-ref>` selects the commit whose packages, blocks, and examples are
+`<source-ref>` selects the commit whose packages, patterns, and examples are
 built. `registry_name` only sets the deployment version and path. Always select
 the source ref that belongs to the version being published; setting
 `registry_name` does not check out that release.
@@ -101,7 +101,7 @@ Build output is written to `tooling/registry/dist`.
 
 ## Manifest file paths
 
-Published example and block manifests contain path-only file entries. The path
+Published example and pattern manifests contain path-only file entries. The path
 is both the consumer-facing output path and the registry resource path:
 
 ```json
@@ -109,8 +109,8 @@ is both the consumer-facing output path and the registry resource path:
 ```
 
 For `/v5.2.1/examples/event-list.json`, this file is materialized at
-`/v5.2.1/examples/react/event-list.tsx`. Block files follow the same
-manifest-relative rule under `/blocks/`. Authored block definitions may use
+`/v5.2.1/examples/react/event-list.tsx`. Pattern files follow the same
+manifest-relative rule under `/patterns/`. Authored pattern definitions may use
 repository-only `sourcePath` metadata; generation strips it from the published
 manifest.
 
@@ -145,7 +145,7 @@ pnpm check:ix-search
 
 The bundled helper requires `--query`, `--figma-id`, or `--component-name`.
 Without `--kind` it searches components only; use `--kind example` or
-`--kind block` for direct discovery. Repeated `--figma-id` and
+`--kind pattern` for direct discovery. Repeated `--figma-id` and
 `--component-name` values support composed Figma selections. JSON output is an
 envelope with `status`, `version`, `source`, and `results`; partial composed
 matches also include `unmatched` diagnostics. The stable failure statuses are

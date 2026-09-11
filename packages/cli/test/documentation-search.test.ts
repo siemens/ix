@@ -39,7 +39,7 @@ const storeFields = [
   'detailPath',
   'relatedComponents',
   'relatedExamples',
-  'relatedBlocks',
+  'relatedPatterns',
   'documentation',
   'figmaMainComponentIds',
 ];
@@ -56,7 +56,7 @@ const documents: DocumentationSearchMetadata[] = [
     detailPath: 'llms/components/ix-button.md',
     relatedComponents: ['ix-icon'],
     relatedExamples: ['button'],
-    relatedBlocks: ['button-block'],
+    relatedPatterns: ['button-pattern'],
     documentation: ['https://ix.siemens.io/button'],
     figmaMainComponentIds: ['123:456'],
   },
@@ -94,14 +94,14 @@ const documents: DocumentationSearchMetadata[] = [
     relatedComponents: ['ix-button'],
   },
   {
-    id: 'block:react:button-block',
-    kind: 'block',
-    name: 'button-block',
+    id: 'pattern:react:button-pattern',
+    kind: 'pattern',
+    name: 'button-pattern',
     description: 'Button workflow',
     keywords: 'workflow',
     framework: 'react',
-    path: 'blocks/button-block.json',
-    detailPath: 'blocks/button-block.json',
+    path: 'patterns/button-pattern.json',
+    detailPath: 'patterns/button-pattern.json',
     relatedComponents: ['ix-button'],
   },
 ];
@@ -127,7 +127,9 @@ function searchIndex(): unknown {
 
 function registry(): unknown {
   const entry = {
-    blocks: [{ name: 'button-block', path: 'blocks/button-block.json' }],
+    patterns: [
+      { name: 'button-pattern', path: 'patterns/button-pattern.json' },
+    ],
     examples: [{ name: 'button', path: 'examples/button.json' }],
     components: { componentDoc: 'component-doc.json' },
     documentationSearchIndex: 'documentation-search-index.json',
@@ -189,17 +191,17 @@ test('loads one central index, filters results, and scopes result paths by versi
       ['example:react:button']
     );
 
-    const blocks = await searchDocumentation({
+    const patterns = await searchDocumentation({
       baseUrl: 'https://registry.example/ix',
       query: 'workflow',
-      kind: 'block',
+      kind: 'pattern',
       framework: 'react',
     });
     assert.deepEqual(
-      blocks.map((result) => result.id),
-      ['block:react:button-block']
+      patterns.map((result) => result.id),
+      ['pattern:react:button-pattern']
     );
-    assert.equal(blocks[0]?.path, '2.0.0/blocks/button-block.json');
+    assert.equal(patterns[0]?.path, '2.0.0/patterns/button-pattern.json');
 
     // The registry and each versioned central index are cached independently.
     assert.deepEqual(requests, [
@@ -248,7 +250,9 @@ test('keeps unprefixed paths followable for a locally served registry', async ()
       };
       localRegistry['dist-tags'].latest = 'development';
       localRegistry.versions.development = {
-        blocks: [{ name: 'button-block', path: 'blocks/button-block.json' }],
+        patterns: [
+          { name: 'button-pattern', path: 'patterns/button-pattern.json' },
+        ],
         examples: [{ name: 'button', path: 'examples/button.json' }],
         components: { componentDoc: 'ix/component-doc.json' },
         documentationSearchIndex: 'documentation-search-index.json',
@@ -263,10 +267,10 @@ test('keeps unprefixed paths followable for a locally served registry', async ()
     const results = await searchDocumentation({
       baseUrl: 'http://127.0.0.1:8080',
       query: 'workflow',
-      kind: 'block',
+      kind: 'pattern',
       framework: 'react',
     });
-    assert.equal(results[0]?.path, 'blocks/button-block.json');
+    assert.equal(results[0]?.path, 'patterns/button-pattern.json');
   } finally {
     globalThis.fetch = originalFetch;
     clearDocumentationSearchCache();
