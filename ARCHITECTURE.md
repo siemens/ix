@@ -14,17 +14,17 @@ This document gives new contributors (humans and AI agents) a concise, high‑le
 
 ## 1. High-Level Architecture
 
-| Layer                   | Purpose                                            | Tech                                          | Notes                                              |
-| ----------------------- | -------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- |
-| Core Components         | Source of truth UI primitives & patterns           | Stencil, TS, SCSS                             | Emits compiled Web Components + component metadata |
-| Framework Wrappers      | Convenience bindings for app frameworks            | Stencil output targets (Angular, React, Vue)  | Auto-generated – never hand-edit generated proxies |
-| Theming Packages        | External lib theme alignment                       | `@siemens/ix-aggrid`, `@siemens/ix-echarts`   | Provide CSS vars + integration helpers             |
-| Examples                | Framework-specific preview example source          | Vite + framework workspaces                   | Source for docs snippets and registry examples     |
-| Blocks                  | Higher-level copyable UI compositions              | React + Angular standalone workspaces         | Packaged by the registry and consumed by the CLI   |
-| Test Apps               | Manual preview, framework, visual, and perf checks | Vite / Angular / Next.js / Ionic / Playwright | Live under `testing/` and depend on built packages |
-| Documentation Generator | Converts examples & JSDoc to docs site assets      | `packages/documentation`                      | Output consumed by separate ix-docs repo           |
-| Registry / CLI          | Publishes searchable components, examples, blocks  | `tooling/registry`, `@siemens/ix-cli`         | Registry dist is deployed to GitHub Pages          |
-| Tooling / Infra         | Build orchestration & automation                   | Turborepo + pnpm + Changesets                 | Ensures incremental builds & release versioning    |
+| Layer                   | Purpose                                             | Tech                                          | Notes                                              |
+| ----------------------- | --------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- |
+| Core Components         | Source of truth UI primitives & patterns            | Stencil, TS, SCSS                             | Emits compiled Web Components + component metadata |
+| Framework Wrappers      | Convenience bindings for app frameworks             | Stencil output targets (Angular, React, Vue)  | Auto-generated – never hand-edit generated proxies |
+| Theming Packages        | External lib theme alignment                        | `@siemens/ix-aggrid`, `@siemens/ix-echarts`   | Provide CSS vars + integration helpers             |
+| Examples                | Framework-specific preview example source           | Vite + framework workspaces                   | Source for docs snippets and registry examples     |
+| Patterns                | Higher-level copyable UI compositions               | React + Angular standalone workspaces         | Packaged by the registry and consumed by the CLI   |
+| Test Apps               | Manual preview, framework, visual, and perf checks  | Vite / Angular / Next.js / Ionic / Playwright | Live under `testing/` and depend on built packages |
+| Documentation Generator | Converts examples & JSDoc to docs site assets       | `packages/documentation`                      | Output consumed by separate ix-docs repo           |
+| Registry / CLI          | Publishes searchable components, examples, patterns | `tooling/registry`, `@siemens/ix-cli`         | Registry dist is deployed to GitHub Pages          |
+| Tooling / Infra         | Build orchestration & automation                    | Turborepo + pnpm + Changesets                 | Ensures incremental builds & release versioning    |
 
 ### Data / Build Flow
 
@@ -35,7 +35,7 @@ This document gives new contributors (humans and AI agents) a concise, high‑le
    - Generated framework wrapper source into each wrapper package
 3. Framework packages (React / Angular / Vue) bundle their wrapper APIs
 4. Examples, test apps & Storybook consume built packages (symlinked via pnpm workspaces)
-5. Documentation and registry tooling consume examples, block definitions, and component metadata; the registry build emits the versioned central documentation search index
+5. Documentation and registry tooling consume examples, pattern definitions, and component metadata; the registry build emits the versioned central documentation search index
 6. Visual regression & component tests run against the built artifacts
 7. Changesets version bump triggers publication & regeneration of wrappers
 
@@ -56,14 +56,14 @@ packages/
   storybook-docs/      # Storybook configuration & stories
 examples/
   *-examples/          # Framework example sources (examples -> docs + registry)
-blocks/
-  *-blocks/            # Copyable UI block implementations and block manifests
+patterns/
+  *-patterns/            # Copyable UI pattern implementations and pattern manifests
 testing/
   *-test-app/          # Preview, framework, Ionic, Next.js, and visual test apps
   framework-tests/     # Shared framework test helpers
   visual-testing/      # Playwright visual regression suite
 tooling/
-  registry/            # Builds deployable registry JSON, schemas, blocks, examples, and the central search index
+  registry/            # Builds deployable registry JSON, schemas, patterns, examples, and the central search index
   eslint-config-ix/    # Shared lint configuration
   oss-clearing/        # OSS clearing utilities
 ```
@@ -71,9 +71,9 @@ tooling/
 Supporting roots:
 
 - `component-doc.json` – Generated component metadata from core (used for docs, wrappers, registry, and CLI)
-- `documentation-search-index.json` – Versioned, self-describing MiniSearch catalog for components, examples, and blocks
+- `documentation-search-index.json` – Versioned, self-describing MiniSearch catalog for components, examples, and patterns
 - `llms.txt` / `llms/*.md` – Generated registry LLM entrypoint and split Markdown context files
-- `blocks/*.json` – Authored registry manifests that map block names to
+- `patterns/*.json` – Authored registry manifests that map pattern names to
   framework-specific repository `sourcePath` files and dependencies
 - `.changeset/` – Release intent & pre-release state
 - `playwright.config.ts` – Shared test configuration
@@ -164,34 +164,34 @@ Regeneration triggers on every `pnpm build` of core.
 
 ---
 
-## 8. Registry, Blocks & CLI
+## 8. Registry, Patterns & CLI
 
-- `blocks/*.json` are the source of truth for block registry entries; each
+- `patterns/*.json` are the source of truth for pattern registry entries; each
   authored manifest points to framework-specific repository `sourcePath` files
-  under `blocks/*-blocks/`. Published manifests contain only framework-prefixed
+  under `patterns/*-patterns/`. Published manifests contain only framework-prefixed
   `files[].path` values, resolved relative to the manifest URL.
 - `examples/*-examples/src/preview-examples` provide example source that is transformed into registry example entries and docs snippets.
-- `tooling/registry` builds a versioned deployable registry containing block
+- `tooling/registry` builds a versioned deployable registry containing pattern
   manifests, example manifests, schemas, materialized canonical files,
   component metadata, related-example mappings, and the central MiniSearch
   index.
 - Registry builds are parameterized by `REGISTRY_VERSION`, `REGISTRY_PATH_PREFIX`, and `REGISTRY_LATEST_TAG`; CI deploys the merged registry output to GitHub Pages.
-- `packages/cli` consumes the registry to initialize projects, add blocks/examples, search components, and expose MCP tools for code-generation clients.
+- `packages/cli` consumes the registry to initialize projects, add patterns/examples, search components, and expose MCP tools for code-generation clients.
 
 ### CLI responsibilities
 
 - The CLI binary is named `ix` and is implemented in `packages/cli`; during local development run it with `pnpm --filter @siemens/ix-cli start -- <command>`.
-- `ix init --target-folder <path>` creates `ix-blocks.json`, which stores the target folder for installed blocks and tracks installed block names with their registry versions.
-- `ix add <blockName>` installs a registry block into the configured target folder. It resolves the requested registry tag (`latest` by default), detects React or Angular automatically unless `--framework react|angular` is passed, downloads the matching block variant files, applies optional token replacement via `--tokens`, and updates `ix-blocks.json`.
-- `ix add <blockName> --dry-run` prints the installation plan without writing block files or updating configuration.
+- `ix init --target-folder <path>` creates `ix-patterns-lock.json`, which stores the target folder for installed patterns and tracks installed pattern names with their registry versions.
+- `ix add <patternName>` installs a registry pattern into the configured target folder. It resolves the requested registry tag (`latest` by default), detects React or Angular automatically unless `--framework react|angular` is passed, downloads the matching pattern variant files, applies optional token replacement via `--tokens`, and updates `ix-patterns-lock.json`.
+- `ix add <patternName> --dry-run` prints the installation plan without writing pattern files or updating configuration.
 - The CLI defaults to the public registry at `https://siemens.github.io/ix`, but both `add` and MCP server commands accept `--registry <url>` and `--tag <tag>` for testing versioned, branch, or local registry builds.
 
 ### MCP integration
 
 - `ix mcp init --config vscode|cursor|claude` detects the current framework and writes MCP client configuration plus IX-specific generation instructions.
 - `ix mcp run-react` and `ix mcp run-angular` start stdio MCP servers backed by the selected registry and framework.
-- MCP tools expose registry-backed discovery for components, icons, examples, blocks, Figma mappings, setup guidance, and audit checks.
-- Block-specific MCP tools include `search_blocks` and `list_all_blocks`; their output points agents back to `ix add <blockName>` for installing copyable blocks into the host project.
+- MCP tools expose registry-backed discovery for components, icons, examples, patterns, Figma mappings, setup guidance, and audit checks.
+- Pattern-specific MCP tools include `search_patterns` and `list_all_patterns`; their output points agents back to `ix add <patternName>` for installing copyable patterns into the host project.
 - Component/example MCP tools are backed by the central search index, generated component metadata, and registry example definitions, so generated code should use `get_component_details` and `search_examples` before composing IX UI.
 
 ---
@@ -256,7 +256,7 @@ PR -> review -> merge
 - NEVER directly modify generated framework proxy files (look for auto-gen comment)
 - Always run a build before tests relying on generated artifacts
 - Keep preview examples in `examples/*-examples`; keep executable test apps and visual/perf suites in `testing/`
-- Keep reusable block source in `blocks/*-blocks` and update the matching `blocks/*.json` manifest
+- Keep reusable pattern source in `patterns/*-patterns` and update the matching `patterns/*.json` manifest
 - Keep props/events minimal & stable; prefer composition over config explosion
 - Document new props/events via JSDoc – docs generator consumes them
 - Add component documentation/Figma tags when a component should appear in registry-backed discovery
@@ -270,8 +270,8 @@ Provide structured outputs:
 
 - When adding components: ensure folder, TSX, SCSS, spec test scaffold
 - Run `pnpm build` after modifications to regenerate wrappers before editing wrapper-adjacent helpers
-- Treat `examples/`, `blocks/`, `testing/`, and `tooling/` as first-class workspaces, not package publishing targets
-- When adding blocks or examples, update registry manifests/schemas and build `registry` to validate generated assets
+- Treat `examples/`, `patterns/`, `testing/`, and `tooling/` as first-class workspaces, not package publishing targets
+- When adding patterns or examples, update registry manifests/schemas and build `registry` to validate generated assets
 - Validate no lint errors (`pnpm lint`) before committing
 - Summarize changes referencing impacted packages & whether public APIs changed
 

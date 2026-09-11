@@ -6,12 +6,12 @@
 import path from 'node:path';
 import { z } from 'zod';
 
-export const BLOCK_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export const PATTERN_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export function assertValidBlockName(value: string): string {
-  if (!BLOCK_NAME_PATTERN.test(value)) {
+export function assertValidPatternName(value: string): string {
+  if (!PATTERN_NAME_PATTERN.test(value)) {
     throw new Error(
-      `Invalid block name '${value}'. Use lowercase letters, numbers, and single hyphens only.`
+      `Invalid pattern name '${value}'. Use lowercase letters, numbers, and single hyphens only.`
     );
   }
   return value;

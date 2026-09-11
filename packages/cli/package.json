@@ -13,8 +13,8 @@
     "READMEOSS.html"
   ],
   "scripts": {
-    "build": "pnpm run typecheck && pnpm run test && tsdown && cp src/ix-blocks.schema.json dist/",
-    "dev": "cp src/ix-blocks.schema.json dist/ && tsdown --watch",
+    "build": "pnpm run typecheck && pnpm run test && tsdown && cp src/ix-patterns.schema.json dist/",
+    "dev": "cp src/ix-patterns.schema.json dist/ && tsdown --watch",
     "start": "tsx src/cli.ts",
     "test": "tsx --test test/*.test.ts",
     "typecheck": "tsc --noEmit"

@@ -1788,7 +1788,7 @@ const REGISTRY_TIMEOUT_MS = 5e3;
 const COMPONENT_KINDS = [
 	"component",
 	"example",
-	"block"
+	"pattern"
 ];
 const FRAMEWORKS = [
 	"html",
@@ -1824,7 +1824,7 @@ const STORE_FIELDS = [
 	"relatedComponents",
 	"relatedExamples",
 	"reactExamples",
-	"relatedBlocks",
+	"relatedPatterns",
 	"documentation",
 	"figmaMainComponentIds"
 ];
@@ -1837,7 +1837,7 @@ var SearchError = class extends Error {
 	}
 };
 function usageError(message) {
-	throw new SearchError(`${message}\nUsage: search.mjs [--query <text>] [--figma-id <id> ...] [--component-name <name> ...] [--kind component|example|block] [--framework html|react|angular|angular-standalone|vue] [--version <version-or-tag>] [--project-dir <path>] [--registry-url <url>] [--limit <n>] [--local-index <file>]`, "error");
+	throw new SearchError(`${message}\nUsage: search.mjs [--query <text>] [--figma-id <id> ...] [--component-name <name> ...] [--kind component|example|pattern] [--framework html|react|angular|angular-standalone|vue] [--version <version-or-tag>] [--project-dir <path>] [--registry-url <url>] [--limit <n>] [--local-index <file>]`, "error");
 }
 function parseArgs(argv) {
 	const options = {
@@ -2185,7 +2185,7 @@ async function declarationComponents(corePackage, projectDir, reactSymbols) {
 			relatedComponents: [],
 			relatedExamples: [],
 			reactExamples: [],
-			relatedBlocks: [],
+			relatedPatterns: [],
 			documentation: [],
 			figmaMainComponentIds: [],
 			apiMembers: apiText.join(" "),
@@ -2228,7 +2228,7 @@ async function componentDocDocuments(corePackage, projectDir, reactSymbols) {
 			relatedComponents,
 			relatedExamples: [],
 			reactExamples: [],
-			relatedBlocks: [],
+			relatedPatterns: [],
 			documentation,
 			figmaMainComponentIds,
 			apiMembers: apiMembers.join(" "),
@@ -2359,7 +2359,7 @@ function resultItem(result, pathPrefix, knownVersions) {
 		"relatedComponents",
 		"relatedExamples",
 		"reactExamples",
-		"relatedBlocks",
+		"relatedPatterns",
 		"documentation",
 		"figmaMainComponentIds",
 		"aliases"
@@ -2373,7 +2373,7 @@ function resultItem(result, pathPrefix, knownVersions) {
 		item.reactExamples ??= [];
 		item.documentation ??= [];
 		item.relatedExamples ??= [];
-		item.relatedBlocks ??= [];
+		item.relatedPatterns ??= [];
 		item.relatedComponents ??= [];
 		item.figmaMainComponentIds ??= [];
 	}

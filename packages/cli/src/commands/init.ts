@@ -10,11 +10,11 @@ import {
 } from './../config';
 
 export const initCommand = new Command('init')
-  .description('Initialize ix-blocks-lock.json configuration')
+  .description('Initialize ix-patterns-lock.json configuration')
   .option(
     '-t, --target-folder <path>',
-    'Target folder for blocks',
-    'src/blocks'
+    'Target folder for patterns',
+    'src/patterns'
   )
   .action(async (opts) => {
     try {

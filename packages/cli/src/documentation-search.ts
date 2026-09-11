@@ -14,7 +14,7 @@ import {
   type RegistryIndex,
 } from './registry';
 
-export type DocumentationKind = 'component' | 'example' | 'block';
+export type DocumentationKind = 'component' | 'example' | 'pattern';
 export type DocumentationFramework =
   | 'html'
   | 'react'
@@ -34,7 +34,7 @@ export type DocumentationSearchMetadata = {
   detailPath?: string;
   relatedComponents?: string[];
   relatedExamples?: string[];
-  relatedBlocks?: string[];
+  relatedPatterns?: string[];
   documentation?: string[];
   figmaMainComponentIds?: string[];
 };
@@ -350,7 +350,7 @@ export async function searchDocumentation(
   return results.slice(0, limit).map((result) => {
     const id = requiredString(result.id, 'id', 'central index');
     const kind = result.kind;
-    if (kind !== 'component' && kind !== 'example' && kind !== 'block') {
+    if (kind !== 'component' && kind !== 'example' && kind !== 'pattern') {
       throw new Error(
         `Invalid documentation search result '${id}': unknown kind '${String(
           kind
@@ -391,7 +391,7 @@ export async function searchDocumentation(
     for (const field of [
       'relatedComponents',
       'relatedExamples',
-      'relatedBlocks',
+      'relatedPatterns',
       'documentation',
       'figmaMainComponentIds',
     ] as const) {

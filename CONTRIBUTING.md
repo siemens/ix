@@ -55,7 +55,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
     - [Visual regression testing](#visual-regression-testing)
     - [Modify and preview documentation](#modify-and-preview-documentation)
       - [Preview and example code](#preview-and-example-code)
-      - [Registry overview: blocks vs examples](#registry-overview-blocks-vs-examples)
+      - [Registry overview: patterns vs examples](#registry-overview-patterns-vs-examples)
     - [Submit Pull Request](#submit-pull-request)
   - [Attribution](#attribution)
 
@@ -316,28 +316,28 @@ These preview-examples will be translated to markdown files and get copied into 
 
 #### Registry overview: unified catalog
 
-The registry content for `blocks`, `examples` and component API metadata is exposed through a single registry file and built from different sources:
+The registry content for `patterns`, `examples` and component API metadata is exposed through a single registry file and built from different sources:
 
 | Topic             | Unified registry                                                                                                                                         |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Registry file     | `tooling/registry/registry.json` (template)                                                                                                              |
-| Blocks source     | Manual JSON files in `./blocks/*.json`                                                                                                                   |
+| Patterns source     | Manual JSON files in `./patterns/*.json`                                                                                                                   |
 | Examples source   | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                                                          |
 | Components source | `packages/core/component-doc.json`                                                                                                                       |
 | LLM docs          | Generated `tooling/registry/dist/llms.txt` and split Markdown files in `tooling/registry/dist/llms/`                                                     |
-| Schemas           | `tooling/registry/registry.schema.json`, plus `block.schema.json`, `example.schema.json`, and repository-only `authored-block.schema.json`               |
-| Build steps       | `updateBlocksRegistry(...)`, `updateExamplesRegistry(...)`, `updateComponentsRegistry(...)`, and central search generation update the same version entry |
+| Schemas           | `tooling/registry/registry.schema.json`, plus `pattern.schema.json`, `example.schema.json`, and repository-only `authored-pattern.schema.json`               |
+| Build steps       | `updatePatternsRegistry(...)`, `updateExamplesRegistry(...)`, `updateComponentsRegistry(...)`, and central search generation update the same version entry |
 | Template behavior | `dist-tags` and `versions` are overwritten during build/deploy                                                                                           |
 
 Contributor guidance:
 
-- For a **new block**, add or update a JSON definition in `./blocks` and ensure its
+- For a **new pattern**, add or update a JSON definition in `./patterns` and ensure its
   `variants` use one repository-only `sourcePath` per file (for example from
-  `react-blocks` / `angular-standalone-blocks`). The registry derives the
+  `react-patterns` / `angular-standalone-patterns`). The registry derives the
   framework-prefixed public path from each source basename.
 - For a **new example**, add matching preview files in `./examples/<framework>-examples/src/preview-examples`; do not hand-write JSON in `dist/examples`.
 - `tooling/registry/registry.json` is a template; runtime entries are generated dynamically during registry build/deployment.
-- Generated LLM docs use existing registry JSON only; relationships not represented in JSON, such as block-to-component usage, are marked unavailable.
+- Generated LLM docs use existing registry JSON only; relationships not represented in JSON, such as pattern-to-component usage, are marked unavailable.
 - Rebuild the registry (`pnpm --filter registry build`) to refresh the generated `registry.json` in `tooling/registry/dist`.
 
 ### Submit Pull Request

@@ -97,7 +97,7 @@ importers:
         specifier: ^5.5.4
         version: 5.8.3
 
-  blocks/angular-standalone-blocks:
+  patterns/angular-standalone-patterns:
     dependencies:
       '@angular/common':
         specifier: ^21.1.0
@@ -152,7 +152,7 @@ importers:
         specifier: ^4.0.8
         version: 4.1.4(@types/node@25.2.0)(happy-dom@20.4.0)(jsdom@27.4.0)(msw@2.10.2(@types/node@25.2.0)(typescript@5.9.3))(vite@8.0.10(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
 
-  blocks/react-blocks:
+  patterns/react-patterns:
     dependencies:
       '@siemens/ix':
         specifier: workspace:*
@@ -278,6 +278,9 @@ importers:
       zone.js:
         specifier: ~0.15.0
         version: 0.15.1
+      zrender:
+        specifier: ^6.0.0
+        version: 6.0.0
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^20.1.4
@@ -1996,9 +1999,9 @@ importers:
       angular-examples:
         specifier: 'workspace:'
         version: link:../../examples/angular-examples
-      angular-standalone-blocks:
+      angular-standalone-patterns:
         specifier: 'workspace:'
-        version: link:../../blocks/angular-standalone-blocks
+        version: link:../../patterns/angular-standalone-patterns
       angular-standalone-examples:
         specifier: 'workspace:'
         version: link:../../examples/angular-standalone-examples
@@ -2020,9 +2023,9 @@ importers:
       minisearch:
         specifier: ^7.2.0
         version: 7.2.0
-      react-blocks:
+      react-patterns:
         specifier: 'workspace:'
-        version: link:../../blocks/react-blocks
+        version: link:../../patterns/react-patterns
       react-examples:
         specifier: 'workspace:'
         version: link:../../examples/react-examples

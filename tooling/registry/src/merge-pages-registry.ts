@@ -12,11 +12,12 @@ import { pathToFileURL } from 'node:url';
 import {
   assertDeploymentVersion,
   determineLatestRegistryVersion,
+  isStableRegistryVersion,
 } from './deployment-policy';
 import { assertJsonSchema, compileJsonSchema } from './schema-validation';
 
 type RegistryVersionEntryCommon = {
-  blocks: Array<{ name: string; path: string }>;
+  patterns: Array<{ name: string; path: string }>;
   examples: Array<{ name: string; path: string }>;
 };
 
@@ -24,7 +25,7 @@ type RegistryLlms = {
   entrypoint: string;
   components: string;
   examples?: string;
-  blocks: string;
+  patterns: string;
 };
 
 type RegistryVersionEntryWithLlms = RegistryVersionEntryCommon & {
@@ -35,7 +36,7 @@ export type CurrentRegistryVersionEntry = RegistryVersionEntryWithLlms & {
   components: {
     componentDoc: string;
     componentRelatedExamples: string;
-    componentRelatedBlocks?: string;
+    componentRelatedPatterns?: string;
   };
   documentationSearchIndex: string;
 };
@@ -46,10 +47,10 @@ export type LegacyRegistryVersionEntry = RegistryVersionEntryWithLlms & {
     componentIndex: string;
     componentSearchIndex: string;
     componentRelatedExamples: string;
-    componentRelatedBlocks?: string;
+    componentRelatedPatterns?: string;
   };
   searchIndex: {
-    blocks: Record<string, string>;
+    patterns: Record<string, string>;
     examples: Record<string, string>;
   };
 };
@@ -129,11 +130,11 @@ function prefixComponents(
       version,
       components.componentRelatedExamples
     ),
-    ...(components.componentRelatedBlocks
+    ...(components.componentRelatedPatterns
       ? {
-          componentRelatedBlocks: prefixVersionPath(
+          componentRelatedPatterns: prefixVersionPath(
             version,
-            components.componentRelatedBlocks
+            components.componentRelatedPatterns
           ),
         }
       : {}),
@@ -154,7 +155,7 @@ function prefixLlms(
     examples: llms.examples
       ? prefixVersionPath(version, llms.examples)
       : undefined,
-    blocks: prefixVersionPath(version, llms.blocks),
+    patterns: prefixVersionPath(version, llms.patterns),
   };
 }
 
@@ -166,6 +167,68 @@ async function readJsonIfExists<T>(filePath: string): Promise<T | null> {
   return fs.readJson(filePath);
 }
 
+function supportsPatternContract(
+  entry: unknown
+): entry is RegistryVersionEntry {
+  return (
+    typeof entry === 'object' &&
+    entry !== null &&
+    'patterns' in entry &&
+    Array.isArray(entry.patterns)
+  );
+}
+
+export function retainPatternRegistry(
+  registry: RegistryIndex | null
+): RegistryIndex | null {
+  if (!registry) {
+    return null;
+  }
+
+  const versions = Object.fromEntries(
+    Object.entries(registry.versions ?? {}).filter(
+      ([version, entry]) =>
+        (version === 'main' || isStableRegistryVersion(version)) &&
+        supportsPatternContract(entry)
+    )
+  );
+  const distTags = Object.fromEntries(
+    Object.entries(registry['dist-tags'] ?? {}).filter(([, version]) =>
+      Object.hasOwn(versions, version)
+    )
+  );
+
+  return {
+    ...registry,
+    'dist-tags': distTags,
+    versions,
+  };
+}
+
+export async function copyRetainedVersionPayloads(
+  pagesDir: string,
+  outDir: string,
+  registry: RegistryIndex | null
+): Promise<void> {
+  if (!registry) {
+    return;
+  }
+
+  await Promise.all(
+    Object.keys(registry.versions).map(async (version) => {
+      const source = path.join(pagesDir, version);
+      if (!(await fs.pathExists(source))) {
+        return;
+      }
+
+      await fs.copy(source, path.join(outDir, version), {
+        dereference: true,
+        overwrite: true,
+      });
+    })
+  );
+}
+
 export function mergeRegistry(
   existingRegistry: RegistryIndex | null,
   currentRegistry: RegistryIndex,
@@ -173,7 +236,9 @@ export function mergeRegistry(
 ): RegistryIndex {
   assertDeploymentVersion(version);
 
-  const baseRegistry: RegistryIndex = existingRegistry ?? {
+  const baseRegistry: RegistryIndex = retainPatternRegistry(
+    existingRegistry
+  ) ?? {
     $schema: currentRegistry.$schema,
     name: currentRegistry.name,
     'dist-tags': {},
@@ -200,9 +265,9 @@ export function mergeRegistry(
   }
 
   const normalizedVersionEntry: CurrentRegistryVersionEntry = {
-    blocks: currentVersionEntry.blocks.map((block) => ({
-      ...block,
-      path: prefixVersionPath(version, block.path),
+    patterns: currentVersionEntry.patterns.map((pattern) => ({
+      ...pattern,
+      path: prefixVersionPath(version, pattern.path),
     })),
     examples: currentVersionEntry.examples.map((example) => ({
       ...example,
@@ -268,16 +333,16 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
     })
     .join('\n');
 
-  const blockLinks = versions
+  const patternLinks = versions
     .map((version) => {
       const entry = registry.versions[version];
-      const blocksPath = entry.llms?.blocks;
+      const patternsPath = entry.llms?.patterns;
 
-      if (!blocksPath) {
-        return `- ${version}: Block LLM docs unavailable.`;
+      if (!patternsPath) {
+        return `- ${version}: Pattern LLM docs unavailable.`;
       }
 
-      return `- [${version} blocks](${blocksPath}): Registry block metadata, variants, files, and component usage availability for ${version}.`;
+      return `- [${version} patterns](${patternsPath}): Registry pattern metadata, variants, files, and component usage availability for ${version}.`;
     })
     .join('\n');
 
@@ -296,17 +361,17 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
 
   return `# Siemens iX Registry
 
-> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component, example, and block context.
+> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component, example, and pattern context.
 
 Check the version of "iX" you are using in your project and select the corresponding registry version below for the most compatible LLM context e.g if @siemens/ix-react version 5.0.0 is installed, the 5.0.0 registry version will likely have the most relevant and accurate LLM context.
 
-Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage, example docs for practical framework code, or block docs for complete copyable UI patterns.
+Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage, example docs for practical framework code, or pattern docs for complete copyable UI patterns.
 
 Component docs contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Figma IDs identify design-system counterparts and should be used for mapping design resources to iX components, not as runtime APIs.
 
 Example docs contain related iX components, framework variants, and source files so examples can be found without first navigating through component docs.
 
-Block docs describe copyable multi-file UI patterns built with iX packages, including previews, framework variants, files, and component usage availability.
+Pattern docs describe copyable multi-file UI patterns built with iX packages, including previews, framework variants, files, and component usage availability.
 
 If a relationship is marked unavailable in a linked file, do not infer it; the registry JSON does not provide that relationship.
 
@@ -324,9 +389,9 @@ ${componentLinks || '- No component LLM docs available.'}
 
 ${exampleLinks || '- No example LLM docs available.'}
 
-## Block docs
+## Pattern docs
 
-${blockLinks || '- No block LLM docs available.'}
+${patternLinks || '- No pattern LLM docs available.'}
 
 ## Optional
 
@@ -359,22 +424,23 @@ export async function copyVersionPayload(
 async function main() {
   const args = parseArgs();
 
-  await fs.ensureDir(args.outDir);
-  await fs.remove(path.join(args.outDir, '.git'));
+  await fs.emptyDir(args.outDir);
 
-  if (await fs.pathExists(args.pagesDir)) {
-    await fs.copy(args.pagesDir, args.outDir, {
-      dereference: true,
-      overwrite: true,
-      errorOnExist: false,
-      filter: (source) => {
-        const relativePath = path.relative(args.pagesDir, source);
-        return (
-          relativePath !== '.git' && !relativePath.startsWith(`.git${path.sep}`)
-        );
-      },
-    });
-  }
+  const currentRegistryPath = path.join(args.distDir, 'registry.json');
+  const existingRegistryPath = path.join(args.outDir, 'registry.json');
+  const pagesRegistryPath = path.join(args.pagesDir, 'registry.json');
+  const currentRegistry = (await fs.readJson(
+    currentRegistryPath
+  )) as RegistryIndex;
+  const existingRegistry = retainPatternRegistry(
+    await readJsonIfExists<RegistryIndex>(pagesRegistryPath)
+  );
+
+  await copyRetainedVersionPayloads(
+    args.pagesDir,
+    args.outDir,
+    existingRegistry
+  );
 
   await copyVersionPayload(args.distDir, args.outDir, args.version);
 
@@ -403,16 +469,6 @@ async function main() {
       overwrite: true,
     });
   }
-
-  const currentRegistryPath = path.join(args.distDir, 'registry.json');
-  const existingRegistryPath = path.join(args.outDir, 'registry.json');
-
-  const currentRegistry = (await fs.readJson(
-    currentRegistryPath
-  )) as RegistryIndex;
-  const existingRegistry = await readJsonIfExists<RegistryIndex>(
-    existingRegistryPath
-  );
 
   const mergedRegistry = mergeRegistry(
     existingRegistry,
