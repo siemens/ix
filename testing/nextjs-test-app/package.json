@@ -15,7 +15,7 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@stencil/ssr": "^0.3.0",
+    "@stencil/ssr": "^0.4.0",
     "@types/node": "^20",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",

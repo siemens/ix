@@ -5,7 +5,7 @@
     "ng": "ng",
     "copy-preview-styles": "node ./scripts/copy-preview.mjs",
     "start": "pnpm copy-preview-styles && ng serve",
-    "build": "pnpm copy-preview-styles && ng build --preserve-symlinks -c production --source-map=true --named-chunks=true",
+    "build": "pnpm copy-preview-styles && ng build -c production --source-map=true --named-chunks=true",
     "watch": "pnpm copy-preview-styles && ng build --watch --configuration development",
     "test": "playwright test",
     "preview": "http-server ./dist/angular-examples/browser -p 4173 --proxy http://localhost:4173?"
@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^20.1.4",
-    "@angular/common": "^20.3.14",
+    "@angular/common": "^20.3.28",
     "@angular/compiler": "^20.3.18",
     "@angular/core": "^20.3.25",
     "@angular/forms": "^20.1.4",

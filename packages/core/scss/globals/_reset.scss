@@ -11,6 +11,8 @@
 //
 // Bootstrap is licensed MIT. https://github.com/twbs/bootstrap (Commit: 6f87fce7962bef83c59eff895d891016db620cd7)
 
+@use '../tokens/system' as sys;
+
 *,
 *::before,
 *::after {
@@ -114,7 +116,7 @@ small,
 mark,
 .mark {
   padding: 0.1875em;
-  background-color: var(--theme-color-warning-40);
+  background-color: #{sys.$si-sys-background-caution-subtle};
 }
 
 sub,

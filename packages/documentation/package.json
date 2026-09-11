@@ -1,6 +1,7 @@
 {
   "name": "@siemens/ix-docs",
   "version": "5.2.1",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/siemens/ix",
