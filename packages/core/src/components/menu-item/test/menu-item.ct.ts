@@ -319,3 +319,21 @@ regressionTest('update item text', async ({ mount, page }) => {
   await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem1.locator('ix-tooltip')).toHaveText(/Test123/);
 });
+
+regressionTest('can disable tooltip', async ({ mount, page }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-item disable-tooltip>Foo bar</ix-menu-item>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  const menuItem = page.locator('ix-menu-item');
+  await expect(menuItem).toHaveClass(/hydrated/);
+
+  await menuItem.hover();
+  await page.waitForTimeout(1500);
+
+  await expect(menuItem.locator('ix-tooltip')).toHaveCount(0);
+});
