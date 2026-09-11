@@ -8,6 +8,7 @@
  */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import fs from 'node:fs/promises';
 import MiniSearch from 'minisearch';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,21 +18,38 @@ const schemaDirectory = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '../schemas'
 );
-const schemaPath = path.join(schemaDirectory, 'block.schema.json');
+const schemaPath = path.join(schemaDirectory, 'pattern.schema.json');
 const exampleSchemaPath = path.join(schemaDirectory, 'example.schema.json');
-const authoredBlockSchemaPath = path.join(
+const authoredPatternSchemaPath = path.join(
   schemaDirectory,
-  'authored-block.schema.json'
+  'authored-pattern.schema.json'
 );
+
+test('keeps deployment and distributable registry schemas in sync', async () => {
+  const deploymentSchema = JSON.parse(
+    await fs.readFile(
+      path.join(schemaDirectory, '../registry.schema.json'),
+      'utf8'
+    )
+  );
+  const distributableSchema = JSON.parse(
+    await fs.readFile(
+      path.join(schemaDirectory, 'registry.schema.json'),
+      'utf8'
+    )
+  );
+
+  assert.deepEqual(deploymentSchema, distributableSchema);
+});
 
 test('accepts dependency metadata and safe relative paths', async () => {
   const validate = await compileJsonSchema(schemaPath);
   assert.equal(
     validate({
       name: 'example',
-      description: 'Example block',
+      description: 'Example pattern',
       keywords: ['example'],
-      preview: 'react-blocks/dist/example',
+      preview: 'react-patterns/dist/example',
       variants: {
         react: {
           files: [
@@ -61,9 +79,9 @@ test('rejects paths that the CLI cannot safely consume', async () => {
     assert.equal(
       validate({
         name: 'example',
-        description: 'Example block',
+        description: 'Example pattern',
         keywords: ['example'],
-        preview: 'react-blocks/dist/example',
+        preview: 'react-patterns/dist/example',
         variants: {
           react: {
             files: [
@@ -81,13 +99,13 @@ test('rejects paths that the CLI cannot safely consume', async () => {
 });
 
 test('public schemas require path-only file entries', async () => {
-  const validateBlock = await compileJsonSchema(schemaPath);
+  const validatePattern = await compileJsonSchema(schemaPath);
   const validateExample = await compileJsonSchema(exampleSchemaPath);
-  const block = {
+  const pattern = {
     name: 'example',
-    description: 'Example block',
+    description: 'Example pattern',
     keywords: ['example'],
-    preview: 'react-blocks/dist/example',
+    preview: 'react-patterns/dist/example',
     variants: { react: { files: [{ path: 'react/example.tsx' }] } },
   };
   const example = {
@@ -95,16 +113,16 @@ test('public schemas require path-only file entries', async () => {
     variants: { react: { files: [{ path: 'react/example.tsx' }] } },
   };
 
-  assert.equal(validateBlock(block), true);
+  assert.equal(validatePattern(pattern), true);
   assert.equal(validateExample(example), true);
   assert.equal(
-    validateBlock({
-      ...block,
+    validatePattern({
+      ...pattern,
       variants: {
         react: {
           files: [
             {
-              source: 'react-blocks/src/example.tsx',
+              source: 'react-patterns/src/example.tsx',
               target: 'react/example.tsx',
             },
           ],
@@ -141,8 +159,8 @@ test('public schemas require path-only file entries', async () => {
     false
   );
   assert.equal(
-    validateBlock({
-      ...block,
+    validatePattern({
+      ...pattern,
       variants: {
         react: {
           files: [{ path: 'angular/example.tsx' }],
@@ -163,8 +181,8 @@ test('public schemas require path-only file entries', async () => {
     false
   );
   assert.equal(
-    validateBlock({
-      ...block,
+    validatePattern({
+      ...pattern,
       variants: {
         react: {
           files: [{ path: 'react/example.tsx' }, { path: 'react/example.tsx' }],
@@ -186,17 +204,17 @@ test('public schemas require path-only file entries', async () => {
   );
 });
 
-test('authored block schema keeps repository source metadata private', async () => {
-  const validateAuthored = await compileJsonSchema(authoredBlockSchemaPath);
+test('authored pattern schema keeps repository source metadata private', async () => {
+  const validateAuthored = await compileJsonSchema(authoredPatternSchemaPath);
   assert.equal(
     validateAuthored({
       name: 'example',
-      description: 'Example block',
+      description: 'Example pattern',
       keywords: ['example'],
-      preview: 'react-blocks/dist/example',
+      preview: 'react-patterns/dist/example',
       variants: {
         react: {
-          files: [{ sourcePath: 'react-blocks/src/example.tsx' }],
+          files: [{ sourcePath: 'react-patterns/src/example.tsx' }],
         },
       },
     }),
@@ -205,12 +223,12 @@ test('authored block schema keeps repository source metadata private', async () 
   assert.equal(
     validateAuthored({
       name: 'example',
-      description: 'Example block',
+      description: 'Example pattern',
       keywords: ['example'],
-      preview: 'react-blocks/dist/example',
+      preview: 'react-patterns/dist/example',
       variants: {
         react: {
-          files: [{ source: 'react-blocks/src/example.tsx' }],
+          files: [{ source: 'react-patterns/src/example.tsx' }],
         },
       },
     }),
@@ -249,7 +267,7 @@ test('requires the central index for new entries and preserves historical entrie
     path.join(schemaDirectory, 'registry.schema.json')
   );
   const versionEntry = {
-    blocks: [{ name: 'button', path: 'v1.0.0/blocks/button.json' }],
+    patterns: [{ name: 'button', path: 'v1.0.0/patterns/button.json' }],
     examples: [{ name: 'button', path: 'v1.0.0/examples/button.json' }],
     components: {
       componentDoc: 'v1.0.0/ix/component-doc.json',
@@ -269,7 +287,7 @@ test('requires the central index for new entries and preserves historical entrie
       ...manifest,
       versions: {
         'v1.0.0': {
-          blocks: versionEntry.blocks,
+          patterns: versionEntry.patterns,
           examples: versionEntry.examples,
           components: {
             componentDoc: 'v1.0.0/ix/component-doc.json',
@@ -279,7 +297,7 @@ test('requires the central index for new entries and preserves historical entrie
               'v1.0.0/ix/component-related-examples.json',
           },
           searchIndex: {
-            blocks: { react: 'v1.0.0/search-index-react.json' },
+            patterns: { react: 'v1.0.0/search-index-react.json' },
             examples: { react: 'v1.0.0/examples-search-index-react.json' },
           },
         },
@@ -293,7 +311,7 @@ test('requires the central index for new entries and preserves historical entrie
       versions: {
         'v1.0.0': {
           ...versionEntry,
-          searchIndex: { blocks: { react: 'search-index-react.json' } },
+          searchIndex: { patterns: { react: 'search-index-react.json' } },
         },
       },
     }),

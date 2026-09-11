@@ -36,11 +36,11 @@ const path = process.argv[1];
 const reg = JSON.parse(fs.readFileSync(path + "/registry.json", "utf8"));
 const regVersions = Object.keys(reg.versions || {}).sort();
 const firstRegVersion = regVersions[regVersions.length - 1];
-const firstBlockPath = reg.versions[firstRegVersion]?.blocks?.[0]?.path;
+const firstPatternPath = reg.versions[firstRegVersion]?.patterns?.[0]?.path;
 const firstExamplePath = reg.versions[firstRegVersion]?.examples?.[0]?.path;
 console.log("registry.latest:", reg["dist-tags"]?.latest);
 console.log("registry.versions:", regVersions.join(", "));
-console.log("sample.block.path:", firstBlockPath || "(none)");
+console.log("sample.pattern.path:", firstPatternPath || "(none)");
 console.log("sample.example.path:", firstExamplePath || "(none)");
 ' "$target_dir"
 }

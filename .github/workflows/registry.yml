@@ -7,7 +7,7 @@ on:
       - 'release-registry/**'
     # paths:
     #   - 'packages/**'
-    #   - 'blocks/**'
+    #   - 'patterns/**'
     #   - 'examples/**'
     #   - 'tooling/registry/**'
     #   - '.github/workflows/registry.yml'

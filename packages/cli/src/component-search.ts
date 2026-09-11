@@ -21,7 +21,7 @@ const DEFAULT_REGISTRY_BASE_URL = 'https://siemens.github.io/ix';
 type ComponentJsonType =
   | 'componentDoc'
   | 'componentRelatedExamples'
-  | 'componentRelatedBlocks';
+  | 'componentRelatedPatterns';
 
 type ComponentDocTag = {
   name: string;
@@ -218,7 +218,7 @@ function packageArtifactPath(
   const packagePathByType: Record<ComponentJsonType, string> = {
     componentDoc: 'component-doc.json',
     componentRelatedExamples: 'component-related-examples.json',
-    componentRelatedBlocks: 'component-related-blocks.json',
+    componentRelatedPatterns: 'component-related-patterns.json',
   };
   return path.join(packageRoot, packagePathByType[jsonType]);
 }

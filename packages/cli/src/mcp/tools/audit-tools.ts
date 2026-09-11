@@ -9,7 +9,7 @@ export const auditTools: ToolDefinition[] = [
   {
     name: auditChecklistName,
     description:
-      'After creating new blocks or generating new code files, use this tool for a quick checklist to verify that everything is working as expected. Make sure to run the tool after all required steps have been completed.',
+      'After creating new patterns or generating new code files, use this tool for a quick checklist to verify that everything is working as expected. Make sure to run the tool after all required steps have been completed.',
     schema: auditChecklistSchema,
     handler: () => ({
       content: [

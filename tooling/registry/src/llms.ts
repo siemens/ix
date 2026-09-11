@@ -46,12 +46,12 @@ type ComponentDocJson = {
   components: ComponentDoc[];
 };
 
-type BlockFile = {
+type PatternFile = {
   path: string;
 };
 
 type ExampleVariant = {
-  files?: BlockFile[];
+  files?: PatternFile[];
 };
 
 type ExampleDefinition = {
@@ -59,31 +59,31 @@ type ExampleDefinition = {
   variants?: Record<string, ExampleVariant>;
 };
 
-type BlockVariant = {
-  files?: BlockFile[];
+type PatternVariant = {
+  files?: PatternFile[];
 };
 
-type BlockDefinition = {
+type PatternDefinition = {
   name: string;
   description?: string;
   keywords?: string[];
   preview?: string;
-  variants?: Record<string, BlockVariant>;
+  variants?: Record<string, PatternVariant>;
 };
 
 export type LlmsArtifacts = {
   entrypoint: string;
   components: string;
   examples: string;
-  blocks: string;
+  patterns: string;
 };
 
 export type GenerateLlmsOptions = {
   distDir: string;
   componentDocPath: string;
   componentRelatedExamplesPath: string;
-  componentRelatedBlocksPath: string;
-  blocksDir: string;
+  componentRelatedPatternsPath: string;
+  patternsDir: string;
   examplesDir: string;
 };
 
@@ -259,30 +259,33 @@ function renderRelatedExamples(
     .join('\n');
 }
 
-function renderRelatedBlocks(
-  blockNames: string[],
-  blocksByName: Record<string, BlockDefinition>
+function renderRelatedPatterns(
+  patternNames: string[],
+  patternsByName: Record<string, PatternDefinition>
 ): string {
-  if (blockNames.length === 0) {
+  if (patternNames.length === 0) {
     return '- None';
   }
 
-  return blockNames
-    .map((blockName) => {
-      const block = blocksByName[blockName];
-      const variants = Object.entries(block?.variants ?? {}).sort(([a], [b]) =>
-        a.localeCompare(b)
+  return patternNames
+    .map((patternName) => {
+      const pattern = patternsByName[patternName];
+      const variants = Object.entries(pattern?.variants ?? {}).sort(
+        ([a], [b]) => a.localeCompare(b)
       );
-      const blockLink = markdownLink(blockName, `../blocks.md#${blockName}`);
+      const patternLink = markdownLink(
+        patternName,
+        `../patterns.md#${patternName}`
+      );
 
       if (variants.length === 0) {
-        return `- ${blockLink}`;
+        return `- ${patternLink}`;
       }
 
       const sourceLinks = variants
         .map(([framework, variant]) => {
           const links = (variant.files ?? []).map((file) => {
-            const href = `../../blocks/${file.path}`;
+            const href = `../../patterns/${file.path}`;
             return `    - \`${file.path}\`: ${markdownLink('file', href)}`;
           });
 
@@ -293,7 +296,9 @@ function renderRelatedBlocks(
         .filter(Boolean)
         .join('\n');
 
-      return sourceLinks ? `- ${blockLink}\n${sourceLinks}` : `- ${blockLink}`;
+      return sourceLinks
+        ? `- ${patternLink}\n${sourceLinks}`
+        : `- ${patternLink}`;
     })
     .join('\n');
 }
@@ -322,13 +327,13 @@ function renderComponentDetail(
   component: ComponentDoc,
   relatedExamples: Record<string, string[]>,
   examplesByName: Record<string, ExampleDefinition>,
-  relatedBlocks: Record<string, string[]>,
-  blocksByName: Record<string, BlockDefinition>
+  relatedPatterns: Record<string, string[]>,
+  patternsByName: Record<string, PatternDefinition>
 ): string {
   const docs = documentationUrls(component);
   const figma = figmaIds(component);
   const examples = normalizeRelatedExamples(relatedExamples, component.tag);
-  const blocks = [...(relatedBlocks[component.tag] ?? [])].sort();
+  const patterns = [...(relatedPatterns[component.tag] ?? [])].sort();
 
   return `# ${component.tag}
 
@@ -348,11 +353,11 @@ Example file links are relative to this Markdown file.
 
 ${renderRelatedExamples(examples, examplesByName)}
 
-## Related blocks
+## Related patterns
 
-Block and file links are relative to this Markdown file.
+Pattern and file links are relative to this Markdown file.
 
-${renderRelatedBlocks(blocks, blocksByName)}
+${renderRelatedPatterns(patterns, patternsByName)}
 
 ## Properties
 
@@ -382,7 +387,7 @@ function renderComponentsIndex(components: ComponentDoc[]): string {
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all ${components.length} generated component detail files. Each detail file includes API metadata, related examples and blocks from generated relationship maps, and Figma IDs.
+This index links to all ${components.length} generated component detail files. Each detail file includes API metadata, related examples and patterns from generated relationship maps, and Figma IDs.
 
 ## Components
 
@@ -480,16 +485,16 @@ ${examples
 `;
 }
 
-function renderBlock(
-  block: BlockDefinition,
+function renderPattern(
+  pattern: PatternDefinition,
   relatedComponents: Record<string, string[]>,
   availableComponentTags: Set<string>
 ): string {
-  const variants = Object.entries(block.variants ?? {}).sort(([a], [b]) =>
+  const variants = Object.entries(pattern.variants ?? {}).sort(([a], [b]) =>
     a.localeCompare(b)
   );
   const componentLinks = renderComponentLinks(
-    relatedComponents[block.name] ?? [],
+    relatedComponents[pattern.name] ?? [],
     availableComponentTags
   );
   const variantSections =
@@ -504,7 +509,7 @@ function renderBlock(
               }))
             )
               .map((file) => {
-                const href = `../blocks/${file.path}`;
+                const href = `../patterns/${file.path}`;
                 return `  - \`${file.path}\`: ${markdownLink('file', href)}`;
               })
               .join('\n');
@@ -515,39 +520,43 @@ ${files || '  - None'}`;
           })
           .join('\n\n');
 
-  return `## ${block.name}
+  return `## ${pattern.name}
 
-- Description: ${inline(block.description) || 'No block description available.'}
+- Description: ${
+    inline(pattern.description) || 'No pattern description available.'
+  }
 - Keywords: ${
-    block.keywords && block.keywords.length > 0
-      ? block.keywords.map((keyword) => `\`${keyword}\``).join(', ')
+    pattern.keywords && pattern.keywords.length > 0
+      ? pattern.keywords.map((keyword) => `\`${keyword}\``).join(', ')
       : 'None'
   }
-- Preview: ${block.preview ? `\`${block.preview}\`` : 'None'}
+- Preview: ${pattern.preview ? `\`${pattern.preview}\`` : 'None'}
 - Used iX components: ${componentLinks}
 
 ${variantSections}
 `;
 }
 
-function renderBlocks(
-  blocks: BlockDefinition[],
-  relatedBlocks: Record<string, string[]>,
+function renderPatterns(
+  patterns: PatternDefinition[],
+  relatedPatterns: Record<string, string[]>,
   components: ComponentDoc[]
 ): string {
-  const relatedComponents = invertRelationships(relatedBlocks);
+  const relatedComponents = invertRelationships(relatedPatterns);
   const availableComponentTags = new Set(
     components.map((component) => component.tag)
   );
 
-  return `# Siemens iX blocks
+  return `# Siemens iX patterns
 
-> Block-focused LLM documentation generated from registry block JSON metadata and component relationships.
+> Pattern-focused LLM documentation generated from registry pattern JSON metadata and component relationships.
 
-Each block includes a description of when to use it, searchable keywords, previews, related iX components, framework variants, and files. File and component links are relative to this Markdown file.
+Each pattern includes a description of when to use it, searchable keywords, previews, related iX components, framework variants, and files. File and component links are relative to this Markdown file.
 
-${blocks
-  .map((block) => renderBlock(block, relatedComponents, availableComponentTags))
+${patterns
+  .map((pattern) =>
+    renderPattern(pattern, relatedComponents, availableComponentTags)
+  )
   .join('\n')}
 `;
 }
@@ -555,15 +564,15 @@ ${blocks
 function renderLlmsTxt(): string {
   return `# Siemens iX Registry
 
-> Siemens iX is a multi-framework design system. This registry provides versioned LLM-readable component, example, and block documentation generated from existing registry JSON metadata.
+> Siemens iX is a multi-framework design system. This registry provides versioned LLM-readable component, example, and pattern documentation generated from existing registry JSON metadata.
 
-Use this file as the entrypoint for this registry version. For exact component API usage, open the component docs first; for practical framework code, open the example docs first; for complete copyable UI patterns, open the block docs first.
+Use this file as the entrypoint for this registry version. For exact component API usage, open the component docs first; for practical framework code, open the example docs first; for complete copyable UI patterns, open the pattern docs first.
 
-Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, related blocks, and Figma main component IDs. Use related examples to validate generated component code and related blocks to discover complete UI patterns.
+Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, related patterns, and Figma main component IDs. Use related examples to validate generated component code and related patterns to discover complete UI patterns.
 
 Examples provide direct access to framework variants, files, and related iX components without first navigating through a component detail page.
 
-Blocks are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and files. Use blocks when generating larger page sections or reusable patterns.
+Patterns are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and files. Use patterns when generating larger page sections or reusable patterns.
 
 Figma IDs come from component \`figma-main-component-id\` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
 
@@ -571,7 +580,7 @@ Figma IDs come from component \`figma-main-component-id\` metadata and identify 
 
 - [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
 - [Examples](llms/examples.md): Start here for practical framework code; includes related iX components, variants, and files.
-- [Blocks](llms/blocks.md): Start here for complete copyable UI patterns; includes block descriptions, keywords, previews, related iX components, framework variants, and files.
+- [Patterns](llms/patterns.md): Start here for complete copyable UI patterns; includes pattern descriptions, keywords, previews, related iX components, framework variants, and files.
 
 ## Optional
 
@@ -579,16 +588,18 @@ Figma IDs come from component \`figma-main-component-id\` metadata and identify 
 `;
 }
 
-async function readBlocks(blocksDir: string): Promise<BlockDefinition[]> {
-  const blockFiles = await glob(path.join(blocksDir, '*.json'), {
+async function readPatterns(patternsDir: string): Promise<PatternDefinition[]> {
+  const patternFiles = await glob(path.join(patternsDir, '*.json'), {
     absolute: true,
   });
 
-  const blocks = await Promise.all(
-    blockFiles.map(async (file) => (await fs.readJson(file)) as BlockDefinition)
+  const patterns = await Promise.all(
+    patternFiles.map(
+      async (file) => (await fs.readJson(file)) as PatternDefinition
+    )
   );
 
-  return sortByName(blocks);
+  return sortByName(patterns);
 }
 
 export async function generateLlmsArtifacts(
@@ -600,13 +611,13 @@ export async function generateLlmsArtifacts(
   const relatedExamples = (await fs.readJson(
     options.componentRelatedExamplesPath
   )) as Record<string, string[]>;
-  const relatedBlocks = (await fs.readJson(
-    options.componentRelatedBlocksPath
+  const relatedPatterns = (await fs.readJson(
+    options.componentRelatedPatternsPath
   )) as Record<string, string[]>;
   const components = sortComponents(componentDoc.components ?? []);
-  const blocks = await readBlocks(options.blocksDir);
-  const blocksByName = Object.fromEntries(
-    blocks.map((block) => [block.name, block])
+  const patterns = await readPatterns(options.patternsDir);
+  const patternsByName = Object.fromEntries(
+    patterns.map((pattern) => [pattern.name, pattern])
   );
   const examplesByName = await readExamples(options.examplesDir);
   const examples = sortByName(Object.values(examplesByName));
@@ -633,8 +644,8 @@ export async function generateLlmsArtifacts(
       'utf-8'
     ),
     fs.writeFile(
-      path.join(llmsDir, 'blocks.md'),
-      renderBlocks(blocks, relatedBlocks, components),
+      path.join(llmsDir, 'patterns.md'),
+      renderPatterns(patterns, relatedPatterns, components),
       'utf-8'
     ),
     ...components.map((component) =>
@@ -644,8 +655,8 @@ export async function generateLlmsArtifacts(
           component,
           relatedExamples,
           examplesByName,
-          relatedBlocks,
-          blocksByName
+          relatedPatterns,
+          patternsByName
         ),
         'utf-8'
       )
@@ -653,13 +664,13 @@ export async function generateLlmsArtifacts(
   ]);
 
   console.log(
-    `✅ Generated llms.txt artifacts for ${components.length} components, ${examples.length} examples, and ${blocks.length} blocks`
+    `✅ Generated llms.txt artifacts for ${components.length} components, ${examples.length} examples, and ${patterns.length} patterns`
   );
 
   return {
     entrypoint: 'llms.txt',
     components: 'llms/components.md',
     examples: 'llms/examples.md',
-    blocks: 'llms/blocks.md',
+    patterns: 'llms/patterns.md',
   };
 }

@@ -8,26 +8,22 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import {
-  CONFIG_FILE_NAME,
-  loadConfig,
-  saveConfig,
-} from '../src/config';
+import { CONFIG_FILE_NAME, loadConfig, saveConfig } from '../src/config';
 import { runAdd } from '../src/commands/add';
 
 const packageRoot = fileURLToPath(new URL('..', import.meta.url));
 const workRoot = path.join(packageRoot, '.test-work', 'add');
 const registry = 'https://registry.example/root';
 const registryIndexUrl = `${registry}/registry.json`;
-const blockDefinitionUrl = `${registry}/v1/blocks/upload.json`;
-const blockSourceUrl = `${registry}/v1/blocks/react/upload.tsx`;
+const patternDefinitionUrl = `${registry}/v1/patterns/upload.json`;
+const patternSourceUrl = `${registry}/v1/patterns/react/upload.tsx`;
 
 const registryIndex = {
   name: 'test-registry',
   'dist-tags': { latest: 'v1' },
   versions: {
     v1: {
-      blocks: [{ name: 'upload', path: 'v1/blocks/upload.json' }],
+      patterns: [{ name: 'upload', path: 'v1/patterns/upload.json' }],
       examples: [],
       components: {
         componentDoc: 'component-doc.json',
@@ -37,7 +33,7 @@ const registryIndex = {
   },
 };
 
-const blockDefinition = {
+const patternDefinition = {
   name: 'upload',
   variants: {
     react: {
@@ -57,10 +53,10 @@ function installFetchMock(): () => void {
     if (url === registryIndexUrl) {
       return new Response(JSON.stringify(registryIndex));
     }
-    if (url === blockDefinitionUrl) {
-      return new Response(JSON.stringify(blockDefinition));
+    if (url === patternDefinitionUrl) {
+      return new Response(JSON.stringify(patternDefinition));
     }
-    if (url === blockSourceUrl) {
+    if (url === patternSourceUrl) {
       return new Response('export const upload = true;\n');
     }
     return new Response('not found', { status: 404 });
@@ -98,7 +94,7 @@ test.after(async () => {
   await fs.rm(workRoot, { recursive: true, force: true });
 });
 
-test('add initializes the default config and installs the block', async () => {
+test('add initializes the default config and installs the pattern', async () => {
   const cwd = await createProject('default');
   const output: string[] = [];
   const originalLog = console.log;
@@ -113,18 +109,15 @@ test('add initializes the default config and installs the block', async () => {
   }
 
   const config = await loadConfig(cwd);
-  assert.equal(config.targetFolder, 'src/blocks');
-  assert.equal(config.blocks[0]?.name, 'upload');
-  assert.equal(config.blocks[0]?.version, 'v1');
+  assert.equal(config.targetFolder, 'src/patterns');
+  assert.equal(config.patterns[0]?.name, 'upload');
+  assert.equal(config.patterns[0]?.version, 'v1');
   assert.equal(
-    config.blocks[0]?.files?.[0]?.path,
-    'src/blocks/upload/upload.tsx'
+    config.patterns[0]?.files?.[0]?.path,
+    'src/patterns/upload/upload.tsx'
   );
   assert.equal(
-    await fs.readFile(
-      path.join(cwd, 'src/blocks/upload/upload.tsx'),
-      'utf8'
-    ),
+    await fs.readFile(path.join(cwd, 'src/patterns/upload/upload.tsx'), 'utf8'),
     'export const upload = true;\n'
   );
   assert.ok(
@@ -145,15 +138,15 @@ test('add dry-run uses the default config without writing project files', async 
   await assert.rejects(fs.access(path.join(cwd, CONFIG_FILE_NAME)));
   assert.deepEqual(await fs.readdir(cwd), ['package.json']);
   await assert.rejects(
-    fs.access(path.join(cwd, 'src/blocks/upload/upload.tsx'))
+    fs.access(path.join(cwd, 'src/patterns/upload/upload.tsx'))
   );
 });
 
 test('add respects an existing custom target folder', async () => {
   const cwd = await createProject('custom-target');
   await saveConfig(cwd, {
-    targetFolder: 'src/features/blocks',
-    blocks: [],
+    targetFolder: 'src/features/patterns',
+    patterns: [],
   });
   const restoreFetch = installFetchMock();
 
@@ -165,25 +158,22 @@ test('add respects an existing custom target folder', async () => {
 
   assert.equal(
     await fs.readFile(
-      path.join(cwd, 'src/features/blocks/upload/upload.tsx'),
+      path.join(cwd, 'src/features/patterns/upload/upload.tsx'),
       'utf8'
     ),
     'export const upload = true;\n'
   );
-  assert.equal(
-    (await loadConfig(cwd)).targetFolder,
-    'src/features/blocks'
-  );
+  assert.equal((await loadConfig(cwd)).targetFolder, 'src/features/patterns');
 });
 
 test('add does not replace an invalid existing config', async () => {
   const cwd = await createProject('invalid-config');
-  const invalidConfig = '{"targetFolder":"../outside","blocks":[]}\n';
+  const invalidConfig = '{"targetFolder":"../outside","patterns":[]}\n';
   await fs.writeFile(path.join(cwd, CONFIG_FILE_NAME), invalidConfig);
 
   await assert.rejects(
     runAdd('upload', addOptions(), cwd),
-    /Invalid ix-blocks-lock\.json/
+    /Invalid ix-patterns-lock\.json/
   );
   assert.equal(
     await fs.readFile(path.join(cwd, CONFIG_FILE_NAME), 'utf8'),

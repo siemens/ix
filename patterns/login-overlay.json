@@ -1,0 +1,39 @@
+{
+  "$schema": "./../tooling/registry/schemas/authored-pattern.schema.json",
+  "name": "login-overlay",
+  "description": "Use this pattern to build a branded login overlay with username and password inputs, recovery and registration links, and alternative sign-in actions.",
+  "keywords": [
+    "authentication",
+    "login",
+    "sign in",
+    "overlay",
+    "registration",
+    "single sign-on"
+  ],
+  "preview": "react-patterns/dist/ix/login-overlay",
+  "variants": {
+    "react": {
+      "files": [
+        {
+          "sourcePath": "react-patterns/src/routes/login-overlay/login-overlay.tsx"
+        },
+        {
+          "sourcePath": "react-patterns/src/routes/login-overlay/login-overlay.module.css"
+        }
+      ]
+    },
+    "angular": {
+      "files": [
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/login-overlay/login-overlay.ts"
+        },
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/login-overlay/login-overlay.html"
+        },
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/login-overlay/login-overlay.css"
+        }
+      ]
+    }
+  }
+}

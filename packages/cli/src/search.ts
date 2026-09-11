@@ -11,7 +11,7 @@ import {
   type DocumentationFramework,
 } from './documentation-search';
 
-export interface BlockSearchResult {
+export interface PatternSearchResult {
   id: string;
   name: string;
   description?: string;
@@ -44,14 +44,14 @@ export interface ExampleSearchResult {
 }
 
 /**
- * Search blocks in the versioned central documentation index.
+ * Search patterns in the versioned central documentation index.
  */
-export async function searchBlocks(
+export async function searchPatterns(
   options: SearchOptions
-): Promise<BlockSearchResult[]> {
+): Promise<PatternSearchResult[]> {
   const results = await searchDocumentation({
     ...options,
-    kind: 'block',
+    kind: 'pattern',
   });
 
   return results.map((result) => ({

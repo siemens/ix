@@ -23,7 +23,7 @@ test('does not use installed component metadata for a different requested versio
     'dist-tags': { latest: '2.0.0' },
     versions: {
       '2.0.0': {
-        blocks: [{ name: 'example', path: '2.0.0/blocks/example.json' }],
+        patterns: [{ name: 'example', path: '2.0.0/patterns/example.json' }],
         examples: [{ name: 'example', path: '2.0.0/examples/example.json' }],
         components: {
           componentDoc: '2.0.0/ix/component-doc.json',

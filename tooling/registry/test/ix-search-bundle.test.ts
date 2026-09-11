@@ -29,7 +29,7 @@ import MiniSearch from 'minisearch';
 
 type SearchDocument = {
   id: string;
-  kind: 'component' | 'example' | 'block';
+  kind: 'component' | 'example' | 'pattern';
   name: string;
   tag?: string;
   aliases?: string[];
@@ -103,13 +103,13 @@ const documents: SearchDocument[] = [
     detailPath: 'examples/button.json',
   },
   {
-    id: 'block:vue:workflow',
-    kind: 'block',
+    id: 'pattern:vue:workflow',
+    kind: 'pattern',
     name: 'workflow',
-    description: 'Vue workflow block',
+    description: 'Vue workflow pattern',
     framework: 'vue',
-    path: 'blocks/workflow.json',
-    detailPath: 'blocks/workflow.json',
+    path: 'patterns/workflow.json',
+    detailPath: 'patterns/workflow.json',
   },
 ];
 
@@ -334,11 +334,11 @@ test('bundled IX search runs outside the repository without MiniSearch resolutio
         '--query',
         'workflow',
         '--kind',
-        'block',
+        'pattern',
         '--framework',
         'vue'
       ).results[0]?.id,
-      'block:vue:workflow'
+      'pattern:vue:workflow'
     );
     assert.equal(
       runSearch(

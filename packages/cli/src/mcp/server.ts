@@ -14,7 +14,7 @@ import {
 import dedent from 'dedent';
 import { Framework } from '../detect';
 import { auditTools } from './tools/audit-tools';
-import { blockTools } from './tools/block-tools';
+import { patternTools } from './tools/pattern-tools';
 import { componentTools } from './tools/component-tools';
 import { exampleTools } from './tools/example-tools';
 import { figmaTools } from './tools/figma-tools';
@@ -56,7 +56,7 @@ export const createServer = (
   const tools: ToolDefinition[] = [
     ...componentTools,
     ...iconTools,
-    ...blockTools,
+    ...patternTools,
     ...exampleTools,
     ...figmaTools,
     ...setupTools,
