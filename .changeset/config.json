@@ -8,8 +8,7 @@
       "@siemens/ix",
       "@siemens/ix-angular",
       "@siemens/ix-react",
-      "@siemens/ix-vue",
-      "@siemens/ix-docs"
+      "@siemens/ix-vue"
     ]
   ],
   "access": "public",
