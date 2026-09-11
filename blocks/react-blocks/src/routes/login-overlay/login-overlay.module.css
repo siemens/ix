@@ -1,0 +1,103 @@
+.overlay {
+  width: min(100%, 420px);
+  padding: 2rem;
+  border-radius: 0.25rem;
+  background-color: var(--theme-color-2);
+  box-shadow: var(--theme-shadow-4);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  color: var(--theme-color-std-text);
+}
+
+.systemName {
+  margin: 0;
+  font-weight: var(--theme-font-weight-bold);
+  font-size: var(--theme-font-size-h4);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.loginFormSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.passwordSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.link {
+  color: var(--theme-color-primary);
+  font-weight: var(--theme-font-weight-bold);
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  width: fit-content;
+}
+
+.link:focus-visible {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: 0.1875rem;
+}
+
+.fullWidthButton {
+  width: 100%;
+}
+
+.registerSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0 1.5rem;
+}
+
+.registerText {
+  margin: 0;
+  color: var(--theme-color-std-text);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+.alternativeLoginSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.separatorLine {
+  flex: 1;
+  border-top: 1px solid var(--theme-color-soft-bdr);
+}
+
+.separatorText {
+  color: var(--theme-color-std-text);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 1.25rem;
+  }
+
+  .registerSection {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

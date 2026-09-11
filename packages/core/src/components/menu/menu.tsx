@@ -41,12 +41,17 @@ import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
 /**
- * @slot ix-menu-avatar - Avatar displayed at the top of the menu.
- * @slot home - Home menu item.
- * @slot default - Main menu items and categories.
- * @slot bottom - Menu items displayed below the main navigation.
- * @slot ix-menu-settings - Settings content displayed in the menu overlay.
- * @slot ix-menu-about - About content displayed in the menu overlay.
+ * Primary side navigation menu of the application shell.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 20977:55554
+ *
+ * @slot ix-menu-avatar - Avatar displayed in the menu header.
+ * @slot home - Menu item displayed in the home position.
+ * @slot - Menu items.
+ * @slot bottom - Menu items displayed at the bottom.
+ * @slot ix-menu-settings - Settings menu content.
+ * @slot ix-menu-about - About menu content.
  */
 @Component({
   tag: 'ix-menu',

@@ -27,6 +27,11 @@ import {
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 
+/**
+ * Icon button that toggles between a pressed and unpressed state.
+ *
+ * @figma-main-component-id 107597:25227
+ */
 @Component({
   tag: 'ix-icon-toggle-button',
   shadow: true,

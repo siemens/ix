@@ -12,7 +12,9 @@ import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
 /**
- * @slot default - Tree item content and nested items.
+ * A single node within a tree.
+ *
+ * @slot - Tree item content.
  */
 @Component({
   tag: 'ix-tree-item',

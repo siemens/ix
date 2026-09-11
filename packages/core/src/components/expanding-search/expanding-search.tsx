@@ -20,6 +20,11 @@ import {
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 
+/**
+ * Search input that expands from an icon when activated.
+ *
+ * @figma-main-component-id 680:9354
+ */
 @Component({
   tag: 'ix-expanding-search',
   styleUrl: 'expanding-search.scss',

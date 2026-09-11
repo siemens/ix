@@ -13,7 +13,9 @@ import { a11yBoolean } from '../utils/a11y';
 import { getSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @slot default - Context menu items.
+ * Context menu that provides actions for a group.
+ *
+ * @slot - Group context menu items.
  */
 @Component({
   tag: 'ix-group-context-menu',

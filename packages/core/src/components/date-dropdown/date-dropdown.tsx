@@ -38,6 +38,11 @@ import { BaseButton } from '../button/base-button';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 
+/**
+ * Dropdown for selecting a date or a relative date range.
+ *
+ * @figma-main-component-id 45886:27067
+ */
 @Component({
   tag: 'ix-date-dropdown',
   styleUrl: 'date-dropdown.scss',

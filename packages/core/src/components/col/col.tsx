@@ -14,7 +14,9 @@ import type { ColumnSize } from './col.types';
 type GridBreakpoint = Breakpoint | '';
 
 /**
- * @slot default - Column content.
+ * Column within the responsive layout grid.
+ *
+ * @slot - Column content.
  */
 @Component({
   tag: 'ix-col',

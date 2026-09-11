@@ -36,7 +36,11 @@ import { a11yBoolean } from '../utils/a11y';
 let sequenceId = 0;
 
 /**
- * @slot default - Custom menu item label.
+ * Navigation entry within the side menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 308:1293
+ * @slot - Menu item label.
  */
 @Component({
   tag: 'ix-menu-item',

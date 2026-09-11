@@ -1,0 +1,25 @@
+{
+  "name": "html-examples",
+  "private": true,
+  "license": "MIT",
+  "version": "2.1.2",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
+    "@siemens/ix-echarts": "workspace:*",
+    "@siemens/ix-icons": "catalog:",
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "ag-grid-community": "^33.1.1"
+  }
+}

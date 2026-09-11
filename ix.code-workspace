@@ -5,12 +5,12 @@
       "path": "./packages/core"
     },
     {
-      "name": "@siemens/ix-react",
-      "path": "./packages/react"
-    },
-    {
       "name": "@siemens/ix-angular",
       "path": "./packages/angular"
+    },
+    {
+      "name": "@siemens/ix-react",
+      "path": "./packages/react"
     },
     {
       "name": "@siemens/ix-vue",
@@ -25,44 +25,28 @@
       "path": "./packages/echarts"
     },
     {
-      "name": "@siemens/ix-documentation",
+      "name": "@siemens/ix-cli",
+      "path": "./packages/cli"
+    },
+    {
+      "name": "@siemens/ix-docs",
       "path": "./packages/documentation"
     },
     {
-      "name": "html-test-app",
-      "path": "./packages/html-test-app"
+      "name": "Examples",
+      "path": "./examples"
     },
     {
-      "name": "react-test-app",
-      "path": "./packages/react-test-app"
+      "name": "Blocks",
+      "path": "./blocks"
     },
     {
-      "name": "nextjs-test-app",
-      "path": "./packages/nextjs-test-app"
+      "name": "Testing",
+      "path": "./testing"
     },
     {
-      "name": "angular-test-app",
-      "path": "./packages/angular-test-app"
-    },
-    {
-      "name": "angular-test-app (standalone)",
-      "path": "./packages/angular-standalone-test-app"
-    },
-    {
-      "name": "vue-test-app",
-      "path": "./packages/vue-test-app"
-    },
-    {
-      "name": "ionic-test-app",
-      "path": "./packages/ionic-test-app"
-    },
-    {
-      "name": "eslint-config",
-      "path": "./packages/eslint-config-ix"
-    },
-    {
-      "name": "storybook",
-      "path": "./packages/storybook-docs"
+      "name": "Tooling",
+      "path": "./tooling"
     },
     {
       "name": "root",

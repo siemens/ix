@@ -20,7 +20,11 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 
 /**
- * @slot default - Event list item content.
+ * A single entry within an event list.
+ *
+ * @figma-main-component-id 1433:41688
+ *
+ * @slot - Event list item content.
  */
 @Component({
   tag: 'ix-event-list-item',

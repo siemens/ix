@@ -11,6 +11,7 @@
       "@siemens/ix-vue"
     ]
   ],
+  "ignore": ["@siemens/ix-cli"],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

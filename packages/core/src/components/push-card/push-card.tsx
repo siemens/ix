@@ -11,8 +11,13 @@ import { Component, h, Host, Prop } from '@stencil/core';
 import type { PushCardVariant } from './push-card.types';
 
 /**
- * @slot title-action - Action displayed next to the card title.
- * @slot default - Expandable card content.
+ * Card that highlights a notification or push message with an icon and value.
+ *
+ * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @figma-main-component-id 104612:25695
+ *
+ * @slot title-action - Action displayed next to the title.
+ * @slot - Card content.
  */
 @Component({
   tag: 'ix-push-card',

@@ -22,7 +22,9 @@ import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @slot default - Avatar dropdown items.
+ * Menu entry that displays the current user's avatar and account actions.
+ *
+ * @slot - Avatar dropdown content.
  */
 @Component({
   tag: 'ix-menu-avatar',

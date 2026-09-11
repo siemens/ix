@@ -67,7 +67,12 @@ import { AlignedPlacement } from './placement';
 let sequenceId = 0;
 
 /**
- * @slot default - Dropdown items.
+ * Floating overlay that displays a list of options or actions anchored to a trigger.
+ *
+ * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
+ * @figma-main-component-id 1233:32649
+ *
+ * @slot - Dropdown content.
  */
 @Component({
   tag: 'ix-dropdown',

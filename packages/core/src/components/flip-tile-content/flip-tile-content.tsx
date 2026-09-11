@@ -9,7 +9,11 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
- * @slot default - Flip tile body content.
+ * Content for a single side of a flip tile.
+ *
+ * @figma-main-component-id 407:3446
+ *
+ * @slot - Flip tile content.
  */
 @Component({
   tag: 'ix-flip-tile-content',
