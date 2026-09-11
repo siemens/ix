@@ -11,7 +11,7 @@
     "@playwright/test": "catalog:",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "catalog:",
-    "@types/node": "^24.0.14",
+    "@types/node": "^26.5.0",
     "vite": "catalog:",
     "@esbuild/linux-arm64": "catalog:"
   }
