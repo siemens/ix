@@ -1,0 +1,49 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List</title>
+    <style>
+      ix-list {
+        width: 32rem;
+        max-height: 18rem;
+      }
+    </style>
+  </head>
+  <body>
+    <ix-list aria-label="Projects" draggable has-divider item-gap="4">
+      <ix-list-item
+        label="Factory overview"
+        description="Updated 5 minutes ago"
+        variant="ghost"
+      >
+        <ix-button slot="action" variant="tertiary">Open</ix-button>
+        <ix-button slot="action" variant="tertiary">Details</ix-button>
+      </ix-list-item>
+      <ix-list-item
+        label="Production line with a label that is too long for the available space"
+        variant="outline"
+      ></ix-list-item>
+      <ix-list-item
+        label="Selected production line"
+        variant="filled"
+        selected
+      ></ix-list-item>
+      <ix-list-item label="Checkbox item" checkbox selected></ix-list-item>
+      <ix-list-item label="Disabled item" disabled></ix-list-item>
+      <ix-list-item variant="outline">
+        <div>
+          <strong>Custom content</strong><br />A multiline consumer template
+        </div>
+      </ix-list-item>
+    </ix-list>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

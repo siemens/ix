@@ -127,6 +127,12 @@ import FormCheckbox from './preview-examples/form-checkbox.vue';
 import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
 import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
 import FormValidation from './preview-examples/form-validation.vue';
+import GenericListActionOnHover from './preview-examples/generic-list-action-on-hover.vue';
+import GenericListAdditionalOptions from './preview-examples/generic-list-additional-options.vue';
+import GenericListBasic from './preview-examples/generic-list-basic.vue';
+import GenericListCustomContent from './preview-examples/generic-list-custom-content.vue';
+import GenericListDraggable from './preview-examples/generic-list-draggable.vue';
+import GenericListVariants from './preview-examples/generic-list-variants.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import Grid from './preview-examples/grid.vue';
@@ -368,6 +374,12 @@ const routes: IxPreviewRoutes = {
   '/preview/form-checkbox-disabled': FormCheckboxDisabled,
   '/preview/form-checkbox-group': FormCheckboxGroup,
   '/preview/form-checkbox-validation': FormCheckboxValidation,
+  '/preview/generic-list-action-on-hover': GenericListActionOnHover,
+  '/preview/generic-list-additional-options': GenericListAdditionalOptions,
+  '/preview/generic-list-basic': GenericListBasic,
+  '/preview/generic-list-custom-content': GenericListCustomContent,
+  '/preview/generic-list-draggable': GenericListDraggable,
+  '/preview/generic-list-variants': GenericListVariants,
   '/preview/group': Group,
   '/preview/grid-padding': GridPadding,
   '/preview/grid-size': GridSize,
