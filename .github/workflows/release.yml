@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - release-5.2.2
+      - 'release-*.*.*'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -33,11 +33,24 @@ jobs:
       - name: Upgrade npm for OIDC support
         run: npm install -g npm@^11.8.0 --no-man
 
+      - name: Select npm publish command
+        id: publish-command
+        shell: bash
+        run: |
+          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            echo "command=pnpm ci:publish" >> "$GITHUB_OUTPUT"
+          elif [[ "$GITHUB_REF_NAME" =~ ^release-([0-9]+)\.[0-9]+\.[0-9]+$ ]]; then
+            echo "command=pnpm ci:publish --tag v${BASH_REMATCH[1]}-lts" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::No npm dist-tag configured for branch $GITHUB_REF_NAME"
+            exit 1
+          fi
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          publish: pnpm ci:publish
+          publish: ${{ steps.publish-command.outputs.command }}
           version: pnpm ci:version
