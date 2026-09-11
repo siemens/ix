@@ -99,6 +99,88 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(item).toBeVisible();
 });
 
+regressionTest(
+  'supports reserved item IDs without prototype pollution',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 20rem; width: 100%;">
+        <ix-tree root="root"></ix-tree>
+      </div>
+    `);
+
+    const tree = page.locator('ix-tree');
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      element.model = JSON.parse(`{
+        "root": {
+          "id": "root",
+          "data": { "name": "" },
+          "hasChildren": true,
+          "children": ["__proto__", "constructor", "toString"]
+        },
+        "__proto__": {
+          "id": "__proto__",
+          "data": { "name": "__proto__" },
+          "hasChildren": false,
+          "children": []
+        },
+        "constructor": {
+          "id": "constructor",
+          "data": { "name": "constructor" },
+          "hasChildren": false,
+          "children": []
+        },
+        "toString": {
+          "id": "toString",
+          "data": { "name": "toString" },
+          "hasChildren": false,
+          "children": []
+        }
+      }`);
+    });
+
+    const items = tree.locator('ix-tree-item');
+    await expect(items).toHaveCount(3);
+    await items.first().click();
+
+    const state = await tree.evaluate((element: HTMLIxTreeElement) => ({
+      contextKeys: Object.keys(element.context).sort(),
+      selected: element.context['__proto__'].isSelected,
+      nullPrototype: Object.getPrototypeOf(element.context) === null,
+      objectPrototypePolluted: Object.prototype.hasOwnProperty.call(
+        Object.prototype,
+        'isSelected'
+      ),
+    }));
+
+    expect(state.contextKeys).toEqual(['__proto__', 'constructor', 'toString']);
+    expect(state.selected).toBe(true);
+    expect(state.nullPrototype).toBe(true);
+    expect(state.objectPrototypePolluted).toBe(false);
+  }
+);
+
+regressionTest(
+  'does not mutate a null context while rendering',
+  async ({ mount, page }) => {
+    await mount(`
+    <div style="height: 20rem; width: 100%;">
+      <ix-tree root="root"></ix-tree>
+    </div>
+  `);
+
+    const tree = page.locator('ix-tree');
+    await tree.evaluate((element: HTMLIxTreeElement, model) => {
+      element.model = model;
+      Reflect.set(element, 'context', null);
+    }, defaultModel);
+
+    await expect(tree.locator('ix-tree-item').first()).toBeVisible();
+    expect(
+      await tree.evaluate((element: HTMLIxTreeElement) => element.context)
+    ).toBeNull();
+  }
+);
+
 regressionTest('update tree', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
 

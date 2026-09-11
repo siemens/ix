@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { escapeMarkdown } from './escape';
+import { escapeMarkdown, serializeMarkdownForJsx } from './escape';
 
 export function convertDocsTagsToTSXElement(
   tagName: string,
@@ -18,18 +18,18 @@ export function convertDocsTagsToTSXElement(
 ) {
   return docsTags.map((tag) => {
     const { name, text } = tag;
-    const escapedText = escapeMarkdown(text ?? '').replace(/`/g, '\\`');
+    const serializedText = serializeMarkdownForJsx(escapeMarkdown(text ?? ''));
     let template = '';
     if (name === 'since') {
-      template = `<SinceTag message={\`${escapedText}\`} />`;
+      template = `<SinceTag message={${serializedText}} />`;
     }
 
     if (name === 'deprecated') {
-      template = `<DeprecatedTag message={\`${escapedText}\`} />`;
+      template = `<DeprecatedTag message={${serializedText}} />`;
     }
 
     if (name === 'form-ready') {
-      template = `<FormReady message={\`${escapedText}\`} />`;
+      template = `<FormReady message={${serializedText}} />`;
     }
 
     if (template === '') {

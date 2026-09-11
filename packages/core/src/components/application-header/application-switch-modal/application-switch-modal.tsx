@@ -14,6 +14,7 @@ import {
 } from '../../utils/application-layout/context';
 import { dismissModal } from '../../utils/modal';
 import { iconApps, iconOpenExternal } from '@siemens/ix-icons/icons';
+import { getSafeNavigationUrl } from '../../utils/condition-checks';
 
 function ApplicationItem(props: {
   host: HTMLIxApplicationSwitchModalElement;
@@ -50,8 +51,20 @@ function ApplicationItem(props: {
         Selected: props.selected,
       }}
       onClick={() => {
+        const url = getSafeNavigationUrl(
+          props.url,
+          'ix-application-switch-modal'
+        );
+        if (url === undefined) {
+          return;
+        }
+
         dismissModal(props.host);
-        window.open(props.url, props.target);
+        if (isExternal(props.target)) {
+          window.open(url, props.target, 'noopener');
+        } else {
+          window.open(url, props.target);
+        }
       }}
     >
       <img class="AppIcon" src={props.iconSrc} alt=""></img>
