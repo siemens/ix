@@ -29,7 +29,7 @@ import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 import { DateInputValidityState } from "./components/date-input/date-input.types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
-import { DateTime } from "luxon";
+import { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
@@ -86,7 +86,7 @@ export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 export { DateInputValidityState } from "./components/date-input/date-input.types";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
-export { DateTime } from "luxon";
+export { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
@@ -1443,7 +1443,7 @@ export namespace Components {
           * @default DateTime.now().toISO()
          */
         "today": string;
-        "updateSelectedYearMonth": (date: DateTime) => Promise<void>;
+        "updateSelectedYearMonth": (date: DatePickerYearMonth) => Promise<void>;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
           * @default 0
