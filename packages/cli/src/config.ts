@@ -244,11 +244,24 @@ export async function loadConfig(cwd: string): Promise<IxBlocksConfig> {
 export async function configExists(cwd: string): Promise<boolean> {
   const configPath = path.join(cwd, CONFIG_FILE_NAME);
   try {
-    await fs.access(configPath);
+    await fs.lstat(configPath);
     return true;
-  } catch {
-    return false;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return false;
+    }
+    throw error;
   }
+}
+
+export function createDefaultConfig(
+  targetFolder: string = 'src/blocks'
+): IxBlocksConfig {
+  return {
+    $schema: './node_modules/@siemens/ix-cli/dist/ix-blocks.schema.json',
+    targetFolder,
+    blocks: [],
+  };
 }
 
 export async function saveConfig(
@@ -278,14 +291,25 @@ export async function initConfig(
   cwd: string,
   targetFolder: string = 'src/blocks'
 ): Promise<IxBlocksConfig> {
-  const config: IxBlocksConfig = {
-    $schema: './node_modules/@siemens/ix-cli/dist/ix-blocks.schema.json',
-    targetFolder,
-    blocks: [],
-  };
+  const config = createDefaultConfig(targetFolder);
 
   await saveConfig(cwd, config);
   return config;
+}
+
+export async function loadConfigOrInit(
+  cwd: string,
+  dryRun = false
+): Promise<{ config: IxBlocksConfig; initialized: boolean }> {
+  if (await configExists(cwd)) {
+    return { config: await loadConfig(cwd), initialized: false };
+  }
+
+  if (dryRun) {
+    return { config: createDefaultConfig(), initialized: false };
+  }
+
+  return { config: await initConfig(cwd), initialized: true };
 }
 
 export async function addBlockToConfig(

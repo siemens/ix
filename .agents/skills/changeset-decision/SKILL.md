@@ -3,6 +3,8 @@ name: changeset-decision
 description: 'Decide whether IX changes need a changeset, which packages to include, and draft the changeset summary. Use for pull requests, code reviews, component changes, styling or theming updates, accessibility changes, public API changes, behavior changes, and internal-only change classification in the Siemens IX monorepo.'
 argument-hint: 'Describe the changed files or change summary to evaluate changeset requirements and draft the changeset'
 user-invocable: true
+metadata:
+  internal: true
 ---
 
 # Changeset Decision

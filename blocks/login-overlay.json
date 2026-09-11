@@ -1,5 +1,5 @@
 {
-  "$schema": "./../tooling/registry/schemas/block.schema.json",
+  "$schema": "./../tooling/registry/schemas/authored-block.schema.json",
   "name": "login-overlay",
   "description": "Use this block to build a branded login overlay with username and password inputs, recovery and registration links, and alternative sign-in actions.",
   "keywords": [
@@ -15,28 +15,23 @@
     "react": {
       "files": [
         {
-          "target": "react/login-overlay.tsx",
-          "source": "react-blocks/src/routes/login-overlay/login-overlay.tsx"
+          "sourcePath": "react-blocks/src/routes/login-overlay/login-overlay.tsx"
         },
         {
-          "target": "react/login-overlay.module.css",
-          "source": "react-blocks/src/routes/login-overlay/login-overlay.module.css"
+          "sourcePath": "react-blocks/src/routes/login-overlay/login-overlay.module.css"
         }
       ]
     },
     "angular": {
       "files": [
         {
-          "target": "angular/login-overlay.ts",
-          "source": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.ts"
+          "sourcePath": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.ts"
         },
         {
-          "target": "angular/login-overlay.html",
-          "source": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.html"
+          "sourcePath": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.html"
         },
         {
-          "target": "angular/login-overlay.css",
-          "source": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.css"
+          "sourcePath": "angular-standalone-blocks/src/routes/login-overlay/login-overlay.css"
         }
       ]
     }

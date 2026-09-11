@@ -3,10 +3,9 @@
  */
 import { Command } from 'commander';
 import {
-  configExists,
   CONFIG_FILE_NAME,
-  loadConfig,
   defaultRegistry,
+  loadConfigOrInit,
   withProjectLock,
 } from '../config';
 import { detectFramework } from '../detect';
@@ -39,13 +38,11 @@ async function runAddUnlocked(
 ): Promise<void> {
   const blockName = assertValidBlockName(blockNameInput);
 
-  if (!(await configExists(cwd))) {
-    throw new Error(
-      `${CONFIG_FILE_NAME} not found. Run 'ix init' first to create it.`
-    );
+  const { config, initialized } = await loadConfigOrInit(cwd, opts.dryRun);
+  if (initialized) {
+    console.log(`✅ Initialized ${CONFIG_FILE_NAME}`);
   }
 
-  const config = await loadConfig(cwd);
   const index = await fetchValidatedRegistryIndex(opts.registry);
   const selectedVersion = resolveRegistryVersion(index, opts.tag);
   const selected = index.versions[selectedVersion];
