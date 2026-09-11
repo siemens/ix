@@ -22,7 +22,7 @@
     "@angular/forms": "^20.1.4",
     "@angular/platform-browser": "^20.1.4",
     "@angular/platform-browser-dynamic": "^20.1.4",
-    "@angular/router": "^20.1.4",
+    "@angular/router": "^22.1.5",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
