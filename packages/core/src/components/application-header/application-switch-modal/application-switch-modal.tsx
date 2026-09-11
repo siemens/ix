@@ -60,7 +60,11 @@ function ApplicationItem(props: {
         }
 
         dismissModal(props.host);
-        window.open(url, props.target, 'noopener');
+        if (isExternal(props.target)) {
+          window.open(url, props.target, 'noopener');
+        } else {
+          window.open(url, props.target);
+        }
       }}
     >
       <img class="AppIcon" src={props.iconSrc} alt=""></img>

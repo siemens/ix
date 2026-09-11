@@ -4773,7 +4773,7 @@ export namespace Components {
     interface IxTree {
         /**
           * Selection and collapsed state management
-          * @default {}
+          * @default createTreeContext()
          */
         "context": TreeContext;
         /**
@@ -11963,7 +11963,7 @@ declare namespace LocalJSX {
     interface IxTree {
         /**
           * Selection and collapsed state management
-          * @default {}
+          * @default createTreeContext()
          */
         "context"?: TreeContext;
         /**

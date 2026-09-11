@@ -26,13 +26,19 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
   await mount(`<ix-button href="javascript:alert(1)">Unsafe link</ix-button>`);
 
-  const link = page.getByRole('button', { name: 'Unsafe link' });
-  await expect(link).not.toHaveAttribute('href');
+  const button = page.locator('ix-button');
+  const innerButton = button.locator('button');
+  await expect(innerButton).not.toHaveAttribute('href');
+  await button.focus();
+  await expect(innerButton).toBeFocused();
 
-  await page.locator('ix-button').evaluate((element) => {
+  await button.evaluate((element) => {
     (element as HTMLIxButtonElement).href = 'https://example.com';
   });
-  await expect(link).toHaveAttribute('href', 'https://example.com');
+  await expect(button.locator('a')).toHaveAttribute(
+    'href',
+    'https://example.com'
+  );
 });
 
 regressionTest('show icon', async ({ mount, page }) => {

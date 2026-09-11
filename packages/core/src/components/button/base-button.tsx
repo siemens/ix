@@ -149,8 +149,8 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     props.afterContent ? props.afterContent : null,
   ];
 
-  // If href is provided, render as an anchor tag
-  if (props.href) {
+  // If a safe href is provided, render as an anchor tag
+  if (href) {
     return (
       <a
         {...commonAttributes}

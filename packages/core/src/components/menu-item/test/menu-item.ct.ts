@@ -33,13 +33,12 @@ regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
   `);
 
   const menuItem = page.locator('ix-menu-item');
-  const link = menuItem.locator('a');
-  await expect(link).not.toHaveAttribute('href');
+  await expect(menuItem.locator('button')).not.toHaveAttribute('href');
 
   await menuItem.evaluate((element) => {
     (element as HTMLIxMenuItemElement).href = 'tel:+4912345';
   });
-  await expect(link).toHaveAttribute('href', 'tel:+4912345');
+  await expect(menuItem.locator('a')).toHaveAttribute('href', 'tel:+4912345');
 });
 
 regressionTest(

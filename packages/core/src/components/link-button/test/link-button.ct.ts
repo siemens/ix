@@ -33,11 +33,15 @@ regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
 
   const link = page.locator('ix-link-button a');
   await expect(link).not.toHaveAttribute('href');
+  await expect(link).not.toHaveAttribute('title');
+  await expect(link).toHaveAttribute('tabindex', '-1');
 
   await page.locator('ix-link-button').evaluate((element) => {
     (element as HTMLIxLinkButtonElement).url = 'mailto:user@example.com';
   });
   await expect(link).toHaveAttribute('href', 'mailto:user@example.com');
+  await expect(link).toHaveAttribute('title', 'mailto:user@example.com');
+  await expect(link).toHaveAttribute('tabindex', '0');
 });
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {

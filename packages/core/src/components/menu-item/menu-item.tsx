@@ -329,7 +329,7 @@ export class MenuItem
         }}
         {...extendedAttributes}
       >
-        {this.href ? (
+        {href ? (
           <a
             {...commonAttributes}
             role={effectiveRole}

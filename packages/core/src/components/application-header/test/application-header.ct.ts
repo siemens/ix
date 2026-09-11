@@ -224,6 +224,14 @@ test.describe('cross app navigation', () => {
                 target: '_blank',
                 url: 'java\tscript:alert(1)',
               },
+              {
+                id: 'same-context',
+                description: 'Same-context application',
+                iconSrc: '',
+                name: 'Same-context application',
+                target: '_self',
+                url: '/same-context',
+              },
             ],
             currentAppId: 'safe',
           },
@@ -245,10 +253,22 @@ test.describe('cross app navigation', () => {
     await expect(page.getByRole('dialog')).not.toBeVisible();
 
     await appSwitchButton.click();
+    await page
+      .getByRole('button', { name: /Same-context application/ })
+      .click();
+
+    expect(await page.evaluate(() => window.__appSwitchOpenCalls)).toEqual([
+      ['/safe', 'reports', 'noopener'],
+      ['/same-context', '_self', undefined],
+    ]);
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+
+    await appSwitchButton.click();
     await page.getByRole('button', { name: /Unsafe application/ }).click();
 
     expect(await page.evaluate(() => window.__appSwitchOpenCalls)).toEqual([
       ['/safe', 'reports', 'noopener'],
+      ['/same-context', '_self', undefined],
     ]);
     await expect(page.getByRole('dialog')).toBeVisible();
   });

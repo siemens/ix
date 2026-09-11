@@ -45,8 +45,8 @@ export class LinkButton {
     return (
       <Host>
         <a
-          title={this.url}
-          tabindex="0"
+          title={url}
+          tabindex={url ? '0' : '-1'}
           class={{
             'link-button': true,
             disabled: this.disabled,
