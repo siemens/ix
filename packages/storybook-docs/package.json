@@ -11,7 +11,7 @@
     "test.setup": "playwright install chromium --with-deps"
   },
   "dependencies": {
-    "@maskito/core": "^3.2.0",
+    "@maskito/core": "^5.4.0",
     "@maskito/kit": "^3.2.0",
     "lit": "^3.2.1"
   },
