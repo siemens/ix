@@ -33,7 +33,7 @@
     "@angular/forms": "^20.1.4",
     "@angular/platform-browser": "^20.1.4",
     "@angular/platform-browser-dynamic": "^20.1.4",
-    "@angular/router": "^20.1.4",
+    "@angular/router": "^22.1.5",
     "@jest/globals": "^30.2.0",
     "@siemens/ix": "workspace:*",
     "@types/jest": "^29.5.12",
