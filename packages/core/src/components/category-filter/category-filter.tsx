@@ -790,7 +790,10 @@ export class CategoryFilter {
 
   componentDidRender() {
     if (this.isScrollStateDirty) {
-      this.textInput?.current?.scrollIntoView();
+      this.textInput?.current?.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest',
+      });
       this.isScrollStateDirty = false;
     }
   }
