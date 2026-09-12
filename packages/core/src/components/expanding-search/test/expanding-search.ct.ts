@@ -9,6 +9,15 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`<ix-expanding-search></ix-expanding-search>`);
+  await page.locator('button').click();
+  await expect(page.locator('ix-expanding-search')).toHaveClass(/expanded/);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const button = page.locator('ix-expanding-search');

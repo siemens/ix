@@ -134,7 +134,6 @@ export class ExpandingSearch
       <Host
         class={{
           expanded: this.expanded,
-          'right-position': this.expanded,
           fullWidth: this.fullWidth,
         }}
       >
