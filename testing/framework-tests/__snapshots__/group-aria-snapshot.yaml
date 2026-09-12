@@ -1,2 +1,3 @@
-- img
-- text: Header text Subheader text
+- main:
+  - button "Header text"
+  - button "Header text"
