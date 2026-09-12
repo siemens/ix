@@ -212,3 +212,10 @@
     display: none;
   }
 }
+
+:host(.active:not(.disabled)) {
+  .input-container:not(.readonly):not(.disabled) {
+    border-color: var(--ix-category-filter--border-color--hover) !important;
+    background-color: var(--ix-category-filter--background--hover);
+  }
+}

@@ -13,8 +13,14 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('select', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('select/basic');
-    await page.locator('ix-select').locator('[data-select-dropdown]').click();
-    await page.waitForSelector('.dropdown-menu.show');
+    const select = page.locator('ix-select');
+    const input = select.locator('input');
+    // Combobox keeps DOM focus on the input; ArrowDown moves virtual focus into the list.
+    await input.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(select.locator('ix-dropdown')).toHaveClass(/show/);
+    await expect(input).toHaveAttribute('aria-activedescendant', /.+/);
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -49,6 +55,23 @@ regressionTest.describe('select', () => {
 
   regressionTest('mode-multiple-overflow', async ({ page }) => {
     await page.goto('select/mode-multiple-overflow');
+    const select = page.locator('ix-select');
+    const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+    await expect(overflowChip).toBeVisible();
+    // Open via keyboard so focus moves into the overflow menu.
+    await overflowChip.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(select.locator('ix-dropdown.overflow-dropdown')).toHaveClass(
+      /show/
+    );
+    const removeButton = select
+      .locator(
+        'ix-dropdown.overflow-dropdown ix-filter-chip.chip-hidden-item ix-icon-button button'
+      )
+      .first();
+    await expect(removeButton).toBeFocused();
+    await expect(overflowChip).not.toBeFocused();
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
