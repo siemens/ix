@@ -266,7 +266,6 @@ export class DropdownButton
                 {this.icon ? (
                   <ix-icon
                     name={this.icon}
-                    size="24"
                     class={'dropdown-icon'}
                   ></ix-icon>
                 ) : null}

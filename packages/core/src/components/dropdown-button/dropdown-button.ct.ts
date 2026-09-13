@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -23,6 +24,48 @@ regressionTest('renders', async ({ mount, page }) => {
   await item.click();
   await expect(item).not.toBeVisible();
 });
+
+regressionTest(
+  'labeled leading icon is 20px and chevron stays 24px',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-dropdown-button label="Open" icon="checkboxes">
+        <ix-dropdown-item label="Test"></ix-dropdown-item>
+      </ix-dropdown-button>
+      `,
+      { icons: { iconCheckboxes } }
+    );
+
+    const button = page.locator('ix-dropdown-button');
+    await expect(button).toHaveClass(/hydrated/);
+    await expect(button.locator('ix-icon.dropdown-icon')).toHaveClass(
+      /size-20/
+    );
+    await expect(
+      button.locator('.content > ix-icon[aria-hidden="true"]')
+    ).toHaveClass(/size-24/);
+  }
+);
+
+regressionTest(
+  'icon-only uses a 32px host and 20px glyph',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-dropdown-button icon="checkboxes">
+        <ix-dropdown-item label="Test"></ix-dropdown-item>
+      </ix-dropdown-button>
+      `,
+      { icons: { iconCheckboxes } }
+    );
+
+    const iconButton = page.locator('ix-dropdown-button ix-icon-button');
+    await expect(iconButton).toHaveClass(/hydrated/);
+    await expect(iconButton).toHaveClass(/btn-icon-32/);
+    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-20/);
+  }
+);
 
 regressionTest('close behavior - outside', async ({ mount, page }) => {
   await mount(`
