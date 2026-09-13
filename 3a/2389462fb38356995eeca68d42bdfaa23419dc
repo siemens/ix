@@ -1,0 +1,34 @@
+.changeset/eix-9-button-icon-size-20.md
+  h_c5a773bf2fda8b 1-5
+packages/core/component-api.json
+  h_c5a773bf2fda8b 5089,5092,5210,5213
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 17,75,517-518,520,2378-2380,2382,2431-2433,2435,7426-7427,7429,9420-9422,9424,9477-9479,9481,12291,12698,12711
+packages/core/src/components/button/base-button.tsx
+  h_c5a773bf2fda8b 13,64
+packages/core/src/components/button/base-button.types.ts
+  h_c5a773bf2fda8b 11-21
+packages/core/src/components/button/button.tsx
+  h_c5a773bf2fda8b 21-26,94-99
+packages/core/src/components/button/test/button.ct.ts
+  h_c5a773bf2fda8b 32
+packages/core/src/components/icon-button/icon-button.tsx
+  h_c5a773bf2fda8b 20-23,54-56,58,60,110-113
+packages/core/src/components/icon-button/test/icon-button.ct.ts
+  h_c5a773bf2fda8b 25-52
+packages/core/src/components/icon-button/test/icon-button.spec.tsx
+  h_c5a773bf2fda8b 28-53
+packages/core/src/components/icon-toggle-button/icon-toggle-button.tsx
+  h_c5a773bf2fda8b 22-25,77-81,83,110-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "3a2389462fb38356995eeca68d42bdfaa23419dc",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
