@@ -14,6 +14,7 @@ import { BlindVariant } from "./components/blind/blind.types";
 import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
+import { ButtonIconSize } from "./components/button/base-button.types";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
@@ -71,6 +72,7 @@ export { BlindVariant } from "./components/blind/blind.types";
 export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
+export { ButtonIconSize } from "./components/button/base-button.types";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -512,9 +514,10 @@ export namespace Components {
          */
         "iconRight"?: string;
         /**
-          * @default '24'
+          * Size of leading and trailing icons
+          * @default '20'
          */
-        "iconSize": '12' | '16' | '24';
+        "iconSize": ButtonIconSize;
         /**
           * Loading button
           * @default false
@@ -2372,10 +2375,11 @@ export namespace Components {
          */
         "oval": boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         /**
           * Type of the button
           * @default 'button'
@@ -2424,10 +2428,11 @@ export namespace Components {
          */
         "pressed": boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         /**
           * Button variant.
           * @default 'subtle-primary'
@@ -7418,9 +7423,10 @@ declare namespace LocalJSX {
          */
         "iconRight"?: string;
         /**
-          * @default '24'
+          * Size of leading and trailing icons
+          * @default '20'
          */
-        "iconSize"?: '12' | '16' | '24';
+        "iconSize"?: ButtonIconSize;
         /**
           * Loading button
           * @default false
@@ -9411,10 +9417,11 @@ declare namespace LocalJSX {
          */
         "oval"?: boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size"?: '24' | '16' | '12';
+        "size"?: ButtonIconSize;
         /**
           * Type of the button
           * @default 'button'
@@ -9467,10 +9474,11 @@ declare namespace LocalJSX {
          */
         "pressed"?: boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size"?: '24' | '16' | '12';
+        "size"?: ButtonIconSize;
         /**
           * Button variant.
           * @default 'subtle-primary'
@@ -12280,7 +12288,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconRight": string;
         "alignment": 'center' | 'start';
-        "iconSize": '12' | '16' | '24';
+        "iconSize": ButtonIconSize;
         "href": string;
         "target": AnchorTarget;
         "rel": string;
@@ -12687,7 +12695,7 @@ declare namespace LocalJSX {
         "variant": IconButtonVariant;
         "oval": boolean;
         "icon": string;
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         "iconColor": string;
         "disabled": boolean;
         "type": 'button' | 'submit';
@@ -12700,7 +12708,7 @@ declare namespace LocalJSX {
         "icon": string;
         "oval": boolean;
         "pressed": boolean;
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         "disabled": boolean;
         "loading": boolean;
     }

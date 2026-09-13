@@ -10,6 +10,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import { ButtonVariant } from './button';
+import { DEFAULT_BUTTON_ICON_SIZE } from './base-button.types';
 import { AnchorInterface } from './button.interface';
 
 export type ButtonAlignment = 'center' | 'start';
@@ -60,6 +61,7 @@ const getSpinnerSize = (btnProps: BaseButtonProps) => {
     case '12':
       return 'xx-small';
     case '16':
+    case DEFAULT_BUTTON_ICON_SIZE:
       return 'x-small';
     default:
       return 'small';
