@@ -1,0 +1,18 @@
+.changeset/eix-9-button-icon-size-20.md
+  h_c5a773bf2fda8b 5
+packages/core/src/components/checkbox/checkbox.scss
+  h_c5a773bf2fda8b 35-40
+packages/core/src/components/radio/radio.scss
+  h_c5a773bf2fda8b 27-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "9485a7fdb06b07a01044db9090a40599cbed2925",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
