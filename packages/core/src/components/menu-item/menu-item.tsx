@@ -297,7 +297,7 @@ export class MenuItem
         <ix-icon
           class={'tab-icon'}
           name={this.icon}
-          size="24"
+          {...(this.isCategory ? {} : { size: '24' })}
           aria-hidden="true"
         ></ix-icon>
       ),
