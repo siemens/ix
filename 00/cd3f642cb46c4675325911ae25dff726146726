@@ -1,0 +1,28 @@
+.changeset/eix-9-button-icon-size-20.md
+  h_c5a773bf2fda8b 5
+packages/core/src/components/application-header/application-header.tsx
+  h_c5a773bf2fda8b 384,436
+packages/core/src/components/content-header/content-header.tsx
+  h_c5a773bf2fda8b 68
+packages/core/src/components/menu-category/menu-category.tsx
+  h_c5a773bf2fda8b 508
+packages/core/src/components/menu-item/menu-item.tsx
+  h_c5a773bf2fda8b 300
+packages/core/src/components/menu/menu-expand-icon.tsx
+  h_c5a773bf2fda8b 72
+packages/core/src/components/menu/menu.tsx
+  h_c5a773bf2fda8b 969
+packages/core/src/components/tab-item/tab-item.tsx
+  h_c5a773bf2fda8b 180
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "00cd3f642cb46c4675325911ae25dff726146726",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
