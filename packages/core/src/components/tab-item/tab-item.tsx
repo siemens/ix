@@ -177,7 +177,7 @@ export class TabItem
               circle: true,
             }}
           >
-            {this.icon && <ix-icon name={this.icon} size="24"></ix-icon>}
+            {this.icon && <ix-icon name={this.icon} size="32"></ix-icon>}
             <slot></slot>
           </div>
         )}
