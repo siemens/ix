@@ -43,7 +43,7 @@ export default {
 <template>
   <form className="form-validation-example" @submit.prevent @submit="submitForm">
     <IxSelect
-      allowClear
+      allow-clear
       label="Select Car"
       helper-text="Select your car brand"
       :invalid-text="v$.car.$errors[0]?.$message"

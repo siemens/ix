@@ -18,7 +18,7 @@ export default {
 
 <template>
   <IxTextarea
-    :maxLength="100"
+    :max-length="100"
     name="comment"
     label="Comment"
     :textarea-rows="15"

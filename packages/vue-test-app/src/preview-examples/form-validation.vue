@@ -161,7 +161,7 @@ export default {
       <IxNumberInput
         label="Preferred room size"
         className="ix-info"
-        infoText="You can adjust the room size"
+        info-text="You can adjust the room size"
       >
         <IxIcon slot="start" :name="iconBezierCurve" size="16"></IxIcon>
         <IxTypography slot="end" color="weak" className="padding-right">
@@ -171,7 +171,7 @@ export default {
 
       <IxSelect
         v-model="travelOption"
-        allowClear
+        allow-clear
         label="Select your travel option"
         data-colspan="2"
       >
@@ -204,7 +204,7 @@ export default {
         :class="{ 'ix-warning': warningLimitB }"
         warning-text="A threshold greater than 5 is not recommended"
         v-model="limitB"
-        showStepperButtons
+        show-stepper-buttons
       ></IxNumberInput>
 
       <IxDateInput
@@ -238,7 +238,7 @@ export default {
       ></IxInput>
 
       <!-- Implement custom form component -->
-      <IxCustomField label="Upload" invalidText="You need to upload a file">
+      <IxCustomField label="Upload" invalid-text="You need to upload a file">
         <IxInput
           type="text"
           readonly
@@ -260,8 +260,8 @@ export default {
       <IxInput
         type="password"
         label="PIN"
-        helperText="Only numbers between 1 and 4 is allowed"
-        allowedCharactersPattern="[1-4]"
+        helper-text="Only numbers between 1 and 4 is allowed"
+        allowed-characters-pattern="[1-4]"
         :max-length="4"
         v-model="pin"
         :class="{ 'ix-invalid': v$.pin.$invalid }"
@@ -271,8 +271,8 @@ export default {
         required
         type="password"
         label="PIN"
-        helperText="Confirm password"
-        allowedCharactersPattern="[1-4]"
+        helper-text="Confirm password"
+        allowed-characters-pattern="[1-4]"
         :max-length="4"
         v-model="pinConfirm"
         :class="{ 'ix-invalid': v$.pinConfirm.sameAsPin.$invalid }"
