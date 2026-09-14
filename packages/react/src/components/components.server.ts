@@ -66,6 +66,7 @@ import { IxGroup as IxGroupElement } from "@siemens/ix/components/ix-group.js";
 import { IxHelperText as IxHelperTextElement } from "@siemens/ix/components/ix-helper-text.js";
 import { IxIconButton as IxIconButtonElement } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement } from "@siemens/ix/components/ix-icon-toggle-button.js";
+import { IxInfoPage as IxInfoPageElement } from "@siemens/ix/components/ix-info-page.js";
 import { IxInput as IxInputElement } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement } from "@siemens/ix/components/ix-key-value.js";
@@ -1137,6 +1138,22 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconToggleButton as StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents, Components.IxIconToggleButton>,
+    serializeShadowRoot
+});
+
+export type IxInfoPageEvents = NonNullable<unknown>;
+
+export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage> = /*@__PURE__*/ createComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>({
+    tagName: 'ix-info-page',
+    properties: {
+        icon: 'icon',
+        iconColor: 'icon-color',
+        titleText: 'title-text',
+        copyText: 'copy-text',
+        instructions: 'instructions'
+    },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxInfoPage as StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>,
     serializeShadowRoot
 });
 
