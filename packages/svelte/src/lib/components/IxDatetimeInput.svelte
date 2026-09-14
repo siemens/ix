@@ -1,0 +1,73 @@
+<!--
+  SPDX-FileCopyrightText: 2026 Siemens AG
+
+  SPDX-License-Identifier: MIT
+
+  This source code is licensed under the MIT license found in the
+  LICENSE file in the root directory of this source tree.
+-->
+<!-- auto-generated svelte proxy -->
+<script module lang="ts">
+  import { defineCustomElement as defineIxDatetimeInput } from '@siemens/ix/components/ix-datetime-input.js';
+
+  defineIxDatetimeInput();
+
+  const PROPS = [
+  'name',
+  'placeholder',
+  'value',
+  'format',
+  'locale',
+  'required',
+  'disabled',
+  'readonly',
+  'minDate',
+  'maxDate',
+  'minTime',
+  'maxTime',
+  'label',
+  'helperText',
+  'invalidText',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorDateTimeUnparsable',
+  'i18nDone',
+  'i18nTime',
+  'ariaLabelPreviousMonthButton',
+  'ariaLabelNextMonthButton',
+  'ariaLabelCalendarButton',
+  'showWeekNumbers',
+  'weekStartIndex',
+  'suppressSubmitOnEnter',
+  'textAlignment',
+  'enableTopLayer',
+] as const;
+
+  const EVENTS = [
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur',
+  'ixChange',
+] as const;
+</script>
+
+<script lang="ts">
+  import type { JSX } from '@siemens/ix';
+  import {
+    useStencilElement,
+    type StencilSvelteProps,
+  } from '../runtime/index.svelte.js';
+
+  let {
+    children,
+    element = $bindable(),
+    ...rest
+  }: StencilSvelteProps<JSX.IxDatetimeInput, HTMLIxDatetimeInputElement> = $props();
+
+  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+</script>
+
+<ix-datetime-input bind:this={element}>{@render children?.()}</ix-datetime-input>
