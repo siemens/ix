@@ -11,6 +11,7 @@ export const IxMenuCategory: StencilVueComponent<JSX.IxMenuCategory> = /*@__PURE
   'icon',
   'notifications',
   'tooltipText',
+  'disableTooltip',
   'closeOtherCategories'
 ], [
   'closeOtherCategories'

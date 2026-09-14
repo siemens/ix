@@ -6412,6 +6412,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6479,6 +6490,17 @@
         {
           "name": "bottom",
           "attribute": "bottom",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
