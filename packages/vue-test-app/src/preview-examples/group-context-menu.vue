@@ -17,7 +17,7 @@ import {
 </script>
 
 <template>
-  <IxGroup header="Header text" subHeader="Subheader text">
+  <IxGroup header="Header text" sub-header="Subheader text">
     <IxDropdown slot="dropdown">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>

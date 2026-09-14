@@ -22,10 +22,10 @@ const setActiveTabKey = (event: CustomEvent<string | undefined>) => {
 
 <template>
   <div class="tabs">
-    <IxTabs :activeTabKey="activeTabKey" @tabChange="setActiveTabKey">
-      <IxTabItem tabKey="tab-1">Tab 1</IxTabItem>
-      <IxTabItem tabKey="tab-2">Tab 2</IxTabItem>
-      <IxTabItem tabKey="tab-3">Tab 3</IxTabItem>
+    <IxTabs :active-tab-key="activeTabKey" @tabChange="setActiveTabKey">
+      <IxTabItem tab-key="tab-1">Tab 1</IxTabItem>
+      <IxTabItem tab-key="tab-2">Tab 2</IxTabItem>
+      <IxTabItem tab-key="tab-3">Tab 3</IxTabItem>
     </IxTabs>
     <section
       role="tabpanel"
