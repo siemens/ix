@@ -777,16 +777,17 @@ regressionTest(
 
 regressionTest('applies item gap and dividers', async ({ mount, page }) => {
   await mount(`
-    <ix-list item-gap="8" has-divider>
+    <ix-list item-gap="8" variant="ghost" divider>
       <ix-list-item label="Project Alpha"></ix-list-item>
-      <ix-list-item label="Project Beta" has-divider="false"></ix-list-item>
+      <ix-list-item label="Project Beta" divider="false"></ix-list-item>
+      <ix-list-item label="Project Gamma" variant="filled"></ix-list-item>
     </ix-list>
   `);
 
   const list = page.locator('ix-list');
   const items = list.locator('ix-list-item');
   await expect(list.locator('.list')).toHaveCSS('gap', '8px');
-  await expect(items.nth(0)).toHaveAttribute('has-divider', '');
+  await expect(items.nth(0)).toHaveAttribute('divider', '');
   await expect
     .poll(() =>
       items
@@ -795,8 +796,13 @@ regressionTest('applies item gap and dividers', async ({ mount, page }) => {
         .evaluate((element) => getComputedStyle(element).borderBottomColor)
     )
     .not.toBe('rgba(0, 0, 0, 0)');
-  await expect(items.nth(1)).not.toHaveAttribute('has-divider', '');
+  await expect(items.nth(1)).not.toHaveAttribute('divider', '');
   await expect(items.nth(1).locator('.item-surface')).toHaveCSS(
+    'border-bottom-color',
+    'rgba(0, 0, 0, 0)'
+  );
+  await expect(items.nth(2)).toHaveAttribute('divider', '');
+  await expect(items.nth(2).locator('.item-surface')).toHaveCSS(
     'border-bottom-color',
     'rgba(0, 0, 0, 0)'
   );
@@ -829,6 +835,7 @@ regressionTest(
     await mount(`
     <ix-list
       variant="ghost"
+      active
       disabled
       checkbox
       action-on-hover
@@ -844,6 +851,7 @@ regressionTest(
         label="Boolean overrides"
         disabled="false"
         checkbox="false"
+        active="false"
         action-on-hover="false"
       ></ix-list-item>
     </ix-list>
@@ -856,6 +864,7 @@ regressionTest(
     const booleanOverrides = items.nth(2);
 
     await expect(inheritedItem).toHaveAttribute('variant', 'ghost');
+    await expect(inheritedItem).toHaveAttribute('active', '');
     await expect(inheritedItem).toHaveAttribute('disabled', '');
     await expect(inheritedItem).toHaveAttribute('checkbox', '');
     await expect(inheritedItem).toHaveAttribute('action-on-hover', '');
@@ -870,26 +879,32 @@ regressionTest(
     );
     await expect(booleanOverrides).not.toHaveAttribute('disabled', '');
     await expect(booleanOverrides).not.toHaveAttribute('checkbox', '');
+    await expect(booleanOverrides).not.toHaveAttribute('active', '');
     await expect(booleanOverrides).not.toHaveAttribute('action-on-hover', '');
 
     await overriddenItem.evaluate((item) => {
+      item.active = false;
       item.disabled = false;
       item.checkbox = false;
       item.actionOnHover = false;
     });
     await list.evaluate((element) => {
+      element.active = false;
       element.disabled = false;
       element.checkbox = false;
       element.actionOnHover = false;
       element.actionSlotAlignment = 'center';
     });
     await list.evaluate((element) => {
+      element.active = true;
       element.disabled = true;
       element.checkbox = true;
       element.actionOnHover = true;
       element.actionSlotAlignment = 'start';
     });
 
+    await expect(inheritedItem).toHaveAttribute('active', '');
+    await expect(overriddenItem).not.toHaveAttribute('active', '');
     await expect(overriddenItem).not.toHaveAttribute('disabled', '');
     await expect(overriddenItem).not.toHaveAttribute('checkbox', '');
     await expect(overriddenItem).not.toHaveAttribute('action-on-hover', '');

@@ -286,6 +286,12 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/generic-list-draggable': () =>
     import('../preview-examples/generic-list-draggable').then((m) => m.default),
+  'preview/generic-list-notification-icon': () =>
+    import('../preview-examples/generic-list-notification-icon').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-users': () =>
+    import('../preview-examples/generic-list-users').then((m) => m.default),
   'preview/generic-list-variants': () =>
     import('../preview-examples/generic-list-variants').then((m) => m.default),
   'preview/form-checkbox': () =>

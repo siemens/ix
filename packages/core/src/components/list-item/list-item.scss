@@ -21,7 +21,6 @@
 }
 
 .item-surface {
-  cursor: pointer;
   display: flex;
   align-items: center;
   width: 100%;
@@ -37,6 +36,11 @@
   background-color: var(--ix-list-item--background);
 }
 
+:host(.active:not(.disabled)) .item-surface,
+:host(.active:not(.disabled)) .primary-action {
+  cursor: pointer;
+}
+
 :host([variant='outline']) .item-surface {
   border-color: var(--ix-list-item--border-color--outline);
 }
@@ -49,47 +53,47 @@
   background-color: var(--ix-list-item--background--selected);
 }
 
-:host(:not(.disabled)) .item-surface:hover {
+:host(.active:not(.disabled)) .item-surface:hover {
   background-color: var(--ix-list-item--background--hover);
 }
 
-:host(:not(.disabled))
+:host(.active:not(.disabled))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
   background-color: var(--ix-list-item--background--selected);
 }
 
-:host([variant='filled']:not(.disabled):not(.selected)) .item-surface:hover {
+:host([variant='filled'].active:not(.disabled):not(.selected))
+  .item-surface:hover {
   background-color: var(--ix-list-item--background--hover);
 }
 
-:host(.selected:not(.disabled)) .item-surface:hover {
+:host(.active.selected:not(.disabled)) .item-surface:hover {
   background-color: var(--ix-list-item--background--hover);
 }
 
-:host([variant='filled']:not(.disabled):not(.selected))
+:host([variant='filled'].active:not(.disabled):not(.selected))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
   background-color: var(--ix-list-item--background--selected);
 }
 
-:host(.selected:not(.disabled))
+:host(.active.selected:not(.disabled))
   .item-surface:active:not(
     :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
   ) {
   background-color: var(--ix-list-item--background--hover);
 }
 
-:host(.has-divider) .item-surface {
+:host([variant='ghost'].divider) .item-surface {
   border-bottom-color: var(--ix-list-item--border-color--divider);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .primary-action {
-  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;

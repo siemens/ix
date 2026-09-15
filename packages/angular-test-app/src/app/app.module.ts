@@ -142,6 +142,8 @@ import GenericListAdditionalOptions from '../preview-examples/generic-list-addit
 import GenericListBasic from '../preview-examples/generic-list-basic';
 import GenericListCustomContent from '../preview-examples/generic-list-custom-content';
 import GenericListDraggable from '../preview-examples/generic-list-draggable';
+import GenericListNotificationIcon from '../preview-examples/generic-list-notification-icon';
+import GenericListUsers from '../preview-examples/generic-list-users';
 import GenericListVariants from '../preview-examples/generic-list-variants';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
@@ -407,6 +409,8 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     GenericListBasic,
     GenericListCustomContent,
     GenericListDraggable,
+    GenericListNotificationIcon,
+    GenericListUsers,
     GenericListVariants,
     FormCheckbox,
     FormCheckboxDisabled,

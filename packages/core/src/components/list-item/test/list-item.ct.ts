@@ -122,7 +122,7 @@ regressionTest(
   'changes selection only when the checkbox is activated',
   async ({ mount, page }) => {
     await mount(
-      `<ix-list-item label="Selectable" checkbox selected aria-label-checkbox="Select this item"></ix-list-item>`
+      `<ix-list-item label="Selectable" checkbox selected active aria-label-checkbox="Select this item"></ix-list-item>`
     );
 
     const item = page.locator('ix-list-item');
@@ -163,7 +163,7 @@ regressionTest(
   'emits itemClick for non-interactive item areas only',
   async ({ mount, page }) => {
     await mount(`
-    <ix-list-item label="Project Alpha" checkbox>
+    <ix-list-item label="Project Alpha" checkbox active>
       <span class="custom-content">Custom content</span>
       <button slot="action">Action</button>
     </ix-list-item>
@@ -183,6 +183,52 @@ regressionTest(
     await item.locator('[slot="action"]').click();
 
     expect(await eventCounter.evaluate((counter) => counter.itemClick)).toBe(3);
+  }
+);
+
+regressionTest(
+  'activates the item only when active without affecting child controls',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-list-item label="Inactive item">
+        <button slot="action">Inactive child</button>
+      </ix-list-item>
+      <ix-list-item label="Active item" active>
+        <button slot="action">Active child</button>
+      </ix-list-item>
+    `);
+
+    const items = page.locator('ix-list-item');
+    const counters = await items.first().evaluateHandle((firstItem) => {
+      const elements = [firstItem, firstItem.nextElementSibling!];
+      const counts = {
+        itemClicks: [0, 0],
+        childClicks: [0, 0],
+      };
+      elements.forEach((element, index) => {
+        element.addEventListener(
+          'itemClick',
+          () => counts.itemClicks[index]++
+        );
+        element
+          .querySelector('[slot="action"]')
+          ?.addEventListener('click', () => counts.childClicks[index]++);
+      });
+      return counts;
+    });
+
+    await expect(items.nth(0)).not.toHaveAttribute('active', '');
+    await items.nth(0).locator('.primary-action').click();
+    await items.nth(0).locator('[slot="action"]').click();
+    await items.nth(1).locator('.primary-action').click();
+    await items.nth(1).locator('[slot="action"]').click();
+
+    expect(await counters.evaluate((counts) => counts.itemClicks)).toEqual([
+      0, 1,
+    ]);
+    expect(await counters.evaluate((counts) => counts.childClicks)).toEqual([
+      1, 1,
+    ]);
   }
 );
 
@@ -227,7 +273,7 @@ regressionTest(
   'does not show the item pressed state for interactive controls',
   async ({ mount, page }) => {
     await mount(`
-    <ix-list-item label="Project Alpha" checkbox>
+    <ix-list-item label="Project Alpha" checkbox active>
       <button slot="action">Action</button>
     </ix-list-item>
   `);

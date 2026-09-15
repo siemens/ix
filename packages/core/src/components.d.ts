@@ -2660,6 +2660,11 @@ export namespace Components {
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment;
         /**
+          * Enable activation for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "active"?: boolean;
+        /**
           * Display selection checkboxes on list items that do not define their own setting.
           * @since 6.0.0
          */
@@ -2669,6 +2674,12 @@ export namespace Components {
           * @since 6.0.0
          */
         "disabled"?: boolean;
+        /**
+          * Display dividers between direct list items with the `ghost` variant.
+          * @since 6.0.0
+          * @default false
+         */
+        "divider": boolean;
         /**
           * Visual behavior used while dragging a list item.
           * @since 6.0.0
@@ -2681,12 +2692,6 @@ export namespace Components {
           * @default false
          */
         "draggable": boolean;
-        /**
-          * Display dividers between direct list items.
-          * @since 6.0.0
-          * @default false
-         */
-        "hasDivider": boolean;
         /**
           * Space in pixels between direct list items.
           * @since 6.0.0
@@ -2715,6 +2720,12 @@ export namespace Components {
           * @default 'center'
          */
         "actionSlotAlignment": ListItemActionSlotAlignment;
+        /**
+          * Enable activation of the primary item surface.
+          * @since 6.0.0
+          * @default false
+         */
+        "active": boolean;
         /**
           * Accessible label for the selection checkbox.
           * @since 6.0.0
@@ -2750,11 +2761,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Display a divider below this item.
+          * Display a divider below this item when its variant is `ghost`.
           * @since 6.0.0
           * @default false
          */
-        "hasDivider": boolean;
+        "divider": boolean;
         /**
           * Icon displayed by the standard item layout.
           * @since 6.0.0
@@ -9907,6 +9918,11 @@ declare namespace LocalJSX {
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment;
         /**
+          * Enable activation for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "active"?: boolean;
+        /**
           * Display selection checkboxes on list items that do not define their own setting.
           * @since 6.0.0
          */
@@ -9916,6 +9932,12 @@ declare namespace LocalJSX {
           * @since 6.0.0
          */
         "disabled"?: boolean;
+        /**
+          * Display dividers between direct list items with the `ghost` variant.
+          * @since 6.0.0
+          * @default false
+         */
+        "divider"?: boolean;
         /**
           * Visual behavior used while dragging a list item.
           * @since 6.0.0
@@ -9928,12 +9950,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "draggable"?: boolean;
-        /**
-          * Display dividers between direct list items.
-          * @since 6.0.0
-          * @default false
-         */
-        "hasDivider"?: boolean;
         /**
           * Space in pixels between direct list items.
           * @since 6.0.0
@@ -9967,6 +9983,12 @@ declare namespace LocalJSX {
           * @default 'center'
          */
         "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
+          * Enable activation of the primary item surface.
+          * @since 6.0.0
+          * @default false
+         */
+        "active"?: boolean;
         /**
           * Accessible label for the selection checkbox.
           * @since 6.0.0
@@ -10002,11 +10024,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Display a divider below this item.
+          * Display a divider below this item when its variant is `ghost`.
           * @since 6.0.0
           * @default false
          */
-        "hasDivider"?: boolean;
+        "divider"?: boolean;
         /**
           * Icon displayed by the standard item layout.
           * @since 6.0.0
@@ -13115,9 +13137,10 @@ declare namespace LocalJSX {
         "target": '_self' | '_blank' | '_parent' | '_top';
     }
     interface IxListAttributes {
-        "hasDivider": boolean;
+        "divider": boolean;
         "itemGap": ListItemGap;
         "variant": ListItemVariant;
+        "active": boolean;
         "disabled": boolean;
         "checkbox": boolean;
         "actionOnHover": boolean;
@@ -13134,9 +13157,10 @@ declare namespace LocalJSX {
         "ariaLabelDragGripper": string;
         "ariaLabelCheckbox": string;
         "selected": boolean;
+        "active": boolean;
         "disabled": boolean;
         "checkbox": boolean;
-        "hasDivider": boolean;
+        "divider": boolean;
         "actionOnHover": boolean;
         "actionSlotAlignment": ListItemActionSlotAlignment;
     }

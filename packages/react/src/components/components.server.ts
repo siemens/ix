@@ -1266,9 +1266,10 @@ export type IxListEvents = { onItemOrderChange: EventName<IxListCustomEvent<List
 export const IxList: StencilReactComponent<IxListElement, IxListEvents, Components.IxList> = /*@__PURE__*/ createComponent<IxListElement, IxListEvents, Components.IxList>({
     tagName: 'ix-list',
     properties: {
-        hasDivider: 'has-divider',
+        divider: 'divider',
         itemGap: 'item-gap',
         variant: 'variant',
+        active: 'active',
         disabled: 'disabled',
         checkbox: 'checkbox',
         actionOnHover: 'action-on-hover',
@@ -1297,9 +1298,10 @@ export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEven
         ariaLabelDragGripper: 'aria-label-drag-gripper',
         ariaLabelCheckbox: 'aria-label-checkbox',
         selected: 'selected',
+        active: 'active',
         disabled: 'disabled',
         checkbox: 'checkbox',
-        hasDivider: 'has-divider',
+        divider: 'divider',
         actionOnHover: 'action-on-hover',
         actionSlotAlignment: 'action-slot-alignment'
     },

@@ -66,8 +66,9 @@ type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
-    hasDivider: true,
+    divider: true,
     itemGap: 0,
+    variant: 'ghost',
   },
 };
 

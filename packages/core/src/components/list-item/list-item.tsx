@@ -120,6 +120,12 @@ export class ListItem
   @Prop({ reflect: true }) selected = false;
 
   /**
+   * Enable activation of the primary item surface.
+   * @since 6.0.0
+   */
+  @Prop({ reflect: true }) active = false;
+
+  /**
    * Disable item activation and action controls.
    * @since 6.0.0
    */
@@ -132,10 +138,10 @@ export class ListItem
   @Prop({ reflect: true }) checkbox = false;
 
   /**
-   * Display a divider below this item.
+   * Display a divider below this item when its variant is `ghost`.
    * @since 6.0.0
    */
-  @Prop({ reflect: true }) hasDivider = false;
+  @Prop({ reflect: true }) divider = false;
 
   /**
    * Show action slot content only when the item is hovered or focused.
@@ -193,6 +199,7 @@ export class ListItem
 
   private activateItem(event: MouseEvent) {
     if (
+      !this.active ||
       this.disabled ||
       event.composedPath().some((element) => {
         return (
@@ -256,11 +263,12 @@ export class ListItem
         aria-disabled={a11yBoolean(this.disabled)}
         onClick={(event: MouseEvent) => this.activateItem(event)}
         class={{
+          active: this.active,
           disabled: this.disabled,
           selected: this.selected,
           dragging: this.reordering,
           checkbox: this.checkbox,
-          'has-divider': this.hasDivider,
+          divider: this.divider,
         }}
       >
         <div class="item-surface">

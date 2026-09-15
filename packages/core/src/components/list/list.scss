@@ -46,7 +46,7 @@
   transform: translate(var(--ix-list-drag-x, 0), var(--ix-list-drag-y, 0));
 }
 
-:host(.has-divider) ::slotted(.ix-list-drag-placeholder) {
+:host(.divider) ::slotted(.ix-list-drag-placeholder) {
   height: 0.25rem !important;
   border-top: 1px solid var(--ix-list-drag-placeholder--border-color--divider);
   border-radius: 0;

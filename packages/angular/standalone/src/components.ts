@@ -1843,14 +1843,14 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxList,
-  inputs: ['actionOnHover', 'actionSlotAlignment', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant']
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'itemGap', 'variant']
 })
 @Component({
   selector: 'ix-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actionOnHover', 'actionSlotAlignment', 'checkbox', 'disabled', 'dragBehavior', 'draggable', 'hasDivider', 'itemGap', 'variant'],
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'itemGap', 'variant'],
   outputs: ['itemOrderChange'],
 })
 export class IxList {
@@ -1875,14 +1875,14 @@ export declare interface IxList extends Components.IxList {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxListItem,
-  inputs: ['actionOnHover', 'actionSlotAlignment', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'variant']
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'divider', 'icon', 'label', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actionOnHover', 'actionSlotAlignment', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'hasDivider', 'icon', 'label', 'selected', 'variant'],
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'divider', 'icon', 'label', 'selected', 'variant'],
   outputs: ['itemClick', 'selectedChange'],
 })
 export class IxListItem {

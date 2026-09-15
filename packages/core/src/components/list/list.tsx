@@ -46,11 +46,12 @@ const actionFocusableSelector = [
 
 type InheritedItemProperty =
   | 'variant'
+  | 'active'
   | 'disabled'
   | 'checkbox'
   | 'actionOnHover'
   | 'actionSlotAlignment'
-  | 'hasDivider';
+  | 'divider';
 
 type ItemFocusGroup = 'primaryControls' | 'actions';
 
@@ -64,6 +65,7 @@ const inheritedItemProperties: Array<{
   attribute: string;
 }> = [
   { property: 'variant', attribute: 'variant' },
+  { property: 'active', attribute: 'active' },
   { property: 'disabled', attribute: 'disabled' },
   { property: 'checkbox', attribute: 'checkbox' },
   { property: 'actionOnHover', attribute: 'action-on-hover' },
@@ -71,18 +73,19 @@ const inheritedItemProperties: Array<{
     property: 'actionSlotAlignment',
     attribute: 'action-slot-alignment',
   },
-  { property: 'hasDivider', attribute: 'has-divider' },
+  { property: 'divider', attribute: 'divider' },
 ];
 
 const itemPropertyDefaults: Required<
   Pick<HTMLIxListItemElement, InheritedItemProperty>
 > = {
   variant: 'filled',
+  active: false,
   disabled: false,
   checkbox: false,
   actionOnHover: false,
   actionSlotAlignment: 'center',
-  hasDivider: false,
+  divider: false,
 };
 
 /**
@@ -99,10 +102,10 @@ export class List {
   @Element() hostElement!: HTMLIxListElement;
 
   /**
-   * Display dividers between direct list items.
+   * Display dividers between direct list items with the `ghost` variant.
    * @since 6.0.0
    */
-  @Prop({ reflect: true }) hasDivider = false;
+  @Prop({ reflect: true }) divider = false;
 
   /**
    * Space in pixels between direct list items.
@@ -115,6 +118,12 @@ export class List {
    * @since 6.0.0
    */
   @Prop({ reflect: true }) variant?: ListItemVariant;
+
+  /**
+   * Enable activation for list items that do not define their own setting.
+   * @since 6.0.0
+   */
+  @Prop({ reflect: true }) active?: boolean;
 
   /**
    * Default disabled state for list items that do not define their own state.
@@ -202,9 +211,10 @@ export class List {
       attributeFilter: [
         'action-on-hover',
         'action-slot-alignment',
+        'active',
         'checkbox',
         'disabled',
-        'has-divider',
+        'divider',
         'hidden',
         'slot',
         'variant',
@@ -241,11 +251,12 @@ export class List {
   }
 
   @Watch('variant')
+  @Watch('active')
   @Watch('disabled')
   @Watch('checkbox')
   @Watch('actionOnHover')
   @Watch('actionSlotAlignment')
-  @Watch('hasDivider')
+  @Watch('divider')
   protected itemDefaultsChanged() {
     this.synchronizeItems();
   }
@@ -1040,7 +1051,7 @@ export class List {
         }
         onDragStart={(event: DragEvent) => event.preventDefault()}
         class={{
-          'has-divider': this.hasDivider,
+          divider: this.divider,
           draggable: this.draggable,
         }}
         style={{

@@ -106,6 +106,8 @@ import './generic-list-additional-options-axe.spec.ts';
 import './generic-list-basic-axe.spec.ts';
 import './generic-list-custom-content-axe.spec.ts';
 import './generic-list-draggable-axe.spec.ts';
+import './generic-list-notification-icon-axe.spec.ts';
+import './generic-list-users-axe.spec.ts';
 import './generic-list-variants-axe.spec.ts';
 import './grid-axe.spec.ts';
 import './grid-padding-axe.spec.ts';

@@ -16,13 +16,13 @@ export default function GenericListVariants() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <IxList hasDivider itemGap={0} variant="ghost">
+      <IxList divider itemGap={0} variant="ghost">
         <IxListItem icon="project" label="Item 1"></IxListItem>
         <IxListItem icon="project" label="Item 2"></IxListItem>
         <IxListItem
           icon="project"
           label="Item 3"
-          hasDivider={false}
+          divider={false}
         ></IxListItem>
       </IxList>
       <IxList variant="outline" itemGap={4}>

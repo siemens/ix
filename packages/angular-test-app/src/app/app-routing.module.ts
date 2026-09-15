@@ -133,6 +133,8 @@ import GenericListAdditionalOptions from '../preview-examples/generic-list-addit
 import GenericListBasic from '../preview-examples/generic-list-basic';
 import GenericListCustomContent from '../preview-examples/generic-list-custom-content';
 import GenericListDraggable from '../preview-examples/generic-list-draggable';
+import GenericListNotificationIcon from '../preview-examples/generic-list-notification-icon';
+import GenericListUsers from '../preview-examples/generic-list-users';
 import GenericListVariants from '../preview-examples/generic-list-variants';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
@@ -725,6 +727,14 @@ const routes: Routes = [
       {
         path: 'generic-list-draggable',
         component: GenericListDraggable,
+      },
+      {
+        path: 'generic-list-notification-icon',
+        component: GenericListNotificationIcon,
+      },
+      {
+        path: 'generic-list-users',
+        component: GenericListUsers,
       },
       {
         path: 'generic-list-variants',

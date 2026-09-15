@@ -139,6 +139,8 @@ import GenericListAdditionalOptions from './preview-examples/generic-list-additi
 import GenericListBasic from './preview-examples/generic-list-basic';
 import GenericListCustomContent from './preview-examples/generic-list-custom-content';
 import GenericListDraggable from './preview-examples/generic-list-draggable';
+import GenericListNotificationIcon from './preview-examples/generic-list-notification-icon';
+import GenericListUsers from './preview-examples/generic-list-users';
 import GenericListVariants from './preview-examples/generic-list-variants';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
@@ -397,6 +399,8 @@ const routes: IxPreviewRoutes = {
   '/preview/generic-list-basic': GenericListBasic,
   '/preview/generic-list-custom-content': GenericListCustomContent,
   '/preview/generic-list-draggable': GenericListDraggable,
+  '/preview/generic-list-notification-icon': GenericListNotificationIcon,
+  '/preview/generic-list-users': GenericListUsers,
   '/preview/generic-list-variants': GenericListVariants,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,

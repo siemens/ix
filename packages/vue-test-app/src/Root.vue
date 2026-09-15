@@ -132,6 +132,8 @@ import GenericListAdditionalOptions from './preview-examples/generic-list-additi
 import GenericListBasic from './preview-examples/generic-list-basic.vue';
 import GenericListCustomContent from './preview-examples/generic-list-custom-content.vue';
 import GenericListDraggable from './preview-examples/generic-list-draggable.vue';
+import GenericListNotificationIcon from './preview-examples/generic-list-notification-icon.vue';
+import GenericListUsers from './preview-examples/generic-list-users.vue';
 import GenericListVariants from './preview-examples/generic-list-variants.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
 import GridSize from './preview-examples/grid-size.vue';
@@ -379,6 +381,8 @@ const routes: IxPreviewRoutes = {
   '/preview/generic-list-basic': GenericListBasic,
   '/preview/generic-list-custom-content': GenericListCustomContent,
   '/preview/generic-list-draggable': GenericListDraggable,
+  '/preview/generic-list-notification-icon': GenericListNotificationIcon,
+  '/preview/generic-list-users': GenericListUsers,
   '/preview/generic-list-variants': GenericListVariants,
   '/preview/group': Group,
   '/preview/grid-padding': GridPadding,

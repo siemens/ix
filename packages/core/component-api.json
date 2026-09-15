@@ -5830,6 +5830,16 @@
           "deprecated": false
         },
         {
+          "name": "active",
+          "attribute": "active",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "checkbox",
           "attribute": "checkbox",
           "type": "boolean | undefined",
@@ -5850,6 +5860,17 @@
           "deprecated": false
         },
         {
+          "name": "divider",
+          "attribute": "divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "dragBehavior",
           "attribute": "drag-behavior",
           "type": "\"dynamic\" | \"separator\"",
@@ -5863,17 +5884,6 @@
         {
           "name": "draggable",
           "attribute": "draggable",
-          "type": "boolean",
-          "mutable": false,
-          "reflectToAttribute": true,
-          "default": "false",
-          "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "hasDivider",
-          "attribute": "has-divider",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": true,
@@ -5949,6 +5959,17 @@
           "deprecated": false
         },
         {
+          "name": "active",
+          "attribute": "active",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelCheckbox",
           "attribute": "aria-label-checkbox",
           "type": "string",
@@ -6013,8 +6034,8 @@
           "deprecated": false
         },
         {
-          "name": "hasDivider",
-          "attribute": "has-divider",
+          "name": "divider",
+          "attribute": "divider",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": true,

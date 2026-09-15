@@ -140,6 +140,8 @@ export const testIds = [
   "grid-size",
   "grid-padding",
   "generic-list-variants",
+  "generic-list-users",
+  "generic-list-notification-icon",
   "generic-list-draggable",
   "generic-list-custom-content",
   "generic-list-basic",
