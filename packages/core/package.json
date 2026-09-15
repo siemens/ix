@@ -160,7 +160,7 @@
     "@types/mustache": "^4.2.6",
     "@types/node": "^20.16.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
-    "@typescript-eslint/parser": "^8.56.1",
+    "@typescript-eslint/parser": "^8.70.0",
     "animate.css": "~4.1.1",
     "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
