@@ -467,16 +467,43 @@
     }
   },
   "boxplot": {
-    "si/sys/border/3": {
+    "si/sys/background/accent": {
+      "eChartsVariable": [
+        "boxplot.itemStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00C1B6",
+        "Siemens Brand Light": "#009999",
+        "Classic Dark": "#00BDDA",
+        "Classic Light": "#0096B4"
+      }
+    },
+    "si/sys/border/1": {
       "eChartsVariable": [
         "boxplot.itemStyle.borderColor"
       ],
       "hexValuesByMode": {
-        "Siemens Brand Dark": "#66667E",
-        "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#72848C",
-        "Classic Light": "#919CA1"
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Classic Dark": "#FFFFFF",
+        "Classic Light": "#000609"
       }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "boxplot.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Classic Dark": "#FFFFFF",
+        "Classic Light": "#000609"
+      }
+    },
+    "transparent": {
+      "eChartsVariable": [
+        "boxplot.label.textBorderColor"
+      ]
     }
   },
   "funnel": {
@@ -506,7 +533,9 @@
     },
     "si/sys/text/primary": {
       "eChartsVariable": [
-        "gauge.axisLabel.color"
+        "gauge.axisLabel.color",
+        "gauge.detail.color",
+        "gauge.title.color"
       ],
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
@@ -533,6 +562,64 @@
     "si/sys/border/3": {
       "eChartsVariable": [
         "pie.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Classic Dark": "#72848C",
+        "Classic Light": "#919CA1"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "pie.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Classic Dark": "#FFFFFF",
+        "Classic Light": "#000609"
+      }
+    },
+    "transparent":{"eChartsVariable": ["pie.label.textBorderColor"]}
+  },
+  "radar": {
+    "si/sys/background/1": {
+      "eChartsVariable": [
+        "radar.splitArea.areaStyle.color[1]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#23233C",
+        "Siemens Brand Light": "#FFFFFF",
+        "Classic Dark": "#1A272D",
+        "Classic Light": "#FFFFFF"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "radar.axisName.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Classic Dark": "#FFFFFF",
+        "Classic Light": "#000609"
+      }
+    },
+    "si/sys/border/1": {
+      "eChartsVariable": [
+        "radar.axisLine.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Classic Dark": "#FFFFFF",
+        "Classic Light": "#000609"
+      }
+    },
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "radar.splitLine.lineStyle.color"
       ],
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",

@@ -98,6 +98,28 @@ export default {
       symbolSize: 4,
       symbol: 'emptyCircle',
       smooth: false,
+      splitArea: {
+        areaStyle: {
+          color: ['transparent', '#23233C'],
+        },
+      },
+      axisName: {
+        color: '#FFFFFF',
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#FFFFFF',
+        },
+      },
+      splitLine: {
+        lineStyle: {
+          color: '#66667E',
+        },
+      },
+      label: {
+        textBorderColor: '#000028',
+        textBorderWidth: 0,
+      },
     },
     bar: {
       itemStyle: {
@@ -110,6 +132,11 @@ export default {
         borderWidth: 0,
         borderColor: '#66667E',
       },
+      label: {
+        color: '#FFFFFF',
+        textBorderColor: '#000028',
+        textBorderWidth: 0,
+      },
     },
     scatter: {
       itemStyle: {
@@ -119,8 +146,14 @@ export default {
     },
     boxplot: {
       itemStyle: {
-        borderWidth: 0,
-        borderColor: '#66667E',
+        borderWidth: 1,
+        borderColor: '#FFFFFF',
+        color: '#00C1B6',
+      },
+      label: {
+        color: '#FFFFFF',
+        textBorderColor: '#000028',
+        textBorderWidth: 1,
       },
     },
     parallel: {
@@ -147,6 +180,12 @@ export default {
         borderColor: '#66667E',
       },
       axisLabel: {
+        color: '#FFFFFF',
+      },
+      title: {
+        color: '#FFFFFF',
+      },
+      detail: {
         color: '#FFFFFF',
       },
     },
