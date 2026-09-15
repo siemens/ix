@@ -9,6 +9,64 @@
 import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
 
+regressionTest(
+  'accessibility and scroll behavior when adding a token',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(`<ix-category-filter hide-icon></ix-category-filter>`);
+
+    const categoryFilter = page.locator('ix-category-filter');
+    await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+      el.ariaLabelFilterInput = 'Filter input';
+      el.ariaLabelResetButton = 'Clear filter';
+    });
+
+    const input = categoryFilter.locator('input');
+    const filterChangedPromise = categoryFilter.evaluate(
+      (el: HTMLIxCategoryFilterElement) =>
+        new Promise((resolve) => {
+          el.addEventListener(
+            'filterChanged',
+            (event: CustomEvent) => resolve(event.detail),
+            { once: true }
+          );
+        })
+    );
+    const scrollIntoViewOptionsPromise = input.evaluate(
+      (el) =>
+        new Promise<ScrollIntoViewOptions>((resolve) => {
+          el.scrollIntoView = (options) => {
+            if (typeof options === 'object') {
+              resolve(options);
+            }
+          };
+        })
+    );
+
+    await input.click();
+    await input.fill('Test');
+    await page.keyboard.press('Enter');
+
+    await expect(categoryFilter.locator('ix-filter-chip')).toContainText(
+      'Test'
+    );
+    await expect(input).toHaveValue('');
+    await expect(input).toBeFocused();
+    await expect(input).toBeVisible();
+    await expect(input).toBeInViewport();
+    expect(await filterChangedPromise).toEqual({
+      tokens: ['Test'],
+      categories: [],
+    });
+    expect(await scrollIntoViewOptionsPromise).toEqual({
+      block: 'nearest',
+      inline: 'nearest',
+    });
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-category-filter></ix-category-filter>`);
   const categoryFilter = page.locator('ix-category-filter');
