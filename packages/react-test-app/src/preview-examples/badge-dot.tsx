@@ -11,9 +11,9 @@ import './badge-dot.scoped.css';
 
 import { IxBadge } from '@siemens/ix-react';
 
-const CUSTOM_BACKGROUND = 'var(--theme-chart-11)';
-const CUSTOM_COLOR = 'var(--theme-color-inv-std-text)';
-const CUSTOM_OUTLINE_COLOR = 'var(--theme-chip-outline--color)';
+const CUSTOM_BACKGROUND = 'var(--si-sys-data-categorical-9)';
+const CUSTOM_COLOR = 'var(--si-sys-text-inverse)';
+const CUSTOM_OUTLINE_COLOR = 'var(--si-sys-text-primary)';
 
 export default () => {
   return (
@@ -134,12 +134,7 @@ export default () => {
         aria-label="Warning pulse outline"
       ></IxBadge>
 
-      <IxBadge
-        type="dot"
-        variant="info"
-        role="img"
-        aria-label="Info"
-      ></IxBadge>
+      <IxBadge type="dot" variant="info" role="img" aria-label="Info"></IxBadge>
       <IxBadge
         type="dot"
         variant="info"

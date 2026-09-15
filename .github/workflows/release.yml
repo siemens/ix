@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - release-5.2.2
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

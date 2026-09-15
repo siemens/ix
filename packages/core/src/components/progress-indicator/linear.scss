@@ -8,11 +8,12 @@
  */
 @use './progress-indicator-vars' as progress-vars;
 
+@use './linear.vars' as *;
 @mixin linear {
   .linear-progress-container {
     width: 100%;
     height: var(--ix-progress-indicator-height);
-    background-color: var(--theme-progress-indicator-track--background);
+    background-color: var(--ix-progress-indicator-track--background);
     border-radius: 2px;
     overflow: hidden;
     margin: var(--ix-progress-indicator-margin, 0.5rem 0);
@@ -21,7 +22,7 @@
   @each $state in progress-vars.$progress-indicator-states {
     .linear-progress-container.#{$state} {
       background-color: var(
-        --theme-progress-indicator-track-#{$state}--background
+        --ix-progress-indicator-track-#{$state}--background
       );
     }
   }

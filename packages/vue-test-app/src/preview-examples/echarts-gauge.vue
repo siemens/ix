@@ -38,10 +38,11 @@ const theme = ref(resolveEChartThemeName());
 const value = 45.3;
 
 function getGaugeColor(value: number) {
-  if (value > 60) return getComputedCSSProperty('color-success');
-  else if (value > 25) return getComputedCSSProperty('color-warning');
+  if (value > 60) return getComputedCSSProperty('--si-sys-background-success');
+  else if (value > 25)
+    return getComputedCSSProperty('--si-sys-background-warning');
   else {
-    return getComputedCSSProperty('color-alarm');
+    return getComputedCSSProperty('--si-sys-background-danger');
   }
 }
 
@@ -55,7 +56,12 @@ function getOptions(): EChartsOption {
           show: true,
           lineStyle: {
             width: 18,
-            color: [[1, getComputedCSSProperty('color-neutral-40')]],
+            color: [
+              [
+                1,
+                getComputedCSSProperty('--si-sys-data-sequential-deep-blue-4'),
+              ],
+            ],
           },
         },
         axisTick: {
@@ -73,7 +79,7 @@ function getOptions(): EChartsOption {
           show: true,
           distance: 30,
           fontSize: 16,
-          color: getComputedCSSProperty('color-std-text'),
+          color: getComputedCSSProperty('--si-sys-text-primary'),
         },
         progress: {
           show: true,
@@ -100,7 +106,7 @@ function getOptions(): EChartsOption {
               fontSize: '1.5rem',
               width: 250,
               lineHeight: 35,
-              color: getComputedCSSProperty('color-soft-text'),
+              color: getComputedCSSProperty('--si-sys-text-secondary'),
               formatter: '{value}Mbps \nNetwork Speed',
             },
             pointer: {
@@ -126,9 +132,9 @@ function getOptions(): EChartsOption {
           lineStyle: {
             width: 5,
             color: [
-              [0.25, getComputedCSSProperty('color-alarm')],
-              [0.6, getComputedCSSProperty('color-warning')],
-              [1, getComputedCSSProperty('color-success')],
+              [0.25, getComputedCSSProperty('--si-sys-background-danger')],
+              [0.6, getComputedCSSProperty('--si-sys-background-warning')],
+              [1, getComputedCSSProperty('--si-sys-background-success')],
             ],
           },
         },

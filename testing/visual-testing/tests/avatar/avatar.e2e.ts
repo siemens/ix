@@ -35,6 +35,8 @@ regressionTest.describe('avatar', () => {
 
     const avatar = page.locator('ix-avatar');
     await avatar.click();
+    await expect(avatar.locator('ix-dropdown')).toHaveClass(/show/);
+    await page.mouse.move(0, 0);
 
     await expect(page).toHaveScreenshot();
   });

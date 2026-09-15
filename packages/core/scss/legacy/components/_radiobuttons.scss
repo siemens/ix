@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use '../../misc/common-variables' as vars;
+@use '../../tokens/system' as sys;
 
 @mixin radio-basic() {
   $size: 1.25rem;
@@ -36,7 +37,7 @@
     position: relative;
     user-select: none;
 
-    color: var(--theme-radiobtn-label--color);
+    color: #{sys.$si-sys-text-primary};
     margin-right: vars.$default-space;
   }
 
@@ -64,49 +65,44 @@
 
   .ix-form-control[type='radio'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-radiobtn--focus--outline-offset);
+      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-radiobtn--focus--outline-offset);
+      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:not(:checked) {
     & + label:before {
-      background-color: var(--theme-radiobtn-unchecked--background);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color);
+      background-color: #{sys.$si-sys-background-accent-secondary};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-1};
     }
 
     &:hover + label:before {
-      background-color: var(--theme-radiobtn-unchecked--background--hover);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color--hover);
+      background-color: #{sys.$si-sys-background-accent-secondary-hover};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
     }
 
     &:active + label:before {
-      background-color: var(--theme-radiobtn-unchecked--background--active);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color--active);
+      background-color: #{sys.$si-sys-background-accent-secondary-active};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
     }
 
     &:disabled + label::before {
-      background-color: var(--theme-radiobtn-unchecked--background--disabled);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-unchecked--border-color--disabled);
+      background-color: transparent;
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-text-disabled};
     }
   }
 
   .ix-form-control[type='radio']:checked {
     & + label:before {
-      background-color: var(--theme-radiobtn-checked--background);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color);
+      background-color: #{sys.$si-sys-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     & + label:after {
@@ -114,7 +110,7 @@
       width: vars.$small-space;
       height: vars.$small-space;
       display: block;
-      background-color: var(--theme-radiobtn-checked--color);
+      background-color: #{sys.$si-sys-text-on-accent};
       border-radius: 100%;
       position: absolute;
       top: 0.5rem;
@@ -122,25 +118,22 @@
     }
 
     &:hover + label:before {
-      background-color: var(--theme-radiobtn-checked--background--hover);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color--hover);
+      background-color: #{sys.$si-sys-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: var(--theme-radiobtn-checked--background--active);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color--active);
+      background-color: #{sys.$si-sys-background-accent-active};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label:before {
-      background-color: var(--theme-radiobtn-checked--background--disabled);
-      border: var(--theme-radiobtn--border-thickness) solid
-        var(--theme-radiobtn-checked--border-color--disabled);
+      background-color: #{sys.$si-sys-text-disabled};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: var(--theme-radiobtn-checked--color--disabled);
+      border-color: #{sys.$si-sys-text-inverse};
     }
   }
 
@@ -150,7 +143,7 @@
   }
 
   .ix-form-control[type='radio']:disabled + label {
-    color: var(--theme-radiobtn-label--color--disabled);
+    color: #{sys.$si-sys-text-disabled};
   }
 }
 

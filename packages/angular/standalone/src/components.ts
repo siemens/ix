@@ -823,14 +823,14 @@ export declare interface IxContent extends Components.IxContent {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxContentHeader,
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant']
 })
 @Component({
   selector: 'ix-content-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant'],
+  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant'],
   outputs: ['backButtonClick'],
 })
 export class IxContentHeader {

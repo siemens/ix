@@ -826,9 +826,8 @@ export class CategoryFilter {
             !this.filterTokens.length && this.category === '',
         }}
         variant="tertiary"
-        oval
         icon={iconClear}
-        iconColor="color-soft-text"
+        iconColor="--si-sys-text-secondary"
         size="16"
         aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
@@ -837,14 +836,14 @@ export class CategoryFilter {
 
   private getIconColor() {
     if (this.disabled) {
-      return 'color-componentn-1';
+      return '--si-sys-text-disabled';
     }
 
     if (this.readonly) {
-      return 'color-std-txt';
+      return '--si-sys-text-primary';
     }
 
-    return 'color-primary';
+    return '--si-sys-text-accent';
   }
 
   render() {

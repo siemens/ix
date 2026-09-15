@@ -1,0 +1,42 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '../tokens/system' as sys;
+
+.input-group-label {
+  --ix-input-group-label--color: #{sys.$si-sys-text-secondary};
+  --ix-input-group-label--margin-left: 2px;
+  --ix-input-group-label--margin-right: 2px;
+}
+
+.group-start {
+  .input-group-label:first-child {
+    --ix-input-group-label--margin-left: 8px;
+  }
+
+  .input-group-label:last-child {
+    --ix-input-group-label--margin-right: 4px;
+  }
+}
+
+.group-end {
+  .input-group-label:first-child {
+    --ix-input-group-label--margin-left: 4px;
+  }
+
+  .input-group-label:last-child {
+    --ix-input-group-label--margin-right: 8px;
+  }
+}
+
+.input-group-label {
+  color: var(--ix-input-group-label--color);
+  margin-left: var(--ix-input-group-label--margin-left);
+  margin-right: var(--ix-input-group-label--margin-right);
+}

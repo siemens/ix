@@ -15,7 +15,7 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
     <style>
       .inv-bg {
-        background-color: var(--theme-color-alarm);
+        background-color: var(--si-sys-background-danger);
       }
     </style>
   </head>
@@ -45,10 +45,19 @@ SPDX-License-Identifier: MIT
         'success',
         'warning',
       ];
+      const contrastBackgroundTokens = {
+        alarm: '--si-sys-background-danger',
+        critical: '--si-sys-background-critical',
+        info: '--si-sys-background-information',
+        neutral: '--si-sys-background-neutral',
+        primary: '--si-sys-background-accent',
+        success: '--si-sys-background-success',
+        warning: '--si-sys-background-warning',
+      };
       const contrastContainer = document.getElementById('conrast-container');
       contrastColors.forEach(color => {
         const div = document.createElement('div');
-        div.style.backgroundColor = `var(--theme-color-${color})`;
+        div.style.backgroundColor = `var(${contrastBackgroundTokens[color]})`;
         div.innerHTML = `<ix-typography text-color="${color}-contrast">${color} contrast</ix-typography>`;
         contrastContainer.appendChild(div);
       });
