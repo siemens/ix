@@ -92,6 +92,35 @@ regressionTest(
 );
 
 regressionTest(
+  'navigates standalone action controls with arrow keys',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-list-item label="Project Alpha">
+      <div slot="action">
+        <button>First action</button>
+        <button>Second action</button>
+      </div>
+    </ix-list-item>
+  `);
+
+    const item = page.locator('ix-list-item');
+    const primaryAction = item.locator('.primary-action');
+    const firstAction = item.locator('[slot="action"] button').first();
+    const secondAction = item.locator('[slot="action"] button').last();
+
+    await primaryAction.focus();
+    await primaryAction.press('ArrowRight');
+    await expect(firstAction).toBeFocused();
+
+    await firstAction.press('ArrowRight');
+    await expect(secondAction).toBeFocused();
+
+    await secondAction.press('ArrowLeft');
+    await expect(firstAction).toBeFocused();
+  }
+);
+
+regressionTest(
   'renders standard content and custom content',
   async ({ mount, page }) => {
     await mount(`

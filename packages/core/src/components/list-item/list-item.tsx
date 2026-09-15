@@ -172,6 +172,149 @@ export class ListItem
 
   private readonly primaryActionRef = makeRef<HTMLButtonElement>();
 
+  private getDragGripper() {
+    return this.hostElement.shadowRoot?.querySelector<HTMLButtonElement>(
+      '.drag-gripper'
+    );
+  }
+
+  private getSelectionCheckbox() {
+    return this.hostElement.shadowRoot
+      ?.querySelector<HTMLIxCheckboxElement>('.selection-checkbox')
+      ?.shadowRoot?.querySelector<HTMLInputElement>('input[type="checkbox"]');
+  }
+
+  private getPrimaryControlElements() {
+    const dragGripper = this.getDragGripper();
+    const selectionCheckbox = this.getSelectionCheckbox();
+
+    return [
+      this.hostElement.hasAttribute('data-list-draggable') &&
+      dragGripper &&
+      !dragGripper.disabled
+        ? dragGripper
+        : undefined,
+      selectionCheckbox && !selectionCheckbox.disabled
+        ? selectionCheckbox
+        : undefined,
+    ].filter((element): element is HTMLButtonElement | HTMLInputElement =>
+      Boolean(element)
+    );
+  }
+
+  private getActionElements() {
+    const slotElements = Array.from(
+      this.hostElement.querySelectorAll<HTMLElement>(':scope > [slot="action"]')
+    );
+
+    return slotElements
+      .flatMap((element) => {
+        if (element.matches(interactiveElementSelector)) {
+          return [element];
+        }
+
+        return Array.from(
+          element.querySelectorAll<HTMLElement>(interactiveElementSelector)
+        );
+      })
+      .filter((element) => {
+        const disableableElement = element as HTMLElement & {
+          disabled?: boolean;
+        };
+        return !disableableElement.disabled;
+      });
+  }
+
+  private setElementTabIndex(element: HTMLElement, tabIndex: number) {
+    element.tabIndex = tabIndex;
+
+    const shadowFocusTargets = Array.from(
+      element.shadowRoot?.querySelectorAll<HTMLElement>(
+        interactiveElementSelector
+      ) ?? []
+    );
+    shadowFocusTargets.forEach((target, index) => {
+      this.setElementTabIndex(target, index === 0 ? tabIndex : -1);
+    });
+  }
+
+  private focusGroupElement(elements: HTMLElement[], index: number) {
+    const target = elements[index];
+    if (!target) {
+      return;
+    }
+
+    elements.forEach((element) => {
+      this.setElementTabIndex(element, element === target ? 0 : -1);
+    });
+    target.focus();
+  }
+
+  private handleFocusGroupNavigationKey(
+    event: KeyboardEvent,
+    elements: HTMLElement[],
+    currentIndex: number
+  ) {
+    if (
+      currentIndex === -1 ||
+      (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')
+    ) {
+      return false;
+    }
+
+    event.preventDefault();
+    const offset = event.key === 'ArrowRight' ? 1 : -1;
+    const nextIndex =
+      (currentIndex + offset + elements.length) % elements.length;
+    this.focusGroupElement(elements, nextIndex);
+    return true;
+  }
+
+  private handleKeyDown(event: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+
+    const eventPath = event.composedPath();
+    const primaryAction = this.primaryActionRef.current;
+    const primaryControlElements = this.getPrimaryControlElements();
+    const primaryControlIndex = primaryControlElements.findIndex((element) =>
+      eventPath.includes(element)
+    );
+    const actionElements = this.getActionElements();
+    const actionIndex = actionElements.findIndex((element) =>
+      eventPath.includes(element)
+    );
+
+    if (primaryAction && eventPath.includes(primaryAction)) {
+      if (event.key !== 'ArrowRight') {
+        return;
+      }
+
+      const targetGroup = primaryControlElements.length
+        ? primaryControlElements
+        : actionElements;
+      if (!targetGroup.length) {
+        return;
+      }
+      event.preventDefault();
+      this.focusGroupElement(targetGroup, 0);
+      return;
+    }
+
+    if (
+      this.handleFocusGroupNavigationKey(
+        event,
+        primaryControlElements,
+        primaryControlIndex
+      )
+    ) {
+      return;
+    }
+
+    this.handleFocusGroupNavigationKey(event, actionElements, actionIndex);
+  }
+
   private hasStandardContent() {
     return !!(this.icon || this.label || this.description);
   }
@@ -262,6 +405,7 @@ export class ListItem
         role="listitem"
         aria-disabled={a11yBoolean(this.disabled)}
         onClick={(event: MouseEvent) => this.activateItem(event)}
+        onKeydown={(event: KeyboardEvent) => this.handleKeyDown(event)}
         class={{
           active: this.active,
           disabled: this.disabled,

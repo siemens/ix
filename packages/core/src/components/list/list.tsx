@@ -397,26 +397,6 @@ export class List {
     });
   }
 
-  private focusGroupElement(
-    item: HTMLIxListItemElement,
-    group: ItemFocusGroup,
-    elements: HTMLElement[],
-    index: number
-  ) {
-    const target = elements[index];
-    if (!target) {
-      return;
-    }
-
-    const focusState = this.itemFocusStates.get(item) ?? {};
-    focusState[group] = target;
-    this.itemFocusStates.set(item, focusState);
-    elements.forEach((element) => {
-      this.setElementTabIndex(element, element === target ? 0 : -1);
-    });
-    target.focus();
-  }
-
   private applyItemDefaults(item: HTMLIxListItemElement) {
     let overriddenProperties = this.overriddenItemProperties.get(item);
     let inheritedValues = this.inheritedItemValues.get(item);
@@ -841,7 +821,27 @@ export class List {
 
   private handleFocusIn(event: FocusEvent) {
     const item = this.getItemFromEvent(event);
-    if (!item || item.disabled || item.hidden || item === this.activeItem) {
+    if (!item || item.disabled || item.hidden) {
+      return;
+    }
+
+    const eventPath = event.composedPath();
+    const focusGroups: Array<[ItemFocusGroup, HTMLElement[]]> = [
+      ['primaryControls', this.getPrimaryControlElements(item)],
+      ['actions', this.getActionElements(item)],
+    ];
+    focusGroups.forEach(([group, elements]) => {
+      const focusedElement = elements.find((element) =>
+        eventPath.includes(element)
+      );
+      if (focusedElement) {
+        const focusState = this.itemFocusStates.get(item) ?? {};
+        focusState[group] = focusedElement;
+        this.itemFocusStates.set(item, focusState);
+      }
+    });
+
+    if (item === this.activeItem) {
       return;
     }
 
@@ -945,28 +945,6 @@ export class List {
     return false;
   }
 
-  private handleFocusGroupNavigationKey(
-    event: KeyboardEvent,
-    item: HTMLIxListItemElement,
-    group: ItemFocusGroup,
-    elements: HTMLElement[],
-    currentIndex: number
-  ) {
-    if (
-      currentIndex === -1 ||
-      (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')
-    ) {
-      return false;
-    }
-
-    event.preventDefault();
-    const offset = event.key === 'ArrowRight' ? 1 : -1;
-    const nextIndex =
-      (currentIndex + offset + elements.length) % elements.length;
-    this.focusGroupElement(item, group, elements, nextIndex);
-    return true;
-  }
-
   private handleKeyDown(event: KeyboardEvent) {
     const item = this.getItemFromEvent(event);
     if (!item || item.disabled) {
@@ -984,14 +962,6 @@ export class List {
       !!primaryAction &&
       (eventPath.includes(primaryAction) ||
         item.shadowRoot?.activeElement === primaryAction);
-    const primaryControlElements = this.getPrimaryControlElements(item);
-    const primaryControlIndex = primaryControlElements.findIndex((element) =>
-      eventPath.includes(element)
-    );
-    const actionElements = this.getActionElements(item);
-    const actionIndex = actionElements.findIndex((element) =>
-      eventPath.includes(element)
-    );
 
     if (
       this.handleKeyboardReorderKey(event, item, isDragGripper, isPrimaryAction)
@@ -1003,44 +973,7 @@ export class List {
       return;
     }
 
-    if (isPrimaryAction && event.key === 'ArrowRight') {
-      const targetGroup = primaryControlElements.length
-        ? primaryControlElements
-        : actionElements;
-      const group = primaryControlElements.length
-        ? 'primaryControls'
-        : 'actions';
-      if (!targetGroup.length) {
-        return;
-      }
-      event.preventDefault();
-      this.focusGroupElement(item, group, targetGroup, 0);
-      return;
-    }
-
-    if (this.handleItemNavigationKey(event, item)) {
-      return;
-    }
-
-    if (
-      this.handleFocusGroupNavigationKey(
-        event,
-        item,
-        'primaryControls',
-        primaryControlElements,
-        primaryControlIndex
-      )
-    ) {
-      return;
-    }
-
-    this.handleFocusGroupNavigationKey(
-      event,
-      item,
-      'actions',
-      actionElements,
-      actionIndex
-    );
+    this.handleItemNavigationKey(event, item);
   }
 
   render() {
