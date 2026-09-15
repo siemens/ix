@@ -1,0 +1,14 @@
+packages/core/src/components/utils/internal/mixins/accessibility/test/inherit-aria-attributes.mixin.spec.ts
+  h_c5a773bf2fda8b 161-162,238,354,400
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "9ffbc953eb4f3777f1095d4f3ea1e5ad10b21cb6",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
