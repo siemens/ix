@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-list-drag--box-shadow: #{sys.$si-sys-effects-shadow-1};
+  --ix-list-drag-placeholder--border-color--divider: #{sys.$si-sys-border-2};
+  --ix-list-drag-placeholder--border-color--separator: #{sys.$si-sys-border-1};
+}
