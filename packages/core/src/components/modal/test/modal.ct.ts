@@ -656,13 +656,14 @@ regressionTest(
     });
 
     await waitForModalDialogOpen(page);
-    await expect(
-      page.locator('ix-input').locator('input')
-    ).toBeFocused({ timeout: 5000 });
+    await expect(page.locator('ix-input').locator('input')).toBeFocused({
+      timeout: 5000,
+    });
   }
 );
 
-
+regressionTest(
+  'ix-modal-header autofocus receives focus on load',
   async ({ mount, page }) => {
     await mount('');
     await setupModalEnvironment(page);
