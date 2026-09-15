@@ -1,0 +1,22 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-application-header--z-index: var(--theme-z-index-fixed);
+  --ix-application-header-dropdown-item--border-color: #{sys.$si-sys-border-4};
+  --ix-application-header--background: #{sys.$si-sys-background-1};
+  --ix-application-header--border-color: #{sys.$si-sys-border-4};
+  --ix-application-header--border-width: var(--theme-border-width-default);
+  --ix-application-header--color: #{sys.$si-sys-text-primary};
+  --ix-application-header-app-icon--outline-color: #{sys.$si-sys-border-2};
+  --ix-application-header-logo--color: #{sys.$si-sys-effects-logo};
+  --ix-application-header-name-suffix--color: #{sys.$si-sys-text-secondary};
+}

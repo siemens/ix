@@ -1,0 +1,76 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'misc/common-variables' as vars;
+@use 'mixins/hover';
+@use 'tokens/system' as sys;
+
+@mixin dropdown-item {
+  & {
+    display: flex;
+    height: 2.5rem;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 vars.$x-large-space;
+    border: 1px solid transparent;
+    color: var(--ix-menu-item--color, #{sys.$si-sys-text-primary});
+    background-color: transparent;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--ix-menu-item--background, transparent);
+    border-color: #{sys.$si-sys-effects-focus};
+    color: var(--ix-menu-item--color--focus, #{sys.$si-sys-text-primary});
+  }
+
+  @include hover.hover {
+    color: var(--ix-menu-item--color--hover, #{sys.$si-sys-text-primary});
+    background-color: var(
+      --ix-menu-item--background--hover,
+      #{sys.$si-sys-background-hover}
+    );
+  }
+
+  @include hover.active {
+    color: var(--ix-menu-item--color--active, #{sys.$si-sys-text-primary});
+    background-color: var(
+      --ix-menu-item--background--active,
+      #{sys.$si-sys-background-selected}
+    );
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(--ix-menu-item--color--disabled, #{sys.$si-sys-text-disabled});
+    background-color: var(--ix-menu-item--background--disabled, transparent);
+  }
+
+  > a,
+  a:hover,
+  a:active {
+    color: #{sys.$si-sys-text-primary};
+  }
+
+  > .glyph {
+    color: var(--ix-menu-item-icon--color, #{sys.$si-sys-text-secondary});
+    margin-inline-end: vars.$small-space;
+
+    &.disabled {
+      color: var(--color-weak-text);
+    }
+
+    &.glyph-single-check {
+      color: var(
+        --ix-menu-item-icon-check--color,
+        #{sys.$si-sys-text-secondary}
+      );
+    }
+  }
+}

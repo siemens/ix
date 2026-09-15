@@ -18,6 +18,7 @@ import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
+import AgGridStriped from './preview-examples/aggrid-striped.vue';
 import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
@@ -64,6 +65,7 @@ import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow.vue';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
@@ -272,6 +274,7 @@ const routes: IxPreviewRoutes = {
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
+  '/preview/aggrid-striped': AgGridStriped,
   '/preview/application': Application,
   '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
@@ -323,6 +326,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,

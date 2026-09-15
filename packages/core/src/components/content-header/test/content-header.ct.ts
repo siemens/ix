@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -10,23 +10,73 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(
-    `<ix-content-header header-title="Content title"></ix-content-header>`
-  );
+  await mount(`
+    <ix-content-header
+      header-title="Production line overview"
+      header-subtitle="Plant 1"
+    >
+      <ix-pill slot="header">Online</ix-pill>
+      <ix-button variant="tertiary">Edit</ix-button>
+    </ix-content-header>
+  `);
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
 });
 
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(
-    `<ix-content-header header-title="Content title"></ix-content-header>`
-  );
+  await mount(`
+    <ix-content-header
+      header-title="Content title"
+      header-subtitle="Subtitle"
+    ></ix-content-header>
+  `);
 
-  const element = page.locator('ix-content-header');
-  await expect(element).toHaveClass(/\bhydrated\b/);
-  await expect(element).toBeVisible();
+  const header = page.locator('ix-content-header');
+  await expect(header).toHaveClass(/\bhydrated\b/);
+  await expect(header).toHaveAttribute('text-overflow', 'wrap');
+  await expect(header).toHaveJSProperty('textOverflow', 'wrap');
+  await expect(page.getByText('Content title', { exact: true })).toBeVisible();
+  await expect(page.getByText('Subtitle', { exact: true })).toBeVisible();
 });
+
+regressionTest(
+  'updates overflow behavior when textOverflow changes at runtime',
+  async ({ mount, page }) => {
+    const title = 'A title that switches between wrapping and truncation';
+
+    await mount(`
+      <ix-content-header
+        style="width: 14rem"
+        header-title="${title}"
+      ></ix-content-header>
+    `);
+
+    const header = page.locator('ix-content-header');
+    await expect(header).toHaveClass(/\bhydrated\b/);
+    const titleText = header.getByText(title, { exact: true });
+    const getHeight = () =>
+      titleText.evaluate((element) => element.getBoundingClientRect().height);
+
+    const wrappedHeight = await getHeight();
+
+    await header.evaluate((element: HTMLIxContentHeaderElement) => {
+      element.textOverflow = 'ellipsis';
+    });
+
+    await expect(header).toHaveAttribute('text-overflow', 'ellipsis');
+    await expect(titleText).not.toHaveAttribute('title');
+    await expect.poll(getHeight).toBeLessThan(wrappedHeight);
+
+    await header.evaluate((element: HTMLIxContentHeaderElement) => {
+      element.textOverflow = 'wrap';
+    });
+
+    await expect(header).toHaveAttribute('text-overflow', 'wrap');
+    await expect(titleText).not.toHaveAttribute('title');
+    await expect.poll(getHeight).toBe(wrappedHeight);
+  }
+);
 
 const variants = [
   { variant: '', expected: 'primary', hasSecondaryClass: false },
@@ -54,6 +104,7 @@ for (const { variant, expected, hasSecondaryClass } of variants) {
       const titleElement = page
         .locator('ix-content-header')
         .locator('h2.header-title');
+
       if (hasSecondaryClass) {
         await expect(titleElement).toHaveClass(/\bsecondary\b/);
       } else {

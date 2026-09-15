@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-group-header--border-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-group-header--border-radius--focus: var(--theme-default-border-radius);
+  --ix-group-expand-icon--color: #{sys.$si-sys-text-primary};
+  --ix-group-header-selection-indicator--background: rgba(0, 0, 0, 0);
+  --ix-group--border-radius: var(--theme-default-border-radius);
+  --ix-group-header--color: #{sys.$si-sys-text-primary};
+  --ix-group-item--background: #{sys.$si-sys-background-1};
+  --ix-group-item--background--active: #{sys.$si-sys-background-selected};
+  --ix-group-item--background--hover: #{sys.$si-sys-background-hover};
+  --ix-group-item--background--selected: #{sys.$si-sys-background-selected};
+  --ix-group-item--border-color: rgba(0, 0, 0, 0);
+  --ix-group-item-indicator--background--selected: #{sys.$si-sys-background-accent-hover};
+  --ix-group-subheader--color: #{sys.$si-sys-text-primary};
+}

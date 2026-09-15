@@ -349,7 +349,7 @@ export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardCo
 export type IxCardListEvents = {
     onCollapseChanged: EventName<IxCardListCustomEvent<boolean>>,
     onShowAllClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>,
-    onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>
+    onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>
 };
 
 export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents, Components.IxCardList> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents, Components.IxCardList>({
@@ -590,6 +590,7 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
         variant: 'variant',
         headerTitle: 'header-title',
         headerSubtitle: 'header-subtitle',
+        textOverflow: 'text-overflow',
         hasBackButton: 'has-back-button'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,

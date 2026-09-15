@@ -23,8 +23,8 @@ LICENSE file in the root directory of this source tree.
       }
 
       h2 {
-        font: var(--theme-font-3);
-        color: var(--theme-color-std-text);
+        font: var(--si-sys-typography-h3);
+        color: var(--si-sys-text-primary);
         margin: 0 0 0.75rem;
       }
 
@@ -48,12 +48,12 @@ LICENSE file in the root directory of this source tree.
 
       .variant-grid .header,
       .variant-grid .row-label {
-        font: var(--theme-font-default);
-        color: var(--theme-color-soft-text);
+        font: var(--si-sys-typography-body);
+        color: var(--si-sys-text-secondary);
       }
 
       .align-host {
-        outline: 1px dashed var(--theme-color-soft-bdr);
+        outline: 1px dashed var(--si-sys-border-3);
       }
     </style>
     <script type="module">
@@ -73,47 +73,166 @@ LICENSE file in the root directory of this source tree.
         <span class="header">Border</span>
 
         <span class="row-label">Primary</span>
-        <ix-badge class="align-host" type="dot" variant="primary" aria-label="Primary"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="primary" outline aria-label="Primary outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="primary" border aria-label="Primary border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="primary"
+          aria-label="Primary"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="primary"
+          outline
+          aria-label="Primary outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="primary"
+          border
+          aria-label="Primary border"
+        ></ix-badge>
 
         <span class="row-label">Alarm</span>
-        <ix-badge class="align-host" type="dot" variant="alarm" aria-label="Alarm"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="alarm" outline aria-label="Alarm outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="alarm" border aria-label="Alarm border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="alarm"
+          aria-label="Alarm"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="alarm"
+          outline
+          aria-label="Alarm outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="alarm"
+          border
+          aria-label="Alarm border"
+        ></ix-badge>
 
         <span class="row-label">Critical</span>
-        <ix-badge class="align-host" type="dot" variant="critical" aria-label="Critical"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="critical" outline aria-label="Critical outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="critical" border aria-label="Critical border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="critical"
+          aria-label="Critical"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="critical"
+          outline
+          aria-label="Critical outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="critical"
+          border
+          aria-label="Critical border"
+        ></ix-badge>
 
         <span class="row-label">Warning</span>
-        <ix-badge class="align-host" type="dot" variant="warning" aria-label="Warning"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="warning" outline aria-label="Warning outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="warning" border aria-label="Warning border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="warning"
+          aria-label="Warning"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="warning"
+          outline
+          aria-label="Warning outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="warning"
+          border
+          aria-label="Warning border"
+        ></ix-badge>
 
         <span class="row-label">Info</span>
-        <ix-badge class="align-host" type="dot" variant="info" aria-label="Info"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="info" outline aria-label="Info outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="info" border aria-label="Info border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="info"
+          aria-label="Info"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="info"
+          outline
+          aria-label="Info outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="info"
+          border
+          aria-label="Info border"
+        ></ix-badge>
 
         <span class="row-label">Success</span>
-        <ix-badge class="align-host" type="dot" variant="success" aria-label="Success"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="success" outline aria-label="Success outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="success" border aria-label="Success border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="success"
+          aria-label="Success"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="success"
+          outline
+          aria-label="Success outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="success"
+          border
+          aria-label="Success border"
+        ></ix-badge>
 
         <span class="row-label">Neutral</span>
-        <ix-badge class="align-host" type="dot" variant="neutral" aria-label="Neutral"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="neutral" outline aria-label="Neutral outline"></ix-badge>
-        <ix-badge class="align-host" type="dot" variant="neutral" border aria-label="Neutral border"></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="neutral"
+          aria-label="Neutral"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="neutral"
+          outline
+          aria-label="Neutral outline"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="dot"
+          variant="neutral"
+          border
+          aria-label="Neutral border"
+        ></ix-badge>
 
         <span class="row-label">Custom</span>
         <ix-badge
           class="align-host"
           type="dot"
           variant="custom"
-          background="var(--theme-chart-11)"
-          badge-color="var(--theme-color-inv-std-text)"
+          background="var(--si-sys-data-categorical-9)"
+          badge-color="var(--si-sys-text-inverse)"
           aria-label="Custom"
         ></ix-badge>
         <ix-badge
@@ -121,8 +240,8 @@ LICENSE file in the root directory of this source tree.
           type="dot"
           variant="custom"
           outline
-          background="var(--theme-chart-11)"
-          badge-color="var(--theme-chip-outline--color)"
+          background="var(--si-sys-data-categorical-9)"
+          badge-color="var(--si-sys-text-primary)"
           aria-label="Custom outline"
         ></ix-badge>
         <ix-badge
@@ -130,8 +249,8 @@ LICENSE file in the root directory of this source tree.
           type="dot"
           variant="custom"
           border
-          background="var(--theme-chart-11)"
-          badge-color="var(--theme-color-inv-std-text)"
+          background="var(--si-sys-data-categorical-9)"
+          badge-color="var(--si-sys-text-inverse)"
           aria-label="Custom border"
         ></ix-badge>
       </div>

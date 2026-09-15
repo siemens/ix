@@ -63,14 +63,14 @@ regressionTest('renders', async ({ mount, page }) => {
   const g1Dropdown = g1.locator('ix-dropdown');
   const g2Dropdown = g2.locator('ix-dropdown');
 
-  await sb1.locator('ix-icon-button').first().click();
+  await sb1.locator('ix-dropdown-button').click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
     0
   );
 
-  await sb2.locator('ix-icon-button').first().click();
+  await sb2.locator('ix-dropdown-button').click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
@@ -115,6 +115,27 @@ regressionTest('trigger toggles', async ({ mount, page }) => {
   await expect(after).not.toHaveClass(/show/);
   await expect(dropdown).not.toBeVisible();
 });
+
+regressionTest(
+  'activation key does not close mouse-opened dropdown without active item',
+  async ({ mount, page }) => {
+    await mount(`<ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger" trigger-toggles="true">
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+
+    const trigger = page.locator('#trigger');
+    const dropdown = page.locator('.dropdown-menu');
+
+    await trigger.click();
+    await expect(dropdown).toBeVisible();
+
+    await trigger.press(' ');
+
+    await expect(dropdown).toBeVisible();
+  }
+);
 
 regressionTest.describe('Close behavior', () => {
   function mountDropdown(
@@ -820,12 +841,13 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
     const dropdownRect = await dropdown.boundingBox();
     const triggerRect = await trigger.boundingBox();
 
-    expect(dropdownRect).toBeTruthy();
-    expect(triggerRect).toBeTruthy();
+    if (!dropdownRect || !triggerRect) {
+      throw new Error('Expected dropdown and trigger bounding boxes');
+    }
 
-    expect(Math.round(dropdownRect!.x)).toBe(Math.round(triggerRect!.x));
-    expect(Math.round(dropdownRect!.y)).toBe(
-      Math.round(triggerRect!.y + triggerRect!.height)
+    expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
+    expect(Math.round(dropdownRect.y)).toBe(
+      Math.round(triggerRect.y + triggerRect.height)
     );
   }).toPass({ timeout: 2000 });
 });
@@ -996,8 +1018,12 @@ regressionTest.describe('dropdown transition visibility', () => {
     visibleWidth: number;
   }> {
     return page.evaluate(() => {
-      const container = document.getElementById('transform-container')!;
-      const trigger = document.getElementById('transform-trigger')!;
+      const container = document.getElementById('transform-container');
+      const trigger = document.getElementById('transform-trigger');
+
+      if (!container || !trigger) {
+        throw new Error('Expected transform container and trigger');
+      }
 
       const containerRect = container.getBoundingClientRect();
       const triggerRect = trigger.getBoundingClientRect();
@@ -1115,34 +1141,42 @@ regressionTest.describe('dropdown transition visibility', () => {
   `);
 
     await page.evaluate(() => {
-      const transformFrame = document.getElementById('transform-container')!;
-      const transformTrigger = document.getElementById('transform-trigger')!;
+      const transformFrame = document.getElementById('transform-container');
+      const transformTrigger = document.getElementById('transform-trigger');
       const manualDropdown = document.getElementById(
         'transform-dropdown'
-      )! as HTMLIxDropdownElement;
+      ) as HTMLIxDropdownElement | null;
+
+      if (!transformFrame || !transformTrigger || !manualDropdown) {
+        throw new Error('Expected transform dropdown test elements');
+      }
+
+      const frame = transformFrame;
+      const trigger = transformTrigger;
+      const dropdown = manualDropdown;
 
       function scrollTriggerIntoView() {
-        transformTrigger.scrollIntoView({
+        trigger.scrollIntoView({
           block: 'center',
           inline: 'center',
         });
       }
 
       function syncManualDropdown() {
-        if (!manualDropdown.show) {
+        if (!dropdown.show) {
           return;
         }
 
-        const triggerRect = transformTrigger.getBoundingClientRect();
+        const triggerRect = trigger.getBoundingClientRect();
         const x = Math.round(triggerRect.left);
         const y = Math.round(triggerRect.bottom + 8);
 
-        manualDropdown.style.top = '0';
-        manualDropdown.style.left = '0';
-        manualDropdown.style.transform = `translate(${x}px, ${y}px)`;
+        dropdown.style.top = '0';
+        dropdown.style.left = '0';
+        dropdown.style.transform = `translate(${x}px, ${y}px)`;
       }
 
-      transformFrame.addEventListener('scroll', syncManualDropdown, {
+      frame.addEventListener('scroll', syncManualDropdown, {
         passive: true,
       });
 

@@ -17,7 +17,7 @@ export default () => {
     <IxEventList itemHeight={60}>
       {items.map((item) => (
         <div key={item}>
-          <IxEventListItem itemColor="color-primary">
+          <IxEventListItem itemColor="--si-sys-background-accent">
             Text {item}
           </IxEventListItem>
         </div>
