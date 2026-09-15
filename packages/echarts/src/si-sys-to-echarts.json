@@ -2,6 +2,7 @@
   "axisCommon": {
     "si/sys/text/primary": {
       "eChartsVariable": [
+        "axisLabel.color",
         "categoryAxis.axisLabel.color",
         "logAxis.axisLabel.color",
         "timeAxis.axisLabel.color",
@@ -14,8 +15,10 @@
         "Classic Light": "#000609"
       }
     },
-    "si/sys/border/1": {
+    "si/sys/border/2": {
       "eChartsVariable": [
+        "axisLine.lineStyle.color",
+        "axisTick.lineStyle.color",
         "categoryAxis.axisLine.lineStyle.color",
         "categoryAxis.axisTick.lineStyle.color",
         "categoryAxis.splitLine.lineStyle.color",
@@ -30,14 +33,26 @@
         "valueAxis.splitLine.lineStyle.color"
       ],
       "hexValuesByMode": {
-        "Siemens Brand Dark": "#FFFFFF",
-        "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Siemens Brand Dark": "#9999A9",
+        "Siemens Brand Light": "#66667E",
+        "Classic Dark": "#919CA1",
+        "Classic Light": "#5B6A71"
+      }
+    },
+    "si/sys/border/4": {
+      "eChartsVariable": [
+        "splitLine.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#4C4C68",
+        "Siemens Brand Light": "#E5E5E9",
+        "Classic Dark": "#34454D",
+        "Classic Light": "#E5E8E9"
       }
     },
     "transparent": {
       "eChartsVariable": [
+        "splitArea.areaStyle.color[0]",
         "categoryAxis.splitArea.areaStyle.color[0]",
         "logAxis.splitArea.areaStyle.color[0]",
         "timeAxis.splitArea.areaStyle.color[0]",
@@ -50,8 +65,9 @@
         "Classic Light": "transparent"
       }
     },
-    "si/sys/background/inverse": {
+    "si/sys/background/1": {
       "eChartsVariable": [
+        "splitArea.areaStyle.color[1]",
         "categoryAxis.splitArea.areaStyle.color[1]",
         "logAxis.splitArea.areaStyle.color[1]",
         "timeAxis.splitArea.areaStyle.color[1]",

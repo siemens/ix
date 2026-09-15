@@ -8,7 +8,7 @@
  */
 
 const textStyleDefault = {
-  color: '#FFFFFF' /* si/sys/text/primary */,
+  color: '#72848C',
   fontFamily: 'Arial, Helvetica, sans-serif',
 };
 
@@ -36,29 +36,29 @@ const axisCommon = {
   axisLine: {
     show: true,
     lineStyle: {
-      color: 'rgba(255,255,255,0.3)',
+      color: '#919CA1' /* si/sys/border/2 */,
     },
   },
   axisTick: {
     show: true,
     lineStyle: {
-      color: 'rgba(255,255,255,0.35)',
+      color: '#919CA1' /* si/sys/border/2 */,
     },
   },
   axisLabel: {
     show: true,
-    color: 'rgba(255,255,255,0.85)',
+    color: '#FFFFFF' /* si/sys/text/primary */,
   },
   splitLine: {
     show: true,
     lineStyle: {
-      color: ['rgba(255,255,255,0.1)'],
+      color: ['#34454D' /* si/sys/border/4 */],
     },
   },
   splitArea: {
     show: false,
     areaStyle: {
-      color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+      color: ['transparent', '#1A272D'],
     },
   },
 };
@@ -73,7 +73,7 @@ export default {
       textStyle: textStyleDefault,
       subtextStyle: {
         ...textStyleDefault,
-        color: '#AEB5B8' /* si/sys/text/secondary */,
+        color: '#FFFFFF' /* si/sys/background/1 */,
       },
     },
     line: {
@@ -99,7 +99,7 @@ export default {
       smooth: false,
       splitArea: {
         areaStyle: {
-          color: ['transparent', '#1A272D' /* si/sys/background/1 */],
+          color: ['transparent', '#1A272D'],
         },
       },
       axisName: {
@@ -116,23 +116,23 @@ export default {
         },
       },
       label: {
-        textBorderColor: '#000609' /* unmapped radar label border */,
+        textBorderColor: '#000609',
         textBorderWidth: 1,
       },
     },
     bar: {
       itemStyle: {
         barBorderWidth: 0,
-        barBorderColor: '#72848C',
+        barBorderColor: '#72848C' /* si/sys/border/3 */,
       },
     },
     pie: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#72848C',
+        borderColor: '#72848C' /* si/sys/border/3 */,
       },
       label: {
-        color: '#FFFFFF',
+        color: '#FFFFFF' /* si/sys/text/primary */,
         textBorderColor: '#000609',
         textBorderWidth: 1,
       },
@@ -140,7 +140,7 @@ export default {
     scatter: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#72848C',
+        borderColor: '#72848C' /* si/sys/border/3 */,
       },
     },
     boxplot: {
@@ -150,32 +150,32 @@ export default {
         color: '#00BDDA' /* si/sys/background/accent */,
       },
       label: {
-        color: '#FFFFFF',
+        color: '#FFFFFF' /* si/sys/text/primary */,
         textBorderWidth: 0,
       },
     },
     parallel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#72848C',
+        borderColor: '#72848C' /* si/sys/border/3 */,
       },
     },
     sankey: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#72848C',
+        borderColor: '#72848C' /* si/sys/border/3 */,
       },
     },
     funnel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#72848C',
+        borderColor: '#72848C' /* si/sys/border/3 */,
       },
     },
     gauge: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#72848C',
+        borderColor: '#72848C' /* si/sys/border/3 */,
       },
       axisLabel: {
         color: '#FFFFFF' /* si/sys/text/primary */,
@@ -231,54 +231,54 @@ export default {
       textStyle: textStyleDefault,
     },
     tooltip: {
-      backgroundColor: '#243137',
-      borderColor: '#243137',
+      backgroundColor: '#243137' /* si/sys/background/3 */,
+      borderColor: '#243137' /* si/sys/background/3 */,
       textStyle: {
-        color: '#FFFFFF'
+        color: '#FFFFFF' /* si/sys/text/primary */
       },
       axisPointer: {
         lineStyle: {
-          color: '#FFFFFF',
+          color: '#FFFFFF' /* si/sys/background/inverse */,
           width: '1',
         },
         crossStyle: {
-          color: '#FFFFFF',
+          color: '#FFFFFF' /* si/sys/background/inverse */,
           width: '1',
         },
       },
     },
     timeline: {
       lineStyle: {
-        color: 'transparent',
+        color: 'transparent' /* transparent */,
         width: '1',
       },
       itemStyle: {
-        color: '#01D65A',
+        color: '#01D65A' /* si/sys/data/categorical/3 */,
         borderWidth: '1',
       },
       controlStyle: {
-        color: '#00C9E4',
-        borderColor: '#00C9E4',
+        color: '#00C9E4' /* si/sys/text/accent */,
+        borderColor: '#00C9E4' /* si/sys/border/accent */,
         borderWidth: '1',
       },
       checkpointStyle: {
-        color: '#00BDDA',
-        borderColor: '#000609',
+        color: '#00BDDA' /* si/sys/data/categorical/1 */,
+        borderColor: '#000609' /* si/sys/text/on-accent */,
       },
       label: {
-        color: '#FFFFFF',
+        color: '#FFFFFF' /* si/sys/text/primary */,
       },
       emphasis: {
         itemStyle: {
-          color: '#01D65A',
+          color: '#01D65A' /* si/sys/data/categorical/3 */,
         },
         controlStyle: {
-          color: '#00C9E4',
-          borderColor: '#00C9E4',
+          color: '#00C9E4' /* si/sys/text/accent */,
+          borderColor: '#00C9E4' /* si/sys/border/accent */,
           borderWidth: '1',
         },
         label: {
-          color: '#FFFFFF',
+          color: '#FFFFFF' /* si/sys/text/primary */,
         },
       },
     },
@@ -290,26 +290,26 @@ export default {
       textStyle: {},
     },
     nameTextStyle: {
-      color: 'rgba(245, 252, 255, .93)',
+      color: '#FFFFFF' /* si/sys/text/primary */,
     },
     markPoint: {
       label: {
         color: '#FFFFFF' /* si/sys/text/primary */,
-        textBorderColor: '#000609' /* transparent */,
+        textBorderColor: '#000609' /* si/sys/text/on-accent */,
         textBorderWidth: 1,
       },
     },
     markLine: {
       label: {
-        color: '#FFFFFF',
-        textBorderColor: '#000609',
+        color: '#FFFFFF' /* si/sys/text/primary */,
+        textBorderColor: '#000609' /* si/sys/text/on-accent */,
         textBorderWidth: 1,
       },
     },
     markArea: {
       label: {
-        color: '#FFFFFF',
-        textBorderColor: '#000609',
+        color: '#FFFFFF' /* si/sys/text/primary */,
+        textBorderColor: '#000609' /* si/sys/text/on-accent */,
         textBorderWidth: 1,
       },
     },

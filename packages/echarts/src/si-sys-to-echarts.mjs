@@ -59,7 +59,7 @@ function updatePalette(source, colorsMapping, mode) {
   let entryIndex = 0;
   const palette = source.slice(paletteStart, paletteEnd);
   const updatedPalette = palette.replace(
-    /'#[0-9A-Fa-f]{6}'(?:\s*\/\*[^*]+?\*\/)+/g,
+    /'#[0-9A-Fa-f]{6}'(?:\s*\/\*[^*]+?\*\/)?/g,
     () => {
       const entry = paletteEntries[entryIndex++];
       return entry ? `'${entry.hexValue}' /* ${entry.tokenName} */` : '';

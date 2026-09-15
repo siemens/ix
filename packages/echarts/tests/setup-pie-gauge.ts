@@ -75,8 +75,6 @@ const option: EChartsOption = {
       center: ['58%', '52%'],
       itemStyle: {
         borderRadius: 6,
-        borderColor: '#ffffff',
-        borderWidth: 2,
       },
       label: {
         formatter: '{b}: {d}%',
