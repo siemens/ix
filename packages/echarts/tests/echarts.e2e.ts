@@ -40,4 +40,16 @@ regressionTest.describe('echarts', () => {
 
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('pie gauge', async ({ page }) => {
+    await page.goto('pie-gauge.html');
+
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('token coverage', async ({ page }) => {
+    await page.goto('token-coverage.html');
+
+    await expect(page).toHaveScreenshot();
+  });
 });
