@@ -200,16 +200,15 @@ regressionTest(
 
     const items = page.locator('ix-list-item');
     const counters = await items.first().evaluateHandle((firstItem) => {
-      const elements = [firstItem, firstItem.nextElementSibling!];
+      const elements = [firstItem, firstItem.nextElementSibling].filter(
+        (element): element is Element => element !== null
+      );
       const counts = {
         itemClicks: [0, 0],
         childClicks: [0, 0],
       };
       elements.forEach((element, index) => {
-        element.addEventListener(
-          'itemClick',
-          () => counts.itemClicks[index]++
-        );
+        element.addEventListener('itemClick', () => counts.itemClicks[index]++);
         element
           .querySelector('[slot="action"]')
           ?.addEventListener('click', () => counts.childClicks[index]++);
