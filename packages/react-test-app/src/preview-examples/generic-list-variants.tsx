@@ -19,11 +19,7 @@ export default function GenericListVariants() {
       <IxList divider itemGap="none" variant="ghost">
         <IxListItem icon="project" label="Item 1"></IxListItem>
         <IxListItem icon="project" label="Item 2"></IxListItem>
-        <IxListItem
-          icon="project"
-          label="Item 3"
-          divider={false}
-        ></IxListItem>
+        <IxListItem icon="project" label="Item 3" divider={false}></IxListItem>
       </IxList>
       <IxList variant="outline" itemGap="sm">
         <IxListItem icon="project" label="Item 1"></IxListItem>

@@ -20,11 +20,7 @@ addIcons({ iconProject });
     <IxList divider item-gap="none" variant="ghost">
       <IxListItem icon="project" label="Item 1"></IxListItem>
       <IxListItem icon="project" label="Item 2"></IxListItem>
-      <IxListItem
-        icon="project"
-        label="Item 3"
-        divider="false"
-      ></IxListItem>
+      <IxListItem icon="project" label="Item 3" divider="false"></IxListItem>
     </IxList>
     <IxList variant="outline" item-gap="sm">
       <IxListItem icon="project" label="Item 1"></IxListItem>
