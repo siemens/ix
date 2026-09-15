@@ -57,8 +57,8 @@
     --theme-border-width-default
   );
   --ix-card-accordion-neutral-accordion--background: #{sys.$si-sys-background-neutral};
-  --ix-card-accordion-neutral-accordion--background--active: #{sys.$si-sys-background-selected};
-  --ix-card-accordion-neutral-accordion--background--hover: #{sys.$si-sys-background-hover};
+  --ix-card-accordion-neutral-accordion--background--active: #{sys.$si-sys-background-neutral-active};
+  --ix-card-accordion-neutral-accordion--background--hover: #{sys.$si-sys-background-neutral-hover};
   --ix-card-accordion-neutral-accordion-footer--background: #{sys.$si-sys-background-1};
   --ix-card-accordion-neutral-accordion-frame--background: #{sys.$si-sys-background-1};
   --ix-card-accordion-neutral-accordion-frame--border-color: #{sys.$si-sys-border-3};

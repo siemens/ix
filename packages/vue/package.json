@@ -36,7 +36,7 @@
     "@siemens/ix": "workspace:*",
     "@testing-library/vue": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
-    "@typescript-eslint/parser": "^8.56.1",
+    "@typescript-eslint/parser": "^8.70.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitest/browser": "^3.2.4",
     "eslint": "catalog:",
