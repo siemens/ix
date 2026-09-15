@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export type ListItemGap = 0 | 4 | 8 | 12;
+export type ListItemGap = 'none' | 'sm' | 'md' | 'lg';
 export type ListDragBehavior = 'dynamic' | 'separator';
 
 export type ListItemOrderChangeEvent = {

@@ -67,7 +67,7 @@ type Story = StoryObj<Element>;
 export const Default: Story = {
   args: {
     divider: true,
-    itemGap: 0,
+    itemGap: 'none',
     variant: 'ghost',
   },
 };
@@ -80,7 +80,7 @@ export const Variants: Story = {
       createItem('Filled item', { variant: 'filled' }),
     ]),
   args: {
-    itemGap: 8,
+    itemGap: 'md',
   },
 };
 
@@ -92,7 +92,7 @@ export const Selection: Story = {
       createItem('Production line 2', { checkbox: true }),
     ]),
   args: {
-    itemGap: 4,
+    itemGap: 'sm',
   },
 };
 
@@ -140,7 +140,7 @@ export const Actions: Story = {
   args: {
     checkbox: true,
     draggable: true,
-    itemGap: '8',
+    itemGap: 'md',
     variant: 'filled',
   },
 };
@@ -149,7 +149,7 @@ export const Draggable: Story = {
   args: {
     dragBehavior: 'dynamic',
     draggable: true,
-    itemGap: 4,
+    itemGap: 'sm',
   },
 };
 
@@ -171,7 +171,7 @@ export const Separator: Story = {
     ]);
   },
   args: {
-    itemGap: 8,
+    itemGap: 'md',
   },
 };
 
@@ -199,6 +199,6 @@ export const ActionOnHover: Story = {
     ]);
   },
   args: {
-    itemGap: 4,
+    itemGap: 'sm',
   },
 };

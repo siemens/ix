@@ -777,7 +777,7 @@ regressionTest(
 
 regressionTest('applies item gap and dividers', async ({ mount, page }) => {
   await mount(`
-    <ix-list item-gap="8" variant="ghost" divider>
+    <ix-list item-gap="md" variant="ghost" divider>
       <ix-list-item label="Project Alpha"></ix-list-item>
       <ix-list-item label="Project Beta" divider="false"></ix-list-item>
       <ix-list-item label="Project Gamma" variant="filled"></ix-list-item>
@@ -812,7 +812,7 @@ regressionTest(
   'renders standalone separators and applies list gap around them',
   async ({ mount, page }) => {
     await mount(`
-      <ix-list item-gap="8" aria-label="Projects">
+      <ix-list item-gap="md" aria-label="Projects">
         <ix-list-item label="Project Alpha"></ix-list-item>
         <ix-list-item-separator></ix-list-item-separator>
         <ix-list-item label="Project Beta"></ix-list-item>

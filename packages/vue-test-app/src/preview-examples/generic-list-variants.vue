@@ -17,7 +17,7 @@ addIcons({ iconProject });
 
 <template>
   <div style="display: flex; flex-direction: column; gap: 24px">
-    <IxList divider item-gap="0" variant="ghost">
+    <IxList divider item-gap="none" variant="ghost">
       <IxListItem icon="project" label="Item 1"></IxListItem>
       <IxListItem icon="project" label="Item 2"></IxListItem>
       <IxListItem
@@ -26,7 +26,7 @@ addIcons({ iconProject });
         divider="false"
       ></IxListItem>
     </IxList>
-    <IxList variant="outline" item-gap="4">
+    <IxList variant="outline" item-gap="sm">
       <IxListItem icon="project" label="Item 1"></IxListItem>
       <IxListItem icon="project" label="Item 2"></IxListItem>
       <IxListItem icon="project" label="Item 3"></IxListItem>

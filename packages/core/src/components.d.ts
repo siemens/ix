@@ -2693,9 +2693,9 @@ export namespace Components {
          */
         "draggable": boolean;
         /**
-          * Space in pixels between direct list items.
+          * Space between direct list items.
           * @since 6.0.0
-          * @default 12
+          * @default 'sm'
          */
         "itemGap": ListItemGap;
         /**
@@ -9951,9 +9951,9 @@ declare namespace LocalJSX {
          */
         "draggable"?: boolean;
         /**
-          * Space in pixels between direct list items.
+          * Space between direct list items.
           * @since 6.0.0
-          * @default 12
+          * @default 'sm'
          */
         "itemGap"?: ListItemGap;
         /**

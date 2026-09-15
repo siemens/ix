@@ -16,7 +16,7 @@ export default function GenericListVariants() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <IxList divider itemGap={0} variant="ghost">
+      <IxList divider itemGap="none" variant="ghost">
         <IxListItem icon="project" label="Item 1"></IxListItem>
         <IxListItem icon="project" label="Item 2"></IxListItem>
         <IxListItem
@@ -25,7 +25,7 @@ export default function GenericListVariants() {
           divider={false}
         ></IxListItem>
       </IxList>
-      <IxList variant="outline" itemGap={4}>
+      <IxList variant="outline" itemGap="sm">
         <IxListItem icon="project" label="Item 1"></IxListItem>
         <IxListItem icon="project" label="Item 2"></IxListItem>
         <IxListItem icon="project" label="Item 3"></IxListItem>

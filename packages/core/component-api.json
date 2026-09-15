@@ -5895,10 +5895,10 @@
         {
           "name": "itemGap",
           "attribute": "item-gap",
-          "type": "0 | 12 | 4 | 8",
+          "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "12",
+          "default": "'sm'",
           "optional": false,
           "required": false,
           "deprecated": false
