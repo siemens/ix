@@ -194,7 +194,7 @@ export default {
     },
     tooltip: {
       textStyle: {
-        color: '#000028',
+        color: '#000028'
       },
       backgroundColor: '#FFFFFF',
       borderColor: '#FFFFFF',

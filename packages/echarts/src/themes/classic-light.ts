@@ -196,8 +196,7 @@ export default {
       backgroundColor: '#FFFFFF',
       borderColor: '#FFFFFF',
       textStyle: {
-        color: '#000609',
-        fontFamily: 'Arial, Helvetica, sans-serif',
+        color: '#000609'
       },
       axisPointer: {
         lineStyle: {
