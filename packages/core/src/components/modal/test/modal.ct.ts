@@ -636,7 +636,33 @@ regressionTest('button receives focus on load', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'modal-header autofocus delegates focus to close button',
+  'ix-input autofocus receives focus on load',
+  async ({ mount, page }) => {
+    await mount('');
+    await setupModalEnvironment(page);
+
+    await page.evaluate(() => {
+      const elm = document.createElement('ix-modal');
+      elm.innerHTML = `
+      <ix-modal-header>Title</ix-modal-header>
+      <ix-modal-content>
+        <ix-input autofocus label="Name"></ix-input>
+      </ix-modal-content>
+    `;
+      globalThis.showModal({
+        content: elm,
+        animation: false,
+      });
+    });
+
+    await waitForModalDialogOpen(page);
+    await expect(
+      page.locator('ix-input').locator('input')
+    ).toBeFocused({ timeout: 5000 });
+  }
+);
+
+
   async ({ mount, page }) => {
     await mount('');
     await setupModalEnvironment(page);
