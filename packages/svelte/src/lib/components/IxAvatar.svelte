@@ -37,7 +37,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxAvatar, HTMLIxAvatarElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-avatar bind:this={element}>{@render children?.()}</ix-avatar>
+<ix-avatar bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-avatar>

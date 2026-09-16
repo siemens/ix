@@ -34,7 +34,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxLayoutGrid, HTMLIxLayoutGridElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-layout-grid bind:this={element}>{@render children?.()}</ix-layout-grid>
+<ix-layout-grid bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-layout-grid>

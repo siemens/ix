@@ -38,7 +38,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxTooltip, HTMLIxTooltipElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-tooltip bind:this={element}>{@render children?.()}</ix-tooltip>
+<ix-tooltip bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-tooltip>

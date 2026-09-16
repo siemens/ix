@@ -34,7 +34,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxPaneLayout, HTMLIxPaneLayoutElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-pane-layout bind:this={element}>{@render children?.()}</ix-pane-layout>
+<ix-pane-layout bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-pane-layout>

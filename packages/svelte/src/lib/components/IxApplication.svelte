@@ -36,7 +36,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxApplication, HTMLIxApplicationElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-application bind:this={element}>{@render children?.()}</ix-application>
+<ix-application bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-application>

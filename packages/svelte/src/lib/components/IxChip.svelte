@@ -44,7 +44,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxChip, HTMLIxChipElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-chip bind:this={element}>{@render children?.()}</ix-chip>
+<ix-chip bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-chip>

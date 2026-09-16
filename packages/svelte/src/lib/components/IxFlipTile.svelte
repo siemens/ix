@@ -38,7 +38,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxFlipTile, HTMLIxFlipTileElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-flip-tile bind:this={element}>{@render children?.()}</ix-flip-tile>
+<ix-flip-tile bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-flip-tile>

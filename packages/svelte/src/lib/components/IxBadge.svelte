@@ -46,7 +46,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxBadge, HTMLIxBadgeElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-badge bind:this={element}>{@render children?.()}</ix-badge>
+<ix-badge bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-badge>

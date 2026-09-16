@@ -42,7 +42,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxGroup, HTMLIxGroupElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-group bind:this={element}>{@render children?.()}</ix-group>
+<ix-group bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-group>

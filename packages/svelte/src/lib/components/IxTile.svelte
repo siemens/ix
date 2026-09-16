@@ -32,7 +32,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxTile, HTMLIxTileElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-tile bind:this={element}>{@render children?.()}</ix-tile>
+<ix-tile bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-tile>

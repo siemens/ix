@@ -40,7 +40,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxCheckboxGroup, HTMLIxCheckboxGroupElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-checkbox-group bind:this={element}>{@render children?.()}</ix-checkbox-group>
+<ix-checkbox-group bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-checkbox-group>

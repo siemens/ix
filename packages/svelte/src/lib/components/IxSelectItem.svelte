@@ -40,7 +40,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxSelectItem, HTMLIxSelectItemElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-select-item bind:this={element}>{@render children?.()}</ix-select-item>
+<ix-select-item bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-select-item>

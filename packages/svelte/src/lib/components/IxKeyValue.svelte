@@ -36,7 +36,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxKeyValue, HTMLIxKeyValueElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-key-value bind:this={element}>{@render children?.()}</ix-key-value>
+<ix-key-value bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-key-value>

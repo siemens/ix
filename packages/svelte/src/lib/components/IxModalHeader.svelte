@@ -38,7 +38,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxModalHeader, HTMLIxModalHeaderElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-modal-header bind:this={element}>{@render children?.()}</ix-modal-header>
+<ix-modal-header bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-modal-header>

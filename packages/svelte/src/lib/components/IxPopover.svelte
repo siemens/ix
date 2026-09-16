@@ -40,7 +40,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxPopover, HTMLIxPopoverElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-popover bind:this={element}>{@render children?.()}</ix-popover>
+<ix-popover bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-popover>

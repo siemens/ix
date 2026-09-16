@@ -46,7 +46,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxPagination, HTMLIxPaginationElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-pagination bind:this={element}>{@render children?.()}</ix-pagination>
+<ix-pagination bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-pagination>

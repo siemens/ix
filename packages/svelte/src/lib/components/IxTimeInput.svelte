@@ -69,7 +69,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxTimeInput, HTMLIxTimeInputElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-time-input bind:this={element}>{@render children?.()}</ix-time-input>
+<ix-time-input bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-time-input>

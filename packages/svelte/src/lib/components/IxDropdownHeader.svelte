@@ -32,7 +32,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxDropdownHeader, HTMLIxDropdownHeaderElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-dropdown-header bind:this={element}>{@render children?.()}</ix-dropdown-header>
+<ix-dropdown-header bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-dropdown-header>

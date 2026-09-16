@@ -44,7 +44,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxSplitButton, HTMLIxSplitButtonElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-split-button bind:this={element}>{@render children?.()}</ix-split-button>
+<ix-split-button bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-split-button>

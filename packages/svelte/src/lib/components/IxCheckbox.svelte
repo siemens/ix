@@ -43,7 +43,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxCheckbox, HTMLIxCheckboxElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS, {
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS, {
     prop: 'checked',
     event: 'checkedChange',
     get: () => checked,
@@ -51,4 +51,4 @@
   });
 </script>
 
-<ix-checkbox bind:this={element}>{@render children?.()}</ix-checkbox>
+<ix-checkbox bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-checkbox>

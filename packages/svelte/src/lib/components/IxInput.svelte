@@ -57,7 +57,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxInput, HTMLIxInputElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS, {
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS, {
     prop: 'value',
     event: 'valueChange',
     get: () => value,
@@ -65,4 +65,4 @@
   });
 </script>
 
-<ix-input bind:this={element}>{@render children?.()}</ix-input>
+<ix-input bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-input>

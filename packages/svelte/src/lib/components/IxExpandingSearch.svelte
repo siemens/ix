@@ -41,7 +41,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxExpandingSearch, HTMLIxExpandingSearchElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-expanding-search bind:this={element}>{@render children?.()}</ix-expanding-search>
+<ix-expanding-search bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-expanding-search>

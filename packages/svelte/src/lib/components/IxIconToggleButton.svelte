@@ -42,7 +42,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxIconToggleButton, HTMLIxIconToggleButtonElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-icon-toggle-button bind:this={element}>{@render children?.()}</ix-icon-toggle-button>
+<ix-icon-toggle-button bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-icon-toggle-button>

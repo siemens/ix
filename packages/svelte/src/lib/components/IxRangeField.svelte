@@ -33,7 +33,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxRangeField, HTMLIxRangeFieldElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-range-field bind:this={element}>{@render children?.()}</ix-range-field>
+<ix-range-field bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-range-field>

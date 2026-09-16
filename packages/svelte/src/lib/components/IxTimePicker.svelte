@@ -52,7 +52,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxTimePicker, HTMLIxTimePickerElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-time-picker bind:this={element}>{@render children?.()}</ix-time-picker>
+<ix-time-picker bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-time-picker>

@@ -42,7 +42,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxMenuAvatar, HTMLIxMenuAvatarElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-menu-avatar bind:this={element}>{@render children?.()}</ix-menu-avatar>
+<ix-menu-avatar bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-menu-avatar>

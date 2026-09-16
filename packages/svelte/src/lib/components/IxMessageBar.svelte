@@ -36,7 +36,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxMessageBar, HTMLIxMessageBarElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-message-bar bind:this={element}>{@render children?.()}</ix-message-bar>
+<ix-message-bar bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-message-bar>

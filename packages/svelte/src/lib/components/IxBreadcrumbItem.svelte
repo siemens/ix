@@ -44,7 +44,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxBreadcrumbItem, HTMLIxBreadcrumbItemElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-breadcrumb-item bind:this={element}>{@render children?.()}</ix-breadcrumb-item>
+<ix-breadcrumb-item bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-breadcrumb-item>

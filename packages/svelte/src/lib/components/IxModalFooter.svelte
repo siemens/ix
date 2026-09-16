@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxModalFooter, HTMLIxModalFooterElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-modal-footer bind:this={element}>{@render children?.()}</ix-modal-footer>
+<ix-modal-footer bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-modal-footer>

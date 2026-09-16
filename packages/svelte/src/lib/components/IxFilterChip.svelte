@@ -37,7 +37,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxFilterChip, HTMLIxFilterChipElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-filter-chip bind:this={element}>{@render children?.()}</ix-filter-chip>
+<ix-filter-chip bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-filter-chip>

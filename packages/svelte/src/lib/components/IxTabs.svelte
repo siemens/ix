@@ -41,7 +41,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxTabs, HTMLIxTabsElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-tabs bind:this={element}>{@render children?.()}</ix-tabs>
+<ix-tabs bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-tabs>

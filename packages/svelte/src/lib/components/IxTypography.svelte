@@ -35,7 +35,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxTypography, HTMLIxTypographyElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-typography bind:this={element}>{@render children?.()}</ix-typography>
+<ix-typography bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-typography>

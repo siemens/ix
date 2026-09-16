@@ -53,7 +53,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxChatInput, HTMLIxChatInputElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS, {
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS, {
     prop: 'value',
     event: 'valueChange',
     get: () => value,
@@ -61,4 +61,4 @@
   });
 </script>
 
-<ix-chat-input bind:this={element}>{@render children?.()}</ix-chat-input>
+<ix-chat-input bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-chat-input>

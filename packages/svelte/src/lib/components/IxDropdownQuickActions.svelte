@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxDropdownQuickActions, HTMLIxDropdownQuickActionsElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-dropdown-quick-actions bind:this={element}>{@render children?.()}</ix-dropdown-quick-actions>
+<ix-dropdown-quick-actions bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-dropdown-quick-actions>

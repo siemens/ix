@@ -37,7 +37,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxHelperText, HTMLIxHelperTextElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-helper-text bind:this={element}>{@render children?.()}</ix-helper-text>
+<ix-helper-text bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-helper-text>

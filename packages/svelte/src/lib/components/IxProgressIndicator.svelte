@@ -41,7 +41,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxProgressIndicator, HTMLIxProgressIndicatorElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-progress-indicator bind:this={element}>{@render children?.()}</ix-progress-indicator>
+<ix-progress-indicator bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-progress-indicator>

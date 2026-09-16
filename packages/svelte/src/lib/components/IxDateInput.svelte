@@ -64,7 +64,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxDateInput, HTMLIxDateInputElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS, {
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS, {
     prop: 'value',
     event: 'valueChange',
     get: () => value,
@@ -72,4 +72,4 @@
   });
 </script>
 
-<ix-date-input bind:this={element}>{@render children?.()}</ix-date-input>
+<ix-date-input bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-date-input>

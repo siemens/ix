@@ -60,7 +60,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxDropdown, HTMLIxDropdownElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-dropdown bind:this={element}>{@render children?.()}</ix-dropdown>
+<ix-dropdown bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-dropdown>

@@ -36,7 +36,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxCardAccordion, HTMLIxCardAccordionElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-card-accordion bind:this={element}>{@render children?.()}</ix-card-accordion>
+<ix-card-accordion bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-card-accordion>

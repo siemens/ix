@@ -35,7 +35,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxMenuSettingsItem, HTMLIxMenuSettingsItemElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-menu-settings-item bind:this={element}>{@render children?.()}</ix-menu-settings-item>
+<ix-menu-settings-item bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-menu-settings-item>

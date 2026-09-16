@@ -46,7 +46,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxCardList, HTMLIxCardListElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-card-list bind:this={element}>{@render children?.()}</ix-card-list>
+<ix-card-list bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-card-list>

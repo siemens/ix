@@ -38,7 +38,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxKpi, HTMLIxKpiElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-kpi bind:this={element}>{@render children?.()}</ix-kpi>
+<ix-kpi bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-kpi>

@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxGroupContextMenu, HTMLIxGroupContextMenuElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-group-context-menu bind:this={element}>{@render children?.()}</ix-group-context-menu>
+<ix-group-context-menu bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-group-context-menu>

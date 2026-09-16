@@ -38,7 +38,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxEventListItem, HTMLIxEventListItemElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-event-list-item bind:this={element}>{@render children?.()}</ix-event-list-item>
+<ix-event-list-item bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-event-list-item>

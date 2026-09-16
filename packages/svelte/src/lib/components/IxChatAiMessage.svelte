@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxChatAiMessage, HTMLIxChatAiMessageElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-chat-ai-message bind:this={element}>{@render children?.()}</ix-chat-ai-message>
+<ix-chat-ai-message bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-chat-ai-message>

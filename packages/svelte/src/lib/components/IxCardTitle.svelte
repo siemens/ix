@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxCardTitle, HTMLIxCardTitleElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-card-title bind:this={element}>{@render children?.()}</ix-card-title>
+<ix-card-title bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-card-title>

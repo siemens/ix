@@ -39,7 +39,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxActionCard, HTMLIxActionCardElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-action-card bind:this={element}>{@render children?.()}</ix-action-card>
+<ix-action-card bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-action-card>

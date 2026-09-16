@@ -35,7 +35,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxFieldLabel, HTMLIxFieldLabelElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-field-label bind:this={element}>{@render children?.()}</ix-field-label>
+<ix-field-label bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-field-label>

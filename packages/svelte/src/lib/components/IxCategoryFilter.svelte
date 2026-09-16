@@ -53,7 +53,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxCategoryFilter, HTMLIxCategoryFilterElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-category-filter bind:this={element}>{@render children?.()}</ix-category-filter>
+<ix-category-filter bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-category-filter>

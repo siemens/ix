@@ -34,7 +34,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxSpinner, HTMLIxSpinnerElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-spinner bind:this={element}>{@render children?.()}</ix-spinner>
+<ix-spinner bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-spinner>

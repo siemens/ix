@@ -32,7 +32,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxToastContainer, HTMLIxToastContainerElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-toast-container bind:this={element}>{@render children?.()}</ix-toast-container>
+<ix-toast-container bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-toast-container>

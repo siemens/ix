@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxModalContent, HTMLIxModalContentElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-modal-content bind:this={element}>{@render children?.()}</ix-modal-content>
+<ix-modal-content bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-modal-content>

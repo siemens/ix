@@ -53,7 +53,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxDatePicker, HTMLIxDatePickerElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-date-picker bind:this={element}>{@render children?.()}</ix-date-picker>
+<ix-date-picker bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-date-picker>

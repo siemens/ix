@@ -38,7 +38,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxBlind, HTMLIxBlindElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-blind bind:this={element}>{@render children?.()}</ix-blind>
+<ix-blind bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-blind>

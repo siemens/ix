@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxRow, HTMLIxRowElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-row bind:this={element}>{@render children?.()}</ix-row>
+<ix-row bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-row>

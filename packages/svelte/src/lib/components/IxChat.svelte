@@ -30,7 +30,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxChat, HTMLIxChatElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-chat bind:this={element}>{@render children?.()}</ix-chat>
+<ix-chat bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-chat>

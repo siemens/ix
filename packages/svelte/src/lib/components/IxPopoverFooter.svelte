@@ -32,7 +32,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxPopoverFooter, HTMLIxPopoverFooterElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-popover-footer bind:this={element}>{@render children?.()}</ix-popover-footer>
+<ix-popover-footer bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-popover-footer>

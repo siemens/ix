@@ -36,7 +36,7 @@
     ...rest
   }: StencilSvelteProps<JSX.IxWorkflowSteps, HTMLIxWorkflowStepsElement> = $props();
 
-  useStencilElement(() => element, () => rest, PROPS, EVENTS);
+  const stencil = useStencilElement(() => element, () => rest, PROPS, EVENTS);
 </script>
 
-<ix-workflow-steps bind:this={element}>{@render children?.()}</ix-workflow-steps>
+<ix-workflow-steps bind:this={element} {...stencil.attributes}>{@render children?.()}</ix-workflow-steps>
