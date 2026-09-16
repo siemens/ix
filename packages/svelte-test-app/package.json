@@ -1,0 +1,39 @@
+{
+  "name": "svelte-test-app",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "svelte-check --tsconfig ./tsconfig.json && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "preview.reference": "pnpm --filter html-test-app exec vite preview --host 127.0.0.1 --port 4174 --strictPort",
+    "test.setup": "playwright install chromium --with-deps",
+    "test.vitest": "vitest --config=vitest.config.ts run",
+    "test.smoke": "playwright test",
+    "test": "pnpm run test.vitest",
+    "test.watch": "vitest --config=vitest.config.ts"
+  },
+  "dependencies": {
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-icons": "catalog:",
+    "@siemens/ix-svelte": "workspace:*",
+    "html-test-app": "workspace:*"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@tsconfig/svelte": "^5.0.5",
+    "@types/node": "^22.15.32",
+    "@vitest/browser": "^3.2.4",
+    "framework-tests": "workspace:*",
+    "playwright": "catalog:",
+    "svelte": "^5.57.0",
+    "svelte-check": "^4.7.6",
+    "typescript": "~5.8.0",
+    "vite": "catalog:",
+    "vitest": "^3.2.4",
+    "vitest-browser-svelte": "^1.1.0"
+  }
+}

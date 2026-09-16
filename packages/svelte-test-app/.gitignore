@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-ssr
+*.local
+*.log
+
+# Copied from html-test-app by vite.config.ts on every dev/build run
+src/preview-examples/*.css

@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/*
+ * This app's own styles. Unlike everything in `src/preview-examples`, this file
+ * is not copied from html-test-app on build, so it is the place for rules that
+ * only make sense here.
+ *
+ * It is imported after `preview-examples/global.css` so it can override the
+ * `#root` sizing that file declares for the other test apps.
+ */
+
+/*
+ * The mount point contributes the `main` landmark the shared aria snapshots
+ * expect, and nothing else -- see the comment in `index.html`.
+ */
+#root {
+  display: contents;
+}

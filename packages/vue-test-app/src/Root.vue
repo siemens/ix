@@ -521,14 +521,19 @@ const routes: IxPreviewRoutes = {
   '/preview/progress-indicator': ProgressIndicator,
 };
 
+const previewPaths = Object.keys(routes).filter((path) => path !== '/');
+
 const currentPath = ref(window.location.pathname);
 const currentView = computed(() => {
   return (routes as any)[currentPath.value || '/'] || App;
 });
+const currentProps = computed(() =>
+  currentView.value === App ? { paths: previewPaths } : {}
+);
 </script>
 
 <template>
   <IxApplicationContext>
-    <component :is="currentView"></component>
+    <component :is="currentView" v-bind="currentProps"></component>
   </IxApplicationContext>
 </template>

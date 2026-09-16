@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SvelteTestApp</title>
+    <base href="/" />
+  </head>
+  <!--
+    `<main id="root">` matches the other framework test apps: the shared aria
+    snapshots in `framework-tests/__snapshots__` are taken against `body` and
+    expect a `main` landmark around the example.
+
+    It is `display: contents` (see `src/app.css`) so it contributes the landmark
+    without contributing a box. The preview examples are shared verbatim with
+    html-test-app, where they are direct children of `body` and style it
+    directly (`body { display: flex }` and the like); a wrapper that generated a
+    box would change their containing block, which `smoke-tests/parity.spec.ts`
+    would then report as a divergence that has nothing to do with the binding.
+  -->
+  <body>
+    <main id="root"></main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
