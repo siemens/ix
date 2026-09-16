@@ -1,0 +1,134 @@
+.changeset/config.json
+  h_c5a773bf2fda8b 11
+.changeset/dropdown-button-decorative-icon.md
+  h_c5a773bf2fda8b 1-5
+.changeset/tooltip-focus-trigger.md
+  h_c5a773bf2fda8b 1-5
+.github/dependabot.yml
+  h_c5a773bf2fda8b 15-16
+.github/workflows/release.yml
+  h_c5a773bf2fda8b 7
+package.json
+  h_c5a773bf2fda8b 45
+packages/aggrid/package.json
+  h_c5a773bf2fda8b 48
+packages/angular-standalone-test-app/package.json
+  h_c5a773bf2fda8b 17-18
+packages/angular-standalone-test-app/src/preview-examples/dropdown-button-icon.ts
+  h_c5a773bf2fda8b 23-24,27-28,31-32
+packages/angular-standalone-test-app/src/preview-examples/dropdown-button.css
+  h_c5a773bf2fda8b 17
+packages/angular-standalone-test-app/src/preview-examples/dropdown-button.ts
+  h_c5a773bf2fda8b 20-21,25-29,33-37,41
+packages/angular-test-app/package.json
+  h_c5a773bf2fda8b 19-20
+packages/angular-test-app/src/preview-examples/dropdown-button-icon.ts
+  h_c5a773bf2fda8b 19-20,23-24,27-28
+packages/angular-test-app/src/preview-examples/dropdown-button.css
+  h_c5a773bf2fda8b 17
+packages/angular-test-app/src/preview-examples/dropdown-button.ts
+  h_c5a773bf2fda8b 16-17,21-25,29-33,37
+packages/angular/package.json
+  h_c5a773bf2fda8b 29-30
+packages/core/package.json
+  h_c5a773bf2fda8b 163,176
+packages/core/scss/theme/classic/_composition.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/_si-reference.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/dark/_index.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/dark/_legacy.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/dark/_system.scss
+  h_c5a773bf2fda8b 12,48-50,74,193
+packages/core/scss/theme/classic/light/_index.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/light/_legacy.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/light/_system.scss
+  h_c5a773bf2fda8b 12,48-50,74,193
+packages/core/scss/theme/classic/theme.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/core/_common.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/tokens/_system.scss
+  h_c5a773bf2fda8b 12
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 1871,8872
+packages/core/src/components/avatar/avatar.vars.scss
+  h_c5a773bf2fda8b 15
+packages/core/src/components/badge/badge.vars.scss
+  h_c5a773bf2fda8b 45
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 14-15,37-39
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 60-61
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 58-59,65
+packages/core/src/components/chip/chip.vars.scss
+  h_c5a773bf2fda8b 37-39
+packages/core/src/components/dropdown-button/dropdown-button.ct.ts
+  h_c5a773bf2fda8b 10,13,15-226,230
+packages/core/src/components/dropdown-button/dropdown-button.scss
+  h_c5a773bf2fda8b 71
+packages/core/src/components/dropdown-button/dropdown-button.tsx
+  h_c5a773bf2fda8b 94-96,137-138,186-191,222-228,231,276,286,312
+packages/core/src/components/dropdown/test/dropdown.ct.ts
+  h_c5a773bf2fda8b 66,73
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 93-94,98,100-101,103,110
+packages/core/src/components/tooltip/tooltip.tsx
+  h_c5a773bf2fda8b 364
+packages/documentation/package.json
+  h_c5a773bf2fda8b 4
+packages/eslint-config-ix/package.json
+  h_c5a773bf2fda8b 14
+packages/html-test-app/src/preview-examples/dropdown-button.css
+  h_c5a773bf2fda8b 17
+packages/html-test-app/src/preview-examples/dropdown-button.html
+  h_c5a773bf2fda8b 27,31-35,39-43,47
+packages/nextjs-test-app/package.json
+  h_c5a773bf2fda8b 18
+packages/react-test-app/src/preview-examples/dropdown-button.scoped.css
+  h_c5a773bf2fda8b 17
+packages/react-test-app/src/preview-examples/dropdown-button.tsx
+  h_c5a773bf2fda8b 18,22-26,30-34,39
+packages/storybook-docs/src/stories/dropdown-button.stories.ts
+  h_c5a773bf2fda8b 35-53
+packages/vue-test-app/package.json
+  h_c5a773bf2fda8b 40
+packages/vue-test-app/src/preview-examples/dropdown-button-icon.vue
+  h_c5a773bf2fda8b 31
+packages/vue-test-app/src/preview-examples/dropdown-button.css
+  h_c5a773bf2fda8b 17
+packages/vue-test-app/src/preview-examples/dropdown-button.vue
+  h_c5a773bf2fda8b 19,23-27,31-35,39-43
+packages/vue/package.json
+  h_c5a773bf2fda8b 39
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 13-14,70-71,104,110,113,140,142-143,149,165,167-168,170-171,174,177,180,183,186,189,204,207,226,228-229,231-232,235,238,241,244,247,265,280,293,299,341,343-344,346-347,350,353,356,359,362,380,395,408,414,475,493,520,522-523,529,532,561-562,583,661,664,685,688,691,694,697,703,715,717-718,746,831,834,852,873-874,905,926,929,962,965,974,977,1056,1071,1102,1105,1114,1117,1123,1126,1141,1144,1163,1165-1166,1169,1172,1193,1196,1263,1266,1269,1271-1272,1284,1287,1344,1359,1474-1475,1614-1615,1618,1632-1633,2717-2722,3059-3062,3633-3635,3907-3909,3911-3912,4157-4159,4337-4345,4444-4445,4572-4573,4814-4815,4874-4875,4897-4901,4907-4909,4917-4920,4927-4930,4937-4940,4947-4949,5228-5229,5233,5241-5246,5255-5258,5265-5270,5293-5296,5309-5314,5337-5340,5575-5576,5578,5709-5710,5941-5942,6175-6177,6182-6185,6833-6834,7292-7293,7298,8817-8818,8823-8824,8829-8830,8835-8836,8841-8842,8847-8848,8854-8855,8861-8862,8868-8869,8875-8876,8881-8882,8887-8888,9181-9184,9295-9297,9373-9374,9832-9835,9848-9850,10163-10164,10171-10172,10189-10190,10445-10446,10467-10470,10649-10650,10933-10937,11387-11388,11463-11464,11626-11631,11716-11717,11720-11721,11823-11825,12768,12783,12789-12790,12801,12842-12843,12848,12903,12905-12906,12909,12913-12914,12919,12939,12942-12943,12947,12950,12990,12992,12996,12998,13012,13016,13021,13024,13026-13028,13032,13034-13037,13040,13042-13043,13046,13048,13050-13052,14892-14895,15091-15092,15937-15939,15948,16269,16302,16304,16343,16348,16496,16522,16572,16587,16591,16593,16599,16601,16603,16605,16610,16612,16614,16619,16624,16634,16639-16646,16650,16652,16654,16656,16718,16809,16811-16812,16828,16887,16890,16893,16895-16896,16899,16904-16905,16929,16934,16940,16943,16969,16975-16976,16978,16983,16985-16986,16989,16996,17002,17023,17025,17077,17099,17171,17192-17194,17198,17204,17210,17216,17222,17297,17301,17545,17548,17561,17564,17589,17591-17594,17601,17603-17606,17615-17616,17624-17643,17659-17663,17672-17679,17686,17719-17720,17729-17730,17742-17744,17757-17759,17765-17794,17838-17842,17845,17847,17849,17860,17864,17872,17876,17884,17888,17894,17899,17901,17904,17907,17910,17912-17913,17916,17923,17927,17932,17943,17947,17952,17962,17966,17971,17981,17985,17990,18000,18002,18009,18017,18029,18031,18059,18066,18069,18076,18079,18086,18088,18095,18097,18104,18106,18113,18115,18122,18124,18131,18268,18329,18446,18453-18456,18459,18463,18470,18483,18485-18486,18633,18734,18758,18765,18972,19060-19063,19068-19071,19607,19609,19613-19618,19662,19665-19702,19704,19796,20047,20369,20372-20373,20375,20379-20380,20412,20416,20509-20510,20533,20739-20742,21185,21352,21354,21360,22111,22113-22115,22260,22280,22628,22631,22634,22637,22640,22643,22646,22649,22652,22655,22658,22661,22665-22675,22968,23007-23010,23025,23029,23033,23120-23126,23316,23390,23393,23423,23426,23455,23457,23469,23500,23515,23517,23914-23915,23922,23949,23984,23986,23990,23995,23998,24001,24004,24006,24008,24010,24012,24014,24016,24018,24020,24022,24024,24028,24031,24034,24039,24043,24048,24065,24067,24069,24071,24075-24076,24079,24081,24084,24087-24088,24091,24094-24095,24098,24100,24103,24105,24107,24109-24110,24114,24116,24119,24121-24122,24124,24126,24130,24132,24134,24136,24139,24141,24144,24146,24149,24151,24154,24156,24159,24162,24165,24167,24170,24172,24175,24177-24178,24181,24185,24187,24189,24208,24210,24214,24216,24223,24227,24239,24241,24269,24572,24600,24604-24611,24614,24719,24813,24819,24824,24826-24827,24829,24831,24833,24835,24837,24847,24849-24850,24855,24859,25072-25073,25658,25661,25707,25709,25715,25729-25733,25743,25757-25761,25870,25873,25924-25925,25939-25940,26015-26022,26056,26061,26077,26082,26098,26103,26156-26164,26270-26271,26343-26344,26424,26430,26446,26452,26467,26473,26488,26494,26509,26512-26514,26522,26529,26542,26550,26563,26566,26570,26583,26586,26590,26603,26606,26610,26623,26630,26643,26646,26650,26652-26654,26665,26669,26671-26673,26684,26690,26693,26698,26701,26714,26718,26736-26737,26742,26760,26764,26782-26783,26788,26805,26809,26827-26828,26833,26850,26854,26872-26873,26878,26895,26898,26915,26919,26935,26938,26955
+pnpm-workspace.yaml
+  h_c5a773bf2fda8b 8
+testing/framework-tests/__snapshots__/dropdown-button-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-4
+testing/framework-tests/__snapshots__/dropdown-button-icon-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-4
+testing/visual-testing/tests/breadcrumb/breadcrumb.e2e.ts
+  h_c5a773bf2fda8b 23
+testing/visual-testing/tests/input/input.e2e.ts
+  h_c5a773bf2fda8b 104-112
+testing/visual-testing/tests/split-button/split-button.e2e.ts
+  h_c5a773bf2fda8b 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "c25806275c50e8c60a36265b9e16077a8c29f82c",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
