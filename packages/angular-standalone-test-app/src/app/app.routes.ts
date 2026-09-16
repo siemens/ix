@@ -653,9 +653,15 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/tooltip-with-icon').then((m) => m.default),
 };
 
-export const routes: Routes = Object.entries(routePaths).map(
-  ([path, loadComponent]) => ({
+export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./preview-index.component').then((m) => m.default),
+  },
+  ...Object.entries(routePaths).map(([path, loadComponent]) => ({
     path,
     loadComponent,
-  })
-);
+  })),
+];

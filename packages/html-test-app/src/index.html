@@ -8,13 +8,31 @@ LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <style>
+      .index {
+        padding: 1rem;
+      }
+
+      .index ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    </style>
   </head>
   <body>
+    <div class="index">
+      <ix-typography format="h2">HTML preview examples</ix-typography>
+      <ul id="preview-index"></ul>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

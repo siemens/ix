@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PreviewIndexComponent } from './preview-index.component';
 
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
@@ -281,6 +282,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
 
 @NgModule({
   declarations: [
+    PreviewIndexComponent,
     FormLayoutGrid,
     FormLayoutAuto,
     FormValidation,

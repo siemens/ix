@@ -267,8 +267,14 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import { PreviewIndexComponent } from './preview-index.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: PreviewIndexComponent,
+  },
   {
     path: 'preview',
     children: [

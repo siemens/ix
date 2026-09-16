@@ -551,13 +551,18 @@ const routes: IxPreviewRoutes = {
   '/preview/toggle-button-primary': toggleButtonPrimary,
 };
 
+const previewPaths = Object.keys(routes).filter((path) => path !== '/');
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
     <BrowserRouter>
       <Routes>
-        {Object.entries(routes).map(([path, Component]) => (
-          <Route key={path} path={path} element={<Component />} />
-        ))}
+        <Route path="/" element={<App paths={previewPaths} />} />
+        {Object.entries(routes)
+          .filter(([path]) => path !== '/')
+          .map(([path, Component]) => (
+            <Route key={path} path={path} element={<Component />} />
+          ))}
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>
