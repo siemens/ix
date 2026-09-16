@@ -113,6 +113,7 @@ import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import InfoPage from '../preview-examples/info-page';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -673,6 +674,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'info-page',
+        component: InfoPage,
+      },
+      {
         path: 'event-list',
         component: EventList,
       },
@@ -1066,6 +1071,7 @@ const routes: Routes = [
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'info-page', component: InfoPage },
       { path: 'key-value', component: KeyValue },
       {
         path: 'toggle-button-subtle-secondary',

@@ -58,6 +58,7 @@ import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components
 import { defineCustomElement as defineIxHelperText } from '@siemens/ix/components/ix-helper-text.js';
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
+import { defineCustomElement as defineIxInfoPage } from '@siemens/ix/components/ix-info-page.js';
 import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
@@ -1652,6 +1653,29 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
    */
   pressedChange: EventEmitter<CustomEvent<boolean>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxInfoPage,
+  inputs: ['copyText', 'icon', 'iconColor', 'instructions', 'titleText']
+})
+@Component({
+  selector: 'ix-info-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['copyText', 'icon', 'iconColor', 'instructions', { name: 'titleText', required: true }],
+})
+export class IxInfoPage {
+  protected el: HTMLIxInfoPageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxInfoPage extends Components.IxInfoPage {}
 
 
 @ProxyCmp({
