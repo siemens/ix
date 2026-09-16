@@ -15,10 +15,34 @@ import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
+import { svelteComponentOutputTarget } from './scripts/build/svelte-output-target';
 import { vueComponentOutputTarget } from './scripts/build/vue-output-target';
 const corePackageName = '@siemens/ix';
 
 const excludeDevelopmentComponents = ['ix-playground'];
+
+/**
+ * Two-way binding configuration shared by the Vue and Svelte output targets.
+ */
+const componentModels = [
+  {
+    elements: [
+      'ix-select',
+      'ix-input',
+      'ix-chat-input',
+      'ix-textarea',
+      'ix-number-input',
+      'ix-date-input',
+    ],
+    event: 'valueChange',
+    targetAttr: 'value',
+  },
+  {
+    elements: ['ix-checkbox'],
+    event: 'checkedChange',
+    targetAttr: 'checked',
+  },
+];
 
 function getAngularConfig() {
   const excludeComponents = [
@@ -80,25 +104,14 @@ export const config: Config = {
         ...excludeDevelopmentComponents,
         ...['ix-icon', 'ix-tab-panel', 'ix-tab-set'],
       ],
-      componentModels: [
-        {
-          elements: [
-            'ix-select',
-            'ix-input',
-            'ix-chat-input',
-            'ix-textarea',
-            'ix-number-input',
-            'ix-date-input',
-          ],
-          event: 'valueChange',
-          targetAttr: 'value',
-        },
-        {
-          elements: ['ix-checkbox'],
-          event: 'checkedChange',
-          targetAttr: 'checked',
-        },
+      componentModels,
+    }),
+    svelteComponentOutputTarget({
+      excludeComponents: [
+        ...excludeDevelopmentComponents,
+        ...['ix-icon', 'ix-tab-panel', 'ix-tab-set', 'ix-tree', 'ix-tree-item'],
       ],
+      componentModels,
     }),
     ...getAngularConfig(),
     reactOutputTarget({
