@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@maskito/core": "^5.4.0",
-    "@maskito/kit": "^3.2.0",
+    "@maskito/kit": "^5.4.0",
     "lit": "^3.2.1"
   },
   "devDependencies": {

@@ -1079,8 +1079,8 @@ importers:
         specifier: ^5.4.0
         version: 5.4.0
       '@maskito/kit':
-        specifier: ^3.2.0
-        version: 3.2.0(@maskito/core@5.4.0)
+        specifier: ^5.4.0
+        version: 5.4.0(@maskito/core@5.4.0)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -3714,10 +3714,10 @@ packages:
   '@maskito/core@5.4.0':
     resolution: {integrity: sha512-g2Ps71bVidiIoIdrSqzvu85i1vbfDnQScJItikIXTrSGZN8/PwcRsnzr0Cx56dljWbVcEHe2cpZMkYo5Th64zw==}
 
-  '@maskito/kit@3.2.0':
-    resolution: {integrity: sha512-fIUBu+RzWQtmDyBCV9cksFqLqCq4ag1Gv1pwn9PgB7m0pkjhJoBMfQAVkded6MKrUk+QLIZUjzbUwgJm0D98Aw==}
+  '@maskito/kit@5.4.0':
+    resolution: {integrity: sha512-kW/U+4qoMmegkC4vyf6Lz4Hfbrel8ph3Yuh3O+XT7ePaQXV9QwSqoo3/jVuXahf46zUV0rN5FHg866bwcFWPUw==}
     peerDependencies:
-      '@maskito/core': ^3.2.0
+      '@maskito/core': ^5.4.0
 
   '@mdx-js/react@3.0.0':
     resolution: {integrity: sha512-nDctevR9KyYFyV+m+/+S4cpzCWHqj+iHDHq3QrsWezcC+B17uZdIWgCguESUkwFhM3n/56KxWVE3V6EokrmONQ==}
@@ -15948,7 +15948,7 @@ snapshots:
 
   '@maskito/core@5.4.0': {}
 
-  '@maskito/kit@3.2.0(@maskito/core@5.4.0)':
+  '@maskito/kit@5.4.0(@maskito/core@5.4.0)':
     dependencies:
       '@maskito/core': 5.4.0
 
