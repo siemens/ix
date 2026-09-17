@@ -181,7 +181,7 @@
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5",
-    "vitest": "^4.1.4"
+    "vitest": "^5.0.1"
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.6.13",
