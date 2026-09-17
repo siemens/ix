@@ -1,0 +1,21 @@
+packages/core/src/components/icon-button/test/icon-button.ct.ts
+  s_b48d683ae82544::t_8cac9be961b969 25-30,32-37,39-44,46-51
+packages/core/src/components/icon-button/test/icon-button.spec.tsx
+  s_b48d683ae82544::t_b6c62afa5c6ec3 36-38,49-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "386ca4e999c7ee4b4d31a5f7f823a615436be4b5",
+  "prompts": {},
+  "sessions": {
+    "s_b48d683ae82544": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "e127ad49-c5f6-4fb6-a526-d753dba77ae5",
+        "model": "unknown"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
