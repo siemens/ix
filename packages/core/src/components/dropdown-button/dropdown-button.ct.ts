@@ -252,7 +252,9 @@ regressionTest(
       /size-20/
     );
     await expect(
-      button.locator('.content > ix-icon[aria-hidden="true"]')
+      button.locator(
+        '.content > ix-icon[aria-hidden="true"]:not(.dropdown-icon)'
+      )
     ).toHaveClass(/size-24/);
   }
 );
