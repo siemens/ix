@@ -57,8 +57,7 @@ test('generates deterministic React dependency metadata', async () => {
       react: {
         files: [
           {
-            source: 'react-blocks/src/block.tsx',
-            target: 'react/block.tsx',
+            sourcePath: 'react-blocks/src/block.tsx',
           },
         ],
       },
@@ -73,11 +72,33 @@ test('generates deterministic React dependency metadata', async () => {
   });
 
   const generated = await fs.readJson(path.join(root, 'dist/example.json'));
+  assert.equal(generated.$schema, '../schemas/block.schema.json');
+  assert.equal(
+    await fs.readFile(path.join(root, 'dist/react/block.tsx'), 'utf8'),
+    "import { IxButton } from '@siemens/ix-react';\nimport { iconAdd } from '@siemens/ix-icons/icons';"
+  );
+  assert.deepEqual(generated.variants.react.files, [
+    { path: 'react/block.tsx' },
+  ]);
   assert.deepEqual(generated.variants.react.dependencies, [
     { name: '@siemens/ix', version: '^5.2.0' },
     { name: '@siemens/ix-icons', version: '^3.4.0' },
     { name: '@siemens/ix-react', version: '^5.2.0' },
   ]);
+  const firstOutput = await fs.readFile(
+    path.join(root, 'dist/example.json'),
+    'utf8'
+  );
+  await generateBlockDefinitions({
+    blocksDir: path.join(root, 'blocks'),
+    outputDir: path.join(root, 'dist'),
+    registryVersion: 'v5.2.0',
+    workspaceRoot: root,
+  });
+  assert.equal(
+    await fs.readFile(path.join(root, 'dist/example.json'), 'utf8'),
+    firstOutput
+  );
 });
 
 test('omits dependency metadata when a variant has no Siemens imports', async () => {
@@ -92,8 +113,7 @@ test('omits dependency metadata when a variant has no Siemens imports', async ()
       react: {
         files: [
           {
-            source: 'react-blocks/src/block.tsx',
-            target: 'react/block.tsx',
+            sourcePath: 'react-blocks/src/block.tsx',
           },
         ],
       },
@@ -140,8 +160,7 @@ test('generates Angular standalone dependencies from package metadata', async ()
       angular: {
         files: [
           {
-            source: 'angular-standalone-blocks/src/block.ts',
-            target: 'angular/block.ts',
+            sourcePath: 'angular-standalone-blocks/src/block.ts',
           },
         ],
       },
@@ -165,15 +184,13 @@ test('generates Angular standalone dependencies from package metadata', async ()
 
 test('rejects block sources outside the blocks directory', async () => {
   const root = await temporaryWorkspace();
-  await fs.outputFile(path.join(root, 'outside.ts'), 'export {};');
   await writeJson(path.join(root, 'blocks/example.json'), {
     name: 'example',
     variants: {
       react: {
         files: [
           {
-            source: '../outside.ts',
-            target: 'react/block.ts',
+            sourcePath: '../outside.ts',
           },
         ],
       },
@@ -188,5 +205,115 @@ test('rejects block sources outside the blocks directory', async () => {
       workspaceRoot: root,
     }),
     /escapes the blocks directory/
+  );
+});
+
+test('rejects duplicate canonical block paths without overwriting', async () => {
+  const root = await temporaryWorkspace();
+  await fs.outputFile(
+    path.join(root, 'blocks/react-blocks/src/first.tsx'),
+    'first'
+  );
+  await fs.outputFile(
+    path.join(root, 'blocks/other-blocks/src/first.tsx'),
+    'second'
+  );
+  await writeJson(path.join(root, 'blocks/first.json'), {
+    name: 'first',
+    variants: {
+      react: { files: [{ sourcePath: 'react-blocks/src/first.tsx' }] },
+    },
+  });
+
+  await writeJson(path.join(root, 'blocks/second.json'), {
+    name: 'second',
+    variants: {
+      react: { files: [{ sourcePath: 'other-blocks/src/first.tsx' }] },
+    },
+  });
+
+  await assert.rejects(
+    generateBlockDefinitions({
+      blocksDir: path.join(root, 'blocks'),
+      outputDir: path.join(root, 'dist'),
+      registryVersion: 'main',
+      workspaceRoot: root,
+    }),
+    /Duplicate public block path 'react\/first\.tsx'/
+  );
+  assert.equal(
+    await fs.pathExists(path.join(root, 'dist/react/first.tsx')),
+    false
+  );
+});
+
+test('preflights block collisions before materializing any canonical file', async () => {
+  const root = await temporaryWorkspace();
+  await fs.outputFile(
+    path.join(root, 'blocks/react-blocks/src/first.tsx'),
+    'first'
+  );
+  await fs.outputFile(
+    path.join(root, 'blocks/react-blocks/src/second.tsx'),
+    'second from registry'
+  );
+  await writeJson(path.join(root, 'blocks/example.json'), {
+    name: 'example',
+    variants: {
+      react: {
+        files: [
+          { sourcePath: 'react-blocks/src/first.tsx' },
+          { sourcePath: 'react-blocks/src/second.tsx' },
+        ],
+      },
+    },
+  });
+  await fs.outputFile(
+    path.join(root, 'dist/react/second.tsx'),
+    'unrelated content'
+  );
+
+  await assert.rejects(
+    generateBlockDefinitions({
+      blocksDir: path.join(root, 'blocks'),
+      outputDir: path.join(root, 'dist'),
+      registryVersion: 'main',
+      workspaceRoot: root,
+    }),
+    /already exists at canonical public path 'react\/second\.tsx'/
+  );
+  assert.equal(
+    await fs.pathExists(path.join(root, 'dist/react/first.tsx')),
+    false
+  );
+});
+
+test('rejects a canonical block path outside the output directory', async () => {
+  const root = await temporaryWorkspace();
+  await fs.outputFile(
+    path.join(root, 'blocks/react-blocks/src/block.tsx'),
+    'block'
+  );
+  await writeJson(path.join(root, 'blocks/example.json'), {
+    name: 'example',
+    variants: {
+      '../outside': {
+        files: [{ sourcePath: 'react-blocks/src/block.tsx' }],
+      },
+    },
+  });
+
+  await assert.rejects(
+    generateBlockDefinitions({
+      blocksDir: path.join(root, 'blocks'),
+      outputDir: path.join(root, 'dist'),
+      registryVersion: 'main',
+      workspaceRoot: root,
+    }),
+    /Block public path escapes the output directory/
+  );
+  assert.equal(
+    await fs.pathExists(path.join(root, 'outside/block.tsx')),
+    false
   );
 });

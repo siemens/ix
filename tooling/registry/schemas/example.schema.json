@@ -17,19 +17,19 @@
       "minProperties": 1,
       "properties": {
         "html": {
-          "$ref": "#/definitions/variant"
+          "$ref": "#/definitions/htmlVariant"
         },
         "react": {
-          "$ref": "#/definitions/variant"
+          "$ref": "#/definitions/reactVariant"
         },
         "angular": {
-          "$ref": "#/definitions/variant"
+          "$ref": "#/definitions/angularVariant"
         },
         "angular-standalone": {
-          "$ref": "#/definitions/variant"
+          "$ref": "#/definitions/angularStandaloneVariant"
         },
         "vue": {
-          "$ref": "#/definitions/variant"
+          "$ref": "#/definitions/vueVariant"
         }
       },
       "additionalProperties": {
@@ -54,18 +54,19 @@
         "files": {
           "type": "array",
           "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "object",
-            "required": ["source", "target"],
+            "required": ["path"],
             "properties": {
-              "source": {
-                "$ref": "#/definitions/safeRelativePath"
-              },
-              "target": {
-                "$ref": "#/definitions/safeRelativePath"
-              },
-              "type": {
-                "type": "string"
+              "path": {
+                "allOf": [
+                  { "$ref": "#/definitions/safeRelativePath" },
+                  {
+                    "type": "string",
+                    "pattern": "^(?:html|react|angular|angular-standalone|vue)/"
+                  }
+                ]
               }
             },
             "additionalProperties": false
@@ -73,6 +74,116 @@
         }
       },
       "additionalProperties": false
+    },
+    "htmlVariant": {
+      "allOf": [
+        { "$ref": "#/definitions/variant" },
+        {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^html/"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "reactVariant": {
+      "allOf": [
+        { "$ref": "#/definitions/variant" },
+        {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^react/"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "angularVariant": {
+      "allOf": [
+        { "$ref": "#/definitions/variant" },
+        {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^angular/"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "angularStandaloneVariant": {
+      "allOf": [
+        { "$ref": "#/definitions/variant" },
+        {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^angular-standalone/"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vueVariant": {
+      "allOf": [
+        { "$ref": "#/definitions/variant" },
+        {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "pattern": "^vue/"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

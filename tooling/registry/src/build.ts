@@ -11,7 +11,10 @@ import path from 'node:path';
 import fs from 'fs-extra';
 import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { glob } from 'glob';
-import { buildSearchIndex } from './search-index';
+import {
+  buildDocumentationSearchIndex,
+  DOCUMENTATION_SEARCH_INDEX_FILE,
+} from './search-index';
 import { generateExampleBlocks } from './generate-examples';
 import { generateLlmsArtifacts } from './llms';
 import { generateBlockDefinitions } from './block-dependencies';
@@ -20,6 +23,7 @@ import {
   updateComponentsRegistry,
   updateBlocksRegistry,
   updateExamplesRegistry,
+  updateDocumentationSearchIndexRegistry,
   updateLlmsRegistry,
 } from './update-registry';
 
@@ -27,22 +31,23 @@ const __dirname = path.resolve();
 const __workspace_root = path.join(__dirname, '..', '..');
 const __node_modules = path.join(__dirname, 'node_modules');
 const __react_blocks = path.join(__node_modules, 'react-blocks');
-const __angular_standalone_blocks = path.join(
-  __node_modules,
-  'angular-standalone-blocks'
-);
 const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
 const __examples_root = path.join(__dirname, '..', '..', 'examples');
 const __registry_template = path.join(__dirname, 'registry.json');
 const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
 const __block_schema = path.join(__dirname, 'schemas', 'block.schema.json');
-const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
-const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
-const __ix_component_index = path.join(__ix_package, 'component-index.json');
-const __ix_component_search_index = path.join(
-  __ix_package,
-  'component-search-index.json'
+const __authored_block_schema = path.join(
+  __dirname,
+  'schemas',
+  'authored-block.schema.json'
 );
+const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
+const __documentation_search_index_schema = path.join(
+  __dirname,
+  'schemas',
+  'documentation-search-index.schema.json'
+);
+const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
 const __blocks_root = path.join(__dirname, '..', '..', 'blocks');
 const __html_examples_component_usage_by_component = path.join(
   __examples_root,
@@ -60,7 +65,7 @@ type BlockDefinition = {
   variants?: Record<
     string,
     {
-      files?: Array<{ source: string }>;
+      files?: Array<{ sourcePath: string }>;
     }
   >;
 };
@@ -115,7 +120,7 @@ async function readBlockNamesByReactSource(): Promise<Map<string, string>> {
 
   for (const block of blocks) {
     for (const file of block.variants?.react?.files ?? []) {
-      const source = normalizeSourcePath(file.source);
+      const source = normalizeSourcePath(file.sourcePath);
       const relativeSource = source.startsWith('react-blocks/')
         ? source.slice('react-blocks/'.length)
         : source;
@@ -141,8 +146,7 @@ const task = new Listr<Ctx>([
       ctx.dist = tsconfig.compilerOptions.outDir || 'dist';
       ctx.registryVersion =
         process.env.REGISTRY_VERSION?.trim() || 'development';
-      ctx.registryPathPrefix =
-        process.env.REGISTRY_PATH_PREFIX?.trim() || ctx.registryVersion;
+      ctx.registryPathPrefix = process.env.REGISTRY_PATH_PREFIX?.trim() ?? '';
       ctx.registryLatestTag =
         process.env.REGISTRY_LATEST_TAG?.trim() || ctx.registryVersion;
 
@@ -163,7 +167,7 @@ const task = new Listr<Ctx>([
       const files = await glob(path.join(__blocks_root, '*.json'), {
         absolute: true,
       });
-      await validateJsonFiles(files, __block_schema);
+      await validateJsonFiles(files, __authored_block_schema);
     },
   },
   {
@@ -186,26 +190,12 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy react blocks to dist',
+    title: 'Copy block preview assets to dist',
     task: async (ctx) => {
       const dest = path.join(ctx.dist, 'blocks', 'react-blocks');
-      await Promise.all([
-        fs.copy(path.join(__react_blocks, 'dist'), path.join(dest, 'dist'), {
-          dereference: true,
-        }),
-        fs.copy(path.join(__react_blocks, 'src'), path.join(dest, 'src'), {
-          dereference: true,
-        }),
-      ]);
-    },
-  },
-  {
-    title: 'Copy angular blocks to dist',
-    task: async (ctx) => {
-      const dest = path.join(ctx.dist, 'blocks', 'angular-standalone-blocks');
       await fs.copy(
-        path.join(__angular_standalone_blocks, 'src'),
-        path.join(dest, 'src'),
+        path.join(__react_blocks, 'dist'),
+        path.join(dest, 'dist'),
         {
           dereference: true,
         }
@@ -221,40 +211,8 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Copy example source files to dist',
+    title: 'Copy HTML example preview assets to dist',
     task: async (ctx) => {
-      const frameworks = [
-        'html-examples',
-        'react-examples',
-        'angular-examples',
-        'angular-standalone-examples',
-        'vue-examples',
-      ];
-
-      await Promise.all(
-        frameworks.map(async (framework) => {
-          const srcSourcePath = path.join(
-            __examples_root,
-            framework,
-            'src',
-            'preview-examples'
-          );
-          const srcDestPath = path.join(
-            ctx.dist,
-            'examples',
-            framework,
-            'src',
-            'preview-examples'
-          );
-
-          if (await fs.pathExists(srcSourcePath)) {
-            await fs.copy(srcSourcePath, srcDestPath, { dereference: true });
-          } else {
-            console.warn(`⚠️  Example source not found: ${srcSourcePath}`);
-          }
-        })
-      );
-
       const htmlDistSourcePath = path.join(
         __examples_root,
         'html-examples',
@@ -283,16 +241,6 @@ const task = new Listr<Ctx>([
         fs.copy(__ix_component_doc, path.join(dest, 'component-doc.json'), {
           dereference: true,
         }),
-        fs.copy(__ix_component_index, path.join(dest, 'component-index.json'), {
-          dereference: true,
-        }),
-        fs.copy(
-          __ix_component_search_index,
-          path.join(dest, 'component-search-index.json'),
-          {
-            dereference: true,
-          }
-        ),
       ]);
 
       const componentRelatedExamplesTarget = path.join(
@@ -383,8 +331,6 @@ const task = new Listr<Ctx>([
         pathPrefix: ctx.registryPathPrefix,
         components: {
           componentDoc: 'ix/component-doc.json',
-          componentIndex: 'ix/component-index.json',
-          componentSearchIndex: 'ix/component-search-index.json',
           componentRelatedExamples: 'ix/component-related-examples.json',
           componentRelatedBlocks: 'ix/component-related-blocks.json',
         },
@@ -423,11 +369,15 @@ const task = new Listr<Ctx>([
         absolute: true,
       });
       await Promise.all(
-        files.map((file) =>
-          fs.copy(file, path.join(dest, path.basename(file)), {
-            dereference: true,
-          })
-        )
+        files
+          .filter(
+            (file) => path.basename(file) !== 'authored-block.schema.json'
+          )
+          .map((file) =>
+            fs.copy(file, path.join(dest, path.basename(file)), {
+              dereference: true,
+            })
+          )
       );
     },
   },
@@ -512,41 +462,39 @@ const task = new Listr<Ctx>([
     },
   },
   {
-    title: 'Build blocks search indexes',
+    title: 'Build central documentation search index',
     task: async (ctx) => {
-      const blocksDir = path.join(ctx.dist, 'blocks');
-      const indexPaths = await buildSearchIndex(
-        ctx.dist,
-        blocksDir,
-        'search-index'
+      await buildDocumentationSearchIndex({
+        distDir: ctx.dist,
+        blocksDir: path.join(ctx.dist, 'blocks'),
+        examplesDir: path.join(ctx.dist, 'examples'),
+        componentDocPath: path.join(ctx.dist, 'ix', 'component-doc.json'),
+        componentRelatedExamplesPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-examples.json'
+        ),
+        componentRelatedBlocksPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-blocks.json'
+        ),
+        workspaceRoot: __workspace_root,
+      });
+      await validateJsonFiles(
+        [path.join(ctx.dist, DOCUMENTATION_SEARCH_INDEX_FILE)],
+        __documentation_search_index_schema
       );
 
-      const registryPath = path.join(ctx.dist, 'registry.json');
-      const registry = await fs.readJson(registryPath);
-      registry.versions ??= {};
-      registry.versions[ctx.registryVersion] ??= { blocks: [] };
-      registry.versions[ctx.registryVersion].searchIndex ??= {};
-      registry.versions[ctx.registryVersion].searchIndex.blocks = indexPaths;
-      await fs.writeJson(registryPath, registry, { spaces: 2 });
-    },
-  },
-  {
-    title: 'Build examples search indexes',
-    task: async (ctx) => {
-      const examplesDir = path.join(ctx.dist, 'examples');
-      const indexPaths = await buildSearchIndex(
-        ctx.dist,
-        examplesDir,
-        'examples-search-index'
+      await updateDocumentationSearchIndexRegistry(
+        path.join(ctx.dist, 'registry.json'),
+        {
+          version: ctx.registryVersion,
+          latestTag: ctx.registryLatestTag,
+          pathPrefix: ctx.registryPathPrefix,
+          documentationSearchIndex: DOCUMENTATION_SEARCH_INDEX_FILE,
+        }
       );
-
-      const registryPath = path.join(ctx.dist, 'registry.json');
-      const registry = await fs.readJson(registryPath);
-      registry.versions ??= {};
-      registry.versions[ctx.registryVersion] ??= { examples: [] };
-      registry.versions[ctx.registryVersion].searchIndex ??= {};
-      registry.versions[ctx.registryVersion].searchIndex.examples = indexPaths;
-      await fs.writeJson(registryPath, registry, { spaces: 2 });
     },
   },
   {

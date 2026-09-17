@@ -10,7 +10,7 @@ import fs from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-type ComponentIndex = {
+type ComponentDoc = {
   components: Array<{ tag: string }>;
 };
 
@@ -22,14 +22,14 @@ const REACT_IMPORT_PATTERN =
   /import\s+(?:type\s+)?{([^}]*)}\s+from\s+['"]@siemens\/ix-react['"]/g;
 const JSX_TAG_PATTERN = /<\s*([A-Z][A-Za-z0-9]*)(?=\s|\/|>)/g;
 
-const componentIndex = JSON.parse(
+const componentDoc = JSON.parse(
   readFileSync(
-    path.resolve('node_modules/@siemens/ix/component-index.json'),
+    path.resolve('node_modules/@siemens/ix/component-doc.json'),
     'utf8'
   )
-) as ComponentIndex;
+) as ComponentDoc;
 const availableComponentTags = new Set(
-  componentIndex.components.map((component) => component.tag)
+  componentDoc.components.map((component) => component.tag)
 );
 
 function toComponentTag(exportName: string): string {

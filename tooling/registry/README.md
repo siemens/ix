@@ -64,7 +64,7 @@ Check the workflow run first, then verify:
 In `registry.json`, confirm that:
 
 1. `versions` contains the deployed version and previously published versions.
-2. Paths for the new entry begin with the deployed version.
+2. Paths for the new entry, including `documentationSearchIndex`, begin with the deployed version.
 3. `dist-tags.latest` points to the highest deployed stable semantic version.
 
 Redeploying an existing version replaces its complete version directory.
@@ -98,6 +98,66 @@ pnpm --filter registry build
 ```
 
 Build output is written to `tooling/registry/dist`.
+
+## Manifest file paths
+
+Published example and block manifests contain path-only file entries. The path
+is both the consumer-facing output path and the registry resource path:
+
+```json
+{ "path": "react/event-list.tsx" }
+```
+
+For `/v5.2.1/examples/event-list.json`, this file is materialized at
+`/v5.2.1/examples/react/event-list.tsx`. Block files follow the same
+manifest-relative rule under `/blocks/`. Authored block definitions may use
+repository-only `sourcePath` metadata; generation strips it from the published
+manifest.
+
+For local development, `pnpm --filter registry dev` builds the `development`
+entry with unprefixed artifact paths and serves `dist` directly. Deployment
+builds set `REGISTRY_PATH_PREFIX` explicitly before the merge step.
+
+## iX skill search bundle
+
+The source for the consumer-facing search helper is
+`tooling/registry/src/skill/search.mjs`. The registry bundle pipeline generates
+these installed skill files:
+
+- `skills/ix/scripts/search.mjs`
+- `skills/ix/THIRD_PARTY_LICENSES.md`
+
+`IX_SEARCH_OUT_DIR` may be set to an alternate skill root; the bundle is
+written below its `scripts/` directory.
+
+Regenerate them from the repository root with:
+
+```sh
+pnpm bundle:ix-search
+```
+
+Check that both generated files match the source and installed dependencies
+with:
+
+```sh
+pnpm check:ix-search
+```
+
+The bundled helper requires `--query`, `--figma-id`, or `--component-name`.
+Without `--kind` it searches components only; use `--kind example` or
+`--kind block` for direct discovery. Repeated `--figma-id` and
+`--component-name` values support composed Figma selections. JSON output is an
+envelope with `status`, `version`, `source`, and `results`; partial composed
+matches also include `unmatched` diagnostics. The stable failure statuses are
+`version_unavailable`, `no_match`, `figma_main_id_unregistered`, and
+`figma_mapping_unavailable`.
+
+When `--version` is omitted, the helper resolves the installed IX version
+relative to `--project-dir`, preferring `@siemens/ix` and then compatible
+framework wrappers. If registry metadata is unavailable, it falls back to the
+installed `component-doc.json`, then to published declarations. Declaration
+fallbacks expose API text and confirmed aliases only: relationships and Figma
+mappings remain unavailable, and documentation URLs are never synthesized.
 
 ## Deployment safety
 

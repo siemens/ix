@@ -20,6 +20,125 @@ interface ExampleMetadata {
   files: Map<string, ExampleFile[]>;
 }
 
+function assertSafePublicPath(publicPath: string): void {
+  if (
+    !publicPath ||
+    publicPath.includes('\\') ||
+    publicPath.includes('\0') ||
+    publicPath.includes(':') ||
+    publicPath.includes('?') ||
+    publicPath.includes('#') ||
+    publicPath.includes('%') ||
+    path.posix.isAbsolute(publicPath) ||
+    /^[a-zA-Z]:/.test(publicPath) ||
+    publicPath
+      .split('/')
+      .some((segment) => !segment || segment === '.' || segment === '..')
+  ) {
+    throw new Error(
+      `Invalid canonical example path '${publicPath}'. Expected a safe framework-prefixed relative path.`
+    );
+  }
+}
+
+function assertNoCanonicalPathConflicts(publicPaths: string[]): void {
+  const sortedPaths = [...publicPaths].sort();
+  for (let index = 1; index < sortedPaths.length; index++) {
+    const previousPath = sortedPaths[index - 1];
+    const currentPath = sortedPaths[index];
+    if (
+      currentPath === previousPath ||
+      currentPath.startsWith(`${previousPath}/`)
+    ) {
+      throw new Error(
+        `Conflicting public example paths '${previousPath}' and '${currentPath}'.`
+      );
+    }
+  }
+}
+
+async function assertNoSymlinks(
+  root: string,
+  candidate: string
+): Promise<void> {
+  const rootStat = await fs.lstat(root);
+  if (rootStat.isSymbolicLink()) {
+    throw new Error(
+      `Cannot materialize example through symbolic link '${root}'.`
+    );
+  }
+
+  const relative = path.relative(root, candidate);
+  let current = root;
+
+  for (const segment of relative.split(path.sep).filter(Boolean)) {
+    current = path.join(current, segment);
+    const stat = await fs.lstat(current).catch((error: unknown) => {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null;
+      throw error;
+    });
+    if (stat?.isSymbolicLink()) {
+      throw new Error(
+        `Cannot materialize example through symbolic link '${current}'.`
+      );
+    }
+  }
+}
+
+async function assertMaterializableExampleFile(
+  examplesDir: string,
+  outputDir: string,
+  publicPath: string,
+  sourcePath: string
+): Promise<boolean> {
+  const destination = path.join(outputDir, publicPath);
+  const relativeDestination = path.relative(outputDir, destination);
+  if (
+    relativeDestination === '' ||
+    relativeDestination.startsWith(`..${path.sep}`) ||
+    path.isAbsolute(relativeDestination)
+  ) {
+    throw new Error(
+      `Example public path escapes the output directory: ${publicPath}`
+    );
+  }
+  assertSafePublicPath(publicPath);
+  await assertNoSymlinks(outputDir, destination);
+
+  const source = path.join(examplesDir, sourcePath);
+  const sourceStat = await fs.lstat(source);
+  if (!sourceStat.isFile()) {
+    throw new Error(`Example source is not a regular file: ${sourcePath}`);
+  }
+
+  const destinationStat = await fs
+    .lstat(destination)
+    .catch((error: unknown) => {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null;
+      throw error;
+    });
+  if (!destinationStat) {
+    return false;
+  }
+  if (!destinationStat.isFile()) {
+    throw new Error(
+      `Cannot materialize example '${sourcePath}': already exists at canonical public path '${publicPath}'.`
+    );
+  }
+
+  const [sourceContent, existingContent] = await Promise.all([
+    fs.readFile(source),
+    fs.readFile(destination),
+  ]);
+  if (Buffer.compare(sourceContent, existingContent) !== 0) {
+    throw new Error(
+      `Cannot materialize example '${sourcePath}': already exists at canonical public path '${publicPath}'.`
+    );
+  }
+
+  return true;
+}
+
 /**
  * Get all example files for each framework
  */
@@ -65,7 +184,7 @@ async function scanExamples(
       continue;
     }
 
-    const files = await fs.readdir(examplesPath);
+    const files = (await fs.readdir(examplesPath)).sort();
 
     for (const file of files) {
       if (file === 'init.js' || file === 'utils.js' || file === 'global.css') {
@@ -144,7 +263,7 @@ function getTargetFileName(file: ExampleFile, exampleName: string): string {
  */
 function generateBlockJson(example: ExampleMetadata): any {
   const block: any = {
-    $schema: './../tooling/registry/schemas/example.schema.json',
+    $schema: '../schemas/example.schema.json',
     name: example.name,
     variants: {},
   };
@@ -159,8 +278,7 @@ function generateBlockJson(example: ExampleMetadata): any {
     for (const file of files) {
       const targetFileName = getTargetFileName(file, example.name);
       variant.files.push({
-        target: `${framework}/${targetFileName}`,
-        source: file.filePath,
+        path: `${framework}/${targetFileName}`,
       });
     }
 
@@ -170,6 +288,28 @@ function generateBlockJson(example: ExampleMetadata): any {
   }
 
   return block;
+}
+
+async function materializeExampleFile(
+  examplesDir: string,
+  outputDir: string,
+  publicPath: string,
+  sourcePath: string
+): Promise<void> {
+  const alreadyMaterialized = await assertMaterializableExampleFile(
+    examplesDir,
+    outputDir,
+    publicPath,
+    sourcePath
+  );
+  if (alreadyMaterialized) {
+    return;
+  }
+
+  const destination = path.join(outputDir, publicPath);
+  await fs.copy(path.join(examplesDir, sourcePath), destination, {
+    dereference: true,
+  });
 }
 
 /**
@@ -186,10 +326,58 @@ export async function generateExampleBlocks(
 
   await fs.ensureDir(outputDir);
 
-  let count = 0;
-  for (const [name, example] of examples.entries()) {
-    const blockJson = generateBlockJson(example);
+  const materializedFiles = new Map<string, string>();
+  const generatedExamples = [...examples.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([name, example]) => ({
+      name,
+      example,
+      blockJson: generateBlockJson(example),
+    }));
 
+  for (const { name, example, blockJson } of generatedExamples) {
+    if (Object.keys(blockJson.variants).length > 0) {
+      for (const [framework, files] of example.files.entries()) {
+        for (const file of files) {
+          const targetFileName = getTargetFileName(file, name);
+          const publicPath = `${framework}/${targetFileName}`;
+          assertSafePublicPath(publicPath);
+          const previousSource = materializedFiles.get(publicPath);
+          if (previousSource !== undefined) {
+            throw new Error(
+              `Duplicate public example path '${publicPath}' for '${previousSource}' and '${file.filePath}'.`
+            );
+          }
+          materializedFiles.set(publicPath, file.filePath);
+        }
+      }
+    }
+  }
+
+  assertNoCanonicalPathConflicts([...materializedFiles.keys()]);
+  await Promise.all(
+    [...materializedFiles.entries()].map(([publicPath, sourcePath]) =>
+      assertMaterializableExampleFile(
+        examplesDir,
+        outputDir,
+        publicPath,
+        sourcePath
+      )
+    )
+  );
+  await Promise.all(
+    [...materializedFiles.entries()].map(async ([publicPath, sourcePath]) => {
+      await materializeExampleFile(
+        examplesDir,
+        outputDir,
+        publicPath,
+        sourcePath
+      );
+    })
+  );
+
+  let count = 0;
+  for (const { name, blockJson } of generatedExamples) {
     if (Object.keys(blockJson.variants).length > 0) {
       const outputPath = path.join(outputDir, `${name}.json`);
       await fs.writeJson(outputPath, blockJson, { spaces: 2 });

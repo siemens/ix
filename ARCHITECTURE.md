@@ -14,17 +14,17 @@ This document gives new contributors (humans and AI agents) a concise, high‑le
 
 ## 1. High-Level Architecture
 
-| Layer                   | Purpose                                            | Tech                                         | Notes                                              |
-| ----------------------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------------- |
-| Core Components         | Source of truth UI primitives & patterns           | Stencil, TS, SCSS                            | Emits compiled Web Components + component metadata |
-| Framework Wrappers      | Convenience bindings for app frameworks            | Stencil output targets (Angular, React, Vue) | Auto-generated – never hand-edit generated proxies |
-| Theming Packages        | External lib theme alignment                       | `@siemens/ix-aggrid`, `@siemens/ix-echarts`  | Provide CSS vars + integration helpers             |
-| Examples                | Framework-specific preview example source          | Vite + framework workspaces                  | Source for docs snippets and registry examples     |
-| Blocks                  | Higher-level copyable UI compositions              | React + Angular standalone workspaces        | Packaged by the registry and consumed by the CLI    |
-| Test Apps               | Manual preview, framework, visual, and perf checks | Vite / Angular / Next.js / Ionic / Playwright | Live under `testing/` and depend on built packages  |
-| Documentation Generator | Converts examples & JSDoc to docs site assets      | `packages/documentation`                     | Output consumed by separate ix-docs repo           |
-| Registry / CLI          | Publishes searchable components, examples, blocks  | `tooling/registry`, `@siemens/ix-cli`        | Registry dist is deployed to GitHub Pages          |
-| Tooling / Infra         | Build orchestration & automation                   | Turborepo + pnpm + Changesets                | Ensures incremental builds & release versioning    |
+| Layer                   | Purpose                                            | Tech                                          | Notes                                              |
+| ----------------------- | -------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- |
+| Core Components         | Source of truth UI primitives & patterns           | Stencil, TS, SCSS                             | Emits compiled Web Components + component metadata |
+| Framework Wrappers      | Convenience bindings for app frameworks            | Stencil output targets (Angular, React, Vue)  | Auto-generated – never hand-edit generated proxies |
+| Theming Packages        | External lib theme alignment                       | `@siemens/ix-aggrid`, `@siemens/ix-echarts`   | Provide CSS vars + integration helpers             |
+| Examples                | Framework-specific preview example source          | Vite + framework workspaces                   | Source for docs snippets and registry examples     |
+| Blocks                  | Higher-level copyable UI compositions              | React + Angular standalone workspaces         | Packaged by the registry and consumed by the CLI   |
+| Test Apps               | Manual preview, framework, visual, and perf checks | Vite / Angular / Next.js / Ionic / Playwright | Live under `testing/` and depend on built packages |
+| Documentation Generator | Converts examples & JSDoc to docs site assets      | `packages/documentation`                      | Output consumed by separate ix-docs repo           |
+| Registry / CLI          | Publishes searchable components, examples, blocks  | `tooling/registry`, `@siemens/ix-cli`         | Registry dist is deployed to GitHub Pages          |
+| Tooling / Infra         | Build orchestration & automation                   | Turborepo + pnpm + Changesets                 | Ensures incremental builds & release versioning    |
 
 ### Data / Build Flow
 
@@ -32,11 +32,10 @@ This document gives new contributors (humans and AI agents) a concise, high‑le
 2. Run `pnpm build` – Stencil compiles components & emits:
    - Dist web components bundle
    - Type definitions & metadata (`component-doc.json`)
-   - Component discovery artifacts (`component-index.json`, `component-search-index.json`)
    - Generated framework wrapper source into each wrapper package
 3. Framework packages (React / Angular / Vue) bundle their wrapper APIs
 4. Examples, test apps & Storybook consume built packages (symlinked via pnpm workspaces)
-5. Documentation and registry tooling consume examples, block definitions, and component metadata
+5. Documentation and registry tooling consume examples, block definitions, and component metadata; the registry build emits the versioned central documentation search index
 6. Visual regression & component tests run against the built artifacts
 7. Changesets version bump triggers publication & regeneration of wrappers
 
@@ -64,7 +63,7 @@ testing/
   framework-tests/     # Shared framework test helpers
   visual-testing/      # Playwright visual regression suite
 tooling/
-  registry/            # Builds deployable registry JSON, schemas, blocks, examples, and search indexes
+  registry/            # Builds deployable registry JSON, schemas, blocks, examples, and the central search index
   eslint-config-ix/    # Shared lint configuration
   oss-clearing/        # OSS clearing utilities
 ```
@@ -72,9 +71,10 @@ tooling/
 Supporting roots:
 
 - `component-doc.json` – Generated component metadata from core (used for docs, wrappers, registry, and CLI)
-- `component-index.json` / `component-search-index.json` – Generated lightweight component catalog and MiniSearch index
+- `documentation-search-index.json` – Versioned, self-describing MiniSearch catalog for components, examples, and blocks
 - `llms.txt` / `llms/*.md` – Generated registry LLM entrypoint and split Markdown context files
-- `blocks/*.json` – Registry manifests that map block names to framework-specific source files and dependencies
+- `blocks/*.json` – Authored registry manifests that map block names to
+  framework-specific repository `sourcePath` files and dependencies
 - `.changeset/` – Release intent & pre-release state
 - `playwright.config.ts` – Shared test configuration
 
@@ -110,7 +110,6 @@ Preview example changes can affect accessibility tree snapshots in `testing/fram
 
 - `dist/` bundles
 - Custom elements manifest / metadata consumed for wrappers & docs
-- `component-index.json` and `component-search-index.json` for registry/CLI component discovery
 - `llms.txt` and split `llms/*.md` files for LLM-readable registry context
 - Auto-generated proxies: look for comments like `/* auto-generated react proxies */`
 
@@ -134,11 +133,11 @@ Preview example changes can affect accessibility tree snapshots in `testing/fram
 
 ## 5. Testing Strategy Summary
 
-| Test Type               | Location / Pattern                         | Runner                       | Purpose                        |
-| ----------------------- | ------------------------------------------ | ---------------------------- | ------------------------------ |
-| Component (Interactive) | `packages/core/**/*.ct.ts`                 | Playwright Component Testing | Behavioral & interaction flows |
+| Test Type               | Location / Pattern                              | Runner                       | Purpose                        |
+| ----------------------- | ----------------------------------------------- | ---------------------------- | ------------------------------ |
+| Component (Interactive) | `packages/core/**/*.ct.ts`                      | Playwright Component Testing | Behavioral & interaction flows |
 | Framework Tests         | `testing/*-test-app`, `testing/framework-tests` | Framework-specific runners   | Wrapper and app integration    |
-| Visual Regression       | `testing/visual-testing/**/*.e2e.ts`       | Playwright in Docker         | Cross-theme pixel diffs        |
+| Visual Regression       | `testing/visual-testing/**/*.e2e.ts`            | Playwright in Docker         | Cross-theme pixel diffs        |
 
 Execution order recommendation: Build -> Component -> Visual.
 
@@ -167,9 +166,15 @@ Regeneration triggers on every `pnpm build` of core.
 
 ## 8. Registry, Blocks & CLI
 
-- `blocks/*.json` are the source of truth for block registry entries; each manifest points to framework-specific source files under `blocks/*-blocks/`.
+- `blocks/*.json` are the source of truth for block registry entries; each
+  authored manifest points to framework-specific repository `sourcePath` files
+  under `blocks/*-blocks/`. Published manifests contain only framework-prefixed
+  `files[].path` values, resolved relative to the manifest URL.
 - `examples/*-examples/src/preview-examples` provide example source that is transformed into registry example entries and docs snippets.
-- `tooling/registry` builds a versioned deployable registry containing block manifests, example manifests, schemas, copied source files, component metadata, related-example mappings, and MiniSearch indexes.
+- `tooling/registry` builds a versioned deployable registry containing block
+  manifests, example manifests, schemas, materialized canonical files,
+  component metadata, related-example mappings, and the central MiniSearch
+  index.
 - Registry builds are parameterized by `REGISTRY_VERSION`, `REGISTRY_PATH_PREFIX`, and `REGISTRY_LATEST_TAG`; CI deploys the merged registry output to GitHub Pages.
 - `packages/cli` consumes the registry to initialize projects, add blocks/examples, search components, and expose MCP tools for code-generation clients.
 
@@ -187,7 +192,7 @@ Regeneration triggers on every `pnpm build` of core.
 - `ix mcp run-react` and `ix mcp run-angular` start stdio MCP servers backed by the selected registry and framework.
 - MCP tools expose registry-backed discovery for components, icons, examples, blocks, Figma mappings, setup guidance, and audit checks.
 - Block-specific MCP tools include `search_blocks` and `list_all_blocks`; their output points agents back to `ix add <blockName>` for installing copyable blocks into the host project.
-- Component/example MCP tools are backed by generated component metadata, search indexes, and registry example definitions, so generated code should use `get_component_details` and `search_examples` before composing IX UI.
+- Component/example MCP tools are backed by the central search index, generated component metadata, and registry example definitions, so generated code should use `get_component_details` and `search_examples` before composing IX UI.
 
 ---
 
