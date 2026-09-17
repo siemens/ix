@@ -32,7 +32,20 @@ import {
 } from './tree-model';
 import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 
-const createTreeContext = (): TreeContext => Object.create(null);
+const createTreeContext = (): TreeContext => ({});
+
+const defineTreeItemContext = (
+  context: TreeContext,
+  id: string,
+  itemContext: TreeItemContext
+) => {
+  Object.defineProperty(context, id, {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: itemContext,
+  });
+};
 
 /**
  * @slot default - Tree items.
@@ -194,9 +207,9 @@ export class Tree {
   }
 
   private setContext(id: string, context: TreeItemContext) {
-    this.context = Object.assign(createTreeContext(), this.context, {
-      [id]: context,
-    });
+    const nextContext = { ...(this.context ?? createTreeContext()) };
+    defineTreeItemContext(nextContext, id, context);
+    this.context = nextContext;
 
     this.contextChange.emit(this.context);
   }
@@ -205,15 +218,10 @@ export class Tree {
     const context = this.context ?? createTreeContext();
 
     if (!Object.prototype.hasOwnProperty.call(context, id)) {
-      Object.defineProperty(context, id, {
-        configurable: true,
-        enumerable: true,
-        writable: true,
-        value: {
-          isExpanded: false,
-          isSelected: false,
-          isDisabled: this.model[id]?.disabled,
-        },
+      defineTreeItemContext(context, id, {
+        isExpanded: false,
+        isSelected: false,
+        isDisabled: this.model[id]?.disabled,
       });
     }
 

@@ -145,7 +145,8 @@ regressionTest(
     const state = await tree.evaluate((element: HTMLIxTreeElement) => ({
       contextKeys: Object.keys(element.context).sort(),
       selected: element.context['__proto__'].isSelected,
-      nullPrototype: Object.getPrototypeOf(element.context) === null,
+      ordinaryPrototype:
+        Object.getPrototypeOf(element.context) === Object.prototype,
       objectPrototypePolluted: Object.prototype.hasOwnProperty.call(
         Object.prototype,
         'isSelected'
@@ -154,7 +155,7 @@ regressionTest(
 
     expect(state.contextKeys).toEqual(['__proto__', 'constructor', 'toString']);
     expect(state.selected).toBe(true);
-    expect(state.nullPrototype).toBe(true);
+    expect(state.ordinaryPrototype).toBe(true);
     expect(state.objectPrototypePolluted).toBe(false);
   }
 );
