@@ -97,9 +97,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
   const ariaAttributes = props.ariaAttributes ?? {};
 
   const iconIsDecorative = isIconDecorative(ariaAttributes, children);
-  const href = props.disabled
-    ? undefined
-    : getSafeNavigationUrl(props.href, 'ix-button');
+  const href = getSafeNavigationUrl(props.href, 'ix-button');
 
   const commonAttributes = {
     ...ariaAttributes,
@@ -155,7 +153,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
       <a
         {...commonAttributes}
         aria-disabled={a11yBoolean(props.disabled)}
-        href={href}
+        href={props.disabled ? undefined : href}
         target={props.target}
         role="button"
         rel={props.rel}

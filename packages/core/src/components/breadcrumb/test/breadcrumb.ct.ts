@@ -108,13 +108,12 @@ regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
   `);
 
   const breadcrumbItem = page.locator('ix-breadcrumb-item');
-  const link = breadcrumbItem.locator('a');
-  await expect(link).not.toHaveAttribute('href');
+  await expect(breadcrumbItem.locator('button')).not.toHaveAttribute('href');
 
   await breadcrumbItem.evaluate((element) => {
     (element as HTMLIxBreadcrumbItemElement).href = '/safe';
   });
-  await expect(link).toHaveAttribute('href', '/safe');
+  await expect(breadcrumbItem.locator('a')).toHaveAttribute('href', '/safe');
 });
 
 regressionTest('should show next items', async ({ mount, page }) => {
