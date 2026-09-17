@@ -11,10 +11,8 @@
 @use 'sass:map';
 
 // si/sys token values per variant (background/hover/active/contrast), per the
-// SI Theme Token Migration Guide. Naming isn't uniform across variants
-// (e.g. neutral hover/active reuse the generic background-hover/-selected
-// tokens instead of a neutral-hover/-active token), so each variant needs an
-// explicit mapping rather than string interpolation.
+// SI Theme Token Migration Guide. Naming isn't uniform across variants, so
+// each variant needs an explicit mapping rather than string interpolation.
 $blind-variant-sys-values: (
   alarm: (
     background: sys.$si-sys-background-danger,
@@ -36,9 +34,9 @@ $blind-variant-sys-values: (
   ),
   neutral: (
     background: sys.$si-sys-background-neutral,
-    hover: sys.$si-sys-background-hover,
-    active: sys.$si-sys-background-active,
-    contrast: sys.$si-sys-text-primary,
+    hover: sys.$si-sys-background-neutral-hover,
+    active: sys.$si-sys-background-neutral-active,
+    contrast: sys.$si-sys-text-on-neutral,
   ),
   primary: (
     background: sys.$si-sys-background-accent,
