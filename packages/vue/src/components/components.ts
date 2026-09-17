@@ -75,6 +75,7 @@ export { IxModal } from './ix-modal.js';
 export { IxModalContent } from './ix-modal-content.js';
 export { IxModalFooter } from './ix-modal-footer.js';
 export { IxModalHeader } from './ix-modal-header.js';
+export { IxModalLoading } from './ix-modal-loading.js';
 export { IxNumberInput } from './ix-number-input.js';
 export { IxPagination } from './ix-pagination.js';
 export { IxPane } from './ix-pane.js';

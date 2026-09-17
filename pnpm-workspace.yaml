@@ -2,6 +2,8 @@ packages:
   - packages/*
   - tooling/*
   - testing/*
+  - blocks/*
+  - examples/*
 
 catalog:
   '@axe-core/playwright': ^4.11.0
@@ -15,7 +17,6 @@ catalog:
   vite: 7.3.5
 
 minimumReleaseAge: 2880
-
 minimumReleaseAgeExclude:
   - '@siemens/*'
 

@@ -567,7 +567,10 @@
       "methods": [],
       "events": [],
       "cssProperties": [],
-      "slots": [],
+      "slots": [
+        "default",
+        "description"
+      ],
       "cssParts": [],
       "cssStates": []
     },
@@ -7033,6 +7036,19 @@
           "deprecated": false
         }
       ],
+      "cssProperties": [],
+      "slots": [
+        "default"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-modal-loading",
+      "deprecated": false,
+      "properties": [],
+      "methods": [],
+      "events": [],
       "cssProperties": [],
       "slots": [
         "default"

@@ -115,6 +115,8 @@ import './custom-field.spec.ts';
 import './date-dropdown-axe.spec.ts';
 import './date-dropdown-presets-axe.spec.ts';
 import './date-dropdown-presets.spec.ts';
+import './date-dropdown-user-range-axe.spec.ts';
+import './date-dropdown-user-range.spec.ts';
 import './date-dropdown.spec.ts';
 import './date-input-axe.spec.ts';
 import './date-input-disabled-axe.spec.ts';

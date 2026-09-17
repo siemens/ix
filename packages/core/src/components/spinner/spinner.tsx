@@ -10,6 +10,11 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { a11yHostAttributes } from '../utils/a11y';
 
+/**
+ * Animated indicator that signals an ongoing loading process.
+ *
+ * @figma-main-component-id 453:5375
+ */
 @Component({
   tag: 'ix-spinner',
   styleUrl: 'spinner.scss',

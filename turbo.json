@@ -1,8 +1,23 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "BASE_URL"],
-  "globalPassThroughEnv": ["PLAYWRIGHT_BROWSERS_PATH", "CHROME_BIN"],
-  "globalDependencies": [".env"],
+  "globalEnv": [
+    "CI",
+    "FIGMA_API_TOKEN",
+    "GITHUB_TOKEN",
+    "CSC",
+    "BASE_URL",
+    "REGISTRY_VERSION",
+    "REGISTRY_PATH_PREFIX",
+    "REGISTRY_LATEST_TAG",
+    "CORPORATE_THEME_VERSION",
+    "CORPORATE_THEME_URL"
+  ],
+  "globalPassThroughEnv": [
+    "CORPORATE_THEME_TOKEN",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "CHROME_BIN"
+  ],
+  "globalDependencies": [".env*", "**/.env*"],
   "ui": "stream",
   "tasks": {
     "build": {
@@ -20,6 +35,8 @@
         "api-docs/**",
         "component-api.json",
         "component-doc.json",
+        "component-index.json",
+        "component-search-index.json",
         "component-usage-by-component.json",
         "component-usage.json"
       ],

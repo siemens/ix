@@ -31,7 +31,11 @@ import { InheritAriaAttributesMixin } from '../utils/internal/mixins/accessibili
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
- * @slot default - Tab items.
+ * Tabbed navigation for switching between related views.
+ *
+ * @figma-main-component-id 427:6367
+ *
+ * @slot - Tab items.
  */
 @Component({
   tag: 'ix-tabs',

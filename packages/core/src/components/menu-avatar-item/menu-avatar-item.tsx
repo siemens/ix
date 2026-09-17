@@ -19,6 +19,9 @@ import {
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * A single action within the avatar menu.
+ */
 @Component({
   tag: 'ix-menu-avatar-item',
   styleUrl: 'menu-avatar-item.scss',

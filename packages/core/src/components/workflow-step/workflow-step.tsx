@@ -30,8 +30,10 @@ import {
 } from '@stencil/core';
 
 /**
- * @slot custom-icon - Custom icon displayed for the workflow step.
- * @slot default - Workflow step label and content.
+ * A single step within a workflow step sequence.
+ *
+ * @slot custom-icon - Custom step icon.
+ * @slot - Workflow step content.
  */
 @Component({
   tag: 'ix-workflow-step',

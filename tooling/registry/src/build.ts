@@ -1,0 +1,591 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import { Listr } from 'listr2';
+import path from 'node:path';
+import fs from 'fs-extra';
+import tsconfig from '../tsconfig.json' assert { type: 'json' };
+import { glob } from 'glob';
+import { buildSearchIndex } from './search-index';
+import { generateExampleBlocks } from './generate-examples';
+import { generateLlmsArtifacts } from './llms';
+import { generateBlockDefinitions } from './block-dependencies';
+import { validateJsonFiles } from './schema-validation';
+import {
+  updateComponentsRegistry,
+  updateBlocksRegistry,
+  updateExamplesRegistry,
+  updateLlmsRegistry,
+} from './update-registry';
+
+const __dirname = path.resolve();
+const __workspace_root = path.join(__dirname, '..', '..');
+const __node_modules = path.join(__dirname, 'node_modules');
+const __react_blocks = path.join(__node_modules, 'react-blocks');
+const __angular_standalone_blocks = path.join(
+  __node_modules,
+  'angular-standalone-blocks'
+);
+const __ix_package = path.join(__dirname, '..', '..', 'packages', 'core');
+const __examples_root = path.join(__dirname, '..', '..', 'examples');
+const __registry_template = path.join(__dirname, 'registry.json');
+const __registry_schema_template = path.join(__dirname, 'registry.schema.json');
+const __block_schema = path.join(__dirname, 'schemas', 'block.schema.json');
+const __example_schema = path.join(__dirname, 'schemas', 'example.schema.json');
+const __ix_component_doc = path.join(__ix_package, 'component-doc.json');
+const __ix_component_index = path.join(__ix_package, 'component-index.json');
+const __ix_component_search_index = path.join(
+  __ix_package,
+  'component-search-index.json'
+);
+const __blocks_root = path.join(__dirname, '..', '..', 'blocks');
+const __html_examples_component_usage_by_component = path.join(
+  __examples_root,
+  'html-examples',
+  'component-usage-by-component.json'
+);
+const __react_blocks_component_usage_by_component = path.join(
+  __blocks_root,
+  'react-blocks',
+  'component-usage-by-component.json'
+);
+
+type BlockDefinition = {
+  name: string;
+  variants?: Record<
+    string,
+    {
+      files?: Array<{ source: string }>;
+    }
+  >;
+};
+
+function normalizeRelationships(
+  input: Record<string, string[]>,
+  resolveEntryName: (file: string) => string | null
+): Record<string, string[]> {
+  const result: Record<string, string[]> = {};
+
+  for (const [component, entries] of Object.entries(input)) {
+    const normalizedEntries = Array.from(
+      new Set(
+        entries.map(resolveEntryName).filter((name): name is string => !!name)
+      )
+    ).sort();
+
+    if (normalizedEntries.length > 0) {
+      result[component] = normalizedEntries;
+    }
+  }
+
+  return result;
+}
+
+function toExampleName(value: string): string | null {
+  const normalized = value.replace(/\\/g, '/');
+  const previewExampleMatch = normalized.match(
+    /\/src\/preview-examples\/([^/]+)\.html$/
+  );
+
+  if (previewExampleMatch?.[1]) {
+    return previewExampleMatch[1];
+  }
+
+  const htmlFileMatch = normalized.match(/([^/]+)\.html$/);
+  return htmlFileMatch?.[1] ?? null;
+}
+
+function normalizeSourcePath(value: string): string {
+  return value.replace(/\\/g, '/').replace(/^\/+/, '');
+}
+
+async function readBlockNamesByReactSource(): Promise<Map<string, string>> {
+  const blockFiles = await glob(path.join(__blocks_root, '*.json'), {
+    absolute: true,
+  });
+  const blocks = await Promise.all(
+    blockFiles.map(async (file) => (await fs.readJson(file)) as BlockDefinition)
+  );
+  const blockNamesBySource = new Map<string, string>();
+
+  for (const block of blocks) {
+    for (const file of block.variants?.react?.files ?? []) {
+      const source = normalizeSourcePath(file.source);
+      const relativeSource = source.startsWith('react-blocks/')
+        ? source.slice('react-blocks/'.length)
+        : source;
+      blockNamesBySource.set(relativeSource, block.name);
+    }
+  }
+
+  return blockNamesBySource;
+}
+
+interface Ctx {
+  dist: string;
+  registryVersion: string;
+  registryPathPrefix: string;
+  registryLatestTag: string;
+  noRegistryMinify: boolean;
+}
+
+const task = new Listr<Ctx>([
+  {
+    title: 'Resolve build metadata',
+    task: (ctx) => {
+      ctx.dist = tsconfig.compilerOptions.outDir || 'dist';
+      ctx.registryVersion =
+        process.env.REGISTRY_VERSION?.trim() || 'development';
+      ctx.registryPathPrefix =
+        process.env.REGISTRY_PATH_PREFIX?.trim() || ctx.registryVersion;
+      ctx.registryLatestTag =
+        process.env.REGISTRY_LATEST_TAG?.trim() || ctx.registryVersion;
+
+      const noRegistryMinifyRaw = process.env.NO_REGISTRY_MINIFY?.trim();
+      ctx.noRegistryMinify =
+        noRegistryMinifyRaw === '1' ||
+        noRegistryMinifyRaw === 'true' ||
+        noRegistryMinifyRaw === 'yes';
+
+      console.log(`📌 Registry version: ${ctx.registryVersion}`);
+      console.log(`📂 Registry path prefix: ${ctx.registryPathPrefix}`);
+      console.log(`🏷️  Registry latest tag: ${ctx.registryLatestTag}`);
+    },
+  },
+  {
+    title: 'Validate source block definitions',
+    task: async () => {
+      const files = await glob(path.join(__blocks_root, '*.json'), {
+        absolute: true,
+      });
+      await validateJsonFiles(files, __block_schema);
+    },
+  },
+  {
+    title: 'Copy registry templates to dist',
+    task: async (ctx) => {
+      await fs.remove(ctx.dist);
+      await fs.ensureDir(ctx.dist);
+      await Promise.all([
+        fs.copy(__registry_template, path.join(ctx.dist, 'registry.json'), {
+          dereference: true,
+        }),
+        fs.copy(
+          __registry_schema_template,
+          path.join(ctx.dist, 'registry.schema.json'),
+          {
+            dereference: true,
+          }
+        ),
+      ]);
+    },
+  },
+  {
+    title: 'Copy react blocks to dist',
+    task: async (ctx) => {
+      const dest = path.join(ctx.dist, 'blocks', 'react-blocks');
+      await Promise.all([
+        fs.copy(path.join(__react_blocks, 'dist'), path.join(dest, 'dist'), {
+          dereference: true,
+        }),
+        fs.copy(path.join(__react_blocks, 'src'), path.join(dest, 'src'), {
+          dereference: true,
+        }),
+      ]);
+    },
+  },
+  {
+    title: 'Copy angular blocks to dist',
+    task: async (ctx) => {
+      const dest = path.join(ctx.dist, 'blocks', 'angular-standalone-blocks');
+      await fs.copy(
+        path.join(__angular_standalone_blocks, 'src'),
+        path.join(dest, 'src'),
+        {
+          dereference: true,
+        }
+      );
+    },
+  },
+  {
+    title: 'Generate example block definitions',
+    task: async (ctx) => {
+      const examplesOutputDir = path.join(ctx.dist, 'examples');
+      const examplesDir = path.join(__dirname, '..', '..', 'examples');
+      await generateExampleBlocks(examplesOutputDir, examplesDir);
+    },
+  },
+  {
+    title: 'Copy example source files to dist',
+    task: async (ctx) => {
+      const frameworks = [
+        'html-examples',
+        'react-examples',
+        'angular-examples',
+        'angular-standalone-examples',
+        'vue-examples',
+      ];
+
+      await Promise.all(
+        frameworks.map(async (framework) => {
+          const srcSourcePath = path.join(
+            __examples_root,
+            framework,
+            'src',
+            'preview-examples'
+          );
+          const srcDestPath = path.join(
+            ctx.dist,
+            'examples',
+            framework,
+            'src',
+            'preview-examples'
+          );
+
+          if (await fs.pathExists(srcSourcePath)) {
+            await fs.copy(srcSourcePath, srcDestPath, { dereference: true });
+          } else {
+            console.warn(`⚠️  Example source not found: ${srcSourcePath}`);
+          }
+        })
+      );
+
+      const htmlDistSourcePath = path.join(
+        __examples_root,
+        'html-examples',
+        'dist'
+      );
+      const htmlDistDestPath = path.join(
+        ctx.dist,
+        'examples',
+        'html-examples',
+        'dist'
+      );
+
+      if (await fs.pathExists(htmlDistSourcePath)) {
+        await fs.copy(htmlDistSourcePath, htmlDistDestPath, {
+          dereference: true,
+        });
+      }
+    },
+  },
+  {
+    title: 'Copy IX component metadata to dist',
+    task: async (ctx) => {
+      const dest = path.join(ctx.dist, 'ix');
+
+      await Promise.all([
+        fs.copy(__ix_component_doc, path.join(dest, 'component-doc.json'), {
+          dereference: true,
+        }),
+        fs.copy(__ix_component_index, path.join(dest, 'component-index.json'), {
+          dereference: true,
+        }),
+        fs.copy(
+          __ix_component_search_index,
+          path.join(dest, 'component-search-index.json'),
+          {
+            dereference: true,
+          }
+        ),
+      ]);
+
+      const componentRelatedExamplesTarget = path.join(
+        dest,
+        'component-related-examples.json'
+      );
+      const componentRelatedBlocksTarget = path.join(
+        dest,
+        'component-related-blocks.json'
+      );
+
+      if (await fs.pathExists(__html_examples_component_usage_by_component)) {
+        const relatedExamples = (await fs.readJson(
+          __html_examples_component_usage_by_component
+        )) as Record<string, string[]>;
+
+        await fs.outputJson(
+          componentRelatedExamplesTarget,
+          normalizeRelationships(relatedExamples, toExampleName),
+          { spaces: 2 }
+        );
+      } else {
+        console.warn(
+          `⚠️  Related examples file not found: ${__html_examples_component_usage_by_component}. Creating empty mapping.`
+        );
+        await fs.outputJson(componentRelatedExamplesTarget, {}, { spaces: 2 });
+      }
+
+      if (await fs.pathExists(__react_blocks_component_usage_by_component)) {
+        const [relatedBlocks, blockNamesBySource] = await Promise.all([
+          fs.readJson(__react_blocks_component_usage_by_component) as Promise<
+            Record<string, string[]>
+          >,
+          readBlockNamesByReactSource(),
+        ]);
+        const unmappedBlockFiles = Array.from(
+          new Set(
+            Object.values(relatedBlocks)
+              .flat()
+              .map(normalizeSourcePath)
+              .filter((file) => !blockNamesBySource.has(file))
+          )
+        ).sort();
+
+        if (unmappedBlockFiles.length > 0) {
+          throw new Error(
+            `Component usage found in React files not declared by a block: ${unmappedBlockFiles.join(
+              ', '
+            )}`
+          );
+        }
+
+        await fs.outputJson(
+          componentRelatedBlocksTarget,
+          normalizeRelationships(
+            relatedBlocks,
+            (file) => blockNamesBySource.get(normalizeSourcePath(file)) ?? null
+          ),
+          { spaces: 2 }
+        );
+      } else {
+        console.warn(
+          `⚠️  Related blocks file not found: ${__react_blocks_component_usage_by_component}. Creating empty mapping.`
+        );
+        await fs.outputJson(componentRelatedBlocksTarget, {}, { spaces: 2 });
+      }
+    },
+  },
+  {
+    title: 'Update blocks registry.json',
+    task: async (ctx) => {
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const blocksDir = path.join(__dirname, '..', '..', 'blocks');
+      await updateBlocksRegistry(registryPath, blocksDir, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+      });
+    },
+  },
+  {
+    title: 'Update registry.json components section',
+    task: async (ctx) => {
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      await updateComponentsRegistry(registryPath, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+        components: {
+          componentDoc: 'ix/component-doc.json',
+          componentIndex: 'ix/component-index.json',
+          componentSearchIndex: 'ix/component-search-index.json',
+          componentRelatedExamples: 'ix/component-related-examples.json',
+          componentRelatedBlocks: 'ix/component-related-blocks.json',
+        },
+      });
+    },
+  },
+  {
+    title: 'Update registry.json examples section',
+    task: async (ctx) => {
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const examplesDir = path.join(ctx.dist, 'examples');
+      await updateExamplesRegistry(registryPath, examplesDir, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+      });
+    },
+  },
+  {
+    title: 'Generate block definitions with dependency metadata',
+    task: async (ctx) => {
+      const dest = path.join(ctx.dist, 'blocks');
+      await generateBlockDefinitions({
+        blocksDir: __blocks_root,
+        outputDir: dest,
+        registryVersion: ctx.registryVersion,
+        workspaceRoot: __workspace_root,
+      });
+    },
+  },
+  {
+    title: 'Copy schema JSON files to dist',
+    task: async (ctx) => {
+      const dest = path.join(ctx.dist, 'schemas');
+      const files = await glob(path.join(__dirname, 'schemas', '*.json'), {
+        absolute: true,
+      });
+      await Promise.all(
+        files.map((file) =>
+          fs.copy(file, path.join(dest, path.basename(file)), {
+            dereference: true,
+          })
+        )
+      );
+    },
+  },
+  {
+    title: 'Fix schema $schema paths for block JSON files',
+    task: async (ctx) => {
+      const blockDir = path.join(ctx.dist, 'blocks');
+      const files = await glob(path.join(blockDir, '*.json'), {
+        absolute: true,
+      });
+      await Promise.all(
+        files.map(async (file) => {
+          const content = await fs.readFile(file, 'utf-8');
+          const json = JSON.parse(content);
+          if (json.$schema) {
+            json.$schema = '../schemas/block.schema.json';
+            await fs.writeFile(file, JSON.stringify(json, null, 2), 'utf-8');
+          }
+        })
+      );
+    },
+  },
+  {
+    title: 'Fix schema $schema paths for example JSON files',
+    task: async (ctx) => {
+      const examplesDir = path.join(ctx.dist, 'examples');
+      const files = await glob(path.join(examplesDir, '*.json'), {
+        absolute: true,
+      });
+      await Promise.all(
+        files.map(async (file) => {
+          const content = await fs.readFile(file, 'utf-8');
+          const json = JSON.parse(content);
+          if (json.$schema) {
+            json.$schema = '../schemas/example.schema.json';
+            await fs.writeFile(file, JSON.stringify(json, null, 2), 'utf-8');
+          }
+        })
+      );
+    },
+  },
+  {
+    title: 'Validate generated block and example definitions',
+    task: async (ctx) => {
+      const [blockFiles, exampleFiles] = await Promise.all([
+        glob(path.join(ctx.dist, 'blocks', '*.json'), { absolute: true }),
+        glob(path.join(ctx.dist, 'examples', '*.json'), { absolute: true }),
+      ]);
+      await Promise.all([
+        validateJsonFiles(blockFiles, __block_schema),
+        validateJsonFiles(exampleFiles, __example_schema),
+      ]);
+    },
+  },
+  {
+    title: 'Generate llms.txt artifacts',
+    task: async (ctx) => {
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const llmsArtifacts = await generateLlmsArtifacts({
+        distDir: ctx.dist,
+        componentDocPath: path.join(ctx.dist, 'ix', 'component-doc.json'),
+        componentRelatedExamplesPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-examples.json'
+        ),
+        componentRelatedBlocksPath: path.join(
+          ctx.dist,
+          'ix',
+          'component-related-blocks.json'
+        ),
+        blocksDir: path.join(ctx.dist, 'blocks'),
+        examplesDir: path.join(ctx.dist, 'examples'),
+      });
+
+      await updateLlmsRegistry(registryPath, {
+        version: ctx.registryVersion,
+        latestTag: ctx.registryLatestTag,
+        pathPrefix: ctx.registryPathPrefix,
+        llms: llmsArtifacts,
+      });
+    },
+  },
+  {
+    title: 'Build blocks search indexes',
+    task: async (ctx) => {
+      const blocksDir = path.join(ctx.dist, 'blocks');
+      const indexPaths = await buildSearchIndex(
+        ctx.dist,
+        blocksDir,
+        'search-index'
+      );
+
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const registry = await fs.readJson(registryPath);
+      registry.versions ??= {};
+      registry.versions[ctx.registryVersion] ??= { blocks: [] };
+      registry.versions[ctx.registryVersion].searchIndex ??= {};
+      registry.versions[ctx.registryVersion].searchIndex.blocks = indexPaths;
+      await fs.writeJson(registryPath, registry, { spaces: 2 });
+    },
+  },
+  {
+    title: 'Build examples search indexes',
+    task: async (ctx) => {
+      const examplesDir = path.join(ctx.dist, 'examples');
+      const indexPaths = await buildSearchIndex(
+        ctx.dist,
+        examplesDir,
+        'examples-search-index'
+      );
+
+      const registryPath = path.join(ctx.dist, 'registry.json');
+      const registry = await fs.readJson(registryPath);
+      registry.versions ??= {};
+      registry.versions[ctx.registryVersion] ??= { examples: [] };
+      registry.versions[ctx.registryVersion].searchIndex ??= {};
+      registry.versions[ctx.registryVersion].searchIndex.examples = indexPaths;
+      await fs.writeJson(registryPath, registry, { spaces: 2 });
+    },
+  },
+  {
+    title: 'Validate generated registry manifest',
+    task: async (ctx) => {
+      await validateJsonFiles(
+        [path.join(ctx.dist, 'registry.json')],
+        __registry_schema_template
+      );
+    },
+  },
+  {
+    title: 'Minify JSON files in dist',
+    task: async (ctx) => {
+      if (ctx.noRegistryMinify) {
+        console.log('🧾 JSON minification disabled (NO_REGISTRY_MINIFY)');
+        return;
+      }
+
+      const jsonFiles = await glob(path.join(ctx.dist, '**', '*.json'), {
+        absolute: true,
+      });
+
+      await Promise.all(
+        jsonFiles.map(async (file) => {
+          const json = await fs.readJson(file);
+          await fs.writeFile(file, JSON.stringify(json), 'utf-8');
+        })
+      );
+    },
+  },
+]);
+
+async function main() {
+  const context = await task.run();
+  return context;
+}
+
+main().catch((err) => {
+  console.error('❌ Error during build:', err);
+  process.exit(1);
+});
