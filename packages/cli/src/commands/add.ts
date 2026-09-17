@@ -12,15 +12,15 @@ import { detectFramework } from '../detect';
 import {
   applyInstallPlan,
   assertConflictsAllowed,
-  prepareBlockInstall,
+  preparePatternInstall,
   reportInstallPlan,
 } from '../installer';
 import {
   fetchValidatedRegistryIndex,
-  fetchValidatedBlockDefinition,
+  fetchValidatedPatternDefinition,
   resolveRegistryVersion,
 } from '../registry';
-import { assertValidBlockName } from '../validation';
+import { assertValidPatternName } from '../validation';
 
 type AddOptions = {
   registry: string;
@@ -32,11 +32,11 @@ type AddOptions = {
 };
 
 async function runAddUnlocked(
-  blockNameInput: string,
+  patternNameInput: string,
   opts: AddOptions,
   cwd = process.cwd()
 ): Promise<void> {
-  const blockName = assertValidBlockName(blockNameInput);
+  const patternName = assertValidPatternName(patternNameInput);
 
   const { config, initialized } = await loadConfigOrInit(cwd, opts.dryRun);
   if (initialized) {
@@ -46,14 +46,16 @@ async function runAddUnlocked(
   const index = await fetchValidatedRegistryIndex(opts.registry);
   const selectedVersion = resolveRegistryVersion(index, opts.tag);
   const selected = index.versions[selectedVersion];
-  const entry = selected.blocks.find((block) => block.name === blockName);
+  const entry = selected.patterns.find(
+    (pattern) => pattern.name === patternName
+  );
   if (!entry) {
     throw new Error(
-      `Block '${blockName}' not found in registry '${index.name}' for version '${selectedVersion}'.`
+      `Pattern '${patternName}' not found in registry '${index.name}' for version '${selectedVersion}'.`
     );
   }
 
-  const blockDef = await fetchValidatedBlockDefinition(
+  const patternDef = await fetchValidatedPatternDefinition(
     opts.registry,
     entry.path
   );
@@ -80,15 +82,15 @@ async function runAddUnlocked(
     throw new Error('--tokens must be a JSON object with string values.');
   }
 
-  const previousFiles = config.blocks.find(
-    (block) => block.name === blockName
+  const previousFiles = config.patterns.find(
+    (pattern) => pattern.name === patternName
   )?.files;
-  const plan = await prepareBlockInstall({
+  const plan = await preparePatternInstall({
     cwd,
     baseUrl: opts.registry,
-    blockEntryPath: entry.path,
-    blockDef,
-    expectedBlockName: blockName,
+    patternEntryPath: entry.path,
+    patternDef,
+    expectedPatternName: patternName,
     framework,
     tokens: tokens as Record<string, string>,
     targetFolder: config.targetFolder,
@@ -99,25 +101,27 @@ async function runAddUnlocked(
 
   if (opts.dryRun) {
     assertConflictsAllowed(plan);
-    console.log(`Dry run complete for '${blockName}' (${framework}).`);
+    console.log(`Dry run complete for '${patternName}' (${framework}).`);
     return;
   }
 
   await applyInstallPlan(plan, config, selectedVersion);
-  console.log(`✅ Installed '${blockName}' (${framework})`);
+  console.log(`✅ Installed '${patternName}' (${framework})`);
 }
 
 export async function runAdd(
-  blockNameInput: string,
+  patternNameInput: string,
   opts: AddOptions,
   cwd = process.cwd()
 ): Promise<void> {
-  return withProjectLock(cwd, () => runAddUnlocked(blockNameInput, opts, cwd));
+  return withProjectLock(cwd, () =>
+    runAddUnlocked(patternNameInput, opts, cwd)
+  );
 }
 
 export const addCommand = new Command('add')
-  .description('Install or update a block from an IX registry')
-  .argument('<blockName>', 'Block name (e.g. hero)')
+  .description('Install or update a pattern from an IX registry')
+  .argument('<patternName>', 'Pattern name (e.g. hero)')
   .option('-r, --registry <url>', 'Registry base URL', defaultRegistry)
   .option(
     '-t, --tag <tag>',
@@ -132,9 +136,9 @@ export const addCommand = new Command('add')
     'JSON map for token replacement (e.g. {"__IX_PREFIX__":"Ix"})',
     '{}'
   )
-  .action(async (blockName: string, opts: AddOptions) => {
+  .action(async (patternName: string, opts: AddOptions) => {
     try {
-      await runAdd(blockName, opts);
+      await runAdd(patternName, opts);
     } catch (error) {
       console.error(`❌ ${(error as Error).message}`);
       process.exitCode = 1;

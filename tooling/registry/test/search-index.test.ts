@@ -21,11 +21,11 @@ import {
 test('builds a deterministic central index for all documentation kinds', async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-search-index-'));
   const distDir = path.join(root, 'dist');
-  const blocksDir = path.join(distDir, 'blocks');
+  const patternsDir = path.join(distDir, 'patterns');
   const examplesDir = path.join(distDir, 'examples');
   const componentDocPath = path.join(root, 'component-doc.json');
   const relatedExamplesPath = path.join(root, 'related-examples.json');
-  const relatedBlocksPath = path.join(root, 'related-blocks.json');
+  const relatedPatternsPath = path.join(root, 'related-patterns.json');
   const reactTypesPath = path.join(
     root,
     'packages',
@@ -73,13 +73,13 @@ test('builds a deterministic central index for all documentation kinds', async (
     await fs.outputJson(relatedExamplesPath, {
       'ix-button': ['button-basic'],
     });
-    await fs.outputJson(relatedBlocksPath, {
+    await fs.outputJson(relatedPatternsPath, {
       'ix-button': ['button-basic'],
     });
 
-    await fs.outputJson(path.join(blocksDir, 'button-basic.json'), {
+    await fs.outputJson(path.join(patternsDir, 'button-basic.json'), {
       name: 'button-basic',
-      description: 'A workflow button block.',
+      description: 'A workflow button pattern.',
       keywords: ['workflow', 'submit'],
       variants: {
         react: {
@@ -91,11 +91,11 @@ test('builds a deterministic central index for all documentation kinds', async (
       },
     });
     await fs.outputFile(
-      path.join(blocksDir, 'react/button.tsx'),
+      path.join(patternsDir, 'react/button.tsx'),
       'export const button = <ix-button variant="primary" />;'
     );
     await fs.outputFile(
-      path.join(blocksDir, 'html/button.html'),
+      path.join(patternsDir, 'html/button.html'),
       '<ix-button variant="primary"></ix-button>'
     );
 
@@ -121,11 +121,11 @@ test('builds a deterministic central index for all documentation kinds', async (
 
     const firstFile = await buildDocumentationSearchIndex({
       distDir,
-      blocksDir,
+      patternsDir,
       examplesDir,
       componentDocPath,
       componentRelatedExamplesPath: relatedExamplesPath,
-      componentRelatedBlocksPath: relatedBlocksPath,
+      componentRelatedPatternsPath: relatedPatternsPath,
       workspaceRoot: root,
     });
     const firstOutput = await fs.readFile(
@@ -135,11 +135,11 @@ test('builds a deterministic central index for all documentation kinds', async (
 
     await buildDocumentationSearchIndex({
       distDir,
-      blocksDir,
+      patternsDir,
       examplesDir,
       componentDocPath,
       componentRelatedExamplesPath: relatedExamplesPath,
-      componentRelatedBlocksPath: relatedBlocksPath,
+      componentRelatedPatternsPath: relatedPatternsPath,
       workspaceRoot: root,
     });
     assert.equal(
@@ -190,15 +190,15 @@ test('builds a deterministic central index for all documentation kinds', async (
     );
     assert.equal(
       search.search('primary', { ...DOCUMENTATION_SEARCH_OPTIONS })[0]?.id,
-      'block:html:button-basic'
+      'pattern:html:button-basic'
     );
     assert.equal(
       search.search('workflow', {
         ...DOCUMENTATION_SEARCH_OPTIONS,
         filter: (result) =>
-          result.kind === 'block' && result.framework === 'react',
+          result.kind === 'pattern' && result.framework === 'react',
       })[0]?.id,
-      'block:react:button-basic'
+      'pattern:react:button-basic'
     );
     assert.equal(
       search.search('submit', {
@@ -217,7 +217,7 @@ test('builds a deterministic central index for all documentation kinds', async (
     assert.deepEqual(component.reactExamples, [
       { name: 'button-basic', path: 'examples/button-basic.json' },
     ]);
-    assert.deepEqual(component.relatedBlocks, ['button-basic']);
+    assert.deepEqual(component.relatedPatterns, ['button-basic']);
     assert.deepEqual(component.documentation, [
       'https://ix.siemens.io/docs/button',
     ]);
@@ -229,7 +229,9 @@ test('builds a deterministic central index for all documentation kinds', async (
       versions: {
         development: {
           documentationSearchIndex: firstFile,
-          blocks: [{ name: 'button-basic', path: 'blocks/button-basic.json' }],
+          patterns: [
+            { name: 'button-basic', path: 'patterns/button-basic.json' },
+          ],
           examples: [
             { name: 'button-basic', path: 'examples/button-basic.json' },
           ],
@@ -251,17 +253,17 @@ test('builds a deterministic central index for all documentation kinds', async (
       true
     );
 
-    const block = search.search('workflow', {
+    const pattern = search.search('workflow', {
       ...DOCUMENTATION_SEARCH_OPTIONS,
       filter: (result) =>
-        result.kind === 'block' && result.framework === 'react',
+        result.kind === 'pattern' && result.framework === 'react',
     })[0];
     const example = search.search('submit', {
       ...DOCUMENTATION_SEARCH_OPTIONS,
       filter: (result) =>
         result.kind === 'example' && result.framework === 'vue',
     })[0];
-    assert.equal(await fs.pathExists(path.join(distDir, block.path)), true);
+    assert.equal(await fs.pathExists(path.join(distDir, pattern.path)), true);
     assert.equal(await fs.pathExists(path.join(distDir, example.path)), true);
   } finally {
     await fs.remove(root);

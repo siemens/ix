@@ -10,7 +10,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-standalone-blocks": {
+    "angular-standalone-patterns": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -59,10 +59,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-standalone-blocks:build:production"
+              "buildTarget": "angular-standalone-patterns:build:production"
             },
             "development": {
-              "buildTarget": "angular-standalone-blocks:build:development"
+              "buildTarget": "angular-standalone-patterns:build:development"
             }
           },
           "defaultConfiguration": "development"

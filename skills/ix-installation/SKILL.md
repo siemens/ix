@@ -12,7 +12,7 @@ description: 'Install, configure, repair, or verify Siemens iX in an existing Re
 - Verify which iX packages and imports an application needs.
 - Configure the official iX MCP server after installing iX.
 
-Do not use this skill for implementing application features after iX is configured. Use the `ix` skill for component selection, APIs, examples, blocks, icons, and design guidance.
+Do not use this skill for implementing application features after iX is configured. Use the `ix` skill for component selection, APIs, examples, patterns, icons, and design guidance.
 
 ## Required Principles
 

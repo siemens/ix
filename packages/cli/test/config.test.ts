@@ -30,36 +30,36 @@ test.after(async () => {
 test('reports actionable Zod 4 config issues', async () => {
   await fs.writeFile(
     path.join(workRoot, CONFIG_FILE_NAME),
-    JSON.stringify({ targetFolder: '../outside', blocks: [] })
+    JSON.stringify({ targetFolder: '../outside', patterns: [] })
   );
 
   await assert.rejects(
     loadConfig(workRoot),
     (error: Error) =>
-      error.message.includes('Invalid ix-blocks-lock.json') &&
+      error.message.includes('Invalid ix-patterns-lock.json') &&
       error.message.includes('targetFolder') &&
       error.message.includes('before running the CLI again')
   );
 });
 
 test('reports malformed JSON separately', async () => {
-  await fs.writeFile(path.join(workRoot, CONFIG_FILE_NAME), '{"blocks":');
+  await fs.writeFile(path.join(workRoot, CONFIG_FILE_NAME), '{"patterns":');
 
   await assert.rejects(
     loadConfig(workRoot),
-    /Invalid JSON in ix-blocks-lock\.json/
+    /Invalid JSON in ix-patterns-lock\.json/
   );
 });
 
 test('atomically saves and loads valid nested paths', async () => {
   await saveConfig(workRoot, {
-    targetFolder: 'src/features/blocks',
-    blocks: [],
+    targetFolder: 'src/features/patterns',
+    patterns: [],
   });
 
   assert.deepEqual(await loadConfig(workRoot), {
-    targetFolder: 'src/features/blocks',
-    blocks: [],
+    targetFolder: 'src/features/patterns',
+    patterns: [],
   });
   assert.deepEqual(
     (await fs.readdir(workRoot)).filter((entry) => entry.endsWith('.tmp')),

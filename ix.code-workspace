@@ -37,8 +37,8 @@
       "path": "./examples"
     },
     {
-      "name": "Blocks",
-      "path": "./blocks"
+      "name": "Patterns",
+      "path": "./patterns"
     },
     {
       "name": "Testing",

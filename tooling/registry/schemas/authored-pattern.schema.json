@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "IX Authored Block Definition",
-  "description": "Repository-only schema for Siemens IX block definitions",
+  "title": "IX Authored Pattern Definition",
+  "description": "Repository-only schema for Siemens IX pattern definitions",
   "type": "object",
   "required": ["name", "description", "keywords", "preview", "variants"],
   "properties": {

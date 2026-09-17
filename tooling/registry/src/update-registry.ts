@@ -20,19 +20,19 @@ type UnifiedRegistry = {
   versions: Record<
     string,
     {
-      blocks?: Array<{ name: string; path: string }>;
+      patterns?: Array<{ name: string; path: string }>;
       examples?: Array<{ name: string; path: string }>;
       components?: {
         componentDoc: string;
         componentRelatedExamples: string;
-        componentRelatedBlocks?: string;
+        componentRelatedPatterns?: string;
       };
       documentationSearchIndex?: string;
       llms?: {
         entrypoint: string;
         components: string;
         examples: string;
-        blocks: string;
+        patterns: string;
       };
     }
   >;
@@ -45,7 +45,7 @@ interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
   components: {
     componentDoc: string;
     componentRelatedExamples: string;
-    componentRelatedBlocks: string;
+    componentRelatedPatterns: string;
   };
 }
 
@@ -59,7 +59,7 @@ interface LlmsRegistryUpdateOptions extends RegistryUpdateOptions {
     entrypoint: string;
     components: string;
     examples: string;
-    blocks: string;
+    patterns: string;
   };
 }
 
@@ -70,39 +70,41 @@ function ensureVersionEntry(registry: UnifiedRegistry, version: string) {
 }
 
 /**
- * Update blocks registry.json with manual blocks only
+ * Update patterns registry.json with manual patterns only
  */
-export async function updateBlocksRegistry(
+export async function updatePatternsRegistry(
   registryPath: string,
-  blocksDir: string,
+  patternsDir: string,
   options: RegistryUpdateOptions
 ): Promise<void> {
-  console.log('📝 Updating registry.json blocks section...');
+  console.log('📝 Updating registry.json patterns section...');
 
   const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
 
-  const blocks: Array<{ name: string; path: string }> = [];
+  const patterns: Array<{ name: string; path: string }> = [];
 
-  const blockFiles = await glob(path.join(blocksDir, '*.json'), {
+  const patternFiles = await glob(path.join(patternsDir, '*.json'), {
     absolute: false,
   });
 
   const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
 
-  blocks.push(
-    ...blockFiles.map((file) => {
+  patterns.push(
+    ...patternFiles.map((file) => {
       const name = path.basename(file, '.json');
-      const blockPath = `blocks/${path.basename(file)}`;
+      const patternPath = `patterns/${path.basename(file)}`;
 
       return {
         name,
-        path: normalizedPrefix ? `${normalizedPrefix}/${blockPath}` : blockPath,
+        path: normalizedPrefix
+          ? `${normalizedPrefix}/${patternPath}`
+          : patternPath,
       };
     })
   );
 
   const versionEntry = ensureVersionEntry(registry, options.version);
-  versionEntry.blocks = blocks.sort((a, b) => a.name.localeCompare(b.name));
+  versionEntry.patterns = patterns.sort((a, b) => a.name.localeCompare(b.name));
 
   registry['dist-tags'] = {
     latest: options.latestTag ?? options.version,
@@ -110,7 +112,7 @@ export async function updateBlocksRegistry(
 
   await fs.writeJson(registryPath, registry, { spaces: 2 });
 
-  console.log(`✅ Updated blocks registry with ${blocks.length} blocks`);
+  console.log(`✅ Updated patterns registry with ${patterns.length} patterns`);
 }
 
 /**

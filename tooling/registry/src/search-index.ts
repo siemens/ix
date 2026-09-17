@@ -52,7 +52,7 @@ export const DOCUMENTATION_SEARCH_STORE_FIELDS = [
   'relatedComponents',
   'relatedExamples',
   'reactExamples',
-  'relatedBlocks',
+  'relatedPatterns',
   'documentation',
   'figmaMainComponentIds',
   'aliases',
@@ -124,7 +124,7 @@ export type DocumentationSearchExampleReference = {
   path: string;
 };
 
-type BlockDefinition = {
+type PatternDefinition = {
   name: string;
   description?: string;
   keywords?: string[];
@@ -133,7 +133,7 @@ type BlockDefinition = {
 
 export type DocumentationSearchDocument = {
   id: string;
-  kind: 'component' | 'example' | 'block';
+  kind: 'component' | 'example' | 'pattern';
   name: string;
   tag?: string;
   aliases?: string[];
@@ -145,7 +145,7 @@ export type DocumentationSearchDocument = {
   relatedComponents: string[];
   relatedExamples?: string[];
   reactExamples?: DocumentationSearchExampleReference[];
-  relatedBlocks?: string[];
+  relatedPatterns?: string[];
   documentation?: string[];
   figmaMainComponentIds?: string[];
   apiMembers: string;
@@ -171,11 +171,11 @@ export type DocumentationSearchIndex = {
 
 type BuildDocumentationSearchIndexOptions = {
   distDir: string;
-  blocksDir: string;
+  patternsDir: string;
   examplesDir: string;
   componentDocPath: string;
   componentRelatedExamplesPath: string;
-  componentRelatedBlocksPath: string;
+  componentRelatedPatternsPath: string;
   workspaceRoot: string;
 };
 
@@ -297,7 +297,7 @@ async function readReactExportNames(
 function createComponentDocuments(
   componentDoc: ComponentDocJson,
   relatedExamples: Record<string, string[]>,
-  relatedBlocks: Record<string, string[]>,
+  relatedPatterns: Record<string, string[]>,
   reactExportNames: Set<string>,
   reactExamples: Record<string, DocumentationSearchExampleReference[]>
 ): DocumentationSearchDocument[] {
@@ -353,7 +353,7 @@ function createComponentDocuments(
         relatedComponents,
         relatedExamples: relatedExampleNames,
         reactExamples: componentReactExamples,
-        relatedBlocks: stringList(relatedBlocks[component.tag] ?? []),
+        relatedPatterns: stringList(relatedPatterns[component.tag] ?? []),
         documentation,
         figmaMainComponentIds,
         apiMembers: apiMembers.join(' '),
@@ -414,7 +414,7 @@ async function readVariantContent(
 
 async function definitionDocuments(
   definitionsDir: string,
-  contentRoot: 'blocks' | 'examples',
+  contentRoot: 'patterns' | 'examples',
   relatedComponents: Record<string, string[]>
 ): Promise<DocumentationSearchDocument[]> {
   const definitionFiles = await glob(path.join(definitionsDir, '*.json'), {
@@ -424,7 +424,7 @@ async function definitionDocuments(
     definitionFiles.map(async (file) => ({
       file,
       definition: (await fs.readJson(file)) as
-        | BlockDefinition
+        | PatternDefinition
         | ExampleDefinition,
     }))
   );
@@ -447,7 +447,7 @@ async function definitionDocuments(
         definitionsDir,
         frameworkName
       );
-      const kind = contentRoot === 'blocks' ? 'block' : 'example';
+      const kind = contentRoot === 'patterns' ? 'pattern' : 'example';
       const name = definition.name;
       const pathValue = `${contentRoot}/${path.basename(file)}`;
       const related = stringList(relatedComponents[name] ?? []);
@@ -492,8 +492,8 @@ export async function buildDocumentationSearchIndex(
   const [
     componentDoc,
     relatedExamples,
-    relatedBlocks,
-    blocks,
+    relatedPatterns,
+    patterns,
     examples,
     reactExportNames,
   ] = await Promise.all([
@@ -501,10 +501,10 @@ export async function buildDocumentationSearchIndex(
     fs.readJson(options.componentRelatedExamplesPath) as Promise<
       Record<string, string[]>
     >,
-    fs.readJson(options.componentRelatedBlocksPath) as Promise<
+    fs.readJson(options.componentRelatedPatternsPath) as Promise<
       Record<string, string[]>
     >,
-    definitionDocuments(options.blocksDir, 'blocks', {}),
+    definitionDocuments(options.patternsDir, 'patterns', {}),
     definitionDocuments(options.examplesDir, 'examples', {}),
     readReactExportNames(options.workspaceRoot),
   ]);
@@ -517,11 +517,11 @@ export async function buildDocumentationSearchIndex(
     }
   }
 
-  const blockComponents: Record<string, string[]> = {};
-  for (const [componentTag, blockNames] of Object.entries(relatedBlocks)) {
-    for (const blockName of blockNames) {
-      blockComponents[blockName] ??= [];
-      blockComponents[blockName].push(componentTag);
+  const patternComponents: Record<string, string[]> = {};
+  for (const [componentTag, patternNames] of Object.entries(relatedPatterns)) {
+    for (const patternName of patternNames) {
+      patternComponents[patternName] ??= [];
+      patternComponents[patternName].push(componentTag);
     }
   }
 
@@ -613,22 +613,24 @@ export async function buildDocumentationSearchIndex(
   const componentSearchDocuments = createComponentDocuments(
     componentDoc,
     relatedExamples,
-    relatedBlocks,
+    relatedPatterns,
     reactExportNames,
     reactExamples
   );
-  for (const document of blocks) {
+  for (const document of patterns) {
     document.relatedComponents = stringList(
-      blockComponents[document.name] ?? []
+      patternComponents[document.name] ?? []
     );
     document.sourceText = `${
       document.sourceText
     }\n${document.relatedComponents.join(' ')}`;
   }
 
-  const documents = [...componentSearchDocuments, ...examples, ...blocks].sort(
-    (a, b) => a.id.localeCompare(b.id)
-  );
+  const documents = [
+    ...componentSearchDocuments,
+    ...examples,
+    ...patterns,
+  ].sort((a, b) => a.id.localeCompare(b.id));
   const miniSearch = new MiniSearch<DocumentationSearchDocument>({
     fields: [...DOCUMENTATION_SEARCH_FIELDS],
     storeFields: [...DOCUMENTATION_SEARCH_STORE_FIELDS],

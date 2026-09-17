@@ -2,15 +2,15 @@ import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import semver from 'semver';
-import { addBlockToConfig, IxBlocksConfig, saveConfig } from './config';
+import { addPatternToConfig, IxPatternsConfig, saveConfig } from './config';
 import {
   assertRegistryFetchResponse,
-  BlockDefinition,
+  PatternDefinition,
   resolveManifestFileUrl,
 } from './registry';
 import {
   assertSafeRelativePath,
-  assertValidBlockName,
+  assertValidPatternName,
   isPathInside,
 } from './validation';
 
@@ -33,7 +33,7 @@ export type PreparedInstallFile = {
 export type InstallPlan = {
   cwd: string;
   installRoot: string;
-  blockName: string;
+  patternName: string;
   files: PreparedInstallFile[];
   removals: Array<{ path: string; targetPath: string; expectedHash: string }>;
   conflicts: InstallConflict[];
@@ -43,9 +43,9 @@ export type InstallPlan = {
 export type PrepareInstallArgs = {
   cwd: string;
   baseUrl: string;
-  blockEntryPath: string;
-  blockDef: BlockDefinition;
-  expectedBlockName: string;
+  patternEntryPath: string;
+  patternDef: PatternDefinition;
+  expectedPatternName: string;
   framework: Framework;
   tokens: Record<string, string>;
   targetFolder: string;
@@ -154,25 +154,25 @@ function toLockPath(cwd: string, absolutePath: string): string {
 function resolveOutputPath(
   cwd: string,
   installRoot: string,
-  blockName: string,
+  patternName: string,
   framework: Framework,
   filePath: string
 ): { path: string; targetPath: string } {
-  assertSafeRelativePath('block file path', filePath);
+  assertSafeRelativePath('pattern file path', filePath);
   const segments = filePath.split('/');
   if (segments[0] !== framework) {
     throw new Error(
-      `Block file '${filePath}' must be prefixed with framework '${framework}'.`
+      `Pattern file '${filePath}' must be prefixed with framework '${framework}'.`
     );
   }
   segments.shift();
   const nestedTarget = segments.join('/');
-  assertSafeRelativePath('block file path', nestedTarget);
+  assertSafeRelativePath('pattern file path', nestedTarget);
 
-  const targetPath = path.resolve(installRoot, blockName, nestedTarget);
+  const targetPath = path.resolve(installRoot, patternName, nestedTarget);
   if (targetPath === installRoot || !isPathInside(installRoot, targetPath)) {
     throw new Error(
-      `Block file '${filePath}' resolves outside the install root.`
+      `Pattern file '${filePath}' resolves outside the install root.`
     );
   }
   return { path: toLockPath(cwd, targetPath), targetPath };
@@ -235,7 +235,7 @@ function reportDependencyIssues(issues: DependencyIssue[]): void {
   );
 
   if (missing.length) {
-    console.warn('⚠️  Missing block dependencies:');
+    console.warn('⚠️  Missing pattern dependencies:');
     for (const issue of missing) {
       console.warn(`   - ${issue.name}@${issue.required}`);
     }
@@ -246,7 +246,7 @@ function reportDependencyIssues(issues: DependencyIssue[]): void {
     );
   }
   if (mismatches.length) {
-    console.warn('⚠️  Block dependency version mismatches:');
+    console.warn('⚠️  Pattern dependency version mismatches:');
     for (const issue of mismatches) {
       console.warn(
         `   - ${issue.name}: installed ${issue.installed}, required ${issue.required}`
@@ -271,25 +271,25 @@ async function inspectExistingFile(
   };
 }
 
-export async function prepareBlockInstall(
+export async function preparePatternInstall(
   args: PrepareInstallArgs
 ): Promise<InstallPlan> {
-  const expectedBlockName = assertValidBlockName(args.expectedBlockName);
-  const definitionBlockName = assertValidBlockName(args.blockDef.name);
-  if (definitionBlockName !== expectedBlockName) {
+  const expectedPatternName = assertValidPatternName(args.expectedPatternName);
+  const definitionPatternName = assertValidPatternName(args.patternDef.name);
+  if (definitionPatternName !== expectedPatternName) {
     throw new Error(
-      `Registry block name mismatch: requested '${expectedBlockName}', received '${definitionBlockName}'.`
+      `Registry pattern name mismatch: requested '${expectedPatternName}', received '${definitionPatternName}'.`
     );
   }
-  assertSafeRelativePath('block entry path', args.blockEntryPath);
+  assertSafeRelativePath('pattern entry path', args.patternEntryPath);
 
   const installRoot = resolveInstallRoot(args.cwd, args.targetFolder);
   await assertNoSymlinks(path.resolve(args.cwd), installRoot);
 
-  const variant = args.blockDef.variants[args.framework];
+  const variant = args.patternDef.variants[args.framework];
   if (!variant) {
     throw new Error(
-      `Block '${expectedBlockName}' has no ${args.framework} variant.`
+      `Pattern '${expectedPatternName}' has no ${args.framework} variant.`
     );
   }
   reportDependencyIssues(
@@ -309,19 +309,19 @@ export async function prepareBlockInstall(
     const output = resolveOutputPath(
       args.cwd,
       installRoot,
-      expectedBlockName,
+      expectedPatternName,
       args.framework,
       file.path
     );
     if (plannedPaths.has(output.path)) {
-      throw new Error(`Block defines duplicate file path '${output.path}'.`);
+      throw new Error(`Pattern defines duplicate file path '${output.path}'.`);
     }
     plannedPaths.add(output.path);
     await assertNoSymlinks(installRoot, output.targetPath);
 
     const sourceUrl = resolveManifestFileUrl(
       args.baseUrl,
-      args.blockEntryPath,
+      args.patternEntryPath,
       file.path
     );
     const raw = await fetchText(sourceUrl, args.fetchImpl ?? fetch);
@@ -376,7 +376,7 @@ export async function prepareBlockInstall(
   return {
     cwd: path.resolve(args.cwd),
     installRoot,
-    blockName: expectedBlockName,
+    patternName: expectedPatternName,
     files,
     removals,
     conflicts,
@@ -435,10 +435,10 @@ async function pruneEmptyDirectories(
 
 export async function applyInstallPlan(
   plan: InstallPlan,
-  config: IxBlocksConfig,
+  config: IxPatternsConfig,
   version: string,
   dependencies: ApplyDependencies = {}
-): Promise<IxBlocksConfig> {
+): Promise<IxPatternsConfig> {
   assertConflictsAllowed(plan);
   const projectRoot = path.resolve(plan.cwd);
   const transactionRoot = path.join(
@@ -454,9 +454,9 @@ export async function applyInstallPlan(
   }> = [];
   let preserveTransaction = false;
 
-  const nextConfig = await addBlockToConfig(
+  const nextConfig = await addPatternToConfig(
     config,
-    plan.blockName,
+    plan.patternName,
     version,
     plan.files.map(({ path: filePath, hash }) => ({ path: filePath, hash }))
   );

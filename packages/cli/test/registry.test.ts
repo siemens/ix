@@ -11,28 +11,31 @@ import {
   resolveManifestFileUrl,
   resolveRegistryResourceUrl,
 } from '../src/registry';
-import { assertValidBlockName } from '../src/validation';
+import { assertValidPatternName } from '../src/validation';
 
 test('resolves valid nested registry and manifest file paths', () => {
   assert.equal(
     resolveRegistryResourceUrl(
       'https://registry.example/root',
-      'v1/blocks/card.json'
+      'v1/patterns/card.json'
     ),
-    'https://registry.example/root/v1/blocks/card.json'
+    'https://registry.example/root/v1/patterns/card.json'
   );
   assert.equal(
     resolveManifestFileUrl(
       'https://registry.example/root',
-      'v1/blocks/card.json',
+      'v1/patterns/card.json',
       'react/card.tsx'
     ),
-    'https://registry.example/root/v1/blocks/react/card.tsx'
+    'https://registry.example/root/v1/patterns/react/card.tsx'
   );
 });
 
 test('rejects registry and manifest file traversal', () => {
-  assert.throws(() => assertValidBlockName('../card'), /Invalid block name/);
+  assert.throws(
+    () => assertValidPatternName('../card'),
+    /Invalid pattern name/
+  );
   assert.throws(
     () =>
       resolveRegistryResourceUrl(
@@ -45,7 +48,7 @@ test('rejects registry and manifest file traversal', () => {
     () =>
       resolveManifestFileUrl(
         'https://registry.example/root',
-        'v1/blocks/card.json',
+        'v1/patterns/card.json',
         '%2e%2e/secrets.txt'
       ),
     /Invalid manifest file path/
@@ -54,7 +57,7 @@ test('rejects registry and manifest file traversal', () => {
     () =>
       resolveManifestFileUrl(
         'https://registry.example/root',
-        'v1/blocks/card.json',
+        'v1/patterns/card.json',
         'https://evil.example/file'
       ),
     /Invalid manifest file path/
@@ -80,6 +83,40 @@ test('rejects redirected registry responses without following them', async () =>
     await assert.rejects(
       fetchValidatedRegistryIndex('https://registry.example/root'),
       /Registry request was redirected/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('rejects LLM metadata without the patterns entry', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async () =>
+    new Response(
+      JSON.stringify({
+        name: 'ix',
+        'dist-tags': { latest: 'v1.0.0' },
+        versions: {
+          'v1.0.0': {
+            patterns: [{ name: 'card', path: 'v1.0.0/patterns/card.json' }],
+            examples: [{ name: 'card', path: 'v1.0.0/examples/card.json' }],
+            components: {
+              componentDoc: 'v1.0.0/ix/component-doc.json',
+            },
+            documentationSearchIndex: 'v1.0.0/documentation-search-index.json',
+            llms: {
+              entrypoint: 'v1.0.0/llms.txt',
+              components: 'v1.0.0/llms/components.md',
+            },
+          },
+        },
+      })
+    )) as typeof fetch;
+
+  try {
+    await assert.rejects(
+      fetchValidatedRegistryIndex('https://registry.example/root'),
+      /Invalid registry index/
     );
   } finally {
     globalThis.fetch = originalFetch;

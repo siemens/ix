@@ -4,12 +4,12 @@ export type RegistryIndex = {
   versions: Record<
     string,
     {
-      blocks: Array<{ name: string; path: string }>;
+      patterns: Array<{ name: string; path: string }>;
       examples: Array<{ name: string; path: string }>;
       components: {
         componentDoc: string;
         componentRelatedExamples?: string;
-        componentRelatedBlocks?: string;
+        componentRelatedPatterns?: string;
         componentIndex?: string;
         componentSearchIndex?: string;
       };
@@ -22,7 +22,7 @@ export type RegistryIndex = {
         entrypoint: string;
         components: string;
         examples?: string;
-        blocks: string;
+        patterns: string;
       };
     }
   >;
@@ -30,19 +30,19 @@ export type RegistryIndex = {
 
 export type ExamplesRegistryIndex = RegistryIndex;
 
-export type BlockDefinition = {
+export type PatternDefinition = {
   name: string;
   description?: string;
   keywords?: string[];
   preview?: string;
   variants: {
-    react?: BlockVariant;
-    angular?: BlockVariant;
-    vue?: BlockVariant;
+    react?: PatternVariant;
+    angular?: PatternVariant;
+    vue?: PatternVariant;
   };
 };
 
-export type BlockVariant = {
+export type PatternVariant = {
   files: Array<{ path: string }>;
   dependencies?: Array<{ name: string; version: string }>;
 };
@@ -63,9 +63,11 @@ export type ExampleVariant = {
   files: Array<{ path: string }>;
 };
 
-const registryBlocksSchema = z.array(
+const registryPatternsSchema = z.array(
   z.object({
-    name: z.string().regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+    name: z
+      .string()
+      .regex(PATTERN_NAME_PATTERN, 'must be a valid pattern name'),
     path: z.string().refine(isSafeRelativePath, 'must be a safe relative path'),
   })
 );
@@ -89,17 +91,16 @@ const registryLlmsSchema = z
       .string()
       .refine(isSafeRelativePath, 'must be a safe relative path')
       .optional(),
-    blocks: z
+    patterns: z
       .string()
-      .refine(isSafeRelativePath, 'must be a safe relative path')
-      .optional(),
+      .refine(isSafeRelativePath, 'must be a safe relative path'),
   })
   .strict()
   .optional();
 
 const currentRegistryVersionSchema = z
   .object({
-    blocks: registryBlocksSchema,
+    patterns: registryPatternsSchema,
     examples: registryExamplesSchema,
     components: z
       .object({
@@ -110,7 +111,7 @@ const currentRegistryVersionSchema = z
           .string()
           .refine(isSafeRelativePath, 'must be a safe relative path')
           .optional(),
-        componentRelatedBlocks: z
+        componentRelatedPatterns: z
           .string()
           .refine(isSafeRelativePath, 'must be a safe relative path')
           .optional(),
@@ -125,7 +126,7 @@ const currentRegistryVersionSchema = z
 
 const legacyRegistryVersionSchema = z
   .object({
-    blocks: registryBlocksSchema,
+    patterns: registryPatternsSchema,
     examples: registryExamplesSchema,
     components: z
       .object({
@@ -141,7 +142,7 @@ const legacyRegistryVersionSchema = z
         componentRelatedExamples: z
           .string()
           .refine(isSafeRelativePath, 'must be a safe relative path'),
-        componentRelatedBlocks: z
+        componentRelatedPatterns: z
           .string()
           .refine(isSafeRelativePath, 'must be a safe relative path')
           .optional(),
@@ -149,7 +150,7 @@ const legacyRegistryVersionSchema = z
       .strict(),
     searchIndex: z
       .object({
-        blocks: z.record(
+        patterns: z.record(
           z.string(),
           z.string().refine(isSafeRelativePath, 'must be a safe relative path')
         ),
@@ -174,9 +175,11 @@ const RegistryIndexSchema = z
   })
   .passthrough();
 
-const BlockDefinitionSchema = z
+const PatternDefinitionSchema = z
   .object({
-    name: z.string().regex(BLOCK_NAME_PATTERN, 'must be a valid block name'),
+    name: z
+      .string()
+      .regex(PATTERN_NAME_PATTERN, 'must be a valid pattern name'),
     description: z.string().optional(),
     keywords: z.array(z.string()).optional(),
     preview: z.string().optional(),
@@ -517,51 +520,51 @@ export async function fetchValidatedRegistryIndex(
   ) as RegistryIndex;
 }
 
-export async function fetchBlockDefinition(
+export async function fetchPatternDefinition(
   baseUrl: string,
-  blockPath: string
-): Promise<BlockDefinition> {
-  const value = await fetchJson<unknown>(baseUrl, blockPath);
+  patternPath: string
+): Promise<PatternDefinition> {
+  const value = await fetchJson<unknown>(baseUrl, patternPath);
   return parseRegistryData(
-    BlockDefinitionSchema,
+    PatternDefinitionSchema,
     value,
-    `block definition '${blockPath}'`
-  ) as BlockDefinition;
+    `pattern definition '${patternPath}'`
+  ) as PatternDefinition;
 }
 
-export async function fetchValidatedBlockDefinition(
+export async function fetchValidatedPatternDefinition(
   baseUrl: string,
-  blockPath: string
-): Promise<BlockDefinition> {
-  return fetchBlockDefinition(baseUrl, blockPath);
+  patternPath: string
+): Promise<PatternDefinition> {
+  return fetchPatternDefinition(baseUrl, patternPath);
 }
 
-export async function listAllBlocks(
+export async function listAllPatterns(
   baseUrl: string,
   framework: 'react' | 'angular' | 'vue',
   versionRef?: string
 ): Promise<Array<{ name: string; path: string }>> {
   const registry = await fetchRegistryIndex(baseUrl);
   const selectedVersion = resolveRegistryVersion(registry, versionRef);
-  const versionBlocks = registry.versions[selectedVersion]?.blocks || [];
+  const versionPatterns = registry.versions[selectedVersion]?.patterns || [];
 
-  // Filter blocks that support the requested framework
-  const filteredBlocks: Array<{ name: string; path: string }> = [];
+  // Filter patterns that support the requested framework
+  const filteredPatterns: Array<{ name: string; path: string }> = [];
 
-  for (const block of versionBlocks) {
+  for (const pattern of versionPatterns) {
     try {
-      const blockDef = await fetchBlockDefinition(baseUrl, block.path);
-      // Check if this block has a variant for the requested framework
-      if (blockDef.variants[framework]) {
-        filteredBlocks.push(block);
+      const patternDef = await fetchPatternDefinition(baseUrl, pattern.path);
+      // Check if this pattern has a variant for the requested framework
+      if (patternDef.variants[framework]) {
+        filteredPatterns.push(pattern);
       }
     } catch (err) {
-      // Skip blocks that fail to load
-      console.error(`Failed to load block ${block.name}:`, err);
+      // Skip patterns that fail to load
+      console.error(`Failed to load pattern ${pattern.name}:`, err);
     }
   }
 
-  return filteredBlocks;
+  return filteredPatterns;
 }
 
 export async function fetchExamplesRegistryIndex(
@@ -635,7 +638,7 @@ export async function getExampleCode(
 }
 import { z } from 'zod';
 import {
-  BLOCK_NAME_PATTERN,
+  PATTERN_NAME_PATTERN,
   assertSafeRelativePath,
   formatZodIssues,
   isSafeRelativePath,
