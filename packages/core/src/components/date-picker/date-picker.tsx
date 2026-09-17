@@ -24,7 +24,7 @@ import {
   Watch,
   Mixin,
 } from '@stencil/core';
-import { DateTime, Info } from 'luxon';
+import { DateTime } from 'luxon';
 import {
   formatWithLocale,
   parseWithLocale,
@@ -32,6 +32,19 @@ import {
   tryParseWithLocale,
 } from '../utils/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import {
+  DAYS_IN_WEEK,
+  dayOfMonth,
+  isDayWithinRange,
+  isMonthWithinRange,
+  isYearWithinRange,
+  monthNameOf,
+  monthsOfYear,
+  WeekdayIndex,
+  weekdayColumnOf,
+  weekdayNamesFrom,
+  weekStartFrom,
+} from '../utils/calendar-units';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -181,6 +194,14 @@ export class DatePicker
   @Prop() weekStartIndex = 0;
 
   /**
+   * The public `weekStartIndex` prop, narrowed and sanitised for the calendar
+   * helpers. Converting in one place keeps the raw number from reaching them.
+   */
+  private get weekStart(): WeekdayIndex {
+    return weekStartFrom(this.weekStartIndex);
+  }
+
+  /**
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months.
    * It also determines the default order of weekdays based on the locale's conventions.
@@ -306,12 +327,21 @@ export class DatePicker
   currFromDate?: DateTime;
   @State() currToDate?: DateTime;
 
-  @State() selectedYear = 0;
-  @State() tempYear = 0;
+  /**
+   * The month shown in the calendar grid, as the first of that month. Carries
+   * the displayed year with it, so the two can never drift apart.
+   */
+  @State() selectedMonthDate: DateTime = DateTime.local().startOf('month');
+
+  /**
+   * The month highlighted in the month/year dropdown, as the first of that
+   * month. Tracks `selectedMonthDate` except while the dropdown is open and
+   * the user has picked a year but not yet a month.
+   */
+  @State() tempMonthDate: DateTime = DateTime.local().startOf('month');
+
   @State() startYear = 0;
   @State() endYear = 0;
-  @State() selectedMonth = 0;
-  @State() tempMonth = 0;
 
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -320,12 +350,10 @@ export class DatePicker
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames: string[] = [];
-  @State() monthNames: string[] = [];
   @State() focusedDay: number = 1;
 
   private isDayFocus = false;
   private monthChangedFromFocus = false;
-  private readonly DAYS_IN_WEEK = 7;
   private calendar: CalendarWeek[] = [];
   private _minDateObj?: DateTime;
   private _maxDateObj?: DateTime;
@@ -396,9 +424,7 @@ export class DatePicker
   }
 
   private getDaysInCurrentMonth(): number {
-    return (
-      DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth || 0
-    );
+    return this.selectedMonthDate.daysInMonth ?? 0;
   }
 
   private getFirstDayOfWeek(day: number): number {
@@ -428,12 +454,10 @@ export class DatePicker
    */
   @Method()
   async updateSelectedYearMonth(date: DateTime) {
-    this.selectedYear = date.year;
-    this.selectedMonth = date.month - 1;
+    this.selectedMonthDate = date.startOf('month');
   }
 
-  @Watch('selectedYear')
-  @Watch('selectedMonth')
+  @Watch('selectedMonthDate')
   @Watch('weekStartIndex')
   onCalendarStateChange() {
     this.calendarDirty = true;
@@ -451,15 +475,15 @@ export class DatePicker
     this.setTranslations();
     this.refreshDates();
 
-    const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
-    this.startYear = year - 101;
-    this.endYear = year + 101;
+    const initialMonth = (this.currFromDate ?? this.getDateTimeNow()).startOf(
+      'month'
+    );
 
-    this.selectedMonth =
-      (this.currFromDate?.month ?? this.getDateTimeNow().month) - 1;
-    this.selectedYear = year;
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
+    this.startYear = initialMonth.year - 101;
+    this.endYear = initialMonth.year + 101;
+
+    this.selectedMonthDate = initialMonth;
+    this.tempMonthDate = initialMonth;
   }
 
   private keyboardNavigationYearSelection?: () => void;
@@ -537,34 +561,7 @@ export class DatePicker
   }
 
   private setTranslations() {
-    this.dayNames = this.rotateWeekDayNames(
-      Info.weekdays('long', {
-        locale: this.locale,
-      }),
-      this.weekStartIndex
-    );
-
-    this.monthNames = Info.months('long', {
-      locale: this.locale,
-    });
-  }
-
-  /**
-   * Rotate the WeekdayNames array.
-   * Based on the position that should be the new 0-index.
-   */
-  private rotateWeekDayNames(weekdays: string[], index: number): string[] {
-    const clone = [...weekdays];
-
-    if (index === 0) {
-      return clone;
-    }
-
-    index = -index;
-    const len = weekdays.length;
-
-    clone.push(...clone.splice(0, ((-index % len) + len) % len));
-    return clone;
+    this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
   }
 
   private async onDone() {
@@ -572,34 +569,14 @@ export class DatePicker
     this.dateSelect.emit(date);
   }
 
-  /**
-   * The column `date` occupies in a calendar grid whose first column is
-   * `weekStartIndex`, a 0-based index into the Monday-first `Info.weekdays()`
-   * ordering.
-   *
-   * Arithmetic on indices rather than a weekday-name lookup, so it cannot be
-   * thrown off by the locale used to render the column headers. Note that
-   * Luxon's `weekday` counts 1-7 while the name arrays are 0-based.
-   */
-  private weekdayColumnOf(date: DateTime): number {
-    const weekdayIndex = date.weekday - 1;
-
-    return (
-      (((weekdayIndex - this.weekStartIndex) % this.DAYS_IN_WEEK) +
-        this.DAYS_IN_WEEK) %
-      this.DAYS_IN_WEEK
-    );
-  }
-
   private calculateCalendar() {
     const calendar: CalendarWeek[] = [];
-    const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
-    const monthStart = month.startOf('month');
-    const monthEnd = month.endOf('month');
+    const monthStart = this.selectedMonthDate;
+    const monthEnd = monthStart.endOf('month');
     let startWeek = monthStart.weekNumber;
     let endWeek = monthEnd.weekNumber;
-    const monthStartWeekDayIndex = this.weekdayColumnOf(monthStart);
-    const monthEndWeekDayIndex = this.weekdayColumnOf(monthEnd);
+    const monthStartWeekDayIndex = weekdayColumnOf(monthStart, this.weekStart);
+    const monthEndWeekDayIndex = weekdayColumnOf(monthEnd, this.weekStart);
 
     let correctLastWeek = false;
     if (endWeek === 1) {
@@ -623,7 +600,7 @@ export class DatePicker
     ) {
       const daysArr: (number | undefined)[] = [];
 
-      for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
+      for (let j = 0; j < DAYS_IN_WEEK && currDayNumber <= 31; j++) {
         // Display empty cells until the calender starts/has ended
         if (
           (weekIndex === startWeek && j < monthStartWeekDayIndex) ||
@@ -664,52 +641,26 @@ export class DatePicker
     this.calendar = calendar;
   }
 
-  private selectMonth(month: number) {
-    this.selectedMonth = month;
-    this.selectedYear = this.tempYear;
-    this.tempMonth = month;
+  /** `month` is the first of the month to show, as built by `monthsOfYear`. */
+  private selectMonth(month: DateTime) {
+    this.selectedMonthDate = month;
+    this.tempMonthDate = month;
   }
 
   private changeCalendarView(number: -1 | 1) {
-    if (this.selectedMonth + number < 0) {
-      this.selectedYear--;
-      this.selectedMonth = 11;
-    } else if (this.selectedMonth + number > 11) {
-      this.selectedYear++;
-      this.selectedMonth = 0;
-    } else {
-      this.selectedMonth += number;
-    }
-
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
+    this.selectedMonthDate = this.selectedMonthDate.plus({ months: number });
+    this.tempMonthDate = this.selectedMonthDate;
   }
 
   private navigateByMonthOrYear(unit: 'month' | 'year', direction: -1 | 1) {
-    let targetYear = this.selectedYear;
-    let targetMonth = this.selectedMonth;
+    const targetMonth = this.selectedMonthDate.plus(
+      unit === 'year' ? { years: direction } : { months: direction }
+    );
 
-    if (unit === 'year') {
-      targetYear += direction;
-    } else {
-      targetMonth += direction;
-      if (targetMonth < 0) {
-        targetMonth = 11;
-        targetYear--;
-      } else if (targetMonth > 11) {
-        targetMonth = 0;
-        targetYear++;
-      }
-    }
+    this.focusedDay = Math.min(this.focusedDay, targetMonth.daysInMonth ?? 0);
 
-    const daysInTargetMonth =
-      DateTime.utc(targetYear, targetMonth + 1).daysInMonth || 0;
-    this.focusedDay = Math.min(this.focusedDay, daysInTargetMonth);
-
-    this.selectedYear = targetYear;
-    this.selectedMonth = targetMonth;
-    this.tempYear = targetYear;
-    this.tempMonth = targetMonth;
+    this.selectedMonthDate = targetMonth;
+    this.tempMonthDate = targetMonth;
     this.monthChangedFromFocus = true;
   }
 
@@ -718,9 +669,7 @@ export class DatePicker
       return;
     }
 
-    const date = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
-    );
+    const date = dayOfMonth(this.selectedMonthDate, selectedDay);
 
     if (this.singleSelection || this.currFromDate === undefined) {
       this.currFromDate = date;
@@ -763,9 +712,7 @@ export class DatePicker
 
   private getUtilitiesBasedOnDay(day: number) {
     const todayObj = this.getDateTimeNow();
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
-    );
+    const selectedDayObj = dayOfMonth(this.selectedMonthDate, day);
     return {
       isFirstDay: () => day === 1,
       isToday: () => todayObj.hasSame(selectedDayObj, 'day'),
@@ -788,9 +735,7 @@ export class DatePicker
     day: number,
     util: ReturnType<DatePicker['getUtilitiesBasedOnDay']>
   ): Record<string, boolean> {
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
-    );
+    const selectedDayObj = dayOfMonth(this.selectedMonthDate, day);
 
     return {
       'calendar-item': true,
@@ -804,56 +749,35 @@ export class DatePicker
   }
 
   private isWithinMinMaxYear(year: number): boolean {
-    const minDateYear = this._minDateObj?.year;
-    const maxDateYear = this._maxDateObj?.year;
-    const isBefore = minDateYear ? year < minDateYear : false;
-    const isAfter = maxDateYear ? year > maxDateYear : false;
-
-    return !isBefore && !isAfter;
+    return isYearWithinRange(year, this._minDateObj, this._maxDateObj);
   }
 
-  private isWithinMinMaxMonth(month: number): boolean {
-    const minDateMonth = this._minDateObj?.month;
-    const maxDateMonth = this._maxDateObj?.month;
-    const isBefore = minDateMonth
-      ? this.tempYear === this._minDateObj?.year && month < minDateMonth
-      : false;
-    const isAfter = maxDateMonth
-      ? this.tempYear === this._maxDateObj?.year && month > maxDateMonth
-      : false;
-
-    return !isBefore && !isAfter;
+  /** `month` is the first of the month being offered, so it carries its year. */
+  private isWithinMinMaxMonth(month: DateTime): boolean {
+    return isMonthWithinRange(month, this._minDateObj, this._maxDateObj);
   }
 
   private isWithinMinMaxDate(date: DateTime): boolean {
-    const isBefore = this._minDateObj
-      ? date.startOf('day') < this._minDateObj.startOf('day')
-      : false;
-    const isAfter = this._maxDateObj
-      ? date.startOf('day') > this._maxDateObj.startOf('day')
-      : false;
-
-    return !isBefore && !isAfter;
+    return isDayWithinRange(date, this._minDateObj, this._maxDateObj);
   }
 
   private renderMonths() {
-    return this.monthNames.map((month, index) => {
-      const selected =
-        this.tempYear === this.selectedYear && this.tempMonth === index;
+    return monthsOfYear(this.tempMonthDate.year).map((month) => {
+      const name = monthNameOf(month, this.locale);
 
       return (
         <ix-dropdown-item
-          checked={selected}
-          key={month}
+          checked={month.hasSame(this.selectedMonthDate, 'month')}
+          key={name}
           class={{
             'month-dropdown-item': true,
-            'disabled-item': !this.isWithinMinMaxMonth(index),
+            'disabled-item': !this.isWithinMinMaxMonth(month),
           }}
           onClick={() => {
-            this.selectMonth(index);
+            this.selectMonth(month);
           }}
         >
-          <span class="capitalize monthMargin">{`${month}`}</span>
+          <span class="capitalize monthMargin">{name}</span>
         </ix-dropdown-item>
       );
     });
@@ -863,7 +787,7 @@ export class DatePicker
     const rows = [];
 
     for (let year = this.startYear; year <= this.endYear; year++) {
-      const selected = this.tempYear === year;
+      const selected = this.tempMonthDate.year === year;
 
       rows.push(
         <ix-dropdown-item
@@ -874,8 +798,8 @@ export class DatePicker
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={() => {
-            this.tempYear = year;
-            this.selectedYear = this.tempYear;
+            this.tempMonthDate = this.tempMonthDate.set({ year });
+            this.selectedMonthDate = this.selectedMonthDate.set({ year });
           }}
         >
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -963,6 +887,11 @@ export class DatePicker
   );
 
   override render() {
+    // Formatted once per render rather than per day cell, which would repeat
+    // the same locale lookup up to 42 times.
+    const monthLabel = monthNameOf(this.selectedMonthDate, this.locale);
+    const yearLabel = this.selectedMonthDate.year;
+
     return (
       <Host
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
@@ -994,7 +923,7 @@ export class DatePicker
                 }}
               >
                 <ix-typography bold class="capitalize" slot="button-label">
-                  {this.monthNames[this.selectedMonth]}
+                  {monthLabel}
                 </ix-typography>
                 {this.renderMonths()}
               </ix-dropdown-button>
@@ -1047,7 +976,7 @@ export class DatePicker
                   <div class="sentinel" data-sentinel="top"></div>
                 </div>
                 <ix-typography bold class="capitalize" slot="button-label">
-                  {this.selectedYear}
+                  {yearLabel}
                 </ix-typography>
                 {this.renderYears()}
                 <div class="infinite-scrolling-spacer">
@@ -1122,7 +1051,7 @@ export class DatePicker
                         autofocus={util.isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
-                        aria-label={`${day} ${this.monthNames[this.selectedMonth]} ${this.selectedYear}`}
+                        aria-label={`${day} ${monthLabel} ${yearLabel}`}
                       >
                         {day}
                       </div>

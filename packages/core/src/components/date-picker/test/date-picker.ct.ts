@@ -645,6 +645,83 @@ regressionTest.describe('keyboard navigation', () => {
   });
 });
 
+regressionTest.describe('month dropdown min/max range', () => {
+  const openMonthDropdown = async (page: Page) => {
+    await page.waitForSelector('ix-date-time-card');
+    const monthSelection = page.getByLabel('Select month');
+
+    await expect(monthSelection).toBeVisible();
+    await monthSelection.click();
+
+    return monthSelection;
+  };
+
+  const expectMonths = async (
+    monthSelection: ReturnType<Page['getByLabel']>,
+    enabled: string[],
+    disabled: string[]
+  ) => {
+    for (const name of enabled) {
+      await expect(
+        monthSelection.getByRole('menuitem', { name })
+      ).not.toHaveClass(/disabled-item/);
+    }
+
+    for (const name of disabled) {
+      await expect(monthSelection.getByRole('menuitem', { name })).toHaveClass(
+        /disabled-item/
+      );
+    }
+  };
+
+  regressionTest(
+    'enables the month a single-month range sits in',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/07/15" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(monthSelection, ['July'], ['June', 'August']);
+    }
+  );
+
+  regressionTest(
+    'enables both months a two-month range spans',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/08/15" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['July', 'August'],
+        ['June', 'September']
+      );
+    }
+  );
+
+  regressionTest(
+    'disables every month of a year outside the range',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/07/15" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        [],
+        ['January', 'June', 'July', 'August', 'December']
+      );
+    }
+  );
+});
+
 regressionTest.describe('week start index', () => {
   const getColumnOfFirstDay = async (page: Page) => {
     return await page.$eval(DatePickerSelector, (picker) => {
@@ -730,6 +807,20 @@ regressionTest.describe('week start index', () => {
 
       // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
       expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+    }
+  );
+
+  regressionTest(
+    'places the first day for a Sunday-first week',
+    async ({ mount, page }) => {
+      // weekStartIndex 6 is Sunday, the largest offset the wrap-around has to
+      // handle. 1 September 2023 is a Friday, five columns along from Sunday.
+      await mount(
+        `<ix-date-picker from="2023/09/01" week-start-index="6" single-selection></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(5);
     }
   );
 });
