@@ -15,13 +15,14 @@ import { DateTime } from 'luxon';
 export function parseTimeOnDay(
   value: string | undefined,
   format: string,
-  baseDay: DateTime
+  baseDay: DateTime,
+  locale?: string
 ): DateTime | null {
   const trimmed = value?.trim();
   if (!trimmed) {
     return null;
   }
-  const parsed = DateTime.fromFormat(trimmed, format);
+  const parsed = DateTime.fromFormat(trimmed, format, { locale });
   if (!parsed.isValid) {
     return null;
   }
@@ -37,10 +38,11 @@ export function getTimePickerConstraintBounds(
   minTime: string | undefined,
   maxTime: string | undefined,
   format: string,
-  baseDay: DateTime
+  baseDay: DateTime,
+  locale?: string
 ): { min: DateTime | null; max: DateTime | null } {
-  let min = parseTimeOnDay(minTime, format, baseDay);
-  let max = parseTimeOnDay(maxTime, format, baseDay);
+  let min = parseTimeOnDay(minTime, format, baseDay, locale);
+  let max = parseTimeOnDay(maxTime, format, baseDay, locale);
   if (min && max && min > max) {
     min = null;
     max = null;

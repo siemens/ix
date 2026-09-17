@@ -1312,7 +1312,7 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1393,7 +1393,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
          */
         "locale"?: string;
         /**
@@ -1458,7 +1458,7 @@ export namespace Components {
          */
         "warningText"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1518,7 +1518,7 @@ export namespace Components {
          */
         "from": string | undefined;
         /**
-          * Get the currently selected date or range. The object returned contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Get the currently selected date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
         /**
@@ -1528,7 +1528,7 @@ export namespace Components {
         "i18nDone": string;
         "isCalendarDayFocused": () => Promise<boolean>;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
          */
         "locale"?: string;
         /**
@@ -1563,7 +1563,7 @@ export namespace Components {
         "today": string;
         "updateSelectedYearMonth": (date: DateTime) => Promise<void>;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1801,10 +1801,46 @@ export namespace Components {
         "getDatepickerElement": () => Promise<HTMLIxDatePickerElement | undefined>;
         "getTimepickerElement": () => Promise<HTMLIxTimePickerElement | undefined>;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone": string;
+        /**
+          * Text for the time picker hour column header.
+          * @since 6.0.0
+          * @default 'hr'
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for the time picker millisecond column header.
+          * @since 6.0.0
+          * @default 'ms'
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for the time picker minute column header.
+          * @since 6.0.0
+          * @default 'min'
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm": string;
+        /**
+          * Text for the time picker second column header.
+          * @since 6.0.0
+          * @default 'sec'
+         */
+        "i18nSecondColumnHeader": string;
         /**
           * Top label of the time picker.
           * @since 3.0.0
@@ -1867,7 +1903,7 @@ export namespace Components {
          */
         "to"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -4760,6 +4796,12 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -4779,6 +4821,12 @@ export namespace Components {
           * @default 'min'
          */
         "i18nMinuteColumnHeader": string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm": string;
         /**
           * Text for the time picker second column header.
           * @default 'sec'
@@ -4810,6 +4858,11 @@ export namespace Components {
           * Label of the input field.
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -4907,6 +4960,11 @@ export namespace Components {
          */
         "format": string;
         /**
+          * Get the current time in ISO format
+          * @since 6.0.0
+         */
+        "getCurrentIsoTime": () => Promise<string | undefined>;
+        /**
           * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;
@@ -4922,6 +4980,11 @@ export namespace Components {
           * @default 1
          */
         "hourInterval": number;
+        /**
+          * Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nAm"?: string;
         /**
           * Text of the time confirm button.
           * @default 'Confirm'
@@ -4948,10 +5011,20 @@ export namespace Components {
          */
         "i18nMinuteColumnHeader": string;
         /**
+          * Label for the PM button in 12-hour mode. If not set, falls back to the second value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nPm"?: string;
+        /**
           * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader": string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -9157,7 +9230,7 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -9227,7 +9300,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
          */
         "locale"?: string;
         /**
@@ -9306,7 +9379,7 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -9368,7 +9441,7 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
          */
         "locale"?: string;
         /**
@@ -9382,15 +9455,15 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -9413,7 +9486,7 @@ declare namespace LocalJSX {
          */
         "today"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -9648,10 +9721,46 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone"?: string;
+        /**
+          * Text for the time picker hour column header.
+          * @since 6.0.0
+          * @default 'hr'
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for the time picker millisecond column header.
+          * @since 6.0.0
+          * @default 'ms'
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for the time picker minute column header.
+          * @since 6.0.0
+          * @default 'min'
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
+        /**
+          * Text for the time picker second column header.
+          * @since 6.0.0
+          * @default 'sec'
+         */
+        "i18nSecondColumnHeader"?: string;
         /**
           * Top label of the time picker.
           * @since 3.0.0
@@ -9726,7 +9835,7 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -12813,6 +12922,12 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -12832,6 +12947,12 @@ declare namespace LocalJSX {
           * @default 'min'
          */
         "i18nMinuteColumnHeader"?: string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
         /**
           * Text for the time picker second column header.
           * @default 'sec'
@@ -12859,6 +12980,11 @@ declare namespace LocalJSX {
           * Label of the input field.
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -12982,6 +13108,11 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nAm"?: string;
+        /**
           * Text of the time confirm button.
           * @default 'Confirm'
          */
@@ -13007,10 +13138,20 @@ declare namespace LocalJSX {
          */
         "i18nMinuteColumnHeader"?: string;
         /**
+          * Label for the PM button in 12-hour mode. If not set, falls back to the second value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nPm"?: string;
+        /**
           * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -13838,6 +13979,12 @@ declare namespace LocalJSX {
         "timeReference": 'AM' | 'PM';
         "i18nDone": string;
         "i18nTime": string;
+        "i18nAm": string;
+        "i18nPm": string;
+        "i18nHourColumnHeader": string;
+        "i18nMinuteColumnHeader": string;
+        "i18nSecondColumnHeader": string;
+        "i18nMillisecondColumnHeader": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
         "weekStartIndex": number;
@@ -14481,6 +14628,9 @@ declare namespace LocalJSX {
         "i18nSecondColumnHeader": string;
         "i18nMillisecondColumnHeader": string;
         "suppressSubmitOnEnter": boolean;
+        "locale": string;
+        "i18nAm": string;
+        "i18nPm": string;
         "hideHeader": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
@@ -14488,6 +14638,7 @@ declare namespace LocalJSX {
     }
     interface IxTimePickerAttributes {
         "format": string;
+        "locale": string;
         "corners": TimePickerCorners;
         "embedded": boolean;
         "dateTimePickerAppearance": boolean;
@@ -14505,6 +14656,8 @@ declare namespace LocalJSX {
         "i18nMinuteColumnHeader": string;
         "i18nSecondColumnHeader": string;
         "i18nMillisecondColumnHeader": string;
+        "i18nAm": string;
+        "i18nPm": string;
     }
     interface IxToastAttributes {
         "type": ToastType;
