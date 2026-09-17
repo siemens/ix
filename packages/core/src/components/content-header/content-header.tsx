@@ -65,7 +65,6 @@ export class ContentHeader {
             class={'backButton'}
             variant="tertiary"
             icon={iconArrowLeft}
-            size="24"
             onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>
         ) : null}

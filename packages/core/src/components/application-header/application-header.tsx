@@ -381,7 +381,6 @@ export class ApplicationHeader {
             <ix-icon-button
               onClick={() => this.showAppSwitch()}
               icon={iconApps}
-              size="24"
               variant="subtle-tertiary"
               class={{
                 'app-switch': true,

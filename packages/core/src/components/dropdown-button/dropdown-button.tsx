@@ -309,6 +309,7 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
+                size="24"
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
                 aria-label={

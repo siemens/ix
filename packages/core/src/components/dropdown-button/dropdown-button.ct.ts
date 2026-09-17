@@ -260,7 +260,7 @@ regressionTest(
 );
 
 regressionTest(
-  'icon-only uses a 32px host and 20px glyph',
+  'icon-only uses a 32px host and 24px glyph',
   async ({ mount, page }) => {
     await mount(
       `
@@ -274,7 +274,7 @@ regressionTest(
     const iconButton = page.locator('ix-dropdown-button ix-icon-button');
     await expect(iconButton).toHaveClass(/hydrated/);
     await expect(iconButton).toHaveClass(/btn-icon-32/);
-    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-20/);
+    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-24/);
   }
 );
 
