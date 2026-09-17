@@ -22,33 +22,33 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(button.locator('ix-icon')).toBeVisible();
 });
 
-regressionTest('defaults to a 32px host and 20px glyph', async ({
-  mount,
-  page,
-}) => {
-  await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`, {
-    icons: { iconRocket },
-  });
+regressionTest(
+  'defaults to a 32px host and 20px glyph',
+  async ({ mount, page }) => {
+    await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`, {
+      icons: { iconRocket },
+    });
 
-  const button = page.locator('ix-icon-button');
-  await expect(button).toHaveClass(/hydrated/);
-  await expect(button).toHaveClass(/btn-icon-32/);
-  await expect(button.locator('ix-icon')).toHaveClass(/size-20/);
-});
+    const button = page.locator('ix-icon-button');
+    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveClass(/btn-icon-32/);
+    await expect(button.locator('ix-icon')).toHaveClass(/size-20/);
+  }
+);
 
-regressionTest('size 24 keeps a 32px host and 24px glyph', async ({
-  mount,
-  page,
-}) => {
-  await mount(`<ix-icon-button icon="rocket" size="24"></ix-icon-button>`, {
-    icons: { iconRocket },
-  });
+regressionTest(
+  'size 24 keeps a 32px host and 24px glyph',
+  async ({ mount, page }) => {
+    await mount(`<ix-icon-button icon="rocket" size="24"></ix-icon-button>`, {
+      icons: { iconRocket },
+    });
 
-  const button = page.locator('ix-icon-button');
-  await expect(button).toHaveClass(/hydrated/);
-  await expect(button).toHaveClass(/btn-icon-32/);
-  await expect(button.locator('ix-icon')).toHaveClass(/size-24/);
-});
+    const button = page.locator('ix-icon-button');
+    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveClass(/btn-icon-32/);
+    await expect(button.locator('ix-icon')).toHaveClass(/size-24/);
+  }
+);
 
 regressionTest(
   'forwards a custom property icon color',

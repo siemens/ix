@@ -33,9 +33,9 @@ describe('icon-button', () => {
     const button = root as HTMLIxIconButtonElement;
 
     expect(button.className).toContain('btn-icon-32');
-    expect(button.shadowRoot?.querySelector('ix-icon')?.getAttribute('size')).toBe(
-      '20'
-    );
+    expect(
+      button.shadowRoot?.querySelector('ix-icon')?.getAttribute('size')
+    ).toBe('20');
   });
 
   it('maps size 24 to a 32px host and 24px glyph', async () => {
@@ -46,9 +46,9 @@ describe('icon-button', () => {
     const button = root as HTMLIxIconButtonElement;
 
     expect(button.className).toContain('btn-icon-32');
-    expect(button.shadowRoot?.querySelector('ix-icon')?.getAttribute('size')).toBe(
-      '24'
-    );
+    expect(
+      button.shadowRoot?.querySelector('ix-icon')?.getAttribute('size')
+    ).toBe('24');
   });
 
   it('should submit form if type is submit', async () => {
