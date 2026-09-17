@@ -35,26 +35,38 @@ const noAssertionSyntaxRules = [
   },
 ];
 
-// Luxon counts months 1-12 and weekdays 1-7 (Monday = 1), but the name arrays
-// from `Info.months()` / `Info.weekdays()` and the pickers' own state are
-// 0-based. Mixing the two silently shifts the calendar by one unit, so the
-// date components must go through `utils/calendar-units.ts`, which owns every
-// conversion.
+// Luxon counts months 1-12 and weekdays 1-7 (Monday = 1), while the name
+// arrays from `Info.months()` / `Info.weekdays()` are 0-based. Rather than
+// convert between the two bases, the date components carry a `DateTime` for
+// every calendar position and derive names by formatting it, so neither base
+// is ever written down. Passing a `DateTime` is enforced by the signatures in
+// `utils/calendar-units.ts`; these rules cover what types cannot, by banning
+// the ways a bare unit number gets manufactured in the first place.
+//
+// `utils/calendar-units.ts` is deliberately out of scope below: it is the one
+// module allowed to touch both bases. Any new date component directory has to
+// be added to the `files` list, or it inherits none of this.
 const calendarUnitRules = [
   {
     selector: "MemberExpression[property.name='month']",
     message:
-      "Luxon's .month is 1-12 but the UI month arrays are 0-based. Use monthIndexOf() / fromMonthIndex() from utils/calendar-units.ts.",
+      "Don't read Luxon's 1-based .month. Keep the month as a DateTime: compare with hasSame(other, 'month') and render with monthNameOf() from utils/calendar-units.ts.",
   },
   {
     selector: "MemberExpression[property.name='weekday']",
     message:
-      "Luxon's .weekday is 1-7 (Monday = 1) but the UI weekday arrays are 0-based. Use weekdayIndexOf() / weekdayColumnOf() from utils/calendar-units.ts.",
+      "Don't read Luxon's 1-based .weekday. Use weekdayColumnOf() from utils/calendar-units.ts to place a date in a grid column.",
+  },
+  {
+    selector:
+      "CallExpression[callee.object.name='Info'][callee.property.name=/^(months|monthsFormat|weekdays|weekdaysFormat)$/]",
+    message:
+      'Info.months() / Info.weekdays() return 0-based arrays, and indexing one with a Luxon ordinal shifts the calendar by one. Build months with monthsOfYear() and names with monthNameOf() / weekdayNamesFrom() from utils/calendar-units.ts.',
   },
   {
     selector: "NewExpression[callee.name='Date'][arguments.length>=2]",
     message:
-      'new Date(year, month, day) takes a 0-based month and resolves in local time. Use fromMonthIndex() from utils/calendar-units.ts.',
+      'new Date(year, month, day) takes a 0-based month and resolves in local time. Use monthsOfYear() / dayOfMonth() from utils/calendar-units.ts.',
   },
 ];
 
