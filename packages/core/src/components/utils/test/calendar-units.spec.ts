@@ -16,6 +16,7 @@ import {
   monthsOfYear,
   weekdayColumnOf,
   weekdayNamesFrom,
+  weekStartFrom,
 } from '../calendar-units';
 
 /** Luxon month ordinals, for readability in the expectations below. */
@@ -248,9 +249,44 @@ describe('isDayWithinRange', () => {
   });
 });
 
+describe('weekStartFrom', () => {
+  it('passes every in-range index through unchanged', () => {
+    for (let index = 0; index < 7; index++) {
+      expect(weekStartFrom(index)).toBe(index);
+    }
+  });
+
+  it('wraps an index past the end of the week', () => {
+    expect(weekStartFrom(7)).toBe(0);
+    expect(weekStartFrom(8)).toBe(1);
+  });
+
+  it('wraps a negative index', () => {
+    expect(weekStartFrom(-1)).toBe(6);
+    expect(weekStartFrom(-7)).toBe(0);
+  });
+
+  it('floors a fractional index rather than indexing between days', () => {
+    expect(weekStartFrom(2.7)).toBe(2);
+  });
+
+  it('falls back to Monday for a non-finite index', () => {
+    expect(weekStartFrom(NaN)).toBe(0);
+    expect(weekStartFrom(Infinity)).toBe(0);
+  });
+
+  it('never yields an index that misses the weekday array', () => {
+    [-10, -1, 0, 3, 6, 7, 99, NaN].forEach((value) => {
+      expect(weekdayNamesFrom(weekStartFrom(value), 'en')).not.toContain(
+        undefined
+      );
+    });
+  });
+});
+
 describe('weekdayNamesFrom', () => {
   it('starts on Monday for index 0', () => {
-    const names = weekdayNamesFrom(0, 'en');
+    const names = weekdayNamesFrom(weekStartFrom(0), 'en');
 
     expect(names).toHaveLength(7);
     expect(names[0]).toBe('Monday');
@@ -258,7 +294,7 @@ describe('weekdayNamesFrom', () => {
   });
 
   it('starts on Sunday for index 6', () => {
-    const names = weekdayNamesFrom(6, 'en');
+    const names = weekdayNamesFrom(weekStartFrom(6), 'en');
 
     expect(names[0]).toBe('Sunday');
     expect(names[1]).toBe('Monday');
@@ -266,17 +302,17 @@ describe('weekdayNamesFrom', () => {
   });
 
   it('localises the names without reordering them', () => {
-    expect(weekdayNamesFrom(0, 'de')[0]).toBe('Montag');
-    expect(weekdayNamesFrom(6, 'de')[0]).toBe('Sonntag');
+    expect(weekdayNamesFrom(weekStartFrom(0), 'de')[0]).toBe('Montag');
+    expect(weekdayNamesFrom(weekStartFrom(6), 'de')[0]).toBe('Sonntag');
   });
 
   it('returns all seven days exactly once for every week start', () => {
-    const mondayFirst = weekdayNamesFrom(0, 'en');
+    const mondayFirst = weekdayNamesFrom(weekStartFrom(0), 'en');
 
     for (let weekStart = 0; weekStart < 7; weekStart++) {
-      expect([...weekdayNamesFrom(weekStart, 'en')].sort()).toEqual(
-        [...mondayFirst].sort()
-      );
+      expect(
+        [...weekdayNamesFrom(weekStartFrom(weekStart), 'en')].sort()
+      ).toEqual([...mondayFirst].sort());
     }
   });
 });
@@ -289,7 +325,7 @@ describe('weekdayColumnOf', () => {
 
   it('is identity for a Monday-first grid', () => {
     week.forEach((date, index) => {
-      expect(weekdayColumnOf(date, 0)).toBe(index);
+      expect(weekdayColumnOf(date, weekStartFrom(0))).toBe(index);
     });
   });
 
@@ -299,15 +335,17 @@ describe('weekdayColumnOf', () => {
 
   it('shifts every column for a Sunday-first grid', () => {
     // weekStart 6 = Sunday, so Sunday lands in column 0 and Monday in column 1.
-    expect(weekdayColumnOf(week[6], 6)).toBe(0);
+    expect(weekdayColumnOf(week[6], weekStartFrom(6))).toBe(0);
     week.slice(0, 6).forEach((date, index) => {
-      expect(weekdayColumnOf(date, 6)).toBe(index + 1);
+      expect(weekdayColumnOf(date, weekStartFrom(6))).toBe(index + 1);
     });
   });
 
   it('returns a valid column for every weekday and every week start', () => {
     for (let weekStart = 0; weekStart < 7; weekStart++) {
-      const columns = week.map((date) => weekdayColumnOf(date, weekStart));
+      const columns = week.map((date) =>
+        weekdayColumnOf(date, weekStartFrom(weekStart))
+      );
 
       expect([...columns].sort((a, b) => a - b)).toEqual([0, 1, 2, 3, 4, 5, 6]);
     }
@@ -317,15 +355,15 @@ describe('weekdayColumnOf', () => {
     const sunday = week[6];
 
     expect(sunday.weekday).toBe(7);
-    expect(weekdayColumnOf(sunday, 0)).toBe(6);
+    expect(weekdayColumnOf(sunday, weekStartFrom(0))).toBe(6);
   });
 
   it('agrees with the column the header names imply', () => {
     for (let weekStart = 0; weekStart < 7; weekStart++) {
-      const headers = weekdayNamesFrom(weekStart, 'en');
+      const headers = weekdayNamesFrom(weekStartFrom(weekStart), 'en');
 
       week.forEach((date) => {
-        const column = weekdayColumnOf(date, weekStart);
+        const column = weekdayColumnOf(date, weekStartFrom(weekStart));
 
         expect(headers[column]).toBe(date.setLocale('en').toFormat('cccc'));
       });

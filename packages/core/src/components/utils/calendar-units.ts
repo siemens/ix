@@ -17,8 +17,9 @@ import { DateTime, Info } from 'luxon';
  * number. Neither base then appears outside this module.
  *
  * The one index that survives is `weekStartIndex`, which is public API and so
- * cannot change. It is consumed only by {@link weekdayNamesFrom} and
- * {@link weekdayColumnOf}, both below.
+ * stays a plain `number` on the prop. It is branded on the way in by
+ * {@link weekStartFrom}, so a stray unit number cannot be passed to
+ * {@link weekdayNamesFrom} or {@link weekdayColumnOf} by mistake.
  *
  * Everything is built in the system zone so it compares cleanly against dates
  * parsed by `DateTime.fromFormat` / `DateTime.fromISO`, which are zone-local
@@ -27,11 +28,37 @@ import { DateTime, Info } from 'luxon';
  * negative offset.
  */
 
-/** 0-based weekday index, 0 = Monday. Matches `Info.weekdays()` ordering. */
-export type WeekdayIndex = number;
+declare const weekdayIndexBrand: unique symbol;
+
+/**
+ * 0-based weekday index, 0 = Monday. Matches `Info.weekdays()` ordering.
+ *
+ * Branded, so it cannot be confused with a month number, a grid column or any
+ * other stray integer. {@link weekStartFrom} is the only way to make one.
+ */
+export type WeekdayIndex = number & { readonly [weekdayIndexBrand]: true };
 
 export const MONTHS_IN_YEAR = 12;
 export const DAYS_IN_WEEK = 7;
+
+/** Monday, the default first column. */
+const MONDAY = 0 as WeekdayIndex;
+
+/**
+ * Narrow the public `weekStartIndex` prop into a {@link WeekdayIndex}.
+ *
+ * The prop is a plain `number` that anyone can set from markup, so this is
+ * also the single point where a nonsensical value is made harmless: the index
+ * is floored and wrapped into `[0, DAYS_IN_WEEK)`, and anything non-finite
+ * falls back to Monday rather than indexing the name array with `NaN`.
+ */
+export function weekStartFrom(value: number): WeekdayIndex {
+  if (!Number.isFinite(value)) {
+    return MONDAY;
+  }
+
+  return normaliseColumn(Math.floor(value)) as WeekdayIndex;
+}
 
 /**
  * The twelve months of `year`, January first, each as the first of the month.
@@ -72,11 +99,12 @@ export function weekdayNamesFrom(
   locale?: string
 ): string[] {
   const names = Info.weekdays('long', { locale });
-  const offset = normaliseColumn(weekStart);
 
+  // `weekStart` is already wrapped into range by `weekStartFrom`, so the only
+  // wrapping left is the rotation itself.
   return Array.from(
     { length: DAYS_IN_WEEK },
-    (_, column) => names[(column + offset) % DAYS_IN_WEEK]
+    (_, column) => names[(column + weekStart) % DAYS_IN_WEEK]
   );
 }
 
@@ -89,7 +117,7 @@ export function weekdayNamesFrom(
  */
 export function weekdayColumnOf(
   date: DateTime,
-  weekStart: WeekdayIndex = 0
+  weekStart: WeekdayIndex = MONDAY
 ): number {
   return normaliseColumn(date.weekday - 1 - weekStart);
 }

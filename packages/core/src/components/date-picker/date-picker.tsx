@@ -40,8 +40,10 @@ import {
   isYearWithinRange,
   monthNameOf,
   monthsOfYear,
+  WeekdayIndex,
   weekdayColumnOf,
   weekdayNamesFrom,
+  weekStartFrom,
 } from '../utils/calendar-units';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
@@ -190,6 +192,14 @@ export class DatePicker
    * E.g. weekStartIndex = 6 results in starting the week on Sunday.
    */
   @Prop() weekStartIndex = 0;
+
+  /**
+   * The public `weekStartIndex` prop, narrowed and sanitised for the calendar
+   * helpers. Converting in one place keeps the raw number from reaching them.
+   */
+  private get weekStart(): WeekdayIndex {
+    return weekStartFrom(this.weekStartIndex);
+  }
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
@@ -551,7 +561,7 @@ export class DatePicker
   }
 
   private setTranslations() {
-    this.dayNames = weekdayNamesFrom(this.weekStartIndex, this.locale);
+    this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
   }
 
   private async onDone() {
@@ -565,11 +575,8 @@ export class DatePicker
     const monthEnd = monthStart.endOf('month');
     let startWeek = monthStart.weekNumber;
     let endWeek = monthEnd.weekNumber;
-    const monthStartWeekDayIndex = weekdayColumnOf(
-      monthStart,
-      this.weekStartIndex
-    );
-    const monthEndWeekDayIndex = weekdayColumnOf(monthEnd, this.weekStartIndex);
+    const monthStartWeekDayIndex = weekdayColumnOf(monthStart, this.weekStart);
+    const monthEndWeekDayIndex = weekdayColumnOf(monthEnd, this.weekStart);
 
     let correctLastWeek = false;
     if (endWeek === 1) {
