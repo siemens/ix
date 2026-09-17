@@ -54,7 +54,7 @@ export class BreadcrumbItem
   @Prop() icon?: string;
 
   /**
-   * URL for the button link. When provided, the button will render as an anchor tag.
+   * Relative, HTTP(S), mailto, or tel URL for the button link. When provided, the button will render as an anchor tag.
    *
    * @since 4.0.0
    */

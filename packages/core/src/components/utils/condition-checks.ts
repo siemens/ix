@@ -22,6 +22,40 @@ export const isHttpUrl = (link: string) => {
   return url.protocol === 'http:' || url.protocol === 'https:';
 };
 
+const SAFE_NAVIGATION_PROTOCOLS = new Set([
+  'http:',
+  'https:',
+  'mailto:',
+  'tel:',
+]);
+
+export const isSafeNavigationUrl = (link: string) => {
+  if (typeof link !== 'string') {
+    return false;
+  }
+
+  try {
+    const url = new URL(link, 'https://ix.invalid');
+    return SAFE_NAVIGATION_PROTOCOLS.has(url.protocol);
+  } catch {
+    return false;
+  }
+};
+
+export const getSafeNavigationUrl = (
+  link: string | undefined,
+  componentName: string
+) => {
+  if (link === undefined || isSafeNavigationUrl(link)) {
+    return link;
+  }
+
+  console.warn(
+    `[${componentName}] Ignoring URL with an unsupported or invalid protocol.`
+  );
+  return undefined;
+};
+
 export const isSvgDataUrl = (url: string) => {
   if (!url) {
     return false;

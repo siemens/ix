@@ -23,6 +23,24 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(button).toHaveClass(/hydrated/);
 });
 
+regressionTest('blocks unsafe URL protocols', async ({ mount, page }) => {
+  await mount(`<ix-button href="javascript:alert(1)">Unsafe link</ix-button>`);
+
+  const button = page.locator('ix-button');
+  const innerButton = button.locator('button');
+  await expect(innerButton).not.toHaveAttribute('href');
+  await button.focus();
+  await expect(innerButton).toBeFocused();
+
+  await button.evaluate((element) => {
+    (element as HTMLIxButtonElement).href = 'https://example.com';
+  });
+  await expect(button.locator('a')).toHaveAttribute(
+    'href',
+    'https://example.com'
+  );
+});
+
 regressionTest('show icon', async ({ mount, page }) => {
   await mount(`<ix-button icon="rocket">Content</ix-button>`, {
     icons: { iconRocket },

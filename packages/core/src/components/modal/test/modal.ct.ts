@@ -141,6 +141,80 @@ regressionTest('closes on Escape key down', async ({ mount, page }) => {
   await expect(dialog).not.toBeVisible();
 });
 
+regressionTest(
+  'showModal applies only supported configuration properties',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    const configPreserved = await page.evaluate(async () => {
+      const config = Object.assign(
+        {
+          content: 'Safe modal content',
+          animation: false,
+          backdrop: false,
+          ariaLabelledby: 'modal-label',
+        },
+        JSON.parse('{"innerHTML":"<div id=\\"injected\\">Injected</div>"}')
+      );
+
+      await globalThis.showModal(config);
+      return Object.hasOwn(config, 'ariaLabelledby');
+    });
+
+    await waitForModalDialogOpen(page);
+    expect(configPreserved).toBe(true);
+    await expect(page.locator('#injected')).toHaveCount(0);
+    await expect(page.locator('ix-modal')).toHaveText('Safe modal content');
+    await expect(modalPanel(page)).toHaveAttribute(
+      'aria-labelledby',
+      'modal-label'
+    );
+    expect(
+      await page.locator('ix-modal').evaluate((element) => ({
+        disableAnimation: (element as HTMLIxModalElement).disableAnimation,
+        hideBackdrop: (element as HTMLIxModalElement).hideBackdrop,
+      }))
+    ).toEqual({
+      disableAnimation: true,
+      hideBackdrop: true,
+    });
+  }
+);
+
+regressionTest(
+  'showMessage applies only supported configuration properties',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    await page.evaluate(() => {
+      const config = Object.assign(
+        {
+          messageTitle: 'Safe title',
+          message: 'Safe message',
+          icon: '',
+          actions: [{ id: 'okay', type: 'okay', text: 'Okay' }],
+          animation: false,
+        },
+        JSON.parse('{"innerHTML":"<div id=\\"injected\\">Injected</div>"}')
+      );
+
+      globalThis.showMessage(config);
+    });
+
+    await waitForModalDialogOpen(page);
+    await expect(page.locator('ix-modal')).toHaveJSProperty(
+      'disableAnimation',
+      true
+    );
+    await expect(page.locator('#injected')).toHaveCount(0);
+    await expect(page.locator('ix-modal-header')).toContainText('Safe title');
+    await expect(page.locator('ix-modal-content')).toHaveText('Safe message');
+    await expect(page.getByRole('button', { name: 'Okay' })).toBeVisible();
+  }
+);
+
 regressionTest.describe('closeOnBackdropClick = true', () => {
   regressionTest(
     'should close modal on backdrop click',

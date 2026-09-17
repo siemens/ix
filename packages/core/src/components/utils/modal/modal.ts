@@ -16,12 +16,12 @@ export const IX_MODAL_AUTOFOCUS_SELECTOR = '[autofocus],[auto-focus]';
 /**
  * Set accessibility attributes on modal element
  */
-export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
+export function setA11yAttributes(
+  element: HTMLElement,
+  config: Pick<ModalConfig, 'ariaDescribedby' | 'ariaLabelledby'>
+) {
   const ariaDescribedby = config.ariaDescribedby;
   const ariaLabelledby = config.ariaLabelledby;
-
-  delete config['ariaDescribedby'];
-  delete config['ariaLabelledby'];
 
   if (ariaDescribedby) {
     element.setAttribute('aria-describedby', ariaDescribedby);
@@ -29,6 +29,37 @@ export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
 
   if (ariaLabelledby) {
     element.setAttribute('aria-labelledby', ariaLabelledby);
+  }
+}
+
+type ModalOptions = Omit<ModalConfig<any, unknown>, 'content'>;
+
+export function applyModalConfig(
+  element: HTMLIxModalElement,
+  config: ModalOptions
+) {
+  setA11yAttributes(element, config);
+
+  if (config.animation !== undefined) {
+    element.disableAnimation = !config.animation;
+  }
+  if (config.backdrop !== undefined) {
+    element.hideBackdrop = !config.backdrop;
+  }
+  if (config.closeOnBackdropClick !== undefined) {
+    element.closeOnBackdropClick = config.closeOnBackdropClick;
+  }
+  if (config.beforeDismiss !== undefined) {
+    element.beforeDismiss = config.beforeDismiss;
+  }
+  if (config.centered !== undefined) {
+    element.centered = config.centered;
+  }
+  if (config.isNonBlocking !== undefined) {
+    element.isNonBlocking = config.isNonBlocking;
+  }
+  if (config.size !== undefined) {
+    element.size = config.size;
   }
 }
 
@@ -148,8 +179,7 @@ export const showModal = createDependencyFunction(
       dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
     }
 
-    setA11yAttributes(dialogRef, config);
-    Object.assign(dialogRef, config);
+    applyModalConfig(dialogRef, config);
 
     await dialogRef.showModal();
     dialogRef.addEventListener(

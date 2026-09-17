@@ -442,7 +442,7 @@ export namespace Components {
          */
         "hideChevron": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * Relative, HTTP(S), mailto, or tel URL for the button link. When provided, the button will render as an anchor tag.
           * @since 4.0.0
          */
         "href"?: string;
@@ -2631,7 +2631,7 @@ export namespace Components {
          */
         "target": '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Relative, HTTP(S), mailto, or tel URL for the link button
          */
         "url"?: string;
     }
@@ -2927,7 +2927,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * Relative, HTTP(S), mailto, or tel URL for the button link. When provided, the button will render as an anchor tag.
           * @since 4.0.0
          */
         "href"?: string;
@@ -4773,7 +4773,7 @@ export namespace Components {
     interface IxTree {
         /**
           * Selection and collapsed state management
-          * @default {}
+          * @default createTreeContext()
          */
         "context": TreeContext;
         /**
@@ -7341,7 +7341,7 @@ declare namespace LocalJSX {
          */
         "hideChevron"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * Relative, HTTP(S), mailto, or tel URL for the button link. When provided, the button will render as an anchor tag.
           * @since 4.0.0
          */
         "href"?: string;
@@ -9671,7 +9671,7 @@ declare namespace LocalJSX {
          */
         "target"?: '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Relative, HTTP(S), mailto, or tel URL for the link button
          */
         "url"?: string;
     }
@@ -9998,7 +9998,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * Relative, HTTP(S), mailto, or tel URL for the button link. When provided, the button will render as an anchor tag.
           * @since 4.0.0
          */
         "href"?: string;
@@ -11963,7 +11963,7 @@ declare namespace LocalJSX {
     interface IxTree {
         /**
           * Selection and collapsed state management
-          * @default {}
+          * @default createTreeContext()
          */
         "context"?: TreeContext;
         /**
