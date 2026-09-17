@@ -24,12 +24,12 @@
   --ix-pane-content--padding-inline: var(--theme-space-2);
   --ix-pane-content--padding-block-end: var(--theme-space-3);
   --ix-pane--border-width: var(--theme-border-width-default);
-  --ix-pane-floating--background: #{sys.$si-sys-background-1};
-  --ix-pane-floating--border-color: #{sys.$si-sys-border-4};
-  --ix-pane-floating--box-shadow: #{sys.$si-sys-effects-shadow-4};
-  --ix-pane-floating--color: #{sys.$si-sys-text-primary};
-  --ix-pane-inline--background: #{sys.$si-sys-background-0};
-  --ix-pane-inline--border-color: #{sys.$si-sys-border-3};
+  --ix-pane-floating--background: #{sys.$si-sys-color-background-1};
+  --ix-pane-floating--border-color: #{sys.$si-sys-color-border-4};
+  --ix-pane-floating--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
+  --ix-pane-floating--color: #{sys.$si-sys-color-text-primary};
+  --ix-pane-inline--background: #{sys.$si-sys-color-background-0};
+  --ix-pane-inline--border-color: #{sys.$si-sys-color-border-3};
   --ix-pane-inline--box-shadow: none;
-  --ix-pane-inline--color: #{sys.$si-sys-text-primary};
+  --ix-pane-inline--color: #{sys.$si-sys-color-text-primary};
 }

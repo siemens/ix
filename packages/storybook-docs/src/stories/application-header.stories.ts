@@ -192,7 +192,7 @@ export const NoBorderBottom: Story = {
       position: 'relative',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'var(--si-sys-background-1)',
+      backgroundColor: 'var(--si-sys-color-background-1)',
       height: '5rem',
       width: '100%',
     });
@@ -283,11 +283,11 @@ export const WindowControls: OverflowStory = {
     applicationHeader.appendChild(avatar);
 
     const other = document.createElement('div');
-    other.style.backgroundColor = 'var(--si-sys-background-1)';
+    other.style.backgroundColor = 'var(--si-sys-color-background-1)';
     other.style.minHeight = '3rem';
     other.style.width = 'auto';
     other.style.borderBottom =
-      'var(--theme-border-width-default) solid var(--si-sys-border-4)';
+      'var(--theme-border-width-default) solid var(--si-sys-color-border-4)';
 
     other.style.display = 'flex';
     other.style.flexDirection = 'row';

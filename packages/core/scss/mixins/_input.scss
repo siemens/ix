@@ -15,12 +15,15 @@
     min-height: 2rem;
     width: auto;
     padding: $padding;
-    background-color: var(--ix-input--background, #{sys.$si-sys-background-1});
-    color: var(--ix-input--color, #{sys.$si-sys-text-primary});
+    background-color: var(
+      --ix-input--background,
+      #{sys.$si-sys-color-background-1}
+    );
+    color: var(--ix-input--color, #{sys.$si-sys-color-text-primary});
     appearance: textfield;
     text-overflow: ellipsis;
     border: var(--ix-input--border-width, var(--theme-border-width-default))
-      solid var(--ix-input--border-color, #{sys.$si-sys-border-2});
+      solid var(--ix-input--border-color, #{sys.$si-sys-color-border-2});
     border-radius: var(
       --ix-input--border-radius,
       var(--theme-small-border-radius)
@@ -46,22 +49,23 @@
       var(--ix-input--background--autofill, rgba(0, 0, 0, 0)) inset !important;
     -webkit-text-fill-color: var(
       --ix-input--color--autofill,
-      #{sys.$si-sys-text-primary}
+      #{sys.$si-sys-color-text-primary}
     ) !important;
     background-color: var(
       --ix-input--background--autofill,
       rgba(0, 0, 0, 0)
     ) !important;
     border: var(--ix-input--border-width, var(--theme-border-width-default))
-      solid var(--ix-input--border-color--autofill, #{sys.$si-sys-border-2}) !important;
+      solid
+      var(--ix-input--border-color--autofill, #{sys.$si-sys-color-border-2}) !important;
     color: var(
       --ix-input--color--autofill,
-      #{sys.$si-sys-text-primary}
+      #{sys.$si-sys-color-text-primary}
     ) !important;
   }
 
   &::placeholder {
-    color: var(--ix-input-hint--color, #{sys.$si-sys-text-secondary});
+    color: var(--ix-input-hint--color, #{sys.$si-sys-color-text-secondary});
   }
 
   &.hover,
@@ -76,11 +80,11 @@
       ) {
       border-color: var(
         --ix-input--border-color--hover,
-        #{sys.$si-sys-border-1}
+        #{sys.$si-sys-color-border-1}
       ) !important;
       background-color: var(
         --ix-input--background--hover,
-        #{sys.$si-sys-background-4}
+        #{sys.$si-sys-color-background-4}
       );
     }
   }
@@ -95,14 +99,14 @@
         [disabled],
         :read-only
       ) {
-      outline: 1px solid #{sys.$si-sys-effects-focus};
+      outline: 1px solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(
         --ix-input--focus--outline-offset,
         var(--theme-focus-outline-offset)
       );
       border-color: var(
         --ix-input--border-color--focus,
-        #{sys.$si-sys-border-1}
+        #{sys.$si-sys-color-border-1}
       ) !important;
     }
   }
@@ -115,7 +119,7 @@
       outline: none;
       border: var(--ix-input--border-width, var(--theme-border-width-default))
         solid
-        var(--ix-input--border-color--readonly, #{sys.$si-sys-border-4});
+        var(--ix-input--border-color--readonly, #{sys.$si-sys-color-border-4});
 
       &::placeholder {
         color: transparent;
@@ -129,7 +133,8 @@
     background-color: transparent;
     outline: none;
     border: var(--ix-input--border-width, var(--theme-border-width-default))
-      solid var(--ix-input--border-color--disabled, #{sys.$si-sys-border-4});
+      solid
+      var(--ix-input--border-color--disabled, #{sys.$si-sys-color-border-4});
   }
 
   &:disabled::placeholder,
@@ -172,21 +177,21 @@
     & {
       border-color: var(
         --ix-input--border-color--info,
-        #{sys.$si-sys-border-information}
+        #{sys.$si-sys-color-border-information}
       );
     }
 
     &:hover {
       border-color: var(
         --ix-input--border-color--info--hover,
-        #{sys.$si-sys-border-information}
+        #{sys.$si-sys-color-border-information}
       ) !important;
     }
 
     &:active {
       border-color: var(
         --ix-input--border-color--info--active,
-        #{sys.$si-sys-border-information}
+        #{sys.$si-sys-color-border-information}
       ) !important;
     }
   }
@@ -195,29 +200,29 @@
     & {
       background-color: var(
         --ix-input--background--warning,
-        #{sys.$si-sys-background-1}
+        #{sys.$si-sys-color-background-1}
       );
       border-color: var(
         --ix-input--border-color--warning--active,
-        #{sys.$si-sys-background-warning}
+        #{sys.$si-sys-color-border-warning}
       ) !important;
     }
 
     &:hover {
       background-color: var(
         --ix-input--background--warning--hover,
-        #{sys.$si-sys-background-4}
+        #{sys.$si-sys-color-background-4}
       );
       border-color: var(
         --ix-input--border-color--warning--hover,
-        #{sys.$si-sys-background-warning}
+        #{sys.$si-sys-color-border-warning}
       ) !important;
     }
 
     &:active {
       border-color: var(
         --ix-input--border-color--warning--active,
-        #{sys.$si-sys-background-warning}
+        #{sys.$si-sys-color-border-warning}
       ) !important;
     }
   }
@@ -226,29 +231,29 @@
     & {
       background-color: var(
         --ix-input--background--invalid,
-        #{sys.$si-sys-background-1}
+        #{sys.$si-sys-color-background-1}
       );
       border-color: var(
         --ix-input--border-color--invalid,
-        #{sys.$si-sys-border-danger}
+        #{sys.$si-sys-color-border-danger}
       ) !important;
     }
 
     &:hover {
       background-color: var(
         --ix-input--background--invalid--hover,
-        #{sys.$si-sys-background-4}
+        #{sys.$si-sys-color-background-4}
       );
       border-color: var(
         --ix-input--border-color--invalid--hover,
-        #{sys.$si-sys-border-danger}
+        #{sys.$si-sys-color-border-danger}
       ) !important;
     }
 
     &:active {
       border-color: var(
         --ix-input--border-color--invalid--active,
-        #{sys.$si-sys-border-danger}
+        #{sys.$si-sys-color-border-danger}
       ) !important;
     }
   }

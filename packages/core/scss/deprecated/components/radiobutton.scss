@@ -15,31 +15,33 @@
 @mixin setVars {
   --theme-radiobtn--border-thickness: var(--theme-border-width-default);
   --theme-radiobtn--focus--outline-offset: var(--theme-focus-outline-offset);
-  --theme-radiobtn-checked--background: var(--si-sys-background-accent);
+  --theme-radiobtn-checked--background: var(--si-sys-color-background-accent);
   --theme-radiobtn-checked--background--active: var(
-    --si-sys-background-accent-active
+    --si-sys-color-background-accent-active
   );
-  --theme-radiobtn-checked--background--disabled: var(--si-sys-text-disabled);
+  --theme-radiobtn-checked--background--disabled: var(
+    --si-sys-color-text-disabled
+  );
   --theme-radiobtn-checked--background--hover: var(
-    --si-sys-background-accent-hover
+    --si-sys-color-background-accent-hover
   );
   --theme-radiobtn-checked--background--info: var(
-    --si-sys-background-information
+    --si-sys-color-background-information
   );
   --theme-radiobtn-checked--background--info--active: var(
-    --si-sys-background-information-active
+    --si-sys-color-background-information-active
   );
   --theme-radiobtn-checked--background--info--hover: var(
-    --si-sys-background-information-hover
+    --si-sys-color-background-information-hover
   );
   --theme-radiobtn-checked--background--invalid: var(
-    --si-sys-background-danger
+    --si-sys-color-background-danger
   );
   --theme-radiobtn-checked--background--invalid--active: var(
-    --si-sys-background-danger-active
+    --si-sys-color-background-danger-active
   );
   --theme-radiobtn-checked--background--invalid--hover: var(
-    --si-sys-background-danger-hover
+    --si-sys-color-background-danger-hover
   );
   --theme-radiobtn-checked--background--warning: var(--theme-color-warning);
   --theme-radiobtn-checked--background--warning--active: var(
@@ -67,22 +69,26 @@
   --theme-radiobtn-checked--border-color--warning--hover: var(
     --theme-color-warning-bdr
   );
-  --theme-radiobtn-checked--color: var(--si-sys-text-on-accent);
-  --theme-radiobtn-checked--color--active: var(--si-sys-text-on-accent);
-  --theme-radiobtn-checked--color--disabled: var(--si-sys-text-inverse);
-  --theme-radiobtn-checked--color--hover: var(--si-sys-text-on-accent);
-  --theme-radiobtn-checked--color--info: var(--si-sys-text-on-information);
+  --theme-radiobtn-checked--color: var(--si-sys-color-text-on-accent);
+  --theme-radiobtn-checked--color--active: var(--si-sys-color-text-on-accent);
+  --theme-radiobtn-checked--color--disabled: var(--si-sys-color-text-inverse);
+  --theme-radiobtn-checked--color--hover: var(--si-sys-color-text-on-accent);
+  --theme-radiobtn-checked--color--info: var(
+    --si-sys-color-text-on-information
+  );
   --theme-radiobtn-checked--color--info--active: var(
-    --si-sys-text-on-information
+    --si-sys-color-text-on-information
   );
   --theme-radiobtn-checked--color--info--hover: var(
-    --si-sys-text-on-information
+    --si-sys-color-text-on-information
   );
-  --theme-radiobtn-checked--color--invalid: var(--si-sys-text-on-danger);
+  --theme-radiobtn-checked--color--invalid: var(--si-sys-color-text-on-danger);
   --theme-radiobtn-checked--color--invalid--active: var(
-    --si-sys-text-on-danger
+    --si-sys-color-text-on-danger
   );
-  --theme-radiobtn-checked--color--invalid--hover: var(--si-sys-text-on-danger);
+  --theme-radiobtn-checked--color--invalid--hover: var(
+    --si-sys-color-text-on-danger
+  );
   --theme-radiobtn-checked--color--warning: var(
     --theme-color-warning--contrast
   );
@@ -92,58 +98,68 @@
   --theme-radiobtn-checked--color--warning--hover: var(
     --theme-color-warning--contrast
   );
-  --theme-radiobtn-label--color: var(--si-sys-text-primary);
-  --theme-radiobtn-label--color--disabled: var(--si-sys-text-disabled);
-  --theme-radiobtn-unchecked--background: var(--si-sys-background-1);
+  --theme-radiobtn-label--color: var(--si-sys-color-text-primary);
+  --theme-radiobtn-label--color--disabled: var(--si-sys-color-text-disabled);
+  --theme-radiobtn-unchecked--background: var(--si-sys-color-background-1);
   --theme-radiobtn-unchecked--background--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
   --theme-radiobtn-unchecked--background--disabled: rgba(0, 0, 0, 0);
-  --theme-radiobtn-unchecked--background--hover: var(--si-sys-background-hover);
-  --theme-radiobtn-unchecked--background--info: var(--si-sys-background-1);
+  --theme-radiobtn-unchecked--background--hover: var(
+    --si-sys-color-background-hover
+  );
+  --theme-radiobtn-unchecked--background--info: var(
+    --si-sys-color-background-1
+  );
   --theme-radiobtn-unchecked--background--info--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
   --theme-radiobtn-unchecked--background--info--hover: var(
-    --si-sys-background-hover
+    --si-sys-color-background-hover
   );
-  --theme-radiobtn-unchecked--background--invalid: var(--si-sys-background-1);
+  --theme-radiobtn-unchecked--background--invalid: var(
+    --si-sys-color-background-1
+  );
   --theme-radiobtn-unchecked--background--invalid--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
   --theme-radiobtn-unchecked--background--invalid--hover: var(
-    --si-sys-background-hover
+    --si-sys-color-background-hover
   );
-  --theme-radiobtn-unchecked--background--warning: var(--si-sys-background-1);
+  --theme-radiobtn-unchecked--background--warning: var(
+    --si-sys-color-background-1
+  );
   --theme-radiobtn-unchecked--background--warning--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
   --theme-radiobtn-unchecked--background--warning--hover: var(
-    --si-sys-background-hover
+    --si-sys-color-background-hover
   );
-  --theme-radiobtn-unchecked--border-color: var(--si-sys-border-2);
-  --theme-radiobtn-unchecked--border-color--active: var(--si-sys-border-2);
+  --theme-radiobtn-unchecked--border-color: var(--si-sys-color-border-2);
+  --theme-radiobtn-unchecked--border-color--active: var(
+    --si-sys-color-border-2
+  );
   --theme-radiobtn-unchecked--border-color--disabled: var(
-    --si-sys-text-disabled
+    --si-sys-color-text-disabled
   );
-  --theme-radiobtn-unchecked--border-color--hover: var(--si-sys-border-2);
+  --theme-radiobtn-unchecked--border-color--hover: var(--si-sys-color-border-2);
   --theme-radiobtn-unchecked--border-color--info: var(
-    --si-sys-border-information
+    --si-sys-color-border-information
   );
   --theme-radiobtn-unchecked--border-color--info--active: var(
-    --si-sys-border-information
+    --si-sys-color-border-information
   );
   --theme-radiobtn-unchecked--border-color--info--hover: var(
-    --si-sys-border-information
+    --si-sys-color-border-information
   );
   --theme-radiobtn-unchecked--border-color--invalid: var(
-    --si-sys-border-danger
+    --si-sys-color-border-danger
   );
   --theme-radiobtn-unchecked--border-color--invalid--active: var(
-    --si-sys-border-danger
+    --si-sys-color-border-danger
   );
   --theme-radiobtn-unchecked--border-color--invalid--hover: var(
-    --si-sys-border-danger
+    --si-sys-color-border-danger
   );
   --theme-radiobtn-unchecked--border-color--warning: var(
     --theme-color-warning-bdr
