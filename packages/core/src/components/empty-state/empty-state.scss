@@ -71,6 +71,12 @@
     justify-content: center;
     align-items: center;
     gap: vars.$default-space;
+
+    .content__label {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
   }
 }
 

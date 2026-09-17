@@ -79,6 +79,10 @@
   @include font-mixins.typography-body;
 }
 
+:host(.typography-body-sbold) {
+  @include font-mixins.typography-body-sbold;
+}
+
 :host(.typography-body-paragraph) {
   @include font-mixins.typography-body-paragraph;
 }

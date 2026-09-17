@@ -8,6 +8,7 @@
  */
 type TypographyFormatBody =
   | 'body'
+  | 'body-sbold'
   | 'body-paragraph'
   | 'body-paragraph-sbold'
   | 'body-sm'

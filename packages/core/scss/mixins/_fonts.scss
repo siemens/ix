@@ -33,6 +33,10 @@
   @include define-typography($font: sys.$si-sys-typography-body);
 }
 
+@mixin typography-body-sbold {
+  @include define-typography($font: sys.$si-sys-typography-body-sbold);
+}
+
 @mixin typography-body-paragraph {
   @include define-typography($font: sys.$si-sys-typography-body-paragraph);
 }
