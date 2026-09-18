@@ -20,22 +20,11 @@ regressionTest.describe('menu', () => {
       const category = page.locator('ix-menu-category');
       await category.click();
 
-      const parentCategory = await category
-        .locator('.category-parent')
-        .boundingBox();
+      const dropdown = category.locator('ix-dropdown');
+      await expect(dropdown).toBeVisible();
+      await dropdown.locator('ix-divider').hover();
 
-      await page.mouse.move(
-        parentCategory!.x + parentCategory!.width / 2,
-        parentCategory!.y + parentCategory!.height / 2,
-        {
-          steps: 10,
-        }
-      );
-
-      const tooltip = category
-        .locator('ix-tooltip')
-        .getByText('Category with a long name');
-      await expect(tooltip).not.toHaveClass(/visible/);
+      await expect(category.locator('ix-tooltip')).not.toHaveClass(/visible/);
 
       await expect(page).toHaveScreenshot();
     }
@@ -52,6 +41,8 @@ regressionTest.describe('menu', () => {
 
       const dropdown = category.locator('ix-dropdown');
       await expect(dropdown).toBeVisible();
+      await dropdown.locator('ix-divider').hover();
+      await page.waitForTimeout(1000);
 
       await expect(page).toHaveScreenshot();
     }
