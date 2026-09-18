@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Maskito, maskitoInitialCalibrationPlugin } from '@maskito/core';
-import { maskitoNumberOptionsGenerator } from '@maskito/kit';
+import { maskitoNumber } from '@maskito/kit';
 import type { Components } from '@siemens/ix/components';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 
@@ -23,10 +23,10 @@ const meta = {
     input.value = args.value;
 
     const maskito = new Maskito(input as any, {
-      ...maskitoNumberOptionsGenerator({
+      ...maskitoNumber({
         decimalSeparator: ',',
         thousandSeparator: '.',
-        precision: 2,
+        maximumFractionDigits: 2,
       }),
       plugins: [maskitoInitialCalibrationPlugin()],
     });
@@ -66,8 +66,8 @@ export const Precision: Story = {
     input.value = args.value;
 
     const maskito = new Maskito(input as any, {
-      ...maskitoNumberOptionsGenerator({
-        precision: 2,
+      ...maskitoNumber({
+        maximumFractionDigits: 2,
         min: 0,
       }),
       plugins: [maskitoInitialCalibrationPlugin()],
