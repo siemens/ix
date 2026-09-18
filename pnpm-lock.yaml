@@ -1106,8 +1106,8 @@ importers:
         specifier: ^10.1.11
         version: 10.1.11(react@19.2.5)(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       '@storybook/addon-themes':
-        specifier: ^10.1.11
-        version: 10.1.11(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
+        specifier: ^10.6.0
+        version: 10.6.0(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))
       '@storybook/addon-vitest':
         specifier: ^10.1.11
         version: 10.1.11(@vitest/browser-playwright@4.0.17)(@vitest/browser@4.0.17(msw@2.10.2(@types/node@25.2.0)(typescript@5.6.3))(vite@7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1))(vitest@4.0.17))(@vitest/runner@4.1.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(vitest@4.0.17)
@@ -4657,10 +4657,10 @@ packages:
       react:
         optional: true
 
-  '@storybook/addon-themes@10.1.11':
-    resolution: {integrity: sha512-tUX5C1ms+W4GFK8UBWd3Fq4irkLc3h092BqW90tZghcoOmGY/sfKR+PlcLhoaTs/kkHQSSHPrz8HSFR1AXVbHA==}
+  '@storybook/addon-themes@10.6.0':
+    resolution: {integrity: sha512-PJtRtaCzKCAcouEqkHevMwv0aeQNsYWab4K/qszNGuSyFXxdcPQguKwmbB6Ajd/FxW+Of/mLXjRgpjrGVSgm1g==}
     peerDependencies:
-      storybook: ^10.1.11
+      storybook: ^10.6.0
 
   '@storybook/addon-vitest@10.1.11':
     resolution: {integrity: sha512-YbZzeKO3v+Xr97/malT4DZIATkVZT5EHNYx3xzEfPVuk19dDETAVYXO+tzcqCQHsgdKQHkmd56vv8nN3J3/kvw==}
@@ -11602,6 +11602,10 @@ packages:
     resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
     engines: {node: '>=6.10'}
 
+  ts-dedent@2.3.0:
+    resolution: {integrity: sha512-JfJeIHke7y2egdGGgRAvpCwYFUsHlM2gPcrVOxFkznt/4uzQ7HFmvE63iFHVLBJNDuyDOQgijDK/tXH/f6Msjg==}
+    engines: {node: '>=6.10'}
+
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
@@ -16926,10 +16930,10 @@ snapshots:
     optionalDependencies:
       react: 19.2.5
 
-  '@storybook/addon-themes@10.1.11(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))':
+  '@storybook/addon-themes@10.6.0(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))':
     dependencies:
       storybook: 10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      ts-dedent: 2.2.0
+      ts-dedent: 2.3.0
 
   '@storybook/addon-vitest@10.1.11(@vitest/browser-playwright@4.0.17)(@vitest/browser@4.0.17(msw@2.10.2(@types/node@25.2.0)(typescript@5.6.3))(vite@7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1))(vitest@4.0.17))(@vitest/runner@4.1.4)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(vitest@4.0.17)':
     dependencies:
@@ -16950,7 +16954,7 @@ snapshots:
       '@storybook/csf-plugin': 10.1.11(esbuild@0.27.2)(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(vite@7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1))(webpack@5.99.9(esbuild@0.27.2))
       '@vitest/mocker': 3.2.4(msw@2.10.2(@types/node@25.2.0)(typescript@5.6.3))(vite@7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1))
       storybook: 10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      ts-dedent: 2.2.0
+      ts-dedent: 2.3.0
       vite: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
     transitivePeerDependencies:
       - esbuild
@@ -17004,7 +17008,7 @@ snapshots:
       lit: 3.2.1
       storybook: 10.1.11(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       tiny-invariant: 1.3.3
-      ts-dedent: 2.2.0
+      ts-dedent: 2.3.0
 
   '@swc/core-darwin-arm64@1.9.2':
     optional: true
@@ -25968,6 +25972,8 @@ snapshots:
       typescript: 5.8.3
 
   ts-dedent@2.2.0: {}
+
+  ts-dedent@2.3.0: {}
 
   ts-interface-checker@0.1.13:
     optional: true
