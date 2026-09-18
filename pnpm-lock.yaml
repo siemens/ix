@@ -1069,8 +1069,8 @@ importers:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@20.16.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
       yup:
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.7.1
+        version: 1.7.1
 
   packages/storybook-docs:
     dependencies:
@@ -12608,8 +12608,8 @@ packages:
     resolution: {integrity: sha512-U/PBtDf35ff0D8X8D0jfdzHYEPFxAI7jJlxZXwCSez5M3190m+QobIfh+sWDWSHMCWWJN2AWamkegn6vr6YBTw==}
     engines: {node: '>=18'}
 
-  yup@1.4.0:
-    resolution: {integrity: sha512-wPbgkJRCqIf+OHyiTBQoJiP5PFuAXaWiJK6AmYkzQAh5/c2K9hzSApBZG5wV9KoKSePF7sAxmNSvh/13YHkFDg==}
+  yup@1.7.1:
+    resolution: {integrity: sha512-GKHFX2nXul2/4Dtfxhozv701jLQHdf6J34YDh2cEkpqoo8le5Mg6/LrdseVLrFarmFygZTlfIhHx/QKfb/QWXw==}
 
   zod-to-json-schema@3.24.6:
     resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
@@ -27386,7 +27386,7 @@ snapshots:
 
   yoctocolors-cjs@2.1.3: {}
 
-  yup@1.4.0:
+  yup@1.7.1:
     dependencies:
       property-expr: 2.0.6
       tiny-case: 1.0.3

@@ -42,6 +42,6 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
     "vite": "catalog:",
-    "yup": "^1.4.0"
+    "yup": "^1.7.1"
   }
 }
