@@ -8,11 +8,10 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'mixins/hover';
-@use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'legacy/mixins/fonts';
 
+@use './toast.vars' as *;
 :host {
   display: flex;
   flex-direction: column;
@@ -23,16 +22,12 @@
 
   pointer-events: all;
 
-  background-color: var(--theme-toast--background);
-  border: var(--theme-toast--border-thickness) solid
-    var(--theme-toast--border-color);
-  border-radius: var(
-    --theme-toast--border-radius,
-    var(--theme-toast--border-radus)
-  );
-  box-shadow: var(--theme-toast--box-shadow);
+  background-color: var(--ix-toast--background);
+  border: var(--ix-toast--border-width) solid var(--ix-toast--border-color);
+  border-radius: var(--ix-toast--border-radius);
+  box-shadow: var(--ix-toast--box-shadow);
 
-  --animate-duration: var(--theme-medium-time);
+  --animate-duration: var(--ix-toast--animation-duration);
 
   @include component.ix-component;
 
@@ -94,7 +89,7 @@
     bottom: 0;
     height: 0.125rem;
     width: 100%;
-    background-color: var(--theme-toast-timer-value--background);
+    background-color: var(--ix-toast-timer-value--background);
     transform-origin: left;
 
     &--animated {

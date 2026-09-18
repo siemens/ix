@@ -52,6 +52,20 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(tab).toHaveClass(/\bselected\b/);
 });
 
+regressionTest('preserves the tablist role', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs role="navigation" aria-label="Process steps">
+      <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+    </ix-tabs>
+  `);
+  const tabs = page.locator('ix-tabs');
+  const tablist = tabs.getByRole('tablist');
+
+  await expect(tabs).toHaveAttribute('role', 'navigation');
+  await expect(tablist).toHaveAttribute('role', 'tablist');
+  await expect(tablist).toHaveAttribute('aria-label', 'Process steps');
+});
+
 regressionTest('should change tab', async ({ mount, page }) => {
   await mount(`
     <ix-tabs active-tab-key="tab-1">
@@ -253,16 +267,20 @@ regressionTest(
     expect(containerBox).not.toBeNull();
     expect(firstTabBox).not.toBeNull();
 
+    if (!tabBox || !containerBox || !firstTabBox) {
+      throw new Error('Expected tab bounding boxes');
+    }
+
     const ARROW_WIDTH = 32;
 
-    expect(tabBox!.x).toBeGreaterThanOrEqual(containerBox!.x + ARROW_WIDTH);
+    expect(tabBox.x).toBeGreaterThanOrEqual(containerBox.x + ARROW_WIDTH);
 
-    expect(tabBox!.x + tabBox!.width).toBeLessThanOrEqual(
-      containerBox!.x + containerBox!.width - ARROW_WIDTH
+    expect(tabBox.x + tabBox.width).toBeLessThanOrEqual(
+      containerBox.x + containerBox.width - ARROW_WIDTH
     );
 
-    expect(firstTabBox!.x + firstTabBox!.width).toBeLessThan(
-      containerBox!.x + ARROW_WIDTH
+    expect(firstTabBox.x + firstTabBox.width).toBeLessThan(
+      containerBox.x + ARROW_WIDTH
     );
   }
 );
@@ -279,7 +297,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" class="new">Item 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Item 2</ix-tab-item>
       `;
@@ -317,7 +340,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" class="new">Item 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Item 2</ix-tab-item>
       `;
@@ -348,7 +376,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" class="new">Item 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Item 2</ix-tab-item>
       `;
@@ -381,7 +414,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" disabled class="new">Tab 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Tab 2</ix-tab-item>
       `;

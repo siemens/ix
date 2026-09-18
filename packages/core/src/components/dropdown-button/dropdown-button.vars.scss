@@ -1,0 +1,18 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use '../button/button.vars';
+@use '../button/button-variants' as button-variants;
+
+$dropdown-button-variants: button-variants.$btn-variants;
+
+:host {
+  --ix-dropdown-button-border-radius-left: var(--ix-button--border-radius);
+  --ix-dropdown-button-border-radius-right: var(--ix-button--border-radius);
+}

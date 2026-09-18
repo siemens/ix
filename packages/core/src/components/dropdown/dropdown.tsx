@@ -681,7 +681,9 @@ export class Dropdown
       }
     );
 
-    this.intersectObserverTrigger.observe(this.anchorElement!);
+    if (this.anchorElement) {
+      this.intersectObserverTrigger.observe(this.anchorElement);
+    }
   }
 
   private createFallbackPlacement(
@@ -1234,12 +1236,16 @@ export class Dropdown
       return;
     }
 
+    const dropdown = dropdownController.getDropdownById(submenuIds[0]);
+
+    if (!dropdown) {
+      return;
+    }
+
     event.detail.activeElement.classList.add(
       'ix-dropdown-submenu-trigger-active'
     );
-    const submenu = dropdownController.getDropdownById(
-      submenuIds[0]
-    ) as Dropdown;
+    const submenu = dropdown as Dropdown;
     dropdownController.present(submenu);
 
     this.forwardQueryElement = submenu.hostElement;

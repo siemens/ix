@@ -48,7 +48,6 @@ SPDX-License-Identifier: MIT
       <ix-button variant="tertiary">Button2</ix-button>
       <ix-button variant="tertiary">Button3</ix-button>
     </ix-content-header>
-
     <ix-content-header
       has-back-button
       header-title="content title"
@@ -69,7 +68,17 @@ SPDX-License-Identifier: MIT
       <ix-button variant="tertiary">Button2</ix-button>
       <ix-button variant="tertiary">Button3</ix-button>
     </ix-content-header>
-
+    <ix-content-header
+      has-back-button
+      header-title="This is a very long content title for testing purposes to see how the header handles overflow and wrapping in different scenarios"
+      header-subtitle="This is an equally long subtitle meant to test the behavior of the subtitle area when the text exceeds the usual length and needs to be displayed properly without breaking the layout"
+      text-overflow="ellipsis"
+    >
+      <ix-pill slot="header" icon="info" class="margin-top">Label</ix-pill>
+      <ix-button variant="tertiary">Button1</ix-button>
+      <ix-button variant="tertiary">Button2</ix-button>
+      <ix-button variant="tertiary">Button3</ix-button>
+    </ix-content-header>
     <ix-content-header
       header-title="content title"
       header-subtitle="subtitle content"
@@ -86,7 +95,9 @@ SPDX-License-Identifier: MIT
       header-title="content title with a really loooooooooong name name name name name name name name name name name name"
       header-subtitle="subtitle content  with a really loooooooooong name name name name name name name name name name name name"
     ></ix-content-header>
-    <ix-content-header header-title="content title"></ix-content-header>
+    <ix-content-header
+      header-title="content title"
+    ></ix-content-header>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>
 </html>

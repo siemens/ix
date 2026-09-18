@@ -1,0 +1,124 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'legacy/mixins/fonts';
+@use 'misc/common-variables' as vars;
+@use 'mixins/hover';
+@use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
+
+@mixin input-control {
+  & {
+    color: var(--ix-input--color, #{sys.$si-sys-text-primary});
+    border-radius: var(
+      --ix-input--border-radius,
+      var(--theme-small-border-radius)
+    );
+    height: vars.$default-control-height;
+    min-height: vars.$default-control-height;
+    min-width: vars.$input-min-width;
+    background-color: var(--ix-input--background, #{sys.$si-sys-background-1});
+    border: solid 1px var(--ix-input--border-color, #{sys.$si-sys-border-2});
+    box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
+    padding-inline-start: vars.$input-padding-x;
+    padding-inline-end: vars.$input-padding-x;
+  }
+
+  @include fonts.text-default();
+  @include text-truncation.ellipsis;
+
+  &::placeholder {
+    color: var(--ix-input-hint--color, #{sys.$si-sys-text-secondary});
+  }
+
+  &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
+    @include hover.hover {
+      background-color: var(
+        --ix-input--background--hover,
+        #{sys.$si-sys-background-4}
+      );
+      border-color: var(
+        --ix-input--border-color--hover,
+        #{sys.$si-sys-border-accent-hover}
+      );
+      cursor: auto;
+    }
+
+    @include hover.focus-visible {
+      background-color: var(
+        --ix-input--background--focus,
+        #{sys.$si-sys-background-4}
+      );
+      border-color: var(
+        --ix-input--border-color--focus,
+        #{sys.$si-sys-border-accent-hover}
+      );
+      outline-offset: var(
+        --ix-input--focus--outline-offset,
+        var(--theme-focus-outline-offset)
+      );
+      box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
+      outline: 1px solid #{sys.$si-sys-effects-focus};
+    }
+  }
+
+  &:focus-visible {
+    color: var(--ix-input--color, #{sys.$si-sys-text-primary});
+  }
+
+  &[type='number'] {
+    text-align: right;
+
+    &::-webkit-inner-spin-button {
+      margin-right: -2px;
+      margin-left: 2px;
+      display: none;
+    }
+  }
+
+  &.readonly,
+  &[readonly] {
+    background: transparent !important;
+    border-block-start: none !important;
+    border-inline-start: none !important;
+    border-inline-end: none !important;
+    border-radius: 0rem;
+  }
+
+  &:read-only,
+  &[readonly],
+  &[readOnly],
+  &.readonly {
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: var(--ix-input--border-color, #{sys.$si-sys-border-2});
+    cursor: default !important;
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    background: transparent !important;
+    border-block-start: none !important;
+    border-inline-start: none !important;
+    border-inline-end: none !important;
+    border-radius: 0rem;
+    color: #{sys.$si-sys-text-disabled};
+    border-color: var(
+      --ix-input--border-color-bottom--disabled,
+      #{sys.$si-sys-border-4}
+    );
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}

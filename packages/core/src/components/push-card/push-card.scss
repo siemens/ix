@@ -6,8 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './../card/card-vars' as card-vars;
+@use './../card/card.vars' as card-vars;
+@use 'tokens/system' as sys;
 
+@use './push-card.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -34,40 +36,40 @@
   }
 }
 
-@each $variant in card-vars.$ix-card-variants {
+@each $variant in card-vars.$card-variants {
   :host(.card-#{$variant}) {
     ix-card-content {
-      border-bottom: var(--theme-push-card--border-width)
+      border-bottom: var(--ix-push-card--border-width)
         solid
-        var(--theme-push-card-#{$variant}-accordion--border-color);
+        var(--ix-push-card-#{$variant}-accordion--border-color);
     }
 
     ix-card-accordion {
-      --theme-push-card-#{$variant}-accordion--background--hover: var(--theme-push-card-#{$variant}-accordion--background);
-      --theme-push-card-#{$variant}-accordion--background--active: var(--theme-push-card-#{$variant}-accordion--background);
-      --theme-push-card-#{$variant}-accordion-frame--border-color: var(--theme-push-card-#{$variant}-accordion--background);
+      --ix-card-accordion-#{$variant}-accordion--background--hover: var(--ix-push-card-#{$variant}-accordion--background);
+      --ix-card-accordion-#{$variant}-accordion--background--active: var(--ix-push-card-#{$variant}-accordion--background);
+      --ix-card-accordion-#{$variant}-accordion-frame--border-color: var(--ix-push-card-#{$variant}-accordion--background);
       --ix-card-accordion-expand-content--border-radius: 0 0 var(--theme-default-border-radius) var(--theme-default-border-radius);
 
       @if $variant != 'outline' and $variant != 'filled' {
-        --ix-card-accordion-expand-content--border-radius: 0 0 calc(var(--theme-default-border-radius) + var(--theme-push-card--border-width)) calc(var(--theme-default-border-radius) + var(--theme-push-card--border-width));
+        --ix-card-accordion-expand-content--border-radius: 0 0 calc(var(--theme-default-border-radius) + var(--ix-push-card--border-width)) calc(var(--theme-default-border-radius) + var(--ix-push-card--border-width));
       }
 
       @if $variant == 'outline' or $variant == 'filled' {
-        --ix-card-background: var(--theme-color-component-1);
+        --ix-card-background: #{sys.$si-sys-background-1};
       }
 
       @if $variant == 'outline' {
-        --theme-push-card-outline-accordion-frame--border-color: var(--theme-color-soft-bdr);
+        --ix-card-accordion-outline-accordion-frame--border-color: #{sys.$si-sys-border-3};
       }
     }
 
     @if $variant == 'outline' {
       ix-card {
-        --ix-card-border-color: var(--theme-color-soft-bdr);
+        --ix-card-border-color: #{sys.$si-sys-border-3};
 
         &:hover,
         &:active {
-          --ix-card-border-color: var(--theme-color-soft-bdr);
+          --ix-card-border-color: #{sys.$si-sys-border-3};
         }
       }
     }

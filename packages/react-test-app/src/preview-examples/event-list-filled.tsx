@@ -10,10 +10,10 @@
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 
 const items = [
-  { text: 'Text 1', color: 'color-primary' },
-  { text: 'Text 2', color: 'color-primary' },
-  { text: 'Text 3', color: 'color-alarm' },
-  { text: 'Text 4', color: 'color-success' },
+  { text: 'Text 1', color: '--si-sys-background-accent' },
+  { text: 'Text 2', color: '--si-sys-background-accent' },
+  { text: 'Text 3', color: '--si-sys-background-danger' },
+  { text: 'Text 4', color: '--si-sys-background-success' },
 ];
 
 export default function EventListFilled() {

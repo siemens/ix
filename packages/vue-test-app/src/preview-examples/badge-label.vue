@@ -16,37 +16,237 @@ import { IxBadge } from '@siemens/ix-vue';
 
 <template>
   <div class="container">
-    <IxBadge type="label" label="Primary" variant="primary" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Primary" variant="primary" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Primary" variant="primary" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Primary" variant="primary" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Alarm" variant="alarm" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Alarm" variant="alarm" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Alarm" variant="alarm" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Alarm" variant="alarm" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Critical" variant="critical" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Critical" variant="critical" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Critical" variant="critical" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Critical" variant="critical" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Warning" variant="warning" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Warning" variant="warning" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Warning" variant="warning" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Warning" variant="warning" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Info" variant="info" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Info" variant="info" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Info" variant="info" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Info" variant="info" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Neutral" variant="neutral" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Neutral" variant="neutral" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Neutral" variant="neutral" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Neutral" variant="neutral" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Success" variant="success" :icon="iconInfo"></IxBadge>
-    <IxBadge type="label" label="Success" variant="success" :icon="iconInfo" outline></IxBadge>
-    <IxBadge type="label" label="Success" variant="success" :icon="iconInfo" enable-animation></IxBadge>
-    <IxBadge type="label" label="Success" variant="success" :icon="iconInfo" outline enable-animation></IxBadge>
-    <IxBadge type="label" label="Custom" variant="custom" :icon="iconInfo" background="var(--theme-chart-11)" badge-color="var(--theme-color-inv-std-text)"></IxBadge>
-    <IxBadge type="label" label="Custom" variant="custom" :icon="iconInfo" background="var(--theme-chart-11)" badge-color="var(--theme-chip-outline--color)" outline></IxBadge>
-    <IxBadge type="label" label="Custom" variant="custom" :icon="iconInfo" background="var(--theme-chart-11)" badge-color="var(--theme-color-inv-std-text)" enable-animation></IxBadge>
-    <IxBadge type="label" label="Custom" variant="custom" :icon="iconInfo" background="var(--theme-chart-11)" badge-color="var(--theme-chip-outline--color)" outline enable-animation></IxBadge>
+    <IxBadge
+      type="label"
+      label="Primary"
+      variant="primary"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Primary"
+      variant="primary"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Primary"
+      variant="primary"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Primary"
+      variant="primary"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Alarm"
+      variant="alarm"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Alarm"
+      variant="alarm"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Alarm"
+      variant="alarm"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Alarm"
+      variant="alarm"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Critical"
+      variant="critical"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Critical"
+      variant="critical"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Critical"
+      variant="critical"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Critical"
+      variant="critical"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Warning"
+      variant="warning"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Warning"
+      variant="warning"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Warning"
+      variant="warning"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Warning"
+      variant="warning"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Info"
+      variant="info"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Info"
+      variant="info"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Info"
+      variant="info"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Info"
+      variant="info"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Neutral"
+      variant="neutral"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Neutral"
+      variant="neutral"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Neutral"
+      variant="neutral"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Neutral"
+      variant="neutral"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Success"
+      variant="success"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Success"
+      variant="success"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Success"
+      variant="success"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Success"
+      variant="success"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Custom"
+      variant="custom"
+      :icon="iconInfo"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-inverse)"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Custom"
+      variant="custom"
+      :icon="iconInfo"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-primary)"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Custom"
+      variant="custom"
+      :icon="iconInfo"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-inverse)"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Custom"
+      variant="custom"
+      :icon="iconInfo"
+      background="var(--si-sys-data-categorical-9)"
+      badge-color="var(--si-sys-text-primary)"
+      outline
+      enable-animation
+    ></IxBadge>
   </div>
 </template>

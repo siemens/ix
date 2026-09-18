@@ -68,6 +68,7 @@ import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot';
 import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
@@ -83,6 +84,7 @@ import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import DateRange from './preview-examples/date-range';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import DatetimeInput from './preview-examples/datetime-input';
 import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
@@ -344,10 +346,12 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,

@@ -40,7 +40,8 @@ export interface ToastConfig {
    */
   icon?: string;
   /**
-   * Color of the icon
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-text-primary`.
    */
   iconColor?: string;
   /**

@@ -260,7 +260,7 @@ export const configureKeyboardInteraction = (
     beforeKeydown?: (ev: KeyboardEvent) => void;
     onItemActivation?: (
       event: KeyboardEvent,
-      activeElement: HTMLElement
+      activeElement: HTMLElement | null
     ) => void;
     /**
      * Invoked when <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> is pressed
@@ -454,7 +454,7 @@ export const configureKeyboardInteraction = (
           // synthetic click dispatched by onItemActivation.
           event.stopPropagation();
         }
-        options.onItemActivation?.(event, activeElement!);
+        options.onItemActivation?.(event, activeElement);
       }
     }
   };
