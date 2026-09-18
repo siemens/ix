@@ -17,4 +17,6 @@ export type DateRangeChangeEvent = {
   id: string;
   from?: string;
   to?: string;
+  isoFrom?: string;
+  isoTo?: string;
 };
