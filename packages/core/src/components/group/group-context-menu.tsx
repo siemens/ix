@@ -89,6 +89,7 @@ export class GroupContextMenu {
     }
 
     this.configureDropdown(dropdownElement, triggerElement);
+    dropdownElement.hostRole = 'menu';
   }
 
   render() {
@@ -103,7 +104,7 @@ export class GroupContextMenu {
           variant="subtle-tertiary"
           icon={iconContextMenu}
           aria-expanded={a11yBoolean(this.dropdownShow)}
-          aria-haspopup="true"
+          aria-haspopup="menu"
         ></ix-icon-button>
         <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>

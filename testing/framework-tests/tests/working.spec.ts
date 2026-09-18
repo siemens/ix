@@ -84,3 +84,9 @@ import './generated/badge-counter.spec';
 import './generated/badge-label.spec';
 import './generated/badge-dot.spec';
 import './generated/badge-status-icon.spec';
+
+// Group tests
+import './generated/group.spec';
+import './generated/group-context-menu.spec';
+import './generated/group-custom-entry.spec';
+import './generated/group-header-suppressed.spec';

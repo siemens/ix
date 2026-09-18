@@ -12,8 +12,8 @@
 @use 'mixins/text-truncation';
 
 @use './group.vars' as *;
+
 $header-height: 4rem;
-$header-height-focus-visible: calc($header-height - 2px);
 
 :host {
   display: flex;
@@ -35,8 +35,6 @@ $header-height-focus-visible: calc($header-height - 2px);
     background-color: var(--ix-group-item--background);
     color: var(--ix-group-header--color);
 
-    cursor: pointer;
-
     @include hover.hover {
       background-color: var(--ix-group-item--background--hover);
 
@@ -50,29 +48,6 @@ $header-height-focus-visible: calc($header-height - 2px);
 
       &.selected {
         background-color: var(--ix-group-item--background--selected);
-      }
-    }
-
-    @include hover.focus-visible {
-      height: $header-height-focus-visible;
-      min-height: $header-height-focus-visible;
-
-      border: 1px solid var(--ix-group-header--border-color--focus);
-      border-radius: var(--ix-group-header--border-radius--focus)
-        var(--ix-group-header--border-radius--focus) 0px 0px;
-      outline: none;
-
-      .group-header-selection-indicator {
-        width: calc(vars.$tiny-space - 1px);
-      }
-
-      .group-header-content {
-        padding: calc(0.5rem - 1px) calc(0.5rem - 1px) calc(0.5rem - 1px) 0;
-      }
-
-      .btn-expand-header {
-        margin-top: calc(vars.$small-space - 1px);
-        margin-bottom: calc(vars.$small-space - 1px);
       }
     }
 
@@ -101,9 +76,43 @@ $header-height-focus-visible: calc($header-height - 2px);
     @include text-truncation.ellipsis;
   }
 
+  .group-header-actions {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+  }
+
   .group-header-selection-indicator {
     width: vars.$tiny-space;
     border-top-left-radius: var(--ix-group--border-radius);
+  }
+
+  .group-header-select-area {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: 0;
+
+    &--static {
+      cursor: pointer;
+    }
+  }
+
+  .group-header-select {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    @include hover.focus-visible {
+      outline: 1px solid var(--ix-group-header--border-color--focus);
+      outline-offset: -1px;
+    }
   }
 
   .group-header-content {
@@ -152,9 +161,26 @@ $header-height-focus-visible: calc($header-height - 2px);
   }
 
   .btn-expand-header {
+    appearance: none;
+    display: flex;
+    align-items: flex-start;
+    align-self: flex-start;
+    order: -1;
     margin: vars.$small-space;
     margin-inline-end: vars.$tiny-space;
     min-width: 1.5rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: var(--ix-group-header--border-radius--focus);
+
+    @include hover.focus-visible {
+      outline: 1px solid var(--ix-group-header--border-color--focus);
+      outline-offset: -1px;
+    }
   }
 
   .group-content {
