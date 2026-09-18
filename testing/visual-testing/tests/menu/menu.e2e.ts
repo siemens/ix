@@ -19,7 +19,9 @@ regressionTest.describe('menu', () => {
 
       const category = page.locator('ix-menu-category');
       await category.click();
-      await expect(category.locator('ix-dropdown')).toBeVisible();
+      const dropdown = category.locator('ix-dropdown');
+      await expect(dropdown).toBeVisible();
+      await dropdown.hover({ position: { x: 24, y: 12 } });
 
       await expect(page).toHaveScreenshot({
         animations: 'disabled',
@@ -35,7 +37,9 @@ regressionTest.describe('menu', () => {
 
       const category = page.locator('ix-menu-category');
       await category.click();
-      await expect(category.locator('ix-dropdown')).toBeVisible();
+      const dropdown = category.locator('ix-dropdown');
+      await expect(dropdown).toBeVisible();
+      await dropdown.hover({ position: { x: 24, y: 12 } });
 
       await expect(page).toHaveScreenshot({
         animations: 'disabled',
@@ -51,10 +55,12 @@ regressionTest.describe('menu', () => {
 
       const category = page.locator('ix-menu-category');
       await category.click();
-
+      await page.mouse.move(800, 400);
       await page.waitForTimeout(1000);
 
-      await expect(page).toHaveScreenshot();
+      await expect(page).toHaveScreenshot({
+        animations: 'disabled',
+      });
     }
   );
 
