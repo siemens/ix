@@ -182,7 +182,9 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
     'menu-items menu-items--collapsed'
   );
 
-  const dropdownHeader = dropdown.locator('ix-dropdown-item.category-dropdown-header');
+  const dropdownHeader = dropdown.locator(
+    'ix-dropdown-item.category-dropdown-header'
+  );
   await expect(dropdownHeader).toHaveText(/Category label/);
 
   const itemOne = page.locator('ix-menu-item').nth(0);
