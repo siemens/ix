@@ -1,0 +1,18 @@
+.changeset/eix-9-button-icon-size-20.md
+  h_c5a773bf2fda8b 7
+packages/core/src/components/dropdown-button/dropdown-button.tsx
+  h_c5a773bf2fda8b 312
+packages/core/src/components/split-button/test/split-button.ct.ts
+  h_c5a773bf2fda8b 88-101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1ab9da79a9e7302b025bf84de256271891629e37",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
