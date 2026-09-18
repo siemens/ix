@@ -8,7 +8,6 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
@@ -66,7 +65,7 @@ $focusBorderWidth: 1px;
   }
 
   .group-entry-text {
-    @include fonts.text-default;
+    font: var(--ix-group-item--font);
     @include text-truncation.ellipsis();
   }
 
@@ -79,7 +78,7 @@ $focusBorderWidth: 1px;
 
     &,
     span {
-      @include fonts.text-default;
+      font: var(--ix-group-item--font);
       @include text-truncation.ellipsis;
     }
   }

@@ -20,8 +20,8 @@
     clip-path: inset(50%);
     height: 1px;
     width: 1px;
-    min-height: 0px;
-    min-width: 0px;
+    min-height: 0;
+    min-width: 0;
     max-height: 1px;
     max-width: 1px;
     overflow: hidden;
@@ -55,6 +55,7 @@
     max-height: $size;
     float: left;
     margin-right: vars.$small-space;
+    transform: translateY(calc((1lh - #{$size}) / 2));
 
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -102,19 +103,12 @@
   .ix-form-control[type='radio']:checked {
     & + label:before {
       background-color: #{sys.$si-sys-background-accent-hover};
+      background-image: radial-gradient(
+        circle,
+        #{sys.$si-sys-text-on-accent} 0 0.25rem,
+        transparent 0.25rem
+      );
       border: var(--theme-border-width-default) solid transparent;
-    }
-
-    & + label:after {
-      content: '';
-      width: vars.$small-space;
-      height: vars.$small-space;
-      display: block;
-      background-color: #{sys.$si-sys-text-on-accent};
-      border-radius: 100%;
-      position: absolute;
-      top: 0.5rem;
-      left: 0.375rem;
     }
 
     &:hover + label:before {

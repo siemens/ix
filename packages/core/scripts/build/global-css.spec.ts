@@ -69,7 +69,7 @@ describe('global CSS entry points', () => {
 
     expect(foundation).toContain('body{color:var(--si-sys-text-primary)');
     expect(foundation).toContain('background-color:var(--si-sys-background-0)');
-    expect(foundation).toContain('font-family:Siemens Sans');
+    expect(foundation).toContain('font:var(--si-sys-typography-body)');
     expect(foundation).toContain(
       '--theme-font-family:"SiemensSans Pro VF","SiemensSans Pro",helvetica,arial,sans-serif'
     );

@@ -129,7 +129,7 @@ function TypographyExample() {
       <IxTypography format="h2">Block H2</IxTypography>
       <IxTypography format="display">Block Display</IxTypography>
       <IxTypography format="body">Block Body</IxTypography>
-      <IxTypography format="label-sm">Block Label</IxTypography>
+      <IxTypography format="body-sm">Small Body</IxTypography>
     </div>
   );
 }

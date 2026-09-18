@@ -105,9 +105,26 @@ const waitForScrollAnimations = async (page: Page) => {
 };
 
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(`<ix-time-picker></ix-time-picker>`);
-  const datePicker = page.locator(TIME_PICKER_SELECTOR);
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await mount(
+    `<ix-time-picker format="HH:mm:ss" time="00:15:12"></ix-time-picker>`
+  );
+  const timePicker = page.locator(TIME_PICKER_SELECTOR);
+  await expect(timePicker).toHaveClass(/hydrated/);
+  const selectedValueTypography = timePicker
+    .getByRole('option', { selected: true })
+    .locator('ix-typography');
+  await expect(selectedValueTypography).toHaveCount(3);
+  await expect(selectedValueTypography.first()).toHaveJSProperty(
+    'format',
+    'body'
+  );
+  await expect(selectedValueTypography.first()).toHaveJSProperty('bold', true);
+  const unselectedValueTypography = timePicker
+    .getByRole('option', { selected: false })
+    .locator('ix-typography')
+    .first();
+  await expect(unselectedValueTypography).toHaveJSProperty('format', 'body');
+  await expect(unselectedValueTypography).toHaveJSProperty('bold', false);
 });
 
 regressionTest(

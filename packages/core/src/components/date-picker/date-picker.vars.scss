@@ -11,8 +11,10 @@
 
 :host {
   --ix-date-picker-day--outline-color--focus: #{sys.$si-sys-effects-focus};
-  --ix-date-picker-day--font-weight--selected: var(--theme-font-weight-bold);
-  --ix-date-picker-weekday--font-size: var(--theme-ms-0);
+  --ix-date-picker-day--font-weight--selected: var(
+    --si-ref-typography-font-weight-bold
+  );
+  --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
   --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-date-picker-day--background: rgba(0, 0, 0, 0);
   --ix-date-picker-day--background--active: #{sys.$si-sys-background-active};

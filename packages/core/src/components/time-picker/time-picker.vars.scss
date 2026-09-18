@@ -14,7 +14,9 @@
   --ix-time-picker-day--color: #{sys.$si-sys-text-accent};
   --ix-time-picker-day--box-shadow-color--focus: #{sys.$si-sys-effects-focus};
   --ix-time-picker-day--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-time-picker-day--font-weight--selected: var(--theme-font-weight-bold);
+  --ix-time-picker-day--font-weight--selected: var(
+    --si-ref-typography-font-weight-bold
+  );
   --ix-time-picker-day--border-color--selected-focus: #{sys.$si-sys-text-inverse};
   --ix-time-picker-day--background--hover: #{sys.$si-sys-background-hover};
   --ix-time-picker-day--background--selected: #{sys.$si-sys-background-accent};

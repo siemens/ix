@@ -54,9 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 20px;
-  font-size: 14px;
-  font-weight: bold;
+  font: var(--ix-tab-item--font);
   background-color: var(--ix-tab-item--background);
   color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
@@ -120,7 +118,7 @@
     align-items: center;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
-    font-size: 12px;
+    font: var(--ix-tab-item-pill--font);
     line-height: 14px;
     color: var(--ix-tab-item-pill-outline--color);
     cursor: pointer;

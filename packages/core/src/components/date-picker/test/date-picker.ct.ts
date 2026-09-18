@@ -17,9 +17,14 @@ const getDateObj = async (page: Page) => {
 };
 
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-picker></ix-date-picker>`);
+  await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
   await expect(datePicker).toHaveClass(/hydrated/);
+  const dayTypography = datePicker
+    .locator('[data-calendar-day]')
+    .locator('ix-typography');
+  await expect(dayTypography).toHaveCount(31);
+  await expect(dayTypography.first()).toHaveJSProperty('format', 'body');
 });
 
 regressionTest('translation', async ({ mount, page }) => {

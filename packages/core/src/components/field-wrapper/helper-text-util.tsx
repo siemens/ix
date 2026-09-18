@@ -95,7 +95,7 @@ export function HelperText(
   if (!hasAnyText(props)) return null;
   if (props.isInvalid && props.invalidText && props.invalidText.trim() !== '') {
     return (
-      <ix-typography textColor="alarm" class="bottom-text">
+      <ix-typography textColor="alarm" class="bottom-text" format="body-paragraph">
         <ix-icon
           aria-hidden={a11yBoolean(!!props.invalidText)}
           class="text-icon invalid"
@@ -109,7 +109,7 @@ export function HelperText(
 
   if (props.isWarning && props.warningText && props.warningText.trim() !== '') {
     return (
-      <ix-typography textColor="std" class="bottom-text">
+      <ix-typography textColor="std" class="bottom-text" format="body-paragraph">
         <ix-icon
           aria-hidden={a11yBoolean(!!props.warningText)}
           class="text-icon warning"
@@ -123,7 +123,7 @@ export function HelperText(
 
   if (props.isInfo && props.infoText && props.infoText.trim() !== '') {
     return (
-      <ix-typography textColor="std" class="bottom-text">
+      <ix-typography textColor="std" class="bottom-text" format="body-paragraph">
         <ix-icon
           aria-hidden={a11yBoolean(!!props.infoText)}
           class="text-icon info"
@@ -137,7 +137,7 @@ export function HelperText(
 
   if (props.isValid && props.validText && props.validText.trim() !== '') {
     return (
-      <ix-typography textColor="std" class="bottom-text">
+      <ix-typography textColor="std" class="bottom-text" format="body-paragraph">
         <ix-icon
           aria-hidden={a11yBoolean(!!props.validText)}
           class="text-icon valid"
@@ -152,7 +152,7 @@ export function HelperText(
   return (
     props.helperText &&
     props.helperText.trim() !== '' && (
-      <ix-typography class="bottom-text" textColor="soft">
+      <ix-typography class="bottom-text" format="body-paragraph" textColor="soft">
         {props.helperText}
       </ix-typography>
     )
