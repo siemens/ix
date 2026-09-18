@@ -1,0 +1,84 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["npm"],
+  "timezone": "Europe/Berlin",
+  "schedule": ["before 6am on monday"],
+  "dependencyDashboard": true,
+  "prConcurrentLimit": 5,
+  "minimumReleaseAge": "2 days",
+  "packageRules": [
+    {
+      "description": "Do not delay Siemens dependency updates",
+      "matchPackageNames": ["/^@siemens\\//"],
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Prioritize published library updates",
+      "matchFileNames": [
+        "packages/core/package.json",
+        "packages/angular/package.json",
+        "packages/react/package.json",
+        "packages/vue/package.json",
+        "packages/aggrid/package.json",
+        "packages/echarts/package.json"
+      ],
+      "prPriority": 10
+    },
+    {
+      "description": "Group runtime dependencies per workspace",
+      "matchFileNames": [
+        "packages/**/package.json",
+        "testing/**/package.json",
+        "tooling/**/package.json"
+      ],
+      "matchDepTypes": [
+        "dependencies",
+        "optionalDependencies",
+        "peerDependencies"
+      ],
+      "groupName": "{{packageFileDir}} dependencies",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group development dependencies per workspace",
+      "matchFileNames": [
+        "packages/**/package.json",
+        "testing/**/package.json",
+        "tooling/**/package.json"
+      ],
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "{{packageFileDir}} dev dependencies",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group root runtime dependencies",
+      "matchFileNames": ["/^package\\.json$/"],
+      "matchDepTypes": [
+        "dependencies",
+        "optionalDependencies",
+        "peerDependencies"
+      ],
+      "groupName": "root dependencies",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group root development dependencies",
+      "matchFileNames": ["/^package\\.json$/"],
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "root dev dependencies",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group centrally managed catalog dependencies",
+      "matchFileNames": ["pnpm-workspace.yaml"],
+      "groupName": "workspace catalog dependencies",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false
+    }
+  ]
+}
