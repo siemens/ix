@@ -22,7 +22,7 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { DateTime } from 'luxon';
+import { parseWithLocale } from '../utils/date-time-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -112,10 +112,10 @@ export class DateInput
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   * The locale is used to translate the labels for weekdays and months.
-   * It also determines the default order of weekdays based on the locale's conventions.
-   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
-   * It does not affect the values returned by methods and events.
+   * The locale is used to translate the labels for weekdays and months,
+   * determine the default order of weekdays, and parse user input.
+   * Values emitted via `valueChange` reflect the locale-formatted string
+   * as typed or selected by the user.
    */
   @Prop() locale?: string;
 
@@ -124,6 +124,12 @@ export class DateInput
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd';
+
+  @Watch('locale')
+  @Watch('format')
+  watchLocaleFormatHandler() {
+    this.onInput(this.value);
+  }
 
   /**
    * Required attribute.
@@ -197,8 +203,10 @@ export class DateInput
   @Prop() showWeekNumbers = false;
 
   /**
-   * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+   * The index of the day the week starts on, as a 0-based index into Luxon's
+   * `Info.weekdays()` array. That array is always ordered Monday-first
+   * regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday.
+   * E.g. weekStartIndex = 6 results in starting the week on Sunday.
    */
   @Prop() weekStartIndex = 0;
 
@@ -360,9 +368,9 @@ export class DateInput
       return;
     }
 
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+    const date = parseWithLocale(value, this.format, this.locale);
+    const minDate = parseWithLocale(this.minDate, this.format, this.locale);
+    const maxDate = parseWithLocale(this.maxDate, this.format, this.locale);
 
     this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
 

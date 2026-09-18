@@ -123,6 +123,55 @@ export class DatetimePicker
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
   /**
+   * Label for the AM button in 12-hour mode.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-am' }) i18nAm: string = 'AM';
+
+  /**
+   * Label for the PM button in 12-hour mode.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-pm' }) i18nPm: string = 'PM';
+
+  /**
+   * Text for the time picker hour column header.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-hour-column-header' }) i18nHourColumnHeader: string =
+    'hr';
+
+  /**
+   * Text for the time picker minute column header.
+   *
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Prop({ attribute: 'i18n-minute-column-header' })
+  i18nMinuteColumnHeader: string = 'min';
+
+  /**
+   * Text for the time picker second column header.
+   *
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Prop({ attribute: 'i18n-second-column-header' })
+  i18nSecondColumnHeader: string = 'sec';
+
+  /**
+   * Text for the time picker millisecond column header.
+   *
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Prop({ attribute: 'i18n-millisecond-column-header' })
+  i18nMillisecondColumnHeader: string = 'ms';
+
+  /**
    * ARIA label for the previous month icon button.
    * Will be set as aria-label on the nested HTML button element.
    */
@@ -135,8 +184,10 @@ export class DatetimePicker
   @Prop() ariaLabelNextMonthButton?: string = 'Next month';
 
   /**
-   * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+   * The index of the day the week starts on, as a 0-based index into Luxon's
+   * `Info.weekdays()` array. That array is always ordered Monday-first
+   * regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday.
+   * E.g. weekStartIndex = 6 results in starting the week on Sunday.
    */
   @Prop() weekStartIndex = 0;
 
@@ -302,11 +353,15 @@ export class DatetimePicker
   private async onDone() {
     const date = await this.datePickerElement?.getCurrentDate();
     const time = await this.timePickerElement?.getCurrentTime();
+    const isoTime = await this.timePickerElement?.getCurrentIsoTime();
 
     this.dateSelect.emit({
       from: date?.from ?? '',
       to: date?.to ?? '',
       time: time ?? '',
+      isoFrom: date?.isoFrom,
+      isoTo: date?.isoTo,
+      isoTime,
     });
   }
 
@@ -391,9 +446,17 @@ export class DatetimePicker
                   dateTimePickerAppearance={true}
                   onTimeChange={(event) => this.onTimeChange(event)}
                   format={this.timeFormat}
+                  locale={this.locale}
                   time={this.time}
                   minTime={minTime}
                   maxTime={maxTime}
+                  i18nAm={this.i18nAm}
+                  i18nPm={this.i18nPm}
+                  i18nHeader={this.i18nTime}
+                  i18nHourColumnHeader={this.i18nHourColumnHeader}
+                  i18nMinuteColumnHeader={this.i18nMinuteColumnHeader}
+                  i18nSecondColumnHeader={this.i18nSecondColumnHeader}
+                  i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
                   {...{
                     tabIndex: this.embedded ? -1 : 0,
                     [TRAP_FOCUS_INCLUDE_ATTRIBUTE]: this.embedded,
