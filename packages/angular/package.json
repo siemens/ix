@@ -30,7 +30,7 @@
     "@angular/compiler": "^20.3.28",
     "@angular/compiler-cli": "^20.1.4",
     "@angular/core": "^20.3.25",
-    "@angular/forms": "^20.1.4",
+    "@angular/forms": "^22.1.5",
     "@angular/platform-browser": "^20.1.4",
     "@angular/platform-browser-dynamic": "^20.1.4",
     "@angular/router": "^20.1.4",
