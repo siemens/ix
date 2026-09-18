@@ -14,16 +14,20 @@
  */
 @mixin setVars {
   --theme-tree-item--background: rgba(0, 0, 0, 0);
-  --theme-tree-item--background--active: var(--si-sys-background-active);
-  --theme-tree-item--background--hover: var(--si-sys-background-hover);
-  --theme-tree-item--background--selected: var(--si-sys-background-active);
-  --theme-tree-item--background--selected-active: var(
-    --si-sys-background-active
+  --theme-tree-item--background--active: var(--si-sys-color-background-active);
+  --theme-tree-item--background--hover: var(--si-sys-color-background-hover);
+  --theme-tree-item--background--selected: var(
+    --si-sys-color-background-active
   );
-  --theme-tree-item--background--selected-hover: var(--si-sys-background-hover);
-  --theme-tree-item--color: var(--si-sys-text-primary);
-  --theme-tree-item-icon: var(--si-sys-text-primary);
-  --theme-tree-item-node-closed-icon--color: var(--si-sys-text-primary);
-  --theme-tree-item-node-open-icon--color: var(--si-sys-text-primary);
-  --theme-tree-item-status--color: var(--si-sys-text-secondary);
+  --theme-tree-item--background--selected-active: var(
+    --si-sys-color-background-active
+  );
+  --theme-tree-item--background--selected-hover: var(
+    --si-sys-color-background-hover
+  );
+  --theme-tree-item--color: var(--si-sys-color-text-primary);
+  --theme-tree-item-icon: var(--si-sys-color-text-primary);
+  --theme-tree-item-node-closed-icon--color: var(--si-sys-color-text-primary);
+  --theme-tree-item-node-open-icon--color: var(--si-sys-color-text-primary);
+  --theme-tree-item-status--color: var(--si-sys-color-text-secondary);
 }

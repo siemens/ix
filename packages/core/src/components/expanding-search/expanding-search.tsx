@@ -145,7 +145,7 @@ export class ExpandingSearch
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-          iconColor={this.hasFocus ? '--si-sys-text-accent' : undefined}
+          iconColor={this.hasFocus ? '--si-sys-color-text-accent' : undefined}
           class={{
             'btn-search': true,
             'btn-search--expanded': this.expanded,

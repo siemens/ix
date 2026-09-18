@@ -43,7 +43,7 @@ const onCancel = () => {
   >
     <IxPopoverHeader
       :icon="iconInfo"
-      icon-color="--si-sys-text-information"
+      icon-color="--si-sys-color-text-information"
       aria-label-close-icon-button="Close popover"
     >
       Release highlights

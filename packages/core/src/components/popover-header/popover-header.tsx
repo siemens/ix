@@ -49,7 +49,7 @@ export class PopoverHeader {
 
   /**
    * Icon color as a CSS custom property name, for example
-   * `--si-sys-text-primary`.
+   * `--si-sys-color-text-primary`.
    *
    * @since 5.1.0
    */

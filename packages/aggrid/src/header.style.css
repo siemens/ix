@@ -8,9 +8,9 @@
  */
 
 .ag-header-cell:hover .ag-header-cell-resize:after {
-  background-color: var(--si-sys-border-3) !important;
+  background-color: var(--si-sys-color-border-3) !important;
 }
 
 .ag-header-cell .ag-header-cell-resize:hover:after {
-  background-color: var(--si-sys-background-accent-hover) !important;
+  background-color: var(--si-sys-color-background-accent-hover) !important;
 }
