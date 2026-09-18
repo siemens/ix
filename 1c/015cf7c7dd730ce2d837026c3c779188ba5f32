@@ -1,0 +1,16 @@
+testing/visual-testing/tests/menu/basic/index.html
+  h_c5a773bf2fda8b 31
+testing/visual-testing/tests/menu/menu.e2e.ts
+  h_c5a773bf2fda8b 22,24-26,38,40-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1c015cf7c7dd730ce2d837026c3c779188ba5f32",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
