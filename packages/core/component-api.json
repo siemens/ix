@@ -5152,10 +5152,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5273,10 +5273,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false

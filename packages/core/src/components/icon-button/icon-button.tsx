@@ -17,6 +17,10 @@ import {
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { IconButtonVariant } from './icon-button.types';
+import {
+  DEFAULT_BUTTON_ICON_SIZE,
+  type ButtonIconSize,
+} from '../button/base-button.types';
 
 @Component({
   tag: 'ix-icon-button',
@@ -47,10 +51,13 @@ export class IconButton
   @Prop() icon?: string;
 
   /**
-   * Size of icon in button
+   * Size of icon in button.
+   * `12` and `16` shrink the control. `20` and `24` keep a 32×32 control.
+   * Defaults to `20`.
    *
+   * @since 6.0.0 Size `20` is available
    */
-  @Prop() size: '24' | '16' | '12' = '24';
+  @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
    * Icon color as a CSS custom property name, for example
@@ -100,7 +107,10 @@ export class IconButton
     return {
       'btn-icon-12': this.size === '12',
       'btn-icon-16': this.size === '16',
-      'btn-icon-32': this.size === '24' || !this.size,
+      'btn-icon-32':
+        this.size === '24' ||
+        this.size === DEFAULT_BUTTON_ICON_SIZE ||
+        !this.size,
     };
   }
 
