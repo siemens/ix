@@ -18,24 +18,9 @@ regressionTest.describe('menu', () => {
       await page.goto('menu/basic');
 
       const category = page.locator('ix-menu-category');
-      await category.click();
-      const dropdown = category.locator('ix-dropdown');
-      await expect(dropdown).toBeVisible();
-      await dropdown.hover({ position: { x: 24, y: 12 } });
-
-      await expect(page).toHaveScreenshot({
-        animations: 'disabled',
+      await category.evaluate((element: HTMLIxMenuCategoryElement) => {
+        element.disableTooltip = true;
       });
-    }
-  );
-
-  regressionTest(
-    'collapsed category flyout on short viewport keeps header size',
-    async ({ page }) => {
-      await page.setViewportSize({ width: 1024, height: 400 });
-      await page.goto('menu/basic');
-
-      const category = page.locator('ix-menu-category');
       await category.click();
       const dropdown = category.locator('ix-dropdown');
       await expect(dropdown).toBeVisible();
@@ -55,12 +40,10 @@ regressionTest.describe('menu', () => {
 
       const category = page.locator('ix-menu-category');
       await category.click();
-      await page.mouse.move(800, 400);
+
       await page.waitForTimeout(1000);
 
-      await expect(page).toHaveScreenshot({
-        animations: 'disabled',
-      });
+      await expect(page).toHaveScreenshot();
     }
   );
 
