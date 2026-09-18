@@ -42,6 +42,22 @@ regressionTest.describe('menu', () => {
   );
 
   regressionTest(
+    'collapsed category flyout on short viewport keeps header size',
+    async ({ page }) => {
+      await page.setViewportSize({ width: 1024, height: 400 });
+      await page.goto('menu/basic');
+
+      const category = page.locator('ix-menu-category');
+      await category.click();
+
+      const dropdown = category.locator('ix-dropdown');
+      await expect(dropdown).toBeVisible();
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest(
     'basic lg - no default icon on second level, visible ellipsis for category',
     async ({ page }) => {
       await page.setViewportSize(viewPorts.lg);

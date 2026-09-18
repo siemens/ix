@@ -65,6 +65,7 @@
   .category-dropdown {
     display: flex;
     flex-direction: column;
+    height: fit-content;
     max-height: calc(50vh - 3rem);
 
     &::before {
@@ -85,9 +86,13 @@
     }
 
     .category-dropdown-body {
-      flex: 1 1 auto;
+      flex: 0 1 auto;
       min-height: 0;
       overflow-y: auto;
+    }
+
+    ix-divider {
+      flex-shrink: 0;
     }
 
     ::slotted(ix-menu-item) {
@@ -96,8 +101,8 @@
   }
 
   .category-dropdown-header {
+    flex: 0 0 auto;
     pointer-events: none;
-    padding-left: 0.125rem;
     min-width: 256px;
   }
 

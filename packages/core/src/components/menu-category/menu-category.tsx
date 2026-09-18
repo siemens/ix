@@ -612,6 +612,7 @@ export class MenuCategory
             class={'category-dropdown-header'}
             tabindex={-1}
             aria-hidden="true"
+            suppressChecked
           >
             <ix-typography format="label" bold textColor="std">
               {this.label}

@@ -182,7 +182,7 @@ regressionTest('should show items as dropdown', async ({ mount, page }) => {
     'menu-items menu-items--collapsed'
   );
 
-  const dropdownHeader = dropdown.locator('ix-dropdown-item');
+  const dropdownHeader = dropdown.locator('ix-dropdown-item.category-dropdown-header');
   await expect(dropdownHeader).toHaveText(/Category label/);
 
   const itemOne = page.locator('ix-menu-item').nth(0);
@@ -830,6 +830,36 @@ regressionTest(
       })
     );
     expect(scrollHeight).toBeGreaterThan(clientHeight);
+  }
+);
+
+regressionTest(
+  'does not shrink flyout header when viewport is shorter than 50vh cap',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1024, height: 400 });
+    await page.addStyleTag({
+      content: 'html, body { height: 85vh; }',
+    });
+
+    await mount(`
+      <ix-menu>
+        <ix-menu-category label="Menu Category">
+          <ix-menu-item>Item 1</ix-menu-item>
+          <ix-menu-item>Item 2</ix-menu-item>
+          <ix-menu-item>Item 3</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    `);
+
+    const category = page.locator('ix-menu-category');
+    await expect(category).toHaveClass(/hydrated/);
+    await category.hover();
+
+    const dropdown = category.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const header = dropdown.locator('.category-dropdown-header');
+    await expect(header).toHaveCSS('height', '40px');
   }
 );
 
