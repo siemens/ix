@@ -151,7 +151,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.2.1
+        specifier: ~6.0.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.5.0
@@ -887,7 +887,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.2.1
+        specifier: ~6.0.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.5.0
@@ -1145,7 +1145,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.2.1
+        specifier: ~6.0.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^3.5.0
