@@ -93,6 +93,7 @@ import DropdownButtonIcon from './preview-examples/dropdown-button-icon.vue';
 import DropdownButton from './preview-examples/dropdown-button.vue';
 import DropdownIcon from './preview-examples/dropdown-icon.vue';
 import DropdownQuickActions from './preview-examples/dropdown-quick-actions.vue';
+import DropdownRovingTabindex from './preview-examples/dropdown-roving-tabindex.vue';
 import DropdownSubmenu from './preview-examples/dropdown-submenu.vue';
 import Dropdown from './preview-examples/dropdown.vue';
 import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
@@ -339,6 +340,7 @@ const routes: IxPreviewRoutes = {
   '/preview/dropdown-button': DropdownButton,
   '/preview/dropdown-icon': DropdownIcon,
   '/preview/dropdown-quick-actions': DropdownQuickActions,
+  '/preview/dropdown-roving-tabindex': DropdownRovingTabindex,
   '/preview/dropdown-submenu': DropdownSubmenu,
   '/preview/dropdown': Dropdown,
   '/preview/echarts': Echarts,
