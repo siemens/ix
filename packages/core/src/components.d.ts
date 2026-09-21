@@ -2490,7 +2490,7 @@ export namespace Components {
         /**
           * Color of the default icon.
           * @since 6.0.0
-          * @default '--si-sys-background-warning'
+          * @default '--si-sys-color-background-warning'
          */
         "iconColor": string;
         /**
@@ -9652,7 +9652,7 @@ declare namespace LocalJSX {
         /**
           * Color of the default icon.
           * @since 6.0.0
-          * @default '--si-sys-background-warning'
+          * @default '--si-sys-color-background-warning'
          */
         "iconColor"?: string;
         /**
