@@ -1545,6 +1545,29 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 
 
 @ProxyCmp({
+  inputs: ['copyText', 'icon', 'iconColor', 'instructions', 'titleText']
+})
+@Component({
+  selector: 'ix-info-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['copyText', 'icon', 'iconColor', 'instructions', { name: 'titleText', required: true }],
+  standalone: false
+})
+export class IxInfoPage {
+  protected el: HTMLIxInfoPageElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxInfoPage extends Components.IxInfoPage {}
+
+
+@ProxyCmp({
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'getValidityState', 'focusInput']
 })
