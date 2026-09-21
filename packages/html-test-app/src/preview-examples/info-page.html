@@ -1,0 +1,28 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Info page example</title>
+  </head>
+  <body>
+    <ix-info-page
+      title-text="Report could not be generated"
+      copy-text="An error occurred while generating the report."
+      instructions="Contact your administrator for more information."
+    >
+      <ix-button slot="actions">Return to overview</ix-button>
+    </ix-info-page>
+
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
