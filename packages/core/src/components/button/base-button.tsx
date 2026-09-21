@@ -10,10 +10,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import { ButtonVariant } from './button';
-import {
-  ButtonIconSize,
-  DEFAULT_BUTTON_ICON_SIZE,
-} from './base-button.types';
+import { ButtonIconSize, DEFAULT_BUTTON_ICON_SIZE } from './base-button.types';
 import { AnchorInterface } from './button.interface';
 
 export type ButtonAlignment = 'center' | 'start';
