@@ -285,6 +285,83 @@ regressionTest(
   }
 );
 
+for (const { keyFirst, preventChange } of [
+  { keyFirst: true, preventChange: false },
+  { keyFirst: false, preventChange: false },
+  { keyFirst: true, preventChange: true },
+]) {
+  regressionTest(
+    `dynamic tabs - restores active tab when ${
+      keyFirst ? 'key' : 'item'
+    } changes first${preventChange ? ' with cancellation' : ''}`,
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-tabs active-tab-key="tab-1">
+          <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+          <ix-tab-item tab-key="tab-2">Item 2</ix-tab-item>
+        </ix-tabs>
+      `);
+
+      const tabs = page.locator('ix-tabs');
+      await expect(tabs).toHaveClass(/\bhydrated\b/);
+      await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      await tabs.evaluate((element: HTMLIxTabsElement) => {
+        element.activeTabKey = 'tab-2';
+        element.querySelector('ix-tab-item')!.remove();
+      });
+      await expect(tabs.getByRole('tab', { name: 'Item 2' })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      const changes = await tabs.evaluateHandle((element, preventChange) => {
+        const details: (string | undefined)[] = [];
+        element.addEventListener(
+          'tabChange',
+          (event: CustomEvent<string | undefined>) => {
+            details.push(event.detail);
+            if (preventChange) {
+              event.preventDefault();
+            }
+          }
+        );
+        return details;
+      }, preventChange);
+
+      await tabs.evaluate((element: HTMLIxTabsElement, keyFirst) => {
+        if (keyFirst) {
+          element.activeTabKey = 'tab-1';
+        }
+        const firstTab = document.createElement('ix-tab-item');
+        firstTab.textContent = 'Item 1';
+        element.prepend(firstTab);
+        firstTab.tabKey = 'tab-1';
+        if (!keyFirst) {
+          element.activeTabKey = 'tab-1';
+        }
+      }, keyFirst);
+
+      await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
+        'aria-selected',
+        preventChange ? 'false' : 'true'
+      );
+      await expect(tabs.getByRole('tab', { name: 'Item 2' })).toHaveAttribute(
+        'aria-selected',
+        preventChange ? 'true' : 'false'
+      );
+      await expect(tabs).toHaveJSProperty(
+        'activeTabKey',
+        preventChange ? 'tab-2' : 'tab-1'
+      );
+      expect(await changes.jsonValue()).toEqual(['tab-1']);
+    }
+  );
+}
+
 regressionTest(
   'dynamic tabs - should preserve default classes when adding custom classes during re-render',
   async ({ mount, page }) => {

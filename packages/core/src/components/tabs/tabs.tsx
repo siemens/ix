@@ -124,6 +124,13 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
 
   override componentDidLoad() {
     this.itemsObserver = new MutationObserver(() => {
+      if (this.activeTabKey !== undefined) {
+        this.onActiveTabChange(
+          this.activeTabKey,
+          this.tabs.find((tab) => tab.selected)?.tabKey
+        );
+      }
+
       this.onComponentChildrenChange();
       // Compute the overflow after DOM has been updated with the new tabs, otherwise the measurement would be wrong
       requestAnimationFrameNoNgZone(() => this.onComponentResize());
@@ -163,9 +170,17 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
 
   @Watch('activeTabKey')
   onActiveTabChange(tabKey: string | undefined, oldTabKey: string | undefined) {
-    const activeTab = this.tabs.find((tab) => tab.selected);
+    const tabs = this.tabs;
+    const activeTab = tabs.find((tab) => tab.selected);
 
     if (activeTab?.tabKey === tabKey) {
+      return;
+    }
+
+    if (
+      tabKey !== undefined &&
+      !tabs.some((tab) => tab.tabKey === tabKey && !tab.disabled)
+    ) {
       return;
     }
 
