@@ -182,10 +182,10 @@ export class TabItem
           </div>
         )}
         {this.icon && variant === 'icon-only' && (
-          <ix-icon name={this.icon} size="24" class={'tab-icon'}></ix-icon>
+          <ix-icon name={this.icon} class={'tab-icon'}></ix-icon>
         )}
         {this.icon && variant === 'normal' && (
-          <ix-icon name={this.icon} size="16" class={'tab-icon'}></ix-icon>
+          <ix-icon name={this.icon} class={'tab-icon'}></ix-icon>
         )}
         {variant === 'normal' && (
           <div
