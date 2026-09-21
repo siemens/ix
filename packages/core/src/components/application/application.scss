@@ -39,8 +39,8 @@
     );
     z-index: calc(var(--theme-z-index-fixed) + 1);
     padding: var(--theme-space-1) var(--theme-space-3);
-    background-color: var(--theme-color-2);
-    color: var(--theme-color-primary);
+    background-color: var(--ix-application-skip-link--background);
+    color: var(--ix-application-skip-link--color);
     white-space: nowrap;
 
     &:focus {
@@ -53,7 +53,7 @@
 
     &:focus-visible {
       outline: var(--theme-focus--border-thickness) solid
-        var(--theme-color-focus-bdr);
+        var(--ix-application-skip-link--outline-color--focus);
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
