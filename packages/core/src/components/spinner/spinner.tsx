@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { a11yHostAttributes } from '../utils/a11y';
+import type { SpinnerSize } from './spinner.types';
 
 @Component({
   tag: 'ix-spinner',
@@ -24,10 +25,16 @@ export class Spinner {
   @Prop() variant: 'primary' | 'secondary' = 'secondary';
 
   /**
-   * Size of spinner
+   * Size of the spinner.
+   *
+   * - **xx-small**: 12px.
+   * - **x-small**: 16px.
+   * - **small**: 20px.
+   * - **small-plus**: 24px.
+   * - **medium**: 32px (default).
+   * - **x-large**: 96px.
    */
-  @Prop() size: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large' =
-    'medium';
+  @Prop() size: SpinnerSize = 'medium';
 
   /**
    * @internal

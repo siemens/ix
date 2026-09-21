@@ -12,6 +12,7 @@ import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import { ButtonVariant } from './button';
 import { ButtonIconSize, DEFAULT_BUTTON_ICON_SIZE } from './base-button.types';
 import { AnchorInterface } from './button.interface';
+import type { SpinnerSize } from '../spinner/spinner.types';
 
 export type ButtonAlignment = 'center' | 'start';
 
@@ -52,19 +53,20 @@ export type BaseButtonProps = {
   afterContent?: any;
 } & AnchorInterface;
 
-const getSpinnerSize = (btnProps: BaseButtonProps) => {
+const getSpinnerSize = (btnProps: BaseButtonProps): SpinnerSize => {
   if (!btnProps.icon) {
-    return 'small';
+    return 'small-plus';
   }
 
   switch (btnProps.iconSize) {
     case '12':
       return 'xx-small';
     case '16':
-    case DEFAULT_BUTTON_ICON_SIZE:
       return 'x-small';
-    default:
+    case DEFAULT_BUTTON_ICON_SIZE:
       return 'small';
+    default:
+      return 'small-plus';
   }
 };
 

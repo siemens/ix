@@ -12,5 +12,5 @@ import { IxSpinner } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxSpinner size="large"></IxSpinner>
+  <IxSpinner size="x-large"></IxSpinner>
 </template>

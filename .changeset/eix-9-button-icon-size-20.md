@@ -6,4 +6,6 @@ Default icon glyphs are now **20** instead of **24** when `size` is omitted on *
 
 **ix-checkbox** / **ix-radio** controls also move to **20** (24×24 hit area). Legacy `.ix-form-control` checkboxes align to the same size.
 
-See `BREAKING_CHANGES/v6.md` (**Default icon size is 20**) for migration guidance.
+**ix-spinner** size tokens are remapped (`small` → 20px, new `small-plus` → 24px, `x-small` → 16px, `large` renamed to `x-large`).
+
+See `BREAKING_CHANGES/v6.md` (**Default icon size is 20**, **ix-spinner size scale**) for migration guidance.

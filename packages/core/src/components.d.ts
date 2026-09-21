@@ -50,6 +50,7 @@ import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollap
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
+import { SpinnerSize } from "./components/spinner/spinner.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
 import { TabClickDetail } from "./components/tab-item/tab-item.types";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
@@ -108,6 +109,7 @@ export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollap
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
+export { SpinnerSize } from "./components/spinner/spinner.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
 export { TabClickDetail } from "./components/tab-item/tab-item.types";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
@@ -4097,10 +4099,10 @@ export namespace Components {
          */
         "hideTrack": boolean;
         /**
-          * Size of spinner
+          * Size of the spinner.  - **xx-small**: 12px. - **x-small**: 16px. - **small**: 20px. - **small-plus**: 24px. - **medium**: 32px (default). - **x-large**: 96px.
           * @default 'medium'
          */
-        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size": SpinnerSize;
         /**
           * Variant of spinner
           * @default 'secondary'
@@ -11380,10 +11382,10 @@ declare namespace LocalJSX {
          */
         "hideTrack"?: boolean;
         /**
-          * Size of spinner
+          * Size of the spinner.  - **xx-small**: 12px. - **x-small**: 16px. - **small**: 20px. - **small-plus**: 24px. - **medium**: 32px (default). - **x-large**: 96px.
           * @default 'medium'
          */
-        "size"?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size"?: SpinnerSize;
         /**
           * Variant of spinner
           * @default 'secondary'
@@ -13321,7 +13323,7 @@ declare namespace LocalJSX {
     }
     interface IxSpinnerAttributes {
         "variant": 'primary' | 'secondary';
-        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size": SpinnerSize;
         "hideTrack": boolean;
     }
     interface IxSplitButtonAttributes {

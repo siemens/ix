@@ -9243,7 +9243,7 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"large\" | \"medium\" | \"small\" | \"x-small\" | \"xx-small\"",
+          "type": "\"medium\" | \"small\" | \"small-plus\" | \"x-large\" | \"x-small\" | \"xx-small\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'medium'",
