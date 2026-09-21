@@ -658,9 +658,6 @@ importers:
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
         version: 16.0.3(@rollup/wasm-node@4.63.4)
-      '@rollup/plugin-terser':
-        specifier: ^0.1.0
-        version: 0.1.0(@rollup/wasm-node@4.63.4)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
         version: 8.5.0(@rollup/wasm-node@4.63.4)(tslib@2.8.1)(typescript@6.0.2)
@@ -4294,15 +4291,6 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.78.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
-  '@rollup/plugin-terser@0.1.0':
-    resolution: {integrity: sha512-N2KK+qUfHX2hBzVzM41UWGLrEmcjVC37spC8R3c9mt3oEDFKh3N2e12/lLp9aVSt86veR0TQiCNQXrm8C6aiUQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.x || ^3.x
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -16556,12 +16544,6 @@ snapshots:
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.11
-    optionalDependencies:
-      rollup: '@rollup/wasm-node@4.63.4'
-
-  '@rollup/plugin-terser@0.1.0(@rollup/wasm-node@4.63.4)':
-    dependencies:
-      terser: 5.51.2
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.63.4'
 
