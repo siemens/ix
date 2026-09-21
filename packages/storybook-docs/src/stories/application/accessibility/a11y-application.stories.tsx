@@ -7,41 +7,35 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
+import { h } from '@stencil/core';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { makeArgTypes } from '@utils/generic-render';
-import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
+import { stencil } from '@utils/stencil-render';
 
 type Element = Components.IxApplication;
 
-const renderApplication = (
-  args: Partial<Element> = {},
-  withFooter = false
-) => html`
-  <ix-application
-    ?disable-skip-links=${args.disableSkipLinks}
-    i18n-skip-to-main=${ifDefined(args.i18nSkipToMain)}
-    i18n-skip-to-footer=${ifDefined(args.i18nSkipToFooter)}
-    skip-link-main-target-id=${ifDefined(args.skipLinkMainTargetId)}
-  >
-    <ix-application-header
-      name="Skip link accessibility"
-    ></ix-application-header>
-    <ix-menu>
-      <ix-menu-item>Home</ix-menu-item>
-    </ix-menu>
-    <h1 id="application-story-content" tabindex="-1">Application content</h1>
-    <p>The skip links bypass repeated application-shell content.</p>
-    ${withFooter
-      ? html`<button slot="bottom">Application footer action</button>`
-      : ''}
-  </ix-application>
-`;
+function renderApplication(args: Partial<Element> = {}, withFooter = false) {
+  return (
+    <ix-application {...args}>
+      <ix-application-header name="Skip link accessibility"></ix-application-header>
+      <ix-menu>
+        <ix-menu-item>Home</ix-menu-item>
+      </ix-menu>
+      <h1 id="application-story-content" tabIndex={-1}>
+        Application content
+      </h1>
+      <p>The skip links bypass repeated application-shell content.</p>
+      {withFooter ? (
+        <button slot="bottom">Application footer action</button>
+      ) : null}
+    </ix-application>
+  );
+}
 
 const meta = {
   title: 'Example/Application/Accessibility',
   tags: [],
-  render: (args) => renderApplication(args),
+  render: stencil((args) => renderApplication(args)),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-application', {}),
   parameters: {
     a11y: {
@@ -62,7 +56,7 @@ export const DefaultSkipLink: Story = {};
  * Main and conditional Footer skip links.
  */
 export const MainAndFooterSkipLinks: Story = {
-  render: (args) => renderApplication(args, true),
+  render: stencil((args) => renderApplication(args, true)),
 };
 
 /**
@@ -79,10 +73,12 @@ export const CustomSkipLinkTarget: Story = {
  * provided outside the component.
  */
 export const DisabledSkipLinks: Story = {
-  render: () => html`
-    <a href="#application-story-content">Skip to application content</a>
-    ${renderApplication({ disableSkipLinks: true })}
-  `,
+  render: stencil(() => (
+    <div>
+      <a href="#application-story-content">Skip to application content</a>
+      {renderApplication({ disableSkipLinks: true })}
+    </div>
+  )),
 };
 
 /**
@@ -93,5 +89,5 @@ export const LocalizedSkipLinks: Story = {
     i18nSkipToMain: 'Zum Hauptinhalt springen',
     i18nSkipToFooter: 'Zur Fußzeile springen',
   },
-  render: (args) => renderApplication(args, true),
+  render: stencil((args) => renderApplication(args, true)),
 };
