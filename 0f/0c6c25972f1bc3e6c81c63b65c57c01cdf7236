@@ -1,0 +1,14 @@
+packages/core/src/components/tab-item/tab-item.tsx
+  h_c5a773bf2fda8b 185,188
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0f0c6c25972f1bc3e6c81c63b65c57c01cdf7236",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
