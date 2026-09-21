@@ -2476,6 +2476,40 @@ export namespace Components {
         "variant": ButtonVariant1;
     }
     /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface IxInfoPage {
+        /**
+          * Optional explanation of the topic and how it can be resolved.
+          * @since 6.0.0
+         */
+        "copyText"?: string;
+        /**
+          * Icon displayed above the title.
+          * @since 6.0.0
+          * @default iconWarning
+         */
+        "icon": string;
+        /**
+          * Color of the default icon.
+          * @since 6.0.0
+          * @default '--si-sys-background-warning'
+         */
+        "iconColor": string;
+        /**
+          * Optional instructions describing what the user should do next.
+          * @since 6.0.0
+         */
+        "instructions"?: string;
+        /**
+          * Short and concise title describing the topic.
+          * @since 6.0.0
+         */
+        "titleText": string;
+    }
+    /**
      * @form-ready 
      */
     interface IxInput {
@@ -6044,6 +6078,17 @@ declare global {
         prototype: HTMLIxIconToggleButtonElement;
         new (): HTMLIxIconToggleButtonElement;
     };
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface HTMLIxInfoPageElement extends Components.IxInfoPage, HTMLStencilElement {
+    }
+    var HTMLIxInfoPageElement: {
+        prototype: HTMLIxInfoPageElement;
+        new (): HTMLIxInfoPageElement;
+    };
     interface HTMLIxInputElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
@@ -7008,6 +7053,7 @@ declare global {
         "ix-helper-text": HTMLIxHelperTextElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
+        "ix-info-page": HTMLIxInfoPageElement;
         "ix-input": HTMLIxInputElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -9593,6 +9639,40 @@ declare namespace LocalJSX {
           * @default 'subtle-primary'
          */
         "variant"?: ButtonVariant1;
+    }
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface IxInfoPage {
+        /**
+          * Optional explanation of the topic and how it can be resolved.
+          * @since 6.0.0
+         */
+        "copyText"?: string;
+        /**
+          * Icon displayed above the title.
+          * @since 6.0.0
+          * @default iconWarning
+         */
+        "icon"?: string;
+        /**
+          * Color of the default icon.
+          * @since 6.0.0
+          * @default '--si-sys-background-warning'
+         */
+        "iconColor"?: string;
+        /**
+          * Optional instructions describing what the user should do next.
+          * @since 6.0.0
+         */
+        "instructions"?: string;
+        /**
+          * Short and concise title describing the topic.
+          * @since 6.0.0
+         */
+        "titleText": string;
     }
     /**
      * @form-ready 
@@ -12859,6 +12939,13 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "loading": boolean;
     }
+    interface IxInfoPageAttributes {
+        "icon": string;
+        "iconColor": string;
+        "titleText": string;
+        "copyText": string;
+        "instructions": string;
+    }
     interface IxInputAttributes {
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';
         "name": string;
@@ -13506,6 +13593,7 @@ declare namespace LocalJSX {
         "ix-helper-text": Omit<IxHelperText, keyof IxHelperTextAttributes> & { [K in keyof IxHelperText & keyof IxHelperTextAttributes]?: IxHelperText[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `attr:${K}`]?: IxHelperTextAttributes[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `prop:${K}`]?: IxHelperText[K] };
         "ix-icon-button": Omit<IxIconButton, keyof IxIconButtonAttributes> & { [K in keyof IxIconButton & keyof IxIconButtonAttributes]?: IxIconButton[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `attr:${K}`]?: IxIconButtonAttributes[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `prop:${K}`]?: IxIconButton[K] };
         "ix-icon-toggle-button": Omit<IxIconToggleButton, keyof IxIconToggleButtonAttributes> & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes]?: IxIconToggleButton[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `attr:${K}`]?: IxIconToggleButtonAttributes[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `prop:${K}`]?: IxIconToggleButton[K] };
+        "ix-info-page": Omit<IxInfoPage, keyof IxInfoPageAttributes> & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes]?: IxInfoPage[K] } & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes as `attr:${K}`]?: IxInfoPageAttributes[K] } & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes as `prop:${K}`]?: IxInfoPage[K] } & OneOf<"titleText", IxInfoPage["titleText"], IxInfoPageAttributes["titleText"]>;
         "ix-input": Omit<IxInput, keyof IxInputAttributes> & { [K in keyof IxInput & keyof IxInputAttributes]?: IxInput[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `attr:${K}`]?: IxInputAttributes[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `prop:${K}`]?: IxInput[K] };
         "ix-key-value": Omit<IxKeyValue, keyof IxKeyValueAttributes> & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes]?: IxKeyValue[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `attr:${K}`]?: IxKeyValueAttributes[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `prop:${K}`]?: IxKeyValue[K] } & OneOf<"label", IxKeyValue["label"], IxKeyValueAttributes["label"]>;
         "ix-key-value-list": Omit<IxKeyValueList, keyof IxKeyValueListAttributes> & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes]?: IxKeyValueList[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `attr:${K}`]?: IxKeyValueListAttributes[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `prop:${K}`]?: IxKeyValueList[K] };
@@ -13673,6 +13761,12 @@ declare module "@stencil/core" {
             "ix-helper-text": LocalJSX.IntrinsicElements["ix-helper-text"] & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             "ix-icon-button": LocalJSX.IntrinsicElements["ix-icon-button"] & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-icon-toggle-button": LocalJSX.IntrinsicElements["ix-icon-toggle-button"] & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
+            /**
+             * A page layout for communicating information or errors and guiding users
+             * towards a solution.
+             * @since 6.0.0
+             */
+            "ix-info-page": LocalJSX.IntrinsicElements["ix-info-page"] & JSXBase.HTMLAttributes<HTMLIxInfoPageElement>;
             /**
              * @form-ready 
              */
