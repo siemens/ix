@@ -32,6 +32,7 @@ import {
 } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { DEFAULT_BUTTON_ICON_SIZE } from '../button/base-button.types';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   AriaActiveDescendantMixinContract,
@@ -309,7 +310,11 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
-                size={this.hostContext?.splitButton ? '20' : '24'}
+                size={
+                  this.hostContext?.splitButton
+                    ? DEFAULT_BUTTON_ICON_SIZE
+                    : '24'
+                }
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
                 aria-label={
