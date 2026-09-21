@@ -1,0 +1,18 @@
+.changeset/eix-9-button-icon-size-20.md
+  h_c5a773bf2fda8b 7
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 557
+packages/core/src/components/menu-item/menu-item.tsx
+  h_c5a773bf2fda8b 300
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f0f2d82343a0eabae0efef646c9b414614b2a642",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
