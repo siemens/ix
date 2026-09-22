@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use './input.mixins.scss';
+@use 'tokens/system' as sys;
 
 @include input.input-field;
 
 :host {
   .input-wrapper.show-stepper-buttons {
     input[type='number'] {
-      min-width: 6rem;
+      min-width: #{sys.$si-sys-sizing-size-130};
     }
   }
 

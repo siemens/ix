@@ -9,18 +9,19 @@
 @use 'mixins/input';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/validation/form-component';
+@use 'tokens/system' as sys;
 
 @use './input.vars' as *;
 @include input.form;
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
-    margin-left: 0.5rem;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .start-container ::slotted(ix-icon.size-24),
   .start-container ::slotted(ix-icon-button.btn-icon-16) {
-    margin-left: 0.25rem;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
@@ -29,16 +30,20 @@
   }
 }
 
-$input-end-container-inset: 0.25rem;
+$input-end-container-inset: #{sys.$si-sys-sizing-spacing-x-20};
 
 @mixin applySpacingToEndSlot {
   .end-container ::slotted(*) {
-    margin-right: calc(0.5rem - #{$input-end-container-inset});
+    margin-right: calc(
+      #{sys.$si-sys-sizing-spacing-x-40} - #{$input-end-container-inset}
+    );
   }
 
   .end-container ::slotted(ix-icon.size-24),
   .end-container ::slotted(ix-icon-button.btn-icon-16) {
-    margin-right: calc(0.25rem - #{$input-end-container-inset});
+    margin-right: calc(
+      #{sys.$si-sys-sizing-spacing-x-20} - #{$input-end-container-inset}
+    );
   }
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
@@ -90,8 +95,8 @@ $input-end-container-inset: 0.25rem;
     @include applySpacingToEndSlot;
 
     .bottom-text {
-      margin-top: 0.25rem;
-      margin-bottom: 0.25rem;
+      margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+      margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
     }
 
     .input-wrapper:hover input:not(:disabled):not(:read-only) {

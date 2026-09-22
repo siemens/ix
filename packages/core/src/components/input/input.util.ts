@@ -113,15 +113,15 @@ export function applyPaddingEnd(
     return;
   }
 
-  const remInPixels = 16;
-  const padding = convertToRemString(width + remInPixels / 2);
+  const padding = convertToRemString(width);
+  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 0.5rem)';
 
   if (options.slotEnd) {
-    inputElement.style.paddingRight = `calc(${padding} + ${
+    inputElement.style.paddingRight = `calc(${padding} + ${basePadding} + ${
       options.additionalPaddingRight ?? '0rem'
     })`;
   } else {
-    inputElement.style.paddingLeft = padding;
+    inputElement.style.paddingLeft = `calc(${padding} + ${basePadding})`;
   }
 }
 
