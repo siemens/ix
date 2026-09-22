@@ -455,6 +455,7 @@ export class DatePicker
   @Method()
   async updateSelectedYearMonth(date: DateTime) {
     this.selectedMonthDate = date.startOf('month');
+    this.tempMonthDate = this.selectedMonthDate;
   }
 
   @Watch('selectedMonthDate')

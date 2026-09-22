@@ -248,6 +248,69 @@ regressionTest('select different year', async ({ mount, page }) => {
   await expect(monthContainer).toHaveText(/March/);
 });
 
+regressionTest(
+  're-selecting the same range moves the month dropdown back to the range year',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveClass(/hydrated/);
+
+    const rangeOptions: DateDropdownOption[] = [
+      {
+        id: 'fixed',
+        label: 'Fixed range',
+        from: '2024/02/16',
+        to: '2024/02/20',
+      },
+      {
+        id: 'other',
+        label: 'Other range',
+        from: '2024/05/01',
+        to: '2024/05/31',
+      },
+    ];
+
+    await dateDropdown.evaluate(
+      (el, [dateRangeOptions]) => {
+        const elementToTest = el as HTMLIxDateDropdownElement;
+
+        elementToTest.dateRangeId = 'fixed';
+        elementToTest.dateRangeOptions = dateRangeOptions;
+      },
+      [rangeOptions]
+    );
+
+    await dateDropdown.getByTestId('date-dropdown-trigger').click();
+
+    const datepicker = dateDropdown
+      .getByTestId('date-dropdown')
+      .locator('ix-date-picker');
+
+    // Navigate the calendar away from the year the range sits in.
+    const yearContainer = datepicker.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearContainer.click();
+    await yearContainer
+      .getByRole('menuitem', { name: '2020', exact: true })
+      .click();
+    await expect(yearContainer).toHaveText(/2020/);
+
+    // Re-selecting the already selected range only moves the calendar back.
+    await dateDropdown.getByRole('button', { name: /Fixed range/ }).click();
+
+    const monthContainer = datepicker.getByRole('button', {
+      name: 'Select month',
+    });
+    await monthContainer.click();
+
+    await expect(yearContainer).toHaveText(/2024/);
+    await expect(
+      monthContainer.getByRole('menuitem', { name: 'February' })
+    ).toHaveAttribute('checked', '');
+  }
+);
+
 regressionTest('disable', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown disabled></ix-date-dropdown>`);
   const dateDropdown = page.locator('ix-date-dropdown');

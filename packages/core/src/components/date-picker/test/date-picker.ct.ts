@@ -678,7 +678,7 @@ regressionTest.describe('month dropdown min/max range', () => {
     'enables the month a single-month range sits in',
     async ({ mount, page }) => {
       await mount(
-        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/07/15" single-selection></ix-date-picker>`
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/07/15" locale="en" single-selection></ix-date-picker>`
       );
 
       const monthSelection = await openMonthDropdown(page);
@@ -691,7 +691,7 @@ regressionTest.describe('month dropdown min/max range', () => {
     'enables both months a two-month range spans',
     async ({ mount, page }) => {
       await mount(
-        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/08/15" single-selection></ix-date-picker>`
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/08/15" locale="en" single-selection></ix-date-picker>`
       );
 
       const monthSelection = await openMonthDropdown(page);
@@ -708,7 +708,7 @@ regressionTest.describe('month dropdown min/max range', () => {
     'disables every month of a year outside the range',
     async ({ mount, page }) => {
       await mount(
-        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/07/15" single-selection></ix-date-picker>`
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/07/15" locale="en" single-selection></ix-date-picker>`
       );
 
       const monthSelection = await openMonthDropdown(page);
@@ -718,6 +718,90 @@ regressionTest.describe('month dropdown min/max range', () => {
         [],
         ['January', 'June', 'July', 'August', 'December']
       );
+    }
+  );
+
+  regressionTest(
+    'rebuilds the month list when `from` moves to another year after load',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/08/15" locale="en" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element) => element.setAttribute('from', '2026/07/06'));
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['July', 'August'],
+        ['June', 'September']
+      );
+    }
+  );
+
+  // #2780: a range spanning a year boundary must only constrain the months of
+  // the year currently browsed.
+  regressionTest(
+    'enables the months from the range start to the end of the first year',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['March', 'April', 'December'],
+        ['January', 'February']
+      );
+    }
+  );
+
+  regressionTest(
+    'enables the months up to the range end in the second year',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/01/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['January'],
+        ['February', 'March', 'December']
+      );
+    }
+  );
+});
+
+regressionTest.describe('year dropdown sync', () => {
+  regressionTest(
+    'marks the new year as selected when `to` moves to another year after load',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" to="2026/07/20"></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element) => element.setAttribute('to', '2028/03/12'));
+
+      const yearSelection = page.getByLabel('Select year');
+      await yearSelection.click();
+
+      await expect(
+        yearSelection.getByRole('menuitem', { name: '2028', exact: true })
+      ).toHaveAttribute('checked', '');
+      await expect(
+        yearSelection.getByRole('menuitem', { name: '2026', exact: true })
+      ).not.toHaveAttribute('checked', '');
     }
   );
 });
