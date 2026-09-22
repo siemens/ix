@@ -72,6 +72,9 @@ import './generated/chip-axe.spec';
 import './generated/content-header-axe.spec';
 import './generated/content-header-text-overflow-axe.spec';
 
+// Info page tests
+import './generated/info-page-axe.spec';
+
 // Chat tests
 import './generated/chat-axe.spec';
 import './generated/chat-ai-message-axe.spec';
