@@ -43,9 +43,9 @@
     all: unset;
     position: relative;
     display: inline-block;
-    width: #{sys.$si-sys-sizing-size-110};
-    min-width: #{sys.$si-sys-sizing-size-110};
-    max-width: #{sys.$si-sys-sizing-size-110};
+    width: #{sys.$si-sys-sizing-size-100};
+    min-width: #{sys.$si-sys-sizing-size-100};
+    max-width: #{sys.$si-sys-sizing-size-100};
     height: #{sys.$si-sys-sizing-size-70};
   }
 
@@ -64,8 +64,12 @@
   .slider:before {
     position: absolute;
     content: '';
-    height: #{sys.$si-sys-sizing-size-70};
-    width: #{sys.$si-sys-sizing-size-70};
+    height: calc(
+      #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-y-10}
+    );
+    width: calc(
+      #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-x-10}
+    );
     left: #{sys.$si-sys-sizing-spacing-x-10};
     bottom: #{sys.$si-sys-sizing-spacing-y-10};
     background-color: var(--ix-toggle-thumb-off--background);

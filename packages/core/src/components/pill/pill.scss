@@ -35,8 +35,12 @@
     &.outline {
       background-color: var(--ix-pill-outline--background);
       &.icon {
-        padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-        padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+        padding-left: calc(
+          #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+        );
+        padding-right: calc(
+          #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+        );
       }
     }
 

@@ -17,7 +17,9 @@
 :host {
   display: block;
   position: relative;
-  max-width: #{sys.$si-sys-sizing-size-180};
+  max-width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60}
+  );
 
   @include component.ix-component;
 
@@ -67,7 +69,7 @@
         left: calc(
           (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-30}
         );
-        top: calc(50% - #{sys.$si-sys-sizing-spacing-y-30});
+        top: calc(50% - #{sys.$si-sys-sizing-spacing-y-40});
       }
 
       .checkPosition {
@@ -79,7 +81,9 @@
       }
 
       .monthMargin {
-        margin-left: #{sys.$si-sys-sizing-spacing-x-50};
+        margin-left: calc(
+          #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
+        );
       }
     }
   }
@@ -252,7 +256,7 @@
 
   .infinite-scrolling-spacer:first-of-type {
     position: relative;
-    padding-bottom: #{sys.$si-sys-sizing-spacing-y-130};
+    padding-bottom: #{sys.$si-sys-sizing-spacing-y-120};
 
     .sentinel {
       position: absolute;
@@ -263,7 +267,7 @@
   }
   .infinite-scrolling-spacer:last-of-type {
     position: relative;
-    padding-top: #{sys.$si-sys-sizing-spacing-y-130};
+    padding-top: #{sys.$si-sys-sizing-spacing-y-120};
 
     .sentinel {
       position: absolute;

@@ -19,7 +19,9 @@
     overflow: visible;
     position: fixed;
     inset: unset;
-    width: #{sys.$si-sys-sizing-size-180};
+    width: calc(
+      #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-130}
+    );
     min-width: #{sys.$si-sys-sizing-size-160};
     max-width: #{sys.$si-sys-sizing-size-190};
     max-height: calc(100vh - #{sys.$si-sys-sizing-size-80});

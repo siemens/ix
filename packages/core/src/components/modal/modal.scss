@@ -48,7 +48,9 @@
   }
 
   .modal-size-360 {
-    width: #{sys.$si-sys-sizing-size-170};
+    width: calc(
+      #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-100}
+    );
   }
 
   .modal-size-480 {
@@ -64,7 +66,9 @@
   }
 
   .modal-size-840 {
-    width: #{sys.$si-sys-sizing-size-200};
+    width: calc(
+      #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-140} + #{sys.$si-sys-sizing-spacing-x-80}
+    );
   }
 
   .modal-size-full-width {

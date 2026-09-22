@@ -129,6 +129,13 @@
   border-radius: var(--ix-blind--border-radius);
   overflow: hidden;
 
+  ix-icon:not([size]) {
+    block-size: #{sys.$si-sys-sizing-icon-lg};
+    inline-size: #{sys.$si-sys-sizing-icon-lg};
+    min-block-size: #{sys.$si-sys-sizing-icon-lg};
+    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+  }
+
   @include component.ix-component;
 
   .blind-header-wrapper {

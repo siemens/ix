@@ -10,19 +10,19 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-pane-title--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-pane-header--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-pane-title--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-pane-header--gap: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-pane-top-bottom-title--margin-block: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-pane-top-bottom-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pane-title-finished--margin: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-pane-title-collapsed--margin: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-pane-left-right-title--margin-block: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-pane-top-bottom-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-pane-title-finished--margin: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-pane-title-collapsed--margin: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-pane-left-right-title--margin-block: #{sys.$si-sys-sizing-spacing-y-50};
   --ix-pane-left-right-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-pane-mobile-title--margin-block: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-pane-mobile-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pane-content--padding-block-start: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-pane-content--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pane-content--padding-block-end: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-pane-mobile-title--margin-block: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-pane-mobile-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-pane-content--padding-block-start: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-pane-content--padding-inline: #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-pane-content--padding-block-end: #{sys.$si-sys-sizing-spacing-y-60};
   --ix-pane--border-width: var(--theme-border-width-default);
   --ix-pane-floating--background: #{sys.$si-sys-color-background-1};
   --ix-pane-floating--border-color: #{sys.$si-sys-color-border-4};

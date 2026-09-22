@@ -68,9 +68,15 @@
     position: relative;
     height: #{sys.$si-sys-sizing-size-90};
     padding: #{sys.$si-sys-sizing-spacing-y-60};
-    width: #{sys.$si-sys-sizing-size-160};
-    min-width: #{sys.$si-sys-sizing-size-160};
-    max-width: #{sys.$si-sys-sizing-size-160};
+    width: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    );
+    min-width: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    );
+    max-width: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    );
 
     gap: #{sys.$si-sys-sizing-spacing-x-60};
 

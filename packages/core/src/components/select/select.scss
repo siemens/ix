@@ -20,9 +20,15 @@
 :host {
   display: inline-block;
   position: relative;
-  --ix-select-chip-horizontal-margin: #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-select-trigger-min-width: #{sys.$si-sys-sizing-size-130};
-  --ix-select-overflow-chip-fallback-width: #{sys.$si-sys-sizing-size-70};
+  --ix-select-chip-horizontal-margin: calc(
+    #{sys.$si-sys-sizing-spacing-x-10} * 0.8
+  );
+  --ix-select-trigger-min-width: calc(
+    #{sys.$si-sys-sizing-size-120} - #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-select-overflow-chip-fallback-width: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
 
   min-height: #{sys.$si-sys-sizing-size-80};
   height: auto;
@@ -113,7 +119,12 @@
       > ix-filter-chip {
         margin: var(--ix-select-chip-horizontal-margin);
         flex-shrink: 0;
-        max-width: min(40%, #{sys.$si-sys-sizing-size-170});
+        max-width: min(
+          40%,
+          calc(
+            #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120}
+          )
+        );
 
         &.chip-measuring {
           position: absolute;
@@ -133,15 +144,25 @@
     }
 
     ix-icon-button {
-      height: #{sys.$si-sys-sizing-size-80};
-      width: #{sys.$si-sys-sizing-size-80};
-      min-height: #{sys.$si-sys-sizing-size-80};
-      min-width: #{sys.$si-sys-sizing-size-80};
+      height: calc(
+        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10}
+      );
+      width: calc(
+        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10}
+      );
+      min-height: calc(
+        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10}
+      );
+      min-width: calc(
+        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10}
+      );
     }
 
     input {
       background: transparent;
-      height: #{sys.$si-sys-sizing-size-70};
+      height: calc(
+        #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
+      );
       width: 100%;
 
       @include text-truncation.ellipsis;
@@ -175,7 +196,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: #{sys.$si-sys-sizing-spacing-y-20};
-    max-height: #{sys.$si-sys-sizing-size-170};
+    max-height: calc(
+      #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-y-60}
+    );
     overflow-y: auto;
     padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   }

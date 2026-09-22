@@ -20,8 +20,12 @@ $header-height-focus-visible: calc($header-height - 2px);
   display: flex;
   flex-direction: column;
   position: relative;
-  width: #{sys.$si-sys-sizing-size-170};
-  min-width: #{sys.$si-sys-sizing-size-140};
+  width: calc(
+    #{sys.$si-sys-sizing-size-170} - #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+  );
   border-color: var(--ix-group-item--border-color);
 
   @include text-truncation.ellipsis;
@@ -150,7 +154,8 @@ $header-height-focus-visible: calc($header-height - 2px);
   }
 
   .expand-icon {
-    padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40};
+    padding: #{sys.$si-sys-sizing-spacing-y-10} calc(#{sys.$si-sys-sizing-spacing-x-60} *
+          0.437);
     color: var(--ix-group-expand-icon--color);
   }
 
@@ -158,6 +163,13 @@ $header-height-focus-visible: calc($header-height - 2px);
     margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
     margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
     min-width: #{sys.$si-sys-sizing-size-70};
+
+    ix-icon:not([size]) {
+      block-size: #{sys.$si-sys-sizing-icon-lg};
+      inline-size: #{sys.$si-sys-sizing-icon-lg};
+      min-block-size: #{sys.$si-sys-sizing-icon-lg};
+      min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    }
   }
 
   .group-content {

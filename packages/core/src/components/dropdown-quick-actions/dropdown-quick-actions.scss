@@ -19,6 +19,8 @@
 
   slot::slotted(*) {
     display: flex;
-    margin-inline-end: #{sys.$si-sys-sizing-spacing-x-50};
+    margin-inline-end: calc(
+      #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
+    );
   }
 }

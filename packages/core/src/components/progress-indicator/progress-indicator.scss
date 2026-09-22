@@ -15,7 +15,9 @@
 :host {
   display: block;
   position: relative;
-  width: #{sys.$si-sys-sizing-size-170};
+  width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-120}
+  );
   height: fit-content;
 
   .progress-container {
@@ -150,7 +152,9 @@
   @include linear.linear;
 
   .linear-slot {
-    min-width: #{sys.$si-sys-sizing-size-90};
+    min-width: calc(
+      #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-x-20}
+    );
   }
 }
 

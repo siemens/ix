@@ -61,15 +61,19 @@ $focusBorder: 0.0625rem;
     justify-content: center;
     position: relative;
     height: 100%;
-    width: #{sys.$si-sys-sizing-size-60};
-    min-width: #{sys.$si-sys-sizing-size-60};
+    width: #{sys.$si-sys-sizing-size-50};
+    min-width: #{sys.$si-sys-sizing-size-50};
     margin-right: #{sys.$si-sys-sizing-spacing-x-40};
 
     color: var(--ix-dropdown-item-checkmark--color);
   }
 
   .dropdown-item-icon {
+    block-size: #{sys.$si-sys-sizing-icon-lg};
+    inline-size: #{sys.$si-sys-sizing-icon-lg};
     margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    min-block-size: #{sys.$si-sys-sizing-icon-lg};
+    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
     color: var(--ix-dropdown-item-icon--color);
   }
 

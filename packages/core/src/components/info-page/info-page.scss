@@ -18,7 +18,9 @@
   flex: 1;
   flex-direction: column;
   align-items: center;
-  max-width: #{sys.$si-sys-sizing-size-200};
+  max-width: calc(
+    #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-130}
+  );
   margin: auto;
   text-align: center;
 }
@@ -49,7 +51,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: #{sys.$si-sys-sizing-size-190};
+  max-width: calc(
+    #{sys.$si-sys-sizing-size-190} + #{sys.$si-sys-sizing-spacing-x-100}
+  );
 }
 
 h1 {

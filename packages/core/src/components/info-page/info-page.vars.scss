@@ -9,6 +9,10 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-info-page-image-width: #{sys.$si-sys-sizing-size-160};
-  --ix-info-page-image-height: #{sys.$si-sys-sizing-size-150};
+  --ix-info-page-image-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-70}
+  );
+  --ix-info-page-image-height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
 }

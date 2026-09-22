@@ -24,7 +24,10 @@
 
   .message {
     width: fit-content;
-    min-width: max(#{sys.$si-sys-sizing-size-160}, 45%);
+    min-width: max(
+      calc(#{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-30}),
+      45%
+    );
     max-width: 80%;
     box-sizing: border-box;
     padding: var(--theme-space-2) var(--theme-space-3);
@@ -45,7 +48,8 @@
   }
 
   .attachments ::slotted(ix-chat-attachment) {
-    flex: 0 1 #{sys.$si-sys-sizing-size-100};
+    flex: 0 1
+      calc(#{sys.$si-sys-sizing-size-130} + #{sys.$si-sys-sizing-spacing-x-30});
     padding-left: var(--theme-space-1);
   }
 

@@ -16,9 +16,15 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  min-width: #{sys.$si-sys-sizing-size-170};
-  max-width: #{sys.$si-sys-sizing-size-170};
-  min-height: #{sys.$si-sys-sizing-size-110};
+  min-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
+  );
+  max-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
+  );
+  min-height: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
 
   pointer-events: all;
 
@@ -34,7 +40,9 @@
   .toast-body {
     display: flex;
     position: relative;
-    min-height: #{sys.$si-sys-sizing-size-110};
+    min-height: calc(
+      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-40}
+    );
     width: 100%;
     flex-grow: 1;
     padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}

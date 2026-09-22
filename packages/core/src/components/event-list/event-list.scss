@@ -18,7 +18,9 @@
 }
 
 :host(.item-size-l) {
-  --event-list-item-height: #{sys.$si-sys-sizing-size-130};
+  --event-list-item-height: calc(
+    #{sys.$si-sys-sizing-size-130} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
   --event-list-item-content-white-space: normal;
 }
 

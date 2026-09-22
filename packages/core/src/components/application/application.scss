@@ -68,7 +68,8 @@
 
 :host(.breakpoint-md) {
   --ix-application-menu-margin-left: calc(
-    #{sys.$si-sys-sizing-size-100} + var(--ix-application-menu-safe-area-left, 0rem)
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
+      var(--ix-application-menu-safe-area-left, 0rem)
   );
 
   aside.slotted {

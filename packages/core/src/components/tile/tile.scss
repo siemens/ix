@@ -21,7 +21,9 @@
 $heightSmall: #{sys.$si-sys-sizing-size-90};
 $heightMedium: #{sys.$si-sys-sizing-size-120};
 $heightBig: #{sys.$si-sys-sizing-size-150};
-$width: #{sys.$si-sys-sizing-size-150};
+$width: calc(
+  #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90} - #{sys.$si-sys-sizing-border-width-default}
+);
 
 :host {
   min-width: $width;

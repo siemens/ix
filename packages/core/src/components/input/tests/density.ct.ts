@@ -41,7 +41,7 @@ regressionTest(
     await expect(password).toHaveCSS('min-height', '32px');
     await expect(numberInput).toHaveCSS('min-height', '32px');
     await expect(numberInput).toHaveCSS('min-width', '96px');
-    await expect(textarea).toHaveCSS('height', '48px');
+    await expect(textarea).toHaveCSS('height', '52px');
     await expect(input).toHaveAttribute(
       'style',
       /--si-sys-sizing-spacing-x-40/

@@ -90,7 +90,9 @@
 }
 
 :host(.stacked) {
-  height: #{sys.$si-sys-sizing-size-110};
+  height: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
+  );
 
   .kpi-container {
     justify-content: center;

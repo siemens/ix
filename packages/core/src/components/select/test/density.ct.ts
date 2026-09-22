@@ -39,7 +39,7 @@ regressionTest(
     await expect(select).toHaveCSS('min-height', '32px');
     await expect(categoryFilter.locator('.text-input')).toHaveCSS(
       'height',
-      '24px'
+      '28px'
     );
     await expect(datePicker.locator('.grid')).toHaveCSS(
       'grid-template-columns',
@@ -61,7 +61,7 @@ regressionTest(
     await expect(select).toHaveCSS('min-height', '24px');
     await expect(categoryFilter.locator('.text-input')).toHaveCSS(
       'height',
-      '20px'
+      '22px'
     );
     await expect(datePicker.locator('.grid')).toHaveCSS(
       'grid-template-columns',

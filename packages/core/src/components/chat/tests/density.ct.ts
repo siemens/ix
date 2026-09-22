@@ -27,7 +27,7 @@ regressionTest(
     const chatInput = page.locator('ix-chat-input .chat-input');
     const upload = page.locator('#upload');
 
-    await expect(chatInput).toHaveCSS('min-height', '120px');
+    await expect(chatInput).toHaveCSS('min-height', '128px');
     await expect(upload).toHaveCSS('height', '64px');
     await page.getByRole('button', { name: 'Open details' }).click();
     await expect(page.locator('ix-popover-content')).toBeVisible();

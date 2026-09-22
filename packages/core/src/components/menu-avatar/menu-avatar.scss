@@ -31,8 +31,8 @@
     width: 100%;
     max-height: #{sys.$si-sys-sizing-size-90};
     padding-left: #{sys.$si-sys-sizing-spacing-x-20};
-    margin-left: #{sys.$si-sys-sizing-spacing-x-30};
-    margin-right: #{sys.$si-sys-sizing-spacing-x-30};
+    margin-left: calc(#{sys.$si-sys-sizing-spacing-x-60} * 0.41);
+    margin-right: calc(#{sys.$si-sys-sizing-spacing-x-60} * 0.35);
     transition: var(--ix-menu-avatar-button--transition-duration);
 
     .avatar-name {

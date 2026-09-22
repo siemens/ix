@@ -165,7 +165,10 @@
       );
 
     &:not([rows]) {
-      height: #{sys.$si-sys-sizing-size-100};
+      height: calc(
+        #{sys.$si-sys-sizing-size-100} + 2 * (#{sys.$si-sys-sizing-spacing-y-20} -
+              #{sys.$si-sys-sizing-spacing-y-10})
+      );
     }
   }
 }

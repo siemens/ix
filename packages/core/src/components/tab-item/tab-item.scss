@@ -146,9 +146,15 @@
 }
 
 :host(.circle) {
-  height: #{sys.$si-sys-sizing-size-110};
-  min-height: #{sys.$si-sys-sizing-size-110};
-  max-height: #{sys.$si-sys-sizing-size-110};
+  height: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  min-height: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  max-height: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
 }
 
 :host(.stretched) {
@@ -234,7 +240,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: #{sys.$si-sys-sizing-spacing-y-80} #{sys.$si-sys-sizing-spacing-x-40};
+  padding: #{sys.$si-sys-sizing-spacing-y-60};
 }
 
 :host(.small-tab) {

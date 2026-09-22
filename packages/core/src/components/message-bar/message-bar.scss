@@ -23,7 +23,9 @@
     align-items: flex-start;
     flex-wrap: nowrap;
     justify-content: space-between;
-    min-height: #{sys.$si-sys-sizing-size-110};
+    min-height: calc(
+      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-30}
+    );
     padding: calc(
         #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
       )
@@ -61,7 +63,11 @@
   }
 
   ix-icon {
+    block-size: #{sys.$si-sys-sizing-icon-lg};
+    inline-size: #{sys.$si-sys-sizing-icon-lg};
     margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+    min-block-size: #{sys.$si-sys-sizing-icon-lg};
+    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
   }
 
   .message-bar-hidden {

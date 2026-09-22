@@ -84,7 +84,9 @@
     width: 100%;
     touch-action: pan-y;
 
-    padding-right: #{sys.$si-sys-sizing-spacing-x-110};
+    padding-right: calc(
+      #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    );
 
     scrollbar-width: none;
     &::-webkit-scrollbar {

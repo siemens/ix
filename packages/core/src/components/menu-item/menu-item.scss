@@ -14,7 +14,9 @@
 
 @use './menu-item.vars' as *;
 $menuItemHeight: #{sys.$si-sys-sizing-size-100};
-$menuItemPadding: #{sys.$si-sys-sizing-spacing-x-60};
+$menuItemPadding: calc(
+  #{sys.$si-sys-sizing-spacing-x-50} + #{sys.$si-sys-sizing-spacing-x-10}
+);
 
 :host {
   position: relative;
@@ -40,7 +42,11 @@ $menuItemPadding: #{sys.$si-sys-sizing-spacing-x-60};
   }
 
   .tab-icon {
+    block-size: #{sys.$si-sys-sizing-icon-lg};
     color: var(--ix-menu-item-primary-icon--color);
+    inline-size: #{sys.$si-sys-sizing-icon-lg};
+    min-block-size: #{sys.$si-sys-sizing-icon-lg};
+    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
     position: relative;
     pointer-events: none;
   }
@@ -121,7 +127,9 @@ $menuItemPadding: #{sys.$si-sys-sizing-spacing-x-60};
 
 :host(.bottom-tab),
 :host([slot='bottom']) {
-  $bottom-height: #{sys.$si-sys-sizing-size-90};
+  $bottom-height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
 
   min-height: $bottom-height;
   height: $bottom-height;

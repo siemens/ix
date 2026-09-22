@@ -12,7 +12,11 @@
 
 @mixin set-padding($composition) {
   @if $composition {
-    padding-#{$composition}: #{sys.$si-sys-sizing-spacing-x-100};
+    @if $composition == top or $composition == bottom {
+      padding-#{$composition}: #{sys.$si-sys-sizing-spacing-y-100};
+    } @else {
+      padding-#{$composition}: #{sys.$si-sys-sizing-spacing-x-100};
+    }
   }
 }
 

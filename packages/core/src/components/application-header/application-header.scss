@@ -21,10 +21,12 @@
   min-height: #{sys.$si-sys-sizing-size-100};
   padding-top: var(--ix-safe-area-inset-top, 0rem);
   padding-right: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} + var(--ix-safe-area-inset-right, 0rem)
+    #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
+      var(--ix-safe-area-inset-right, 0rem)
   );
   padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} + var(--ix-safe-area-inset-left, 0rem)
+    #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
+      var(--ix-safe-area-inset-left, 0rem)
   );
 
   color: var(--ix-application-header--color);
@@ -77,7 +79,10 @@
     }
 
     .app-switch {
-      margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
+      margin: 0
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
+        );
     }
 
     .app-switch.without-app-icon {

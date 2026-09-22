@@ -18,8 +18,12 @@
   gap: #{sys.$si-sys-sizing-spacing-y-60};
 
   .emptyState__icon {
-    width: #{sys.$si-sys-sizing-size-110};
-    height: #{sys.$si-sys-sizing-size-110};
+    width: calc(
+      #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-x-40}
+    );
+    height: calc(
+      #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-y-40}
+    );
     display: flex;
     justify-content: center;
     align-items: center;

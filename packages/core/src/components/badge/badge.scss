@@ -151,7 +151,9 @@ $border-radius: 100px;
 }
 
 :host([type='label'].outline.with-icon) .indicator {
-  padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  padding-inline: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  );
 }
 
 :host([type='label'].align-left) .indicator {
@@ -187,17 +189,17 @@ $border-radius: 100px;
 :host([type='status-icon']:not(.outline)) .status-icon-stack {
   position: relative;
   display: block;
-  width: #{sys.$si-sys-sizing-size-60};
-  height: #{sys.$si-sys-sizing-size-60};
+  width: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+  height: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
   flex-shrink: 0;
 }
 
 :host([type='status-icon']) .status-icon {
   flex-shrink: 0;
-  width: #{sys.$si-sys-sizing-size-60};
-  height: #{sys.$si-sys-sizing-size-60};
-  min-width: #{sys.$si-sys-sizing-size-60};
-  min-height: #{sys.$si-sys-sizing-size-60};
+  width: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+  height: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+  min-width: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+  min-height: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
 }
 
 :host([type='status-icon']:not(.outline)) .status-icon-stack .status-icon {

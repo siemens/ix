@@ -32,7 +32,9 @@
   }
 
   ix-card-content {
-    height: #{sys.$si-sys-sizing-size-150};
+    height: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-60}
+    );
   }
 }
 

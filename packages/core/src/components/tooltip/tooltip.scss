@@ -13,7 +13,9 @@
   margin: 0;
   padding: 0;
   border: none;
-  max-width: #{sys.$si-sys-sizing-size-170};
+  max-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-50}
+  );
   width: max-content;
   background-color: transparent;
   overflow-wrap: break-word;

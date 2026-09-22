@@ -15,8 +15,12 @@
   height: #{sys.$si-sys-sizing-size-80};
   width: #{sys.$si-sys-sizing-size-80};
 
-  margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
-  margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+  margin-block-start: calc(
+    #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-border-width-default}
+  );
+  margin-inline-end: calc(
+    #{sys.$si-sys-sizing-spacing-x-20} + #{sys.$si-sys-sizing-border-width-default}
+  );
   margin-inline-start: auto;
 
   .hide {

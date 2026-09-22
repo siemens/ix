@@ -37,7 +37,8 @@
   }
 
   .input-container {
-    $padding-with-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px #{sys.$si-sys-sizing-spacing-x-90};
+    $padding-with-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px calc(#{sys.$si-sys-sizing-spacing-x-80} +
+          #{sys.$si-sys-sizing-spacing-x-20});
     $padding-no-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px #{sys.$si-sys-sizing-spacing-x-20};
 
     &:not(.readonly) {
@@ -77,7 +78,9 @@
 
     display: flex;
     height: auto;
-    max-height: #{sys.$si-sys-sizing-size-130};
+    max-height: calc(
+      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
+    );
   }
 
   .token-container {
@@ -87,8 +90,12 @@
 
   .text-input {
     width: auto;
-    height: #{sys.$si-sys-sizing-size-70};
-    min-height: #{sys.$si-sys-sizing-size-70};
+    height: calc(
+      #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
+    );
+    min-height: calc(
+      #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
+    );
     background: transparent;
     flex-grow: 1;
     box-shadow: none;
@@ -122,6 +129,10 @@
   }
 
   ix-icon {
+    block-size: #{sys.$si-sys-sizing-icon-sm};
+    inline-size: #{sys.$si-sys-sizing-icon-sm};
+    min-block-size: #{sys.$si-sys-sizing-icon-sm};
+    min-inline-size: #{sys.$si-sys-sizing-icon-sm};
     position: absolute;
     top: #{sys.$si-sys-sizing-spacing-y-40};
     left: #{sys.$si-sys-sizing-spacing-x-40};
@@ -154,7 +165,7 @@
   }
 
   ix-dropdown {
-    min-width: #{sys.$si-sys-sizing-size-160} !important;
+    min-width: #{sys.$si-sys-sizing-size-150} !important;
 
     @include legacy-fonts.text-default-single;
 

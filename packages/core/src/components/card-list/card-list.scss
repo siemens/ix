@@ -102,13 +102,25 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
     align-self: flex-start;
     justify-self: center;
 
-    max-width: #{sys.$si-sys-sizing-size-150};
-    min-width: #{sys.$si-sys-sizing-size-150};
-    width: #{sys.$si-sys-sizing-size-150};
+    max-width: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+    );
+    min-width: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+    );
+    width: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+    );
 
-    min-height: #{sys.$si-sys-sizing-size-150};
-    max-height: #{sys.$si-sys-sizing-size-150};
-    height: #{sys.$si-sys-sizing-size-150};
+    min-height: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+    );
+    max-height: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+    );
+    height: calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+    );
 
     --ix-card-border-color: var(--ix-card-list-show-all--border-color);
     color: var(--ix-card-list-show-all--color);
@@ -120,11 +132,15 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
   }
 
   .CardList__Style__Infinite__Scroll .Show__All__Card {
-    margin-top: #{sys.$si-sys-sizing-spacing-y-100};
+    margin-top: calc(
+      #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
+    );
   }
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-100};
+    margin-bottom: calc(
+      #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
+    );
   }
 
   .Show__All__Card:hover {

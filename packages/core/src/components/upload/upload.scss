@@ -88,7 +88,7 @@
     }
 
     .loader {
-      margin: #{sys.$si-sys-sizing-spacing-y-90} auto;
+      margin: calc(#{sys.$si-sys-sizing-spacing-y-60} * 2.187) auto;
       font-size: 0.937rem;
       width: #{sys.$si-sys-sizing-size-50};
       height: #{sys.$si-sys-sizing-size-50};
@@ -112,7 +112,11 @@
       }
 
       > ix-icon {
+        block-size: #{sys.$si-sys-sizing-icon-lg};
+        inline-size: #{sys.$si-sys-sizing-icon-lg};
         margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+        min-block-size: #{sys.$si-sys-sizing-icon-lg};
+        min-inline-size: #{sys.$si-sys-sizing-icon-lg};
 
         &.icon-error {
           color: var(--ix-upload-error-icon--color);

@@ -33,7 +33,9 @@
   .page-selection {
     @include input-control.input-control;
 
-    width: #{sys.$si-sys-sizing-size-120};
+    width: calc(
+      #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-x-10}
+    );
     text-align: center;
     margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
     -moz-appearance: textfield;
@@ -58,7 +60,9 @@
     margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
 
     ix-select {
-      width: #{sys.$si-sys-sizing-size-120};
+      width: calc(
+        #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-x-40}
+      );
       margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
     }
   }

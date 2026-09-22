@@ -18,8 +18,12 @@ $focusBorderWidth: 1px;
 
 :host {
   display: flex;
-  min-height: #{sys.$si-sys-sizing-size-80};
-  height: #{sys.$si-sys-sizing-size-80};
+  min-height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
 
   @include component.ix-component;
 

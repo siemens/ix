@@ -12,9 +12,13 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 @use './menu-about-news.vars' as *;
-$left: #{sys.$si-sys-sizing-size-100};
+$left: calc(
+  #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} + #{sys.$si-sys-sizing-spacing-x-10} *
+    0.2
+);
 $expanded-left-offset: calc(
-  #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-size-80}
+  #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
+    0.8
 );
 
 :host {
@@ -60,8 +64,8 @@ $expanded-left-offset: calc(
 
   .cui-popover-news-header {
     margin-bottom: #{sys.$si-sys-sizing-spacing-y-100};
-    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-100};
-    margin-block-start: -(#{sys.$si-sys-sizing-spacing-y-20});
+    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-120};
+    margin-block-start: calc(-1 * #{sys.$si-sys-sizing-spacing-y-20});
   }
 
   .popover-body {

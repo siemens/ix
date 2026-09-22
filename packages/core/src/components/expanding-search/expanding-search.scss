@@ -12,12 +12,14 @@
 @use 'tokens/system' as sys;
 
 @use './expanding-search.vars' as *;
-$container-width: #{sys.$si-sys-sizing-size-160};
+$container-width: calc(
+  #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-border-width-default}
+);
 
 :host {
   display: inline-flex;
   width: auto;
-  height: #{sys.$si-sys-sizing-size-90};
+  height: #{sys.$si-sys-sizing-size-80};
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -60,8 +62,8 @@ $container-width: #{sys.$si-sys-sizing-size-160};
 
   .btn-search {
     display: flex;
-    max-width: #{sys.$si-sys-sizing-size-90};
-    max-height: #{sys.$si-sys-sizing-size-90};
+    max-width: #{sys.$si-sys-sizing-size-80};
+    max-height: #{sys.$si-sys-sizing-size-80};
     border-radius: var(--ix-expanding-search--border-radius);
     transition: all var(--ix-expanding-search-button--transition-duration)
       ease-in-out;
@@ -95,8 +97,8 @@ $container-width: #{sys.$si-sys-sizing-size-160};
   }
 
   .btn-search:active {
-    width: #{sys.$si-sys-sizing-size-90};
-    height: #{sys.$si-sys-sizing-size-90};
+    width: #{sys.$si-sys-sizing-size-80};
+    height: #{sys.$si-sys-sizing-size-80};
     border-radius: var(--ix-expanding-search--border-radius);
     border: var(--ix-expanding-search-button--border--active) !important;
   }
@@ -118,7 +120,7 @@ $container-width: #{sys.$si-sys-sizing-size-160};
 
   .input {
     padding-left: #{sys.$si-sys-sizing-spacing-x-90} !important;
-    padding-right: #{sys.$si-sys-sizing-spacing-x-90} !important;
+    padding-right: #{sys.$si-sys-sizing-spacing-x-100} !important;
   }
 
   .opacity-before {

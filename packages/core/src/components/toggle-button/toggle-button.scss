@@ -16,12 +16,20 @@
 
 :host {
   display: inline-block;
-  height: #{sys.$si-sys-sizing-size-90};
+  height: #{sys.$si-sys-sizing-size-80};
   width: auto;
-  min-width: #{sys.$si-sys-sizing-size-130};
+  min-width: #{sys.$si-sys-sizing-size-120};
   vertical-align: middle;
 
   @include component.ix-component;
+
+  .icon,
+  .icon-right {
+    block-size: #{sys.$si-sys-sizing-icon-lg};
+    inline-size: #{sys.$si-sys-sizing-icon-lg};
+    min-block-size: #{sys.$si-sys-sizing-icon-lg};
+    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+  }
 
   .btn {
     width: 100%;

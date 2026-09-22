@@ -16,6 +16,10 @@
   gap: #{sys.$si-sys-sizing-spacing-x-20};
 
   .range-delimiter {
+    block-size: #{sys.$si-sys-sizing-icon-lg};
+    inline-size: #{sys.$si-sys-sizing-icon-lg};
+    min-block-size: #{sys.$si-sys-sizing-icon-lg};
+    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
     order: 2;
     flex: 0 0 auto;
     margin-top: #{sys.$si-sys-sizing-spacing-y-20};
@@ -40,7 +44,7 @@
   }
 
   ::slotted(.fallback-label-margin) {
-    margin-top: #{sys.$si-sys-sizing-size-80};
+    margin-top: calc(#{sys.$si-sys-sizing-size-80} * 0.9);
   }
 }
 

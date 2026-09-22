@@ -31,7 +31,7 @@
   }
 }
 
-$dropdown-offset: #{sys.$si-sys-sizing-size-110};
+$dropdown-offset: #{sys.$si-sys-sizing-size-100};
 
 :host(.overflow) {
   max-height: calc(50vh - $dropdown-offset);

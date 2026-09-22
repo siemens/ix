@@ -12,7 +12,9 @@
 @use 'tokens/system' as sys;
 
 @use './menu.vars' as *;
-$menu-expanded-width: calc(#{sys.$si-sys-sizing-size-140} * 2);
+$menu-expanded-width: calc(
+  #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
+);
 
 :host {
   display: flex;
@@ -111,7 +113,8 @@ $menu-expanded-width: calc(#{sys.$si-sys-sizing-size-140} * 2);
     flex-direction: column;
     position: relative;
     width: calc(
-      #{sys.$si-sys-sizing-size-100} + var(--ix-application-menu-safe-area-left, 0rem)
+      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
+        var(--ix-application-menu-safe-area-left, 0rem)
     );
     height: 100%;
     padding-block-end: calc(
@@ -132,9 +135,13 @@ $menu-expanded-width: calc(#{sys.$si-sys-sizing-size-140} * 2);
   .menu-overlay {
     display: none;
     position: absolute;
-    width: calc(100vw - #{sys.$si-sys-sizing-size-100});
+    width: calc(
+      100vw - #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-spacing-x-20}
+    );
     height: 100%;
-    left: #{sys.$si-sys-sizing-size-100};
+    left: calc(
+      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    );
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--ix-menu-overlay--background);
@@ -186,7 +193,8 @@ $menu-expanded-width: calc(#{sys.$si-sys-sizing-size-140} * 2);
   }
 
   .menu-buttons {
-    margin: #{sys.$si-sys-sizing-spacing-y-50} 0 0 #{sys.$si-sys-sizing-spacing-x-40};
+    margin: #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc(#{sys.$si-sys-sizing-spacing-x-40} +
+          #{sys.$si-sys-sizing-spacing-x-10});
 
     &:not(:empty) {
       margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};

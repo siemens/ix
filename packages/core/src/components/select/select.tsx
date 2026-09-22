@@ -1112,14 +1112,22 @@ export class Select
 
   private getHorizontalMargin(element: HTMLElement) {
     const style = getComputedStyle(element);
-    return (
+    return Math.ceil(
       parseFloat(style.marginLeft || '0') + parseFloat(style.marginRight || '0')
     );
   }
 
   private getCssPixelValue(property: string) {
     const value = getComputedStyle(this.hostElement).getPropertyValue(property);
-    return parseFloat(value) || 0;
+    const measurement = document.createElement('div');
+    measurement.style.position = 'absolute';
+    measurement.style.visibility = 'hidden';
+    measurement.style.width = `var(${property})`;
+    this.hostElement.shadowRoot?.append(measurement);
+    const resolvedValue = parseFloat(getComputedStyle(measurement).width);
+    measurement.remove();
+
+    return resolvedValue || parseFloat(value) || 0;
   }
 
   private canShowAllChips(values: string[], available: number) {

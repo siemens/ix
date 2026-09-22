@@ -123,7 +123,10 @@
 
 :host(.host-context-date-picker) {
   ix-dropdown {
-    max-height: calc(#{sys.$si-sys-sizing-size-140} * 2);
+    max-height: calc(
+      #{sys.$si-sys-sizing-size-140} * 2 + #{sys.$si-sys-sizing-spacing-y-40} +
+        #{sys.$si-sys-sizing-spacing-y-10}
+    );
     overflow-y: scroll;
   }
 }

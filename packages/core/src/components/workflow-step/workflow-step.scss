@@ -12,11 +12,15 @@
 
 @use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
-  width: #{sys.$si-sys-sizing-size-150};
+  width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+  );
   height: #{sys.$si-sys-sizing-size-110};
   min-width: #{sys.$si-sys-sizing-size-80};
   min-height: #{sys.$si-sys-sizing-size-110};
-  max-width: #{sys.$si-sys-sizing-size-150};
+  max-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+  );
 }
 
 :host(.host-vertical) {
@@ -24,7 +28,9 @@
   height: #{sys.$si-sys-sizing-size-110};
   min-width: #{sys.$si-sys-sizing-size-110};
   min-height: #{sys.$si-sys-sizing-size-80};
-  max-height: #{sys.$si-sys-sizing-size-150};
+  max-height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
+  );
 }
 
 :host {
@@ -39,8 +45,10 @@
     align-items: center;
     background-color: var(--ix-workflow-step--background);
     border-radius: var(--ix-workflow-step--border-radius);
-    padding: #{sys.$si-sys-sizing-spacing-y-60} 0 #{sys.$si-sys-sizing-spacing-y-40}
-      0;
+    padding: calc(
+        #{sys.$si-sys-sizing-spacing-y-60} + #{sys.$si-sys-sizing-spacing-y-10}
+      )
+      0 #{sys.$si-sys-sizing-spacing-y-40} 0;
 
     .wrapper {
       display: flex;
@@ -127,7 +135,9 @@
 
       .wrapper {
         width: auto;
-        padding-left: #{sys.$si-sys-sizing-spacing-x-60};
+        padding-left: calc(
+          #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
+        );
         height: 100%;
 
         .line {

@@ -13,8 +13,12 @@
 :host {
   display: block;
   position: relative;
-  min-width: #{sys.$si-sys-sizing-size-160};
-  width: #{sys.$si-sys-sizing-size-160};
+  min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} + #{sys.$si-sys-sizing-spacing-x-30}
+  );
+  width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} + #{sys.$si-sys-sizing-spacing-x-30}
+  );
   height: #{sys.$si-sys-sizing-size-140};
   min-height: #{sys.$si-sys-sizing-size-140};
   cursor: pointer;
