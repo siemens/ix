@@ -51,107 +51,122 @@ LICENSE file in the root directory of this source tree.
       let value = 45.3;
 
       function getGaugeColor(value) {
-        if (value > 60) return getComputedCSSProperty('color-success');
-        else if (value > 25) return getComputedCSSProperty('color-warning');
+        if (value > 60)
+          return getComputedCSSProperty('--si-sys-background-success');
+        else if (value > 25)
+          return getComputedCSSProperty('--si-sys-background-warning');
         else {
-          return getComputedCSSProperty('color-alarm');
+          return getComputedCSSProperty('--si-sys-background-danger');
         }
       }
 
       function getOptions() {
         return {
-        series: [
-          {
-            id: '1',
-            type: 'gauge',
-            axisLine: {
-              show: true,
-              lineStyle: {
-                width: 18,
-                color: [[1, getComputedCSSProperty('color-neutral-40')]],
-              },
-            },
-            axisTick: {
-              show: false,
-            },
-            radius: '75%',
-            center: ['50%', '60%'],
-            startAngle: 180,
-            endAngle: 0,
-            splitNumber: 1,
-            splitLine: {
-              show: true,
-            },
-            axisLabel: {
-              show: true,
-              distance: 30,
-              fontSize: 16,
-              color: getComputedCSSProperty('color-std-text'),
-            },
-            progress: {
-              show: true,
-              overlap: false,
-              width: 35,
-              itemStyle: {
-                borderMiterLimit: 16,
-                color: getGaugeColor(value),
-              },
-            },
-            pointer: {
-              show: false,
-            },
-            data: [
-              {
-                value: value,
-                title: {
-                  show: false,
-                },
-                detail: {
-                  show: true,
-                  offsetCenter: [0, -70],
-                  overflow: 'break',
-                  fontSize: '1.5rem',
-                  width: 250,
-                  lineHeight: 35,
-                  color: getComputedCSSProperty('color-soft-text'),
-                  formatter: '{value}Mbps \nNetwork Speed',
-                },
-                pointer: {
-                  show: false,
+          series: [
+            {
+              id: '1',
+              type: 'gauge',
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  width: 18,
+                  color: [
+                    [
+                      1,
+                      getComputedCSSProperty(
+                        '--si-sys-data-sequential-deep-blue-4'
+                      ),
+                    ],
+                  ],
                 },
               },
-            ],
-          },
-          {
-            id: '2',
-            type: 'gauge',
-            splitLine: {
-              show: false,
-            },
-            axisTick: {
-              show: false,
-            },
-            axisLabel: {
-              show: false,
-            },
-            axisLine: {
-              show: true,
-              lineStyle: {
-                width: 5,
-                color: [
-                  [0.25, getComputedCSSProperty('color-alarm')],
-                  [0.6, getComputedCSSProperty('color-warning')],
-                  [1, getComputedCSSProperty('color-success')],
-                ],
+              axisTick: {
+                show: false,
               },
+              radius: '75%',
+              center: ['50%', '60%'],
+              startAngle: 180,
+              endAngle: 0,
+              splitNumber: 1,
+              splitLine: {
+                show: true,
+              },
+              axisLabel: {
+                show: true,
+                distance: 30,
+                fontSize: 16,
+                color: getComputedCSSProperty('--si-sys-text-primary'),
+              },
+              progress: {
+                show: true,
+                overlap: false,
+                width: 35,
+                itemStyle: {
+                  borderMiterLimit: 16,
+                  color: getGaugeColor(value),
+                },
+              },
+              pointer: {
+                show: false,
+              },
+              data: [
+                {
+                  value: value,
+                  title: {
+                    show: false,
+                  },
+                  detail: {
+                    show: true,
+                    offsetCenter: [0, -70],
+                    overflow: 'break',
+                    fontSize: '1.5rem',
+                    width: 250,
+                    lineHeight: 35,
+                    color: getComputedCSSProperty('--si-sys-text-secondary'),
+                    formatter: '{value}Mbps \nNetwork Speed',
+                  },
+                  pointer: {
+                    show: false,
+                  },
+                },
+              ],
             },
-            radius: '80%',
-            center: ['50%', '60%'],
-            startAngle: 180,
-            endAngle: 0,
-          },
-        ],
-      };
+            {
+              id: '2',
+              type: 'gauge',
+              splitLine: {
+                show: false,
+              },
+              axisTick: {
+                show: false,
+              },
+              axisLabel: {
+                show: false,
+              },
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  width: 5,
+                  color: [
+                    [
+                      0.25,
+                      getComputedCSSProperty('--si-sys-background-danger'),
+                    ],
+                    [
+                      0.6,
+                      getComputedCSSProperty('--si-sys-background-warning'),
+                    ],
+                    [1, getComputedCSSProperty('--si-sys-background-success')],
+                  ],
+                },
+              },
+              radius: '80%',
+              center: ['50%', '60%'],
+              startAngle: 180,
+              endAngle: 0,
+            },
+          ],
+        };
       }
 
       // providing echarts is in this case optional
@@ -162,7 +177,7 @@ LICENSE file in the root directory of this source tree.
           return;
         }
 
-        const colorValue = getComputedCSSProperty('color-std-text');
+        const colorValue = getComputedCSSProperty('--si-sys-text-primary');
         if (!colorValue || colorValue.trim() === '') {
           requestAnimationFrame(() => waitForThemeAndInit(retries - 1));
           return;

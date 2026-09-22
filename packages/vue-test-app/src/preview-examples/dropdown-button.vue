@@ -16,21 +16,30 @@ import { IxDropdownButton } from '@siemens/ix-vue';
 
 <template>
   <div class="dropdown-button">
-    <IxDropdownButton label="Dropdown" :icon="iconCheckboxes">
+    <IxDropdownButton label="Primary dropdown" :icon="iconCheckboxes">
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>
-    <IxDropdownButton variant="subtle-primary" label="Dropdown" :icon="iconCheckboxes">
+    <IxDropdownButton
+      variant="subtle-primary"
+      label="Subtle primary dropdown"
+      :icon="iconCheckboxes"
+    >
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>
-    <IxDropdownButton variant="tertiary" label="Dropdown" :icon="iconCheckboxes">
+    <IxDropdownButton
+      variant="tertiary"
+      label="Tertiary dropdown"
+      :icon="iconCheckboxes"
+    >
       <IxDropdownItem label="Item 1"></IxDropdownItem>
       <IxDropdownItem label="Item 2"></IxDropdownItem>
     </IxDropdownButton>
-    <IxDropdownButton label="Dropdown" disabled :icon="iconCheckboxes">
-      <IxDropdownItem label="Item 1"></IxDropdownItem>
-      <IxDropdownItem label="Item 2"></IxDropdownItem>
-    </IxDropdownButton>
+    <IxDropdownButton
+      label="Disabled dropdown"
+      disabled
+      :icon="iconCheckboxes"
+    />
   </div>
 </template>

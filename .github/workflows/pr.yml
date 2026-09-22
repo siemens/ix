@@ -86,6 +86,13 @@ jobs:
       - name: Build
         run: pnpm build --cache-dir=.turbo
 
+      - name: Upload SBOM
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: sbom-${{ github.run_attempt }}
+          path: ./tooling/oss-clearing/sboms/
+          if-no-files-found: error
+
       - name: Lint
         run: pnpm lint
 
@@ -99,7 +106,7 @@ jobs:
           path: ./packages/documentation/build
 
   visual-testing-core:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.visual_testing_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.visual_testing_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -133,7 +140,7 @@ jobs:
           blobPattern: 'visual-testing-blob-report-*'
 
   visual-testing-aggrid:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -147,7 +154,7 @@ jobs:
           projectPath: './packages/aggrid/playwright-report/'
 
   visual-testing-echarts:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -161,7 +168,7 @@ jobs:
           projectPath: './packages/echarts/playwright-report/'
 
   unit:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -183,7 +190,7 @@ jobs:
           packages: ${{ matrix.packages }}
 
   accessibility:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.accessibility_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.accessibility_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -193,7 +200,7 @@ jobs:
       - uses: ./.github/workflows/actions/storybook
 
   unit-memlab:
-    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || needs.changes.outputs.memlab_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' || needs.changes.outputs.memlab_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest

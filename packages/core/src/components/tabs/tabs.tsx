@@ -21,6 +21,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
+import { A11yAttributeName } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { TabClickDetail } from '../tab-item/tab-item.types';
 import { emitEvent } from '../utils/event';
@@ -41,6 +42,10 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 })
 export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   @Element() override hostElement!: HTMLIxTabsElement;
+
+  override getIgnoredAriaAttributes(): A11yAttributeName[] {
+    return ['role'];
+  }
 
   /**
    * Set tab items to small size
@@ -119,6 +124,13 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
 
   override componentDidLoad() {
     this.itemsObserver = new MutationObserver(() => {
+      if (this.activeTabKey !== undefined) {
+        this.onActiveTabChange(
+          this.activeTabKey,
+          this.tabs.find((tab) => tab.selected)?.tabKey
+        );
+      }
+
       this.onComponentChildrenChange();
       // Compute the overflow after DOM has been updated with the new tabs, otherwise the measurement would be wrong
       requestAnimationFrameNoNgZone(() => this.onComponentResize());
@@ -137,6 +149,8 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   }
 
   override componentWillLoad() {
+    super.componentWillLoad();
+
     this.onComponentChildrenChange();
     if (this.activeTabKey) {
       this.setTabActive(this.activeTabKey);
@@ -144,6 +158,8 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
+
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
     }
@@ -154,9 +170,17 @@ export class Tabs extends Mixin(...DefaultMixins, InheritAriaAttributesMixin) {
 
   @Watch('activeTabKey')
   onActiveTabChange(tabKey: string | undefined, oldTabKey: string | undefined) {
-    const activeTab = this.tabs.find((tab) => tab.selected);
+    const tabs = this.tabs;
+    const activeTab = tabs.find((tab) => tab.selected);
 
     if (activeTab?.tabKey === tabKey) {
+      return;
+    }
+
+    if (
+      tabKey !== undefined &&
+      !tabs.some((tab) => tab.tabKey === tabKey && !tab.disabled)
+    ) {
       return;
     }
 

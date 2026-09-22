@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-event-list-item--transition-duration: var(--theme-default-time);
+  --ix-event-list-item-empty-indicator--border: var(--theme-weak-bdr-1);
+  --ix-event-list-item-chevron--color: #{sys.$si-sys-text-secondary};
+  --ix-event-list-item-filled--background: #{sys.$si-sys-background-1};
+  --ix-event-list-item-filled--background--active: #{sys.$si-sys-background-selected};
+  --ix-event-list-item-filled--background--disabled: #{sys.$si-sys-background-1};
+  --ix-event-list-item-filled--background--hover: #{sys.$si-sys-background-hover};
+  --ix-event-list-item-filled--background--selected: #{sys.$si-sys-background-selected};
+  --ix-event-list-item-filled--border-color: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--active: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--disabled: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--hover: rgba(0, 0, 0, 0);
+  --ix-event-list-item-filled--border-color--selected: #{sys.$si-sys-border-accent-hover};
+  --ix-event-list-item-indicator--width: var(--theme-size--2);
+  --ix-event-list-item-indicator-opacity--disabled: 0.3;
+  --ix-event-list-item-outline--background: rgba(0, 0, 0, 0);
+  --ix-event-list-item-outline--background--active: #{sys.$si-sys-background-selected};
+  --ix-event-list-item-outline--background--disabled: rgba(0, 0, 0, 0);
+  --ix-event-list-item-outline--background--hover: #{sys.$si-sys-background-hover};
+  --ix-event-list-item-outline--background--selected: #{sys.$si-sys-background-selected};
+  --ix-event-list-item-outline--border-color: #{sys.$si-sys-border-3};
+  --ix-event-list-item-outline--border-color--active: #{sys.$si-sys-border-3};
+  --ix-event-list-item-outline--border-color--disabled: #{sys.$si-sys-border-4};
+  --ix-event-list-item-outline--border-color--hover: #{sys.$si-sys-border-3};
+  --ix-event-list-item-outline--border-color--selected: #{sys.$si-sys-border-accent-hover};
+}

@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'legacy/mixins/fonts';
+@use '../tokens/system' as sys;
+@use './mixins/fonts';
 
 .text-xs {
   @include fonts.text-xs;
@@ -66,5 +67,5 @@
 }
 
 a {
-  color: var(--theme-color-primary);
+  color: #{sys.$si-sys-text-accent};
 }
