@@ -11,26 +11,14 @@
 @use './validation/form-component';
 
 @mixin element-input-focus {
-  outline: 1px solid #{sys.$si-sys-effects-focus};
-  outline-offset: var(
-    --ix-input--focus--outline-offset,
-    var(--theme-focus-outline-offset)
-  );
-  border-color: var(
-    --ix-input--border-color--focus,
-    #{sys.$si-sys-border-1}
-  ) !important;
+  outline: 1px solid var(--ix-input--outline-color--focus);
+  outline-offset: var(--ix-input--focus--outline-offset);
+  border-color: var(--ix-input--border-color--focus) !important;
 }
 
 @mixin element-input-hover {
-  border-color: var(
-    --ix-input--border-color--hover,
-    #{sys.$si-sys-border-1}
-  ) !important;
-  background-color: var(
-    --ix-input--background--hover,
-    #{sys.$si-sys-background-4}
-  );
+  border-color: var(--ix-input--border-color--hover) !important;
+  background-color: var(--ix-input--background--hover);
 }
 
 @mixin element-input($feature-read-only: true, $padding: 0.25rem 0.5rem) {
