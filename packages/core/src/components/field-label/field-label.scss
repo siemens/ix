@@ -7,12 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 :host {
   display: inline-block;
   position: relative;
 
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+  margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
 }
 
 :host(.text-overflow-no-wrap) {

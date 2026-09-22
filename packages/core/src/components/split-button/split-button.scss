@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './../utils/focus/focus-proxy';
 
@@ -16,12 +17,12 @@
   vertical-align: middle;
 
   .left-button {
-    width: calc(100% - 2rem);
+    width: calc(100% - #{sys.$si-sys-sizing-size-80});
     --ix-button-border-radius-right: 0;
   }
 
   .right-button {
-    width: 2rem;
+    width: #{sys.$si-sys-sizing-size-80};
     --ix-dropdown-button-border-radius-left: 0;
   }
 

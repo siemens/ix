@@ -1,9 +1,11 @@
+@use 'tokens/system' as sys;
+
 :host {
   display: block;
   position: relative;
-  margin: 0 0.75rem;
+  margin: 0 #{sys.$si-sys-sizing-spacing-x-50};
 
-  --ix-layout-grid-gap: 1.5rem;
+  --ix-layout-grid-gap: #{sys.$si-sys-sizing-spacing-x-80};
 
   .container {
     display: flex;

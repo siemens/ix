@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './message-bar.vars' as *;
 :host {
-  margin: vars.$small-space vars.$small-space 0rem vars.$small-space;
+  margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
+    0 #{sys.$si-sys-sizing-spacing-x-40};
 
   @include component.ix-component;
 
@@ -22,11 +23,13 @@
     align-items: flex-start;
     flex-wrap: nowrap;
     justify-content: space-between;
-    min-height: 3.375rem;
-    padding: calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
-      vars.$medium-space
-      calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
-      vars.$default-space;
+    min-height: #{sys.$si-sys-sizing-size-110};
+    padding: calc(
+        #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
+      )
+      #{sys.$si-sys-sizing-spacing-x-50} calc(
+        #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
+      ) #{sys.$si-sys-sizing-spacing-x-60};
     border-radius: var(--ix-message-bar--border-radius);
     background-color: var(--ix-message-bar--background);
   }
@@ -51,14 +54,14 @@
   .message-content {
     flex-grow: 1;
     align-self: center;
-    min-height: 1.25rem;
-    padding: 0 vars.$default-space;
+    min-height: #{sys.$si-sys-sizing-size-60};
+    padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
     font-weight: normal;
     white-space: normal;
   }
 
   ix-icon {
-    margin-top: vars.$tiny-space;
+    margin-top: #{sys.$si-sys-sizing-spacing-y-20};
   }
 
   .message-bar-hidden {

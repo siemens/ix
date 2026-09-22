@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: inline-block;
@@ -17,7 +18,7 @@
   .attachment-chip {
     display: block;
     width: 100%;
-    max-width: 20rem;
+    max-width: #{sys.$si-sys-sizing-size-170};
   }
 
   .content,

@@ -1,7 +1,7 @@
-@use 'misc/common-variables' as vars;
 @use 'mixins/break-points';
 @use 'mixins/shadow-dom/component';
 @use './info-page.vars' as *;
+@use 'tokens/system' as sys;
 
 :host {
   @include component.ix-component;
@@ -10,7 +10,7 @@
   display: flex;
   width: 100%;
   min-height: 100%;
-  padding: vars.$x-large-space vars.$default-space;
+  padding: #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-60};
 }
 
 .infoPage__content {
@@ -18,7 +18,7 @@
   flex: 1;
   flex-direction: column;
   align-items: center;
-  max-width: 50rem;
+  max-width: #{sys.$si-sys-sizing-size-200};
   margin: auto;
   text-align: center;
 }
@@ -30,7 +30,9 @@
   width: var(--ix-info-page-image-width);
   height: var(--ix-info-page-image-height);
   max-width: 100%;
-  margin-block-end: calc(vars.$x-large-space + vars.$small-space);
+  margin-block-end: calc(
+    #{sys.$si-sys-sizing-spacing-y-90} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
 
   ix-icon {
     transform: scale(2);
@@ -47,7 +49,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 40rem;
+  max-width: #{sys.$si-sys-sizing-size-190};
 }
 
 h1 {
@@ -55,22 +57,22 @@ h1 {
 }
 
 :host(:not(.infoPage--hasActions)) .content__message h1:last-child {
-  margin-block-end: vars.$default-space;
+  margin-block-end: #{sys.$si-sys-sizing-spacing-y-60};
 }
 
 .message__copy {
-  margin-block-start: vars.$default-space;
+  margin-block-start: #{sys.$si-sys-sizing-spacing-y-60};
 }
 
 .message__instructions {
-  margin-block-start: vars.$default-space;
+  margin-block-start: #{sys.$si-sys-sizing-spacing-y-60};
 }
 
 .content__action {
   display: none;
   justify-content: center;
   width: 100%;
-  margin-block-start: vars.$x-large-space;
+  margin-block-start: #{sys.$si-sys-sizing-spacing-y-90};
 }
 
 :host(.infoPage--hasActions) .content__action {
@@ -81,11 +83,11 @@ slot[name='actions'] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: vars.$small-space;
+  gap: #{sys.$si-sys-sizing-spacing-x-40};
 }
 
 @include break-points.media-breakpoint-match('sm') {
   :host {
-    padding: vars.$large-space vars.$default-space;
+    padding: #{sys.$si-sys-sizing-spacing-y-80} #{sys.$si-sys-sizing-spacing-x-60};
   }
 }

@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './application-switch-modal.vars' as *;
 :host {
@@ -16,7 +17,7 @@
   @include component.ix-component;
 
   .content {
-    padding: 2rem;
+    padding: #{sys.$si-sys-sizing-spacing-y-90};
     padding-right: 0;
   }
 
@@ -26,8 +27,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-height: 50vh;
-    margin-right: 0.25rem;
-    gap: 1.5rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: #{sys.$si-sys-sizing-spacing-x-80};
   }
 
   .loading {
@@ -36,7 +37,7 @@
     align-items: center;
 
     ix-spinner {
-      margin-right: 1rem;
+      margin-right: #{sys.$si-sys-sizing-spacing-x-60};
     }
   }
 }
@@ -47,9 +48,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
-    padding: calc(0.5rem - 0.0625rem);
-    padding-inline-end: calc(1rem - 0.0625rem);
+    gap: #{sys.$si-sys-sizing-spacing-x-60};
+    padding: calc(#{sys.$si-sys-sizing-spacing-y-40} - 0.0625rem);
+    padding-inline-end: calc(#{sys.$si-sys-sizing-spacing-x-60} - 0.0625rem);
     flex: 1 1 calc(45%);
     cursor: pointer;
     border: 0.0625rem solid transparent;
@@ -76,12 +77,12 @@
   }
 
   .AppName ix-icon {
-    margin-left: 1rem;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   }
 
   .AppIcon {
-    width: 3rem;
-    height: 3rem;
+    width: #{sys.$si-sys-sizing-size-100};
+    height: #{sys.$si-sys-sizing-size-100};
     border-radius: 0.25rem;
   }
 }

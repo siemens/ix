@@ -7,15 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './upload.vars' as *;
 :host {
   display: block;
-  min-height: 4rem;
-  height: 4rem;
+  min-height: #{sys.$si-sys-sizing-size-110};
+  height: #{sys.$si-sys-sizing-size-110};
 
   @include component.ix-component;
 
@@ -30,7 +30,7 @@
     height: 100%;
     width: 100%;
 
-    padding: vars.$default-space;
+    padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
 
     border: 1px dashed var(--ix-upload--border-color);
     border-radius: var(--ix-upload--border-radius);
@@ -73,7 +73,7 @@
     }
 
     ix-button {
-      margin-inline-start: vars.$default-space;
+      margin-inline-start: #{sys.$si-sys-sizing-spacing-x-60};
     }
 
     .upload-browser {
@@ -88,10 +88,10 @@
     }
 
     .loader {
-      margin: 2.187rem auto;
+      margin: #{sys.$si-sys-sizing-spacing-y-90} auto;
       font-size: 0.937rem;
-      width: vars.$default-space;
-      height: vars.$default-space;
+      width: #{sys.$si-sys-sizing-size-50};
+      height: #{sys.$si-sys-sizing-size-50};
       border-radius: 50%;
       position: relative;
       text-indent: -9999em;
@@ -100,7 +100,7 @@
     }
 
     .upload-filename {
-      margin-bottom: vars.$default-space;
+      margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
     }
 
     .state {
@@ -108,11 +108,11 @@
       align-items: center;
 
       > ix-spinner {
-        margin-inline-end: vars.$small-space;
+        margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
       }
 
       > ix-icon {
-        margin-inline-end: vars.$small-space;
+        margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
 
         &.icon-error {
           color: var(--ix-upload-error-icon--color);

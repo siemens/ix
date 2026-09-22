@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './pane.vars' as *;
 @mixin set-border($composition) {
@@ -54,7 +55,7 @@
   .slot-header-content {
     display: inline-block;
     position: relative;
-    max-height: 2rem;
+    max-height: #{sys.$si-sys-sizing-size-80};
   }
 
   .title-text {
@@ -193,13 +194,13 @@
   }
 
   .slot-header {
-    max-height: 2rem;
+    max-height: #{sys.$si-sys-sizing-size-80};
     max-width: unset;
   }
 
   .slot-header.rotate {
     max-height: unset;
-    max-width: 2rem;
+    max-width: #{sys.$si-sys-sizing-size-80};
   }
 }
 
@@ -233,7 +234,7 @@
   z-index: 100 !important;
 
   .side-pane-content {
-    height: calc(100% - 2.5rem);
+    height: calc(100% - #{sys.$si-sys-sizing-size-90});
   }
 }
 

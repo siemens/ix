@@ -11,14 +11,15 @@
 @use 'legacy/mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './group-item.vars' as *;
 $focusBorderWidth: 1px;
 
 :host {
   display: flex;
-  min-height: 2.25rem;
-  height: 2.25rem;
+  min-height: #{sys.$si-sys-sizing-size-80};
+  height: #{sys.$si-sys-sizing-size-80};
 
   @include component.ix-component;
 
@@ -36,7 +37,7 @@ $focusBorderWidth: 1px;
     color: var(--ix-group-item--color);
     cursor: pointer;
 
-    padding-left: 2.5rem;
+    padding-left: #{sys.$si-sys-sizing-spacing-x-100};
 
     &:focus-visible {
       border: $focusBorderWidth solid var(--ix-group-item--border-color--focus);
@@ -54,7 +55,7 @@ $focusBorderWidth: 1px;
   }
 
   ix-icon {
-    margin-right: vars.$tiny-space;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
     margin-top: -0.125rem;
   }
 

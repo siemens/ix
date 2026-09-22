@@ -7,21 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   @include component.ix-component();
   display: inline-flex;
   position: relative;
-  gap: 0.25rem;
+  gap: #{sys.$si-sys-sizing-spacing-x-20};
 
   .range-delimiter {
     order: 2;
     flex: 0 0 auto;
-    margin-top: 0.25rem;
+    margin-top: #{sys.$si-sys-sizing-spacing-y-20};
   }
 
   .range-delimiter.has-label {
-    margin-top: 2rem;
+    margin-top: #{sys.$si-sys-sizing-size-80};
   }
 
   ::slotted(:first-child),
@@ -39,10 +40,10 @@
   }
 
   ::slotted(.fallback-label-margin) {
-    margin-top: 1.8rem;
+    margin-top: #{sys.$si-sys-sizing-size-80};
   }
 }
 
 :host(.hide-arrow) {
-  gap: 0.5rem;
+  gap: #{sys.$si-sys-sizing-spacing-x-40};
 }

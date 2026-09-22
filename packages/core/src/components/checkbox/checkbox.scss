@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './checkbox.vars' as *;
 :host {
@@ -16,8 +17,8 @@
   @include component.ix-component;
 
   .checkbox-button {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: #{sys.$si-sys-sizing-size-70};
+    width: #{sys.$si-sys-sizing-size-70};
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -32,12 +33,24 @@
     align-items: center;
     justify-content: center;
 
-    width: 1.125rem;
-    min-width: 1.125rem;
-    max-width: 1.125rem;
-    height: 1.125rem;
-    min-height: 1.125rem;
-    max-height: 1.125rem;
+    width: calc(
+      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
+    );
+    min-width: calc(
+      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
+    );
+    max-width: calc(
+      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
+    );
+    height: calc(
+      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
+    );
+    min-height: calc(
+      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
+    );
+    max-height: calc(
+      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
+    );
   }
 
   button:disabled {

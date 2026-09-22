@@ -8,15 +8,16 @@
  */
 
 @use './field-wrapper.vars' as *;
+@use 'tokens/system' as sys;
 @mixin helper-text {
   .bottom-text {
     display: flex;
     position: relative;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 0.25rem;
+    gap: #{sys.$si-sys-sizing-spacing-y-20};
 
-    margin-right: 0.25rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   .text-icon {

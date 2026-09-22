@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use './dropdown-button.vars' as *;
 
 @mixin triangle($name: '') {
@@ -39,7 +39,7 @@
 :host {
   display: inline-block;
   position: relative;
-  height: vars.$x-large-space;
+  height: #{sys.$si-sys-sizing-size-80};
   width: auto;
 
   border-top-left-radius: var(--ix-dropdown-button-border-radius-left);
@@ -85,7 +85,7 @@
   }
 
   .dropdown-button .dropdown-icon {
-    margin-right: 0.25rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   .triangle {
@@ -123,7 +123,7 @@
 
 :host(.host-context-date-picker) {
   ix-dropdown {
-    max-height: 15.625rem;
+    max-height: calc(#{sys.$si-sys-sizing-size-140} * 2);
     overflow-y: scroll;
   }
 }
@@ -135,9 +135,7 @@
 
 :host([aria-expanded='true']) {
   @each $variant in $dropdown-button-variants {
-    --ix-button-#{$variant}--color: var(
-      --ix-button-#{$variant}--color--active
-    );
+    --ix-button-#{$variant}--color: var(--ix-button-#{$variant}--color--active);
   }
 }
 

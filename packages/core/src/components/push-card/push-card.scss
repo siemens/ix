@@ -23,16 +23,16 @@
   }
 
   .icon {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: #{sys.$si-sys-sizing-size-90};
+    width: #{sys.$si-sys-sizing-size-90};
   }
 
   ix-card-title {
-    height: 2.5rem;
+    height: #{sys.$si-sys-sizing-size-90};
   }
 
   ix-card-content {
-    height: 11rem;
+    height: #{sys.$si-sys-sizing-size-150};
   }
 }
 

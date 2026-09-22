@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use './card.vars' as card-vars;
 
 :host {
@@ -18,7 +19,7 @@
   overflow: hidden;
   cursor: pointer;
 
-  width: 20rem;
+  width: #{sys.$si-sys-sizing-size-170};
 
   border: var(--ix-card--border-width) solid
     var(--ix-card-border-color, var(--ix-card--border-color));
@@ -32,7 +33,7 @@
     flex-shrink: 0;
     flex-grow: 1;
     width: 100%;
-    height: calc(100% - 2rem);
+    height: calc(100% - #{sys.$si-sys-sizing-size-80});
     background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--ix-card--border-radius);
     border-top-right-radius: var(--ix-card--border-radius);

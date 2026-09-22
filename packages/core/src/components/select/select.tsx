@@ -297,11 +297,9 @@ export class Select
   private readonly chipsContainerRef = makeRef<HTMLElement>();
   private readonly clearButtonRef = makeRef<HTMLElement>();
 
-  private readonly chipHorizontalMargin = 4;
-  private readonly triggerMinWidth = 78;
-  private readonly overflowChipFallbackWidth = 52;
   private overflowChipWidth = 0;
   private chipsResizeObserver?: ResizeObserver;
+  private densityObserver?: MutationObserver;
   private overflowDropdownOpenedByKeyboard = false;
 
   private proxyListObserver: MutationObserver | null = null;
@@ -559,6 +557,18 @@ export class Select
       });
       this.chipsResizeObserver.observe(chipsContainer);
     }
+
+    const densityRoot =
+      this.hostElement.closest('[data-ix-density]') ?? document.documentElement;
+    this.densityObserver = new MutationObserver(() => {
+      this.chipWidths.clear();
+      this.overflowChipWidth = 0;
+      forceUpdate(this);
+    });
+    this.densityObserver.observe(densityRoot, {
+      attributes: true,
+      attributeFilter: ['data-ix-density'],
+    });
   }
 
   override componentWillLoad() {
@@ -571,6 +581,7 @@ export class Select
 
     this.proxyListObserver?.disconnect();
     this.chipsResizeObserver?.disconnect();
+    this.densityObserver?.disconnect();
   }
 
   @Listen('ix-select-item:valueChange')
@@ -1076,14 +1087,39 @@ export class Select
   }
 
   private getChipWidthWithMargin(value: string) {
-    return (this.chipWidths.get(value) ?? 0) + this.chipHorizontalMargin;
+    const chip = this.chipElementRefs.get(value);
+    const margin = chip
+      ? this.getHorizontalMargin(chip)
+      : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2;
+
+    return (this.chipWidths.get(value) ?? 0) + margin;
   }
 
   private getOverflowChipWidthWithMargin() {
+    const overflowChip = this.overflowChipRef.current;
+    const overflowChipWidth =
+      this.overflowChipWidth ||
+      overflowChip?.offsetWidth ||
+      this.getCssPixelValue('--ix-select-overflow-chip-fallback-width');
+
     return (
-      (this.overflowChipWidth || this.overflowChipFallbackWidth) +
-      this.chipHorizontalMargin
+      overflowChipWidth +
+      (overflowChip
+        ? this.getHorizontalMargin(overflowChip)
+        : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2)
     );
+  }
+
+  private getHorizontalMargin(element: HTMLElement) {
+    const style = getComputedStyle(element);
+    return (
+      parseFloat(style.marginLeft || '0') + parseFloat(style.marginRight || '0')
+    );
+  }
+
+  private getCssPixelValue(property: string) {
+    const value = getComputedStyle(this.hostElement).getPropertyValue(property);
+    return parseFloat(value) || 0;
   }
 
   private canShowAllChips(values: string[], available: number) {
@@ -1178,7 +1214,9 @@ export class Select
         ? this.clearButtonRef.current.offsetWidth
         : 0;
     const available =
-      container.clientWidth - this.triggerMinWidth - clearButtonWidth;
+      container.clientWidth -
+      this.getCssPixelValue('--ix-select-trigger-min-width') -
+      clearButtonWidth;
     if (this.canShowAllChips(values, available)) {
       this.applyOverflowState(null, []);
       return;

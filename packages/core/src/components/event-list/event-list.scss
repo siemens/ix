@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: block;
@@ -17,7 +18,7 @@
 }
 
 :host(.item-size-l) {
-  --event-list-item-height: 6.5rem;
+  --event-list-item-height: #{sys.$si-sys-sizing-size-130};
   --event-list-item-content-white-space: normal;
 }
 

@@ -6,18 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'tokens/system' as sys;
 
 @mixin dropdown-item {
   & {
     display: flex;
-    height: 2.5rem;
+    height: #{sys.$si-sys-sizing-size-90};
     position: relative;
     align-items: center;
     cursor: pointer;
-    padding: 0 vars.$x-large-space;
+    padding: 0 #{sys.$si-sys-sizing-spacing-x-90};
     border: 1px solid transparent;
     color: var(--ix-menu-item--color, #{sys.$si-sys-color-text-primary});
     background-color: transparent;
@@ -66,7 +65,7 @@
 
   > .glyph {
     color: var(--ix-menu-item-icon--color, #{sys.$si-sys-color-text-secondary});
-    margin-inline-end: vars.$small-space;
+    margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
 
     &.disabled {
       color: var(--color-weak-text);

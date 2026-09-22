@@ -100,8 +100,8 @@ regressionTest(
 
     const infoPage = page.locator('ix-info-page');
     const imageContainer = infoPage.locator('.content__image');
-    await expect(imageContainer).toHaveCSS('width', '260px');
-    await expect(imageContainer).toHaveCSS('height', '196px');
+    await expect(imageContainer).toHaveCSS('width', '240px');
+    await expect(imageContainer).toHaveCSS('height', '160px');
 
     await infoPage.evaluate((element) => {
       element.style.setProperty('--ix-info-page-image-width', '130px');

@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './menu-category.vars' as *;
 :host {
@@ -28,7 +29,7 @@
 
   .category-text {
     width: 100%;
-    padding-right: 0.25rem;
+    padding-right: #{sys.$si-sys-sizing-spacing-x-20};
 
     @include text-truncation.ellipsis;
   }
@@ -53,7 +54,8 @@
 
   .menu-items--expanded {
     max-height: 999999999px;
-    padding: 0.25rem 0 0.25rem 1.625rem;
+    padding: #{sys.$si-sys-sizing-spacing-y-20} 0 #{sys.$si-sys-sizing-spacing-y-20}
+      #{sys.$si-sys-sizing-spacing-x-80};
   }
 
   .menu-items--collapsed {
@@ -62,18 +64,18 @@
 
   .category-dropdown {
     ::slotted(ix-menu-item) {
-      --ix-menu-item-height: 2.5rem;
+      --ix-menu-item-height: #{sys.$si-sys-sizing-size-90};
     }
   }
 
   .category-dropdown-header {
     pointer-events: none;
-    padding-left: 0.125rem;
-    min-width: 256px;
+    padding-left: #{sys.$si-sys-sizing-spacing-x-20};
+    min-width: calc(#{sys.$si-sys-sizing-size-140} * 2);
   }
 
   ::slotted(ix-menu-item) {
-    --ix-menu-item-height: 2.5rem;
+    --ix-menu-item-height: #{sys.$si-sys-sizing-size-90};
   }
 }
 

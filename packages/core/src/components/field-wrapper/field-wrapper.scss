@@ -1,4 +1,5 @@
 @use './field-wrapper.mixins.scss';
+@use 'tokens/system' as sys;
 
 :host {
   display: flex;
@@ -10,7 +11,7 @@
     position: relative;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.25rem;
+    gap: #{sys.$si-sys-sizing-spacing-y-20};
   }
 
   .field-bottom,
@@ -19,20 +20,20 @@
     flex-direction: row;
     position: relative;
     justify-content: space-between;
-    gap: 1rem;
+    gap: #{sys.$si-sys-sizing-spacing-x-60};
     width: 100%;
     min-width: 100%;
   }
 
   .field-bottom .bottom-right {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   @include field-wrapper.helper-text;
 
   .bottom-text {
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+    margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
   }
 }

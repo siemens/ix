@@ -8,9 +8,14 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './spinner.vars' as *;
-@mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
+@mixin ix-spinner(
+  $size-name: 'medium',
+  $size: #{sys.$si-sys-sizing-size-80},
+  $track-size: 4px
+) {
   :host {
     display: block;
     position: relative;
@@ -110,8 +115,28 @@
   }
 }
 
-@include ix-spinner($size-name: 'xx-small', $size: 0.75rem, $track-size: 1px);
-@include ix-spinner($size-name: 'x-small', $size: 1.25rem, $track-size: 2px);
-@include ix-spinner($size-name: 'small', $size: 1.5rem, $track-size: 2px);
-@include ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 2px);
-@include ix-spinner($size-name: 'large', $size: 6rem, $track-size: 4px);
+@include ix-spinner(
+  $size-name: 'xx-small',
+  $size: #{sys.$si-sys-sizing-size-40},
+  $track-size: 1px
+);
+@include ix-spinner(
+  $size-name: 'x-small',
+  $size: #{sys.$si-sys-sizing-size-60},
+  $track-size: 2px
+);
+@include ix-spinner(
+  $size-name: 'small',
+  $size: #{sys.$si-sys-sizing-size-70},
+  $track-size: 2px
+);
+@include ix-spinner(
+  $size-name: 'medium',
+  $size: #{sys.$si-sys-sizing-size-80},
+  $track-size: 2px
+);
+@include ix-spinner(
+  $size-name: 'large',
+  $size: #{sys.$si-sys-sizing-size-130},
+  $track-size: 4px
+);

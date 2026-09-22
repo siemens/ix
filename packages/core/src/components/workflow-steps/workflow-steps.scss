@@ -9,12 +9,14 @@
 
 @use 'mixins/shadow-dom/component';
 
+@use 'tokens/system' as sys;
+
 :host {
   display: block;
   position: relative;
   width: fit-content;
   height: fit-content;
-  min-width: 2rem;
+  min-width: #{sys.$si-sys-sizing-size-80};
 
   @include component.ix-component;
 

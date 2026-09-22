@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 
 :host {
   display: grid;
   position: relative;
-  row-gap: vars.$large-space;
-  column-gap: vars.$large-space;
+  row-gap: #{sys.$si-sys-sizing-spacing-y-80};
+  column-gap: #{sys.$si-sys-sizing-spacing-x-80};
 }

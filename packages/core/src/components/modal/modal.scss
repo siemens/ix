@@ -8,6 +8,7 @@
  */
 
 @use './modal.vars' as *;
+@use 'tokens/system' as sys;
 ::backdrop {
   background: var(--ix-modal-backdrop--background);
 }
@@ -20,7 +21,7 @@
   display: none;
 
   dialog {
-    --ix-dialog-padding: 1rem;
+    --ix-dialog-padding: #{sys.$si-sys-sizing-spacing-y-60};
 
     margin: 0;
     padding: var(--ix-dialog-padding);
@@ -47,23 +48,23 @@
   }
 
   .modal-size-360 {
-    width: 22.5rem;
+    width: #{sys.$si-sys-sizing-size-170};
   }
 
   .modal-size-480 {
-    width: 30rem;
+    width: #{sys.$si-sys-sizing-size-180};
   }
 
   .modal-size-600 {
-    width: 37.5rem;
+    width: #{sys.$si-sys-sizing-size-190};
   }
 
   .modal-size-720 {
-    width: 45rem;
+    width: #{sys.$si-sys-sizing-size-200};
   }
 
   .modal-size-840 {
-    width: 52.5rem;
+    width: #{sys.$si-sys-sizing-size-200};
   }
 
   .modal-size-full-width {
@@ -86,12 +87,12 @@
     max-width: calc(100% - var(--ix-dialog-padding) * 2);
 
     min-height: calc(
-      100% -
-        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
+      100% - (var(--ix-dialog-padding) * 2) -
+        var(--ix-dialog-full-screen-height)
     );
     max-height: calc(
-      100% -
-        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
+      100% - (var(--ix-dialog-padding) * 2) -
+        var(--ix-dialog-full-screen-height)
     );
   }
 
@@ -138,6 +139,6 @@
 :host(.with-icon) {
   ::slotted(ix-modal-footer),
   ::slotted(ix-modal-content) {
-    margin-left: 3rem;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-110};
   }
 }

@@ -8,11 +8,11 @@
  */
 
 @use 'sass:list';
-@use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use './blind.vars' as blind-vars;
+@use 'tokens/system' as sys;
 
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
@@ -133,8 +133,8 @@
 
   .blind-header-wrapper {
     position: relative;
-    min-height: 3rem;
-    height: 3rem;
+    min-height: #{sys.$si-sys-sizing-size-100};
+    height: #{sys.$si-sys-sizing-size-100};
     overflow: hidden;
   }
 
@@ -148,7 +148,7 @@
     height: 100%;
 
     pointer-events: none;
-    padding-left: 0.5rem;
+    padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .blind-header-title {
@@ -156,7 +156,7 @@
     position: relative;
     align-items: center;
     flex-grow: 1;
-    margin-right: 0.5rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .blind-header {
@@ -171,9 +171,9 @@
 
     pointer-events: all;
 
-    padding-left: 2.5rem;
-    min-height: 3rem;
-    height: 3rem;
+    padding-left: #{sys.$si-sys-sizing-spacing-x-100};
+    min-height: #{sys.$si-sys-sizing-size-100};
+    height: #{sys.$si-sys-sizing-size-100};
     width: calc(100% - 2 * var(--ix-blind--border-width));
     border: solid var(--ix-blind--border-width) transparent;
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
@@ -188,7 +188,7 @@
 
   .blind-header-title-icon,
   .collapse-icon {
-    margin-right: vars.$small-space;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .blind-header-title-row {
@@ -200,7 +200,7 @@
   .blind-header-title-col {
     display: inline-flex;
     align-items: center;
-    width: calc(100% - 1rem);
+    width: calc(100% - #{sys.$si-sys-sizing-spacing-x-60});
     overflow: hidden;
   }
 
@@ -213,12 +213,12 @@
   }
 
   .blind-header-title-label {
-    padding-inline-end: 0.5rem;
+    padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
     @include text-truncation.ellipsis;
   }
 
   .blind-header-title-sublabel {
-    padding-inline: 0.5rem;
+    padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
     @include text-truncation.ellipsis;
   }
 
@@ -238,7 +238,7 @@
 
   .blind-content {
     display: block;
-    padding: 1rem;
+    padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
     transition-property: padding;
     transition-duration: var(--ix-blind-content--transition-duration);
     transition-timing-function: ease-in;

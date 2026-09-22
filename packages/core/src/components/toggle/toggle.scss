@@ -8,16 +8,17 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './toggle.vars' as *;
 :host {
   display: inline-flex;
   flex-direction: row;
   position: relative;
-  min-height: 1.5rem;
-  max-height: calc(100% - 0.5rem);
-  margin-block-start: 0.25rem;
-  margin-block-end: 0.25rem;
+  min-height: #{sys.$si-sys-sizing-size-70};
+  max-height: calc(100% - #{sys.$si-sys-sizing-spacing-y-40});
+  margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
+  margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
 
   @include component.ix-component;
 
@@ -33,19 +34,19 @@
     display: block;
     white-space: normal;
     overflow: hidden;
-    margin-block-start: 0.125rem;
-    margin-inline-start: 0.5rem;
-    min-height: 1rem;
+    margin-block-start: #{sys.$si-sys-sizing-spacing-y-10};
+    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
+    min-height: #{sys.$si-sys-sizing-size-60};
   }
 
   .switch {
     all: unset;
     position: relative;
     display: inline-block;
-    width: 3rem;
-    min-width: 3rem;
-    max-width: 3rem;
-    height: 1.5rem;
+    width: #{sys.$si-sys-sizing-size-110};
+    min-width: #{sys.$si-sys-sizing-size-110};
+    max-width: #{sys.$si-sys-sizing-size-110};
+    height: #{sys.$si-sys-sizing-size-70};
   }
 
   .slider {
@@ -63,10 +64,10 @@
   .slider:before {
     position: absolute;
     content: '';
-    height: 1.125rem;
-    width: 1.125rem;
-    left: 0.125rem;
-    bottom: 0.125rem;
+    height: #{sys.$si-sys-sizing-size-70};
+    width: #{sys.$si-sys-sizing-size-70};
+    left: #{sys.$si-sys-sizing-spacing-x-10};
+    bottom: #{sys.$si-sys-sizing-spacing-y-10};
     background-color: var(--ix-toggle-thumb-off--background);
     transition: var(--ix-toggle-thumb--transition-duration);
     border-radius: 50%;
@@ -75,7 +76,7 @@
 
   .switch.checked > .slider::before {
     background-color: var(--ix-toggle-thumb-on--background);
-    transform: translateX(1.5rem);
+    transform: translateX(#{sys.$si-sys-sizing-size-70});
   }
 
   .switch > .slider {
@@ -132,7 +133,7 @@
   }
 
   .switch.indeterminate > .slider::before {
-    transform: translateX(0.75rem);
+    transform: translateX(#{sys.$si-sys-sizing-spacing-x-50});
   }
 }
 

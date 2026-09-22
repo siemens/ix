@@ -8,12 +8,13 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: block;
   position: relative;
   overflow: auto;
-  padding: 0.75rem;
+  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
 
   @include component.ix-component;
 }

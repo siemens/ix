@@ -1,13 +1,13 @@
-@use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 
 :host {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-  gap: vars.$default-space;
+  margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+  margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+  gap: #{sys.$si-sys-sizing-spacing-x-60};
 
   width: 100%;
 
@@ -15,7 +15,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    gap: 0.25rem;
+    gap: #{sys.$si-sys-sizing-spacing-x-20};
     margin-left: auto;
     margin-right: 0;
   }

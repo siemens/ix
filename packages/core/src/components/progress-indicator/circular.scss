@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use './progress-indicator-vars' as progress-vars;
+@use 'tokens/system' as sys;
 
 @use './circular.vars' as *;
 @mixin circular {
@@ -18,8 +19,11 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 0.25rem;
-    margin: var(--ix-progress-indicator-margin, 0.5rem 0);
+    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    margin: var(
+      --ix-progress-indicator-margin,
+      #{sys.$si-sys-sizing-spacing-y-40} 0
+    );
 
     &.align-left {
       justify-content: flex-start;

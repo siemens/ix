@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'legacy/fonts';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './menu-settings.vars' as *;
 :host {
   display: block;
   background-color: var(--ix-menu-settings-overlay--background);
-  padding: vars.$medium-space vars.$default-space vars.$default-space
-    vars.$x-large-space;
+  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60}
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-90};
   flex-grow: 1;
   position: absolute;
   width: 100%;
@@ -29,16 +29,16 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: vars.$x-large-space;
-    margin-bottom: vars.$small-space;
+    height: #{sys.$si-sys-sizing-size-80};
+    margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
 
     h2 {
       color: var(--ix-menu-settings-overlay-header--color);
-      margin-bottom: 1rem;
+      margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
     }
   }
 
   ix-tabs {
-    margin-bottom: 1.5rem;
+    margin-bottom: #{sys.$si-sys-sizing-spacing-y-80};
   }
 }

@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use './badge.vars' as *;
+@use 'tokens/system' as sys;
 
 $predefined-variants: primary, alarm, critical, warning, info, neutral, success;
 $status-icon-variants: alarm, critical, warning, info, success;
@@ -113,10 +114,10 @@ $border-radius: 100px;
 }
 
 :host([type='dot']) .indicator {
-  width: 0.75rem;
-  height: 0.75rem;
-  min-width: 0.75rem;
-  min-height: 0.75rem;
+  width: #{sys.$si-sys-sizing-size-40};
+  height: #{sys.$si-sys-sizing-size-40};
+  min-width: #{sys.$si-sys-sizing-size-40};
+  min-height: #{sys.$si-sys-sizing-size-40};
   padding: 0;
   line-height: 0;
   font-size: 0;
@@ -125,21 +126,21 @@ $border-radius: 100px;
 
 :host([type='counter']) .indicator,
 :host([type='label']) .indicator {
-  height: 1.25rem;
-  min-width: 1.25rem;
-  min-height: 1.25rem;
+  height: #{sys.$si-sys-sizing-size-60};
+  min-width: #{sys.$si-sys-sizing-size-60};
+  min-height: #{sys.$si-sys-sizing-size-60};
   flex-shrink: 0;
 }
 
 :host([type='counter']) .indicator {
-  padding-inline: 0.25rem;
+  padding-inline: #{sys.$si-sys-sizing-spacing-x-20};
   font-weight: bold;
   line-height: 1.25rem;
 }
 
 :host([type='label']) .indicator {
-  padding-inline: 0.5rem;
-  gap: 0.25rem;
+  padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  gap: #{sys.$si-sys-sizing-spacing-x-20};
   font-weight: 400;
   line-height: 1.25rem;
 }
@@ -150,7 +151,7 @@ $border-radius: 100px;
 }
 
 :host([type='label'].outline.with-icon) .indicator {
-  padding-inline: 0.4375rem;
+  padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
 }
 
 :host([type='label'].align-left) .indicator {
@@ -170,10 +171,10 @@ $border-radius: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  min-width: 1.25rem;
-  min-height: 1.25rem;
+  width: #{sys.$si-sys-sizing-size-60};
+  height: #{sys.$si-sys-sizing-size-60};
+  min-width: #{sys.$si-sys-sizing-size-60};
+  min-height: #{sys.$si-sys-sizing-size-60};
   padding: 0;
   line-height: 0;
   font-size: 0;
@@ -186,17 +187,17 @@ $border-radius: 100px;
 :host([type='status-icon']:not(.outline)) .status-icon-stack {
   position: relative;
   display: block;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: #{sys.$si-sys-sizing-size-60};
+  height: #{sys.$si-sys-sizing-size-60};
   flex-shrink: 0;
 }
 
 :host([type='status-icon']) .status-icon {
   flex-shrink: 0;
-  width: 1.2rem;
-  height: 1.2rem;
-  min-width: 1.2rem;
-  min-height: 1.2rem;
+  width: #{sys.$si-sys-sizing-size-60};
+  height: #{sys.$si-sys-sizing-size-60};
+  min-width: #{sys.$si-sys-sizing-size-60};
+  min-height: #{sys.$si-sys-sizing-size-60};
 }
 
 :host([type='status-icon']:not(.outline)) .status-icon-stack .status-icon {

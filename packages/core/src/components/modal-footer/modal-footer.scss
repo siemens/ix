@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: flex;
-  padding: 0.5rem;
+  padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   justify-content: flex-end;
   align-items: center;
-  gap: 0.5rem;
+  gap: #{sys.$si-sys-sizing-spacing-x-40};
   align-self: stretch;
 
   @include component.ix-component;

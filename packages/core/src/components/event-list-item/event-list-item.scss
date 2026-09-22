@@ -10,10 +10,11 @@
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use 'misc/common-variables' as vars;
 
 @use './event-list-item.vars' as *;
-$default-event-list-item-height: 2.5rem;
+$default-event-list-item-height: #{sys.$si-sys-sizing-size-90};
 
 @mixin host-variants($variant) {
   :host(.event-list-item-#{$variant}) {
@@ -76,7 +77,10 @@ $default-event-list-item-height: 2.5rem;
     overflow: hidden;
     transition: var(--ix-event-list-item--transition-duration);
     cursor: pointer;
-    margin-bottom: var(--event-list-item-margin-bottom, vars.$small-space);
+    margin-bottom: var(
+      --event-list-item-margin-bottom,
+      #{sys.$si-sys-sizing-spacing-y-40}
+    );
 
     .indicator {
       height: 100%;
@@ -101,7 +105,12 @@ $default-event-list-item-height: 2.5rem;
     .event-list-item-container {
       display: flex;
       flex-grow: 1;
-      width: calc(100% - (#{vars.$default-space} + #{vars.$small-space}));
+      width: calc(
+        100% -
+          (
+            #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40}
+          )
+      );
       height: 100%;
       border: 0.062rem solid;
       border-color: var(--ix-event-list-item--border-color);
@@ -116,7 +125,7 @@ $default-event-list-item-height: 2.5rem;
         vars.$default-border-radius
       );
       border-left: none;
-      padding-left: vars.$default-space;
+      padding-left: #{sys.$si-sys-sizing-spacing-x-60};
 
       @include text-truncation.ellipsis;
     }
@@ -129,12 +138,12 @@ $default-event-list-item-height: 2.5rem;
       max-height: var(--event-list-item-height, 100%);
       white-space: var(--event-list-item-content-white-space, inherit);
       overflow: hidden;
-      padding-inline-end: vars.$small-space;
+      padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     .chevron-icon {
       margin-left: auto;
-      margin-right: vars.$small-space;
+      margin-right: #{sys.$si-sys-sizing-spacing-x-40};
       opacity: 0.6;
       align-self: center;
     }

@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './tree-item.vars' as *;
 :host {
   display: flex;
   align-items: center;
 
-  height: 32px;
+  height: #{sys.$si-sys-sizing-size-80};
   width: 100%;
 
   cursor: pointer;
@@ -26,7 +26,7 @@
   .tree-node-container {
     display: flex;
     align-items: center;
-    height: vars.$x-large-space;
+    height: #{sys.$si-sys-sizing-size-80};
     flex-grow: 1;
     align-items: center;
 
@@ -41,9 +41,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
+    width: #{sys.$si-sys-sizing-size-80};
+    height: #{sys.$si-sys-sizing-size-80};
+    min-width: #{sys.$si-sys-sizing-size-80};
 
     ix-icon {
       transition: transform var(--ix-tree-item-expand-icon--transition-duration)

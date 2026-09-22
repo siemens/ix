@@ -7,18 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-inline-start: vars.$large-space;
-  margin-inline-end: vars.$large-space;
-  margin-block-end: vars.$tiny-space;
+  margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+  margin-inline-end: #{sys.$si-sys-sizing-spacing-x-80};
+  margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
 
   slot::slotted(*) {
     display: flex;
-    margin-inline-end: 0.625rem;
+    margin-inline-end: #{sys.$si-sys-sizing-spacing-x-50};
   }
 }

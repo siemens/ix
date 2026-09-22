@@ -9,6 +9,7 @@
 
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './tab-item.vars' as *;
 
@@ -61,12 +62,12 @@
   color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
 
-  height: 2.5rem;
-  min-height: 2.5rem;
-  max-height: 2.5rem;
+  height: #{sys.$si-sys-sizing-size-90};
+  min-height: #{sys.$si-sys-sizing-size-90};
+  max-height: #{sys.$si-sys-sizing-size-90};
 
-  padding: 0.0625rem 1.5rem;
-  gap: 0.5rem;
+  padding: 0.0625rem #{sys.$si-sys-sizing-spacing-x-80};
+  gap: #{sys.$si-sys-sizing-spacing-x-40};
 
   @include component.ix-component;
 
@@ -89,8 +90,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    width: 3rem;
+    height: #{sys.$si-sys-sizing-size-100};
+    width: #{sys.$si-sys-sizing-size-100};
     background-color: var(--ix-tab-item-animated-circle--background);
     border-radius: 50%;
     border: 2px solid var(--ix-tab-item-animated-circle--border-color);
@@ -145,9 +146,9 @@
 }
 
 :host(.circle) {
-  height: 4.5rem;
-  min-height: 4.5rem;
-  max-height: 4.5rem;
+  height: #{sys.$si-sys-sizing-size-110};
+  min-height: #{sys.$si-sys-sizing-size-110};
+  max-height: #{sys.$si-sys-sizing-size-110};
 }
 
 :host(.stretched) {
@@ -233,18 +234,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0.5rem;
+  padding: #{sys.$si-sys-sizing-spacing-y-80} #{sys.$si-sys-sizing-spacing-x-40};
 }
 
 :host(.small-tab) {
-  height: 2rem;
-  min-height: 2rem;
-  max-height: 2rem;
-  padding: 1rem;
+  height: #{sys.$si-sys-sizing-size-80};
+  min-height: #{sys.$si-sys-sizing-size-80};
+  max-height: #{sys.$si-sys-sizing-size-80};
+  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
 }
 
 :host(.small-tab.icon) {
-  padding: 1rem 0.25rem;
+  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20};
 }
 
 :host(:not(.circle):focus-visible) {

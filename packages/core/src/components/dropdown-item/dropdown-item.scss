@@ -9,10 +9,11 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './dropdown-item.vars' as *;
-$itemPadding: 0.5rem;
-$itemPaddingRight: 1.5rem;
+$itemPadding: #{sys.$si-sys-sizing-spacing-x-40};
+$itemPaddingRight: #{sys.$si-sys-sizing-spacing-x-80};
 $focusBorder: 0.0625rem;
 
 @mixin applyItemWidth($padding, $paddingRight) {
@@ -27,7 +28,7 @@ $focusBorder: 0.0625rem;
   flex-direction: row;
 
   position: relative;
-  height: 2.5rem;
+  height: #{sys.$si-sys-sizing-size-90};
   width: auto;
   overflow: hidden;
   cursor: pointer;
@@ -48,7 +49,10 @@ $focusBorder: 0.0625rem;
   }
 
   .dropdown-item.no-checked-field {
-    @include applyItemWidth(1rem, $itemPaddingRight);
+    @include applyItemWidth(
+      #{sys.$si-sys-sizing-spacing-x-60},
+      $itemPaddingRight
+    );
   }
 
   .dropdown-item-checked {
@@ -57,15 +61,15 @@ $focusBorder: 0.0625rem;
     justify-content: center;
     position: relative;
     height: 100%;
-    width: 1rem;
-    min-width: 1rem;
-    margin-right: 0.5rem;
+    width: #{sys.$si-sys-sizing-size-60};
+    min-width: #{sys.$si-sys-sizing-size-60};
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
 
     color: var(--ix-dropdown-item-checkmark--color);
   }
 
   .dropdown-item-icon {
-    margin-right: 0.5rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
     color: var(--ix-dropdown-item-icon--color);
   }
 
@@ -84,7 +88,7 @@ $focusBorder: 0.0625rem;
 
 :host(.icon-only) {
   .dropdown-item-icon {
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   .dropdown-item-checked {
@@ -92,13 +96,16 @@ $focusBorder: 0.0625rem;
   }
 
   .dropdown-item {
-    @include applyItemWidth(0.5rem, 0.5rem);
+    @include applyItemWidth(
+      #{sys.$si-sys-sizing-spacing-x-40},
+      #{sys.$si-sys-sizing-spacing-x-40}
+    );
   }
 }
 
 :host(.submenu) {
   .dropdown-item {
-    @include applyItemWidth($itemPadding, 0.5rem);
+    @include applyItemWidth($itemPadding, #{sys.$si-sys-sizing-spacing-x-40});
   }
 }
 

@@ -6,15 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use 'tokens/system' as sys;
+
 :host {
   display: block;
   position: relative;
 
-  height: 2rem;
-  width: 2rem;
+  height: #{sys.$si-sys-sizing-size-80};
+  width: #{sys.$si-sys-sizing-size-80};
 
-  margin-block-start: 0.3125rem;
-  margin-inline-end: 0.3125rem;
+  margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
+  margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
   margin-inline-start: auto;
 
   .hide {

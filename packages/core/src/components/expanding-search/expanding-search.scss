@@ -6,18 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'misc/common-variables' as vars;
 @use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './expanding-search.vars' as *;
-$container-width: 11.5625rem;
+$container-width: #{sys.$si-sys-sizing-size-160};
 
 :host {
   display: inline-flex;
   width: auto;
-  height: vars.$x-large-space;
+  height: #{sys.$si-sys-sizing-size-90};
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -47,7 +47,7 @@ $container-width: 11.5625rem;
   }
 
   .collapsed {
-    width: vars.$large-space;
+    width: #{sys.$si-sys-sizing-spacing-x-80};
     border: none;
   }
 
@@ -60,8 +60,8 @@ $container-width: 11.5625rem;
 
   .btn-search {
     display: flex;
-    max-width: vars.$x-large-space;
-    max-height: vars.$x-large-space;
+    max-width: #{sys.$si-sys-sizing-size-90};
+    max-height: #{sys.$si-sys-sizing-size-90};
     border-radius: var(--ix-expanding-search--border-radius);
     transition: all var(--ix-expanding-search-button--transition-duration)
       ease-in-out;
@@ -90,13 +90,13 @@ $container-width: 11.5625rem;
   }
 
   .btn-search.btn-search--expanded {
-    margin-left: 0.25rem;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-20};
     pointer-events: none;
   }
 
   .btn-search:active {
-    width: vars.$x-large-space;
-    height: vars.$x-large-space;
+    width: #{sys.$si-sys-sizing-size-90};
+    height: #{sys.$si-sys-sizing-size-90};
     border-radius: var(--ix-expanding-search--border-radius);
     border: var(--ix-expanding-search-button--border--active) !important;
   }
@@ -113,12 +113,12 @@ $container-width: 11.5625rem;
     position: absolute;
     border-radius: var(--ix-expanding-search--border-radius);
     right: 0px;
-    margin-right: 0.25rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   .input {
-    padding-left: vars.$x-large-space !important;
-    padding-right: 2.5rem !important;
+    padding-left: #{sys.$si-sys-sizing-spacing-x-90} !important;
+    padding-right: #{sys.$si-sys-sizing-spacing-x-90} !important;
   }
 
   .opacity-before {

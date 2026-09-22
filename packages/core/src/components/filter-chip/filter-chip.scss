@@ -11,14 +11,15 @@
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './filter-chip.vars' as *;
 :host {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  height: vars.$large-space;
-  padding-left: vars.$small-space;
+  height: #{sys.$si-sys-sizing-size-70};
+  padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   border: var(--ix-filter-chip--border-width) solid
     var(--ix-filter-chip-primary-outline--border-color);
   border-radius: vars.$x-large-space;
@@ -29,7 +30,7 @@
 
   .slot-container {
     @include text-truncation.ellipsis;
-    line-height: vars.$large-space;
+    line-height: #{sys.$si-sys-sizing-size-70};
     min-width: 0;
 
     :host-context(.disabled) {
@@ -40,8 +41,8 @@
   }
 
   ix-icon-button {
-    height: vars.$large-space;
-    margin-left: 0.25rem;
+    height: #{sys.$si-sys-sizing-size-70};
+    margin-left: #{sys.$si-sys-sizing-spacing-x-20};
 
     @include hover.focus-visible {
       outline: none;
@@ -53,14 +54,14 @@
   border: var(--ix-filter-chip--border-width) solid
     var(--ix-filter-chip--border-color--disabled);
   color: var(--ix-filter-chip--color--disabled);
-  padding-right: vars.$small-space;
+  padding-right: #{sys.$si-sys-sizing-spacing-x-40};
 
   cursor: default;
 }
 
 :host(.readonly),
 :host(.hide-close-button) {
-  padding-right: vars.$small-space;
+  padding-right: #{sys.$si-sys-sizing-spacing-x-40};
 }
 
 @include hover.host-hover {

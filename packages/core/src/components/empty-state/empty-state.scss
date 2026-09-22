@@ -1,5 +1,5 @@
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './empty-state.vars' as *;
 :host {
@@ -15,11 +15,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: vars.$default-space;
+  gap: #{sys.$si-sys-sizing-spacing-y-60};
 
   .emptyState__icon {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: #{sys.$si-sys-sizing-size-110};
+    height: #{sys.$si-sys-sizing-size-110};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,14 +34,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: vars.$large-space;
+    gap: #{sys.$si-sys-sizing-spacing-y-80};
 
     .content__label {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: vars.$small-space;
+      gap: #{sys.$si-sys-sizing-spacing-y-40};
     }
   }
 
@@ -56,13 +56,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: vars.$default-space;
+  gap: #{sys.$si-sys-sizing-spacing-x-60};
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: vars.$large-control-height;
+    height: #{sys.$si-sys-sizing-size-90};
   }
 
   .emptyState__content {
@@ -70,7 +70,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: vars.$default-space;
+    gap: #{sys.$si-sys-sizing-spacing-x-60};
   }
 }
 
@@ -78,19 +78,19 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: vars.$default-space;
+  gap: #{sys.$si-sys-sizing-spacing-x-60};
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: vars.$large-control-height;
+    height: #{sys.$si-sys-sizing-size-90};
   }
 
   .emptyState__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: vars.$small-space;
+    gap: #{sys.$si-sys-sizing-spacing-x-40};
   }
 }

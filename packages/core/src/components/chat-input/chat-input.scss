@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
+@use 'tokens/system' as sys;
 @use './chat-input.vars';
 
 :host {
@@ -21,7 +22,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 8rem;
+    min-height: #{sys.$si-sys-sizing-size-140};
     padding: var(--theme-space-2);
     box-sizing: border-box;
     background-color: var(--ix-chat-input--background);
@@ -46,8 +47,8 @@
   }
 
   .follow-up-prompts ::slotted(ix-button) {
-    max-width: 25rem;
-    min-width: 5rem;
+    max-width: #{sys.$si-sys-sizing-size-180};
+    min-width: #{sys.$si-sys-sizing-size-120};
   }
 
   .follow-up-prompts ::slotted(ix-icon-button) {
@@ -80,7 +81,7 @@
 
   .attachments--wrap {
     flex-wrap: wrap;
-    max-height: calc(4rem + var(--theme-space-2));
+    max-height: calc(#{sys.$si-sys-sizing-size-110} + var(--theme-space-2));
     overflow: hidden;
   }
 
@@ -93,7 +94,7 @@
   }
 
   .attachments.has-attachment-scrollbar {
-    padding-bottom: 0.25rem;
+    padding-bottom: #{sys.$si-sys-sizing-spacing-y-20};
   }
 
   .attachments ::slotted(ix-chat-attachment) {
@@ -107,7 +108,7 @@
   textarea {
     flex: 1 1 auto;
     width: 100%;
-    min-height: 2rem;
+    min-height: #{sys.$si-sys-sizing-size-80};
     padding: 0;
     border: 0;
     outline: 0;
@@ -147,7 +148,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: 2rem;
+    min-height: #{sys.$si-sys-sizing-size-80};
     margin-top: var(--theme-space-1);
   }
 

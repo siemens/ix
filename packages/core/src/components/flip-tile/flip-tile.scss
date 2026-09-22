@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use './flip-tile-vars' as flip-tile-vars;
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'legacy/fonts';
+@use 'tokens/system' as sys;
 
 @use './flip-tile.vars' as *;
 :host {
@@ -26,8 +26,8 @@
   .flip-tile-header {
     display: flex;
     align-items: center;
-    height: vars.$large-control-height;
-    padding: 0 vars.$small-space 0 vars.$default-space;
+    height: #{sys.$si-sys-sizing-size-90};
+    padding: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
 
     .header-slot-container {
       flex-grow: 1;
@@ -39,7 +39,7 @@
 
   .content-container {
     flex-grow: 1;
-    margin: vars.$default-space;
+    margin: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
   }
 
   .flip-tile-container {
@@ -51,10 +51,10 @@
       var(--ix-flip-tile--border-radius) 0 0;
 
     .footer {
-      height: 3rem;
+      height: #{sys.$si-sys-sizing-size-100};
       align-items: center;
       justify-content: center;
-      padding: 0 vars.$small-space;
+      padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
 
       :first-child {
         height: 100%;

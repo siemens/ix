@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 @use './../card/card.vars' as card-vars;
 
@@ -17,7 +18,7 @@
   flex-direction: column;
   width: 100%;
   transition: var(--ix-card-accordion--transition-duration) ease-in-out;
-  --ix-card-accordion-expanded-height: 14.75rem;
+  --ix-card-accordion-expanded-height: #{sys.$si-sys-sizing-size-160};
 
   @include component.ix-component;
 
@@ -28,7 +29,7 @@
 
     appearance: button;
 
-    height: 2.5rem;
+    height: #{sys.$si-sys-sizing-size-90};
     width: 100%;
 
     align-items: center;
@@ -50,7 +51,7 @@
   }
 
   .expand-icon {
-    margin-left: 0.5rem;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-40};
     transition: var(--ix-card-accordion-expand-icon--transition-duration)
       transform ease-in-out;
   }
@@ -97,7 +98,9 @@
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
-    height: calc(var(--ix-card-accordion-expanded-height) - 1rem);
+    height: calc(
+      var(--ix-card-accordion-expanded-height) - #{sys.$si-sys-sizing-size-60}
+    );
     color: var(--ix-card-accordion-content--color);
     opacity: 1;
   }
@@ -108,7 +111,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 1rem;
+    height: #{sys.$si-sys-sizing-size-60};
 
     background-color: var(--ix-card-accordion-footer--background);
     border-bottom-left-radius: var(--ix-card-accordion-footer--border-radius);

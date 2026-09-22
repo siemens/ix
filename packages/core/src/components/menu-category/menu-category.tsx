@@ -208,6 +208,10 @@ export class MenuCategory
 
       if (ref) {
         dropdownController.dismiss(ref);
+
+        if (!ref.isPresent()) {
+          this.showDropdown = false;
+        }
       }
     }
   }

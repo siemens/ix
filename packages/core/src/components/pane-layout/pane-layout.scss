@@ -8,10 +8,11 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @mixin set-padding($composition) {
   @if $composition {
-    padding-#{$composition}: 2.5rem;
+    padding-#{$composition}: #{sys.$si-sys-sizing-spacing-x-100};
   }
 }
 

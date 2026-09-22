@@ -10,10 +10,11 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './menu-item.vars' as *;
-$menuItemHeight: 3rem;
-$menuItemPadding: 0.875rem;
+$menuItemHeight: #{sys.$si-sys-sizing-size-100};
+$menuItemPadding: #{sys.$si-sys-sizing-spacing-x-60};
 
 :host {
   position: relative;
@@ -76,7 +77,7 @@ $menuItemPadding: 0.875rem;
   .tab-text {
     display: block;
     color: var(--ix-menu-item-primary--color);
-    margin: 0 1rem 0 1.25rem;
+    margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70};
     user-select: none;
     width: 100%;
 
@@ -120,7 +121,7 @@ $menuItemPadding: 0.875rem;
 
 :host(.bottom-tab),
 :host([slot='bottom']) {
-  $bottom-height: 2.25rem;
+  $bottom-height: #{sys.$si-sys-sizing-size-90};
 
   min-height: $bottom-height;
   height: $bottom-height;
@@ -159,7 +160,7 @@ $menuItemPadding: 0.875rem;
 :host(.tab-nested) {
   .tab {
     flex-direction: row;
-    padding-left: calc(0.5rem + $menuItemPadding);
+    padding-left: calc(#{sys.$si-sys-sizing-spacing-x-40} + $menuItemPadding);
 
     .notification {
       position: relative;
@@ -169,12 +170,12 @@ $menuItemPadding: 0.875rem;
     }
 
     .tab-icon {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+      padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+      padding-right: #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     .tab-text {
-      margin-left: 0.5rem;
+      margin-left: #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     &::before {

@@ -7,18 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use './../button/button-mixin';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @include button-mixin.btn;
 @include button-mixin.all-btn-variants;
 
 :host {
   display: inline-block;
-  height: vars.$x-large-space;
+  height: #{sys.$si-sys-sizing-size-90};
   width: auto;
-  min-width: 5rem;
+  min-width: #{sys.$si-sys-sizing-size-130};
   vertical-align: middle;
 
   @include component.ix-component;

@@ -8,12 +8,14 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 :host {
   display: flex;
-  padding: 0.5rem 0 0.5rem 0.5rem;
+  padding: #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-40}
+    #{sys.$si-sys-sizing-spacing-x-40};
   align-items: center;
-  gap: 1rem;
+  gap: #{sys.$si-sys-sizing-spacing-x-60};
 
   @include component.ix-component;
 

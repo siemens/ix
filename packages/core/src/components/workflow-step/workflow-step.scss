@@ -7,25 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
 @use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
-  width: 12rem;
-  height: 4rem;
-  min-width: 2rem;
-  min-height: 4rem;
-  max-width: 12rem;
+  width: #{sys.$si-sys-sizing-size-150};
+  height: #{sys.$si-sys-sizing-size-110};
+  min-width: #{sys.$si-sys-sizing-size-80};
+  min-height: #{sys.$si-sys-sizing-size-110};
+  max-width: #{sys.$si-sys-sizing-size-150};
 }
 
 :host(.host-vertical) {
   width: 100%;
-  height: 4rem;
-  min-width: 4rem;
-  min-height: 2rem;
-  max-height: 12rem;
+  height: #{sys.$si-sys-sizing-size-110};
+  min-width: #{sys.$si-sys-sizing-size-110};
+  min-height: #{sys.$si-sys-sizing-size-80};
+  max-height: #{sys.$si-sys-sizing-size-150};
 }
 
 :host {
@@ -40,7 +39,8 @@
     align-items: center;
     background-color: var(--ix-workflow-step--background);
     border-radius: var(--ix-workflow-step--border-radius);
-    padding: 1.125rem 0 vars.$small-space 0;
+    padding: #{sys.$si-sys-sizing-spacing-y-60} 0 #{sys.$si-sys-sizing-spacing-y-40}
+      0;
 
     .wrapper {
       display: flex;
@@ -110,9 +110,9 @@
     }
 
     .text {
-      margin-top: vars.$default-space;
+      margin-top: #{sys.$si-sys-sizing-spacing-y-60};
       width: 100%;
-      padding: 0 vars.$small-space;
+      padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -127,7 +127,7 @@
 
       .wrapper {
         width: auto;
-        padding-left: 1.125rem;
+        padding-left: #{sys.$si-sys-sizing-spacing-x-60};
         height: 100%;
 
         .line {
@@ -151,7 +151,7 @@
       }
 
       .text {
-        margin: 0 vars.$default-space;
+        margin: 0 #{sys.$si-sys-sizing-spacing-x-60};
         padding: 0;
         width: auto;
       }

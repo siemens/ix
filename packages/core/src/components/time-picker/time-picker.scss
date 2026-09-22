@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './time-picker.vars' as *;
 :host {
@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: vars.$default-control-height;
+    height: #{sys.$si-sys-sizing-size-80};
   }
 
   .clock {
@@ -50,9 +50,9 @@
         justify-content: space-around;
 
         .column-header {
-          height: 2.5rem;
-          width: 2.5rem;
-          line-height: 2.5rem;
+          height: #{sys.$si-sys-sizing-size-90};
+          width: #{sys.$si-sys-sizing-size-90};
+          line-height: #{sys.$si-sys-sizing-size-90};
           text-align: center;
           color: var(--ix-time-picker-column-header--color);
           text-overflow: ellipsis;
@@ -66,8 +66,8 @@
         align-items: center;
         justify-content: center;
         min-height: 100%;
-        margin-top: 3rem;
-        width: 0.5rem;
+        margin-top: #{sys.$si-sys-sizing-size-110};
+        width: #{sys.$si-sys-sizing-spacing-x-40};
       }
     }
 
@@ -76,7 +76,10 @@
       overflow: auto;
       padding: 0.0625rem;
       margin: -0.0625rem;
-      max-height: calc(2.5rem * 6 + 0.125rem * 6);
+      max-height: calc(
+        #{sys.$si-sys-sizing-size-90} * 6 + #{sys.$si-sys-sizing-spacing-y-10} *
+          6
+      );
 
       button {
         all: unset;
@@ -84,9 +87,9 @@
 
       .element-container {
         box-sizing: border-box;
-        width: 2.5rem;
-        height: 2.5rem;
-        margin-bottom: 0.125rem;
+        width: #{sys.$si-sys-sizing-size-90};
+        height: #{sys.$si-sys-sizing-size-90};
+        margin-bottom: #{sys.$si-sys-sizing-spacing-y-10};
         display: flex;
         justify-content: center;
         align-items: center;
@@ -147,9 +150,13 @@
       }
 
       .element-list-padding {
-        width: 2.5rem;
-        height: calc(2.5rem * 5 + 5 * 0.125rem);
-        min-height: calc(2.5rem * 5 + 5 * 0.125rem);
+        width: #{sys.$si-sys-sizing-size-90};
+        height: calc(
+          #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+        );
+        min-height: calc(
+          #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+        );
       }
     }
 
@@ -166,7 +173,7 @@
   .footer {
     display: flex;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: #{sys.$si-sys-sizing-spacing-x-40};
     flex-wrap: wrap;
 
     .confirm-button {
@@ -184,7 +191,7 @@
   }
 
   .default-space {
-    margin-left: vars.$default-space;
+    margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   }
 
   .text-align {

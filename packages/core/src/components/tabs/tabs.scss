@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './tabs.vars' as *;
 
@@ -83,7 +84,7 @@
     width: 100%;
     touch-action: pan-y;
 
-    padding-right: 2.75rem;
+    padding-right: #{sys.$si-sys-sizing-spacing-x-110};
 
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -101,7 +102,7 @@
   }
 
   .tabs-context-menu {
-    margin-right: 0.5rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .overflow-shadow-container {

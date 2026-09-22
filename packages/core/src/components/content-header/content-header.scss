@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 :host {
   display: flex;
   flex-direction: row;
@@ -18,7 +20,7 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    margin-right: 0.5rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
 
     .headerText {
       min-width: 0;
@@ -42,12 +44,12 @@
         display: inline-flex;
         flex: 0 0 auto;
         align-self: flex-start;
-        margin-left: 0.5rem;
+        margin-left: #{sys.$si-sys-sizing-spacing-x-40};
       }
     }
 
     .secondary {
-      padding: 0.25rem 0;
+      padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
     }
   }
 
@@ -56,7 +58,7 @@
   }
 
   .backButton {
-    margin-right: 0.5rem;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .buttons {

@@ -7,18 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use './action-card.vars';
 
 :host {
   display: block;
   position: relative;
-  min-width: 13.375rem;
-  width: 13.375rem;
-  height: 7.5rem;
-  min-height: 7.5rem;
+  min-width: #{sys.$si-sys-sizing-size-160};
+  width: #{sys.$si-sys-sizing-size-160};
+  height: #{sys.$si-sys-sizing-size-140};
+  min-height: #{sys.$si-sys-sizing-size-140};
   cursor: pointer;
 
-  margin: 0.25rem 0;
+  margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
 
   @include component.ix-component;
 

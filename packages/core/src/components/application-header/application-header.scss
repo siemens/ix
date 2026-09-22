@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/breakpoints';
+@use 'tokens/system' as sys;
 
 @use './application-header.vars' as *;
 :host {
@@ -17,10 +18,14 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-  min-height: 3rem;
+  min-height: #{sys.$si-sys-sizing-size-100};
   padding-top: var(--ix-safe-area-inset-top, 0rem);
-  padding-right: calc(0.625rem + var(--ix-safe-area-inset-right, 0rem));
-  padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
+  padding-right: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} + var(--ix-safe-area-inset-right, 0rem)
+  );
+  padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} + var(--ix-safe-area-inset-left, 0rem)
+  );
 
   color: var(--ix-application-header--color);
   background-color: var(--ix-application-header--background);
@@ -40,7 +45,7 @@
     position: relative;
     align-items: center;
     min-width: 0;
-    min-height: 3rem;
+    min-height: #{sys.$si-sys-sizing-size-100};
     height: 100%;
   }
 
@@ -50,12 +55,12 @@
     .app-icon {
       display: block;
       position: relative;
-      width: 2rem;
-      min-width: 2rem;
-      max-width: 2rem;
-      height: 2rem;
-      min-height: 2rem;
-      max-height: 2rem;
+      width: #{sys.$si-sys-sizing-size-80};
+      min-width: #{sys.$si-sys-sizing-size-80};
+      max-width: #{sys.$si-sys-sizing-size-80};
+      height: #{sys.$si-sys-sizing-size-80};
+      min-height: #{sys.$si-sys-sizing-size-80};
+      max-height: #{sys.$si-sys-sizing-size-80};
     }
 
     .app-icon.app-icon-outline {
@@ -72,7 +77,7 @@
     }
 
     .app-switch {
-      margin: 0 0.625rem;
+      margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     .app-switch.without-app-icon {
@@ -85,12 +90,12 @@
       flex-direction: row;
       flex-wrap: nowrap;
 
-      margin-left: 0.75rem;
-      margin-right: 0.75rem;
+      margin-left: #{sys.$si-sys-sizing-spacing-x-50};
+      margin-right: #{sys.$si-sys-sizing-spacing-x-50};
       color: var(--ix-application-header--color);
       min-width: 0;
 
-      gap: 0.75rem;
+      gap: #{sys.$si-sys-sizing-spacing-x-50};
       overflow: hidden;
     }
 
@@ -121,12 +126,12 @@
       display: inline-flex;
       align-items: center;
       position: relative;
-      height: 32px;
+      height: #{sys.$si-sys-sizing-size-80};
       overflow: hidden;
       line-height: 0rem;
       color: var(--ix-application-header-logo--color);
-      margin-right: 1rem;
-      margin-left: 1rem;
+      margin-right: #{sys.$si-sys-sizing-spacing-x-60};
+      margin-left: #{sys.$si-sys-sizing-spacing-x-60};
       min-width: fit-content;
     }
 
@@ -164,7 +169,7 @@
     }
 
     .dropdown-content > .slot-content-active {
-      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-80};
       border-top: none;
     }
 
@@ -179,11 +184,11 @@
 
     .context-menu.context-menu-visible {
       display: block;
-      margin-left: 0.5rem;
+      margin-left: #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     ::slotted(ix-avatar) {
-      margin-left: 0.5rem;
+      margin-left: #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     .primary-navigation {
@@ -197,7 +202,7 @@
 
   @include breakpoints.media-breakpoint-match('sm') {
     .logo {
-      margin-left: 0.5rem;
+      margin-left: #{sys.$si-sys-sizing-spacing-x-40};
       display: none !important;
     }
 

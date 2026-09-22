@@ -10,19 +10,23 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use './menu-about-news.vars' as *;
-$left: 3.4rem;
+$left: #{sys.$si-sys-sizing-size-100};
+$expanded-left-offset: calc(
+  #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-size-80}
+);
 
 :host {
-  --margin: 0.5rem;
+  --margin: #{sys.$si-sys-sizing-spacing-x-40};
 
   display: block;
   position: fixed;
-  width: 20rem;
+  width: calc(#{sys.$si-sys-sizing-size-90} * 8);
   height: auto;
   background-color: var(--ix-menu-about-news--background);
   border-radius: vars.$default-border-radius;
-  padding: 1rem;
+  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
   left: $left;
   z-index: 10000;
   transition: left var(--ix-menu-about-news--transition-duration);
@@ -35,7 +39,7 @@ $left: 3.4rem;
   .banner-container {
     position: absolute;
     top: 0.0625rem;
-    left: vars.$default-space;
+    left: #{sys.$si-sys-sizing-spacing-x-60};
 
     svg {
       position: absolute;
@@ -48,16 +52,16 @@ $left: 3.4rem;
     }
 
     ix-icon {
-      margin: vars.$small-space;
+      margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
       position: absolute;
       z-index: 1;
     }
   }
 
   .cui-popover-news-header {
-    margin-bottom: 2.5rem;
-    margin-inline-start: 4rem;
-    margin-block-start: -(vars.$tiny-space);
+    margin-bottom: #{sys.$si-sys-sizing-spacing-y-100};
+    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-100};
+    margin-block-start: -(#{sys.$si-sys-sizing-spacing-y-20});
   }
 
   .popover-body {
@@ -67,12 +71,12 @@ $left: 3.4rem;
   .cui-popover-news-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 1rem;
+    margin-top: #{sys.$si-sys-sizing-spacing-y-60};
   }
 
   ix-icon-button {
-    top: vars.$small-space;
-    right: vars.$small-space;
+    top: #{sys.$si-sys-sizing-spacing-y-40};
+    right: #{sys.$si-sys-sizing-spacing-x-40};
     position: absolute;
   }
 
@@ -86,7 +90,7 @@ $left: 3.4rem;
 }
 
 :host(.expanded) {
-  left: calc(#{$left} + 12.7rem);
+  left: calc(#{$left} + #{$expanded-left-offset});
 }
 
 :host(.show) {

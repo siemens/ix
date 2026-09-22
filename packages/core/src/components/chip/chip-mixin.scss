@@ -7,15 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 $outline-border-width: 0.0625rem;
 
-@mixin chip-container($interaction: true, $padding-inline: 0.75rem) {
+@mixin chip-container(
+  $interaction: true,
+  $padding-inline: #{sys.$si-sys-sizing-spacing-x-50}
+) {
   .container {
     display: inline-flex;
     width: inherit;
@@ -24,11 +27,11 @@ $outline-border-width: 0.0625rem;
     position: relative;
     align-items: center;
     border-radius: $border-radius;
-    padding: 0.5rem;
+    padding: #{sys.$si-sys-sizing-spacing-y-40};
     vertical-align: top;
 
-    height: vars.$default-control-height;
-    max-height: vars.$default-control-height;
+    height: #{sys.$si-sys-sizing-size-80};
+    max-height: #{sys.$si-sys-sizing-size-80};
 
     @if $interaction {
       cursor: pointer;
@@ -44,13 +47,13 @@ $outline-border-width: 0.0625rem;
     }
 
     .with-icon {
-      margin-right: vars.$tiny-space;
+      margin-right: #{sys.$si-sys-sizing-spacing-x-20};
     }
 
     .close-button-container {
       display: inline-flex;
       margin-left: auto;
-      padding-left: 0.5rem;
+      padding-left: #{sys.$si-sys-sizing-spacing-x-40};
     }
 
     .slot-container {
@@ -84,7 +87,9 @@ $outline-border-width: 0.0625rem;
       }
 
       &.closable:not(.inactive) {
-        padding-right: calc(0.25rem - #{$outline-border-width});
+        padding-right: calc(
+          #{sys.$si-sys-sizing-spacing-x-20} - #{$outline-border-width}
+        );
       }
 
       &.closable.inactive,
@@ -97,7 +102,7 @@ $outline-border-width: 0.0625rem;
       padding-left: $padding-inline;
 
       &.closable:not(.inactive) {
-        padding-right: 0.25rem;
+        padding-right: #{sys.$si-sys-sizing-spacing-x-20};
       }
 
       &.closable.inactive,

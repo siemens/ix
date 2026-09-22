@@ -7,14 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use '../button/button';
+@use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
 @use 'mixins/input';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './category-filter-dropdown-item' as dropdown-item;
 @use './category-filter.vars' as *;
@@ -27,8 +28,8 @@
 
   .reset-button {
     position: absolute;
-    top: vars.$tiny-space;
-    right: vars.$tiny-space;
+    top: #{sys.$si-sys-sizing-spacing-y-20};
+    right: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   .reset-button.hide-reset-button {
@@ -36,8 +37,8 @@
   }
 
   .input-container {
-    $padding-with-icon: 1px vars.$large-space 1px 1.75rem;
-    $padding-no-icon: 1px vars.$large-space 1px vars.$tiny-space;
+    $padding-with-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px #{sys.$si-sys-sizing-spacing-x-90};
+    $padding-no-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px #{sys.$si-sys-sizing-spacing-x-20};
 
     &:not(.readonly) {
       &:not(.no-icon) {
@@ -76,7 +77,7 @@
 
     display: flex;
     height: auto;
-    max-height: 3.75rem;
+    max-height: #{sys.$si-sys-sizing-size-130};
   }
 
   .token-container {
@@ -86,8 +87,8 @@
 
   .text-input {
     width: auto;
-    height: 1.75rem;
-    min-height: vars.$large-space;
+    height: #{sys.$si-sys-sizing-size-70};
+    min-height: #{sys.$si-sys-sizing-size-70};
     background: transparent;
     flex-grow: 1;
     box-shadow: none;
@@ -122,22 +123,22 @@
 
   ix-icon {
     position: absolute;
-    top: vars.$small-space;
-    left: vars.$small-space;
+    top: #{sys.$si-sys-sizing-spacing-y-40};
+    left: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   ix-filter-chip {
-    margin-right: vars.$tiny-space;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   .category-preview {
     display: flex;
     align-items: center;
-    height: vars.$large-space;
+    height: #{sys.$si-sys-sizing-size-70};
     background-color: var(--ix-category-filter-category-preview--background);
     border-top-left-radius: vars.$default-space;
     border-bottom-left-radius: vars.$default-space;
-    padding: vars.$small-space;
+    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
     margin: 2px 0;
   }
 
@@ -153,7 +154,7 @@
   }
 
   ix-dropdown {
-    min-width: 10rem !important;
+    min-width: #{sys.$si-sys-sizing-size-160} !important;
 
     @include legacy-fonts.text-default-single;
 
@@ -164,17 +165,17 @@
       .dropdown-header {
         display: flex;
         align-items: center;
-        height: vars.$large-control-height;
+        height: #{sys.$si-sys-sizing-size-90};
         color: var(--ix-category-filter-header--color);
-        padding: 0 vars.$default-space;
+        padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
       }
 
       .dropdown-item {
         @include dropdown-item.dropdown-item;
 
-        height: vars.$large-control-height;
-        margin: vars.$tiny-space vars.$small-space;
-        padding-inline: vars.$small-space;
+        height: #{sys.$si-sys-sizing-size-90};
+        margin: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40};
+        padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
         border: 1px solid transparent;
         border-radius: 100rem;
         width: auto;
@@ -202,9 +203,9 @@
     }
 
     .btn-toggle-operator {
-      width: 2rem;
-      height: 2rem;
-      margin-inline: vars.$small-space;
+      width: #{sys.$si-sys-sizing-size-80};
+      height: #{sys.$si-sys-sizing-size-80};
+      margin-inline: #{sys.$si-sys-sizing-spacing-x-40};
     }
   }
 
