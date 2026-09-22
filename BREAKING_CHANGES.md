@@ -3,24 +3,6 @@
 Welcome to the comprehensive list of breaking changes introduced in `Siemens Industrial Experience`.
 This document aims to provide a clear and detailed overview of all significant modifications that may affect your existing codebase. Understanding these changes is crucial for a smooth transition and to ensure compatibility with the latest version of the library.
 
-## Pattern terminology
-
-The copyable UI feature uses **patterns** consistently across every public
-contract. This is a breaking, pattern-only contract with no terminology
-aliases.
-
-- Source manifests and preview packages live in `patterns/`,
-  `react-patterns`, and `angular-standalone-patterns`.
-- Registry entries use `versions[].patterns`; pattern resources are served
-  below `/patterns/`, and search records use `kind: "pattern"` with IDs in the
-  form `pattern:<framework>:<name>`.
-- Registry integrations use `componentRelatedPatterns`, `relatedPatterns`,
-  `llms.patterns`, and `llms/patterns.md`.
-- CLI projects use `ix-patterns.schema.json`, `ix-patterns-lock.json`, the
-  `patterns` config field, and `src/patterns` as the default target. Run
-  `ix init` to create the lock file; `ix add` remains the installation command.
-- MCP clients use `search_patterns` and `list_all_patterns`.
-
 ## Registry example and pattern manifests: path-only files
 
 The registry file contract is changing to remove the ambiguity between a
