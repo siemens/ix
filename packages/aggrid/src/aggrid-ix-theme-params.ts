@@ -39,7 +39,7 @@ export const aggridIxThemeParams = {
   'checkboxIndeterminateShapeColor': `var(--si-sys-color-text-on-accent)`,
   'checkboxUncheckedBackgroundColor': `var(--si-sys-color-background-accent-secondary)`,
   'checkboxUncheckedBorderColor': `var(--si-sys-color-border-1)`,
-  'columnBorder': `var(--theme-border-width-default) solid var(--si-sys-color-border-4)`,
+  'columnBorder': `false`,
   'columnDropCellBackgroundColor': `var(--si-sys-color-background-1)`,
   'columnDropCellBorder': `var(--theme-border-width-default) solid transparent`,
   'columnDropCellDragHandleColor': `var(--si-sys-color-text-primary)`,
