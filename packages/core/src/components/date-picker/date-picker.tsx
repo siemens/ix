@@ -52,6 +52,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { DatePickerYearMonth } from './date-picker.types';
 
 interface CalendarWeek {
   weekNumber: number;
@@ -447,8 +448,13 @@ export class DatePicker
    * @internal
    */
   @Method()
-  async updateSelectedYearMonth(date: DateTime) {
-    this.setDisplayedMonth(date);
+  async updateSelectedYearMonth(date: DatePickerYearMonth) {
+    this.setDisplayedMonth(
+      DateTime.fromObject({
+        year: date.year,
+        month: date.month,
+      })
+    );
   }
 
   /**

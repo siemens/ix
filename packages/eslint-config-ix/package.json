@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "plugin.js",
+    "rules"
   ],
   "private": true,
   "dependencies": {
@@ -15,5 +17,4 @@
     "eslint-plugin-turbo": "^2.0.9",
     "prettier": "^3.3.3"
   }
-
 }
