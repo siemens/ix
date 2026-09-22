@@ -15,46 +15,46 @@
 // each variant needs an explicit mapping rather than string interpolation.
 $blind-variant-sys-values: (
   alarm: (
-    background: sys.$si-sys-background-danger,
-    hover: sys.$si-sys-background-danger-hover,
-    active: sys.$si-sys-background-danger-active,
-    contrast: sys.$si-sys-text-on-danger,
+    background: sys.$si-sys-color-background-danger,
+    hover: sys.$si-sys-color-background-danger-hover,
+    active: sys.$si-sys-color-background-danger-active,
+    contrast: sys.$si-sys-color-text-on-danger,
   ),
   critical: (
-    background: sys.$si-sys-background-critical,
-    hover: sys.$si-sys-background-critical-hover,
-    active: sys.$si-sys-background-critical-active,
-    contrast: sys.$si-sys-text-on-critical,
+    background: sys.$si-sys-color-background-critical,
+    hover: sys.$si-sys-color-background-critical-hover,
+    active: sys.$si-sys-color-background-critical-active,
+    contrast: sys.$si-sys-color-text-on-critical,
   ),
   info: (
-    background: sys.$si-sys-background-information,
-    hover: sys.$si-sys-background-information-hover,
-    active: sys.$si-sys-background-information-active,
-    contrast: sys.$si-sys-text-on-information,
+    background: sys.$si-sys-color-background-information,
+    hover: sys.$si-sys-color-background-information-hover,
+    active: sys.$si-sys-color-background-information-active,
+    contrast: sys.$si-sys-color-text-on-information,
   ),
   neutral: (
-    background: sys.$si-sys-background-neutral,
-    hover: sys.$si-sys-background-neutral-hover,
-    active: sys.$si-sys-background-neutral-active,
-    contrast: sys.$si-sys-text-on-neutral,
+    background: sys.$si-sys-color-background-neutral,
+    hover: sys.$si-sys-color-background-neutral-hover,
+    active: sys.$si-sys-color-background-neutral-active,
+    contrast: sys.$si-sys-color-text-on-neutral,
   ),
   primary: (
-    background: sys.$si-sys-background-accent,
-    hover: sys.$si-sys-background-accent-hover,
-    active: sys.$si-sys-background-accent-active,
-    contrast: sys.$si-sys-text-on-accent,
+    background: sys.$si-sys-color-background-accent,
+    hover: sys.$si-sys-color-background-accent-hover,
+    active: sys.$si-sys-color-background-accent-active,
+    contrast: sys.$si-sys-color-text-on-accent,
   ),
   success: (
-    background: sys.$si-sys-background-success,
-    hover: sys.$si-sys-background-success-hover,
-    active: sys.$si-sys-background-success-active,
-    contrast: sys.$si-sys-text-on-success,
+    background: sys.$si-sys-color-background-success,
+    hover: sys.$si-sys-color-background-success-hover,
+    active: sys.$si-sys-color-background-success-active,
+    contrast: sys.$si-sys-color-text-on-success,
   ),
   warning: (
-    background: sys.$si-sys-background-warning,
-    hover: sys.$si-sys-background-warning-hover,
-    active: sys.$si-sys-background-warning-active,
-    contrast: sys.$si-sys-text-on-warning,
+    background: sys.$si-sys-color-background-warning,
+    hover: sys.$si-sys-color-background-warning-hover,
+    active: sys.$si-sys-color-background-warning-active,
+    contrast: sys.$si-sys-color-text-on-warning,
   ),
 );
 
@@ -79,15 +79,15 @@ $blind-variant-sys-values: (
 
 :host {
   --ix-blind-outline-header--background: transparent;
-  --ix-blind-header--color: #{sys.$si-sys-text-primary};
-  --ix-blind-header-sublabel--color: #{sys.$si-sys-text-secondary};
-  --ix-blind-header-actions--color: #{sys.$si-sys-text-accent};
-  --ix-blind-outline--border-color: #{sys.$si-sys-border-3};
-  --ix-blind-outline--border-color--hover: #{sys.$si-sys-background-hover};
-  --ix-blind-outline--border-color--active: #{sys.$si-sys-background-selected};
-  --ix-blind-header--border-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-blind-header--color: #{sys.$si-sys-color-text-primary};
+  --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
+  --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
+  --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
+  --ix-blind-outline--border-color--hover: #{sys.$si-sys-color-background-hover};
+  --ix-blind-outline--border-color--active: #{sys.$si-sys-color-background-selected};
+  --ix-blind-header--border-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind-content--transition-duration: var(--theme-default-time);
   --ix-blind--border-radius: var(--theme-default-border-radius);
   --ix-blind--border-width: var(--theme-border-width-default);
-  --ix-blind--background: #{sys.$si-sys-background-1};
+  --ix-blind--background: #{sys.$si-sys-color-background-1};
 }
