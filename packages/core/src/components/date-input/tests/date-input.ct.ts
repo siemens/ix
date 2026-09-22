@@ -321,6 +321,33 @@ regressionTest.describe('runtime locale and format updates', () => {
   });
 });
 
+regressionTest(
+  'forwards weekStartIndex to the nested date picker',
+  async ({ mount, page }) => {
+    // weekStartIndex 6 is Sunday. 1 September 2023 is a Friday, five columns
+    // along from Sunday, versus four in the Monday-first default.
+    await mount(
+      `<ix-date-input value="2023/09/01" week-start-index="6"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
+
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInput.openByCalender();
+
+    const column = await page.$eval('ix-date-picker', (picker) => {
+      const cell = picker.shadowRoot?.querySelector('[data-calendar-day="1"]');
+      const row = cell?.closest('[role="row"]');
+      if (!cell || !row) {
+        return -1;
+      }
+      return [...row.querySelectorAll('[role="gridcell"]')].indexOf(cell);
+    });
+
+    expect(column).toBe(5);
+  }
+);
+
 regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);

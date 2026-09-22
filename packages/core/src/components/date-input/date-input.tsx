@@ -622,6 +622,7 @@ export class DateInput
               }
             }}
             showWeekNumbers={this.showWeekNumbers}
+            weekStartIndex={this.weekStartIndex}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded
