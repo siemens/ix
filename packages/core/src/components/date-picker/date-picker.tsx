@@ -204,7 +204,6 @@ export class DatePicker
   /**
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months.
-   * It also determines the default order of weekdays based on the locale's conventions.
    * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
    * The locale is also applied when formatting and parsing date values.
    * For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale.
@@ -328,17 +327,12 @@ export class DatePicker
   @State() currToDate?: DateTime;
 
   /**
-   * The month shown in the calendar grid, as the first of that month. Carries
-   * the displayed year with it, so the two can never drift apart.
+   * The month on display, as the first of that month. Carries the displayed
+   * year with it, so the two can never drift apart. The calendar grid, the
+   * header and the month/year dropdown all read it, so they always agree.
+   * Write it through {@link setDisplayedMonth}.
    */
   @State() selectedMonthDate: DateTime = DateTime.local().startOf('month');
-
-  /**
-   * The month highlighted in the month/year dropdown, as the first of that
-   * month. Tracks `selectedMonthDate` except while the dropdown is open and
-   * the user has picked a year but not yet a month.
-   */
-  @State() tempMonthDate: DateTime = DateTime.local().startOf('month');
 
   @State() startYear = 0;
   @State() endYear = 0;
@@ -454,8 +448,15 @@ export class DatePicker
    */
   @Method()
   async updateSelectedYearMonth(date: DateTime) {
-    this.selectedMonthDate = date.startOf('month');
-    this.tempMonthDate = this.selectedMonthDate;
+    this.setDisplayedMonth(date);
+  }
+
+  /**
+   * The single way to move the calendar. `month` may be any day of the target
+   * month; it is normalised to the first of that month.
+   */
+  private setDisplayedMonth(month: DateTime) {
+    this.selectedMonthDate = month.startOf('month');
   }
 
   @Watch('selectedMonthDate')
@@ -483,8 +484,7 @@ export class DatePicker
     this.startYear = initialMonth.year - 101;
     this.endYear = initialMonth.year + 101;
 
-    this.selectedMonthDate = initialMonth;
-    this.tempMonthDate = initialMonth;
+    this.setDisplayedMonth(initialMonth);
   }
 
   private keyboardNavigationYearSelection?: () => void;
@@ -642,15 +642,8 @@ export class DatePicker
     this.calendar = calendar;
   }
 
-  /** `month` is the first of the month to show, as built by `monthsOfYear`. */
-  private selectMonth(month: DateTime) {
-    this.selectedMonthDate = month;
-    this.tempMonthDate = month;
-  }
-
   private changeCalendarView(number: -1 | 1) {
-    this.selectedMonthDate = this.selectedMonthDate.plus({ months: number });
-    this.tempMonthDate = this.selectedMonthDate;
+    this.setDisplayedMonth(this.selectedMonthDate.plus({ months: number }));
   }
 
   private navigateByMonthOrYear(unit: 'month' | 'year', direction: -1 | 1) {
@@ -660,8 +653,7 @@ export class DatePicker
 
     this.focusedDay = Math.min(this.focusedDay, targetMonth.daysInMonth ?? 0);
 
-    this.selectedMonthDate = targetMonth;
-    this.tempMonthDate = targetMonth;
+    this.setDisplayedMonth(targetMonth);
     this.monthChangedFromFocus = true;
   }
 
@@ -763,7 +755,7 @@ export class DatePicker
   }
 
   private renderMonths() {
-    return monthsOfYear(this.tempMonthDate.year).map((month) => {
+    return monthsOfYear(this.selectedMonthDate.year).map((month) => {
       const name = monthNameOf(month, this.locale);
 
       return (
@@ -775,7 +767,7 @@ export class DatePicker
             'disabled-item': !this.isWithinMinMaxMonth(month),
           }}
           onClick={() => {
-            this.selectMonth(month);
+            this.setDisplayedMonth(month);
           }}
         >
           <span class="capitalize monthMargin">{name}</span>
@@ -788,7 +780,7 @@ export class DatePicker
     const rows = [];
 
     for (let year = this.startYear; year <= this.endYear; year++) {
-      const selected = this.tempMonthDate.year === year;
+      const selected = this.selectedMonthDate.year === year;
 
       rows.push(
         <ix-dropdown-item
@@ -799,8 +791,7 @@ export class DatePicker
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={() => {
-            this.tempMonthDate = this.tempMonthDate.set({ year });
-            this.selectedMonthDate = this.selectedMonthDate.set({ year });
+            this.setDisplayedMonth(this.selectedMonthDate.set({ year }));
           }}
         >
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
