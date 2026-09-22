@@ -26,6 +26,31 @@ function timePickerUnitList(picker: Locator, unit: 'hr' | 'min' | 'sec') {
   return timePickerCell(picker, unit, 0).locator('..');
 }
 
+function getClippedCellClickPoint(cell: Locator) {
+  return cell.evaluate((el: HTMLElement) => {
+    const list = el.parentElement;
+    if (!list) {
+      throw new Error('Expected time picker list element');
+    }
+
+    const cellRect = el.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect();
+    const visibleTop = Math.max(cellRect.top, listRect.top);
+    const visibleBottom = Math.min(cellRect.bottom, listRect.bottom);
+    const clippedAtBottom =
+      cellRect.top < listRect.bottom && cellRect.bottom > listRect.bottom;
+
+    if (!clippedAtBottom || visibleBottom <= visibleTop) {
+      return null;
+    }
+
+    return {
+      x: cellRect.left + cellRect.width / 2,
+      y: (visibleTop + visibleBottom) / 2,
+    };
+  });
+}
+
 const getTimeObjs = async (page: Page) => {
   return await page.$$eval(TIME_PICKER_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentTime()));
@@ -487,6 +512,64 @@ regressionTest(
     });
     // 24h format is unaffected by locale; confirms watcher fired and re-init completed
     expect(result).toBe('14:30:00');
+  }
+);
+
+regressionTest(
+  'clicking a partially visible minute cell selects it',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm:ss" time="15:00:39"></ix-time-picker>`
+    );
+
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/\bhydrated\b/);
+    await waitForScrollAnimations(page);
+
+    const minuteList = timePickerUnitList(picker, 'min');
+    const minuteCell = timePickerCell(picker, 'min', 40);
+
+    await minuteList.evaluate((list: HTMLElement, cellId: string) => {
+      const cell = list.querySelector(
+        `[data-element-container-id="${cellId}"]`
+      );
+      if (!(cell instanceof HTMLElement)) {
+        throw new Error(`Expected ${cellId} in time picker list`);
+      }
+
+      const cellRect = cell.getBoundingClientRect();
+      const listRect = list.getBoundingClientRect();
+      list.scrollTop += cellRect.top + cellRect.height / 2 - listRect.bottom;
+    }, 'minute-40');
+
+    await expect.poll(() => getClippedCellClickPoint(minuteCell)).toBeTruthy();
+
+    const clickPoint = await getClippedCellClickPoint(minuteCell);
+    if (!clickPoint) {
+      throw new Error('Expected a click point on the clipped minute cell');
+    }
+
+    // locator.click() scrolls the target into view first and hides this bug.
+    // A plain mouse.click() is also too fast: mouseup can beat focus→render→scroll.
+    // Hold until focus-driven scroll would run (or a few frames if it does not).
+    await page.mouse.move(clickPoint.x, clickPoint.y);
+    await page.mouse.down();
+    await minuteList.evaluate(async (list: HTMLElement) => {
+      const startScrollTop = list.scrollTop;
+      for (let frame = 0; frame < 30; frame++) {
+        await new Promise<void>((resolve) => {
+          requestAnimationFrame(() => resolve());
+        });
+        if (list.scrollTop !== startScrollTop) {
+          return;
+        }
+      }
+    });
+    await page.mouse.up();
+
+    await expect(minuteCell).toHaveAttribute('aria-selected', 'true');
+    await expect(minuteCell).toHaveClass(/\bselected\b/);
+    expect(await getTimeObjs(page)).toEqual(['15:40:39']);
   }
 );
 
