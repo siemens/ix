@@ -53,6 +53,7 @@ export { IxGroupItem } from './ix-group-item.js';
 export { IxHelperText } from './ix-helper-text.js';
 export { IxIconButton } from './ix-icon-button.js';
 export { IxIconToggleButton } from './ix-icon-toggle-button.js';
+export { IxInfoPage } from './ix-info-page.js';
 export { IxInput } from './ix-input.js';
 export { IxKeyValue } from './ix-key-value.js';
 export { IxKeyValueList } from './ix-key-value-list.js';

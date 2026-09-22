@@ -125,6 +125,7 @@ export const testIds = [
   "input-legacy-disabled",
   "input-label",
   "input-disabled",
+  "info-page",
   "icon-toggle-button-tertiary",
   "icon-toggle-button-subtle-tertiary",
   "icon-toggle-button-subtle-secondary",
