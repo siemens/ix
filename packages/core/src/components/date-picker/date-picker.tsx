@@ -466,8 +466,13 @@ export class DatePicker
   }
 
   @Watch('selectedMonthDate')
-  @Watch('weekStartIndex')
   onCalendarStateChange() {
+    this.calendarDirty = true;
+  }
+
+  @Watch('weekStartIndex')
+  onWeekStartIndexChange() {
+    this.setTranslations();
     this.calendarDirty = true;
   }
 

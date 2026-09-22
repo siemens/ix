@@ -907,4 +907,30 @@ regressionTest.describe('week start index', () => {
       expect(await getColumnOfFirstDay(page)).toBe(5);
     }
   );
+
+  regressionTest(
+    'rotates the weekday headers when the week start changes at runtime',
+    async ({ mount, page }) => {
+      // 1 September 2023 is a Friday: column 4 of a Monday-first grid, column 5
+      // once the week starts on Sunday. The header under it has to stay the
+      // same weekday, which only holds if the names are rebuilt with the grid.
+      await mount(`<ix-date-picker from="2023/09/01"></ix-date-picker>`);
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(4);
+
+      const fridayHeader = (await getColumnHeaders(page))[4];
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element: HTMLElement) =>
+          element.setAttribute('week-start-index', '6')
+        );
+
+      await expect.poll(async () => await getColumnOfFirstDay(page)).toBe(5);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[5]).toBe(fridayHeader);
+    }
+  );
 });
