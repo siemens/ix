@@ -1,4 +1,3 @@
-/* eslint-disable */
 /* tslint:disable */
 /* auto-generated vue proxies */
 export { IxActionCard } from './ix-action-card.js';
