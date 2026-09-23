@@ -1,0 +1,46 @@
+.changeset/eix-9-button-icon-size-20.md
+  h_c5a773bf2fda8b 9
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 570,574-578,580,584,587,590-597,602-605
+packages/angular-standalone-test-app/src/preview-examples/spinner-large.ts
+  h_c5a773bf2fda8b 16
+packages/angular-test-app/src/preview-examples/spinner-large.ts
+  h_c5a773bf2fda8b 15
+packages/core/component-api.json
+  h_c5a773bf2fda8b 9246,9249
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 4102-4103,11385-11386
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.tsx
+  h_c5a773bf2fda8b 105
+packages/core/src/components/button/base-button.tsx
+  h_c5a773bf2fda8b 58,63,65,67,69
+packages/core/src/components/chat-attachment/chat-attachment.tsx
+  h_c5a773bf2fda8b 104
+packages/core/src/components/spinner/spinner.scss
+  h_c5a773bf2fda8b 13,113-117
+packages/core/src/components/spinner/spinner.tsx
+  h_c5a773bf2fda8b 30-34,36
+packages/core/src/components/spinner/spinner.types.ts
+  h_c5a773bf2fda8b 12-16,18
+packages/html-test-app/src/preview-examples/spinner-large.html
+  h_c5a773bf2fda8b 18
+packages/react-test-app/src/preview-examples/spinner-large.tsx
+  h_c5a773bf2fda8b 13
+packages/storybook-docs/src/stories/spinner.stories.ts
+  h_c5a773bf2fda8b 27
+packages/vue-test-app/src/preview-examples/spinner-large.vue
+  h_c5a773bf2fda8b 15
+testing/visual-testing/tests/spinner/basic/index.html
+  h_c5a773bf2fda8b 18-21,23,25-28,30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c32c2fea0ccb3d639145e94f6cbd7075260c0d6c",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
