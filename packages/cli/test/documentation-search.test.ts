@@ -8,7 +8,7 @@
  */
 import assert from 'node:assert/strict';
 import MiniSearch from 'minisearch';
-import test from 'node:test';
+import test, { mock } from 'node:test';
 import {
   clearDocumentationSearchCache,
   searchDocumentation,
@@ -474,6 +474,105 @@ test('stored-field errors name the actual central index URL', async () => {
       /Invalid documentation search index at https:\/\/registry\.example\/malformed-fields\/2\.0\.0\/documentation-search-index\.json: stored field 'path'/
     );
   } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('revalidates mutable tags after TTL while reusing resolved-version indexes', async () => {
+  const originalFetch = globalThis.fetch;
+  let now = 0;
+  const clock = mock.method(Date, 'now', () => now);
+  const requests: string[] = [];
+  let latest = '1.0.0';
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = input.toString();
+    requests.push(url);
+    if (url.endsWith('/registry.json')) {
+      return new Response(
+        JSON.stringify({
+          ...(registry() as object),
+          'dist-tags': { latest },
+        })
+      );
+    }
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const baseUrl = 'https://registry.example/ttl';
+    await Promise.all([
+      searchDocumentation({ baseUrl, query: 'button' }),
+      searchDocumentation({ baseUrl: `${baseUrl}/`, query: 'button' }),
+    ]);
+    assert.deepEqual(requests, [
+      `${baseUrl}/registry.json`,
+      `${baseUrl}/1.0.0/documentation-search-index.json`,
+    ]);
+
+    latest = '2.0.0';
+    now = 59_999;
+    assert.equal(
+      (
+        await searchDocumentation({ baseUrl, query: 'button' })
+      )[0]?.path.startsWith('1.0.0/'),
+      true
+    );
+    assert.equal(requests.length, 2);
+
+    now = 60_000;
+    assert.equal(
+      (
+        await searchDocumentation({ baseUrl, query: 'button' })
+      )[0]?.path.startsWith('2.0.0/'),
+      true
+    );
+    assert.deepEqual(requests.slice(2), [
+      `${baseUrl}/registry.json`,
+      `${baseUrl}/2.0.0/documentation-search-index.json`,
+    ]);
+
+    now = 120_000;
+    await searchDocumentation({ baseUrl, query: 'button', version: 'v1.0.0' });
+    assert.deepEqual(requests.slice(4), [`${baseUrl}/registry.json`]);
+  } finally {
+    clock.mock.restore();
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('evicts a failed registry revalidation so the next search can retry', async () => {
+  const originalFetch = globalThis.fetch;
+  let now = 0;
+  const clock = mock.method(Date, 'now', () => now);
+  let registryRequests = 0;
+  let indexRequests = 0;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    if (input.toString().endsWith('/registry.json')) {
+      registryRequests++;
+      if (registryRequests === 2) {
+        return new Response('temporary outage', { status: 503 });
+      }
+      return new Response(JSON.stringify(registry()));
+    }
+    indexRequests++;
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const request = {
+      baseUrl: 'https://registry.example/refresh-failure',
+      query: 'button',
+    };
+    await searchDocumentation(request);
+    now = 60_000;
+    await assert.rejects(searchDocumentation(request), /503/);
+    await searchDocumentation(request);
+    assert.equal(registryRequests, 3);
+    assert.equal(indexRequests, 1);
+  } finally {
+    clock.mock.restore();
     globalThis.fetch = originalFetch;
     clearDocumentationSearchCache();
   }

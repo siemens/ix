@@ -74,7 +74,13 @@ export type DocumentationSearchRequest = {
   limit?: number;
 };
 
-const registryCache = new Map<string, Promise<RegistryIndex>>();
+// The registry's dist-tags are mutable; resolved version artifacts are not.
+const REGISTRY_CACHE_TTL_MS = 60_000;
+type CachedRegistry = {
+  request: Promise<RegistryIndex>;
+  expiresAt?: number;
+};
+const registryCache = new Map<string, CachedRegistry>();
 const indexCache = new Map<string, Promise<LoadedDocumentationSearch>>();
 
 function cacheRequest<T>(
@@ -92,7 +98,11 @@ function cacheRequest<T>(
 }
 
 function registryCacheKey(baseUrl: string): string {
-  return new URL(baseUrl).href;
+  const url = new URL(baseUrl);
+  url.pathname = url.pathname.replace(/\/+$/, '') || '/';
+  url.search = '';
+  url.hash = '';
+  return url.href;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -257,11 +267,30 @@ function exactMatchPriority(
 function getRegistry(baseUrl: string): Promise<RegistryIndex> {
   const key = registryCacheKey(baseUrl);
   const cached = registryCache.get(key);
-  if (cached) {
-    return cached;
+  if (
+    cached &&
+    (cached.expiresAt === undefined || Date.now() < cached.expiresAt)
+  ) {
+    return cached.request;
   }
-  const request = fetchValidatedRegistryIndex(baseUrl);
-  return cacheRequest(registryCache, key, request);
+  const entry: CachedRegistry = {
+    request: fetchValidatedRegistryIndex(baseUrl),
+  };
+  // Insert before awaiting, including when a previous entry has expired.
+  registryCache.set(key, entry);
+  void entry.request.then(
+    () => {
+      if (registryCache.get(key) === entry) {
+        entry.expiresAt = Date.now() + REGISTRY_CACHE_TTL_MS;
+      }
+    },
+    () => {
+      if (registryCache.get(key) === entry) {
+        registryCache.delete(key);
+      }
+    }
+  );
+  return entry.request;
 }
 
 export async function loadDocumentationSearchIndex(
