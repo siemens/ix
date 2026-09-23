@@ -84,24 +84,12 @@
 }
 
 :host {
-  --ix-radio-checkmark--width: calc(
-    #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-  );
-  --ix-radio-checkmark--min-width: calc(
-    #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-  );
-  --ix-radio-checkmark--max-width: calc(
-    #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-  );
-  --ix-radio-checkmark--height: calc(
-    #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-  );
-  --ix-radio-checkmark--min-height: calc(
-    #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-  );
-  --ix-radio-checkmark--max-height: calc(
-    #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-  );
+  --ix-radio-checkmark--width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--min-width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--max-width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--min-height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--max-height: #{sys.$si-sys-sizing-size-60};
   --ix-radio-button--height: #{sys.$si-sys-sizing-size-70};
   --ix-radio-button--width: #{sys.$si-sys-sizing-size-70};
   --ix-radio-selection-indicator--width: #{sys.$si-sys-sizing-size-30};

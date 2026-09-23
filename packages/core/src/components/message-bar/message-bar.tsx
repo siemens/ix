@@ -128,7 +128,6 @@ export class MessageBar {
             <ix-icon-button
               icon={iconClose}
               iconColor="--si-sys-color-text-secondary"
-              size="24"
               variant="tertiary"
               onClick={() => {
                 if (this.divElement) {

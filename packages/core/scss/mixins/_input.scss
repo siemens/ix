@@ -10,6 +10,30 @@
 @use './fonts';
 @use './validation/form-component';
 
+@mixin element-input-focus {
+  outline: sys.$si-sys-sizing-border-width-default solid
+    var(--ix-input--outline-color--focus, #{sys.$si-sys-color-effects-focus});
+  outline-offset: var(
+    --ix-input--focus--outline-offset,
+    var(--theme-focus-outline-offset)
+  );
+  border-color: var(
+    --ix-input--border-color--focus,
+    #{sys.$si-sys-color-border-1}
+  ) !important;
+}
+
+@mixin element-input-hover {
+  border-color: var(
+    --ix-input--border-color--hover,
+    #{sys.$si-sys-color-border-1}
+  ) !important;
+  background-color: var(
+    --ix-input--background--hover,
+    #{sys.$si-sys-color-background-4}
+  );
+}
+
 @mixin element-input(
   $feature-read-only: true,
   $padding: 0.25rem 0.5rem,
@@ -89,14 +113,7 @@
         [disabled],
         :read-only
       ) {
-      border-color: var(
-        --ix-input--border-color--hover,
-        #{sys.$si-sys-color-border-1}
-      ) !important;
-      background-color: var(
-        --ix-input--background--hover,
-        #{sys.$si-sys-color-background-4}
-      );
+      @include element-input-hover;
     }
   }
 
@@ -110,15 +127,7 @@
         [disabled],
         :read-only
       ) {
-      outline: 1px solid #{sys.$si-sys-color-effects-focus};
-      outline-offset: var(
-        --ix-input--focus--outline-offset,
-        var(--theme-focus-outline-offset)
-      );
-      border-color: var(
-        --ix-input--border-color--focus,
-        #{sys.$si-sys-color-border-1}
-      ) !important;
+      @include element-input-focus;
     }
   }
 

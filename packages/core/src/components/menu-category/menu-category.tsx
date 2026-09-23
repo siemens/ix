@@ -509,6 +509,7 @@ export class MenuCategory
             <span class="category-text">{this.label}</span>
             <ix-icon
               name={iconChevronDownSmall}
+              size="24"
               class={{
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,

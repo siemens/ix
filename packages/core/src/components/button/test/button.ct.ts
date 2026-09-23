@@ -109,6 +109,7 @@ regressionTest('show icon', async ({ mount, page }) => {
   });
   const button = page.locator('ix-button');
   await expect(button.locator('ix-icon')).toBeVisible();
+  await expect(button.locator('ix-icon')).toHaveClass(/size-20/);
 });
 
 regressionTest('show spinner while loading', async ({ mount, page }) => {

@@ -31,8 +31,8 @@
     height: var(--ix-radio-checkmark--height);
     min-height: var(--ix-radio-checkmark--min-height);
     max-height: var(--ix-radio-checkmark--max-height);
-    border: 1px solid white;
-    border-radius: 100px;
+    border: sys.$si-sys-sizing-border-width-default solid white;
+    border-radius: sys.$si-sys-sizing-border-radius-full;
   }
 
   .radio-button {
@@ -54,7 +54,7 @@
   }
 
   .checkmark {
-    border-radius: 100px;
+    border-radius: sys.$si-sys-sizing-border-radius-full;
     background-color: var(--ix-radio-checkmark--background);
     width: var(--ix-radio-selection-indicator--width);
     height: var(--ix-radio-selection-indicator--height);
@@ -133,7 +133,8 @@
   }
 
   :host(:focus-visible) {
-    outline: 0.0625rem solid var(--ix-radio--outline-color--focus);
+    outline: sys.$si-sys-sizing-border-width-default solid
+      var(--ix-radio--outline-color--focus);
     outline-offset: var(--ix-radio--focus--outline-offset);
   }
 

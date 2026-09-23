@@ -12,9 +12,9 @@
 
 @use './spinner.vars' as *;
 @mixin ix-spinner(
-  $size-name: 'medium',
+  $size-name: 'md',
   $size: var(--ix-spinner-medium--size),
-  $track-size: 4px
+  $track-size: sys.$si-sys-sizing-border-width-emphasis
 ) {
   :host {
     display: block;
@@ -116,27 +116,27 @@
 }
 
 @include ix-spinner(
-  $size-name: 'xx-small',
+  $size-name: 'xxs',
   $size: var(--ix-spinner-extra-extra-small--size),
-  $track-size: 1px
+  $track-size: sys.$si-sys-sizing-border-width-default
 );
 @include ix-spinner(
-  $size-name: 'x-small',
+  $size-name: 'xs',
   $size: var(--ix-spinner-extra-small--size),
-  $track-size: 2px
+  $track-size: sys.$si-sys-sizing-border-width-selected
 );
 @include ix-spinner(
-  $size-name: 'small',
+  $size-name: 'sm',
   $size: var(--ix-spinner-small--size),
-  $track-size: 2px
+  $track-size: sys.$si-sys-sizing-border-width-selected
 );
 @include ix-spinner(
-  $size-name: 'medium',
+  $size-name: 'md',
   $size: var(--ix-spinner-medium--size),
-  $track-size: 2px
+  $track-size: sys.$si-sys-sizing-border-width-selected
 );
 @include ix-spinner(
-  $size-name: 'large',
+  $size-name: 'xxl',
   $size: var(--ix-spinner-large--size),
-  $track-size: 4px
+  $track-size: sys.$si-sys-sizing-border-width-emphasis
 );
