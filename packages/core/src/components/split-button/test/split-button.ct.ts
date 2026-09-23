@@ -86,6 +86,20 @@ regressionTest(
 );
 
 regressionTest(
+  'right dropdown trigger uses 20px glyph (Figma)',
+  async ({ mount, page }) => {
+    await mount(getSplitButtonExample({}));
+
+    const dropdownIconButton = page.locator(
+      'ix-split-button ix-dropdown-button ix-icon-button'
+    );
+    await expect(dropdownIconButton).toHaveClass(/hydrated/);
+    await expect(dropdownIconButton).toHaveClass(/btn-icon-32/);
+    await expect(dropdownIconButton.locator('ix-icon')).toHaveClass(/size-20/);
+  }
+);
+
+regressionTest(
   'provide valid aria-activedescendant',
   async ({ mount, page }) => {
     await mount(getSplitButtonExample({}));

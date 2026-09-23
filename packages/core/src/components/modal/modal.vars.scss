@@ -10,9 +10,9 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-modal-backdrop--background: #{sys.$si-sys-effects-backdrop};
+  --ix-modal-backdrop--background: #{sys.$si-sys-color-effects-backdrop};
   --ix-modal--border-radius: var(--theme-default-border-radius);
-  --ix-modal--box-shadow: #{sys.$si-sys-effects-shadow-4};
-  --ix-modal--color: #{sys.$si-sys-text-primary};
-  --ix-modal--background: #{sys.$si-sys-background-3};
+  --ix-modal--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
+  --ix-modal--color: #{sys.$si-sys-color-text-primary};
+  --ix-modal--background: #{sys.$si-sys-color-background-3};
 }

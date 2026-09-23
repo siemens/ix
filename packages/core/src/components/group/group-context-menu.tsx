@@ -100,7 +100,6 @@ export class GroupContextMenu {
             hide: !this.showContextMenu,
             active: this.dropdownShow,
           }}
-          size="24"
           variant="subtle-tertiary"
           icon={iconContextMenu}
           aria-expanded={a11yBoolean(this.dropdownShow)}

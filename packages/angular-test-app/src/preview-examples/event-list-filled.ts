@@ -24,9 +24,9 @@ import { Component } from '@angular/core';
 })
 export default class EventListFilled {
   items = [
-    { text: 'Text 1', color: '--si-sys-background-accent' },
-    { text: 'Text 2', color: '--si-sys-background-accent' },
-    { text: 'Text 3', color: '--si-sys-background-danger' },
-    { text: 'Text 4', color: '--si-sys-background-success' },
+    { text: 'Text 1', color: '--si-sys-color-background-accent' },
+    { text: 'Text 2', color: '--si-sys-color-background-accent' },
+    { text: 'Text 3', color: '--si-sys-color-background-danger' },
+    { text: 'Text 4', color: '--si-sys-color-background-success' },
   ];
 }
