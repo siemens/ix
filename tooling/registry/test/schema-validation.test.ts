@@ -246,19 +246,32 @@ test('accepts a self-describing documentation search index', async () => {
   });
   miniSearch.add({ id: 'component:ix-button', name: 'ix-button' });
 
+  const validIndex = {
+    schemaVersion: 1,
+    fields: ['name'],
+    storeFields: ['id', 'name'],
+    searchOptions: {
+      boost: { name: 3 },
+      fuzzy: 0.2,
+      prefix: true,
+    },
+    payload: miniSearch.toJSON(),
+  };
+
+  assert.equal(validate(validIndex), true);
   assert.equal(
-    validate({
-      schemaVersion: 1,
-      fields: ['name'],
-      storeFields: ['id', 'name'],
-      searchOptions: {
-        boost: { name: 3 },
-        fuzzy: 0.2,
-        prefix: true,
-      },
-      payload: miniSearch.toJSON(),
-    }),
-    true
+    validate(
+      Object.fromEntries(
+        Object.entries(validIndex).filter(([key]) => key !== 'schemaVersion')
+      )
+    ),
+    false,
+    'expected the schema to require schemaVersion'
+  );
+  assert.equal(
+    validate({ ...validIndex, unexpected: true }),
+    false,
+    'expected unexpected top-level fields to be rejected'
   );
 });
 

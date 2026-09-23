@@ -31,7 +31,11 @@ You needed to use includeIgnoredFiles: true in the grep_search tool.
 export const createServer = (
   framework: Framework,
   registryUrl: string,
-  registryRef: string = 'latest'
+  registryRef: string = 'latest',
+  componentRegistry: { baseUrl?: string; version?: string } = {
+    baseUrl: registryUrl,
+    version: registryRef,
+  }
 ) => {
   const server = new Server(
     {
@@ -50,6 +54,7 @@ export const createServer = (
     framework,
     registryUrl,
     registryRef,
+    componentRegistry,
     promptNodeModulesExcluded,
   };
 

@@ -11,6 +11,7 @@ import { afterEach, test } from 'node:test';
 import os from 'node:os';
 import path from 'node:path';
 import fs from 'fs-extra';
+import { assertNoCanonicalPathConflicts } from '../src/canonical-path-conflicts';
 import { generatePatternDefinitions } from '../src/pattern-dependencies';
 
 const temporaryDirectories: string[] = [];
@@ -314,6 +315,154 @@ test('rejects a canonical pattern path outside the output directory', async () =
   );
   assert.equal(
     await fs.pathExists(path.join(root, 'outside/pattern.tsx')),
+    false
+  );
+});
+
+test('detects canonical ancestor conflicts independent of input order', () => {
+  const paths = ['react/card', 'react/card-aux.tsx', 'react/card/x.tsx'];
+
+  for (const orderedPaths of [paths, [...paths].reverse()]) {
+    assert.throws(
+      () => assertNoCanonicalPathConflicts(orderedPaths, 'pattern'),
+      (error: unknown) => {
+        assert.equal(
+          (error as Error).message,
+          "Conflicting public pattern paths 'react/card' and 'react/card/x.tsx'."
+        );
+        return true;
+      }
+    );
+    assert.throws(
+      () => assertNoCanonicalPathConflicts(orderedPaths, 'example'),
+      (error: unknown) => {
+        assert.equal(
+          (error as Error).message,
+          "Conflicting public example paths 'react/card' and 'react/card/x.tsx'."
+        );
+        return true;
+      }
+    );
+  }
+});
+
+test('rejects nested canonical pattern paths with an intervening sibling', async () => {
+  const root = await temporaryWorkspace();
+  const patternsDir = path.join(root, 'patterns');
+  await fs.outputFile(
+    path.join(patternsDir, 'react-patterns/src/card'),
+    'card'
+  );
+  await fs.outputFile(
+    path.join(patternsDir, 'react-patterns/src/card-aux.tsx'),
+    'sibling'
+  );
+  await fs.outputFile(
+    path.join(patternsDir, 'react-patterns/src/x.tsx'),
+    'nested'
+  );
+  await writeJson(path.join(patternsDir, 'example.json'), {
+    name: 'example',
+    variants: {
+      react: {
+        files: [
+          { sourcePath: 'react-patterns/src/card' },
+          { sourcePath: 'react-patterns/src/card-aux.tsx' },
+        ],
+      },
+      'react/card': {
+        files: [{ sourcePath: 'react-patterns/src/x.tsx' }],
+      },
+    },
+  });
+
+  await assert.rejects(
+    generatePatternDefinitions({
+      patternsDir,
+      outputDir: path.join(root, 'dist'),
+      registryVersion: 'main',
+      workspaceRoot: root,
+    }),
+    /Conflicting public pattern paths 'react\/card' and 'react\/card\/x\.tsx'/
+  );
+  assert.equal(await fs.pathExists(path.join(root, 'dist/react/card')), false);
+});
+
+test('rejects materializing patterns through an output framework symlink', async () => {
+  const root = await temporaryWorkspace();
+  const patternsDir = path.join(root, 'patterns');
+  const outputDir = path.join(root, 'dist');
+  const linkedDirectory = path.join(root, 'linked-react');
+  const reactDirectory = path.join(outputDir, 'react');
+  await fs.outputFile(
+    path.join(patternsDir, 'react-patterns/src/pattern.tsx'),
+    'pattern'
+  );
+  await writeJson(path.join(patternsDir, 'example.json'), {
+    name: 'example',
+    variants: {
+      react: {
+        files: [{ sourcePath: 'react-patterns/src/pattern.tsx' }],
+      },
+    },
+  });
+  await fs.ensureDir(outputDir);
+  await fs.ensureDir(linkedDirectory);
+  await fs.symlink(
+    linkedDirectory,
+    reactDirectory,
+    process.platform === 'win32' ? 'junction' : 'dir'
+  );
+
+  await assert.rejects(
+    generatePatternDefinitions({
+      patternsDir,
+      outputDir,
+      registryVersion: 'main',
+      workspaceRoot: root,
+    }),
+    (error: unknown) => {
+      assert.equal(
+        (error as Error).message,
+        `Cannot materialize pattern through symbolic link '${reactDirectory}'.`
+      );
+      return true;
+    }
+  );
+  assert.equal(
+    await fs.pathExists(path.join(linkedDirectory, 'pattern.tsx')),
+    false
+  );
+});
+
+test('rejects an unsafe canonical pattern path from a basename containing percent', async () => {
+  const root = await temporaryWorkspace();
+  const patternsDir = path.join(root, 'patterns');
+  const outputDir = path.join(root, 'dist');
+  await fs.outputFile(
+    path.join(patternsDir, 'react-patterns/src/card%.tsx'),
+    'pattern'
+  );
+  await writeJson(path.join(patternsDir, 'example.json'), {
+    name: 'example',
+    variants: {
+      react: {
+        files: [{ sourcePath: 'react-patterns/src/card%.tsx' }],
+      },
+    },
+  });
+
+  await assert.rejects(
+    generatePatternDefinitions({
+      patternsDir,
+      outputDir,
+      registryVersion: 'main',
+      workspaceRoot: root,
+    }),
+    /Invalid canonical pattern path 'react\/card%\.tsx'/
+  );
+  assert.equal(
+    await fs.pathExists(path.join(outputDir, 'react/card%.tsx')),
     false
   );
 });

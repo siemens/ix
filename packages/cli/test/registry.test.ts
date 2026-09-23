@@ -8,6 +8,7 @@ import test from 'node:test';
 import {
   getExampleCode,
   fetchValidatedRegistryIndex,
+  fetchValidatedPatternDefinition,
   resolveManifestFileUrl,
   resolveRegistryResourceUrl,
 } from '../src/registry';
@@ -49,6 +50,15 @@ test('rejects registry and manifest file traversal', () => {
       resolveManifestFileUrl(
         'https://registry.example/root',
         'v1/patterns/card.json',
+        '../secrets.txt'
+      ),
+    /Invalid manifest file path/
+  );
+  assert.throws(
+    () =>
+      resolveManifestFileUrl(
+        'https://registry.example/root',
+        'v1/patterns/card.json',
         '%2e%2e/secrets.txt'
       ),
     /Invalid manifest file path/
@@ -62,6 +72,154 @@ test('rejects registry and manifest file traversal', () => {
       ),
     /Invalid manifest file path/
   );
+});
+
+test('accepts and preserves loose extension fields without weakening path validation', async () => {
+  const originalFetch = globalThis.fetch;
+  const index = {
+    name: 'ix',
+    'dist-tags': { latest: 'v1' },
+    versions: {
+      v1: {
+        patterns: [],
+        examples: [],
+        components: { componentDoc: 'ix/component-doc.json' },
+        documentationSearchIndex: 'documentation-search-index.json',
+      },
+    },
+    extension: { supported: true },
+  };
+  const pattern = {
+    name: 'card',
+    variants: { react: { files: [{ path: 'react/card.tsx' }] } },
+    extension: { supported: true },
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? index : pattern
+      )
+    )) as typeof fetch;
+  try {
+    assert.deepEqual(
+      (
+        (await fetchValidatedRegistryIndex(
+          'https://registry.example/root'
+        )) as typeof index
+      ).extension,
+      { supported: true }
+    );
+    assert.deepEqual(
+      (
+        (await fetchValidatedPatternDefinition(
+          'https://registry.example/root',
+          'patterns/card.json'
+        )) as typeof pattern
+      ).extension,
+      { supported: true }
+    );
+    pattern.variants.react.files[0].path = '../secrets.txt';
+    await assert.rejects(
+      fetchValidatedPatternDefinition(
+        'https://registry.example/root',
+        'patterns/card.json'
+      ),
+      /Invalid pattern definition/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('rejects duplicate pattern public paths', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async () =>
+    new Response(
+      JSON.stringify({
+        name: 'card',
+        variants: {
+          react: {
+            files: [{ path: 'react/card.tsx' }, { path: 'react/card.tsx' }],
+          },
+        },
+      })
+    )) as typeof fetch;
+  try {
+    await assert.rejects(
+      fetchValidatedPatternDefinition(
+        'https://registry.example/root',
+        'patterns/card.json'
+      ),
+      /duplicate public file path 'react\/card.tsx'/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('rejects duplicate example public paths before fetching source files', async () => {
+  const originalFetch = globalThis.fetch;
+  const requests: string[] = [];
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    requests.push(input.toString());
+    return new Response(
+      JSON.stringify({
+        name: 'card',
+        variants: {
+          react: {
+            files: [{ path: 'react/card.tsx' }, { path: 'react/card.tsx' }],
+          },
+        },
+      })
+    );
+  }) as typeof fetch;
+  try {
+    await assert.rejects(
+      getExampleCode(
+        'https://registry.example/root',
+        'examples/card.json',
+        'react'
+      ),
+      /duplicate public file path 'react\/card.tsx'/
+    );
+    assert.deepEqual(requests, [
+      'https://registry.example/root/examples/card.json',
+    ]);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('keeps failed example file fetches as per-file fallback content', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    input.toString().endsWith('/examples/card.json')
+      ? new Response(
+          JSON.stringify({
+            name: 'card',
+            variants: { react: { files: [{ path: 'react/card.tsx' }] } },
+          })
+        )
+      : new Response('missing', { status: 404 })) as typeof fetch;
+  const originalError = console.error;
+  console.error = () => undefined;
+  try {
+    const result = await getExampleCode(
+      'https://registry.example/root',
+      'examples/card.json',
+      'react'
+    );
+    assert.deepEqual(result.files, [
+      {
+        path: 'react/card.tsx',
+        content:
+          '// Error loading file: Failed to fetch https://registry.example/root/examples/react/card.tsx: 404',
+      },
+    ]);
+  } finally {
+    console.error = originalError;
+    globalThis.fetch = originalFetch;
+  }
 });
 
 test('rejects redirected registry responses without following them', async () => {

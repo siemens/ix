@@ -173,7 +173,7 @@ const RegistryIndexSchema = z
       z.union([currentRegistryVersionSchema, legacyRegistryVersionSchema])
     ),
   })
-  .passthrough();
+  .loose();
 
 const PatternDefinitionSchema = z
   .object({
@@ -239,7 +239,7 @@ const PatternDefinitionSchema = z
       })
       .strict(),
   })
-  .passthrough()
+  .loose()
   .superRefine((value, context) => {
     const paths = new Set<string>();
     for (const [framework, variant] of Object.entries(value.variants)) {
@@ -434,9 +434,9 @@ type VersionedRegistry = {
 
 function resolveVersionKey(
   registry: VersionedRegistry,
-  candidate?: string
+  candidate?: unknown
 ): string | null {
-  if (!candidate) {
+  if (typeof candidate !== 'string' || !candidate) {
     return null;
   }
 
@@ -469,7 +469,9 @@ export function resolveRegistryVersion(
     const resolvedLatest = resolveVersionKey(registry, latest);
 
     if (!resolvedLatest) {
-      throw new Error('Registry latest version is missing or invalid');
+      throw new RegistryVersionResolutionError(
+        'Registry latest version is missing or invalid'
+      );
     }
 
     return resolvedLatest;
@@ -491,10 +493,12 @@ export function resolveRegistryVersion(
     .sort()
     .join(', ');
 
-  throw new Error(
+  throw new RegistryVersionResolutionError(
     `Unknown registry version/tag '${versionRef}'. Available versions: [${availableVersions}] | tags: [${availableTags}]`
   );
 }
+
+export class RegistryVersionResolutionError extends Error {}
 
 export async function fetchRegistryIndex(
   baseUrl: string

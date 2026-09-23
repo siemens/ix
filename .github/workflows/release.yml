@@ -27,6 +27,9 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
+      - name: Check generated IX search bundle
+        run: pnpm check:ix-search
+
       - name: Build
         run: pnpm build --cache-dir=.turbo --force
 

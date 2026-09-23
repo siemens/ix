@@ -142,6 +142,65 @@ test('add dry-run uses the default config without writing project files', async 
   );
 });
 
+test('a failed registry request leaves no new lock or pattern files', async () => {
+  const cwd = await createProject('failed-fetch');
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async () =>
+    new Response('unavailable', { status: 503 })) as typeof fetch;
+  try {
+    await assert.rejects(runAdd('upload', addOptions(), cwd), /503/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+  assert.deepEqual(await fs.readdir(cwd), ['package.json']);
+});
+
+test('a failed pattern source request after validation leaves no new lock', async () => {
+  const cwd = await createProject('failed-source');
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = input.toString();
+    if (url === registryIndexUrl) {
+      return new Response(JSON.stringify(registryIndex));
+    }
+    if (url === patternDefinitionUrl) {
+      return new Response(JSON.stringify(patternDefinition));
+    }
+    return new Response('unavailable', { status: 503 });
+  }) as typeof fetch;
+  try {
+    await assert.rejects(runAdd('upload', addOptions(), cwd), /503/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+  assert.deepEqual(await fs.readdir(cwd), ['package.json']);
+});
+
+test('a conflict leaves no new lock, but --force installs and records files', async () => {
+  const cwd = await createProject('conflict');
+  const destination = path.join(cwd, 'src/patterns/upload/upload.tsx');
+  await fs.mkdir(path.dirname(destination), { recursive: true });
+  await fs.writeFile(destination, 'user content');
+  const restoreFetch = installFetchMock();
+  try {
+    await assert.rejects(
+      runAdd('upload', addOptions(), cwd),
+      /Refusing to overwrite conflicting files/
+    );
+    await assert.rejects(fs.access(path.join(cwd, CONFIG_FILE_NAME)));
+    assert.equal(await fs.readFile(destination, 'utf8'), 'user content');
+
+    await runAdd('upload', { ...addOptions(), force: true }, cwd);
+    assert.equal((await loadConfig(cwd)).patterns[0]?.files?.length, 1);
+    assert.equal(
+      await fs.readFile(destination, 'utf8'),
+      'export const upload = true;\n'
+    );
+  } finally {
+    restoreFetch();
+  }
+});
+
 test('add respects an existing custom target folder', async () => {
   const cwd = await createProject('custom-target');
   await saveConfig(cwd, {

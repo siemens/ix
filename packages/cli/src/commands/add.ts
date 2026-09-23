@@ -4,8 +4,10 @@
 import { Command } from 'commander';
 import {
   CONFIG_FILE_NAME,
+  configExists,
+  createDefaultConfig,
   defaultRegistry,
-  loadConfigOrInit,
+  loadConfig,
   withProjectLock,
 } from '../config';
 import { detectFramework } from '../detect';
@@ -38,10 +40,10 @@ async function runAddUnlocked(
 ): Promise<void> {
   const patternName = assertValidPatternName(patternNameInput);
 
-  const { config, initialized } = await loadConfigOrInit(cwd, opts.dryRun);
-  if (initialized) {
-    console.log(`✅ Initialized ${CONFIG_FILE_NAME}`);
-  }
+  // Do not persist a new lock until the install transaction has succeeded.
+  // Existing locks must still be parsed (and validated) before any requests.
+  const initialized = !(await configExists(cwd));
+  const config = initialized ? createDefaultConfig() : await loadConfig(cwd);
 
   const index = await fetchValidatedRegistryIndex(opts.registry);
   const selectedVersion = resolveRegistryVersion(index, opts.tag);
@@ -106,6 +108,9 @@ async function runAddUnlocked(
   }
 
   await applyInstallPlan(plan, config, selectedVersion);
+  if (initialized) {
+    console.log(`✅ Initialized ${CONFIG_FILE_NAME}`);
+  }
   console.log(`✅ Installed '${patternName}' (${framework})`);
 }
 

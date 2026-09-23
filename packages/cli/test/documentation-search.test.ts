@@ -348,3 +348,133 @@ test('retries index loading after a transient failure', async () => {
     clearDocumentationSearchCache();
   }
 });
+
+test('ranks exact names ahead of partial matches and honors limit zero', async () => {
+  const originalFetch = globalThis.fetch;
+  const skewed = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  skewed.addAll([
+    { ...documents[0], description: 'An action' },
+    {
+      ...documents[1],
+      description: 'button '.repeat(25),
+      keywords: 'button '.repeat(25),
+    },
+  ]);
+  const searchOptions = {
+    boost: { name: 1, description: 100, keywords: 100 },
+    fuzzy: 0.2,
+    prefix: true,
+  };
+  // Without exact-name ranking, the partial match wins on the index score.
+  assert.equal(
+    skewed.search('button', searchOptions)[0]?.id,
+    'component:ix-split-button'
+  );
+  const envelope = {
+    ...(searchIndex() as Record<string, unknown>),
+    searchOptions,
+    payload: skewed.toJSON(),
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? registry() : envelope
+      )
+    )) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const results = await searchDocumentation({
+      baseUrl: 'https://registry.example/ranking',
+      query: 'button',
+      kind: 'component',
+      version: '2.0.0',
+      limit: 1,
+    });
+    assert.deepEqual(
+      results.map((result) => result.id),
+      ['component:ix-button']
+    );
+    assert.deepEqual(
+      await searchDocumentation({
+        baseUrl: 'https://registry.example/ranking',
+        query: 'button',
+        limit: 0,
+      }),
+      []
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('normalizes paths already prefixed with another known version', async () => {
+  const originalFetch = globalThis.fetch;
+  const prefixed = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  prefixed.add({
+    ...documents[0],
+    path: '1.0.0/llms/components/ix-button.md',
+    detailPath: '1.0.0/llms/components/ix-button.md',
+  });
+  const envelope = {
+    ...(searchIndex() as Record<string, unknown>),
+    payload: prefixed.toJSON(),
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? registry() : envelope
+      )
+    )) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const [result] = await searchDocumentation({
+      baseUrl: 'https://registry.example/versions',
+      version: 'v2.0.0',
+      query: 'ix-button',
+    });
+    assert.equal(result?.path, '2.0.0/llms/components/ix-button.md');
+    assert.equal(result?.detailPath, result?.path);
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('stored-field errors name the actual central index URL', async () => {
+  const originalFetch = globalThis.fetch;
+  const invalid = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  invalid.add({ ...documents[0], path: '' });
+  const envelope = {
+    ...(searchIndex() as Record<string, unknown>),
+    payload: invalid.toJSON(),
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? registry() : envelope
+      )
+    )) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    await assert.rejects(
+      searchDocumentation({
+        baseUrl: 'https://registry.example/malformed-fields/',
+        query: 'ix-button',
+      }),
+      /Invalid documentation search index at https:\/\/registry\.example\/malformed-fields\/2\.0\.0\/documentation-search-index\.json: stored field 'path'/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});

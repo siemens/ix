@@ -8,9 +8,11 @@
  */
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'tsdown';
 
 const skillOutputDirectory = process.env.IX_SEARCH_OUT_DIR ?? '../../skills/ix';
+const miniSearchEntry = fileURLToPath(import.meta.resolve('minisearch'));
 
 export default defineConfig({
   entry: ['src/skill/search.mjs'],
@@ -18,10 +20,7 @@ export default defineConfig({
   format: 'esm',
   platform: 'node',
   alias: {
-    minisearch: path.resolve(
-      import.meta.dirname,
-      'node_modules/minisearch/dist/es/index.js'
-    ),
+    minisearch: miniSearchEntry,
   },
   noExternal: ['minisearch'],
   inlineOnly: ['minisearch'],

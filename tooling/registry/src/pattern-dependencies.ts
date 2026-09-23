@@ -9,6 +9,7 @@
 import fs from 'fs-extra';
 import { glob } from 'glob';
 import path from 'node:path';
+import { assertNoCanonicalPathConflicts } from './canonical-path-conflicts';
 
 export type PatternDependency = {
   name: string;
@@ -108,22 +109,6 @@ function assertSafePublicPath(publicPath: string): void {
     throw new Error(
       `Invalid canonical pattern path '${publicPath}'. Expected a safe framework-prefixed relative path.`
     );
-  }
-}
-
-function assertNoCanonicalPathConflicts(publicPaths: string[]): void {
-  const sortedPaths = [...publicPaths].sort();
-  for (let index = 1; index < sortedPaths.length; index++) {
-    const previousPath = sortedPaths[index - 1];
-    const currentPath = sortedPaths[index];
-    if (
-      currentPath === previousPath ||
-      currentPath.startsWith(`${previousPath}/`)
-    ) {
-      throw new Error(
-        `Conflicting public pattern paths '${previousPath}' and '${currentPath}'.`
-      );
-    }
   }
 }
 
@@ -440,7 +425,7 @@ export async function generatePatternDefinitions(
     });
   }
 
-  assertNoCanonicalPathConflicts([...publicPaths.keys()]);
+  assertNoCanonicalPathConflicts([...publicPaths.keys()], 'pattern');
   await Promise.all(
     [...publicPaths.entries()].map(([publicPath, sourcePath]) =>
       assertMaterializablePatternFile(

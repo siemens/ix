@@ -989,6 +989,8 @@ async function search(options, loaded) {
   const documents = storedDocuments(envelope);
   const effectiveKind = options.kind ?? 'component';
   const candidates = new Map();
+  const unmatched = [];
+  const unmatchedQueries = [];
   let matchedInput = false;
 
   const addCandidate = (document, score, priority) => {
@@ -1008,24 +1010,21 @@ async function search(options, loaded) {
       ...envelope.searchOptions,
       filter: (result) => filterMatches(result, options, effectiveKind),
     });
+    if (results.length === 0) {
+      unmatchedQueries.push(
+        diagnostic(
+          'query',
+          query,
+          'no_match',
+          'No documentation results matched this query.'
+        )
+      );
+    }
     for (const result of results) {
       addCandidate(result, result.score, exactMatchPriority(result, query));
     }
   }
 
-  for (const componentName of options.componentNames) {
-    const matches = matchingComponentNameDocuments(
-      documents,
-      componentName,
-      options,
-      effectiveKind
-    );
-    if (matches.length === 0) continue;
-    matchedInput = true;
-    for (const document of matches) addCandidate(document, 1, 5);
-  }
-
-  const unmatched = [];
   for (const figmaId of options.figmaIds) {
     if (!loaded.authoritativeFigmaMappings) {
       unmatched.push(
@@ -1060,14 +1059,13 @@ async function search(options, loaded) {
   }
 
   for (const componentName of options.componentNames) {
-    if (
-      matchingComponentNameDocuments(
-        documents,
-        componentName,
-        options,
-        effectiveKind
-      ).length === 0
-    ) {
+    const matches = matchingComponentNameDocuments(
+      documents,
+      componentName,
+      options,
+      effectiveKind
+    );
+    if (matches.length === 0) {
       unmatched.push(
         diagnostic(
           'component-name',
@@ -1076,8 +1074,12 @@ async function search(options, loaded) {
           'No registered component has this implementation or design name.'
         )
       );
+      continue;
     }
+    matchedInput = true;
+    for (const document of matches) addCandidate(document, 1, 5);
   }
+  unmatched.push(...unmatchedQueries);
 
   const orderedCandidates = [...candidates.values()].sort(
     (left, right) =>

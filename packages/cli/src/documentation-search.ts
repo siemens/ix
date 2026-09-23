@@ -10,6 +10,7 @@ import MiniSearch from 'minisearch';
 import {
   fetchRegistryArtifact,
   fetchValidatedRegistryIndex,
+  resolveRegistryResourceUrl,
   resolveRegistryVersion,
   type RegistryIndex,
 } from './registry';
@@ -58,6 +59,7 @@ type DocumentationSearchEnvelope = {
 type LoadedDocumentationSearch = {
   registry: RegistryIndex;
   version: string;
+  indexUrl: string;
   pathPrefix: string;
   miniSearch: MiniSearch<DocumentationSearchMetadata>;
   searchOptions: DocumentationSearchEnvelope['searchOptions'];
@@ -283,10 +285,10 @@ export async function loadDocumentationSearchIndex(
   }
 
   const request = (async (): Promise<LoadedDocumentationSearch> => {
-    const indexUrl = `${baseUrl.replace(
-      /\/+$/,
-      ''
-    )}/${documentationSearchIndex}`;
+    const indexUrl = resolveRegistryResourceUrl(
+      baseUrl,
+      documentationSearchIndex
+    );
     const envelope = parseDocumentationSearchEnvelope(
       await fetchRegistryArtifact<unknown>(baseUrl, documentationSearchIndex),
       indexUrl
@@ -303,7 +305,7 @@ export async function loadDocumentationSearchIndex(
       );
     } catch (error) {
       throw new Error(
-        `Failed to load documentation search index for registry version '${version}': ${
+        `Failed to load documentation search index at ${indexUrl} for registry version '${version}': ${
           error instanceof Error ? error.message : String(error)
         }`
       );
@@ -312,6 +314,7 @@ export async function loadDocumentationSearchIndex(
     return {
       registry,
       version,
+      indexUrl,
       pathPrefix: artifactPathPrefix(documentationSearchIndex),
       miniSearch,
       searchOptions: envelope.searchOptions,
@@ -348,21 +351,21 @@ export async function searchDocumentation(
   const knownVersions = Object.keys(loaded.registry.versions);
 
   return results.slice(0, limit).map((result) => {
-    const id = requiredString(result.id, 'id', 'central index');
+    const id = requiredString(result.id, 'id', loaded.indexUrl);
     const kind = result.kind;
     if (kind !== 'component' && kind !== 'example' && kind !== 'pattern') {
       throw new Error(
-        `Invalid documentation search result '${id}': unknown kind '${String(
-          kind
-        )}'`
+        `Invalid documentation search result '${id}' at ${
+          loaded.indexUrl
+        }: unknown kind '${String(kind)}'`
       );
     }
 
-    const path = requiredString(result.path, 'path', 'central index');
+    const path = requiredString(result.path, 'path', loaded.indexUrl);
     const metadata: DocumentationSearchResult = {
       id,
       kind,
-      name: requiredString(result.name, 'name', 'central index'),
+      name: requiredString(result.name, 'name', loaded.indexUrl),
       path: normalizeResultPath(path, loaded.pathPrefix, knownVersions),
       score: result.score,
     };

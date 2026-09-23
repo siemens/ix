@@ -177,6 +177,7 @@ type BuildDocumentationSearchIndexOptions = {
   componentRelatedExamplesPath: string;
   componentRelatedPatternsPath: string;
   workspaceRoot: string;
+  warn?: (message: string) => void;
 };
 
 function stringList(values: Iterable<string>): string[] {
@@ -264,20 +265,25 @@ function componentReactAlias(tag: string): string {
 }
 
 async function readReactExportNames(
-  workspaceRoot: string
+  workspaceRoot: string,
+  warn?: (message: string) => void
 ): Promise<Set<string>> {
+  const declarationDirectory = path.join(
+    workspaceRoot,
+    'packages',
+    'react',
+    'dist',
+    'types'
+  );
   const declarationFiles = await glob(
-    path.join(
-      workspaceRoot,
-      'packages',
-      'react',
-      'dist',
-      'types',
-      '**',
-      '*.d.ts'
-    ),
+    path.join(declarationDirectory, '**', '*.d.ts'),
     { absolute: true }
   );
+  if (declarationFiles.length === 0) {
+    (warn ?? console.warn)(
+      `⚠️  React declaration files not found: ${declarationDirectory}. React component aliases will be omitted.`
+    );
+  }
   const exportedNames = new Set<string>();
 
   for (const declarationFile of declarationFiles.sort()) {
@@ -506,7 +512,7 @@ export async function buildDocumentationSearchIndex(
     >,
     definitionDocuments(options.patternsDir, 'patterns', {}),
     definitionDocuments(options.examplesDir, 'examples', {}),
-    readReactExportNames(options.workspaceRoot),
+    readReactExportNames(options.workspaceRoot, options.warn),
   ]);
 
   const exampleComponents: Record<string, string[]> = {};

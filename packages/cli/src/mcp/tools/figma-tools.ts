@@ -28,10 +28,10 @@ export const figmaTools: ToolDefinition[] = [
     handler: async (args, context) => {
       try {
         const parsedArgs = getFigmaComponentMappingSchema.parse(args);
-        const mapping = await getFigmaComponentMapping(parsedArgs.query, {
-          baseUrl: context.registryUrl,
-          version: context.registryRef,
-        });
+        const mapping = await getFigmaComponentMapping(
+          parsedArgs.query,
+          context.componentRegistry
+        );
 
         if (mapping.results.length === 0) {
           if (mapping.queryType === 'figma-id') {
@@ -149,7 +149,9 @@ export const figmaTools: ToolDefinition[] = [
                 error instanceof Error ? error.message : String(error)
               }
 
-              Make sure @siemens/ix is installed in your project.
+              Check the registry URL "${context.registryUrl}" and ref "${
+                context.registryRef
+              }".
               `,
             },
           ],
@@ -164,10 +166,9 @@ export const figmaTools: ToolDefinition[] = [
     schema: listComponentsWithFigmaIdsSchema,
     handler: async (_args, context) => {
       try {
-        const components = await listComponentsWithFigmaIds({
-          baseUrl: context.registryUrl,
-          version: context.registryRef,
-        });
+        const components = await listComponentsWithFigmaIds(
+          context.componentRegistry
+        );
 
         if (components.length === 0) {
           return {
@@ -215,7 +216,9 @@ export const figmaTools: ToolDefinition[] = [
                 error instanceof Error ? error.message : String(error)
               }
 
-              Make sure @siemens/ix is installed in your project.
+              Check the registry URL "${context.registryUrl}" and ref "${
+                context.registryRef
+              }".
               `,
             },
           ],

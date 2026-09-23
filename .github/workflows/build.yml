@@ -28,6 +28,9 @@ jobs:
         with:
           save-cache: 'true'
 
+      - name: Check generated IX search bundle
+        run: pnpm check:ix-search
+
       - name: Build
         run: pnpm build --cache-dir=.turbo
 

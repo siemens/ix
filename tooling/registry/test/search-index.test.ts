@@ -269,3 +269,118 @@ test('builds a deterministic central index for all documentation kinds', async (
     await fs.remove(root);
   }
 });
+
+test('warns when React declarations are missing and keeps building without aliases', async () => {
+  const root = await fs.mkdtemp(
+    path.join(os.tmpdir(), 'ix-search-no-react-types-')
+  );
+  const distDir = path.join(root, 'dist');
+  const componentDocPath = path.join(root, 'component-doc.json');
+  const relatedExamplesPath = path.join(root, 'related-examples.json');
+  const relatedPatternsPath = path.join(root, 'related-patterns.json');
+  const warnings: string[] = [];
+
+  try {
+    await fs.ensureDir(distDir);
+    await fs.outputJson(componentDocPath, {
+      components: [{ tag: 'ix-button', docs: 'A button.' }],
+    });
+    await fs.outputJson(relatedExamplesPath, {});
+    await fs.outputJson(relatedPatternsPath, {});
+
+    const outputFile = await buildDocumentationSearchIndex({
+      distDir,
+      patternsDir: path.join(distDir, 'patterns'),
+      examplesDir: path.join(distDir, 'examples'),
+      componentDocPath,
+      componentRelatedExamplesPath: relatedExamplesPath,
+      componentRelatedPatternsPath: relatedPatternsPath,
+      workspaceRoot: root,
+      warn: (message) => warnings.push(message),
+    });
+
+    assert.deepEqual(warnings, [
+      `⚠️  React declaration files not found: ${path.join(
+        root,
+        'packages',
+        'react',
+        'dist',
+        'types'
+      )}. React component aliases will be omitted.`,
+    ]);
+
+    const index = JSON.parse(
+      await fs.readFile(path.join(distDir, outputFile), 'utf8')
+    ) as {
+      fields: string[];
+      storeFields: string[];
+      payload: ReturnType<MiniSearch<DocumentationSearchDocument>['toJSON']>;
+    };
+    const search = MiniSearch.loadJSON<DocumentationSearchDocument>(
+      JSON.stringify(index.payload),
+      { fields: index.fields, storeFields: index.storeFields }
+    );
+    const component = search.search('ix-button', {
+      ...DOCUMENTATION_SEARCH_OPTIONS,
+      filter: (result) => result.kind === 'component',
+    })[0];
+    assert.deepEqual(component?.aliases, ['ix-button']);
+  } finally {
+    await fs.remove(root);
+  }
+});
+
+test('rejects React variant paths outside their canonical framework directory', async () => {
+  const root = await fs.mkdtemp(
+    path.join(os.tmpdir(), 'ix-search-invalid-path-')
+  );
+  const distDir = path.join(root, 'dist');
+  const patternsDir = path.join(distDir, 'patterns');
+  const examplesDir = path.join(distDir, 'examples');
+  const componentDocPath = path.join(root, 'component-doc.json');
+  const relatedExamplesPath = path.join(root, 'related-examples.json');
+  const relatedPatternsPath = path.join(root, 'related-patterns.json');
+
+  try {
+    await fs.ensureDir(patternsDir);
+    await fs.ensureDir(distDir);
+    await fs.outputJson(componentDocPath, { components: [] });
+    await fs.outputJson(relatedExamplesPath, {});
+    await fs.outputJson(relatedPatternsPath, {});
+
+    for (const filePath of ['../escape.tsx', 'angular/button.ts']) {
+      await fs.emptyDir(patternsDir);
+      await fs.outputJson(path.join(patternsDir, 'invalid.json'), {
+        name: 'invalid',
+        variants: {
+          react: {
+            files: [{ path: filePath }],
+          },
+        },
+      });
+
+      await assert.rejects(
+        buildDocumentationSearchIndex({
+          distDir,
+          patternsDir,
+          examplesDir,
+          componentDocPath,
+          componentRelatedExamplesPath: relatedExamplesPath,
+          componentRelatedPatternsPath: relatedPatternsPath,
+          workspaceRoot: root,
+          warn: () => {},
+        }),
+        (error: unknown) => {
+          assert.ok(error instanceof Error);
+          assert.equal(
+            error.message,
+            `Invalid canonical react file path '${filePath}' in documentation search input.`
+          );
+          return true;
+        }
+      );
+    }
+  } finally {
+    await fs.remove(root);
+  }
+});

@@ -44,8 +44,8 @@
       "dependsOn": ["^build"],
       "outputs": [
         "dist/**",
-        "../../skills/ix/scripts/search.mjs",
-        "../../skills/ix/THIRD_PARTY_LICENSES.md"
+        "$TURBO_ROOT$/skills/ix/scripts/search.mjs",
+        "$TURBO_ROOT$/skills/ix/THIRD_PARTY_LICENSES.md"
       ],
       "outputLogs": "new-only"
     },

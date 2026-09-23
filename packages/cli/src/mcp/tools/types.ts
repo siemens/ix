@@ -12,6 +12,7 @@ export type ToolContext = {
   framework: Framework;
   registryUrl: string;
   registryRef: string;
+  componentRegistry: { baseUrl?: string; version?: string };
   promptNodeModulesExcluded: string;
 };
 

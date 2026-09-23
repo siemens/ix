@@ -41,7 +41,7 @@ export const componentTools: ToolDefinition[] = [
         const results = await searchComponents(parsedArgs.query, {
           baseUrl: context.registryUrl,
           version: context.registryRef,
-          limit: parsedArgs.limit || 10,
+          limit: parsedArgs.limit ?? 10,
         });
 
         if (results.length === 0) {
@@ -114,10 +114,10 @@ export const componentTools: ToolDefinition[] = [
     handler: async (args, context) => {
       try {
         const parsedArgs = getComponentDetailsSchema.parse(args);
-        const details = await getComponentDetails(parsedArgs.componentTag, {
-          baseUrl: context.registryUrl,
-          version: context.registryRef,
-        });
+        const details = await getComponentDetails(
+          parsedArgs.componentTag,
+          context.componentRegistry
+        );
 
         if (!details) {
           return {
@@ -264,10 +264,7 @@ export const componentTools: ToolDefinition[] = [
     schema: listAllComponentsSchema,
     handler: async (_args, context) => {
       try {
-        const components = await listAllComponents({
-          baseUrl: context.registryUrl,
-          version: context.registryRef,
-        });
+        const components = await listAllComponents(context.componentRegistry);
 
         const componentsList = components
           .map((c, i) => `${i + 1}. **${c.tag}** - ${c.description}`)

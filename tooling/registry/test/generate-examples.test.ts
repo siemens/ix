@@ -109,3 +109,56 @@ test('rejects an existing canonical example file collision', async () => {
     false
   );
 });
+
+test('rejects materializing examples through an output framework symlink', async () => {
+  const root = await temporaryWorkspace();
+  const examplesDir = path.join(root, 'examples');
+  const outputDir = path.join(root, 'dist', 'examples');
+  const linkedDirectory = path.join(root, 'linked-react');
+  const reactDirectory = path.join(outputDir, 'react');
+  await fs.outputFile(
+    path.join(examplesDir, 'react-examples/src/preview-examples/card.tsx'),
+    'export const Card = () => null;'
+  );
+  await fs.ensureDir(outputDir);
+  await fs.ensureDir(linkedDirectory);
+  await fs.symlink(
+    linkedDirectory,
+    reactDirectory,
+    process.platform === 'win32' ? 'junction' : 'dir'
+  );
+
+  await assert.rejects(
+    generateExampleDefinitions(outputDir, examplesDir),
+    (error: unknown) => {
+      assert.equal(
+        (error as Error).message,
+        `Cannot materialize example through symbolic link '${reactDirectory}'.`
+      );
+      return true;
+    }
+  );
+  assert.equal(
+    await fs.pathExists(path.join(linkedDirectory, 'card.tsx')),
+    false
+  );
+});
+
+test('rejects an unsafe canonical example path from a basename containing percent', async () => {
+  const root = await temporaryWorkspace();
+  const examplesDir = path.join(root, 'examples');
+  const outputDir = path.join(root, 'dist', 'examples');
+  await fs.outputFile(
+    path.join(examplesDir, 'react-examples/src/preview-examples/card%.tsx'),
+    'export const Card = () => null;'
+  );
+
+  await assert.rejects(
+    generateExampleDefinitions(outputDir, examplesDir),
+    /Invalid canonical example path 'react\/card%\.tsx'/
+  );
+  assert.equal(
+    await fs.pathExists(path.join(outputDir, 'react/card%.tsx')),
+    false
+  );
+});

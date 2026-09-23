@@ -8,9 +8,11 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { assertSafeRelativePath, isPathInside } from './validation';
 import {
   fetchRegistryArtifact,
   fetchValidatedRegistryIndex,
+  RegistryVersionResolutionError,
   resolveRegistryVersion,
   type RegistryIndex,
 } from './registry';
@@ -187,25 +189,80 @@ function readLocalRegistryArtifact(
   if (!registryPath) return null;
 
   const registryDir = path.dirname(registryPath);
-  const registry = JSON.parse(
-    fs.readFileSync(registryPath, 'utf8')
-  ) as RegistryIndex;
-  const selectedVersion = resolveRegistryVersion(registry, versionRef);
+  const rawRegistry = fs.readFileSync(registryPath, 'utf8');
+  let registry: RegistryIndex;
+  try {
+    registry = JSON.parse(rawRegistry) as RegistryIndex;
+  } catch (error) {
+    // An incomplete local registry must not prevent the remote fallback.
+    if (error instanceof SyntaxError) return null;
+    throw error;
+  }
+  if (
+    !registry ||
+    typeof registry !== 'object' ||
+    !registry.versions ||
+    typeof registry.versions !== 'object'
+  ) {
+    return null;
+  }
+  let selectedVersion: string;
+  try {
+    selectedVersion = resolveRegistryVersion(registry, versionRef);
+  } catch (error) {
+    if (error instanceof RegistryVersionResolutionError) return null;
+    throw error;
+  }
+  assertSafeRelativePath('local registry version', selectedVersion);
   const artifactPath =
     registry.versions[selectedVersion]?.components?.[jsonType];
   if (!artifactPath) return null;
 
+  if (path.posix.isAbsolute(artifactPath)) {
+    assertSafeRelativePath('local registry artifact path', artifactPath);
+  }
   const normalizedArtifactPath = normalizePath(artifactPath);
+  assertSafeRelativePath(
+    'local registry artifact path',
+    normalizedArtifactPath
+  );
   const scopedPath = normalizedArtifactPath.startsWith(`${selectedVersion}/`)
     ? normalizedArtifactPath
     : `${selectedVersion}/${normalizedArtifactPath}`;
-  for (const candidatePath of [
-    path.join(registryDir, scopedPath),
-    path.join(registryDir, normalizedArtifactPath),
-  ]) {
-    if (fs.existsSync(candidatePath)) {
-      return fs.readFileSync(candidatePath, 'utf8');
+  const canonicalRegistryDir = fs.realpathSync(registryDir);
+  for (const relativePath of [scopedPath, normalizedArtifactPath]) {
+    const candidatePath = path.resolve(registryDir, relativePath);
+    if (
+      !isPathInside(registryDir, candidatePath) ||
+      candidatePath === registryDir
+    ) {
+      throw new Error(
+        `Local registry artifact path '${relativePath}' resolves outside the registry.`
+      );
     }
+    let canonicalCandidatePath: string;
+    try {
+      canonicalCandidatePath = fs.realpathSync(candidatePath);
+    } catch (error) {
+      // Missing scoped artifacts can still exist at the unscoped path.
+      if (
+        (error as NodeJS.ErrnoException).code === 'ENOENT' ||
+        (error as NodeJS.ErrnoException).code === 'ENOTDIR'
+      ) {
+        continue;
+      }
+      throw error;
+    }
+    if (
+      !isPathInside(canonicalRegistryDir, canonicalCandidatePath) ||
+      canonicalCandidatePath === canonicalRegistryDir
+    ) {
+      throw new Error(
+        `Local registry artifact path '${relativePath}' resolves outside the registry.`
+      );
+    }
+    // Read the validated canonical path, not a symlink that could be swapped.
+    return fs.readFileSync(canonicalCandidatePath, 'utf8');
   }
 
   return null;

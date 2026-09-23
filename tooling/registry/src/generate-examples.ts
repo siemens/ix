@@ -8,6 +8,7 @@
  */
 import fs from 'fs-extra';
 import path from 'node:path';
+import { assertNoCanonicalPathConflicts } from './canonical-path-conflicts';
 
 interface ExampleFile {
   framework: string;
@@ -38,22 +39,6 @@ function assertSafePublicPath(publicPath: string): void {
     throw new Error(
       `Invalid canonical example path '${publicPath}'. Expected a safe framework-prefixed relative path.`
     );
-  }
-}
-
-function assertNoCanonicalPathConflicts(publicPaths: string[]): void {
-  const sortedPaths = [...publicPaths].sort();
-  for (let index = 1; index < sortedPaths.length; index++) {
-    const previousPath = sortedPaths[index - 1];
-    const currentPath = sortedPaths[index];
-    if (
-      currentPath === previousPath ||
-      currentPath.startsWith(`${previousPath}/`)
-    ) {
-      throw new Error(
-        `Conflicting public example paths '${previousPath}' and '${currentPath}'.`
-      );
-    }
   }
 }
 
@@ -354,7 +339,7 @@ export async function generateExampleDefinitions(
     }
   }
 
-  assertNoCanonicalPathConflicts([...materializedFiles.keys()]);
+  assertNoCanonicalPathConflicts([...materializedFiles.keys()], 'example');
   await Promise.all(
     [...materializedFiles.entries()].map(([publicPath, sourcePath]) =>
       assertMaterializableExampleFile(

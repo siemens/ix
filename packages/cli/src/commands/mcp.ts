@@ -29,33 +29,61 @@ const tagOption = new Option(
   'Registry tag/version (e.g. latest, main, v4.3.0)'
 ).default('latest');
 
+export function explicitComponentRegistryOptions(
+  command: Command,
+  options: { registry: string; tag: string }
+): { baseUrl?: string; version?: string } {
+  return {
+    baseUrl:
+      command.getOptionValueSource('registry') === 'cli'
+        ? options.registry
+        : undefined,
+    version:
+      command.getOptionValueSource('tag') === 'cli' ? options.tag : undefined,
+  };
+}
+
 const mcpRunReactMcpCommand = new Command('run-react')
   .description('Run the React MCP server')
   .addOption(registryOption)
   .addOption(tagOption)
-  .action(async (options: { registry: string; tag: string }) => {
-    try {
-      const transport = new StdioServerTransport();
-      const server = createServer('react', options.registry, options.tag);
-      await server.connect(transport);
-    } catch (error) {
-      console.error('Error starting MCP server:', error);
+  .action(
+    async (options: { registry: string; tag: string }, command: Command) => {
+      try {
+        const transport = new StdioServerTransport();
+        const server = createServer(
+          'react',
+          options.registry,
+          options.tag,
+          explicitComponentRegistryOptions(command, options)
+        );
+        await server.connect(transport);
+      } catch (error) {
+        console.error('Error starting MCP server:', error);
+      }
     }
-  });
+  );
 
 const mcpRunAngularMcpCommand = new Command('run-angular')
   .description('Run the Angular MCP server')
   .addOption(registryOption)
   .addOption(tagOption)
-  .action(async (options: { registry: string; tag: string }) => {
-    try {
-      const transport = new StdioServerTransport();
-      const server = createServer('angular', options.registry, options.tag);
-      await server.connect(transport);
-    } catch (error) {
-      console.error('Error starting MCP server:', error);
+  .action(
+    async (options: { registry: string; tag: string }, command: Command) => {
+      try {
+        const transport = new StdioServerTransport();
+        const server = createServer(
+          'angular',
+          options.registry,
+          options.tag,
+          explicitComponentRegistryOptions(command, options)
+        );
+        await server.connect(transport);
+      } catch (error) {
+        console.error('Error starting MCP server:', error);
+      }
     }
-  });
+  );
 
 const askConfigChoice = async (
   framework: Awaited<ReturnType<typeof detectFramework>>

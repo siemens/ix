@@ -52,6 +52,7 @@ type SearchResponse = {
     type: string;
     value: string;
     status: string;
+    message?: string;
   }>;
 };
 
@@ -395,6 +396,33 @@ test('bundled IX search runs outside the repository without MiniSearch resolutio
     );
     assert.equal(noMatch.status, 'no_match');
     assert.deepEqual(noMatch.results, []);
+
+    const partialQueryMatches = runSearch(
+      'scripts/search.mjs',
+      skillDirectory,
+      '--query',
+      'ix-button',
+      '--query',
+      'zzzzzz',
+      '--query',
+      'no-such-document'
+    );
+    assert.equal(partialQueryMatches.status, 'ok');
+    assert.deepEqual(
+      partialQueryMatches.results.map(({ id }) => id),
+      ['component:ix-button']
+    );
+    assert.deepEqual(
+      partialQueryMatches.unmatched?.map(({ type, value, status }) => ({
+        type,
+        value,
+        status,
+      })),
+      [
+        { type: 'query', value: 'zzzzzz', status: 'no_match' },
+        { type: 'query', value: 'no-such-document', status: 'no_match' },
+      ]
+    );
 
     const unregisteredFigma = runSearch(
       'scripts/search.mjs',
