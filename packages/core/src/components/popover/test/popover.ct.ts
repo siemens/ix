@@ -1256,5 +1256,145 @@ regressionTest.describe('ix-popover', () => {
         await popover.runAxe(makeAxeBuilder);
       }
     );
+
+    regressionTest(
+      'passes axe for icon-button trigger',
+      async ({ mount, page, makeAxeBuilder }) => {
+        await mount(
+          html`
+            <ix-icon-button
+              id="trigger"
+              icon="info"
+              aria-label="Open info"
+            ></ix-icon-button>
+            <ix-popover id="popover" trigger="trigger" close-on-click-outside>
+              <ix-popover-header>Title</ix-popover-header>
+              <ix-popover-content>Body</ix-popover-content>
+              <ix-popover-footer>
+                <ix-button id="popover-dismiss">Dismiss</ix-button>
+              </ix-popover-footer>
+            </ix-popover>
+          `,
+          { icons: { iconInfo } }
+        );
+
+        await page.locator('ix-icon-button#trigger').click();
+        await expect(page.locator('ix-popover')).toHaveAttribute('show', '');
+        await expect(page.locator('ix-icon-button#trigger')).toHaveClass(
+          /\bactive\b/
+        );
+
+        const results = await makeAxeBuilder()
+          .exclude('ix-icon-button')
+          .analyze();
+        expect(results.violations).toEqual([]);
+      }
+    );
+  });
+
+  regressionTest.describe('trigger active class', () => {
+    regressionTest(
+      'toggles active on ix-button open and close',
+      async ({ mount, page }) => {
+        await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
+        const trigger = popover.trigger;
+
+        await expect(trigger).not.toHaveClass(/\bactive\b/);
+        await popover.open();
+        await expect(trigger).toHaveClass(/\bactive\b/);
+        await popover.closeWithEscape();
+        await expect(trigger).not.toHaveClass(/\bactive\b/);
+      }
+    );
+
+    regressionTest(
+      'toggles active on ix-icon-button open and close',
+      async ({ mount, page }) => {
+        await mount(
+          html`
+            <ix-icon-button
+              id="trigger"
+              icon="info"
+              aria-label="Open"
+            ></ix-icon-button>
+            <ix-popover id="popover" trigger="trigger">
+              <ix-popover-header>Title</ix-popover-header>
+              <ix-popover-content>Body</ix-popover-content>
+              <ix-popover-footer>
+                <ix-button id="popover-dismiss">Dismiss</ix-button>
+              </ix-popover-footer>
+            </ix-popover>
+          `,
+          { icons: { iconInfo } }
+        );
+
+        const trigger = page.locator('ix-icon-button#trigger');
+        const host = page.locator('ix-popover');
+
+        await expect(trigger).not.toHaveClass(/\bactive\b/);
+        await trigger.click();
+        await expect(host).toHaveAttribute('show', '');
+        await expect(trigger).toHaveClass(/\bactive\b/);
+        await page.keyboard.press('Escape');
+        await expect(host).not.toHaveAttribute('show', '');
+        await expect(trigger).not.toHaveClass(/\bactive\b/);
+      }
+    );
+
+    regressionTest(
+      'clears active when trigger is cleared',
+      async ({ mount, page }) => {
+        await mountPopover(mount, page, interactivePopoverMarkup());
+        const popover = new PopoverPage(page);
+        const trigger = popover.trigger;
+
+        await popover.open();
+        await expect(trigger).toHaveClass(/\bactive\b/);
+
+        await page
+          .locator('ix-popover')
+          .evaluate((el: HTMLIxPopoverElement) => {
+            el.trigger = undefined;
+          });
+
+        await expect(trigger).not.toHaveClass(/\bactive\b/);
+      }
+    );
+
+    regressionTest(
+      'moves active when trigger changes',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="trigger-a">Open A</ix-button>
+          <ix-button id="trigger-b">Open B</ix-button>
+          <ix-popover id="popover" trigger="trigger-a">
+            <ix-popover-header>Title</ix-popover-header>
+            <ix-popover-content>Body</ix-popover-content>
+            <ix-popover-footer>
+              <ix-button id="popover-dismiss">Dismiss</ix-button>
+            </ix-popover-footer>
+          </ix-popover>
+        `);
+
+        const host = page.locator('ix-popover');
+        const triggerA = page.locator('ix-button#trigger-a');
+        const triggerB = page.locator('ix-button#trigger-b');
+
+        await expect(triggerA).toHaveAttribute('data-ix-popover-trigger', '');
+        await host.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
+        await expect(host).toHaveAttribute('show', '');
+        await expect(triggerA).toHaveClass(/\bactive\b/);
+        await expect(triggerB).not.toHaveClass(/\bactive\b/);
+
+        await host.evaluate((el: HTMLIxPopoverElement) => {
+          el.trigger = 'trigger-b';
+        });
+
+        await expect(triggerB).toHaveAttribute('data-ix-popover-trigger', '');
+        await expect(triggerA).not.toHaveClass(/\bactive\b/);
+        await expect(triggerB).toHaveClass(/\bactive\b/);
+      }
+    );
   });
 });

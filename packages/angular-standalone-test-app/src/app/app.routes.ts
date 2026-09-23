@@ -130,6 +130,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/content-header').then((m) => m.default),
   'preview/content-header-no-back': () =>
     import('../preview-examples/content-header-no-back').then((m) => m.default),
+  'preview/content-header-text-overflow': () =>
+    import('../preview-examples/content-header-text-overflow').then(
+      (m) => m.default
+    ),
   'preview/content-header-with-slot': () =>
     import('../preview-examples/content-header-with-slot').then(
       (m) => m.default
@@ -168,6 +172,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datepicker-range').then((m) => m.default),
   'preview/datetimepicker': () =>
     import('../preview-examples/datetimepicker').then((m) => m.default),
+  'preview/datetimepicker-locale': () =>
+    import('../preview-examples/datetimepicker-locale').then((m) => m.default),
   'preview/datetime-input': () =>
     import('../preview-examples/datetime-input').then((m) => m.default),
   'preview/datetime-input-disabled': () =>
@@ -250,6 +256,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/empty-state-compact-break').then(
       (m) => m.default
     ),
+  'preview/info-page': () =>
+    import('../preview-examples/info-page').then((m) => m.default),
   'preview/event-list': () =>
     import('../preview-examples/event-list').then((m) => m.default),
   'preview/event-list-compact': () =>

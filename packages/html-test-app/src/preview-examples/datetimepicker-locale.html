@@ -1,0 +1,197 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datetimepicker locale example</title>
+  </head>
+  <body>
+    <ix-layout-grid>
+      <ix-row>
+        <ix-col size="12">
+          <div style="display: flex; gap: 6rem; flex-wrap: wrap">
+            <div>
+              <span style="margin-right: 0.5rem">Language:</span>
+              <ix-select id="locale-select">
+                <ix-select-item value="de" label="de"></ix-select-item>
+                <ix-select-item value="en" label="en"></ix-select-item>
+                <ix-select-item value="fr" label="fr"></ix-select-item>
+                <ix-select-item value="ja" label="ja"></ix-select-item>
+              </ix-select>
+            </div>
+            <div>
+              <span style="margin-right: 0.5rem">Date format:</span>
+              <ix-select id="date-format-select">
+                <ix-select-item
+                  value="yyyy/LL/dd"
+                  label="yyyy/LL/dd (default)"
+                ></ix-select-item>
+                <ix-select-item
+                  value="EEEE, dd MMMM yyyy"
+                  label="EEEE, dd MMMM yyyy (all locale names)"
+                ></ix-select-item>
+                <ix-select-item
+                  value="dd MMMM yyyy"
+                  label="dd MMMM yyyy (month name)"
+                ></ix-select-item>
+                <ix-select-item
+                  value="dd MMM yyyy"
+                  label="dd MMM yyyy (short month)"
+                ></ix-select-item>
+                <ix-select-item
+                  value="LL/dd/yyyy"
+                  label="LL/dd/yyyy"
+                ></ix-select-item>
+              </ix-select>
+            </div>
+            <div>
+              <span style="margin-right: 0.5rem">Time format:</span>
+              <ix-select id="time-format-select">
+                <ix-select-item
+                  value="HH:mm:ss"
+                  label="HH:mm:ss (24h, default)"
+                ></ix-select-item>
+                <ix-select-item
+                  value="hh:mm a"
+                  label="hh:mm a (12h, locale-aware)"
+                ></ix-select-item>
+              </ix-select>
+            </div>
+          </div>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col size="12">
+          <ix-datetime-picker id="datetimepicker"></ix-datetime-picker>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col
+          size="12"
+          style="
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--theme-color-weak-bdr);
+            border-radius: 4px;
+            background: var(--theme-color-2);
+          "
+        >
+          <span
+            style="display: block; font-weight: 700; margin-bottom: 0.5rem"
+          >
+            Last dateSelect event
+          </span>
+          <span
+            id="event-placeholder"
+            style="color: var(--theme-color-soft-text)"
+          >
+            Confirm a selection to see event values
+          </span>
+          <ix-layout-grid
+            id="event-values"
+            no-margin
+            style="display: none"
+          ></ix-layout-grid>
+        </ix-col>
+      </ix-row>
+    </ix-layout-grid>
+
+    <script>
+      var I18N_AM = { de: 'AM', en: 'AM', fr: 'AM', ja: '午前' };
+      var I18N_PM = { de: 'PM', en: 'PM', fr: 'PM', ja: '午後' };
+      var I18N_HR = { de: 'Std', en: 'hr', fr: 'h', ja: '時' };
+      var I18N_MIN = { de: 'Min', en: 'min', fr: 'min', ja: '分' };
+      var I18N_SEC = { de: 'Sek', en: 'sec', fr: 's', ja: '秒' };
+
+      var localeSelect = document.getElementById('locale-select');
+      var dateFormatSelect = document.getElementById('date-format-select');
+      var timeFormatSelect = document.getElementById('time-format-select');
+      var datetimepicker = document.getElementById('datetimepicker');
+      var eventPlaceholder = document.getElementById('event-placeholder');
+      var eventValues = document.getElementById('event-values');
+
+      var locale = 'de';
+      var dateFormat = 'yyyy/LL/dd';
+      var timeFormat = 'HH:mm:ss';
+
+      function applyLocale() {
+        datetimepicker.locale = locale;
+        datetimepicker.dateFormat = dateFormat;
+        datetimepicker.timeFormat = timeFormat;
+        datetimepicker.i18nAm = I18N_AM[locale] || 'AM';
+        datetimepicker.i18nPm = I18N_PM[locale] || 'PM';
+        datetimepicker.i18nHourColumnHeader = I18N_HR[locale] || 'hr';
+        datetimepicker.i18nMinuteColumnHeader = I18N_MIN[locale] || 'min';
+        datetimepicker.i18nSecondColumnHeader = I18N_SEC[locale] || 'sec';
+      }
+
+      localeSelect.value = locale;
+      dateFormatSelect.value = dateFormat;
+      timeFormatSelect.value = timeFormat;
+      applyLocale();
+
+      localeSelect.addEventListener('valueChange', function (e) {
+        if (!Array.isArray(e.detail)) {
+          locale = e.detail;
+          applyLocale();
+        }
+      });
+
+      dateFormatSelect.addEventListener('valueChange', function (e) {
+        if (!Array.isArray(e.detail)) {
+          dateFormat = e.detail;
+          applyLocale();
+        }
+      });
+
+      timeFormatSelect.addEventListener('valueChange', function (e) {
+        if (!Array.isArray(e.detail)) {
+          timeFormat = e.detail;
+          applyLocale();
+        }
+      });
+
+      var eventRows = [
+        { key: 'from', note: '(locale-aware)' },
+        { key: 'to', note: '(locale-aware)' },
+        { key: 'time', note: '(locale-aware in 12h mode)' },
+        { key: 'isoFrom', note: '(ISO 8601, stable)' },
+        { key: 'isoTo', note: '(ISO 8601, stable)' },
+        { key: 'isoTime', note: '(ISO 8601, stable)' },
+      ];
+
+      datetimepicker.addEventListener('dateSelect', function (e) {
+        eventPlaceholder.style.display = 'none';
+        eventValues.style.display = '';
+        eventValues.innerHTML = eventRows
+          .map(function (row) {
+            return (
+              '<ix-row>' +
+              '<ix-col size="2" style="font-weight: 600; color: var(--theme-color-std-text)">' +
+              row.key +
+              '</ix-col>' +
+              '<ix-col style="font-family: monospace; color: var(--theme-color-primary)">' +
+              (e.detail[row.key] || '—') +
+              '</ix-col>' +
+              '<ix-col style="color: var(--theme-color-soft-text); font-size: 0.8em">' +
+              row.note +
+              '</ix-col>' +
+              '</ix-row>'
+            );
+          })
+          .join('');
+      });
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

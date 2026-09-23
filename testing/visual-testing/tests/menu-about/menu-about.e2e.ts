@@ -18,7 +18,9 @@ regressionTest.describe('menu-about', () => {
     await page.waitForTimeout(500);
 
     //Click is needed otherwise tab item is still hovered
-    await page.getByText('Content 1').click();
+    await page.getByText('Tab 1').click();
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

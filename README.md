@@ -17,8 +17,6 @@
     <br />
     <a href="https://ix.siemens.io/docs/home/overview">Quickstart</a>
     ·
-    <a href="https://community.siemens.com/c/ix/">Community</a>
-    ·
     <a href="https://github.com/siemens/ix/issues/new/choose">Report Issue</a>
     ·
     <a href="https://github.com/siemens/ix/issues/new/choose">Request Feature</a>

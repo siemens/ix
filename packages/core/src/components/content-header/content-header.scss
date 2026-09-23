@@ -18,19 +18,30 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    white-space: nowrap;
     margin-right: 0.5rem;
 
-    .titleOverflow {
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .headerText {
+      min-width: 0;
+      overflow-wrap: anywhere;
+
+      &.truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
 
     .headerTitleRow {
       display: flex;
 
+      .headerText {
+        flex: 0 1 auto;
+      }
+
       .headerSlot {
         display: inline-flex;
+        flex: 0 0 auto;
+        align-self: flex-start;
         margin-left: 0.5rem;
       }
     }

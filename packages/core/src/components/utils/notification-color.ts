@@ -11,13 +11,11 @@
  * Icon colors representing common notification states (e.g. alarm, info).
  */
 export type NotificationColor =
-  | 'color-std-text'
-  | 'color-info'
-  | 'color-critical'
-  | 'color-warning'
-  //TODO(IX-3400): Remove warning-text when proper CSS variable is available
-  | 'color-warning-text'
-  | 'color-success'
-  | 'color-alarm'
-  | 'color-neutral'
-  | 'color-primary';
+  | '--si-sys-text-primary'
+  | '--si-sys-text-information'
+  | '--si-sys-text-critical'
+  | '--si-sys-text-warning'
+  | '--si-sys-text-success'
+  | '--si-sys-text-danger'
+  | '--si-sys-text-secondary'
+  | '--si-sys-text-accent';

@@ -24,13 +24,13 @@
 
 .badge-preview .edge-intro {
   margin: 0;
-  color: var(--theme-color-soft-text);
+  color: var(--si-sys-text-secondary);
   font-size: 0.875rem;
 }
 
 .badge-preview .edge-note {
   margin: 0 0 0.75rem;
-  color: var(--theme-color-soft-text);
+  color: var(--si-sys-text-secondary);
   font-size: 0.8125rem;
 }
 
@@ -49,8 +49,8 @@
 .badge-preview .theme-panel {
   padding: 1.5rem;
   border-radius: 0.25rem;
-  background-color: var(--theme-color-1);
-  color: var(--theme-color-std-text);
+  background-color: var(--si-sys-background-0);
+  color: var(--si-sys-text-primary);
 }
 
 .badge-preview .theme-panel-title {
@@ -61,7 +61,7 @@
 }
 
 .badge-preview .align-host {
-  outline: 1px dashed var(--theme-color-soft-bdr);
+  outline: 1px dashed var(--si-sys-border-3);
   outline-offset: 0px;
 }
 
@@ -78,8 +78,8 @@
 .badge-preview .variant-grid-corner,
 .badge-preview .variant-grid-header,
 .badge-preview .variant-grid-row-label {
-  border: 1px solid var(--theme-color-soft-bdr);
-  background: color-mix(in srgb, var(--theme-color-soft-bdr) 8%, transparent);
+  border: 1px solid var(--si-sys-border-3);
+  background: color-mix(in srgb, var(--si-sys-border-3) 8%, transparent);
 }
 
 .badge-preview .variant-grid-header,
@@ -90,7 +90,7 @@
   padding: 0.5rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--theme-color-soft-text);
+  color: var(--si-sys-text-secondary);
   text-align: center;
 }
 
@@ -101,8 +101,8 @@
 
 .badge-preview .grid-cell {
   box-sizing: border-box;
-  border: 1px solid var(--theme-color-soft-bdr);
-  background: color-mix(in srgb, var(--theme-color-soft-bdr) 12%, transparent);
+  border: 1px solid var(--si-sys-border-3);
+  background: color-mix(in srgb, var(--si-sys-border-3) 12%, transparent);
   padding: 1rem;
   min-height: 4.5rem;
   display: flex;
@@ -123,7 +123,7 @@
   font-family: var(--theme-font-family-code, monospace);
   font-size: 0.625rem;
   font-weight: 500;
-  color: var(--theme-color-soft-text);
+  color: var(--si-sys-text-secondary);
   line-height: 1.3;
   word-break: normal;
   overflow-wrap: anywhere;
@@ -144,15 +144,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: 0;
-  border: 1px solid var(--theme-color-soft-bdr);
+  border: 1px solid var(--si-sys-border-3);
   border-radius: 0.25rem;
   overflow: hidden;
 }
 
 .badge-preview .demo-grid .grid-cell {
   border: none;
-  border-right: 1px solid var(--theme-color-soft-bdr);
-  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  border-right: 1px solid var(--si-sys-border-3);
+  border-bottom: 1px solid var(--si-sys-border-3);
   border-radius: 0;
 }
 
@@ -179,7 +179,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: 0;
-  border: 1px solid var(--theme-color-soft-bdr);
+  border: 1px solid var(--si-sys-border-3);
   border-radius: 0.25rem;
   overflow: hidden;
 }
@@ -187,7 +187,7 @@
 .badge-preview .animation-pulsing-row .grid-cell,
 .badge-preview .animation-live-row .grid-cell {
   border: none;
-  border-right: 1px solid var(--theme-color-soft-bdr);
-  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  border-right: 1px solid var(--si-sys-border-3);
+  border-bottom: 1px solid var(--si-sys-border-3);
   border-radius: 0;
 }

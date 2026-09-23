@@ -1,0 +1,51 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-flip-tile-footer-icon--color--hover: #{sys.$si-sys-text-primary};
+  --ix-flip-tile--border-radius: var(--theme-default-border-radius);
+  --ix-flip-tile-alarm--background: #{sys.$si-sys-background-1};
+  --ix-flip-tile-alarm--border-color: #{sys.$si-sys-border-danger};
+  --ix-flip-tile-alarm--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-alarm-footer--background: #{sys.$si-sys-background-danger};
+  --ix-flip-tile-alarm-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-alarm-footer--color: #{sys.$si-sys-text-on-danger};
+  --ix-flip-tile-filled--background: #{sys.$si-sys-background-1};
+  --ix-flip-tile-filled--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-filled--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-filled-footer--background: #{sys.$si-sys-background-1};
+  --ix-flip-tile-filled-footer--border-color: #{sys.$si-sys-background-0};
+  --ix-flip-tile-filled-footer--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-info--background: #{sys.$si-sys-background-1};
+  --ix-flip-tile-info--border-color: #{sys.$si-sys-border-information};
+  --ix-flip-tile-info--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-info-footer--background: #{sys.$si-sys-background-information};
+  --ix-flip-tile-info-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-info-footer--color: #{sys.$si-sys-text-on-information};
+  --ix-flip-tile-outline--background: rgba(0, 0, 0, 0);
+  --ix-flip-tile-outline--border-color: #{sys.$si-sys-border-3};
+  --ix-flip-tile-outline--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-outline-footer--background: rgba(0, 0, 0, 0);
+  --ix-flip-tile-outline-footer--border-color: #{sys.$si-sys-border-3};
+  --ix-flip-tile-outline-footer--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-primary--background: #{sys.$si-sys-background-1};
+  --ix-flip-tile-primary--border-color: #{sys.$si-sys-border-accent};
+  --ix-flip-tile-primary--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-primary-footer--background: #{sys.$si-sys-background-accent};
+  --ix-flip-tile-primary-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-primary-footer--color: #{sys.$si-sys-text-on-accent};
+  --ix-flip-tile-warning--background: #{sys.$si-sys-background-1};
+  --ix-flip-tile-warning--border-color: #{sys.$si-sys-background-warning};
+  --ix-flip-tile-warning--color: #{sys.$si-sys-text-primary};
+  --ix-flip-tile-warning-footer--background: #{sys.$si-sys-background-warning};
+  --ix-flip-tile-warning-footer--border-color: rgba(0, 0, 0, 0);
+  --ix-flip-tile-warning-footer--color: #{sys.$si-sys-text-on-warning};
+}

@@ -22,7 +22,7 @@ import { Component } from '@angular/core';
         <ix-chip
           icon="print"
           variant="info"
-          tooltip-text="Open details for this status"
+          tooltipText="Open details for this status"
           aria-label="In review"
           >Info</ix-chip
         >
@@ -31,8 +31,8 @@ import { Component } from '@angular/core';
         <ix-chip
           icon="print"
           variant="custom"
-          background="var(--theme-chart-11)"
-          chip-color="var(--theme-color-inv-std-text)"
+          background="var(--si-sys-data-categorical-9)"
+          chipColor="var(--si-sys-text-inverse)"
           closable
           >Custom</ix-chip
         >
@@ -51,7 +51,7 @@ import { Component } from '@angular/core';
           icon="print"
           variant="info"
           outline
-          tooltip-text="Open details for this status"
+          tooltipText="Open details for this status"
           aria-label="In review"
           >Info</ix-chip
         >
@@ -60,8 +60,8 @@ import { Component } from '@angular/core';
         <ix-chip
           icon="print"
           variant="custom"
-          background="var(--theme-chart-11)"
-          chip-color="var(--theme-chip-outline--color)"
+          background="var(--si-sys-data-categorical-9)"
+          chipColor="var(--si-sys-text-primary)"
           outline
           closable
           >Custom</ix-chip

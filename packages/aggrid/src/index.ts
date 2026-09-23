@@ -24,7 +24,7 @@ import {
 
 const additionalThemeParams = { fontFamily: ['Siemens Sans', 'sans-serif'] };
 const stripedRowThemeParams = {
-  oddRowBackgroundColor: 'var(--theme-color-1)',
+  oddRowBackgroundColor: 'var(--si-sys-background-0)',
 };
 
 export type IxThemeOptions = {
