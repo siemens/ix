@@ -12,10 +12,18 @@ import { IxEventList, IxEventListItem } from '@siemens/ix-react';
 export default function EventList() {
   return (
     <IxEventList>
-      <IxEventListItem itemColor="color-primary">Text 1</IxEventListItem>
-      <IxEventListItem itemColor="color-primary">Text 2</IxEventListItem>
-      <IxEventListItem itemColor="color-alarm">Text 3</IxEventListItem>
-      <IxEventListItem itemColor="color-success">Text 4</IxEventListItem>
+      <IxEventListItem itemColor="--si-sys-background-accent">
+        Text 1
+      </IxEventListItem>
+      <IxEventListItem itemColor="--si-sys-background-accent">
+        Text 2
+      </IxEventListItem>
+      <IxEventListItem itemColor="--si-sys-background-danger">
+        Text 3
+      </IxEventListItem>
+      <IxEventListItem itemColor="--si-sys-background-success">
+        Text 4
+      </IxEventListItem>
     </IxEventList>
   );
 }

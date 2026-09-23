@@ -98,7 +98,7 @@ export class Tree {
   private hyperlist?: VirtualList;
 
   private readonly updates = new Map<string, UpdateCallback>();
-  private observer!: MutationObserver;
+  private observer?: MutationObserver;
   private hasFirstRender = false;
 
   private readonly dirtyItems = new Set<string>();

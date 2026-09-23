@@ -52,6 +52,20 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(tab).toHaveClass(/\bselected\b/);
 });
 
+regressionTest('preserves the tablist role', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs role="navigation" aria-label="Process steps">
+      <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+    </ix-tabs>
+  `);
+  const tabs = page.locator('ix-tabs');
+  const tablist = tabs.getByRole('tablist');
+
+  await expect(tabs).toHaveAttribute('role', 'navigation');
+  await expect(tablist).toHaveAttribute('role', 'tablist');
+  await expect(tablist).toHaveAttribute('aria-label', 'Process steps');
+});
+
 regressionTest('should change tab', async ({ mount, page }) => {
   await mount(`
     <ix-tabs active-tab-key="tab-1">
@@ -253,19 +267,100 @@ regressionTest(
     expect(containerBox).not.toBeNull();
     expect(firstTabBox).not.toBeNull();
 
+    if (!tabBox || !containerBox || !firstTabBox) {
+      throw new Error('Expected tab bounding boxes');
+    }
+
     const ARROW_WIDTH = 32;
 
-    expect(tabBox!.x).toBeGreaterThanOrEqual(containerBox!.x + ARROW_WIDTH);
+    expect(tabBox.x).toBeGreaterThanOrEqual(containerBox.x + ARROW_WIDTH);
 
-    expect(tabBox!.x + tabBox!.width).toBeLessThanOrEqual(
-      containerBox!.x + containerBox!.width - ARROW_WIDTH
+    expect(tabBox.x + tabBox.width).toBeLessThanOrEqual(
+      containerBox.x + containerBox.width - ARROW_WIDTH
     );
 
-    expect(firstTabBox!.x + firstTabBox!.width).toBeLessThan(
-      containerBox!.x + ARROW_WIDTH
+    expect(firstTabBox.x + firstTabBox.width).toBeLessThan(
+      containerBox.x + ARROW_WIDTH
     );
   }
 );
+
+for (const { keyFirst, preventChange } of [
+  { keyFirst: true, preventChange: false },
+  { keyFirst: false, preventChange: false },
+  { keyFirst: true, preventChange: true },
+]) {
+  regressionTest(
+    `dynamic tabs - restores active tab when ${
+      keyFirst ? 'key' : 'item'
+    } changes first${preventChange ? ' with cancellation' : ''}`,
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-tabs active-tab-key="tab-1">
+          <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+          <ix-tab-item tab-key="tab-2">Item 2</ix-tab-item>
+        </ix-tabs>
+      `);
+
+      const tabs = page.locator('ix-tabs');
+      await expect(tabs).toHaveClass(/\bhydrated\b/);
+      await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      await tabs.evaluate((element: HTMLIxTabsElement) => {
+        element.activeTabKey = 'tab-2';
+        element.querySelector('ix-tab-item')!.remove();
+      });
+      await expect(tabs.getByRole('tab', { name: 'Item 2' })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      const changes = await tabs.evaluateHandle((element, preventChange) => {
+        const details: (string | undefined)[] = [];
+        element.addEventListener(
+          'tabChange',
+          (event: CustomEvent<string | undefined>) => {
+            details.push(event.detail);
+            if (preventChange) {
+              event.preventDefault();
+            }
+          }
+        );
+        return details;
+      }, preventChange);
+
+      await tabs.evaluate((element: HTMLIxTabsElement, keyFirst) => {
+        if (keyFirst) {
+          element.activeTabKey = 'tab-1';
+        }
+        const firstTab = document.createElement('ix-tab-item');
+        firstTab.textContent = 'Item 1';
+        element.prepend(firstTab);
+        firstTab.tabKey = 'tab-1';
+        if (!keyFirst) {
+          element.activeTabKey = 'tab-1';
+        }
+      }, keyFirst);
+
+      await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
+        'aria-selected',
+        preventChange ? 'false' : 'true'
+      );
+      await expect(tabs.getByRole('tab', { name: 'Item 2' })).toHaveAttribute(
+        'aria-selected',
+        preventChange ? 'true' : 'false'
+      );
+      await expect(tabs).toHaveJSProperty(
+        'activeTabKey',
+        preventChange ? 'tab-2' : 'tab-1'
+      );
+      expect(await changes.jsonValue()).toEqual(['tab-1']);
+    }
+  );
+}
 
 regressionTest(
   'dynamic tabs - should preserve default classes when adding custom classes during re-render',
@@ -279,7 +374,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" class="new">Item 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Item 2</ix-tab-item>
       `;
@@ -317,7 +417,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" class="new">Item 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Item 2</ix-tab-item>
       `;
@@ -348,7 +453,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" class="new">Item 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Item 2</ix-tab-item>
       `;
@@ -381,7 +491,12 @@ regressionTest(
 
     await page.evaluate(() => {
       const tabsElement = document.querySelector('ix-tabs');
-      tabsElement!.innerHTML = `
+
+      if (!tabsElement) {
+        throw new Error('Expected ix-tabs element');
+      }
+
+      tabsElement.innerHTML = `
         <ix-tab-item tab-key="tab-1" disabled class="new">Tab 1</ix-tab-item>
         <ix-tab-item tab-key="tab-2" class="new">Tab 2</ix-tab-item>
       `;

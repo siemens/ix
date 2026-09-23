@@ -1379,12 +1379,12 @@ export class Select
       this.hostElement.shadowRoot?.getElementById(
         `${this.hostId}-proxy-listbox`
       );
-    if (this.focusableItems.length === 0) {
+    if (this.focusableItems.length === 0 || !ariaActiveDescendantHelper) {
       return;
     }
 
     updateFocusProxyList(
-      ariaActiveDescendantHelper!,
+      ariaActiveDescendantHelper,
       this.focusableItems,
       (item, proxyElement) => {
         const isSelectItem = item.tagName === 'IX-SELECT-ITEM';
@@ -1424,6 +1424,7 @@ export class Select
         class={{
           readonly: this.readonly,
           disabled: this.disabled,
+          active: this.dropdownShow || this.overflowDropdownShow,
           'show-focus-outline':
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}

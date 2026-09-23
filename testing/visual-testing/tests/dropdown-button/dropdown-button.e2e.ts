@@ -24,13 +24,15 @@ regressionTest.describe('basic', () => {
   regressionTest('dropdown should open', async ({ page }) => {
     await page.goto('dropdown-button/dropdown');
 
-    const dropdownButton = page.locator('ix-dropdown-button');
-    await dropdownButton.click();
+    const expanded = page.locator('#expanded');
+    await expanded.click();
 
-    await expect(dropdownButton.locator('ix-dropdown')).toHaveClass(/show/);
+    await expect(expanded.locator('ix-dropdown')).toHaveClass(/show/);
+    await expect(page.locator('#collapsed')).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.01,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

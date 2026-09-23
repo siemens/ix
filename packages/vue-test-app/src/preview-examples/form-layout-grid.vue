@@ -16,7 +16,7 @@ import {
   <IxLayoutGrid class="layout-grid-example">
     <IxRow>
       <IxCol size="2" size-sm="12">
-        <IxFieldLabel htmlFor="my-select-1">Example</IxFieldLabel>
+        <IxFieldLabel html-for="my-select-1">Example</IxFieldLabel>
       </IxCol>
       <IxCol>
         <IxSelect id="my-select-1"></IxSelect>
@@ -24,7 +24,7 @@ import {
     </IxRow>
     <IxRow>
       <IxCol size="2" size-sm="12">
-        <IxFieldLabel htmlFor="my-select-2">Example</IxFieldLabel>
+        <IxFieldLabel html-for="my-select-2">Example</IxFieldLabel>
       </IxCol>
       <IxCol>
         <IxInput id="my-select-2"></IxInput>

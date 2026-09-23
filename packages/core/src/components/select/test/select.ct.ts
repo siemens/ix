@@ -1629,7 +1629,10 @@ test('does not emit unhandled rejection when select is unmounted during validati
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
-        const host = document.getElementById('select-host')!;
+        const host = document.getElementById('select-host');
+        if (!host) {
+          throw new Error('Select host element not found');
+        }
         const select = document.createElement('ix-select');
         select.setAttribute('required', '');
         select.setAttribute('label', 'Example');
