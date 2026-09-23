@@ -80,7 +80,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
       >
         <div class="banner-container">
           <ix-icon
-            color="--si-sys-text-inverse"
+            color="--si-sys-color-text-inverse"
             name={iconShout}
             size="32"
           ></ix-icon>
@@ -97,7 +97,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
 
         <ix-icon-button
           icon={iconClose}
-          iconColor="--si-sys-text-secondary"
+          iconColor="--si-sys-color-text-secondary"
           variant="tertiary"
           onClick={() => {
             this.show = false;

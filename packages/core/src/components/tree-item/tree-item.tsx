@@ -74,7 +74,7 @@ export class TreeItem {
               class={{
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
-              color="--si-sys-text-primary"
+              color="--si-sys-color-text-primary"
               onClick={(e: Event) => {
                 if (isDisabled) {
                   return;

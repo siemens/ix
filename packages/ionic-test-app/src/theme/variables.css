@@ -27,11 +27,11 @@ body[data-screen-orientation='landscape-primary'] {
   /*
   * Re-map the ix colors with the ionic theme
   */
-  --ion-background-color: var(--si-sys-background-0);
-  --ion-color-primary: var(--si-sys-background-accent);
-  --ion-text-color: var(--si-sys-text-primary);
-  --ion-item-background: var(--si-sys-background-0);
-  --ion-toolbar-background: var(--si-sys-background-1);
+  --ion-background-color: var(--si-sys-color-background-0);
+  --ion-color-primary: var(--si-sys-color-background-accent);
+  --ion-text-color: var(--si-sys-color-text-primary);
+  --ion-item-background: var(--si-sys-color-background-0);
+  --ion-toolbar-background: var(--si-sys-color-background-1);
 
   --ion-padding: 16px;
   --ion-margin: 16px;
@@ -43,48 +43,52 @@ body[data-screen-orientation='landscape-primary'] {
    * SI Theme tokens are complete colors, so Ionic RGB channel companions
    * intentionally use Ionic defaults.
    */
-  --ion-color-primary: var(--si-sys-background-accent);
-  --ion-color-primary-contrast: var(--si-sys-text-on-accent);
-  --ion-color-primary-shade: var(--si-sys-background-accent-active);
-  --ion-color-primary-tint: var(--si-sys-background-accent-hover);
+  --ion-color-primary: var(--si-sys-color-background-accent);
+  --ion-color-primary-contrast: var(--si-sys-color-text-on-accent);
+  --ion-color-primary-shade: var(--si-sys-color-background-accent-active);
+  --ion-color-primary-tint: var(--si-sys-color-background-accent-hover);
 
-  --ion-color-secondary: var(--si-sys-background-accent-secondary);
-  --ion-color-secondary-contrast: var(--si-sys-text-on-accent-secondary);
-  --ion-color-secondary-shade: var(--si-sys-background-accent-secondary-active);
-  --ion-color-secondary-tint: var(--si-sys-background-accent-secondary-hover);
+  --ion-color-secondary: var(--si-sys-color-background-accent-secondary);
+  --ion-color-secondary-contrast: var(--si-sys-color-text-on-accent-secondary);
+  --ion-color-secondary-shade: var(
+    --si-sys-color-background-accent-secondary-active
+  );
+  --ion-color-secondary-tint: var(
+    --si-sys-color-background-accent-secondary-hover
+  );
 
-  --ion-color-tertiary: var(--si-sys-background-neutral);
-  --ion-color-tertiary-contrast: var(--si-sys-text-primary);
-  --ion-color-tertiary-shade: var(--si-sys-background-0);
-  --ion-color-tertiary-tint: var(--si-sys-background-neutral-hover);
+  --ion-color-tertiary: var(--si-sys-color-background-neutral);
+  --ion-color-tertiary-contrast: var(--si-sys-color-text-primary);
+  --ion-color-tertiary-shade: var(--si-sys-color-background-0);
+  --ion-color-tertiary-tint: var(--si-sys-color-background-neutral-hover);
 
-  --ion-color-success: var(--si-sys-background-success);
-  --ion-color-success-contrast: var(--si-sys-text-on-success);
-  --ion-color-success-shade: var(--si-sys-background-success-active);
-  --ion-color-success-tint: var(--si-sys-background-success-hover);
+  --ion-color-success: var(--si-sys-color-background-success);
+  --ion-color-success-contrast: var(--si-sys-color-text-on-success);
+  --ion-color-success-shade: var(--si-sys-color-background-success-active);
+  --ion-color-success-tint: var(--si-sys-color-background-success-hover);
 
-  --ion-color-warning: var(--si-sys-background-warning);
-  --ion-color-warning-contrast: var(--si-sys-text-on-warning);
-  --ion-color-warning-shade: var(--si-sys-background-warning-active);
-  --ion-color-warning-tint: var(--si-sys-background-warning-hover);
+  --ion-color-warning: var(--si-sys-color-background-warning);
+  --ion-color-warning-contrast: var(--si-sys-color-text-on-warning);
+  --ion-color-warning-shade: var(--si-sys-color-background-warning-active);
+  --ion-color-warning-tint: var(--si-sys-color-background-warning-hover);
 
-  --ion-color-danger: var(--si-sys-background-danger);
-  --ion-color-danger-contrast: var(--si-sys-text-on-danger);
-  --ion-color-danger-shade: var(--si-sys-background-danger-subtle);
-  --ion-color-danger-tint: var(--si-sys-background-danger-subtle);
+  --ion-color-danger: var(--si-sys-color-background-danger);
+  --ion-color-danger-contrast: var(--si-sys-color-text-on-danger);
+  --ion-color-danger-shade: var(--si-sys-color-background-danger-subtle);
+  --ion-color-danger-tint: var(--si-sys-color-background-danger-subtle);
 
-  --ion-color-light: var(--si-sys-background-inverse);
-  --ion-color-light-contrast: var(--si-sys-text-inverse);
-  --ion-color-light-shade: var(--si-sys-background-neutral);
-  --ion-color-light-tint: var(--si-sys-border-1);
+  --ion-color-light: var(--si-sys-color-background-inverse);
+  --ion-color-light-contrast: var(--si-sys-color-text-inverse);
+  --ion-color-light-shade: var(--si-sys-color-background-neutral);
+  --ion-color-light-tint: var(--si-sys-color-border-1);
 
-  --ion-color-medium: var(--si-sys-background-neutral);
-  --ion-color-medium-contrast: var(--si-sys-text-primary);
-  --ion-color-medium-shade: var(--si-sys-background-neutral-active);
-  --ion-color-medium-tint: var(--si-sys-background-neutral-hover);
+  --ion-color-medium: var(--si-sys-color-background-neutral);
+  --ion-color-medium-contrast: var(--si-sys-color-text-primary);
+  --ion-color-medium-shade: var(--si-sys-color-background-neutral-active);
+  --ion-color-medium-tint: var(--si-sys-color-background-neutral-hover);
 
-  --ion-color-dark: var(--si-sys-background-1);
-  --ion-color-dark-contrast: var(--si-sys-text-primary);
-  --ion-color-dark-shade: var(--si-sys-background-0);
-  --ion-color-dark-tint: var(--si-sys-background-hover);
+  --ion-color-dark: var(--si-sys-color-background-1);
+  --ion-color-dark-contrast: var(--si-sys-color-text-primary);
+  --ion-color-dark-shade: var(--si-sys-color-background-0);
+  --ion-color-dark-tint: var(--si-sys-color-background-hover);
 }

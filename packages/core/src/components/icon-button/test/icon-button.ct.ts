@@ -56,8 +56,8 @@ regressionTest(
     await mount(
       `<ix-icon-button
       icon="rocket"
-      icon-color="--si-sys-text-danger"
-      style="--si-sys-text-danger: rgb(1, 2, 3)"
+      icon-color="--si-sys-color-text-danger"
+      style="--si-sys-color-text-danger: rgb(1, 2, 3)"
     ></ix-icon-button>`,
       {
         icons: { iconRocket },

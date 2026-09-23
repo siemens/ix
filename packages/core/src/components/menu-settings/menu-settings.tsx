@@ -128,7 +128,7 @@ export class MenuSettings {
           <ix-icon-button
             variant="tertiary"
             icon={iconClose}
-            iconColor="--si-sys-text-secondary"
+            iconColor="--si-sys-color-text-secondary"
             aria-label={this.ariaLabelCloseButton}
             onClick={(e) =>
               this.close.emit({
