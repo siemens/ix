@@ -8,5 +8,3 @@
 /CODEOWNERS @siemens/siemens-ix-owners
 /BREAKING_CHANGES.md @siemens/siemens-ix-owners
 /.changeset/config.json @siemens/siemens-ix-owners
-
-/testing/visual-testing/ @siemens/siemens-ix-owners

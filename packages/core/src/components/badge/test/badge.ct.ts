@@ -212,11 +212,50 @@ regressionTest.describe('ix-badge', () => {
       }
     );
 
+    regressionTest(
+      'uses the critical contrast color for filled critical badges',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-badge
+            label="1"
+            variant="critical"
+            style="
+              --si-sys-text-on-critical: rgb(1, 2, 3);
+              --si-sys-text-on-warning: rgb(4, 5, 6);
+            "
+          ></ix-badge>
+        `);
+        const badge = new BadgePage(page);
+
+        await expect(badge.indicator).toHaveCSS('color', 'rgb(1, 2, 3)');
+      }
+    );
+
     regressionTest('applies outline class on host', async ({ mount, page }) => {
       await mount(`<ix-badge label="1" variant="primary" outline></ix-badge>`);
       const badge = new BadgePage(page);
       await badge.expectHostClass(/\boutline\b/);
     });
+
+    regressionTest(
+      'uses the default label color for outline variants',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-badge
+            label="1"
+            variant="primary"
+            outline
+            style="
+              --ix-badge-default-color: rgb(1, 2, 3);
+              --ix-badge-primary-color: rgb(4, 5, 6);
+            "
+          ></ix-badge>
+        `);
+        const badge = new BadgePage(page);
+
+        await expect(badge.indicator).toHaveCSS('color', 'rgb(1, 2, 3)');
+      }
+    );
 
     regressionTest('applies border class on host', async ({ mount, page }) => {
       await mount(`<ix-badge label="1" variant="primary" border></ix-badge>`);

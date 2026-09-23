@@ -14,8 +14,8 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-button icon="star">Button</ix-button>
-    <ix-button icon="star" icon-right="bulb">Button</ix-button>
-    <ix-button icon-right="bulb">Button</ix-button>
+    <ix-button icon="star" iconRight="bulb">Button</ix-button>
+    <ix-button iconRight="bulb">Button</ix-button>
     <ix-button variant="subtle-primary" icon="star">Button</ix-button>
     <ix-button variant="subtle-primary" icon="star">Button</ix-button>
     <ix-button variant="tertiary" icon="star">Button</ix-button>

@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-filter-chip--border-width: var(--theme-focus--border-thickness);
+  --ix-filter-chip--background: transparent;
+  --ix-filter-chip--border-color--disabled: #{sys.$si-sys-border-3};
+  --ix-filter-chip--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-filter-chip--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
+  --ix-filter-chip--background--active: #{sys.$si-sys-background-accent-secondary-active};
+  --ix-filter-chip-primary-outline--border-color: #{sys.$si-sys-border-accent};
+  --ix-filter-chip-primary-outline--border-color--active: #{sys.$si-sys-border-accent-active};
+  --ix-filter-chip-primary-outline--border-color--hover: #{sys.$si-sys-border-accent-hover};
+  --ix-filter-chip-primary-outline--color: #{sys.$si-sys-border-accent};
+  --ix-filter-chip-primary-outline--color--active: #{sys.$si-sys-border-accent-active};
+  --ix-filter-chip-primary-outline--color--hover: #{sys.$si-sys-border-accent-hover};
+}

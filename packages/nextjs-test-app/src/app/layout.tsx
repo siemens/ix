@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import '@siemens/ix/css/default.css';
+import '@siemens/ix/css/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

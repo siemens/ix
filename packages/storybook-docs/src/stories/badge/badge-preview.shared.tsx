@@ -11,9 +11,9 @@ import { h, type VNode } from '@stencil/core';
 import './badge-preview.css';
 
 /** Aligned with chip / react badge preview custom tokens. */
-export const CUSTOM_BADGE_BACKGROUND = 'var(--theme-chart-11)';
-export const CUSTOM_BADGE_COLOR = 'var(--theme-color-inv-std-text)';
-export const CUSTOM_BADGE_OUTLINE_COLOR = 'var(--theme-chip-outline--color)';
+export const CUSTOM_BADGE_BACKGROUND = 'var(--si-sys-data-categorical-9)';
+export const CUSTOM_BADGE_COLOR = 'var(--si-sys-text-inverse)';
+export const CUSTOM_BADGE_OUTLINE_COLOR = 'var(--si-sys-text-primary)';
 
 export const VARIANT_ROWS = [
   { label: 'Primary', variant: 'primary' },
@@ -79,7 +79,11 @@ export function themePanel(
 
 export function variantGridHeaders(): VNode[] {
   return [
-    <span key="header-corner" class="variant-grid-corner" aria-hidden="true"></span>,
+    <span
+      key="header-corner"
+      class="variant-grid-corner"
+      aria-hidden="true"
+    ></span>,
     <span key="header-filled" class="variant-grid-header">
       Filled
     </span>,
@@ -178,14 +182,20 @@ export function buildAttachedVariantGrid<V extends string>(
         <span key={`${variant}-attached-label`} class="variant-grid-row-label">
           {label}
         </span>,
-        <div key={`${variant}-attached-filled`} class="grid-cell grid-cell--attached">
+        <div
+          key={`${variant}-attached-filled`}
+          class="grid-cell grid-cell--attached"
+        >
           <span class="grid-cell-label">{`${variant} · filled · attached`}</span>
           {createBadge({
             variant,
             children: iconButtonAnchor(`${label} anchor`),
           })}
         </div>,
-        <div key={`${variant}-attached-border`} class="grid-cell grid-cell--attached">
+        <div
+          key={`${variant}-attached-border`}
+          class="grid-cell grid-cell--attached"
+        >
           <span class="grid-cell-label">{`${variant} · border · attached`}</span>
           {createBadge({
             variant,
@@ -193,7 +203,10 @@ export function buildAttachedVariantGrid<V extends string>(
             children: iconButtonAnchor(`${label} anchor`),
           })}
         </div>,
-        <div key={`${variant}-attached-pulse`} class="grid-cell grid-cell--attached">
+        <div
+          key={`${variant}-attached-pulse`}
+          class="grid-cell grid-cell--attached"
+        >
           <span class="grid-cell-label">{`${variant} · pulse · attached`}</span>
           {createBadge({
             variant,
