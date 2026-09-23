@@ -95,7 +95,7 @@ const getMCPConfigs = (framework: Framework): MCPConfig[] => [
     instructionContent: instructionContent(false, framework),
     config: {
       mcpServers: {
-        shadcn: {
+        siemensix: {
           command: 'npx',
           args: [CLI, 'mcp', `run-${framework}`],
         },
@@ -110,7 +110,7 @@ const getMCPConfigs = (framework: Framework): MCPConfig[] => [
     instructionContent: instructionContent(true, framework),
     config: {
       mcpServers: {
-        shadcn: {
+        siemensix: {
           command: 'npx',
           args: [CLI, 'mcp', `run-${framework}`],
         },

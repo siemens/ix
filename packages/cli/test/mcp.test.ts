@@ -52,6 +52,56 @@ test('MCP-generated instructions use a single colon before the Figma rules', asy
   }
 });
 
+test('generated MCP configs use siemensix and preserve existing shadcn servers', async () => {
+  const originalCwd = process.cwd();
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-configs-'));
+  const targets = [
+    { name: 'claude', configPath: '.mcp.json', serverKey: 'mcpServers' },
+    {
+      name: 'cursor',
+      configPath: '.cursor/mcp.json',
+      serverKey: 'mcpServers',
+    },
+    { name: 'vscode', configPath: '.vscode/mcp.json', serverKey: 'servers' },
+  ] as const;
+  try {
+    process.chdir(root);
+    for (const target of targets) {
+      const configPath = path.join(root, target.configPath);
+      await fs.mkdir(path.dirname(configPath), { recursive: true });
+      const shadcnConfig = {
+        command: 'npx',
+        args: ['shadcn-mcp', 'serve'],
+      };
+      await fs.writeFile(
+        configPath,
+        JSON.stringify({ [target.serverKey]: { shadcn: shadcnConfig } })
+      );
+
+      const { instructionPath } = await initMCPConfig('react', target.name);
+      const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+      const servers = config[target.serverKey];
+      assert.deepEqual(servers.shadcn, shadcnConfig);
+      assert.deepEqual(servers.siemensix, {
+        command: 'npx',
+        args: ['@siemens/ix-cli@latest', 'mcp', 'run-react'],
+      });
+      assert.deepEqual(Object.keys(servers).sort(), ['shadcn', 'siemensix']);
+
+      const instructions = await fs.readFile(
+        path.join(root, instructionPath),
+        'utf8'
+      );
+      assert.match(instructions, /mcp_siemensix_search_examples/);
+      assert.match(instructions, /mcp_siemensix_get_component_details/);
+      assert.doesNotMatch(instructions, /mcp_shadcn_/);
+    }
+  } finally {
+    process.chdir(originalCwd);
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
 async function withMcpClient(
   framework: 'react' | 'angular',
   args: string[],
