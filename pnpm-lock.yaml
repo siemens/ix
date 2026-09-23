@@ -16,8 +16,8 @@ catalogs:
       specifier: ^1.58.1
       version: 1.58.1
     '@siemens/ix-icons':
-      specifier: 0.0.0-20260811100620
-      version: 0.0.0-20260811100620
+      specifier: 0.0.0-20260917085159
+      version: 0.0.0-20260917085159
     eslint:
       specifier: ^9.39.3
       version: 9.39.3
@@ -97,119 +97,6 @@ importers:
         specifier: ^5.5.4
         version: 5.8.3
 
-  patterns/angular-standalone-patterns:
-    dependencies:
-      '@angular/common':
-        specifier: ^21.1.0
-        version: 21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
-      '@angular/compiler':
-        specifier: ^21.1.0
-        version: 21.2.21
-      '@angular/core':
-        specifier: ^21.1.0
-        version: 21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1)
-      '@angular/forms':
-        specifier: ^21.1.0
-        version: 21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
-      '@angular/platform-browser':
-        specifier: ^21.1.0
-        version: 21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))
-      '@angular/router':
-        specifier: ^21.1.0
-        version: 21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
-      '@siemens/ix':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@siemens/ix-angular':
-        specifier: workspace:*
-        version: link:../../packages/angular/dist
-      '@siemens/ix-icons':
-        specifier: ^3.3.0
-        version: 3.5.0
-      rxjs:
-        specifier: ~7.8.0
-        version: 7.8.2
-      tslib:
-        specifier: ^2.3.0
-        version: 2.8.1
-    devDependencies:
-      '@angular/build':
-        specifier: ^21.1.2
-        version: 21.2.22(0bac00ea9d2bbcdf32756581bd9ba1de)
-      '@angular/cli':
-        specifier: ^21.1.2
-        version: 21.2.22(@types/node@25.2.0)(chokidar@5.0.0)
-      '@angular/compiler-cli':
-        specifier: ^21.1.0
-        version: 21.2.21(@angular/compiler@21.2.21)(typescript@5.9.3)
-      jsdom:
-        specifier: ^27.1.0
-        version: 27.4.0
-      typescript:
-        specifier: ~5.9.2
-        version: 5.9.3
-      vitest:
-        specifier: ^4.0.8
-        version: 4.1.4(@types/node@25.2.0)(happy-dom@20.4.0)(jsdom@27.4.0)(msw@2.10.2(@types/node@25.2.0)(typescript@5.9.3))(vite@8.0.10(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
-
-  patterns/react-patterns:
-    dependencies:
-      '@siemens/ix':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@siemens/ix-icons':
-        specifier: ^3.3.0
-        version: 3.5.0
-      '@siemens/ix-react':
-        specifier: workspace:*
-        version: link:../../packages/react
-      react:
-        specifier: ^19.2.0
-        version: 19.2.5
-      react-dom:
-        specifier: ^19.2.0
-        version: 19.2.5(react@19.2.5)
-      react-router-dom:
-        specifier: ^7.2.0
-        version: 7.18.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-    devDependencies:
-      '@eslint/js':
-        specifier: ^9.39.1
-        version: 9.39.5
-      '@types/node':
-        specifier: ^24.10.1
-        version: 24.12.2
-      '@types/react':
-        specifier: ^19.2.5
-        version: 19.2.14
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.5(@types/react@19.2.14)
-      '@vitejs/plugin-react':
-        specifier: ^5.1.1
-        version: 5.2.0(vite@7.3.6(@types/node@24.12.2)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
-      eslint:
-        specifier: ^9.39.1
-        version: 9.39.3(jiti@2.6.1)
-      eslint-plugin-react-hooks:
-        specifier: ^7.0.1
-        version: 7.1.1(eslint@9.39.3(jiti@2.6.1))
-      eslint-plugin-react-refresh:
-        specifier: ^0.4.24
-        version: 0.4.26(eslint@9.39.3(jiti@2.6.1))
-      globals:
-        specifier: ^16.5.0
-        version: 16.5.0
-      typescript:
-        specifier: ~5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.4
-        version: 8.68.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
-      vite:
-        specifier: ^7.2.4
-        version: 7.3.6(@types/node@24.12.2)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
-
   examples/angular-examples:
     dependencies:
       '@angular/animations':
@@ -250,7 +137,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.30(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -368,7 +255,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.30(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -460,7 +347,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       vite:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
@@ -481,7 +368,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -572,7 +459,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -666,7 +553,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.14
@@ -834,7 +721,7 @@ importers:
         version: 1.58.1
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@stencil-community/eslint-plugin':
         specifier: ^0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5)
@@ -1187,7 +1074,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@stencil/core':
         specifier: ^4.43.4
         version: 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
@@ -1298,6 +1185,119 @@ importers:
         specifier: ^2.2.10
         version: 2.2.10(typescript@5.8.3)
 
+  patterns/angular-standalone-patterns:
+    dependencies:
+      '@angular/common':
+        specifier: ^21.1.0
+        version: 21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^21.1.0
+        version: 21.2.21
+      '@angular/core':
+        specifier: ^21.1.0
+        version: 21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1)
+      '@angular/forms':
+        specifier: ^21.1.0
+        version: 21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^21.1.0
+        version: 21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))
+      '@angular/router':
+        specifier: ^21.1.0
+        version: 21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.21(@angular/common@21.2.21(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.21(@angular/compiler@21.2.21)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@siemens/ix-angular':
+        specifier: workspace:*
+        version: link:../../packages/angular/dist
+      '@siemens/ix-icons':
+        specifier: ^3.3.0
+        version: 3.5.0
+      rxjs:
+        specifier: ~7.8.0
+        version: 7.8.2
+      tslib:
+        specifier: ^2.3.0
+        version: 2.8.1
+    devDependencies:
+      '@angular/build':
+        specifier: ^21.1.2
+        version: 21.2.22(0bac00ea9d2bbcdf32756581bd9ba1de)
+      '@angular/cli':
+        specifier: ^21.1.2
+        version: 21.2.22(@types/node@25.2.0)(chokidar@5.0.0)
+      '@angular/compiler-cli':
+        specifier: ^21.1.0
+        version: 21.2.21(@angular/compiler@21.2.21)(typescript@5.9.3)
+      jsdom:
+        specifier: ^27.1.0
+        version: 27.4.0
+      typescript:
+        specifier: ~5.9.2
+        version: 5.9.3
+      vitest:
+        specifier: ^4.0.8
+        version: 4.1.4(@types/node@25.2.0)(happy-dom@20.4.0)(jsdom@27.4.0)(msw@2.10.2(@types/node@25.2.0)(typescript@5.9.3))(vite@8.0.10(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
+
+  patterns/react-patterns:
+    dependencies:
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@siemens/ix-icons':
+        specifier: ^3.3.0
+        version: 3.5.0
+      '@siemens/ix-react':
+        specifier: workspace:*
+        version: link:../../packages/react
+      react:
+        specifier: ^19.2.0
+        version: 19.2.5
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.5(react@19.2.5)
+      react-router-dom:
+        specifier: ^7.2.0
+        version: 7.18.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.39.1
+        version: 9.39.5
+      '@types/node':
+        specifier: ^24.10.1
+        version: 24.12.2
+      '@types/react':
+        specifier: ^19.2.5
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.5(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.1
+        version: 5.2.0(vite@7.3.6(@types/node@24.12.2)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
+      eslint:
+        specifier: ^9.39.1
+        version: 9.39.3(jiti@2.6.1)
+      eslint-plugin-react-hooks:
+        specifier: ^7.0.1
+        version: 7.1.1(eslint@9.39.3(jiti@2.6.1))
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.24
+        version: 0.4.26(eslint@9.39.3(jiti@2.6.1))
+      globals:
+        specifier: ^16.5.0
+        version: 16.5.0
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+      typescript-eslint:
+        specifier: ^8.46.4
+        version: 8.68.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
+      vite:
+        specifier: ^7.2.4
+        version: 7.3.6(@types/node@24.12.2)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
+
   testing/angular-standalone-test-app:
     dependencies:
       '@angular/animations':
@@ -1338,7 +1338,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.14(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1450,7 +1450,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.14(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.18)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1569,7 +1569,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       vite:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.32.0)(sass-embedded@1.93.0)(sass@1.97.3)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
@@ -1608,7 +1608,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -1739,7 +1739,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -1827,7 +1827,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@types/node':
         specifier: ^24.0.14
         version: 24.0.14
@@ -1848,7 +1848,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260811100620
+        version: 0.0.0-20260917085159
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -2001,12 +2001,12 @@ importers:
       angular-examples:
         specifier: 'workspace:'
         version: link:../../examples/angular-examples
-      angular-standalone-patterns:
-        specifier: 'workspace:'
-        version: link:../../patterns/angular-standalone-patterns
       angular-standalone-examples:
         specifier: 'workspace:'
         version: link:../../examples/angular-standalone-examples
+      angular-standalone-patterns:
+        specifier: 'workspace:'
+        version: link:../../patterns/angular-standalone-patterns
       fs-extra:
         specifier: ^11.3.3
         version: 11.3.3
@@ -2025,12 +2025,12 @@ importers:
       minisearch:
         specifier: ^7.2.0
         version: 7.2.0
-      react-patterns:
-        specifier: 'workspace:'
-        version: link:../../patterns/react-patterns
       react-examples:
         specifier: 'workspace:'
         version: link:../../examples/react-examples
+      react-patterns:
+        specifier: 'workspace:'
+        version: link:../../patterns/react-patterns
       tsdown:
         specifier: ^0.20.1
         version: 0.20.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(synckit@0.11.13)(typescript@5.9.3)
@@ -6034,8 +6034,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.63.3':
-    resolution: {integrity: sha512-2oxd3PqJgukB5Gi2ETYI27FuIf9iKNfn6cSuyzRCDurIp37nuee36+sgkTNHXIREkOT8YAdBAdY91GUXkuex5Q==}
+  '@rollup/wasm-node@4.63.4':
+    resolution: {integrity: sha512-pXmzGQzpMazI9wL+5ifqPfIOR5FFblTWTPS/tIg/WXH8JpLYFbJsOq4UyL2RH2FNAnfPqoC28wgRLudGH66NPA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -6065,8 +6065,8 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@0.0.0-20260811100620':
-    resolution: {integrity: sha512-voxIgpIc8JNuHCziFXhrkDwKAec2bmpP57N/CaKS7Mt38XuAekzlVn9Oiz+Yo34pZdYdI/BuXLs+HWMFxY7Xmw==}
+  '@siemens/ix-icons@0.0.0-20260917085159':
+    resolution: {integrity: sha512-NAWi+LIA1h375eYZgADGTpR7TlPaGLQIrhCYLfCVwvpiJsr+oFdWFTttuzYNVX6n9AjIro1cmLuYaXLAIF3gjA==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@siemens/ix-icons@3.5.0':
@@ -19095,7 +19095,7 @@ snapshots:
       jose: 6.2.10
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.0
-      raw-body: 3.0.0
+      raw-body: 3.0.2
       zod: 4.3.6
       zod-to-json-schema: 3.25.2(zod@4.3.6)
     transitivePeerDependencies:
@@ -19117,7 +19117,7 @@ snapshots:
       jose: 6.2.10
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.0
-      raw-body: 3.0.0
+      raw-body: 3.0.2
       zod: 4.4.3
       zod-to-json-schema: 3.25.2(zod@4.4.3)
     transitivePeerDependencies:
@@ -19907,7 +19907,7 @@ snapshots:
       '@napi-rs/lzma-linux-x64-gnu': 1.5.1
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.63.3':
+  '@rollup/wasm-node@4.63.4':
     dependencies:
       '@types/estree': 1.0.9
     optionalDependencies:
@@ -19950,7 +19950,7 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@0.0.0-20260811100620': {}
+  '@siemens/ix-icons@0.0.0-20260917085159': {}
 
   '@siemens/ix-icons@3.5.0': {}
 
@@ -24202,20 +24202,20 @@ snapshots:
       etag: 1.8.1
       finalhandler: 2.1.0
       fresh: 2.0.0
-      http-errors: 2.0.0
+      http-errors: 2.0.1
       merge-descriptors: 2.0.0
       mime-types: 3.0.1
       on-finished: 2.4.1
       once: 1.4.0
       parseurl: 1.3.3
       proxy-addr: 2.0.7
-      qs: 6.14.0
+      qs: 6.15.3
       range-parser: 1.2.1
       router: 2.2.0
       send: 1.2.0
       serve-static: 2.2.0
       statuses: 2.0.2
-      type-is: 2.0.1
+      type-is: 2.1.0
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
@@ -30598,7 +30598,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.28
-      rollup: '@rollup/wasm-node@4.63.3'
+      rollup: '@rollup/wasm-node@4.63.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 20.16.5
@@ -30618,7 +30618,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.28
-      rollup: '@rollup/wasm-node@4.63.3'
+      rollup: '@rollup/wasm-node@4.63.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 22.20.1
@@ -30638,7 +30638,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.28
-      rollup: '@rollup/wasm-node@4.63.3'
+      rollup: '@rollup/wasm-node@4.63.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.0.14
@@ -30658,7 +30658,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.28
-      rollup: '@rollup/wasm-node@4.63.3'
+      rollup: '@rollup/wasm-node@4.63.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 25.2.0
@@ -30678,7 +30678,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.28
-      rollup: '@rollup/wasm-node@4.63.3'
+      rollup: '@rollup/wasm-node@4.63.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 25.2.0

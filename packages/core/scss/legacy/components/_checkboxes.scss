@@ -11,7 +11,7 @@
 @use '../../tokens/system' as sys;
 
 @mixin checkbox-basic() {
-  $size: 1.125rem;
+  $size: 1.25rem;
 
   /* Base for label styling */
   .ix-form-control[type='checkbox']:not(:checked),
@@ -106,8 +106,7 @@
       border-left: 0.0625rem solid #{sys.$si-sys-text-on-accent};
       position: absolute;
       margin: 0.525rem 0.42rem 0.1875rem;
-      transform: translate(-1px, -3px) rotate(-53deg) scale(2)
-        skew(-8deg, -3deg);
+      transform: translate(0, -2px) rotate(-53deg) scale(2) skew(-8deg, -3deg);
     }
 
     &:hover + label:before {
@@ -139,11 +138,11 @@
     & + label:after {
       content: '';
       display: block;
-      width: 0.625rem;
-      height: 0.125rem;
+      width: 0.75rem;
+      height: 0;
       border-bottom: 0.125rem solid #{sys.$si-sys-text-on-accent};
       position: absolute;
-      margin: 0.5625rem 0 0 0.25rem;
+      margin: 0.625rem 0 0 0.25rem;
     }
 
     & + label:before {

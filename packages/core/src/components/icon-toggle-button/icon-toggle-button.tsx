@@ -19,6 +19,10 @@ import {
 } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
+import {
+  DEFAULT_BUTTON_ICON_SIZE,
+  type ButtonIconSize,
+} from '../button/base-button.types';
 import { BaseIconButton } from '../icon-button/base-icon-button';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
@@ -75,9 +79,13 @@ export class IconToggleButton
   @Prop() pressed = false;
 
   /**
-   * Size of icon in button
+   * Size of icon in button.
+   * `12` and `16` shrink the control. `20` and `24` keep a 32×32 control.
+   * Defaults to `20`.
+   *
+   * @since 6.0.0 Size `20` is available
    */
-  @Prop() size: '24' | '16' | '12' = '24';
+  @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
    * Disable the button
@@ -104,7 +112,10 @@ export class IconToggleButton
     return {
       'btn-icon-12': this.size === '12',
       'btn-icon-16': this.size === '16',
-      'btn-icon-32': this.size === '24',
+      'btn-icon-32':
+        this.size === '24' ||
+        this.size === DEFAULT_BUTTON_ICON_SIZE ||
+        !this.size,
     };
   }
 

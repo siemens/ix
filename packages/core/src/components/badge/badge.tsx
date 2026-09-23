@@ -575,7 +575,6 @@ export class Badge
           <ix-icon
             class="status-icon"
             name={getBadgeStatusIcon(variant, true)}
-            size="16"
             aria-hidden={a11yBoolean(true)}
           />
         );
@@ -587,13 +586,11 @@ export class Badge
           <ix-icon
             class="status-icon status-icon-plate"
             name={getBadgeStatusIconPlate(variant)}
-            size="16"
             aria-hidden={a11yBoolean(true)}
           />
           <ix-icon
             class="status-icon status-icon-glyph"
             name={getBadgeStatusIcon(variant, false)}
-            size="16"
             aria-hidden={a11yBoolean(true)}
           />
         </span>

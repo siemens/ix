@@ -129,7 +129,6 @@ export class MenuAbout {
           <h2 class="text-h2">{this.label}</h2>
           <ix-icon-button
             variant="tertiary"
-            size="24"
             icon={iconClose}
             iconColor="--si-sys-text-secondary"
             aria-label={this.ariaLabelCloseButton}

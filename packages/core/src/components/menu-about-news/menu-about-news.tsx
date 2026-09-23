@@ -100,7 +100,6 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         </div>
 
         <ix-icon-button
-          size="24"
           icon={iconClose}
           iconColor="--si-sys-text-secondary"
           variant="tertiary"

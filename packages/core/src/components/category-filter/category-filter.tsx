@@ -316,6 +316,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = false;
     if (this.dropdown) {
       this.dropdown.show = false;
     }
@@ -326,6 +327,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = true;
     if (this.dropdown) {
       this.dropdown.show = true;
     }
@@ -854,7 +856,7 @@ export class CategoryFilter {
 
   render() {
     return (
-      <Host>
+      <Host class={{ active: this.showDropdown }}>
         <form ref={(el) => (this.formElement = el)}>
           <div
             read-only={this.readonly}
@@ -937,6 +939,9 @@ export class CategoryFilter {
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
+            onShowChanged={(event) => {
+              this.showDropdown = event.detail;
+            }}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>

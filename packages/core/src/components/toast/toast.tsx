@@ -235,7 +235,6 @@ export class Toast {
             <ix-icon-button
               icon={iconClose}
               iconColor="--si-sys-text-secondary"
-              size="24"
               variant="tertiary"
               onClick={() => this.closeToast.emit()}
               aria-label={this.ariaLabelCloseIconButton}

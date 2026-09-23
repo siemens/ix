@@ -56,6 +56,7 @@ import {
   getLuxonDateOnlyFormatMask,
   getLuxonTimeFormatMask,
 } from '../utils/luxon-datetime-format-masks';
+import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   InputPickerMixin,
@@ -766,6 +767,7 @@ export class DatetimeInput
         >
           <ix-icon-button
             aria-label={this.ariaLabelCalendarButton}
+            aria-expanded={a11yBoolean(this.show)}
             tabindex={-1}
             class={{ 'calendar-hidden': this.disabled || this.readonly }}
             variant="subtle-tertiary"
@@ -790,6 +792,7 @@ export class DatetimeInput
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+          active: this.show,
         }}
       >
         <ix-field-wrapper

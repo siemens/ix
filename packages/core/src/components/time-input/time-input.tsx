@@ -63,7 +63,7 @@ import { parseWithLocale } from '../utils/date-time-locale';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
-import { forceTabIndex } from '../utils/a11y';
+import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 
 /**
  * Text input for entering and validating a time value.
@@ -620,7 +620,7 @@ export class TimeInput
             icon={iconClock}
             onClick={(event) => this.onTimeIconClick(event)}
             aria-label={this.ariaLabelTimeToggleButton}
-            aria-expanded={this.show}
+            aria-expanded={a11yBoolean(this.show)}
           ></ix-icon-button>
         </SlotEnd>
       </div>
@@ -694,6 +694,7 @@ export class TimeInput
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+          active: this.show,
         }}
         onFocusout={() => {
           this.closeDropdown();

@@ -18,7 +18,12 @@ import {
   Mixin,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
-import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
+import {
+  BaseButtonStyle,
+  BaseButtonVariant,
+  ButtonIconSize,
+  DEFAULT_BUTTON_ICON_SIZE,
+} from './base-button.types';
 import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
 import { DefaultMixins } from '../utils/internal/component';
@@ -91,8 +96,12 @@ export class Button
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
 
-  /** @internal */
-  @Prop() iconSize: '12' | '16' | '24' = '24';
+  /**
+   * Size of leading and trailing icons
+   *
+   * @internal
+   */
+  @Prop() iconSize: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
