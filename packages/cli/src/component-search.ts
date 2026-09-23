@@ -145,21 +145,6 @@ function normalizePath(value: string): string {
   return value.replace(/^\.\//, '').replace(/^\/+/, '');
 }
 
-function packageVersion(packageRoot: string): string | null {
-  try {
-    const packageJson = JSON.parse(
-      fs.readFileSync(path.join(packageRoot, 'package.json'), 'utf8')
-    ) as { version?: unknown };
-    return typeof packageJson.version === 'string' ? packageJson.version : null;
-  } catch {
-    return null;
-  }
-}
-
-function versionsMatch(left: string, right: string): boolean {
-  return left.replace(/^v/, '') === right.replace(/^v/, '');
-}
-
 function findLocalComponentsRegistryPath(): string | null {
   let currentDir = process.cwd();
   const root = path.parse(currentDir).root;
@@ -328,17 +313,6 @@ async function loadComponentJsonArtifact(
 
   const registry = await fetchValidatedRegistryIndex(options.baseUrl);
   const selectedVersion = resolveRegistryVersion(registry, options.version);
-  if (
-    packageRoot &&
-    packageVersion(packageRoot) &&
-    versionsMatch(selectedVersion, packageVersion(packageRoot)!)
-  ) {
-    const localPackagePath = packageArtifactPath(packageRoot, jsonType);
-    if (fs.existsSync(localPackagePath)) {
-      return fs.readFileSync(localPackagePath, 'utf8');
-    }
-  }
-
   const artifactPath =
     registry.versions[selectedVersion]?.components?.[jsonType];
   if (!artifactPath) {

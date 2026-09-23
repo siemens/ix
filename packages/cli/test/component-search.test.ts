@@ -16,6 +16,34 @@ import {
   listAllComponents,
 } from '../src/component-search';
 
+test('standalone component search still uses installed metadata without registry options', async () => {
+  const originalCwd = process.cwd();
+  const originalFetch = globalThis.fetch;
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-component-local-'));
+  const packageRoot = path.join(root, 'node_modules', '@siemens', 'ix');
+  try {
+    await fs.mkdir(packageRoot, { recursive: true });
+    await fs.writeFile(
+      path.join(packageRoot, 'component-doc.json'),
+      JSON.stringify({
+        components: [{ tag: 'ix-local', docs: 'Local convenience metadata' }],
+      })
+    );
+    process.chdir(root);
+    globalThis.fetch = (async () => {
+      throw new Error('Standalone local metadata must not fetch the registry');
+    }) as typeof fetch;
+
+    assert.deepEqual(await listAllComponents(), [
+      { tag: 'ix-local', description: 'Local convenience metadata' },
+    ]);
+  } finally {
+    globalThis.fetch = originalFetch;
+    process.chdir(originalCwd);
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
 test('does not use installed component metadata for a different requested version', async () => {
   const originalCwd = process.cwd();
   const originalFetch = globalThis.fetch;

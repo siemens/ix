@@ -29,17 +29,13 @@ const tagOption = new Option(
   'Registry tag/version (e.g. latest, main, v4.3.0)'
 ).default('latest');
 
-export function explicitComponentRegistryOptions(
-  command: Command,
-  options: { registry: string; tag: string }
-): { baseUrl?: string; version?: string } {
+export function selectedComponentRegistryOptions(options: {
+  registry: string;
+  tag: string;
+}): { baseUrl: string; version: string } {
   return {
-    baseUrl:
-      command.getOptionValueSource('registry') === 'cli'
-        ? options.registry
-        : undefined,
-    version:
-      command.getOptionValueSource('tag') === 'cli' ? options.tag : undefined,
+    baseUrl: options.registry,
+    version: options.tag,
   };
 }
 
@@ -55,7 +51,7 @@ const mcpRunReactMcpCommand = new Command('run-react')
           'react',
           options.registry,
           options.tag,
-          explicitComponentRegistryOptions(command, options)
+          selectedComponentRegistryOptions(options)
         );
         await server.connect(transport);
       } catch (error) {
@@ -76,7 +72,7 @@ const mcpRunAngularMcpCommand = new Command('run-angular')
           'angular',
           options.registry,
           options.tag,
-          explicitComponentRegistryOptions(command, options)
+          selectedComponentRegistryOptions(options)
         );
         await server.connect(transport);
       } catch (error) {
@@ -97,7 +93,7 @@ const mcpRunVueMcpCommand = new Command('run-vue')
           'vue',
           options.registry,
           options.tag,
-          explicitComponentRegistryOptions(command, options)
+          selectedComponentRegistryOptions(options)
         );
         await server.connect(transport);
       } catch (error) {

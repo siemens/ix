@@ -13,8 +13,8 @@ import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { Command, Option } from 'commander';
 import { defaultRegistry } from '../src/config';
 import {
-  explicitComponentRegistryOptions,
   mcpCommand,
+  selectedComponentRegistryOptions,
 } from '../src/commands/mcp';
 import { initMCPConfig } from '../src/mcp/config';
 import { createServer } from '../src/mcp/server';
@@ -27,7 +27,7 @@ function parsedRegistryOptions(args: string[]) {
   const options = command.opts<{ registry: string; tag: string }>();
   return {
     options,
-    componentRegistry: explicitComponentRegistryOptions(command, options),
+    componentRegistry: selectedComponentRegistryOptions(options),
   };
 }
 
@@ -262,11 +262,27 @@ test('get_example_code reports incomplete source as an MCP tool error', async ()
   }
 });
 
-test('React and Angular default MCP metadata tools use installed package data', async () => {
+test('default MCP metadata tools follow registry latest instead of a conflicting installed version', async () => {
   const originalCwd = process.cwd();
   const originalFetch = globalThis.fetch;
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-local-'));
   const packageRoot = path.join(root, 'node_modules', '@siemens', 'ix');
+  const requests: string[] = [];
+  const registry = {
+    name: 'ix',
+    'dist-tags': { latest: '2.0.0' },
+    versions: {
+      '2.0.0': {
+        patterns: [],
+        examples: [],
+        components: {
+          componentDoc: '2.0.0/ix/component-doc.json',
+          componentRelatedExamples: '2.0.0/ix/component-related-examples.json',
+        },
+        documentationSearchIndex: '2.0.0/documentation-search-index.json',
+      },
+    },
+  };
   try {
     await fs.mkdir(packageRoot, { recursive: true });
     await fs.writeFile(
@@ -278,7 +294,7 @@ test('React and Angular default MCP metadata tools use installed package data', 
       JSON.stringify({
         components: [
           {
-            tag: 'ix-button',
+            tag: 'ix-installed',
             docs: 'Installed API',
             props: [{ name: 'installedProp', docs: 'Installed API' }],
             docsTags: [{ name: 'figma-main-component-id', text: '123:456' }],
@@ -291,25 +307,51 @@ test('React and Angular default MCP metadata tools use installed package data', 
       '{}'
     );
     process.chdir(root);
-    globalThis.fetch = (async () => {
-      throw new Error('Default metadata tools must not fetch the registry');
+    globalThis.fetch = (async (input: string | URL | Request) => {
+      const url = input.toString();
+      requests.push(url);
+      if (url.endsWith('/registry.json')) {
+        return new Response(JSON.stringify(registry));
+      }
+      if (url.endsWith('/2.0.0/ix/component-doc.json')) {
+        return new Response(
+          JSON.stringify({
+            components: [
+              {
+                tag: 'ix-default',
+                docs: 'Default registry API',
+                props: [{ name: 'defaultProp', docs: 'Default registry API' }],
+                docsTags: [
+                  { name: 'figma-main-component-id', text: '123:456' },
+                ],
+              },
+            ],
+          })
+        );
+      }
+      if (url.endsWith('/2.0.0/ix/component-related-examples.json')) {
+        return new Response('{}');
+      }
+      throw new Error(`Unexpected registry request: ${url}`);
     }) as typeof fetch;
 
     assert.deepEqual(parsedRegistryOptions([]).componentRegistry, {
-      baseUrl: undefined,
-      version: undefined,
+      baseUrl: defaultRegistry,
+      version: 'latest',
     });
     for (const framework of ['react', 'angular'] as const) {
       await withMcpClient(framework, [], async (callTool) => {
         assert.match(
           await callTool('get_component_details', {
-            componentTag: 'ix-button',
+            componentTag: 'ix-default',
           }),
-          /Installed API/
+          /Default registry API/
         );
-        assert.match(await callTool('list_all_components', {}), /ix-button/);
+        assert.match(await callTool('list_all_components', {}), /ix-default/);
         assert.match(
-          await callTool('get_figma_component_mapping', { query: 'ix-button' }),
+          await callTool('get_figma_component_mapping', {
+            query: 'ix-default',
+          }),
           /123:456/
         );
         assert.match(
@@ -318,6 +360,10 @@ test('React and Angular default MCP metadata tools use installed package data', 
         );
       });
     }
+    assert.ok(
+      requests.includes(`${defaultRegistry}/2.0.0/ix/component-doc.json`)
+    );
+    assert.ok(requests.every((url) => url.startsWith(defaultRegistry)));
   } finally {
     globalThis.fetch = originalFetch;
     process.chdir(originalCwd);
@@ -325,7 +371,7 @@ test('React and Angular default MCP metadata tools use installed package data', 
   }
 });
 
-test('MCP explicitly passed defaults still select remote metadata for both frameworks', async () => {
+test('explicitly passed default registry and tag select remote metadata for both frameworks', async () => {
   const originalCwd = process.cwd();
   const originalFetch = globalThis.fetch;
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-explicit-'));
@@ -340,7 +386,7 @@ test('MCP explicitly passed defaults still select remote metadata for both frame
     assert.deepEqual(
       parsedRegistryOptions(['--tag', 'latest']).componentRegistry,
       {
-        baseUrl: undefined,
+        baseUrl: defaultRegistry,
         version: 'latest',
       }
     );
@@ -348,7 +394,7 @@ test('MCP explicitly passed defaults still select remote metadata for both frame
       parsedRegistryOptions(['--registry', defaultRegistry]).componentRegistry,
       {
         baseUrl: defaultRegistry,
-        version: undefined,
+        version: 'latest',
       }
     );
     globalThis.fetch = (async (input: string | URL | Request) => {
@@ -415,6 +461,144 @@ test('MCP explicitly passed defaults still select remote metadata for both frame
       requests.includes(`${defaultRegistry}/2.0.0/ix/component-doc.json`)
     );
   } finally {
+    globalThis.fetch = originalFetch;
+    process.chdir(originalCwd);
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test('custom MCP metadata keeps registry provenance when its version matches the installed package', async () => {
+  const originalCwd = process.cwd();
+  const originalFetch = globalThis.fetch;
+  const originalError = console.error;
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-custom-'));
+  const packageRoot = path.join(root, 'node_modules', '@siemens', 'ix');
+  const registryUrl = 'https://registry.example/custom';
+  const optionsArgs = [
+    '--registry',
+    registryUrl,
+    '--tag',
+    'matching-version',
+  ];
+  const requests: string[] = [];
+  let includeRelatedExamples = true;
+  const registry = () => ({
+    name: 'custom',
+    'dist-tags': { latest: '1.0.0', 'matching-version': '1.0.0' },
+    versions: {
+      '1.0.0': {
+        patterns: [],
+        examples: [],
+        components: {
+          componentDoc: '1.0.0/ix/component-doc.json',
+          ...(includeRelatedExamples
+            ? {
+                componentRelatedExamples:
+                  '1.0.0/ix/component-related-examples.json',
+              }
+            : {}),
+        },
+        documentationSearchIndex: '1.0.0/documentation-search-index.json',
+      },
+    },
+  });
+
+  try {
+    await fs.mkdir(packageRoot, { recursive: true });
+    await fs.writeFile(
+      path.join(packageRoot, 'package.json'),
+      '{"version":"1.0.0"}'
+    );
+    await fs.writeFile(
+      path.join(packageRoot, 'component-doc.json'),
+      JSON.stringify({
+        components: [
+          {
+            tag: 'ix-installed',
+            docs: 'Installed API',
+            docsTags: [{ name: 'figma-main-component-id', text: '111:222' }],
+          },
+        ],
+      })
+    );
+    await fs.writeFile(
+      path.join(packageRoot, 'component-related-examples.json'),
+      '{}'
+    );
+    process.chdir(root);
+    console.error = () => undefined;
+    globalThis.fetch = (async (input: string | URL | Request) => {
+      const url = input.toString();
+      requests.push(url);
+      if (url.endsWith('/registry.json')) {
+        return new Response(JSON.stringify(registry()));
+      }
+      if (url.endsWith('/1.0.0/ix/component-doc.json')) {
+        return new Response(
+          JSON.stringify({
+            components: [
+              {
+                tag: 'ix-custom',
+                docs: 'Custom registry API',
+                props: [{ name: 'customProp', docs: 'Custom registry API' }],
+                docsTags: [
+                  { name: 'figma-main-component-id', text: '333:444' },
+                ],
+              },
+            ],
+          })
+        );
+      }
+      if (
+        url.endsWith('/1.0.0/ix/component-related-examples.json') &&
+        includeRelatedExamples
+      ) {
+        return new Response('{}');
+      }
+      throw new Error(`Unexpected registry request: ${url}`);
+    }) as typeof fetch;
+
+    assert.deepEqual(
+      parsedRegistryOptions(optionsArgs).componentRegistry,
+      { baseUrl: registryUrl, version: 'matching-version' }
+    );
+    await withMcpClient('react', optionsArgs, async (callTool) => {
+      assert.match(
+        await callTool('get_component_details', {
+          componentTag: 'ix-custom',
+        }),
+        /Custom registry API/
+      );
+      assert.match(await callTool('list_all_components', {}), /ix-custom/);
+      assert.match(
+        await callTool('get_figma_component_mapping', {
+          query: 'ix-custom',
+        }),
+        /333:444/
+      );
+      assert.match(
+        await callTool('list_components_with_figma_ids', {}),
+        /ix-custom/
+      );
+    });
+    assert.ok(
+      requests.includes(`${registryUrl}/1.0.0/ix/component-doc.json`)
+    );
+    assert.ok(requests.every((url) => url.startsWith(registryUrl)));
+
+    includeRelatedExamples = false;
+    await withMcpClient('react', optionsArgs, async (callTool) => {
+      const message = await callTool('get_component_details', {
+        componentTag: 'ix-custom',
+      });
+      assert.match(
+        message,
+        /does not define component artifact 'componentRelatedExamples'/
+      );
+      assert.doesNotMatch(message, /Installed API/);
+    });
+  } finally {
+    console.error = originalError;
     globalThis.fetch = originalFetch;
     process.chdir(originalCwd);
     await fs.rm(root, { recursive: true, force: true });

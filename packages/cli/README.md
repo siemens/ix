@@ -51,6 +51,13 @@ installation currently supports React and Angular only; a detected Vue project
 receives an explicit unsupported-framework error rather than installing React
 code.
 
+## MCP registry selection
+
+MCP run commands accept `--registry` and `--tag` (defaulting to the configured
+registry and `latest`). Component metadata, component search, and examples all
+use that same selection. MCP metadata requests read from the selected registry,
+even when an installed `@siemens/ix` package has a matching version.
+
 ## Lock and hash behavior
 
 The lock records the installed registry version and a SHA-256 hash for every
