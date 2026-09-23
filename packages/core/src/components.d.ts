@@ -3491,7 +3491,6 @@ export namespace Components {
         "iconColor"?: string;
     }
     /**
-     * Modal that indicates a loading or processing state.
      * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
      */
     interface IxModalLoading {
@@ -7133,7 +7132,6 @@ declare global {
         new (): HTMLIxModalHeaderElement;
     };
     /**
-     * Modal that indicates a loading or processing state.
      * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
      */
     interface HTMLIxModalLoadingElement extends Components.IxModalLoading, HTMLStencilElement {
@@ -11577,7 +11575,6 @@ declare namespace LocalJSX {
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
     /**
-     * Modal that indicates a loading or processing state.
      * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
      */
     interface IxModalLoading {
@@ -15411,7 +15408,6 @@ declare module "@stencil/core" {
              */
             "ix-modal-header": LocalJSX.IntrinsicElements["ix-modal-header"] & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
             /**
-             * Modal that indicates a loading or processing state.
              * @documentation https://ix.siemens.io//docs/components/loading-modal/guide.md
              */
             "ix-modal-loading": LocalJSX.IntrinsicElements["ix-modal-loading"] & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;

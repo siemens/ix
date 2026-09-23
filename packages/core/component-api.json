@@ -7111,19 +7111,6 @@
       "cssStates": []
     },
     {
-      "tag": "ix-modal-loading",
-      "deprecated": false,
-      "properties": [],
-      "methods": [],
-      "events": [],
-      "cssProperties": [],
-      "slots": [
-        "default"
-      ],
-      "cssParts": [],
-      "cssStates": []
-    },
-    {
       "tag": "ix-number-input",
       "deprecated": false,
       "properties": [
