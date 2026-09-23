@@ -46,6 +46,7 @@
   --ix-input--color--autofill: #{sys.$si-sys-color-text-primary};
   --ix-input--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-input--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-input--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-input-error--background: #{sys.$si-sys-color-background-1};
   --ix-input-error--border-color: #{sys.$si-sys-color-border-danger};
   --ix-input-error-icon--color: #{sys.$si-sys-color-text-danger};
