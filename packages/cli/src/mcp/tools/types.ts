@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { Framework } from '../../detect';
 
 type ToolResponse = {
+  isError?: boolean;
   content: Array<{
     type: 'text';
     text: string;

@@ -616,22 +616,11 @@ export async function getExampleCode(
 
   const files: ExampleCodeFile[] = [];
   for (const file of variant.files) {
-    try {
-      const content = await fetchManifestFile(baseUrl, examplePath, file.path);
-      files.push({
-        path: file.path,
-        content,
-      });
-    } catch (err) {
-      console.error(`Failed to fetch file ${file.path}:`, err);
-      // Include error info in the file
-      files.push({
-        path: file.path,
-        content: `// Error loading file: ${
-          err instanceof Error ? err.message : String(err)
-        }`,
-      });
-    }
+    const content = await fetchManifestFile(baseUrl, examplePath, file.path);
+    files.push({
+      path: file.path,
+      content,
+    });
   }
 
   return {

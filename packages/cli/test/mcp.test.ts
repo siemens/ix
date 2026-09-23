@@ -142,6 +142,81 @@ async function withMcpClient(
   }
 }
 
+test('get_example_code reports incomplete source as an MCP tool error', async () => {
+  const originalFetch = globalThis.fetch;
+  const requests: string[] = [];
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = input.toString();
+    requests.push(url);
+    if (url.endsWith('/registry.json')) {
+      return new Response(
+        JSON.stringify({
+          name: 'ix',
+          'dist-tags': { latest: 'v1' },
+          versions: {
+            v1: {
+              examples: [{ name: 'broken', path: 'v1/examples/broken.json' }],
+            },
+          },
+        })
+      );
+    }
+    if (url.endsWith('/v1/examples/broken.json')) {
+      return new Response(
+        JSON.stringify({
+          name: 'broken',
+          variants: {
+            react: {
+              files: [{ path: 'react/App.tsx' }, { path: 'react/style.css' }],
+            },
+          },
+        })
+      );
+    }
+    if (url.endsWith('/v1/examples/react/App.tsx')) {
+      return new Response('export const App = () => null;');
+    }
+    return new Response('missing', { status: 404 });
+  }) as typeof fetch;
+
+  const server = createServer(
+    'react',
+    defaultRegistry,
+    'latest',
+    { baseUrl: defaultRegistry, version: 'latest' }
+  );
+  const client = new Client({ name: 'ix-cli-test', version: '1.0.0' });
+  const [clientTransport, serverTransport] =
+    InMemoryTransport.createLinkedPair();
+  try {
+    await server.connect(serverTransport);
+    await client.connect(clientTransport);
+
+    const response = await client.callTool({
+      name: 'get_example_code',
+      arguments: { exampleName: 'broken' },
+    });
+    assert.equal(response.isError, true);
+    assert.ok('content' in response && Array.isArray(response.content));
+    const text = response.content
+      .map((entry) => (entry.type === 'text' ? entry.text : ''))
+      .join('\n');
+    assert.match(text, /Error getting example code/);
+    assert.match(text, /react\/style\.css/);
+    assert.doesNotMatch(text, /## Source Files/);
+    assert.deepEqual(requests, [
+      `${defaultRegistry}/registry.json`,
+      `${defaultRegistry}/v1/examples/broken.json`,
+      `${defaultRegistry}/v1/examples/react/App.tsx`,
+      `${defaultRegistry}/v1/examples/react/style.css`,
+    ]);
+  } finally {
+    globalThis.fetch = originalFetch;
+    await client.close();
+    await server.close();
+  }
+});
+
 test('React and Angular default MCP metadata tools use installed package data', async () => {
   const originalCwd = process.cwd();
   const originalFetch = globalThis.fetch;

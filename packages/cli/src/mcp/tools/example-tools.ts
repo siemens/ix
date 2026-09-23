@@ -194,6 +194,7 @@ export const exampleTools: ToolDefinition[] = [
         };
       } catch (error) {
         return {
+          isError: true,
           content: [
             {
               type: 'text',

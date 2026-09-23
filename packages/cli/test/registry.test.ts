@@ -190,34 +190,44 @@ test('rejects duplicate example public paths before fetching source files', asyn
   }
 });
 
-test('keeps failed example file fetches as per-file fallback content', async () => {
+test('rejects an example when any declared source file fails to load', async () => {
   const originalFetch = globalThis.fetch;
-  globalThis.fetch = (async (input: string | URL | Request) =>
-    input.toString().endsWith('/examples/card.json')
-      ? new Response(
-          JSON.stringify({
-            name: 'card',
-            variants: { react: { files: [{ path: 'react/card.tsx' }] } },
-          })
-        )
-      : new Response('missing', { status: 404 })) as typeof fetch;
-  const originalError = console.error;
-  console.error = () => undefined;
+  const requests: string[] = [];
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = input.toString();
+    requests.push(url);
+    if (url.endsWith('/examples/card.json')) {
+      return new Response(
+        JSON.stringify({
+          name: 'card',
+          variants: {
+            html: {
+              files: [{ path: 'html/index.html' }, { path: 'html/index.css' }],
+            },
+          },
+        })
+      );
+    }
+    if (url.endsWith('/examples/html/index.html')) {
+      return new Response('<main>Example</main>');
+    }
+    return new Response('missing', { status: 404 });
+  }) as typeof fetch;
   try {
-    const result = await getExampleCode(
-      'https://registry.example/root',
-      'examples/card.json',
-      'react'
+    await assert.rejects(
+      getExampleCode(
+        'https://registry.example/root',
+        'examples/card.json',
+        'html'
+      ),
+      /Failed to fetch https:\/\/registry\.example\/root\/examples\/html\/index\.css: 404/
     );
-    assert.deepEqual(result.files, [
-      {
-        path: 'react/card.tsx',
-        content:
-          '// Error loading file: Failed to fetch https://registry.example/root/examples/react/card.tsx: 404',
-      },
+    assert.deepEqual(requests, [
+      'https://registry.example/root/examples/card.json',
+      'https://registry.example/root/examples/html/index.html',
+      'https://registry.example/root/examples/html/index.css',
     ]);
   } finally {
-    console.error = originalError;
     globalThis.fetch = originalFetch;
   }
 });
