@@ -101,7 +101,6 @@ export class PopoverHeader {
           <ix-icon
             name={this.icon}
             color={this.iconColor}
-            size="24"
             aria-hidden={a11yBoolean(true)}
           ></ix-icon>
         ) : null}

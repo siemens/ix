@@ -135,7 +135,6 @@ export class BreadcrumbItem
       iconOval: false,
       disabled: false,
       icon: this.icon,
-      iconSize: '16',
       loading: false,
       selected: false,
       type: 'button',

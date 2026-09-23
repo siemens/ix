@@ -103,7 +103,6 @@ export class EventListItem {
             {this.chevron && (
               <ix-icon
                 name={iconChevronRight}
-                size="16"
                 class="chevron-icon"
                 aria-hidden="true"
               ></ix-icon>
