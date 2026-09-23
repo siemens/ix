@@ -114,10 +114,10 @@ $border-radius: 100px;
 }
 
 :host([type='dot']) .indicator {
-  width: #{sys.$si-sys-sizing-size-40};
-  height: #{sys.$si-sys-sizing-size-40};
-  min-width: #{sys.$si-sys-sizing-size-40};
-  min-height: #{sys.$si-sys-sizing-size-40};
+  width: var(--ix-badge-indicator--width);
+  height: var(--ix-badge-indicator--height);
+  min-width: var(--ix-badge-indicator--min-width);
+  min-height: var(--ix-badge-indicator--min-height);
   padding: 0;
   line-height: 0;
   font-size: 0;
@@ -126,21 +126,21 @@ $border-radius: 100px;
 
 :host([type='counter']) .indicator,
 :host([type='label']) .indicator {
-  height: #{sys.$si-sys-sizing-size-60};
-  min-width: #{sys.$si-sys-sizing-size-60};
-  min-height: #{sys.$si-sys-sizing-size-60};
+  height: var(--ix-badge--height);
+  min-width: var(--ix-badge--min-width);
+  min-height: var(--ix-badge--min-height);
   flex-shrink: 0;
 }
 
 :host([type='counter']) .indicator {
-  padding-inline: #{sys.$si-sys-sizing-spacing-x-20};
+  padding-inline: var(--ix-badge-indicator--padding-inline);
   font-weight: bold;
   line-height: 1.25rem;
 }
 
 :host([type='label']) .indicator {
-  padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  gap: #{sys.$si-sys-sizing-spacing-x-20};
+  padding-inline: var(--ix-badge-label--padding-inline);
+  gap: var(--ix-badge-indicator--gap);
   font-weight: 400;
   line-height: 1.25rem;
 }
@@ -151,9 +151,7 @@ $border-radius: 100px;
 }
 
 :host([type='label'].outline.with-icon) .indicator {
-  padding-inline: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
-  );
+  padding-inline: var(--ix-badge-indicator-outline--padding-inline);
 }
 
 :host([type='label'].align-left) .indicator {
@@ -173,10 +171,10 @@ $border-radius: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: #{sys.$si-sys-sizing-size-60};
-  height: #{sys.$si-sys-sizing-size-60};
-  min-width: #{sys.$si-sys-sizing-size-60};
-  min-height: #{sys.$si-sys-sizing-size-60};
+  width: var(--ix-badge-status-icon--width);
+  height: var(--ix-badge--height);
+  min-width: var(--ix-badge--min-width);
+  min-height: var(--ix-badge--min-height);
   padding: 0;
   line-height: 0;
   font-size: 0;
@@ -189,17 +187,17 @@ $border-radius: 100px;
 :host([type='status-icon']:not(.outline)) .status-icon-stack {
   position: relative;
   display: block;
-  width: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
-  height: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+  width: var(--ix-badge-status-icon-stack-outline--icon-size);
+  height: var(--ix-badge-status-icon-stack-outline--icon-size);
   flex-shrink: 0;
 }
 
 :host([type='status-icon']) .status-icon {
   flex-shrink: 0;
-  width: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
-  height: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
-  min-width: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
-  min-height: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+  width: var(--ix-badge-status-icon--icon-size);
+  height: var(--ix-badge-status-icon--icon-size);
+  min-width: var(--ix-badge-status-icon--icon-size);
+  min-height: var(--ix-badge-status-icon--icon-size);
 }
 
 :host([type='status-icon']:not(.outline)) .status-icon-stack .status-icon {

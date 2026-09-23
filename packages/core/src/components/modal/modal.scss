@@ -21,7 +21,7 @@
   display: none;
 
   dialog {
-    --ix-dialog-padding: #{sys.$si-sys-sizing-spacing-y-60};
+    --ix-dialog-padding: var(--ix-modal--dialog-padding);
 
     margin: 0;
     padding: var(--ix-dialog-padding);
@@ -48,27 +48,23 @@
   }
 
   .modal-size-360 {
-    width: calc(
-      #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-100}
-    );
+    width: var(--ix-modal-extra-small--width);
   }
 
   .modal-size-480 {
-    width: #{sys.$si-sys-sizing-size-180};
+    width: var(--ix-modal-small--width);
   }
 
   .modal-size-600 {
-    width: #{sys.$si-sys-sizing-size-190};
+    width: var(--ix-modal-medium--width);
   }
 
   .modal-size-720 {
-    width: #{sys.$si-sys-sizing-size-200};
+    width: var(--ix-modal-large--width);
   }
 
   .modal-size-840 {
-    width: calc(
-      #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-140} + #{sys.$si-sys-sizing-spacing-x-80}
-    );
+    width: var(--ix-modal-extra-large--width);
   }
 
   .modal-size-full-width {
@@ -143,6 +139,6 @@
 :host(.with-icon) {
   ::slotted(ix-modal-footer),
   ::slotted(ix-modal-content) {
-    margin-left: #{sys.$si-sys-sizing-spacing-x-110};
+    margin-left: var(--ix-modal-with-icon--margin-left);
   }
 }

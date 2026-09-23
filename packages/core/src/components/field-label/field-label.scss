@@ -9,12 +9,13 @@
 
 @use 'tokens/system' as sys;
 
+@use './field-label.vars' as *;
 :host {
   display: inline-block;
   position: relative;
 
-  margin-top: #{sys.$si-sys-sizing-spacing-y-40};
-  margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+  margin-top: var(--ix-field-label--margin-top);
+  margin-bottom: var(--ix-field-label--margin-bottom);
 }
 
 :host(.text-overflow-no-wrap) {

@@ -13,9 +13,9 @@
 @use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
-$padding-inline: #{sys.$si-sys-sizing-spacing-x-50};
-$close-size: #{sys.$si-sys-sizing-size-70};
-$close-inset: #{sys.$si-sys-sizing-spacing-x-20};
+$padding-inline: var(--ix-chip--padding-inline);
+$close-size: var(--ix-chip--close-size);
+$close-inset: var(--ix-chip--close-inset);
 // 1px at 16px root; padding calcs subtract this to align with outline border
 $outline-border-width: 0.0625rem;
 
@@ -66,8 +66,8 @@ $outline-border-width: 0.0625rem;
 :host {
   display: inline-block;
   position: relative;
-  height: #{sys.$si-sys-sizing-size-80};
-  max-height: #{sys.$si-sys-sizing-size-80};
+  height: var(--ix-chip--height);
+  max-height: var(--ix-chip--max-height);
 
   @include component.ix-component;
 }
@@ -81,8 +81,8 @@ $outline-border-width: 0.0625rem;
   align-items: stretch;
   border-radius: $border-radius;
   vertical-align: top;
-  min-height: #{sys.$si-sys-sizing-size-80};
-  max-height: #{sys.$si-sys-sizing-size-80};
+  min-height: var(--ix-chip-wrap--min-height);
+  max-height: var(--ix-chip-wrap--max-height);
 
   .chip-main {
     appearance: none;
@@ -95,7 +95,7 @@ $outline-border-width: 0.0625rem;
     min-width: 0;
     width: 100%;
     border-radius: inherit;
-    padding-block: #{sys.$si-sys-sizing-spacing-y-40};
+    padding-block: var(--ix-chip-main--padding-block);
     padding-inline: $padding-inline;
     font: inherit;
     text-align: inherit;
@@ -117,7 +117,7 @@ $outline-border-width: 0.0625rem;
     }
 
     .with-icon {
-      margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+      margin-right: var(--ix-chip-with-icon--margin-right);
     }
 
     .slot-container {
@@ -151,7 +151,8 @@ $outline-border-width: 0.0625rem;
 
   &.outline.closable .chip-main {
     padding-right: calc(
-      #{$close-inset} + #{$close-size} + #{sys.$si-sys-sizing-spacing-x-30} - #{$outline-border-width}
+      #{$close-inset} + #{$close-size} +
+        var(--ix-chip-main-outline--padding-right) - #{$outline-border-width}
     );
   }
 
@@ -165,7 +166,8 @@ $outline-border-width: 0.0625rem;
 
   &:not(.outline).closable .chip-main {
     padding-right: calc(
-      #{$close-inset} + #{$close-size} + #{sys.$si-sys-sizing-spacing-x-30}
+      #{$close-inset} + #{$close-size} +
+        var(--ix-chip-main-outline--padding-right)
     );
   }
 

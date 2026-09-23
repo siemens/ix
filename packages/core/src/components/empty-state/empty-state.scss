@@ -15,15 +15,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-y-60};
+  gap: var(--ix-empty-state-large--gap);
 
   .emptyState__icon {
-    width: calc(
-      #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-x-40}
-    );
-    height: calc(
-      #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-y-40}
-    );
+    width: var(--ix-empty-state-icon-large--icon-size);
+    height: var(--ix-empty-state-icon-large--icon-size--icon);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,14 +34,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-y-80};
+    gap: var(--ix-empty-state-content-large--gap);
 
     .content__label {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: #{sys.$si-sys-sizing-spacing-y-40};
+      gap: var(--ix-empty-state-content-label-large--gap);
     }
   }
 
@@ -60,13 +56,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-x-60};
+  gap: var(--ix-empty-state-compact--gap);
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-empty-state-icon-compact--icon-size);
   }
 
   .emptyState__content {
@@ -74,7 +70,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-60};
+    gap: var(--ix-empty-state-content-compact--gap);
   }
 }
 
@@ -82,19 +78,19 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: #{sys.$si-sys-sizing-spacing-x-60};
+  gap: var(--ix-empty-state-compact-break--gap);
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-empty-state-icon--icon-size);
   }
 
   .emptyState__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-empty-state-content--gap);
   }
 }

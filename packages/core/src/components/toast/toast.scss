@@ -16,15 +16,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  min-width: calc(
-    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
-  );
-  max-width: calc(
-    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
-  );
-  min-height: calc(
-    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
+  min-width: var(--ix-toast--min-width);
+  max-width: var(--ix-toast--max-width);
+  min-height: var(--ix-toast--min-height);
 
   pointer-events: all;
 
@@ -40,29 +34,26 @@
   .toast-body {
     display: flex;
     position: relative;
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-40}
-    );
+    min-height: var(--ix-toast-body--min-height);
     width: 100%;
     flex-grow: 1;
-    padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
-      #{sys.$si-sys-sizing-spacing-y-20};
+    padding: var(--ix-toast-body--padding);
 
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
+      padding: var(--ix-toast-icon--padding);
     }
 
     .toast-content {
       overflow: hidden;
       min-width: 0;
       width: 100%;
-      padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
+      padding: var(--ix-toast-content--padding);
 
       .toast-title {
         min-width: 0;
-        margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+        margin: var(--ix-toast-title--margin);
         overflow-wrap: break-word;
         word-break: break-word;
       }
@@ -76,7 +67,7 @@
       }
 
       .toast-action {
-        margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+        margin-top: var(--ix-toast-action--margin-top);
       }
     }
   }

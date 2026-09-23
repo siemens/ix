@@ -8,7 +8,6 @@
  */
 
 @use '../button/button';
-@use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
@@ -28,8 +27,8 @@
 
   .reset-button {
     position: absolute;
-    top: #{sys.$si-sys-sizing-spacing-y-20};
-    right: #{sys.$si-sys-sizing-spacing-x-20};
+    top: var(--ix-category-filter-reset-button--top);
+    right: var(--ix-category-filter-reset-button--right);
   }
 
   .reset-button.hide-reset-button {
@@ -37,9 +36,12 @@
   }
 
   .input-container {
-    $padding-with-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px calc(#{sys.$si-sys-sizing-spacing-x-80} +
-          #{sys.$si-sys-sizing-spacing-x-20});
-    $padding-no-icon: 1px #{sys.$si-sys-sizing-spacing-x-80} 1px #{sys.$si-sys-sizing-spacing-x-20};
+    $padding-with-icon: var(
+      --ix-category-filter-input-container--padding-with-icon
+    );
+    $padding-no-icon: var(
+      --ix-category-filter-input-container--padding-no-icon
+    );
 
     &:not(.readonly) {
       &:not(.no-icon) {
@@ -78,9 +80,7 @@
 
     display: flex;
     height: auto;
-    max-height: calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
-    );
+    max-height: var(--ix-category-filter-input-container--max-height);
   }
 
   .token-container {
@@ -90,12 +90,8 @@
 
   .text-input {
     width: auto;
-    height: calc(
-      #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
-    );
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
-    );
+    height: var(--ix-category-filter-text-input--height);
+    min-height: var(--ix-category-filter-text-input--min-height);
     background: transparent;
     flex-grow: 1;
     box-shadow: none;
@@ -129,27 +125,31 @@
   }
 
   ix-icon {
-    block-size: #{sys.$si-sys-sizing-icon-sm};
-    inline-size: #{sys.$si-sys-sizing-icon-sm};
-    min-block-size: #{sys.$si-sys-sizing-icon-sm};
-    min-inline-size: #{sys.$si-sys-sizing-icon-sm};
+    block-size: var(--ix-category-filter-icon--icon-size);
+    inline-size: var(--ix-category-filter-icon--icon-size);
+    min-block-size: var(--ix-category-filter-icon--icon-size);
+    min-inline-size: var(--ix-category-filter-icon--icon-size);
     position: absolute;
-    top: #{sys.$si-sys-sizing-spacing-y-40};
-    left: #{sys.$si-sys-sizing-spacing-x-40};
+    top: var(--ix-category-filter-icon--top);
+    left: var(--ix-category-filter-icon--left);
   }
 
   ix-filter-chip {
-    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+    margin-right: var(--ix-category-filter--margin-right);
   }
 
   .category-preview {
     display: flex;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-70};
+    height: var(--ix-category-filter-category-preview--height);
     background-color: var(--ix-category-filter-category-preview--background);
-    border-top-left-radius: vars.$default-space;
-    border-bottom-left-radius: vars.$default-space;
-    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+    border-top-left-radius: var(
+      --ix-category-filter-category-preview--border-top-left-radius
+    );
+    border-bottom-left-radius: var(
+      --ix-category-filter-category-preview--border-bottom-left-radius
+    );
+    padding: var(--ix-category-filter-category-preview--padding);
     margin: 2px 0;
   }
 
@@ -165,7 +165,7 @@
   }
 
   ix-dropdown {
-    min-width: #{sys.$si-sys-sizing-size-150} !important;
+    min-width: var(--ix-category-filter--min-width) !important;
 
     @include legacy-fonts.text-default-single;
 
@@ -176,17 +176,17 @@
       .dropdown-header {
         display: flex;
         align-items: center;
-        height: #{sys.$si-sys-sizing-size-90};
+        height: var(--ix-category-filter-dropdown-header--height);
         color: var(--ix-category-filter-header--color);
-        padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+        padding: var(--ix-category-filter-dropdown-header--padding);
       }
 
       .dropdown-item {
         @include dropdown-item.dropdown-item;
 
-        height: #{sys.$si-sys-sizing-size-90};
-        margin: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40};
-        padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+        height: var(--ix-category-filter-dropdown-item--height);
+        margin: var(--ix-category-filter-dropdown-item--margin);
+        padding-inline: var(--ix-category-filter-dropdown-item--padding-inline);
         border: 1px solid transparent;
         border-radius: 100rem;
         width: auto;
@@ -214,9 +214,11 @@
     }
 
     .btn-toggle-operator {
-      width: #{sys.$si-sys-sizing-size-80};
-      height: #{sys.$si-sys-sizing-size-80};
-      margin-inline: #{sys.$si-sys-sizing-spacing-x-40};
+      width: var(--ix-category-filter-button-toggle-operator--width);
+      height: var(--ix-category-filter-button-toggle-operator--height);
+      margin-inline: var(
+        --ix-category-filter-button-toggle-operator--margin-inline
+      );
     }
   }
 

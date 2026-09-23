@@ -9,12 +9,13 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './modal-footer.vars' as *;
 :host {
   display: flex;
-  padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+  padding: var(--ix-modal-footer--padding);
   justify-content: flex-end;
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-x-40};
+  gap: var(--ix-modal-footer--gap);
   align-self: stretch;
 
   @include component.ix-component;

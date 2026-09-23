@@ -9,9 +9,10 @@
 
 @use 'tokens/system' as sys;
 
+@use './css-grid.vars' as *;
 :host {
   display: grid;
   position: relative;
-  row-gap: #{sys.$si-sys-sizing-spacing-y-80};
-  column-gap: #{sys.$si-sys-sizing-spacing-x-80};
+  row-gap: var(--ix-css-grid--row-gap);
+  column-gap: var(--ix-css-grid--column-gap);
 }

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'misc/common-variables' as vars;
 @use 'tokens/system' as sys;
 
 :host {
@@ -35,4 +36,24 @@
   --ix-event-list-item-outline--border-color--disabled: #{sys.$si-sys-color-border-4};
   --ix-event-list-item-outline--border-color--hover: #{sys.$si-sys-color-border-3};
   --ix-event-list-item-outline--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
+}
+
+:host {
+  --ix-event-list-item--height: #{sys.$si-sys-sizing-size-90};
+  --ix-event-list-item--border-radius: #{vars.$default-border-radius};
+  --ix-event-list-item--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-event-list-item-indicator--visual-width: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-event-list-item-indicator--max-width: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-event-list-item-indicator--min-width: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-event-list-item-indicator--border-top-left-radius: #{vars.$default-border-radius};
+  --ix-event-list-item-indicator--border-bottom-left-radius: #{vars.$default-border-radius};
+  --ix-event-list-item-container--width: calc(
+    100% -
+      (#{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40})
+  );
+  --ix-event-list-item-container--border-top-right-radius: #{vars.$default-border-radius};
+  --ix-event-list-item-container--border-bottom-right-radius: #{vars.$default-border-radius};
+  --ix-event-list-item-container--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-event-list-item-event-content--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-event-list-item-chevron-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
 }

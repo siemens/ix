@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: #{sys.$si-sys-sizing-size-80};
+    height: var(--ix-time-picker-header--height);
   }
 
   .clock {
@@ -50,9 +50,9 @@
         justify-content: space-around;
 
         .column-header {
-          height: #{sys.$si-sys-sizing-size-90};
-          width: #{sys.$si-sys-sizing-size-90};
-          line-height: #{sys.$si-sys-sizing-size-90};
+          height: var(--ix-time-picker-column-header--height);
+          width: var(--ix-time-picker-column-header--width);
+          line-height: var(--ix-time-picker-column-header--line-height);
           text-align: center;
           color: var(--ix-time-picker-column-header--color);
           text-overflow: ellipsis;
@@ -66,8 +66,8 @@
         align-items: center;
         justify-content: center;
         min-height: 100%;
-        margin-top: #{sys.$si-sys-sizing-size-100};
-        width: #{sys.$si-sys-sizing-spacing-x-40};
+        margin-top: var(--ix-time-picker-column-separator--margin-top);
+        width: var(--ix-time-picker-column-separator--width);
       }
     }
 
@@ -76,10 +76,7 @@
       overflow: auto;
       padding: 0.0625rem;
       margin: -0.0625rem;
-      max-height: calc(
-        #{sys.$si-sys-sizing-size-90} * 6 + #{sys.$si-sys-sizing-spacing-y-10} *
-          6
-      );
+      max-height: var(--ix-time-picker-element-list--max-height);
 
       button {
         all: unset;
@@ -87,9 +84,9 @@
 
       .element-container {
         box-sizing: border-box;
-        width: #{sys.$si-sys-sizing-size-90};
-        height: #{sys.$si-sys-sizing-size-90};
-        margin-bottom: #{sys.$si-sys-sizing-spacing-y-10};
+        width: var(--ix-time-picker-element-container--width);
+        height: var(--ix-time-picker-element-container--height);
+        margin-bottom: var(--ix-time-picker-element-container--margin-bottom);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -150,13 +147,9 @@
       }
 
       .element-list-padding {
-        width: #{sys.$si-sys-sizing-size-90};
-        height: calc(
-          #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
-        );
-        min-height: calc(
-          #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
-        );
+        width: var(--ix-time-picker-element-list-padding--width);
+        height: var(--ix-time-picker-element-list-padding--height);
+        min-height: var(--ix-time-picker-element-list-padding--min-height);
       }
     }
 
@@ -173,7 +166,7 @@
   .footer {
     display: flex;
     justify-content: space-between;
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-time-picker-footer--gap);
     flex-wrap: wrap;
 
     .confirm-button {
@@ -191,7 +184,7 @@
   }
 
   .default-space {
-    margin-left: #{sys.$si-sys-sizing-spacing-x-60};
+    margin-left: var(--ix-time-picker-default-space--margin-left);
   }
 
   .text-align {

@@ -15,8 +15,7 @@
 :host {
   display: block;
   background-color: var(--ix-menu-about-overlay--background);
-  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60}
-    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-90};
+  padding: var(--ix-menu-about--padding);
   flex-grow: 1;
   position: absolute;
   width: 100%;
@@ -29,16 +28,16 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-80};
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+    height: var(--ix-menu-about-about-header--height);
+    margin-bottom: var(--ix-menu-about-about-header--margin-bottom);
 
     h2 {
       color: var(--ix-menu-about-overlay-header--color);
-      margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+      margin-bottom: var(--ix-menu-about-heading--margin-bottom);
     }
   }
 
   ix-tabs {
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-80};
+    margin-bottom: var(--ix-menu-about--margin-bottom);
   }
 }

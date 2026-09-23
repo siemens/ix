@@ -12,14 +12,12 @@
 @use 'tokens/system' as sys;
 
 @use './expanding-search.vars' as *;
-$container-width: calc(
-  #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-border-width-default}
-);
+$container-width: var(--ix-expanding-search--container-width);
 
 :host {
   display: inline-flex;
   width: auto;
-  height: #{sys.$si-sys-sizing-size-80};
+  height: var(--ix-expanding-search--height);
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -49,7 +47,7 @@ $container-width: calc(
   }
 
   .collapsed {
-    width: #{sys.$si-sys-sizing-spacing-x-80};
+    width: var(--ix-expanding-search-collapsed--width);
     border: none;
   }
 
@@ -62,8 +60,8 @@ $container-width: calc(
 
   .btn-search {
     display: flex;
-    max-width: #{sys.$si-sys-sizing-size-80};
-    max-height: #{sys.$si-sys-sizing-size-80};
+    max-width: var(--ix-expanding-search-button-search--max-width);
+    max-height: var(--ix-expanding-search-button-search--max-height);
     border-radius: var(--ix-expanding-search--border-radius);
     transition: all var(--ix-expanding-search-button--transition-duration)
       ease-in-out;
@@ -92,13 +90,13 @@ $container-width: calc(
   }
 
   .btn-search.btn-search--expanded {
-    margin-left: #{sys.$si-sys-sizing-spacing-x-20};
+    margin-left: var(--ix-expanding-search-button-search-expanded--margin-left);
     pointer-events: none;
   }
 
   .btn-search:active {
-    width: #{sys.$si-sys-sizing-size-80};
-    height: #{sys.$si-sys-sizing-size-80};
+    width: var(--ix-expanding-search-button-search-active--width);
+    height: var(--ix-expanding-search-button-search-active--height);
     border-radius: var(--ix-expanding-search--border-radius);
     border: var(--ix-expanding-search-button--border--active) !important;
   }
@@ -115,12 +113,12 @@ $container-width: calc(
     position: absolute;
     border-radius: var(--ix-expanding-search--border-radius);
     right: 0px;
-    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+    margin-right: var(--ix-expanding-search-button-clear--margin-right);
   }
 
   .input {
-    padding-left: #{sys.$si-sys-sizing-spacing-x-90} !important;
-    padding-right: #{sys.$si-sys-sizing-spacing-x-100} !important;
+    padding-left: var(--ix-expanding-search-input--padding-left) !important;
+    padding-right: var(--ix-expanding-search-input--padding-right) !important;
   }
 
   .opacity-before {

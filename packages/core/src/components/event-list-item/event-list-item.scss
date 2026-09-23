@@ -11,10 +11,9 @@
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
-@use 'misc/common-variables' as vars;
 
 @use './event-list-item.vars' as *;
-$default-event-list-item-height: #{sys.$si-sys-sizing-size-90};
+$default-event-list-item-height: var(--ix-event-list-item--height);
 
 @mixin host-variants($variant) {
   :host(.event-list-item-#{$variant}) {
@@ -71,7 +70,7 @@ $default-event-list-item-height: #{sys.$si-sys-sizing-size-90};
     max-height: var(--event-list-item-height, $default-event-list-item-height);
     border-radius: var(
       --event-list-item-border-radius,
-      vars.$default-border-radius
+      var(--ix-event-list-item--border-radius)
     );
     background-color: var(--ix-event-list-item--background);
     overflow: hidden;
@@ -79,21 +78,21 @@ $default-event-list-item-height: #{sys.$si-sys-sizing-size-90};
     cursor: pointer;
     margin-bottom: var(
       --event-list-item-margin-bottom,
-      #{sys.$si-sys-sizing-spacing-y-40}
+      var(--ix-event-list-item--margin-bottom)
     );
 
     .indicator {
       height: 100%;
-      width: vars.$small-space;
-      max-width: vars.$small-space;
-      min-width: vars.$small-space;
+      width: var(--ix-event-list-item-indicator--visual-width);
+      max-width: var(--ix-event-list-item-indicator--max-width);
+      min-width: var(--ix-event-list-item-indicator--min-width);
       border-top-left-radius: var(
         --event-list-item-border-radius,
-        vars.$default-border-radius
+        var(--ix-event-list-item-indicator--border-top-left-radius)
       );
       border-bottom-left-radius: var(
         --event-list-item-border-radius,
-        vars.$default-border-radius
+        var(--ix-event-list-item-indicator--border-bottom-left-radius)
       );
     }
 
@@ -105,27 +104,22 @@ $default-event-list-item-height: #{sys.$si-sys-sizing-size-90};
     .event-list-item-container {
       display: flex;
       flex-grow: 1;
-      width: calc(
-        100% -
-          (
-            #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40}
-          )
-      );
+      width: var(--ix-event-list-item-container--width);
       height: 100%;
       border: 0.062rem solid;
       border-color: var(--ix-event-list-item--border-color);
       border-top-left-radius: 0;
       border-top-right-radius: var(
         --event-list-item-border-radius,
-        vars.$default-border-radius
+        var(--ix-event-list-item-container--border-top-right-radius)
       );
       border-bottom-left-radius: 0;
       border-bottom-right-radius: var(
         --event-list-item-border-radius,
-        vars.$default-border-radius
+        var(--ix-event-list-item-container--border-bottom-right-radius)
       );
       border-left: none;
-      padding-left: #{sys.$si-sys-sizing-spacing-x-60};
+      padding-left: var(--ix-event-list-item-container--padding-left);
 
       @include text-truncation.ellipsis;
     }
@@ -138,12 +132,14 @@ $default-event-list-item-height: #{sys.$si-sys-sizing-size-90};
       max-height: var(--event-list-item-height, 100%);
       white-space: var(--event-list-item-content-white-space, inherit);
       overflow: hidden;
-      padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+      padding-inline-end: var(
+        --ix-event-list-item-event-content--padding-inline-end
+      );
     }
 
     .chevron-icon {
       margin-left: auto;
-      margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+      margin-right: var(--ix-event-list-item-chevron-icon--margin-right);
       opacity: 0.6;
       align-self: center;
     }

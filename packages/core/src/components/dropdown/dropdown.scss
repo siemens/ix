@@ -18,20 +18,20 @@
   z-index: var(--ix-dropdown--z-index);
   box-shadow: var(--ix-dropdown--box-shadow);
 
-  padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  padding: var(--ix-dropdown--padding);
 
   @include component.ix-component;
 
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-dropdown-header--height);
     color: var(--ix-dropdown-header--color);
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+    padding: var(--ix-dropdown-header--padding);
   }
 }
 
-$dropdown-offset: #{sys.$si-sys-sizing-size-100};
+$dropdown-offset: var(--ix-dropdown--offset);
 
 :host(.overflow) {
   max-height: calc(50vh - $dropdown-offset);
@@ -46,7 +46,7 @@ $dropdown-offset: #{sys.$si-sys-sizing-size-100};
   margin: 0;
   border: none;
   outline: none;
-  padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  padding: var(--ix-dropdown-dialog--padding);
   min-width: 0;
   max-width: 100vw;
   width: max-content;
@@ -78,9 +78,9 @@ $dropdown-offset: #{sys.$si-sys-sizing-size-100};
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-dropdown-header--height);
     color: var(--ix-dropdown-header--color);
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+    padding: var(--ix-dropdown-header--padding);
   }
 
   &.overflow {

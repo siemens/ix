@@ -17,3 +17,11 @@
   --ix-dropdown--color: #{sys.$si-sys-color-text-primary};
   --ix-dropdown-header--color: #{sys.$si-sys-color-text-secondary};
 }
+
+:host {
+  --ix-dropdown--padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-dropdown-header--height: #{sys.$si-sys-sizing-size-90};
+  --ix-dropdown-header--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-dropdown--offset: #{sys.$si-sys-sizing-size-100};
+  --ix-dropdown-dialog--padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+}

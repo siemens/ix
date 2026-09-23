@@ -23,26 +23,24 @@
   .pull-right {
     position: relative;
     float: right;
-    padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+    padding: var(--ix-date-dropdown-pull-right--padding);
   }
 
   .quick-selection {
     display: inline-flex;
     flex-direction: column;
-    gap: #{sys.$si-sys-sizing-spacing-y-20};
+    gap: var(--ix-date-dropdown-quick-selection--gap);
     border-right: var(--ix-date-dropdown-divider--border);
     overflow: auto;
-    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+    padding: var(--ix-date-dropdown-quick-selection--padding);
 
     @include scrollbar.scrollbar;
 
     .btn {
       @include button-mixin.btn-base;
-      min-width: calc(
-        #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-spacing-x-40}
-      );
-      min-height: #{sys.$si-sys-sizing-size-80};
-      max-height: #{sys.$si-sys-sizing-size-80};
+      min-width: var(--ix-date-dropdown-button--min-width);
+      min-height: var(--ix-date-dropdown-button--min-height);
+      max-height: var(--ix-date-dropdown-button--max-height);
       justify-content: flex-start;
     }
 
@@ -57,8 +55,8 @@
   .container {
     display: flex;
     flex-direction: row;
-    height: calc(#{sys.$si-sys-sizing-size-90} * 10);
-    max-height: calc(#{sys.$si-sys-sizing-size-90} * 10);
+    height: var(--ix-date-dropdown-container--height);
+    max-height: var(--ix-date-dropdown-container--max-height);
 
     flex-wrap: nowrap;
   }
@@ -70,9 +68,7 @@
     justify-content: space-between;
 
     ix-date-picker {
-      height: calc(
-        #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-y-60}
-      );
+      height: var(--ix-date-dropdown-picker-wrapper--height);
     }
   }
 
@@ -88,9 +84,7 @@
     }
 
     .quick-selection {
-      max-height: calc(
-        #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
-      );
+      max-height: var(--ix-date-dropdown-quick-selection--max-height);
     }
   }
 }

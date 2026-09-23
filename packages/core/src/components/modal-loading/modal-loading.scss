@@ -9,11 +9,12 @@
 
 @use 'tokens/system' as sys;
 
+@use './modal-loading.vars' as *;
 :host {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-x-40};
+  gap: var(--ix-modal-loading--gap);
   overflow: hidden;
 
   .loading-text {

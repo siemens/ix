@@ -14,3 +14,10 @@
   --ix-date-time-card-separator--background: #{sys.$si-sys-color-border-4};
   --ix-date-time-card--background: #{sys.$si-sys-color-background-3};
 }
+
+:host {
+  --ix-date-time-card-header--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-date-time-card-content--padding: 0 #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-date-time-card-time-picker--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-date-time-card-footer--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+}

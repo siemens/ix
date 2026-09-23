@@ -21,3 +21,13 @@
   --ix-kpi-display-units--color: #{sys.$si-sys-color-text-primary};
   --ix-kpi-display-value--color: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-kpi--height: #{sys.$si-sys-sizing-size-90};
+  --ix-kpi--padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-kpi-icon--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-kpi-unit--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-kpi-stacked--height: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
+  );
+}

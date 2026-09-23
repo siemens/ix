@@ -19,10 +19,10 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: var(--ix-progress-indicator-progress-container--gap);
     margin: var(
       --ix-progress-indicator-margin,
-      #{sys.$si-sys-sizing-spacing-y-40} 0
+      var(--ix-progress-indicator-progress-container--margin)
     );
 
     &.align-left {

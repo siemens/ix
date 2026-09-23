@@ -19,7 +19,7 @@
     overflow: hidden;
     margin: var(
       --ix-progress-indicator-margin,
-      #{sys.$si-sys-sizing-spacing-y-40} 0
+      var(--ix-progress-indicator-progress-container--margin)
     );
   }
 

@@ -16,8 +16,8 @@
 :host {
   display: block;
   position: relative;
-  margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
-  margin-right: #{sys.$si-sys-sizing-spacing-x-50};
+  margin-bottom: var(--ix-menu-avatar--margin-bottom);
+  margin-right: var(--ix-menu-avatar--margin-right);
 
   @include component.ix-component;
 
@@ -27,12 +27,12 @@
 
     display: flex;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-menu-avatar-avatar--height);
     width: 100%;
-    max-height: #{sys.$si-sys-sizing-size-90};
-    padding-left: #{sys.$si-sys-sizing-spacing-x-20};
-    margin-left: calc(#{sys.$si-sys-sizing-spacing-x-60} * 0.41);
-    margin-right: calc(#{sys.$si-sys-sizing-spacing-x-60} * 0.35);
+    max-height: var(--ix-menu-avatar-avatar--max-height);
+    padding-left: var(--ix-menu-avatar-avatar--padding-left);
+    margin-left: var(--ix-menu-avatar-avatar--margin-left);
+    margin-right: var(--ix-menu-avatar-avatar--margin-right);
     transition: var(--ix-menu-avatar-button--transition-duration);
 
     .avatar-name {
@@ -40,7 +40,7 @@
       flex-direction: column;
       overflow: hidden;
       white-space: nowrap;
-      margin-left: #{sys.$si-sys-sizing-spacing-x-60};
+      margin-left: var(--ix-menu-avatar-avatar-name--margin-left);
       line-height: 1.14;
 
       .text-default-single {

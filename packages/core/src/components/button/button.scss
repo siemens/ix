@@ -9,9 +9,10 @@
 @use 'tokens/system' as sys;
 @use './button-mixin';
 
+@use './button.vars' as *;
 @include button-mixin.btn;
 @include button-mixin.all-btn-variants;
 
 :host {
-  min-width: #{sys.$si-sys-sizing-size-120};
+  min-width: var(--ix-button--min-width);
 }

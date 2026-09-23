@@ -19,16 +19,16 @@
   z-index: var(--ix-toast-container--z-index);
 
   ::slotted(*:not(:last-child)) {
-    margin-block-end: #{sys.$si-sys-sizing-spacing-y-60};
+    margin-block-end: var(--ix-toast-container--margin-block-end);
   }
 }
 
 :host(.toast-container--top-right) {
-  right: #{sys.$si-sys-sizing-spacing-x-60};
-  top: #{sys.$si-sys-sizing-spacing-y-90};
+  right: var(--ix-toast-container-top-right--right);
+  top: var(--ix-toast-container-top-right--top);
 }
 
 :host(.toast-container--bottom-right) {
-  right: #{sys.$si-sys-sizing-spacing-x-60};
-  bottom: #{sys.$si-sys-sizing-spacing-y-90};
+  right: var(--ix-toast-container-bottom-right--right);
+  bottom: var(--ix-toast-container-bottom-right--bottom);
 }

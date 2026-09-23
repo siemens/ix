@@ -21,8 +21,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  max-width: calc(#{sys.$si-sys-sizing-size-140} * 2);
+  margin-right: var(--ix-breadcrumb-item--margin-right);
+  max-width: var(--ix-breadcrumb-item--max-width);
   min-width: 0;
 
   @include component.ix-component;
@@ -35,12 +35,12 @@
     pointer-events: all;
     width: fit-content;
     padding-right: 0;
-    padding-left: #{sys.$si-sys-sizing-spacing-x-20};
+    padding-left: var(--ix-breadcrumb-item-button--padding-left);
   }
 
   .chevron {
     pointer-events: none;
-    margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-left: var(--ix-breadcrumb-item-chevron--margin-left);
     margin-right: 0rem;
     color: var(--ix-breadcrumb-item-separator--color);
   }
@@ -64,7 +64,7 @@
   cursor: default;
 
   .btn {
-    padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+    padding-right: var(--ix-breadcrumb-item-button--padding-right);
     pointer-events: none;
   }
 }

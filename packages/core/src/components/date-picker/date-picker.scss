@@ -17,9 +17,7 @@
 :host {
   display: block;
   position: relative;
-  max-width: calc(
-    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60}
-  );
+  max-width: var(--ix-date-picker--max-width);
 
   @include component.ix-component;
 
@@ -41,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+    padding: var(--ix-date-picker-selector--padding);
 
     .dropdown {
       color: var(--ix-date-picker-menu-item--color);
@@ -52,7 +50,7 @@
     .arrowYear {
       display: flex;
       position: relative;
-      padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90};
+      padding: var(--ix-date-picker-arrow-year--padding);
       align-items: center;
       cursor: pointer;
 
@@ -66,41 +64,33 @@
 
       .arrowPosition {
         position: absolute;
-        left: calc(
-          (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-30}
-        );
-        top: calc(50% - #{sys.$si-sys-sizing-spacing-y-40});
+        left: var(--ix-date-picker-arrow-position--left);
+        top: var(--ix-date-picker-arrow-position--top);
       }
 
       .checkPosition {
         position: absolute;
-        left: calc(
-          (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-40}
-        );
-        top: calc(50% - #{sys.$si-sys-sizing-spacing-y-40});
+        left: var(--ix-date-picker-check-position--left);
+        top: var(--ix-date-picker-check-position--top);
       }
 
       .monthMargin {
-        margin-left: calc(
-          #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
-        );
+        margin-left: var(--ix-date-picker-month-margin--margin-left);
       }
     }
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(7, #{sys.$si-sys-sizing-size-90});
-    grid-template-rows: repeat(7, #{sys.$si-sys-sizing-size-90});
+    grid-template-columns: var(--ix-date-picker-grid--grid-template-columns);
+    grid-template-rows: var(--ix-date-picker-grid--grid-template-rows);
 
     align-items: center;
     justify-items: center;
     justify-content: center;
 
     &--show-week-numbers {
-      grid-template-columns:
-        #{sys.$si-sys-sizing-size-70}
-        repeat(7, #{sys.$si-sys-sizing-size-90});
+      grid-template-columns: var(--ix-date-picker-grid--week-number-columns);
     }
 
     [role='row'] {
@@ -117,8 +107,8 @@
       background-color: var(--ix-date-picker-day--background);
       border: 1px solid var(--ix-date-picker-day--background);
       color: var(--ix-date-picker-day--color);
-      width: #{sys.$si-sys-sizing-size-90};
-      height: #{sys.$si-sys-sizing-size-90};
+      width: var(--ix-date-picker-calendar-item--width);
+      height: var(--ix-date-picker-calendar-item--height);
       cursor: pointer;
 
       &:focus-visible {
@@ -239,7 +229,7 @@
         border: none;
         background: none;
         cursor: initial;
-        width: #{sys.$si-sys-sizing-size-70};
+        width: var(--ix-date-picker-week-number--width);
       }
     }
   }
@@ -247,7 +237,7 @@
   .button {
     display: flex;
     justify-content: flex-end;
-    margin-top: #{sys.$si-sys-sizing-spacing-y-60};
+    margin-top: var(--ix-date-picker-button--margin-top);
   }
 
   .hidden {
@@ -256,7 +246,7 @@
 
   .infinite-scrolling-spacer:first-of-type {
     position: relative;
-    padding-bottom: #{sys.$si-sys-sizing-spacing-y-120};
+    padding-bottom: var(--ix-date-picker-first-of-type--padding-bottom);
 
     .sentinel {
       position: absolute;
@@ -267,7 +257,7 @@
   }
   .infinite-scrolling-spacer:last-of-type {
     position: relative;
-    padding-top: #{sys.$si-sys-sizing-spacing-y-120};
+    padding-top: var(--ix-date-picker-last-of-type--padding-top);
 
     .sentinel {
       position: absolute;
@@ -279,6 +269,6 @@
 
   .month-selector,
   .year-selector {
-    --ix-button-padding: 0 #{sys.$si-sys-sizing-spacing-x-20};
+    --ix-button-padding: var(--ix-date-picker-year-selector--button-padding);
   }
 }

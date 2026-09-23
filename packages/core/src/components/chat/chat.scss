@@ -10,16 +10,15 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './chat.vars' as *;
 :host {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   min-height: 0;
-  min-width: calc(
-    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-size-140} - #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  max-width: calc(#{sys.$si-sys-sizing-size-200} + var(--theme-space-5));
+  min-width: var(--ix-chat--min-width);
+  max-width: var(--ix-chat--max-width);
   box-sizing: border-box;
 
   @include component.ix-component;
@@ -39,7 +38,7 @@
 
   .messages ::slotted(*) {
     width: 100%;
-    max-width: #{sys.$si-sys-sizing-size-200};
+    max-width: var(--ix-chat-messages--max-width);
     flex: 0 0 auto;
   }
 
@@ -53,7 +52,7 @@
 
   .prompt ::slotted(*) {
     width: 100%;
-    max-width: #{sys.$si-sys-sizing-size-200};
+    max-width: var(--ix-chat-prompt--max-width);
   }
 }
 

@@ -11,18 +11,19 @@
 
 @use './../utils/focus/focus-proxy';
 
+@use './split-button.vars' as *;
 :host {
   position: relative;
   display: inline-flex;
   vertical-align: middle;
 
   .left-button {
-    width: calc(100% - #{sys.$si-sys-sizing-size-80});
+    width: var(--ix-split-button-left-button--width);
     --ix-button-border-radius-right: 0;
   }
 
   .right-button {
-    width: #{sys.$si-sys-sizing-size-80};
+    width: var(--ix-split-button-right-button--width);
     --ix-dropdown-button-border-radius-left: 0;
   }
 

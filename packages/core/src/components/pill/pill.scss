@@ -15,13 +15,13 @@
 :host {
   display: inline-block;
   position: relative;
-  height: #{sys.$si-sys-sizing-size-60};
-  max-height: #{sys.$si-sys-sizing-size-60};
+  height: var(--ix-pill--height);
+  max-height: var(--ix-pill--max-height);
 
   @include component.ix-component;
 }
 
-@include chip-mixin.chip-container(false, #{sys.$si-sys-sizing-spacing-x-40});
+@include chip-mixin.chip-container(false, var(--ix-pill--padding-inline));
 
 :host {
   .container {
@@ -35,25 +35,21 @@
     &.outline {
       background-color: var(--ix-pill-outline--background);
       &.icon {
-        padding-left: calc(
-          #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
-        );
-        padding-right: calc(
-          #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
-        );
+        padding-left: var(--ix-pill-outline-icon--padding-left);
+        padding-right: var(--ix-pill-outline-icon--padding-right);
       }
     }
 
     &:not(.outline) {
       &.icon {
-        padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-        padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+        padding-left: var(--ix-pill-solid-icon--padding-left);
+        padding-right: var(--ix-pill-solid-icon--padding-right);
       }
     }
   }
 
   .with-gap {
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: var(--ix-pill-with-gap--gap);
   }
 }
 

@@ -18,8 +18,8 @@ const scrollbarOverwrite = `
 
   /* width */
   ::-webkit-scrollbar {
-    width: $small-space;
-    height: $small-space;
+    width: var(--si-sys-sizing-spacing-x-40);
+    height: var(--si-sys-sizing-spacing-y-40);
   }
 
   /* Track */

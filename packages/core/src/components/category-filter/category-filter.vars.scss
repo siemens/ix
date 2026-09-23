@@ -25,3 +25,42 @@
   --ix-category-filter-category-preview--background: rgba(0, 0, 0, 0);
   --ix-category-filter-header--color: #{sys.$si-sys-color-text-secondary};
 }
+
+:host {
+  --ix-category-filter-dropdown-item--height: #{sys.$si-sys-sizing-size-90};
+  --ix-category-filter-dropdown-item--padding: 0 #{sys.$si-sys-sizing-spacing-x-90};
+  --ix-category-filter-glyph--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-category-filter-reset-button--top: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-category-filter-reset-button--right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-category-filter-input-container--padding-with-icon: 1px #{sys.$si-sys-sizing-spacing-x-80}
+    1px calc(#{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-spacing-x-20});
+  --ix-category-filter-input-container--padding-no-icon: 1px #{sys.$si-sys-sizing-spacing-x-80}
+    1px #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-category-filter-input-container--max-height: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
+  );
+  --ix-category-filter-text-input--height: calc(
+    #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-category-filter-text-input--min-height: calc(
+    #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-category-filter-icon--icon-size: #{sys.$si-sys-sizing-icon-sm};
+  --ix-category-filter-icon--top: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-category-filter-icon--left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-category-filter--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-category-filter-category-preview--height: #{sys.$si-sys-sizing-size-70};
+  --ix-category-filter-category-preview--border-top-left-radius: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-category-filter-category-preview--border-bottom-left-radius: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-category-filter-category-preview--padding: #{sys.$si-sys-sizing-spacing-y-40}
+    #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-category-filter--min-width: #{sys.$si-sys-sizing-size-150};
+  --ix-category-filter-dropdown-header--height: #{sys.$si-sys-sizing-size-90};
+  --ix-category-filter-dropdown-header--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-category-filter-dropdown-item--margin: #{sys.$si-sys-sizing-spacing-y-20}
+    #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-category-filter-dropdown-item--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-category-filter-button-toggle-operator--width: #{sys.$si-sys-sizing-size-80};
+  --ix-category-filter-button-toggle-operator--height: #{sys.$si-sys-sizing-size-80};
+  --ix-category-filter-button-toggle-operator--margin-inline: #{sys.$si-sys-sizing-spacing-x-40};
+}

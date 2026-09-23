@@ -13,9 +13,7 @@
   margin: 0;
   padding: 0;
   border: none;
-  max-width: calc(
-    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-50}
-  );
+  max-width: var(--ix-tooltip-dialog--max-width);
   width: max-content;
   background-color: transparent;
   overflow-wrap: break-word;
@@ -30,7 +28,7 @@
   height: fit-content;
   background: var(--ix-tooltip--background);
   color: var(--ix-tooltip--color);
-  padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-50};
+  padding: var(--ix-tooltip-container--padding);
 
   box-shadow: var(--ix-tooltip--box-shadow);
   border-radius: 0.25rem;
@@ -44,8 +42,7 @@
   display: flex;
 
   ::slotted(ix-icon) {
-    margin: #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-20}
-      #{sys.$si-sys-sizing-spacing-y-10} 0;
+    margin: var(--ix-tooltip-icon--margin);
   }
 }
 

@@ -21,3 +21,36 @@
   --ix-card-list-show-all--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-card-list-show-all--background--active: #{sys.$si-sys-color-background-selected};
 }
+
+:host {
+  --ix-card-list-title--height: #{sys.$si-sys-sizing-size-70};
+  --ix-card-list--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-card-list-title--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-card-list-title-button--margin-right: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-card-list-content--gap: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-card-list-show-all-card--max-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+  );
+  --ix-card-list-show-all-card--min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+  );
+  --ix-card-list-show-all-card--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+  );
+  --ix-card-list-show-all-card--min-height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+  );
+  --ix-card-list-show-all-card--max-height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+  );
+  --ix-card-list-show-all-card--height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+  );
+  --ix-card-list-show-all-card--margin-top: calc(
+    #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-card-list-show-all-card--margin-bottom: calc(
+    #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-card-list-show-all-card-icon--icon-size: #{sys.$si-sys-sizing-size-110};
+}

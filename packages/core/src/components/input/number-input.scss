@@ -9,12 +9,13 @@
 @use './input.mixins.scss';
 @use 'tokens/system' as sys;
 
+@use './input.vars' as *;
 @include input.input-field;
 
 :host {
   .input-wrapper.show-stepper-buttons {
     input[type='number'] {
-      min-width: #{sys.$si-sys-sizing-size-130};
+      min-width: var(--ix-input-show-stepper-buttons--min-width);
     }
   }
 

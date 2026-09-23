@@ -9,18 +9,17 @@
 
 @use 'tokens/system' as sys;
 
+@use './dropdown-quick-actions.vars' as *;
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
-  margin-inline-end: #{sys.$si-sys-sizing-spacing-x-80};
-  margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
+  margin-inline-start: var(--ix-dropdown-quick-actions--margin-inline-start);
+  margin-inline-end: var(--ix-dropdown-quick-actions--margin-inline-end);
+  margin-block-end: var(--ix-dropdown-quick-actions--margin-block-end);
 
   slot::slotted(*) {
     display: flex;
-    margin-inline-end: calc(
-      #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
-    );
+    margin-inline-end: var(--ix-dropdown-quick-actions-item--margin-inline-end);
   }
 }

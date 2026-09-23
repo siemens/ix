@@ -1,6 +1,7 @@
 @use './field-wrapper.mixins.scss';
 @use 'tokens/system' as sys;
 
+@use './field-wrapper.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -11,7 +12,7 @@
     position: relative;
     align-items: center;
     justify-content: flex-start;
-    gap: #{sys.$si-sys-sizing-spacing-y-20};
+    gap: var(--ix-field-wrapper-slot-wrapper--gap);
   }
 
   .field-bottom,
@@ -20,7 +21,7 @@
     flex-direction: row;
     position: relative;
     justify-content: space-between;
-    gap: #{sys.$si-sys-sizing-spacing-x-60};
+    gap: var(--ix-field-wrapper-field-top--gap);
     width: 100%;
     min-width: 100%;
   }
@@ -33,7 +34,7 @@
   @include field-wrapper.helper-text;
 
   .bottom-text {
-    margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+    margin-top: var(--ix-field-wrapper-bottom-text--margin-top);
+    margin-bottom: var(--ix-field-wrapper-bottom-text--margin-bottom);
   }
 }

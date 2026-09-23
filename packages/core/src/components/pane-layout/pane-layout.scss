@@ -10,12 +10,13 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './pane-layout.vars' as *;
 @mixin set-padding($composition) {
   @if $composition {
     @if $composition == top or $composition == bottom {
-      padding-#{$composition}: #{sys.$si-sys-sizing-spacing-y-100};
+      padding-#{$composition}: var(--ix-pane-layout--padding-block);
     } @else {
-      padding-#{$composition}: #{sys.$si-sys-sizing-spacing-x-100};
+      padding-#{$composition}: var(--ix-pane-layout--padding-inline);
     }
   }
 }

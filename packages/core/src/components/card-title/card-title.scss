@@ -1,13 +1,14 @@
 @use 'tokens/system' as sys;
 
+@use './card-title.vars' as *;
 :host {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-  margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
-  gap: #{sys.$si-sys-sizing-spacing-x-60};
+  margin-top: var(--ix-card-title--margin-top);
+  margin-bottom: var(--ix-card-title--margin-bottom);
+  gap: var(--ix-card-title--gap);
 
   width: 100%;
 
@@ -15,7 +16,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: var(--ix-card-title-title-actions--gap);
     margin-left: auto;
     margin-right: 0;
   }

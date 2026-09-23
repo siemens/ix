@@ -17,7 +17,7 @@ $outline-border-width: 0.0625rem;
 
 @mixin chip-container(
   $interaction: true,
-  $padding-inline: #{sys.$si-sys-sizing-spacing-x-50}
+  $padding-inline: var(--ix-chip--padding-inline)
 ) {
   .container {
     display: inline-flex;
@@ -27,11 +27,11 @@ $outline-border-width: 0.0625rem;
     position: relative;
     align-items: center;
     border-radius: $border-radius;
-    padding: #{sys.$si-sys-sizing-spacing-y-40};
+    padding: var(--ix-chip-container--padding);
     vertical-align: top;
 
-    height: #{sys.$si-sys-sizing-size-80};
-    max-height: #{sys.$si-sys-sizing-size-80};
+    height: var(--ix-chip-container--height);
+    max-height: var(--ix-chip-container--max-height);
 
     @if $interaction {
       cursor: pointer;
@@ -47,13 +47,13 @@ $outline-border-width: 0.0625rem;
     }
 
     .with-icon {
-      margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+      margin-right: var(--ix-chip-with-icon--margin-right);
     }
 
     .close-button-container {
       display: inline-flex;
       margin-left: auto;
-      padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+      padding-left: var(--ix-chip-close-button-container--padding-left);
     }
 
     .slot-container {
@@ -88,7 +88,7 @@ $outline-border-width: 0.0625rem;
 
       &.closable:not(.inactive) {
         padding-right: calc(
-          #{sys.$si-sys-sizing-spacing-x-20} - #{$outline-border-width}
+          var(--ix-chip-inactive-outline--padding-right) - #{$outline-border-width}
         );
       }
 
@@ -102,7 +102,7 @@ $outline-border-width: 0.0625rem;
       padding-left: $padding-inline;
 
       &.closable:not(.inactive) {
-        padding-right: #{sys.$si-sys-sizing-spacing-x-20};
+        padding-right: var(--ix-chip-inactive-outline--padding-right);
       }
 
       &.closable.inactive,

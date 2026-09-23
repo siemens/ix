@@ -9,24 +9,25 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './range-field.vars' as *;
 :host {
   @include component.ix-component();
   display: inline-flex;
   position: relative;
-  gap: #{sys.$si-sys-sizing-spacing-x-20};
+  gap: var(--ix-range-field--gap);
 
   .range-delimiter {
-    block-size: #{sys.$si-sys-sizing-icon-lg};
-    inline-size: #{sys.$si-sys-sizing-icon-lg};
-    min-block-size: #{sys.$si-sys-sizing-icon-lg};
-    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    block-size: var(--ix-range-field-range-delimiter--block-size);
+    inline-size: var(--ix-range-field-range-delimiter--inline-size);
+    min-block-size: var(--ix-range-field-range-delimiter--min-block-size);
+    min-inline-size: var(--ix-range-field-range-delimiter--min-inline-size);
     order: 2;
     flex: 0 0 auto;
-    margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+    margin-top: var(--ix-range-field-range-delimiter--margin-top);
   }
 
   .range-delimiter.has-label {
-    margin-top: #{sys.$si-sys-sizing-size-80};
+    margin-top: var(--ix-range-field-has-label--margin-top);
   }
 
   ::slotted(:first-child),
@@ -44,10 +45,10 @@
   }
 
   ::slotted(.fallback-label-margin) {
-    margin-top: calc(#{sys.$si-sys-sizing-size-80} * 0.9);
+    margin-top: var(--ix-range-field-fallback-label-margin--margin-top);
   }
 }
 
 :host(.hide-arrow) {
-  gap: #{sys.$si-sys-sizing-spacing-x-40};
+  gap: var(--ix-range-field-hide-arrow--gap);
 }

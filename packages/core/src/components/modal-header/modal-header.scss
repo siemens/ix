@@ -10,12 +10,12 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './modal-header.vars' as *;
 :host {
   display: flex;
-  padding: #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-40}
-    #{sys.$si-sys-sizing-spacing-x-40};
+  padding: var(--ix-modal-header--padding);
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-x-60};
+  gap: var(--ix-modal-header--gap);
 
   @include component.ix-component;
 

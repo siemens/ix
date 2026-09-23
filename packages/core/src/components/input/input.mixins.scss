@@ -16,12 +16,12 @@
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
-    margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-left: var(--ix-input-start-container--margin-left);
   }
 
   .start-container ::slotted(ix-icon.size-24),
   .start-container ::slotted(ix-icon-button.btn-icon-16) {
-    margin-left: #{sys.$si-sys-sizing-spacing-x-20};
+    margin-left: var(--ix-input-icon-compact--margin-left);
   }
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
@@ -30,19 +30,19 @@
   }
 }
 
-$input-end-container-inset: #{sys.$si-sys-sizing-spacing-x-20};
+$input-end-container-inset: var(--ix-input-end-container--inset);
 
 @mixin applySpacingToEndSlot {
   .end-container ::slotted(*) {
     margin-right: calc(
-      #{sys.$si-sys-sizing-spacing-x-40} - #{$input-end-container-inset}
+      var(--ix-input-end-container--margin-right) - #{$input-end-container-inset}
     );
   }
 
   .end-container ::slotted(ix-icon.size-24),
   .end-container ::slotted(ix-icon-button.btn-icon-16) {
     margin-right: calc(
-      #{sys.$si-sys-sizing-spacing-x-20} - #{$input-end-container-inset}
+      var(--ix-input-icon-compact--margin-right) - #{$input-end-container-inset}
     );
   }
 
@@ -95,8 +95,8 @@ $input-end-container-inset: #{sys.$si-sys-sizing-spacing-x-20};
     @include applySpacingToEndSlot;
 
     .bottom-text {
-      margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-      margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+      margin-top: var(--ix-input-bottom-text--margin-top);
+      margin-bottom: var(--ix-input-bottom-text--margin-bottom);
     }
 
     .input-wrapper:hover input:not(:disabled):not(:read-only) {

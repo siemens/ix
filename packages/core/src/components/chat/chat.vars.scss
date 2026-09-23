@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-chat--min-width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-size-140} - #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  --ix-chat--max-width: calc(
+    #{sys.$si-sys-sizing-size-200} + var(--theme-space-5)
+  );
+  --ix-chat-messages--max-width: #{sys.$si-sys-sizing-size-200};
+  --ix-chat-prompt--max-width: #{sys.$si-sys-sizing-size-200};
+}

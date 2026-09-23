@@ -17,8 +17,8 @@
   @include component.ix-component;
 
   .checkbox-button {
-    height: #{sys.$si-sys-sizing-size-70};
-    width: #{sys.$si-sys-sizing-size-70};
+    height: var(--ix-checkbox-button--height);
+    width: var(--ix-checkbox-button--width);
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -33,24 +33,12 @@
     align-items: center;
     justify-content: center;
 
-    width: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-    );
-    min-width: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-    );
-    max-width: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-    );
-    height: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-    );
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-    );
-    max-height: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-    );
+    width: var(--ix-checkbox--width);
+    min-width: var(--ix-checkbox--min-width);
+    max-width: var(--ix-checkbox--max-width);
+    height: var(--ix-checkbox--height);
+    min-height: var(--ix-checkbox--min-height);
+    max-height: var(--ix-checkbox--max-height);
   }
 
   button:disabled {

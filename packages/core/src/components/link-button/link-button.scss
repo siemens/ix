@@ -14,16 +14,16 @@
 @use './link-button.vars' as *;
 :host {
   display: inline-flex;
-  height: #{sys.$si-sys-sizing-size-80};
+  height: var(--ix-link-button--height);
   font-size: vars.$font-size-default;
   font-weight: vars.$font-weight-normal;
-  min-width: #{sys.$si-sys-sizing-size-80};
+  min-width: var(--ix-link-button--min-width);
 
   .link-button {
     display: inline-flex;
     position: relative;
     width: 100%;
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-20} 0 0;
+    padding: var(--ix-link-button--padding);
     align-items: center;
     justify-content: center;
     background-color: transparent;

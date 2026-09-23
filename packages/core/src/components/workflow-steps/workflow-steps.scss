@@ -11,12 +11,13 @@
 
 @use 'tokens/system' as sys;
 
+@use './workflow-steps.vars' as *;
 :host {
   display: block;
   position: relative;
   width: fit-content;
   height: fit-content;
-  min-width: #{sys.$si-sys-sizing-size-80};
+  min-width: var(--ix-workflow-steps--min-width);
 
   @include component.ix-component;
 

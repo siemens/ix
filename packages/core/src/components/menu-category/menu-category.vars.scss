@@ -14,3 +14,22 @@
   --ix-menu-category-items--transition-duration: var(--theme-default-time);
   --ix-menu-category--background--expanded: #{sys.$si-sys-color-background-selected};
 }
+
+:host {
+  --ix-menu-category-category-text--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-menu-category-category-chevron--block-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-menu-category-category-chevron--inline-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-menu-category-category-chevron--min-block-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-menu-category-category-chevron--min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-menu-category-menu-items-expanded--padding: #{sys.$si-sys-sizing-spacing-y-20}
+    0 #{sys.$si-sys-sizing-spacing-y-20}
+    calc(
+      #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-spacing-x-10}
+    );
+  --ix-menu-category-category-dropdown--menu-item-height: #{sys.$si-sys-sizing-size-90};
+  --ix-menu-category-category-dropdown-header--padding-left: #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-menu-category-category-dropdown-header--min-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  --ix-menu-category--menu-item-height: #{sys.$si-sys-sizing-size-90};
+}

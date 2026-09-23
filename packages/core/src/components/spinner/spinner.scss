@@ -13,7 +13,7 @@
 @use './spinner.vars' as *;
 @mixin ix-spinner(
   $size-name: 'medium',
-  $size: #{sys.$si-sys-sizing-size-80},
+  $size: var(--ix-spinner-medium--size),
   $track-size: 4px
 ) {
   :host {
@@ -117,26 +117,26 @@
 
 @include ix-spinner(
   $size-name: 'xx-small',
-  $size: #{sys.$si-sys-sizing-size-40},
+  $size: var(--ix-spinner-extra-extra-small--size),
   $track-size: 1px
 );
 @include ix-spinner(
   $size-name: 'x-small',
-  $size: #{sys.$si-sys-sizing-size-60},
+  $size: var(--ix-spinner-extra-small--size),
   $track-size: 2px
 );
 @include ix-spinner(
   $size-name: 'small',
-  $size: #{sys.$si-sys-sizing-size-70},
+  $size: var(--ix-spinner-small--size),
   $track-size: 2px
 );
 @include ix-spinner(
   $size-name: 'medium',
-  $size: #{sys.$si-sys-sizing-size-80},
+  $size: var(--ix-spinner-medium--size),
   $track-size: 2px
 );
 @include ix-spinner(
   $size-name: 'large',
-  $size: #{sys.$si-sys-sizing-size-130},
+  $size: var(--ix-spinner-large--size),
   $track-size: 4px
 );

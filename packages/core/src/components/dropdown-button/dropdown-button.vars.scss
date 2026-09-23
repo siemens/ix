@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 @use '../button/button.vars';
 @use '../button/button-variants' as button-variants;
 
@@ -15,4 +17,12 @@ $dropdown-button-variants: button-variants.$btn-variants;
 :host {
   --ix-dropdown-button-border-radius-left: var(--ix-button--border-radius);
   --ix-dropdown-button-border-radius-right: var(--ix-button--border-radius);
+}
+
+:host {
+  --ix-dropdown-button--height: #{sys.$si-sys-sizing-size-80};
+  --ix-dropdown-button-dropdown-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-dropdown-button-host-context-date-picker--max-height: calc(
+    #{sys.$si-sys-sizing-size-140} * 2 + #{sys.$si-sys-sizing-spacing-y-40} + #{sys.$si-sys-sizing-spacing-y-10}
+  );
 }

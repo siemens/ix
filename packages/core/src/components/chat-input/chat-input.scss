@@ -22,10 +22,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-140} + 4 * (#{sys.$si-sys-sizing-spacing-y-20} -
-            #{sys.$si-sys-sizing-spacing-y-10})
-    );
+    min-height: var(--ix-chat-input--min-height);
     padding: var(--theme-space-2);
     box-sizing: border-box;
     background-color: var(--ix-chat-input--background);
@@ -50,10 +47,8 @@
   }
 
   .follow-up-prompts ::slotted(ix-button) {
-    max-width: calc(
-      #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-130}
-    );
-    min-width: #{sys.$si-sys-sizing-size-120};
+    max-width: var(--ix-chat-input-follow-up-prompts--max-width);
+    min-width: var(--ix-chat-input-follow-up-prompts--min-width);
   }
 
   .follow-up-prompts ::slotted(ix-icon-button) {
@@ -86,7 +81,7 @@
 
   .attachments--wrap {
     flex-wrap: wrap;
-    max-height: calc(#{sys.$si-sys-sizing-size-110} + var(--theme-space-2));
+    max-height: var(--ix-chat-input-attachments-wrap--max-height);
     overflow: hidden;
   }
 
@@ -99,7 +94,9 @@
   }
 
   .attachments.has-attachment-scrollbar {
-    padding-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+    padding-bottom: var(
+      --ix-chat-input-has-attachment-scrollbar--padding-bottom
+    );
   }
 
   .attachments ::slotted(ix-chat-attachment) {
@@ -113,7 +110,7 @@
   textarea {
     flex: 1 1 auto;
     width: 100%;
-    min-height: #{sys.$si-sys-sizing-size-80};
+    min-height: var(--ix-chat-input-textarea--min-height);
     padding: 0;
     border: 0;
     outline: 0;
@@ -153,7 +150,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: #{sys.$si-sys-sizing-size-80};
+    min-height: var(--ix-chat-input-action-row--min-height);
     margin-top: var(--theme-space-1);
   }
 

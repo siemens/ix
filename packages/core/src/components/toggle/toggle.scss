@@ -15,10 +15,10 @@
   display: inline-flex;
   flex-direction: row;
   position: relative;
-  min-height: #{sys.$si-sys-sizing-size-70};
-  max-height: calc(100% - #{sys.$si-sys-sizing-spacing-y-40});
-  margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
-  margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
+  min-height: var(--ix-toggle--min-height);
+  max-height: var(--ix-toggle--max-height);
+  margin-block-start: var(--ix-toggle--margin-block-start);
+  margin-block-end: var(--ix-toggle--margin-block-end);
 
   @include component.ix-component;
 
@@ -34,19 +34,19 @@
     display: block;
     white-space: normal;
     overflow: hidden;
-    margin-block-start: #{sys.$si-sys-sizing-spacing-y-10};
-    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
-    min-height: #{sys.$si-sys-sizing-size-60};
+    margin-block-start: var(--ix-toggle-label--margin-block-start);
+    margin-inline-start: var(--ix-toggle-label--margin-inline-start);
+    min-height: var(--ix-toggle-label--min-height);
   }
 
   .switch {
     all: unset;
     position: relative;
     display: inline-block;
-    width: #{sys.$si-sys-sizing-size-100};
-    min-width: #{sys.$si-sys-sizing-size-100};
-    max-width: #{sys.$si-sys-sizing-size-100};
-    height: #{sys.$si-sys-sizing-size-70};
+    width: var(--ix-toggle-switch--width);
+    min-width: var(--ix-toggle-switch--min-width);
+    max-width: var(--ix-toggle-switch--max-width);
+    height: var(--ix-toggle-switch--height);
   }
 
   .slider {
@@ -64,14 +64,10 @@
   .slider:before {
     position: absolute;
     content: '';
-    height: calc(
-      #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-y-10}
-    );
-    width: calc(
-      #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-x-10}
-    );
-    left: #{sys.$si-sys-sizing-spacing-x-10};
-    bottom: #{sys.$si-sys-sizing-spacing-y-10};
+    height: var(--ix-toggle-slider--height);
+    width: var(--ix-toggle-slider--width);
+    left: var(--ix-toggle-slider--left);
+    bottom: var(--ix-toggle-slider--bottom);
     background-color: var(--ix-toggle-thumb-off--background);
     transition: var(--ix-toggle-thumb--transition-duration);
     border-radius: 50%;
@@ -80,7 +76,7 @@
 
   .switch.checked > .slider::before {
     background-color: var(--ix-toggle-thumb-on--background);
-    transform: translateX(#{sys.$si-sys-sizing-size-70});
+    transform: var(--ix-toggle-slider-checked--transform);
   }
 
   .switch > .slider {
@@ -137,7 +133,7 @@
   }
 
   .switch.indeterminate > .slider::before {
-    transform: translateX(#{sys.$si-sys-sizing-spacing-x-50});
+    transform: var(--ix-toggle-slider--transform);
   }
 }
 

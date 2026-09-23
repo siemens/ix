@@ -22,3 +22,15 @@
   --ix-group-item--border-color--hover: rgba(0, 0, 0, 0);
   --ix-group-item-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
 }
+
+:host {
+  --ix-group-item--min-height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-group-item--height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-group-item-group-footer--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
+  --ix-group-item-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-group-item-group-entry-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
+}

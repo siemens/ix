@@ -8,6 +8,7 @@
  */
 @use 'tokens/system' as sys;
 
+@use './radio-group.vars' as *;
 :host {
   display: inline-block;
   position: relative;
@@ -15,8 +16,8 @@
   .checkbox-container {
     display: flex;
     flex-direction: column;
-    gap: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
-    margin: #{sys.$si-sys-sizing-spacing-y-30} 0;
+    gap: var(--ix-radio-group-checkbox-container--gap);
+    margin: var(--ix-radio-group-checkbox-container--margin);
     flex-wrap: wrap;
 
     &.row-layout {

@@ -10,6 +10,7 @@
 @use 'tokens/system' as sys;
 @use './card.vars' as card-vars;
 
+@use './card.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -19,7 +20,7 @@
   overflow: hidden;
   cursor: pointer;
 
-  width: #{sys.$si-sys-sizing-size-170};
+  width: var(--ix-card--width);
 
   border: var(--ix-card--border-width) solid
     var(--ix-card-border-color, var(--ix-card--border-color));
@@ -33,7 +34,7 @@
     flex-shrink: 0;
     flex-grow: 1;
     width: 100%;
-    height: calc(100% - #{sys.$si-sys-sizing-size-80});
+    height: var(--ix-card-content--height);
     background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--ix-card--border-radius);
     border-top-right-radius: var(--ix-card--border-radius);

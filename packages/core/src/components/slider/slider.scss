@@ -92,10 +92,10 @@
 :host {
   display: flex;
   flex-direction: column;
-  min-height: #{sys.$si-sys-sizing-size-80};
+  min-height: var(--ix-slider--min-height);
   justify-content: center;
 
-  --thumb-size: #{sys.$si-sys-sizing-size-50};
+  --thumb-size: var(--ix-slider--thumb-size);
   --value: 0;
   --trace-start: 0;
   --trace-end: 0;
@@ -119,7 +119,7 @@
     background: transparent;
     cursor: pointer;
     width: 100%;
-    height: #{sys.$si-sys-sizing-size-70};
+    height: var(--ix-slider--height);
     margin: 0;
   }
 
@@ -239,7 +239,7 @@
     position: relative;
     display: block;
     width: 100%;
-    height: #{sys.$si-sys-sizing-size-70};
+    height: var(--ix-slider--height);
   }
 
   .track {
@@ -274,7 +274,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+    margin-top: var(--ix-slider-label--margin-top);
 
     min-height: 0px;
   }

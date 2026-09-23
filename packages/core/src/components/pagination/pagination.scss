@@ -12,6 +12,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './pagination.vars' as *;
 :host {
   @include component.ix-component;
 
@@ -23,21 +24,19 @@
   }
 
   .basic-pagination {
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-10};
+    padding: var(--ix-pagination-basic--padding);
   }
 
   .advanced-pagination {
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-50};
+    padding: var(--ix-pagination-advanced--padding);
   }
 
   .page-selection {
     @include input-control.input-control;
 
-    width: calc(
-      #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-x-10}
-    );
+    width: var(--ix-pagination-page-selection--width);
     text-align: center;
-    margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
+    margin: var(--ix-pagination-page-selection--margin);
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
   }
@@ -57,21 +56,19 @@
   .item-count {
     flex-grow: 1;
     justify-content: flex-end;
-    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+    margin-inline-start: var(--ix-pagination-item-count--margin-inline-start);
 
     ix-select {
-      width: calc(
-        #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-x-40}
-      );
-      margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+      width: var(--ix-pagination-item-count--width);
+      margin-inline-start: var(--ix-pagination-item-count--margin-inline-start);
     }
   }
 
   button {
     width: auto;
-    min-width: #{sys.$si-sys-sizing-size-80};
-    height: #{sys.$si-sys-sizing-size-80};
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+    min-width: var(--ix-pagination--min-width);
+    height: var(--ix-pagination--height);
+    padding: var(--ix-pagination--padding);
   }
 
   button + button {

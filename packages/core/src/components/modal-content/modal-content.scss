@@ -9,11 +9,12 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './modal-content.vars' as *;
 :host {
   display: block;
   position: relative;
   overflow: auto;
-  padding: 0 #{sys.$si-sys-sizing-spacing-x-40} #{sys.$si-sys-sizing-spacing-y-40};
+  padding: var(--ix-modal-content--padding);
 
   @include component.ix-component;
 }

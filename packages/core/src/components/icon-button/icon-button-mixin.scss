@@ -11,6 +11,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './icon-button.vars' as *;
 @mixin icon-button-size($sizeName, $size) {
   :host(.btn-icon-#{$sizeName}) {
     height: $size;
@@ -54,7 +55,7 @@
     }
   }
 
-  @include icon-button-size('12', #{sys.$si-sys-sizing-size-50});
-  @include icon-button-size('16', #{sys.$si-sys-sizing-size-70});
-  @include icon-button-size('32', #{sys.$si-sys-sizing-size-80});
+  @include icon-button-size('12', var(--ix-icon-button-extra-small--size));
+  @include icon-button-size('16', var(--ix-icon-button-small--size));
+  @include icon-button-size('32', var(--ix-icon-button-large--size));
 }

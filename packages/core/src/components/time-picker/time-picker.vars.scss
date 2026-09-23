@@ -24,3 +24,27 @@
   --ix-time-picker-day--color--selected: #{sys.$si-sys-color-text-on-accent};
   --ix-time-picker-day--color--selected-disabled: #{sys.$si-sys-color-text-disabled};
 }
+
+:host {
+  --ix-time-picker-header--height: #{sys.$si-sys-sizing-size-80};
+  --ix-time-picker-column-header--height: #{sys.$si-sys-sizing-size-90};
+  --ix-time-picker-column-header--width: #{sys.$si-sys-sizing-size-90};
+  --ix-time-picker-column-header--line-height: #{sys.$si-sys-sizing-size-90};
+  --ix-time-picker-column-separator--margin-top: #{sys.$si-sys-sizing-size-100};
+  --ix-time-picker-column-separator--width: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-time-picker-element-list--max-height: calc(
+    #{sys.$si-sys-sizing-size-90} * 6 + #{sys.$si-sys-sizing-spacing-y-10} * 6
+  );
+  --ix-time-picker-element-container--width: #{sys.$si-sys-sizing-size-90};
+  --ix-time-picker-element-container--height: #{sys.$si-sys-sizing-size-90};
+  --ix-time-picker-element-container--margin-bottom: #{sys.$si-sys-sizing-spacing-y-10};
+  --ix-time-picker-element-list-padding--width: #{sys.$si-sys-sizing-size-90};
+  --ix-time-picker-element-list-padding--height: calc(
+    #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-time-picker-element-list-padding--min-height: calc(
+    #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-time-picker-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-time-picker-default-space--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
+}

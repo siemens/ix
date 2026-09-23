@@ -39,7 +39,7 @@
 :host {
   display: inline-block;
   position: relative;
-  height: #{sys.$si-sys-sizing-size-80};
+  height: var(--ix-dropdown-button--height);
   width: auto;
 
   border-top-left-radius: var(--ix-dropdown-button-border-radius-left);
@@ -85,7 +85,7 @@
   }
 
   .dropdown-button .dropdown-icon {
-    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+    margin-right: var(--ix-dropdown-button-dropdown-icon--margin-right);
   }
 
   .triangle {
@@ -123,10 +123,7 @@
 
 :host(.host-context-date-picker) {
   ix-dropdown {
-    max-height: calc(
-      #{sys.$si-sys-sizing-size-140} * 2 + #{sys.$si-sys-sizing-spacing-y-40} +
-        #{sys.$si-sys-sizing-spacing-y-10}
-    );
+    max-height: var(--ix-dropdown-button-host-context-date-picker--max-height);
     overflow-y: scroll;
   }
 }

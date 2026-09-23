@@ -11,14 +11,14 @@
 @use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
-$CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
+$CardList__Title__Height: var(--ix-card-list-title--height);
 
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+  margin: var(--ix-card-list--margin);
 
   @include component.ix-component;
 
@@ -28,7 +28,7 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
     height: $CardList__Title__Height;
     align-items: center;
     width: 100%;
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+    margin-bottom: var(--ix-card-list-title--margin-bottom);
 
     &__Label {
       overflow: hidden;
@@ -38,7 +38,7 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
   }
 
   .CardList__Title__Button {
-    margin-right: #{sys.$si-sys-sizing-spacing-x-60};
+    margin-right: var(--ix-card-list-title-button--margin-right);
     transition: var(--ix-card-list-title-button--transition-duration) transform
       ease-in-out;
   }
@@ -59,7 +59,7 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
     position: relative;
     height: calc(100% - #{$CardList__Title__Height});
     width: 100%;
-    gap: #{sys.$si-sys-sizing-spacing-x-80};
+    gap: var(--ix-card-list-content--gap);
     transition: var(--ix-card-list-content--transition-duration) ease-in-out;
     overflow: auto;
   }
@@ -102,25 +102,13 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
     align-self: flex-start;
     justify-self: center;
 
-    max-width: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
-    );
-    min-width: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
-    );
-    width: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
-    );
+    max-width: var(--ix-card-list-show-all-card--max-width);
+    min-width: var(--ix-card-list-show-all-card--min-width);
+    width: var(--ix-card-list-show-all-card--width);
 
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
-    );
-    max-height: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
-    );
-    height: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
-    );
+    min-height: var(--ix-card-list-show-all-card--min-height);
+    max-height: var(--ix-card-list-show-all-card--max-height);
+    height: var(--ix-card-list-show-all-card--height);
 
     --ix-card-border-color: var(--ix-card-list-show-all--border-color);
     color: var(--ix-card-list-show-all--color);
@@ -132,15 +120,11 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
   }
 
   .CardList__Style__Infinite__Scroll .Show__All__Card {
-    margin-top: calc(
-      #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
-    );
+    margin-top: var(--ix-card-list-show-all-card--margin-top);
   }
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
-    margin-bottom: calc(
-      #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
-    );
+    margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
   }
 
   .Show__All__Card:hover {
@@ -161,8 +145,8 @@ $CardList__Title__Height: #{sys.$si-sys-sizing-size-70};
   .Show__All__Card__Icon {
     display: flex;
     position: absolute;
-    height: #{sys.$si-sys-sizing-size-110};
-    width: #{sys.$si-sys-sizing-size-110};
+    height: var(--ix-card-list-show-all-card-icon--icon-size);
+    width: var(--ix-card-list-show-all-card-icon--icon-size);
     justify-content: center;
     align-items: center;
   }

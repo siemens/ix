@@ -22,3 +22,30 @@
   --ix-menu--background: #{sys.$si-sys-color-background-1};
   --ix-menu--box-shadow: #{sys.$si-sys-color-effects-shadow-2};
 }
+
+:host {
+  --ix-menu--expanded-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  --ix-menu-tabs-shadow-container--margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-menu--width: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
+      var(--ix-application-menu-safe-area-left, 0rem)
+  );
+  --ix-menu--padding-block-end: calc(
+    #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0rem)
+  );
+  --ix-menu-overlay--width: calc(
+    100vw - #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-menu-overlay--left: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-menu-avatar--max-height: #{sys.$si-sys-sizing-size-100};
+  --ix-menu-avatar--margin-bottom: #{sys.$si-sys-sizing-spacing-y-90};
+  --ix-menu-cui-imprint-product-name--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-menu-cui-imprint-product-description--margin-bottom: #{sys.$si-sys-sizing-spacing-y-90};
+  --ix-menu-buttons--margin: #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc(#{sys.$si-sys-sizing-spacing-x-40} +
+        #{sys.$si-sys-sizing-spacing-x-10});
+  --ix-menu-empty--margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
+}

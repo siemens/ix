@@ -57,13 +57,13 @@
     align-items: center;
     gap: var(--theme-space-3);
     width: 100%;
-    min-height: #{sys.$si-sys-sizing-size-80};
+    min-height: var(--ix-chat-ai-message-meta--min-height);
   }
 
   .actions {
     display: none;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: var(--ix-chat-ai-message-actions--gap);
   }
 
   .sources {

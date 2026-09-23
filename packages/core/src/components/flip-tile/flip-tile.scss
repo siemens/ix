@@ -26,8 +26,8 @@
   .flip-tile-header {
     display: flex;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-90};
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
+    height: var(--ix-flip-tile-header--height);
+    padding: var(--ix-flip-tile-header--padding);
 
     .header-slot-container {
       flex-grow: 1;
@@ -39,7 +39,7 @@
 
   .content-container {
     flex-grow: 1;
-    margin: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+    margin: var(--ix-flip-tile-content-container--margin);
   }
 
   .flip-tile-container {
@@ -51,10 +51,10 @@
       var(--ix-flip-tile--border-radius) 0 0;
 
     .footer {
-      height: #{sys.$si-sys-sizing-size-100};
+      height: var(--ix-flip-tile-footer--height);
       align-items: center;
       justify-content: center;
-      padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+      padding: var(--ix-flip-tile-footer--padding);
 
       :first-child {
         height: 100%;

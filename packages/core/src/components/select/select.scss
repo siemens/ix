@@ -20,17 +20,13 @@
 :host {
   display: inline-block;
   position: relative;
-  --ix-select-chip-horizontal-margin: calc(
-    #{sys.$si-sys-sizing-spacing-x-10} * 0.8
-  );
-  --ix-select-trigger-min-width: calc(
-    #{sys.$si-sys-sizing-size-120} - #{sys.$si-sys-sizing-spacing-x-10}
-  );
-  --ix-select-overflow-chip-fallback-width: calc(
-    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  --ix-select-chip-horizontal-margin: var(--ix-select-chip--horizontal-margin);
+  --ix-select-trigger-min-width: var(--ix-select-trigger--min-width);
+  --ix-select-overflow-chip-fallback-width: var(
+    --ix-select-overflow-chip--fallback-width
   );
 
-  min-height: #{sys.$si-sys-sizing-size-80};
+  min-height: var(--ix-select--min-height);
   height: auto;
   border-radius: var(--ix-select--border-radius);
 
@@ -44,7 +40,7 @@
     background-color: var(--ix-select--background);
     border: var(--ix-select--border-width) solid var(--ix-select--border-color);
     border-radius: var(--ix-select--border-radius);
-    padding: 0 0 0 #{sys.$si-sys-sizing-spacing-x-40};
+    padding: var(--ix-select--padding);
     box-shadow: var(--ix-select--box-shadow) !important;
 
     &:hover:not(.readonly):not(.disabled) {
@@ -119,12 +115,7 @@
       > ix-filter-chip {
         margin: var(--ix-select-chip-horizontal-margin);
         flex-shrink: 0;
-        max-width: min(
-          40%,
-          calc(
-            #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120}
-          )
-        );
+        max-width: var(--ix-select-chips--max-width);
 
         &.chip-measuring {
           position: absolute;
@@ -144,25 +135,15 @@
     }
 
     ix-icon-button {
-      height: calc(
-        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10}
-      );
-      width: calc(
-        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10}
-      );
-      min-height: calc(
-        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10}
-      );
-      min-width: calc(
-        #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10}
-      );
+      height: var(--ix-select-icon--icon-size);
+      width: var(--ix-select-icon--icon-size--icon);
+      min-height: var(--ix-select-icon--icon-size);
+      min-width: var(--ix-select-icon--icon-size--icon);
     }
 
     input {
       background: transparent;
-      height: calc(
-        #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
-      );
+      height: var(--ix-select-input-container--height);
       width: 100%;
 
       @include text-truncation.ellipsis;
@@ -195,12 +176,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: #{sys.$si-sys-sizing-spacing-y-20};
-    max-height: calc(
-      #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-y-60}
-    );
+    gap: var(--ix-select-overflow-dropdown-content--gap);
+    max-height: var(--ix-select-overflow-dropdown-content--max-height);
     overflow-y: auto;
-    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+    padding: var(--ix-select-overflow-dropdown-content--padding);
   }
 
   .dropdown-visible {
@@ -218,9 +197,9 @@
   .select-list-header {
     display: flex;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-80};
+    height: var(--ix-select-list-header--height);
     color: var(--ix-select-item-hint--color);
-    margin: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
+    margin: var(--ix-select-list-header--margin);
 
     @include text-truncation.ellipsis;
   }

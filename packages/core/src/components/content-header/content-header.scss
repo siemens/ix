@@ -9,6 +9,7 @@
 
 @use 'tokens/system' as sys;
 
+@use './content-header.vars' as *;
 :host {
   display: flex;
   flex-direction: row;
@@ -20,7 +21,7 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-right: var(--ix-content-header-title-group--margin-right);
 
     .headerText {
       min-width: 0;
@@ -44,12 +45,12 @@
         display: inline-flex;
         flex: 0 0 auto;
         align-self: flex-start;
-        margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+        margin-left: var(--ix-content-header-header-slot--margin-left);
       }
     }
 
     .secondary {
-      padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+      padding: var(--ix-content-header-secondary--padding);
     }
   }
 
@@ -58,7 +59,7 @@
   }
 
   .backButton {
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-right: var(--ix-content-header-back-button--margin-right);
   }
 
   .buttons {

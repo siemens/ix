@@ -12,25 +12,19 @@
 
 @use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
-  width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
-  );
-  height: #{sys.$si-sys-sizing-size-110};
-  min-width: #{sys.$si-sys-sizing-size-80};
-  min-height: #{sys.$si-sys-sizing-size-110};
-  max-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
-  );
+  width: var(--ix-workflow-step-horizontal--width);
+  height: var(--ix-workflow-step--height);
+  min-width: var(--ix-workflow-step-horizontal--min-width);
+  min-height: var(--ix-workflow-step-horizontal--min-height);
+  max-width: var(--ix-workflow-step-horizontal--max-width);
 }
 
 :host(.host-vertical) {
   width: 100%;
-  height: #{sys.$si-sys-sizing-size-110};
-  min-width: #{sys.$si-sys-sizing-size-110};
-  min-height: #{sys.$si-sys-sizing-size-80};
-  max-height: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
-  );
+  height: var(--ix-workflow-step--height);
+  min-width: var(--ix-workflow-step-vertical--min-width);
+  min-height: var(--ix-workflow-step-vertical--min-height);
+  max-height: var(--ix-workflow-step-vertical--max-height);
 }
 
 :host {
@@ -45,10 +39,7 @@
     align-items: center;
     background-color: var(--ix-workflow-step--background);
     border-radius: var(--ix-workflow-step--border-radius);
-    padding: calc(
-        #{sys.$si-sys-sizing-spacing-y-60} + #{sys.$si-sys-sizing-spacing-y-10}
-      )
-      0 #{sys.$si-sys-sizing-spacing-y-40} 0;
+    padding: var(--ix-workflow-step-step--padding);
 
     .wrapper {
       display: flex;
@@ -118,9 +109,9 @@
     }
 
     .text {
-      margin-top: #{sys.$si-sys-sizing-spacing-y-60};
+      margin-top: var(--ix-workflow-step-text--margin-top);
       width: 100%;
-      padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+      padding: var(--ix-workflow-step-text--padding);
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -135,9 +126,7 @@
 
       .wrapper {
         width: auto;
-        padding-left: calc(
-          #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
-        );
+        padding-left: var(--ix-workflow-step-wrapper-vertical--padding-left);
         height: 100%;
 
         .line {
@@ -161,7 +150,7 @@
       }
 
       .text {
-        margin: 0 #{sys.$si-sys-sizing-spacing-x-60};
+        margin: var(--ix-workflow-step-text-vertical--margin);
         padding: 0;
         width: auto;
       }

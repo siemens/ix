@@ -17,7 +17,7 @@
   @include component.ix-component;
 
   .content {
-    padding: #{sys.$si-sys-sizing-spacing-y-90};
+    padding: var(--ix-application-switch-modal-content--padding);
     padding-right: 0;
   }
 
@@ -27,8 +27,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-height: 50vh;
-    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-    gap: #{sys.$si-sys-sizing-spacing-x-80};
+    margin-right: var(--ix-application-switch-modal-content-apps--margin-right);
+    gap: var(--ix-application-switch-modal-content-apps--gap);
   }
 
   .loading {
@@ -37,7 +37,7 @@
     align-items: center;
 
     ix-spinner {
-      margin-right: #{sys.$si-sys-sizing-spacing-x-60};
+      margin-right: var(--ix-application-switch-modal-loading--margin-right);
     }
   }
 }
@@ -48,9 +48,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-60};
-    padding: calc(#{sys.$si-sys-sizing-spacing-y-40} - 0.0625rem);
-    padding-inline-end: calc(#{sys.$si-sys-sizing-spacing-x-60} - 0.0625rem);
+    gap: var(--ix-application-switch-modal-app-entry--gap);
+    padding: var(--ix-application-switch-modal-app-entry--padding);
+    padding-inline-end: var(
+      --ix-application-switch-modal-app-entry--padding-inline-end
+    );
     flex: 1 1 calc(45%);
     cursor: pointer;
     border: 0.0625rem solid transparent;
@@ -77,12 +79,12 @@
   }
 
   .AppName ix-icon {
-    margin-left: #{sys.$si-sys-sizing-spacing-x-60};
+    margin-left: var(--ix-application-switch-modal-icon--margin-left);
   }
 
   .AppIcon {
-    width: #{sys.$si-sys-sizing-size-100};
-    height: #{sys.$si-sys-sizing-size-100};
+    width: var(--ix-application-switch-modal-app-icon--icon-size);
+    height: var(--ix-application-switch-modal-app-icon--icon-size);
     border-radius: 0.25rem;
   }
 }

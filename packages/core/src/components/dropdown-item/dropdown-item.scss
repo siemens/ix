@@ -12,8 +12,8 @@
 @use 'tokens/system' as sys;
 
 @use './dropdown-item.vars' as *;
-$itemPadding: #{sys.$si-sys-sizing-spacing-x-40};
-$itemPaddingRight: #{sys.$si-sys-sizing-spacing-x-80};
+$itemPadding: var(--ix-dropdown-item--item-padding);
+$itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
 $focusBorder: 0.0625rem;
 
 @mixin applyItemWidth($padding, $paddingRight) {
@@ -28,7 +28,7 @@ $focusBorder: 0.0625rem;
   flex-direction: row;
 
   position: relative;
-  height: #{sys.$si-sys-sizing-size-90};
+  height: var(--ix-dropdown-item--height);
   width: auto;
   overflow: hidden;
   cursor: pointer;
@@ -50,7 +50,7 @@ $focusBorder: 0.0625rem;
 
   .dropdown-item.no-checked-field {
     @include applyItemWidth(
-      #{sys.$si-sys-sizing-spacing-x-60},
+      var(--ix-dropdown-item-no-checkmark--padding-inline-start),
       $itemPaddingRight
     );
   }
@@ -61,19 +61,19 @@ $focusBorder: 0.0625rem;
     justify-content: center;
     position: relative;
     height: 100%;
-    width: #{sys.$si-sys-sizing-size-50};
-    min-width: #{sys.$si-sys-sizing-size-50};
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    width: var(--ix-dropdown-item-checked--width);
+    min-width: var(--ix-dropdown-item-checked--min-width);
+    margin-right: var(--ix-dropdown-item-checked--margin-right);
 
     color: var(--ix-dropdown-item-checkmark--color);
   }
 
   .dropdown-item-icon {
-    block-size: #{sys.$si-sys-sizing-icon-lg};
-    inline-size: #{sys.$si-sys-sizing-icon-lg};
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-    min-block-size: #{sys.$si-sys-sizing-icon-lg};
-    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    block-size: var(--ix-dropdown-item-icon--icon-size);
+    inline-size: var(--ix-dropdown-item-icon--icon-size);
+    margin-right: var(--ix-dropdown-item-icon--margin-right);
+    min-block-size: var(--ix-dropdown-item-icon--icon-size);
+    min-inline-size: var(--ix-dropdown-item-icon--icon-size);
     color: var(--ix-dropdown-item-icon--color);
   }
 
@@ -101,15 +101,18 @@ $focusBorder: 0.0625rem;
 
   .dropdown-item {
     @include applyItemWidth(
-      #{sys.$si-sys-sizing-spacing-x-40},
-      #{sys.$si-sys-sizing-spacing-x-40}
+      var(--ix-dropdown-item-icon-only--padding-inline),
+      var(--ix-dropdown-item-icon-only--padding-inline)
     );
   }
 }
 
 :host(.submenu) {
   .dropdown-item {
-    @include applyItemWidth($itemPadding, #{sys.$si-sys-sizing-spacing-x-40});
+    @include applyItemWidth(
+      $itemPadding,
+      var(--ix-dropdown-item-submenu--padding-inline-end)
+    );
   }
 }
 

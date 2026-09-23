@@ -23,18 +23,16 @@
   }
 
   .icon {
-    height: #{sys.$si-sys-sizing-size-90};
-    width: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-push-card-icon--icon-size);
+    width: var(--ix-push-card-icon--icon-size);
   }
 
   ix-card-title {
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-push-card--height);
   }
 
   ix-card-content {
-    height: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-60}
-    );
+    height: var(--ix-push-card-content--height);
   }
 }
 

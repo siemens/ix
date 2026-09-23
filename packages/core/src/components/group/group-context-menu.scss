@@ -8,19 +8,16 @@
  */
 @use 'tokens/system' as sys;
 
+@use './group.vars' as *;
 :host {
   display: block;
   position: relative;
 
-  height: #{sys.$si-sys-sizing-size-80};
-  width: #{sys.$si-sys-sizing-size-80};
+  height: var(--ix-group-context-menu--height);
+  width: var(--ix-group-context-menu--width);
 
-  margin-block-start: calc(
-    #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-border-width-default}
-  );
-  margin-inline-end: calc(
-    #{sys.$si-sys-sizing-spacing-x-20} + #{sys.$si-sys-sizing-border-width-default}
-  );
+  margin-block-start: var(--ix-group-context-menu--margin-block-start);
+  margin-inline-end: var(--ix-group-context-menu--margin-inline-end);
   margin-inline-start: auto;
 
   .hide {

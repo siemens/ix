@@ -25,31 +25,19 @@
     align-items: center;
     justify-content: center;
 
-    width: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-    );
-    min-width: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-    );
-    max-width: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-x-30}
-    );
-    height: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-    );
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-    );
-    max-height: calc(
-      #{sys.$si-sys-sizing-size-70} - #{sys.$si-sys-sizing-spacing-y-30}
-    );
+    width: var(--ix-radio-checkmark--width);
+    min-width: var(--ix-radio-checkmark--min-width);
+    max-width: var(--ix-radio-checkmark--max-width);
+    height: var(--ix-radio-checkmark--height);
+    min-height: var(--ix-radio-checkmark--min-height);
+    max-height: var(--ix-radio-checkmark--max-height);
     border: 1px solid white;
     border-radius: 100px;
   }
 
   .radio-button {
-    height: #{sys.$si-sys-sizing-size-70};
-    width: #{sys.$si-sys-sizing-size-70};
+    height: var(--ix-radio-button--height);
+    width: var(--ix-radio-button--width);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,8 +56,8 @@
   .checkmark {
     border-radius: 100px;
     background-color: var(--ix-radio-checkmark--background);
-    width: #{sys.$si-sys-sizing-size-30};
-    height: #{sys.$si-sys-sizing-size-30};
+    width: var(--ix-radio-selection-indicator--width);
+    height: var(--ix-radio-selection-indicator--height);
   }
 }
 
@@ -150,8 +138,7 @@
   }
 
   ix-typography {
-    margin: #{sys.$si-sys-sizing-spacing-y-10} 0 #{sys.$si-sys-sizing-spacing-y-10}
-      #{sys.$si-sys-sizing-spacing-x-40};
+    margin: var(--ix-radio--margin);
   }
 }
 

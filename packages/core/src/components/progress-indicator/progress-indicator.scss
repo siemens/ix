@@ -15,33 +15,30 @@
 :host {
   display: block;
   position: relative;
-  width: calc(
-    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-120}
-  );
+  width: var(--ix-progress-indicator--width);
   height: fit-content;
 
   .progress-container {
     display: flex;
     width: 100%;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: var(--ix-progress-indicator-progress-container--gap);
     flex-wrap: nowrap;
   }
 
   .label {
-    margin: #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-20}
-      0;
+    margin: var(--ix-progress-indicator-label--margin);
   }
 
   .helper-text {
     display: flex;
     align-items: center;
-    margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    margin: var(--ix-progress-indicator-helper-text--margin);
+    gap: var(--ix-progress-indicator-helper-text--gap);
     color: var(--ix-progress-indicator-helper--color);
 
     ix-icon {
-      margin: #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-10};
+      margin: var(--ix-progress-indicator-icon--margin);
       color: var(--ix-progress-indicator-helper-icon--color);
     }
 
@@ -86,18 +83,22 @@
       align-items: flex-end;
     }
 
-    --ix-progress-indicator-margin: #{sys.$si-sys-sizing-spacing-y-40} 0;
+    --ix-progress-indicator-margin: var(--ix-progress-indicator--margin);
 
     height: 100%;
 
     &.xs {
       --ix-progress-indicator-height: 0.125rem;
-      --ix-progress-indicator-margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+      --ix-progress-indicator-margin: var(
+        --ix-progress-indicator-extra-small--margin
+      );
     }
 
     &.sm {
       --ix-progress-indicator-height: 0.25rem;
-      --ix-progress-indicator-margin: #{sys.$si-sys-sizing-spacing-y-30} 0;
+      --ix-progress-indicator-margin: var(
+        --ix-progress-indicator-small--margin
+      );
     }
 
     &.md {
@@ -152,9 +153,7 @@
   @include linear.linear;
 
   .linear-slot {
-    min-width: calc(
-      #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-x-20}
-    );
+    min-width: var(--ix-progress-indicator-linear-slot--min-width);
   }
 }
 

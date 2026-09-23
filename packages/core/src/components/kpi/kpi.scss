@@ -17,9 +17,9 @@
 :host {
   display: flex;
   flex-grow: 1;
-  height: #{sys.$si-sys-sizing-size-90};
+  height: var(--ix-kpi--height);
   border-radius: var(--ix-kpi--border-radius);
-  padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-20};
+  padding: var(--ix-kpi--padding);
   min-width: 0;
 
   @include component.ix-component;
@@ -50,7 +50,7 @@
       flex-shrink: 9999;
 
       ix-icon {
-        margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+        margin-inline-end: var(--ix-kpi-icon--margin-inline-end);
       }
     }
 
@@ -66,7 +66,7 @@
     }
 
     .kpi-unit {
-      margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
+      margin-inline-start: var(--ix-kpi-unit--margin-inline-start);
       color: var(--ix-kpi-display-units--color);
     }
 
@@ -90,9 +90,7 @@
 }
 
 :host(.stacked) {
-  height: calc(
-    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
-  );
+  height: var(--ix-kpi-stacked--height);
 
   .kpi-container {
     justify-content: center;

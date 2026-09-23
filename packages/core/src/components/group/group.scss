@@ -13,19 +13,15 @@
 @use 'tokens/system' as sys;
 
 @use './group.vars' as *;
-$header-height: #{sys.$si-sys-sizing-size-110};
+$header-height: var(--ix-group--header-height);
 $header-height-focus-visible: calc($header-height - 2px);
 
 :host {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: calc(
-    #{sys.$si-sys-sizing-size-170} - #{sys.$si-sys-sizing-spacing-x-20}
-  );
-  min-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
-  );
+  width: var(--ix-group--width);
+  min-width: var(--ix-group--min-width);
   border-color: var(--ix-group-item--border-color);
 
   @include text-truncation.ellipsis;
@@ -68,18 +64,16 @@ $header-height-focus-visible: calc($header-height - 2px);
       outline: none;
 
       .group-header-selection-indicator {
-        width: calc(vars.$tiny-space - 1px);
+        width: var(--ix-group-header-selection-indicator--width--focus);
       }
 
       .group-header-content {
-        padding: calc(#{sys.$si-sys-sizing-spacing-y-40} - 1px)
-          calc(#{sys.$si-sys-sizing-spacing-x-40} - 1px)
-          calc(#{sys.$si-sys-sizing-spacing-y-40} - 1px) 0;
+        padding: var(--ix-group-header-content--padding--focus);
       }
 
       .btn-expand-header {
-        margin-top: calc(#{sys.$si-sys-sizing-spacing-y-40} - 1px);
-        margin-bottom: calc(#{sys.$si-sys-sizing-spacing-y-40} - 1px);
+        margin-top: var(--ix-group-button-expand-header--margin-top);
+        margin-bottom: var(--ix-group-button-expand-header--margin-bottom);
       }
     }
 
@@ -109,7 +103,7 @@ $header-height-focus-visible: calc($header-height - 2px);
   }
 
   .group-header-selection-indicator {
-    width: vars.$tiny-space;
+    width: var(--ix-group-header-selection-indicator--width);
     border-top-left-radius: var(--ix-group--border-radius);
   }
 
@@ -120,7 +114,7 @@ $header-height-focus-visible: calc($header-height - 2px);
     min-width: 0;
     flex-grow: 1;
     flex-basis: 0;
-    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+    padding: var(--ix-group-header-content--padding);
     padding-left: 0;
 
     @include text-truncation.ellipsis;
@@ -134,7 +128,7 @@ $header-height-focus-visible: calc($header-height - 2px);
       align-items: center;
       font-size: 1rem;
       font-weight: vars.$font-weight-bold;
-      height: #{sys.$si-sys-sizing-size-70};
+      height: var(--ix-group-header-title--height);
 
       & > * {
         min-width: 0;
@@ -145,7 +139,7 @@ $header-height-focus-visible: calc($header-height - 2px);
     }
 
     .group-subheader {
-      height: #{sys.$si-sys-sizing-size-60};
+      height: var(--ix-group-subheader--height);
       font-size: 0.875rem;
       color: var(--ix-group-subheader--color);
 
@@ -154,21 +148,20 @@ $header-height-focus-visible: calc($header-height - 2px);
   }
 
   .expand-icon {
-    padding: #{sys.$si-sys-sizing-spacing-y-10} calc(#{sys.$si-sys-sizing-spacing-x-60} *
-          0.437);
+    padding: var(--ix-group-expand-icon--padding);
     color: var(--ix-group-expand-icon--color);
   }
 
   .btn-expand-header {
-    margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
-    margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
-    min-width: #{sys.$si-sys-sizing-size-70};
+    margin: var(--ix-group-button-expand-header--margin);
+    margin-inline-end: var(--ix-group-button-expand-header--margin-inline-end);
+    min-width: var(--ix-group-button-expand-header--min-width);
 
     ix-icon:not([size]) {
-      block-size: #{sys.$si-sys-sizing-icon-lg};
-      inline-size: #{sys.$si-sys-sizing-icon-lg};
-      min-block-size: #{sys.$si-sys-sizing-icon-lg};
-      min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+      block-size: var(--ix-group-icon--icon-size);
+      inline-size: var(--ix-group-icon--icon-size);
+      min-block-size: var(--ix-group-icon--icon-size);
+      min-inline-size: var(--ix-group-icon--icon-size);
     }
   }
 

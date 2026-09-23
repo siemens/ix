@@ -62,12 +62,12 @@
   color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
 
-  height: #{sys.$si-sys-sizing-size-90};
-  min-height: #{sys.$si-sys-sizing-size-90};
-  max-height: #{sys.$si-sys-sizing-size-90};
+  height: var(--ix-tab-item--size-size);
+  min-height: var(--ix-tab-item--min-height);
+  max-height: var(--ix-tab-item--max-height);
 
-  padding: 0.0625rem #{sys.$si-sys-sizing-spacing-x-80};
-  gap: #{sys.$si-sys-sizing-spacing-x-40};
+  padding: var(--ix-tab-item--padding);
+  gap: var(--ix-tab-item--gap);
 
   @include component.ix-component;
 
@@ -90,8 +90,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: #{sys.$si-sys-sizing-size-100};
-    width: #{sys.$si-sys-sizing-size-100};
+    height: var(--ix-tab-item-circle--height);
+    width: var(--ix-tab-item-circle--width);
     background-color: var(--ix-tab-item-animated-circle--background);
     border-radius: 50%;
     border: 2px solid var(--ix-tab-item-animated-circle--border-color);
@@ -146,15 +146,9 @@
 }
 
 :host(.circle) {
-  height: calc(
-    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
-  min-height: calc(
-    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
-  max-height: calc(
-    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
+  height: var(--ix-tab-item-circle--height--circle);
+  min-height: var(--ix-tab-item-circle--min-height);
+  max-height: var(--ix-tab-item-circle--max-height);
 }
 
 :host(.stretched) {
@@ -240,18 +234,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: #{sys.$si-sys-sizing-spacing-y-60};
+  padding: var(--ix-tab-item-icon-only--padding);
 }
 
 :host(.small-tab) {
-  height: #{sys.$si-sys-sizing-size-80};
-  min-height: #{sys.$si-sys-sizing-size-80};
-  max-height: #{sys.$si-sys-sizing-size-80};
-  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  height: var(--ix-tab-item-small-tab--height);
+  min-height: var(--ix-tab-item-small-tab--min-height);
+  max-height: var(--ix-tab-item-small-tab--max-height);
+  padding: var(--ix-tab-item-small-tab--padding);
 }
 
 :host(.small-tab.icon) {
-  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20};
+  padding: var(--ix-tab-item-icon--padding);
 }
 
 :host(:not(.circle):focus-visible) {

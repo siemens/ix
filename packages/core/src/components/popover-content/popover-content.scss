@@ -10,11 +10,12 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './popover-content.vars' as *;
 :host {
   display: block;
   position: relative;
   overflow: auto;
-  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
+  padding: var(--ix-popover-content--padding);
 
   @include component.ix-component;
 }

@@ -12,8 +12,7 @@
 
 @use './message-bar.vars' as *;
 :host {
-  margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
-    0 #{sys.$si-sys-sizing-spacing-x-40};
+  margin: var(--ix-message-bar--margin);
 
   @include component.ix-component;
 
@@ -23,15 +22,8 @@
     align-items: flex-start;
     flex-wrap: nowrap;
     justify-content: space-between;
-    min-height: calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-30}
-    );
-    padding: calc(
-        #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
-      )
-      #{sys.$si-sys-sizing-spacing-x-50} calc(
-        #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
-      ) #{sys.$si-sys-sizing-spacing-x-60};
+    min-height: var(--ix-message-bar-message-container--min-height);
+    padding: var(--ix-message-bar-message-container--padding);
     border-radius: var(--ix-message-bar--border-radius);
     background-color: var(--ix-message-bar--background);
   }
@@ -56,18 +48,18 @@
   .message-content {
     flex-grow: 1;
     align-self: center;
-    min-height: #{sys.$si-sys-sizing-size-60};
-    padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+    min-height: var(--ix-message-bar-message-content--min-height);
+    padding: var(--ix-message-bar-message-content--padding);
     font-weight: normal;
     white-space: normal;
   }
 
   ix-icon {
-    block-size: #{sys.$si-sys-sizing-icon-lg};
-    inline-size: #{sys.$si-sys-sizing-icon-lg};
-    margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-    min-block-size: #{sys.$si-sys-sizing-icon-lg};
-    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    block-size: var(--ix-message-bar-icon--icon-size);
+    inline-size: var(--ix-message-bar-icon--icon-size);
+    margin-top: var(--ix-message-bar-icon--margin-top);
+    min-block-size: var(--ix-message-bar-icon--icon-size);
+    min-inline-size: var(--ix-message-bar-icon--icon-size);
   }
 
   .message-bar-hidden {

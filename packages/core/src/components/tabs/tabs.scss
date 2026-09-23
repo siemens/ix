@@ -84,9 +84,7 @@
     width: 100%;
     touch-action: pan-y;
 
-    padding-right: calc(
-      #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
-    );
+    padding-right: var(--ix-tabs--padding-right);
 
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -104,7 +102,7 @@
   }
 
   .tabs-context-menu {
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-right: var(--ix-tabs-context-menu--margin-right);
   }
 
   .overflow-shadow-container {

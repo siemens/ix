@@ -26,10 +26,10 @@
     align-items: center;
 
     > .avatar-image {
-      height: #{sys.$si-sys-sizing-size-80};
-      width: #{sys.$si-sys-sizing-size-80};
-      min-height: #{sys.$si-sys-sizing-size-80};
-      min-width: #{sys.$si-sys-sizing-size-80};
+      height: var(--ix-avatar-image--height);
+      width: var(--ix-avatar-image--width);
+      min-height: var(--ix-avatar-image--min-height);
+      min-width: var(--ix-avatar-image--min-width);
       border-radius: 100px;
     }
 
@@ -37,10 +37,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: #{sys.$si-sys-sizing-size-80};
-      width: #{sys.$si-sys-sizing-size-80};
-      min-height: #{sys.$si-sys-sizing-size-80};
-      min-width: #{sys.$si-sys-sizing-size-80};
+      height: var(--ix-avatar-initials--height);
+      width: var(--ix-avatar-initials--width);
+      min-height: var(--ix-avatar-initials--min-height);
+      min-width: var(--ix-avatar-initials--min-width);
       border-radius: 100px;
       background-color: var(--ix-avatar--background);
       color: var(--ix-avatar--color);
@@ -66,22 +66,16 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    height: #{sys.$si-sys-sizing-size-90};
-    padding: #{sys.$si-sys-sizing-spacing-y-60};
-    width: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
-    );
-    min-width: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
-    );
-    max-width: calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
-    );
+    height: var(--ix-avatar-user-info--height);
+    padding: var(--ix-avatar-user-info--padding);
+    width: var(--ix-avatar-user-info--width);
+    min-width: var(--ix-avatar-user-info--min-width);
+    max-width: var(--ix-avatar-user-info--max-width);
 
-    gap: #{sys.$si-sys-sizing-spacing-x-60};
+    gap: var(--ix-avatar-user-info--gap);
 
     .avatar {
-      width: #{sys.$si-sys-sizing-size-80};
+      width: var(--ix-avatar-user-info-avatar--width);
       pointer-events: none;
     }
 
@@ -90,7 +84,7 @@
       position: relative;
       flex-direction: column;
       justify-content: center;
-      max-width: #{sys.$si-sys-sizing-size-150};
+      max-width: var(--ix-avatar-user--max-width);
       width: 100%;
       overflow: hidden;
     }

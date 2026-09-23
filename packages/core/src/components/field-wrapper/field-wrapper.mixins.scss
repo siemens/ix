@@ -15,9 +15,9 @@
     position: relative;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: #{sys.$si-sys-sizing-spacing-y-20};
+    gap: var(--ix-field-wrapper-bottom-text--gap);
 
-    margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+    margin-right: var(--ix-field-wrapper-bottom-text--margin-right);
   }
 
   .text-icon {

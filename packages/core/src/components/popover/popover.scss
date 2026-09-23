@@ -19,12 +19,10 @@
     overflow: visible;
     position: fixed;
     inset: unset;
-    width: calc(
-      #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-130}
-    );
-    min-width: #{sys.$si-sys-sizing-size-160};
-    max-width: #{sys.$si-sys-sizing-size-190};
-    max-height: calc(100vh - #{sys.$si-sys-sizing-size-80});
+    width: var(--ix-popover-dialog--width);
+    min-width: var(--ix-popover-dialog--min-width);
+    max-width: var(--ix-popover-dialog--max-width);
+    max-height: var(--ix-popover-dialog--max-height);
   }
 
   .popover-container {
@@ -32,7 +30,7 @@
     flex-direction: column;
     position: relative;
     width: 100%;
-    max-height: calc(100vh - #{sys.$si-sys-sizing-size-80});
+    max-height: var(--ix-popover-container--max-height);
     background: var(--ix-popover--background);
     color: var(--ix-popover--color);
     border: 1px solid var(--ix-popover--border-color);

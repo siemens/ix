@@ -21,3 +21,20 @@
   --ix-menu-item-primary-icon--color--selected: #{sys.$si-sys-color-text-primary};
   --ix-menu-item-secondary--background--selected: #{sys.$si-sys-color-background-0};
 }
+
+:host {
+  --ix-menu-item--height: #{sys.$si-sys-sizing-size-100};
+  --ix-menu-item--padding-inline: calc(
+    #{sys.$si-sys-sizing-spacing-x-50} + #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-menu-item-tab-icon--icon-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-menu-item-pill--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-menu-item-tab-text--margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70};
+  --ix-menu-item-bottom-tab-bottom--bottom-height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-menu-item-tab--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-menu-item-tab-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-menu-item-tab-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-menu-item-tab-text--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+}

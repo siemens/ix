@@ -15,3 +15,28 @@
   --ix-avatar--color: #{sys.$si-sys-color-text-on-neutral};
   --ix-avatar--focus--outline-offset: var(--theme-focus-outline-offset);
 }
+
+:host {
+  --ix-avatar-image--height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-image--width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-image--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-image--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-user-info--height: #{sys.$si-sys-sizing-size-90};
+  --ix-avatar-user-info--padding: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-avatar-user-info--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-avatar-user-info--min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-avatar-user-info--max-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-avatar-user-info--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-avatar-user-info-avatar--width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-user--max-width: #{sys.$si-sys-sizing-size-150};
+}

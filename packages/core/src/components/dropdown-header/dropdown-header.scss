@@ -14,10 +14,10 @@
   display: flex;
   align-items: center;
   position: relative;
-  height: #{sys.$si-sys-sizing-size-90};
+  height: var(--ix-dropdown-header--height);
   width: auto;
 
-  padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-60};
+  padding: var(--ix-dropdown-header--padding);
 
   overflow: hidden;
   cursor: default;

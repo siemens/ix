@@ -18,8 +18,8 @@
   flex-direction: column;
   width: 100%;
   transition: var(--ix-card-accordion--transition-duration) ease-in-out;
-  --ix-card-accordion-expanded-height: calc(
-    #{sys.$si-sys-sizing-size-160} - #{sys.$si-sys-sizing-spacing-y-20}
+  --ix-card-accordion-expanded-height: var(
+    --ix-card-accordion--expanded-height
   );
 
   @include component.ix-component;
@@ -31,7 +31,7 @@
 
     appearance: button;
 
-    height: #{sys.$si-sys-sizing-size-90};
+    height: var(--ix-card-accordion-expand-action--height);
     width: 100%;
 
     align-items: center;
@@ -53,11 +53,11 @@
   }
 
   .expand-icon {
-    block-size: #{sys.$si-sys-sizing-icon-lg};
-    inline-size: #{sys.$si-sys-sizing-icon-lg};
-    margin-left: #{sys.$si-sys-sizing-spacing-x-40};
-    min-block-size: #{sys.$si-sys-sizing-icon-lg};
-    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    block-size: var(--ix-card-accordion-expand-icon--icon-size);
+    inline-size: var(--ix-card-accordion-expand-icon--icon-size);
+    margin-left: var(--ix-card-accordion-expand-icon--margin-left);
+    min-block-size: var(--ix-card-accordion-expand-icon--icon-size);
+    min-inline-size: var(--ix-card-accordion-expand-icon--icon-size);
     transition: var(--ix-card-accordion-expand-icon--transition-duration)
       transform ease-in-out;
   }
@@ -104,9 +104,7 @@
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
-    height: calc(
-      var(--ix-card-accordion-expanded-height) - #{sys.$si-sys-sizing-spacing-y-60}
-    );
+    height: var(--ix-card-accordion-expand-content-body--height);
     color: var(--ix-card-accordion-content--color);
     opacity: 1;
   }
@@ -117,7 +115,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: #{sys.$si-sys-sizing-size-60};
+    height: var(--ix-card-accordion-expand-content-footer--height);
 
     background-color: var(--ix-card-accordion-footer--background);
     border-bottom-left-radius: var(--ix-card-accordion-footer--border-radius);

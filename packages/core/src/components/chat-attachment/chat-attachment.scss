@@ -10,6 +10,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './chat-attachment.vars' as *;
 :host {
   display: inline-block;
 
@@ -18,7 +19,7 @@
   .attachment-chip {
     display: block;
     width: 100%;
-    max-width: #{sys.$si-sys-sizing-size-170};
+    max-width: var(--ix-chat-attachment-attachment-chip--max-width);
   }
 
   .content,

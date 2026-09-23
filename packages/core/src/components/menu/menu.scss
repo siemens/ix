@@ -12,9 +12,7 @@
 @use 'tokens/system' as sys;
 
 @use './menu.vars' as *;
-$menu-expanded-width: calc(
-  #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
-);
+$menu-expanded-width: var(--ix-menu--expanded-width);
 
 :host {
   display: flex;
@@ -61,7 +59,7 @@ $menu-expanded-width: calc(
     overflow: hidden;
     display: block;
     position: relative;
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
+    margin-bottom: var(--ix-menu-tabs-shadow-container--margin-bottom);
     flex: 1 1 auto;
     min-height: 0;
   }
@@ -112,14 +110,9 @@ $menu-expanded-width: calc(
     display: flex;
     flex-direction: column;
     position: relative;
-    width: calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
-        var(--ix-application-menu-safe-area-left, 0rem)
-    );
+    width: var(--ix-menu--width);
     height: 100%;
-    padding-block-end: calc(
-      #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0rem)
-    );
+    padding-block-end: var(--ix-menu--padding-block-end);
     overflow: hidden;
 
     padding-left: var(--ix-application-menu-safe-area-left, 0);
@@ -135,13 +128,9 @@ $menu-expanded-width: calc(
   .menu-overlay {
     display: none;
     position: absolute;
-    width: calc(
-      100vw - #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-spacing-x-20}
-    );
+    width: var(--ix-menu-overlay--width);
     height: 100%;
-    left: calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
-    );
+    left: var(--ix-menu-overlay--left);
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--ix-menu-overlay--background);
@@ -166,20 +155,22 @@ $menu-expanded-width: calc(
   }
 
   .menu-avatar {
-    max-height: #{sys.$si-sys-sizing-size-100};
+    max-height: var(--ix-menu-avatar--max-height);
   }
 
   .avatar {
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-90};
+    margin-bottom: var(--ix-menu-avatar--margin-bottom);
   }
 
   #cui-imprint {
     .cui-imprint-product-name {
-      margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+      margin-bottom: var(--ix-menu-cui-imprint-product-name--margin-bottom);
     }
 
     .cui-imprint-product-description {
-      margin-bottom: #{sys.$si-sys-sizing-spacing-y-90};
+      margin-bottom: var(
+        --ix-menu-cui-imprint-product-description--margin-bottom
+      );
     }
 
     .cui-imprint-link-container {
@@ -193,11 +184,10 @@ $menu-expanded-width: calc(
   }
 
   .menu-buttons {
-    margin: #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc(#{sys.$si-sys-sizing-spacing-x-40} +
-          #{sys.$si-sys-sizing-spacing-x-10});
+    margin: var(--ix-menu-buttons--margin);
 
     &:not(:empty) {
-      margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
+      margin-bottom: var(--ix-menu-empty--margin-bottom);
     }
   }
 }

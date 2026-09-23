@@ -15,5 +15,5 @@
 
   width: 100%;
   border-bottom: 0.0625rem solid var(--ix-divider--border-color);
-  margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  margin: var(--ix-divider--margin);
 }

@@ -4,3 +4,16 @@
   --ix-key-value-label--color: #{sys.$si-sys-color-text-secondary};
   --ix-key-value--border-color: #{sys.$si-sys-color-border-4};
 }
+
+:host {
+  --ix-key-value--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-key-value-icon--padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-key-value-column--padding: #{sys.$si-sys-sizing-spacing-y-40} 0;
+  --ix-key-value-column-content--padding: #{sys.$si-sys-sizing-spacing-y-10} 0;
+  --ix-key-value-row--padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-key-value-content--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-key-value-row-content--padding: #{sys.$si-sys-sizing-spacing-y-30} 0;
+  --ix-key-value-content-label--min-width: calc(
+    #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-spacing-x-40}
+  );
+}

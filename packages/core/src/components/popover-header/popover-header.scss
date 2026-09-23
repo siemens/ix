@@ -13,9 +13,9 @@
 @use './popover-header.vars' as *;
 :host {
   display: flex;
-  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
+  padding: var(--ix-popover-header--padding);
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-x-40};
+  gap: var(--ix-popover-header--gap);
 
   @include component.ix-component;
 
@@ -26,7 +26,7 @@
   .additional-items {
     display: flex;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-20};
+    gap: var(--ix-popover-header-additional-items--gap);
   }
 
   .popover-close {

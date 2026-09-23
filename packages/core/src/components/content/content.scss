@@ -9,12 +9,12 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './content.vars' as *;
 :host {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90}
-    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-90};
+  padding: var(--ix-content--padding);
 
   width: 100%;
   height: 100%;
@@ -30,6 +30,6 @@
   }
 
   .content-header.slotted {
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-80};
+    margin-bottom: var(--ix-content-header--margin-bottom);
   }
 }

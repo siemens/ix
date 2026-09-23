@@ -19,3 +19,18 @@
   --ix-upload-text--color--checking: #{sys.$si-sys-color-text-primary};
   --ix-upload-text--color--disabled: #{sys.$si-sys-color-text-disabled};
 }
+
+:host {
+  --ix-upload--min-height: #{sys.$si-sys-sizing-size-110};
+  --ix-upload--height: #{sys.$si-sys-sizing-size-110};
+  --ix-upload-file-upload-area--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-upload-file-upload-area--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-upload-loader--margin: calc(#{sys.$si-sys-sizing-spacing-y-60} * 2.187)
+    auto;
+  --ix-upload-loader--width: #{sys.$si-sys-sizing-size-50};
+  --ix-upload-loader--height: #{sys.$si-sys-sizing-size-50};
+  --ix-upload-filename--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-upload-state--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-upload-icon--icon-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-upload-icon--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+}

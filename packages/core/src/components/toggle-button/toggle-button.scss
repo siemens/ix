@@ -11,24 +11,25 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './toggle-button.vars' as *;
 @include button-mixin.btn;
 @include button-mixin.all-btn-variants;
 
 :host {
   display: inline-block;
-  height: #{sys.$si-sys-sizing-size-80};
+  height: var(--ix-toggle-button--height);
   width: auto;
-  min-width: #{sys.$si-sys-sizing-size-120};
+  min-width: var(--ix-toggle-button--min-width);
   vertical-align: middle;
 
   @include component.ix-component;
 
   .icon,
   .icon-right {
-    block-size: #{sys.$si-sys-sizing-icon-lg};
-    inline-size: #{sys.$si-sys-sizing-icon-lg};
-    min-block-size: #{sys.$si-sys-sizing-icon-lg};
-    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    block-size: var(--ix-toggle-button-icon-right--icon-size);
+    inline-size: var(--ix-toggle-button-icon-right--icon-size);
+    min-block-size: var(--ix-toggle-button-icon-right--icon-size);
+    min-inline-size: var(--ix-toggle-button-icon-right--icon-size);
   }
 
   .btn {

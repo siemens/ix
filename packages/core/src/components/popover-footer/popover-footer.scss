@@ -10,19 +10,20 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './popover-footer.vars' as *;
 :host {
   display: flex;
-  padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
+  padding: var(--ix-popover-footer--padding);
   justify-content: space-between;
   align-items: center;
-  gap: #{sys.$si-sys-sizing-spacing-x-40};
+  gap: var(--ix-popover-footer--gap);
 
   @include component.ix-component;
 
   .footer-start,
   .footer-end {
     display: flex;
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-popover-footer-footer-end--gap);
   }
 }
 

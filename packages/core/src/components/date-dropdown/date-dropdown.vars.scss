@@ -14,3 +14,27 @@
   --ix-date-dropdown--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-date-dropdown--focus--outline-offset: var(--theme-focus-outline-offset);
 }
+
+:host {
+  --ix-date-dropdown-pull-right--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-date-dropdown-quick-selection--gap: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-date-dropdown-quick-selection--padding: #{sys.$si-sys-sizing-spacing-y-40}
+    #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-date-dropdown-button--min-width: calc(
+    #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  --ix-date-dropdown-button--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-date-dropdown-button--max-height: #{sys.$si-sys-sizing-size-80};
+  --ix-date-dropdown-container--height: calc(
+    #{sys.$si-sys-sizing-size-90} * 10
+  );
+  --ix-date-dropdown-container--max-height: calc(
+    #{sys.$si-sys-sizing-size-90} * 10
+  );
+  --ix-date-dropdown-picker-wrapper--height: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-y-60}
+  );
+  --ix-date-dropdown-quick-selection--max-height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
+  );
+}

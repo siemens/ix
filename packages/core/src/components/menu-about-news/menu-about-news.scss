@@ -7,30 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 @use './menu-about-news.vars' as *;
-$left: calc(
-  #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} + #{sys.$si-sys-sizing-spacing-x-10} *
-    0.2
-);
-$expanded-left-offset: calc(
-  #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
-    0.8
-);
+$left: var(--ix-menu-about-news--left);
+$expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
 
 :host {
-  --margin: #{sys.$si-sys-sizing-spacing-x-40};
+  --margin: var(--ix-menu-about-news--margin);
 
   display: block;
   position: fixed;
-  width: calc(#{sys.$si-sys-sizing-size-90} * 8);
+  width: var(--ix-menu-about-news--width);
   height: auto;
   background-color: var(--ix-menu-about-news--background);
-  border-radius: vars.$default-border-radius;
-  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  border-radius: var(--ix-menu-about-news--border-radius);
+  padding: var(--ix-menu-about-news--padding);
   left: $left;
   z-index: 10000;
   transition: left var(--ix-menu-about-news--transition-duration);
@@ -43,7 +36,7 @@ $expanded-left-offset: calc(
   .banner-container {
     position: absolute;
     top: 0.0625rem;
-    left: #{sys.$si-sys-sizing-spacing-x-60};
+    left: var(--ix-menu-about-news-banner-container--left);
 
     svg {
       position: absolute;
@@ -56,16 +49,22 @@ $expanded-left-offset: calc(
     }
 
     ix-icon {
-      margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+      margin: var(--ix-menu-about-news-icon--margin);
       position: absolute;
       z-index: 1;
     }
   }
 
   .cui-popover-news-header {
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-100};
-    margin-inline-start: #{sys.$si-sys-sizing-spacing-x-120};
-    margin-block-start: calc(-1 * #{sys.$si-sys-sizing-spacing-y-20});
+    margin-bottom: var(
+      --ix-menu-about-news-cui-popover-news-header--margin-bottom
+    );
+    margin-inline-start: var(
+      --ix-menu-about-news-cui-popover-news-header--margin-inline-start
+    );
+    margin-block-start: var(
+      --ix-menu-about-news-cui-popover-news-header--margin-block-start
+    );
   }
 
   .popover-body {
@@ -75,12 +74,12 @@ $expanded-left-offset: calc(
   .cui-popover-news-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: #{sys.$si-sys-sizing-spacing-y-60};
+    margin-top: var(--ix-menu-about-news-cui-popover-news-footer--margin-top);
   }
 
   ix-icon-button {
-    top: #{sys.$si-sys-sizing-spacing-y-40};
-    right: #{sys.$si-sys-sizing-spacing-x-40};
+    top: var(--ix-menu-about-news-icon--top);
+    right: var(--ix-menu-about-news-icon--right);
     position: absolute;
   }
 

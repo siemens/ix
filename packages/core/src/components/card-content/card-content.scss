@@ -9,9 +9,10 @@
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
+@use './card-content.vars' as *;
 :host {
   display: flex;
-  padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  padding: var(--ix-card-content--padding);
   height: 100%;
   overflow: hidden;
 
@@ -22,7 +23,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    gap: #{sys.$si-sys-sizing-spacing-y-40};
+    gap: var(--ix-card-content-content-wrapper--gap);
     display: flex;
     flex-direction: column;
     align-items: flex-start;

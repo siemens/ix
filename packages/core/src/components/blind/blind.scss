@@ -14,6 +14,7 @@
 @use './blind.vars' as blind-vars;
 @use 'tokens/system' as sys;
 
+@use './blind.vars' as *;
 @mixin blind($variant: 'filled') {
   :host(.blind-#{$variant}) {
     @include blind-vars.variant-vars($variant);
@@ -130,18 +131,18 @@
   overflow: hidden;
 
   ix-icon:not([size]) {
-    block-size: #{sys.$si-sys-sizing-icon-lg};
-    inline-size: #{sys.$si-sys-sizing-icon-lg};
-    min-block-size: #{sys.$si-sys-sizing-icon-lg};
-    min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+    block-size: var(--ix-blind-icon--icon-size);
+    inline-size: var(--ix-blind-icon--icon-size);
+    min-block-size: var(--ix-blind-icon--icon-size);
+    min-inline-size: var(--ix-blind-icon--icon-size);
   }
 
   @include component.ix-component;
 
   .blind-header-wrapper {
     position: relative;
-    min-height: #{sys.$si-sys-sizing-size-100};
-    height: #{sys.$si-sys-sizing-size-100};
+    min-height: var(--ix-blind-header-wrapper--min-height);
+    height: var(--ix-blind-header-wrapper--height);
     overflow: hidden;
   }
 
@@ -155,7 +156,7 @@
     height: 100%;
 
     pointer-events: none;
-    padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+    padding-left: var(--ix-blind-header-content--padding-left);
   }
 
   .blind-header-title {
@@ -163,7 +164,7 @@
     position: relative;
     align-items: center;
     flex-grow: 1;
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-right: var(--ix-blind-header-title--margin-right);
   }
 
   .blind-header {
@@ -178,9 +179,9 @@
 
     pointer-events: all;
 
-    padding-left: #{sys.$si-sys-sizing-spacing-x-100};
-    min-height: #{sys.$si-sys-sizing-size-100};
-    height: #{sys.$si-sys-sizing-size-100};
+    padding-left: var(--ix-blind-header--padding-left);
+    min-height: var(--ix-blind-header--min-height);
+    height: var(--ix-blind-header--height);
     width: calc(100% - 2 * var(--ix-blind--border-width));
     border: solid var(--ix-blind--border-width) transparent;
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
@@ -195,7 +196,7 @@
 
   .blind-header-title-icon,
   .collapse-icon {
-    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-right: var(--ix-blind-collapse-icon--margin-right);
   }
 
   .blind-header-title-row {
@@ -207,7 +208,7 @@
   .blind-header-title-col {
     display: inline-flex;
     align-items: center;
-    width: calc(100% - #{sys.$si-sys-sizing-spacing-x-60});
+    width: var(--ix-blind-header-title-col--width);
     overflow: hidden;
   }
 
@@ -220,12 +221,12 @@
   }
 
   .blind-header-title-label {
-    padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+    padding-inline-end: var(--ix-blind-header-title-label--padding-inline-end);
     @include text-truncation.ellipsis;
   }
 
   .blind-header-title-sublabel {
-    padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+    padding-inline: var(--ix-blind-header-title-sublabel--padding-inline);
     @include text-truncation.ellipsis;
   }
 
@@ -245,7 +246,7 @@
 
   .blind-content {
     display: block;
-    padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+    padding: var(--ix-blind-content--padding);
     transition-property: padding;
     transition-duration: var(--ix-blind-content--transition-duration);
     transition-timing-function: ease-in;
