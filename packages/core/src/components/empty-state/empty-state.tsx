@@ -67,7 +67,7 @@ export class EmptyState {
             <ix-icon
               name={this.icon}
               size={this.layout === 'large' ? '32' : '32'}
-              color="--si-sys-text-secondary"
+              color="--si-sys-color-text-secondary"
               aria-label={this.ariaLabelEmptyStateIcon}
             />
           </div>

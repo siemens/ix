@@ -28,7 +28,7 @@
     position: relative;
     display: inline-flex;
     user-select: none;
-    color: #{sys.$si-sys-text-primary};
+    color: #{sys.$si-sys-color-text-primary};
     min-height: 1.5rem;
   }
 
@@ -55,43 +55,43 @@
 
   .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='checkbox']:not(:checked) {
     & + label:before {
-      background-color: #{sys.$si-sys-background-accent-secondary};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-1};
+      background-color: #{sys.$si-sys-color-background-accent-secondary};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-1};
     }
 
     &:hover + label:before {
-      background-color: #{sys.$si-sys-background-accent-secondary-hover};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-secondary-hover};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:active + label:before {
-      background-color: #{sys.$si-sys-background-accent-secondary-active};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-secondary-active};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:disabled + label::before {
       background-color: transparent;
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-text-disabled};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-text-disabled};
     }
   }
 
   .ix-form-control[type='checkbox']:checked {
     & + label:before {
-      background-color: #{sys.$si-sys-background-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-hover};
       border: var(--theme-border-width-default) solid transparent;
     }
 
@@ -102,30 +102,30 @@
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 0.0625rem solid #{sys.$si-sys-text-on-accent};
-      border-left: 0.0625rem solid #{sys.$si-sys-text-on-accent};
+      border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
+      border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: 0.525rem 0.42rem 0.1875rem;
       transform: translate(0, -2px) rotate(-53deg) scale(2) skew(-8deg, -3deg);
     }
 
     &:hover + label:before {
-      background-color: #{sys.$si-sys-background-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-hover};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: #{sys.$si-sys-background-accent-active};
+      background-color: #{sys.$si-sys-color-background-accent-active};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label:before {
-      background-color: #{sys.$si-sys-text-disabled};
+      background-color: #{sys.$si-sys-color-text-disabled};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: #{sys.$si-sys-text-inverse};
+      border-color: #{sys.$si-sys-color-text-inverse};
     }
   }
 
@@ -140,38 +140,38 @@
       display: block;
       width: 0.75rem;
       height: 0;
-      border-bottom: 0.125rem solid #{sys.$si-sys-text-on-accent};
+      border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: 0.625rem 0 0 0.25rem;
     }
 
     & + label:before {
-      background-color: #{sys.$si-sys-background-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-hover};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:hover + label:before {
-      background-color: #{sys.$si-sys-background-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-hover};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: #{sys.$si-sys-background-accent-active};
+      background-color: #{sys.$si-sys-color-background-accent-active};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::before {
-      background-color: #{sys.$si-sys-text-disabled};
+      background-color: #{sys.$si-sys-color-text-disabled};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: #{sys.$si-sys-text-inverse};
+      border-color: #{sys.$si-sys-color-text-inverse};
     }
   }
 
   .ix-form-control[type='checkbox']:disabled + label {
-    color: #{sys.$si-sys-text-disabled};
+    color: #{sys.$si-sys-color-text-disabled};
   }
 }
 

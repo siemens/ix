@@ -192,9 +192,9 @@ function onDateSelect(event: CustomEvent<DateTimeSelectEvent>) {
         size="12"
         style="
           padding: 0.75rem 1rem;
-          border: 1px solid var(--theme-color-weak-bdr);
+          border: 1px solid var(--si-sys-color-border-4);
           border-radius: 4px;
-          background: var(--theme-color-2);
+          background: var(--si-sys-color-background-1);
         "
       >
         <span style="display: block; font-weight: 700; margin-bottom: 0.5rem">
@@ -202,7 +202,7 @@ function onDateSelect(event: CustomEvent<DateTimeSelectEvent>) {
         </span>
         <span
           v-if="lastEvent === null"
-          style="color: var(--theme-color-soft-text)"
+          style="color: var(--si-sys-color-text-secondary)"
         >
           Confirm a selection to see event values
         </span>
@@ -210,21 +210,21 @@ function onDateSelect(event: CustomEvent<DateTimeSelectEvent>) {
           <IxRow v-for="row in eventRows" :key="row.key">
             <IxCol
               size="2"
-              style="font-weight: 600; color: var(--theme-color-std-text)"
+              style="font-weight: 600; color: var(--si-sys-color-text-primary)"
             >
               {{ row.key }}
             </IxCol>
             <IxCol
               style="
                 font-family: monospace;
-                color: var(--theme-color-primary);
+                color: var(--si-sys-color-text-accent);
               "
             >
               {{ lastEvent?.[row.key] || '—' }}
             </IxCol>
             <IxCol
               style="
-                color: var(--theme-color-soft-text);
+                color: var(--si-sys-color-text-secondary);
                 font-size: 0.8em;
               "
             >

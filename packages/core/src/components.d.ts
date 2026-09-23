@@ -2254,7 +2254,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -2611,7 +2611,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -2713,7 +2713,7 @@ export namespace Components {
         /**
           * Color of the default icon.
           * @since 6.0.0
-          * @default '--si-sys-background-warning'
+          * @default '--si-sys-color-background-warning'
          */
         "iconColor": string;
         /**
@@ -3486,7 +3486,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
     }
@@ -3938,7 +3938,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -5125,7 +5125,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -10254,7 +10254,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -10642,7 +10642,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -10748,7 +10748,7 @@ declare namespace LocalJSX {
         /**
           * Color of the default icon.
           * @since 6.0.0
-          * @default '--si-sys-background-warning'
+          * @default '--si-sys-color-background-warning'
          */
         "iconColor"?: string;
         /**
@@ -11568,7 +11568,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -12053,7 +12053,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -13309,7 +13309,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**

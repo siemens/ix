@@ -5343,7 +5343,7 @@
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'--si-sys-background-warning'",
+          "default": "'--si-sys-color-background-warning'",
           "optional": false,
           "required": false,
           "deprecated": false

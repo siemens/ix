@@ -10,8 +10,8 @@ catalogs:
       specifier: ^4.11.0
       version: 4.11.0
     '@esbuild/linux-arm64':
-      specifier: 0.28.2
-      version: 0.28.2
+      specifier: 0.27.2
+      version: 0.27.2
     '@playwright/test':
       specifier: ^1.58.1
       version: 1.58.1
@@ -538,7 +538,7 @@ importers:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 'catalog:'
-        version: 0.28.2
+        version: 0.27.2
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.58.1
@@ -1818,7 +1818,7 @@ importers:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 'catalog:'
-        version: 0.28.2
+        version: 0.27.2
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.58.1
@@ -3709,12 +3709,6 @@ packages:
 
   '@esbuild/linux-arm64@0.28.1':
     resolution: {integrity: sha512-yHs+0uc8+nvEAfAfxrWQKK5peSNzBc4PegcMO0EJ2hT71uA7vB8Ihg2e77R2P7SG5uYjPbHlLLmve4LLLRCf0g==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [linux]
-
-  '@esbuild/linux-arm64@0.28.2':
-    resolution: {integrity: sha512-pW4AC0P3it8c7do9MVM4p51FzHzdM/TZrerurgRcHJ2WTa1VQ1CIq18xncfpBJw4ojkiZZrKW2yIBWBP92j6Ug==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [linux]
@@ -17623,13 +17617,10 @@ snapshots:
   '@esbuild/linux-arm64@0.25.5':
     optional: true
 
-  '@esbuild/linux-arm64@0.27.2':
-    optional: true
+  '@esbuild/linux-arm64@0.27.2': {}
 
   '@esbuild/linux-arm64@0.28.1':
     optional: true
-
-  '@esbuild/linux-arm64@0.28.2': {}
 
   '@esbuild/linux-arm@0.25.12':
     optional: true

@@ -36,16 +36,16 @@ export default class EchartsSpecial3d implements OnDestroy, OnInit {
       type: 'value',
       axisLine: {
         lineStyle: {
-          color: getComputedCSSProperty('--si-sys-border-3'),
+          color: getComputedCSSProperty('--si-sys-color-border-3'),
         },
       },
       splitLine: {
         lineStyle: {
-          color: getComputedCSSProperty('--si-sys-background-3'),
+          color: getComputedCSSProperty('--si-sys-color-background-3'),
         },
       },
       axisLabel: {
-        color: getComputedCSSProperty('--si-sys-text-primary'),
+        color: getComputedCSSProperty('--si-sys-color-text-primary'),
       },
     };
   }
