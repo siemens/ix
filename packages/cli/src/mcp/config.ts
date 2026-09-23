@@ -36,8 +36,8 @@ const instructionContent = (withFrontmatter = false, framework?: Framework) => {
     framework === 'angular'
       ? usageAngular
       : framework === 'vue'
-        ? usageVue
-        : usageReact;
+      ? usageVue
+      : usageReact;
   const content = dedent`
     ${INSTRUCTION_START_MARKER}
     ## Siemens iX code generation

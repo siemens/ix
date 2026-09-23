@@ -224,12 +224,10 @@ test('get_example_code reports incomplete source as an MCP tool error', async ()
     return new Response('missing', { status: 404 });
   }) as typeof fetch;
 
-  const server = createServer(
-    'react',
-    defaultRegistry,
-    'latest',
-    { baseUrl: defaultRegistry, version: 'latest' }
-  );
+  const server = createServer('react', defaultRegistry, 'latest', {
+    baseUrl: defaultRegistry,
+    version: 'latest',
+  });
   const client = new Client({ name: 'ix-cli-test', version: '1.0.0' });
   const [clientTransport, serverTransport] =
     InMemoryTransport.createLinkedPair();
@@ -474,12 +472,7 @@ test('custom MCP metadata keeps registry provenance when its version matches the
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-custom-'));
   const packageRoot = path.join(root, 'node_modules', '@siemens', 'ix');
   const registryUrl = 'https://registry.example/custom';
-  const optionsArgs = [
-    '--registry',
-    registryUrl,
-    '--tag',
-    'matching-version',
-  ];
+  const optionsArgs = ['--registry', registryUrl, '--tag', 'matching-version'];
   const requests: string[] = [];
   let includeRelatedExamples = true;
   const registry = () => ({
@@ -558,10 +551,10 @@ test('custom MCP metadata keeps registry provenance when its version matches the
       throw new Error(`Unexpected registry request: ${url}`);
     }) as typeof fetch;
 
-    assert.deepEqual(
-      parsedRegistryOptions(optionsArgs).componentRegistry,
-      { baseUrl: registryUrl, version: 'matching-version' }
-    );
+    assert.deepEqual(parsedRegistryOptions(optionsArgs).componentRegistry, {
+      baseUrl: registryUrl,
+      version: 'matching-version',
+    });
     await withMcpClient('react', optionsArgs, async (callTool) => {
       assert.match(
         await callTool('get_component_details', {
@@ -581,9 +574,7 @@ test('custom MCP metadata keeps registry provenance when its version matches the
         /ix-custom/
       );
     });
-    assert.ok(
-      requests.includes(`${registryUrl}/1.0.0/ix/component-doc.json`)
-    );
+    assert.ok(requests.includes(`${registryUrl}/1.0.0/ix/component-doc.json`));
     assert.ok(requests.every((url) => url.startsWith(registryUrl)));
 
     includeRelatedExamples = false;
