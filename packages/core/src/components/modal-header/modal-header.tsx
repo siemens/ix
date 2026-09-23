@@ -69,7 +69,7 @@ export class ModalHeader {
 
   /**
    * Icon color as a CSS custom property name, for example
-   * `--si-sys-text-primary`.
+   * `--si-sys-color-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -119,7 +119,7 @@ export class ModalHeader {
             onClick={(event) => this.onCloseClick(event)}
             variant="tertiary"
             icon={iconClose}
-            iconColor="--si-sys-text-secondary"
+            iconColor="--si-sys-color-text-secondary"
             aria-label={this.ariaLabelCloseIconButton}
           ></ix-icon-button>
         ) : null}

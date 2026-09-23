@@ -40,7 +40,7 @@ export class InfoPage {
    *
    * @since 6.0.0
    */
-  @Prop() iconColor: string = '--si-sys-background-warning';
+  @Prop() iconColor: string = '--si-sys-color-background-warning';
 
   /**
    * Short and concise title describing the topic.

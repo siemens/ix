@@ -23,13 +23,41 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'defaults to a 32px host and 20px glyph',
+  async ({ mount, page }) => {
+    await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`, {
+      icons: { iconRocket },
+    });
+
+    const button = page.locator('ix-icon-button');
+    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveClass(/btn-icon-32/);
+    await expect(button.locator('ix-icon')).toHaveClass(/size-20/);
+  }
+);
+
+regressionTest(
+  'size 24 keeps a 32px host and 24px glyph',
+  async ({ mount, page }) => {
+    await mount(`<ix-icon-button icon="rocket" size="24"></ix-icon-button>`, {
+      icons: { iconRocket },
+    });
+
+    const button = page.locator('ix-icon-button');
+    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveClass(/btn-icon-32/);
+    await expect(button.locator('ix-icon')).toHaveClass(/size-24/);
+  }
+);
+
+regressionTest(
   'forwards a custom property icon color',
   async ({ mount, page }) => {
     await mount(
       `<ix-icon-button
       icon="rocket"
-      icon-color="--si-sys-text-danger"
-      style="--si-sys-text-danger: rgb(1, 2, 3)"
+      icon-color="--si-sys-color-text-danger"
+      style="--si-sys-color-text-danger: rgb(1, 2, 3)"
     ></ix-icon-button>`,
       {
         icons: { iconRocket },

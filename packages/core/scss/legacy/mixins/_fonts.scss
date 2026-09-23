@@ -27,9 +27,9 @@
   line-height: $line-height;
 
   @if $color-inverted {
-    color: #{sys.$si-sys-text-inverse};
+    color: #{sys.$si-sys-color-text-inverse};
   } @else {
-    color: #{sys.$si-sys-text-primary};
+    color: #{sys.$si-sys-color-text-primary};
   }
 
   @include font-smoothing();

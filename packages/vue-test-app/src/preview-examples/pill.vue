@@ -17,8 +17,8 @@ import { IxPill } from '@siemens/ix-vue';
 <template>
   <IxPill
     variant="custom"
-    pill-color="var(--si-sys-text-inverse)"
-    background="var(--si-sys-background-accent-hover)"
+    pill-color="var(--si-sys-color-text-inverse)"
+    background="var(--si-sys-color-background-accent-hover)"
     >Label</IxPill
   >
 
