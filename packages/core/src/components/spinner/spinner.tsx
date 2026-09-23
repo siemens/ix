@@ -27,14 +27,13 @@ export class Spinner {
   /**
    * Size of the spinner.
    *
-   * - **xx-small**: 12px.
-   * - **x-small**: 16px.
-   * - **small**: 20px.
-   * - **small-plus**: 24px.
-   * - **medium**: 32px (default).
-   * - **x-large**: 96px.
+   * - **xxs**: 12px.
+   * - **xs**: 16px.
+   * - **sm**: 20px.
+   * - **md**: 32px (default).
+   * - **xxl**: 96px.
    */
-  @Prop() size: SpinnerSize = 'medium';
+  @Prop() size: SpinnerSize = 'md';
 
   /**
    * @internal

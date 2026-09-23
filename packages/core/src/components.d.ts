@@ -4099,8 +4099,8 @@ export namespace Components {
          */
         "hideTrack": boolean;
         /**
-          * Size of the spinner.  - **xx-small**: 12px. - **x-small**: 16px. - **small**: 20px. - **small-plus**: 24px. - **medium**: 32px (default). - **x-large**: 96px.
-          * @default 'medium'
+          * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @default 'md'
          */
         "size": SpinnerSize;
         /**
@@ -11382,8 +11382,8 @@ declare namespace LocalJSX {
          */
         "hideTrack"?: boolean;
         /**
-          * Size of the spinner.  - **xx-small**: 12px. - **x-small**: 16px. - **small**: 20px. - **small-plus**: 24px. - **medium**: 32px (default). - **x-large**: 96px.
-          * @default 'medium'
+          * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @default 'md'
          */
         "size"?: SpinnerSize;
         /**

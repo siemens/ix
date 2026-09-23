@@ -55,18 +55,18 @@ export type BaseButtonProps = {
 
 const getSpinnerSize = (btnProps: BaseButtonProps): SpinnerSize => {
   if (!btnProps.icon) {
-    return 'small-plus';
+    return 'sm';
   }
 
   switch (btnProps.iconSize) {
     case '12':
-      return 'xx-small';
+      return 'xxs';
     case '16':
-      return 'x-small';
+      return 'xs';
     case DEFAULT_BUTTON_ICON_SIZE:
-      return 'small';
+      return 'sm';
     default:
-      return 'small-plus';
+      return 'sm';
   }
 };
 

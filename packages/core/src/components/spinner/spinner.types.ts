@@ -9,17 +9,10 @@
 
 /**
  * Public `ix-spinner` size tokens.
- * - **xx-small**: 12px.
- * - **x-small**: 16px.
- * - **small**: 20px.
- * - **small-plus**: 24px.
- * - **medium**: 32px (default).
- * - **x-large**: 96px.
+ * - **xxs**: 12px.
+ * - **xs**: 16px.
+ * - **sm**: 20px.
+ * - **md**: 32px (default).
+ * - **xxl**: 96px.
  */
-export type SpinnerSize =
-  | 'xx-small'
-  | 'x-small'
-  | 'small'
-  | 'small-plus'
-  | 'medium'
-  | 'x-large';
+export type SpinnerSize = 'xxs' | 'xs' | 'sm' | 'md' | 'xxl';

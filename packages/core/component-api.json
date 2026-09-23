@@ -9243,10 +9243,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"medium\" | \"small\" | \"small-plus\" | \"x-large\" | \"x-small\" | \"xx-small\"",
+          "type": "\"md\" | \"sm\" | \"xs\" | \"xxl\" | \"xxs\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'medium'",
+          "default": "'md'",
           "optional": false,
           "required": false,
           "deprecated": false

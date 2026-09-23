@@ -24,6 +24,6 @@ type Story = StoryObj<Element>;
 
 export const Large: Story = {
   args: {
-    size: 'x-large',
+    size: 'xxl',
   },
 };
