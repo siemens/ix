@@ -44,7 +44,7 @@ const instructionContent = (withFrontmatter = false, framework?: Framework) => {
     - For each iX component, validate generated code with \`mcp_siemensix_search_examples\`.
     - Copilot MUST call \`mcp_siemensix_get_component_details\` by default.
 
-    When you generate code and a figma resource is included::
+    When you generate code and a figma resource is included:
 
     - Most IX components have mapped Figma components. Use \`mcp_siemensix_get_figma_component_mapping\` for a specific component or Figma ID, and \`mcp_siemensix_list_components_with_figma_ids\` to list all available mappings.
 

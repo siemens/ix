@@ -13,6 +13,7 @@ import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { Command, Option } from 'commander';
 import { defaultRegistry } from '../src/config';
 import { explicitComponentRegistryOptions } from '../src/commands/mcp';
+import { initMCPConfig } from '../src/mcp/config';
 import { createServer } from '../src/mcp/server';
 
 function parsedRegistryOptions(args: string[]) {
@@ -26,6 +27,30 @@ function parsedRegistryOptions(args: string[]) {
     componentRegistry: explicitComponentRegistryOptions(command, options),
   };
 }
+
+test('MCP-generated instructions use a single colon before the Figma rules', async () => {
+  const originalCwd = process.cwd();
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-instructions-'));
+  try {
+    process.chdir(root);
+    const { instructionPath } = await initMCPConfig('react', 'vscode');
+    const instructions = await fs.readFile(
+      path.join(root, instructionPath),
+      'utf8'
+    );
+    assert.match(
+      instructions,
+      /When you generate code and a figma resource is included:\n/
+    );
+    assert.doesNotMatch(
+      instructions,
+      /When you generate code and a figma resource is included::/
+    );
+  } finally {
+    process.chdir(originalCwd);
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
 
 async function withMcpClient(
   framework: 'react' | 'angular',

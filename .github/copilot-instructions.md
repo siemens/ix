@@ -117,6 +117,6 @@ When generating ix code follow the rules:
 - For each iX component, validate generated code with `search_examples`.
 - Copilot MUST call `get_component_details` by default.
 
-When you generate code and a figma resource is included::
+When you generate code and a figma resource is included:
 
 - Most IX components have mapped Figma components. Use `get_figma_component_mapping` for a specific component or Figma ID, and `list_components_with_figma_ids` to list all available mappings.
