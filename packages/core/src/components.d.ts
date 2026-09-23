@@ -3655,7 +3655,7 @@ export namespace Components {
          */
         "showTextAsTooltip": boolean;
         /**
-          * The size of the progress indicator.
+          * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
           * @default 'md'
          */
         "size": ProgressIndicatorSize;
@@ -10905,7 +10905,7 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The size of the progress indicator.
+          * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
           * @default 'md'
          */
         "size"?: ProgressIndicatorSize;

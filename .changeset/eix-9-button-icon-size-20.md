@@ -8,4 +8,6 @@ Default icon glyphs are now **20** instead of **24** when `size` is omitted on *
 
 **ix-spinner** size tokens are renamed and remapped: `xxs` 12 / `xs` 16 / `sm` 20 / `md` 32 (default) / `xxl` 96. Previous `xx-small` / `x-small` / `small` / `medium` / `large` names are removed.
 
-See `BREAKING_CHANGES/v6.md` (**Default icon size is 20**, **ix-spinner size scale**) for migration guidance.
+**ix-progress-indicator** circular `sm` is remapped from **24** to **20** (token names unchanged).
+
+See `BREAKING_CHANGES/v6.md` (**Default icon size is 20**, **ix-spinner size scale**, **ix-progress-indicator size scale**) for migration guidance.
