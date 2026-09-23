@@ -24,7 +24,7 @@ $chip-color-sys-values: (
     background: sys.$si-sys-background-critical,
     hover: sys.$si-sys-background-critical-hover,
     active: sys.$si-sys-background-critical-active,
-    contrast: sys.$si-sys-text-on-warning,
+    contrast: sys.$si-sys-text-on-critical,
   ),
   info: (
     background: sys.$si-sys-background-information,
