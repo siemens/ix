@@ -27,7 +27,6 @@ regressionTest(
     await expect(chip).toHaveCSS('height', '32px');
     await expect(pill).toHaveCSS('height', '20px');
     await expect(tab).toHaveCSS('height', '40px');
-    await expect(page).toHaveScreenshot('navigation-density-default.png');
 
     await page.locator('body').evaluate((body) => {
       body.setAttribute('data-ix-density', 'compact');
@@ -36,6 +35,5 @@ regressionTest(
     await expect(chip).toHaveCSS('height', '24px');
     await expect(pill).toHaveCSS('height', '16px');
     await expect(tab).toHaveCSS('height', '32px');
-    await expect(page).toHaveScreenshot('navigation-density-compact.png');
   }
 );

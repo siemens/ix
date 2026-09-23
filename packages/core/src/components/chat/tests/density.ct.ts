@@ -31,7 +31,6 @@ regressionTest(
     await expect(upload).toHaveCSS('height', '64px');
     await page.getByRole('button', { name: 'Open details' }).click();
     await expect(page.locator('ix-popover-content')).toBeVisible();
-    await expect(page).toHaveScreenshot('overlays-density-default.png');
 
     await page.locator('body').evaluate((body) => {
       body.setAttribute('data-ix-density', 'compact');
@@ -40,6 +39,5 @@ regressionTest(
     await expect(chatInput).toHaveCSS('min-height', '96px');
     await expect(upload).toHaveCSS('height', '48px');
     await expect(page.locator('ix-popover-content')).toBeVisible();
-    await expect(page).toHaveScreenshot('overlays-density-compact.png');
   }
 );

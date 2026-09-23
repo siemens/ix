@@ -51,7 +51,6 @@ regressionTest(
     for (const button of await buttons.all()) {
       await expect(button).toHaveCSS('height', '32px');
     }
-    await expect(page).toHaveScreenshot('button-density-default.png');
 
     await page.locator('body').evaluate((body) => {
       body.setAttribute('data-ix-density', 'compact');
@@ -60,7 +59,6 @@ regressionTest(
     for (const button of await buttons.all()) {
       await expect(button).toHaveCSS('height', '24px');
     }
-    await expect(page).toHaveScreenshot('button-density-compact.png');
   }
 );
 

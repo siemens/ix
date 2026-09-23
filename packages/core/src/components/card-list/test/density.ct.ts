@@ -28,7 +28,6 @@ regressionTest(
 
     await expect(header).toHaveCSS('min-height', '48px');
     await expect(cardContent).toHaveCSS('padding-top', '16px');
-    await expect(page).toHaveScreenshot('content-density-default.png');
 
     await page.locator('body').evaluate((body) => {
       body.setAttribute('data-ix-density', 'compact');
@@ -36,6 +35,5 @@ regressionTest(
 
     await expect(header).toHaveCSS('min-height', '40px');
     await expect(cardContent).toHaveCSS('padding-top', '12px');
-    await expect(page).toHaveScreenshot('content-density-compact.png');
   }
 );

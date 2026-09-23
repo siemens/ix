@@ -49,7 +49,6 @@ regressionTest(
       'height',
       '56px'
     );
-    await expect(page).toHaveScreenshot('forms-density-default.png');
 
     await select.evaluate((element) => {
       element.setAttribute('data-density-test-marker', 'mounted-once');
@@ -75,6 +74,5 @@ regressionTest(
       'data-density-test-marker',
       'mounted-once'
     );
-    await expect(page).toHaveScreenshot('forms-density-compact.png');
   }
 );

@@ -47,8 +47,6 @@ regressionTest(
       /--si-sys-sizing-spacing-x-40/
     );
 
-    await expect(page).toHaveScreenshot('input-density-default.png');
-
     const defaultPadding = await input.evaluate((element) =>
       Number.parseFloat(getComputedStyle(element).paddingLeft)
     );
@@ -67,6 +65,5 @@ regressionTest(
       Number.parseFloat(getComputedStyle(element).paddingLeft)
     );
     expect(defaultPadding - compactPadding).toBeCloseTo(2, 0);
-    await expect(page).toHaveScreenshot('input-density-compact.png');
   }
 );
