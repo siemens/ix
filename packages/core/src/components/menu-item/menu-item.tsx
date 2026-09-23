@@ -186,6 +186,8 @@ export class MenuItem
   }
 
   override connectedCallback() {
+    super.connectedCallback();
+
     this.observer.observe(this.hostElement, {
       subtree: true,
       childList: true,
@@ -229,7 +231,12 @@ export class MenuItem
       this.tooltipText !== this.hostElement.textContent;
 
     if (hasDistinctTooltip) {
-      return `${this.label ?? this.menuCategoryLabel ?? this.hostElement.textContent ?? ''} ${this.tooltipText}`;
+      return `${
+        this.label ??
+        this.menuCategoryLabel ??
+        this.hostElement.textContent ??
+        ''
+      } ${this.tooltipText}`;
     }
 
     return undefined;

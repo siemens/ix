@@ -1,5 +1,6 @@
-- button "Arrow Left"
-- text: Content title Subtitle
-- button "Button1"
-- button "Button2"
-- button "Button3"
+- main:
+  - button "Arrow Left"
+  - text: Content title Subtitle
+  - button "Button1"
+  - button "Button2"
+  - button "Button3"

@@ -34,42 +34,36 @@
   cursor: pointer;
   position: relative;
 
-  background-color: var(--theme-radiobtn-unchecked--background);
-  border: var(--theme-radiobtn--border-thickness, 1px) solid
-    var(--theme-radiobtn-unchecked--border-color);
+  background-color: var(--si-sys-background-1);
+  border: 0.0625rem solid var(--si-sys-border-2);
 }
 
 .ag-radio-button-input:hover {
-  background-color: var(--theme-radiobtn-unchecked--background--hover);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-unchecked--border-color--hover);
+  background-color: var(--si-sys-background-hover);
+  border: 0.0625rem solid var(--si-sys-border-2);
 }
 
 .ag-radio-button-input:active {
-  background-color: var(--theme-radiobtn-unchecked--background--active);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-unchecked--border-color--active);
+  background-color: var(--si-sys-background-active);
+  border: 0.0625rem solid var(--si-sys-border-2);
 }
 
 .ag-radio-button-input:checked,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input {
-  background-color: var(--theme-radiobtn-checked--background);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-checked--border-color);
+  background-color: var(--si-sys-background-accent);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked:hover,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:hover {
-  background-color: var(--theme-radiobtn-checked--background--hover);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-checked--border-color--hover);
+  background-color: var(--si-sys-background-accent-hover);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked:active,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:active {
-  background-color: var(--theme-radiobtn-checked--background--active);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-checked--border-color--active);
+  background-color: var(--si-sys-background-accent-active);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked::after,
@@ -80,7 +74,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 100px;
-  background-color: var(--theme-color-primary--contrast);
+  background-color: var(--si-sys-text-on-accent);
   width: 0.5rem;
   height: 0.5rem;
 }
@@ -88,21 +82,19 @@
 .ag-radio-button-input:disabled {
   cursor: not-allowed;
   pointer-events: none;
-  background-color: var(--theme-radiobtn-unchecked--background--disabled);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-unchecked--border-color--disabled);
+  background-color: rgba(0, 0, 0, 0);
+  border: 0.0625rem solid var(--si-sys-text-disabled);
 }
 
 .ag-radio-button-input:checked:disabled,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:disabled {
-  background-color: var(--theme-radiobtn-checked--background--disabled);
-  border: var(--theme-radiobtn--border-thickness) solid
-    var(--theme-radiobtn-checked--border-color--disabled);
+  background-color: var(--si-sys-text-disabled);
+  border: 0.0625rem solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:focus-visible {
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
-  outline-offset: var(--theme-radiobtn--focus--outline-offset);
+  outline: 0.0625rem solid var(--si-sys-effects-focus);
+  outline-offset: 0.125rem;
 }
 
 .ag-filter-condition {

@@ -65,7 +65,7 @@ export default function EchartsCircle() {
         radius: ['60%', '90%'],
         label: {
           show: true,
-          color: getComputedCSSProperty('color-neutral'),
+          color: getComputedCSSProperty('--si-sys-background-neutral'),
         },
         emphasis: {
           label: {

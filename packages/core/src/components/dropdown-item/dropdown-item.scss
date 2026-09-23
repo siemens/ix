@@ -8,8 +8,9 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'mixins/shadow-dom/hover';
+@use 'mixins/hover';
 
+@use './dropdown-item.vars' as *;
 $itemPadding: 0.5rem;
 $itemPaddingRight: 1.5rem;
 $focusBorder: 0.0625rem;
@@ -22,8 +23,6 @@ $focusBorder: 0.0625rem;
 }
 
 :host {
-  --ix-dropdown-item-checked-color: var(--theme-color-primary);
-
   display: flex;
   flex-direction: row;
 
@@ -62,12 +61,12 @@ $focusBorder: 0.0625rem;
     min-width: 1rem;
     margin-right: 0.5rem;
 
-    color: var(--ix-dropdown-item-checked-color);
+    color: var(--ix-dropdown-item-checkmark--color);
   }
 
   .dropdown-item-icon {
     margin-right: 0.5rem;
-    color: var(--theme-color-std-text);
+    color: var(--ix-dropdown-item-icon--color);
   }
 
   .dropdown-item-text {
@@ -103,14 +102,14 @@ $focusBorder: 0.0625rem;
   }
 }
 
-@include hover.ghost-hover-pressed;
+@include hover.host-ghost-hover-pressed;
 
 :host(.disabled) {
   pointer-events: none;
-  color: var(--theme-color-weak-text) !important;
+  color: var(--ix-dropdown-item--color--disabled) !important;
 
   .dropdown-item-icon {
-    color: var(--theme-color-weak-text) !important;
+    color: var(--ix-dropdown-item--color--disabled) !important;
   }
 }
 
@@ -118,7 +117,7 @@ $focusBorder: 0.0625rem;
   outline: none;
 
   .dropdown-item {
-    border-color: var(--theme-color-focus-bdr);
+    border-color: var(--ix-dropdown-item--border-color--focus);
   }
 }
 
@@ -126,12 +125,12 @@ $focusBorder: 0.0625rem;
   outline: none;
 
   .dropdown-item {
-    border-color: var(--theme-color-focus-bdr);
+    border-color: var(--ix-dropdown-item--border-color--focus);
   }
 }
 
 :host(.outline-visible) {
-  outline: 0.0625rem solid var(--theme-color-focus-bdr);
+  outline: 0.0625rem solid var(--ix-dropdown-item--outline-color--focus);
   outline-offset: -0.0625rem;
 }
 

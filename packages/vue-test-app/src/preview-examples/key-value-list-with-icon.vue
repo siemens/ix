@@ -17,19 +17,19 @@ import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
     <IxKeyValue
       :icon="iconLocation"
       label="Label"
-      labelPosition="left"
+      label-position="left"
       value="Value"
     ></IxKeyValue>
     <IxKeyValue
       :icon="iconLocation"
       label="Label"
-      labelPosition="left"
+      label-position="left"
       value="Value"
     ></IxKeyValue>
     <IxKeyValue
       :icon="iconLocation"
       label="Label"
-      labelPosition="left"
+      label-position="left"
       value="Value"
     ></IxKeyValue>
   </IxKeyValueList>

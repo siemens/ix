@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use '../../misc/common-variables' as vars;
+@use '../../tokens/system' as sys;
 
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
@@ -26,9 +27,9 @@
   line-height: $line-height;
 
   @if $color-inverted {
-    color: var(--theme-color-inv-std-text);
+    color: #{sys.$si-sys-text-inverse};
   } @else {
-    color: var(--theme-color-std-text);
+    color: #{sys.$si-sys-text-primary};
   }
 
   @include font-smoothing();

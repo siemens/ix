@@ -53,7 +53,8 @@ export class IconButton
   @Prop() size: '24' | '16' | '12' = '24';
 
   /**
-   * Color of icon in  button
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -75,7 +76,7 @@ export class IconButton
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
-  submitButtonElement!: HTMLButtonElement;
+  submitButtonElement?: HTMLButtonElement;
 
   override componentDidLoad() {
     if (this.type === 'submit') {

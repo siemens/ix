@@ -9,6 +9,7 @@ import { ActionCardVariant } from "./components/action-card/action-card.types";
 import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+import { BadgeAnatomyType, BadgePosition, BadgeVariant } from "./components/badge/badge.types";
 import { BlindVariant } from "./components/blind/blind.types";
 import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
@@ -21,14 +22,14 @@ import { InputState } from "./components/category-filter/input-state";
 import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
-import { ContentHeaderVariant } from "./components/content-header/content-header.types";
+import { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
 import { DateInputValidityState } from "./components/date-input/date-input.types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
-import { DateTime } from "luxon";
+import { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
@@ -65,6 +66,7 @@ export { ActionCardVariant } from "./components/action-card/action-card.types";
 export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
+export { BadgeAnatomyType, BadgePosition, BadgeVariant } from "./components/badge/badge.types";
 export { BlindVariant } from "./components/blind/blind.types";
 export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
@@ -77,14 +79,14 @@ export { InputState } from "./components/category-filter/input-state";
 export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
-export { ContentHeaderVariant } from "./components/content-header/content-header.types";
+export { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
 export { DateInputValidityState } from "./components/date-input/date-input.types";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
-export { DateTime } from "luxon";
+export { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
@@ -277,6 +279,104 @@ export namespace Components {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
+    }
+    /**
+     * Overlay indicator for counts, labels, dots, and status icons.
+     * **Attached** (default slot has content): the indicator is decorative.
+     * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
+     * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+     * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+     * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+     * Override max-width with `--ix-badge-max-width`.
+     * @since 5.2.0
+     */
+    interface IxBadge {
+        /**
+          * Left-align label content. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+          * @default false
+         */
+        "alignLeft": boolean;
+        /**
+          * Accessible name for the leading icon. When unset, the icon is decorative if **label** provides visible text. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Custom background or border color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "background"?: string;
+        /**
+          * Custom text color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "badgeColor"?: string;
+        /**
+          * Add a high-contrast border on filled badges. Ignored when **outline** is `true` or **type** is `status-icon`.
+          * @since 5.2.0
+          * @default false
+         */
+        "border": boolean;
+        /**
+          * Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+          * @since 5.2.0
+          * @default false
+         */
+        "enableAnimation": boolean;
+        /**
+          * Leading icon name. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "icon"?: string;
+        /**
+          * Visible text or count. Required for `label` and `counter`. Omit for `dot` and `status-icon`. Counters accept integers only (decimals truncated); values above 99 render as `99+`.
+          * @since 5.2.0
+         */
+        "label"?: string;
+        /**
+          * Extra horizontal offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetX": number;
+        /**
+          * Extra vertical offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetY": number;
+        /**
+          * Show the badge in outline style.
+          * @since 5.2.0
+          * @default false
+         */
+        "outline": boolean;
+        /**
+          * Position relative to the slotted anchor. Only has an effect when attached.
+          * @since 5.2.0
+          * @default 'top-after'
+         */
+        "position": BadgePosition;
+        /**
+          * Display a tooltip when the badge is standalone. By default, no tooltip is displayed. Add the attribute to use the badge label (or host `aria-label`) as the tooltip, or pass a string for custom text. Ignored when the badge is attached to an anchor.
+          * @since 5.2.0
+          * @default false
+         */
+        "tooltipText": string | boolean;
+        /**
+          * Badge type (`counter`, `label`, `dot`, or `status-icon`).
+          * @since 5.2.0
+          * @default 'counter'
+         */
+        "type": BadgeAnatomyType;
+        /**
+          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * @since 5.2.0
+          * @default 'primary'
+         */
+        "variant": BadgeVariant;
     }
     interface IxBlind {
         /**
@@ -952,6 +1052,12 @@ export namespace Components {
          */
         "headerTitle"?: string;
         /**
+          * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
+          * @since 6.0.0
+          * @default 'wrap'
+         */
+        "textOverflow": ContentHeaderTextOverflow;
+        /**
           * Variant of content header
           * @default 'primary'
          */
@@ -1095,7 +1201,7 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1173,7 +1279,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
          */
         "locale"?: string;
         /**
@@ -1238,7 +1344,7 @@ export namespace Components {
          */
         "warningText"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1294,7 +1400,7 @@ export namespace Components {
          */
         "from": string | undefined;
         /**
-          * Get the currently selected date or range. The object returned contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Get the currently selected date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
         /**
@@ -1304,7 +1410,7 @@ export namespace Components {
         "i18nDone": string;
         "isCalendarDayFocused": () => Promise<boolean>;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
          */
         "locale"?: string;
         /**
@@ -1337,9 +1443,9 @@ export namespace Components {
           * @default DateTime.now().toISO()
          */
         "today": string;
-        "updateSelectedYearMonth": (date: DateTime) => Promise<void>;
+        "updateSelectedYearMonth": (date: DatePickerYearMonth) => Promise<void>;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1569,10 +1675,46 @@ export namespace Components {
         "getDatepickerElement": () => Promise<HTMLIxDatePickerElement | undefined>;
         "getTimepickerElement": () => Promise<HTMLIxTimePickerElement | undefined>;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone": string;
+        /**
+          * Text for the time picker hour column header.
+          * @since 6.0.0
+          * @default 'hr'
+         */
+        "i18nHourColumnHeader": string;
+        /**
+          * Text for the time picker millisecond column header.
+          * @since 6.0.0
+          * @default 'ms'
+         */
+        "i18nMillisecondColumnHeader": string;
+        /**
+          * Text for the time picker minute column header.
+          * @since 6.0.0
+          * @default 'min'
+         */
+        "i18nMinuteColumnHeader": string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm": string;
+        /**
+          * Text for the time picker second column header.
+          * @since 6.0.0
+          * @default 'sec'
+         */
+        "i18nSecondColumnHeader": string;
         /**
           * Top label of the time picker.
           * @since 3.0.0
@@ -1635,7 +1777,7 @@ export namespace Components {
          */
         "to"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex": number;
@@ -1759,7 +1901,7 @@ export namespace Components {
     }
     interface IxDropdownButton {
         /**
-          * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the dropdown button. Set as `aria-label` on the host, which is the interactive control. The nested button is inert and is not exposed to assistive technology.
           * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
@@ -1942,7 +2084,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -2252,7 +2394,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Color of icon in  button
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -2327,6 +2469,40 @@ export namespace Components {
           * @default 'subtle-primary'
          */
         "variant": ButtonVariant1;
+    }
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface IxInfoPage {
+        /**
+          * Optional explanation of the topic and how it can be resolved.
+          * @since 6.0.0
+         */
+        "copyText"?: string;
+        /**
+          * Icon displayed above the title.
+          * @since 6.0.0
+          * @default iconWarning
+         */
+        "icon": string;
+        /**
+          * Color of the default icon.
+          * @since 6.0.0
+          * @default '--si-sys-background-warning'
+         */
+        "iconColor": string;
+        /**
+          * Optional instructions describing what the user should do next.
+          * @since 6.0.0
+         */
+        "instructions"?: string;
+        /**
+          * Short and concise title describing the topic.
+          * @since 6.0.0
+         */
+        "titleText": string;
     }
     /**
      * @form-ready 
@@ -2999,7 +3175,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
          */
         "iconColor"?: string;
     }
@@ -3422,7 +3598,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -4264,6 +4440,12 @@ export namespace Components {
          */
         "hourInterval": number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm": string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -4283,6 +4465,12 @@ export namespace Components {
           * @default 'min'
          */
         "i18nMinuteColumnHeader": string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm": string;
         /**
           * Text for the time picker second column header.
           * @default 'sec'
@@ -4314,6 +4502,11 @@ export namespace Components {
           * Label of the input field.
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -4406,6 +4599,11 @@ export namespace Components {
          */
         "format": string;
         /**
+          * Get the current time in ISO format
+          * @since 6.0.0
+         */
+        "getCurrentIsoTime": () => Promise<string | undefined>;
+        /**
           * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;
@@ -4421,6 +4619,11 @@ export namespace Components {
           * @default 1
          */
         "hourInterval": number;
+        /**
+          * Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nAm"?: string;
         /**
           * Text of the time confirm button.
           * @default 'Confirm'
@@ -4447,10 +4650,20 @@ export namespace Components {
          */
         "i18nMinuteColumnHeader": string;
         /**
+          * Label for the PM button in 12-hour mode. If not set, falls back to the second value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nPm"?: string;
+        /**
           * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader": string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -4506,7 +4719,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color of toast
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -5172,6 +5385,23 @@ declare global {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
     };
+    /**
+     * Overlay indicator for counts, labels, dots, and status icons.
+     * **Attached** (default slot has content): the indicator is decorative.
+     * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
+     * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+     * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+     * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+     * Override max-width with `--ix-badge-max-width`.
+     * @since 5.2.0
+     */
+    interface HTMLIxBadgeElement extends Components.IxBadge, HTMLStencilElement {
+    }
+    var HTMLIxBadgeElement: {
+        prototype: HTMLIxBadgeElement;
+        new (): HTMLIxBadgeElement;
+    };
     interface HTMLIxBlindElementEventMap {
         "collapsedChange": boolean;
     }
@@ -5268,7 +5498,7 @@ declare global {
     nativeEvent: MouseEvent;
   };
         "showMoreCardClick": {
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   };
     }
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
@@ -5843,6 +6073,17 @@ declare global {
         prototype: HTMLIxIconToggleButtonElement;
         new (): HTMLIxIconToggleButtonElement;
     };
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface HTMLIxInfoPageElement extends Components.IxInfoPage, HTMLStencilElement {
+    }
+    var HTMLIxInfoPageElement: {
+        prototype: HTMLIxInfoPageElement;
+        new (): HTMLIxInfoPageElement;
+    };
     interface HTMLIxInputElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
@@ -6014,7 +6255,7 @@ declare global {
         new (): HTMLIxMenuAvatarItemElement;
     };
     interface HTMLIxMenuCategoryElementEventMap {
-        "closeOtherCategories": any;
+        "closeOtherCategories": string;
     }
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6755,6 +6996,7 @@ declare global {
         "ix-application-header": HTMLIxApplicationHeaderElement;
         "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
+        "ix-badge": HTMLIxBadgeElement;
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
@@ -6806,6 +7048,7 @@ declare global {
         "ix-helper-text": HTMLIxHelperTextElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
+        "ix-info-page": HTMLIxInfoPageElement;
         "ix-input": HTMLIxInputElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -7043,6 +7286,104 @@ declare namespace LocalJSX {
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
          */
         "username"?: string;
+    }
+    /**
+     * Overlay indicator for counts, labels, dots, and status icons.
+     * **Attached** (default slot has content): the indicator is decorative.
+     * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+     * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
+     * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+     * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+     * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+     * Override max-width with `--ix-badge-max-width`.
+     * @since 5.2.0
+     */
+    interface IxBadge {
+        /**
+          * Left-align label content. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+          * @default false
+         */
+        "alignLeft"?: boolean;
+        /**
+          * Accessible name for the leading icon. When unset, the icon is decorative if **label** provides visible text. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Custom background or border color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "background"?: string;
+        /**
+          * Custom text color. Only has an effect when **variant** is `custom`.
+          * @since 5.2.0
+         */
+        "badgeColor"?: string;
+        /**
+          * Add a high-contrast border on filled badges. Ignored when **outline** is `true` or **type** is `status-icon`.
+          * @since 5.2.0
+          * @default false
+         */
+        "border"?: boolean;
+        /**
+          * Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+          * @since 5.2.0
+          * @default false
+         */
+        "enableAnimation"?: boolean;
+        /**
+          * Leading icon name. Only has an effect when **type** is `label`.
+          * @since 5.2.0
+         */
+        "icon"?: string;
+        /**
+          * Visible text or count. Required for `label` and `counter`. Omit for `dot` and `status-icon`. Counters accept integers only (decimals truncated); values above 99 render as `99+`.
+          * @since 5.2.0
+         */
+        "label"?: string;
+        /**
+          * Extra horizontal offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetX"?: number;
+        /**
+          * Extra vertical offset in pixels. Only has an effect when attached. Added to the type default.
+          * @since 5.2.0
+          * @default 0
+         */
+        "offsetY"?: number;
+        /**
+          * Show the badge in outline style.
+          * @since 5.2.0
+          * @default false
+         */
+        "outline"?: boolean;
+        /**
+          * Position relative to the slotted anchor. Only has an effect when attached.
+          * @since 5.2.0
+          * @default 'top-after'
+         */
+        "position"?: BadgePosition;
+        /**
+          * Display a tooltip when the badge is standalone. By default, no tooltip is displayed. Add the attribute to use the badge label (or host `aria-label`) as the tooltip, or pass a string for custom text. Ignored when the badge is attached to an anchor.
+          * @since 5.2.0
+          * @default false
+         */
+        "tooltipText"?: string | boolean;
+        /**
+          * Badge type (`counter`, `label`, `dot`, or `status-icon`).
+          * @since 5.2.0
+          * @default 'counter'
+         */
+        "type"?: BadgeAnatomyType;
+        /**
+          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * @since 5.2.0
+          * @default 'primary'
+         */
+        "variant"?: BadgeVariant;
     }
     interface IxBlind {
         /**
@@ -7324,7 +7665,7 @@ declare namespace LocalJSX {
           * Fire event when the show more card is clicked.
          */
         "onShowMoreCardClick"?: (event: IxCardListCustomEvent<{
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   }>) => void;
         /**
           * Overwrite the default show all count.
@@ -7805,6 +8146,12 @@ declare namespace LocalJSX {
          */
         "onBackButtonClick"?: (event: IxContentHeaderCustomEvent<void>) => void;
         /**
+          * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
+          * @since 6.0.0
+          * @default 'wrap'
+         */
+        "textOverflow"?: ContentHeaderTextOverflow;
+        /**
           * Variant of content header
           * @default 'primary'
          */
@@ -7948,7 +8295,7 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8015,7 +8362,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
          */
         "locale"?: string;
         /**
@@ -8094,7 +8441,7 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8152,7 +8499,7 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. It does not affect the values returned by methods and events.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
          */
         "locale"?: string;
         /**
@@ -8166,15 +8513,15 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties. The property strings are formatted according to the `format` property and not affected by the `locale` property. The locale applied is always `en-US`.
+          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -8197,7 +8544,7 @@ declare namespace LocalJSX {
          */
         "today"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8424,10 +8771,46 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
         "i18nDone"?: string;
+        /**
+          * Text for the time picker hour column header.
+          * @since 6.0.0
+          * @default 'hr'
+         */
+        "i18nHourColumnHeader"?: string;
+        /**
+          * Text for the time picker millisecond column header.
+          * @since 6.0.0
+          * @default 'ms'
+         */
+        "i18nMillisecondColumnHeader"?: string;
+        /**
+          * Text for the time picker minute column header.
+          * @since 6.0.0
+          * @default 'min'
+         */
+        "i18nMinuteColumnHeader"?: string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
+        /**
+          * Text for the time picker second column header.
+          * @since 6.0.0
+          * @default 'sec'
+         */
+        "i18nSecondColumnHeader"?: string;
         /**
           * Top label of the time picker.
           * @since 3.0.0
@@ -8502,7 +8885,7 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         /**
-          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+          * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
          */
         "weekStartIndex"?: number;
@@ -8635,7 +9018,7 @@ declare namespace LocalJSX {
     }
     interface IxDropdownButton {
         /**
-          * ARIA label for the dropdown button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the dropdown button. Set as `aria-label` on the host, which is the interactive control. The nested button is inert and is not exposed to assistive technology.
           * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
@@ -8828,7 +9211,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -9169,7 +9552,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Color of icon in  button
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -9248,6 +9631,40 @@ declare namespace LocalJSX {
           * @default 'subtle-primary'
          */
         "variant"?: ButtonVariant1;
+    }
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface IxInfoPage {
+        /**
+          * Optional explanation of the topic and how it can be resolved.
+          * @since 6.0.0
+         */
+        "copyText"?: string;
+        /**
+          * Icon displayed above the title.
+          * @since 6.0.0
+          * @default iconWarning
+         */
+        "icon"?: string;
+        /**
+          * Color of the default icon.
+          * @since 6.0.0
+          * @default '--si-sys-background-warning'
+         */
+        "iconColor"?: string;
+        /**
+          * Optional instructions describing what the user should do next.
+          * @since 6.0.0
+         */
+        "instructions"?: string;
+        /**
+          * Short and concise title describing the topic.
+          * @since 6.0.0
+         */
+        "titleText": string;
     }
     /**
      * @form-ready 
@@ -9727,7 +10144,7 @@ declare namespace LocalJSX {
           * Show notification count on the category
          */
         "notifications"?: number;
-        "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+        "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<string>) => void;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
           * @since 4.0.0
@@ -9967,7 +10384,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -10423,7 +10840,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -11325,6 +11742,12 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * Label for the AM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'AM'
+         */
+        "i18nAm"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -11344,6 +11767,12 @@ declare namespace LocalJSX {
           * @default 'min'
          */
         "i18nMinuteColumnHeader"?: string;
+        /**
+          * Label for the PM button in 12-hour mode.
+          * @since 6.0.0
+          * @default 'PM'
+         */
+        "i18nPm"?: string;
         /**
           * Text for the time picker second column header.
           * @default 'sec'
@@ -11371,6 +11800,11 @@ declare namespace LocalJSX {
           * Label of the input field.
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to the embedded time picker for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -11489,6 +11923,11 @@ declare namespace LocalJSX {
          */
         "hourInterval"?: number;
         /**
+          * Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nAm"?: string;
+        /**
           * Text of the time confirm button.
           * @default 'Confirm'
          */
@@ -11514,10 +11953,20 @@ declare namespace LocalJSX {
          */
         "i18nMinuteColumnHeader"?: string;
         /**
+          * Label for the PM button in 12-hour mode. If not set, falls back to the second value of `Info.meridiems()` from Luxon.
+          * @since 6.0.0
+         */
+        "i18nPm"?: string;
+        /**
           * Text for the second column header.
           * @default 'sec'
          */
         "i18nSecondColumnHeader"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+          * @since 6.0.0
+         */
+        "locale"?: string;
         /**
           * Latest selectable time (`format` tokens). Invalid non-empty values are ignored.
           * @since 5.0.0
@@ -11581,7 +12030,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color of toast
+          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -12000,6 +12449,23 @@ declare namespace LocalJSX {
         "tooltipText": string;
         "ariaLabelTooltip": string;
     }
+    interface IxBadgeAttributes {
+        "type": BadgeAnatomyType;
+        "label": string;
+        "variant": BadgeVariant;
+        "outline": boolean;
+        "border": boolean;
+        "position": BadgePosition;
+        "offsetX": number;
+        "offsetY": number;
+        "enableAnimation": boolean;
+        "background": string;
+        "badgeColor": string;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "alignLeft": boolean;
+        "tooltipText": string;
+    }
     interface IxBlindAttributes {
         "collapsed": boolean;
         "label": string;
@@ -12150,6 +12616,7 @@ declare namespace LocalJSX {
         "variant": ContentHeaderVariant;
         "headerTitle": string;
         "headerSubtitle": string | undefined;
+        "textOverflow": ContentHeaderTextOverflow;
         "hasBackButton": boolean;
     }
     interface IxCssGridItemAttributes {
@@ -12287,6 +12754,12 @@ declare namespace LocalJSX {
         "timeReference": 'AM' | 'PM';
         "i18nDone": string;
         "i18nTime": string;
+        "i18nAm": string;
+        "i18nPm": string;
+        "i18nHourColumnHeader": string;
+        "i18nMinuteColumnHeader": string;
+        "i18nSecondColumnHeader": string;
+        "i18nMillisecondColumnHeader": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
         "weekStartIndex": number;
@@ -12457,6 +12930,13 @@ declare namespace LocalJSX {
         "size": '24' | '16' | '12';
         "disabled": boolean;
         "loading": boolean;
+    }
+    interface IxInfoPageAttributes {
+        "icon": string;
+        "iconColor": string;
+        "titleText": string;
+        "copyText": string;
+        "instructions": string;
     }
     interface IxInputAttributes {
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';
@@ -12930,6 +13410,9 @@ declare namespace LocalJSX {
         "i18nSecondColumnHeader": string;
         "i18nMillisecondColumnHeader": string;
         "suppressSubmitOnEnter": boolean;
+        "locale": string;
+        "i18nAm": string;
+        "i18nPm": string;
         "hideHeader": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
@@ -12937,6 +13420,7 @@ declare namespace LocalJSX {
     }
     interface IxTimePickerAttributes {
         "format": string;
+        "locale": string;
         "corners": TimePickerCorners;
         "embedded": boolean;
         "dateTimePickerAppearance": boolean;
@@ -12954,6 +13438,8 @@ declare namespace LocalJSX {
         "i18nMinuteColumnHeader": string;
         "i18nSecondColumnHeader": string;
         "i18nMillisecondColumnHeader": string;
+        "i18nAm": string;
+        "i18nPm": string;
     }
     interface IxToastAttributes {
         "type": ToastType;
@@ -13047,6 +13533,7 @@ declare namespace LocalJSX {
         "ix-application-header": Omit<IxApplicationHeader, keyof IxApplicationHeaderAttributes> & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes]?: IxApplicationHeader[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `attr:${K}`]?: IxApplicationHeaderAttributes[K] } & { [K in keyof IxApplicationHeader & keyof IxApplicationHeaderAttributes as `prop:${K}`]?: IxApplicationHeader[K] };
         "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": Omit<IxAvatar, keyof IxAvatarAttributes> & { [K in keyof IxAvatar & keyof IxAvatarAttributes]?: IxAvatar[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `attr:${K}`]?: IxAvatarAttributes[K] } & { [K in keyof IxAvatar & keyof IxAvatarAttributes as `prop:${K}`]?: IxAvatar[K] };
+        "ix-badge": Omit<IxBadge, keyof IxBadgeAttributes> & { [K in keyof IxBadge & keyof IxBadgeAttributes]?: IxBadge[K] } & { [K in keyof IxBadge & keyof IxBadgeAttributes as `attr:${K}`]?: IxBadgeAttributes[K] } & { [K in keyof IxBadge & keyof IxBadgeAttributes as `prop:${K}`]?: IxBadge[K] };
         "ix-blind": Omit<IxBlind, keyof IxBlindAttributes> & { [K in keyof IxBlind & keyof IxBlindAttributes]?: IxBlind[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `attr:${K}`]?: IxBlindAttributes[K] } & { [K in keyof IxBlind & keyof IxBlindAttributes as `prop:${K}`]?: IxBlind[K] };
         "ix-breadcrumb": Omit<IxBreadcrumb, keyof IxBreadcrumbAttributes> & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes]?: IxBreadcrumb[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `attr:${K}`]?: IxBreadcrumbAttributes[K] } & { [K in keyof IxBreadcrumb & keyof IxBreadcrumbAttributes as `prop:${K}`]?: IxBreadcrumb[K] };
         "ix-breadcrumb-item": Omit<IxBreadcrumbItem, keyof IxBreadcrumbItemAttributes> & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes]?: IxBreadcrumbItem[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `attr:${K}`]?: IxBreadcrumbItemAttributes[K] } & { [K in keyof IxBreadcrumbItem & keyof IxBreadcrumbItemAttributes as `prop:${K}`]?: IxBreadcrumbItem[K] } & OneOf<"breadcrumbKey", IxBreadcrumbItem["breadcrumbKey"], IxBreadcrumbItemAttributes["breadcrumbKey"]>;
@@ -13098,6 +13585,7 @@ declare namespace LocalJSX {
         "ix-helper-text": Omit<IxHelperText, keyof IxHelperTextAttributes> & { [K in keyof IxHelperText & keyof IxHelperTextAttributes]?: IxHelperText[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `attr:${K}`]?: IxHelperTextAttributes[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `prop:${K}`]?: IxHelperText[K] };
         "ix-icon-button": Omit<IxIconButton, keyof IxIconButtonAttributes> & { [K in keyof IxIconButton & keyof IxIconButtonAttributes]?: IxIconButton[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `attr:${K}`]?: IxIconButtonAttributes[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `prop:${K}`]?: IxIconButton[K] };
         "ix-icon-toggle-button": Omit<IxIconToggleButton, keyof IxIconToggleButtonAttributes> & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes]?: IxIconToggleButton[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `attr:${K}`]?: IxIconToggleButtonAttributes[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `prop:${K}`]?: IxIconToggleButton[K] };
+        "ix-info-page": Omit<IxInfoPage, keyof IxInfoPageAttributes> & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes]?: IxInfoPage[K] } & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes as `attr:${K}`]?: IxInfoPageAttributes[K] } & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes as `prop:${K}`]?: IxInfoPage[K] } & OneOf<"titleText", IxInfoPage["titleText"], IxInfoPageAttributes["titleText"]>;
         "ix-input": Omit<IxInput, keyof IxInputAttributes> & { [K in keyof IxInput & keyof IxInputAttributes]?: IxInput[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `attr:${K}`]?: IxInputAttributes[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `prop:${K}`]?: IxInput[K] };
         "ix-key-value": Omit<IxKeyValue, keyof IxKeyValueAttributes> & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes]?: IxKeyValue[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `attr:${K}`]?: IxKeyValueAttributes[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `prop:${K}`]?: IxKeyValue[K] } & OneOf<"label", IxKeyValue["label"], IxKeyValueAttributes["label"]>;
         "ix-key-value-list": Omit<IxKeyValueList, keyof IxKeyValueListAttributes> & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes]?: IxKeyValueList[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `attr:${K}`]?: IxKeyValueListAttributes[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `prop:${K}`]?: IxKeyValueList[K] };
@@ -13173,6 +13661,18 @@ declare module "@stencil/core" {
             "ix-application-header": LocalJSX.IntrinsicElements["ix-application-header"] & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-switch-modal": LocalJSX.IntrinsicElements["ix-application-switch-modal"] & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             "ix-avatar": LocalJSX.IntrinsicElements["ix-avatar"] & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
+            /**
+             * Overlay indicator for counts, labels, dots, and status icons.
+             * **Attached** (default slot has content): the indicator is decorative.
+             * When `label` is set, that text is exposed on the anchor via `aria-describedby`.
+             * Host `role` / `aria-*` are discarded so the anchor owns the accessible name.
+             * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
+             * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
+             * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
+             * Override max-width with `--ix-badge-max-width`.
+             * @since 5.2.0
+             */
+            "ix-badge": LocalJSX.IntrinsicElements["ix-badge"] & JSXBase.HTMLAttributes<HTMLIxBadgeElement>;
             "ix-blind": LocalJSX.IntrinsicElements["ix-blind"] & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IntrinsicElements["ix-breadcrumb"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IntrinsicElements["ix-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
@@ -13253,6 +13753,12 @@ declare module "@stencil/core" {
             "ix-helper-text": LocalJSX.IntrinsicElements["ix-helper-text"] & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             "ix-icon-button": LocalJSX.IntrinsicElements["ix-icon-button"] & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-icon-toggle-button": LocalJSX.IntrinsicElements["ix-icon-toggle-button"] & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
+            /**
+             * A page layout for communicating information or errors and guiding users
+             * towards a solution.
+             * @since 6.0.0
+             */
+            "ix-info-page": LocalJSX.IntrinsicElements["ix-info-page"] & JSXBase.HTMLAttributes<HTMLIxInfoPageElement>;
             /**
              * @form-ready 
              */
