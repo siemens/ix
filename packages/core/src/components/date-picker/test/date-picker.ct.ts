@@ -743,10 +743,8 @@ regressionTest.describe('month dropdown min/max range', () => {
     }
   );
 
-  // #2780: a range spanning a year boundary must only constrain the months of
-  // the year currently browsed.
   regressionTest(
-    'enables the months from the range start to the end of the first year',
+    'year boundary - enables the months from the range start to the end of the first year',
     async ({ mount, page }) => {
       await mount(
         `<ix-date-picker from="2026/04/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`

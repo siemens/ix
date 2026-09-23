@@ -76,6 +76,21 @@ ruleTester.run('no-luxon-calendar-ordinals', rule, {
         d.startOf('month');
       `,
     },
+    {
+      name: 'destructuring a unit that has no 0-based counterpart',
+      code: `
+        import { DateTime } from 'luxon';
+        declare const d: DateTime;
+        const { year, day } = d;
+      `,
+    },
+    {
+      name: 'destructuring .month off a plain object',
+      code: `
+        declare const ym: { year: number; month: number };
+        const { month } = ym;
+      `,
+    },
   ],
 
   invalid: [
@@ -121,6 +136,59 @@ ruleTester.run('no-luxon-calendar-ordinals', rule, {
         import { Info } from 'luxon';
         Info.months();
         Info.weekdaysFormat();
+      `,
+      errors: [{ messageId: 'infoNameArray' }, { messageId: 'infoNameArray' }],
+    },
+    {
+      name: 'destructuring .month and .weekday out of a DateTime',
+      code: `
+        import { DateTime } from 'luxon';
+        declare const d: DateTime;
+        const { month, weekday } = d;
+      `,
+      errors: [{ messageId: 'month' }, { messageId: 'weekday' }],
+    },
+    {
+      name: 'destructuring .month under a different name',
+      code: `
+        import { DateTime } from 'luxon';
+        declare const d: DateTime;
+        const { month: ordinal } = d;
+      `,
+      errors: [{ messageId: 'month' }],
+    },
+    {
+      name: 'destructuring .weekday through a string key',
+      code: `
+        import { DateTime } from 'luxon';
+        declare const d: DateTime;
+        const { 'weekday': column } = d;
+      `,
+      errors: [{ messageId: 'weekday' }],
+    },
+    {
+      name: 'destructuring .month in a parameter position',
+      code: `
+        import { DateTime } from 'luxon';
+        function label({ month }: DateTime) { return month; }
+      `,
+      errors: [{ messageId: 'month' }],
+    },
+    {
+      name: 'destructuring .month in an assignment pattern',
+      code: `
+        import { DateTime } from 'luxon';
+        declare const d: DateTime;
+        let month = 0;
+        ({ month } = d);
+      `,
+      errors: [{ messageId: 'month' }],
+    },
+    {
+      name: 'destructuring the 0-based Info name arrays',
+      code: `
+        import { Info } from 'luxon';
+        const { months, weekdaysFormat } = Info;
       `,
       errors: [{ messageId: 'infoNameArray' }, { messageId: 'infoNameArray' }],
     },

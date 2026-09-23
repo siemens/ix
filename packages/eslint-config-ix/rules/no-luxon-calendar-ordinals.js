@@ -26,10 +26,10 @@
 
 const LUXON_SOURCE = /[\\/]node_modules[\\/](@types[\\/])?luxon[\\/]/;
 
-const ORDINAL_ACCESSORS = {
-  month: 'month',
-  weekday: 'weekday',
-};
+const ORDINAL_ACCESSORS = new Map([
+  ['month', 'month'],
+  ['weekday', 'weekday'],
+]);
 
 const INFO_NAME_ARRAYS = new Set([
   'months',
@@ -62,15 +62,16 @@ function isLuxonType(type, name) {
   );
 }
 
-function staticPropertyName(node) {
-  if (!node.computed) {
-    return node.property.type === 'Identifier' ? node.property.name : null;
+function staticKeyName(key, computed) {
+  if (key.type === 'Literal' && typeof key.value === 'string') {
+    return key.value;
   }
 
-  return node.property.type === 'Literal' &&
-    typeof node.property.value === 'string'
-    ? node.property.value
-    : null;
+  return !computed && key.type === 'Identifier' ? key.name : null;
+}
+
+function staticPropertyName(node) {
+  return staticKeyName(node.property, node.computed);
 }
 
 module.exports = {
@@ -120,10 +121,65 @@ module.exports = {
       );
     };
 
+    /* A destructured binding reads the same property the member access does,
+     * so `const { month } = dateTime` has to be reported like `dateTime.month`.
+     * The pattern itself usually carries the type; assignment patterns fall
+     * back to the value being destructured. */
+    const destructuredType = (node) => {
+      const type = typeOf(node);
+
+      if (isLuxonType(type, 'DateTime') || isLuxonType(type, 'Info')) {
+        return type;
+      }
+
+      const { parent } = node;
+
+      if (parent.type === 'VariableDeclarator' && parent.init) {
+        return typeOf(parent.init);
+      }
+
+      if (parent.type === 'AssignmentExpression' && parent.left === node) {
+        return typeOf(parent.right);
+      }
+
+      return type;
+    };
+
     return {
+      ObjectPattern(node) {
+        const type = destructuredType(node);
+        const isDateTime = isLuxonType(type, 'DateTime');
+        const isInfo = isLuxonType(type, 'Info');
+
+        if (!isDateTime && !isInfo) {
+          return;
+        }
+
+        for (const property of node.properties) {
+          if (property.type !== 'Property') {
+            continue;
+          }
+
+          const name = staticKeyName(property.key, property.computed);
+
+          if (isDateTime && ORDINAL_ACCESSORS.has(name)) {
+            context.report({
+              node: property,
+              messageId: ORDINAL_ACCESSORS.get(name),
+            });
+          } else if (isInfo && INFO_NAME_ARRAYS.has(name)) {
+            context.report({
+              node: property,
+              messageId: 'infoNameArray',
+              data: { name },
+            });
+          }
+        }
+      },
+
       MemberExpression(node) {
         const name = staticPropertyName(node);
-        const messageId = ORDINAL_ACCESSORS[name];
+        const messageId = ORDINAL_ACCESSORS.get(name);
 
         if (!messageId) {
           return;

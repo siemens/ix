@@ -251,7 +251,7 @@ regressionTest('select different year', async ({ mount, page }) => {
 regressionTest(
   're-selecting the same range moves the month dropdown back to the range year',
   async ({ mount, page }) => {
-    await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+    await mount(`<ix-date-dropdown locale="en"></ix-date-dropdown>`);
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
     await expect(dateDropdown).toHaveClass(/hydrated/);
 
