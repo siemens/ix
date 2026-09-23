@@ -115,6 +115,29 @@ describe('ReactFrameworkDelegate', () => {
     expect(document.querySelector(rootSelector)).toBeNull();
   });
 
+  it('rejects with the render error and cleans up the root container when a component throws during rendering', async () => {
+    const renderError = new Error('Component render failed');
+
+    function ThrowingView(): JSX.Element | null {
+      throw renderError;
+    }
+
+    const delegate = new ReactFrameworkDelegate();
+    const consoleErrorSpy = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
+    try {
+      await expect(delegate.attachView(<ThrowingView />)).rejects.toThrow(
+        renderError
+      );
+
+      expect(document.querySelector(rootSelector)).toBeNull();
+    } finally {
+      consoleErrorSpy.mockRestore();
+    }
+  });
+
   it('rejects non-DOM views', async () => {
     const delegate = new ReactFrameworkDelegate();
 

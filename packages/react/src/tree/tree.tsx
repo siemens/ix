@@ -11,6 +11,7 @@
 import {
   type Components,
   type TreeContext,
+  type TreeItem,
   type UpdateCallback,
   type IxTreeCustomEvent,
 } from '@siemens/ix';
@@ -22,13 +23,13 @@ export type IxTreeProps = Omit<
   Components.IxTree,
   'renderItem' | 'markItemsAsDirty' | 'refreshTree'
 > & {
-  renderItem?: (data: any) => React.ReactNode;
+  renderItem?: (data: unknown) => React.ReactNode;
   onContextChange?: (event: IxTreeCustomEvent<TreeContext>) => void;
   onNodeToggled?: (
     event: CustomEvent<{ id: string; isExpanded: boolean }>
   ) => void;
   onNodeClicked?: (event: CustomEvent<string>) => void;
-  onNodeRemoved?: (event: CustomEvent<any>) => void;
+  onNodeRemoved?: (event: CustomEvent<unknown[]>) => void;
 };
 
 export const IxTree = React.forwardRef(
@@ -38,8 +39,8 @@ export const IxTree = React.forwardRef(
     const renderItem = useCallback(
       (
         _: number,
-        data: any,
-        __: any[],
+        data: TreeItem<unknown>,
+        __: TreeItem<unknown>[],
         context: TreeContext,
         update: (callback: UpdateCallback) => void
       ) => {
@@ -75,11 +76,18 @@ export const IxTree = React.forwardRef(
         ref={ref}
         {...props}
         renderItem={props.renderItem ? renderItem : undefined}
-        onNodeRemoved={(removed: CustomEvent<any[]>) => {
+        onNodeRemoved={(removed: CustomEvent<unknown[]>) => {
           const { detail } = removed;
 
+          if (!Array.isArray(detail)) {
+            return;
+          }
+
           detail.forEach((removedItemElement) => {
-            if (cachedRootNodes.current.has(removedItemElement)) {
+            if (
+              removedItemElement instanceof HTMLElement &&
+              cachedRootNodes.current.has(removedItemElement)
+            ) {
               cachedRootNodes.current.get(removedItemElement)?.unmount();
               cachedRootNodes.current.delete(removedItemElement);
             }

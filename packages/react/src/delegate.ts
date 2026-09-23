@@ -9,7 +9,7 @@
 import type { FrameworkDelegate } from '@siemens/ix';
 import { registerFrameworkDelegate } from '@siemens/ix/components';
 import type { ReactNode } from 'react';
-import { createElement, Fragment, useLayoutEffect } from 'react';
+import { Component, createElement, useLayoutEffect } from 'react';
 import ReactDOMClient from 'react-dom/client';
 let viewInstance = 0;
 
@@ -21,6 +21,37 @@ function createViewInstance() {
 
 const mountedRootNodes: Record<string, ReactDOMClient.Root> = {};
 const mountedDomViews = new WeakSet<Element>();
+
+interface ViewErrorBoundaryProps {
+  children: ReactNode;
+  onError: (error: unknown) => void;
+}
+
+interface ViewErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ViewErrorBoundary extends Component<
+  ViewErrorBoundaryProps,
+  ViewErrorBoundaryState
+> {
+  override state: ViewErrorBoundaryState = { hasError: false };
+
+  static getDerivedStateFromError(): ViewErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  override componentDidCatch(error: unknown) {
+    this.props.onError(error);
+  }
+
+  override render() {
+    if (this.state.hasError) {
+      return null;
+    }
+    return this.props.children;
+  }
+}
 
 function CommitSignal({ onCommit }: { onCommit: () => void }) {
   useLayoutEffect(onCommit, [onCommit]);
@@ -38,6 +69,7 @@ async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
     mountedRootNodes[id] = root;
 
     let settled = false;
+    let hasRenderError = false;
 
     const cleanup = () => {
       clearTimeout(timeoutId);
@@ -63,6 +95,13 @@ async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
       reject(error);
     };
 
+    const onRenderError = (error: unknown) => {
+      hasRenderError = true;
+      queueMicrotask(() => {
+        settleReject(error);
+      });
+    };
+
     const timeoutId = setTimeout(() => {
       settleReject(
         new Error(
@@ -72,6 +111,10 @@ async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
     }, ATTACH_VIEW_TIMEOUT_MS);
 
     const onCommit = () => {
+      if (hasRenderError) {
+        return;
+      }
+
       const viewElement = rootElement.children[0];
       if (!(viewElement instanceof Element)) {
         queueMicrotask(() => {
@@ -87,8 +130,8 @@ async function fallbackRootDom(id: string, view: ReactNode): Promise<Element> {
     try {
       root.render(
         createElement(
-          Fragment,
-          null,
+          ViewErrorBoundary,
+          { onError: onRenderError },
           view,
           createElement(CommitSignal, { onCommit })
         )
