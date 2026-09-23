@@ -14,6 +14,17 @@ export const usageReact = dedent`\`\`\`tsx
             <IxIcon name={iconAddShieldHalf}></IxIcon>
             \`\`\``;
 
+export const usageVue = dedent`\`\`\`vue
+            <script setup lang="ts">
+            import { IxIcon } from '@siemens/ix-vue';
+            import { iconAddShieldHalf } from '@siemens/ix-icons/icons';
+            </script>
+
+            <template>
+              <IxIcon :name="iconAddShieldHalf" />
+            </template>
+            \`\`\``;
+
 export const usageAngular = dedent`
 
       The usage in Angular is as follows:

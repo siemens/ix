@@ -45,6 +45,19 @@ async function runAddUnlocked(
   const initialized = !(await configExists(cwd));
   const config = initialized ? createDefaultConfig() : await loadConfig(cwd);
 
+  const framework =
+    opts.framework === 'auto' ? await detectFramework(cwd) : opts.framework;
+  if (framework === 'vue') {
+    throw new Error(
+      "Vue pattern installation is not supported yet. Use '--framework react' or '--framework angular' to select a supported variant."
+    );
+  }
+  if (framework !== 'react' && framework !== 'angular') {
+    throw new Error(
+      `Unknown framework '${framework}'. Use react, angular, or auto.`
+    );
+  }
+
   const index = await fetchValidatedRegistryIndex(opts.registry);
   const selectedVersion = resolveRegistryVersion(index, opts.tag);
   const selected = index.versions[selectedVersion];
@@ -61,14 +74,6 @@ async function runAddUnlocked(
     opts.registry,
     entry.path
   );
-  const framework =
-    opts.framework === 'auto' ? await detectFramework(cwd) : opts.framework;
-  if (framework !== 'react' && framework !== 'angular') {
-    throw new Error(
-      `Unknown framework '${framework}'. Use react, angular, or auto.`
-    );
-  }
-
   let tokens: unknown;
   try {
     tokens = JSON.parse(opts.tokens);

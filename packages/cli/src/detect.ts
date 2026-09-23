@@ -12,6 +12,7 @@ export async function detectFramework(cwd: string): Promise<Framework> {
   const deps = { ...(pkg.dependencies ?? {}), ...(pkg.devDependencies ?? {}) };
 
   if (deps['@angular/core'] || deps['@angular/cli']) return 'angular';
+  if (deps.vue || deps.nuxt || deps['@vue/cli-service']) return 'vue';
   if (deps['react'] || deps['next'] || deps['@remix-run/react']) return 'react';
 
   return 'react';

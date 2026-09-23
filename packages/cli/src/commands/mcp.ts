@@ -85,6 +85,27 @@ const mcpRunAngularMcpCommand = new Command('run-angular')
     }
   );
 
+const mcpRunVueMcpCommand = new Command('run-vue')
+  .description('Run the Vue MCP server')
+  .addOption(registryOption)
+  .addOption(tagOption)
+  .action(
+    async (options: { registry: string; tag: string }, command: Command) => {
+      try {
+        const transport = new StdioServerTransport();
+        const server = createServer(
+          'vue',
+          options.registry,
+          options.tag,
+          explicitComponentRegistryOptions(command, options)
+        );
+        await server.connect(transport);
+      } catch (error) {
+        console.error('Error starting MCP server:', error);
+      }
+    }
+  );
+
 const askConfigChoice = async (
   framework: Awaited<ReturnType<typeof detectFramework>>
 ) => {
@@ -138,5 +159,6 @@ const mcpInitCommand = new Command('init')
 mcpCommand.addCommand(mcpInitCommand);
 mcpCommand.addCommand(mcpRunReactMcpCommand);
 mcpCommand.addCommand(mcpRunAngularMcpCommand);
+mcpCommand.addCommand(mcpRunVueMcpCommand);
 
 export { mcpCommand };

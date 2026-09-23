@@ -1,7 +1,7 @@
 import dedent from 'dedent';
 import { z } from 'zod';
 import { ToolDefinition } from './types';
-import { usageAngular, usageReact } from '../prompts/icons';
+import { usageAngular, usageReact, usageVue } from '../prompts/icons';
 
 const searchIxIconsName = 'search_ix_icons' as const;
 const searchIxIconsSchema = z.object({
@@ -25,7 +25,7 @@ export const iconTools: ToolDefinition[] = [
             } you have to import the icons like this:
 
             ${context.framework === 'react' && usageReact}
-            ${context.framework === 'vue' && usageReact}
+            ${context.framework === 'vue' && usageVue}
             ${context.framework === 'angular' && usageAngular}
 
             ${context.promptNodeModulesExcluded}

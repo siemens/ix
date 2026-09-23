@@ -11,7 +11,7 @@ import path from 'node:path';
 import deepmerge from 'deepmerge';
 import dedent from 'dedent';
 import { Framework } from '../detect';
-import { usageAngular, usageReact } from './prompts/icons';
+import { usageAngular, usageReact, usageVue } from './prompts/icons';
 
 const CLI = '@siemens/ix-cli@latest';
 
@@ -32,7 +32,12 @@ const INSTRUCTION_START_MARKER = '<!-- ix-mcp-instructions:start -->';
 const INSTRUCTION_END_MARKER = '<!-- ix-mcp-instructions:end -->';
 
 const instructionContent = (withFrontmatter = false, framework?: Framework) => {
-  const iconUsage = framework === 'angular' ? usageAngular : usageReact;
+  const iconUsage =
+    framework === 'angular'
+      ? usageAngular
+      : framework === 'vue'
+        ? usageVue
+        : usageReact;
   const content = dedent`
     ${INSTRUCTION_START_MARKER}
     ## Siemens iX code generation

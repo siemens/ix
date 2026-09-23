@@ -12,7 +12,10 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { Command, Option } from 'commander';
 import { defaultRegistry } from '../src/config';
-import { explicitComponentRegistryOptions } from '../src/commands/mcp';
+import {
+  explicitComponentRegistryOptions,
+  mcpCommand,
+} from '../src/commands/mcp';
 import { initMCPConfig } from '../src/mcp/config';
 import { createServer } from '../src/mcp/server';
 
@@ -97,6 +100,48 @@ test('generated MCP configs use siemensix and preserve existing shadcn servers',
       assert.doesNotMatch(instructions, /mcp_shadcn_/);
     }
   } finally {
+    process.chdir(originalCwd);
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test('MCP init detects Vue projects and generates a runnable Vue server', async () => {
+  const originalCwd = process.cwd();
+  const originalLog = console.log;
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'ix-mcp-vue-'));
+  try {
+    process.chdir(root);
+    await fs.writeFile(
+      path.join(root, 'package.json'),
+      JSON.stringify({
+        dependencies: { react: '^18.0.0', vue: '^3.0.0' },
+      })
+    );
+    console.log = () => undefined;
+    await mcpCommand.parseAsync(['init', '--config', 'vscode'], {
+      from: 'user',
+    });
+
+    const config = JSON.parse(
+      await fs.readFile(path.join(root, '.vscode/mcp.json'), 'utf8')
+    );
+    assert.deepEqual(config.servers.siemensix.args, [
+      '@siemens/ix-cli@latest',
+      'mcp',
+      'run-vue',
+    ]);
+    assert.ok(
+      mcpCommand.commands.some((command) => command.name() === 'run-vue')
+    );
+    const instructions = await fs.readFile(
+      path.join(root, '.github/copilot-instructions.md'),
+      'utf8'
+    );
+    assert.match(instructions, /import \{ IxIcon \} from '@siemens\/ix-vue'/);
+    assert.match(instructions, /<IxIcon :name="iconAddShieldHalf" \/>/);
+    assert.doesNotMatch(instructions, /@siemens\/ix-react/);
+  } finally {
+    console.log = originalLog;
     process.chdir(originalCwd);
     await fs.rm(root, { recursive: true, force: true });
   }

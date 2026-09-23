@@ -46,6 +46,10 @@ build-only metadata and are not accepted by the CLI.
 
 Use `--framework react|angular|auto` to override framework detection and
 `--tokens '{"__IX_PREFIX__":"Ix"}'` for string token replacement.
+Automatic detection recognizes React, Angular, and Vue projects. Pattern
+installation currently supports React and Angular only; a detected Vue project
+receives an explicit unsupported-framework error rather than installing React
+code.
 
 ## Lock and hash behavior
 

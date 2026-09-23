@@ -142,6 +142,31 @@ test('add dry-run uses the default config without writing project files', async 
   );
 });
 
+test('auto detection rejects unsupported Vue patterns before registry requests', async () => {
+  const cwd = await createProject('vue-framework');
+  await fs.writeFile(
+    path.join(cwd, 'package.json'),
+    JSON.stringify({ dependencies: { vue: '^3.0.0' } })
+  );
+  const originalFetch = globalThis.fetch;
+  let requests = 0;
+  globalThis.fetch = (async () => {
+    requests++;
+    return new Response('unexpected request', { status: 500 });
+  }) as typeof fetch;
+
+  try {
+    await assert.rejects(
+      runAdd('upload', { ...addOptions(), framework: 'auto' }, cwd),
+      /Vue pattern installation is not supported yet/
+    );
+    assert.equal(requests, 0);
+    assert.deepEqual(await fs.readdir(cwd), ['package.json']);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test('a failed registry request leaves no new lock or pattern files', async () => {
   const cwd = await createProject('failed-fetch');
   const originalFetch = globalThis.fetch;
