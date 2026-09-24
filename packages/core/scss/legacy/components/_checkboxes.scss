@@ -11,6 +11,13 @@
 
 @mixin checkbox-basic() {
   $size: sys.$si-sys-sizing-size-60;
+  // Normalize the hand-drawn mark's original dimensions and offsets to the
+  // default size-60 so they retain default geometry and scale with density.
+  $checkmark-width: calc(#{$size} * 0.32);
+  $checkmark-height: calc(#{$size} * 0.208);
+  $checkmark-margin-top: calc(#{$size} * 0.42);
+  $checkmark-margin-horizontal: calc(#{$size} * 0.336);
+  $checkmark-margin-bottom: calc(#{$size} * 0.15);
 
   /* Base for label styling */
   .ix-form-control[type='checkbox']:not(:checked),
@@ -28,7 +35,7 @@
     display: inline-flex;
     user-select: none;
     color: #{sys.$si-sys-color-text-primary};
-    min-height: 1.5rem;
+    min-height: #{sys.$si-sys-sizing-size-70};
   }
 
   .ix-form-control[type='checkbox']:not(:disabled) + label {
@@ -45,7 +52,7 @@
     max-height: $size;
     float: left;
     margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-    margin-top: 1px;
+    margin-top: calc(#{sys.$si-sys-sizing-size-10} / 2);
 
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -54,14 +61,14 @@
 
   .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
@@ -96,15 +103,16 @@
 
     & + label:after {
       content: '';
-      width: 0.4rem;
-      height: 0.26rem;
+      width: $checkmark-width;
+      height: $checkmark-height;
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
-      border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-text-on-accent};
+      border-left: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: 0.525rem 0.42rem 0.1875rem;
+      margin: $checkmark-margin-top 0 $checkmark-margin-bottom
+        $checkmark-margin-horizontal;
       transform: translate(0, calc(-1 * #{sys.$si-sys-sizing-spacing-y-10}))
         rotate(-53deg) scale(2) skew(-8deg, -3deg);
     }
@@ -140,7 +148,7 @@
       display: block;
       width: #{sys.$si-sys-sizing-size-40};
       height: 0;
-      border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: sys.$si-sys-sizing-border-width-selected solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: calc(#{sys.$si-sys-sizing-size-60} / 2) 0 0
         calc(
