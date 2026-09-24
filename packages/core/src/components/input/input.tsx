@@ -357,7 +357,7 @@ export class Input implements IxInputFieldComponent<string> {
               {this.type === 'password' && !this.disabled && (
                 <ix-icon-button
                   ref={this.passwordToggleRef}
-                  iconColor="--si-sys-text-disabled"
+                  iconColor="--si-sys-color-text-disabled"
                   class="password-eye"
                   variant="tertiary"
                   size="16"

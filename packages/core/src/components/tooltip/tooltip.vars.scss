@@ -10,7 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-tooltip--color: #{sys.$si-sys-text-primary};
-  --ix-tooltip--box-shadow: #{sys.$si-sys-effects-shadow-4};
-  --ix-tooltip--background: #{sys.$si-sys-background-3};
+  --ix-tooltip--color: #{sys.$si-sys-color-text-primary};
+  --ix-tooltip--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
+  --ix-tooltip--background: #{sys.$si-sys-color-background-3};
 }

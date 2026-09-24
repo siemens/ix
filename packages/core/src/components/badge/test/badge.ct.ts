@@ -220,8 +220,8 @@ regressionTest.describe('ix-badge', () => {
             label="1"
             variant="critical"
             style="
-              --si-sys-text-on-critical: rgb(1, 2, 3);
-              --si-sys-text-on-warning: rgb(4, 5, 6);
+              --si-sys-color-text-on-critical: rgb(1, 2, 3);
+              --si-sys-color-text-on-warning: rgb(4, 5, 6);
             "
           ></ix-badge>
         `);

@@ -56,7 +56,7 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
-import { forceTabIndex } from '../utils/a11y';
+import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 
 /**
  * @form-ready
@@ -481,6 +481,7 @@ export class DateInput
             variant="subtle-tertiary"
             size="16"
             icon={iconCalendar}
+            aria-expanded={a11yBoolean(this.show)}
             onClick={(event) => this.onCalenderClick(event)}
           ></ix-icon-button>
         </SlotEnd>
@@ -555,6 +556,7 @@ export class DateInput
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+          active: this.show,
         }}
         onFocusout={(e: FocusEvent) => {
           const relatedTarget = e.relatedTarget as Node;
