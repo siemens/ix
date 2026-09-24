@@ -10,7 +10,11 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 
 /**
- * @slot default - Content arranged in the grid.
+ * Column-based grid layout for arranging content responsively.
+ *
+ * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+ *
+ * @slot - Layout content.
  */
 @Component({
   tag: 'ix-layout-grid',

@@ -19,7 +19,11 @@ import {
 } from '@stencil/core';
 
 /**
- * @slot default - Group item content.
+ * A single selectable item within a group.
+ *
+ * @figma-main-component-id 1274:34186
+ *
+ * @slot - Group item content.
  */
 @Component({
   tag: 'ix-group-item',

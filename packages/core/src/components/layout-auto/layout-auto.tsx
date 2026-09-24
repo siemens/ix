@@ -2,7 +2,9 @@ import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponentInterface } from '../utils/internal';
 
 /**
- * @slot default - Content arranged by the automatic layout.
+ * Responsive form layout that automatically adjusts columns to the available width.
+ *
+ * @slot - Layout content.
  */
 @Component({
   tag: 'ix-layout-auto',

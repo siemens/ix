@@ -23,12 +23,17 @@ import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
 /**
- * @slot left - Pane displayed to the left of the content.
- * @slot top - Pane displayed above the content.
- * @slot content - Main layout content.
- * @slot default - Additional main layout content.
- * @slot bottom - Pane displayed below the content.
- * @slot right - Pane displayed to the right of the content.
+ * Layout container that arranges collapsible panes around a content area.
+ *
+ * @documentation https://ix.siemens.io//docs/components/panes/guide.md
+ * @figma-main-component-id 19924:12291
+ *
+ * @slot left - Content displayed in the left pane.
+ * @slot top - Content displayed in the top pane.
+ * @slot content - Main pane content.
+ * @slot - Main pane content.
+ * @slot bottom - Content displayed in the bottom pane.
+ * @slot right - Content displayed in the right pane.
  */
 @Component({
   tag: 'ix-pane-layout',

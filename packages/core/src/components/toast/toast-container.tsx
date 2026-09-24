@@ -13,7 +13,9 @@ import type { ShowToastResult } from './toast-container.types';
 import { ToastConfig } from './toast-utils';
 
 /**
- * @slot default - Toast messages.
+ * Container that positions and manages toast notifications.
+ *
+ * @slot - Toast messages.
  */
 @Component({
   tag: 'ix-toast-container',

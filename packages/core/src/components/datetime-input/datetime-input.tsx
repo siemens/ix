@@ -64,6 +64,8 @@ import {
 } from '../utils/internal/mixins/input/input-picker.mixin';
 
 /**
+ * Text input for entering and validating a combined date and time value.
+ *
  * @since 5.0.0
  * @form-ready
  *

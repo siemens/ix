@@ -7,6 +7,8 @@ description: >-
   (e.g. IX-1234 plus pasted description). Outputs live under .sdd/{tracking-id}/.
 argument-hint: 'Tracking/issue id (e.g. IX-3896) and pasted title, description, acceptance criteria'
 user-invocable: true
+metadata:
+  internal: true
 ---
 
 # Spec-Driven Development (IX)
@@ -71,9 +73,9 @@ Create `spec.md` from the pasted issue only (optional: spawn a read-only explore
 
 ```yaml
 ---
-tracking_id: {ID or slug}
-feature: {TITLE}
-date: {ISO date}
+tracking_id: { ID or slug }
+feature: { TITLE }
+date: { ISO date }
 status: ready-for-planning
 source: user-pasted-issue
 ---
@@ -85,11 +87,13 @@ source: user-pasted-issue
 # Feature Spec: {TITLE}
 
 ## User input (from issue)
+
 {2–5 lines summarizing pasted description — no copy-paste dump of entire ticket}
 
 ## User scenarios and testing
 
 ### US1 [P1] - {Scenario}
+
 **As** {role}
 **I want** {goal}
 **So that** {benefit}
@@ -104,17 +108,21 @@ source: user-pasted-issue
 ## Requirements
 
 ### Functional requirements
+
 **FR-001**: {requirement}
 **FR-002**: {requirement}
 
 ### Key entities
+
 {Only if data or domain models matter}
 
 ## Success criteria
+
 **SC-001**: {measurable outcome}
 **SC-002**: {measurable outcome}
 
 ## Assumptions
+
 {Scope boundaries, dependencies on other IX areas}
 ```
 
@@ -150,9 +158,9 @@ If requirements are ambiguous, ask targeted questions in chat; when answered, ap
 
 ```yaml
 ---
-tracking_id: {ID or slug}
+tracking_id: { ID or slug }
 phase: plan
-created: {ISO date}
+created: { ISO date }
 depends_on: []
 ---
 ```
@@ -199,11 +207,11 @@ For **XS** (<~2h) work:
 
 ## S / M / L output strategy
 
-| Tier | Outputs | Approx. total lines |
-|------|---------|---------------------|
-| S | spec.md + plan.md + tasks.md | ~300 |
-| M | spec.md + plan.md + tasks.md | ~400 |
-| L | spec.md + plan.md + tasks.md (+ optional research.md) | ~600 |
+| Tier | Outputs                                               | Approx. total lines |
+| ---- | ----------------------------------------------------- | ------------------- |
+| S    | spec.md + plan.md + tasks.md                          | ~300                |
+| M    | spec.md + plan.md + tasks.md                          | ~400                |
+| L    | spec.md + plan.md + tasks.md (+ optional research.md) | ~600                |
 
 Classify size from pasted story points, AC count, and breadth (single component vs cross-package).
 

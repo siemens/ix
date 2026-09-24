@@ -10,7 +10,9 @@
 import { Component, h, Host } from '@stencil/core';
 
 /**
- * @slot default - Row content.
+ * Row within the responsive layout grid.
+ *
+ * @slot - Row content.
  */
 @Component({
   tag: 'ix-row',

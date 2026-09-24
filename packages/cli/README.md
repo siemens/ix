@@ -1,0 +1,71 @@
+# Siemens Industrial Experience CLI
+
+`@siemens/ix-cli` is a private workspace tool for installing Siemens IX patterns.
+It exposes the `ix` executable and is not published as a public package.
+
+## Initialize a project (optional)
+
+Run the CLI from the project root:
+
+```sh
+ix init --target-folder src/features/patterns
+```
+
+`ix add` automatically creates `ix-patterns-lock.json` with the default target
+folder `src/patterns` when it does not exist. Run `ix init` first when you want to
+choose a custom target folder. `targetFolder` must be a safe path inside the
+project.
+
+## Add or update a pattern
+
+```sh
+ix add change-password
+ix add change-password --tag v4.3.0
+ix add change-password --registry https://example.test/ix-registry
+ix add change-password --dry-run
+ix add change-password --force
+```
+
+- `--tag` selects a registry version or distribution tag (default: `latest`).
+- `--registry` selects a custom registry. Registry metadata and paths are
+  treated as untrusted and validated before use.
+- `--dry-run` fetches, validates, transforms, and hashes the complete pattern,
+  then reports writes and conflicts without changing project files or the lock.
+  When the lock is absent, it uses the default target folder in memory.
+- `--force` permits overwriting modified tracked files and untracked file
+  collisions. Without it, either conflict aborts the installation.
+
+Registry example and pattern manifests use path-only file entries:
+
+```json
+{ "path": "react/event-list.tsx" }
+```
+
+Each path is resolved relative to the manifest URL. Repository source paths are
+build-only metadata and are not accepted by the CLI.
+
+Use `--framework react|angular|auto` to override framework detection and
+`--tokens '{"__IX_PREFIX__":"Ix"}'` for string token replacement.
+Automatic detection recognizes React, Angular, and Vue projects. Pattern
+installation currently supports React and Angular only; a detected Vue project
+receives an explicit unsupported-framework error rather than installing React
+code.
+
+## MCP registry selection
+
+MCP run commands accept `--registry` and `--tag` (defaulting to the configured
+registry and `latest`). Component metadata, component search, and examples all
+use that same selection. MCP metadata requests read from the selected registry,
+even when an installed `@siemens/ix` package has a matching version.
+
+## Lock and hash behavior
+
+The lock records the installed registry version and a SHA-256 hash for every
+generated file. On update, the CLI compares current file contents with those
+hashes. A changed tracked file is considered customized; an existing output
+that is absent from the lock is an untracked collision.
+
+All remote files are fetched and validated before the first project write.
+Writes and the atomic lock update are applied as one recoverable transaction.
+If applying a file or saving the lock fails, affected files are restored and
+new files and transaction data are removed.

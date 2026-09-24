@@ -74,7 +74,11 @@ function ApplicationItem(props: {
   );
 }
 
-/** @internal */
+/**
+ * Modal that lets users switch between related applications.
+ *
+ * @internal
+ */
 @Component({
   tag: 'ix-application-switch-modal',
   styleUrl: 'application-switch-modal.scss',

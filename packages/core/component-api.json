@@ -567,7 +567,10 @@
       "methods": [],
       "events": [],
       "cssProperties": [],
-      "slots": [],
+      "slots": [
+        "default",
+        "description"
+      ],
       "cssParts": [],
       "cssStates": []
     },

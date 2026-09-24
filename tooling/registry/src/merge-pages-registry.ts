@@ -1,0 +1,506 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import fs from 'fs-extra';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+import {
+  assertDeploymentVersion,
+  determineLatestRegistryVersion,
+  isStableRegistryVersion,
+} from './deployment-policy';
+import { assertJsonSchema, compileJsonSchema } from './schema-validation';
+
+type RegistryVersionEntryCommon = {
+  patterns: Array<{ name: string; path: string }>;
+  examples: Array<{ name: string; path: string }>;
+};
+
+type RegistryLlms = {
+  entrypoint: string;
+  components: string;
+  examples?: string;
+  patterns: string;
+};
+
+type RegistryVersionEntryWithLlms = RegistryVersionEntryCommon & {
+  llms?: RegistryLlms;
+};
+
+export type CurrentRegistryVersionEntry = RegistryVersionEntryWithLlms & {
+  components: {
+    componentDoc: string;
+    componentRelatedExamples: string;
+    componentRelatedPatterns?: string;
+  };
+  documentationSearchIndex: string;
+};
+
+export type LegacyRegistryVersionEntry = RegistryVersionEntryWithLlms & {
+  components: {
+    componentDoc: string;
+    componentIndex: string;
+    componentSearchIndex: string;
+    componentRelatedExamples: string;
+    componentRelatedPatterns?: string;
+  };
+  searchIndex: {
+    patterns: Record<string, string>;
+    examples: Record<string, string>;
+  };
+};
+
+export type RegistryVersionEntry =
+  | CurrentRegistryVersionEntry
+  | LegacyRegistryVersionEntry;
+
+export type RegistryIndex = {
+  $schema?: string;
+  name: string;
+  'dist-tags': Record<string, string>;
+  versions: Record<string, RegistryVersionEntry>;
+};
+
+type CliArgs = {
+  distDir: string;
+  pagesDir: string;
+  outDir: string;
+  version: string;
+};
+
+function parseArgs(): CliArgs {
+  const args = process.argv.slice(2);
+
+  const getArg = (name: string): string | undefined => {
+    const index = args.findIndex((value) => value === `--${name}`);
+    if (index === -1) {
+      return undefined;
+    }
+
+    return args[index + 1];
+  };
+
+  const distDir = getArg('dist-dir');
+  const pagesDir = getArg('pages-dir');
+  const outDir = getArg('out-dir');
+  const version = getArg('version');
+
+  if (!distDir || !pagesDir || !outDir || !version) {
+    throw new Error(
+      'Missing arguments. Required: --dist-dir --pages-dir --out-dir --version'
+    );
+  }
+
+  assertDeploymentVersion(version);
+
+  return {
+    distDir,
+    pagesDir,
+    outDir,
+    version,
+  };
+}
+
+function prefixVersionPath(version: string, value: string): string {
+  const normalizedValue = value.replace(/^\.\//, '').replace(/^\/+/, '');
+
+  if (normalizedValue.startsWith(`${version}/`)) {
+    return normalizedValue;
+  }
+
+  if (normalizedValue.startsWith('release-registry/')) {
+    return normalizedValue.replace(/^release-registry\//, '');
+  }
+
+  return `${version}/${normalizedValue}`;
+}
+
+function prefixComponents(
+  version: string,
+  components: CurrentRegistryVersionEntry['components']
+): CurrentRegistryVersionEntry['components'] {
+  return {
+    componentDoc: prefixVersionPath(version, components.componentDoc),
+    componentRelatedExamples: prefixVersionPath(
+      version,
+      components.componentRelatedExamples
+    ),
+    ...(components.componentRelatedPatterns
+      ? {
+          componentRelatedPatterns: prefixVersionPath(
+            version,
+            components.componentRelatedPatterns
+          ),
+        }
+      : {}),
+  };
+}
+
+function prefixLlms(
+  version: string,
+  llms: CurrentRegistryVersionEntry['llms']
+): CurrentRegistryVersionEntry['llms'] {
+  if (!llms) {
+    return undefined;
+  }
+
+  return {
+    entrypoint: prefixVersionPath(version, llms.entrypoint),
+    components: prefixVersionPath(version, llms.components),
+    examples: llms.examples
+      ? prefixVersionPath(version, llms.examples)
+      : undefined,
+    patterns: prefixVersionPath(version, llms.patterns),
+  };
+}
+
+async function readJsonIfExists<T>(filePath: string): Promise<T | null> {
+  if (!(await fs.pathExists(filePath))) {
+    return null;
+  }
+
+  return fs.readJson(filePath);
+}
+
+function supportsPatternContract(
+  entry: unknown
+): entry is RegistryVersionEntry {
+  return (
+    typeof entry === 'object' &&
+    entry !== null &&
+    'patterns' in entry &&
+    Array.isArray(entry.patterns)
+  );
+}
+
+export function retainPatternRegistry(
+  registry: RegistryIndex | null
+): RegistryIndex | null {
+  if (!registry) {
+    return null;
+  }
+
+  const versions = Object.fromEntries(
+    Object.entries(registry.versions ?? {}).filter(
+      ([version, entry]) =>
+        (version === 'main' || isStableRegistryVersion(version)) &&
+        supportsPatternContract(entry)
+    )
+  );
+  const distTags = Object.fromEntries(
+    Object.entries(registry['dist-tags'] ?? {}).filter(([, version]) =>
+      Object.hasOwn(versions, version)
+    )
+  );
+
+  return {
+    ...registry,
+    'dist-tags': distTags,
+    versions,
+  };
+}
+
+export async function copyRetainedVersionPayloads(
+  pagesDir: string,
+  outDir: string,
+  registry: RegistryIndex | null
+): Promise<void> {
+  if (!registry) {
+    return;
+  }
+
+  await Promise.all(
+    Object.keys(registry.versions).map(async (version) => {
+      const source = path.join(pagesDir, version);
+      if (!(await fs.pathExists(source))) {
+        return;
+      }
+
+      await fs.copy(source, path.join(outDir, version), {
+        dereference: true,
+        overwrite: true,
+      });
+    })
+  );
+}
+
+export function mergeRegistry(
+  existingRegistry: RegistryIndex | null,
+  currentRegistry: RegistryIndex,
+  version: string
+): RegistryIndex {
+  assertDeploymentVersion(version);
+
+  const baseRegistry: RegistryIndex = retainPatternRegistry(
+    existingRegistry
+  ) ?? {
+    $schema: currentRegistry.$schema,
+    name: currentRegistry.name,
+    'dist-tags': {},
+    versions: {},
+  };
+
+  baseRegistry.$schema = currentRegistry.$schema;
+  baseRegistry.name = currentRegistry.name;
+
+  const currentVersionEntry = currentRegistry.versions[version];
+  if (!currentVersionEntry) {
+    const availableVersions = Object.keys(currentRegistry.versions ?? {});
+    throw new Error(
+      `Current registry does not contain version '${version}'. Available versions: ${
+        availableVersions.join(', ') || 'none'
+      }`
+    );
+  }
+
+  if (!('documentationSearchIndex' in currentVersionEntry)) {
+    throw new Error(
+      `Current registry version '${version}' must define documentationSearchIndex`
+    );
+  }
+
+  const normalizedVersionEntry: CurrentRegistryVersionEntry = {
+    patterns: currentVersionEntry.patterns.map((pattern) => ({
+      ...pattern,
+      path: prefixVersionPath(version, pattern.path),
+    })),
+    examples: currentVersionEntry.examples.map((example) => ({
+      ...example,
+      path: prefixVersionPath(version, example.path),
+    })),
+    components: prefixComponents(version, currentVersionEntry.components),
+    documentationSearchIndex: prefixVersionPath(
+      version,
+      currentVersionEntry.documentationSearchIndex
+    ),
+    llms: prefixLlms(version, currentVersionEntry.llms),
+  };
+
+  baseRegistry.versions = {
+    ...baseRegistry.versions,
+    [version]: normalizedVersionEntry,
+  };
+
+  baseRegistry['dist-tags'] = {
+    ...baseRegistry['dist-tags'],
+    latest: determineLatestRegistryVersion(
+      baseRegistry['dist-tags']?.latest,
+      Object.keys(baseRegistry.versions),
+      version
+    ),
+  };
+
+  return baseRegistry;
+}
+
+function renderRootLlmsTxt(registry: RegistryIndex): string {
+  const versions = Object.keys(registry.versions).sort((a, b) =>
+    b.localeCompare(a)
+  );
+  const latest = registry['dist-tags']?.latest;
+  const tagEntries = Object.entries(registry['dist-tags'] ?? {}).sort(
+    ([a], [b]) => a.localeCompare(b)
+  );
+
+  const versionLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const llmsPath = entry.llms?.entrypoint ?? `${version}/llms.txt`;
+      const tags = tagEntries
+        .filter(([, taggedVersion]) => taggedVersion === version)
+        .map(([tag]) => tag);
+      const suffix = tags.length > 0 ? ` Tags: ${tags.join(', ')}.` : '';
+
+      return `- [${version}](${llmsPath}): Versioned Siemens iX registry LLM entrypoint.${suffix}`;
+    })
+    .join('\n');
+
+  const componentLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const componentsPath = entry.llms?.components;
+
+      if (!componentsPath) {
+        return `- ${version}: Component LLM docs unavailable.`;
+      }
+
+      return `- [${version} components](${componentsPath}): Component API, examples, Figma IDs, and relationship availability for ${version}.`;
+    })
+    .join('\n');
+
+  const patternLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const patternsPath = entry.llms?.patterns;
+
+      if (!patternsPath) {
+        return `- ${version}: Pattern LLM docs unavailable.`;
+      }
+
+      return `- [${version} patterns](${patternsPath}): Registry pattern metadata, variants, files, and component usage availability for ${version}.`;
+    })
+    .join('\n');
+
+  const exampleLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const examplesPath = entry.llms?.examples;
+
+      if (!examplesPath) {
+        return `- ${version}: Example LLM docs unavailable.`;
+      }
+
+      return `- [${version} examples](${examplesPath}): Registry examples with related iX components, framework variants, and source files for ${version}.`;
+    })
+    .join('\n');
+
+  return `# Siemens iX Registry
+
+> Root LLM entrypoint for all deployed Siemens iX registries. Use this file to choose a registry version, then open that version's own llms.txt for focused component, example, and pattern context.
+
+Check the version of "iX" you are using in your project and select the corresponding registry version below for the most compatible LLM context e.g if @siemens/ix-react version 5.0.0 is installed, the 5.0.0 registry version will likely have the most relevant and accurate LLM context.
+
+Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage, example docs for practical framework code, or pattern docs for complete copyable UI patterns.
+
+Component docs contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Figma IDs identify design-system counterparts and should be used for mapping design resources to iX components, not as runtime APIs.
+
+Example docs contain related iX components, framework variants, and source files so examples can be found without first navigating through component docs.
+
+Pattern docs describe copyable multi-file UI patterns built with iX packages, including previews, framework variants, files, and component usage availability.
+
+If a relationship is marked unavailable in a linked file, do not infer it; the registry JSON does not provide that relationship.
+
+Latest registry tag: ${latest ?? 'unavailable'}.
+
+## Registry versions
+
+${versionLinks || '- No registry versions available.'}
+
+## Component docs
+
+${componentLinks || '- No component LLM docs available.'}
+
+## Example docs
+
+${exampleLinks || '- No example LLM docs available.'}
+
+## Pattern docs
+
+${patternLinks || '- No pattern LLM docs available.'}
+
+## Optional
+
+- [Registry manifest](registry.json): Machine-readable manifest containing all deployed registry versions and dist-tags.
+`;
+}
+
+export async function copyVersionPayload(
+  distDir: string,
+  outDir: string,
+  version: string
+): Promise<void> {
+  const versionDir = path.join(outDir, version);
+  await fs.remove(versionDir);
+  await fs.ensureDir(versionDir);
+
+  const files = await fs.readdir(distDir);
+  await Promise.all(
+    files
+      .filter((file) => file !== 'registry.json')
+      .map((file) =>
+        fs.copy(path.join(distDir, file), path.join(versionDir, file), {
+          dereference: true,
+          overwrite: true,
+        })
+      )
+  );
+}
+
+async function main() {
+  const args = parseArgs();
+
+  await fs.emptyDir(args.outDir);
+
+  const currentRegistryPath = path.join(args.distDir, 'registry.json');
+  const existingRegistryPath = path.join(args.outDir, 'registry.json');
+  const pagesRegistryPath = path.join(args.pagesDir, 'registry.json');
+  const currentRegistry = (await fs.readJson(
+    currentRegistryPath
+  )) as RegistryIndex;
+  const existingRegistry = retainPatternRegistry(
+    await readJsonIfExists<RegistryIndex>(pagesRegistryPath)
+  );
+
+  await copyRetainedVersionPayloads(
+    args.pagesDir,
+    args.outDir,
+    existingRegistry
+  );
+
+  await copyVersionPayload(args.distDir, args.outDir, args.version);
+
+  const sourceRegistrySchemaPath = path.join(
+    args.distDir,
+    'registry.schema.json'
+  );
+  const sourceRegistrySchemaFallbackPath = path.join(
+    args.distDir,
+    'schemas',
+    'registry.schema.json'
+  );
+  const targetRegistrySchemaPath = path.join(
+    args.outDir,
+    'registry.schema.json'
+  );
+
+  if (await fs.pathExists(sourceRegistrySchemaPath)) {
+    await fs.copy(sourceRegistrySchemaPath, targetRegistrySchemaPath, {
+      dereference: true,
+      overwrite: true,
+    });
+  } else if (await fs.pathExists(sourceRegistrySchemaFallbackPath)) {
+    await fs.copy(sourceRegistrySchemaFallbackPath, targetRegistrySchemaPath, {
+      dereference: true,
+      overwrite: true,
+    });
+  }
+
+  const mergedRegistry = mergeRegistry(
+    existingRegistry,
+    currentRegistry,
+    args.version
+  );
+  const registrySchemaPath = (await fs.pathExists(sourceRegistrySchemaPath))
+    ? sourceRegistrySchemaPath
+    : sourceRegistrySchemaFallbackPath;
+  const validateRegistry = await compileJsonSchema(registrySchemaPath);
+  assertJsonSchema(mergedRegistry, validateRegistry, 'merged registry');
+
+  await fs.writeJson(existingRegistryPath, mergedRegistry, { spaces: 2 });
+  await fs.writeFile(
+    path.join(args.outDir, 'llms.txt'),
+    renderRootLlmsTxt(mergedRegistry),
+    'utf-8'
+  );
+
+  console.log(`✅ Staged merged registry in ${args.outDir}`);
+  console.log(`   - version upserted: ${args.version}`);
+  console.log(`   - latest tag: ${mergedRegistry['dist-tags'].latest}`);
+  console.log('   - root llms.txt updated');
+}
+
+const entrypoint = process.argv[1]
+  ? pathToFileURL(process.argv[1]).href
+  : undefined;
+
+if (entrypoint === import.meta.url) {
+  main().catch((error) => {
+    console.error('❌ Failed to merge registry for deployment:', error);
+    process.exit(1);
+  });
+}
