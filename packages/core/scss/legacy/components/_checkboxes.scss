@@ -61,14 +61,14 @@
 
   .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
-      outline: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-effects-focus};
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
-      outline: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-effects-focus};
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
@@ -108,8 +108,8 @@
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-text-on-accent};
-      border-left: sys.$si-sys-sizing-border-width-default solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
+      border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: $checkmark-margin-top 0 $checkmark-margin-bottom
         $checkmark-margin-horizontal;
@@ -148,7 +148,7 @@
       display: block;
       width: #{sys.$si-sys-sizing-size-40};
       height: 0;
-      border-bottom: sys.$si-sys-sizing-border-width-selected solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: calc(#{sys.$si-sys-sizing-size-60} / 2) 0 0
         calc(

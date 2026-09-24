@@ -121,6 +121,7 @@
 }
 
 :host {
+  --ix-checkbox--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
   --ix-checkbox-button--height: #{sys.$si-sys-sizing-size-70};
   --ix-checkbox-button--width: #{sys.$si-sys-sizing-size-70};
   --ix-checkbox--width: #{sys.$si-sys-sizing-size-60};

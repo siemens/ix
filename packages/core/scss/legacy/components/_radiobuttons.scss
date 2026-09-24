@@ -10,7 +10,7 @@
 @use '../../tokens/system' as sys;
 
 @mixin radio-basic() {
-  $size: 1.25rem;
+  $size: sys.$si-sys-sizing-size-60;
 
   /* Base for label styling */
   .ix-form-control[type='radio']:not(:checked),
@@ -37,6 +37,7 @@
     user-select: none;
 
     color: #{sys.$si-sys-color-text-primary};
+    min-height: #{sys.$si-sys-sizing-size-70};
     margin-right: #{sys.$si-sys-sizing-spacing-x-60};
   }
 

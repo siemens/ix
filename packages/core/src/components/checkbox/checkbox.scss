@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './checkbox.vars' as *;
 :host {
@@ -48,7 +47,7 @@
   }
 
   button:focus-visible {
-    outline: sys.$si-sys-sizing-border-width-default solid
+    outline: var(--ix-checkbox--outline-width--focus) solid
       var(--ix-checkbox--outline-color--focus);
     outline-offset: var(--ix-checkbox--focus--outline-offset);
   }

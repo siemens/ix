@@ -11,7 +11,7 @@
 @use './validation/form-component';
 
 @mixin element-input-focus {
-  outline: sys.$si-sys-sizing-border-width-default solid
+  outline: 1px solid
     var(--ix-input--outline-color--focus, #{sys.$si-sys-color-effects-focus});
   outline-offset: var(
     --ix-input--focus--outline-offset,

@@ -8,13 +8,12 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './spinner.vars' as *;
 @mixin ix-spinner(
   $size-name: 'md',
   $size: var(--ix-spinner-medium--size),
-  $track-size: sys.$si-sys-sizing-border-width-emphasis
+  $track-size: var(--ix-spinner-track--border-width-emphasis)
 ) {
   :host {
     display: block;
@@ -118,25 +117,25 @@
 @include ix-spinner(
   $size-name: 'xxs',
   $size: var(--ix-spinner-extra-extra-small--size),
-  $track-size: sys.$si-sys-sizing-border-width-default
+  $track-size: var(--ix-spinner-track--border-width-default)
 );
 @include ix-spinner(
   $size-name: 'xs',
   $size: var(--ix-spinner-extra-small--size),
-  $track-size: sys.$si-sys-sizing-border-width-selected
+  $track-size: var(--ix-spinner-track--border-width-selected)
 );
 @include ix-spinner(
   $size-name: 'sm',
   $size: var(--ix-spinner-small--size),
-  $track-size: sys.$si-sys-sizing-border-width-selected
+  $track-size: var(--ix-spinner-track--border-width-selected)
 );
 @include ix-spinner(
   $size-name: 'md',
   $size: var(--ix-spinner-medium--size),
-  $track-size: sys.$si-sys-sizing-border-width-selected
+  $track-size: var(--ix-spinner-track--border-width-selected)
 );
 @include ix-spinner(
   $size-name: 'xxl',
   $size: var(--ix-spinner-large--size),
-  $track-size: sys.$si-sys-sizing-border-width-emphasis
+  $track-size: var(--ix-spinner-track--border-width-emphasis)
 );

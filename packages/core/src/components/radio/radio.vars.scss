@@ -84,6 +84,9 @@
 }
 
 :host {
+  --ix-radio-checkmark--border-width-initial: #{sys.$si-sys-sizing-border-width-default};
+  --ix-radio-checkmark--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  --ix-radio--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
   --ix-radio-checkmark--width: #{sys.$si-sys-sizing-size-60};
   --ix-radio-checkmark--min-width: #{sys.$si-sys-sizing-size-60};
   --ix-radio-checkmark--max-width: #{sys.$si-sys-sizing-size-60};
