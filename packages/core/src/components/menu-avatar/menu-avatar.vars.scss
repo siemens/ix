@@ -11,10 +11,10 @@
 
 :host {
   --ix-menu-avatar-button--transition-duration: var(--theme-default-time);
-  --ix-menu-avatar-button--outline-color--focus: #{sys.$si-sys-effects-focus};
-  --ix-menu-avatar-button--background--active: #{sys.$si-sys-background-selected};
-  --ix-menu-avatar-button--background--hover: #{sys.$si-sys-background-hover};
-  --ix-menu-avatar-button--color--active: #{sys.$si-sys-text-primary};
-  --ix-menu-avatar-button--color--hover: #{sys.$si-sys-text-primary};
-  --ix-menu-avatar-item-primary--color: #{sys.$si-sys-text-primary};
+  --ix-menu-avatar-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-menu-avatar-button--background--active: #{sys.$si-sys-color-background-selected};
+  --ix-menu-avatar-button--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-menu-avatar-button--color--active: #{sys.$si-sys-color-text-primary};
+  --ix-menu-avatar-button--color--hover: #{sys.$si-sys-color-text-primary};
+  --ix-menu-avatar-item-primary--color: #{sys.$si-sys-color-text-primary};
 }

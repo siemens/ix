@@ -56,7 +56,6 @@ export class KeyValue {
         {this.icon && (
           <ix-icon
             name={this.icon}
-            size="24"
             class="keyValue__icon"
             aria-label={this.ariaLabelIcon}
           ></ix-icon>

@@ -68,8 +68,8 @@ function chipMatrixPair(
         <ix-chip
           icon=${CHIP_MATRIX_ICON}
           variant="custom"
-          background="var(--si-sys-data-categorical-9)"
-          chip-color="var(--si-sys-text-inverse)"
+          background="var(--si-sys-color-data-categorical-9)"
+          chip-color="var(--si-sys-color-text-inverse)"
           ?closable=${closable}
           >${label}</ix-chip
         >
@@ -77,8 +77,8 @@ function chipMatrixPair(
           icon=${CHIP_MATRIX_ICON}
           variant="custom"
           outline
-          background="var(--si-sys-data-categorical-9)"
-          chip-color="var(--si-sys-text-primary)"
+          background="var(--si-sys-color-data-categorical-9)"
+          chip-color="var(--si-sys-color-text-primary)"
           ?closable=${closable}
           >${label}</ix-chip
         >
@@ -87,16 +87,16 @@ function chipMatrixPair(
     return html`
       <ix-chip
         variant="custom"
-        background="var(--si-sys-data-categorical-9)"
-        chip-color="var(--si-sys-text-inverse)"
+        background="var(--si-sys-color-data-categorical-9)"
+        chip-color="var(--si-sys-color-text-inverse)"
         ?closable=${closable}
         >${label}</ix-chip
       >
       <ix-chip
         variant="custom"
         outline
-        background="var(--si-sys-data-categorical-9)"
-        chip-color="var(--si-sys-text-primary)"
+        background="var(--si-sys-color-data-categorical-9)"
+        chip-color="var(--si-sys-color-text-primary)"
         ?closable=${closable}
         >${label}</ix-chip
       >
@@ -177,7 +177,7 @@ function chipMatrixOverview(): TemplateResult {
         max-width: 48rem;
         font-size: 0.875rem;
         line-height: 1.45;
-        color: var(--si-sys-text-primary);
+        color: var(--si-sys-color-text-primary);
       }
       .chip-sb-matrix__grid {
         display: grid;
@@ -189,7 +189,7 @@ function chipMatrixOverview(): TemplateResult {
         font-size: 0.8125rem;
         font-weight: 600;
         padding-bottom: 0.25rem;
-        border-bottom: 1px solid var(--si-sys-border-3);
+        border-bottom: 1px solid var(--si-sys-color-border-3);
         margin-bottom: 0.25rem;
       }
       .chip-sb-matrix__narrow {

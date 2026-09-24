@@ -13,14 +13,16 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-tooltip--background: var(--si-sys-background-1);
+  --theme-tooltip--background: var(--si-sys-color-background-1);
   --theme-tooltip--border-color: rgba(0, 0, 0, 0);
-  --theme-tooltip--color: var(--si-sys-text-primary);
-  --theme-tooltip-close--color: var(--si-sys-text-secondary);
+  --theme-tooltip--color: var(--si-sys-color-text-primary);
+  --theme-tooltip-close--color: var(--si-sys-color-text-secondary);
   --theme-tooltip-close-btn--background: rgba(0, 0, 0, 0);
   --theme-tooltip-close-btn--background--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
-  --theme-tooltip-close-btn--background--hover: var(--si-sys-background-hover);
+  --theme-tooltip-close-btn--background--hover: var(
+    --si-sys-color-background-hover
+  );
   --theme-tootlip--background: var(--theme-tooltip--background);
 }

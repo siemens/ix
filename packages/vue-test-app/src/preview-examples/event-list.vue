@@ -13,16 +13,16 @@ import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
 
 <template>
   <IxEventList>
-    <IxEventListItem itemColor="--si-sys-background-accent"
+    <IxEventListItem itemColor="--si-sys-color-background-accent"
       >Text 1</IxEventListItem
     >
-    <IxEventListItem itemColor="--si-sys-background-accent"
+    <IxEventListItem itemColor="--si-sys-color-background-accent"
       >Text 2</IxEventListItem
     >
-    <IxEventListItem itemColor="--si-sys-background-danger"
+    <IxEventListItem itemColor="--si-sys-color-background-danger"
       >Text 3</IxEventListItem
     >
-    <IxEventListItem itemColor="--si-sys-background-success"
+    <IxEventListItem itemColor="--si-sys-color-background-success"
       >Text 4</IxEventListItem
     >
   </IxEventList>
