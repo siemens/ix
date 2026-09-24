@@ -521,6 +521,11 @@ export namespace Components {
          */
         "iconSize": ButtonIconSize;
         /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert": boolean;
+        /**
           * Loading button
           * @default false
          */
@@ -1938,7 +1943,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
         /**
@@ -2402,6 +2407,11 @@ export namespace Components {
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert": boolean;
         /**
           * Loading button
           * @default false
@@ -7549,6 +7559,11 @@ declare namespace LocalJSX {
          */
         "iconSize"?: ButtonIconSize;
         /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert"?: boolean;
+        /**
           * Loading button
           * @default false
          */
@@ -9057,7 +9072,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
         /**
@@ -9563,6 +9578,11 @@ declare namespace LocalJSX {
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert"?: boolean;
         /**
           * Loading button
           * @default false
@@ -12507,6 +12527,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
         "form": string;
         "icon": string;
         "iconRight": string;
@@ -12929,6 +12950,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
     }
     interface IxIconToggleButtonAttributes {
         "variant": ButtonVariant;

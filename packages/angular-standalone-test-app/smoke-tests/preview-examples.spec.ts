@@ -8,3 +8,4 @@
  */
 import 'framework-tests/tests/working.spec.ts';
 import 'framework-tests/tests/working-with-axe.spec.ts';
+import 'framework-tests/tests/dropdown-button-icon.spec.ts';

@@ -11,6 +11,7 @@ export const IxButton: StencilVueComponent<JSX.IxButton> = /*@__PURE__*/ defineC
   'disabled',
   'type',
   'loading',
+  'inert',
   'form',
   'icon',
   'iconRight',

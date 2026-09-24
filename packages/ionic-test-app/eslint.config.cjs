@@ -17,7 +17,12 @@ const compat = new FlatCompat({
 
 module.exports = [
   {
-    ignores: ['dist/**', 'ios/**', 'node_modules/**'],
+    ignores: [
+      'dist/**',
+      'ios/**',
+      'node_modules/**',
+      'public/additional-theme/**',
+    ],
   },
   ...compat.config({
     env: {
