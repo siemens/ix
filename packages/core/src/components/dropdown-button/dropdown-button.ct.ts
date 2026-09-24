@@ -49,15 +49,15 @@ regressionTest(
     await expect(labeledButton).toHaveAttribute('hydrated');
     await expect(labeledButton).toBeVisible();
     await expect(labeledButton).toHaveAccessibleName('Actions');
-    await expect(labeledButton.locator('ix-button')).toHaveClass(
-      /\bhydrated\b/
+    await expect(labeledButton.locator('ix-button')).toHaveAttribute(
+      'hydrated'
     );
 
     await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toBeVisible();
     await expect(iconButton).toHaveAccessibleName('Launch actions');
-    await expect(iconButton.locator('ix-icon-button')).toHaveClass(
-      /\bhydrated\b/
+    await expect(iconButton.locator('ix-icon-button')).toHaveAttribute(
+      'hydrated'
     );
   }
 );
