@@ -824,6 +824,32 @@ regressionTest.describe('week start index', () => {
     );
   };
 
+  /** Every day number in the grid, in the order it is rendered. */
+  const getRenderedDays = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [
+        ...(picker.shadowRoot?.querySelectorAll('[data-calendar-day]') ?? []),
+      ].map((cell) => Number(cell.getAttribute('data-calendar-day')))
+    );
+  };
+
+  /** The cell count of each day row, the header row excluded. */
+  const getRowWidths = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [...(picker.shadowRoot?.querySelectorAll('[role="row"]') ?? [])]
+        .map((row) => row.querySelectorAll('[role="gridcell"]').length)
+        .filter((width) => width > 0)
+    );
+  };
+
+  const getWeekNumbers = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [...(picker.shadowRoot?.querySelectorAll('.week-number') ?? [])].map(
+        (cell) => Number(cell.textContent?.trim())
+      )
+    );
+  };
+
   regressionTest(
     'places the first day correctly by default',
     async ({ mount, page }) => {
@@ -929,6 +955,90 @@ regressionTest.describe('week start index', () => {
 
       const headers = await getColumnHeaders(page);
       expect(headers[5]).toBe(fridayHeader);
+    }
+  );
+
+  regressionTest(
+    'renders the whole month for a Sunday-first week',
+    async ({ mount, page }) => {
+      // December 2023 opens on a Friday, so a Sunday-first grid needs six rows.
+      // Counting rows by ISO week number only found five and dropped every day
+      // after the 24th.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      expect(await getRenderedDays(page)).toEqual(
+        Array.from({ length: 31 }, (_, index) => index + 1)
+      );
+    }
+  );
+
+  regressionTest(
+    'renders no day past the end of a short month',
+    async ({ mount, page }) => {
+      // February 2026 has 28 days and opens on a Sunday, the case where the
+      // day counter used to run on to a 31st that does not exist.
+      await mount(
+        `<ix-date-picker from="2026/02/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const days = await getRenderedDays(page);
+      expect(days).toHaveLength(28);
+      expect(Math.max(...days)).toBe(28);
+    }
+  );
+
+  regressionTest(
+    'keeps every row seven columns wide',
+    async ({ mount, page }) => {
+      // A short final row shifts nothing on screen, but it means the grid and
+      // the headers stop agreeing about what column a weekday is.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      expect(await getRowWidths(page)).toEqual([7, 7, 7, 7, 7, 7]);
+    }
+  );
+
+  regressionTest(
+    'numbers the weeks of a Sunday-first December into the new year',
+    async ({ mount, page }) => {
+      // The last row of December 2023 runs into January, so it carries week 1.
+      // The old counter repeated a number here instead of wrapping.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6" show-week-numbers></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const weekNumbers = await getWeekNumbers(page);
+      expect(weekNumbers).toEqual([48, 49, 50, 51, 52, 1]);
+      expect(new Set(weekNumbers).size).toBe(weekNumbers.length);
+    }
+  );
+
+  regressionTest(
+    'lines a Sunday-first grid up with its headers',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6" locale="en"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[0]).toBe('Sun');
+
+      // 1 December 2023 is a Friday, six columns along from Sunday.
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Fri');
     }
   );
 });

@@ -7,7 +7,9 @@
 import { DateTime } from 'luxon';
 import { describe, expect, it } from 'vitest';
 import {
+  CalendarRow,
   MONTHS_IN_YEAR,
+  calendarRowsFor,
   dayOfMonth,
   isDayWithinRange,
   isMonthWithinRange,
@@ -17,7 +19,7 @@ import {
   weekdayColumnOf,
   weekdayNamesFrom,
   weekStartFrom,
-} from '../calendar-units';
+} from '../calendar.util';
 
 /** Luxon month ordinals, for readability in the expectations below. */
 const JUNE = 6;
@@ -368,5 +370,112 @@ describe('weekdayColumnOf', () => {
         expect(headers[column]).toBe(date.setLocale('en').toFormat('cccc'));
       });
     }
+  });
+});
+
+describe('calendarRowsFor', () => {
+  const rowsOf = (year: number, ordinal: number, weekStart = 0) =>
+    calendarRowsFor(monthOf(year, ordinal), weekStartFrom(weekStart));
+
+  const daysOf = (rows: CalendarRow[]) =>
+    rows.flatMap((row) => row.dayNumbers).filter((day) => day !== undefined);
+
+  it('gives every row seven cells, whatever the week start', () => {
+    for (let weekStart = 0; weekStart < 7; weekStart++) {
+      for (let ordinal = 1; ordinal <= MONTHS_IN_YEAR; ordinal++) {
+        rowsOf(2026, ordinal, weekStart).forEach((row) => {
+          expect(row.dayNumbers).toHaveLength(7);
+        });
+      }
+    }
+  });
+
+  it('lists every day of the month exactly once, in order', () => {
+    const rows = rowsOf(2026, JULY);
+
+    expect(daysOf(rows)).toEqual(
+      Array.from({ length: 31 }, (_, index) => index + 1)
+    );
+  });
+
+  it('pads only at the two ends', () => {
+    const cells = rowsOf(2026, JULY).flatMap((row) => row.dayNumbers);
+    const first = cells.findIndex((day) => day !== undefined);
+    const last = cells.length - 1 - [...cells].reverse().findIndex((d) => d);
+
+    expect(cells.slice(first, last + 1).every((day) => day)).toBe(true);
+  });
+
+  it('puts the first of the month in the column its weekday implies', () => {
+    for (let weekStart = 0; weekStart < 7; weekStart++) {
+      const monthStart = monthOf(2026, JULY);
+      const column = rowsOf(2026, JULY, weekStart)[0].dayNumbers.indexOf(1);
+
+      expect(column).toBe(
+        weekdayColumnOf(monthStart, weekStartFrom(weekStart))
+      );
+    }
+  });
+
+  it('shifts the grid when the week starts on Sunday', () => {
+    // 1 July 2026 is a Wednesday: column 2 Monday-first, column 3 Sunday-first.
+    expect(rowsOf(2026, JULY, 0)[0].dayNumbers.indexOf(1)).toBe(2);
+    expect(rowsOf(2026, JULY, 6)[0].dayNumbers.indexOf(1)).toBe(3);
+  });
+
+  it('covers a leap February with no spare row', () => {
+    const rows = rowsOf(2024, 2);
+
+    expect(daysOf(rows)).toHaveLength(29);
+    expect(rows.at(-1)?.dayNumbers.some((day) => day)).toBe(true);
+  });
+
+  it('fits a February that starts on the first column exactly', () => {
+    // February 2021 starts on a Monday and has 28 days: four full rows.
+    const rows = rowsOf(2021, 2);
+
+    expect(rows).toHaveLength(4);
+    expect(rows[0].dayNumbers[0]).toBe(1);
+    expect(rows.at(-1)?.dayNumbers.at(-1)).toBe(28);
+  });
+
+  describe('week numbers', () => {
+    it('numbers the rows of a mid-year month consecutively', () => {
+      const rows = rowsOf(2026, JULY);
+
+      expect(rows.map((row) => row.weekNumber)).toEqual([27, 28, 29, 30, 31]);
+    });
+
+    it('carries the old year into a January that opens mid-week', () => {
+      // 1 January 2026 is a Thursday, so its row is still ISO week 1 of 2026,
+      // but January 2021 opens on a Friday inside ISO week 53 of 2020.
+      expect(rowsOf(2021, 1)[0].weekNumber).toBe(53);
+      expect(rowsOf(2026, 1)[0].weekNumber).toBe(1);
+    });
+
+    it('wraps to week 1 in a December that runs into the new year', () => {
+      const rows = rowsOf(2025, 12);
+
+      expect(rows.at(-1)?.weekNumber).toBe(1);
+      expect(rows.at(-2)?.weekNumber).toBe(52);
+    });
+
+    it('never repeats a week number within a month', () => {
+      for (let year = 2019; year <= 2030; year++) {
+        for (let ordinal = 1; ordinal <= MONTHS_IN_YEAR; ordinal++) {
+          const numbers = rowsOf(year, ordinal).map((row) => row.weekNumber);
+
+          expect(new Set(numbers).size).toBe(numbers.length);
+        }
+      }
+    });
+
+    it('labels a Sunday-first row with the week covering most of it', () => {
+      // The Sunday-first row opening 28 June 2026 runs Mon 29 June onwards,
+      // so it is week 27, not the week 26 its lone Sunday belongs to.
+      const sundayFirst = rowsOf(2026, JULY, 6);
+
+      expect(sundayFirst[0].weekNumber).toBe(27);
+    });
   });
 });

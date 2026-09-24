@@ -74,7 +74,7 @@ module.exports = [
       'no-unused-vars': 'off',
     },
   }),
-  // `utils/calendar-units.ts` is deliberately out of scope: it is the one
+  // `utils/calendar.util.ts` is deliberately out of scope: it is the one
   // module allowed to touch both Luxon's 1-based ordinals and the 0-based
   // `Info` name arrays. Any new date component directory has to be added
   // here, or it inherits none of this.

@@ -7,7 +7,10 @@
 import { DateTime, Info } from 'luxon';
 
 /**
- * Calendar vocabulary for the date components.
+ * Shared date-time and calendar logic for the date components.
+ *
+ * All date-time related logic should be in this file. This ensures consistency and
+ * protects against bugs such as misaligned date indexes and incorrect week calculations.
  *
  * A calendar position is carried as a `DateTime`, never as a bare unit number,
  * so neither Luxon's 1-based ordinals nor the 0-based `Info` arrays appear
@@ -102,6 +105,73 @@ export function weekdayColumnOf(
 /** Wrap any integer into `[0, DAYS_IN_WEEK)`, including negatives. */
 function normaliseColumn(value: number): number {
   return ((value % DAYS_IN_WEEK) + DAYS_IN_WEEK) % DAYS_IN_WEEK;
+}
+
+/** One row of a calendar grid: its week number and its seven day cells. */
+export interface CalendarRow {
+  /** The ISO week number shown in the row header. */
+  weekNumber: number;
+  /**
+   * Seven cells, one per column. A cell is the 1-based day of the month, or
+   * `undefined` where the row runs outside the month.
+   */
+  dayNumbers: (number | undefined)[];
+}
+
+/** Thursday, the day ISO 8601 uses to decide which week a row belongs to. */
+const ISO_WEEK_ANCHOR = 4;
+
+/**
+ * The ISO week number of the row starting at `rowStart`.
+ *
+ * A row is seven consecutive days, so it always contains exactly one Thursday,
+ * and ISO 8601 assigns a week its number by the year its Thursday falls in.
+ * Anchoring on that Thursday gets the year boundary right without any
+ * corrections, and keeps the label meaningful when the row does not line up
+ * with an ISO week — a Sunday-first row is labelled with the Monday-to-Sunday
+ * week that covers six of its seven days, not the one holding only its Sunday.
+ */
+function weekNumberOfRow(rowStart: DateTime): number {
+  const daysToThursday = normaliseColumn(ISO_WEEK_ANCHOR - rowStart.weekday);
+
+  return rowStart.plus({ days: daysToThursday }).weekNumber;
+}
+
+/**
+ * The calendar grid for the month containing `month`, as whole rows of seven.
+ *
+ * `month` may be any day of the target month.
+ */
+export function calendarRowsFor(
+  month: DateTime,
+  weekStart: WeekdayIndex = MONDAY
+): CalendarRow[] {
+  const monthStart = month.startOf('month');
+  const daysInMonth = monthStart.daysInMonth ?? 0;
+  /* Cells before the 1st, so the 1st lands in its column. */
+  const leadingBlanks = weekdayColumnOf(monthStart, weekStart);
+  const rows: CalendarRow[] = [];
+
+  /* `offset` is the day the row opens on, counted from the 1st and negative
+   * while the row reaches back into the previous month. */
+  for (
+    let offset = -leadingBlanks;
+    offset < daysInMonth;
+    offset += DAYS_IN_WEEK
+  ) {
+    const dayNumbers = Array.from({ length: DAYS_IN_WEEK }, (_, column) => {
+      const day = offset + column + 1;
+
+      return day >= 1 && day <= daysInMonth ? day : undefined;
+    });
+
+    rows.push({
+      weekNumber: weekNumberOfRow(monthStart.plus({ days: offset })),
+      dayNumbers,
+    });
+  }
+
+  return rows;
 }
 
 /**

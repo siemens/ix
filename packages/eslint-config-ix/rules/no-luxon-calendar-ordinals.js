@@ -16,7 +16,7 @@
  * is ever written down.
  *
  * Passing a `DateTime` is enforced by the signatures in
- * `utils/calendar-units.ts`; this rule covers what those types cannot, by
+ * `utils/calendar.util.ts`; this rule covers what those types cannot, by
  * banning the ways a bare unit number gets manufactured in the first place.
  *
  * The receiver's type decides: `someDateTime.month` is reported, while a
@@ -84,13 +84,13 @@ module.exports = {
     schema: [],
     messages: {
       month:
-        "Don't read Luxon's 1-based .month. Keep the month as a DateTime: compare with hasSame(other, 'month') and render with monthNameOf() from utils/calendar-units.ts.",
+        "Don't read Luxon's 1-based .month. Keep the month as a DateTime: compare with hasSame(other, 'month') and render with monthNameOf() from utils/calendar.util.ts.",
       weekday:
-        "Don't read Luxon's 1-based .weekday. Use weekdayColumnOf() from utils/calendar-units.ts to place a date in a grid column.",
+        "Don't read Luxon's 1-based .weekday. Use weekdayColumnOf() from utils/calendar.util.ts to place a date in a grid column.",
       infoNameArray:
-        'Info.{{name}}() returns a 0-based array, and indexing one with a Luxon ordinal shifts the calendar by one. Build months with monthsOfYear() and names with monthNameOf() / weekdayNamesFrom() from utils/calendar-units.ts.',
+        'Info.{{name}}() returns a 0-based array, and indexing one with a Luxon ordinal shifts the calendar by one. Build months with monthsOfYear() and names with monthNameOf() / weekdayNamesFrom() from utils/calendar.util.ts.',
       dateConstructor:
-        'new Date(year, month, day) takes a 0-based month and resolves in local time. Use monthsOfYear() / dayOfMonth() from utils/calendar-units.ts.',
+        'new Date(year, month, day) takes a 0-based month and resolves in local time. Use monthsOfYear() / dayOfMonth() from utils/calendar.util.ts.',
     },
   },
 

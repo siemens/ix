@@ -33,7 +33,8 @@ import {
 } from '../utils/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import {
-  DAYS_IN_WEEK,
+  CalendarRow,
+  calendarRowsFor,
   dayOfMonth,
   isDayWithinRange,
   isMonthWithinRange,
@@ -41,10 +42,9 @@ import {
   monthNameOf,
   monthsOfYear,
   WeekdayIndex,
-  weekdayColumnOf,
   weekdayNamesFrom,
   weekStartFrom,
-} from '../utils/calendar-units';
+} from '../utils/calendar.util';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -53,11 +53,6 @@ import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DatePickerYearMonth } from './date-picker.types';
-
-interface CalendarWeek {
-  weekNumber: number;
-  dayNumbers: (number | undefined)[];
-}
 
 @Component({
   tag: 'ix-date-picker',
@@ -349,7 +344,7 @@ export class DatePicker
 
   private isDayFocus = false;
   private monthChangedFromFocus = false;
-  private calendar: CalendarWeek[] = [];
+  private calendar: CalendarRow[] = [];
   private _minDateObj?: DateTime;
   private _maxDateObj?: DateTime;
   private calendarDirty = true;
@@ -512,7 +507,7 @@ export class DatePicker
 
   override componentWillRender() {
     if (this.calendarDirty) {
-      this.calculateCalendar();
+      this.calendar = calendarRowsFor(this.selectedMonthDate, this.weekStart);
       this.calendarDirty = false;
     }
   }
@@ -579,78 +574,6 @@ export class DatePicker
   private async onDone() {
     const date = await this.getCurrentDate();
     this.dateSelect.emit(date);
-  }
-
-  private calculateCalendar() {
-    const calendar: CalendarWeek[] = [];
-    const monthStart = this.selectedMonthDate;
-    const monthEnd = monthStart.endOf('month');
-    let startWeek = monthStart.weekNumber;
-    let endWeek = monthEnd.weekNumber;
-    const monthStartWeekDayIndex = weekdayColumnOf(monthStart, this.weekStart);
-    const monthEndWeekDayIndex = weekdayColumnOf(monthEnd, this.weekStart);
-
-    let correctLastWeek = false;
-    if (endWeek === 1) {
-      endWeek = monthEnd.weeksInWeekYear + 1;
-      correctLastWeek = true;
-    }
-
-    let correctFirstWeek = false;
-    if (startWeek === monthStart.weeksInWeekYear) {
-      startWeek = 1;
-      endWeek++;
-
-      correctFirstWeek = true;
-    }
-
-    let currDayNumber = 1;
-    for (
-      let weekIndex = startWeek;
-      weekIndex <= endWeek && currDayNumber <= 31;
-      weekIndex++
-    ) {
-      const daysArr: (number | undefined)[] = [];
-
-      for (let j = 0; j < DAYS_IN_WEEK && currDayNumber <= 31; j++) {
-        // Display empty cells until the calender starts/has ended
-        if (
-          (weekIndex === startWeek && j < monthStartWeekDayIndex) ||
-          (weekIndex === endWeek && j > monthEndWeekDayIndex)
-        ) {
-          daysArr.push(undefined);
-        } else {
-          daysArr.push(currDayNumber++);
-        }
-      }
-
-      if (correctFirstWeek || correctLastWeek) {
-        if (weekIndex === 1) {
-          calendar.push({
-            weekNumber: monthStart.weeksInWeekYear,
-            dayNumbers: daysArr,
-          });
-        } else if (weekIndex === monthEnd.weekNumber) {
-          calendar.push({
-            weekNumber: 1,
-            dayNumbers: daysArr,
-          });
-        } else {
-          calendar.push({
-            weekNumber: weekIndex - 1,
-            dayNumbers: daysArr,
-          });
-        }
-        continue;
-      }
-
-      calendar.push({
-        weekNumber: weekIndex,
-        dayNumbers: daysArr,
-      });
-    }
-
-    this.calendar = calendar;
   }
 
   private changeCalendarView(number: -1 | 1) {
