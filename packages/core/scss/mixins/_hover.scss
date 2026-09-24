@@ -70,12 +70,12 @@
   &:not(.disabled):not(:disabled) {
     &.hover,
     &:hover {
-      background-color: #{sys.$si-sys-background-hover};
+      background-color: #{sys.$si-sys-color-background-hover};
     }
 
     &.active,
     &:active {
-      background-color: #{sys.$si-sys-background-active};
+      background-color: #{sys.$si-sys-color-background-active};
     }
   }
 }
@@ -83,12 +83,12 @@
 @mixin host-ghost-hover-pressed {
   :host(:not(.disabled):not(:disabled).hover),
   :host(:not(.disabled):not(:disabled):hover) {
-    background-color: #{sys.$si-sys-background-hover};
+    background-color: #{sys.$si-sys-color-background-hover};
   }
 
   :host(:not(.disabled):not(:disabled).active),
   :host(:not(.disabled):not(:disabled):active) {
-    background-color: #{sys.$si-sys-background-active};
+    background-color: #{sys.$si-sys-color-background-active};
   }
 }
 
