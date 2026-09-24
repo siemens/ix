@@ -1125,12 +1125,7 @@ export class DatePicker
                         onBlur={() => this.onDayBlur()}
                         aria-label={`${day} ${this.monthNames[this.selectedMonth]} ${this.selectedYear}`}
                       >
-                        <ix-typography
-                          format="body"
-                          bold={this.getUtilitiesBasedOnDay(day).isSelected()}
-                        >
-                          {day}
-                        </ix-typography>
+                        {day}
                       </div>
                     );
                   })}

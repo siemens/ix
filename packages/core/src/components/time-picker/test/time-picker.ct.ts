@@ -135,21 +135,18 @@ regressionTest('renders', async ({ mount, page }) => {
   );
   const timePicker = page.locator(TIME_PICKER_SELECTOR);
   await expect(timePicker).toHaveClass(/hydrated/);
-  const selectedValueTypography = timePicker
-    .getByRole('option', { selected: true })
-    .locator('ix-typography');
-  await expect(selectedValueTypography).toHaveCount(3);
-  await expect(selectedValueTypography.first()).toHaveJSProperty(
-    'format',
-    'body'
-  );
-  await expect(selectedValueTypography.first()).toHaveJSProperty('bold', true);
-  const unselectedValueTypography = timePicker
+  const selectedValues = timePicker.getByRole('option', { selected: true });
+  await expect(selectedValues).toHaveCount(3);
+  await expect(selectedValues.first()).toHaveCSS('font-size', '14px');
+  await expect(selectedValues.first()).toHaveCSS('line-height', '16px');
+  await expect(selectedValues.first()).toHaveCSS('font-weight', '700');
+
+  const unselectedValue = timePicker
     .getByRole('option', { selected: false })
-    .locator('ix-typography')
     .first();
-  await expect(unselectedValueTypography).toHaveJSProperty('format', 'body');
-  await expect(unselectedValueTypography).toHaveJSProperty('bold', false);
+  await expect(unselectedValue).toHaveCSS('font-size', '14px');
+  await expect(unselectedValue).toHaveCSS('line-height', '16px');
+  await expect(unselectedValue).toHaveCSS('font-weight', '400');
 });
 
 regressionTest(

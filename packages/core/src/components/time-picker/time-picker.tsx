@@ -1410,9 +1410,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                             aria-label={`${descriptor.header}: ${number}`}
                             tabindex={cellTabIndex}
                           >
-                            <ix-typography format="body" bold={selected}>
-                              {this.formatUnitValue(descriptor.unit, number)}
-                            </ix-typography>
+                            {this.formatUnitValue(descriptor.unit, number)}
                           </button>
                         );
                       })}
