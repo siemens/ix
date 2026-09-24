@@ -10,14 +10,14 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-list-item--color: #{sys.$si-sys-text-primary};
-  --ix-list-item--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-list-item-description--color: #{sys.$si-sys-text-secondary};
-  --ix-list-item--background: #{sys.$si-sys-background-accent-secondary};
-  --ix-list-item--background--filled: #{sys.$si-sys-background-1};
-  --ix-list-item--background--selected: #{sys.$si-sys-background-active};
-  --ix-list-item--background--hover: #{sys.$si-sys-background-hover};
-  --ix-list-item--border-color--outline: #{sys.$si-sys-border-3};
-  --ix-list-item--border-color--divider: #{sys.$si-sys-border-3};
-  --ix-list-item--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-list-item--color: #{sys.$si-sys-color-text-primary};
+  --ix-list-item--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-list-item-description--color: #{sys.$si-sys-color-text-secondary};
+  --ix-list-item--background: #{sys.$si-sys-color-background-accent-secondary};
+  --ix-list-item--background--filled: #{sys.$si-sys-color-background-1};
+  --ix-list-item--background--selected: #{sys.$si-sys-color-background-active};
+  --ix-list-item--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-list-item--border-color--outline: #{sys.$si-sys-color-border-3};
+  --ix-list-item--border-color--divider: #{sys.$si-sys-color-border-3};
+  --ix-list-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }

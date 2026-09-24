@@ -10,5 +10,5 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-list-item-separator--border-color: #{sys.$si-sys-border-3};
+  --ix-list-item-separator--border-color: #{sys.$si-sys-color-border-3};
 }
