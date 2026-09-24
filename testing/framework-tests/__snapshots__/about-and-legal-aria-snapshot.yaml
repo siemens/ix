@@ -1,3 +1,7 @@
+- list:
+  - listitem:
+    - link "Skip to main content":
+      - /url: "#ix-application-main-content"
 - navigation:
   - button "About & legal information" [expanded]
   - tooltip "About & legal information"
@@ -6,4 +10,3 @@
   - button "Close About"
 - complementary
 - main
-- contentinfo
