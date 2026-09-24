@@ -67,8 +67,10 @@ describe('global CSS entry points', () => {
     const foundationCss = compileEntry('ix-foundation.scss');
     const foundation = normalizeCss(foundationCss);
 
-    expect(foundation).toContain('body{color:var(--si-sys-text-primary)');
-    expect(foundation).toContain('background-color:var(--si-sys-background-0)');
+    expect(foundation).toContain('body{color:var(--si-sys-color-text-primary)');
+    expect(foundation).toContain(
+      'background-color:var(--si-sys-color-background-0)'
+    );
     expect(foundation).toContain('font:var(--si-sys-typography-body)');
     expect(foundation).toContain(
       '--theme-font-family:"SiemensSans Pro VF","SiemensSans Pro",helvetica,arial,sans-serif'
@@ -106,7 +108,6 @@ describe('global CSS entry points', () => {
   it('preserves previous native-element behavior in the legacy entry point', () => {
     const legacyCss = compileEntry('ix-legacy.scss');
     const legacy = normalizeCss(legacyCss);
-
     expect(legacy).toContain('.ix-form-control');
     expect(legacyCss).not.toContain('body:not(.disable-scrollbar)');
     expect(legacyCss).toContain('.ix-table');

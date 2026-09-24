@@ -29,7 +29,7 @@ type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
-    iconColor: '--si-sys-background-warning',
+    iconColor: '--si-sys-color-background-warning',
     titleText: 'Report could not be generated',
     copyText: 'An error occurred while generating the report.',
     instructions: 'Contact your administrator for more information.',
@@ -62,7 +62,7 @@ export const WithIllustration: Story = {
 
 export const WithAction: Story = {
   args: {
-    iconColor: '--si-sys-background-warning',
+    iconColor: '--si-sys-color-background-warning',
     titleText: 'Invitation received',
     copyText: 'You were invited to join Sample Co.',
     instructions: 'Accept the invitation to continue.',

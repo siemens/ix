@@ -37,7 +37,7 @@
     position: relative;
     user-select: none;
 
-    color: #{sys.$si-sys-text-primary};
+    color: #{sys.$si-sys-color-text-primary};
     margin-right: vars.$default-space;
   }
 
@@ -66,43 +66,43 @@
 
   .ix-form-control[type='radio'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-effects-focus};
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
       outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='radio']:not(:checked) {
     & + label:before {
-      background-color: #{sys.$si-sys-background-accent-secondary};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-1};
+      background-color: #{sys.$si-sys-color-background-accent-secondary};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-1};
     }
 
     &:hover + label:before {
-      background-color: #{sys.$si-sys-background-accent-secondary-hover};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-secondary-hover};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:active + label:before {
-      background-color: #{sys.$si-sys-background-accent-secondary-active};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-border-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-secondary-active};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:disabled + label::before {
       background-color: transparent;
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-text-disabled};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-text-disabled};
     }
   }
 
   .ix-form-control[type='radio']:checked {
     & + label:before {
-      background-color: #{sys.$si-sys-background-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-hover};
       background-image: radial-gradient(
         circle,
         #{sys.$si-sys-text-on-accent} 0 0.25rem,
@@ -111,23 +111,35 @@
       border: var(--theme-border-width-default) solid transparent;
     }
 
+    & + label:after {
+      content: '';
+      width: vars.$small-space;
+      height: vars.$small-space;
+      display: block;
+      background-color: #{sys.$si-sys-color-text-on-accent};
+      border-radius: 100%;
+      position: absolute;
+      top: 0.5rem;
+      left: 0.375rem;
+    }
+
     &:hover + label:before {
-      background-color: #{sys.$si-sys-background-accent-hover};
+      background-color: #{sys.$si-sys-color-background-accent-hover};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: #{sys.$si-sys-background-accent-active};
+      background-color: #{sys.$si-sys-color-background-accent-active};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label:before {
-      background-color: #{sys.$si-sys-text-disabled};
+      background-color: #{sys.$si-sys-color-text-disabled};
       border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: #{sys.$si-sys-text-inverse};
+      border-color: #{sys.$si-sys-color-text-inverse};
     }
   }
 
@@ -137,7 +149,7 @@
   }
 
   .ix-form-control[type='radio']:disabled + label {
-    color: #{sys.$si-sys-text-disabled};
+    color: #{sys.$si-sys-color-text-disabled};
   }
 }
 

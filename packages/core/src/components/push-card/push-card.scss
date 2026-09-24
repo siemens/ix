@@ -53,31 +53,49 @@
     }
 
     ix-card-accordion {
-      --ix-card-accordion-#{$variant}-accordion--background--hover: var(--ix-push-card-#{$variant}-accordion--background);
-      --ix-card-accordion-#{$variant}-accordion--background--active: var(--ix-push-card-#{$variant}-accordion--background);
-      --ix-card-accordion-#{$variant}-accordion-frame--border-color: var(--ix-push-card-#{$variant}-accordion--background);
-      --ix-card-accordion-expand-content--border-radius: 0 0 var(--theme-default-border-radius) var(--theme-default-border-radius);
+      --ix-card-accordion-#{$variant}-accordion--background--hover: var(
+        --ix-push-card-#{$variant}-accordion--background
+      );
+      --ix-card-accordion-#{$variant}-accordion--background--active: var(
+        --ix-push-card-#{$variant}-accordion--background
+      );
+      --ix-card-accordion-#{$variant}-accordion-frame--border-color: var(
+        --ix-push-card-#{$variant}-accordion--background
+      );
+      --ix-card-accordion-expand-content--border-radius: 0
+        0
+        var(--theme-default-border-radius)
+        var(--theme-default-border-radius);
 
       @if $variant != 'outline' and $variant != 'filled' {
-        --ix-card-accordion-expand-content--border-radius: 0 0 calc(var(--theme-default-border-radius) + var(--ix-push-card--border-width)) calc(var(--theme-default-border-radius) + var(--ix-push-card--border-width));
+        --ix-card-accordion-expand-content--border-radius: 0
+          0
+          calc(
+            var(--theme-default-border-radius) +
+              var(--ix-push-card--border-width)
+          )
+          calc(
+            var(--theme-default-border-radius) +
+              var(--ix-push-card--border-width)
+          );
       }
 
       @if $variant == 'outline' or $variant == 'filled' {
-        --ix-card-background: #{sys.$si-sys-background-1};
+        --ix-card-background: #{sys.$si-sys-color-background-1};
       }
 
       @if $variant == 'outline' {
-        --ix-card-accordion-outline-accordion-frame--border-color: #{sys.$si-sys-border-3};
+        --ix-card-accordion-outline-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
       }
     }
 
     @if $variant == 'outline' {
       ix-card {
-        --ix-card-border-color: #{sys.$si-sys-border-3};
+        --ix-card-border-color: #{sys.$si-sys-color-border-3};
 
         &:hover,
         &:active {
-          --ix-card-border-color: #{sys.$si-sys-border-3};
+          --ix-card-border-color: #{sys.$si-sys-color-border-3};
         }
       }
     }
