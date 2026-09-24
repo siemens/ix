@@ -10,18 +10,18 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-category-filter--outline-color--focus: #{sys.$si-sys-effects-focus};
-  --ix-category-filter-dropdown-item--border-color--focus: #{sys.$si-sys-effects-focus};
-  --ix-category-filter-placeholder--color: #{sys.$si-sys-text-secondary};
-  --ix-category-filter--background--hover: #{sys.$si-sys-background-4};
-  --ix-category-filter--border-color--focus: #{sys.$si-sys-border-1};
-  --ix-category-filter--border-color--hover: #{sys.$si-sys-border-1};
-  --ix-category-filter--border-color-bottom--disabled: #{sys.$si-sys-border-4};
+  --ix-category-filter--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-category-filter-dropdown-item--border-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-category-filter-placeholder--color: #{sys.$si-sys-color-text-secondary};
+  --ix-category-filter--background--hover: #{sys.$si-sys-color-background-4};
+  --ix-category-filter--border-color--focus: #{sys.$si-sys-color-border-1};
+  --ix-category-filter--border-color--hover: #{sys.$si-sys-color-border-1};
+  --ix-category-filter--border-color-bottom--disabled: #{sys.$si-sys-color-border-4};
   --ix-category-filter--border-width: var(--theme-border-width-default);
-  --ix-category-filter--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-category-filter--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-category-filter--focus--outline-offset: var(
     --theme-focus-outline-offset
   );
   --ix-category-filter-category-preview--background: rgba(0, 0, 0, 0);
-  --ix-category-filter-header--color: #{sys.$si-sys-text-secondary};
+  --ix-category-filter-header--color: #{sys.$si-sys-color-text-secondary};
 }

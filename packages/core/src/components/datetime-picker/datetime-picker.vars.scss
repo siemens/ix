@@ -10,5 +10,5 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-datetime-picker-separator--background: #{sys.$si-sys-border-4};
+  --ix-datetime-picker-separator--background: #{sys.$si-sys-color-border-4};
 }

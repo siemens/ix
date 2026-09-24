@@ -12,14 +12,14 @@
 :host {
   --ix-filter-chip--border-width: var(--theme-focus--border-thickness);
   --ix-filter-chip--background: transparent;
-  --ix-filter-chip--border-color--disabled: #{sys.$si-sys-border-3};
-  --ix-filter-chip--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-filter-chip--background--hover: #{sys.$si-sys-background-accent-secondary-hover};
-  --ix-filter-chip--background--active: #{sys.$si-sys-background-accent-secondary-active};
-  --ix-filter-chip-primary-outline--border-color: #{sys.$si-sys-border-accent};
-  --ix-filter-chip-primary-outline--border-color--active: #{sys.$si-sys-border-accent-active};
-  --ix-filter-chip-primary-outline--border-color--hover: #{sys.$si-sys-border-accent-hover};
-  --ix-filter-chip-primary-outline--color: #{sys.$si-sys-border-accent};
-  --ix-filter-chip-primary-outline--color--active: #{sys.$si-sys-border-accent-active};
-  --ix-filter-chip-primary-outline--color--hover: #{sys.$si-sys-border-accent-hover};
+  --ix-filter-chip--border-color--disabled: #{sys.$si-sys-color-border-3};
+  --ix-filter-chip--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-filter-chip--background--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
+  --ix-filter-chip--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
+  --ix-filter-chip-primary-outline--border-color: #{sys.$si-sys-color-border-accent};
+  --ix-filter-chip-primary-outline--border-color--active: #{sys.$si-sys-color-border-accent-active};
+  --ix-filter-chip-primary-outline--border-color--hover: #{sys.$si-sys-color-border-accent-hover};
+  --ix-filter-chip-primary-outline--color: #{sys.$si-sys-color-border-accent};
+  --ix-filter-chip-primary-outline--color--active: #{sys.$si-sys-color-border-accent-active};
+  --ix-filter-chip-primary-outline--color--hover: #{sys.$si-sys-color-border-accent-hover};
 }

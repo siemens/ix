@@ -75,7 +75,9 @@ export default class EchartsSpecialZoom implements OnDestroy, OnInit {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               {
                 offset: 0,
-                color: getComputedCSSProperty('--si-sys-background-accent'),
+                color: getComputedCSSProperty(
+                  '--si-sys-color-background-accent'
+                ),
               },
               {
                 offset: 1,

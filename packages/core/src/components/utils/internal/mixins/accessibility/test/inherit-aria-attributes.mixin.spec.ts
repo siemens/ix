@@ -158,8 +158,8 @@ describe('InheritAriaAttributesMixin', () => {
     expect(second.component.inheritAriaAttributes).toEqual({
       'aria-label': 'Second',
     });
-    expect(first.hostElement).not.toHaveAttribute('aria-label');
-    expect(second.hostElement).not.toHaveAttribute('aria-label');
+    expect(first.hostElement.hasAttribute('aria-label')).toBe(false);
+    expect(second.hostElement.hasAttribute('aria-label')).toBe(false);
 
     expect(MutationObserverMock.instances).toHaveLength(1);
     const [observer] = MutationObserverMock.instances;
@@ -235,7 +235,7 @@ describe('InheritAriaAttributesMixin', () => {
     expect(component.inheritAriaAttributes['aria-label']).toBe(
       'While disconnected'
     );
-    expect(hostElement).not.toHaveAttribute('aria-label');
+    expect(hostElement.hasAttribute('aria-label')).toBe(false);
     expect(MutationObserverMock.instances).toHaveLength(2);
 
     component.disconnectedCallback();
@@ -351,7 +351,7 @@ describe('InheritAriaAttributesMixin', () => {
     expect(component.inheritAriaAttributes).toEqual({
       'aria-label': 'Deferred',
     });
-    expect(hostElement).not.toHaveAttribute('aria-label');
+    expect(hostElement.hasAttribute('aria-label')).toBe(false);
     expect(MutationObserverMock.instances).toHaveLength(1);
 
     component.disconnectedCallback();
@@ -397,7 +397,7 @@ describe('InheritAriaAttributesMixin', () => {
     expect(component.inheritAriaAttributes).toEqual({
       'aria-label': 'Extracted',
     });
-    expect(hostElement).not.toHaveAttribute('aria-label');
+    expect(hostElement.hasAttribute('aria-label')).toBe(false);
 
     component.disconnectedCallback();
   });
