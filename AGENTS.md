@@ -52,6 +52,16 @@ Use these resources together (in this order when conflicts appear):
 - Avoid arbitrary waits, global side effects, and behavior changes that are not explicitly required.
 - For breaking changes, provide migration guidance and update `BREAKING_CHANGES.md`.
 
+## Date and time logic (core)
+
+- All calendar arithmetic for the date components belongs in `packages/core/src/components/utils/calendar.util.ts`. Add to that module instead of computing months, weekdays, grid rows, or date ranges inside a component.
+- Parsing and formatting stay in `packages/core/src/components/utils/date-time-locale.ts`. Keep the two concerns separate.
+- Carry a Luxon `DateTime` between components and helpers; do not pass bare month or weekday numbers around. Luxon counts months `1-12` and weekdays `1-7` (Monday = 1), while the `Info.months()` / `Info.weekdays()` name arrays are 0-based, and mixing the two bases silently shifts the calendar by one.
+- `weekStartIndex` is the one plain number that crosses the boundary. Narrow it with `weekStartFrom()` into a `WeekdayIndex` at the edge rather than passing the raw prop value inwards.
+- The `ix/no-luxon-calendar-ordinals` ESLint rule enforces this across the date component directories. `calendar.util.ts` is deliberately out of scope as the single module allowed to touch both bases. Move the logic into that module rather than disabling the rule.
+- A new date component directory inherits none of this until it is added to the rule's `files` list in `packages/core/eslint.config.cjs`.
+- Cover new calendar logic with unit tests in `packages/core/src/components/utils/test/calendar.util.spec.ts`; the rule checks syntax, only tests check that the calendar is correct.
+
 ## Package-specific guidance
 
 | Package area | Edit guidance |
