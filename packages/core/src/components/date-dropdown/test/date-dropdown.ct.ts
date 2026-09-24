@@ -282,7 +282,7 @@ regressionTest(
       `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
     );
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/hydrated/);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
 
     await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
       el.from = '05 März 2023';
@@ -307,7 +307,7 @@ regressionTest(
       `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
     );
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/hydrated/);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
 
     const options: DateDropdownOption[] = [
       {

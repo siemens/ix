@@ -36,7 +36,7 @@ regressionTest('renders', async ({ mount, page }) => {
   );
 
   const infoPage = page.locator('ix-info-page');
-  await expect(infoPage).toHaveClass(/\bhydrated\b/);
+  await expect(infoPage).toHaveAttribute('hydrated');
   await expect(infoPage).toBeVisible();
   await expect(infoPage.getByRole('heading', { level: 1 })).toHaveText(
     'Invitation received'

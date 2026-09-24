@@ -13,7 +13,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-avatar aria-label="User"></ix-avatar>`);
 
   const avatar = page.locator('ix-avatar');
-  await expect(avatar).toHaveClass(/\bhydrated\b/);
+  await expect(avatar).toHaveAttribute('hydrated');
   await expect(avatar).toBeVisible();
 });
 

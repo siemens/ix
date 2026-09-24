@@ -390,7 +390,7 @@ regressionTest.describe('time-input locale event emission', () => {
       );
 
       const timeInput = page.locator('ix-time-input');
-      await expect(timeInput).toHaveClass(/hydrated/);
+      await expect(timeInput).toHaveAttribute('hydrated');
 
       const valueChangePromise = page.evaluate(() => {
         return new Promise((resolve) => {

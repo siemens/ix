@@ -238,7 +238,7 @@ regressionTest('locale-aware input parsing', async ({ mount, page }) => {
   );
 
   const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+  await expect(dateInputElement).toHaveAttribute('hydrated');
 
   const input = dateInputElement.locator('input');
   await input.fill('05 März 2023');
@@ -272,7 +272,7 @@ regressionTest.describe('runtime locale and format updates', () => {
     );
 
     const dateInput = page.locator('ix-date-input');
-    await expect(dateInput).toHaveClass(/hydrated/);
+    await expect(dateInput).toHaveAttribute('hydrated');
 
     // "März" is unknown to the English locale
     await expectValueParsable(dateInput, false);
@@ -287,7 +287,7 @@ regressionTest.describe('runtime locale and format updates', () => {
     await mount(`<ix-date-input value="05.09.2023"></ix-date-input>`);
 
     const dateInput = page.locator('ix-date-input');
-    await expect(dateInput).toHaveClass(/hydrated/);
+    await expect(dateInput).toHaveAttribute('hydrated');
 
     // Does not match the default format yyyy/LL/dd
     await expectValueParsable(dateInput, false);
@@ -304,7 +304,7 @@ regressionTest.describe('runtime locale and format updates', () => {
     );
 
     const dateInput = page.locator('ix-date-input');
-    await expect(dateInput).toHaveClass(/hydrated/);
+    await expect(dateInput).toHaveAttribute('hydrated');
 
     const accessor = await createDateInputAccessor(dateInput);
     await accessor.openByCalender();

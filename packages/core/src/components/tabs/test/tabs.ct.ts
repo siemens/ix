@@ -303,7 +303,7 @@ for (const { keyFirst, preventChange } of [
       `);
 
       const tabs = page.locator('ix-tabs');
-      await expect(tabs).toHaveClass(/\bhydrated\b/);
+      await expect(tabs).toHaveAttribute('hydrated');
       await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
         'aria-selected',
         'true'

@@ -18,7 +18,7 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
       </ix-dropdown-button>
     `);
 
-  await expect(page.locator('ix-dropdown-button')).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-dropdown-button')).toHaveAttribute('hydrated');
 
   const accessibilityScanResults = await makeAxeBuilder().analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
@@ -46,14 +46,14 @@ regressionTest(
     const labeledButton = page.locator('#labeled-button');
     const iconButton = page.locator('#icon-button');
 
-    await expect(labeledButton).toHaveClass(/\bhydrated\b/);
+    await expect(labeledButton).toHaveAttribute('hydrated');
     await expect(labeledButton).toBeVisible();
     await expect(labeledButton).toHaveAccessibleName('Actions');
     await expect(labeledButton.locator('ix-button')).toHaveClass(
       /\bhydrated\b/
     );
 
-    await expect(iconButton).toHaveClass(/\bhydrated\b/);
+    await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toBeVisible();
     await expect(iconButton).toHaveAccessibleName('Launch actions');
     await expect(iconButton.locator('ix-icon-button')).toHaveClass(
@@ -128,7 +128,7 @@ regressionTest('keeps focus on the host button', async ({ mount, page }) => {
   `);
 
   const dropdownButton = page.locator('ix-dropdown-button');
-  await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+  await expect(dropdownButton).toHaveAttribute('hydrated');
 
   await page.getByRole('button', { name: 'Before' }).focus();
   await page.keyboard.press('Tab');
@@ -247,7 +247,7 @@ regressionTest(
     );
 
     const button = page.locator('ix-dropdown-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button.locator('ix-icon.dropdown-icon')).toHaveClass(
       /size-20/
     );
@@ -272,7 +272,7 @@ regressionTest(
     );
 
     const iconButton = page.locator('ix-dropdown-button ix-icon-button');
-    await expect(iconButton).toHaveClass(/hydrated/);
+    await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toHaveClass(/btn-icon-32/);
     await expect(iconButton.locator('ix-icon')).toHaveClass(/size-24/);
   }

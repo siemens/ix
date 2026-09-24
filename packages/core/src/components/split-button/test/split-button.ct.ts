@@ -93,7 +93,7 @@ regressionTest(
     const dropdownIconButton = page.locator(
       'ix-split-button ix-dropdown-button ix-icon-button'
     );
-    await expect(dropdownIconButton).toHaveClass(/hydrated/);
+    await expect(dropdownIconButton).toHaveAttribute('hydrated');
     await expect(dropdownIconButton).toHaveClass(/btn-icon-32/);
     await expect(dropdownIconButton.locator('ix-icon')).toHaveClass(/size-20/);
   }

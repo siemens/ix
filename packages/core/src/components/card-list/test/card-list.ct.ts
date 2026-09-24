@@ -38,7 +38,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const cardList = page.locator('ix-card-list');
-  await expect(cardList).toHaveClass(/\bhydrated\b/);
+  await expect(cardList).toHaveAttribute('hydrated');
   await expect(cardList).toBeVisible();
 });
 
@@ -197,7 +197,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     let showMoreCard = cardList.locator('.Show__All__Card');
     await showMoreCard.focus();

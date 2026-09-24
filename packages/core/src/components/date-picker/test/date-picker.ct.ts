@@ -671,7 +671,9 @@ regressionTest.describe('week start index', () => {
       // 1 April 2026 is a Wednesday, the third column of a Monday-first grid.
       await mount(`<ix-date-picker from="2026/04/01"></ix-date-picker>`);
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(2);
     }
   );
@@ -685,7 +687,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/04/01" week-start-index="1"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(1);
     }
   );
@@ -699,7 +703,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/03/01" week-start-index="1"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(5);
     }
   );
@@ -711,7 +717,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(1);
     }
   );
@@ -723,7 +731,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       const headers = await getColumnHeaders(page);
       expect(headers[0]).toBe('Die');
