@@ -80,7 +80,10 @@ export class IconButton
    */
   @Prop() loading = false;
 
-  /** @internal */
+  /**
+   * @internal
+   * @since 6.0.0
+   */
   // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop({ reflect: true }) inert = false;
 

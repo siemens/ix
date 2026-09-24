@@ -521,6 +521,7 @@ export namespace Components {
          */
         "iconSize": ButtonIconSize;
         /**
+          * @since 6.0.0
           * @default false
          */
         "inert": boolean;
@@ -2407,6 +2408,7 @@ export namespace Components {
          */
         "iconColor"?: string;
         /**
+          * @since 6.0.0
           * @default false
          */
         "inert": boolean;
@@ -7557,6 +7559,7 @@ declare namespace LocalJSX {
          */
         "iconSize"?: ButtonIconSize;
         /**
+          * @since 6.0.0
           * @default false
          */
         "inert"?: boolean;
@@ -9576,6 +9579,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
+          * @since 6.0.0
           * @default false
          */
         "inert"?: boolean;

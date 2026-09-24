@@ -172,8 +172,8 @@ export class DropdownButton
     const slottedNodes =
       nodes.length > 0
         ? nodes
-        : Array.from(
-            this.hostElement.querySelectorAll('[slot="button-label"]')
+        : Array.from(this.hostElement.children).filter(
+            (element) => element.getAttribute('slot') === 'button-label'
           );
     const text = slottedNodes
       .map((node) => node.textContent)
@@ -274,7 +274,7 @@ export class DropdownButton
     return ariaLabel?.trim() ? ariaLabel : undefined;
   }
 
-  private getFallbackAriaLabel() {
+  private getLabelAriaLabel() {
     const configuredAriaLabel =
       typeof this.ariaLabelDropdownButton === 'string'
         ? this.ariaLabelDropdownButton.trim() || undefined
@@ -282,9 +282,19 @@ export class DropdownButton
     return (
       configuredAriaLabel ||
       this.getTextLabel() ||
-      (this.label === null ? this.buttonLabelSlotText : undefined) ||
+      (this.label === null ? this.buttonLabelSlotText : undefined)
+    );
+  }
+
+  private getFallbackAriaLabel() {
+    return (
+      this.getLabelAriaLabel() ||
       (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
     );
+  }
+
+  private getMenuAriaLabel() {
+    return this.hostAriaLabel || this.getLabelAriaLabel();
   }
 
   private getAriaLabel() {
@@ -446,7 +456,7 @@ export class DropdownButton
           role="menu"
           ref={this.dropdownRef}
           id={`dropdown-button-menu-${this.dropdownButtonId}`}
-          aria-label={ariaLabel}
+          aria-label={this.getMenuAriaLabel()}
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}

@@ -206,6 +206,23 @@ regressionTest(
 );
 
 regressionTest(
+  'leaves the menu unnamed when the trigger uses a state-based fallback',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="">
+        <ix-dropdown-item label="Edit"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await dropdownButton.click();
+    await expect(dropdownButton.locator('ix-dropdown')).not.toHaveAttribute(
+      'aria-label'
+    );
+  }
+);
+
+regressionTest(
   'uses the open state as accessible name when label is empty',
   async ({ mount, page }) => {
     await mount(`
@@ -440,6 +457,26 @@ regressionTest(
         element.textContent = 'Select year';
       });
     await expect(dropdownButton).toHaveAccessibleName('Select year');
+  }
+);
+
+regressionTest(
+  'ignores nested button-label slot assignments',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-dropdown-button label="Temporary">
+        <div><span slot="button-label">Nested label</span></div>
+        <ix-dropdown-item label="Item"></ix-dropdown-item>
+      </ix-dropdown-button>
+    `);
+
+    const dropdownButton = page.locator('ix-dropdown-button');
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await dropdownButton.evaluate(
+      (element: HTMLIxDropdownButtonElement) => (element.label = null)
+    );
+
+    await expect(dropdownButton).toHaveAccessibleName('Open dropdown');
   }
 );
 
