@@ -16,6 +16,7 @@ defineCustomElement();
 
 const additionalThemes: string[] = [];
 const colorSchemas = ['dark', 'light'] as const;
+const densities = ['default', 'compact'] as const;
 
 function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
@@ -57,10 +58,23 @@ const preview: Preview = {
         })),
       },
     },
+    ixDensity: {
+      name: 'Density',
+      description: 'IX density',
+      toolbar: {
+        icon: 'ruler',
+        dynamicTitle: true,
+        items: densities.map((density) => ({
+          title: density,
+          value: density,
+        })),
+      },
+    },
   },
   initialGlobals: {
     ixTheme: defaultTheme,
     ixColorSchema: 'dark',
+    ixDensity: 'default',
   },
   parameters: {
     options: {
@@ -100,6 +114,11 @@ const preview: Preview = {
         'data-ix-color-schema',
         colorSchema
       );
+      if (context.globals['ixDensity'] === 'compact') {
+        document.documentElement.setAttribute('data-ix-density', 'compact');
+      } else {
+        document.documentElement.removeAttribute('data-ix-density');
+      }
 
       return Story();
     },

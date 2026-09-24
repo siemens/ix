@@ -1,0 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-dropdown-quick-actions--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-dropdown-quick-actions--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-dropdown-quick-actions--margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-dropdown-quick-actions-item--margin-inline-end: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
+  );
+}

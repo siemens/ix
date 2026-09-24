@@ -119,3 +119,15 @@
   --ix-checkbox-unchecked--border-color--warning--active: #{sys.$si-sys-color-border-warning};
   --ix-checkbox-unchecked--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
 }
+
+:host {
+  --ix-checkbox--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-checkbox-button--height: #{sys.$si-sys-sizing-size-70};
+  --ix-checkbox-button--width: #{sys.$si-sys-sizing-size-70};
+  --ix-checkbox--width: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox--min-width: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox--max-width: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox--height: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox--min-height: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox--max-height: #{sys.$si-sys-sizing-size-60};
+}

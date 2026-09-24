@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './application-switch-modal.vars' as *;
 :host {
@@ -16,7 +17,7 @@
   @include component.ix-component;
 
   .content {
-    padding: 2rem;
+    padding: var(--ix-application-switch-modal-content--padding);
     padding-right: 0;
   }
 
@@ -26,8 +27,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-height: 50vh;
-    margin-right: 0.25rem;
-    gap: 1.5rem;
+    margin-right: var(--ix-application-switch-modal-content-apps--margin-right);
+    gap: var(--ix-application-switch-modal-content-apps--gap);
   }
 
   .loading {
@@ -36,7 +37,7 @@
     align-items: center;
 
     ix-spinner {
-      margin-right: 1rem;
+      margin-right: var(--ix-application-switch-modal-loading--margin-right);
     }
   }
 }
@@ -47,9 +48,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
-    padding: calc(0.5rem - 0.0625rem);
-    padding-inline-end: calc(1rem - 0.0625rem);
+    gap: var(--ix-application-switch-modal-app-entry--gap);
+    padding: var(--ix-application-switch-modal-app-entry--padding);
+    padding-inline-end: var(
+      --ix-application-switch-modal-app-entry--padding-inline-end
+    );
     flex: 1 1 calc(45%);
     cursor: pointer;
     border: 0.0625rem solid transparent;
@@ -76,12 +79,12 @@
   }
 
   .AppName ix-icon {
-    margin-left: 1rem;
+    margin-left: var(--ix-application-switch-modal-icon--margin-left);
   }
 
   .AppIcon {
-    width: 3rem;
-    height: 3rem;
+    width: var(--ix-application-switch-modal-app-icon--icon-size);
+    height: var(--ix-application-switch-modal-app-icon--icon-size);
     border-radius: 0.25rem;
   }
 }

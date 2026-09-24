@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './time-picker.vars' as *;
 :host {
@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: vars.$default-control-height;
+    height: var(--ix-time-picker-header--height);
   }
 
   .clock {
@@ -50,9 +50,9 @@
         justify-content: space-around;
 
         .column-header {
-          height: 2.5rem;
-          width: 2.5rem;
-          line-height: 2.5rem;
+          height: var(--ix-time-picker-column-header--height);
+          width: var(--ix-time-picker-column-header--width);
+          line-height: var(--ix-time-picker-column-header--line-height);
           text-align: center;
           color: var(--ix-time-picker-column-header--color);
           text-overflow: ellipsis;
@@ -66,8 +66,8 @@
         align-items: center;
         justify-content: center;
         min-height: 100%;
-        margin-top: 3rem;
-        width: 0.5rem;
+        margin-top: var(--ix-time-picker-column-separator--margin-top);
+        width: var(--ix-time-picker-column-separator--width);
       }
     }
 
@@ -76,7 +76,7 @@
       overflow: auto;
       padding: 0.0625rem;
       margin: -0.0625rem;
-      max-height: calc(2.5rem * 6 + 0.125rem * 6);
+      max-height: var(--ix-time-picker-element-list--max-height);
 
       button {
         all: unset;
@@ -84,9 +84,9 @@
 
       .element-container {
         box-sizing: border-box;
-        width: 2.5rem;
-        height: 2.5rem;
-        margin-bottom: 0.125rem;
+        width: var(--ix-time-picker-element-container--width);
+        height: var(--ix-time-picker-element-container--height);
+        margin-bottom: var(--ix-time-picker-element-container--margin-bottom);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -147,9 +147,9 @@
       }
 
       .element-list-padding {
-        width: 2.5rem;
-        height: calc(2.5rem * 5 + 5 * 0.125rem);
-        min-height: calc(2.5rem * 5 + 5 * 0.125rem);
+        width: var(--ix-time-picker-element-list-padding--width);
+        height: var(--ix-time-picker-element-list-padding--height);
+        min-height: var(--ix-time-picker-element-list-padding--min-height);
       }
     }
 
@@ -166,7 +166,7 @@
   .footer {
     display: flex;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: var(--ix-time-picker-footer--gap);
     flex-wrap: wrap;
 
     .confirm-button {
@@ -184,7 +184,7 @@
   }
 
   .default-space {
-    margin-left: vars.$default-space;
+    margin-left: var(--ix-time-picker-default-space--margin-left);
   }
 
   .text-align {

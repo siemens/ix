@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'legacy/mixins/fonts';
+@use 'tokens/system' as sys;
 
 @use './tile.vars' as *;
 @mixin set-height($height) {
@@ -18,10 +18,10 @@
   max-height: $height;
 }
 
-$heightSmall: 2.5rem;
-$heightMedium: 5rem;
-$heightBig: 10rem;
-$width: 11.937rem;
+$heightSmall: var(--ix-tile--height-small);
+$heightMedium: var(--ix-tile--height-medium);
+$heightBig: var(--ix-tile--height-big);
+$width: var(--ix-tile--width);
 
 :host {
   min-width: $width;
@@ -57,7 +57,7 @@ $width: 11.937rem;
   .tile-subheader,
   .tile-content,
   .tile-footer {
-    padding: 0 vars.$default-space;
+    padding: var(--ix-tile-footer--padding);
   }
 
   .tile-header,
@@ -67,9 +67,9 @@ $width: 11.937rem;
 
   .tile-header.has-content {
     display: flex;
-    height: vars.$large-control-height;
-    max-height: vars.$large-control-height;
-    padding-inline-end: vars.$small-space;
+    height: var(--ix-tile-has-content--height);
+    max-height: var(--ix-tile-has-content--max-height);
+    padding-inline-end: var(--ix-tile-has-content--padding-inline-end);
   }
 
   .tile-subheader {
@@ -79,7 +79,7 @@ $width: 11.937rem;
 
   .tile-footer.has-content {
     border-block-start: 1px solid var(--ix-tile-footer--border-color);
-    height: vars.$large-control-height;
+    height: var(--ix-tile-has-content--height);
   }
 }
 

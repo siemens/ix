@@ -7,21 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './filter-chip.vars' as *;
 :host {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  height: vars.$large-space;
-  padding-left: vars.$small-space;
+  height: var(--ix-filter-chip--height);
+  padding-left: var(--ix-filter-chip--padding-left);
   border: var(--ix-filter-chip--border-width) solid
     var(--ix-filter-chip-primary-outline--border-color);
-  border-radius: vars.$x-large-space;
+  border-radius: var(--ix-filter-chip--border-radius);
   background-color: var(--ix-filter-chip--background);
   color: var(--ix-filter-chip-primary-outline--color);
 
@@ -29,7 +29,7 @@
 
   .slot-container {
     @include text-truncation.ellipsis;
-    line-height: vars.$large-space;
+    line-height: var(--ix-filter-chip-slot-container--line-height);
     min-width: 0;
 
     :host-context(.disabled) {
@@ -40,8 +40,8 @@
   }
 
   ix-icon-button {
-    height: vars.$large-space;
-    margin-left: 0.25rem;
+    height: var(--ix-filter-chip-icon--icon-size);
+    margin-left: var(--ix-filter-chip-icon--margin-left);
 
     @include hover.focus-visible {
       outline: none;
@@ -53,14 +53,16 @@
   border: var(--ix-filter-chip--border-width) solid
     var(--ix-filter-chip--border-color--disabled);
   color: var(--ix-filter-chip--color--disabled);
-  padding-right: vars.$small-space;
+  padding-right: var(--ix-filter-chip-disabled--padding-right);
 
   cursor: default;
 }
 
 :host(.readonly),
 :host(.hide-close-button) {
-  padding-right: vars.$small-space;
+  padding-right: var(
+    --ix-filter-chip-hide-close-button-readonly--padding-right
+  );
 }
 
 @include hover.host-hover {

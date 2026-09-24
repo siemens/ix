@@ -19,3 +19,16 @@
   --ix-tile--border-width: var(--theme-border-width-none);
   --ix-tile--box-shadow: none;
 }
+
+:host {
+  --ix-tile--height-small: #{sys.$si-sys-sizing-size-90};
+  --ix-tile--height-medium: #{sys.$si-sys-sizing-size-120};
+  --ix-tile--height-big: #{sys.$si-sys-sizing-size-150};
+  --ix-tile--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-tile-footer--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-tile-has-content--height: #{sys.$si-sys-sizing-size-90};
+  --ix-tile-has-content--max-height: #{sys.$si-sys-sizing-size-90};
+  --ix-tile-has-content--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+}

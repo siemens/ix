@@ -7,15 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './upload.vars' as *;
 :host {
   display: block;
-  min-height: 4rem;
-  height: 4rem;
+  min-height: var(--ix-upload--min-height);
+  height: var(--ix-upload--height);
 
   @include component.ix-component;
 
@@ -30,7 +30,7 @@
     height: 100%;
     width: 100%;
 
-    padding: vars.$default-space;
+    padding: var(--ix-upload-file-upload-area--padding);
 
     border: 1px dashed var(--ix-upload--border-color);
     border-radius: var(--ix-upload--border-radius);
@@ -73,7 +73,9 @@
     }
 
     ix-button {
-      margin-inline-start: vars.$default-space;
+      margin-inline-start: var(
+        --ix-upload-file-upload-area--margin-inline-start
+      );
     }
 
     .upload-browser {
@@ -88,10 +90,10 @@
     }
 
     .loader {
-      margin: 2.187rem auto;
+      margin: var(--ix-upload-loader--margin);
       font-size: 0.937rem;
-      width: vars.$default-space;
-      height: vars.$default-space;
+      width: var(--ix-upload-loader--width);
+      height: var(--ix-upload-loader--height);
       border-radius: 50%;
       position: relative;
       text-indent: -9999em;
@@ -100,7 +102,7 @@
     }
 
     .upload-filename {
-      margin-bottom: vars.$default-space;
+      margin-bottom: var(--ix-upload-filename--margin-bottom);
     }
 
     .state {
@@ -108,11 +110,15 @@
       align-items: center;
 
       > ix-spinner {
-        margin-inline-end: vars.$small-space;
+        margin-inline-end: var(--ix-upload-state--margin-inline-end);
       }
 
       > ix-icon {
-        margin-inline-end: vars.$small-space;
+        block-size: var(--ix-upload-icon--icon-size);
+        inline-size: var(--ix-upload-icon--icon-size);
+        margin-inline-end: var(--ix-upload-icon--margin-inline-end);
+        min-block-size: var(--ix-upload-icon--icon-size);
+        min-inline-size: var(--ix-upload-icon--icon-size);
 
         &.icon-error {
           color: var(--ix-upload-error-icon--color);

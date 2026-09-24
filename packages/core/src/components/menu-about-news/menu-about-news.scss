@@ -7,22 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use './menu-about-news.vars' as *;
-$left: 3.4rem;
+$left: var(--ix-menu-about-news--left);
+$expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
 
 :host {
-  --margin: 0.5rem;
+  --margin: var(--ix-menu-about-news--margin);
 
   display: block;
   position: fixed;
-  width: 20rem;
+  width: var(--ix-menu-about-news--width);
   height: auto;
   background-color: var(--ix-menu-about-news--background);
-  border-radius: vars.$default-border-radius;
-  padding: 1rem;
+  border-radius: var(--ix-menu-about-news--border-radius);
+  padding: var(--ix-menu-about-news--padding);
   left: $left;
   z-index: 10000;
   transition: left var(--ix-menu-about-news--transition-duration);
@@ -35,7 +36,7 @@ $left: 3.4rem;
   .banner-container {
     position: absolute;
     top: 0.0625rem;
-    left: vars.$default-space;
+    left: var(--ix-menu-about-news-banner-container--left);
 
     svg {
       position: absolute;
@@ -48,16 +49,22 @@ $left: 3.4rem;
     }
 
     ix-icon {
-      margin: vars.$small-space;
+      margin: var(--ix-menu-about-news-icon--margin);
       position: absolute;
       z-index: 1;
     }
   }
 
   .cui-popover-news-header {
-    margin-bottom: 2.5rem;
-    margin-inline-start: 4rem;
-    margin-block-start: -(vars.$tiny-space);
+    margin-bottom: var(
+      --ix-menu-about-news-cui-popover-news-header--margin-bottom
+    );
+    margin-inline-start: var(
+      --ix-menu-about-news-cui-popover-news-header--margin-inline-start
+    );
+    margin-block-start: var(
+      --ix-menu-about-news-cui-popover-news-header--margin-block-start
+    );
   }
 
   .popover-body {
@@ -67,12 +74,12 @@ $left: 3.4rem;
   .cui-popover-news-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 1rem;
+    margin-top: var(--ix-menu-about-news-cui-popover-news-footer--margin-top);
   }
 
   ix-icon-button {
-    top: vars.$small-space;
-    right: vars.$small-space;
+    top: var(--ix-menu-about-news-icon--top);
+    right: var(--ix-menu-about-news-icon--right);
     position: absolute;
   }
 
@@ -86,7 +93,7 @@ $left: 3.4rem;
 }
 
 :host(.expanded) {
-  left: calc(#{$left} + 12.7rem);
+  left: calc(#{$left} + #{$expanded-left-offset});
 }
 
 :host(.show) {

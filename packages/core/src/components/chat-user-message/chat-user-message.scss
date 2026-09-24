@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use './mixins/action.mixin';
+@use 'tokens/system' as sys;
 @use './chat-user-message.vars';
 
 :host {
@@ -23,7 +24,7 @@
 
   .message {
     width: fit-content;
-    min-width: max(15.375rem, 45%);
+    min-width: var(--ix-chat-user-message-message--min-width);
     max-width: 80%;
     box-sizing: border-box;
     padding: var(--theme-space-2) var(--theme-space-3);
@@ -44,7 +45,7 @@
   }
 
   .attachments ::slotted(ix-chat-attachment) {
-    flex: 0 1 6.375rem;
+    flex: var(--ix-chat-user-message-attachments--flex);
     padding-left: var(--theme-space-1);
   }
 
@@ -65,7 +66,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: var(--theme-space-1);
-    min-height: 2rem;
+    min-height: var(--ix-chat-user-message-actions--min-height);
     margin-top: var(--theme-space-1);
 
     @include action.animate-action;

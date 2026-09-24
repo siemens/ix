@@ -38,3 +38,38 @@
   --ix-select-item-hint--color: #{sys.$si-sys-color-text-secondary};
   --ix-select-overflow-button--color--active: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-select-chip--horizontal-margin: calc(
+    #{sys.$si-sys-sizing-spacing-x-10} * 0.8
+  );
+  --ix-select-trigger--min-width: calc(
+    #{sys.$si-sys-sizing-size-120} - #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-select-overflow-chip--fallback-width: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-select--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-select--padding: 0 0 0 #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-select-chips--max-width: min(
+    40%,
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120})
+  );
+  --ix-select-icon--icon-size: calc(
+    #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-select-icon--icon-size--icon: calc(
+    #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-select-input-container--height: calc(
+    #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-select-overflow-dropdown-content--gap: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-select-overflow-dropdown-content--max-height: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-y-60}
+  );
+  --ix-select-overflow-dropdown-content--padding: #{sys.$si-sys-sizing-spacing-y-40}
+    #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-select-list-header--height: #{sys.$si-sys-sizing-size-80};
+  --ix-select-list-header--margin: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
+}

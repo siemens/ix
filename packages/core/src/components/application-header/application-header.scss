@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/breakpoints';
+@use 'tokens/system' as sys;
 
 @use './application-header.vars' as *;
 :host {
@@ -17,10 +18,10 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-  min-height: 3rem;
+  min-height: var(--ix-application-header--min-height);
   padding-top: var(--ix-safe-area-inset-top, 0rem);
-  padding-right: calc(0.625rem + var(--ix-safe-area-inset-right, 0rem));
-  padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
+  padding-right: var(--ix-application-header--padding-right);
+  padding-left: var(--ix-application-header--padding-left);
 
   color: var(--ix-application-header--color);
   background-color: var(--ix-application-header--background);
@@ -40,7 +41,7 @@
     position: relative;
     align-items: center;
     min-width: 0;
-    min-height: 3rem;
+    min-height: var(--ix-application-header-right-side--min-height);
     height: 100%;
   }
 
@@ -50,12 +51,12 @@
     .app-icon {
       display: block;
       position: relative;
-      width: 2rem;
-      min-width: 2rem;
-      max-width: 2rem;
-      height: 2rem;
-      min-height: 2rem;
-      max-height: 2rem;
+      width: var(--ix-application-header-app-icon--icon-size);
+      min-width: var(--ix-application-header-app-icon--icon-size);
+      max-width: var(--ix-application-header-app-icon--icon-size);
+      height: var(--ix-application-header-app-icon--icon-size);
+      min-height: var(--ix-application-header-app-icon--icon-size);
+      max-height: var(--ix-application-header-app-icon--icon-size);
     }
 
     .app-icon.app-icon-outline {
@@ -72,7 +73,7 @@
     }
 
     .app-switch {
-      margin: 0 0.625rem;
+      margin: var(--ix-application-header-app-switch--margin);
     }
 
     .app-switch.without-app-icon {
@@ -85,12 +86,12 @@
       flex-direction: row;
       flex-wrap: nowrap;
 
-      margin-left: 0.75rem;
-      margin-right: 0.75rem;
+      margin-left: var(--ix-application-header-name--margin-left);
+      margin-right: var(--ix-application-header-name--margin-right);
       color: var(--ix-application-header--color);
       min-width: 0;
 
-      gap: 0.75rem;
+      gap: var(--ix-application-header-name--gap);
       overflow: hidden;
     }
 
@@ -121,12 +122,12 @@
       display: inline-flex;
       align-items: center;
       position: relative;
-      height: 32px;
+      height: var(--ix-application-header-logo--height);
       overflow: hidden;
       line-height: 0rem;
       color: var(--ix-application-header-logo--color);
-      margin-right: 1rem;
-      margin-left: 1rem;
+      margin-right: var(--ix-application-header-logo--margin-right);
+      margin-left: var(--ix-application-header-logo--margin-left);
       min-width: fit-content;
     }
 
@@ -164,7 +165,7 @@
     }
 
     .dropdown-content > .slot-content-active {
-      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      padding: var(--ix-application-header-slot-content-active--padding);
       border-top: none;
     }
 
@@ -179,11 +180,13 @@
 
     .context-menu.context-menu-visible {
       display: block;
-      margin-left: 0.5rem;
+      margin-left: var(
+        --ix-application-header-context-menu-visible--margin-left
+      );
     }
 
     ::slotted(ix-avatar) {
-      margin-left: 0.5rem;
+      margin-left: var(--ix-application-header-right-side--margin-left);
     }
 
     .primary-navigation {
@@ -197,7 +200,7 @@
 
   @include breakpoints.media-breakpoint-match('sm') {
     .logo {
-      margin-left: 0.5rem;
+      margin-left: var(--ix-application-header-logo--margin-left--mobile);
       display: none !important;
     }
 

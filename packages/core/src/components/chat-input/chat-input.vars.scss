@@ -28,3 +28,19 @@
   --ix-chat-input-character-limit-soft-icon--color: #{sys.$si-sys-color-text-information};
   --ix-chat-input-character-limit-hard-icon--color: #{sys.$si-sys-color-text-warning};
 }
+
+:host {
+  --ix-chat-input--min-height: calc(
+    #{sys.$si-sys-sizing-size-140} + 4 * (#{sys.$si-sys-sizing-spacing-y-20} - #{sys.$si-sys-sizing-spacing-y-10})
+  );
+  --ix-chat-input-follow-up-prompts--max-width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-130}
+  );
+  --ix-chat-input-follow-up-prompts--min-width: #{sys.$si-sys-sizing-size-120};
+  --ix-chat-input-attachments-wrap--max-height: calc(
+    #{sys.$si-sys-sizing-size-110} + var(--theme-space-2)
+  );
+  --ix-chat-input-has-attachment-scrollbar--padding-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-chat-input-textarea--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chat-input-action-row--min-height: #{sys.$si-sys-sizing-size-80};
+}

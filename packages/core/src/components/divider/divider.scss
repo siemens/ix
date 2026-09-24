@@ -8,11 +8,12 @@
  */
 
 @use './divider.vars' as *;
+@use 'tokens/system' as sys;
 :host {
   display: block;
   position: relative;
 
   width: 100%;
   border-bottom: 0.0625rem solid var(--ix-divider--border-color);
-  margin: 0.25rem 0px;
+  margin: var(--ix-divider--margin);
 }

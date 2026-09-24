@@ -7,6 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 :host {
   --ix-application-child-header--z-index: var(--theme-z-index-sticky);
+}
+
+:host {
+  --ix-application-breakpoint-md--application-menu-margin-left: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
+      var(--ix-application-menu-safe-area-left, 0rem)
+  );
 }

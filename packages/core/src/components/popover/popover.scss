@@ -8,6 +8,7 @@
  */
 
 @use './popover.vars' as *;
+@use 'tokens/system' as sys;
 :host {
   dialog.dialog {
     margin: 0;
@@ -18,10 +19,10 @@
     overflow: visible;
     position: fixed;
     inset: unset;
-    width: 25rem;
-    min-width: 15rem;
-    max-width: 37.5rem;
-    max-height: calc(100vh - 2rem);
+    width: var(--ix-popover-dialog--width);
+    min-width: var(--ix-popover-dialog--min-width);
+    max-width: var(--ix-popover-dialog--max-width);
+    max-height: var(--ix-popover-dialog--max-height);
   }
 
   .popover-container {
@@ -29,7 +30,7 @@
     flex-direction: column;
     position: relative;
     width: 100%;
-    max-height: calc(100vh - 2rem);
+    max-height: var(--ix-popover-container--max-height);
     background: var(--ix-popover--background);
     color: var(--ix-popover--color);
     border: 1px solid var(--ix-popover--border-color);

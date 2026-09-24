@@ -41,3 +41,8 @@
   --ix-progress-indicator-track-success--background: #{sys.$si-sys-color-background-success-subtle};
   --ix-progress-indicator-track-warning--background: #{sys.$si-sys-color-background-warning-subtle};
 }
+
+:host {
+  --ix-progress-indicator-progress-container--margin: #{sys.$si-sys-sizing-spacing-y-40}
+    0;
+}

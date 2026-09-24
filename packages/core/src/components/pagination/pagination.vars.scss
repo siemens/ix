@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-pagination-basic--padding: 0 #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-pagination-advanced--padding: 0 #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-pagination-page-selection--width: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-pagination-page-selection--margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-pagination-item-count--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-pagination-item-count--width: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  --ix-pagination--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-pagination--height: #{sys.$si-sys-sizing-size-80};
+  --ix-pagination--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+}

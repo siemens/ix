@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 @use './chat-ai-message.vars';
 
 :host {
@@ -56,13 +57,13 @@
     align-items: center;
     gap: var(--theme-space-3);
     width: 100%;
-    min-height: 2rem;
+    min-height: var(--ix-chat-ai-message-meta--min-height);
   }
 
   .actions {
     display: none;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--ix-chat-ai-message-actions--gap);
   }
 
   .sources {

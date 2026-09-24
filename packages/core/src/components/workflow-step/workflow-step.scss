@@ -7,25 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
 @use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
-  width: 12rem;
-  height: 4rem;
-  min-width: 2rem;
-  min-height: 4rem;
-  max-width: 12rem;
+  width: var(--ix-workflow-step-horizontal--width);
+  height: var(--ix-workflow-step--height);
+  min-width: var(--ix-workflow-step-horizontal--min-width);
+  min-height: var(--ix-workflow-step-horizontal--min-height);
+  max-width: var(--ix-workflow-step-horizontal--max-width);
 }
 
 :host(.host-vertical) {
   width: 100%;
-  height: 4rem;
-  min-width: 4rem;
-  min-height: 2rem;
-  max-height: 12rem;
+  height: var(--ix-workflow-step--height);
+  min-width: var(--ix-workflow-step-vertical--min-width);
+  min-height: var(--ix-workflow-step-vertical--min-height);
+  max-height: var(--ix-workflow-step-vertical--max-height);
 }
 
 :host {
@@ -40,7 +39,7 @@
     align-items: center;
     background-color: var(--ix-workflow-step--background);
     border-radius: var(--ix-workflow-step--border-radius);
-    padding: 1.125rem 0 vars.$small-space 0;
+    padding: var(--ix-workflow-step-step--padding);
 
     .wrapper {
       display: flex;
@@ -110,9 +109,9 @@
     }
 
     .text {
-      margin-top: vars.$default-space;
+      margin-top: var(--ix-workflow-step-text--margin-top);
       width: 100%;
-      padding: 0 vars.$small-space;
+      padding: var(--ix-workflow-step-text--padding);
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -127,7 +126,7 @@
 
       .wrapper {
         width: auto;
-        padding-left: 1.125rem;
+        padding-left: var(--ix-workflow-step-wrapper-vertical--padding-left);
         height: 100%;
 
         .line {
@@ -151,7 +150,7 @@
       }
 
       .text {
-        margin: 0 vars.$default-space;
+        margin: var(--ix-workflow-step-text-vertical--margin);
         padding: 0;
         width: auto;
       }

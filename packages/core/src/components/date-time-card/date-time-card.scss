@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './date-time-card.vars' as *;
 :host {
@@ -50,7 +50,7 @@
       width: 100%;
 
       .header {
-        padding: vars.$medium-space vars.$default-space;
+        padding: var(--ix-date-time-card-header--padding);
         flex: 0 1 auto;
       }
     }
@@ -63,14 +63,14 @@
     }
 
     .content {
-      padding: 0 vars.$default-space vars.$default-space vars.$default-space;
+      padding: var(--ix-date-time-card-content--padding);
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       &--time-picker {
-        padding: 0 vars.$default-space;
+        padding: var(--ix-date-time-card-time-picker--padding);
       }
 
       &--no-padding {
@@ -82,7 +82,7 @@
       width: 100%;
 
       .footer {
-        padding: vars.$default-space;
+        padding: var(--ix-date-time-card-footer--padding);
       }
     }
   }

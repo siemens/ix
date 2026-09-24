@@ -14,6 +14,7 @@
 @use './button-variants' as *;
 
 @use './button.vars' as *;
+@use 'tokens/system' as sys;
 
 @mixin btn-active-look($name) {
   border-color: var(--ix-button-#{$name}--border-color--active);
@@ -117,7 +118,7 @@
   width: 100%;
   height: 100%;
 
-  padding: var(--ix-button-padding, 0 0.5rem);
+  padding: var(--ix-button-padding, var(--ix-button--padding));
 }
 
 @mixin btn {
@@ -126,7 +127,7 @@
     --ix-button-border-radius-right: var(--ix-button--border-radius);
 
     display: inline-block;
-    height: 2rem;
+    height: var(--ix-button--height);
     vertical-align: middle;
     cursor: pointer;
 
@@ -139,7 +140,7 @@
     }
 
     ix-spinner {
-      margin-right: 0.25rem;
+      margin-right: var(--ix-button--margin-right);
     }
 
     .content {
@@ -158,11 +159,11 @@
       // Prevents icon to show title tooltip
       // if embedded in ix-icon-button or ix-button[icon]
       pointer-events: none;
-      margin-right: 0.25rem;
+      margin-right: var(--ix-button-icon--margin-right);
     }
 
     .icon-right {
-      margin-left: 0.25rem;
+      margin-left: var(--ix-button-icon-right--margin-left);
     }
   }
 

@@ -16,3 +16,9 @@
   --ix-menu-expand-icon--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-menu-expand-icon--color: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-menu-expand-icon--height: #{sys.$si-sys-sizing-size-80};
+  --ix-menu-expand-icon--width: #{sys.$si-sys-sizing-size-80};
+  --ix-menu-expand-icon-menu-expand-button--width: #{sys.$si-sys-sizing-size-80};
+}

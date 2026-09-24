@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './message-bar.vars' as *;
 :host {
-  margin: vars.$small-space vars.$small-space 0rem vars.$small-space;
+  margin: var(--ix-message-bar--margin);
 
   @include component.ix-component;
 
@@ -22,11 +22,8 @@
     align-items: flex-start;
     flex-wrap: nowrap;
     justify-content: space-between;
-    min-height: 3.375rem;
-    padding: calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
-      vars.$medium-space
-      calc(#{vars.$medium-space} - var(--ix-message-bar--border-width))
-      vars.$default-space;
+    min-height: var(--ix-message-bar-message-container--min-height);
+    padding: var(--ix-message-bar-message-container--padding);
     border-radius: var(--ix-message-bar--border-radius);
     background-color: var(--ix-message-bar--background);
   }
@@ -51,14 +48,18 @@
   .message-content {
     flex-grow: 1;
     align-self: center;
-    min-height: 1.25rem;
-    padding: 0 vars.$default-space;
+    min-height: var(--ix-message-bar-message-content--min-height);
+    padding: var(--ix-message-bar-message-content--padding);
     font-weight: normal;
     white-space: normal;
   }
 
   ix-icon {
-    margin-top: vars.$tiny-space;
+    block-size: var(--ix-message-bar-icon--icon-size);
+    inline-size: var(--ix-message-bar-icon--icon-size);
+    margin-top: var(--ix-message-bar-icon--margin-top);
+    min-block-size: var(--ix-message-bar-icon--icon-size);
+    min-inline-size: var(--ix-message-bar-icon--icon-size);
   }
 
   .message-bar-hidden {

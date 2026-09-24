@@ -12,3 +12,7 @@
 :host {
   --ix-divider--border-color: #{sys.$si-sys-color-border-4};
 }
+
+:host {
+  --ix-divider--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+}

@@ -17,3 +17,9 @@
   --ix-tree-item--background--selected-active: #{sys.$si-sys-color-background-selected};
   --ix-tree-item--background--selected-hover: #{sys.$si-sys-color-background-hover};
 }
+
+:host {
+  --ix-tree-item--height: #{sys.$si-sys-sizing-size-80};
+  --ix-tree-item-tree-node-container--height: #{sys.$si-sys-sizing-size-80};
+  --ix-tree-item-icon-toggle-container--icon-size: #{sys.$si-sys-sizing-size-80};
+}

@@ -91,3 +91,21 @@ $blind-variant-sys-values: (
   --ix-blind--border-width: var(--theme-border-width-default);
   --ix-blind--background: #{sys.$si-sys-color-background-1};
 }
+
+:host {
+  --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-header--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
+  --ix-blind-header--min-height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-header--height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-header-title-col--width: calc(
+    100% - #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  --ix-blind-header-title-label--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-header-title-sublabel--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+}

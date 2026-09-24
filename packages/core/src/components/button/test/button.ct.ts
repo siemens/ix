@@ -23,6 +23,86 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(button).toHaveClass(/hydrated/);
 });
 
+regressionTest(
+  'all button variants follow default and compact density',
+  async ({ mount, page }) => {
+    const variants = [
+      'primary',
+      'secondary',
+      'tertiary',
+      'subtle-primary',
+      'subtle-secondary',
+      'subtle-tertiary',
+      'danger-primary',
+      'danger-secondary',
+      'danger-tertiary',
+    ];
+
+    await mount(
+      `<div style="display: flex; gap: 8px; flex-wrap: wrap;">${variants
+        .map(
+          (variant) => `<ix-button variant="${variant}">${variant}</ix-button>`
+        )
+        .join('')}</div>`
+    );
+
+    const buttons = page.locator('ix-button');
+    await expect(buttons).toHaveCount(variants.length);
+    for (const button of await buttons.all()) {
+      await expect(button).toHaveCSS('height', '32px');
+    }
+
+    await page.locator('body').evaluate((body) => {
+      body.setAttribute('data-ix-density', 'compact');
+    });
+
+    for (const button of await buttons.all()) {
+      await expect(button).toHaveCSS('height', '24px');
+    }
+  }
+);
+
+regressionTest(
+  'uses density spacing tokens for button internals',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-button id="default-button">Content</ix-button>
+        <ix-button id="icon-button" icon="rocket">Content</ix-button>
+        <ix-button id="loading-button" loading>Content</ix-button>
+        <ix-button id="override-button" style="--ix-button-padding: 0 20px">
+          Content
+        </ix-button>
+      `,
+      { icons: { iconRocket } }
+    );
+
+    await expect(page.locator('#default-button')).toHaveCSS(
+      'min-width',
+      '80px'
+    );
+    await expect(page.locator('#default-button').locator('button')).toHaveCSS(
+      'padding-left',
+      '8px'
+    );
+    await expect(page.locator('#default-button').locator('button')).toHaveCSS(
+      'padding-right',
+      '8px'
+    );
+    await expect(page.locator('#icon-button').locator('.icon')).toHaveCSS(
+      'margin-right',
+      '4px'
+    );
+    await expect(
+      page.locator('#loading-button').locator('ix-spinner')
+    ).toHaveCSS('margin-right', '4px');
+    await expect(page.locator('#override-button').locator('button')).toHaveCSS(
+      'padding-left',
+      '20px'
+    );
+  }
+);
+
 regressionTest('show icon', async ({ mount, page }) => {
   await mount(`<ix-button icon="rocket">Content</ix-button>`, {
     icons: { iconRocket },

@@ -9,12 +9,15 @@
 
 @use 'mixins/shadow-dom/component';
 
+@use 'tokens/system' as sys;
+
+@use './workflow-steps.vars' as *;
 :host {
   display: block;
   position: relative;
   width: fit-content;
   height: fit-content;
-  min-width: 2rem;
+  min-width: var(--ix-workflow-steps--min-width);
 
   @include component.ix-component;
 

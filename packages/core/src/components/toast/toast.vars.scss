@@ -18,3 +18,24 @@
   --ix-toast--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
   --ix-toast-timer-value--background: #{sys.$si-sys-color-border-3};
 }
+
+:host {
+  --ix-toast--min-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
+  );
+  --ix-toast--max-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
+  );
+  --ix-toast--min-height: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-toast-body--min-height: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-toast-body--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
+    #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-toast-icon--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-toast-content--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-toast-title--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-toast-action--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+}

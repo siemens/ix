@@ -100,3 +100,8 @@ $card-variants: outline filled alarm critical warning success info neutral
   --ix-card-warning--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
   --ix-card-warning--color: #{sys.$si-sys-color-text-on-warning};
 }
+
+:host {
+  --ix-card--width: #{sys.$si-sys-sizing-size-170};
+  --ix-card-content--height: calc(100% - #{sys.$si-sys-sizing-size-80});
+}

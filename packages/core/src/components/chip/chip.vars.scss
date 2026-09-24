@@ -123,3 +123,21 @@ $chip-color-sys-values: (
   --ix-chip-primary-outline--color--display: #{sys.$si-sys-color-text-primary};
   --ix-chip-primary-outline--color--hover: #{sys.$si-sys-color-border-accent-hover};
 }
+
+:host {
+  --ix-chip--padding-inline: #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-chip-container--padding: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-chip-container--height: #{sys.$si-sys-sizing-size-80};
+  --ix-chip-container--max-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chip-with-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-chip-close-button-container--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-chip-inactive-outline--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-chip--close-size: #{sys.$si-sys-sizing-size-70};
+  --ix-chip--close-inset: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-chip--height: #{sys.$si-sys-sizing-size-80};
+  --ix-chip--max-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chip-wrap--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chip-wrap--max-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chip-main--padding-block: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-chip-main-outline--padding-right: #{sys.$si-sys-sizing-spacing-x-30};
+}

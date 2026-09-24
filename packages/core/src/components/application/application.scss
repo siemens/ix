@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './application.vars' as *;
 :host {
@@ -66,8 +67,8 @@
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu-margin-left: calc(
-    3.25rem + var(--ix-application-menu-safe-area-left, 0rem)
+  --ix-application-menu-margin-left: var(
+    --ix-application-breakpoint-md--application-menu-margin-left
   );
 
   aside.slotted {

@@ -1,15 +1,15 @@
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './key-value.vars' as *;
 :host(.keyValue) {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: vars.$default-space;
+  gap: var(--ix-key-value--gap);
 
   .keyValue__icon {
-    padding: vars.$tiny-space 0;
+    padding: var(--ix-key-value-icon--padding);
   }
 
   .keyValue__content {
@@ -36,7 +36,7 @@
 }
 
 :host(.keyValue.keyValue--column) {
-  padding: vars.$small-space 0;
+  padding: var(--ix-key-value-column--padding);
   border-bottom: 1px solid var(--ix-key-value--border-color);
 
   .keyValue__content {
@@ -44,26 +44,26 @@
 
     .content__label,
     .content__value:not(.has-customValue) {
-      padding: 2px 0;
+      padding: var(--ix-key-value-column-content--padding);
     }
   }
 }
 
 :host(.keyValue.keyValue--row) {
-  padding: vars.$tiny-space 0;
+  padding: var(--ix-key-value-row--padding);
 
   .keyValue__content {
     flex-direction: row;
-    gap: vars.$default-space;
+    gap: var(--ix-key-value-content--gap);
     align-items: center;
 
     .content__label,
     .content__value:not(.has-customValue) {
-      padding: 6px 0;
+      padding: var(--ix-key-value-row-content--padding);
     }
 
     .content__label {
-      min-width: 8rem;
+      min-width: var(--ix-key-value-content-label--min-width);
     }
   }
 }

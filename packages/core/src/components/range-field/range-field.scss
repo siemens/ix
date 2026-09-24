@@ -7,21 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './range-field.vars' as *;
 :host {
   @include component.ix-component();
   display: inline-flex;
   position: relative;
-  gap: 0.25rem;
+  gap: var(--ix-range-field--gap);
 
   .range-delimiter {
+    block-size: var(--ix-range-field-range-delimiter--block-size);
+    inline-size: var(--ix-range-field-range-delimiter--inline-size);
+    min-block-size: var(--ix-range-field-range-delimiter--min-block-size);
+    min-inline-size: var(--ix-range-field-range-delimiter--min-inline-size);
     order: 2;
     flex: 0 0 auto;
-    margin-top: 0.25rem;
+    margin-top: var(--ix-range-field-range-delimiter--margin-top);
   }
 
   .range-delimiter.has-label {
-    margin-top: 2rem;
+    margin-top: var(--ix-range-field-has-label--margin-top);
   }
 
   ::slotted(:first-child),
@@ -39,10 +45,10 @@
   }
 
   ::slotted(.fallback-label-margin) {
-    margin-top: 1.8rem;
+    margin-top: var(--ix-range-field-fallback-label-margin--margin-top);
   }
 }
 
 :host(.hide-arrow) {
-  gap: 0.5rem;
+  gap: var(--ix-range-field-hide-arrow--gap);
 }

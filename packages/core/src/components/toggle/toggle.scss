@@ -8,16 +8,17 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './toggle.vars' as *;
 :host {
   display: inline-flex;
   flex-direction: row;
   position: relative;
-  min-height: 1.5rem;
-  max-height: calc(100% - 0.5rem);
-  margin-block-start: 0.25rem;
-  margin-block-end: 0.25rem;
+  min-height: var(--ix-toggle--min-height);
+  max-height: var(--ix-toggle--max-height);
+  margin-block-start: var(--ix-toggle--margin-block-start);
+  margin-block-end: var(--ix-toggle--margin-block-end);
 
   @include component.ix-component;
 
@@ -33,19 +34,19 @@
     display: block;
     white-space: normal;
     overflow: hidden;
-    margin-block-start: 0.125rem;
-    margin-inline-start: 0.5rem;
-    min-height: 1rem;
+    margin-block-start: var(--ix-toggle-label--margin-block-start);
+    margin-inline-start: var(--ix-toggle-label--margin-inline-start);
+    min-height: var(--ix-toggle-label--min-height);
   }
 
   .switch {
     all: unset;
     position: relative;
     display: inline-block;
-    width: 3rem;
-    min-width: 3rem;
-    max-width: 3rem;
-    height: 1.5rem;
+    width: var(--ix-toggle-switch--width);
+    min-width: var(--ix-toggle-switch--min-width);
+    max-width: var(--ix-toggle-switch--max-width);
+    height: var(--ix-toggle-switch--height);
   }
 
   .slider {
@@ -63,10 +64,10 @@
   .slider:before {
     position: absolute;
     content: '';
-    height: 1.125rem;
-    width: 1.125rem;
-    left: 0.125rem;
-    bottom: 0.125rem;
+    height: var(--ix-toggle-slider--height);
+    width: var(--ix-toggle-slider--width);
+    left: var(--ix-toggle-slider--left);
+    bottom: var(--ix-toggle-slider--bottom);
     background-color: var(--ix-toggle-thumb-off--background);
     transition: var(--ix-toggle-thumb--transition-duration);
     border-radius: 50%;
@@ -75,7 +76,7 @@
 
   .switch.checked > .slider::before {
     background-color: var(--ix-toggle-thumb-on--background);
-    transform: translateX(1.5rem);
+    transform: var(--ix-toggle-slider-checked--transform);
   }
 
   .switch > .slider {
@@ -132,7 +133,7 @@
   }
 
   .switch.indeterminate > .slider::before {
-    transform: translateX(0.75rem);
+    transform: var(--ix-toggle-slider--transform);
   }
 }
 
