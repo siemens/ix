@@ -17,6 +17,17 @@ type TreeData = {
   icon: string;
 };
 
+function isTreeData(data: unknown): data is TreeData {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    'name' in data &&
+    typeof data.name === 'string' &&
+    'icon' in data &&
+    typeof data.icon === 'string'
+  );
+}
+
 export default () => {
   const [context, setContext] = useState<TreeContext>();
   const [model] = useState<TreeModel<TreeData>>({
@@ -80,7 +91,11 @@ export default () => {
         height: '40rem',
       }}
     >
-      <IxButton variant="tertiary" onClick={expandAndSelect} style={{ marginBottom: '2rem' }}>
+      <IxButton
+        variant="tertiary"
+        onClick={expandAndSelect}
+        style={{ marginBottom: '2rem' }}
+      >
         Expand Tree
       </IxButton>
       <IxTree
@@ -91,23 +106,25 @@ export default () => {
         onContextChange={({ detail }) => {
           setContext(detail);
         }}
-        renderItem={(data: TreeData) => (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <IxIcon
-              name={data.icon}
-              size="16"
+        renderItem={(data) =>
+          isTreeData(data) ? (
+            <div
               style={{
-                marginInlineEnd: '0.5rem',
+                display: 'flex',
+                alignItems: 'center',
               }}
-            />
-            {data.name}
-          </div>
-        )}
+            >
+              <IxIcon
+                name={data.icon}
+                size="16"
+                style={{
+                  marginInlineEnd: '0.5rem',
+                }}
+              />
+              {data.name}
+            </div>
+          ) : null
+        }
       ></IxTree>
     </div>
   );
