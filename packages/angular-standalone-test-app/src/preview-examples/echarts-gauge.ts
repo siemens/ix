@@ -34,11 +34,11 @@ export default class EchartsGauge implements OnDestroy, OnInit {
 
   private getGaugeColor(value: number) {
     if (value > 60)
-      return getComputedCSSProperty('--si-sys-background-success');
+      return getComputedCSSProperty('--si-sys-color-background-success');
     else if (value > 25)
-      return getComputedCSSProperty('--si-sys-background-warning');
+      return getComputedCSSProperty('--si-sys-color-background-warning');
     else {
-      return getComputedCSSProperty('--si-sys-background-danger');
+      return getComputedCSSProperty('--si-sys-color-background-danger');
     }
   }
 
@@ -58,7 +58,7 @@ export default class EchartsGauge implements OnDestroy, OnInit {
                 [
                   1,
                   getComputedCSSProperty(
-                    '--si-sys-data-sequential-deep-blue-4'
+                    '--si-sys-color-data-sequential-deep-blue-4'
                   ),
                 ],
               ],
@@ -79,7 +79,7 @@ export default class EchartsGauge implements OnDestroy, OnInit {
             show: true,
             distance: 30,
             fontSize: 16,
-            color: getComputedCSSProperty('--si-sys-text-primary'),
+            color: getComputedCSSProperty('--si-sys-color-text-primary'),
           },
           progress: {
             show: true,
@@ -106,7 +106,7 @@ export default class EchartsGauge implements OnDestroy, OnInit {
                 fontSize: '1.5rem',
                 width: 250,
                 lineHeight: 35,
-                color: getComputedCSSProperty('--si-sys-text-secondary'),
+                color: getComputedCSSProperty('--si-sys-color-text-secondary'),
                 formatter: '{value}Mbps \nNetwork Speed',
               },
               pointer: {
@@ -132,9 +132,18 @@ export default class EchartsGauge implements OnDestroy, OnInit {
             lineStyle: {
               width: 5,
               color: [
-                [0.25, getComputedCSSProperty('--si-sys-background-danger')],
-                [0.6, getComputedCSSProperty('--si-sys-background-warning')],
-                [1, getComputedCSSProperty('--si-sys-background-success')],
+                [
+                  0.25,
+                  getComputedCSSProperty('--si-sys-color-background-danger'),
+                ],
+                [
+                  0.6,
+                  getComputedCSSProperty('--si-sys-color-background-warning'),
+                ],
+                [
+                  1,
+                  getComputedCSSProperty('--si-sys-color-background-success'),
+                ],
               ],
             },
           },

@@ -2591,7 +2591,7 @@
       "events": [
         {
           "name": "dateRangeChange",
-          "detail": "{ id: string; from?: string | undefined; to?: string | undefined; }",
+          "detail": "{ id: string; from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3117,7 +3117,7 @@
       "events": [
         {
           "name": "dateChange",
-          "detail": "{ from?: string | undefined; to?: string | undefined; }",
+          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3125,7 +3125,7 @@
         },
         {
           "name": "dateRangeChange",
-          "detail": "{ from?: string | undefined; to?: string | undefined; }",
+          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3133,7 +3133,7 @@
         },
         {
           "name": "dateSelect",
-          "detail": "{ from?: string | undefined; to?: string | undefined; }",
+          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3566,12 +3566,78 @@
           "deprecated": false
         },
         {
+          "name": "i18nAm",
+          "attribute": "i18n-am",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'AM'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nDone",
           "attribute": "i18n-done",
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'Done'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nHourColumnHeader",
+          "attribute": "i18n-hour-column-header",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'hr'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nMillisecondColumnHeader",
+          "attribute": "i18n-millisecond-column-header",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'ms'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nMinuteColumnHeader",
+          "attribute": "i18n-minute-column-header",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'min'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nPm",
+          "attribute": "i18n-pm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'PM'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSecondColumnHeader",
+          "attribute": "i18n-second-column-header",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'sec'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -3727,7 +3793,7 @@
       "events": [
         {
           "name": "dateChange",
-          "detail": "\"time\" | string | { from?: string | undefined; to?: string | undefined; time: string; }",
+          "detail": "\"time\" | string | { from?: string | undefined; to?: string | undefined; time: string; isoFrom?: string | undefined; isoTo?: string | undefined; isoTime?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3735,7 +3801,7 @@
         },
         {
           "name": "dateSelect",
-          "detail": "{ from?: string | undefined; to?: string | undefined; time: string; }",
+          "detail": "{ from?: string | undefined; to?: string | undefined; time: string; isoFrom?: string | undefined; isoTo?: string | undefined; isoTime?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -5086,10 +5152,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5207,10 +5273,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5240,6 +5306,73 @@
       ],
       "cssProperties": [],
       "slots": [],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-info-page",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "copyText",
+          "attribute": "copy-text",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "iconWarning",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconColor",
+          "attribute": "icon-color",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'--si-sys-color-background-warning'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "instructions",
+          "attribute": "instructions",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "titleText",
+          "attribute": "title-text",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": false,
+          "required": true,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [
+        "actions",
+        "image"
+      ],
       "cssParts": [],
       "cssStates": []
     },
@@ -9485,10 +9618,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"large\" | \"medium\" | \"small\" | \"x-small\" | \"xx-small\"",
+          "type": "\"md\" | \"sm\" | \"xs\" | \"xxl\" | \"xxs\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'medium'",
+          "default": "'md'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -10243,6 +10376,17 @@
           "deprecated": false
         },
         {
+          "name": "i18nAm",
+          "attribute": "i18n-am",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'AM'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nErrorTimeUnparsable",
           "attribute": "i18n-error-time-unparsable",
           "type": "string",
@@ -10282,6 +10426,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'min'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nPm",
+          "attribute": "i18n-pm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'PM'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -10342,6 +10497,16 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "locale",
+          "attribute": "locale",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
@@ -10613,6 +10778,16 @@
           "deprecated": false
         },
         {
+          "name": "i18nAm",
+          "attribute": "i18n-am",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nConfirmTime",
           "attribute": "i18n-confirm-time",
           "type": "string",
@@ -10668,6 +10843,16 @@
           "deprecated": false
         },
         {
+          "name": "i18nPm",
+          "attribute": "i18n-pm",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nSecondColumnHeader",
           "attribute": "i18n-second-column-header",
           "type": "string",
@@ -10675,6 +10860,16 @@
           "reflectToAttribute": false,
           "default": "'sec'",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "locale",
+          "attribute": "locale",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -10743,6 +10938,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "getCurrentIsoTime",
+          "signature": "getCurrentIsoTime() => Promise<string | undefined>",
+          "deprecated": false
+        },
         {
           "name": "getCurrentTime",
           "signature": "getCurrentTime() => Promise<string | undefined>",

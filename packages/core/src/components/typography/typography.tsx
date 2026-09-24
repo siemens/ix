@@ -24,22 +24,22 @@ import type {
 })
 export class IxTypography {
   private static readonly textColors: Record<TypographyColors, string> = {
-    alarm: '--si-sys-text-danger',
-    'alarm-contrast': '--si-sys-text-on-danger',
-    contrast: '--si-sys-text-primary',
-    'critical-contrast': '--si-sys-text-on-warning',
-    'info-contrast': '--si-sys-text-on-information',
-    'inv-contrast': '--si-sys-text-inverse',
-    'inv-soft': '--si-sys-text-inverse',
-    'inv-std': '--si-sys-text-inverse',
-    'inv-weak': '--si-sys-text-inverse',
-    'neutral-contrast': '--si-sys-text-primary',
-    'primary-contrast': '--si-sys-text-on-accent',
-    soft: '--si-sys-text-secondary',
-    std: '--si-sys-text-primary',
-    'success-contrast': '--si-sys-text-on-success',
-    'warning-contrast': '--si-sys-text-on-warning',
-    weak: '--si-sys-text-disabled',
+    alarm: '--si-sys-color-text-danger',
+    'alarm-contrast': '--si-sys-color-text-on-danger',
+    contrast: '--si-sys-color-text-primary',
+    'critical-contrast': '--si-sys-color-text-on-warning',
+    'info-contrast': '--si-sys-color-text-on-information',
+    'inv-contrast': '--si-sys-color-text-inverse',
+    'inv-soft': '--si-sys-color-text-inverse',
+    'inv-std': '--si-sys-color-text-inverse',
+    'inv-weak': '--si-sys-color-text-inverse',
+    'neutral-contrast': '--si-sys-color-text-primary',
+    'primary-contrast': '--si-sys-color-text-on-accent',
+    soft: '--si-sys-color-text-secondary',
+    std: '--si-sys-color-text-primary',
+    'success-contrast': '--si-sys-color-text-on-success',
+    'warning-contrast': '--si-sys-color-text-on-warning',
+    weak: '--si-sys-color-text-disabled',
   };
 
   /**

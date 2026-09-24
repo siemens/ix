@@ -18,6 +18,21 @@ regressionTest.describe('time input', () => {
     });
   });
 
+  regressionTest('dropdown open', async ({ page }) => {
+    await page.goto('time-input/basic');
+
+    const timeInput = page.locator('ix-time-input').first();
+    const input = timeInput.locator('input');
+    await input.click();
+    await expect(timeInput.getByTestId('time-dropdown')).toHaveClass(/show/);
+    // ArrowDown moves focus into the time picker (Active without field focus).
+    await page.keyboard.press('ArrowDown');
+    await expect(input).not.toBeFocused();
+    await page.mouse.move(5, 5, { steps: 10 });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('validation', async ({ page }) => {
     await page.goto('time-input/validation');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({

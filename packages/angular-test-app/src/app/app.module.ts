@@ -90,6 +90,7 @@ import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
+import DatetimepickerLocale from '../preview-examples/datetimepicker-locale';
 import DatetimeInput from '../preview-examples/datetime-input';
 import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
@@ -122,6 +123,7 @@ import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import InfoPage from '../preview-examples/info-page';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -365,6 +367,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Datepicker,
     DatepickerLocale,
     Datetimepicker,
+    DatetimepickerLocale,
     DatetimeInput,
     DatetimeInputDisabled,
     DatetimeInputLabel,
@@ -397,6 +400,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EmptyStateCompactBreak,
     EmptyStateCompact,
     EmptyState,
+    InfoPage,
     EventListCompact,
     EventListCustomItemHeight,
     EventListFilled,
