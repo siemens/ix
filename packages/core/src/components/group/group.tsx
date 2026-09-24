@@ -87,6 +87,23 @@ export class Group
   @Prop() expandOnHeaderClick = false;
 
   /**
+   * ARIA label for the header select button.
+   * Falls back to **header** when unset.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelSelect?: string;
+
+  /**
+   * ARIA label for the expand disclosure button.
+   * Falls back to **header** when unset.
+   * Expanded/collapsed state comes from **aria-expanded**.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelExpand?: string;
+
+  /**
    * Emits when whole group gets selected.
    */
   @Event() selectGroup!: EventEmitter<boolean>;
@@ -138,14 +155,6 @@ export class Group
 
   get groupContent() {
     return this.hostElement.shadowRoot?.querySelector('.group-content');
-  }
-
-  /**
-   * Accessible name for header select/expand controls.
-   * Uses the header text only; expand state comes from **aria-expanded**.
-   */
-  private getHeaderButtonLabel() {
-    return this.header || undefined;
   }
 
   private toggleExpanded(event?: Event) {
@@ -353,7 +362,7 @@ export class Group
 
   private renderHeaderSelect() {
     const headerContentId = `${this.getHostElementId()}-header-content`;
-    const selectLabel = this.getHeaderButtonLabel();
+    const selectLabel = this.ariaLabelSelect || this.header || undefined;
 
     if (this.suppressHeaderSelection) {
       return (
@@ -395,7 +404,7 @@ export class Group
         data-testid="expand-collapsed-button"
         aria-expanded={a11yBoolean(this.expanded)}
         aria-controls={this.contentId}
-        aria-label={this.getHeaderButtonLabel()}
+        aria-label={this.ariaLabelExpand || this.header || undefined}
         ref={(el) => (this.expandButtonEl = el)}
         onClick={(event: Event) => this.onExpandClick(event)}
       >

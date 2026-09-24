@@ -262,6 +262,31 @@ regressionTest(
 );
 
 regressionTest(
+  'ariaLabelSelect and ariaLabelExpand override header names',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-group
+        header="Header text"
+        sub-header="Subheader text"
+        aria-label-select="Select group"
+        aria-label-expand="Toggle group"
+      >
+        <ix-group-item text="Item 1"></ix-group-item>
+        <ix-group-item text="Item 2"></ix-group-item>
+      </ix-group>
+    `);
+    const group = new GroupPage(page);
+    await group.expectHydrated();
+
+    await expect(group.selectButton()).toHaveAccessibleName('Select group');
+    await group.expectExpandAria({
+      expanded: false,
+      accessibleName: 'Toggle group',
+    });
+  }
+);
+
+regressionTest(
   'Space and Enter toggle expand on expand button',
   async ({ mount, page }) => {
     await mount(groupWithItems);
