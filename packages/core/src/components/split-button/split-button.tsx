@@ -233,7 +233,7 @@ export class SplitButton
         >
           <FocusProxy
             hostId={this.internalId}
-            otherProps={{ role: 'menu' }}
+            otherProps={{ role: 'presentation' }}
           ></FocusProxy>
           <slot></slot>
         </ix-dropdown-button>
