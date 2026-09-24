@@ -76,7 +76,7 @@ export const IxTree = React.forwardRef(
         ref={ref}
         {...props}
         renderItem={props.renderItem ? renderItem : undefined}
-        onNodeRemoved={(removed: CustomEvent<unknown[]>) => {
+        onNodeRemoved={(removed: CustomEvent<unknown>) => {
           const { detail } = removed;
 
           if (!Array.isArray(detail)) {

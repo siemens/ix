@@ -26,7 +26,7 @@ type IxTreeEvents = {
   onContextChange: EventName<IxTreeCustomEvent<TreeContext>>;
   onNodeToggled: EventName<CustomEvent<{ id: string; isExpanded: boolean }>>;
   onNodeClicked: EventName<CustomEvent<string>>;
-  onNodeRemoved: EventName<CustomEvent<unknown[]>>;
+  onNodeRemoved: EventName<CustomEvent<unknown>>;
 };
 
 const InternalIxTree: StencilReactComponent<IxTreeElement, IxTreeEvents> =

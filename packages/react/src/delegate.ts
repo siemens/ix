@@ -202,13 +202,13 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
       return;
     }
 
-    if (!this.removeViewFromPortal) {
-      return fallbackRemoveViewFromRootDom(view);
-    }
-
     const parent = view.parentElement;
     if (!parent) {
       throw new Error('Cannot remove a view without a parent element');
+    }
+
+    if (parent.id in mountedRootNodes || !this.removeViewFromPortal) {
+      return fallbackRemoveViewFromRootDom(view);
     }
 
     const id = parent.getAttribute('data-portal-id');

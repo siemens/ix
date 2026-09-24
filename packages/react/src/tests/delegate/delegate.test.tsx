@@ -166,6 +166,19 @@ describe('ReactFrameworkDelegate', () => {
     expect(view).not.toBeInTheDocument();
   });
 
+  it('removes a fallback root after portal removal is registered', async () => {
+    const delegate = new ReactFrameworkDelegate();
+    const view = await delegate.attachView(<div>Fallback content</div>);
+    const root = view.parentElement;
+    delegate.removeViewFromPortal = vi.fn();
+
+    await delegate.removeView(view);
+
+    expect(root).not.toBeNull();
+    expect(root).not.toBeInTheDocument();
+    expect(delegate.removeViewFromPortal).not.toHaveBeenCalled();
+  });
+
   it('rejects portal views without a parent', async () => {
     const delegate = new ReactFrameworkDelegate();
     delegate.removeViewFromPortal = vi.fn();
