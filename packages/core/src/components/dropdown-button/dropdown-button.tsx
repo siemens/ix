@@ -32,6 +32,7 @@ import {
 } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { DEFAULT_BUTTON_ICON_SIZE } from '../button/base-button.types';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   AriaActiveDescendantMixinContract,
@@ -91,8 +92,9 @@ export class DropdownButton
   @Prop() placement?: AlignedPlacement;
 
   /**
-   * ARIA label for the dropdown button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the dropdown button.
+   * Set as `aria-label` on the host, which is the interactive control.
+   * The nested button is inert and is not exposed to assistive technology.
    *
    * @since 3.2.0
    */
@@ -133,6 +135,8 @@ export class DropdownButton
   @State() dropdownShow = false;
 
   private inheritAriaAttributes: A11yAttributes = {};
+  private hostAriaLabel?: string;
+  private renderedAriaLabel?: string;
 
   private dropdownButtonId = this.getHostElementId();
 
@@ -180,6 +184,12 @@ export class DropdownButton
   }
 
   override componentWillRender(): Promise<void> | void {
+    const hostAriaLabel =
+      this.hostElement.getAttribute('aria-label') ?? undefined;
+    if (hostAriaLabel !== this.renderedAriaLabel) {
+      this.hostAriaLabel = hostAriaLabel;
+    }
+
     this.hostContext = {
       breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
       datePicker: !!closestPassShadow(this.hostElement, 'ix-date-picker'),
@@ -210,8 +220,16 @@ export class DropdownButton
   }
 
   override render() {
+    const ariaLabel =
+      this.hostAriaLabel ||
+      this.ariaLabelDropdownButton ||
+      this.label ||
+      (this.dropdownShow ? 'Close dropdown' : 'Open dropdown');
+    this.renderedAriaLabel = ariaLabel;
+
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
+      'aria-label': ariaLabel,
       'aria-haspopup': 'true',
       'aria-disabled': a11yBoolean(this.disabled),
       'aria-expanded': a11yBoolean(this.dropdownShow),
@@ -256,6 +274,7 @@ export class DropdownButton
                 active: this.dropdownShow,
               }}
               alignment="start"
+              inert={true}
               ref={(ref) => forceTabIndex(ref, -1)}
               ariaLabelButton={
                 this.ariaLabelDropdownButton ??
@@ -265,8 +284,8 @@ export class DropdownButton
               <div class={'content'}>
                 {this.icon ? (
                   <ix-icon
+                    aria-hidden="true"
                     name={this.icon}
-                    size="24"
                     class={'dropdown-icon'}
                   ></ix-icon>
                 ) : null}
@@ -291,6 +310,12 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
+                size={
+                  this.hostContext?.splitButton
+                    ? DEFAULT_BUTTON_ICON_SIZE
+                    : '24'
+                }
+                inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
                 aria-label={
                   this.ariaLabelDropdownButton ??

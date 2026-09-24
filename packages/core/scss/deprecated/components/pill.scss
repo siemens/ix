@@ -13,6 +13,8 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-pill-outline--background: var(--si-sys-background-accent-secondary);
-  --theme-pill-outline--color: var(--si-sys-text-primary);
+  --theme-pill-outline--background: var(
+    --si-sys-color-background-accent-secondary
+  );
+  --theme-pill-outline--color: var(--si-sys-color-text-primary);
 }

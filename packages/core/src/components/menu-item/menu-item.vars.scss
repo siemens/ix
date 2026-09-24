@@ -10,14 +10,14 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-menu-item-tab--outline-color--focus: #{sys.$si-sys-effects-focus};
-  --ix-menu-item-notification--background: #{sys.$si-sys-text-accent};
-  --ix-menu-item-notification--color: #{sys.$si-sys-text-on-accent};
-  --ix-menu-item--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-menu-item-primary--background--selected: #{sys.$si-sys-background-0};
-  --ix-menu-item-primary--border-color--selected: #{sys.$si-sys-border-accent-hover};
-  --ix-menu-item-primary--color: #{sys.$si-sys-text-primary};
-  --ix-menu-item-primary-icon--color: #{sys.$si-sys-text-primary};
-  --ix-menu-item-primary-icon--color--selected: #{sys.$si-sys-text-primary};
-  --ix-menu-item-secondary--background--selected: #{sys.$si-sys-background-0};
+  --ix-menu-item-tab--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-menu-item-notification--background: #{sys.$si-sys-color-text-accent};
+  --ix-menu-item-notification--color: #{sys.$si-sys-color-text-on-accent};
+  --ix-menu-item--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-menu-item-primary--background--selected: #{sys.$si-sys-color-background-0};
+  --ix-menu-item-primary--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
+  --ix-menu-item-primary--color: #{sys.$si-sys-color-text-primary};
+  --ix-menu-item-primary-icon--color: #{sys.$si-sys-color-text-primary};
+  --ix-menu-item-primary-icon--color--selected: #{sys.$si-sys-color-text-primary};
+  --ix-menu-item-secondary--background--selected: #{sys.$si-sys-color-background-0};
 }

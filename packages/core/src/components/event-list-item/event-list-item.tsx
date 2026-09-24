@@ -38,7 +38,7 @@ export class EventListItem {
   /**
    * Color of the status indicator.
    * You can find a list of all available colors in our documentation.
-   * Example value: `--si-sys-background-danger`
+   * Example value: `--si-sys-color-background-danger`
    *
    * {@link https://ix.siemens.io/docs/styles/colors}
    */
@@ -103,7 +103,6 @@ export class EventListItem {
             {this.chevron && (
               <ix-icon
                 name={iconChevronRight}
-                size="16"
                 class="chevron-icon"
                 aria-hidden="true"
               ></ix-icon>

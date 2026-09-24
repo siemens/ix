@@ -34,10 +34,10 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 2</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 
@@ -50,8 +50,8 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
     <ix-event-list-item
-      item-color="--si-sys-background-accent"
-      style="--si-sys-background-accent: rgb(1, 2, 3)"
+      item-color="--si-sys-color-background-accent"
+      style="--si-sys-color-background-accent: rgb(1, 2, 3)"
     >
       Text
     </ix-event-list-item>
@@ -66,10 +66,10 @@ regressionTest(
 regressionTest('check if items still clickable', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
-      <ix-event-list-item item-color="--si-sys-background-accent" selected>Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 2</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent" selected>Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 
@@ -106,10 +106,10 @@ regressionTest(
 
     await mount(`
     <ix-event-list item-height="${itemHeight}">
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 1</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 2</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 3</ix-event-list-item>
-      <ix-event-list-item item-color="--si-sys-background-accent">Text 4</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 1</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 2</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 3</ix-event-list-item>
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 4</ix-event-list-item>
     </ix-event-list>
   `);
 

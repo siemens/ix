@@ -212,6 +212,13 @@
   }
 }
 
+:host(.active:not(.readonly):not(.disabled)) {
+  .select:not(.readonly):not(.disabled) {
+    background-color: var(--ix-select--background--hover);
+    border-color: var(--ix-select--border-color--hover);
+  }
+}
+
 @include form-component.host-valid;
 
 @include form-component.host-info {
