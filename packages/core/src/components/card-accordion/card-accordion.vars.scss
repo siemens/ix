@@ -108,7 +108,7 @@
     #{sys.$si-sys-sizing-size-160} - #{sys.$si-sys-sizing-spacing-y-20}
   );
   --ix-card-accordion-expand-action--height: #{sys.$si-sys-sizing-size-90};
-  --ix-card-accordion-expand-icon--icon-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-card-accordion-expand-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-card-accordion-expand-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-accordion-expand-content-body--height: calc(
     var(--ix-card-accordion-expanded-height) - #{sys.$si-sys-sizing-spacing-y-60}

@@ -16,10 +16,3 @@
 body {
   margin: 0;
 }
-
-ix-icon:not([size]) {
-  block-size: #{system.$si-sys-sizing-icon-lg};
-  inline-size: #{system.$si-sys-sizing-icon-lg};
-  min-block-size: #{system.$si-sys-sizing-icon-lg};
-  min-inline-size: #{system.$si-sys-sizing-icon-lg};
-}

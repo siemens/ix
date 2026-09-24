@@ -226,7 +226,7 @@ regressionTest(
     const secondInput = page.locator('ix-date-input').nth(1);
     const arrowElement = inputRangeElement.locator('.range-delimiter');
 
-    await expect(firstInput).toHaveCSS('margin-top', '32px');
+    await expect(firstInput).toHaveCSS('margin-top', '28.8px');
     await expect(secondInput).toHaveCSS('margin-top', '0px');
     await expect(arrowElement).toHaveCSS('margin-top', '32px');
   }
@@ -254,7 +254,7 @@ regressionTest(
     const arrowElement = inputRangeElement.locator('.range-delimiter');
 
     await expect(firstInput).toHaveCSS('margin-top', '0px');
-    await expect(secondInput).toHaveCSS('margin-top', '32px');
+    await expect(secondInput).toHaveCSS('margin-top', '28.8px');
     await expect(arrowElement).toHaveCSS('margin-top', '32px');
   }
 );
