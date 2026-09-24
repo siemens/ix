@@ -360,7 +360,7 @@ regressionTest(
     const disabledTextColor = await item.evaluate((element) => {
       const resolver = document.createElement('span');
       resolver.style.color = getComputedStyle(element)
-        .getPropertyValue('--si-sys-text-disabled')
+        .getPropertyValue('--ix-list-item--color--disabled')
         .trim();
       element.append(resolver);
       const color = getComputedStyle(resolver).color;
@@ -385,7 +385,7 @@ regressionTest('uses selected state colors', async ({ mount, page }) => {
   const selectedColor = await item.evaluate((element) => {
     const resolver = document.createElement('span');
     resolver.style.backgroundColor = getComputedStyle(element)
-      .getPropertyValue('--si-sys-background-active')
+      .getPropertyValue('--ix-list-item--background--selected')
       .trim();
     element.append(resolver);
     const color = getComputedStyle(resolver).backgroundColor;
