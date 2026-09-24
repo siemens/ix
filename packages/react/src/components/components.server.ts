@@ -1275,7 +1275,12 @@ export const IxList: StencilReactComponent<IxListElement, IxListEvents, Componen
         actionOnHover: 'action-on-hover',
         actionSlotAlignment: 'action-slot-alignment',
         draggable: 'draggable',
-        dragBehavior: 'drag-behavior'
+        dragBehavior: 'drag-behavior',
+        i18nListItem: 'i18n-list-item',
+        i18nReorderLifted: 'i18n-reorder-lifted',
+        i18nReorderPosition: 'i18n-reorder-position',
+        i18nReorderDropped: 'i18n-reorder-dropped',
+        i18nReorderCancelled: 'i18n-reorder-cancelled'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxList as StencilReactComponent<IxListElement, IxListEvents, Components.IxList>,

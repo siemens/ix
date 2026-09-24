@@ -5893,6 +5893,61 @@
           "deprecated": false
         },
         {
+          "name": "i18nListItem",
+          "attribute": "i18n-list-item",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'List item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderCancelled",
+          "attribute": "i18n-reorder-cancelled",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item} reorder cancelled.'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderDropped",
+          "attribute": "i18n-reorder-dropped",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item} dropped at position {position} of {total}.'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderLifted",
+          "attribute": "i18n-reorder-lifted",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderPosition",
+          "attribute": "i18n-reorder-position",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item}, position {position} of {total}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "itemGap",
           "attribute": "item-gap",
           "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",

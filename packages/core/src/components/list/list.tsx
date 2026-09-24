@@ -170,6 +170,44 @@ export class List {
   @Prop({ reflect: true }) dragBehavior: ListDragBehavior = 'dynamic';
 
   /**
+   * i18n fallback label for list items without a label.
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-list-item' }) i18nListItem = 'List item';
+
+  /**
+   * i18n announcement when a list item is lifted for reordering.
+   * Use `{item}` for the item label.
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-reorder-lifted' }) i18nReorderLifted =
+    '{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.';
+
+  /**
+   * i18n announcement when a list item changes position.
+   * Use `{item}`, `{position}`, and `{total}` placeholders.
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-reorder-position' }) i18nReorderPosition =
+    '{item}, position {position} of {total}';
+
+  /**
+   * i18n announcement when a reordered list item is dropped.
+   * Use `{item}`, `{position}`, and `{total}` placeholders.
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-reorder-dropped' }) i18nReorderDropped =
+    '{item} dropped at position {position} of {total}.';
+
+  /**
+   * i18n announcement when list item reordering is cancelled.
+   * Use `{item}` for the item label.
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-reorder-cancelled' }) i18nReorderCancelled =
+    '{item} reorder cancelled.';
+
+  /**
    * Emitted after a list item has been reordered.
    * @since 6.0.0
    */
@@ -486,14 +524,29 @@ export class List {
   }
 
   private getItemLabel(item: HTMLIxListItemElement) {
-    return item.label || 'List item';
+    return item.label || this.i18nListItem;
+  }
+
+  private formatI18n(
+    template: string,
+    placeholders: Record<string, string | number>
+  ) {
+    return Object.entries(placeholders).reduce(
+      (message, [placeholder, value]) =>
+        message.split(`{${placeholder}}`).join(String(value)),
+      template
+    );
   }
 
   private announcePosition(item: HTMLIxListItemElement) {
     const position = this.items.indexOf(item) + 1;
     this.announce(
       item,
-      `${this.getItemLabel(item)}, position ${position} of ${this.items.length}`
+      this.formatI18n(this.i18nReorderPosition, {
+        item: this.getItemLabel(item),
+        position,
+        total: this.items.length,
+      })
     );
   }
 
@@ -512,9 +565,9 @@ export class List {
     this.setItemReorderState(item, true);
     this.announce(
       item,
-      `${this.getItemLabel(
-        item
-      )} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.`
+      this.formatI18n(this.i18nReorderLifted, {
+        item: this.getItemLabel(item),
+      })
     );
     if (mode === 'keyboard') {
       this.getDragGripper(item)?.focus({ preventScroll: true });
@@ -709,9 +762,11 @@ export class List {
     }
     this.announce(
       item,
-      `${this.getItemLabel(item)} dropped at position ${newIndex + 1} of ${
-        this.items.length
-      }.`
+      this.formatI18n(this.i18nReorderDropped, {
+        item: this.getItemLabel(item),
+        position: newIndex + 1,
+        total: this.items.length,
+      })
     );
   }
 
@@ -735,7 +790,12 @@ export class List {
     if (shouldRestoreFocus) {
       this.getDragGripper(item)?.focus({ preventScroll: true });
     }
-    this.announce(item, `${this.getItemLabel(item)} reorder cancelled.`);
+    this.announce(
+      item,
+      this.formatI18n(this.i18nReorderCancelled, {
+        item: this.getItemLabel(item),
+      })
+    );
   }
 
   private handlePointerDown(event: PointerEvent) {

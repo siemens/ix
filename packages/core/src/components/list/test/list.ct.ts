@@ -703,6 +703,48 @@ regressionTest(
 );
 
 regressionTest(
+  'uses custom text for reorder announcements',
+  async ({ mount, page }) => {
+    await mount(
+      `
+        <ix-list
+          draggable
+          i18n-list-item="Eintrag"
+          i18n-reorder-lifted="{item} aufgenommen."
+          i18n-reorder-position="{total} gesamt, {item} auf Position {position}."
+          i18n-reorder-dropped="{item} auf Position {position} von {total} abgelegt."
+          i18n-reorder-cancelled="Sortieren von {item} abgebrochen."
+        >
+          <ix-list-item></ix-list-item>
+          <ix-list-item label="Projekt Beta"></ix-list-item>
+        </ix-list>
+      `,
+      { icons: { iconDragGripper } }
+    );
+
+    const item = page.locator('ix-list-item:not([label])');
+    const gripper = item.locator('.drag-gripper');
+    const announcement = item.locator('.drag-announcement');
+
+    await gripper.focus();
+    await gripper.press('Space');
+    await expect(announcement).toHaveText('Eintrag aufgenommen.');
+
+    await gripper.press('ArrowDown');
+    await expect(announcement).toHaveText('2 gesamt, Eintrag auf Position 2.');
+
+    await gripper.press('Enter');
+    await expect(announcement).toHaveText(
+      'Eintrag auf Position 2 von 2 abgelegt.'
+    );
+
+    await gripper.press('Space');
+    await gripper.press('Escape');
+    await expect(announcement).toHaveText('Sortieren von Eintrag abgebrochen.');
+  }
+);
+
+regressionTest(
   'restores keyboard order on Escape without emitting',
   async ({ mount, page }) => {
     await mount(

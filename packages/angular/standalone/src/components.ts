@@ -1843,14 +1843,14 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxList,
-  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'itemGap', 'variant']
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'i18nListItem', 'i18nReorderCancelled', 'i18nReorderDropped', 'i18nReorderLifted', 'i18nReorderPosition', 'itemGap', 'variant']
 })
 @Component({
   selector: 'ix-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'itemGap', 'variant'],
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'i18nListItem', 'i18nReorderCancelled', 'i18nReorderDropped', 'i18nReorderLifted', 'i18nReorderPosition', 'itemGap', 'variant'],
   outputs: ['itemOrderChange'],
 })
 export class IxList {

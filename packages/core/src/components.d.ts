@@ -2693,6 +2693,36 @@ export namespace Components {
          */
         "draggable": boolean;
         /**
+          * i18n fallback label for list items without a label.
+          * @since 6.0.0
+          * @default 'List item'
+         */
+        "i18nListItem": string;
+        /**
+          * i18n announcement when list item reordering is cancelled. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} reorder cancelled.'
+         */
+        "i18nReorderCancelled": string;
+        /**
+          * i18n announcement when a reordered list item is dropped. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item} dropped at position {position} of {total}.'
+         */
+        "i18nReorderDropped": string;
+        /**
+          * i18n announcement when a list item is lifted for reordering. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.'
+         */
+        "i18nReorderLifted": string;
+        /**
+          * i18n announcement when a list item changes position. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item}, position {position} of {total}'
+         */
+        "i18nReorderPosition": string;
+        /**
           * Space between direct list items.
           * @since 6.0.0
           * @default 'sm'
@@ -9951,6 +9981,36 @@ declare namespace LocalJSX {
          */
         "draggable"?: boolean;
         /**
+          * i18n fallback label for list items without a label.
+          * @since 6.0.0
+          * @default 'List item'
+         */
+        "i18nListItem"?: string;
+        /**
+          * i18n announcement when list item reordering is cancelled. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} reorder cancelled.'
+         */
+        "i18nReorderCancelled"?: string;
+        /**
+          * i18n announcement when a reordered list item is dropped. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item} dropped at position {position} of {total}.'
+         */
+        "i18nReorderDropped"?: string;
+        /**
+          * i18n announcement when a list item is lifted for reordering. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.'
+         */
+        "i18nReorderLifted"?: string;
+        /**
+          * i18n announcement when a list item changes position. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item}, position {position} of {total}'
+         */
+        "i18nReorderPosition"?: string;
+        /**
           * Space between direct list items.
           * @since 6.0.0
           * @default 'sm'
@@ -13147,6 +13207,11 @@ declare namespace LocalJSX {
         "actionSlotAlignment": ListItemActionSlotAlignment;
         "draggable": boolean;
         "dragBehavior": ListDragBehavior;
+        "i18nListItem": string;
+        "i18nReorderLifted": string;
+        "i18nReorderPosition": string;
+        "i18nReorderDropped": string;
+        "i18nReorderCancelled": string;
     }
     interface IxListItemAttributes {
         "variant": ListItemVariant;
