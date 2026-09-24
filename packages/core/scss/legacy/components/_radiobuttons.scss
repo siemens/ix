@@ -103,11 +103,6 @@
   .ix-form-control[type='radio']:checked {
     & + label:before {
       background-color: #{sys.$si-sys-color-background-accent-hover};
-      background-image: radial-gradient(
-        circle,
-        #{sys.$si-sys-color-text-on-accent} 0 0.25rem,
-        transparent 0.25rem
-      );
       border: var(--theme-border-width-default) solid transparent;
     }
 
@@ -119,7 +114,7 @@
       background-color: #{sys.$si-sys-color-text-on-accent};
       border-radius: 100%;
       position: absolute;
-      top: 0.5rem;
+      top: 0.375rem;
       left: 0.375rem;
     }
 
