@@ -206,7 +206,7 @@ regressionTest(
 );
 
 regressionTest(
-  'leaves the menu unnamed when the trigger uses a state-based fallback',
+  'uses a stable menu name when the trigger uses a state-based fallback',
   async ({ mount, page }) => {
     await mount(`
       <ix-dropdown-button label="">
@@ -216,9 +216,7 @@ regressionTest(
 
     const dropdownButton = page.locator('ix-dropdown-button');
     await dropdownButton.click();
-    await expect(dropdownButton.locator('ix-dropdown')).not.toHaveAttribute(
-      'aria-label'
-    );
+    await expect(page.getByRole('menu', { name: 'Menu' })).toBeVisible();
   }
 );
 

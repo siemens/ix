@@ -294,7 +294,7 @@ export class DropdownButton
   }
 
   private getMenuAriaLabel() {
-    return this.hostAriaLabel || this.getLabelAriaLabel();
+    return this.hostAriaLabel || this.getLabelAriaLabel() || 'Menu';
   }
 
   private getAriaLabel() {
