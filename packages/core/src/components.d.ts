@@ -3727,6 +3727,7 @@ export namespace Components {
           * @default false
          */
         "checked": boolean;
+        "clear": () => Promise<void>;
         /**
           * Disabled state of the radio component
           * @default false
@@ -3758,6 +3759,7 @@ export namespace Components {
      * @form-ready 
      */
     interface IxRadioGroup {
+        "clear": () => Promise<void>;
         /**
           * Alignment of the radio buttons in the group
           * @default 'column'
