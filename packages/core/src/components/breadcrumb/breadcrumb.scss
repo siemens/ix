@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
 @use './breadcrumb.vars' as *;
@@ -40,7 +39,7 @@
     .more-text-ellipsis {
       width: 1rem;
       display: inline-block;
-      font-weight: vars.$font-weight-bold;
+      font: var(--ix-breadcrumb-ellipsis--font);
     }
 
     ix-icon {

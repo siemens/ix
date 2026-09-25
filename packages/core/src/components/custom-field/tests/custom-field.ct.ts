@@ -22,7 +22,7 @@ regressionTest('renders with label', async ({ mount, page }) => {
   const typography = fieldLabel.locator('label').locator('ix-typography');
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldLabel).toHaveClass(/hydrated/);
-  await expect(typography).toHaveClass(/typography-label/);
+  await expect(typography).toHaveClass(/typography-body/);
   await expect(fieldLabel.filter({ hasText: 'Label' })).toHaveText(/Label/);
 });
 
@@ -83,6 +83,6 @@ regressionTest('renders with required label', async ({ mount, page }) => {
   const typography = fieldLabel.locator('label').locator('ix-typography');
   await expect(customFieldElement).toHaveClass(/hydrated/);
   await expect(fieldLabel).toHaveClass(/hydrated/);
-  await expect(typography).toHaveClass(/typography-label/);
+  await expect(typography).toHaveClass(/typography-body/);
   await expect(fieldLabel.filter({ hasText: 'Label*' })).toHaveText(/Label*/);
 });

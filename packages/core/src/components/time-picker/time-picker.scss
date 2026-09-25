@@ -8,6 +8,7 @@
  */
 
 @use 'misc/common-variables' as vars;
+@use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
 
 @use './time-picker.vars' as *;
@@ -83,6 +84,8 @@
       }
 
       .element-container {
+        @include fonts.typography-body;
+
         box-sizing: border-box;
         width: 2.5rem;
         height: 2.5rem;
