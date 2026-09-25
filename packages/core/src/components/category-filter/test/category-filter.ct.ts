@@ -7,12 +7,135 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { regressionTest } from '@utils/test';
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-category-filter></ix-category-filter>`);
   const categoryFilter = page.locator('ix-category-filter');
   await expect(categoryFilter).toHaveClass(/hydrated/);
+});
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`<ix-category-filter hide-icon></ix-category-filter>`);
+  const categoryFilter = page.locator('ix-category-filter');
+  await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+    el.ariaLabelFilterInput = 'Filter input';
+    el.ariaLabelResetButton = 'Clear filter';
+  });
+
+  const input = page.getByRole('textbox', { name: 'Filter input' });
+  await input.fill('Test');
+  await input.press('Enter');
+  await expect(categoryFilter.locator('ix-filter-chip')).toContainText('Test');
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+regressionTest.describe('scroll behavior', () => {
+  const getPageScrollY = (page: Page) => page.evaluate(() => window.scrollY);
+
+  regressionTest.beforeEach(async ({ mount }) => {
+    await mount(`
+      <div>
+        <div style="height: 150vh"></div>
+        <ix-category-filter aria-label-filter-input="Filter input"></ix-category-filter>
+        <div style="height: 150vh"></div>
+      </div>
+    `);
+  });
+
+  regressionTest(
+    'should not scroll the page when adding a token',
+    async ({ page }) => {
+      const categoryFilter = page.locator('ix-category-filter');
+      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await categoryFilter.evaluate((el) =>
+        el.scrollIntoView({ block: 'center' })
+      );
+      const scrollYBefore = await getPageScrollY(page);
+
+      const input = page.getByRole('textbox', { name: 'Filter input' });
+      await input.fill('Test');
+      await input.press('Enter');
+      await expect(categoryFilter.locator('ix-filter-chip')).toContainText(
+        'Test'
+      );
+
+      expect(await getPageScrollY(page)).toBe(scrollYBefore);
+      await expect(input).toBeFocused();
+    }
+  );
+
+  regressionTest(
+    'should not scroll the page when setting filterState programmatically',
+    async ({ page }) => {
+      const categoryFilter = page.locator('ix-category-filter');
+      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await expect(categoryFilter).not.toBeInViewport();
+
+      await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+        el.filterState = { tokens: ['Test'], categories: [] };
+      });
+      await expect(categoryFilter.locator('ix-filter-chip')).toContainText(
+        'Test'
+      );
+
+      expect(await getPageScrollY(page)).toBe(0);
+    }
+  );
+
+  regressionTest(
+    'should keep input visible when tokens overflow the container',
+    async ({ page }) => {
+      const categoryFilter = page.locator('ix-category-filter');
+      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await categoryFilter.evaluate((el) => {
+        el.style.width = '300px';
+        el.scrollIntoView({ block: 'center' });
+      });
+      const scrollYBefore = await getPageScrollY(page);
+
+      const input = page.getByRole('textbox', { name: 'Filter input' });
+      for (let i = 0; i < 8; i++) {
+        await input.fill(`Token ${i}`);
+        await input.press('Enter');
+      }
+      const chips = categoryFilter.locator('ix-filter-chip');
+      await expect(chips).toHaveCount(8);
+
+      await expect(chips.first()).not.toBeInViewport();
+      await expect(input).toBeInViewport({ ratio: 1 });
+      expect(await getPageScrollY(page)).toBe(scrollYBefore);
+    }
+  );
+
+  regressionTest(
+    'should keep input visible when filterState tokens overflow the container',
+    async ({ page }) => {
+      const categoryFilter = page.locator('ix-category-filter');
+      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await categoryFilter.evaluate((el) => {
+        el.style.width = '300px';
+        el.scrollIntoView({ block: 'center' });
+      });
+      const scrollYBefore = await getPageScrollY(page);
+
+      await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+        el.filterState = {
+          tokens: Array.from({ length: 8 }, (_, i) => `Token ${i}`),
+          categories: [],
+        };
+      });
+      const chips = categoryFilter.locator('ix-filter-chip');
+      await expect(chips).toHaveCount(8);
+
+      const input = page.getByRole('textbox', { name: 'Filter input' });
+      await expect(chips.first()).not.toBeInViewport();
+      await expect(input).toBeInViewport({ ratio: 1 });
+      expect(await getPageScrollY(page)).toBe(scrollYBefore);
+    }
+  );
 });
 
 regressionTest.describe('category-preview test', () => {
