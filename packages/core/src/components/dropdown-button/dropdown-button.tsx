@@ -108,6 +108,21 @@ export class DropdownButton
   @Prop() focusCheckedItem: boolean = false;
 
   /**
+   * Controls how keyboard navigation moves focus between dropdown items.
+   *
+   * - `active-descendant`: DOM focus stays on the dropdown button while a visual
+   *   focus indicator moves between the items, exposed via `aria-activedescendant`.
+   * - `roving-tabindex`: real DOM focus is moved to each item using a roving
+   *   `tabindex` (`0` for the active item, `-1` for the others). No
+   *   `aria-activedescendant` is used because the focused item is announced
+   *   directly.
+   *
+   * @since 5.2.0
+   */
+  @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
+    'active-descendant';
+
+  /**
    * Enable Popover API rendering for dropdown.
    *
    * @default false
@@ -206,7 +221,11 @@ export class DropdownButton
   }
 
   override isAriaActiveDescendantActive(): boolean {
-    return !this.suppressAriaActiveDescendant && this.dropdownShow;
+    return (
+      !this.suppressAriaActiveDescendant &&
+      this.dropdownShow &&
+      this.navigationMode !== 'roving-tabindex'
+    );
   }
 
   override getAriaActiveDescendantProxyItemId(): string | boolean {
@@ -338,6 +357,7 @@ export class DropdownButton
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
+          navigationMode={this.navigationMode}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,
