@@ -11,8 +11,8 @@ import React, { useImperativeHandle, useRef } from 'react';
 import { IxModal } from '../components';
 
 export interface ModalRef {
-  close: <T = any>(result: T) => void;
-  dismiss: <T = any>(result?: T) => void;
+  close: <T = unknown>(result: T) => void;
+  dismiss: <T = unknown>(result?: T) => void;
   modalElement: HTMLIxModalElement | null;
 }
 

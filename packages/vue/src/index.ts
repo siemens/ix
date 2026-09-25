@@ -4,6 +4,7 @@ export * from './internal-components';
 export * from './ix-icon';
 export * from './modal';
 export * from './plugin';
+export * from './tab-set';
 export * from './toast';
 export * from './message';
 
