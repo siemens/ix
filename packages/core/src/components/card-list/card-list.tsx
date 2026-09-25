@@ -9,6 +9,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronUp, iconMoreMenu } from '@siemens/ix-icons/icons';
@@ -25,8 +26,16 @@ function CardListTitle(props: {
   labelShowLess: string;
   showLess: boolean;
   hideShowAll: boolean;
+  collapseButtonRef: (element?: HTMLIxIconButtonElement) => void;
 }) {
-  if (!props.label) {
+  const defaultAriaLabel = props.isCollapsed
+    ? 'Expand card list'
+    : 'Collapse card list';
+  const ariaLabel = props.ariaLabelExpandButton?.trim()
+    ? props.ariaLabelExpandButton
+    : defaultAriaLabel;
+
+  if (!props.label && !props.ariaLabelExpandButton?.trim()) {
     return null;
   }
 
@@ -41,7 +50,8 @@ function CardListTitle(props: {
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
-        aria-label={props.ariaLabelExpandButton}
+        aria-label={ariaLabel}
+        ref={props.collapseButtonRef}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}
@@ -80,8 +90,9 @@ function CardListTitle(props: {
 })
 export class CardList {
   /**
-   * ARIA label for the card's expand button.
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the card list's expand and collapse button.
+   * Defaults to `Collapse card list` when expanded and `Expand card list` when
+   * collapsed. A non-empty custom value overrides the label in both states.
    *
    * @since 3.2.0
    */
@@ -177,6 +188,19 @@ export class CardList {
   @State() private rightScrollDistance = 0;
 
   private observer?: MutationObserver;
+
+  private collapseButton?: HTMLIxIconButtonElement;
+
+  @Watch('collapse')
+  protected handleCollapseChange(isCollapsed: boolean) {
+    if (isCollapsed && this.hasFocusWithinListContent()) {
+      this.collapseButton?.focus();
+    }
+  }
+
+  private hasFocusWithinListContent() {
+    return this.listElement?.matches(':focus-within') ?? false;
+  }
 
   private onCardListVisibilityToggle() {
     this.collapse = !this.collapse;
@@ -415,6 +439,7 @@ export class CardList {
         <CardListTitle
           isCollapsed={this.collapse}
           label={this.label}
+          ariaLabelExpandButton={this.ariaLabelExpandButton}
           showAllLabel={this.i18nShowAll}
           showAllCounter={
             this.showAllCount === undefined
@@ -426,6 +451,7 @@ export class CardList {
           onClick={() => this.onCardListVisibilityToggle()}
           onShowAllClick={(e) => this.onShowAllClick(e)}
           hideShowAll={this.hideShowAll}
+          collapseButtonRef={(element) => (this.collapseButton = element)}
         ></CardListTitle>
         <div
           class={{
@@ -441,6 +467,7 @@ export class CardList {
               CardList__Style__Infinite__Scroll: this.listStyle === 'scroll',
             }}
             onScroll={() => this.onCardListScroll()}
+            inert={this.collapse}
           >
             <slot
               onSlotchange={() => {
