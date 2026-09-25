@@ -1,5 +1,20 @@
 # @siemens/ix-vue
 
+## 6.0.0
+
+### Major Changes
+
+- [#2702](https://github.com/siemens/ix/pull/2702) [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking change:** `ix-content-header` titles and subtitles now wrap by default. Set `textOverflow="ellipsis"` to preserve the previous single-line ellipsis behavior without native tooltips.
+
+### Minor Changes
+
+- [#2777](https://github.com/siemens/ix/pull/2777) [`e7c2fd0`](https://github.com/siemens/ix/commit/e7c2fd0da802c604a798f47f5078a026612f0f48) Thanks [@mistrykaran91](https://github.com/mistrykaran91)! - Add the `ix-info-page` component for displaying informational page states, including Angular, React, and Vue framework wrappers.
+
+### Patch Changes
+
+- Updated dependencies [[`e7c2fd0`](https://github.com/siemens/ix/commit/e7c2fd0da802c604a798f47f5078a026612f0f48), [`a2f9f7d`](https://github.com/siemens/ix/commit/a2f9f7dc8930bf4c587b5dfac18a4da98ba131e7), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00), [`bd56270`](https://github.com/siemens/ix/commit/bd5627058a9fbb07c736711f06c5e45ea012ff2d), [`47dea5b`](https://github.com/siemens/ix/commit/47dea5b1fd9ca216959dbf5c9fe0d66c90fe5006), [`97af7a2`](https://github.com/siemens/ix/commit/97af7a2eb4b0e41401a9abd4f288248e671171fc), [`b1328b2`](https://github.com/siemens/ix/commit/b1328b2955992c42f2dcb588ce74c2109255315d), [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642), [`08d9f79`](https://github.com/siemens/ix/commit/08d9f790435242a2a33f564f8afdc5bb11952bed), [`5b30214`](https://github.com/siemens/ix/commit/5b30214fcc2ea9f8374d3aa5f0a9e58b5dafacaf), [`3b713f4`](https://github.com/siemens/ix/commit/3b713f4bf179a765fe4b0a097add3c9baaab2a8c), [`8434d9f`](https://github.com/siemens/ix/commit/8434d9f4fc83fe1d01cc4d8aaa9666e0f8802425), [`94b305c`](https://github.com/siemens/ix/commit/94b305cc433bb369731b77a5a8c0146ede150f22), [`5e45a40`](https://github.com/siemens/ix/commit/5e45a40fcc3abf82d58ae552fecb0b9a7ba39aae), [`bcd17fc`](https://github.com/siemens/ix/commit/bcd17fcba1499663610c08d1dff08c6423e8e1f4), [`7707d6b`](https://github.com/siemens/ix/commit/7707d6b3606ad0187a4381375e787aca12127d58), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`7f7b6cc`](https://github.com/siemens/ix/commit/7f7b6ccd97f282b90345e99628d1321356efa644), [`36c3c7a`](https://github.com/siemens/ix/commit/36c3c7ae0430c267cec97f916ac95a91bb6e3642)]:
+  - @siemens/ix@6.0.0
+
 ## 5.2.1
 
 ### Patch Changes
