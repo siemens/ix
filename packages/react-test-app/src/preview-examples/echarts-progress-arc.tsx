@@ -55,7 +55,9 @@ export default function EchartsProgressArc() {
             color: [
               [
                 1,
-                getComputedCSSProperty('--si-sys-data-sequential-deep-blue-4'),
+                getComputedCSSProperty(
+                  '--si-sys-color-data-sequential-deep-blue-4'
+                ),
               ],
             ],
           },
@@ -78,7 +80,7 @@ export default function EchartsProgressArc() {
           width: 35,
           itemStyle: {
             borderMiterLimit: 16,
-            color: getComputedCSSProperty('--si-sys-background-success'),
+            color: getComputedCSSProperty('--si-sys-color-background-success'),
           },
         },
         pointer: {
@@ -92,7 +94,7 @@ export default function EchartsProgressArc() {
               overflow: 'break',
               fontSize: '2rem',
               fontWeight: 'normal',
-              color: getComputedCSSProperty('--si-sys-text-secondary'),
+              color: getComputedCSSProperty('--si-sys-color-text-secondary'),
               width: 250,
               lineHeight: 35,
               formatter: '{value} / 100 \n completed',

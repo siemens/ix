@@ -111,8 +111,8 @@ export default () => {
           <IxCol>
             <IxPill
               variant="custom"
-              pillColor="var(--si-sys-text-inverse)"
-              background="var(--si-sys-background-accent-hover)"
+              pillColor="var(--si-sys-color-text-inverse)"
+              background="var(--si-sys-color-background-accent-hover)"
               icon={iconInfo}
             >
               Custom
@@ -122,8 +122,8 @@ export default () => {
             <IxPill
               variant="custom"
               outline
-              pillColor="var(--si-sys-text-accent-hover)"
-              background="var(--si-sys-background-accent-hover)"
+              pillColor="var(--si-sys-color-text-accent-hover)"
+              background="var(--si-sys-color-background-accent-hover)"
               icon={iconInfo}
             >
               Custom

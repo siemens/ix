@@ -10,9 +10,9 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-link-button--color: #{sys.$si-sys-text-accent};
-  --ix-link-button--color--hover: #{sys.$si-sys-text-accent-hover};
-  --ix-link-button--color--active: #{sys.$si-sys-text-accent-active};
-  --ix-link-button--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-link-button--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-link-button--color: #{sys.$si-sys-color-text-accent};
+  --ix-link-button--color--hover: #{sys.$si-sys-color-text-accent-hover};
+  --ix-link-button--color--active: #{sys.$si-sys-color-text-accent-active};
+  --ix-link-button--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-link-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
