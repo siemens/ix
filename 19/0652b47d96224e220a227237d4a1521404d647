@@ -1,0 +1,19 @@
+packages/core/src/components/group/group.scss
+  s_7e0649f13028f2::t_bcfeb51d8886e3 161-162,167-168,173,180
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "190652b47d96224e220a227237d4a1521404d647",
+  "prompts": {},
+  "sessions": {
+    "s_7e0649f13028f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5ad03631-6824-4d5a-a954-3f5749cce4d2",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
