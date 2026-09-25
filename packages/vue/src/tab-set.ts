@@ -126,6 +126,11 @@ export const IxTabSet = defineComponent({
     };
 
     const handleTabChange = (event: Event) => {
+      const tabsElement = tabSetRef.value?.$el.querySelector('ix-tabs');
+      if (event.target !== tabsElement) {
+        return;
+      }
+
       activeTabKey.value = (event as CustomEvent<string | undefined>).detail;
     };
 

@@ -81,14 +81,77 @@ describe('IxTabPanel', () => {
 
     await nextTick();
     await nextTick();
-    const tabSet = container.querySelector('ix-tab-set');
-    expect(tabSet).not.toBeNull();
-    tabSet!.dispatchEvent(new CustomEvent('tabChange', { detail: 'second' }));
+    const tabs = container.querySelector('ix-tabs');
+    expect(tabs).not.toBeNull();
+    tabs!.dispatchEvent(
+      new CustomEvent('tabChange', {
+        bubbles: true,
+        composed: true,
+        detail: 'second',
+      })
+    );
     await nextTick();
 
     expect(queryByText('First panel')).toBeNull();
     expect(queryByText('Second panel')).not.toBeNull();
     expect(firstPanelMount).toHaveBeenCalledOnce();
     expect(secondPanelMount).toHaveBeenCalledOnce();
+  });
+
+  it('keeps the outer panel mounted when a nested tab changes', async () => {
+    const { container, queryByText } = render(
+      defineComponent({
+        setup() {
+          return () =>
+            h(IxTabSet, null, {
+              default: () => [
+                h(IxTabs, { activeTabKey: 'outer' }),
+                h(
+                  IxTabPanel,
+                  { tabKey: 'outer' },
+                  {
+                    default: () => [
+                      h('span', 'Outer panel'),
+                      h(IxTabSet, null, {
+                        default: () => [
+                          h(IxTabs, { activeTabKey: 'inner-first' }),
+                          h(
+                            IxTabPanel,
+                            { tabKey: 'inner-first' },
+                            { default: () => h('span', 'Inner first panel') }
+                          ),
+                          h(
+                            IxTabPanel,
+                            { tabKey: 'inner-second' },
+                            { default: () => h('span', 'Inner second panel') }
+                          ),
+                        ],
+                      }),
+                    ],
+                  }
+                ),
+              ],
+            });
+        },
+      })
+    );
+
+    await nextTick();
+    await nextTick();
+    const tabs = container.querySelectorAll('ix-tabs');
+    expect(tabs).toHaveLength(2);
+
+    tabs[1].dispatchEvent(
+      new CustomEvent('tabChange', {
+        bubbles: true,
+        composed: true,
+        detail: 'inner-second',
+      })
+    );
+    await nextTick();
+
+    expect(queryByText('Outer panel')).not.toBeNull();
+    expect(queryByText('Inner first panel')).toBeNull();
+    expect(queryByText('Inner second panel')).not.toBeNull();
   });
 });
