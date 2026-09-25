@@ -2287,6 +2287,16 @@ export namespace Components {
     }
     interface IxGroup {
         /**
+          * ARIA label for the expand disclosure button. Falls back to **header** when unset. Expanded/collapsed state comes from **aria-expanded**.
+          * @since 6.0.0
+         */
+        "ariaLabelExpand"?: string;
+        /**
+          * ARIA label for the header select button. Falls back to **header** when unset.
+          * @since 6.0.0
+         */
+        "ariaLabelSelect"?: string;
+        /**
           * Expand the group if the header is clicked
           * @default false
          */
@@ -9444,6 +9454,16 @@ declare namespace LocalJSX {
     }
     interface IxGroup {
         /**
+          * ARIA label for the expand disclosure button. Falls back to **header** when unset. Expanded/collapsed state comes from **aria-expanded**.
+          * @since 6.0.0
+         */
+        "ariaLabelExpand"?: string;
+        /**
+          * ARIA label for the header select button. Falls back to **header** when unset.
+          * @since 6.0.0
+         */
+        "ariaLabelSelect"?: string;
+        /**
           * Expand the group if the header is clicked
           * @default false
          */
@@ -12924,6 +12944,8 @@ declare namespace LocalJSX {
         "selected": boolean;
         "index": number;
         "expandOnHeaderClick": boolean;
+        "ariaLabelSelect": string;
+        "ariaLabelExpand": string;
     }
     interface IxGroupItemAttributes {
         "icon": string;
