@@ -21,8 +21,8 @@ regressionTest('renders', async ({ mount, page }) => {
     `);
   const menuItem1 = page.locator('ix-menu-item').nth(0);
   const menuItem2 = page.locator('ix-menu-item').nth(1);
-  await expect(menuItem1).toHaveClass(/hydrated/);
-  await expect(menuItem2).toHaveClass(/hydrated/);
+  await expect(menuItem1).toHaveAttribute('hydrated');
+  await expect(menuItem2).toHaveAttribute('hydrated');
 
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
 });
@@ -77,7 +77,7 @@ regressionTest(
 
       const menuItems = page.locator('ix-menu-item');
       await expect(menuItems).toHaveCount(100);
-      await expect(menuItems.last()).toHaveClass(/hydrated/);
+      await expect(menuItems.last()).toHaveAttribute('hydrated');
 
       await menuItems.evaluateAll((elements) => {
         elements.forEach((element, index) =>
@@ -136,7 +136,9 @@ regressionTest(
         <ix-button id="retained-aria-host">Retained button</ix-button>
       </ix-application>
     `);
-    await expect(page.locator('#retained-aria-host')).toHaveClass(/hydrated/);
+    await expect(page.locator('#retained-aria-host')).toHaveAttribute(
+      'hydrated'
+    );
 
     await page.evaluate(async () => {
       let hostElement: HTMLIxButtonElement | null =
@@ -276,10 +278,10 @@ regressionTest('show tooltip', async ({ mount, page }) => {
   const labelItem = page.locator('ix-menu-item').nth(1);
   const slotCustomTooltipItem = page.locator('ix-menu-item').nth(2);
   const labelCustomTooltipItem = page.locator('ix-menu-item').nth(3);
-  await expect(slotItem).toHaveClass(/hydrated/);
-  await expect(labelItem).toHaveClass(/hydrated/);
-  await expect(slotCustomTooltipItem).toHaveClass(/hydrated/);
-  await expect(labelCustomTooltipItem).toHaveClass(/hydrated/);
+  await expect(slotItem).toHaveAttribute('hydrated');
+  await expect(labelItem).toHaveAttribute('hydrated');
+  await expect(slotCustomTooltipItem).toHaveAttribute('hydrated');
+  await expect(labelCustomTooltipItem).toHaveAttribute('hydrated');
 
   await expectMenuItemToHaveTooltip(page, slotItem, 'Foo bar');
   await expectMenuItemToHaveTooltip(page, labelItem, 'Hello World');
@@ -302,8 +304,8 @@ regressionTest('update item text', async ({ mount, page }) => {
     `);
   const menuItem1 = page.locator('ix-menu-item').nth(0);
   const menuItem2 = page.locator('ix-menu-item').nth(1);
-  await expect(menuItem1).toHaveClass(/hydrated/);
-  await expect(menuItem2).toHaveClass(/hydrated/);
+  await expect(menuItem1).toHaveAttribute('hydrated');
+  await expect(menuItem2).toHaveAttribute('hydrated');
 
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
   await expect(menuItem1.locator('ix-tooltip')).toHaveText(/Foo bar/);

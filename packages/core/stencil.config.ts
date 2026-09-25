@@ -51,6 +51,9 @@ function getAngularConfig() {
 }
 
 export const config: Config = {
+  hydratedFlag: {
+    selector: "attribute"
+  },
   tsconfig: 'tsconfig.lib.json',
   suppressReservedPublicNameWarnings: true,
   extras: {

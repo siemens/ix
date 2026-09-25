@@ -81,7 +81,7 @@ export class BadgePage {
   }
 
   async expectHydrated(badge: Locator = this.host): Promise<void> {
-    await expect(badge).toHaveClass(/\bhydrated\b/);
+    await expect(badge).toHaveAttribute('hydrated');
   }
 
   async expectAttached(badge: Locator = this.host): Promise<void> {

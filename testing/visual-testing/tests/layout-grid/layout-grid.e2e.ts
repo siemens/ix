@@ -13,7 +13,7 @@ regressionTest('should not have regression', async ({ page }) => {
   await page.setViewportSize(viewPorts.lg);
   await page.goto('layout-grid/basic');
   const grid = page.locator('ix-layout-grid').nth(0);
-  await expect(grid).toHaveClass(/hydrated/);
+  await expect(grid).toHaveAttribute('hydrated');
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
@@ -22,7 +22,7 @@ regressionTest('should not have regression large', async ({ page }) => {
   await page.setViewportSize(viewPorts.lg);
   await page.goto('layout-grid/simple');
   const grid = page.locator('ix-layout-grid').nth(0);
-  await expect(grid).toHaveClass(/hydrated/);
+  await expect(grid).toHaveAttribute('hydrated');
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
@@ -31,7 +31,7 @@ regressionTest('should not have regression medium', async ({ page }) => {
   await page.setViewportSize(viewPorts.md);
   await page.goto('layout-grid/simple');
   const grid = page.locator('ix-layout-grid').nth(0);
-  await expect(grid).toHaveClass(/hydrated/);
+  await expect(grid).toHaveAttribute('hydrated');
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
@@ -40,7 +40,7 @@ regressionTest('should not have regression small', async ({ page }) => {
   await page.setViewportSize(viewPorts.sm);
   await page.goto('layout-grid/simple');
   const grid = page.locator('ix-layout-grid').nth(0);
-  await expect(grid).toHaveClass(/hydrated/);
+  await expect(grid).toHaveAttribute('hydrated');
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });

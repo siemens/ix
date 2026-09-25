@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-field-label>My Label</ix-field-label>`);
   const fieldLabelElement = page.locator('ix-field-label');
-  await expect(fieldLabelElement).toHaveClass(/hydrated/);
+  await expect(fieldLabelElement).toHaveAttribute('hydrated');
   await expect(
     fieldLabelElement.locator('label').locator('ix-typography')
   ).toHaveClass(/typography-label/);
@@ -69,7 +69,7 @@ regressionTest.describe('click label', () => {
       `);
 
           const component = page.locator(selector);
-          await expect(component).toHaveClass(/hydrated/);
+          await expect(component).toHaveAttribute('hydrated');
 
           const labelElement = component
             .locator('ix-field-wrapper')

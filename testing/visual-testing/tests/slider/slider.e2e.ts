@@ -58,7 +58,7 @@ regressionTest('should show reference value', async ({ page, mount }) => {
   `);
 
   const slider = page.locator('ix-slider').nth(0);
-  await expect(slider).toHaveClass(/hydrated/);
+  await expect(slider).toHaveAttribute('hydrated');
   await expect(slider).toBeVisible();
 
   expect(
@@ -77,7 +77,7 @@ regressionTest('should render marker', async ({ page, mount }) => {
   `);
 
   const slider = page.locator('ix-slider');
-  await expect(slider).toHaveClass(/hydrated/);
+  await expect(slider).toHaveAttribute('hydrated');
 
   await slider.evaluate(
     (elm: HTMLIxSliderElement) => (elm.marker = [10, 20, 70, 80, 100])
@@ -98,7 +98,7 @@ regressionTest('should show float steps', async ({ page, mount }) => {
   `);
 
   const slider = page.locator('ix-slider');
-  await expect(slider).toHaveClass(/hydrated/);
+  await expect(slider).toHaveAttribute('hydrated');
 
   await slider.hover();
   await page.mouse.move(100, 0);
@@ -135,8 +135,8 @@ regressionTest(
     const slider1 = page.locator('ix-slider').nth(0);
     const slider2 = page.locator('ix-slider').nth(1);
 
-    await expect(slider1).toHaveClass(/hydrated/);
-    await expect(slider2).toHaveClass(/hydrated/);
+    await expect(slider1).toHaveAttribute('hydrated');
+    await expect(slider2).toHaveAttribute('hydrated');
 
     await slider1.evaluate((elm: HTMLIxSliderElement) => {
       elm.marker = [700, 800, 900];
@@ -185,8 +185,8 @@ regressionTest('should render with label', async ({ page, mount }) => {
   const slider1 = page.locator('ix-slider').nth(0);
   const slider2 = page.locator('ix-slider').nth(1);
 
-  await expect(slider1).toHaveClass(/hydrated/);
-  await expect(slider2).toHaveClass(/hydrated/);
+  await expect(slider1).toHaveAttribute('hydrated');
+  await expect(slider2).toHaveAttribute('hydrated');
 
   expect(
     await page.locator('#slider-container').screenshot()
@@ -331,24 +331,24 @@ regressionTest('should render all slider variants', async ({ page, mount }) => {
   const allSliders = page.locator('ix-slider');
 
   // Test default sliders
-  await expect(allSliders.nth(0)).toHaveClass(/hydrated/);
-  await expect(allSliders.nth(1)).toHaveClass(/hydrated/);
+  await expect(allSliders.nth(0)).toHaveAttribute('hydrated');
+  await expect(allSliders.nth(1)).toHaveAttribute('hydrated');
 
   // Test error sliders
-  await expect(allSliders.nth(2)).toHaveClass('ix-invalid invalid hydrated');
-  await expect(allSliders.nth(3)).toHaveClass('ix-invalid invalid hydrated');
+  await expect(allSliders.nth(2)).toHaveClass('ix-invalid invalid');
+  await expect(allSliders.nth(3)).toHaveClass('ix-invalid invalid');
 
   // Test info sliders
-  await expect(allSliders.nth(4)).toHaveClass('ix-info info hydrated');
-  await expect(allSliders.nth(5)).toHaveClass('ix-info info hydrated');
+  await expect(allSliders.nth(4)).toHaveClass('ix-info info');
+  await expect(allSliders.nth(5)).toHaveClass('ix-info info');
 
   // Test warning sliders
-  await expect(allSliders.nth(6)).toHaveClass('ix-warning warning hydrated');
-  await expect(allSliders.nth(7)).toHaveClass('ix-warning warning hydrated');
+  await expect(allSliders.nth(6)).toHaveClass('ix-warning warning');
+  await expect(allSliders.nth(7)).toHaveClass('ix-warning warning');
 
   // Test valid sliders
-  await expect(allSliders.nth(8)).toHaveClass('ix-valid valid hydrated');
-  await expect(allSliders.nth(9)).toHaveClass('ix-valid valid hydrated');
+  await expect(allSliders.nth(8)).toHaveClass('ix-valid valid');
+  await expect(allSliders.nth(9)).toHaveClass('ix-valid valid');
 
   expect(
     await page.locator('#slider-container').screenshot()
@@ -373,8 +373,8 @@ regressionTest('should render with error', async ({ page, mount }) => {
   const slider1 = page.locator('ix-slider').nth(0);
   const slider2 = page.locator('ix-slider').nth(1);
 
-  await expect(slider1).toHaveClass('ix-invalid invalid hydrated');
-  await expect(slider2).toHaveClass('ix-invalid invalid hydrated');
+  await expect(slider1).toHaveClass('ix-invalid invalid');
+  await expect(slider2).toHaveClass('ix-invalid invalid');
 
   expect(
     await page.locator('#slider-container').screenshot()

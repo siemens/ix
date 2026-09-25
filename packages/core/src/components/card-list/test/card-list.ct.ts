@@ -38,7 +38,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const cardList = page.locator('ix-card-list');
-  await expect(cardList).toHaveClass(/\bhydrated\b/);
+  await expect(cardList).toHaveAttribute('hydrated');
   await expect(cardList).toBeVisible();
 });
 
@@ -52,7 +52,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     // Cards 4 and 5 should be hidden initially
     const cards = cardList.locator('ix-card');
@@ -79,7 +79,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     const cards = cardList.locator('ix-card');
 
@@ -112,7 +112,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     const cards = cardList.locator('ix-card');
     const showAllButton = cardList.getByRole('button', { name: /show all/i });
@@ -141,7 +141,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     // Register a preventDefault listener before clicking
     await cardList.evaluate((el: HTMLIxCardListElement) => {
@@ -168,7 +168,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     await cardList.evaluate((el: HTMLIxCardListElement) => {
       el.addEventListener('showMoreCardClick', (event) =>
@@ -197,7 +197,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     let showMoreCard = cardList.locator('.Show__All__Card');
     await showMoreCard.focus();

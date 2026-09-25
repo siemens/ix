@@ -10,13 +10,23 @@ import { expect } from '@playwright/test';
 import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-icon-button icon="rocket" aria-label="Launch"></ix-icon-button>`,
+    { icons: { iconRocket } }
+  );
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-icon-button icon="rocket">Content</ix-icon-button>`, {
     icons: { iconRocket },
   });
 
   const button = page.locator('ix-icon-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
   expect(button.allInnerTexts).not.toEqual('Content');
 
   await expect(button.locator('ix-icon')).toBeVisible();
@@ -30,7 +40,7 @@ regressionTest(
     });
 
     const button = page.locator('ix-icon-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button).toHaveClass(/btn-icon-32/);
     await expect(button.locator('ix-icon')).toHaveClass(/size-20/);
   }
@@ -44,7 +54,7 @@ regressionTest(
     });
 
     const button = page.locator('ix-icon-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button).toHaveClass(/btn-icon-32/);
     await expect(button.locator('ix-icon')).toHaveClass(/size-24/);
   }
