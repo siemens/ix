@@ -792,13 +792,28 @@ export class CategoryFilter {
   }
 
   componentDidRender() {
-    if (this.isScrollStateDirty) {
-      // Only scroll the token list, scrollIntoView would also scroll the page
-      if (this.tokenListElement) {
-        this.tokenListElement.scrollTop = this.tokenListElement.scrollHeight;
-      }
-      this.isScrollStateDirty = false;
+    if (!this.isScrollStateDirty || !this.tokenListElement) {
+      return;
     }
+
+    const chips = Array.from(
+      this.tokenListElement.querySelectorAll('ix-filter-chip')
+    );
+    // A token added during a pending render is only in the DOM after the next render
+    if (chips.length !== this.filterTokens.length) {
+      return;
+    }
+
+    this.isScrollStateDirty = false;
+    this.scrollTokenListToEnd(this.tokenListElement, chips);
+  }
+
+  private async scrollTokenListToEnd(
+    tokenList: HTMLElement,
+    chips: HTMLIxFilterChipElement[]
+  ) {
+    await Promise.all(chips.map((chip) => chip.componentOnReady()));
+    tokenList.scrollTop = tokenList.scrollHeight;
   }
 
   disconnectedCallback() {

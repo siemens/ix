@@ -109,6 +109,33 @@ regressionTest.describe('scroll behavior', () => {
       expect(await getPageScrollY(page)).toBe(scrollYBefore);
     }
   );
+
+  regressionTest(
+    'should keep input visible when filterState tokens overflow the container',
+    async ({ page }) => {
+      const categoryFilter = page.locator('ix-category-filter');
+      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await categoryFilter.evaluate((el) => {
+        el.style.width = '300px';
+        el.scrollIntoView({ block: 'center' });
+      });
+      const scrollYBefore = await getPageScrollY(page);
+
+      await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
+        el.filterState = {
+          tokens: Array.from({ length: 8 }, (_, i) => `Token ${i}`),
+          categories: [],
+        };
+      });
+      const chips = categoryFilter.locator('ix-filter-chip');
+      await expect(chips).toHaveCount(8);
+
+      const input = page.getByRole('textbox', { name: 'Filter input' });
+      await expect(chips.first()).not.toBeInViewport();
+      await expect(input).toBeInViewport({ ratio: 1 });
+      expect(await getPageScrollY(page)).toBe(scrollYBefore);
+    }
+  );
 });
 
 regressionTest.describe('category-preview test', () => {
