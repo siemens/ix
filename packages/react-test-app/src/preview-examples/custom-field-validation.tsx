@@ -18,8 +18,8 @@ export default () => {
     <>
       <div style={wrapperStyle}>
         <IxCustomField
-          helper-text="Add your first name here"
-          valid-text="Valid first name"
+          helperText="Add your first name here"
+          validText="Valid first name"
           label="First name"
         >
           <input
@@ -31,7 +31,7 @@ export default () => {
       </div>
 
       <div style={wrapperStyle}>
-        <IxCustomField info-text="Family name" label="Last name">
+        <IxCustomField infoText="Family name" label="Last name">
           <input
             id="last-name"
             className="ix-form-control ix-info"
@@ -41,7 +41,7 @@ export default () => {
       </div>
 
       <div style={wrapperStyle}>
-        <IxCustomField warning-text="Not a valid email address" label="Email">
+        <IxCustomField warningText="Not a valid email address" label="Email">
           <input
             id="email"
             className="ix-form-control ix-warning"
@@ -51,7 +51,7 @@ export default () => {
       </div>
 
       <div style={wrapperStyle}>
-        <IxCustomField invalid-text="Required" label="Address">
+        <IxCustomField invalidText="Required" label="Address">
           <input id="address" className="ix-form-control ix-invalid" />
         </IxCustomField>
       </div>
