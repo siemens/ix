@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/breakpoints';
+@use 'mixins/fonts';
 
 @use './application-header.vars' as *;
 :host {
@@ -103,6 +104,10 @@
     }
 
     .application-name {
+      @include fonts.typography-body-lg;
+
+      margin: 0;
+      padding: 0;
       flex: 0 1 auto;
       min-width: 0;
       flex-shrink: 0;
