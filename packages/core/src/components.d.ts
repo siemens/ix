@@ -14,6 +14,7 @@ import { BlindVariant } from "./components/blind/blind.types";
 import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
+import { ButtonIconSize } from "./components/button/base-button.types";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
@@ -29,7 +30,7 @@ import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 import { DateInputValidityState } from "./components/date-input/date-input.types";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 import { DateChangeEvent } from "./components/date-picker/date-picker.events";
-import { DateTime } from "luxon";
+import { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
@@ -49,6 +50,7 @@ import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollap
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
+import { SpinnerSize } from "./components/spinner/spinner.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
 import { TabClickDetail } from "./components/tab-item/tab-item.types";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
@@ -71,6 +73,7 @@ export { BlindVariant } from "./components/blind/blind.types";
 export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
+export { ButtonIconSize } from "./components/button/base-button.types";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -86,7 +89,7 @@ export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-drop
 export { DateInputValidityState } from "./components/date-input/date-input.types";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card.types";
 export { DateChangeEvent } from "./components/date-picker/date-picker.events";
-export { DateTime } from "luxon";
+export { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
@@ -106,6 +109,7 @@ export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollap
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
+export { SpinnerSize } from "./components/spinner/spinner.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
 export { TabClickDetail } from "./components/tab-item/tab-item.types";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
@@ -512,9 +516,10 @@ export namespace Components {
          */
         "iconRight"?: string;
         /**
-          * @default '24'
+          * Size of leading and trailing icons
+          * @default '20'
          */
-        "iconSize": '12' | '16' | '24';
+        "iconSize": ButtonIconSize;
         /**
           * Loading button
           * @default false
@@ -1443,7 +1448,7 @@ export namespace Components {
           * @default DateTime.now().toISO()
          */
         "today": string;
-        "updateSelectedYearMonth": (date: DateTime) => Promise<void>;
+        "updateSelectedYearMonth": (date: DatePickerYearMonth) => Promise<void>;
         /**
           * The index of the day the week starts on, as a 0-based index into Luxon's `Info.weekdays()` array. That array is always ordered Monday-first regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday. E.g. weekStartIndex = 6 results in starting the week on Sunday.
           * @default 0
@@ -2084,7 +2089,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -2394,7 +2399,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -2408,10 +2413,11 @@ export namespace Components {
          */
         "oval": boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         /**
           * Type of the button
           * @default 'button'
@@ -2460,15 +2466,50 @@ export namespace Components {
          */
         "pressed": boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         /**
           * Button variant.
           * @default 'subtle-primary'
          */
         "variant": ButtonVariant1;
+    }
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface IxInfoPage {
+        /**
+          * Optional explanation of the topic and how it can be resolved.
+          * @since 6.0.0
+         */
+        "copyText"?: string;
+        /**
+          * Icon displayed above the title.
+          * @since 6.0.0
+          * @default iconWarning
+         */
+        "icon": string;
+        /**
+          * Color of the default icon.
+          * @since 6.0.0
+          * @default '--si-sys-color-background-warning'
+         */
+        "iconColor": string;
+        /**
+          * Optional instructions describing what the user should do next.
+          * @since 6.0.0
+         */
+        "instructions"?: string;
+        /**
+          * Short and concise title describing the topic.
+          * @since 6.0.0
+         */
+        "titleText": string;
     }
     /**
      * @form-ready 
@@ -3141,7 +3182,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
     }
@@ -3564,7 +3605,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -3614,7 +3655,7 @@ export namespace Components {
          */
         "showTextAsTooltip": boolean;
         /**
-          * The size of the progress indicator.
+          * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
           * @default 'md'
          */
         "size": ProgressIndicatorSize;
@@ -4058,10 +4099,10 @@ export namespace Components {
          */
         "hideTrack": boolean;
         /**
-          * Size of spinner
-          * @default 'medium'
+          * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @default 'md'
          */
-        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size": SpinnerSize;
         /**
           * Variant of spinner
           * @default 'secondary'
@@ -4685,7 +4726,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -6039,6 +6080,17 @@ declare global {
         prototype: HTMLIxIconToggleButtonElement;
         new (): HTMLIxIconToggleButtonElement;
     };
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface HTMLIxInfoPageElement extends Components.IxInfoPage, HTMLStencilElement {
+    }
+    var HTMLIxInfoPageElement: {
+        prototype: HTMLIxInfoPageElement;
+        new (): HTMLIxInfoPageElement;
+    };
     interface HTMLIxInputElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
@@ -7003,6 +7055,7 @@ declare global {
         "ix-helper-text": HTMLIxHelperTextElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
+        "ix-info-page": HTMLIxInfoPageElement;
         "ix-input": HTMLIxInputElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -7491,9 +7544,10 @@ declare namespace LocalJSX {
          */
         "iconRight"?: string;
         /**
-          * @default '24'
+          * Size of leading and trailing icons
+          * @default '20'
          */
-        "iconSize"?: '12' | '16' | '24';
+        "iconSize"?: ButtonIconSize;
         /**
           * Loading button
           * @default false
@@ -9165,7 +9219,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -9506,7 +9560,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -9520,10 +9574,11 @@ declare namespace LocalJSX {
          */
         "oval"?: boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size"?: '24' | '16' | '12';
+        "size"?: ButtonIconSize;
         /**
           * Type of the button
           * @default 'button'
@@ -9576,15 +9631,50 @@ declare namespace LocalJSX {
          */
         "pressed"?: boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size"?: '24' | '16' | '12';
+        "size"?: ButtonIconSize;
         /**
           * Button variant.
           * @default 'subtle-primary'
          */
         "variant"?: ButtonVariant1;
+    }
+    /**
+     * A page layout for communicating information or errors and guiding users
+     * towards a solution.
+     * @since 6.0.0
+     */
+    interface IxInfoPage {
+        /**
+          * Optional explanation of the topic and how it can be resolved.
+          * @since 6.0.0
+         */
+        "copyText"?: string;
+        /**
+          * Icon displayed above the title.
+          * @since 6.0.0
+          * @default iconWarning
+         */
+        "icon"?: string;
+        /**
+          * Color of the default icon.
+          * @since 6.0.0
+          * @default '--si-sys-color-background-warning'
+         */
+        "iconColor"?: string;
+        /**
+          * Optional instructions describing what the user should do next.
+          * @since 6.0.0
+         */
+        "instructions"?: string;
+        /**
+          * Short and concise title describing the topic.
+          * @since 6.0.0
+         */
+        "titleText": string;
     }
     /**
      * @form-ready 
@@ -10304,7 +10394,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -10760,7 +10850,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -10815,7 +10905,7 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The size of the progress indicator.
+          * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
           * @default 'md'
          */
         "size"?: ProgressIndicatorSize;
@@ -11292,10 +11382,10 @@ declare namespace LocalJSX {
          */
         "hideTrack"?: boolean;
         /**
-          * Size of spinner
-          * @default 'medium'
+          * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @default 'md'
          */
-        "size"?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size"?: SpinnerSize;
         /**
           * Variant of spinner
           * @default 'secondary'
@@ -11950,7 +12040,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -12421,7 +12511,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconRight": string;
         "alignment": 'center' | 'start';
-        "iconSize": '12' | '16' | '24';
+        "iconSize": ButtonIconSize;
         "href": string;
         "target": AnchorTarget;
         "rel": string;
@@ -12834,7 +12924,7 @@ declare namespace LocalJSX {
         "variant": IconButtonVariant;
         "oval": boolean;
         "icon": string;
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         "iconColor": string;
         "disabled": boolean;
         "type": 'button' | 'submit';
@@ -12847,9 +12937,16 @@ declare namespace LocalJSX {
         "icon": string;
         "oval": boolean;
         "pressed": boolean;
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         "disabled": boolean;
         "loading": boolean;
+    }
+    interface IxInfoPageAttributes {
+        "icon": string;
+        "iconColor": string;
+        "titleText": string;
+        "copyText": string;
+        "instructions": string;
     }
     interface IxInputAttributes {
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';
@@ -13226,7 +13323,7 @@ declare namespace LocalJSX {
     }
     interface IxSpinnerAttributes {
         "variant": 'primary' | 'secondary';
-        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size": SpinnerSize;
         "hideTrack": boolean;
     }
     interface IxSplitButtonAttributes {
@@ -13498,6 +13595,7 @@ declare namespace LocalJSX {
         "ix-helper-text": Omit<IxHelperText, keyof IxHelperTextAttributes> & { [K in keyof IxHelperText & keyof IxHelperTextAttributes]?: IxHelperText[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `attr:${K}`]?: IxHelperTextAttributes[K] } & { [K in keyof IxHelperText & keyof IxHelperTextAttributes as `prop:${K}`]?: IxHelperText[K] };
         "ix-icon-button": Omit<IxIconButton, keyof IxIconButtonAttributes> & { [K in keyof IxIconButton & keyof IxIconButtonAttributes]?: IxIconButton[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `attr:${K}`]?: IxIconButtonAttributes[K] } & { [K in keyof IxIconButton & keyof IxIconButtonAttributes as `prop:${K}`]?: IxIconButton[K] };
         "ix-icon-toggle-button": Omit<IxIconToggleButton, keyof IxIconToggleButtonAttributes> & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes]?: IxIconToggleButton[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `attr:${K}`]?: IxIconToggleButtonAttributes[K] } & { [K in keyof IxIconToggleButton & keyof IxIconToggleButtonAttributes as `prop:${K}`]?: IxIconToggleButton[K] };
+        "ix-info-page": Omit<IxInfoPage, keyof IxInfoPageAttributes> & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes]?: IxInfoPage[K] } & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes as `attr:${K}`]?: IxInfoPageAttributes[K] } & { [K in keyof IxInfoPage & keyof IxInfoPageAttributes as `prop:${K}`]?: IxInfoPage[K] } & OneOf<"titleText", IxInfoPage["titleText"], IxInfoPageAttributes["titleText"]>;
         "ix-input": Omit<IxInput, keyof IxInputAttributes> & { [K in keyof IxInput & keyof IxInputAttributes]?: IxInput[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `attr:${K}`]?: IxInputAttributes[K] } & { [K in keyof IxInput & keyof IxInputAttributes as `prop:${K}`]?: IxInput[K] };
         "ix-key-value": Omit<IxKeyValue, keyof IxKeyValueAttributes> & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes]?: IxKeyValue[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `attr:${K}`]?: IxKeyValueAttributes[K] } & { [K in keyof IxKeyValue & keyof IxKeyValueAttributes as `prop:${K}`]?: IxKeyValue[K] } & OneOf<"label", IxKeyValue["label"], IxKeyValueAttributes["label"]>;
         "ix-key-value-list": Omit<IxKeyValueList, keyof IxKeyValueListAttributes> & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes]?: IxKeyValueList[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `attr:${K}`]?: IxKeyValueListAttributes[K] } & { [K in keyof IxKeyValueList & keyof IxKeyValueListAttributes as `prop:${K}`]?: IxKeyValueList[K] };
@@ -13665,6 +13763,12 @@ declare module "@stencil/core" {
             "ix-helper-text": LocalJSX.IntrinsicElements["ix-helper-text"] & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             "ix-icon-button": LocalJSX.IntrinsicElements["ix-icon-button"] & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             "ix-icon-toggle-button": LocalJSX.IntrinsicElements["ix-icon-toggle-button"] & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
+            /**
+             * A page layout for communicating information or errors and guiding users
+             * towards a solution.
+             * @since 6.0.0
+             */
+            "ix-info-page": LocalJSX.IntrinsicElements["ix-info-page"] & JSXBase.HTMLAttributes<HTMLIxInfoPageElement>;
             /**
              * @form-ready 
              */

@@ -10,5 +10,5 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-chat-ai-message--color: #{sys.$si-sys-text-primary};
+  --ix-chat-ai-message--color: #{sys.$si-sys-color-text-primary};
 }

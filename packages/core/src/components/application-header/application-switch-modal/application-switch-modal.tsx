@@ -62,7 +62,7 @@ function ApplicationItem(props: {
             <ix-icon
               size="12"
               name={iconOpenExternal}
-              color="--si-sys-text-secondary"
+              color="--si-sys-color-text-secondary"
             ></ix-icon>
           )}
         </ix-typography>
@@ -102,7 +102,7 @@ export class ApplicationSwitchModal {
           <div class="content-apps">
             {(!this.config || this.config?.apps.length === 0) && (
               <div class="loading">
-                <ix-spinner size="medium" variant="primary"></ix-spinner>
+                <ix-spinner size="md" variant="primary"></ix-spinner>
                 <span>
                   {this.config?.i18nLoadingApps ||
                     'Loading available applications...'}

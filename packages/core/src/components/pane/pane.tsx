@@ -775,7 +775,6 @@ export class Pane {
           >
             <ix-icon-button
               class="title-icon"
-              size="24"
               icon={
                 this.expanded
                   ? this.isMobile || this.hideOnCollapse
@@ -785,7 +784,7 @@ export class Pane {
               }
               iconColor={
                 this.expanded && (this.isMobile || this.hideOnCollapse)
-                  ? '--si-sys-text-secondary'
+                  ? '--si-sys-color-text-secondary'
                   : undefined
               }
               variant="subtle-tertiary"
@@ -802,7 +801,6 @@ export class Pane {
               {this.icon && (
                 <ix-icon
                   class="pane-icon"
-                  size="24"
                   name={this.icon}
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>

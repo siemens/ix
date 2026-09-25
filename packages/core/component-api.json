@@ -5152,10 +5152,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5273,10 +5273,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5306,6 +5306,73 @@
       ],
       "cssProperties": [],
       "slots": [],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-info-page",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "copyText",
+          "attribute": "copy-text",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "iconWarning",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconColor",
+          "attribute": "icon-color",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'--si-sys-color-background-warning'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "instructions",
+          "attribute": "instructions",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "titleText",
+          "attribute": "title-text",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": false,
+          "required": true,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [
+        "actions",
+        "image"
+      ],
       "cssParts": [],
       "cssStates": []
     },
@@ -9176,10 +9243,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"large\" | \"medium\" | \"small\" | \"x-small\" | \"xx-small\"",
+          "type": "\"md\" | \"sm\" | \"xs\" | \"xxl\" | \"xxs\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'medium'",
+          "default": "'md'",
           "optional": false,
           "required": false,
           "deprecated": false
