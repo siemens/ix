@@ -155,31 +155,29 @@ $header-height: 4rem;
     }
   }
 
-  .expand-icon {
-    padding: 0.125rem 0.437rem;
-    color: var(--ix-group-expand-icon--color);
-  }
-
   .btn-expand-header {
     appearance: none;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     align-self: flex-start;
     order: -1;
     margin: vars.$small-space;
     margin-inline-end: vars.$tiny-space;
+    width: 1.5rem;
+    height: 1.5rem;
     min-width: 1.5rem;
     padding: 0;
     border: none;
     background: transparent;
-    color: inherit;
+    color: var(--ix-group-expand-icon--color);
     line-height: 0;
     cursor: pointer;
     border-radius: var(--ix-group-header--border-radius--focus);
 
     @include hover.focus-visible {
       outline: 1px solid var(--ix-group-header--border-color--focus);
-      outline-offset: -1px;
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
