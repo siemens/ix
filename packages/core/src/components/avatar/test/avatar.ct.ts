@@ -10,6 +10,37 @@ import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('embedded into header', () => {
+  regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar username="John" extra="Doe">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('renders', async ({ page, mount }) => {
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar></ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const avatar = page.locator('ix-avatar');
+
+    await expect(avatar).toHaveClass(/\bhydrated\b/);
+    await expect(avatar).toBeVisible();
+  });
+
   regressionTest('show avatar as clickable', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
@@ -151,6 +182,96 @@ regressionTest.describe('embedded into header', () => {
 
       await expect(userInfo).not.toBeVisible();
       await expect(avatar.locator('ix-divider')).not.toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'should apply no-truncate class when wrapUsername is true',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" wrap-username>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      await expect(avatar.locator('.user-info')).toHaveClass(
+        /\buser-info--no-truncate\b/
+      );
+    }
+  );
+
+  regressionTest(
+    'should not apply no-truncate class when wrapUsername is false',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo">
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      await expect(avatar.locator('.user-info')).not.toHaveClass(
+        /\buser-info--no-truncate\b/
+      );
+    }
+  );
+
+  regressionTest(
+    'should keep the popup width fixed and wrap long usernames when wrapUsername is true',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" wrap-username>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      const userInfo = avatar.locator('.user-info');
+
+      const initialMetrics = await userInfo.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        };
+      });
+
+      const longUsername = 'verylongstringthatisnotfullydisplayed';
+      await avatar.evaluate((element, value) => {
+        element.setAttribute('username', value);
+      }, longUsername);
+
+      await expect(userInfo).toHaveText(new RegExp(longUsername));
+
+      const updatedMetrics = await userInfo.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        };
+      });
+
+      expect(updatedMetrics.width).toBe(initialMetrics.width);
+      expect(updatedMetrics.height).toBeGreaterThan(initialMetrics.height);
     }
   );
 

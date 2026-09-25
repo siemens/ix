@@ -85,6 +85,7 @@
       flex-direction: column;
       justify-content: center;
       max-width: 10rem;
+      min-width: 0;
       width: 100%;
       overflow: hidden;
     }
@@ -99,6 +100,32 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    &.user-info--no-truncate {
+      height: auto;
+      width: 12.75rem;
+      min-width: 12.75rem;
+      max-width: 12.75rem;
+
+      .user {
+        max-width: unset;
+        overflow: visible;
+      }
+
+      .username {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+      }
+
+      .extra {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+      }
     }
   }
 }
