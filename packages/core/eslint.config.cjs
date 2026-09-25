@@ -17,6 +17,8 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 });
 
+const ix = require('eslint-config-ix/plugin');
+
 module.exports = [
   {
     ignores: [
@@ -72,4 +74,22 @@ module.exports = [
       'no-unused-vars': 'off',
     },
   }),
+  // `utils/calendar.util.ts` is deliberately out of scope: it is the one
+  // module allowed to touch both Luxon's 1-based ordinals and the 0-based
+  // `Info` name arrays. Any new date component directory has to be added
+  // here, or it inherits none of this.
+  {
+    files: [
+      'src/components/date-picker/**/*.{ts,tsx}',
+      'src/components/date-input/**/*.{ts,tsx}',
+      'src/components/date-dropdown/**/*.{ts,tsx}',
+      'src/components/datetime-picker/**/*.{ts,tsx}',
+      'src/components/datetime-input/**/*.{ts,tsx}',
+    ],
+    ignores: ['**/test/**', '**/tests/**'],
+    plugins: { ix },
+    rules: {
+      'ix/no-luxon-calendar-ordinals': 'error',
+    },
+  },
 ];

@@ -645,6 +645,165 @@ regressionTest.describe('keyboard navigation', () => {
   });
 });
 
+regressionTest.describe('month dropdown min/max range', () => {
+  const openMonthDropdown = async (page: Page) => {
+    await page.waitForSelector('ix-date-time-card');
+    const monthSelection = page.getByLabel('Select month');
+
+    await expect(monthSelection).toBeVisible();
+    await monthSelection.click();
+
+    return monthSelection;
+  };
+
+  const expectMonths = async (
+    monthSelection: ReturnType<Page['getByLabel']>,
+    enabled: string[],
+    disabled: string[]
+  ) => {
+    for (const name of enabled) {
+      await expect(
+        monthSelection.getByRole('menuitem', { name })
+      ).not.toHaveClass(/disabled-item/);
+    }
+
+    for (const name of disabled) {
+      await expect(monthSelection.getByRole('menuitem', { name })).toHaveClass(
+        /disabled-item/
+      );
+    }
+  };
+
+  regressionTest(
+    'enables the month a single-month range sits in',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/07/15" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(monthSelection, ['July'], ['June', 'August']);
+    }
+  );
+
+  regressionTest(
+    'enables both months a two-month range spans',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/08/15" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['July', 'August'],
+        ['June', 'September']
+      );
+    }
+  );
+
+  regressionTest(
+    'disables every month of a year outside the range',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/07/15" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        [],
+        ['January', 'June', 'July', 'August', 'December']
+      );
+    }
+  );
+
+  regressionTest(
+    'rebuilds the month list when `from` moves to another year after load',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/08/15" locale="en" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element) => element.setAttribute('from', '2026/07/06'));
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['July', 'August'],
+        ['June', 'September']
+      );
+    }
+  );
+
+  regressionTest(
+    'year boundary - enables the months from the range start to the end of the first year',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['March', 'April', 'December'],
+        ['January', 'February']
+      );
+    }
+  );
+
+  regressionTest(
+    'enables the months up to the range end in the second year',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/01/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['January'],
+        ['February', 'March', 'December']
+      );
+    }
+  );
+});
+
+regressionTest.describe('year dropdown sync', () => {
+  regressionTest(
+    'marks the new year as selected when `to` moves to another year after load',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" to="2026/07/20"></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element) => element.setAttribute('to', '2028/03/12'));
+
+      const yearSelection = page.getByLabel('Select year');
+      await yearSelection.click();
+
+      await expect(
+        yearSelection.getByRole('menuitem', { name: '2028', exact: true })
+      ).toHaveAttribute('checked', '');
+      await expect(
+        yearSelection.getByRole('menuitem', { name: '2026', exact: true })
+      ).not.toHaveAttribute('checked', '');
+    }
+  );
+});
+
 regressionTest.describe('week start index', () => {
   const getColumnOfFirstDay = async (page: Page) => {
     return await page.$eval(DatePickerSelector, (picker) => {
@@ -662,6 +821,32 @@ regressionTest.describe('week start index', () => {
       [
         ...(picker.shadowRoot?.querySelectorAll('[role="columnheader"]') ?? []),
       ].map((header) => header.textContent?.trim() ?? '')
+    );
+  };
+
+  /** Every day number in the grid, in the order it is rendered. */
+  const getRenderedDays = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [
+        ...(picker.shadowRoot?.querySelectorAll('[data-calendar-day]') ?? []),
+      ].map((cell) => Number(cell.getAttribute('data-calendar-day')))
+    );
+  };
+
+  /** The cell count of each day row, the header row excluded. */
+  const getRowWidths = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [...(picker.shadowRoot?.querySelectorAll('[role="row"]') ?? [])]
+        .map((row) => row.querySelectorAll('[role="gridcell"]').length)
+        .filter((width) => width > 0)
+    );
+  };
+
+  const getWeekNumbers = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [...(picker.shadowRoot?.querySelectorAll('.week-number') ?? [])].map(
+        (cell) => Number(cell.textContent?.trim())
+      )
     );
   };
 
@@ -730,6 +915,130 @@ regressionTest.describe('week start index', () => {
 
       // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
       expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+    }
+  );
+
+  regressionTest(
+    'places the first day for a Sunday-first week',
+    async ({ mount, page }) => {
+      // weekStartIndex 6 is Sunday, the largest offset the wrap-around has to
+      // handle. 1 September 2023 is a Friday, five columns along from Sunday.
+      await mount(
+        `<ix-date-picker from="2023/09/01" week-start-index="6" single-selection></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(5);
+    }
+  );
+
+  regressionTest(
+    'rotates the weekday headers when the week start changes at runtime',
+    async ({ mount, page }) => {
+      // 1 September 2023 is a Friday: column 4 of a Monday-first grid, column 5
+      // once the week starts on Sunday. The header under it has to stay the
+      // same weekday, which only holds if the names are rebuilt with the grid.
+      await mount(`<ix-date-picker from="2023/09/01"></ix-date-picker>`);
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(4);
+
+      const fridayHeader = (await getColumnHeaders(page))[4];
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element: HTMLElement) =>
+          element.setAttribute('week-start-index', '6')
+        );
+
+      await expect.poll(async () => await getColumnOfFirstDay(page)).toBe(5);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[5]).toBe(fridayHeader);
+    }
+  );
+
+  regressionTest(
+    'renders the whole month for a Sunday-first week',
+    async ({ mount, page }) => {
+      // December 2023 opens on a Friday, so a Sunday-first grid needs six rows.
+      // Counting rows by ISO week number only found five and dropped every day
+      // after the 24th.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      expect(await getRenderedDays(page)).toEqual(
+        Array.from({ length: 31 }, (_, index) => index + 1)
+      );
+    }
+  );
+
+  regressionTest(
+    'renders no day past the end of a short month',
+    async ({ mount, page }) => {
+      // February 2026 has 28 days and opens on a Sunday, the case where the
+      // day counter used to run on to a 31st that does not exist.
+      await mount(
+        `<ix-date-picker from="2026/02/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const days = await getRenderedDays(page);
+      expect(days).toHaveLength(28);
+      expect(Math.max(...days)).toBe(28);
+    }
+  );
+
+  regressionTest(
+    'keeps every row seven columns wide',
+    async ({ mount, page }) => {
+      // A short final row shifts nothing on screen, but it means the grid and
+      // the headers stop agreeing about what column a weekday is.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      expect(await getRowWidths(page)).toEqual([7, 7, 7, 7, 7, 7]);
+    }
+  );
+
+  regressionTest(
+    'numbers the weeks of a Sunday-first December into the new year',
+    async ({ mount, page }) => {
+      // The last row of December 2023 runs into January, so it carries week 1.
+      // The old counter repeated a number here instead of wrapping.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6" show-week-numbers></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const weekNumbers = await getWeekNumbers(page);
+      expect(weekNumbers).toEqual([48, 49, 50, 51, 52, 1]);
+      expect(new Set(weekNumbers).size).toBe(weekNumbers.length);
+    }
+  );
+
+  regressionTest(
+    'lines a Sunday-first grid up with its headers',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6" locale="en"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[0]).toBe('Sun');
+
+      // 1 December 2023 is a Friday, six columns along from Sunday.
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Fri');
     }
   );
 });
