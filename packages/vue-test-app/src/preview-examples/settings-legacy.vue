@@ -32,13 +32,13 @@ onMounted(async () => {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuSettings enableLegacyTabs activeTabKey="tab-1">
+      <IxMenuSettings enable-legacy-tabs active-tab-key="tab-1">
         <IxMenuSettingsItem
-          tabKey="tab-1"
+          tab-key="tab-1"
           label="Example Setting 1"
         ></IxMenuSettingsItem>
         <IxMenuSettingsItem
-          tabKey="tab-2"
+          tab-key="tab-2"
           label="Example Setting 2"
         ></IxMenuSettingsItem>
       </IxMenuSettings>
