@@ -47,6 +47,7 @@ export class CategoryFilter {
   private inputListener?: DisposableEventListener;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
+  private tokenListElement?: HTMLDivElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
   private a11yAttributes?: A11yAttributes;
@@ -790,10 +791,10 @@ export class CategoryFilter {
 
   componentDidRender() {
     if (this.isScrollStateDirty) {
-      this.textInput?.current?.scrollIntoView({
-        block: 'nearest',
-        inline: 'nearest',
-      });
+      // Only scroll the token list, scrollIntoView would also scroll the page
+      if (this.tokenListElement) {
+        this.tokenListElement.scrollTop = this.tokenListElement.scrollHeight;
+      }
       this.isScrollStateDirty = false;
     }
   }
@@ -870,7 +871,10 @@ export class CategoryFilter {
               size="16"
             ></ix-icon>
             <div class="token-container">
-              <div class="list-unstyled">
+              <div
+                class="list-unstyled"
+                ref={(el) => (this.tokenListElement = el)}
+              >
                 {this.filterTokens.map((value, index) => (
                   <span
                     key={value.toString()}
