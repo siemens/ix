@@ -32,6 +32,21 @@ import {
 } from './tree-model';
 import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 
+const createTreeContext = (): TreeContext => ({});
+
+const defineTreeItemContext = (
+  context: TreeContext,
+  id: string,
+  itemContext: TreeItemContext
+) => {
+  Object.defineProperty(context, id, {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: itemContext,
+  });
+};
+
 /**
  * @slot default - Tree items.
  */
@@ -67,7 +82,7 @@ export class Tree {
   /**
    * Selection and collapsed state management
    */
-  @Prop({ mutable: true }) context: TreeContext = {};
+  @Prop({ mutable: true }) context: TreeContext = createTreeContext();
 
   /**
    * Enable to toggle items by click on the item
@@ -192,30 +207,25 @@ export class Tree {
   }
 
   private setContext(id: string, context: TreeItemContext) {
-    this.context = {
-      ...this.context,
-      [id]: context,
-    };
+    const nextContext = { ...(this.context ?? createTreeContext()) };
+    defineTreeItemContext(nextContext, id, context);
+    this.context = nextContext;
 
     this.contextChange.emit(this.context);
   }
 
   private getContext(id: string): TreeItemContext {
-    if (!this.context) {
-      return {
+    const context = this.context ?? createTreeContext();
+
+    if (!Object.prototype.hasOwnProperty.call(context, id)) {
+      defineTreeItemContext(context, id, {
         isExpanded: false,
         isSelected: false,
         isDisabled: this.model[id]?.disabled,
-      };
+      });
     }
-    if (!this.context[id]) {
-      this.context[id] = {
-        isExpanded: false,
-        isSelected: false,
-        isDisabled: this.model[id]?.disabled,
-      };
-    }
-    return this.context[id];
+
+    return context[id];
   }
 
   private buildTreeList(

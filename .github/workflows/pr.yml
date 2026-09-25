@@ -15,12 +15,18 @@ concurrency:
   group: pr-${{ github.head_ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   # Builds, installs and every turbo invocation run on the host runner so all jobs
   # share one cache version and one hash space. Only browser-driven commands are
   # executed inside the pinned Playwright image, see actions/playwright-container.
   changes:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     outputs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
       core_all_changed_files: ${{ steps.changes.outputs.core_all_changed_files }}
@@ -34,6 +40,8 @@ jobs:
       ci_any_changed: ${{ steps.changes.outputs.ci_any_changed }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Track changes between commits
         id: changes
         uses: tj-actions/changed-files@2f7c5bfce28377bc069a65ba478de0a74aa0ca32
@@ -78,6 +86,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: ./.github/workflows/actions/turbo
         with:
@@ -117,6 +127,8 @@ jobs:
         shardTotal: [4]
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
@@ -132,6 +144,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/merge-reports
         with:
@@ -146,6 +160,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
@@ -160,6 +176,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/visual-regression
         with:
@@ -184,6 +202,8 @@ jobs:
             packages: 'react-test-app @siemens/ix-react vue-test-app @siemens/ix-vue'
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/unit
         with:
@@ -196,6 +216,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
       - uses: ./.github/workflows/actions/storybook
 
@@ -206,6 +228,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: ./.github/workflows/actions/turbo
 
       - name: Test

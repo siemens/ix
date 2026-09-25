@@ -9,6 +9,7 @@
 
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
+import { getSafeNavigationUrl } from '../utils/condition-checks';
 
 /**
  * @slot default - Link button label.
@@ -25,7 +26,7 @@ export class LinkButton {
   @Prop() disabled = false;
 
   /**
-   * Url for the link button
+   * Relative, HTTP(S), mailto, or tel URL for the link button
    */
   @Prop() url?: string;
 
@@ -37,16 +38,20 @@ export class LinkButton {
   @Prop() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
 
   render() {
+    const url = this.disabled
+      ? undefined
+      : getSafeNavigationUrl(this.url, 'ix-link-button');
+
     return (
       <Host>
         <a
-          title={this.url}
-          tabindex="0"
+          title={url}
+          tabindex={url ? '0' : '-1'}
           class={{
             'link-button': true,
             disabled: this.disabled,
           }}
-          href={this.disabled ? undefined : this.url}
+          href={url}
           target={this.target}
         >
           <ix-icon

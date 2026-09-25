@@ -32,6 +32,7 @@ import { Disposable } from '../utils/typed-event';
 import { createSequentialId } from '../utils/uuid';
 import { IxMenuItemBase } from './menu-item.interface';
 import { a11yBoolean } from '../utils/a11y';
+import { getSafeNavigationUrl } from '../utils/condition-checks';
 
 let sequenceId = 0;
 
@@ -94,7 +95,7 @@ export class MenuItem
   @Prop() tooltipText?: string;
 
   /**
-   * URL for the button link. When provided, the button will render as an anchor tag.
+   * Relative, HTTP(S), mailto, or tel URL for the button link. When provided, the button will render as an anchor tag.
    *
    * @since 4.0.0
    */
@@ -312,6 +313,9 @@ export class MenuItem
     ];
 
     const ariaLabel = this.getAriaLabel();
+    const href = this.disabled
+      ? undefined
+      : getSafeNavigationUrl(this.href, 'ix-menu-item');
 
     return (
       <Host
@@ -325,11 +329,11 @@ export class MenuItem
         }}
         {...extendedAttributes}
       >
-        {this.href ? (
+        {href ? (
           <a
             {...commonAttributes}
             role={effectiveRole}
-            href={this.disabled ? undefined : this.href}
+            href={href}
             target={this.target}
             rel={this.rel}
             tabIndex={
