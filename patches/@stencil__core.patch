@@ -23,3 +23,33 @@ index ffec762996cf94678a4b8547bb64844cc3ed4df6..5b1f3157029c98717a1f5f175fed2702
  
  declare module '*.svg' {
    const src: string;
+diff --git a/compiler/stencil.js b/compiler/stencil.js
+--- a/compiler/stencil.js
++++ b/compiler/stencil.js
+@@ -253211,11 +253211,14 @@ var outputCollection = async (config, compilerCtx, buildCtx, changedModuleFiles
+   if (outputTargets.length === 0) {
+     return;
+   }
++  const collectionModuleFiles = changedModuleFiles.filter(
++    (mod) => config.devMode || !mod.cmps.some((cmp) => shouldExcludeComponent(cmp.tagName, config.excludeComponents))
++  );
+   const bundlingEventMessage = `generate collections${config.sourceMap ? " + source maps" : ""}`;
+   const timespan = buildCtx.createTimeSpan(`${bundlingEventMessage} started`, true);
+   try {
+     await Promise.all(
+-      changedModuleFiles.map(async (mod) => {
++      collectionModuleFiles.map(async (mod) => {
+         let code = mod.staticSourceFileText;
+         if (config.preamble) {
+           code = `${generatePreamble(config)}
+@@ -253264,7 +253267,9 @@ var writeCollectionManifest = (compilerCtx, collectionData, outputTarget) => {
+ };
+ var serializeCollectionManifest = (config, compilerCtx, buildCtx) => {
+   const collectionManifest = {
+-    entries: buildCtx.moduleFiles.filter((mod) => !mod.isCollectionDependency && mod.cmps.length > 0).map((mod) => relative(config.srcDir, mod.jsFilePath)),
++    entries: buildCtx.moduleFiles.filter(
++      (mod) => !mod.isCollectionDependency && mod.cmps.length > 0 && (config.devMode || !mod.cmps.some((cmp) => shouldExcludeComponent(cmp.tagName, config.excludeComponents)))
++    ).map((mod) => relative(config.srcDir, mod.jsFilePath)),
+     // Include mixin/abstract class modules that can be extended by consuming projects
+     // These are modules with Stencil static members but no @Component decorator
+     mixins: buildCtx.moduleFiles.filter((mod) => !mod.isCollectionDependency && mod.hasExportableMixins && mod.cmps.length === 0).map((mod) => relative(config.srcDir, mod.jsFilePath)),
