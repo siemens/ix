@@ -31,6 +31,92 @@ regressionTest('translation', async ({ mount, page }) => {
   await expect(header).toHaveCount(1);
 });
 
+regressionTest(
+  'defers year options until opened and keeps the selected and allowed years correct',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" min-date="2023/01/01" max-date="2025/12/31" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveClass(/hydrated/);
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+    const yearOptions = yearSelection.locator('ix-dropdown-item');
+
+    await expect(yearOptions).toHaveCount(0);
+
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    const selectedYear = yearSelection.getByRole('menuitem', {
+      name: '2023',
+    });
+    await expect(selectedYear).toBeVisible();
+    await expect(selectedYear).toHaveAttribute('checked', '');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2022' })
+    ).toHaveClass(/disabled-item/);
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2026' })
+    ).toHaveClass(/disabled-item/);
+
+    await yearSelection.getByRole('menuitem', { name: '2024' }).click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(yearSelection.locator('[slot="button-label"]')).toHaveText(
+      '2024'
+    );
+
+    await yearSelection.click();
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+  }
+);
+
+regressionTest(
+  'supports keyboard navigation and accessible year options',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveClass(/hydrated/);
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    const selectedYear = yearSelection.getByRole('menuitem', {
+      name: '2023',
+    });
+    await expect(selectedYear).toBeVisible();
+    const selectedYearId = await selectedYear.getAttribute('id');
+    if (selectedYearId === null) {
+      throw new Error(
+        'Year menu items must have an id for keyboard navigation'
+      );
+    }
+    await expect(yearSelection).toHaveAttribute(
+      'aria-activedescendant',
+      selectedYearId
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+  }
+);
+
 regressionTest.describe('date picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(

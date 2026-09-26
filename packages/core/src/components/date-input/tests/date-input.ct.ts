@@ -36,11 +36,132 @@ const createDateInputAccessor = async (dateInput: Locator) => {
   return handle;
 };
 
+interface RangeDateInputTrace {
+  changes: Array<{ inputIndex: number; value?: string }>;
+}
+
+interface RangeDateInputTraceWindow extends Window {
+  __rangeDateInputTrace?: RangeDateInputTrace;
+}
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveClass(/hydrated/);
 });
+
+regressionTest(
+  'preserves range-field focus while selecting a date from the first calendar',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-range-field type="date-range" style="width: 32rem">
+        <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
+        <ix-date-input label="End date" value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+    `);
+
+    const dateInputs = page.locator('ix-date-input');
+    const firstInput = dateInputs.nth(0);
+    const secondInput = dateInputs.nth(1);
+    const firstNativeInput = firstInput.locator('input');
+    const secondNativeInput = secondInput.locator('input');
+    const firstCalendar = firstInput.getByTestId('date-dropdown');
+    const secondCalendar = secondInput.getByTestId('date-dropdown');
+
+    await expect(firstInput).toHaveClass(/hydrated/);
+    await expect(secondInput).toHaveClass(/hydrated/);
+    await expect(firstInput.locator('ix-date-picker')).toHaveClass(/hydrated/);
+
+    await page.evaluate(() => {
+      const inputs = [...document.querySelectorAll('ix-date-input')];
+      const trace: RangeDateInputTrace = { changes: [] };
+      (window as RangeDateInputTraceWindow).__rangeDateInputTrace = trace;
+
+      inputs.forEach((input, inputIndex) => {
+        input.addEventListener('ixChange', (event) => {
+          trace.changes.push({
+            inputIndex,
+            value: (event as CustomEvent<string | undefined>).detail,
+          });
+        });
+      });
+    });
+    const getChanges = () =>
+      page.evaluate(() => {
+        const trace = (window as RangeDateInputTraceWindow)
+          .__rangeDateInputTrace;
+        if (!trace) {
+          throw new Error('Range date-input event trace was not initialized');
+        }
+        return trace.changes;
+      });
+
+    await firstNativeInput.focus();
+    await expect(firstNativeInput).toBeFocused();
+    await firstInput.getByTestId('open-calendar').click();
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    const yearSelection = firstInput.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    const year2024 = yearSelection.getByRole('menuitem', { name: '2024' });
+    await expect(year2024).toBeVisible();
+    await year2024.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(yearSelection.locator('[slot="button-label"]')).toHaveText(
+      '2024'
+    );
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+    await expect(secondNativeInput).not.toBeFocused();
+    await expect.poll(getChanges).toEqual([]);
+
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+    await page.keyboard.press('Escape');
+    await expect(firstCalendar).not.toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    await firstInput.getByTestId('open-calendar').click();
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+    await page.keyboard.press('Enter');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    await firstInput.locator('ix-date-picker [data-calendar-day="2"]').click();
+    await expect(firstInput).toHaveAttribute('value', '2024/10/02');
+    await expect(secondNativeInput).toBeFocused();
+    await expect(secondCalendar).toHaveClass(/show/);
+    await expect
+      .poll(getChanges)
+      .toEqual([{ inputIndex: 0, value: '2024/10/02' }]);
+
+    await secondNativeInput.fill('2022/11/01');
+    await secondNativeInput.blur();
+    await expect.poll(getChanges).toEqual([
+      { inputIndex: 0, value: '2024/10/02' },
+      { inputIndex: 1, value: '2022/11/01' },
+    ]);
+  }
+);
 
 regressionTest(
   'select date by open calendar trigger',
