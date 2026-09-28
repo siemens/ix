@@ -121,6 +121,10 @@
   }
 }
 
+:host(.icon-only) {
+  width: vars.$x-large-space;
+}
+
 :host(.host-context-date-picker) {
   ix-dropdown {
     max-height: var(--ix-dropdown-button-host-context-date-picker--max-height);
