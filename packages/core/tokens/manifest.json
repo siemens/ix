@@ -1,0 +1,5456 @@
+{
+  "schemaVersion": 1,
+  "contract": "siemens-ix-system-token-manifest",
+  "provenance": {
+    "tokenSourceVersion": "0.12.0",
+    "tokenBuildId": "21a40931bc1c03dfdfb8d9b1162f36c6bb1ce70189bb835def239738b50e0455"
+  },
+  "coverage": {
+    "modes": [
+      "dark",
+      "light"
+    ],
+    "densities": [
+      {
+        "name": "default",
+        "kind": "base"
+      },
+      {
+        "name": "compact",
+        "kind": "sparse-override",
+        "inherits": "default"
+      }
+    ]
+  },
+  "entries": [
+    {
+      "name": "--si-sys-color-background-0",
+      "sourcePath": "si.sys.color.background.0",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "The absolute bottom layer, the literal background of the application.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-1",
+      "sourcePath": "si.sys.color.background.1",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "The primary surface layer where most UI components sit. E.g., cards, side panels, containers that rest above background-0",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-2",
+      "sourcePath": "si.sys.color.background.2",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "For elements that are placed above background-1, implying a higher visual elevation.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-3",
+      "sourcePath": "si.sys.color.background.3",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Used for temporary UI layers that sit above all base surfaces and partially cover the interface below. Is usually paired with drop-shadows. E.g., toast notification, popovers, dropdowns, modals.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-4",
+      "sourcePath": "si.sys.color.background.4",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Used to layer in any of the other bases, when a stronger distinction is needed, especially to highlight a container.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-accent",
+      "sourcePath": "si.sys.color.background.accent",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-accent-active",
+      "sourcePath": "si.sys.color.background.accent-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-accent-hover",
+      "sourcePath": "si.sys.color.background.accent-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-accent-secondary",
+      "sourcePath": "si.sys.color.background.accent-secondary",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for secondary accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-accent-secondary-active",
+      "sourcePath": "si.sys.color.background.accent-secondary-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on secondary accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-accent-secondary-hover",
+      "sourcePath": "si.sys.color.background.accent-secondary-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on secondary accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-active",
+      "sourcePath": "si.sys.color.background.active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for acitve states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-caution",
+      "sourcePath": "si.sys.color.background.caution",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for emphasis on caution states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-caution-active",
+      "sourcePath": "si.sys.color.background.caution-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on caution elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-caution-hover",
+      "sourcePath": "si.sys.color.background.caution-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on caution elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-caution-subtle",
+      "sourcePath": "si.sys.color.background.caution-subtle",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for subtle caution states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-critical",
+      "sourcePath": "si.sys.color.background.critical",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for emphasis on critical states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-critical-active",
+      "sourcePath": "si.sys.color.background.critical-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on critical elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-critical-hover",
+      "sourcePath": "si.sys.color.background.critical-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on critical elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-critical-subtle",
+      "sourcePath": "si.sys.color.background.critical-subtle",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for subtle critical states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-danger",
+      "sourcePath": "si.sys.color.background.danger",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for emphasis on danger states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-danger-active",
+      "sourcePath": "si.sys.color.background.danger-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on danger.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-danger-hover",
+      "sourcePath": "si.sys.color.background.danger-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on danger.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-danger-secondary",
+      "sourcePath": "si.sys.color.background.danger-secondary",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for secondary states on danger.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-danger-subtle",
+      "sourcePath": "si.sys.color.background.danger-subtle",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for subtle danger states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-hover",
+      "sourcePath": "si.sys.color.background.hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-information",
+      "sourcePath": "si.sys.color.background.information",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for emphasis on information states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-information-active",
+      "sourcePath": "si.sys.color.background.information-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on information elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-information-hover",
+      "sourcePath": "si.sys.color.background.information-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on information elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-information-subtle",
+      "sourcePath": "si.sys.color.background.information-subtle",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for subtle information states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-inverse",
+      "sourcePath": "si.sys.color.background.inverse",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for inverse states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-neutral",
+      "sourcePath": "si.sys.color.background.neutral",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for neutral or unknown states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-neutral-active",
+      "sourcePath": "si.sys.color.background.neutral-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on neutral or unknown states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-neutral-hover",
+      "sourcePath": "si.sys.color.background.neutral-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on neutral or unknown states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-selected",
+      "sourcePath": "si.sys.color.background.selected",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for acitve states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-success",
+      "sourcePath": "si.sys.color.background.success",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for emphasis on success states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-success-active",
+      "sourcePath": "si.sys.color.background.success-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on success elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-success-hover",
+      "sourcePath": "si.sys.color.background.success-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on success elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-success-subtle",
+      "sourcePath": "si.sys.color.background.success-subtle",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for subtle success states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-warning",
+      "sourcePath": "si.sys.color.background.warning",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for emphasis on warning states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-warning-active",
+      "sourcePath": "si.sys.color.background.warning-active",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on warning.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-warning-hover",
+      "sourcePath": "si.sys.color.background.warning-hover",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for hover states on warning.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-warning-secondary",
+      "sourcePath": "si.sys.color.background.warning-secondary",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for active states on warning.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-warning-subtle",
+      "sourcePath": "si.sys.color.background.warning-subtle",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for subtle warning states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-1",
+      "sourcePath": "si.sys.color.border.1",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Primary border color for high emphasis.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-2",
+      "sourcePath": "si.sys.color.border.2",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Secondary border color for default borders.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-3",
+      "sourcePath": "si.sys.color.border.3",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Tertiary border color for ghost and chips borders.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-4",
+      "sourcePath": "si.sys.color.border.4",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Very subtle border color for dividers, input disabled, outline for cards, status toggle.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-accent",
+      "sourcePath": "si.sys.color.border.accent",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for accent elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-accent-active",
+      "sourcePath": "si.sys.color.border.accent-active",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for active states for accent secondary.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-accent-hover",
+      "sourcePath": "si.sys.color.border.accent-hover",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for hover states for accent secondary.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-caution",
+      "sourcePath": "si.sys.color.border.caution",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for caution states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-critical",
+      "sourcePath": "si.sys.color.border.critical",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for critical states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-danger",
+      "sourcePath": "si.sys.color.border.danger",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for danger states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-danger-secondary",
+      "sourcePath": "si.sys.color.border.danger-secondary",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for danger secondary states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-information",
+      "sourcePath": "si.sys.color.border.information",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for information states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-inverse",
+      "sourcePath": "si.sys.color.border.inverse",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for inverse elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-neutral",
+      "sourcePath": "si.sys.color.border.neutral",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for neutral borders.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-success",
+      "sourcePath": "si.sys.color.border.success",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for success states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-warning",
+      "sourcePath": "si.sys.color.border.warning",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for warning states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-warning-secondary",
+      "sourcePath": "si.sys.color.border.warning-secondary",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for warning secondary states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-1",
+      "sourcePath": "si.sys.color.code.1",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color default.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-10",
+      "sourcePath": "si.sys.color.code.10",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for tags.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-11",
+      "sourcePath": "si.sys.color.code.11",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Color for typescript.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-12",
+      "sourcePath": "si.sys.color.code.12",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for errors.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-2",
+      "sourcePath": "si.sys.color.code.2",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for operators and keywords.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-3",
+      "sourcePath": "si.sys.color.code.3",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for constant / boolean.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-4",
+      "sourcePath": "si.sys.color.code.4",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for variables.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-5",
+      "sourcePath": "si.sys.color.code.5",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for functions.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-6",
+      "sourcePath": "si.sys.color.code.6",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for strings.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-7",
+      "sourcePath": "si.sys.color.code.7",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code colors for numbers.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-8",
+      "sourcePath": "si.sys.color.code.8",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code color for comments.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-code-9",
+      "sourcePath": "si.sys.color.code.9",
+      "group": "color.code",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Code colors for punctuation.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-1",
+      "sourcePath": "si.sys.color.data.categorical.1",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-10",
+      "sourcePath": "si.sys.color.data.categorical.10",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-11",
+      "sourcePath": "si.sys.color.data.categorical.11",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-12",
+      "sourcePath": "si.sys.color.data.categorical.12",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-13",
+      "sourcePath": "si.sys.color.data.categorical.13",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-14",
+      "sourcePath": "si.sys.color.data.categorical.14",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-15",
+      "sourcePath": "si.sys.color.data.categorical.15",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-16",
+      "sourcePath": "si.sys.color.data.categorical.16",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-17",
+      "sourcePath": "si.sys.color.data.categorical.17",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-2",
+      "sourcePath": "si.sys.color.data.categorical.2",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-3",
+      "sourcePath": "si.sys.color.data.categorical.3",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-4",
+      "sourcePath": "si.sys.color.data.categorical.4",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-5",
+      "sourcePath": "si.sys.color.data.categorical.5",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-6",
+      "sourcePath": "si.sys.color.data.categorical.6",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-7",
+      "sourcePath": "si.sys.color.data.categorical.7",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-8",
+      "sourcePath": "si.sys.color.data.categorical.8",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-categorical-9",
+      "sourcePath": "si.sys.color.data.categorical.9",
+      "group": "color.data.categorical",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-rating-average",
+      "sourcePath": "si.sys.color.data.rating.average",
+      "group": "color.data.rating",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-rating-bad",
+      "sourcePath": "si.sys.color.data.rating.bad",
+      "group": "color.data.rating",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-rating-excellent",
+      "sourcePath": "si.sys.color.data.rating.excellent",
+      "group": "color.data.rating",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-rating-good",
+      "sourcePath": "si.sys.color.data.rating.good",
+      "group": "color.data.rating",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-rating-poor",
+      "sourcePath": "si.sys.color.data.rating.poor",
+      "group": "color.data.rating",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-avocado-1",
+      "sourcePath": "si.sys.color.data.sequential.avocado.1",
+      "group": "color.data.sequential.avocado",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-avocado-2",
+      "sourcePath": "si.sys.color.data.sequential.avocado.2",
+      "group": "color.data.sequential.avocado",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-avocado-3",
+      "sourcePath": "si.sys.color.data.sequential.avocado.3",
+      "group": "color.data.sequential.avocado",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-avocado-4",
+      "sourcePath": "si.sys.color.data.sequential.avocado.4",
+      "group": "color.data.sequential.avocado",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-blue-1",
+      "sourcePath": "si.sys.color.data.sequential.blue.1",
+      "group": "color.data.sequential.blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-blue-2",
+      "sourcePath": "si.sys.color.data.sequential.blue.2",
+      "group": "color.data.sequential.blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-blue-3",
+      "sourcePath": "si.sys.color.data.sequential.blue.3",
+      "group": "color.data.sequential.blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-blue-4",
+      "sourcePath": "si.sys.color.data.sequential.blue.4",
+      "group": "color.data.sequential.blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-deep-blue-1",
+      "sourcePath": "si.sys.color.data.sequential.deep-blue.1",
+      "group": "color.data.sequential.deep-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-deep-blue-2",
+      "sourcePath": "si.sys.color.data.sequential.deep-blue.2",
+      "group": "color.data.sequential.deep-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-deep-blue-3",
+      "sourcePath": "si.sys.color.data.sequential.deep-blue.3",
+      "group": "color.data.sequential.deep-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-deep-blue-4",
+      "sourcePath": "si.sys.color.data.sequential.deep-blue.4",
+      "group": "color.data.sequential.deep-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-green-1",
+      "sourcePath": "si.sys.color.data.sequential.green.1",
+      "group": "color.data.sequential.green",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-green-2",
+      "sourcePath": "si.sys.color.data.sequential.green.2",
+      "group": "color.data.sequential.green",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-green-3",
+      "sourcePath": "si.sys.color.data.sequential.green.3",
+      "group": "color.data.sequential.green",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-green-4",
+      "sourcePath": "si.sys.color.data.sequential.green.4",
+      "group": "color.data.sequential.green",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-interactive-coral-1",
+      "sourcePath": "si.sys.color.data.sequential.interactive-coral.1",
+      "group": "color.data.sequential.interactive-coral",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-interactive-coral-2",
+      "sourcePath": "si.sys.color.data.sequential.interactive-coral.2",
+      "group": "color.data.sequential.interactive-coral",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-interactive-coral-3",
+      "sourcePath": "si.sys.color.data.sequential.interactive-coral.3",
+      "group": "color.data.sequential.interactive-coral",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-interactive-coral-4",
+      "sourcePath": "si.sys.color.data.sequential.interactive-coral.4",
+      "group": "color.data.sequential.interactive-coral",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orange-1",
+      "sourcePath": "si.sys.color.data.sequential.orange.1",
+      "group": "color.data.sequential.orange",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orange-2",
+      "sourcePath": "si.sys.color.data.sequential.orange.2",
+      "group": "color.data.sequential.orange",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orange-3",
+      "sourcePath": "si.sys.color.data.sequential.orange.3",
+      "group": "color.data.sequential.orange",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orange-4",
+      "sourcePath": "si.sys.color.data.sequential.orange.4",
+      "group": "color.data.sequential.orange",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orchid-1",
+      "sourcePath": "si.sys.color.data.sequential.orchid.1",
+      "group": "color.data.sequential.orchid",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orchid-2",
+      "sourcePath": "si.sys.color.data.sequential.orchid.2",
+      "group": "color.data.sequential.orchid",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orchid-3",
+      "sourcePath": "si.sys.color.data.sequential.orchid.3",
+      "group": "color.data.sequential.orchid",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-orchid-4",
+      "sourcePath": "si.sys.color.data.sequential.orchid.4",
+      "group": "color.data.sequential.orchid",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-plum-1",
+      "sourcePath": "si.sys.color.data.sequential.plum.1",
+      "group": "color.data.sequential.plum",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-plum-2",
+      "sourcePath": "si.sys.color.data.sequential.plum.2",
+      "group": "color.data.sequential.plum",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-plum-3",
+      "sourcePath": "si.sys.color.data.sequential.plum.3",
+      "group": "color.data.sequential.plum",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-plum-4",
+      "sourcePath": "si.sys.color.data.sequential.plum.4",
+      "group": "color.data.sequential.plum",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-purple-1",
+      "sourcePath": "si.sys.color.data.sequential.purple.1",
+      "group": "color.data.sequential.purple",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-purple-2",
+      "sourcePath": "si.sys.color.data.sequential.purple.2",
+      "group": "color.data.sequential.purple",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-purple-3",
+      "sourcePath": "si.sys.color.data.sequential.purple.3",
+      "group": "color.data.sequential.purple",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-purple-4",
+      "sourcePath": "si.sys.color.data.sequential.purple.4",
+      "group": "color.data.sequential.purple",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-red-1",
+      "sourcePath": "si.sys.color.data.sequential.red.1",
+      "group": "color.data.sequential.red",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-red-2",
+      "sourcePath": "si.sys.color.data.sequential.red.2",
+      "group": "color.data.sequential.red",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-red-3",
+      "sourcePath": "si.sys.color.data.sequential.red.3",
+      "group": "color.data.sequential.red",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-red-4",
+      "sourcePath": "si.sys.color.data.sequential.red.4",
+      "group": "color.data.sequential.red",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-royal-blue-1",
+      "sourcePath": "si.sys.color.data.sequential.royal-blue.1",
+      "group": "color.data.sequential.royal-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-royal-blue-2",
+      "sourcePath": "si.sys.color.data.sequential.royal-blue.2",
+      "group": "color.data.sequential.royal-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-royal-blue-3",
+      "sourcePath": "si.sys.color.data.sequential.royal-blue.3",
+      "group": "color.data.sequential.royal-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-royal-blue-4",
+      "sourcePath": "si.sys.color.data.sequential.royal-blue.4",
+      "group": "color.data.sequential.royal-blue",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-sand-1",
+      "sourcePath": "si.sys.color.data.sequential.sand.1",
+      "group": "color.data.sequential.sand",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-sand-2",
+      "sourcePath": "si.sys.color.data.sequential.sand.2",
+      "group": "color.data.sequential.sand",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-sand-3",
+      "sourcePath": "si.sys.color.data.sequential.sand.3",
+      "group": "color.data.sequential.sand",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-sand-4",
+      "sourcePath": "si.sys.color.data.sequential.sand.4",
+      "group": "color.data.sequential.sand",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-turquoise-1",
+      "sourcePath": "si.sys.color.data.sequential.turquoise.1",
+      "group": "color.data.sequential.turquoise",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-turquoise-2",
+      "sourcePath": "si.sys.color.data.sequential.turquoise.2",
+      "group": "color.data.sequential.turquoise",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-turquoise-3",
+      "sourcePath": "si.sys.color.data.sequential.turquoise.3",
+      "group": "color.data.sequential.turquoise",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-turquoise-4",
+      "sourcePath": "si.sys.color.data.sequential.turquoise.4",
+      "group": "color.data.sequential.turquoise",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-yellow-1",
+      "sourcePath": "si.sys.color.data.sequential.yellow.1",
+      "group": "color.data.sequential.yellow",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-yellow-2",
+      "sourcePath": "si.sys.color.data.sequential.yellow.2",
+      "group": "color.data.sequential.yellow",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-yellow-3",
+      "sourcePath": "si.sys.color.data.sequential.yellow.3",
+      "group": "color.data.sequential.yellow",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-data-sequential-yellow-4",
+      "sourcePath": "si.sys.color.data.sequential.yellow.4",
+      "group": "color.data.sequential.yellow",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-backdrop",
+      "sourcePath": "si.sys.color.effects.backdrop",
+      "group": "color.effects",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-focus",
+      "sourcePath": "si.sys.color.effects.focus",
+      "group": "color.effects",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Reserved for focus ring, for keyboard navigation.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-logo",
+      "sourcePath": "si.sys.color.effects.logo",
+      "group": "color.effects",
+      "type": "color",
+      "sourceType": "color",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-shadow-1",
+      "sourcePath": "si.sys.color.effects.shadow.1",
+      "group": "color.effects.shadow",
+      "type": "shadow",
+      "sourceType": "shadow",
+      "description": "Use for minimal separation from the parent surface. Suitable for small controls, selected items, and subtle raised content.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-shadow-2",
+      "sourcePath": "si.sys.color.effects.shadow.2",
+      "group": "color.effects.shadow",
+      "type": "shadow",
+      "sourceType": "shadow",
+      "description": "Use for standard raised UI that remains within the normal page flow, such as cards, tiles, and floating action controls.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-shadow-3",
+      "sourcePath": "si.sys.color.effects.shadow.3",
+      "group": "color.effects.shadow",
+      "type": "shadow",
+      "sourceType": "shadow",
+      "description": "Use for temporary or interactive floating UI, such as menus, dropdowns, tooltips, and popovers.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-effects-shadow-4",
+      "sourcePath": "si.sys.color.effects.shadow.4",
+      "group": "color.effects.shadow",
+      "type": "shadow",
+      "sourceType": "shadow",
+      "description": "Use for the highest visual elevation, where UI appears above the application content, such as dialogs, modal panels, notifications, and drag previews.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-accent",
+      "sourcePath": "si.sys.color.text.accent",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Accent text color for interactive elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-accent-active",
+      "sourcePath": "si.sys.color.text.accent-active",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Accent text color for active states on interactive elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-accent-hover",
+      "sourcePath": "si.sys.color.text.accent-hover",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Accent text color for hover states on interactive elements.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-caution",
+      "sourcePath": "si.sys.color.text.caution",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for caution states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-critical",
+      "sourcePath": "si.sys.color.text.critical",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for critical states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-danger",
+      "sourcePath": "si.sys.color.text.danger",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for danger states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-disabled",
+      "sourcePath": "si.sys.color.text.disabled",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for disabled states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-information",
+      "sourcePath": "si.sys.color.text.information",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for emphasis for information states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-inverse",
+      "sourcePath": "si.sys.color.text.inverse",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on dark backgrounds for contrast.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-accent",
+      "sourcePath": "si.sys.color.text.on-accent",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on accent backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-accent-secondary",
+      "sourcePath": "si.sys.color.text.on-accent-secondary",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on secondary accent backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-accent-secondary-active",
+      "sourcePath": "si.sys.color.text.on-accent-secondary-active",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for active states on secondary accent backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-accent-secondary-hover",
+      "sourcePath": "si.sys.color.text.on-accent-secondary-hover",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for hover states on secondary accent backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-caution",
+      "sourcePath": "si.sys.color.text.on-caution",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on caution backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-critical",
+      "sourcePath": "si.sys.color.text.on-critical",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on critical backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-danger",
+      "sourcePath": "si.sys.color.text.on-danger",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on danger backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-danger-secondary",
+      "sourcePath": "si.sys.color.text.on-danger-secondary",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on danger secondary backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-information",
+      "sourcePath": "si.sys.color.text.on-information",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on information backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-neutral",
+      "sourcePath": "si.sys.color.text.on-neutral",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for text on neutral backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-success",
+      "sourcePath": "si.sys.color.text.on-success",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on success backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-warning",
+      "sourcePath": "si.sys.color.text.on-warning",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on warning backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-warning-secondary",
+      "sourcePath": "si.sys.color.text.on-warning-secondary",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for use on warning secondary backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-primary",
+      "sourcePath": "si.sys.color.text.primary",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Primary text color for high emphasis text.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-secondary",
+      "sourcePath": "si.sys.color.text.secondary",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Secondary text color for medium emphasis text.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-success",
+      "sourcePath": "si.sys.color.text.success",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for success states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-warning",
+      "sourcePath": "si.sys.color.text.warning",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for warning states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-2xs",
+      "sourcePath": "si.sys.sizing.avatar.2xs",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Inline mentions in comment threads",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-3xs",
+      "sourcePath": "si.sys.sizing.avatar.3xs",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Table rows and dense lists — the only step that fits a row without growing it, in either density",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-lg",
+      "sourcePath": "si.sys.sizing.avatar.lg",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Profile cards, detail views",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-md",
+      "sourcePath": "si.sys.sizing.avatar.md",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Default avatar — nav bar, cards",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-sm",
+      "sourcePath": "si.sys.sizing.avatar.sm",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "List items, compact headers",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-xl",
+      "sourcePath": "si.sys.sizing.avatar.xl",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Profile headers, settings pages",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-avatar-xs",
+      "sourcePath": "si.sys.sizing.avatar.xs",
+      "group": "sizing.avatar",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Dense lists that set their own height, compact UI",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-radius-full",
+      "sourcePath": "si.sys.sizing.border-radius.full",
+      "group": "sizing.border-radius",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Pill / circle — pill buttons, avatars, tags",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-radius-none",
+      "sourcePath": "si.sys.sizing.border-radius.none",
+      "group": "sizing.border-radius",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Sharp corners — tables, full-bleed images",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-radius-sm",
+      "sourcePath": "si.sys.sizing.border-radius.sm",
+      "group": "sizing.border-radius",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Small — inputs, buttons, checkboxes",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-radius-xs",
+      "sourcePath": "si.sys.sizing.border-radius.xs",
+      "group": "sizing.border-radius",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Subtle — badges, status dots, code blocks",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-width-default",
+      "sourcePath": "si.sys.sizing.border-width.default",
+      "group": "sizing.border-width",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Standard border — inputs, cards, dividers",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-width-emphasis",
+      "sourcePath": "si.sys.sizing.border-width.emphasis",
+      "group": "sizing.border-width",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Heavy emphasis — active sidebar indicator, progress bars",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-width-none",
+      "sourcePath": "si.sys.sizing.border-width.none",
+      "group": "sizing.border-width",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "No border",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-border-width-selected",
+      "sourcePath": "si.sys.sizing.border-width.selected",
+      "group": "sizing.border-width",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Selected state",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-breakpoint-lg",
+      "sourcePath": "si.sys.sizing.breakpoint.lg",
+      "group": "sizing.breakpoint",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Small desktops / tablets (landscape)",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-breakpoint-md",
+      "sourcePath": "si.sys.sizing.breakpoint.md",
+      "group": "sizing.breakpoint",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Tablets",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-breakpoint-none",
+      "sourcePath": "si.sys.sizing.breakpoint.none",
+      "group": "sizing.breakpoint",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Mobile phones (portrait)",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-breakpoint-sm",
+      "sourcePath": "si.sys.sizing.breakpoint.sm",
+      "group": "sizing.breakpoint",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Large phones / small tablets",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-breakpoint-xl",
+      "sourcePath": "si.sys.sizing.breakpoint.xl",
+      "group": "sizing.breakpoint",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Large desktops",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-breakpoint-xxl",
+      "sourcePath": "si.sys.sizing.breakpoint.xxl",
+      "group": "sizing.breakpoint",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Extra large desktops / wide monitors",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-focus-ring-offset",
+      "sourcePath": "si.sys.sizing.focus-ring.offset",
+      "group": "sizing.focus-ring",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Gap between the element edge and the focus ring — ensures visibility against element borders",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-focus-ring-width",
+      "sourcePath": "si.sys.sizing.focus-ring.width",
+      "group": "sizing.focus-ring",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Focus indicator stroke width",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-sizing-icon-lg",
+      "sourcePath": "si.sys.sizing.icon.lg",
+      "group": "sizing.icon",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Standard standalone icons. Matches line-height lg — fits a lg control, but grows a table row.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-icon-md",
+      "sourcePath": "si.sys.sizing.icon.md",
+      "group": "sizing.icon",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Default inline icons (buttons, inputs, table rows). Matches line-height md.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-icon-sm",
+      "sourcePath": "si.sys.sizing.icon.sm",
+      "group": "sizing.icon",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Inline icons in compact components and table rows. Matches line-height sm.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-icon-xl",
+      "sourcePath": "si.sys.sizing.icon.xl",
+      "group": "sizing.icon",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Featured icons, empty-state illustrations",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-icon-xxl",
+      "sourcePath": "si.sys.sizing.icon.xxl",
+      "group": "sizing.icon",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Hero icons, onboarding illustrations",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-10",
+      "sourcePath": "si.sys.sizing.size.10",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Hairline. Active-state indicator bars and focus underlines.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-100",
+      "sourcePath": "si.sys.sizing.size.100",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Minimum height of an extra large component. Toolbar height.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-110",
+      "sourcePath": "si.sys.sizing.size.110",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Application header height. Tall toolbars.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-120",
+      "sourcePath": "si.sys.sizing.size.120",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Minimum width of a button.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-130",
+      "sourcePath": "si.sys.sizing.size.130",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Collapsed navigation rail width.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-140",
+      "sourcePath": "si.sys.sizing.size.140",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Narrow fixed column — icon-only sidebars.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-150",
+      "sourcePath": "si.sys.sizing.size.150",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Compact panel width. Minimum width of a dropdown or menu.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-160",
+      "sourcePath": "si.sys.sizing.size.160",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Navigation sidebar width.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-170",
+      "sourcePath": "si.sys.sizing.size.170",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Side panel and drawer width. Small dialog.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-180",
+      "sourcePath": "si.sys.sizing.size.180",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Default dialog width.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-190",
+      "sourcePath": "si.sys.sizing.size.190",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Large dialog width. Comfortable single-column reading measure.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-20",
+      "sourcePath": "si.sys.sizing.size.20",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Smallest visual marker — status dots, unread indicators.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-200",
+      "sourcePath": "si.sys.sizing.size.200",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Widest measure the system offers — extra large dialogs, maximum content width.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-30",
+      "sourcePath": "si.sys.sizing.size.30",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Badge dots and collapsed-rail markers.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-40",
+      "sourcePath": "si.sys.sizing.size.40",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Smallest inline indicator that still reads as a shape.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-50",
+      "sourcePath": "si.sys.sizing.size.50",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Small square elements — checkbox glyph, compact icon well.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-60",
+      "sourcePath": "si.sys.sizing.size.60",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Checkbox and radio hit area. Smallest inline avatar.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-70",
+      "sourcePath": "si.sys.sizing.size.70",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Minimum height of a small component. Meets the WCAG 2.5.8 (AA) 24px minimum target size in Default — but this step is density-sensitive and drops to 20px in Compact, so do not rely on it for a standalone interactive element across densities.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-80",
+      "sourcePath": "si.sys.sizing.size.80",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Minimum height of a default component.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-size-90",
+      "sourcePath": "si.sys.sizing.size.90",
+      "group": "sizing.size",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "description": "Minimum height of a large component.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-10",
+      "sourcePath": "si.sys.sizing.spacing-x.10",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-100",
+      "sourcePath": "si.sys.sizing.spacing-x.100",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-110",
+      "sourcePath": "si.sys.sizing.spacing-x.110",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-120",
+      "sourcePath": "si.sys.sizing.spacing-x.120",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-130",
+      "sourcePath": "si.sys.sizing.spacing-x.130",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-140",
+      "sourcePath": "si.sys.sizing.spacing-x.140",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-20",
+      "sourcePath": "si.sys.sizing.spacing-x.20",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-30",
+      "sourcePath": "si.sys.sizing.spacing-x.30",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-40",
+      "sourcePath": "si.sys.sizing.spacing-x.40",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-50",
+      "sourcePath": "si.sys.sizing.spacing-x.50",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-60",
+      "sourcePath": "si.sys.sizing.spacing-x.60",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-70",
+      "sourcePath": "si.sys.sizing.spacing-x.70",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-80",
+      "sourcePath": "si.sys.sizing.spacing-x.80",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-x-90",
+      "sourcePath": "si.sys.sizing.spacing-x.90",
+      "group": "sizing.spacing-x",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-10",
+      "sourcePath": "si.sys.sizing.spacing-y.10",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-100",
+      "sourcePath": "si.sys.sizing.spacing-y.100",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-110",
+      "sourcePath": "si.sys.sizing.spacing-y.110",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-120",
+      "sourcePath": "si.sys.sizing.spacing-y.120",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-130",
+      "sourcePath": "si.sys.sizing.spacing-y.130",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-140",
+      "sourcePath": "si.sys.sizing.spacing-y.140",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-20",
+      "sourcePath": "si.sys.sizing.spacing-y.20",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-30",
+      "sourcePath": "si.sys.sizing.spacing-y.30",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-40",
+      "sourcePath": "si.sys.sizing.spacing-y.40",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-50",
+      "sourcePath": "si.sys.sizing.spacing-y.50",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-60",
+      "sourcePath": "si.sys.sizing.spacing-y.60",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-70",
+      "sourcePath": "si.sys.sizing.spacing-y.70",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-80",
+      "sourcePath": "si.sys.sizing.spacing-y.80",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-sizing-spacing-y-90",
+      "sourcePath": "si.sys.sizing.spacing-y.90",
+      "group": "sizing.spacing-y",
+      "type": "sizing",
+      "sourceType": "dimension",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": [
+          "compact"
+        ]
+      }
+    },
+    {
+      "name": "--si-sys-typography-body",
+      "sourcePath": "si.sys.typography.body",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Default UI text — labels, controls, single-line content.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-lg",
+      "sourcePath": "si.sys.typography.body-lg",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Lead-in text, emphasised body copy.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-lg-sbold",
+      "sourcePath": "si.sys.typography.body-lg-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Lead-in text, emphasised body copy.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-paragraph",
+      "sourcePath": "si.sys.typography.body-paragraph",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Multi-line running text. Same size as body, looser leading.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-paragraph-sbold",
+      "sourcePath": "si.sys.typography.body-paragraph-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Multi-line running text. Same size as body, looser leading.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-sbold",
+      "sourcePath": "si.sys.typography.body-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Default UI text — labels, controls, single-line content.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-sm",
+      "sourcePath": "si.sys.typography.body-sm",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Meta text, captions, table cell secondary text.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-body-sm-sbold",
+      "sourcePath": "si.sys.typography.body-sm-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Meta text, captions, table cell secondary text.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-code",
+      "sourcePath": "si.sys.typography.code",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-code-lg",
+      "sourcePath": "si.sys.typography.code-lg",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-code-sm",
+      "sourcePath": "si.sys.typography.code-sm",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display",
+      "sourcePath": "si.sys.typography.display",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Metric / Stat",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-lg",
+      "sourcePath": "si.sys.typography.display-lg",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Primary dashboard metric",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-lg-sbold",
+      "sourcePath": "si.sys.typography.display-lg-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Primary dashboard metric",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-sbold",
+      "sourcePath": "si.sys.typography.display-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Metric / Stat",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-xl",
+      "sourcePath": "si.sys.typography.display-xl",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Hero metric / section highlight",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-xl-sbold",
+      "sourcePath": "si.sys.typography.display-xl-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Hero metric / section highlight",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-xxl",
+      "sourcePath": "si.sys.typography.display-xxl",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Billboard / full-screen hero maximum impact",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-display-xxl-sbold",
+      "sourcePath": "si.sys.typography.display-xxl-sbold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Billboard / full-screen hero maximum impact",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h1",
+      "sourcePath": "si.sys.typography.h1",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Page title (once per page)",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h2",
+      "sourcePath": "si.sys.typography.h2",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Major sections, top-level sections that divide the page's main content.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h3",
+      "sourcePath": "si.sys.typography.h3",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Subsections within H2, content that belongs under a specific H2 section, breaking it into smaller topics.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h4",
+      "sourcePath": "si.sys.typography.h4",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Subsections within H3, content that belongs under a specific H3 section, breaking it into smaller topics.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h5",
+      "sourcePath": "si.sys.typography.h5",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Subsections within H4, content that belongs under a specific H4 section, breaking it into smaller topics.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h5-bold",
+      "sourcePath": "si.sys.typography.h5-bold",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Subsections within H4, content that belongs under a specific H4 section, breaking it into smaller topics.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-typography-h6",
+      "sourcePath": "si.sys.typography.h6",
+      "group": "typography",
+      "type": "typography",
+      "sourceType": "typography",
+      "description": "Subsections within H5, reserved for the deepest nesting level in very complex applications",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    }
+  ]
+}
