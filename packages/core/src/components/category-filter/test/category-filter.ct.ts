@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { regressionTest } from '@utils/test';
-import { expect } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-category-filter></ix-category-filter>`);
@@ -122,4 +122,192 @@ regressionTest.describe('focus behavior', () => {
       await expect(input).toBeFocused();
     }
   );
+});
+
+regressionTest.describe('Home and End keys', () => {
+  const skipCaretOnMac = process.platform === 'darwin';
+  const skipCaretOnMacReason =
+    'macOS maps Home/End to document scrolling instead of caret movement';
+
+  async function setCategories(page: Page) {
+    await page
+      .locator('ix-category-filter')
+      .evaluate((el: HTMLIxCategoryFilterElement) => {
+        el.categories = {
+          ID_1: {
+            label: 'Vendor',
+            options: ['Apple', 'MS', 'Siemens'],
+          },
+          ID_2: {
+            label: 'Product',
+            options: ['iPhone X', 'Windows', 'APS'],
+          },
+        };
+      });
+  }
+
+  async function typeIntoInput(page: Page, value: string) {
+    const input = page.locator('ix-category-filter input').first();
+    await input.click();
+    await input.fill(value);
+    return input;
+  }
+
+  async function moveCaretLeft(page: Page, count: number) {
+    for (let i = 0; i < count; i++) {
+      await page.keyboard.press('ArrowLeft');
+    }
+  }
+
+  async function expectSelection(input: Locator, start: number, end: number) {
+    await expect(input).toHaveJSProperty('selectionStart', start);
+    await expect(input).toHaveJSProperty('selectionEnd', end);
+  }
+
+  function getDropdown(page: Page) {
+    return page.locator('ix-category-filter ix-dropdown');
+  }
+
+  regressionTest.describe('dropdown closed', () => {
+    const text = 'Vendor';
+    let input: Locator;
+
+    regressionTest.beforeEach(async ({ mount, page }) => {
+      await mount(`<ix-category-filter></ix-category-filter>`);
+      await setCategories(page);
+
+      input = await typeIntoInput(page, text);
+      await expect(getDropdown(page)).toBeVisible();
+
+      await page.keyboard.press('Escape');
+      await expect(getDropdown(page)).not.toBeVisible();
+      await expect(input).toBeFocused();
+    });
+
+    regressionTest('Home and End move the caret', async ({ page }) => {
+      regressionTest.skip(skipCaretOnMac, skipCaretOnMacReason);
+
+      await page.keyboard.press('Home');
+      await expectSelection(input, 0, 0);
+
+      await page.keyboard.press('End');
+      await expectSelection(input, text.length, text.length);
+    });
+
+    regressionTest(
+      'Shift+Home selects from the caret to the start',
+      async ({ page }) => {
+        await moveCaretLeft(page, 3);
+        await page.keyboard.press('Shift+Home');
+        await expectSelection(input, 0, text.length - 3);
+      }
+    );
+
+    regressionTest(
+      'Shift+End selects from the caret to the end',
+      async ({ page }) => {
+        await moveCaretLeft(page, 3);
+        await page.keyboard.press('Shift+End');
+        await expectSelection(input, text.length - 3, text.length);
+      }
+    );
+
+    regressionTest(
+      'keeps focus in the input and the dropdown closed',
+      async ({ page }) => {
+        for (const key of ['Home', 'End', 'Shift+Home', 'Shift+End']) {
+          await page.keyboard.press(key);
+          await expect(input).toBeFocused();
+          await expect(getDropdown(page)).not.toBeVisible();
+        }
+      }
+    );
+  });
+
+  regressionTest.describe('dropdown open with categories', () => {
+    const text = 'Vendor';
+    let input: Locator;
+
+    regressionTest.beforeEach(async ({ mount, page }) => {
+      await mount(`<ix-category-filter></ix-category-filter>`);
+      await setCategories(page);
+
+      input = await typeIntoInput(page, text);
+      await expect(getDropdown(page)).toBeVisible();
+    });
+
+    regressionTest('Home and End move the caret', async ({ page }) => {
+      regressionTest.skip(skipCaretOnMac, skipCaretOnMacReason);
+
+      await page.keyboard.press('Home');
+      await expectSelection(input, 0, 0);
+
+      await page.keyboard.press('End');
+      await expectSelection(input, text.length, text.length);
+    });
+
+    regressionTest(
+      'Shift+Home and Shift+End select from the caret',
+      async ({ page }) => {
+        await moveCaretLeft(page, 3);
+        await page.keyboard.press('Shift+Home');
+        await expectSelection(input, 0, text.length - 3);
+
+        await page.keyboard.press('ArrowRight');
+        await expectSelection(input, text.length - 3, text.length - 3);
+
+        await page.keyboard.press('Shift+End');
+        await expectSelection(input, text.length - 3, text.length);
+      }
+    );
+
+    regressionTest(
+      'keeps focus in the input and the dropdown open',
+      async ({ page }) => {
+        for (const key of ['Home', 'End', 'Shift+Home', 'Shift+End']) {
+          await page.keyboard.press(key);
+          await expect(input).toBeFocused();
+          await expect(getDropdown(page)).toBeVisible();
+        }
+      }
+    );
+  });
+
+  regressionTest.describe('dropdown open with suggestions only', () => {
+    const text = 'Siemens';
+    let input: Locator;
+
+    regressionTest.beforeEach(async ({ mount, page }) => {
+      await mount(`<ix-category-filter></ix-category-filter>`);
+      await page
+        .locator('ix-category-filter')
+        .evaluate((el: HTMLIxCategoryFilterElement) => {
+          el.suggestions = ['Apple', 'MS', 'Siemens'];
+        });
+
+      input = await typeIntoInput(page, text);
+      await expect(getDropdown(page)).toBeVisible();
+    });
+
+    regressionTest('Home and End move the caret', async ({ page }) => {
+      regressionTest.skip(skipCaretOnMac, skipCaretOnMacReason);
+
+      await page.keyboard.press('Home');
+      await expectSelection(input, 0, 0);
+
+      await page.keyboard.press('End');
+      await expectSelection(input, text.length, text.length);
+    });
+
+    regressionTest(
+      'keeps focus in the input and the dropdown open',
+      async ({ page }) => {
+        for (const key of ['Home', 'End']) {
+          await page.keyboard.press(key);
+          await expect(input).toBeFocused();
+          await expect(getDropdown(page)).toBeVisible();
+        }
+      }
+    );
+  });
 });
