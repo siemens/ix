@@ -3215,6 +3215,12 @@ export namespace Components {
      */
     interface IxMenuCategory {
         /**
+          * Disable the tooltip for this menu category.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip": boolean;
+        /**
           * Icon of the category
          */
         "icon"?: string;
@@ -3278,6 +3284,12 @@ export namespace Components {
           * @default false
          */
         "bottom": boolean;
+        /**
+          * Disable the tooltip for this menu item.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip": boolean;
         /**
           * Disable tab and remove event handlers
           * @default false
@@ -11282,6 +11294,12 @@ declare namespace LocalJSX {
      */
     interface IxMenuCategory {
         /**
+          * Disable the tooltip for this menu category.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip"?: boolean;
+        /**
           * Icon of the category
          */
         "icon"?: string;
@@ -11345,6 +11363,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "bottom"?: boolean;
+        /**
+          * Disable the tooltip for this menu item.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip"?: boolean;
         /**
           * Disable tab and remove event handlers
           * @default false
@@ -14357,6 +14381,7 @@ declare namespace LocalJSX {
         "icon": string;
         "notifications": number;
         "tooltipText": string;
+        "disableTooltip": boolean;
     }
     interface IxMenuExpandIconAttributes {
         "i18nExpand": string;
@@ -14374,6 +14399,7 @@ declare namespace LocalJSX {
         "active": boolean;
         "disabled": boolean;
         "tooltipText": string;
+        "disableTooltip": boolean;
         "href": string;
         "target": AnchorTarget;
         "rel": string;
