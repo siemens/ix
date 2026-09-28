@@ -43,6 +43,7 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
     "@siemens/ix": "workspace:*",
+    "@siemens/ix-icons": "catalog:",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -70,7 +71,7 @@
     "vitest-browser-react": "^1.0.0"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.5.0",
+    "@siemens/ix-icons": "catalog:",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
   },
