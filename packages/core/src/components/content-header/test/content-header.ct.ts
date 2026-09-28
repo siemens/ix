@@ -33,7 +33,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const header = page.locator('ix-content-header');
-  await expect(header).toHaveClass(/\bhydrated\b/);
+  await expect(header).toHaveAttribute('hydrated');
   await expect(header).toHaveAttribute('text-overflow', 'wrap');
   await expect(header).toHaveJSProperty('textOverflow', 'wrap');
   await expect(page.getByText('Content title', { exact: true })).toBeVisible();
@@ -53,7 +53,7 @@ regressionTest(
     `);
 
     const header = page.locator('ix-content-header');
-    await expect(header).toHaveClass(/\bhydrated\b/);
+    await expect(header).toHaveAttribute('hydrated');
     const titleText = header.getByText(title, { exact: true });
     const getHeight = () =>
       titleText.evaluate((element) => element.getBoundingClientRect().height);

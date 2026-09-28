@@ -87,7 +87,7 @@ describe('Dynamic menu ARIA bindings', () => {
         categoryMenuItem.shadowRoot?.querySelector('button');
 
       expect(errors).toEqual([]);
-      expect(menuCategory.classList.contains('hydrated')).toBeTrue();
+      expect(menuCategory.hasAttribute('hydrated')).toBeTrue();
       expect(categoryButton?.getAttribute('aria-label')).toBe('Category');
       expect(categoryButton?.getAttribute('aria-level')).toBe('0');
     } finally {
