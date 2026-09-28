@@ -11,7 +11,7 @@
 @use './flip-tile-vars' as flip-tile-vars;
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'legacy/fonts';
+@use 'mixins/fonts';
 
 @use './flip-tile.vars' as *;
 :host {
@@ -33,6 +33,7 @@
       flex-grow: 1;
       min-width: 0;
 
+      @include fonts.typography-body-lg-sbold;
       @include text-truncation.ellipsis;
     }
   }

@@ -9,7 +9,6 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
-@use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/fonts' as font-mixins;
 
 :host {
@@ -20,59 +19,59 @@
 }
 
 :host(.text-xs) {
-  @include legacy-fonts.text-xs;
+  @include font-mixins.typography-body-sm;
 }
 
 :host(.text-s) {
-  @include legacy-fonts.text-s;
+  @include font-mixins.typography-body-sm;
 }
 
 :host(.text-caption) {
-  @include legacy-fonts.text-caption;
+  @include font-mixins.typography-body-sm-sbold;
 }
 
 :host(.text-caption-single) {
-  @include legacy-fonts.text-caption-single;
+  @include font-mixins.typography-body-sm-sbold;
 }
 
 :host(.text-default) {
-  @include legacy-fonts.text-default;
+  @include font-mixins.typography-body;
 }
 
 :host(.text-default-single) {
-  @include legacy-fonts.text-default-single;
+  @include font-mixins.typography-body;
 }
 
 :host(.text-default-title) {
-  @include legacy-fonts.text-default-title;
+  @include font-mixins.typography-body-sbold;
 }
 
 :host(.text-default-title-single) {
-  @include legacy-fonts.text-default-title-single;
+  @include font-mixins.typography-body-sbold;
 }
 
 :host(.text-l) {
-  @include legacy-fonts.text-l;
+  @include font-mixins.typography-body-lg;
 }
 
 :host(.text-l-single) {
-  @include legacy-fonts.text-l-single;
+  @include font-mixins.typography-body-lg;
 }
 
 :host(.text-l-title) {
-  @include legacy-fonts.text-l-title;
+  @include font-mixins.typography-body-lg-sbold;
 }
 
 :host(.text-l-title-single) {
-  @include legacy-fonts.text-l-title-single;
+  @include font-mixins.typography-body-lg-sbold;
 }
 
 :host(.text-h2) {
-  @include legacy-fonts.text-h2;
+  @include font-mixins.typography-h2;
 }
 
 :host(.text-xl) {
-  @include legacy-fonts.text-xl;
+  @include font-mixins.typography-display;
 }
 
 :host(.typography-body) {

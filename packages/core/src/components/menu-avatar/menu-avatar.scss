@@ -43,7 +43,7 @@
       margin-left: vars.$default-space;
       line-height: 1.14;
 
-      .text-default-single {
+      .typography-body {
         color: var(--ix-menu-avatar-item-primary--color);
         @include text-truncation.ellipsis;
       }

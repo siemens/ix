@@ -8,7 +8,7 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/validation/form-component';
@@ -140,7 +140,7 @@
       width: 100%;
 
       @include text-truncation.ellipsis;
-      @include fonts.text-default;
+      @include fonts.typography-body;
 
       &,
       &:hover,

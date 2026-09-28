@@ -9,7 +9,6 @@
 
 @use 'misc/common-variables' as vars;
 @use '../button/button';
-@use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
 @use 'mixins/input';
@@ -93,7 +92,7 @@
     box-shadow: none;
 
     @include text-truncation.ellipsis;
-    @include legacy-fonts.text-default;
+    @include fonts.typography-body;
 
     &::placeholder {
       @include fonts.typography-body;
@@ -155,7 +154,7 @@
   ix-dropdown {
     min-width: 10rem !important;
 
-    @include legacy-fonts.text-default-single;
+    @include fonts.typography-body;
 
     .dropdown-item-container {
       display: flex;
@@ -181,7 +180,7 @@
         justify-content: flex-start;
         flex-grow: 1;
 
-        @include legacy-fonts.text-default-single;
+        @include fonts.typography-body;
         @include text-truncation.ellipsis;
         @include hover.focus-visible {
           border-color: var(

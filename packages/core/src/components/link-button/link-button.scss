@@ -13,10 +13,8 @@
 @use './link-button.vars' as *;
 :host {
   display: inline-flex;
-  height: vars.$x-large-space;
-  font-size: vars.$font-size-default;
-  font-weight: vars.$font-weight-normal;
-  min-width: vars.$x-large-space;
+  height: 2rem;
+  min-width: 2rem;
 
   .link-button {
     display: inline-flex;

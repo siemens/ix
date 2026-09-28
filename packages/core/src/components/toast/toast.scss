@@ -9,7 +9,7 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 
 @use './toast.vars' as *;
 :host {
@@ -63,7 +63,7 @@
         overflow-wrap: break-word;
         word-break: break-word;
 
-        @include fonts.text-default;
+        @include fonts.typography-body;
       }
 
       .toast-action {

@@ -9,7 +9,7 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 
 @use './tile.vars' as *;
 @mixin set-height($height) {
@@ -50,7 +50,7 @@ $width: 11.937rem;
     display: flex;
     align-items: center;
 
-    @include fonts.text-l-title;
+    @include fonts.typography-body-lg-sbold;
   }
 
   .tile-header,

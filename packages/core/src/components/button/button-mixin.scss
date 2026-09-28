@@ -8,7 +8,7 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 @use './button-variants' as *;
@@ -130,7 +130,7 @@
     vertical-align: middle;
     cursor: pointer;
 
-    @include fonts.text-default-title;
+    @include fonts.typography-body-sbold;
     @include component.ix-component;
 
     button,
