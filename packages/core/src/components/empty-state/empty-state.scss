@@ -1,5 +1,5 @@
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './empty-state.vars' as *;
 :host {
@@ -15,11 +15,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: vars.$default-space;
+  gap: var(--ix-empty-state-large--gap);
 
   .emptyState__icon {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: var(--ix-empty-state-icon-large--icon-size);
+    height: var(--ix-empty-state-icon-large--icon-size--icon);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,14 +34,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: vars.$large-space;
+    gap: var(--ix-empty-state-content-large--gap);
 
     .content__label {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: vars.$small-space;
+      gap: var(--ix-empty-state-content-label-large--gap);
     }
   }
 
@@ -56,13 +56,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: vars.$default-space;
+  gap: var(--ix-empty-state-compact--gap);
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: vars.$large-control-height;
+    height: var(--ix-empty-state-icon-compact--icon-size);
   }
 
   .emptyState__content {
@@ -70,7 +70,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: vars.$default-space;
+    gap: var(--ix-empty-state-content-compact--gap);
   }
 }
 
@@ -78,19 +78,19 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: vars.$default-space;
+  gap: var(--ix-empty-state-compact-break--gap);
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: vars.$large-control-height;
+    height: var(--ix-empty-state-icon--icon-size);
   }
 
   .emptyState__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: vars.$small-space;
+    gap: var(--ix-empty-state-content--gap);
   }
 }

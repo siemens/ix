@@ -14,3 +14,13 @@
   --ix-chat-user-message--color: #{sys.$si-sys-color-text-primary};
   --ix-chat-user-message--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
+
+:host {
+  --ix-chat-user-message-message--min-width: max(
+    calc(#{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-30}),
+    45%
+  );
+  --ix-chat-user-message-attachments--flex: 0 1
+    calc(#{sys.$si-sys-sizing-size-130} + #{sys.$si-sys-sizing-spacing-x-30});
+  --ix-chat-user-message-actions--min-height: #{sys.$si-sys-sizing-size-80};
+}

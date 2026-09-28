@@ -9,20 +9,21 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './link-button.vars' as *;
 :host {
   display: inline-flex;
-  height: vars.$x-large-space;
+  height: var(--ix-link-button--height);
   font-size: vars.$font-size-default;
   font-weight: vars.$font-weight-normal;
-  min-width: vars.$x-large-space;
+  min-width: var(--ix-link-button--min-width);
 
   .link-button {
     display: inline-flex;
     position: relative;
     width: 100%;
-    padding: 0 vars.$tiny-space 0 0;
+    padding: var(--ix-link-button--padding);
     align-items: center;
     justify-content: center;
     background-color: transparent;

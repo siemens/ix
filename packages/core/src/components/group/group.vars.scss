@@ -24,3 +24,45 @@
   --ix-group-item-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
   --ix-group-subheader--color: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-group-context-menu--height: #{sys.$si-sys-sizing-size-80};
+  --ix-group-context-menu--width: #{sys.$si-sys-sizing-size-80};
+  --ix-group-context-menu--margin-block-start: calc(
+    #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-group-context-menu--margin-inline-end: calc(
+    #{sys.$si-sys-sizing-spacing-x-20} + #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-group--header-height: #{sys.$si-sys-sizing-size-110};
+  --ix-group--width: calc(
+    #{sys.$si-sys-sizing-size-170} - #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-group--min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+  );
+  --ix-group-header-selection-indicator--width--focus: calc(
+    #{sys.$si-sys-sizing-spacing-x-20} - 1px
+  );
+  --ix-group-header-content--padding--focus: calc(
+      #{sys.$si-sys-sizing-spacing-y-40} - 1px
+    )
+    calc(#{sys.$si-sys-sizing-spacing-x-40} - 1px)
+    calc(#{sys.$si-sys-sizing-spacing-y-40} - 1px) 0;
+  --ix-group-button-expand-header--margin-top: calc(
+    #{sys.$si-sys-sizing-spacing-y-40} - 1px
+  );
+  --ix-group-button-expand-header--margin-bottom: calc(
+    #{sys.$si-sys-sizing-spacing-y-40} - 1px
+  );
+  --ix-group-header-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-group-header-content--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-group-header-title--height: #{sys.$si-sys-sizing-size-70};
+  --ix-group-subheader--height: #{sys.$si-sys-sizing-size-60};
+  --ix-group-expand-icon--padding: #{sys.$si-sys-sizing-spacing-y-10} calc(#{sys.$si-sys-sizing-spacing-x-60} *
+        0.437);
+  --ix-group-button-expand-header--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-group-button-expand-header--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-group-button-expand-header--min-width: #{sys.$si-sys-sizing-size-70};
+  --ix-group-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
+}

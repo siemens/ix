@@ -7,17 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './menu-avatar.vars' as *;
 :host {
   display: block;
   position: relative;
-  margin-bottom: 0.5rem;
-  margin-right: 0.75rem;
+  margin-bottom: var(--ix-menu-avatar--margin-bottom);
+  margin-right: var(--ix-menu-avatar--margin-right);
 
   @include component.ix-component;
 
@@ -27,12 +27,12 @@
 
     display: flex;
     align-items: center;
-    height: 2.5rem;
+    height: var(--ix-menu-avatar-avatar--height);
     width: 100%;
-    max-height: 2.5rem;
-    padding-left: 0.25rem;
-    margin-left: 0.41rem;
-    margin-right: 0.35rem;
+    max-height: var(--ix-menu-avatar-avatar--max-height);
+    padding-left: var(--ix-menu-avatar-avatar--padding-left);
+    margin-left: var(--ix-menu-avatar-avatar--margin-left);
+    margin-right: var(--ix-menu-avatar-avatar--margin-right);
     transition: var(--ix-menu-avatar-button--transition-duration);
 
     .avatar-name {
@@ -40,7 +40,7 @@
       flex-direction: column;
       overflow: hidden;
       white-space: nowrap;
-      margin-left: vars.$default-space;
+      margin-left: var(--ix-menu-avatar-avatar-name--margin-left);
       line-height: 1.14;
 
       .text-default-single {

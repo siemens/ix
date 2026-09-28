@@ -7,19 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './kpi.vars' as *;
 :host {
   display: flex;
   flex-grow: 1;
-  height: vars.$large-control-height;
+  height: var(--ix-kpi--height);
   border-radius: var(--ix-kpi--border-radius);
-  padding: 0.375rem vars.$tiny-space;
+  padding: var(--ix-kpi--padding);
   min-width: 0;
 
   @include component.ix-component;
@@ -50,7 +50,7 @@
       flex-shrink: 9999;
 
       ix-icon {
-        margin-inline-end: vars.$tiny-space;
+        margin-inline-end: var(--ix-kpi-icon--margin-inline-end);
       }
     }
 
@@ -66,7 +66,7 @@
     }
 
     .kpi-unit {
-      margin-inline-start: vars.$small-space;
+      margin-inline-start: var(--ix-kpi-unit--margin-inline-start);
       color: var(--ix-kpi-display-units--color);
     }
 
@@ -90,7 +90,7 @@
 }
 
 :host(.stacked) {
-  height: 3.75rem;
+  height: var(--ix-kpi-stacked--height);
 
   .kpi-container {
     justify-content: center;
