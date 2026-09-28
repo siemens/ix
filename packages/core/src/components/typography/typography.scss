@@ -18,62 +18,6 @@
   @include component.ix-component;
 }
 
-:host(.text-xs) {
-  @include font-mixins.typography-body-sm;
-}
-
-:host(.text-s) {
-  @include font-mixins.typography-body-sm;
-}
-
-:host(.text-caption) {
-  @include font-mixins.typography-body-sm-sbold;
-}
-
-:host(.text-caption-single) {
-  @include font-mixins.typography-body-sm-sbold;
-}
-
-:host(.text-default) {
-  @include font-mixins.typography-body;
-}
-
-:host(.text-default-single) {
-  @include font-mixins.typography-body;
-}
-
-:host(.text-default-title) {
-  @include font-mixins.typography-body-sbold;
-}
-
-:host(.text-default-title-single) {
-  @include font-mixins.typography-body-sbold;
-}
-
-:host(.text-l) {
-  @include font-mixins.typography-body-lg;
-}
-
-:host(.text-l-single) {
-  @include font-mixins.typography-body-lg;
-}
-
-:host(.text-l-title) {
-  @include font-mixins.typography-body-lg-sbold;
-}
-
-:host(.text-l-title-single) {
-  @include font-mixins.typography-body-lg-sbold;
-}
-
-:host(.text-h2) {
-  @include font-mixins.typography-h2;
-}
-
-:host(.text-xl) {
-  @include font-mixins.typography-display;
-}
-
 :host(.typography-body) {
   @include font-mixins.typography-body;
 }

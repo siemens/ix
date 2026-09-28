@@ -63,7 +63,7 @@
         overflow-wrap: break-word;
         word-break: break-word;
 
-        @include fonts.typography-body;
+        @include fonts.typography-body-paragraph;
       }
 
       .toast-action {

@@ -61,6 +61,7 @@
 
     .kpi-value {
       color: var(--ix-kpi-display-value--color);
+      padding: 0.375rem 0.25rem;
 
       @include fonts.typography-display;
     }

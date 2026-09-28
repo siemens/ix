@@ -53,7 +53,7 @@
   color: var(--ix-table--color);
   vertical-align: top;
   border-color: var(--ix-table--border-color);
-  @include fonts.typography-body;
+  @include fonts.typography-body-paragraph;
 }
 
 .ix-table thead {
