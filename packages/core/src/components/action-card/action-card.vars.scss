@@ -14,3 +14,15 @@
   --ix-action-card--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-action-card--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
+
+:host {
+  --ix-action-card--min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} + #{sys.$si-sys-sizing-spacing-x-30}
+  );
+  --ix-action-card--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} + #{sys.$si-sys-sizing-spacing-x-30}
+  );
+  --ix-action-card--height: #{sys.$si-sys-sizing-size-140};
+  --ix-action-card--min-height: #{sys.$si-sys-sizing-size-140};
+  --ix-action-card--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+}

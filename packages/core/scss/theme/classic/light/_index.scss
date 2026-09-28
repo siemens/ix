@@ -16,6 +16,10 @@
 
 @use "../composition" as tokens;
 
-[data-ix-theme="classic"][data-ix-color-schema="light"] {
+[data-ix-theme='classic'][data-ix-color-schema='light'] {
   @include tokens.complete-light();
+
+  &[data-ix-density='compact'] {
+    @include tokens.compact-density();
+  }
 }

@@ -18,3 +18,18 @@
   --ix-menu-avatar-button--color--hover: #{sys.$si-sys-color-text-primary};
   --ix-menu-avatar-item-primary--color: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-menu-avatar--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-menu-avatar--margin-right: #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-menu-avatar-avatar--height: #{sys.$si-sys-sizing-size-90};
+  --ix-menu-avatar-avatar--max-height: #{sys.$si-sys-sizing-size-90};
+  --ix-menu-avatar-avatar--padding-left: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-menu-avatar-avatar--margin-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-60} * 0.41
+  );
+  --ix-menu-avatar-avatar--margin-right: calc(
+    #{sys.$si-sys-sizing-spacing-x-60} * 0.35
+  );
+  --ix-menu-avatar-avatar-name--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
+}

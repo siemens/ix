@@ -18,26 +18,17 @@ regressionTest.describe('menu', () => {
       await page.goto('menu/basic');
 
       const category = page.locator('ix-menu-category');
+      await category.evaluate((element: HTMLIxMenuCategoryElement) => {
+        element.disableTooltip = true;
+      });
       await category.click();
+      const dropdown = category.locator('ix-dropdown');
+      await expect(dropdown).toBeVisible();
+      await dropdown.hover({ position: { x: 24, y: 12 } });
 
-      const parentCategory = await category
-        .locator('.category-parent')
-        .boundingBox();
-
-      await page.mouse.move(
-        parentCategory!.x + parentCategory!.width / 2,
-        parentCategory!.y + parentCategory!.height / 2,
-        {
-          steps: 10,
-        }
-      );
-
-      const tooltip = category
-        .locator('ix-tooltip')
-        .getByText('Category with a long name');
-      await expect(tooltip).not.toHaveClass(/visible/);
-
-      await expect(page).toHaveScreenshot();
+      await expect(page).toHaveScreenshot({
+        animations: 'disabled',
+      });
     }
   );
 

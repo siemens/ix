@@ -65,3 +65,14 @@
   --ix-input-select-icon--color--hover: #{sys.$si-sys-color-text-primary};
   --ix-input-unit--color: #{sys.$si-sys-color-text-secondary};
 }
+
+:host {
+  --ix-input-start-container--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-input-icon-compact--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-input-end-container--inset: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-input-end-container--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-input-icon-compact--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-input-bottom-text--margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-input-bottom-text--margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-input-show-stepper-buttons--min-width: #{sys.$si-sys-sizing-size-130};
+}

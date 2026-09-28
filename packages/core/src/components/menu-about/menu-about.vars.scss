@@ -13,3 +13,12 @@
   --ix-menu-about-overlay--background: #{sys.$si-sys-color-background-4};
   --ix-menu-about-overlay-header--color: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-menu-about--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60}
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-90};
+  --ix-menu-about-about-header--height: #{sys.$si-sys-sizing-size-80};
+  --ix-menu-about-about-header--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-menu-about-heading--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-menu-about--margin-bottom: #{sys.$si-sys-sizing-spacing-y-80};
+}

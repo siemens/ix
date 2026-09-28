@@ -212,3 +212,29 @@
   --ix-toggle-thumb-on--border-color--warning--active: rgba(0, 0, 0, 0);
   --ix-toggle-thumb-on--border-color--warning--hover: rgba(0, 0, 0, 0);
 }
+
+:host {
+  --ix-toggle--min-height: #{sys.$si-sys-sizing-size-70};
+  --ix-toggle--max-height: calc(100% - #{sys.$si-sys-sizing-spacing-y-40});
+  --ix-toggle--margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-toggle--margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-toggle-label--margin-block-start: #{sys.$si-sys-sizing-spacing-y-10};
+  --ix-toggle-label--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-toggle-label--min-height: #{sys.$si-sys-sizing-size-60};
+  --ix-toggle-switch--width: #{sys.$si-sys-sizing-size-100};
+  --ix-toggle-switch--min-width: #{sys.$si-sys-sizing-size-100};
+  --ix-toggle-switch--max-width: #{sys.$si-sys-sizing-size-100};
+  --ix-toggle-switch--height: #{sys.$si-sys-sizing-size-70};
+  --ix-toggle-slider--height: calc(
+    #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-toggle-slider--width: calc(
+    #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-toggle-slider--left: #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-toggle-slider--bottom: #{sys.$si-sys-sizing-spacing-y-10};
+  --ix-toggle-slider-checked--transform: translateX(
+    #{sys.$si-sys-sizing-size-70}
+  );
+  --ix-toggle-slider--transform: translateX(#{sys.$si-sys-sizing-spacing-x-50});
+}
