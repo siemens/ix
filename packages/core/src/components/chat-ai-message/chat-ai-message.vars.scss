@@ -12,3 +12,8 @@
 :host {
   --ix-chat-ai-message--color: #{sys.$si-sys-color-text-primary};
 }
+
+:host {
+  --ix-chat-ai-message-meta--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chat-ai-message-actions--gap: #{sys.$si-sys-sizing-spacing-x-20};
+}

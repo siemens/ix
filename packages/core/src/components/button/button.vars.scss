@@ -177,3 +177,12 @@
   --ix-button-tertiary--color--pressed-active: #{sys.$si-sys-color-text-accent-active};
   --ix-button-tertiary--color--pressed-hover: #{sys.$si-sys-color-text-accent-hover};
 }
+
+:host {
+  --ix-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-button--height: #{sys.$si-sys-sizing-size-80};
+  --ix-button--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-button-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-button-icon-right--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-button--min-width: #{sys.$si-sys-sizing-size-120};
+}

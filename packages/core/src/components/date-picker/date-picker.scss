@@ -11,6 +11,7 @@
 @use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './../button/button-mixin' as button-mixin;
 
@@ -18,7 +19,7 @@
 :host {
   display: block;
   position: relative;
-  max-width: 21rem;
+  max-width: var(--ix-date-picker--max-width);
 
   @include component.ix-component;
 
@@ -40,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 vars.$default-space;
+    padding: var(--ix-date-picker-selector--padding);
 
     .dropdown {
       color: var(--ix-date-picker-menu-item--color);
@@ -51,7 +52,7 @@
     .arrowYear {
       display: flex;
       position: relative;
-      padding: vars.$medium-space vars.$x-large-space;
+      padding: var(--ix-date-picker-arrow-year--padding);
       align-items: center;
       cursor: pointer;
 
@@ -65,33 +66,33 @@
 
       .arrowPosition {
         position: absolute;
-        left: calc((vars.$x-large-space / 2) - 6px);
-        top: calc(50% - 6px);
+        left: var(--ix-date-picker-arrow-position--left);
+        top: var(--ix-date-picker-arrow-position--top);
       }
 
       .checkPosition {
         position: absolute;
-        left: calc((vars.$x-large-space / 2) - 6px);
-        top: calc(50% - 8px);
+        left: var(--ix-date-picker-check-position--left);
+        top: var(--ix-date-picker-check-position--top);
       }
 
       .monthMargin {
-        margin-left: 10px;
+        margin-left: var(--ix-date-picker-month-margin--margin-left);
       }
     }
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(7, 40px);
-    grid-template-rows: repeat(7, 40px);
+    grid-template-columns: var(--ix-date-picker-grid--grid-template-columns);
+    grid-template-rows: var(--ix-date-picker-grid--grid-template-rows);
 
     align-items: center;
     justify-items: center;
     justify-content: center;
 
     &--show-week-numbers {
-      grid-template-columns: 24px repeat(7, 40px);
+      grid-template-columns: var(--ix-date-picker-grid--week-number-columns);
     }
 
     [role='row'] {
@@ -110,8 +111,8 @@
       background-color: var(--ix-date-picker-day--background);
       border: 1px solid var(--ix-date-picker-day--background);
       color: var(--ix-date-picker-day--color);
-      width: 40px;
-      height: 40px;
+      width: var(--ix-date-picker-calendar-item--width);
+      height: var(--ix-date-picker-calendar-item--height);
       cursor: pointer;
 
       &:focus-visible {
@@ -232,7 +233,7 @@
         border: none;
         background: none;
         cursor: initial;
-        width: 1.5rem;
+        width: var(--ix-date-picker-week-number--width);
       }
     }
   }
@@ -240,7 +241,7 @@
   .button {
     display: flex;
     justify-content: flex-end;
-    margin-top: vars.$default-space;
+    margin-top: var(--ix-date-picker-button--margin-top);
   }
 
   .hidden {
@@ -249,7 +250,7 @@
 
   .infinite-scrolling-spacer:first-of-type {
     position: relative;
-    padding-bottom: 4rem;
+    padding-bottom: var(--ix-date-picker-first-of-type--padding-bottom);
 
     .sentinel {
       position: absolute;
@@ -260,7 +261,7 @@
   }
   .infinite-scrolling-spacer:last-of-type {
     position: relative;
-    padding-top: 4rem;
+    padding-top: var(--ix-date-picker-last-of-type--padding-top);
 
     .sentinel {
       position: absolute;
@@ -272,6 +273,6 @@
 
   .month-selector,
   .year-selector {
-    --ix-button-padding: 0 0.25rem;
+    --ix-button-padding: var(--ix-date-picker-year-selector--button-padding);
   }
 }

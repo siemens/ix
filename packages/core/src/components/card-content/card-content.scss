@@ -7,10 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './card-content.vars' as *;
 :host {
   display: flex;
-  padding: 1rem;
+  padding: var(--ix-card-content--padding);
   height: 100%;
   overflow: hidden;
 
@@ -21,7 +23,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    gap: 0.5rem;
+    gap: var(--ix-card-content-content-wrapper--gap);
     display: flex;
     flex-direction: column;
     align-items: flex-start;

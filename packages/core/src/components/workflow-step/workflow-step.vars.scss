@@ -36,3 +36,30 @@
   --ix-workflow-step-icon-done--color--selected--active: #{sys.$si-sys-color-text-accent-active};
   --ix-workflow-step-icon-status--color--disabled: #{sys.$si-sys-color-text-disabled};
 }
+
+:host {
+  --ix-workflow-step-horizontal--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+  );
+  --ix-workflow-step--height: #{sys.$si-sys-sizing-size-110};
+  --ix-workflow-step-horizontal--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-workflow-step-horizontal--min-height: #{sys.$si-sys-sizing-size-110};
+  --ix-workflow-step-horizontal--max-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+  );
+  --ix-workflow-step-vertical--min-width: #{sys.$si-sys-sizing-size-110};
+  --ix-workflow-step-vertical--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-workflow-step-vertical--max-height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
+  );
+  --ix-workflow-step-step--padding: calc(
+      #{sys.$si-sys-sizing-spacing-y-60} + #{sys.$si-sys-sizing-spacing-y-10}
+    )
+    0 #{sys.$si-sys-sizing-spacing-y-40} 0;
+  --ix-workflow-step-text--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-workflow-step-text--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-workflow-step-wrapper-vertical--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-workflow-step-text-vertical--margin: 0 #{sys.$si-sys-sizing-spacing-x-60};
+}

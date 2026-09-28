@@ -185,3 +185,11 @@
   );
   --ix-push-card-warning-subtext--color: #{sys.$si-sys-color-text-on-warning};
 }
+
+:host {
+  --ix-push-card-icon--icon-size: #{sys.$si-sys-sizing-size-90};
+  --ix-push-card--height: #{sys.$si-sys-sizing-size-90};
+  --ix-push-card-content--height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-60}
+  );
+}
