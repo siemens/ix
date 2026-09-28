@@ -83,7 +83,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
             color="--si-sys-color-text-inverse"
             name={iconShout}
             size="32"
-            ref={(element: HTMLIxIconElement) =>
+            ref={(element?: HTMLIxIconElement) =>
               element?.setAttribute('size', '32')
             }
           ></ix-icon>
