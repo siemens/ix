@@ -3,3 +3,21 @@
 :host {
   --ix-empty-state-label--color: #{sys.$si-sys-color-text-secondary};
 }
+
+:host {
+  --ix-empty-state-large--gap: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-empty-state-icon-large--icon-size: calc(
+    #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  --ix-empty-state-icon-large--icon-size--icon: calc(
+    #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-empty-state-content-large--gap: #{sys.$si-sys-sizing-spacing-y-80};
+  --ix-empty-state-content-label-large--gap: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-empty-state-compact--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-empty-state-icon-compact--icon-size: #{sys.$si-sys-sizing-size-90};
+  --ix-empty-state-content-compact--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-empty-state-compact-break--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-empty-state-icon--icon-size: #{sys.$si-sys-sizing-size-90};
+  --ix-empty-state-content--gap: #{sys.$si-sys-sizing-spacing-x-40};
+}

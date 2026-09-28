@@ -15,6 +15,8 @@
  */
 
 @use './si-reference' as reference_variables;
+@use './density/default' as default_density;
+@use './density/compact' as compact_density;
 @use './dark/legacy' as dark_legacy;
 @use './dark/system' as dark_system;
 @use './light/legacy' as light_legacy;
@@ -22,6 +24,11 @@
 
 @mixin shared {
   @include reference_variables.setVars();
+  @include default_density.setVars();
+}
+
+@mixin compact-density {
+  @include compact_density.setVars();
 }
 
 @mixin dark {

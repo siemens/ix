@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, type Locator } from '@playwright/test';
 import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
@@ -47,6 +47,58 @@ regressionTest(
     await expect(button).toHaveClass(/hydrated/);
     await expect(button).toHaveClass(/btn-icon-32/);
     await expect(button.locator('ix-icon')).toHaveClass(/size-24/);
+  }
+);
+
+regressionTest(
+  'preserves explicit icon size properties without a size attribute',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-icon data-testid="default" name="rocket"></ix-icon>
+       <ix-icon data-testid="property-16" name="rocket"></ix-icon>
+       <ix-icon data-testid="attribute-24" name="rocket" size="24"></ix-icon>
+       <ix-icon data-testid="property-24" name="rocket"></ix-icon>`,
+      {
+        icons: { iconRocket },
+      }
+    );
+
+    const defaultIcon = page.getByTestId('default');
+    const property16Icon = page.getByTestId('property-16');
+    const attribute24Icon = page.getByTestId('attribute-24');
+    const property24Icon = page.getByTestId('property-24');
+
+    await property16Icon.evaluate((icon: HTMLIxIconElement) => {
+      icon.size = '16';
+    });
+    await property24Icon.evaluate((icon: HTMLIxIconElement) => {
+      icon.size = '24';
+    });
+
+    await expect(property16Icon).not.toHaveAttribute('size');
+    await expect(property24Icon).not.toHaveAttribute('size');
+    await expect(attribute24Icon).toHaveAttribute('size', '24');
+
+    const expectIconDimensions = async (icon: Locator, size: number) => {
+      const expectedSize = `${size}px`;
+      await expect(icon).toHaveCSS('width', expectedSize);
+      await expect(icon).toHaveCSS('height', expectedSize);
+      await expect(icon).toHaveCSS('min-width', expectedSize);
+      await expect(icon).toHaveCSS('min-height', expectedSize);
+    };
+
+    const expectAllSizes = async () => {
+      await expectIconDimensions(defaultIcon, 20);
+      await expectIconDimensions(property16Icon, 16);
+      await expectIconDimensions(attribute24Icon, 24);
+      await expectIconDimensions(property24Icon, 24);
+    };
+
+    await expectAllSizes();
+    await page.locator('body').evaluate((body: HTMLBodyElement) => {
+      body.setAttribute('data-ix-density', 'compact');
+    });
+    await expectAllSizes();
   }
 );
 

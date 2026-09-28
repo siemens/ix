@@ -11,27 +11,27 @@
 
 .input-group-label {
   --ix-input-group-label--color: #{sys.$si-sys-color-text-secondary};
-  --ix-input-group-label--margin-left: 2px;
-  --ix-input-group-label--margin-right: 2px;
+  --ix-input-group-label--margin-left: #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-input-group-label--margin-right: #{sys.$si-sys-sizing-spacing-x-10};
 }
 
 .group-start {
   .input-group-label:first-child {
-    --ix-input-group-label--margin-left: 8px;
+    --ix-input-group-label--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .input-group-label:last-child {
-    --ix-input-group-label--margin-right: 4px;
+    --ix-input-group-label--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   }
 }
 
 .group-end {
   .input-group-label:first-child {
-    --ix-input-group-label--margin-left: 4px;
+    --ix-input-group-label--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
   }
 
   .input-group-label:last-child {
-    --ix-input-group-label--margin-right: 8px;
+    --ix-input-group-label--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   }
 }
 

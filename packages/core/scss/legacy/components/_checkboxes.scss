@@ -7,11 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use '../../misc/common-variables' as vars;
 @use '../../tokens/system' as sys;
 
 @mixin checkbox-basic() {
-  $size: 1.25rem;
+  $size: sys.$si-sys-sizing-size-60;
+  // Normalize the hand-drawn mark's original dimensions and offsets to the
+  // default size-60 so they retain default geometry and scale with density.
+  $checkmark-width: calc(#{$size} * 0.32);
+  $checkmark-height: calc(#{$size} * 0.208);
+  $checkmark-margin-top: calc(#{$size} * 0.42);
+  $checkmark-margin-horizontal: calc(#{$size} * 0.336);
+  $checkmark-margin-bottom: calc(#{$size} * 0.15);
 
   /* Base for label styling */
   .ix-form-control[type='checkbox']:not(:checked),
@@ -29,7 +35,7 @@
     display: inline-flex;
     user-select: none;
     color: #{sys.$si-sys-color-text-primary};
-    min-height: 1.5rem;
+    min-height: #{sys.$si-sys-sizing-size-70};
   }
 
   .ix-form-control[type='checkbox']:not(:disabled) + label {
@@ -45,8 +51,8 @@
     max-width: $size;
     max-height: $size;
     float: left;
-    margin-right: vars.$small-space;
-    margin-top: 1px;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-top: calc(#{sys.$si-sys-sizing-size-10} / 2);
 
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -97,16 +103,18 @@
 
     & + label:after {
       content: '';
-      width: 0.4rem;
-      height: 0.26rem;
+      width: $checkmark-width;
+      height: $checkmark-height;
       display: block;
       border-top: none;
       border-right: none;
       border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
       border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: 0.525rem 0.42rem 0.1875rem;
-      transform: translate(0, -2px) rotate(-53deg) scale(2) skew(-8deg, -3deg);
+      margin: $checkmark-margin-top 0 $checkmark-margin-bottom
+        $checkmark-margin-horizontal;
+      transform: translate(0, calc(-1 * #{sys.$si-sys-sizing-spacing-y-10}))
+        rotate(-53deg) scale(2) skew(-8deg, -3deg);
     }
 
     &:hover + label:before {
@@ -138,11 +146,14 @@
     & + label:after {
       content: '';
       display: block;
-      width: 0.75rem;
+      width: #{sys.$si-sys-sizing-size-40};
       height: 0;
       border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: 0.625rem 0 0 0.25rem;
+      margin: calc(#{sys.$si-sys-sizing-size-60} / 2) 0 0
+        calc(
+          (#{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-size-40}) / 2
+        );
     }
 
     & + label:before {

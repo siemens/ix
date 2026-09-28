@@ -12,3 +12,10 @@
 :host {
   --ix-breadcrumb-separator--color: #{sys.$si-sys-color-text-secondary};
 }
+
+:host {
+  --ix-breadcrumb--height: #{sys.$si-sys-sizing-size-90};
+  --ix-breadcrumb-previous-button--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-breadcrumb-more-text-ellipsis--width: #{sys.$si-sys-sizing-size-50};
+  --ix-breadcrumb-chevron--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+}

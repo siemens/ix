@@ -12,6 +12,7 @@
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/validation/form-component';
+@use 'tokens/system' as sys;
 
 @use '../utils/focus/focus-proxy' as focus-proxy;
 
@@ -19,7 +20,13 @@
 :host {
   display: inline-block;
   position: relative;
-  min-height: 2rem;
+  --ix-select-chip-horizontal-margin: var(--ix-select-chip--horizontal-margin);
+  --ix-select-trigger-min-width: var(--ix-select-trigger--min-width);
+  --ix-select-overflow-chip-fallback-width: var(
+    --ix-select-overflow-chip--fallback-width
+  );
+
+  min-height: var(--ix-select--min-height);
   height: auto;
   border-radius: var(--ix-select--border-radius);
 
@@ -33,7 +40,7 @@
     background-color: var(--ix-select--background);
     border: var(--ix-select--border-width) solid var(--ix-select--border-color);
     border-radius: var(--ix-select--border-radius);
-    padding: 0 0 0 vars.$small-space;
+    padding: var(--ix-select--padding);
     box-shadow: var(--ix-select--box-shadow) !important;
 
     &:hover:not(.readonly):not(.disabled) {
@@ -106,9 +113,9 @@
       overflow: hidden;
 
       > ix-filter-chip {
-        margin: 0.1rem;
+        margin: var(--ix-select-chip-horizontal-margin);
         flex-shrink: 0;
-        max-width: min(40%, 14rem);
+        max-width: var(--ix-select-chips--max-width);
 
         &.chip-measuring {
           position: absolute;
@@ -128,15 +135,15 @@
     }
 
     ix-icon-button {
-      height: 1.875rem;
-      width: 1.875rem;
-      min-height: 1.875rem;
-      min-width: 1.875rem;
+      height: var(--ix-select-icon--icon-size);
+      width: var(--ix-select-icon--icon-size--icon);
+      min-height: var(--ix-select-icon--icon-size);
+      min-width: var(--ix-select-icon--icon-size--icon);
     }
 
     input {
       background: transparent;
-      height: 1.75rem;
+      height: var(--ix-select-input-container--height);
       width: 100%;
 
       @include text-truncation.ellipsis;
@@ -169,10 +176,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.25rem;
-    max-height: 16rem;
+    gap: var(--ix-select-overflow-dropdown-content--gap);
+    max-height: var(--ix-select-overflow-dropdown-content--max-height);
     overflow-y: auto;
-    padding: 0.5rem;
+    padding: var(--ix-select-overflow-dropdown-content--padding);
   }
 
   .dropdown-visible {
@@ -190,9 +197,9 @@
   .select-list-header {
     display: flex;
     align-items: center;
-    height: vars.$default-control-height;
+    height: var(--ix-select-list-header--height);
     color: var(--ix-select-item-hint--color);
-    margin: 0 vars.$small-space 0 1rem;
+    margin: var(--ix-select-list-header--margin);
 
     @include text-truncation.ellipsis;
   }

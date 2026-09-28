@@ -9,6 +9,7 @@
 
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './tab-item.vars' as *;
 
@@ -61,12 +62,12 @@
   color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
 
-  height: 2.5rem;
-  min-height: 2.5rem;
-  max-height: 2.5rem;
+  height: var(--ix-tab-item--size-size);
+  min-height: var(--ix-tab-item--min-height);
+  max-height: var(--ix-tab-item--max-height);
 
-  padding: 0.0625rem 1.5rem;
-  gap: 0.5rem;
+  padding: var(--ix-tab-item--padding);
+  gap: var(--ix-tab-item--gap);
 
   @include component.ix-component;
 
@@ -89,8 +90,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    width: 3rem;
+    height: var(--ix-tab-item-circle--height);
+    width: var(--ix-tab-item-circle--width);
     background-color: var(--ix-tab-item-animated-circle--background);
     border-radius: 50%;
     border: 2px solid var(--ix-tab-item-animated-circle--border-color);
@@ -145,9 +146,9 @@
 }
 
 :host(.circle) {
-  height: 4.5rem;
-  min-height: 4.5rem;
-  max-height: 4.5rem;
+  height: var(--ix-tab-item-circle--height--circle);
+  min-height: var(--ix-tab-item-circle--min-height);
+  max-height: var(--ix-tab-item-circle--max-height);
 }
 
 :host(.stretched) {
@@ -233,18 +234,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0.5rem;
+  padding: var(--ix-tab-item-icon-only--padding);
 }
 
 :host(.small-tab) {
-  height: 2rem;
-  min-height: 2rem;
-  max-height: 2rem;
-  padding: 1rem;
+  height: var(--ix-tab-item-small-tab--height);
+  min-height: var(--ix-tab-item-small-tab--min-height);
+  max-height: var(--ix-tab-item-small-tab--max-height);
+  padding: var(--ix-tab-item-small-tab--padding);
 }
 
 :host(.small-tab.icon) {
-  padding: 1rem 0.25rem;
+  padding: var(--ix-tab-item-icon--padding);
 }
 
 :host(:not(.circle):focus-visible) {

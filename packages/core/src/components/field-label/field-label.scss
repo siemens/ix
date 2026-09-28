@@ -7,12 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
+@use './field-label.vars' as *;
 :host {
   display: inline-block;
   position: relative;
 
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-top: var(--ix-field-label--margin-top);
+  margin-bottom: var(--ix-field-label--margin-bottom);
 }
 
 :host(.text-overflow-no-wrap) {
