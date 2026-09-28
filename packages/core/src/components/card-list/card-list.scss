@@ -11,6 +11,7 @@
 @use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
+
 $CardList__Title__Height: var(--ix-card-list-title--height);
 
 :host {
@@ -39,8 +40,7 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
 
   .CardList__Title__Button {
     margin-right: var(--ix-card-list-title-button--margin-right);
-    transition: var(--ix-card-list-title-button--transition-duration) transform
-      ease-in-out;
+    transition: var(--ix-card-list-title-button--transition-duration) transform ease-in-out;
   }
 
   .CardList__Title__Button__Collapsed {
@@ -126,41 +126,42 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
     margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
 
-  .Show__All__Card {
-    align-self: center;
-  }
+    .Show__All__Card {
+      align-self: center;
+    }
 
-  .Show__All__Card:hover {
-    background-color: var(--ix-card-list-show-all--background--hover);
-  }
+    .Show__All__Card:hover {
+      background-color: var(--ix-card-list-show-all--background--hover);
+    }
 
-  .Show__All__Card:active {
-    background-color: var(--ix-card-list-show-all--background--active);
-  }
+    .Show__All__Card:active {
+      background-color: var(--ix-card-list-show-all--background--active);
+    }
 
-  .Show__All__Card__Content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
+    .Show__All__Card__Content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
 
-  .Show__All__Card__Icon {
-    display: flex;
-    position: absolute;
-    height: var(--ix-card-list-show-all-card-icon--icon-size);
-    width: var(--ix-card-list-show-all-card-icon--icon-size);
-    justify-content: center;
-    align-items: center;
-  }
+    .Show__All__Card__Icon {
+      display: flex;
+      position: absolute;
+      height: var(--ix-card-list-show-all-card-icon--icon-size);
+      width: var(--ix-card-list-show-all-card-icon--icon-size);
+      justify-content: center;
+      align-items: center;
+    }
 
-  .Show__All__Card__Text {
-    margin-bottom: 0;
-    margin-top: auto;
-    text-align: center;
-  }
-}
+    .Show__All__Card__Text {
+      margin-bottom: 0;
+      margin-top: auto;
+      text-align: center;
+    }
 
-::slotted(.display-none) {
-  display: none !important;
+    ::slotted(.display-none) {
+      display: none !important;
+    }
+  }
 }
