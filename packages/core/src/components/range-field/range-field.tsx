@@ -28,7 +28,9 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
- * @slot default - Range field controls.
+ * Field that combines two inputs to capture a date, time, or datetime range.
+ *
+ * @slot - Range field content.
  */
 @Component({
   tag: 'ix-range-field',

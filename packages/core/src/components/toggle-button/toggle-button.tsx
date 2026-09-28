@@ -33,7 +33,12 @@ export type ToggleButtonVariant = Exclude<
 >;
 
 /**
- * @slot default - Toggle button label.
+ * Button that toggles between a pressed and unpressed state.
+ *
+ * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
+ * @figma-main-component-id 8994:173458
+ *
+ * @slot - Toggle button label.
  */
 @Component({
   tag: 'ix-toggle-button',

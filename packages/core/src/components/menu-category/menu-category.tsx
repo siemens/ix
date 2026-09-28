@@ -44,7 +44,11 @@ const HideDropdownGracePeriodMs = 250;
 let categorySequenceId = 0;
 
 /**
- * @slot default - Menu items in the category.
+ * Expandable category that groups related items in the side menu.
+ *
+ * @figma-main-component-id 4533:132499
+ *
+ * @slot - Menu category items.
  */
 @Component({
   tag: 'ix-menu-category',

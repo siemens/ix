@@ -3,6 +3,8 @@ name: create-changeset
 description: 'Create IX changesets from a diff, changed file list, or PR summary. Use for selecting affected packages, choosing patch/minor/major, drafting .changeset markdown, adding release-note text, and confirming when a change is internal-only in the Siemens IX monorepo.'
 argument-hint: 'Describe the diff, changed files, or PR summary to create or skip a changeset'
 user-invocable: true
+metadata:
+  internal: true
 ---
 
 # Create Changeset

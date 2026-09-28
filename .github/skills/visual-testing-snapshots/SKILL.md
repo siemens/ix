@@ -3,6 +3,8 @@ name: visual-testing-snapshots
 description: 'Run IX visual-testing snapshot checks or snapshot updates inside the Playwright Docker image. Use for updating or verifying visual regression snapshots with the visual-testing package, especially when a specific .e2e.ts test file should be run with or without -u.'
 argument-hint: 'Provide the visual test file, for example button.e2e.ts, and whether snapshots should be updated'
 user-invocable: true
+metadata:
+  internal: true
 ---
 
 # Visual Testing Snapshots
