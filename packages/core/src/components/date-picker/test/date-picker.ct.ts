@@ -144,7 +144,9 @@ regressionTest.describe('date picker tests single', () => {
     'select different date from specific month',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
-      const monthSelection = page.getByLabel('Select month');
+      const monthSelection = page.getByRole('button', {
+        name: 'Select month',
+      });
 
       await expect(monthSelection).toBeVisible();
       await monthSelection.click();
@@ -156,7 +158,9 @@ regressionTest.describe('date picker tests single', () => {
       await expect(itemJanuary).toBeVisible();
       await itemJanuary.click();
 
-      const yearSelection = page.getByLabel('Select year');
+      const yearSelection = page.getByRole('button', {
+        name: 'Select year',
+      });
       await expect(yearSelection).toBeVisible();
       await yearSelection.click();
 
