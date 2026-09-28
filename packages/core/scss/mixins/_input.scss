@@ -34,9 +34,20 @@
   );
 }
 
-@mixin element-input($feature-read-only: true, $padding: 0.25rem 0.5rem) {
+@mixin element-input(
+  $feature-read-only: true,
+  $padding: 0.25rem 0.5rem,
+  $density-aware: false
+) {
+  $min-height: 2rem;
+  @if $density-aware {
+    $min-height: sys.$si-sys-sizing-size-80;
+    $padding: #{sys.$si-sys-sizing-spacing-y-20}
+      #{sys.$si-sys-sizing-spacing-x-40};
+  }
+
   & {
-    min-height: 2rem;
+    min-height: $min-height;
     width: auto;
     padding: $padding;
     background-color: var(
@@ -154,29 +165,30 @@
 
 @mixin element-textarea {
   & {
-    min-height: 2rem;
+    min-height: #{sys.$si-sys-sizing-size-80};
     padding: calc(
-        0.375rem -
-          var(--ix-input--border-width, var(--theme-border-width-default))
+        #{sys.$si-sys-sizing-spacing-y-30} - var(--ix-input--border-width, var(--theme-border-width-default))
       )
       calc(
-        0.5rem -
-          var(--ix-input--border-width, var(--theme-border-width-default))
+        #{sys.$si-sys-sizing-spacing-x-40} - var(--ix-input--border-width, var(--theme-border-width-default))
       );
 
     &:not([rows]) {
-      height: 3.25rem;
+      height: calc(
+        #{sys.$si-sys-sizing-size-100} + 2 * (#{sys.$si-sys-sizing-spacing-y-20} -
+              #{sys.$si-sys-sizing-spacing-y-10})
+      );
     }
   }
 }
 
 @mixin form($namespace: '') {
   input#{$namespace} {
-    @include element-input();
+    @include element-input($density-aware: true);
   }
 
   textarea#{$namespace} {
-    @include element-input();
+    @include element-input($density-aware: true);
     @include element-textarea();
   }
 

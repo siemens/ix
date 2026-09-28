@@ -39,3 +39,28 @@
   --ix-tab-item-pill--border-color--disabled: #{sys.$si-sys-color-border-3};
   --ix-tab-item-pill--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
 }
+
+:host {
+  --ix-tab-item--size-size: #{sys.$si-sys-sizing-size-90};
+  --ix-tab-item--min-height: #{sys.$si-sys-sizing-size-90};
+  --ix-tab-item--max-height: #{sys.$si-sys-sizing-size-90};
+  --ix-tab-item--padding: 0.0625rem #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-tab-item--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-tab-item-circle--height: #{sys.$si-sys-sizing-size-100};
+  --ix-tab-item-circle--width: #{sys.$si-sys-sizing-size-100};
+  --ix-tab-item-circle--height--circle: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-tab-item-circle--min-height: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-tab-item-circle--max-height: calc(
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-tab-item-icon-only--padding: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-tab-item-small-tab--height: #{sys.$si-sys-sizing-size-80};
+  --ix-tab-item-small-tab--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-tab-item-small-tab--max-height: #{sys.$si-sys-sizing-size-80};
+  --ix-tab-item-small-tab--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-tab-item-icon--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20};
+}
