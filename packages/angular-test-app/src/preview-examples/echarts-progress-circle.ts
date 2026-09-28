@@ -45,7 +45,7 @@ export default class EchartsProgressCircle implements OnDestroy, OnInit {
                 [
                   1,
                   getComputedCSSProperty(
-                    '--si-sys-data-sequential-deep-blue-4'
+                    '--si-sys-color-data-sequential-deep-blue-4'
                   ),
                 ],
               ],
@@ -69,7 +69,9 @@ export default class EchartsProgressCircle implements OnDestroy, OnInit {
             width: 35,
             itemStyle: {
               borderMiterLimit: 16,
-              color: getComputedCSSProperty('--si-sys-background-success'),
+              color: getComputedCSSProperty(
+                '--si-sys-color-background-success'
+              ),
             },
           },
           pointer: {
@@ -82,16 +84,20 @@ export default class EchartsProgressCircle implements OnDestroy, OnInit {
                 offsetCenter: [0, 0],
                 fontSize: '2rem',
                 fontWeight: 'normal',
-                color: getComputedCSSProperty('--si-sys-text-secondary'),
+                color: getComputedCSSProperty('--si-sys-color-text-secondary'),
                 rich: {
                   valueStyle: {
                     fontSize: '2rem',
-                    color: getComputedCSSProperty('--si-sys-text-secondary'),
+                    color: getComputedCSSProperty(
+                      '--si-sys-color-text-secondary'
+                    ),
                     fontWeight: 'bold',
                   },
                   textStyle: {
                     fontSize: '1.5rem',
-                    color: getComputedCSSProperty('--si-sys-text-secondary'),
+                    color: getComputedCSSProperty(
+                      '--si-sys-color-text-secondary'
+                    ),
                   },
                 },
                 formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,

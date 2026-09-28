@@ -208,6 +208,7 @@ export class ContentHeader {
             variant="tertiary"
             icon={iconArrowLeft}
             ref={(el) => (this.backButtonEl = el as HTMLElement)}
+            size="24"
             onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>
         ) : null}

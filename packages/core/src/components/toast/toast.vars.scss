@@ -11,10 +11,10 @@
 
 :host {
   --ix-toast--animation-duration: var(--theme-medium-time);
-  --ix-toast--background: #{sys.$si-sys-background-1};
+  --ix-toast--background: #{sys.$si-sys-color-background-1};
   --ix-toast--border-color: rgba(0, 0, 0, 0);
   --ix-toast--border-radius: var(--theme-default-border-radius);
   --ix-toast--border-width: var(--theme-border-width-none);
-  --ix-toast--box-shadow: #{sys.$si-sys-effects-shadow-4};
-  --ix-toast-timer-value--background: #{sys.$si-sys-border-3};
+  --ix-toast--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
+  --ix-toast-timer-value--background: #{sys.$si-sys-color-border-3};
 }

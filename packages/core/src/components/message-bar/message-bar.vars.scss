@@ -10,14 +10,14 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-message-bar--border-color--alarm: #{sys.$si-sys-border-danger};
-  --ix-message-bar--border-color--critical: #{sys.$si-sys-border-critical};
-  --ix-message-bar--border-color--warning: #{sys.$si-sys-border-warning};
-  --ix-message-bar--border-color--success: #{sys.$si-sys-border-success};
-  --ix-message-bar--border-color--info: #{sys.$si-sys-border-information};
-  --ix-message-bar--border-color--neutral: #{sys.$si-sys-border-neutral};
-  --ix-message-bar--border-color--primary: #{sys.$si-sys-border-accent};
+  --ix-message-bar--border-color--alarm: #{sys.$si-sys-color-border-danger};
+  --ix-message-bar--border-color--critical: #{sys.$si-sys-color-border-critical};
+  --ix-message-bar--border-color--warning: #{sys.$si-sys-color-border-warning};
+  --ix-message-bar--border-color--success: #{sys.$si-sys-color-border-success};
+  --ix-message-bar--border-color--info: #{sys.$si-sys-color-border-information};
+  --ix-message-bar--border-color--neutral: #{sys.$si-sys-color-border-neutral};
+  --ix-message-bar--border-color--primary: #{sys.$si-sys-color-border-accent};
   --ix-message-bar--border-radius: var(--theme-default-border-radius);
   --ix-message-bar--border-width: var(--theme-border-width-thick);
-  --ix-message-bar--background: #{sys.$si-sys-background-accent-secondary};
+  --ix-message-bar--background: #{sys.$si-sys-color-background-accent-secondary};
 }

@@ -10,7 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-date-time-card--box-shadow: #{sys.$si-sys-effects-shadow-4};
-  --ix-date-time-card-separator--background: #{sys.$si-sys-border-4};
-  --ix-date-time-card--background: #{sys.$si-sys-background-3};
+  --ix-date-time-card--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
+  --ix-date-time-card-separator--background: #{sys.$si-sys-color-border-4};
+  --ix-date-time-card--background: #{sys.$si-sys-color-background-3};
 }

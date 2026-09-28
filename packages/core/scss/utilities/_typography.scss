@@ -14,7 +14,7 @@
 }
 
 a {
-  --ix-typography--link-color: #{sys.$si-sys-text-accent};
+  --ix-typography--link-color: #{sys.$si-sys-color-text-accent};
 }
 
 @mixin font-label {

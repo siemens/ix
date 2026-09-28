@@ -12,14 +12,14 @@
 .ix-table {
   --ix-table--background: transparent;
   --ix-table--border-color: transparent;
-  --ix-table--color: #{sys.$si-sys-text-primary};
-  --ix-table-cell--border-color: #{sys.$si-sys-border-4};
+  --ix-table--color: #{sys.$si-sys-color-text-primary};
+  --ix-table-cell--border-color: #{sys.$si-sys-color-border-4};
   --ix-table-header--background: transparent;
   --ix-table-row--background: transparent;
-  --ix-table-row--background--active: #{sys.$si-sys-background-selected};
-  --ix-table-row--background--hover: #{sys.$si-sys-background-hover};
-  --ix-table-row--background--striped-even: #{sys.$si-sys-background-0};
-  --ix-table-row--background--striped-odd: #{sys.$si-sys-background-1};
+  --ix-table-row--background--active: #{sys.$si-sys-color-background-selected};
+  --ix-table-row--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-table-row--background--striped-even: #{sys.$si-sys-color-background-0};
+  --ix-table-row--background--striped-odd: #{sys.$si-sys-color-background-1};
 
   --bs-table-color-type: initial;
   --bs-table-bg-type: initial;

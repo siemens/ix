@@ -11,9 +11,9 @@
 
 :host {
   --ix-tree-item-expand-icon--transition-duration: var(--theme-default-time);
-  --ix-tree-item--background--active: #{sys.$si-sys-background-selected};
-  --ix-tree-item--background--hover: #{sys.$si-sys-background-hover};
-  --ix-tree-item--background--selected: #{sys.$si-sys-background-selected};
-  --ix-tree-item--background--selected-active: #{sys.$si-sys-background-selected};
-  --ix-tree-item--background--selected-hover: #{sys.$si-sys-background-hover};
+  --ix-tree-item--background--active: #{sys.$si-sys-color-background-selected};
+  --ix-tree-item--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-tree-item--background--selected: #{sys.$si-sys-color-background-selected};
+  --ix-tree-item--background--selected-active: #{sys.$si-sys-color-background-selected};
+  --ix-tree-item--background--selected-hover: #{sys.$si-sys-color-background-hover};
 }

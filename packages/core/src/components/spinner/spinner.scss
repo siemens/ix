@@ -10,7 +10,7 @@
 @use 'mixins/shadow-dom/component';
 
 @use './spinner.vars' as *;
-@mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
+@mixin ix-spinner($size-name: 'md', $size: 2rem, $track-size: 4px) {
   :host {
     display: block;
     position: relative;
@@ -110,8 +110,8 @@
   }
 }
 
-@include ix-spinner($size-name: 'xx-small', $size: 0.75rem, $track-size: 1px);
-@include ix-spinner($size-name: 'x-small', $size: 1.25rem, $track-size: 2px);
-@include ix-spinner($size-name: 'small', $size: 1.5rem, $track-size: 2px);
-@include ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 2px);
-@include ix-spinner($size-name: 'large', $size: 6rem, $track-size: 4px);
+@include ix-spinner($size-name: 'xxs', $size: 0.75rem, $track-size: 1px);
+@include ix-spinner($size-name: 'xs', $size: 1rem, $track-size: 2px);
+@include ix-spinner($size-name: 'sm', $size: 1.25rem, $track-size: 2px);
+@include ix-spinner($size-name: 'md', $size: 2rem, $track-size: 2px);
+@include ix-spinner($size-name: 'xxl', $size: 6rem, $track-size: 4px);

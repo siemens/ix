@@ -14,11 +14,11 @@
  */
 @mixin setVars {
   --theme-avatar--background: var(--theme-color-component-3);
-  --theme-avatar--color: var(--si-sys-text-primary);
+  --theme-avatar--color: var(--si-sys-color-text-primary);
   --theme-avatar-btn--background: rgba(0, 0, 0, 0);
-  --theme-avatar-btn--background--active: var(--si-sys-background-active);
-  --theme-avatar-btn--background--hover: var(--si-sys-background-hover);
-  --theme-avatar-btn--color: var(--si-sys-text-primary);
-  --theme-avatar-btn--color--active: var(--si-sys-text-primary);
-  --theme-avatar-btn--color--hover: var(--si-sys-text-primary);
+  --theme-avatar-btn--background--active: var(--si-sys-color-background-active);
+  --theme-avatar-btn--background--hover: var(--si-sys-color-background-hover);
+  --theme-avatar-btn--color: var(--si-sys-color-text-primary);
+  --theme-avatar-btn--color--active: var(--si-sys-color-text-primary);
+  --theme-avatar-btn--color--hover: var(--si-sys-color-text-primary);
 }

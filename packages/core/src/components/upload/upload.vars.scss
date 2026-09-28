@@ -10,12 +10,12 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-upload-error-icon--color: #{sys.$si-sys-text-danger};
-  --ix-upload-success-icon--color: #{sys.$si-sys-text-success};
-  --ix-upload--border-color: #{sys.$si-sys-border-3};
-  --ix-upload--border-color--dragover: #{sys.$si-sys-border-accent-hover};
+  --ix-upload-error-icon--color: #{sys.$si-sys-color-text-danger};
+  --ix-upload-success-icon--color: #{sys.$si-sys-color-text-success};
+  --ix-upload--border-color: #{sys.$si-sys-color-border-3};
+  --ix-upload--border-color--dragover: #{sys.$si-sys-color-border-accent-hover};
   --ix-upload--border-radius: var(--theme-default-border-radius);
-  --ix-upload-text--color: #{sys.$si-sys-text-primary};
-  --ix-upload-text--color--checking: #{sys.$si-sys-text-primary};
-  --ix-upload-text--color--disabled: #{sys.$si-sys-text-disabled};
+  --ix-upload-text--color: #{sys.$si-sys-color-text-primary};
+  --ix-upload-text--color--checking: #{sys.$si-sys-color-text-primary};
+  --ix-upload-text--color--disabled: #{sys.$si-sys-color-text-disabled};
 }

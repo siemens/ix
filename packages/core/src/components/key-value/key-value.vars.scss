@@ -1,6 +1,6 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-key-value-label--color: #{sys.$si-sys-text-secondary};
-  --ix-key-value--border-color: #{sys.$si-sys-border-4};
+  --ix-key-value-label--color: #{sys.$si-sys-color-text-secondary};
+  --ix-key-value--border-color: #{sys.$si-sys-color-border-4};
 }

@@ -26,6 +26,31 @@ function timePickerUnitList(picker: Locator, unit: 'hr' | 'min' | 'sec') {
   return timePickerCell(picker, unit, 0).locator('..');
 }
 
+function getClippedCellClickPoint(cell: Locator) {
+  return cell.evaluate((el: HTMLElement) => {
+    const list = el.parentElement;
+    if (!list) {
+      throw new Error('Expected time picker list element');
+    }
+
+    const cellRect = el.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect();
+    const visibleTop = Math.max(cellRect.top, listRect.top);
+    const visibleBottom = Math.min(cellRect.bottom, listRect.bottom);
+    const clippedAtBottom =
+      cellRect.top < listRect.bottom && cellRect.bottom > listRect.bottom;
+
+    if (!clippedAtBottom || visibleBottom <= visibleTop) {
+      return null;
+    }
+
+    return {
+      x: cellRect.left + cellRect.width / 2,
+      y: (visibleTop + visibleBottom) / 2,
+    };
+  });
+}
+
 const getTimeObjs = async (page: Page) => {
   return await page.$$eval(TIME_PICKER_SELECTOR, (elements) => {
     return Promise.all(elements.map((elem) => elem.getCurrentTime()));
@@ -236,6 +261,298 @@ regressionTest(
       return await (el as HTMLIxTimePickerElement).getCurrentTime();
     });
     expect(t).toBe('15:00:00');
+  }
+);
+
+// ---------------------------------------------------------------------------
+// Locale — component-level tests
+// ---------------------------------------------------------------------------
+
+regressionTest(
+  'getCurrentTime returns locale-formatted string for 24h format with locale',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm:ss" time="14:30:00" locale="de"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    const result = await picker.evaluate(async (el: HTMLElement) => {
+      return await (el as HTMLIxTimePickerElement).getCurrentTime();
+    });
+    // 24h numeric tokens are locale-independent; confirms locale path doesn't break output
+    expect(result).toBe('14:30:00');
+  }
+);
+
+regressionTest(
+  'getCurrentTime uses locale meridiem for 12h format',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 午後" locale="ja"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    const result = await picker.evaluate(async (el: HTMLElement) => {
+      return await (el as HTMLIxTimePickerElement).getCurrentTime();
+    });
+    expect(result).toBe('02:30 午後');
+  }
+);
+
+regressionTest(
+  'timeChange event payload uses locale-formatted string',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    const timeChangePromise = page.evaluate(() => {
+      return new Promise((resolve) => {
+        document
+          .querySelector('ix-time-picker')
+          ?.addEventListener('timeChange', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+      });
+    });
+
+    await timePickerCell(picker, 'hr', 5).click();
+    expect(await timeChangePromise).toBe('05:30 午前');
+  }
+);
+
+regressionTest(
+  'timeSelect event payload uses locale-formatted string',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    const timeSelectPromise = page.evaluate(() => {
+      return new Promise((resolve) => {
+        document
+          .querySelector('ix-time-picker')
+          ?.addEventListener('timeSelect', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+      });
+    });
+
+    await picker.locator('ix-button').click();
+    expect(await timeSelectPromise).toBe('02:30 午前');
+  }
+);
+
+regressionTest(
+  'changing locale updates meridiem labels and time string',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 AM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('AM');
+    await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('PM');
+
+    await picker.evaluate((el: HTMLElement) => {
+      (el as HTMLIxTimePickerElement).locale = 'ja';
+    });
+
+    await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('午前');
+    await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('午後');
+
+    const result = await picker.evaluate(async (el: HTMLElement) => {
+      return await (el as HTMLIxTimePickerElement).getCurrentTime();
+    });
+    expect(result).toBe('02:30 午前');
+  }
+);
+
+regressionTest(
+  'i18n-am and i18n-pm props change the AM/PM button labels',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 PM" i18n-am="Vorm." i18n-pm="Nachm."></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('Vorm.');
+    await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('Nachm.');
+  }
+);
+
+regressionTest(
+  'minTime and maxTime disable out-of-range hours when locale is set',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="10:00:00" max-time="14:00:00" locale="de"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    await expect(timePickerCell(picker, 'hr', 8)).toBeDisabled();
+    await expect(timePickerCell(picker, 'hr', 12)).not.toBeDisabled();
+    await expect(timePickerCell(picker, 'hr', 15)).toBeDisabled();
+  }
+);
+
+regressionTest(
+  '12h minTime/maxTime: AM hours below minTime are disabled when locale is set',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    // hour 7 (07 AM = 07:00) is below minTime 09:00 → disabled
+    await expect(timePickerCell(picker, 'hr', 7)).toBeDisabled();
+    // hour 9 is the minTime boundary → enabled
+    await expect(timePickerCell(picker, 'hr', 9)).not.toBeDisabled();
+  }
+);
+
+regressionTest(
+  '12h minTime/maxTime: PM hours above maxTime are disabled when locale is set',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 PM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+    // hour 6 PM = 18:00, above maxTime 17:00 → disabled
+    await expect(timePickerCell(picker, 'hr', 6)).toBeDisabled();
+  }
+);
+
+regressionTest(
+  '12h minTime/maxTime: clicking a valid hour emits timeChange with locale-formatted value',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    const timeChangePromise = page.evaluate(() => {
+      return new Promise((resolve) => {
+        document
+          .querySelector('ix-time-picker')
+          ?.addEventListener('timeChange', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+      });
+    });
+
+    // Click hour 11 (11 AM), which is within [09 AM, 05 PM]
+    await timePickerCell(picker, 'hr', 11).click();
+    expect(await timeChangePromise).toBe('11:00 AM');
+  }
+);
+
+regressionTest(
+  '12h minTime/maxTime: confirm button emits timeSelect with locale-formatted value',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="hh:mm a" time="02:30 PM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    const timeSelectPromise = page.evaluate(() => {
+      return new Promise((resolve) => {
+        document
+          .querySelector('ix-time-picker')
+          ?.addEventListener('timeSelect', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+      });
+    });
+
+    await picker.locator('ix-button').click();
+    expect(await timeSelectPromise).toBe('02:30 PM');
+  }
+);
+
+regressionTest(
+  'locale prop watcher re-initializes picker without errors',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm:ss" time="14:30:00" locale="en"></ix-time-picker>`
+    );
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/hydrated/);
+
+    await picker.evaluate((el: HTMLElement) => {
+      (el as HTMLIxTimePickerElement).locale = 'de';
+    });
+
+    const result = await picker.evaluate(async (el: HTMLElement) => {
+      return await (el as HTMLIxTimePickerElement).getCurrentTime();
+    });
+    // 24h format is unaffected by locale; confirms watcher fired and re-init completed
+    expect(result).toBe('14:30:00');
+  }
+);
+
+regressionTest(
+  'clicking a partially visible minute cell selects it',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm:ss" time="15:00:39"></ix-time-picker>`
+    );
+
+    const picker = page.locator(TIME_PICKER_SELECTOR);
+    await expect(picker).toHaveClass(/\bhydrated\b/);
+    await waitForScrollAnimations(page);
+
+    const minuteList = timePickerUnitList(picker, 'min');
+    const minuteCell = timePickerCell(picker, 'min', 40);
+
+    await minuteList.evaluate((list: HTMLElement, cellId: string) => {
+      const cell = list.querySelector(
+        `[data-element-container-id="${cellId}"]`
+      );
+      if (!(cell instanceof HTMLElement)) {
+        throw new Error(`Expected ${cellId} in time picker list`);
+      }
+
+      const cellRect = cell.getBoundingClientRect();
+      const listRect = list.getBoundingClientRect();
+      list.scrollTop += cellRect.top + cellRect.height / 2 - listRect.bottom;
+    }, 'minute-40');
+
+    await expect.poll(() => getClippedCellClickPoint(minuteCell)).toBeTruthy();
+
+    const clickPoint = await getClippedCellClickPoint(minuteCell);
+    if (!clickPoint) {
+      throw new Error('Expected a click point on the clipped minute cell');
+    }
+
+    // locator.click() scrolls the target into view first and hides this bug.
+    // A plain mouse.click() is also too fast: mouseup can beat focus→render→scroll.
+    // Hold until focus-driven scroll would run (or a few frames if it does not).
+    await page.mouse.move(clickPoint.x, clickPoint.y);
+    await page.mouse.down();
+    await minuteList.evaluate(async (list: HTMLElement) => {
+      const startScrollTop = list.scrollTop;
+      for (let frame = 0; frame < 30; frame++) {
+        await new Promise<void>((resolve) => {
+          requestAnimationFrame(() => resolve());
+        });
+        if (list.scrollTop !== startScrollTop) {
+          return;
+        }
+      }
+    });
+    await page.mouse.up();
+
+    await expect(minuteCell).toHaveAttribute('aria-selected', 'true');
+    await expect(minuteCell).toHaveClass(/\bselected\b/);
+    expect(await getTimeObjs(page)).toEqual(['15:40:39']);
   }
 );
 

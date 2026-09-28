@@ -57,7 +57,9 @@ export default class EchartsLineAdvanced implements OnDestroy, OnInit {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               {
                 offset: 0,
-                color: getComputedCSSProperty('--si-sys-background-accent'),
+                color: getComputedCSSProperty(
+                  '--si-sys-color-background-accent'
+                ),
               },
               { offset: 1, color: 'transparent' },
             ]),
@@ -69,7 +71,7 @@ export default class EchartsLineAdvanced implements OnDestroy, OnInit {
             ],
             label: {
               fontWeight: 'bold',
-              color: getComputedCSSProperty('--si-sys-text-inverse'),
+              color: getComputedCSSProperty('--si-sys-color-text-inverse'),
             },
           },
           markLine: {

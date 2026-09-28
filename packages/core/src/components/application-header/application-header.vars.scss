@@ -11,12 +11,12 @@
 
 :host {
   --ix-application-header--z-index: var(--theme-z-index-fixed);
-  --ix-application-header-dropdown-item--border-color: #{sys.$si-sys-border-4};
-  --ix-application-header--background: #{sys.$si-sys-background-1};
-  --ix-application-header--border-color: #{sys.$si-sys-border-4};
+  --ix-application-header-dropdown-item--border-color: #{sys.$si-sys-color-border-4};
+  --ix-application-header--background: #{sys.$si-sys-color-background-1};
+  --ix-application-header--border-color: #{sys.$si-sys-color-border-4};
   --ix-application-header--border-width: var(--theme-border-width-default);
-  --ix-application-header--color: #{sys.$si-sys-text-primary};
-  --ix-application-header-app-icon--outline-color: #{sys.$si-sys-border-2};
-  --ix-application-header-logo--color: #{sys.$si-sys-effects-logo};
-  --ix-application-header-name-suffix--color: #{sys.$si-sys-text-secondary};
+  --ix-application-header--color: #{sys.$si-sys-color-text-primary};
+  --ix-application-header-app-icon--outline-color: #{sys.$si-sys-color-border-2};
+  --ix-application-header-logo--color: #{sys.$si-sys-color-effects-logo};
+  --ix-application-header-name-suffix--color: #{sys.$si-sys-color-text-secondary};
 }

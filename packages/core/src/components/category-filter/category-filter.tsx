@@ -310,6 +310,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = false;
     if (this.dropdown) {
       this.dropdown.show = false;
     }
@@ -320,6 +321,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = true;
     if (this.dropdown) {
       this.dropdown.show = true;
     }
@@ -827,7 +829,7 @@ export class CategoryFilter {
         }}
         variant="tertiary"
         icon={iconClear}
-        iconColor="--si-sys-text-secondary"
+        iconColor="--si-sys-color-text-secondary"
         size="16"
         aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
@@ -836,19 +838,19 @@ export class CategoryFilter {
 
   private getIconColor() {
     if (this.disabled) {
-      return '--si-sys-text-disabled';
+      return '--si-sys-color-text-disabled';
     }
 
     if (this.readonly) {
-      return '--si-sys-text-primary';
+      return '--si-sys-color-text-primary';
     }
 
-    return '--si-sys-text-accent';
+    return '--si-sys-color-text-accent';
   }
 
   render() {
     return (
-      <Host>
+      <Host class={{ active: this.showDropdown }}>
         <form ref={(el) => (this.formElement = el)}>
           <div
             read-only={this.readonly}
@@ -931,6 +933,9 @@ export class CategoryFilter {
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
+            onShowChanged={(event) => {
+              this.showDropdown = event.detail;
+            }}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>
