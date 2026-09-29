@@ -34,12 +34,10 @@
   ix-card-content {
     height: var(--ix-push-card-content--height);
 
-    &::part(content) {
-      overflow: visible;
-    }
+    --ix-card-content-content-wrapper--overflow: visible;
 
     .typography-h4 {
-      padding-top: .25rem;
+      padding-top: var(--ix-push-card-content--padding-top);
     }
   }
 }

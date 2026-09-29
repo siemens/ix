@@ -12,7 +12,7 @@ export class CardContent {
   render() {
     return (
       <Host>
-        <div class="content-wrapper" part="content">
+        <div class="content-wrapper">
           <slot></slot>
         </div>
       </Host>

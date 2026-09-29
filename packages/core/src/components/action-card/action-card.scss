@@ -51,11 +51,7 @@
     height: 100%;
 
     div {
-      padding-top: .25rem;
-    }
-
-    .typography-h4 {
-      padding-top: .25rem;
+      padding-top: var(--ix-action-card--content-padding-top);
     }
   }
 }

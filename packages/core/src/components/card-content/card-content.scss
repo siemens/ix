@@ -22,7 +22,7 @@
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow: var(--ix-card-content-content-wrapper--overflow);
     gap: var(--ix-card-content-content-wrapper--gap);
     display: flex;
     flex-direction: column;

@@ -1031,9 +1031,7 @@
       "slots": [
         "default"
       ],
-      "cssParts": [
-        "content"
-      ],
+      "cssParts": [],
       "cssStates": []
     },
     {
