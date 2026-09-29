@@ -17,6 +17,7 @@ import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxAct
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement, defineCustomElement as defineIxApplication } from "@siemens/ix/components/ix-application.js";
 import { IxAvatar as IxAvatarElement, defineCustomElement as defineIxAvatar } from "@siemens/ix/components/ix-avatar.js";
+import { IxBadge as IxBadgeElement, defineCustomElement as defineIxBadge } from "@siemens/ix/components/ix-badge.js";
 import { IxBlind as IxBlindElement, defineCustomElement as defineIxBlind } from "@siemens/ix/components/ix-blind.js";
 import { IxBreadcrumbItem as IxBreadcrumbItemElement, defineCustomElement as defineIxBreadcrumbItem } from "@siemens/ix/components/ix-breadcrumb-item.js";
 import { IxBreadcrumb as IxBreadcrumbElement, defineCustomElement as defineIxBreadcrumb } from "@siemens/ix/components/ix-breadcrumb.js";
@@ -64,6 +65,7 @@ import { IxGroup as IxGroupElement, defineCustomElement as defineIxGroup } from 
 import { IxHelperText as IxHelperTextElement, defineCustomElement as defineIxHelperText } from "@siemens/ix/components/ix-helper-text.js";
 import { IxIconButton as IxIconButtonElement, defineCustomElement as defineIxIconButton } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement, defineCustomElement as defineIxIconToggleButton } from "@siemens/ix/components/ix-icon-toggle-button.js";
+import { IxInfoPage as IxInfoPageElement, defineCustomElement as defineIxInfoPage } from "@siemens/ix/components/ix-info-page.js";
 import { IxInput as IxInputElement, defineCustomElement as defineIxInput } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement, defineCustomElement as defineIxKeyValueList } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement, defineCustomElement as defineIxKeyValue } from "@siemens/ix/components/ix-key-value.js";
@@ -173,6 +175,17 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents, Co
     defineCustomElement: defineIxAvatar
 });
 
+export type IxBadgeEvents = NonNullable<unknown>;
+
+export const IxBadge: StencilReactComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge> = /*@__PURE__*/ createComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge>({
+    tagName: 'ix-badge',
+    elementClass: IxBadgeElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxBadgeEvents,
+    defineCustomElement: defineIxBadge
+});
+
 export type IxBlindEvents = { onCollapsedChange: EventName<IxBlindCustomEvent<boolean>> };
 
 export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>({
@@ -259,7 +272,7 @@ export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardCo
 export type IxCardListEvents = {
     onCollapseChanged: EventName<IxCardListCustomEvent<boolean>>,
     onShowAllClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>,
-    onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>
+    onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>
 };
 
 export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents, Components.IxCardList> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents, Components.IxCardList>({
@@ -792,6 +805,17 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
     react: React,
     events: { onPressedChange: 'pressedChange' } as IxIconToggleButtonEvents,
     defineCustomElement: defineIxIconToggleButton
+});
+
+export type IxInfoPageEvents = NonNullable<unknown>;
+
+export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage> = /*@__PURE__*/ createComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>({
+    tagName: 'ix-info-page',
+    elementClass: IxInfoPageElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxInfoPageEvents,
+    defineCustomElement: defineIxInfoPage
 });
 
 export type IxInputEvents = {

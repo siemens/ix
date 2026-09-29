@@ -39,6 +39,8 @@ import { createSequentialId } from '../utils/uuid';
 
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
+const HideDropdownGracePeriodMs = 250;
+
 let categorySequenceId = 0;
 
 /**
@@ -79,9 +81,16 @@ export class MenuCategory
    */
   @Prop() tooltipText?: string;
 
+  /**
+   * Disable the tooltip for this menu category.
+   *
+   * @since 6.0.0
+   */
+  @Prop() disableTooltip = false;
+
   /** @internal */
   @Event({ bubbles: true, cancelable: true })
-  closeOtherCategories!: EventEmitter;
+  closeOtherCategories!: EventEmitter<string>;
 
   @State() menuExpand = false;
   @State() showItems = false;
@@ -105,6 +114,7 @@ export class MenuCategory
     categorySequenceId++
   );
   private focusFirstItemOnDropdownOpen = false;
+  private hideDropdownTimeout?: number;
 
   private isNestedItemActive() {
     return this.getNestedItems().some((item) => item.active);
@@ -141,7 +151,11 @@ export class MenuCategory
 
   private animateFadeOut() {
     const slotHideThresholdMs = 25;
-    animate(this.menuItemsContainer!, {
+    if (!this.menuItemsContainer) {
+      return;
+    }
+
+    animate(this.menuItemsContainer, {
       duration: DefaultAnimationTimeout,
       easing: 'easeInSine',
       opacity: [1, 0],
@@ -159,24 +173,63 @@ export class MenuCategory
     this.showItems = true;
     this.showDropdown = false;
 
-    animate(this.menuItemsContainer!, {
+    if (!this.menuItemsContainer) {
+      return;
+    }
+
+    animate(this.menuItemsContainer, {
       duration: DefaultAnimationTimeout,
       easing: 'easeInSine',
       opacity: [0, 1],
       maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
+      onComplete: () => {
+        this.clearMenuItemsContainerStyles();
+      },
     });
   }
 
+  private isPointerMovingInsideCategory(relatedTarget: EventTarget | null) {
+    if (!(relatedTarget instanceof Node)) {
+      return false;
+    }
+
+    const dropdown = this.dropdownRef.current;
+
+    return (
+      this.hostElement.contains(relatedTarget) ||
+      !!this.hostElement.shadowRoot?.contains(relatedTarget) ||
+      dropdown === relatedTarget ||
+      !!dropdown?.contains(relatedTarget) ||
+      !!dropdown?.shadowRoot?.contains(relatedTarget)
+    );
+  }
+
+  private clearHideDropdownTimeout() {
+    if (this.hideDropdownTimeout !== undefined) {
+      window.clearTimeout(this.hideDropdownTimeout);
+      this.hideDropdownTimeout = undefined;
+    }
+  }
+
+  private scheduleHideMenuItemDropdown() {
+    this.clearHideDropdownTimeout();
+    this.hideDropdownTimeout = window.setTimeout(() => {
+      this.hideDropdownTimeout = undefined;
+      this.hideMenuItemDropdown();
+    }, HideDropdownGracePeriodMs);
+  }
+
   private showMenuItemDropdown() {
+    this.clearHideDropdownTimeout();
     if (this.ixMenu?.expand) {
       return;
     }
-    this.closeOtherCategories.emit();
+    this.closeOtherCategories.emit(this.categoryId);
 
-    if (this.dropdownRef.current) {
-      const ref = dropdownController.getDropdownById(
-        this.dropdownRef.current.dataset.ixDropdown!
-      );
+    const dropdownId = this.dropdownRef.current?.dataset.ixDropdown;
+
+    if (dropdownId) {
+      const ref = dropdownController.getDropdownById(dropdownId);
 
       if (ref) {
         dropdownController.present(ref);
@@ -185,14 +238,24 @@ export class MenuCategory
   }
 
   @Listen('closeOtherCategories', { target: 'window' })
-  private hideMenuItemDropdown() {
-    if (this.dropdownRef.current) {
-      const ref = dropdownController.getDropdownById(
-        this.dropdownRef.current.dataset.ixDropdown!
-      );
+  private hideMenuItemDropdown(event?: CustomEvent<string>) {
+    if (event?.detail === this.categoryId) {
+      return;
+    }
+
+    this.clearHideDropdownTimeout();
+
+    const dropdownId = this.dropdownRef.current?.dataset.ixDropdown;
+
+    if (dropdownId) {
+      const ref = dropdownController.getDropdownById(dropdownId);
 
       if (ref) {
         dropdownController.dismiss(ref);
+
+        if (!ref.isPresent()) {
+          this.showDropdown = false;
+        }
       }
     }
   }
@@ -419,14 +482,14 @@ export class MenuCategory
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
         if (!menuExpand) {
-          this.clearMenuItemStyles();
+          this.clearMenuItemsContainerStyles();
         }
         this.showItems = this.isCategoryItemListVisible();
       }
     );
   }
 
-  clearMenuItemStyles() {
+  clearMenuItemsContainerStyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
   }
@@ -445,6 +508,8 @@ export class MenuCategory
     if (this.observer) {
       this.observer.disconnect();
     }
+
+    this.clearHideDropdownTimeout();
   }
 
   override render() {
@@ -467,7 +532,12 @@ export class MenuCategory
           if (event.pointerType === 'touch') {
             return;
           }
-          this.hideMenuItemDropdown();
+
+          if (this.isPointerMovingInsideCategory(event.relatedTarget)) {
+            return;
+          }
+
+          this.scheduleHideMenuItemDropdown();
         }}
       >
         <ix-menu-item
@@ -483,6 +553,7 @@ export class MenuCategory
           onClick={(e) => this.onCategoryClick(e)}
           onKeyDown={(event) => this.onKeyDown(event)}
           tooltipText={this.tooltipText}
+          disableTooltip={this.disableTooltip}
           isCategory
           menuCategoryLabel={this.label}
         >
@@ -490,6 +561,7 @@ export class MenuCategory
             <span class="category-text">{this.label}</span>
             <ix-icon
               name={iconChevronDownSmall}
+              size="24"
               class={{
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,
@@ -520,12 +592,16 @@ export class MenuCategory
           onShowChange={({ detail }) => this.onDropdownShowChange(detail)}
           onShowChanged={({ detail }) => this.onDropdownShowChanged(detail)}
           class={'category-dropdown'}
+          suppressOverflowBehavior
           anchor={this.hostElement}
           placement="right-start"
           offset={{
             mainAxis: 3,
           }}
           focusHost={this.hostElement}
+          onPointerEnter={() => {
+            this.clearHideDropdownTimeout();
+          }}
           onClick={(e) => {
             if (e.target instanceof HTMLElement) {
               if (e.target.tagName === 'IX-MENU-ITEM') {
@@ -541,13 +617,16 @@ export class MenuCategory
             class={'category-dropdown-header'}
             tabindex={-1}
             aria-hidden="true"
+            suppressChecked
           >
             <ix-typography format="label" bold textColor="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>
           <ix-divider></ix-divider>
-          <slot></slot>
+          <div class="category-dropdown-body">
+            <slot></slot>
+          </div>
         </ix-dropdown>
       </Host>
     );

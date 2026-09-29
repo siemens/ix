@@ -15,7 +15,7 @@ import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
 
 <template>
   <IxKeyValueList>
-    <IxKeyValue label="Label" labelPosition="left">
+    <IxKeyValue label="Label" label-position="left">
       <input
         class="ix-form-control"
         placeholder="Enter text here"
@@ -23,7 +23,7 @@ import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
         slot="custom-value"
       />
     </IxKeyValue>
-    <IxKeyValue label="Label" labelPosition="left">
+    <IxKeyValue label="Label" label-position="left">
       <input
         class="ix-form-control"
         placeholder="Enter text here"
@@ -31,7 +31,7 @@ import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
         slot="custom-value"
       />
     </IxKeyValue>
-    <IxKeyValue label="Label" labelPosition="left">
+    <IxKeyValue label="Label" label-position="left">
       <input
         class="ix-form-control"
         placeholder="Enter text here"

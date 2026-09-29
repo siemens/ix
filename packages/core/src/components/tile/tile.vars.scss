@@ -1,0 +1,34 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-tile--background: #{sys.$si-sys-color-background-1};
+  --ix-tile--color: #{sys.$si-sys-color-text-primary};
+  --ix-tile-subheader--color: #{sys.$si-sys-color-text-secondary};
+  --ix-tile-footer--border-color: #{sys.$si-sys-color-background-0};
+  --ix-tile--border-color: rgba(0, 0, 0, 0);
+  --ix-tile--border-radius: var(--theme-default-border-radius);
+  --ix-tile--border-width: var(--theme-border-width-none);
+  --ix-tile--box-shadow: none;
+}
+
+:host {
+  --ix-tile--height-small: #{sys.$si-sys-sizing-size-90};
+  --ix-tile--height-medium: #{sys.$si-sys-sizing-size-120};
+  --ix-tile--height-big: #{sys.$si-sys-sizing-size-150};
+  --ix-tile--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-tile-footer--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-tile-has-content--height: #{sys.$si-sys-sizing-size-90};
+  --ix-tile-has-content--max-height: #{sys.$si-sys-sizing-size-90};
+  --ix-tile-has-content--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+}

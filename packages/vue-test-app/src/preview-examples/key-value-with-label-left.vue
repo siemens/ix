@@ -12,5 +12,5 @@ import { IxKeyValue } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxKeyValue label="Label" labelPosition="left" value="Value"></IxKeyValue>
+  <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>
 </template>

@@ -9,23 +9,25 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
+@use './link-button.vars' as *;
 :host {
   display: inline-flex;
-  height: vars.$x-large-space;
+  height: var(--ix-link-button--height);
   font-size: vars.$font-size-default;
   font-weight: vars.$font-weight-normal;
-  min-width: vars.$x-large-space;
+  min-width: var(--ix-link-button--min-width);
 
   .link-button {
     display: inline-flex;
     position: relative;
     width: 100%;
-    padding: 0 vars.$tiny-space 0 0;
+    padding: var(--ix-link-button--padding);
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: var(--theme-color-primary);
+    color: var(--ix-link-button--color);
     cursor: pointer;
     text-decoration: none;
 
@@ -41,16 +43,16 @@
     }
 
     @include hover.hover {
-      color: var(--theme-color-dynamic--hover);
+      color: var(--ix-link-button--color--hover);
     }
 
     @include hover.active {
-      color: var(--theme-color-dynamic--active);
+      color: var(--ix-link-button--color--active);
     }
 
     &.disabled {
       cursor: default;
-      color: var(--theme-color-weak-text);
+      color: var(--ix-link-button--color--disabled);
     }
 
     a {
@@ -59,6 +61,6 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline: 1px solid var(--ix-link-button--outline-color--focus);
   }
 }

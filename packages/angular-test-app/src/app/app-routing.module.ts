@@ -15,12 +15,18 @@ import AboutAndLegalLegacy from '../preview-examples/about-and-legal-legacy';
 import ActionCard from '../preview-examples/action-card';
 import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
+import AgGridStriped from '../preview-examples/aggrid-striped';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAdvancedExample from '../preview-examples/application-advanced';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
 import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
 import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
+import Badge from '../preview-examples/badge';
+import BadgeCounter from '../preview-examples/badge-counter';
+import BadgeDot from '../preview-examples/badge-dot';
+import BadgeLabel from '../preview-examples/badge-label';
+import BadgeStatusIcon from '../preview-examples/badge-status-icon';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import Blind from '../preview-examples/blind';
@@ -57,6 +63,7 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import ContentHeaderTextOverflow from '../preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from '../preview-examples/content-header-with-slot';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
@@ -74,6 +81,7 @@ import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
+import DatetimepickerLocale from '../preview-examples/datetimepicker-locale';
 import DatetimeInput from '../preview-examples/datetime-input';
 import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
@@ -106,6 +114,7 @@ import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import InfoPage from '../preview-examples/info-page';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -326,6 +335,10 @@ const routes: Routes = [
         component: AgGrid,
       },
       {
+        path: 'aggrid-striped',
+        component: AgGridStriped,
+      },
+      {
         path: 'avatar-image',
         component: AvatarImage,
       },
@@ -336,6 +349,26 @@ const routes: Routes = [
       {
         path: 'avatar',
         component: Avatar,
+      },
+      {
+        path: 'badge',
+        component: Badge,
+      },
+      {
+        path: 'badge-counter',
+        component: BadgeCounter,
+      },
+      {
+        path: 'badge-dot',
+        component: BadgeDot,
+      },
+      {
+        path: 'badge-label',
+        component: BadgeLabel,
+      },
+      {
+        path: 'badge-status-icon',
+        component: BadgeStatusIcon,
       },
       {
         path: 'blind-header-actions',
@@ -523,12 +556,20 @@ const routes: Routes = [
         component: ContentHeader,
       },
       {
+        path: 'content-header-text-overflow',
+        component: ContentHeaderTextOverflow,
+      },
+      {
         path: 'content-header-with-slot',
         component: ContentHeaderWithSlot,
       },
       {
         path: 'datepicker-locale',
         component: DatepickerLocale,
+      },
+      {
+        path: 'datetimepicker-locale',
+        component: DatetimepickerLocale,
       },
       {
         path: 'datepicker-range',
@@ -636,6 +677,10 @@ const routes: Routes = [
       {
         path: 'empty-state',
         component: EmptyState,
+      },
+      {
+        path: 'info-page',
+        component: InfoPage,
       },
       {
         path: 'event-list',
@@ -1031,6 +1076,7 @@ const routes: Routes = [
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'info-page', component: InfoPage },
       { path: 'key-value', component: KeyValue },
       {
         path: 'toggle-button-subtle-secondary',

@@ -20,6 +20,7 @@ import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy';
 import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
+import AgGridStriped from './preview-examples/aggrid-striped';
 import Application from './preview-examples/application';
 import ApplicationAdvanced from './preview-examples/application-advanced';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
@@ -28,6 +29,11 @@ import ApplicationHeader from './preview-examples/application-header';
 import Avatar from './preview-examples/avatar';
 import AvatarImage from './preview-examples/avatar-image';
 import AvatarInitials from './preview-examples/avatar-initials';
+import Badge from './preview-examples/badge';
+import BadgeDot from './preview-examples/badge-dot';
+import BadgeLabel from './preview-examples/badge-label';
+import BadgeStatusIcon from './preview-examples/badge-status-icon';
+import BadgeCounter from './preview-examples/badge-counter';
 import Blind from './preview-examples/blind';
 import BlindHeaderActions from './preview-examples/blind-header-actions';
 import BlindVariants from './preview-examples/blind-variants';
@@ -62,13 +68,12 @@ import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot';
 import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownPresets from './preview-examples/date-dropdown-presets';
-import DateRange from './preview-examples/date-range';
-import DatetimeRange from './preview-examples/datetime-range';
 import DateInput from './preview-examples/date-input';
 import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
 import dateInputLabel from './preview-examples/date-input-label.tsx';
@@ -76,7 +81,11 @@ import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx'
 import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
 import dateInputValidation from './preview-examples/date-input-validation.tsx';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
+import DateRange from './preview-examples/date-range';
 import Datepicker from './preview-examples/datepicker';
+import DatepickerLocale from './preview-examples/datepicker-locale';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale';
+import DatepickerRange from './preview-examples/datepicker-range';
 import DatetimeInput from './preview-examples/datetime-input';
 import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from './preview-examples/datetime-input-label';
@@ -84,8 +93,7 @@ import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-d
 import DatetimeInputReadonly from './preview-examples/datetime-input-readonly';
 import DatetimeInputValidation from './preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots';
-import DatepickerLocale from './preview-examples/datepicker-locale';
-import DatepickerRange from './preview-examples/datepicker-range';
+import DatetimeRange from './preview-examples/datetime-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import Divider from './preview-examples/divider';
 import Dropdown from './preview-examples/dropdown';
@@ -111,6 +119,7 @@ import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox';
 import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
+import InfoPage from './preview-examples/info-page';
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
@@ -173,8 +182,8 @@ import MessageBar from './preview-examples/message-bar';
 import MessageBarRemoval from './preview-examples/message-bar-removal.tsx';
 import Modal from './preview-examples/modal';
 import ModalClose from './preview-examples/modal-close.tsx';
-import ModalNonBlockingPreview from './preview-examples/modal-non-blocking.tsx';
 import ModalFormIxButtonSubmit from './preview-examples/modal-form-ix-button-submit.tsx';
+import ModalNonBlockingPreview from './preview-examples/modal-non-blocking.tsx';
 import ModalSizes from './preview-examples/modal-sizes';
 import NumberInput from './preview-examples/number-input';
 import NumberInputDisabled from './preview-examples/number-input-disabled';
@@ -287,6 +296,7 @@ const routes: IxPreviewRoutes = {
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
+  '/preview/aggrid-striped': AgGridStriped,
   '/preview/application': Application,
   '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-breakpoints': ApplicationBreakpoints,
@@ -301,6 +311,11 @@ const routes: IxPreviewRoutes = {
   '/preview/breadcrumb-next-items': BreadcrumbNextItems,
   '/preview/breadcrumb-truncate': BreadcrumbTruncate,
   '/preview/breadcrumb': Breadcrumb,
+  '/preview/badge': Badge,
+  '/preview/badge-dot': BadgeDot,
+  '/preview/badge-label': BadgeLabel,
+  '/preview/badge-status-icon': BadgeStatusIcon,
+  '/preview/badge-counter': BadgeCounter,
   '/preview/button-tertiary': ButtonTertiary,
   '/preview/button-subtle-tertiary': ButtonSubtleTertiary,
   '/preview/button-subtle-secondary': ButtonSubtleSecondary,
@@ -331,10 +346,12 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
@@ -360,6 +377,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/info-page': InfoPage,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
   '/preview/event-list': EventList,

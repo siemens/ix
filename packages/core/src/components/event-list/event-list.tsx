@@ -120,12 +120,22 @@ export class EventList {
   private triggerFadeOut(): Promise<void> {
     return new Promise((resolve) => {
       if (!this.animated) {
-        resolve();
+        return resolve();
       }
 
-      const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+      const listElement =
+        this.hostElement.shadowRoot?.querySelector('div[role="list"]');
 
-      animate(listElement!, {
+      if (!listElement) {
+        return resolve();
+      }
+
+      if (!listElement) {
+        resolve();
+        return;
+      }
+
+      animate(listElement, {
         opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
         duration: EventList.fadeOutDuration,
         onComplete: () => {

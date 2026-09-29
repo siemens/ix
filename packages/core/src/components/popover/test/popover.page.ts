@@ -343,32 +343,35 @@ export async function expectPlacement(
     const triggerBox = await page.locator(triggerSelector).boundingBox();
     const dialogBox = await getDialog(popover).boundingBox();
 
-    expect(triggerBox).not.toBeNull();
-    expect(dialogBox).not.toBeNull();
+    if (!triggerBox || !dialogBox) {
+      throw new Error(
+        'Expected trigger and popover dialog bounding boxes to exist'
+      );
+    }
 
     const tolerance = 24;
 
     if (placement === 'bottom') {
-      expect(dialogBox!.y).toBeGreaterThanOrEqual(
-        triggerBox!.y + triggerBox!.height - tolerance
+      expect(dialogBox.y).toBeGreaterThanOrEqual(
+        triggerBox.y + triggerBox.height - tolerance
       );
     }
 
     if (placement === 'top') {
-      expect(dialogBox!.y + dialogBox!.height).toBeLessThanOrEqual(
-        triggerBox!.y + tolerance
+      expect(dialogBox.y + dialogBox.height).toBeLessThanOrEqual(
+        triggerBox.y + tolerance
       );
     }
 
     if (placement === 'right') {
-      expect(dialogBox!.x).toBeGreaterThanOrEqual(
-        triggerBox!.x + triggerBox!.width - tolerance
+      expect(dialogBox.x).toBeGreaterThanOrEqual(
+        triggerBox.x + triggerBox.width - tolerance
       );
     }
 
     if (placement === 'left') {
-      expect(dialogBox!.x + dialogBox!.width).toBeLessThanOrEqual(
-        triggerBox!.x + tolerance
+      expect(dialogBox.x + dialogBox.width).toBeLessThanOrEqual(
+        triggerBox.x + tolerance
       );
     }
   }).toPass({ timeout: 3000 });

@@ -7,21 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
-@use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'legacy/mixins/fonts';
+@use 'tokens/system' as sys;
 
+@use './tile.vars' as *;
 @mixin set-height($height) {
   height: $height;
   min-height: $height;
   max-height: $height;
 }
 
-$heightSmall: 2.5rem;
-$heightMedium: 5rem;
-$heightBig: 10rem;
-$width: 11.937rem;
+$heightSmall: var(--ix-tile--height-small);
+$heightMedium: var(--ix-tile--height-medium);
+$heightBig: var(--ix-tile--height-big);
+$width: var(--ix-tile--width);
 
 :host {
   min-width: $width;
@@ -30,12 +30,12 @@ $width: 11.937rem;
 
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--theme-tile--border);
-  border-radius: var(--theme-tile--border-radius);
+  border: var(--ix-tile--border-width) solid var(--ix-tile--border-color);
+  border-radius: var(--ix-tile--border-radius);
 
-  background-color: var(--theme-color-2);
-  color: var(--theme-color-std-text);
-  box-shadow: var(--theme-tile--box-shadow);
+  background-color: var(--ix-tile--background);
+  color: var(--ix-tile--color);
+  box-shadow: var(--ix-tile--box-shadow);
 
   // @each $key, $value in $color-map-status {
   //   &.tile-#{$key} {
@@ -57,7 +57,7 @@ $width: 11.937rem;
   .tile-subheader,
   .tile-content,
   .tile-footer {
-    padding: 0 vars.$default-space;
+    padding: var(--ix-tile-footer--padding);
   }
 
   .tile-header,
@@ -67,19 +67,19 @@ $width: 11.937rem;
 
   .tile-header.has-content {
     display: flex;
-    height: vars.$large-control-height;
-    max-height: vars.$large-control-height;
-    padding-inline-end: vars.$small-space;
+    height: var(--ix-tile-has-content--height);
+    max-height: var(--ix-tile-has-content--max-height);
+    padding-inline-end: var(--ix-tile-has-content--padding-inline-end);
   }
 
   .tile-subheader {
-    color: var(--theme-btn-invisible-secondary--color);
+    color: var(--ix-tile-subheader--color);
     flex-grow: 0;
   }
 
   .tile-footer.has-content {
-    border-block-start: 1px solid var(--theme-color-1);
-    height: vars.$large-control-height;
+    border-block-start: 1px solid var(--ix-tile-footer--border-color);
+    height: var(--ix-tile-has-content--height);
   }
 }
 

@@ -55,7 +55,7 @@ export function containsElement(target: Element, element: Element) {
   return target.contains(element);
 }
 
-export function closestPassShadow(node: Node, selector: string) {
+export function closestPassShadow(node: Node | null, selector: string) {
   if (!node) {
     return null;
   }
@@ -68,11 +68,11 @@ export function closestPassShadow(node: Node, selector: string) {
     if (node.matches(selector)) {
       return node;
     } else {
-      return closestPassShadow(node.parentNode!, selector);
+      return closestPassShadow(node.parentNode, selector);
     }
   }
 
-  return closestPassShadow(node.parentNode!, selector);
+  return closestPassShadow(node.parentNode, selector);
 }
 
 /**

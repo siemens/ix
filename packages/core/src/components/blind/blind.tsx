@@ -101,12 +101,16 @@ export class Blind {
   }
 
   private rotateChevronUp() {
-    animate(this.chevronRef!, {
+    if (!this.chevronRef || !this.content) {
+      return;
+    }
+
+    animate(this.chevronRef, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 180,
     });
-    animate(this.content!, {
+    animate(this.content, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 1,
@@ -114,12 +118,16 @@ export class Blind {
   }
 
   private rotateChevronDown() {
-    animate(this.chevronRef!, {
+    if (!this.chevronRef || !this.content) {
+      return;
+    }
+
+    animate(this.chevronRef, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       rotateZ: 0,
     });
-    animate(this.content!, {
+    animate(this.content, {
       duration: Animation.defaultTime,
       easing: 'easeInOutSine',
       opacity: 0,
@@ -153,11 +161,6 @@ export class Blind {
             <ix-icon
               class="collapse-icon"
               name={iconChevronDownSmall}
-              color={
-                this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-std-text'
-                  : `color-${this.variant}--contrast`
-              }
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
@@ -170,11 +173,6 @@ export class Blind {
                     <ix-icon
                       class="blind-header-title-icon"
                       name={this.icon}
-                      color={
-                        this.variant === 'filled' || this.variant === 'outline'
-                          ? 'color-std-text'
-                          : `color-${this.variant}--contrast`
-                      }
                     ></ix-icon>
                   )}
                   <div class={'blind-header-title-row'}>

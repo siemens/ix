@@ -8,20 +8,21 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
-$header-height: 4rem;
+@use './group.vars' as *;
+$header-height: var(--ix-group--header-height);
 $header-height-focus-visible: calc($header-height - 2px);
 
 :host {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 19.75rem;
-  min-width: 12rem;
-  border-color: var(--theme-group-item--border-color);
+  width: var(--ix-group--width);
+  min-width: var(--ix-group--min-width);
+  border-color: var(--ix-group-item--border-color);
 
   @include text-truncation.ellipsis;
 
@@ -29,27 +30,27 @@ $header-height-focus-visible: calc($header-height - 2px);
     height: $header-height;
     min-height: $header-height;
     max-height: $header-height;
-    border-radius: var(--theme-group--border-radius)
-      var(--theme-group--border-radius) 0 0;
+    border-radius: var(--ix-group--border-radius) var(--ix-group--border-radius)
+      0 0;
     display: flex;
-    background-color: var(--theme-group-item--background);
-    color: var(--theme-group-header--color);
+    background-color: var(--ix-group-item--background);
+    color: var(--ix-group-header--color);
 
     cursor: pointer;
 
     @include hover.hover {
-      background-color: var(--theme-group-item--background--hover);
+      background-color: var(--ix-group-item--background--hover);
 
       &.selected {
-        background-color: var(--theme-group-item--background--selected);
+        background-color: var(--ix-group-item--background--selected);
       }
     }
 
     @include hover.active {
-      background-color: var(--theme-group-item--background--active);
+      background-color: var(--ix-group-item--background--active);
 
       &.selected {
-        background-color: var(--theme-group-item--background--selected);
+        background-color: var(--ix-group-item--background--selected);
       }
     }
 
@@ -57,43 +58,38 @@ $header-height-focus-visible: calc($header-height - 2px);
       height: $header-height-focus-visible;
       min-height: $header-height-focus-visible;
 
-      border: 1px solid var(--theme-color-focus-bdr);
-      border-radius: var(--theme-default-border-radius)
-        var(--theme-default-border-radius) 0px 0px;
+      border: 1px solid var(--ix-group-header--border-color--focus);
+      border-radius: var(--ix-group-header--border-radius--focus)
+        var(--ix-group-header--border-radius--focus) 0px 0px;
       outline: none;
 
       .group-header-selection-indicator {
-        width: calc(vars.$tiny-space - 1px);
+        width: var(--ix-group-header-selection-indicator--width--focus);
       }
 
       .group-header-content {
-        padding: calc(0.5rem - 1px) calc(0.5rem - 1px) calc(0.5rem - 1px)
-          0;
+        padding: var(--ix-group-header-content--padding--focus);
       }
 
       .btn-expand-header {
-        margin-top: calc(vars.$small-space - 1px);
-        margin-bottom: calc(vars.$small-space - 1px);
+        margin-top: var(--ix-group-button-expand-header--margin-top);
+        margin-bottom: var(--ix-group-button-expand-header--margin-bottom);
       }
     }
 
     &.selected {
-      background-color: var(--theme-group-item--background--selected);
+      background-color: var(--ix-group-item--background--selected);
 
       .group-header-selection-indicator {
-        background-color: var(
-          --theme-group-item-indicator--background--selected
-        );
+        background-color: var(--ix-group-item-indicator--background--selected);
       }
     }
 
     .group-header-selection-indicator {
-      background-color: var(--theme-color-input--focus);
+      background-color: var(--ix-group-header-selection-indicator--background);
 
       &.group-header-selection-indicator-item-selected {
-        background-color: var(
-          --theme-group-item-indicator--background--selected
-        );
+        background-color: var(--ix-group-item-indicator--background--selected);
       }
     }
   }
@@ -107,8 +103,8 @@ $header-height-focus-visible: calc($header-height - 2px);
   }
 
   .group-header-selection-indicator {
-    width: vars.$tiny-space;
-    border-top-left-radius: var(--theme-group--border-radius);
+    width: var(--ix-group-header-selection-indicator--width);
+    border-top-left-radius: var(--ix-group--border-radius);
   }
 
   .group-header-content {
@@ -118,7 +114,7 @@ $header-height-focus-visible: calc($header-height - 2px);
     min-width: 0;
     flex-grow: 1;
     flex-basis: 0;
-    padding: 0.5rem;
+    padding: var(--ix-group-header-content--padding);
     padding-left: 0;
 
     @include text-truncation.ellipsis;
@@ -132,7 +128,7 @@ $header-height-focus-visible: calc($header-height - 2px);
       align-items: center;
       font-size: 1rem;
       font-weight: vars.$font-weight-bold;
-      height: 1.5rem;
+      height: var(--ix-group-header-title--height);
 
       & > * {
         min-width: 0;
@@ -143,23 +139,30 @@ $header-height-focus-visible: calc($header-height - 2px);
     }
 
     .group-subheader {
-      height: 1.25rem;
+      height: var(--ix-group-subheader--height);
       font-size: 0.875rem;
-      color: var(--theme-group-subheader--color);
+      color: var(--ix-group-subheader--color);
 
       @include text-truncation.ellipsis();
     }
   }
 
   .expand-icon {
-    padding: 0.125rem 0.437rem;
-    color: var(--theme-color-std-text);
+    padding: var(--ix-group-expand-icon--padding);
+    color: var(--ix-group-expand-icon--color);
   }
 
   .btn-expand-header {
-    margin: vars.$small-space;
-    margin-inline-end: vars.$tiny-space;
-    min-width: 1.5rem;
+    margin: var(--ix-group-button-expand-header--margin);
+    margin-inline-end: var(--ix-group-button-expand-header--margin-inline-end);
+    min-width: var(--ix-group-button-expand-header--min-width);
+
+    ix-icon:not([size]) {
+      block-size: var(--ix-group-icon--icon-size);
+      inline-size: var(--ix-group-icon--icon-size);
+      min-block-size: var(--ix-group-icon--icon-size);
+      min-inline-size: var(--ix-group-icon--icon-size);
+    }
   }
 
   .group-content {

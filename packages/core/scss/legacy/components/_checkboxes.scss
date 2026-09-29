@@ -7,10 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use '../../tokens/system' as sys;
 
 @mixin checkbox-basic() {
-  $size: 1.125rem;
+  $size: sys.$si-sys-sizing-size-60;
+  // Normalize the hand-drawn mark's original dimensions and offsets to the
+  // default size-60 so they retain default geometry and scale with density.
+  $checkmark-width: calc(#{$size} * 0.32);
+  $checkmark-height: calc(#{$size} * 0.208);
+  $checkmark-margin-top: calc(#{$size} * 0.42);
+  $checkmark-margin-horizontal: calc(#{$size} * 0.336);
+  $checkmark-margin-bottom: calc(#{$size} * 0.15);
 
   /* Base for label styling */
   .ix-form-control[type='checkbox']:not(:checked),
@@ -27,8 +34,8 @@
     position: relative;
     display: inline-flex;
     user-select: none;
-    color: var(--theme-checkbox-label--color);
-    min-height: 1.5rem;
+    color: #{sys.$si-sys-color-text-primary};
+    min-height: #{sys.$si-sys-sizing-size-70};
   }
 
   .ix-form-control[type='checkbox']:not(:disabled) + label {
@@ -44,8 +51,8 @@
     max-width: $size;
     max-height: $size;
     float: left;
-    margin-right: vars.$small-space;
-    margin-top: 1px;
+    margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+    margin-top: calc(#{sys.$si-sys-sizing-size-10} / 2);
 
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -54,86 +61,79 @@
 
   .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-checkbox--focus--outline-offset);
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-checkbox--focus--outline-offset);
+      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
   }
 
   .ix-form-control[type='checkbox']:not(:checked) {
     & + label:before {
-      background-color: var(--theme-checkbox-unchecked--background);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-unchecked--border-color);
+      background-color: #{sys.$si-sys-color-background-accent-secondary};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-1};
     }
 
     &:hover + label:before {
-      background-color: var(--theme-checkbox-unchecked--background--hover);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-unchecked--border-color--hover);
+      background-color: #{sys.$si-sys-color-background-accent-secondary-hover};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:active + label:before {
-      background-color: var(--theme-checkbox-unchecked--background--active);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-unchecked--border-color--active);
+      background-color: #{sys.$si-sys-color-background-accent-secondary-active};
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:disabled + label::before {
-      background-color: var(--theme-checkbox-unchecked--background--disabled);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-unchecked--border-color--disabled);
+      background-color: transparent;
+      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-text-disabled};
     }
   }
 
   .ix-form-control[type='checkbox']:checked {
     & + label:before {
-      background-color: var(--theme-checkbox-checked--background);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-checked--border-color);
+      background-color: #{sys.$si-sys-color-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     & + label:after {
       content: '';
-      width: 0.4rem;
-      height: 0.26rem;
+      width: $checkmark-width;
+      height: $checkmark-height;
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
-      border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
+      border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
+      border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: 0.525rem 0.42rem 0.1875rem;
-      transform: translate(-1px, -3px) rotate(-53deg) scale(2)
-        skew(-8deg, -3deg);
+      margin: $checkmark-margin-top 0 $checkmark-margin-bottom
+        $checkmark-margin-horizontal;
+      transform: translate(0, calc(-1 * #{sys.$si-sys-sizing-spacing-y-10}))
+        rotate(-53deg) scale(2) skew(-8deg, -3deg);
     }
 
     &:hover + label:before {
-      background-color: var(--theme-checkbox-checked--background--hover);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-checked--border-color--hover);
+      background-color: #{sys.$si-sys-color-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: var(--theme-checkbox-checked--background--active);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-checked--border-color--active);
+      background-color: #{sys.$si-sys-color-background-accent-active};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label:before {
-      background-color: var(--theme-checkbox-checked--background--disabled);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-checked--border-color--disabled);
+      background-color: #{sys.$si-sys-color-text-disabled};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: var(--theme-checkbox-checked--color--disabled);
+      border-color: #{sys.$si-sys-color-text-inverse};
     }
   }
 
@@ -146,44 +146,43 @@
     & + label:after {
       content: '';
       display: block;
-      width: 0.625rem;
-      height: 0.125rem;
-      border-bottom: 0.125rem solid var(--theme-checkbox-mixed--color);
+      width: #{sys.$si-sys-sizing-size-40};
+      height: 0;
+      border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: 0.5625rem 0 0 0.25rem;
+      margin: calc(#{sys.$si-sys-sizing-size-60} / 2) 0 0
+        calc(
+          (#{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-size-40}) / 2
+        );
     }
 
     & + label:before {
-      background-color: var(--theme-checkbox-mixed--background);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-mixed--border-color);
+      background-color: #{sys.$si-sys-color-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:hover + label:before {
-      background-color: var(--theme-checkbox-mixed--background--hover);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-mixed--border-color--hover);
+      background-color: #{sys.$si-sys-color-background-accent-hover};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:active + label:before {
-      background-color: var(--theme-checkbox-mixed--background--active);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-mixed--border-color--active);
+      background-color: #{sys.$si-sys-color-background-accent-active};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::before {
-      background-color: var(--theme-checkbox-mixed--background--disabled);
-      border: var(--theme-checkbox--border-thickness) solid
-        var(--theme-checkbox-mixed--border-color--disabled);
+      background-color: #{sys.$si-sys-color-text-disabled};
+      border: var(--theme-border-width-default) solid transparent;
     }
 
     &:disabled + label::after {
-      border-color: var(--theme-checkbox-mixed--color--disabled);
+      border-color: #{sys.$si-sys-color-text-inverse};
     }
   }
 
   .ix-form-control[type='checkbox']:disabled + label {
-    color: var(--theme-checkbox-label--color--disabled);
+    color: #{sys.$si-sys-color-text-disabled};
   }
 }
 

@@ -18,6 +18,7 @@ import { IxActionCard as IxActionCardElement } from "@siemens/ix/components/ix-a
 import { IxApplicationHeader as IxApplicationHeaderElement } from "@siemens/ix/components/ix-application-header.js";
 import { IxApplication as IxApplicationElement } from "@siemens/ix/components/ix-application.js";
 import { IxAvatar as IxAvatarElement } from "@siemens/ix/components/ix-avatar.js";
+import { IxBadge as IxBadgeElement } from "@siemens/ix/components/ix-badge.js";
 import { IxBlind as IxBlindElement } from "@siemens/ix/components/ix-blind.js";
 import { IxBreadcrumbItem as IxBreadcrumbItemElement } from "@siemens/ix/components/ix-breadcrumb-item.js";
 import { IxBreadcrumb as IxBreadcrumbElement } from "@siemens/ix/components/ix-breadcrumb.js";
@@ -65,6 +66,7 @@ import { IxGroup as IxGroupElement } from "@siemens/ix/components/ix-group.js";
 import { IxHelperText as IxHelperTextElement } from "@siemens/ix/components/ix-helper-text.js";
 import { IxIconButton as IxIconButtonElement } from "@siemens/ix/components/ix-icon-button.js";
 import { IxIconToggleButton as IxIconToggleButtonElement } from "@siemens/ix/components/ix-icon-toggle-button.js";
+import { IxInfoPage as IxInfoPageElement } from "@siemens/ix/components/ix-info-page.js";
 import { IxInput as IxInputElement } from "@siemens/ix/components/ix-input.js";
 import { IxKeyValueList as IxKeyValueListElement } from "@siemens/ix/components/ix-key-value-list.js";
 import { IxKeyValue as IxKeyValueElement } from "@siemens/ix/components/ix-key-value.js";
@@ -202,6 +204,32 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents, Co
     serializeShadowRoot
 });
 
+export type IxBadgeEvents = NonNullable<unknown>;
+
+export const IxBadge: StencilReactComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge> = /*@__PURE__*/ createComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge>({
+    tagName: 'ix-badge',
+    properties: {
+        type: 'type',
+        label: 'label',
+        variant: 'variant',
+        outline: 'outline',
+        border: 'border',
+        position: 'position',
+        offsetX: 'offset-x',
+        offsetY: 'offset-y',
+        enableAnimation: 'enable-animation',
+        background: 'background',
+        badgeColor: 'badge-color',
+        icon: 'icon',
+        ariaLabelIcon: 'aria-label-icon',
+        alignLeft: 'align-left',
+        tooltipText: 'tooltip-text'
+    },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxBadge as StencilReactComponent<IxBadgeElement, IxBadgeEvents, Components.IxBadge>,
+    serializeShadowRoot
+});
+
 export type IxBlindEvents = { onCollapsedChange: EventName<IxBlindCustomEvent<boolean>> };
 
 export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>({
@@ -267,6 +295,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents, Co
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
+        inert: 'inert',
         form: 'form',
         icon: 'icon',
         iconRight: 'icon-right',
@@ -322,7 +351,7 @@ export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardCo
 export type IxCardListEvents = {
     onCollapseChanged: EventName<IxCardListCustomEvent<boolean>>,
     onShowAllClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>,
-    onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent; }>>
+    onShowMoreCardClick: EventName<IxCardListCustomEvent<{ nativeEvent: MouseEvent | KeyboardEvent; }>>
 };
 
 export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents, Components.IxCardList> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents, Components.IxCardList>({
@@ -563,6 +592,7 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
         variant: 'variant',
         headerTitle: 'header-title',
         headerSubtitle: 'header-subtitle',
+        textOverflow: 'text-overflow',
         hasBackButton: 'has-back-button'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
@@ -761,6 +791,12 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
         timeReference: 'time-reference',
         i18nDone: 'i18n-done',
         i18nTime: 'i18n-time',
+        i18nAm: 'i18n-am',
+        i18nPm: 'i18n-pm',
+        i18nHourColumnHeader: 'i18n-hour-column-header',
+        i18nMinuteColumnHeader: 'i18n-minute-column-header',
+        i18nSecondColumnHeader: 'i18n-second-column-header',
+        i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         weekStartIndex: 'week-start-index',
@@ -1085,7 +1121,8 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
         iconColor: 'icon-color',
         disabled: 'disabled',
         type: 'type',
-        loading: 'loading'
+        loading: 'loading',
+        inert: 'inert'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconButton as StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>,
@@ -1109,6 +1146,22 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconToggleButton as StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents, Components.IxIconToggleButton>,
+    serializeShadowRoot
+});
+
+export type IxInfoPageEvents = NonNullable<unknown>;
+
+export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage> = /*@__PURE__*/ createComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>({
+    tagName: 'ix-info-page',
+    properties: {
+        icon: 'icon',
+        iconColor: 'icon-color',
+        titleText: 'title-text',
+        copyText: 'copy-text',
+        instructions: 'instructions'
+    },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxInfoPage as StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>,
     serializeShadowRoot
 });
 
@@ -1355,7 +1408,8 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
         label: 'label',
         icon: 'icon',
         notifications: 'notifications',
-        tooltipText: 'tooltip-text'
+        tooltipText: 'tooltip-text',
+        disableTooltip: 'disable-tooltip'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMenuCategory as StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents, Components.IxMenuCategory>,
@@ -1375,6 +1429,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         active: 'active',
         disabled: 'disabled',
         tooltipText: 'tooltip-text',
+        disableTooltip: 'disable-tooltip',
         href: 'href',
         target: 'target',
         rel: 'rel',
@@ -2043,6 +2098,9 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         i18nSecondColumnHeader: 'i18n-second-column-header',
         i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
+        locale: 'locale',
+        i18nAm: 'i18n-am',
+        i18nPm: 'i18n-pm',
         hideHeader: 'hide-header',
         textAlignment: 'text-alignment',
         enableTopLayer: 'enable-top-layer',
@@ -2062,6 +2120,7 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
     tagName: 'ix-time-picker',
     properties: {
         format: 'format',
+        locale: 'locale',
         corners: 'corners',
         embedded: 'embedded',
         dateTimePickerAppearance: 'date-time-picker-appearance',
@@ -2078,7 +2137,9 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         i18nHourColumnHeader: 'i18n-hour-column-header',
         i18nMinuteColumnHeader: 'i18n-minute-column-header',
         i18nSecondColumnHeader: 'i18n-second-column-header',
-        i18nMillisecondColumnHeader: 'i18n-millisecond-column-header'
+        i18nMillisecondColumnHeader: 'i18n-millisecond-column-header',
+        i18nAm: 'i18n-am',
+        i18nPm: 'i18n-pm'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxTimePicker as StencilReactComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker>,

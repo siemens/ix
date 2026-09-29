@@ -16,6 +16,7 @@ import {
   ParameterReflection,
   ReferenceType,
   TSConfigReader,
+  TypeParameterReflection,
   UnionType,
 } from 'typedoc';
 import {
@@ -224,7 +225,9 @@ function processFunctionSignature(
   parentName?: string
 ): FunctionDocProperty {
   const signature = child.signatures?.[0];
-  const functionName = parentName ? `${parentName}.${child.name}` : child.name;
+  const typeParameters = formatTypeParameters(signature?.typeParameters);
+  const baseName = parentName ? `${parentName}.${child.name}` : child.name;
+  const functionName = `${baseName}${typeParameters}`;
 
   return {
     name: functionName,
@@ -238,6 +241,27 @@ function processFunctionSignature(
     comment: getCommentSummary(child),
     tags: extractCommentTags(child),
   };
+}
+
+function formatTypeParameters(
+  typeParameters: TypeParameterReflection[] | undefined
+): string {
+  if (!typeParameters?.length) {
+    return '';
+  }
+
+  const formattedTypeParameters = typeParameters.map((typeParameter) => {
+    const constraint = typeParameter.type
+      ? ` extends ${getPropertyType({ type: typeParameter.type })}`
+      : '';
+    const defaultValue = typeParameter.default
+      ? ` = ${getPropertyType({ type: typeParameter.default })}`
+      : '';
+
+    return `${typeParameter.name}${constraint}${defaultValue}`;
+  });
+
+  return `<${formattedTypeParameters.join(', ')}>`;
 }
 
 function ensureFunctionGroup(
@@ -542,7 +566,7 @@ function generateFunctionMDX(
 
     return {
       name: func.name,
-      comment: escapeBackticks(func.comment),
+      comment: serializeMarkdownForJsx(func.comment),
       returnType: escapeBackticks(func.returnType),
       parameters: formattedParams,
       hasParameters: formattedParams.length > 0,

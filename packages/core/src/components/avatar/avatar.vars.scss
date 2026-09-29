@@ -1,0 +1,42 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-avatar--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-avatar--background: #{sys.$si-sys-color-background-neutral};
+  --ix-avatar--color: #{sys.$si-sys-color-text-on-neutral};
+  --ix-avatar--focus--outline-offset: var(--theme-focus-outline-offset);
+}
+
+:host {
+  --ix-avatar-image--height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-image--width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-image--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-image--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-initials--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-user-info--height: #{sys.$si-sys-sizing-size-90};
+  --ix-avatar-user-info--padding: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-avatar-user-info--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-avatar-user-info--min-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-avatar-user-info--max-width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-avatar-user-info--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-avatar-user-info-avatar--width: #{sys.$si-sys-sizing-size-80};
+  --ix-avatar-user--max-width: #{sys.$si-sys-sizing-size-150};
+}
