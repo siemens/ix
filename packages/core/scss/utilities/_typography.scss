@@ -30,10 +30,6 @@ a {
     @include fonts.typography-body;
   }
 
-  .typography-body-paragraph-sbold {
-    @include fonts.typography-body-paragraph-sbold;
-  }
-
   .typography-body-sm {
     @include fonts.typography-body-sm;
   }
@@ -47,7 +43,7 @@ a {
   }
 
   .typography-body-lg-sbold {
-    @include fonts.typography-body-lg;
+    @include fonts.typography-body-lg-sbold;
   }
 
   .typography-display {
