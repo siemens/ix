@@ -94,6 +94,13 @@ export class MenuItem
   @Prop() tooltipText?: string;
 
   /**
+   * Disable the tooltip for this menu item.
+   *
+   * @since 6.0.0
+   */
+  @Prop() disableTooltip = false;
+
+  /**
    * URL for the button link. When provided, the button will render as an anchor tag.
    *
    * @since 4.0.0
@@ -297,6 +304,7 @@ export class MenuItem
         <ix-icon
           class={'tab-icon'}
           name={this.icon}
+          size="24"
           aria-hidden="true"
         ></ix-icon>
       ),
@@ -369,16 +377,18 @@ export class MenuItem
             {menuContent}
           </button>
         )}
-        <ix-tooltip
-          for={this.buttonRef.waitForCurrent()}
-          placement={'right'}
-          showDelay={1000}
-          interactive={false}
-          aria-hidden="true"
-          aria-labelledby={this.internalItemId}
-        >
-          {this.tooltip}
-        </ix-tooltip>
+        {!this.disableTooltip && (
+          <ix-tooltip
+            for={this.buttonRef.waitForCurrent()}
+            placement={'right'}
+            showDelay={1000}
+            interactive={false}
+            aria-hidden="true"
+            aria-labelledby={this.internalItemId}
+          >
+            {this.tooltip}
+          </ix-tooltip>
+        )}
       </Host>
     );
   }

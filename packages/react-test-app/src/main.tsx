@@ -84,6 +84,7 @@ import DateInputWithSlots from './preview-examples/date-input-with-slots';
 import DateRange from './preview-examples/date-range';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import DatetimeInput from './preview-examples/datetime-input';
 import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
@@ -118,6 +119,7 @@ import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox';
 import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
+import InfoPage from './preview-examples/info-page';
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
@@ -349,6 +351,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
@@ -374,6 +377,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/info-page': InfoPage,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
   '/preview/event-list': EventList,
