@@ -34,7 +34,9 @@
   ix-card-content {
     height: var(--ix-push-card-content--height);
 
-    --ix-card-content-content-wrapper--overflow: visible;
+    &::part(content) {
+      overflow: visible;
+    }
 
     .typography-h4 {
       padding-top: var(--ix-push-card-content--padding-top);
