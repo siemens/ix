@@ -3,9 +3,10 @@
   "extends": ["config:recommended"],
   "enabledManagers": ["npm"],
   "timezone": "Europe/Berlin",
-  "schedule": ["before 6am on monday"],
+  "schedule": ["at any time"],
   "dependencyDashboard": true,
   "prConcurrentLimit": 5,
+  "groupSingleUpdates": true,
   "minimumReleaseAge": "2 days",
   "packageRules": [
     {
@@ -38,7 +39,6 @@
         "peerDependencies"
       ],
       "groupName": "{{packageFileDir}} dependencies",
-      "groupSingleUpdates": true,
       "separateMajorMinor": false
     },
     {
@@ -50,7 +50,6 @@
       ],
       "matchDepTypes": ["devDependencies"],
       "groupName": "{{packageFileDir}} dev dependencies",
-      "groupSingleUpdates": true,
       "separateMajorMinor": false
     },
     {
@@ -62,7 +61,6 @@
         "peerDependencies"
       ],
       "groupName": "root dependencies",
-      "groupSingleUpdates": true,
       "separateMajorMinor": false
     },
     {
@@ -70,14 +68,12 @@
       "matchFileNames": ["/^package\\.json$/"],
       "matchDepTypes": ["devDependencies"],
       "groupName": "root dev dependencies",
-      "groupSingleUpdates": true,
       "separateMajorMinor": false
     },
     {
       "description": "Group centrally managed catalog dependencies",
       "matchFileNames": ["pnpm-workspace.yaml"],
       "groupName": "workspace catalog dependencies",
-      "groupSingleUpdates": true,
       "separateMajorMinor": false
     }
   ]

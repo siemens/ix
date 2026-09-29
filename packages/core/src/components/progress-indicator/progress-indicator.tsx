@@ -40,7 +40,14 @@ export class ProgressIndicator {
   @Prop() type: 'linear' | 'circular' = 'linear';
 
   /**
-   * The size of the progress indicator.
+   * Size of the progress indicator.
+   *
+   * For **circular**, diameters are:
+   * - **xs**: 16px.
+   * - **sm**: 20px.
+   * - **md**: 32px (default).
+   * - **lg**: 48px.
+   * - **xl**: 64px.
    */
   @Prop() size: ProgressIndicatorSize = 'md';
 

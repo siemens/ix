@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use './../button/button-mixin' as button-mixin;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
 @use 'mixins/breakpoints';
+@use 'tokens/system' as sys;
 
 @use './date-dropdown.vars' as *;
 :host {
@@ -23,24 +23,24 @@
   .pull-right {
     position: relative;
     float: right;
-    padding: 1rem;
+    padding: var(--ix-date-dropdown-pull-right--padding);
   }
 
   .quick-selection {
     display: inline-flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--ix-date-dropdown-quick-selection--gap);
     border-right: var(--ix-date-dropdown-divider--border);
     overflow: auto;
-    padding: 0.5rem;
+    padding: var(--ix-date-dropdown-quick-selection--padding);
 
     @include scrollbar.scrollbar;
 
     .btn {
       @include button-mixin.btn-base;
-      min-width: 8rem;
-      min-height: 2rem;
-      max-height: 2rem;
+      min-width: var(--ix-date-dropdown-button--min-width);
+      min-height: var(--ix-date-dropdown-button--min-height);
+      max-height: var(--ix-date-dropdown-button--max-height);
       justify-content: flex-start;
     }
 
@@ -55,8 +55,8 @@
   .container {
     display: flex;
     flex-direction: row;
-    height: 25rem;
-    max-height: 25rem;
+    height: var(--ix-date-dropdown-container--height);
+    max-height: var(--ix-date-dropdown-container--max-height);
 
     flex-wrap: nowrap;
   }
@@ -68,12 +68,12 @@
     justify-content: space-between;
 
     ix-date-picker {
-      height: 21rem;
+      height: var(--ix-date-dropdown-picker-wrapper--height);
     }
   }
 
   ix-dropdown {
-    padding: 0px;
+    padding: 0;
   }
 
   @include breakpoints.media-breakpoint-match(sm) {
@@ -84,7 +84,7 @@
     }
 
     .quick-selection {
-      max-height: 12rem;
+      max-height: var(--ix-date-dropdown-quick-selection--max-height);
     }
   }
 }

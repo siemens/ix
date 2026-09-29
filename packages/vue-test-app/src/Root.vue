@@ -113,6 +113,7 @@ import Echarts from './preview-examples/echarts.vue';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break.vue';
 import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
+import InfoPage from './preview-examples/info-page.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
 import EventListFilled from './preview-examples/event-list-filled.vue';
@@ -359,6 +360,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/info-page': InfoPage,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
