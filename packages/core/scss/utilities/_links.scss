@@ -27,16 +27,15 @@ a[href] {
   color: var(--ix-link--color);
   text-underline-offset: 0.2rem;
 
+  @include hover.visited {
+    color: var(--ix-link--color--visited);
+  }
   @include hover.hover {
     color: var(--ix-link--color--hover);
   }
 
   @include hover.active {
     color: var(--ix-link--color--active);
-  }
-
-  @include hover.visited {
-    color: var(--ix-link--color--visited);
   }
 
   @include hover.focus-visible {
