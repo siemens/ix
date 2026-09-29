@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(blind): add visible focus outline to blind header for keyboard accessibility (IX-4338)
+Add visible focus outline to the **ix-blind** header for keyboard accessibility
