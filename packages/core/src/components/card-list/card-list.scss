@@ -99,7 +99,7 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     display: flex;
     position: relative;
 
-    align-self: flex-start;
+    align-self: center;
     justify-self: center;
 
     max-width: var(--ix-card-list-show-all-card--max-width);
@@ -125,10 +125,6 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
     margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
-
-    .Show__All__Card {
-      align-self: center;
-    }
 
     .Show__All__Card:hover {
       background-color: var(--ix-card-list-show-all--background--hover);
