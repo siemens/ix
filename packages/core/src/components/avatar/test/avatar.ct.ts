@@ -196,13 +196,13 @@ regressionTest.describe('embedded into header', () => {
   );
 
   regressionTest(
-    'should keep the popup width fixed and wrap long usernames when wrapUsername is true',
+    'should keep the popup width fixed and show wrapped user information',
     async ({ page, mount }) => {
       await page.setViewportSize(viewPorts.lg);
       await mount(
         `
       <ix-application-header name="Test">
-        <ix-avatar username="foo" wrap-username>
+        <ix-avatar username="foo" extra="bar" wrap-username>
         </ix-avatar>
       </ix-application-header>
     `
@@ -211,7 +211,10 @@ regressionTest.describe('embedded into header', () => {
       const avatar = page.locator('ix-avatar');
       await avatar.click();
 
+      const dropdown = avatar.locator('ix-dropdown');
       const userInfo = avatar.locator('.user-info');
+      const username = userInfo.locator('.username');
+      const extra = userInfo.locator('.extra');
 
       const initialMetrics = await userInfo.evaluate((element) => {
         const rect = element.getBoundingClientRect();
@@ -222,11 +225,19 @@ regressionTest.describe('embedded into header', () => {
       });
 
       const longUsername = 'verylongstringthatisnotfullydisplayed';
-      await avatar.evaluate((element, value) => {
-        element.setAttribute('username', value);
-      }, longUsername);
+      const longExtra = 'verylongextrainformationthatisnotfullydisplayed';
+      await avatar.evaluate(
+        (element, values) => {
+          element.setAttribute('username', values.username);
+          element.setAttribute('extra', values.extra);
+        },
+        { username: longUsername, extra: longExtra }
+      );
 
-      await expect(userInfo).toHaveText(new RegExp(longUsername));
+      await expect(username).toHaveText(longUsername);
+      await expect(extra).toHaveText(longExtra);
+      await expect(username).toHaveCSS('white-space', 'normal');
+      await expect(extra).toHaveCSS('white-space', 'normal');
 
       const updatedMetrics = await userInfo.evaluate((element) => {
         const rect = element.getBoundingClientRect();
@@ -238,6 +249,18 @@ regressionTest.describe('embedded into header', () => {
 
       expect(updatedMetrics.width).toBe(initialMetrics.width);
       expect(updatedMetrics.height).toBeGreaterThan(initialMetrics.height);
+
+      const dropdownBounds = await dropdown.boundingBox();
+      const userInfoBounds = await userInfo.boundingBox();
+
+      if (!dropdownBounds || !userInfoBounds) {
+        throw new Error('Dropdown and user information must be visible');
+      }
+
+      expect(userInfoBounds.y).toBeGreaterThanOrEqual(dropdownBounds.y);
+      expect(userInfoBounds.y + userInfoBounds.height).toBeLessThanOrEqual(
+        dropdownBounds.y + dropdownBounds.height
+      );
     }
   );
 
