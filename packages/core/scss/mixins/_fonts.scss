@@ -67,7 +67,7 @@
   @include define-typography($font: sys.$si-sys-typography-display);
 }
 
-@mixin typography-display-bold {
+@mixin typography-display-sbold {
   @include define-typography($font: sys.$si-sys-typography-display-sbold);
 }
 

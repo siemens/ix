@@ -13,10 +13,20 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-checkbox-group label="Checkbox group label">
-      <ix-checkbox label="Option 1" name="checkbox-1"></ix-checkbox>
-      <ix-checkbox label="Option 2" name="checkbox-2"></ix-checkbox>
-    </ix-checkbox-group>
+    <div style="margin-bottom: 1rem">
+      <input class="ix-form-control" type="checkbox" id="checkbox_01" />
+      <label class="ix-form-label" for="checkbox_01">Simple checkbox</label>
+    </div>
+
+    <div>
+      <input
+        class="ix-form-control"
+        type="checkbox"
+        id="checkbox_02"
+        disabled
+      />
+      <label class="ix-form-label" for="checkbox_02">Disabled checkbox</label>
+    </div>
   `,
 })
 export default class Checkbox {}

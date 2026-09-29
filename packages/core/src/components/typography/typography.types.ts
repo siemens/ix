@@ -17,6 +17,7 @@ type TypographyFormatBody =
   | 'body-lg-sbold';
 type TypographyFormatDisplay =
   | 'display'
+  | 'display-sbold'
   | 'display-lg'
   | 'display-lg-sbold'
   | 'display-xl'
