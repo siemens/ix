@@ -175,19 +175,17 @@ export class WorkflowStep {
     const icons = !this.customIconSlot ? (
       <Fragment>
         <ix-icon
-          color="--si-sys-background-0"
+          color="--si-sys-color-background-0"
           name={
             this.status === 'warning' ? iconTriangleFilled : iconCircleFilled
           }
           class="absolute"
-          size="24"
           aria-hidden="true"
         ></ix-icon>
         <ix-icon
           style={{ color: `var(--ix-${this.iconColor})` }}
           name={this.iconName}
           class="absolute"
-          size="24"
           aria-label={this.getIconAriaLabel()}
         ></ix-icon>
       </Fragment>

@@ -77,16 +77,16 @@ function EventListExample() {
   return (
     <div className={styles.Example}>
       <IxEventList compact>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 1
         </IxEventListItem>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 2
         </IxEventListItem>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 3
         </IxEventListItem>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 4
         </IxEventListItem>
       </IxEventList>

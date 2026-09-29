@@ -80,9 +80,12 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
       >
         <div class="banner-container">
           <ix-icon
-            color="--si-sys-text-inverse"
+            color="--si-sys-color-text-inverse"
             name={iconShout}
             size="32"
+            ref={(element?: HTMLIxIconElement) =>
+              element?.setAttribute('size', '32')
+            }
           ></ix-icon>
           <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
             <polygon points="0 0 48 0 48 56 24 48 0 56" />
@@ -96,9 +99,8 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         </div>
 
         <ix-icon-button
-          size="24"
           icon={iconClose}
-          iconColor="--si-sys-text-secondary"
+          iconColor="--si-sys-color-text-secondary"
           variant="tertiary"
           onClick={() => {
             this.show = false;

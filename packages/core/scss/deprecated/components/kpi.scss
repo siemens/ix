@@ -15,11 +15,13 @@
 @mixin setVars {
   --theme-kpi--border-radius: var(--theme-default-border-radius);
   --theme-kpi-display--background: rgba(0, 0, 0, 0);
-  --theme-kpi-display--background--active: var(--si-sys-background-active);
-  --theme-kpi-display--background--hover: var(--si-sys-background-hover);
-  --theme-kpi-display-icon--color: var(--si-sys-text-primary);
+  --theme-kpi-display--background--active: var(
+    --si-sys-color-background-active
+  );
+  --theme-kpi-display--background--hover: var(--si-sys-color-background-hover);
+  --theme-kpi-display-icon--color: var(--si-sys-color-text-primary);
   --theme-kpi-display-indicator--background: var(--theme-color-component-4);
-  --theme-kpi-display-label--color: var(--si-sys-text-secondary);
-  --theme-kpi-display-units: var(--si-sys-text-secondary);
-  --theme-kpi-display-value: var(--si-sys-text-primary);
+  --theme-kpi-display-label--color: var(--si-sys-color-text-secondary);
+  --theme-kpi-display-units: var(--si-sys-color-text-secondary);
+  --theme-kpi-display-value: var(--si-sys-color-text-primary);
 }

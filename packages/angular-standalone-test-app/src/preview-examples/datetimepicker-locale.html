@@ -69,16 +69,16 @@ LICENSE file in the root directory of this source tree.
       size="12"
       style="
         padding: 0.75rem 1rem;
-        border: 1px solid var(--theme-color-weak-bdr);
+        border: 1px solid var(--si-sys-color-border-4);
         border-radius: 4px;
-        background: var(--theme-color-2);
+        background: var(--si-sys-color-background-1);
       "
     >
       <span style="display: block; font-weight: 700; margin-bottom: 0.5rem">
         Last dateSelect event
       </span>
       @if (lastEvent === null) {
-        <span style="color: var(--theme-color-soft-text)">
+        <span style="color: var(--si-sys-color-text-secondary)">
           Confirm a selection to see event values
         </span>
       } @else {
@@ -87,16 +87,16 @@ LICENSE file in the root directory of this source tree.
             <ix-row>
               <ix-col
                 size="2"
-                style="font-weight: 600; color: var(--theme-color-std-text)"
+                style="font-weight: 600; color: var(--si-sys-color-text-primary)"
               >
                 {{ row.label }}
               </ix-col>
-              <ix-col style="font-family: monospace; color: var(--theme-color-primary)">
+              <ix-col style="font-family: monospace; color: var(--si-sys-color-text-accent)">
                 {{ lastEvent[row.key] || '—' }}
               </ix-col>
               @if (row.note) {
                 <ix-col
-                  style="color: var(--theme-color-soft-text); font-size: 0.8em"
+                  style="color: var(--si-sys-color-text-secondary); font-size: 0.8em"
                 >
                   {{ row.note }}
                 </ix-col>

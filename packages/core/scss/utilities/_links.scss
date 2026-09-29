@@ -11,11 +11,11 @@
 @use '../tokens/system' as sys;
 
 a[href] {
-  --ix-link--color: #{sys.$si-sys-text-accent};
-  --ix-link--color--active: #{sys.$si-sys-text-accent-active};
-  --ix-link--color--hover: #{sys.$si-sys-text-accent-hover};
-  --ix-link--color--visited: #{sys.$si-sys-text-accent};
-  --ix-link--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-link--color: #{sys.$si-sys-color-text-accent};
+  --ix-link--color--active: #{sys.$si-sys-color-text-accent-active};
+  --ix-link--color--hover: #{sys.$si-sys-color-text-accent-hover};
+  --ix-link--color--visited: #{sys.$si-sys-color-text-accent};
+  --ix-link--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
 
 @mixin no-link-decoration {
