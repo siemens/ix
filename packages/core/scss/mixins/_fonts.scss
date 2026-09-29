@@ -67,6 +67,10 @@
   @include define-typography($font: sys.$si-sys-typography-display);
 }
 
+@mixin typography-display-bold {
+  @include define-typography($font: sys.$si-sys-typography-display-sbold);
+}
+
 @mixin typography-display-lg {
   @include define-typography($font: sys.$si-sys-typography-display-lg);
 }

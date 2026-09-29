@@ -54,6 +54,10 @@
   @include font-mixins.typography-display;
 }
 
+:host(.typography-display-sbold) {
+  @include font-mixins.typography-display-sbold;
+}
+
 :host(.typography-display-lg) {
   @include font-mixins.typography-display-lg;
 }
