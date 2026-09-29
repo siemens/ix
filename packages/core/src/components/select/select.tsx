@@ -618,7 +618,8 @@ export class Select
     if (event.detail) {
       this.inputElement?.focus();
 
-      if (this.hasValue()) {
+      // Skip when opened by typing, otherwise the next keystroke replaces the typed filter text
+      if (this.hasValue() && !this.inputFilterText) {
         this.inputElement?.select();
       }
 
