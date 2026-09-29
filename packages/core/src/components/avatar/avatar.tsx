@@ -330,7 +330,10 @@ export class Avatar
 
     if (this.isClosestApplicationHeader) {
       return (
-        <Host slot="ix-application-header-avatar" class={'avatar-button'}>
+        <Host
+          slot="ix-application-header-avatar"
+          class={{ 'avatar-button': true, active: this.dropdownShow }}
+        >
           <BaseButton
             disabled={false}
             iconOval={false}
@@ -339,7 +342,8 @@ export class Avatar
             loading={false}
             selected={false}
             type="button"
-            variant="tertiary"
+            variant="subtle-tertiary"
+            extraClasses={{ active: this.dropdownShow }}
             ariaAttributes={{
               role: 'menu',
               'aria-controls': `${this.getHostElementId()}-proxy-listbox`,

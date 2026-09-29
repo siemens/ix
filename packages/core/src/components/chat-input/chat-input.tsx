@@ -582,7 +582,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
                 class="submit-button"
                 disabled={disabledSubmitButton}
                 icon={submitButtonIcon}
-                size="24"
                 variant="tertiary"
                 onClick={() => this.submitPrompt()}
               ></ix-icon-button>

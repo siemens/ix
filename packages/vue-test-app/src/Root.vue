@@ -65,6 +65,7 @@ import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow.vue';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
@@ -86,6 +87,7 @@ import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale.vue';
 import Divider from './preview-examples/divider.vue';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon.vue';
 import DropdownButton from './preview-examples/dropdown-button.vue';
@@ -111,6 +113,7 @@ import Echarts from './preview-examples/echarts.vue';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break.vue';
 import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
+import InfoPage from './preview-examples/info-page.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
 import EventListFilled from './preview-examples/event-list-filled.vue';
@@ -325,11 +328,13 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,
@@ -355,6 +360,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/info-page': InfoPage,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,

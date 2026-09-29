@@ -7,6 +7,7 @@ This document aims to provide a clear and detailed overview of all significant m
 
 Please select your target version
 
+- [Version v6.0.0](./BREAKING_CHANGES/v6.md)
 - [Version v5.0.0](./BREAKING_CHANGES/v5.md)
 - [Version v4.0.0](./BREAKING_CHANGES/v4.md)
 - [Version v3.0.0](./BREAKING_CHANGES/v3.md)

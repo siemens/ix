@@ -7,23 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
+@use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
-  width: 12rem;
-  height: 4rem;
-  min-width: 2rem;
-  min-height: 4rem;
-  max-width: 12rem;
+  width: var(--ix-workflow-step-horizontal--width);
+  height: var(--ix-workflow-step--height);
+  min-width: var(--ix-workflow-step-horizontal--min-width);
+  min-height: var(--ix-workflow-step-horizontal--min-height);
+  max-width: var(--ix-workflow-step-horizontal--max-width);
 }
 
 :host(.host-vertical) {
   width: 100%;
-  height: 4rem;
-  min-width: 4rem;
-  min-height: 2rem;
-  max-height: 12rem;
+  height: var(--ix-workflow-step--height);
+  min-width: var(--ix-workflow-step-vertical--min-width);
+  min-height: var(--ix-workflow-step-vertical--min-height);
+  max-height: var(--ix-workflow-step-vertical--max-height);
 }
 
 :host {
@@ -36,9 +37,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--theme-workflow-step--background);
-    border-radius: var(--theme-workflow--border-radius);
-    padding: 1.125rem 0 vars.$small-space 0;
+    background-color: var(--ix-workflow-step--background);
+    border-radius: var(--ix-workflow-step--border-radius);
+    padding: var(--ix-workflow-step-step--padding);
 
     .wrapper {
       display: flex;
@@ -50,7 +51,7 @@
       .line {
         width: 100%;
         height: 0.125rem;
-        background-color: var(--theme-workflow-step-icon-default--color);
+        background-color: var(--ix-workflow-step-icon-default--color);
 
         &.first,
         &.last {
@@ -68,30 +69,30 @@
 
         &.selected {
           background-color: var(
-              --theme-workflow-step-icon-default--color--selected
+            --ix-workflow-step-icon-default--color--selected
           );
         }
 
         &.done {
-          background-color: var(--theme-workflow-step-icon-done--color);
+          background-color: var(--ix-workflow-step-icon-done--color);
 
           &.selected {
             background-color: var(
-                --theme-workflow-step-icon-done--color--selected
+              --ix-workflow-step-icon-done--color--selected
             );
           }
         }
 
         &.warning {
-          background-color: var(--theme-color-warning);
+          background-color: var(--ix-workflow-step-line--background--warning);
         }
 
         &.success {
-          background-color: var(--theme-color-success);
+          background-color: var(--ix-workflow-step-line--background--success);
         }
 
         &.error {
-          background-color: var(--theme-color-alarm);
+          background-color: var(--ix-workflow-step-line--background--error);
         }
       }
 
@@ -108,9 +109,9 @@
     }
 
     .text {
-      margin-top: vars.$default-space;
+      margin-top: var(--ix-workflow-step-text--margin-top);
       width: 100%;
-      padding: 0 vars.$small-space;
+      padding: var(--ix-workflow-step-text--padding);
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -125,7 +126,7 @@
 
       .wrapper {
         width: auto;
-        padding-left: 1.125rem;
+        padding-left: var(--ix-workflow-step-wrapper-vertical--padding-left);
         height: 100%;
 
         .line {
@@ -149,7 +150,7 @@
       }
 
       .text {
-        margin: 0 vars.$default-space;
+        margin: var(--ix-workflow-step-text-vertical--margin);
         padding: 0;
         width: auto;
       }
@@ -157,34 +158,52 @@
 
     &.clickable {
       &:hover {
-        background-color: var(--theme-workflow-step--background--hover);
+        background-color: var(--ix-workflow-step--background--hover);
+        --ix-workflow-step-icon-default--color--selected: var(
+          --ix-workflow-step-icon-default--color--selected--hover
+        );
+        --ix-workflow-step-icon-done--color: var(
+          --ix-workflow-step-icon-done--color--hover
+        );
+        --ix-workflow-step-icon-done--color--selected: var(
+          --ix-workflow-step-icon-done--color--selected--hover
+        );
       }
 
       &:active {
-        background-color: var(--theme-workflow-step--background--active);
+        background-color: var(--ix-workflow-step--background--active);
+        --ix-workflow-step-icon-default--color--selected: var(
+          --ix-workflow-step-icon-default--color--selected--active
+        );
+        --ix-workflow-step-icon-done--color: var(
+          --ix-workflow-step-icon-done--color--active
+        );
+        --ix-workflow-step-icon-done--color--selected: var(
+          --ix-workflow-step-icon-done--color--selected--active
+        );
       }
     }
 
     &:focus-visible {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-btn--focus--outline-offset);
+      outline: 1px solid #{sys.$si-sys-color-effects-focus};
+      outline-offset: var(--theme-focus-outline-offset);
     }
 
     &.selected {
-      background-color: var(--theme-workflow-step--background--selected);
+      background-color: var(--ix-workflow-step--background--selected);
     }
 
     &.disabled {
-      background-color: var(--theme-workflow-step--background--disabled);
+      background-color: var(--ix-workflow-step--background--disabled);
 
       .line {
         background-color: var(
-          --theme-workflow-step-icon-default--color--disabled
+          --ix-workflow-step-icon-default--color--disabled
         ) !important;
       }
 
       .text {
-        color: var(--theme-workflow-step--color--disabled);
+        color: var(--ix-workflow-step--color--disabled);
       }
     }
   }

@@ -48,7 +48,8 @@ export class PopoverHeader {
   @Prop() icon?: string;
 
   /**
-   * Icon color
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-color-text-primary`.
    *
    * @since 5.1.0
    */
@@ -100,7 +101,6 @@ export class PopoverHeader {
           <ix-icon
             name={this.icon}
             color={this.iconColor}
-            size="24"
             aria-hidden={a11yBoolean(true)}
           ></ix-icon>
         ) : null}

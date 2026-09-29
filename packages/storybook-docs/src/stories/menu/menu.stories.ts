@@ -20,7 +20,11 @@ const meta = {
     return html`<ix-menu expand="${args.expand}">
       <ix-menu-item home icon="home">Home</ix-menu-item>
       <ix-menu-item icon="globe">Item 1</ix-menu-item>
-      <ix-menu-category label="Top level Category" icon="rocket">
+      <ix-menu-category
+        label="Top level Category"
+        icon="rocket"
+        disable-tooltip
+      >
         <ix-menu-item icon="globe">Item 2</ix-menu-item>
         <ix-menu-item icon="globe">Item 3</ix-menu-item>
       </ix-menu-category>
@@ -52,5 +56,61 @@ export const Default: Story = {
 export const Collapsed: Story = {
   args: {
     expand: false,
+  },
+};
+
+export const Overflow: Story = {
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          //TODO will be fixed with EIX-232
+          { id: 'scrollable-region-focusable', enabled: false },
+        ],
+      },
+    },
+  },
+  render: () => html`
+    <div style="height: 32rem; overflow: hidden; position: relative;">
+      <ix-menu expand="true">
+        <ix-menu-item home icon="home">Home</ix-menu-item>
+        ${Array.from(
+          { length: 18 },
+          (_, index) => html`
+            <ix-menu-item icon="star">Item ${index + 1}</ix-menu-item>
+          `
+        )}
+        <ix-menu-about></ix-menu-about>
+        <ix-menu-settings></ix-menu-settings>
+      </ix-menu>
+    </div>
+  `,
+  play: async ({ canvasElement }) => {
+    await customElements.whenDefined('ix-menu');
+
+    const menu = canvasElement.querySelector('ix-menu');
+    const tabs = menu?.shadowRoot?.querySelector<HTMLElement>('.tabs');
+    const menuNavigation =
+      menu?.shadowRoot?.querySelector<HTMLElement>('.menu-navigation');
+
+    if (!tabs || !menuNavigation) {
+      throw new Error('Unable to find the menu navigation containers');
+    }
+
+    menuNavigation.focus();
+    menuNavigation.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        bubbles: true,
+        composed: true,
+        key: 'ArrowDown',
+      })
+    );
+
+    await new Promise<void>((resolve) =>
+      requestAnimationFrame(() => resolve())
+    );
+
+    tabs.scrollTop = (tabs.scrollHeight - tabs.clientHeight) / 2;
+    tabs.dispatchEvent(new Event('scroll'));
   },
 };
