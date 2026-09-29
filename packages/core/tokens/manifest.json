@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "contract": "siemens-ix-system-token-manifest",
   "provenance": {
-    "tokenSourceVersion": "0.12.0",
-    "tokenBuildId": "21a40931bc1c03dfdfb8d9b1162f36c6bb1ce70189bb835def239738b50e0455"
+    "tokenSourceVersion": "0.15.0",
+    "tokenBuildId": "51f9d82a616584a3b7f074728ff536a8c9ebe9d6f68c47ae5477f94f05767c07"
   },
   "coverage": {
     "modes": [
