@@ -1,4 +1,4 @@
-/*
+-/*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
@@ -193,8 +193,8 @@
   }
  &:has(.blind-header:focus-visible) {
     .blind-header-wrapper {
-      outline: var(--theme-focus-border-thickness) solid
-        var(--theme-color-focus-bdr);
+      outline: var(--si-sys-sizing-border-width-default) solid
+        var(--si-sys-color-effects-focus);
       outline-offset: 0;
     }
   }
