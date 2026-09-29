@@ -16,6 +16,28 @@ declare global {
   }
 }
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount('');
+
+  await page.evaluate(async () => {
+    await window.toast({
+      title: 'Info',
+      message: 'This is a toast message',
+      autoClose: false,
+    });
+  });
+
+  const toast = page.getByRole('alert');
+  await expect(toast).toHaveClass(/\bhydrated\b/);
+  await expect(toast).toBeVisible();
+  await expect(
+    toast.getByRole('button', { name: 'Close toast' })
+  ).toBeVisible();
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount('');
 
