@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-Fix **ix-link-button** accessibility.
+Prevent **ix-link-button** to be focused if button is disabled
