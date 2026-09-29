@@ -281,7 +281,7 @@ export namespace Components {
         "username"?: string;
         /**
           * If `true`, the username and extra text will wrap to multiple lines instead of being truncated with an ellipsis. Note: Only working if avatar is part of the ix-application-header
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "wrapUsername": boolean;
@@ -7169,7 +7169,7 @@ declare namespace LocalJSX {
         "username"?: string;
         /**
           * If `true`, the username and extra text will wrap to multiple lines instead of being truncated with an ellipsis. Note: Only working if avatar is part of the ix-application-header
-          * @since 5.2.0
+          * @since 6.0.0
           * @default false
          */
         "wrapUsername"?: boolean;
