@@ -39,3 +39,10 @@
   --ix-slider-track-marker--background--disabled: #{sys.$si-sys-color-background-2};
   --ix-slider-track-marker--background: #{sys.$si-sys-color-border-2};
 }
+
+:host {
+  --ix-slider--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-slider--thumb-size: #{sys.$si-sys-sizing-size-50};
+  --ix-slider--height: #{sys.$si-sys-sizing-size-70};
+  --ix-slider-label--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+}

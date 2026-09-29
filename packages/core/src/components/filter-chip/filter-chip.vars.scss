@@ -23,3 +23,14 @@
   --ix-filter-chip-primary-outline--color--active: #{sys.$si-sys-color-border-accent-active};
   --ix-filter-chip-primary-outline--color--hover: #{sys.$si-sys-color-border-accent-hover};
 }
+
+:host {
+  --ix-filter-chip--height: #{sys.$si-sys-sizing-size-70};
+  --ix-filter-chip--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-filter-chip--border-radius: #{sys.$si-sys-sizing-spacing-x-90};
+  --ix-filter-chip-slot-container--line-height: #{sys.$si-sys-sizing-size-70};
+  --ix-filter-chip-icon--icon-size: #{sys.$si-sys-sizing-size-70};
+  --ix-filter-chip-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-filter-chip-disabled--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-filter-chip-hide-close-button-readonly--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+}

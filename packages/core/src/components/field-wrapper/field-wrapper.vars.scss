@@ -15,3 +15,12 @@
   --ix-field-wrapper-icon--color--valid: #{sys.$si-sys-color-text-success};
   --ix-field-wrapper-icon--color--warning: #{sys.$si-sys-color-text-warning};
 }
+
+:host {
+  --ix-field-wrapper-bottom-text--gap: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-field-wrapper-bottom-text--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-field-wrapper-slot-wrapper--gap: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-field-wrapper-field-top--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-field-wrapper-bottom-text--margin-top: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-field-wrapper-bottom-text--margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+}

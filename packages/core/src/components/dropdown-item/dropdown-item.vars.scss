@@ -16,3 +16,17 @@
   --ix-dropdown-item--border-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-dropdown-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
+
+:host {
+  --ix-dropdown-item--item-padding: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item--item-padding-right: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-dropdown-item--height: #{sys.$si-sys-sizing-size-90};
+  --ix-dropdown-item-no-checkmark--padding-inline-start: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-dropdown-item-checked--width: #{sys.$si-sys-sizing-size-50};
+  --ix-dropdown-item-checked--min-width: #{sys.$si-sys-sizing-size-50};
+  --ix-dropdown-item-checked--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-dropdown-item-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item-icon-only--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item-submenu--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+}

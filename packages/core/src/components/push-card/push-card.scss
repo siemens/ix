@@ -23,16 +23,16 @@
   }
 
   .icon {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: var(--ix-push-card-icon--icon-size);
+    width: var(--ix-push-card-icon--icon-size);
   }
 
   ix-card-title {
-    height: 2.5rem;
+    height: var(--ix-push-card--height);
   }
 
   ix-card-content {
-    height: 11rem;
+    height: var(--ix-push-card-content--height);
   }
 }
 

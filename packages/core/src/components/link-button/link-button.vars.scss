@@ -16,3 +16,9 @@
   --ix-link-button--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-link-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
+
+:host {
+  --ix-link-button--height: #{sys.$si-sys-sizing-size-80};
+  --ix-link-button--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-link-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-20} 0 0;
+}
