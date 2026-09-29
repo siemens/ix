@@ -122,7 +122,7 @@
 }
 
 :host(.icon-only) {
-  width: vars.$x-large-space;
+  width: var(--ix-dropdown-button--height);
 }
 
 :host(.host-context-date-picker) {
