@@ -9,12 +9,13 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './breadcrumb.vars' as *;
 :host {
   display: flex;
   justify-content: flex-start;
-  height: 2.5rem;
+  height: var(--ix-breadcrumb--height);
   align-items: center;
   background-color: transparent;
 
@@ -23,7 +24,7 @@
   .previous-button {
     width: auto;
     min-width: 0px;
-    margin-right: 0.25rem;
+    margin-right: var(--ix-breadcrumb-previous-button--margin-right);
   }
 
   .crumb-dropdown {
@@ -38,7 +39,7 @@
     display: flex;
 
     .more-text-ellipsis {
-      width: 1rem;
+      width: var(--ix-breadcrumb-more-text-ellipsis--width);
       display: inline-block;
       font-weight: vars.$font-weight-bold;
     }
@@ -57,7 +58,7 @@
   }
 
   .chevron {
-    margin-left: 0.5rem;
+    margin-left: var(--ix-breadcrumb-chevron--margin-left);
     margin-right: 0rem;
     color: var(--ix-breadcrumb-separator--color);
   }

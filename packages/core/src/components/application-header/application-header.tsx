@@ -432,6 +432,7 @@ export class ApplicationHeader {
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
+              size="24"
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
               aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}

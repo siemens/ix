@@ -57,7 +57,7 @@ LICENSE file in the root directory of this source tree.
                     [
                       1,
                       getComputedCSSProperty(
-                        '--si-sys-data-sequential-deep-blue-4'
+                        '--si-sys-color-data-sequential-deep-blue-4'
                       ),
                     ],
                   ],
@@ -81,7 +81,9 @@ LICENSE file in the root directory of this source tree.
                 width: 35,
                 itemStyle: {
                   borderMiterLimit: 16,
-                  color: getComputedCSSProperty('--si-sys-background-success'),
+                  color: getComputedCSSProperty(
+                    '--si-sys-color-background-success'
+                  ),
                 },
               },
               pointer: {
@@ -95,7 +97,9 @@ LICENSE file in the root directory of this source tree.
                     overflow: 'break',
                     fontSize: '2rem',
                     fontWeight: 'normal',
-                    color: getComputedCSSProperty('--si-sys-text-secondary'),
+                    color: getComputedCSSProperty(
+                      '--si-sys-color-text-secondary'
+                    ),
                     width: 250,
                     lineHeight: 35,
                     formatter: '{value} / 100 \n completed',

@@ -17,8 +17,8 @@ export default () => {
     <>
       <IxPill
         variant="custom"
-        pillColor="var(--si-sys-text-inverse)"
-        background="var(--si-sys-background-accent-hover)"
+        pillColor="var(--si-sys-color-text-inverse)"
+        background="var(--si-sys-color-background-accent-hover)"
       >
         Label
       </IxPill>

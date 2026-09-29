@@ -134,8 +134,7 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
           for (const key in props) {
             const value = props[key];
             if (
-              // eslint-disable-next-line no-prototype-builtins
-              props.hasOwnProperty(key) &&
+              Object.prototype.hasOwnProperty.call(props, key) &&
               key.startsWith(ROUTER_PROP_PREFIX) &&
               value !== EMPTY_PROP
             ) {
@@ -182,10 +181,11 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
          */
         for (const key in props) {
           const value = props[key];
+          const isAriaProp = key.startsWith(ARIA_PROP_PREFIX);
           if (
-            // eslint-disable-next-line no-prototype-builtins
-            (props.hasOwnProperty(key) && value !== EMPTY_PROP) ||
-            key.startsWith(ARIA_PROP_PREFIX)
+            Object.prototype.hasOwnProperty.call(props, key) &&
+            value !== EMPTY_PROP &&
+            (!isAriaProp || value != null)
           ) {
             propsToAdd[key] = value;
           }

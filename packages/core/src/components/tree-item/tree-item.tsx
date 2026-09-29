@@ -71,11 +71,10 @@ export class TreeItem {
           {this.hasChildren ? (
             <ix-icon
               name={iconChevronRightSmall}
-              size="24"
               class={{
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
-              color="--si-sys-text-primary"
+              color="--si-sys-color-text-primary"
               onClick={(e: Event) => {
                 if (isDisabled) {
                   return;
