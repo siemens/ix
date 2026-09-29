@@ -194,7 +194,7 @@ export class Avatar
    * If `true`, the username and extra text will wrap to multiple lines instead of being truncated with an ellipsis.
    * Note: Only working if avatar is part of the ix-application-header
    *
-   * @since 5.2.0
+   * @since 6.0.0
    */
   @Prop() wrapUsername: boolean = false;
 
