@@ -8,6 +8,7 @@
  */
 
 @use '../../tokens/system' as sys;
+@use 'mixins/fonts';
 
 @mixin checkbox-basic() {
   $size: sys.$si-sys-sizing-size-60;
@@ -40,6 +41,10 @@
 
   .ix-form-control[type='checkbox']:not(:disabled) + label {
     cursor: pointer;
+  }
+
+  .ix-form-control[type='checkbox'] + label {
+    @include fonts.typography-body-paragraph;
   }
 
   .ix-form-control[type='checkbox'] + label:before {
