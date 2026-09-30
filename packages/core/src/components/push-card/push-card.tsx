@@ -76,7 +76,7 @@ export class PushCard {
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
               ) : null}
-              <ix-typography format="display-xxl">
+              <ix-typography format="display-lg-sbold">
                 {this.notification ?? 0}
               </ix-typography>
               <slot name="title-action"></slot>

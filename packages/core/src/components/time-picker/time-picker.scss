@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'misc/common-variables' as vars;
+@use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
@@ -62,6 +64,8 @@
       }
 
       .column-separator {
+        @include fonts.typography-body-paragraph;
+
         display: flex;
         align-items: center;
         justify-content: center;

@@ -11,6 +11,7 @@
 @use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
+
 $CardList__Title__Height: var(--ix-card-list-title--height);
 
 :host {
@@ -99,7 +100,7 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     display: flex;
     position: relative;
 
-    align-self: flex-start;
+    align-self: center;
     justify-self: center;
 
     max-width: var(--ix-card-list-show-all-card--max-width);
@@ -119,22 +120,6 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     }
   }
 
-  .CardList__Style__Infinite__Scroll .Show__All__Card {
-    margin-top: var(--ix-card-list-show-all-card--margin-top);
-  }
-
-  .CardList__Style__Flexbox__Scroll .Show__All__Card {
-    margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
-  }
-
-  .Show__All__Card:hover {
-    background-color: var(--ix-card-list-show-all--background--hover);
-  }
-
-  .Show__All__Card:active {
-    background-color: var(--ix-card-list-show-all--background--active);
-  }
-
   .Show__All__Card__Content {
     display: flex;
     justify-content: center;
@@ -152,11 +137,28 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
   }
 
   .Show__All__Card__Text {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     margin-top: auto;
+    text-align: center;
   }
-}
 
-::slotted(.display-none) {
-  display: none !important;
+  .CardList__Style__Infinite__Scroll .Show__All__Card {
+    margin-top: var(--ix-card-list-show-all-card--margin-top);
+  }
+
+  ::slotted(.display-none) {
+    display: none !important;
+  }
+
+  .CardList__Style__Flexbox__Scroll .Show__All__Card {
+    margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
+
+    .Show__All__Card:hover {
+      background-color: var(--ix-card-list-show-all--background--hover);
+    }
+
+    .Show__All__Card:active {
+      background-color: var(--ix-card-list-show-all--background--active);
+    }
+  }
 }
