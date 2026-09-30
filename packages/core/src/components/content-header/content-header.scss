@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'tokens/system' as sys;
-
 @use './content-header.vars' as *;
 :host {
   display: flex;
@@ -35,13 +33,13 @@
     }
 
     .header-title {
-      font: sys.$si-sys-typography-h3;
+      font: var(--ix-content-header-title--font);
 
       margin: 0;
       padding: 0;
 
       &.secondary {
-        font: sys.$si-sys-typography-h4;
+        font: var(--ix-content-header-secondary--font);
 
         padding: var(--ix-content-header-secondary--padding);
       }

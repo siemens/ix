@@ -8,7 +8,6 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/breakpoints';
-@use 'tokens/system' as sys;
 
 @use './application-header.vars' as *;
 :host {
@@ -104,7 +103,7 @@
     }
 
     .application-name {
-      font: sys.$si-sys-typography-body-lg;
+      font: var(--ix-application-header-name--font);
 
       margin: 0;
       padding: 0;
