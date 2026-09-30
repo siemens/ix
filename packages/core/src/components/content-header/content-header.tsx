@@ -72,16 +72,18 @@ export class ContentHeader {
 
         <div class="titleGroup">
           <div class="headerTitleRow">
-            <ix-typography
-              format={this.variant === 'secondary' ? 'h4' : 'h3'}
-              class={{
-                secondary: this.variant === 'secondary',
-                headerText: true,
-                truncate: this.textOverflow === 'ellipsis',
-              }}
-            >
-              {this.headerTitle}
-            </ix-typography>
+            {this.headerTitle && (
+              <h2
+                class={{
+                  'header-title': true,
+                  secondary: this.variant === 'secondary',
+                  headerText: true,
+                  truncate: this.textOverflow === 'ellipsis',
+                }}
+              >
+                {this.headerTitle}
+              </h2>
+            )}
             <div class="headerSlot">
               <slot name="header" />
             </div>
