@@ -151,7 +151,7 @@
       height: 0;
       border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: calc(#{sys.$si-sys-sizing-size-60} / 2) 0 0
+      margin: calc(#{sys.$si-sys-sizing-size-60} / 2.5) 0 0
         calc(
           (#{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-size-40}) / 2
         );
