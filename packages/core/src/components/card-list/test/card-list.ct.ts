@@ -58,14 +58,47 @@ regressionTest(
     const cards = cardList.locator('ix-card');
     await expect(cards.nth(3)).toHaveClass(/display-none/);
     await expect(cards.nth(4)).toHaveClass(/display-none/);
+    await expect(cards.nth(3)).toBeHidden();
+    await expect(cards.nth(4)).toBeHidden();
 
     const showAllButton = cardList.getByRole('button', { name: /show all/i });
+    await expect(showAllButton).toBeVisible();
+    await expect(cardList.locator('.Show__All__Card')).toBeVisible();
     await showAllButton.click();
 
     // All cards should now be visible
     for (let i = 0; i < 5; i++) {
       await expect(cards.nth(i)).not.toHaveClass(/display-none/);
+      await expect(cards.nth(i)).toBeVisible();
     }
+  }
+);
+
+regressionTest(
+  'scroll layout hides overflow cards behind the show more card',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-card-list label="Test" list-style="scroll" max-visible-cards="3">
+        ${CARDS_HTML}
+      </ix-card-list>
+    `);
+
+    const cardList = page.locator('ix-card-list');
+    const cards = cardList.locator('ix-card');
+    const showMoreCard = cardList.locator('.Show__All__Card');
+
+    await expect(
+      cardList.getByRole('button', { name: /show all/i })
+    ).toBeVisible();
+    await expect(cards.nth(2)).toBeVisible();
+    await expect(cards.nth(3)).toBeHidden();
+    await expect(cards.nth(4)).toBeHidden();
+    await expect(showMoreCard).toBeVisible();
+
+    await showMoreCard.click();
+
+    await expect(cards.nth(3)).toBeVisible();
+    await expect(cards.nth(4)).toBeVisible();
   }
 );
 
