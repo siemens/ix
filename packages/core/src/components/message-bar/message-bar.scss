@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'mixins/fonts';
 @use 'tokens/system' as sys;
 
 @use './message-bar.vars' as *;
@@ -50,8 +51,9 @@
     align-self: center;
     min-height: var(--ix-message-bar-message-content--min-height);
     padding: var(--ix-message-bar-message-content--padding);
-    font-weight: normal;
     white-space: normal;
+
+    @include fonts.typography-body-paragraph;
   }
 
   ix-icon {
