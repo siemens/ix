@@ -8,7 +8,7 @@
  */
 
 @use '../../tokens/system' as sys;
-@use 'mixins/fonts';
+@use '../../mixins/fonts';
 
 @mixin checkbox-basic() {
   $size: sys.$si-sys-sizing-size-60;
