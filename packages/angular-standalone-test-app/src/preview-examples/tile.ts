@@ -19,7 +19,7 @@ import { IxTile, IxIconButton, IxButton } from '@siemens/ix-angular/standalone';
 
       <ix-tile size="medium">
         <div slot="header">Tile header</div>
-        <div class="text-l">92.8 °C</div>
+        <div class="typography-body-lg">92.8 °C</div>
       </ix-tile>
 
       <ix-tile size="big">
