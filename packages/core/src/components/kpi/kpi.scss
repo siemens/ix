@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
@@ -62,7 +62,7 @@
     .kpi-value {
       color: var(--ix-kpi-display-value--color);
 
-      @include fonts.text-xl;
+      @include fonts.typography-h3;
     }
 
     .kpi-unit {
