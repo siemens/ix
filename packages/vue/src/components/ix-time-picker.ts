@@ -8,6 +8,7 @@ import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/component
 
 export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
+  'locale',
   'corners',
   'embedded',
   'dateTimePickerAppearance',
@@ -25,6 +26,8 @@ export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/
   'i18nMinuteColumnHeader',
   'i18nSecondColumnHeader',
   'i18nMillisecondColumnHeader',
+  'i18nAm',
+  'i18nPm',
   'timeSelect',
   'timeChange'
 ], [

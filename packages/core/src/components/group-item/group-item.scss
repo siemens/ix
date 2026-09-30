@@ -7,18 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'legacy/mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './group-item.vars' as *;
 $focusBorderWidth: 1px;
 
 :host {
   display: flex;
-  min-height: 2.25rem;
-  height: 2.25rem;
+  min-height: var(--ix-group-item--min-height);
+  height: var(--ix-group-item--height);
 
   @include component.ix-component;
 
@@ -36,7 +36,7 @@ $focusBorderWidth: 1px;
     color: var(--ix-group-item--color);
     cursor: pointer;
 
-    padding-left: 2.5rem;
+    padding-left: var(--ix-group-item-group-footer--padding-left);
 
     &:focus-visible {
       border: $focusBorderWidth solid var(--ix-group-item--border-color--focus);
@@ -54,7 +54,7 @@ $focusBorderWidth: 1px;
   }
 
   ix-icon {
-    margin-right: vars.$tiny-space;
+    margin-right: var(--ix-group-item-icon--margin-right);
     margin-top: -0.125rem;
   }
 
@@ -62,7 +62,7 @@ $focusBorderWidth: 1px;
     position: absolute;
     left: -#{$focusBorderWidth};
     height: calc(100% + #{$focusBorderWidth * 2});
-    width: vars.$tiny-space;
+    width: var(--ix-group-item-group-entry-selection-indicator--width);
   }
 
   .group-entry-text {

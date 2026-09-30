@@ -14,9 +14,14 @@ function getSplitButtonExample(props: {
   disableDropdownButton?: boolean;
   disableButton?: boolean;
   disabled?: boolean;
+  includeAriaLabels?: boolean;
 }) {
   return `
-    <ix-split-button label="Test" aria-label-button="First button" aria-label-split-icon-button="dropdown button" ${
+    <ix-split-button label="Test" ${
+      props.includeAriaLabels === false
+        ? ''
+        : 'aria-label-button="First button" aria-label-split-icon-button="dropdown button"'
+    } ${
       props.disableDropdownButton ? ' disable-dropdown-button' : ''
     } ${props.disableButton ? ' disable-button' : ''} ${
       props.disabled ? ' disabled' : ''
@@ -34,7 +39,9 @@ regressionTest(
 
     const splitButton = page.locator('ix-split-button');
     const mainButton = splitButton.getByLabel('First button');
-    const dropdownButton = splitButton.getByLabel('dropdown button');
+    const dropdownButton = splitButton.getByRole('button', {
+      name: 'dropdown button',
+    });
 
     await expect(mainButton).not.toHaveClass(/disabled/);
     await expect(dropdownButton).toHaveClass(/disabled/);
@@ -48,7 +55,9 @@ regressionTest(
 
     const splitButton = page.locator('ix-split-button');
     const mainButton = splitButton.getByLabel('First button');
-    const dropdownButton = splitButton.getByLabel('dropdown button');
+    const dropdownButton = splitButton.getByRole('button', {
+      name: 'dropdown button',
+    });
     await expect(mainButton).toHaveClass(/disabled/);
     await expect(dropdownButton).not.toHaveClass(/disabled/);
   }
@@ -61,7 +70,9 @@ regressionTest(
 
     const splitButton = page.locator('ix-split-button');
     const mainButton = splitButton.getByLabel('First button');
-    const dropdownButton = splitButton.getByLabel('dropdown button');
+    const dropdownButton = splitButton.getByRole('button', {
+      name: 'dropdown button',
+    });
     await expect(mainButton).toHaveClass(/disabled/);
     await expect(dropdownButton).toHaveClass(/disabled/);
   }
@@ -79,24 +90,52 @@ regressionTest(
 
     const splitButton = page.locator('ix-split-button');
     const mainButton = splitButton.getByLabel('First button');
-    const dropdownButton = splitButton.getByLabel('dropdown button');
+    const dropdownButton = splitButton.getByRole('button', {
+      name: 'dropdown button',
+    });
     await expect(mainButton).toHaveClass(/disabled/);
     await expect(dropdownButton).toHaveClass(/disabled/);
   }
 );
 
 regressionTest(
-  'provide valid aria-activedescendant',
+  'right dropdown trigger uses 20px glyph (Figma)',
   async ({ mount, page }) => {
     await mount(getSplitButtonExample({}));
 
-    const splitButton = page.locator('ix-split-button');
-    const dropdownButton = splitButton.getByLabel('dropdown button');
+    const dropdownIconButton = page.locator(
+      'ix-split-button ix-dropdown-button ix-icon-button'
+    );
+    await expect(dropdownIconButton).toHaveClass(/hydrated/);
+    await expect(dropdownIconButton).toHaveClass(/btn-icon-32/);
+    await expect(dropdownIconButton.locator('ix-icon')).toHaveClass(/size-20/);
+  }
+);
 
-    await dropdownButton.click();
-    await page.keyboard.press('ArrowDown');
+regressionTest(
+  'provide valid aria-activedescendant',
+  async ({ makeAxeBuilder, mount, page }) => {
+    await mount(getSplitButtonExample({ includeAriaLabels: false }));
+
+    const splitButton = page.locator('ix-split-button');
+    await splitButton.evaluate((element: HTMLIxSplitButtonElement) => {
+      element.ariaLabelButton = 'First button';
+      element.ariaLabelSplitIconButton = 'dropdown button';
+    });
+    const dropdownButton = splitButton.locator('ix-dropdown-button');
+
+    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAccessibleName('dropdown button');
+    let accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+
+    await dropdownButton.focus();
+    await expect(dropdownButton).toBeFocused();
+    await dropdownButton.press('Enter');
+    await expect(dropdownButton).toBeFocused();
 
     await expect(dropdownButton.locator('ix-dropdown')).toHaveClass(/show/);
+    await expect(dropdownButton).toHaveAttribute('aria-activedescendant', /.+/);
 
     const activeDescendant = await dropdownButton.getAttribute(
       'aria-activedescendant'
@@ -115,14 +154,25 @@ regressionTest(
     });
     await expect(dropdownItem1).toHaveClass(/ix-focused/);
 
-    await page.keyboard.press('ArrowDown');
-    const item2 = splitButton.getByRole('menuitem', { name: 'Item 1' });
+    await dropdownButton.press('ArrowDown');
+    const item2 = splitButton.getByRole('menuitem', { name: 'Item 2' });
     await expect(item2).toBeVisible();
-    await expect(item2).toHaveAttribute('id', activeDescendant);
+    await expect(item2).toHaveAttribute('id', /.+/);
+    const item2Id = await item2.evaluate((element) => element.id);
+
+    await expect(dropdownButton).toHaveAttribute(
+      'aria-activedescendant',
+      item2Id
+    );
 
     const dropdownItem2 = splitButton.locator('ix-dropdown-item', {
       hasText: /Item 2/,
     });
     await expect(dropdownItem2).toHaveClass(/ix-focused/);
+
+    accessibilityScanResults = await makeAxeBuilder()
+      .disableRules(['aria-allowed-attr'])
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );
