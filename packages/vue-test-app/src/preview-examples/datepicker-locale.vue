@@ -113,9 +113,9 @@ function onDateChange(event: CustomEvent<DateChangeEvent>) {
             style="
               margin-top: 0.5rem;
               padding: 0.75rem 1rem;
-              border: 1px solid var(--theme-color-weak-bdr);
+              border: 1px solid var(--si-sys-color-border-4);
               border-radius: 4px;
-              background: var(--theme-color-2);
+              background: var(--si-sys-color-background-1);
             "
           >
             <span
@@ -125,7 +125,7 @@ function onDateChange(event: CustomEvent<DateChangeEvent>) {
             </span>
             <span
               v-if="lastEvent === null"
-              style="color: var(--theme-color-soft-text)"
+              style="color: var(--si-sys-color-text-secondary)"
             >
               Select a date to see event values
             </span>
@@ -135,7 +135,7 @@ function onDateChange(event: CustomEvent<DateChangeEvent>) {
                   size="2"
                   style="
                     font-weight: 600;
-                    color: var(--theme-color-std-text);
+                    color: var(--si-sys-color-text-primary);
                   "
                 >
                   {{ row.key }}
@@ -143,14 +143,14 @@ function onDateChange(event: CustomEvent<DateChangeEvent>) {
                 <IxCol
                   style="
                     font-family: monospace;
-                    color: var(--theme-color-primary);
+                    color: var(--si-sys-color-text-accent);
                   "
                 >
                   {{ lastEvent?.[row.key] ?? '—' }}
                 </IxCol>
                 <IxCol
                   style="
-                    color: var(--theme-color-soft-text);
+                    color: var(--si-sys-color-text-secondary);
                     font-size: 0.8em;
                   "
                 >

@@ -7,16 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './dropdown-header.vars' as *;
 :host {
   display: flex;
   align-items: center;
   position: relative;
-  height: 2.5rem;
+  height: var(--ix-dropdown-header--height);
   width: auto;
 
-  padding: 0.25rem 1rem;
+  padding: var(--ix-dropdown-header--padding);
 
   overflow: hidden;
   cursor: default;

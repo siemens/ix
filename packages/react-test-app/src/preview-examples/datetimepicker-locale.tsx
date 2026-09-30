@@ -167,9 +167,9 @@ const DateTimePickerLocale = () => {
               style={{
                 marginTop: '0.5rem',
                 padding: '0.75rem 1rem',
-                border: '1px solid var(--theme-color-weak-bdr)',
+                border: '1px solid var(--si-sys-color-border-4)',
                 borderRadius: '4px',
-                background: 'var(--theme-color-2)',
+                background: 'var(--si-sys-color-background-1)',
               }}
             >
               <span
@@ -182,7 +182,7 @@ const DateTimePickerLocale = () => {
                 Last dateSelect event
               </span>
               {lastEvent === null ? (
-                <span style={{ color: 'var(--theme-color-soft-text)' }}>
+                <span style={{ color: 'var(--si-sys-color-text-secondary)' }}>
                   Confirm a selection to see event values
                 </span>
               ) : (
@@ -193,7 +193,7 @@ const DateTimePickerLocale = () => {
                         size="2"
                         style={{
                           fontWeight: 600,
-                          color: 'var(--theme-color-std-text)',
+                          color: 'var(--si-sys-color-text-primary)',
                         }}
                       >
                         {key}
@@ -201,14 +201,14 @@ const DateTimePickerLocale = () => {
                       <IxCol
                         style={{
                           fontFamily: 'monospace',
-                          color: 'var(--theme-color-primary)',
+                          color: 'var(--si-sys-color-text-accent)',
                         }}
                       >
                         {lastEvent[key] || '—'}
                       </IxCol>
                       <IxCol
                         style={{
-                          color: 'var(--theme-color-soft-text)',
+                          color: 'var(--si-sys-color-text-secondary)',
                           fontSize: '0.8em',
                         }}
                       >

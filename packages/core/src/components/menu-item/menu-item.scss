@@ -7,13 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './menu-item.vars' as *;
-$menuItemHeight: 3rem;
-$menuItemPadding: 0.875rem;
+$menuItemHeight: var(--ix-menu-item--height);
+$menuItemPadding: var(--ix-menu-item--padding-inline);
 
 :host {
   position: relative;
@@ -39,7 +39,11 @@ $menuItemPadding: 0.875rem;
   }
 
   .tab-icon {
+    block-size: var(--ix-menu-item-tab-icon--icon-size);
     color: var(--ix-menu-item-primary-icon--color);
+    inline-size: var(--ix-menu-item-tab-icon--icon-size);
+    min-block-size: var(--ix-menu-item-tab-icon--icon-size);
+    min-inline-size: var(--ix-menu-item-tab-icon--icon-size);
     position: relative;
     pointer-events: none;
   }
@@ -69,14 +73,14 @@ $menuItemPadding: 0.875rem;
       line-height: 1;
       font-family: Siemens Sans, Arial, sans-serif;
       color: var(--ix-menu-item-notification--color);
-      padding: vars.$tiny-space;
+      padding: var(--ix-menu-item-pill--padding);
     }
   }
 
   .tab-text {
     display: block;
     color: var(--ix-menu-item-primary--color);
-    margin: 0 1rem 0 1.25rem;
+    margin: var(--ix-menu-item-tab-text--margin);
     user-select: none;
     width: 100%;
 
@@ -120,7 +124,7 @@ $menuItemPadding: 0.875rem;
 
 :host(.bottom-tab),
 :host([slot='bottom']) {
-  $bottom-height: 2.25rem;
+  $bottom-height: var(--ix-menu-item-bottom-tab-bottom--bottom-height);
 
   min-height: $bottom-height;
   height: $bottom-height;
@@ -159,7 +163,9 @@ $menuItemPadding: 0.875rem;
 :host(.tab-nested) {
   .tab {
     flex-direction: row;
-    padding-left: calc(0.5rem + $menuItemPadding);
+    padding-left: calc(
+      var(--ix-menu-item-tab--padding-left) + $menuItemPadding
+    );
 
     .notification {
       position: relative;
@@ -169,12 +175,12 @@ $menuItemPadding: 0.875rem;
     }
 
     .tab-icon {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
+      padding-left: var(--ix-menu-item-tab-icon--padding-left);
+      padding-right: var(--ix-menu-item-tab-icon--padding-right);
     }
 
     .tab-text {
-      margin-left: 0.5rem;
+      margin-left: var(--ix-menu-item-tab-text--margin-left);
     }
 
     &::before {

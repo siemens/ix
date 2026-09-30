@@ -83,8 +83,8 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
       <IxCol>
         <IxPill
           variant="custom"
-          pill-color="var(--si-sys-text-inverse)"
-          background="var(--si-sys-background-accent-hover)"
+          pill-color="var(--si-sys-color-text-inverse)"
+          background="var(--si-sys-color-background-accent-hover)"
           :icon="iconInfo"
         >
           Custom
@@ -94,8 +94,8 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
         <IxPill
           variant="custom"
           outline
-          pill-color="var(--si-sys-text-accent-hover)"
-          background="var(--si-sys-background-accent-hover)"
+          pill-color="var(--si-sys-color-text-accent-hover)"
+          background="var(--si-sys-color-background-accent-hover)"
           :icon="iconInfo"
         >
           Custom

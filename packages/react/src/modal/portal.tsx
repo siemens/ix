@@ -8,7 +8,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ReactFrameworkDelegate } from '../delegate';
 
@@ -21,11 +21,11 @@ export const IxOverlay = (props: { delegate: ReactFrameworkDelegate }) => {
     Record<string, (value: Element | PromiseLike<Element>) => void>
   >({});
 
-  const viewRefs = useRef<Record<string, any>>({});
-  const [views, setViews] = useState<Record<string, any>>({});
+  const viewRefs = useRef<Record<string, ReactNode>>({});
+  const [views, setViews] = useState<Record<string, ReactNode>>({});
 
   useEffect(() => {
-    const addOverlay = (id: string, view: any) => {
+    const addOverlay = (id: string, view: ReactNode) => {
       const _views = { ...viewRefs.current };
       _views[id] = view;
       setViews(_views);

@@ -10,33 +10,72 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-date-picker-day--outline-color--focus: #{sys.$si-sys-effects-focus};
+  --ix-date-picker-day--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-date-picker-day--font-weight--selected: var(--theme-font-weight-bold);
   --ix-date-picker-weekday--font-size: var(--theme-ms-0);
   --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-date-picker-day--background: rgba(0, 0, 0, 0);
-  --ix-date-picker-day--background--active: #{sys.$si-sys-background-active};
+  --ix-date-picker-day--background--active: #{sys.$si-sys-color-background-active};
   --ix-date-picker-day--background--disabled: rgba(0, 0, 0, 0);
-  --ix-date-picker-day--background--hover: #{sys.$si-sys-background-hover};
-  --ix-date-picker-day--background--range: #{sys.$si-sys-background-active};
-  --ix-date-picker-day--background--range-active: #{sys.$si-sys-background-accent-secondary-active};
-  --ix-date-picker-day--background--range-disabled: #{sys.$si-sys-background-1};
-  --ix-date-picker-day--background--range-hover: #{sys.$si-sys-background-accent-secondary-hover};
-  --ix-date-picker-day--background--selected: #{sys.$si-sys-background-accent};
-  --ix-date-picker-day--background--selected-active: #{sys.$si-sys-background-accent-active};
-  --ix-date-picker-day--background--selected-disabled: #{sys.$si-sys-background-1};
-  --ix-date-picker-day--background--selected-hover: #{sys.$si-sys-background-accent-hover};
-  --ix-date-picker-day--color: #{sys.$si-sys-text-accent};
-  --ix-date-picker-day--color--disabled: #{sys.$si-sys-text-disabled};
-  --ix-date-picker-day--color--range: #{sys.$si-sys-text-primary};
-  --ix-date-picker-day--color--range-disabled: #{sys.$si-sys-text-disabled};
-  --ix-date-picker-day--color--selected: #{sys.$si-sys-text-on-accent};
-  --ix-date-picker-day--color--selected-disabled: #{sys.$si-sys-text-disabled};
-  --ix-date-picker-today--border-color: #{sys.$si-sys-border-accent};
-  --ix-date-picker-today--contrast-ring-color: #{sys.$si-sys-background-0};
-  --ix-date-picker-today--border-color--range-disabled: #{sys.$si-sys-background-1};
-  --ix-date-picker-weekday--color: #{sys.$si-sys-text-secondary};
-  --ix-date-picker-menu-item--color: #{sys.$si-sys-text-primary};
-  --ix-date-picker-list-item--background--hover: #{sys.$si-sys-background-hover};
-  --ix-date-picker-list-item--background--selected: #{sys.$si-sys-background-selected};
+  --ix-date-picker-day--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-date-picker-day--background--range: #{sys.$si-sys-color-background-active};
+  --ix-date-picker-day--background--range-active: #{sys.$si-sys-color-background-accent-secondary-active};
+  --ix-date-picker-day--background--range-disabled: #{sys.$si-sys-color-background-1};
+  --ix-date-picker-day--background--range-hover: #{sys.$si-sys-color-background-accent-secondary-hover};
+  --ix-date-picker-day--background--selected: #{sys.$si-sys-color-background-accent};
+  --ix-date-picker-day--background--selected-active: #{sys.$si-sys-color-background-accent-active};
+  --ix-date-picker-day--background--selected-disabled: #{sys.$si-sys-color-background-1};
+  --ix-date-picker-day--background--selected-hover: #{sys.$si-sys-color-background-accent-hover};
+  --ix-date-picker-day--color: #{sys.$si-sys-color-text-accent};
+  --ix-date-picker-day--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-date-picker-day--color--range: #{sys.$si-sys-color-text-primary};
+  --ix-date-picker-day--color--range-disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-date-picker-day--color--selected: #{sys.$si-sys-color-text-on-accent};
+  --ix-date-picker-day--color--selected-disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-date-picker-today--border-color: #{sys.$si-sys-color-border-accent};
+  --ix-date-picker-today--contrast-ring-color: #{sys.$si-sys-color-background-0};
+  --ix-date-picker-today--border-color--range-disabled: #{sys.$si-sys-color-background-1};
+  --ix-date-picker-weekday--color: #{sys.$si-sys-color-text-secondary};
+  --ix-date-picker-menu-item--color: #{sys.$si-sys-color-text-primary};
+  --ix-date-picker-list-item--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-date-picker-list-item--background--selected: #{sys.$si-sys-color-background-selected};
+}
+
+:host {
+  --ix-date-picker--max-width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  --ix-date-picker-selector--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-date-picker-arrow-year--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90};
+  --ix-date-picker-arrow-position--left: calc(
+    (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-30}
+  );
+  --ix-date-picker-arrow-position--top: calc(
+    50% - #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-date-picker-check-position--left: calc(
+    (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  --ix-date-picker-check-position--top: calc(
+    50% - #{sys.$si-sys-sizing-spacing-y-40}
+  );
+  --ix-date-picker-month-margin--margin-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  --ix-date-picker-grid--grid-template-columns: repeat(
+    7,
+    #{sys.$si-sys-sizing-size-90}
+  );
+  --ix-date-picker-grid--grid-template-rows: repeat(
+    7,
+    #{sys.$si-sys-sizing-size-90}
+  );
+  --ix-date-picker-grid--week-number-columns: #{sys.$si-sys-sizing-size-70} repeat(7, #{sys.$si-sys-sizing-size-90});
+  --ix-date-picker-calendar-item--width: #{sys.$si-sys-sizing-size-90};
+  --ix-date-picker-calendar-item--height: #{sys.$si-sys-sizing-size-90};
+  --ix-date-picker-week-number--width: #{sys.$si-sys-sizing-size-70};
+  --ix-date-picker-button--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-date-picker-first-of-type--padding-bottom: #{sys.$si-sys-sizing-spacing-y-120};
+  --ix-date-picker-last-of-type--padding-top: #{sys.$si-sys-sizing-spacing-y-120};
+  --ix-date-picker-year-selector--button-padding: 0 #{sys.$si-sys-sizing-spacing-x-20};
 }
