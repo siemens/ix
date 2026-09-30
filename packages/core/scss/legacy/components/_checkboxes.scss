@@ -15,7 +15,7 @@
   // default size-60 so they retain default geometry and scale with density.
   $checkmark-width: calc(#{$size} * 0.32);
   $checkmark-height: calc(#{$size} * 0.208);
-  $checkmark-margin-top: calc(#{$size} * 0.42);
+  $checkmark-margin-top: calc(#{$size} * 0.3);
   $checkmark-margin-horizontal: calc(#{$size} * 0.336);
   $checkmark-margin-bottom: calc(#{$size} * 0.15);
 
@@ -33,6 +33,7 @@
   .ix-form-control[type='checkbox']:checked + label {
     position: relative;
     display: inline-flex;
+    align-items: flex-start;
     user-select: none;
     color: #{sys.$si-sys-color-text-primary};
     min-height: #{sys.$si-sys-sizing-size-70};
@@ -52,7 +53,6 @@
     max-height: $size;
     float: left;
     margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-    margin-top: calc(#{sys.$si-sys-sizing-size-10} / 2);
     transform: translateY(calc((1lh - #{$size}) / 2));
 
     background-repeat: no-repeat;
