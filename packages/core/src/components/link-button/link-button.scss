@@ -15,8 +15,6 @@
 :host {
   display: inline-flex;
   height: var(--ix-link-button--height);
-  font-size: vars.$font-size-default;
-  font-weight: vars.$font-weight-normal;
   min-width: var(--ix-link-button--min-width);
 
   .link-button {
