@@ -289,15 +289,12 @@ function shouldExcludeFromFocusTrap(
 
 /** CSS-hidden controls can match the focusable query but are not in tab order. */
 function isHiddenFromTabOrder(element: HTMLElement): boolean {
-  if (
-    typeof element.checkVisibility === 'function' &&
-    !element.checkVisibility()
-  ) {
+  if (getComputedStyle(element).visibility === 'hidden') {
     return true;
   }
 
-  if (getComputedStyle(element).visibility === 'hidden') {
-    return true;
+  if (typeof element.checkVisibility === 'function') {
+    return !element.checkVisibility();
   }
 
   let current: Element | null = element;
