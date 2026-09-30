@@ -64,6 +64,8 @@
       }
 
       .column-separator {
+        @include fonts.typography-body-paragraph;
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -85,8 +87,6 @@
       }
 
       .element-container {
-        @include fonts.typography-body;
-
         box-sizing: border-box;
         width: var(--ix-time-picker-element-container--width);
         height: var(--ix-time-picker-element-container--height);
