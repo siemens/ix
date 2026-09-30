@@ -109,8 +109,6 @@ export const UsernameWrapping: Story = {
       throw new Error('Unable to find the avatar comparison');
     }
 
-    await Promise.all(avatars.map((avatar) => avatar.componentOnReady()));
-
     const dropdowns = avatars.flatMap((avatar) => {
       const dropdown =
         avatar.shadowRoot?.querySelector<HTMLIxDropdownElement>('ix-dropdown');
