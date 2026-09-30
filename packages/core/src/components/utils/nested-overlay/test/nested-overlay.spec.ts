@@ -87,6 +87,74 @@ describe('NestedOverlayRegistry', () => {
     };
   }
 
+  it.each([0, 1, 2])(
+    'rejects cycles with %i existing descendant links',
+    (linkCount) => {
+      const { registry } = createRegistry();
+
+      for (let index = 0; index < linkCount; index++) {
+        registry.setChildIds(`overlay-${index}`, [`overlay-${index + 1}`]);
+      }
+
+      const parentId = `overlay-${linkCount}`;
+      expect(() => registry.setChildIds(parentId, ['overlay-0'])).toThrow(
+        `Cannot assign children to overlay "${parentId}": cyclic hierarchy.`
+      );
+      expect(registry.getChildIds(parentId)).toEqual([]);
+    }
+  );
+
+  it('preserves existing children when rejecting a cyclic assignment', () => {
+    const { registry } = createRegistry();
+    registry.setChildIds('parent', ['child']);
+    registry.setChildIds('child', ['grandchild']);
+    registry.setChildIds('grandchild', ['leaf']);
+
+    expect(() =>
+      registry.setChildIds('grandchild', ['sibling', 'parent'])
+    ).toThrow(/cyclic hierarchy/);
+    expect(registry.getChildIds('grandchild')).toEqual(['leaf']);
+    expect(registry.buildPathIncluding('leaf')).toEqual(
+      new Set(['grandchild', 'child', 'parent', 'leaf'])
+    );
+  });
+
+  it('allows valid nesting and replacement of children', () => {
+    const { registry } = createRegistry();
+    registry.setChildIds('parent', ['child', 'sibling']);
+    registry.setChildIds('child', ['grandchild']);
+    registry.setChildIds('parent', ['child', 'replacement']);
+
+    expect(registry.getChildIds('parent')).toEqual(['child', 'replacement']);
+    expect(registry.getParentId('grandchild')).toBe('child');
+    expect(registry.getParentId('sibling')).toBeUndefined();
+    expect(registry.buildPathIncluding('grandchild')).toEqual(
+      new Set(['child', 'parent', 'grandchild'])
+    );
+
+    registry.setChildIds('parent', []);
+    expect(registry.getParentId('child')).toBeUndefined();
+  });
+
+  it('copies assigned child IDs to prevent unchecked mutations', () => {
+    const { registry } = createRegistry();
+    const childIds = ['child'];
+    registry.setChildIds('parent', childIds);
+
+    childIds.push('parent');
+
+    expect(registry.getChildIds('parent')).toEqual(['child']);
+  });
+
+  it('copies returned child IDs to prevent unchecked mutations', () => {
+    const { registry } = createRegistry();
+    registry.setChildIds('parent', ['child']);
+
+    registry.getChildIds('parent').push('parent');
+
+    expect(registry.getChildIds('parent')).toEqual(['child']);
+  });
+
   it('dismissOthers skips instances on the active hierarchy path', () => {
     const { registry, dismissSpy } = createRegistry();
     const parent = instance('parent');

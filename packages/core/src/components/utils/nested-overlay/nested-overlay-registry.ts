@@ -56,7 +56,25 @@ export class NestedOverlayRegistry<T extends OverlayInstanceBase> {
   }
 
   setChildIds(parentId: string, childIds: string[]): void {
-    this.childIdsByParent[parentId] = childIds;
+    const pendingIds = [...childIds];
+    const visitedIds = new Set<string>();
+
+    for (const childId of pendingIds) {
+      if (childId === parentId) {
+        throw new Error(
+          `Cannot assign children to overlay "${parentId}": cyclic hierarchy.`
+        );
+      }
+
+      if (visitedIds.has(childId)) {
+        continue;
+      }
+
+      visitedIds.add(childId);
+      pendingIds.push(...this.getChildIds(childId));
+    }
+
+    this.childIdsByParent[parentId] = [...childIds];
   }
 
   deleteChildIdsEntry(parentId: string): void {
@@ -64,7 +82,7 @@ export class NestedOverlayRegistry<T extends OverlayInstanceBase> {
   }
 
   getChildIds(parentId: string): string[] {
-    return this.childIdsByParent[parentId] || [];
+    return [...(this.childIdsByParent[parentId] || [])];
   }
 
   getParentId(childId: string): string | undefined {
