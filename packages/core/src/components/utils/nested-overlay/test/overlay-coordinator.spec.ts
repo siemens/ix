@@ -166,6 +166,59 @@ describe('OverlayCoordinator', () => {
     ).toEqual([submenuHost, dropdownHost]);
   });
 
+  it.each([2, 3])(
+    'terminates traversals for trigger containment cycles of %i overlays',
+    (overlayCount) => {
+      const coordinator = createCoordinator();
+      const unrelatedHost = document.createElement('div');
+      const unrelated = createOverlay('dropdown:unrelated', {
+        kind: 'dropdown',
+        hostElement: unrelatedHost,
+      });
+      document.body.append(unrelatedHost);
+      coordinator.connect(unrelated.entry);
+      coordinator.presented(unrelated.entry.key);
+
+      const hosts = Array.from({ length: overlayCount }, () =>
+        document.createElement('div')
+      );
+      const triggers = hosts.map((host) => {
+        const trigger = document.createElement('button');
+        host.append(trigger);
+        return trigger;
+      });
+      document.body.append(...hosts);
+
+      const overlays = hosts.map((host, index) => {
+        const overlay = createOverlay(`dropdown:cycle-${index}`, {
+          kind: 'dropdown',
+          hostElement: host,
+          triggerElement: triggers[(index + 1) % overlayCount],
+        });
+        coordinator.connect(overlay.entry);
+        coordinator.presented(overlay.entry.key);
+        return overlay;
+      });
+
+      expect(
+        coordinator.getFocusTrapExcludedHosts(unrelatedHost, unrelatedHost)
+      ).toEqual([]);
+      expect(
+        coordinator.isTopmostInHierarchy(unrelated.entry.key, 'dropdown')
+      ).toBe(false);
+      expect(
+        coordinator.pathIncludesDescendant(unrelated.entry.key, [hosts[0]])
+      ).toBe(false);
+
+      expect(
+        coordinator.getFocusTrapExcludedHosts(hosts[0], unrelatedHost)
+      ).toEqual([hosts[overlayCount - 1]]);
+      expect(
+        coordinator.isTopmostInHierarchy(overlays[0].entry.key, 'dropdown')
+      ).toBe(true);
+    }
+  );
+
   it('uses the nearest composed ancestor as the parent focus scope', () => {
     const coordinator = createCoordinator();
     const grandparentHost = document.createElement('div');

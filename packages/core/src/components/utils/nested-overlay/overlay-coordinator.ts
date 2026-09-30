@@ -144,9 +144,15 @@ export class OverlayCoordinator {
     }
 
     const excludedHosts: HTMLElement[] = [];
+    const visitedKeys = new Set<string>();
     let current: CoordinatedOverlay | undefined = topmost;
 
-    while (current && current.hostElement !== host) {
+    while (
+      current &&
+      current.hostElement !== host &&
+      !visitedKeys.has(current.key)
+    ) {
+      visitedKeys.add(current.key);
       excludedHosts.push(current.hostElement);
       const parentKey = this.getParentKey(current.key);
       current = parentKey ? this.entries.get(parentKey) : undefined;
@@ -274,9 +280,11 @@ export class OverlayCoordinator {
   }
 
   private isDescendantOf(childKey: string, parentKey: string) {
+    const visitedKeys = new Set<string>();
     let current = this.getParentKey(childKey);
 
-    while (current) {
+    while (current && !visitedKeys.has(current)) {
+      visitedKeys.add(current);
       if (current === parentKey) {
         return true;
       }
