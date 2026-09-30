@@ -212,19 +212,10 @@ $border-radius: 100px;
       color: var(--ix-badge-color-#{$variant});
     }
   }
-}
 
-/* Filled plate bang: black vs white. */
-:host([type='status-icon'].critical:not(.outline)) .status-icon-plate,
-:host([type='status-icon'].warning:not(.outline)) .status-icon-plate,
-:host([type='status-icon'].success:not(.outline)) .status-icon-plate {
-  color: #000000;
-}
-
-:host([type='status-icon'].alarm:not(.outline)) .status-icon-plate,
-:host([type='status-icon'].error:not(.outline)) .status-icon-plate,
-:host([type='status-icon'].info:not(.outline)) .status-icon-plate {
-  color: #ffffff;
+  :host([type='status-icon'].#{$variant}:not(.outline)) .status-icon-plate {
+    color: var(--ix-badge-color-#{$variant}-contrast);
+  }
 }
 
 /* Error uses alarm color tokens. */
@@ -234,6 +225,11 @@ $border-radius: 100px;
   .status-icon:not(.status-icon-plate) {
     color: var(--ix-badge-color-alarm);
   }
+
+}
+
+:host([type='status-icon'].error:not(.outline)) .status-icon-plate {
+  color: var(--ix-badge-color-alarm-contrast);
 }
 
 @each $variant in $predefined-variants {
