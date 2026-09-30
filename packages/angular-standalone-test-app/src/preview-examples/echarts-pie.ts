@@ -59,7 +59,7 @@ export default class EchartsPie implements OnDestroy, OnInit {
           data: this.data,
           label: {
             show: true,
-            color: getComputedCSSProperty('--si-sys-background-neutral'),
+            color: getComputedCSSProperty('--si-sys-color-background-neutral'),
           },
           emphasis: {
             itemStyle: {

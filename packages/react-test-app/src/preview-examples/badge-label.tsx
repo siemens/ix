@@ -12,9 +12,9 @@ import './badge-label.scoped.css';
 
 import { IxBadge } from '@siemens/ix-react';
 
-const CUSTOM_BACKGROUND = 'var(--si-sys-data-categorical-9)';
-const CUSTOM_COLOR = 'var(--si-sys-text-inverse)';
-const CUSTOM_OUTLINE_COLOR = 'var(--si-sys-text-primary)';
+const CUSTOM_BACKGROUND = 'var(--si-sys-color-data-categorical-9)';
+const CUSTOM_COLOR = 'var(--si-sys-color-text-inverse)';
+const CUSTOM_OUTLINE_COLOR = 'var(--si-sys-color-text-primary)';
 
 export default () => {
   return (

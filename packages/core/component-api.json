@@ -1031,7 +1031,9 @@
       "slots": [
         "default"
       ],
-      "cssParts": [],
+      "cssParts": [
+        "content"
+      ],
       "cssStates": []
     },
     {
@@ -5174,10 +5176,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5295,10 +5297,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"12\" | \"16\" | \"24\"",
+          "type": "\"12\" | \"16\" | \"20\" | \"24\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'24'",
+          "default": "'20'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5328,6 +5330,73 @@
       ],
       "cssProperties": [],
       "slots": [],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-info-page",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "copyText",
+          "attribute": "copy-text",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "iconWarning",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconColor",
+          "attribute": "icon-color",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'--si-sys-color-background-warning'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "instructions",
+          "attribute": "instructions",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "titleText",
+          "attribute": "title-text",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": false,
+          "required": true,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [
+        "actions",
+        "image"
+      ],
       "cssParts": [],
       "cssStates": []
     },
@@ -6500,6 +6569,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6567,6 +6647,17 @@
         {
           "name": "bottom",
           "attribute": "bottom",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -9198,10 +9289,10 @@
         {
           "name": "size",
           "attribute": "size",
-          "type": "\"large\" | \"medium\" | \"small\" | \"x-small\" | \"xx-small\"",
+          "type": "\"md\" | \"sm\" | \"xs\" | \"xxl\" | \"xxs\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'medium'",
+          "default": "'md'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -11199,7 +11290,7 @@
         {
           "name": "format",
           "attribute": "format",
-          "type": "\"body\" | \"body-lg\" | \"body-sm\" | \"body-xs\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-sm\" | \"display-xl\" | \"display-xs\" | \"display-xxl\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\" | undefined",
+          "type": "\"body\" | \"body-lg\" | \"body-lg-sbold\" | \"body-paragraph\" | \"body-paragraph-sbold\" | \"body-sbold\" | \"body-sm\" | \"body-sm-sbold\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-lg-sbold\" | \"display-sbold\" | \"display-xl\" | \"display-xl-sbold\" | \"display-xxl\" | \"display-xxl-sbold\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h5-bold\" | \"h6\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,

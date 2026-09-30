@@ -21,11 +21,15 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime, Info } from 'luxon';
+import {
+  formatWithLocale,
+  parseWithLocale,
+  toISOTime,
+} from '../utils/date-time-locale';
 import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
 import { closestPassShadow } from '../utils/shadow-dom';
-import { formatWithLocale, parseWithLocale } from '../utils/date-time-locale';
 import { buildTimePickerColumnNumberArrays } from './time-picker-column-values';
 import { computeTimeWithRawUnitValue } from './time-picker-compute-time';
 import {
@@ -40,7 +44,6 @@ import {
 } from './time-picker-display';
 import { isFormat12Hour, LUXON_FORMAT_PATTERNS } from './time-picker-format';
 import { isSelectableForUnitWithinBounds } from './time-picker-range';
-import { toISOTime } from '../utils/date-time-locale';
 import { findNextSelectableRingValue } from './time-picker-step-focus';
 import type {
   TimePickerCorners,
@@ -529,14 +532,16 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       if (active !== elementContainer) {
         elementContainer.focus({ preventScroll: true });
       }
-    }
 
-    if (!this.isElementVisible(elementContainer, elementList)) {
-      this.scrollElementIntoView(
-        elementContainer,
-        elementList,
-        this.focusScrollAlignment
-      );
+      // Only keyboard focus should scroll clipped cells. Mouse focus must not,
+      // or mousedown scrolls the cell away before mouseup and the click is lost.
+      if (!this.isElementVisible(elementContainer, elementList)) {
+        this.scrollElementIntoView(
+          elementContainer,
+          elementList,
+          this.focusScrollAlignment
+        );
+      }
     }
   }
 

@@ -18,29 +18,29 @@ const scrollbarOverwrite = `
 
   /* width */
   ::-webkit-scrollbar {
-    width: $small-space;
-    height: $small-space;
+    width: var(--si-sys-sizing-spacing-x-40);
+    height: var(--si-sys-sizing-spacing-y-40);
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 5px;
-    background: var(--si-sys-background-1);
+    background: var(--si-sys-color-background-1);
   }
 
   ::-webkit-scrollbar-track:hover {
-    background: var(--si-sys-background-1);
+    background: var(--si-sys-color-background-1);
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: var(--si-sys-border-4);
+    background: var(--si-sys-color-border-4);
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--si-sys-border-2);
+    background: var(--si-sys-color-border-2);
   }
 
   ::-webkit-scrollbar-corner {

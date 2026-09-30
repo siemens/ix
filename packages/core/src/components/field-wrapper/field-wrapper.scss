@@ -1,5 +1,7 @@
 @use './field-wrapper.mixins.scss';
+@use 'tokens/system' as sys;
 
+@use './field-wrapper.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -10,7 +12,7 @@
     position: relative;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.25rem;
+    gap: var(--ix-field-wrapper-slot-wrapper--gap);
   }
 
   .field-bottom,
@@ -19,20 +21,20 @@
     flex-direction: row;
     position: relative;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--ix-field-wrapper-field-top--gap);
     width: 100%;
     min-width: 100%;
   }
 
   .field-bottom .bottom-right {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   @include field-wrapper.helper-text;
 
   .bottom-text {
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-top: var(--ix-field-wrapper-bottom-text--margin-top);
+    margin-bottom: var(--ix-field-wrapper-bottom-text--margin-bottom);
   }
 }

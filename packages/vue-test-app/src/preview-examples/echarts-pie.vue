@@ -62,7 +62,7 @@ function getOptions(): EChartsOption {
         data: data,
         label: {
           show: true,
-          color: getComputedCSSProperty('--si-sys-background-neutral'),
+          color: getComputedCSSProperty('--si-sys-color-background-neutral'),
         },
         emphasis: {
           itemStyle: {

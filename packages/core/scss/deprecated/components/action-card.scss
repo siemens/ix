@@ -16,24 +16,24 @@
   --theme-action-card--border-radius: var(--theme-default-border-radius);
   --theme-action-card--border-width: var(--theme-border-width-default);
   --theme-action-card--focus--outline-offset: var(--theme-focus-outline-offset);
-  --theme-action-card-alarm--background: var(--si-sys-background-danger);
+  --theme-action-card-alarm--background: var(--si-sys-color-background-danger);
   --theme-action-card-alarm--background--active: var(
-    --si-sys-background-danger-active
+    --si-sys-color-background-danger-active
   );
   --theme-action-card-alarm--background--hover: var(
-    --si-sys-background-danger-hover
+    --si-sys-color-background-danger-hover
   );
   --theme-action-card-alarm--background--selected: var(
-    --si-sys-background-danger
+    --si-sys-color-background-danger
   );
   --theme-action-card-alarm--border-color: rgba(0, 0, 0, 0);
   --theme-action-card-alarm--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-alarm--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-alarm--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
-  --theme-action-card-alarm--color: var(--si-sys-text-on-danger);
-  --theme-action-card-alarm-subtext--color: var(--si-sys-text-on-danger);
+  --theme-action-card-alarm--color: var(--si-sys-color-text-on-danger);
+  --theme-action-card-alarm-subtext--color: var(--si-sys-color-text-on-danger);
   --theme-action-card-critical--background: var(--theme-color-critical);
   --theme-action-card-critical--background--active: var(
     --theme-color-critical--active
@@ -48,46 +48,52 @@
   --theme-action-card-critical--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-critical--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-critical--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
   --theme-action-card-critical--color: var(--theme-color-critical--contrast);
   --theme-action-card-critical-subtext--color: var(
     --theme-color-critical--contrast
   );
-  --theme-action-card-filled--background: var(--si-sys-background-1);
+  --theme-action-card-filled--background: var(--si-sys-color-background-1);
   --theme-action-card-filled--background--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
-  --theme-action-card-filled--background--hover: var(--si-sys-background-hover);
+  --theme-action-card-filled--background--hover: var(
+    --si-sys-color-background-hover
+  );
   --theme-action-card-filled--background--selected: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
   --theme-action-card-filled--border-color: var(--theme-color-0);
   --theme-action-card-filled--border-color--active: var(--theme-color-0);
   --theme-action-card-filled--border-color--hover: var(--theme-color-0);
   --theme-action-card-filled--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
-  --theme-action-card-filled--color: var(--si-sys-text-primary);
-  --theme-action-card-filled-subtext--color: var(--si-sys-text-secondary);
-  --theme-action-card-info--background: var(--si-sys-background-information);
+  --theme-action-card-filled--color: var(--si-sys-color-text-primary);
+  --theme-action-card-filled-subtext--color: var(--si-sys-color-text-secondary);
+  --theme-action-card-info--background: var(
+    --si-sys-color-background-information
+  );
   --theme-action-card-info--background--active: var(
-    --si-sys-background-information-active
+    --si-sys-color-background-information-active
   );
   --theme-action-card-info--background--hover: var(
-    --si-sys-background-information-hover
+    --si-sys-color-background-information-hover
   );
   --theme-action-card-info--background--selected: var(
-    --si-sys-background-information
+    --si-sys-color-background-information
   );
   --theme-action-card-info--border-color: rgba(0, 0, 0, 0);
   --theme-action-card-info--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-info--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-info--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
-  --theme-action-card-info--color: var(--si-sys-text-on-information);
-  --theme-action-card-info-subtext--color: var(--si-sys-text-on-information);
+  --theme-action-card-info--color: var(--si-sys-color-text-on-information);
+  --theme-action-card-info-subtext--color: var(
+    --si-sys-color-text-on-information
+  );
   --theme-action-card-neutral--background: var(--theme-color-neutral);
   --theme-action-card-neutral--background--active: var(
     --theme-color-neutral--active
@@ -100,7 +106,7 @@
   --theme-action-card-neutral--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-neutral--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-neutral--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
   --theme-action-card-neutral--color: var(--theme-color-neutral--contrast);
   --theme-action-card-neutral-subtext--color: var(
@@ -108,56 +114,68 @@
   );
   --theme-action-card-outline--background: rgba(0, 0, 0, 0);
   --theme-action-card-outline--background--active: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
   --theme-action-card-outline--background--hover: var(
-    --si-sys-background-hover
+    --si-sys-color-background-hover
   );
   --theme-action-card-outline--background--selected: var(
-    --si-sys-background-active
+    --si-sys-color-background-active
   );
-  --theme-action-card-outline--border-color: var(--si-sys-border-3);
-  --theme-action-card-outline--border-color--active: var(--si-sys-border-3);
-  --theme-action-card-outline--border-color--hover: var(--si-sys-border-3);
+  --theme-action-card-outline--border-color: var(--si-sys-color-border-3);
+  --theme-action-card-outline--border-color--active: var(
+    --si-sys-color-border-3
+  );
+  --theme-action-card-outline--border-color--hover: var(
+    --si-sys-color-border-3
+  );
   --theme-action-card-outline--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
-  --theme-action-card-outline-subtext--color: var(--si-sys-text-secondary);
-  --theme-action-card-primary--background: var(--si-sys-background-accent);
+  --theme-action-card-outline-subtext--color: var(
+    --si-sys-color-text-secondary
+  );
+  --theme-action-card-primary--background: var(
+    --si-sys-color-background-accent
+  );
   --theme-action-card-primary--background--active: var(
-    --si-sys-background-accent-active
+    --si-sys-color-background-accent-active
   );
   --theme-action-card-primary--background--hover: var(
-    --si-sys-background-accent-hover
+    --si-sys-color-background-accent-hover
   );
   --theme-action-card-primary--background--selected: var(
-    --si-sys-background-accent
+    --si-sys-color-background-accent
   );
   --theme-action-card-primary--border-color: rgba(0, 0, 0, 0);
   --theme-action-card-primary--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-primary--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-primary--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
-  --theme-action-card-primary--color: var(--si-sys-text-on-accent);
-  --theme-action-card-primary-subtext--color: var(--si-sys-text-on-accent);
-  --theme-action-card-success--background: var(--si-sys-background-success);
+  --theme-action-card-primary--color: var(--si-sys-color-text-on-accent);
+  --theme-action-card-primary-subtext--color: var(
+    --si-sys-color-text-on-accent
+  );
+  --theme-action-card-success--background: var(
+    --si-sys-color-background-success
+  );
   --theme-action-card-success--background--active: var(
-    --si-sys-background-success-active
+    --si-sys-color-background-success-active
   );
   --theme-action-card-success--background--hover: var(
-    --si-sys-background-success-hover
+    --si-sys-color-background-success-hover
   );
   --theme-action-card-success--background--selected: var(
-    --si-sys-background-success
+    --si-sys-color-background-success
   );
   --theme-action-card-success--border-color: rgba(0, 0, 0, 0);
   --theme-action-card-success--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-success--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-success--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
-  --theme-action-card-success--color: var(--si-sys-text-on-success);
+  --theme-action-card-success--color: var(--si-sys-color-text-on-success);
   --theme-action-card-warning--background: var(--theme-color-warning);
   --theme-action-card-warning--background--active: var(
     --theme-color-warning--active
@@ -170,7 +188,7 @@
   --theme-action-card-warning--border-color--active: rgba(0, 0, 0, 0);
   --theme-action-card-warning--border-color--hover: rgba(0, 0, 0, 0);
   --theme-action-card-warning--border-color--selected: var(
-    --si-sys-border-accent-hover
+    --si-sys-color-border-accent-hover
   );
   --theme-action-card-warning--color: var(--theme-color-warning--contrast);
   --theme-action-card-warning-subtext--color: var(
