@@ -108,13 +108,10 @@ export class Menu {
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
     this.setPinned(this.pinned);
-    if (newPinned) {
-      applicationLayoutService.disableBreakpointDetection();
-      applicationLayoutService.setBreakpoint('lg');
-      return;
-    }
 
-    applicationLayoutService.enableBreakpointDetection();
+    if (!newPinned) {
+      this.onBreakpointChange(applicationLayoutService.breakpoint);
+    }
   }
 
   /**
@@ -414,6 +411,11 @@ export class Menu {
   }
 
   private onBreakpointChange(mode: Breakpoint, initial = false) {
+    if (this.pinned) {
+      this.setPinned(true);
+      return;
+    }
+
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }

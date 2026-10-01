@@ -8,7 +8,19 @@
  */
 import { expect, Locator, Page } from '@playwright/test';
 import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
+
+async function expectPaneIsMobile(page: Page, isMobile: boolean) {
+  const pane = page.locator('ix-pane').first();
+  await expect
+    .poll(async () =>
+      pane.evaluate((el: HTMLIxPaneElement) => ({
+        isMobile: el.isMobile,
+        mobilePane: !!el.shadowRoot?.querySelector('.mobile-pane'),
+      }))
+    )
+    .toEqual({ isMobile, mobilePane: isMobile });
+}
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -115,6 +127,86 @@ regressionTest(
     await expect(menu).toHaveClass(/expanded/);
   }
 );
+
+regressionTest.describe('pinned menu keeps layout bus for pane', () => {
+  const pinnedMenuWithPane = `
+    <ix-application>
+      <ix-menu pinned>
+        <ix-menu-item>Item</ix-menu-item>
+      </ix-menu>
+      <ix-pane-layout variant="inline" layout="full-vertical">
+        <ix-pane slot="right" heading="Change log" size="320px" expanded>
+          <p>Change log content</p>
+        </ix-pane>
+        <div slot="content">Main content</div>
+      </ix-pane-layout>
+    </ix-application>
+  `;
+
+  regressionTest(
+    'pinned menu still allows pane to enter mobile on shrink',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(pinnedMenuWithPane);
+
+      const menu = page.locator('ix-menu');
+      const pane = page.locator('ix-pane');
+      await expect(menu).toHaveClass(/hydrated/);
+      await expect(pane).toHaveClass(/hydrated/);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, true);
+
+      await expect
+        .poll(async () =>
+          menu.evaluate((el: HTMLIxMenuElement) => el.pinned)
+        )
+        .toBe(true);
+    }
+  );
+
+  regressionTest(
+    'new pane leaves mobile after maximize when menu is pinned',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(pinnedMenuWithPane);
+
+      const menu = page.locator('ix-menu');
+      await expect(menu).toHaveClass(/hydrated/);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+
+      await page.evaluate(() => {
+        const layout = document.querySelector('ix-pane-layout');
+        const previous = layout?.querySelector('ix-pane[slot="right"]');
+        previous?.remove();
+
+        const next = document.createElement('ix-pane');
+        next.setAttribute('slot', 'right');
+        next.setAttribute('heading', 'Change log');
+        next.setAttribute('size', '320px');
+        (next as HTMLIxPaneElement).expanded = true;
+        next.innerHTML = '<p>Load feeder change log</p>';
+        layout?.appendChild(next);
+      });
+
+      const pane = page.locator('ix-pane');
+      await expect(pane).toHaveClass(/hydrated/);
+      await expectPaneIsMobile(page, true);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+
+      await expect
+        .poll(async () =>
+          menu.evaluate((el: HTMLIxMenuElement) => el.pinned)
+        )
+        .toBe(true);
+    }
+  );
+});
 
 regressionTest('should not open settings', async ({ mount, page }) => {
   await mount(`
