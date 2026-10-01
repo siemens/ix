@@ -328,6 +328,9 @@ export class Dropdown
   }
 
   getAssignedSubmenuIds() {
+    this.assignedSubmenu = this.assignedSubmenu.filter(
+      (id) => dropdownController.getDropdownById(id) !== undefined
+    );
     return this.assignedSubmenu;
   }
 
@@ -959,8 +962,13 @@ export class Dropdown
     let parentId = dropdownController.getParentDropdownId(this.getId());
 
     while (parentId) {
-      const parent = dropdownController.getDropdownById(parentId) as Dropdown;
-      hierarchy.push(parent);
+      const parent = dropdownController.getDropdownById(parentId);
+
+      if (!parent) {
+        break;
+      }
+
+      hierarchy.push(parent as Dropdown);
       parentId = dropdownController.getParentDropdownId(parent.getId());
     }
 

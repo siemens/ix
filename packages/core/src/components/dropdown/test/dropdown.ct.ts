@@ -1220,6 +1220,61 @@ regressionTest.describe('A11y', () => {
     }
   );
 
+  regressionTest(
+    'opens a replacement submenu after the original submenu is removed',
+    async ({ mount, page }) => {
+      const errors: Error[] = [];
+      page.on('pageerror', (error) => errors.push(error));
+      await mount(`
+        <ix-button id="trigger">Open</ix-button>
+        <ix-dropdown id="parent-dropdown" trigger="trigger" navigation-mode="roving-tabindex">
+          <ix-dropdown-item id="submenu-trigger" label="Submenu"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-dropdown id="original-submenu" trigger="submenu-trigger" navigation-mode="roving-tabindex">
+          <ix-dropdown-item label="Original"></ix-dropdown-item>
+        </ix-dropdown>
+        <button id="after">After</button>
+      `);
+
+      await expect(page.locator('#parent-dropdown')).toHaveClass(
+        /\bhydrated\b/
+      );
+      await expect(page.locator('#original-submenu')).toHaveClass(
+        /\bhydrated\b/
+      );
+      await expect(page.locator('#submenu-trigger')).toHaveAttribute(
+        'data-ix-dropdown-trigger'
+      );
+      await page.locator('#original-submenu').evaluate((element) => {
+        element.remove();
+        const replacement = document.createElement('ix-dropdown');
+        replacement.id = 'replacement-submenu';
+        replacement.trigger = 'submenu-trigger';
+        replacement.navigationMode = 'roving-tabindex';
+        const item = document.createElement('ix-dropdown-item');
+        item.label = 'Replacement';
+        replacement.appendChild(item);
+        document.body.appendChild(replacement);
+      });
+      const replacement = page.locator('#replacement-submenu');
+      await expect(replacement).toHaveClass(/\bhydrated\b/);
+
+      await page.locator('#trigger').focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(page.locator('#submenu-trigger')).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect(replacement.locator('ix-dropdown-item')).toBeFocused();
+      await page.keyboard.press('Tab');
+
+      await expect(page.locator('#parent-dropdown')).not.toHaveClass(
+        /\bshow\b/
+      );
+      await expect(replacement).not.toHaveClass(/\bshow\b/);
+      await expect(page.locator('#after')).toBeFocused();
+      expect(errors).toEqual([]);
+    }
+  );
+
   regressionTest.describe('Roving tabindex with native elements', () => {
     regressionTest.beforeEach(async ({ mount, page }) => {
       await mount(`
