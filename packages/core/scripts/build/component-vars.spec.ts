@@ -6,18 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { readRemovedComponentTokens } from './removed-component-tokens';
 
 const componentsRoot = path.resolve('src/components');
 const scssRoot = path.resolve('scss');
-const deprecatedRoot = path.resolve('scss/deprecated');
 const repositoryRoot = path.resolve('../..');
 const customPropertyDeclarationPattern = /(--ix-[a-z0-9-]+)\s*:/g;
 const customPropertyReferencePattern = /--ix-[a-z0-9-]+/g;
 const customPropertyVariablePattern = /var\(\s*(--ix-[a-z0-9-]+)\s*([,)])/g;
-const themeCustomPropertyDeclarationPattern = /(--theme-[a-z0-9-]+)\s*:/g;
 const themeCustomPropertyReferencePattern = /--theme-[a-z0-9-]+/g;
 const directSystemTokenPattern = /var\(\s*(--si-sys-[^)]+)\)/g;
 const legacyColorTokenReferencePattern =
@@ -62,6 +62,7 @@ const sourceFiles = [componentsRoot, scssRoot].flatMap((sourceRoot) =>
   ['.scss', '.ts', '.tsx'].flatMap((suffix) => findFiles(sourceRoot, suffix))
 );
 const repositorySourceFiles = findRepositorySourceFiles(repositoryRoot);
+const removedComponentTokens = readRemovedComponentTokens();
 
 function findFiles(directory: string, suffix: string): string[] {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -325,34 +326,55 @@ describe('component CSS custom properties', () => {
     expect(unresolvedReferences).toEqual([]);
   });
 
-  it('keeps deprecated component aliases isolated', () => {
-    const deprecatedDeclarations = new Set(
-      findFiles(deprecatedRoot, '.scss').flatMap((sourcePath) =>
-        [
-          ...fs
-            .readFileSync(sourcePath, 'utf8')
-            .matchAll(themeCustomPropertyDeclarationPattern),
-        ].map((match) => match[1])
+  it('documents every removed component alias once', () => {
+    const names = removedComponentTokens.map((token) => token.name);
+
+    expect(names).toHaveLength(1557);
+    expect(new Set(names).size).toBe(names.length);
+    // Fingerprint of the original v5 component-token names.
+    expect(
+      createHash('sha256').update(names.sort().join('\n')).digest('hex')
+    ).toBe('56386bb216e84fb2a874529c6ad18da16cc37867e0b52bc6175d1ddaf30a9073');
+  });
+
+  it('documents existing system tokens or no replacement', () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.resolve('tokens/manifest.json'), 'utf8')
+    ) as {
+      entries: { name: string }[];
+    };
+    const systemTokens = new Set(manifest.entries.map((entry) => entry.name));
+    const invalidReplacements = removedComponentTokens
+      .filter(
+        (token) =>
+          token.replacement !== 'no replacement' &&
+          !systemTokens.has(token.replacement)
       )
+      .map((token) => `${token.name}: ${token.replacement}`);
+
+    expect(invalidReplacements).toEqual([]);
+  });
+
+  it('does not consume removed component aliases', () => {
+    const removedDeclarations = new Set(
+      removedComponentTokens.map((token) => token.name)
     );
-    const violations = repositorySourceFiles
-      .filter((sourcePath) => !sourcePath.startsWith(deprecatedRoot))
-      .flatMap((sourcePath) => {
-        const references = [
-          ...fs
-            .readFileSync(sourcePath, 'utf8')
-            .matchAll(themeCustomPropertyReferencePattern),
-        ].map((match) => match[0]);
+    const violations = repositorySourceFiles.flatMap((sourcePath) => {
+      const references = [
+        ...fs
+          .readFileSync(sourcePath, 'utf8')
+          .matchAll(themeCustomPropertyReferencePattern),
+      ].map((match) => match[0]);
 
-        return [...new Set(references)]
-          .filter((reference) => deprecatedDeclarations.has(reference))
-          .map(
-            (reference) =>
-              `${path.relative(process.cwd(), sourcePath)}: ${reference}`
-          );
-      });
+      return [...new Set(references)]
+        .filter((reference) => removedDeclarations.has(reference))
+        .map(
+          (reference) =>
+            `${path.relative(process.cwd(), sourcePath)}: ${reference}`
+        );
+    });
 
-    expect(deprecatedDeclarations.size).toBeGreaterThan(0);
+    expect(removedDeclarations.size).toBe(1557);
     expect(violations).toEqual([]);
   });
 });

@@ -142,10 +142,12 @@ describe('public style exports', () => {
       './scss/tokens/system',
       './scss/tokens/legacy',
       './scss/misc/common-variables',
-      './scss/deprecated/components',
     ];
 
     expect(Object.keys(packageJson.exports)).not.toContain('./scss/*');
+    expect(Object.keys(packageJson.exports)).not.toContain(
+      './scss/deprecated/components'
+    );
     expect(Object.keys(packageJson.exports)).toEqual(
       expect.arrayContaining(expectedExports)
     );
@@ -156,6 +158,15 @@ describe('public style exports', () => {
       expect(typeof exportPath).toBe('string');
       expect(fs.existsSync(path.resolve(exportPath as string))).toBe(true);
     }
+  });
+
+  it('does not ship the removed deprecated component Sass layer', () => {
+    expect(
+      fs.existsSync(path.join(scssRoot, 'deprecated/_components.scss'))
+    ).toBe(false);
+    expect(fs.existsSync(path.join(scssRoot, 'deprecated/components'))).toBe(
+      false
+    );
   });
 
   it('compiles every Sass export without repository load paths', () => {

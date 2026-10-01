@@ -10,10 +10,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { compile, compileString } from 'sass';
 import { describe, expect, it } from 'vitest';
+import { readRemovedComponentTokens } from './removed-component-tokens';
 
 const themeRoot = path.resolve('scss/theme/classic');
 const scssRoot = path.resolve('scss');
-const deprecatedComponentsRoot = path.resolve('scss/deprecated/components');
 
 const referenceUsagePattern = /var\((--si-ref-[a-zA-Z0-9-]+)\)/g;
 const referenceDeclarationPattern = /^\s*(--si-ref-[a-zA-Z0-9-]+):/gm;
@@ -23,28 +23,14 @@ const obsoleteSystemColorPattern =
   /--si-sys-(background|border|text|effects|data|code)-/;
 const legacySiemensPrefixPattern = /--theme-si-(?:ref|sys)-/;
 
-function findFiles(directory: string, suffix: string): string[] {
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const entryPath = path.join(directory, entry.name);
-
-    return entry.isDirectory()
-      ? findFiles(entryPath, suffix)
-      : entryPath.endsWith(suffix)
-      ? [entryPath]
-      : [];
-  });
-}
-
 function getThemeDeclarations(source: string) {
   return new Set(
     [...source.matchAll(themeDeclarationPattern)].map((match) => match[1])
   );
 }
 
-const deprecatedComponentDeclarations = new Set(
-  findFiles(deprecatedComponentsRoot, '.scss').flatMap((sourcePath) => [
-    ...getThemeDeclarations(fs.readFileSync(sourcePath, 'utf8')),
-  ])
+const removedComponentDeclarations = new Set(
+  readRemovedComponentTokens().map((token) => token.name)
 );
 
 describe('classic theme CSS', () => {
@@ -106,36 +92,31 @@ describe('classic theme CSS', () => {
     expect(css).toContain('@media (prefers-color-scheme: light)');
   });
 
-  it('does not emit deprecated component aliases in foundation CSS', () => {
-    const css = compile(path.join(scssRoot, 'ix-foundation.scss'), {
+  it.each([
+    'ix-foundation.scss',
+    'ix.scss',
+    'ix-globals.scss',
+    'ix-legacy.scss',
+    'ix-utilities.scss',
+  ])('does not emit removed component aliases in %s', (entry) => {
+    const css = compile(path.join(scssRoot, entry), {
       loadPaths: [scssRoot],
     }).css;
     const emittedDeclarations = getThemeDeclarations(css);
-    const deprecatedDeclarations = [...deprecatedComponentDeclarations].filter(
+    const removedDeclarations = [...removedComponentDeclarations].filter(
       (declaration) => emittedDeclarations.has(declaration)
     );
 
-    expect(deprecatedComponentDeclarations.size).toBeGreaterThan(0);
-    expect(deprecatedDeclarations).toEqual([]);
+    expect(removedComponentDeclarations.size).toBe(1557);
+    expect(removedDeclarations).toEqual([]);
   });
 
-  it('emits deprecated component aliases through the opt-in Sass mixin', () => {
-    const css = compileString(
-      [
-        "@use 'deprecated/components' as deprecated;",
-        '[data-ix-theme] {',
-        '  @include deprecated.setComponentVars;',
-        '}',
-      ].join('\n'),
-      {
+  it('rejects imports of the removed deprecated component mixin', () => {
+    expect(() =>
+      compileString("@use 'deprecated/components';", {
         loadPaths: [scssRoot],
-      }
-    ).css;
-
-    expect([...getThemeDeclarations(css)].sort()).toEqual(
-      [...deprecatedComponentDeclarations].sort()
-    );
-    expect(css).not.toMatch(obsoleteSystemColorPattern);
+      })
+    ).toThrow("Can't find stylesheet to import.");
   });
 });
 
