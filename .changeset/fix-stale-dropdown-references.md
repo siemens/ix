@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-Prevent errors during Tab navigation when a parent dropdown is missing, and allow dynamically replaced submenus to open.
+Fix an issue where replacing a submenu in `ix-dropdown` prevented the new submenu from opening.
