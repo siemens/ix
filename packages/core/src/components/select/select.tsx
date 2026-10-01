@@ -286,10 +286,6 @@ export class Select
   @State() isInfo = false;
   @State() isWarning = false;
 
-  private formSubmissionAttempted = false;
-  private formSubmitHandler?: (event: Event) => void;
-  private associatedForm: HTMLFormElement | null = null;
-
   private readonly hostId = `ix-select-${selectId++}`;
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchorRef = makeRef<HTMLElement>();
@@ -309,14 +305,6 @@ export class Select
   private proxyListObserver: MutationObserver | null = null;
   private inputElement?: HTMLInputElement;
   private touched = false;
-
-  private get parentForm(): HTMLFormElement | null {
-    return this.hostElement.closest('form');
-  }
-
-  private isFormNoValidate(): boolean {
-    return this.parentForm?.noValidate ?? false;
-  }
 
   get nonShadowItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
@@ -379,31 +367,16 @@ export class Select
     this.syncValidationClasses();
   }
 
-  override connectedCallback(): void {
-    this.associatedForm = this.parentForm;
-    const form = this.associatedForm;
-    if (form) {
-      this.formSubmitHandler = (event: Event) => {
-        this.formSubmissionAttempted = true;
-        this.touched = true;
-        this.syncValidationClasses();
-        if (this.required && !this.hasValue()) {
-          event.preventDefault();
-          event.stopPropagation();
-          return false;
-        }
-      };
-      form.addEventListener('submit', this.formSubmitHandler, {
-        capture: true,
-      });
-    }
+  @Watch('required')
+  watchRequired() {
+    this.syncValidationClasses();
+  }
 
-    this.hostElement.addEventListener('invalid', (event: Event) => {
-      event.preventDefault();
-      this.formSubmissionAttempted = true;
-      this.touched = true;
-      this.syncValidationClasses();
-    });
+  @Listen('invalid')
+  onInvalid(event: Event) {
+    event.preventDefault();
+    this.touched = true;
+    this.syncValidationClasses();
   }
 
   @Watch('disabled')
@@ -573,35 +546,22 @@ export class Select
   }
 
   syncValidationClasses() {
-    if (this.isFormNoValidate()) {
+    if (this.formInternals.form?.noValidate) {
       this.hostElement.classList.remove('ix-invalid--required');
       this.formInternals.setValidity({});
       return;
     }
 
-    if (this.required) {
-      const isMissingValue = !this.hasValue();
-      const showVisualFeedback =
-        isMissingValue && (this.touched || this.formSubmissionAttempted);
-
-      this.hostElement.classList.toggle(
-        'ix-invalid--required',
-        showVisualFeedback
-      );
-      if (isMissingValue) {
-        const message =
-          this.invalidText && this.invalidText.trim().length > 0
-            ? this.invalidText
-            : ' ';
-
-        this.formInternals.setValidity({ valueMissing: true }, message);
-      } else {
-        this.formInternals.setValidity({});
-      }
-    } else {
-      this.hostElement.classList.remove('ix-invalid--required');
-      this.formInternals.setValidity({});
-    }
+    const isMissingValue = this.required && !this.hasValue();
+    this.hostElement.classList.toggle(
+      'ix-invalid--required',
+      isMissingValue && this.touched
+    );
+    const message = this.invalidText?.trim() ? this.invalidText : ' ';
+    this.formInternals.setValidity(
+      isMissingValue ? { valueMissing: true } : {},
+      isMissingValue ? message : undefined
+    );
   }
 
   override componentDidLoad() {
@@ -653,17 +613,6 @@ export class Select
     super.disconnectedCallback();
 
     this.proxyListObserver?.disconnect();
-
-    if (this.associatedForm && this.formSubmitHandler) {
-      this.associatedForm.removeEventListener(
-        'submit',
-        this.formSubmitHandler,
-        {
-          capture: true,
-        }
-      );
-    }
-    this.associatedForm = null;
     this.chipsResizeObserver?.disconnect();
     this.densityObserver?.disconnect();
   }
