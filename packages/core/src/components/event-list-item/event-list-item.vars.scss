@@ -12,7 +12,8 @@
 
 :host {
   --ix-event-list-item--transition-duration: var(--theme-default-time);
-  --ix-event-list-item-empty-indicator--border: var(--theme-weak-bdr-1);
+  --ix-event-list-item-empty-indicator--border: #{sys.$si-sys-sizing-border-width-default}
+    solid #{sys.$si-sys-color-border-4};
   --ix-event-list-item-chevron--color: #{sys.$si-sys-color-text-secondary};
   --ix-event-list-item-filled--background: #{sys.$si-sys-color-background-1};
   --ix-event-list-item-filled--background--active: #{sys.$si-sys-color-background-selected};

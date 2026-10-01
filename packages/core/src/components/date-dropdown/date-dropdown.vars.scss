@@ -10,7 +10,8 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-date-dropdown-divider--border: var(--theme-x-weak-bdr-1);
+  --ix-date-dropdown-divider--border: #{sys.$si-sys-sizing-border-width-default}
+    solid #{sys.$si-sys-color-border-4};
   --ix-date-dropdown--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-date-dropdown--focus--outline-offset: var(--theme-focus-outline-offset);
 }
