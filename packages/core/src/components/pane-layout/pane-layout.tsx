@@ -20,7 +20,9 @@ import {
 } from '@stencil/core';
 import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { matchBreakpoint } from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 
 /**
  * @slot left - Pane displayed to the left of the content.
@@ -65,6 +67,10 @@ export class Panes {
   }> = [];
 
   private observer?: MutationObserver;
+  private applicationLayoutContext?: ContextType<
+    typeof ApplicationLayoutContext
+  >;
+  private layoutContextSubscription?: { unsubscribe: () => void };
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
@@ -84,9 +90,19 @@ export class Panes {
       childList: true,
     });
 
-    this.isMobile = matchBreakpoint('sm');
+    this.isMobile = this.resolveIsMobile();
+    this.layoutContextSubscription = useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        this.isMobile = this.resolveIsMobile();
+        this.configurePanes();
+      },
+      true
+    );
     applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
+      this.isMobile = this.resolveIsMobile();
       this.configurePanes();
     });
   }
@@ -97,6 +113,15 @@ export class Panes {
 
   disconnectedCallback() {
     this.observer?.disconnect();
+    this.layoutContextSubscription?.unsubscribe();
+  }
+
+  private resolveIsMobile() {
+    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
+    if (forcedBreakpoint) {
+      return forcedBreakpoint === 'sm';
+    }
+    return matchBreakpoint('sm');
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {

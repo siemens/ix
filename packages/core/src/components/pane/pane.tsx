@@ -29,7 +29,9 @@ import type { JSAnimation } from 'animejs';
 import { animate } from 'animejs';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { matchBreakpoint } from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -186,6 +188,10 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
+  private applicationLayoutContext?: ContextType<
+    typeof ApplicationLayoutContext
+  >;
+  private layoutContextSubscription?: { unsubscribe: () => void };
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -209,6 +215,15 @@ export class Pane {
     this.disposableWindowClick?.();
     this.disposableKeydown?.();
     this.focusTrap?.destroy();
+    this.layoutContextSubscription?.unsubscribe();
+  }
+
+  private resolveIsMobile() {
+    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
+    if (forcedBreakpoint) {
+      return forcedBreakpoint === 'sm';
+    }
+    return matchBreakpoint('sm');
   }
 
   @Watch('expanded')
@@ -264,9 +279,18 @@ export class Pane {
       this.onParentSizeChange();
     }
 
-    this.isMobile = matchBreakpoint('sm');
+    this.isMobile = this.resolveIsMobile();
+    this.layoutContextSubscription = useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        this.isMobile = this.resolveIsMobile();
+      },
+      true
+    );
     applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
+      this.isMobile = this.resolveIsMobile();
     });
 
     if (this.currentSlot) {
