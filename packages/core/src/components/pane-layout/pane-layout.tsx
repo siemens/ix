@@ -71,6 +71,7 @@ export class Panes {
     typeof ApplicationLayoutContext
   >;
   private layoutContextSubscription?: { unsubscribe: () => void };
+  private hasLoaded = false;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
@@ -90,7 +91,41 @@ export class Panes {
       childList: true,
     });
 
-    this.isMobile = this.resolveIsMobile();
+    this.subscribeLayoutContext();
+    applicationLayoutService.onChange.on(() => {
+      this.isMobile = this.resolveIsMobile();
+      this.configurePanes();
+    });
+  }
+
+  componentDidLoad() {
+    this.hasLoaded = true;
+    this.setPanes(this.currentPanes);
+  }
+
+  connectedCallback() {
+    // componentWillLoad runs only once; re-subscribe after DOM re-attach.
+    if (this.hasLoaded) {
+      this.subscribeLayoutContext();
+    }
+  }
+
+  disconnectedCallback() {
+    this.observer?.disconnect();
+    this.layoutContextSubscription?.unsubscribe();
+    this.layoutContextSubscription = undefined;
+  }
+
+  private resolveIsMobile() {
+    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
+    if (forcedBreakpoint) {
+      return forcedBreakpoint === 'sm';
+    }
+    return matchBreakpoint('sm');
+  }
+
+  private subscribeLayoutContext() {
+    this.layoutContextSubscription?.unsubscribe();
     this.layoutContextSubscription = useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
@@ -101,27 +136,7 @@ export class Panes {
       },
       true
     );
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = this.resolveIsMobile();
-      this.configurePanes();
-    });
-  }
-
-  componentDidLoad() {
-    this.setPanes(this.currentPanes);
-  }
-
-  disconnectedCallback() {
-    this.observer?.disconnect();
-    this.layoutContextSubscription?.unsubscribe();
-  }
-
-  private resolveIsMobile() {
-    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
-    if (forcedBreakpoint) {
-      return forcedBreakpoint === 'sm';
-    }
-    return matchBreakpoint('sm');
+    this.isMobile = this.resolveIsMobile();
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {

@@ -202,6 +202,33 @@ regressionTest.describe('pinned menu keeps layout bus for pane', () => {
         .toBe(true);
     }
   );
+
+  regressionTest(
+    'pinning a collapsed mobile menu switches it to desktop breakpoint',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await mount(`
+        <ix-application>
+          <ix-menu>
+            <ix-menu-item>Item</ix-menu-item>
+          </ix-menu>
+        </ix-application>
+      `);
+
+      const menu = page.locator('ix-menu');
+      await expect(menu).toHaveClass(/hydrated/);
+      await expect(menu).toHaveClass(/breakpoint-sm/);
+
+      await menu.evaluate((el: HTMLIxMenuElement) => {
+        el.pinned = true;
+      });
+
+      await expect(menu).toHaveClass(/breakpoint-lg/);
+      await expect
+        .poll(async () => menu.evaluate((el: HTMLIxMenuElement) => el.pinned))
+        .toBe(true);
+    }
+  );
 });
 
 regressionTest('should not open settings', async ({ mount, page }) => {

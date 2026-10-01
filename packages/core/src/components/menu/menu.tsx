@@ -109,9 +109,13 @@ export class Menu {
   pinnedChange(newPinned: boolean) {
     this.setPinned(this.pinned);
 
-    if (!newPinned) {
-      this.onBreakpointChange(applicationLayoutService.breakpoint);
+    if (newPinned) {
+      // Keep desktop chrome locally without freezing the shared layout bus.
+      this.breakpoint = 'lg';
+      return;
     }
+
+    this.onBreakpointChange(applicationLayoutService.breakpoint);
   }
 
   /**

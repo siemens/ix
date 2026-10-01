@@ -501,6 +501,36 @@ regressionTest.describe('pane under forced application layout', () => {
       await expectPaneIsMobile(page, false);
     }
   );
+
+  regressionTest(
+    'reconnected pane still follows force-breakpoint updates',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(forcedDesktopApp);
+      await expectPaneIsMobile(page, false);
+
+      await page.evaluate(() => {
+        const layout = document.querySelector('ix-pane-layout');
+        const pane = layout?.querySelector('ix-pane[slot="right"]');
+        if (!layout || !pane) {
+          throw new Error('Expected pane layout and right pane');
+        }
+        pane.remove();
+        layout.appendChild(pane);
+      });
+
+      await expect(page.locator('ix-pane').first()).toHaveClass(/hydrated/);
+      await expectPaneIsMobile(page, false);
+
+      await page
+        .locator('ix-application')
+        .evaluate((el: HTMLIxApplicationElement) => {
+          el.setAttribute('force-breakpoint', 'sm');
+        });
+
+      await expectPaneIsMobile(page, true);
+    }
+  );
 });
 
 regressionTest.describe('standalone pane follows viewport', () => {
