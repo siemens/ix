@@ -235,10 +235,17 @@ regressionTest.describe('ix-popover', () => {
           `
         );
 
-        await page.locator('#outer-trigger').click();
-        await page.locator('#inner-trigger').click();
+        await page
+          .getByRole('button', { name: 'Trigger', exact: true })
+          .click();
+        await page
+          .getByRole('button', { name: 'Trigger2', exact: true })
+          .click();
 
-        const innerAction = page.locator('#inner-action');
+        const innerAction = page.getByRole('button', {
+          name: '3',
+          exact: true,
+        });
         await innerAction.click();
         await expect(innerAction).toBeFocused();
       }
@@ -587,16 +594,12 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
 
         await popover.open();
-        const dismissButton = page.locator('ix-button#popover-dismiss button');
+        const dismissButton = page.getByRole('button', { name: 'Dismiss' });
         await expect(dismissButton).toBeFocused();
         await expectLocatorNotFocusVisible(dismissButton);
 
         await page.keyboard.press('Tab');
-        await expect(
-          (await popover.getPopover()).locator(
-            'ix-popover-header button[aria-label="Close"]'
-          )
-        ).toBeFocused();
+        await expect(page.getByRole('button', { name: 'Close' })).toBeFocused();
       }
     );
 
@@ -611,22 +614,17 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
 
         await popover.openWithKeyboard();
-        const popoverEl = await popover.getPopover();
+
+        await page.keyboard.press('Tab');
+        await expect(page.getByRole('button', { name: 'Close' })).toBeFocused();
 
         await page.keyboard.press('Tab');
         await expect(
-          popoverEl.locator('ix-popover-header button[aria-label="Close"]')
+          page.getByRole('button', { name: 'Dismiss' })
         ).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(
-          page.locator('ix-button#popover-dismiss button')
-        ).toBeFocused();
-
-        await page.keyboard.press('Tab');
-        await expect(
-          popoverEl.locator('ix-popover-header button[aria-label="Close"]')
-        ).toBeFocused();
+        await expect(page.getByRole('button', { name: 'Close' })).toBeFocused();
       }
     );
 
@@ -669,8 +667,8 @@ regressionTest.describe('ix-popover', () => {
 
           const trigger = page.locator('#trigger');
           const popover = page.locator('#popover');
-          const control = page.locator('#only-control button');
-          const outside = page.locator('#outside');
+          const control = page.getByRole('button', { name: 'Open dropdown' });
+          const outside = page.getByRole('button', { name: 'Outside' });
 
           await expect(trigger).toHaveAttribute('data-ix-popover-trigger');
           await expect(page.locator('#only-control')).toHaveAttribute(
@@ -971,12 +969,12 @@ regressionTest.describe('ix-popover', () => {
         const closeButton = outer.scopedHeaderCloseButton(outerEl);
 
         await expect(
-          page.locator('ix-button#inner-trigger button')
+          page.getByRole('button', { name: 'Inner', exact: true })
         ).toBeFocused();
 
         await page.keyboard.press('Tab');
         await expect(
-          page.locator('ix-button#parent-action button')
+          page.getByRole('button', { name: 'Parent action' })
         ).toBeFocused();
 
         await page.keyboard.press('Tab');
@@ -984,7 +982,7 @@ regressionTest.describe('ix-popover', () => {
 
         await page.keyboard.press('Tab');
         await expect(
-          page.locator('ix-button#inner-trigger button')
+          page.getByRole('button', { name: 'Inner', exact: true })
         ).toBeFocused();
       }
     );
@@ -1015,28 +1013,46 @@ regressionTest.describe('ix-popover', () => {
           `;
         });
 
-        await page.waitForSelector('#shadow-trigger');
+        await page
+          .getByRole('button', { name: 'Trigger', exact: true })
+          .waitFor();
         await expect(page.locator('ix-popover').first()).toHaveClass(
           /hydrated/
         );
 
-        await page.locator('#shadow-trigger').click();
-        await expect(page.locator('#shadow-panel-1')).toBeFocused();
+        await page
+          .getByRole('button', { name: 'Trigger', exact: true })
+          .click();
+        await expect(
+          page.getByRole('button', { name: '1', exact: true })
+        ).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(page.locator('#shadow-panel-2')).toBeFocused();
+        await expect(
+          page.getByRole('button', { name: '2', exact: true })
+        ).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(page.locator('#shadow-trigger2')).toBeFocused();
+        await expect(
+          page.getByRole('button', { name: 'Trigger2', exact: true })
+        ).toBeFocused();
 
-        await page.locator('#shadow-trigger2').click();
-        await expect(page.locator('#shadow-inner-1')).toBeFocused();
+        await page
+          .getByRole('button', { name: 'Trigger2', exact: true })
+          .click();
+        await expect(
+          page.getByRole('button', { name: '3', exact: true })
+        ).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(page.locator('#shadow-inner-2')).toBeFocused();
+        await expect(
+          page.getByRole('button', { name: '4', exact: true })
+        ).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(page.locator('#shadow-inner-1')).toBeFocused();
+        await expect(
+          page.getByRole('button', { name: '3', exact: true })
+        ).toBeFocused();
       }
     );
 
@@ -1084,12 +1100,12 @@ regressionTest.describe('ix-popover', () => {
         const innerClose = inner.scopedHeaderCloseButton(innerEl);
 
         await expect(
-          page.locator('ix-button#inner-action-a button')
+          page.getByRole('button', { name: 'Inner action A' })
         ).toBeFocused();
 
         await page.keyboard.press('Tab');
         await expect(
-          page.locator('ix-button#inner-action-b button')
+          page.getByRole('button', { name: 'Inner action B' })
         ).toBeFocused();
 
         await page.keyboard.press('Tab');
@@ -1097,7 +1113,7 @@ regressionTest.describe('ix-popover', () => {
 
         await page.keyboard.press('Tab');
         await expect(
-          page.locator('ix-button#inner-action-a button')
+          page.getByRole('button', { name: 'Inner action A' })
         ).toBeFocused();
       }
     );
@@ -1168,7 +1184,9 @@ regressionTest.describe('ix-popover', () => {
         const dropdown = page.locator('#dropdown');
         const detailsTrigger = page.locator('#details-trigger');
         const popover = page.locator('#details-popover');
-        const popoverAction = page.locator('#popover-action');
+        const popoverAction = page.getByRole('button', {
+          name: 'Popover action',
+        });
 
         await expect(detailsTrigger).toHaveAttribute('data-ix-popover-trigger');
         await menuTrigger.focus();
@@ -1326,8 +1344,10 @@ regressionTest.describe('ix-popover', () => {
           const dropdownTrigger = page.locator('#dropdown-trigger');
           const dropdown = page.locator('#dropdown');
           const firstItem = dropdown.locator('ix-dropdown-item').first();
-          const firstControl = page.locator('#first-control');
-          const outside = page.locator('#outside');
+          const firstControl = page.getByRole('button', {
+            name: 'First control',
+          });
+          const outside = page.getByRole('button', { name: 'Outside' });
 
           await expect(popoverTrigger).toHaveAttribute(
             'data-ix-popover-trigger'
@@ -1374,8 +1394,10 @@ regressionTest.describe('ix-popover', () => {
         const dropdownTrigger = page.locator('#dropdown-trigger');
         const dropdown = page.locator('#dropdown');
         const firstItem = dropdown.locator('ix-dropdown-item').first();
-        const firstControl = page.locator('#first-control');
-        const outside = page.locator('#outside');
+        const firstControl = page.getByRole('button', {
+          name: 'First control',
+        });
+        const outside = page.getByRole('button', { name: 'Outside' });
 
         await expect(popoverTrigger).toHaveAttribute('data-ix-popover-trigger');
         await expect(dropdownTrigger).toHaveAttribute(
@@ -1438,8 +1460,10 @@ regressionTest.describe('ix-popover', () => {
         const dropdown = page.locator('#dropdown');
         const submenuTrigger = page.locator('#submenu-trigger');
         const submenu = page.locator('#submenu');
-        const firstControl = page.locator('#first-control');
-        const outside = page.locator('#outside');
+        const firstControl = page.getByRole('button', {
+          name: 'First control',
+        });
+        const outside = page.getByRole('button', { name: 'Outside' });
 
         await expect(popoverTrigger).toHaveAttribute('data-ix-popover-trigger');
         await expect(dropdownTrigger).toHaveAttribute(
