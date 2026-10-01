@@ -531,6 +531,49 @@ regressionTest.describe('pane under forced application layout', () => {
       await expectPaneIsMobile(page, true);
     }
   );
+
+  regressionTest(
+    'moving pane layout outside forced application restores viewport mode',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(`
+        <div id="host">
+          ${forcedDesktopApp}
+        </div>
+      `);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, false);
+
+      await page.evaluate(() => {
+        const host = document.getElementById('host');
+        const layout = document.querySelector('ix-pane-layout');
+        if (!host || !layout) {
+          throw new Error('Expected host and pane layout');
+        }
+        layout.remove();
+        host.appendChild(layout);
+      });
+
+      await expect(page.locator('ix-pane').first()).toHaveClass(/hydrated/);
+      // Stale forced context must not keep the pane in desktop mode.
+      await expectPaneIsMobile(page, true);
+
+      // Re-enable the shared layout bus after leaving the forced application.
+      await page
+        .locator('ix-application')
+        .evaluate((el: HTMLIxApplicationElement) => {
+          el.removeAttribute('force-breakpoint');
+        });
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, true);
+    }
+  );
 });
 
 regressionTest.describe('standalone pane follows viewport', () => {

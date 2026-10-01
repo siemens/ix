@@ -126,6 +126,7 @@ export class Panes {
 
   private subscribeLayoutContext() {
     this.layoutContextSubscription?.unsubscribe();
+    this.applicationLayoutContext = undefined;
     this.layoutContextSubscription = useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
