@@ -519,15 +519,15 @@ regressionTest.describe('pane under forced application layout', () => {
         layout.appendChild(pane);
       });
 
-      await expect(page.locator('ix-pane').first()).toHaveClass(/hydrated/);
+      const pane = page.locator('ix-pane').first();
+      const application = page.locator('ix-application');
+      await expect(pane).toHaveClass(/hydrated/);
       await expectPaneIsMobile(page, false);
 
-      await page
-        .locator('ix-application')
-        .evaluate((el: HTMLIxApplicationElement) => {
-          el.setAttribute('force-breakpoint', 'sm');
-        });
-
+      await application.evaluate((el: HTMLIxApplicationElement) => {
+        el.forceBreakpoint = 'sm';
+      });
+      await expect(application).toHaveClass(/breakpoint-sm/);
       await expectPaneIsMobile(page, true);
     }
   );

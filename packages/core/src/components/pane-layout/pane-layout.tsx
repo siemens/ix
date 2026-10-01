@@ -71,7 +71,6 @@ export class Panes {
     typeof ApplicationLayoutContext
   >;
   private layoutContextSubscription?: { unsubscribe: () => void };
-  private hasLoaded = false;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
@@ -91,6 +90,7 @@ export class Panes {
       childList: true,
     });
 
+    // Re-request after providers in the tree have finished willLoad.
     this.subscribeLayoutContext();
     applicationLayoutService.onChange.on(() => {
       this.isMobile = this.resolveIsMobile();
@@ -99,21 +99,18 @@ export class Panes {
   }
 
   componentDidLoad() {
-    this.hasLoaded = true;
     this.setPanes(this.currentPanes);
   }
 
   connectedCallback() {
-    // componentWillLoad runs only once; re-subscribe after DOM re-attach.
-    if (this.hasLoaded) {
-      this.subscribeLayoutContext();
-    }
+    this.subscribeLayoutContext();
   }
 
   disconnectedCallback() {
     this.observer?.disconnect();
     this.layoutContextSubscription?.unsubscribe();
     this.layoutContextSubscription = undefined;
+    this.applicationLayoutContext = undefined;
   }
 
   private resolveIsMobile() {

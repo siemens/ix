@@ -192,7 +192,6 @@ export class Pane {
     typeof ApplicationLayoutContext
   >;
   private layoutContextSubscription?: { unsubscribe: () => void };
-  private hasLoaded = false;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -211,10 +210,7 @@ export class Pane {
   }
 
   connectedCallback() {
-    // componentWillLoad runs only once; re-subscribe after DOM re-attach.
-    if (this.hasLoaded) {
-      this.subscribeLayoutContext();
-    }
+    this.subscribeLayoutContext();
   }
 
   disconnectedCallback() {
@@ -225,6 +221,7 @@ export class Pane {
     this.focusTrap?.destroy();
     this.layoutContextSubscription?.unsubscribe();
     this.layoutContextSubscription = undefined;
+    this.applicationLayoutContext = undefined;
   }
 
   private resolveIsMobile() {
@@ -303,6 +300,7 @@ export class Pane {
       this.onParentSizeChange();
     }
 
+    // Re-request after providers in the tree have finished willLoad.
     this.subscribeLayoutContext();
     applicationLayoutService.onChange.on(() => {
       this.isMobile = this.resolveIsMobile();
@@ -346,10 +344,6 @@ export class Pane {
       this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
     });
     if (parentElement) this.resizeObserver.observe(parentElement);
-  }
-
-  componentDidLoad() {
-    this.hasLoaded = true;
   }
 
   private setPosition(value: string) {
