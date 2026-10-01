@@ -126,8 +126,7 @@ $header-height-focus-visible: calc($header-height - 2px);
     .group-header-title {
       display: flex;
       align-items: center;
-      font-size: 1rem;
-      font-weight: vars.$font-weight-bold;
+      font: var(--ix-group-header--font);
       height: var(--ix-group-header-title--height);
 
       & > * {
@@ -140,7 +139,7 @@ $header-height-focus-visible: calc($header-height - 2px);
 
     .group-subheader {
       height: var(--ix-group-subheader--height);
-      font-size: 0.875rem;
+      font: var(--ix-group-subheader--font);
       color: var(--ix-group-subheader--color);
 
       @include text-truncation.ellipsis();

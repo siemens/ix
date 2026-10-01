@@ -43,7 +43,7 @@
       margin-left: var(--ix-menu-avatar-avatar-name--margin-left);
       line-height: 1.14;
 
-      .text-default-single {
+      .typography-body {
         color: var(--ix-menu-avatar-item-primary--color);
         @include text-truncation.ellipsis;
       }

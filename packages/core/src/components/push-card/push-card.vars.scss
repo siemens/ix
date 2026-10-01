@@ -192,4 +192,5 @@
   --ix-push-card-content--height: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-60}
   );
+  --ix-push-card-content--padding-top: #{sys.$si-sys-sizing-spacing-y-20};
 }
