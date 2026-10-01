@@ -760,9 +760,9 @@ export class Popover
   }
 
   private computeSpikePosition({
-                                 placement,
-                                 middlewareData,
-                               }: ComputePositionReturn): SpikePosition | undefined {
+    placement,
+    middlewareData,
+  }: ComputePositionReturn): SpikePosition | undefined {
     if (!middlewareData.arrow) {
       return undefined;
     }
