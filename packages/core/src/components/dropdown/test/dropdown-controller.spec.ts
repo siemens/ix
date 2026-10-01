@@ -173,13 +173,16 @@ describe('dropdown-controller', () => {
     const child = createDropdown('child', [], false);
     controller.connected(parent.dropdown);
     controller.connected(child.dropdown);
-    controller.present(parent.dropdown);
 
-    controller.suppressTriggerFocusRestore(parent.dropdown);
+    try {
+      controller.present(parent.dropdown);
+      controller.suppressTriggerFocusRestore(parent.dropdown);
 
-    expect(parent.suppressTriggerFocusRestore).toHaveBeenCalledOnce();
-    expect(child.suppressTriggerFocusRestore).not.toHaveBeenCalled();
-    controller.disconnected(parent.dropdown);
-    controller.disconnected(child.dropdown);
+      expect(parent.suppressTriggerFocusRestore).toHaveBeenCalledOnce();
+      expect(child.suppressTriggerFocusRestore).not.toHaveBeenCalled();
+    } finally {
+      controller.disconnected(parent.dropdown);
+      controller.disconnected(child.dropdown);
+    }
   });
 });
