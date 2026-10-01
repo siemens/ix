@@ -26,21 +26,21 @@
   --theme-body: var(--theme-font-weight-normal) var(--theme-ms-0)/var(--theme-line-height-md) var(--theme-font-sans);
   --theme-chart-1-40: rgba(0, 234, 255, 0.4);
   --theme-chart-1: #00eaff;
-  --theme-chart-10-40: rgba(128, 92, 255, 0.40);
+  --theme-chart-10-40: rgba(128, 92, 255, 0.4);
   --theme-chart-10: #805cff;
-  --theme-chart-11-40: rgba(185, 92, 201, 0.40);
+  --theme-chart-11-40: rgba(185, 92, 201, 0.4);
   --theme-chart-11: #b95cc9;
-  --theme-chart-12-40: rgba(229, 101, 155, 0.40);
+  --theme-chart-12-40: rgba(229, 101, 155, 0.4);
   --theme-chart-12: #e5659b;
-  --theme-chart-13-40: rgba(255, 152, 196, 0.40);
+  --theme-chart-13-40: rgba(255, 152, 196, 0.4);
   --theme-chart-13: #ff98c4;
-  --theme-chart-14-40: rgba(171, 102, 33, 0.40);
+  --theme-chart-14-40: rgba(171, 102, 33, 0.4);
   --theme-chart-14: #ab6621;
-  --theme-chart-15-40: rgba(255, 178, 102, 0.40);
+  --theme-chart-15-40: rgba(255, 178, 102, 0.4);
   --theme-chart-15: #ffb266;
-  --theme-chart-16-40: rgba(255, 244, 214, 0.40);
+  --theme-chart-16-40: rgba(255, 244, 214, 0.4);
   --theme-chart-16: #fff4d6;
-  --theme-chart-17-40: rgba(170, 170, 150, 0.40);
+  --theme-chart-17-40: rgba(170, 170, 150, 0.4);
   --theme-chart-17: #aaaa96;
   --theme-chart-2-40: rgba(133, 233, 210, 0.4);
   --theme-chart-2: #85e9d2;
@@ -48,28 +48,28 @@
   --theme-chart-3: #00bdda;
   --theme-chart-4-40: rgba(204, 245, 245, 0.4);
   --theme-chart-4: #ccf5f5;
-  --theme-chart-5-40: rgba(114, 132, 140, 0.40);
+  --theme-chart-5-40: rgba(114, 132, 140, 0.4);
   --theme-chart-5: #72848c;
-  --theme-chart-6-40: rgba(104, 149, 246, 0.40);
+  --theme-chart-6-40: rgba(104, 149, 246, 0.4);
   --theme-chart-6: #6895f6;
-  --theme-chart-7-40: rgba(151, 199, 255, 0.40);
+  --theme-chart-7-40: rgba(151, 199, 255, 0.4);
   --theme-chart-7: #97c7ff;
-  --theme-chart-8-40: rgba(54, 100, 198, 0.40);
+  --theme-chart-8-40: rgba(54, 100, 198, 0.4);
   --theme-chart-8: #3664c6;
-  --theme-chart-9-40: rgba(191, 176, 243, 0.40);
+  --theme-chart-9-40: rgba(191, 176, 243, 0.4);
   --theme-chart-9: #bfb0f3;
   // chart axes
-  --theme-chart-axes: rgba(255, 255, 255, 0.30);
+  --theme-chart-axes: rgba(255, 255, 255, 0.3);
   // chart background
   --theme-chart-grid-fill: #1a272d;
   // chart grid lines
-  --theme-chart-grid-lines: rgba(255, 255, 255, 0.10);
+  --theme-chart-grid-lines: rgba(255, 255, 255, 0.1);
   // ticks on chart axis
   --theme-chart-ticks: rgba(255, 255, 255, 0.35);
   // chart tooltip border
   --theme-chart-tooltip-bdr: rgba(255, 255, 255, 0.25);
   // chart tooltip background
-  --theme-chart-tooltip-fill: rgba(0, 6, 9, 0.80);
+  --theme-chart-tooltip-fill: rgba(0, 6, 9, 0.8);
   // text format for displaying code in large font-size
   --theme-code-lg: var(--theme-font-weight-normal) var(--theme-ms-1)/var(--theme-line-height-lg) var(--theme-font-code);
   // text format for displaying code in small font-size
@@ -125,7 +125,7 @@
   --theme-color-component-10: rgba(0, 234, 255, 0.75);
   --theme-color-component-11: rgba(91, 106, 113, 0.2);
   --theme-color-component-2: rgba(255, 255, 255, 0.15);
-  --theme-color-component-3: rgba(255, 255, 255, 0.30);
+  --theme-color-component-3: rgba(255, 255, 255, 0.3);
   --theme-color-component-4: rgba(255, 255, 255, 0.45);
   --theme-color-component-5: rgba(255, 255, 255, 0.6);
   --theme-color-component-6: rgba(255, 255, 255, 0.75);
@@ -324,10 +324,10 @@
   --theme-neutral-bdr-2: 0.125rem solid var(--theme-color-neutral);
   --theme-primary-bdr-1: 0.0625rem solid var(--theme-color-primary);
   --theme-primary-bdr-2: 0.125rem solid var(--theme-color-primary);
-  --theme-shadow-1: 0 2px 2px 0 #000000, 0 1px 1px 0 rgba(0, 0, 0, 0.6);
-  --theme-shadow-2: -4px 0 8px 0 #000000, 4px 0 8px 0 #000000, 0 0 16px 0 rgba(0, 0, 0, 0.6);
-  --theme-shadow-3: 0 2px 6px 0 #000000, 0 0 8px 0 rgba(0, 0, 0, 0.6);
-  --theme-shadow-4: 0 0 2px 0 #000000, 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 12px 18px 0 rgba(0, 0, 0, 0.6);
+  --theme-shadow-1: 0 2px 2px 0 rgba(0, 0, 0, 1), 0 1px 1px 0 rgba(0, 0, 0, 0.6);
+  --theme-shadow-2: -4px 0 8px 0 rgba(0, 0, 0, 1), 4px 0 8px 0 rgba(0, 0, 0, 1), 0 0 16px 0 rgba(0, 0, 0, 0.6);
+  --theme-shadow-3: 0 2px 6px 0 rgba(0, 0, 0, 1), 0 0 8px 0 rgba(0, 0, 0, 0.6);
+  --theme-shadow-4: 0 0 2px 0 rgba(0, 0, 0, 1), 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 12px 18px 0 rgba(0, 0, 0, 0.6);
   --theme-soft-bdr-1: 0.0625rem solid var(--theme-color-soft-bdr);
   --theme-soft-bdr-2: 0.125rem solid var(--theme-color-soft-bdr);
   --theme-soft-dashed-bdr-1: 0.0625rem dashed var(--theme-color-soft-bdr);
@@ -375,7 +375,7 @@
   // deprecated
   --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-font-sans);
   // deprecated
-  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/140% var(--theme-font-sans);
+  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/1.4 var(--theme-font-sans);
   --theme-warning-bdr-1: 0.0625rem solid var(--theme-color-warning);
   --theme-warning-bdr-2: 0.125rem solid var(--theme-color-warning);
   --theme-weak-bdr-1: 0.0625rem solid var(--theme-color-weak-bdr);

@@ -375,7 +375,7 @@
   // deprecated
   --theme-text-xl: var(--theme-font-weight-normal) var(--theme-font-size-xl)/var(--theme-line-height-xl) var(--theme-font-sans);
   // deprecated
-  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/140% var(--theme-font-sans);
+  --theme-text-xs: var(--theme-font-weight-normal) var(--theme-font-size-xs)/1.4 var(--theme-font-sans);
   --theme-warning-bdr-1: 0.0625rem solid var(--theme-color-warning);
   --theme-warning-bdr-2: 0.125rem solid var(--theme-color-warning);
   --theme-weak-bdr-1: 0.0625rem solid var(--theme-color-weak-bdr);
