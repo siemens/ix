@@ -17,6 +17,14 @@ test.describe('ix-message-bar', () => {
     );
   });
 
+  test('uses paragraph typography for slotted content', async ({ page }) => {
+    const content = page.locator('ix-message-bar .message-content');
+
+    await expect(content).toHaveCSS('font-size', '14px');
+    await expect(content).toHaveCSS('line-height', '20px');
+    await expect(content).toHaveCSS('font-weight', '400');
+  });
+
   test('emits closeAnimationCompleted event', async ({ page }) => {
     const messageBar = page.locator('ix-message-bar');
     const closeButton = messageBar.locator('[data-testid="close-btn"]');

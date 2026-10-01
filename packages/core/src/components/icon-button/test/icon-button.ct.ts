@@ -87,18 +87,22 @@ regressionTest(
       await expect(icon).toHaveCSS('min-height', expectedSize);
     };
 
-    const expectAllSizes = async () => {
-      await expectIconDimensions(defaultIcon, 20);
-      await expectIconDimensions(property16Icon, 16);
-      await expectIconDimensions(attribute24Icon, 24);
-      await expectIconDimensions(property24Icon, 24);
+    const expectAllSizes = async (
+      defaultSize: number,
+      size16: number,
+      size24: number
+    ) => {
+      await expectIconDimensions(defaultIcon, defaultSize);
+      await expectIconDimensions(property16Icon, size16);
+      await expectIconDimensions(attribute24Icon, size24);
+      await expectIconDimensions(property24Icon, size24);
     };
 
-    await expectAllSizes();
+    await expectAllSizes(20, 16, 24);
     await page.locator('body').evaluate((body: HTMLBodyElement) => {
       body.setAttribute('data-ix-density', 'compact');
     });
-    await expectAllSizes();
+    await expectAllSizes(16, 12, 20);
   }
 );
 

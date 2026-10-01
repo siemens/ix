@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'misc/common-variables' as vars;
+@use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 @use 'tokens/system' as sys;
@@ -100,6 +102,8 @@
     }
 
     .calendar-item {
+      @include fonts.typography-body;
+
       position: relative;
       display: flex;
       justify-content: center;
