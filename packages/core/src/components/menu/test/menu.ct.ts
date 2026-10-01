@@ -159,9 +159,7 @@ regressionTest.describe('pinned menu keeps layout bus for pane', () => {
       await expectPaneIsMobile(page, true);
 
       await expect
-        .poll(async () =>
-          menu.evaluate((el: HTMLIxMenuElement) => el.pinned)
-        )
+        .poll(async () => menu.evaluate((el: HTMLIxMenuElement) => el.pinned))
         .toBe(true);
     }
   );
@@ -200,9 +198,7 @@ regressionTest.describe('pinned menu keeps layout bus for pane', () => {
       await expectPaneIsMobile(page, false);
 
       await expect
-        .poll(async () =>
-          menu.evaluate((el: HTMLIxMenuElement) => el.pinned)
-        )
+        .poll(async () => menu.evaluate((el: HTMLIxMenuElement) => el.pinned))
         .toBe(true);
     }
   );
