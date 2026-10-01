@@ -1,0 +1,16 @@
+packages/core/src/components/menu/menu.tsx
+  h_c5a773bf2fda8b 112-114,414-418
+packages/core/src/components/menu/test/menu.ct.ts
+  h_c5a773bf2fda8b 11-23,131-210
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1b8ee3edb6c81a76d99bcbabe7e08aa82aa0c731",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
