@@ -25,7 +25,7 @@
   --ix-event-list-item-filled--border-color--disabled: rgba(0, 0, 0, 0);
   --ix-event-list-item-filled--border-color--hover: rgba(0, 0, 0, 0);
   --ix-event-list-item-filled--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-event-list-item-indicator--width: var(--theme-size--2);
+  --ix-event-list-item-indicator--width: #{sys.$si-sys-sizing-size-30};
   --ix-event-list-item-indicator-opacity--disabled: 0.3;
   --ix-event-list-item-outline--background: rgba(0, 0, 0, 0);
   --ix-event-list-item-outline--background--active: #{sys.$si-sys-color-background-selected};

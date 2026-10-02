@@ -23,7 +23,7 @@
     flex-direction: column;
     width: 100%;
     min-height: var(--ix-chat-input--min-height);
-    padding: var(--theme-space-2);
+    padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
     box-sizing: border-box;
     background-color: var(--ix-chat-input--background);
     border: var(--ix-chat-input--border-width) solid
@@ -36,9 +36,9 @@
     display: none;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: var(--theme-space-1);
+    gap: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
     width: 100%;
-    margin-bottom: var(--theme-space-1);
+    margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
   }
 
   .follow-up-prompts ::slotted(*) {
@@ -70,8 +70,8 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    gap: var(--theme-space-2);
-    margin-bottom: var(--theme-space-2);
+    gap: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
+    margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
   }
 
   .attachments.has-attachments {
@@ -127,9 +127,9 @@
   .character-limit {
     display: flex;
     align-items: center;
-    gap: var(--theme-space-1);
+    gap: #{sys.$si-sys-sizing-spacing-x-40};
     width: 100%;
-    margin-top: var(--theme-space-2);
+    margin-top: #{sys.$si-sys-sizing-spacing-y-50};
   }
 
   .character-limit ix-icon {
@@ -150,14 +150,14 @@
     justify-content: space-between;
     width: 100%;
     min-height: var(--ix-chat-input-action-row--min-height);
-    margin-top: var(--theme-space-1);
+    margin-top: #{sys.$si-sys-sizing-spacing-y-40};
   }
 
   .left-actions,
   .right-actions {
     display: flex;
     align-items: center;
-    gap: var(--theme-space-1);
+    gap: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .left-actions {
@@ -173,7 +173,7 @@
   .disclaimer {
     display: block;
     width: 100%;
-    margin-top: var(--theme-space-1);
+    margin-top: #{sys.$si-sys-sizing-spacing-y-40};
     text-align: center;
   }
 }

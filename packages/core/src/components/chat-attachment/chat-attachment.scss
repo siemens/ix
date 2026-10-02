@@ -36,7 +36,7 @@
   }
 
   .status-content {
-    gap: var(--theme-space-1);
+    gap: #{sys.$si-sys-sizing-spacing-x-40};
   }
 
   .status-content ix-spinner {
@@ -86,5 +86,5 @@
 }
 
 :host(.has-remove-button) {
-  gap: var(--theme-space-0);
+  gap: #{sys.$si-sys-sizing-spacing-x-30};
 }
