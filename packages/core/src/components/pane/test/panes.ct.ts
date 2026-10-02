@@ -560,13 +560,8 @@ regressionTest.describe('pane under forced application layout', () => {
       // Stale forced context must not keep the pane in desktop mode.
       await expectPaneIsMobile(page, true);
 
-      // Re-enable the shared layout bus after leaving the forced application.
-      await page
-        .locator('ix-application')
-        .evaluate((el: HTMLIxApplicationElement) => {
-          el.removeAttribute('force-breakpoint');
-        });
-
+      // Application may still force the shared layout bus; the detached pane
+      // must keep listening to the viewport itself.
       await page.setViewportSize(viewPorts.lg);
       await expectPaneIsMobile(page, false);
 

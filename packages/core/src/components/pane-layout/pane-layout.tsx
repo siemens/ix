@@ -21,8 +21,12 @@ import {
 import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
-import { matchBreakpoint } from '../utils/breakpoints';
+import {
+  addBreakpointMediaListener,
+  matchBreakpoint,
+} from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
+import { Disposable } from '../utils/typed-event';
 
 /**
  * @slot left - Pane displayed to the left of the content.
@@ -71,6 +75,8 @@ export class Panes {
     typeof ApplicationLayoutContext
   >;
   private layoutContextSubscription?: { unsubscribe: () => void };
+  private layoutServiceDisposable?: Disposable;
+  private removeBreakpointMediaListener?: () => void;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
@@ -92,10 +98,7 @@ export class Panes {
 
     // Re-request after providers in the tree have finished willLoad.
     this.subscribeLayoutContext();
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = this.resolveIsMobile();
-      this.configurePanes();
-    });
+    this.subscribeViewportChanges();
   }
 
   componentDidLoad() {
@@ -104,12 +107,17 @@ export class Panes {
 
   connectedCallback() {
     this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
   }
 
   disconnectedCallback() {
     this.observer?.disconnect();
     this.layoutContextSubscription?.unsubscribe();
     this.layoutContextSubscription = undefined;
+    this.layoutServiceDisposable?.dispose();
+    this.layoutServiceDisposable = undefined;
+    this.removeBreakpointMediaListener?.();
+    this.removeBreakpointMediaListener = undefined;
     this.applicationLayoutContext = undefined;
   }
 
@@ -119,6 +127,23 @@ export class Panes {
       return forcedBreakpoint === 'sm';
     }
     return matchBreakpoint('sm');
+  }
+
+  private subscribeViewportChanges() {
+    this.layoutServiceDisposable?.dispose();
+    this.removeBreakpointMediaListener?.();
+
+    this.layoutServiceDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = this.resolveIsMobile();
+      this.configurePanes();
+    });
+    this.removeBreakpointMediaListener = addBreakpointMediaListener(
+      'sm',
+      () => {
+        this.isMobile = this.resolveIsMobile();
+        this.configurePanes();
+      }
+    );
   }
 
   private subscribeLayoutContext() {

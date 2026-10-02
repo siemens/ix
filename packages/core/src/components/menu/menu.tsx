@@ -111,10 +111,8 @@ export class Menu {
 
     if (newPinned) {
       // Keep desktop chrome locally without freezing the shared layout bus.
+      // startExpanded is applied on initial load only (see onBreakpointChange).
       this.breakpoint = 'lg';
-      if (this.startExpanded) {
-        this.toggleMenu(true);
-      }
       return;
     }
 

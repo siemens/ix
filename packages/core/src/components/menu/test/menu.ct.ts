@@ -182,6 +182,110 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'pinned menu does not add safe-area content margin at small breakpoint',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.sm);
+    await mount(`
+      <ix-application style="--ix-application-menu-safe-area-left: 20px">
+        <ix-menu pinned>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+        <div>Main content</div>
+      </ix-application>
+    `);
+
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    await expect(application).toHaveClass(/hydrated/);
+    await expect(menu).toHaveClass(/hydrated/);
+    await expect(application).toHaveClass(/menu-pinned/);
+    await expect(application).toHaveClass(/breakpoint-sm/);
+
+    await expect
+      .poll(async () =>
+        application.evaluate((el: HTMLIxApplicationElement) => {
+          const contentArea = el.shadowRoot?.querySelector('.content-area');
+          return contentArea ? getComputedStyle(contentArea).marginLeft : null;
+        })
+      )
+      .toBe('0px');
+
+    await expect
+      .poll(async () =>
+        page.evaluate(() => {
+          const menuEl = document.querySelector('ix-menu');
+          const applicationEl = document.querySelector('ix-application');
+          const contentArea =
+            applicationEl?.shadowRoot?.querySelector('.content-area');
+          if (!menuEl || !contentArea) {
+            return null;
+          }
+          const menuRight = menuEl.getBoundingClientRect().right;
+          const contentLeft = contentArea.getBoundingClientRect().left;
+          return contentLeft - menuRight;
+        })
+      )
+      .toBe(0);
+  }
+);
+
+regressionTest(
+  'start-expanded does not re-expand when pinned is toggled again',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <ix-application>
+        <ix-menu pinned start-expanded>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const menu = page.locator('ix-menu');
+    await expect(menu).toHaveClass(/hydrated/);
+    await expect(menu).toHaveClass(/expanded/);
+
+    await menu.locator('ix-menu-expand-icon').click();
+    await expect(menu).not.toHaveClass(/expanded/);
+
+    await menu.evaluate((el: HTMLIxMenuElement) => {
+      el.pinned = false;
+    });
+    await menu.evaluate((el: HTMLIxMenuElement) => {
+      el.pinned = true;
+    });
+
+    await expect(menu).toHaveClass(/breakpoint-lg/);
+    await expect(menu).not.toHaveClass(/expanded/);
+  }
+);
+
+regressionTest(
+  'pinned menu hides application header menu toggle at small breakpoint',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.sm);
+    await mount(`
+      <ix-application>
+        <ix-application-header name="Test"></ix-application-header>
+        <ix-menu pinned>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const menu = page.locator('ix-menu');
+    const header = page.locator('ix-application-header');
+    await expect(menu).toHaveClass(/hydrated/);
+    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveClass(/breakpoint-sm/);
+    await expect(menu).toHaveClass(/breakpoint-lg/);
+
+    await expect(header.locator('ix-menu-expand-icon')).toHaveCount(0);
+    await expect(menu.locator('ix-menu-expand-icon')).toHaveCount(1);
+  }
+);
+
 regressionTest.describe('pinned menu keeps layout bus for pane', () => {
   const pinnedMenuWithPane = `
     <ix-application>

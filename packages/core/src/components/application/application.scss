@@ -84,18 +84,6 @@
   }
 }
 
-:host(.breakpoint-md.menu-pinned) {
-  --ix-application-menu-margin-left: 0;
-
-  aside.slotted {
-    margin-left: 0;
-  }
-
-  aside:not(.slotted) + .content-area {
-    margin-left: 0;
-  }
-}
-
 :host(.breakpoint-lg) {
   --ix-application-menu-margin-left: 0;
 }
@@ -105,4 +93,19 @@
     --ix-application-menu-safe-area-left,
     0rem
   );
+}
+
+// Pinned menus occupy layout flow; do not also inset content with the overlay/
+// safe-area margin used when the menu floats above the page.
+:host(.breakpoint-md.menu-pinned),
+:host(.breakpoint-sm.menu-pinned) {
+  --ix-application-menu-margin-left: 0;
+
+  aside.slotted {
+    margin-left: 0;
+  }
+
+  aside:not(.slotted) + .content-area {
+    margin-left: 0;
+  }
 }

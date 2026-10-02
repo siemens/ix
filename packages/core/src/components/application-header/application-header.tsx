@@ -147,6 +147,7 @@ export class ApplicationHeader {
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
+  @State() menuPinned = false;
   @State() suppressResponsive = false;
 
   @State() hasSlottedLogo = false;
@@ -158,6 +159,7 @@ export class ApplicationHeader {
     typeof ApplicationLayoutContext
   >;
   private menuDisposable?: Disposable;
+  private menuPinnedDisposable?: Disposable;
   private modeDisposable?: Disposable;
   private callbackUpdateAppSwitchModal?: (
     config: AppSwitchConfiguration
@@ -186,6 +188,11 @@ export class ApplicationHeader {
       this.menuExpanded = show;
     });
 
+    this.menuPinned = menuController.isPinned;
+    this.menuPinnedDisposable = menuController.pinnedChange.on((pinned) => {
+      this.menuPinned = pinned;
+    });
+
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
       if (this.suppressResponsive) {
         return;
@@ -203,6 +210,7 @@ export class ApplicationHeader {
 
   disconnectedCallback() {
     this.menuDisposable?.dispose();
+    this.menuPinnedDisposable?.dispose();
     this.modeDisposable?.dispose();
   }
 
@@ -343,6 +351,10 @@ export class ApplicationHeader {
       this.suppressResponsive === false &&
       hasApplicationContextAvailable;
 
+    // Pinned menus keep desktop rail chrome; the header mobile toggle would duplicate it.
+    const showMenuToggle =
+      !this.menuPinned && (this.showMenu || showMenuByApplicationFrame);
+
     const showApplicationSwitch =
       this.applicationLayoutContext?.appSwitchConfig &&
       this.breakpoint !== 'sm' &&
@@ -371,7 +383,7 @@ export class ApplicationHeader {
               <img src={this.appIcon} alt={this.appIconAlt} />
             </div>
           )}
-          {(this.showMenu || showMenuByApplicationFrame) && (
+          {showMenuToggle && (
             <ix-menu-expand-icon
               onClick={() => this.onMenuClick()}
               expanded={this.menuExpanded}
