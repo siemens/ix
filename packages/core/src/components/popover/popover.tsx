@@ -684,23 +684,6 @@ export class Popover
     }
   }
 
-  private getTriggerAriaTarget(): HTMLElement | undefined {
-    const el = this.triggerElement;
-    if (!el) {
-      return undefined;
-    }
-
-    if (el.tagName === 'IX-BUTTON' || el.tagName === 'IX-ICON-BUTTON') {
-      const inner = el.shadowRoot?.querySelector<HTMLElement>(
-        'button, a[role="button"]'
-      );
-      if (inner) {
-        return inner;
-      }
-    }
-    return el;
-  }
-
   private clearTriggerAriaAttributes(element: HTMLElement) {
     element.removeAttribute('aria-expanded');
     element.removeAttribute('aria-controls');
@@ -708,19 +691,13 @@ export class Popover
   }
 
   private updateTriggerAria(expanded: boolean) {
-    const triggerElement = this.triggerElement;
-    const target = this.getTriggerAriaTarget();
-    if (!triggerElement || !target) {
+    if (!this.triggerElement) {
       return;
     }
 
-    target.setAttribute('aria-haspopup', 'dialog');
-    target.setAttribute('aria-expanded', String(expanded));
-    target.setAttribute('aria-controls', this.popoverPanelId);
-
-    if (target !== triggerElement) {
-      this.clearTriggerAriaAttributes(triggerElement);
-    }
+    this.triggerElement.setAttribute('aria-haspopup', 'dialog');
+    this.triggerElement.setAttribute('aria-expanded', String(expanded));
+    this.triggerElement.setAttribute('aria-controls', this.popoverPanelId);
   }
 
   private clearTriggerAria() {

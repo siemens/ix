@@ -86,11 +86,13 @@
     @include btn-base-variant($name);
   }
 
-  // Host class `active` locks Figma Active (e.g. overlay open). Not a selected or toggle state.
-  :host(.active:not(.disabled)) {
-    .btn-#{$name}:not(.disabled):not(:disabled) {
-      @include btn-active-look($name);
-    }
+  // Host class `active` locks Figma Active; an expanded dialog trigger uses the same look.
+  :host(.active:not(.disabled)) .btn-#{$name}:not(.disabled):not(:disabled),
+  :host(:not(.disabled))
+  .btn-#{$name}[aria-haspopup='dialog'][aria-expanded='true']:not(
+      .disabled
+    ):not(:disabled) {
+    @include btn-active-look($name);
   }
 
   :host(.disabled) {
