@@ -20,7 +20,13 @@ import {
 } from '@stencil/core';
 import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import {
+  addBreakpointMediaListener,
+  matchBreakpoint,
+} from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
+import { Disposable } from '../utils/typed-event';
 
 /**
  * @slot left - Pane displayed to the left of the content.
@@ -65,6 +71,12 @@ export class Panes {
   }> = [];
 
   private observer?: MutationObserver;
+  private applicationLayoutContext?: ContextType<
+    typeof ApplicationLayoutContext
+  >;
+  private layoutContextSubscription?: { unsubscribe: () => void };
+  private layoutServiceDisposable?: Disposable;
+  private removeBreakpointMediaListener?: () => void;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
@@ -84,19 +96,70 @@ export class Panes {
       childList: true,
     });
 
-    this.isMobile = matchBreakpoint('sm');
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-      this.configurePanes();
-    });
+    // Re-request after providers in the tree have finished willLoad.
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
   }
 
   componentDidLoad() {
     this.setPanes(this.currentPanes);
   }
 
+  connectedCallback() {
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
+  }
+
   disconnectedCallback() {
     this.observer?.disconnect();
+    this.layoutContextSubscription?.unsubscribe();
+    this.layoutContextSubscription = undefined;
+    this.layoutServiceDisposable?.dispose();
+    this.layoutServiceDisposable = undefined;
+    this.removeBreakpointMediaListener?.();
+    this.removeBreakpointMediaListener = undefined;
+    this.applicationLayoutContext = undefined;
+  }
+
+  private resolveIsMobile() {
+    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
+    if (forcedBreakpoint) {
+      return forcedBreakpoint === 'sm';
+    }
+    return matchBreakpoint('sm');
+  }
+
+  private subscribeViewportChanges() {
+    this.layoutServiceDisposable?.dispose();
+    this.removeBreakpointMediaListener?.();
+
+    this.layoutServiceDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = this.resolveIsMobile();
+      this.configurePanes();
+    });
+    this.removeBreakpointMediaListener = addBreakpointMediaListener(
+      'sm',
+      () => {
+        this.isMobile = this.resolveIsMobile();
+        this.configurePanes();
+      }
+    );
+  }
+
+  private subscribeLayoutContext() {
+    this.layoutContextSubscription?.unsubscribe();
+    this.applicationLayoutContext = undefined;
+    this.layoutContextSubscription = useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        this.isMobile = this.resolveIsMobile();
+        this.configurePanes();
+      },
+      true
+    );
+    this.isMobile = this.resolveIsMobile();
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {

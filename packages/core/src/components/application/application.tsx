@@ -56,6 +56,7 @@ export class Application {
   onForceBreakpointChange(forceBreakpoint: Breakpoint | undefined) {
     this.setBreakpoints(this.breakpoints);
     this.forceLayoutChange(forceBreakpoint);
+    this.emitLayoutContext();
   }
 
   forceLayoutChange(newMode: Breakpoint | undefined) {
@@ -85,6 +86,7 @@ export class Application {
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
+  @State() menuPinned = false;
 
   private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
 
@@ -99,6 +101,7 @@ export class Application {
   }
 
   private modeDisposable?: Disposable;
+  private pinnedDisposable?: Disposable;
 
   private onContentClick() {
     if (menuController.isPinned) {
@@ -121,11 +124,7 @@ export class Application {
     this.contextProvider = useContextProvider(
       this.hostElement,
       ApplicationLayoutContext,
-      {
-        hideHeader: false,
-        sidebar: this.applicationSidebarSlotted,
-        appSwitchConfig: this.appSwitchConfig,
-      }
+      this.createLayoutContext()
     );
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
@@ -135,10 +134,16 @@ export class Application {
       this.forceBreakpoint || applicationLayoutService.breakpoint;
 
     this.forceLayoutChange(this.forceBreakpoint);
+
+    this.menuPinned = menuController.isPinned;
+    this.pinnedDisposable = menuController.pinnedChange.on((pinned) => {
+      this.menuPinned = pinned;
+    });
   }
 
   disconnectedCallback() {
     this.modeDisposable?.dispose();
+    this.pinnedDisposable?.dispose();
   }
 
   @Watch('theme')
@@ -160,15 +165,24 @@ export class Application {
   @Watch('appSwitchConfig')
   @Watch('applicationSidebarSlotted')
   onApplicationSidebarChange() {
+    this.emitLayoutContext();
+  }
+
+  private createLayoutContext() {
+    return {
+      hideHeader: false,
+      sidebar: this.applicationSidebarSlotted,
+      appSwitchConfig: this.appSwitchConfig,
+      forceBreakpoint: this.forceBreakpoint,
+    };
+  }
+
+  private emitLayoutContext() {
     if (!this.contextProvider) {
       console.error('Context provider not available');
       return;
     }
-    this.contextProvider.emit({
-      hideHeader: false,
-      sidebar: this.applicationSidebarSlotted,
-      appSwitchConfig: this.appSwitchConfig,
-    });
+    this.contextProvider.emit(this.createLayoutContext());
   }
 
   render() {
@@ -177,6 +191,7 @@ export class Application {
         data-role=""
         class={{
           [`breakpoint-${this.breakpoint}`]: true,
+          'menu-pinned': this.menuPinned,
         }}
       >
         <slot name="application-header"></slot>

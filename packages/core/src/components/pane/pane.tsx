@@ -29,7 +29,12 @@ import type { JSAnimation } from 'animejs';
 import { animate } from 'animejs';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import {
+  addBreakpointMediaListener,
+  matchBreakpoint,
+} from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -45,6 +50,7 @@ import type {
   VariantChangedEvent,
 } from './pane.types';
 import { a11yBoolean } from '../utils/a11y';
+import { Disposable } from '../utils/typed-event';
 
 /**
  * @slot header - Additional slot for the header content
@@ -186,6 +192,12 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
+  private applicationLayoutContext?: ContextType<
+    typeof ApplicationLayoutContext
+  >;
+  private layoutContextSubscription?: { unsubscribe: () => void };
+  private layoutServiceDisposable?: Disposable;
+  private removeBreakpointMediaListener?: () => void;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -203,12 +215,64 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  connectedCallback() {
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
+  }
+
   disconnectedCallback() {
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
     this.disposableKeydown?.();
     this.focusTrap?.destroy();
+    this.layoutContextSubscription?.unsubscribe();
+    this.layoutContextSubscription = undefined;
+    this.layoutServiceDisposable?.dispose();
+    this.layoutServiceDisposable = undefined;
+    this.removeBreakpointMediaListener?.();
+    this.removeBreakpointMediaListener = undefined;
+    this.applicationLayoutContext = undefined;
+  }
+
+  private resolveIsMobile() {
+    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
+    if (forcedBreakpoint) {
+      return forcedBreakpoint === 'sm';
+    }
+    return matchBreakpoint('sm');
+  }
+
+  private subscribeViewportChanges() {
+    this.layoutServiceDisposable?.dispose();
+    this.removeBreakpointMediaListener?.();
+
+    this.layoutServiceDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = this.resolveIsMobile();
+    });
+    // Keep following the viewport when the shared bus has detection disabled
+    // (e.g. forceBreakpoint on a sibling application the pane left).
+    this.removeBreakpointMediaListener = addBreakpointMediaListener(
+      'sm',
+      () => {
+        this.isMobile = this.resolveIsMobile();
+      }
+    );
+  }
+
+  private subscribeLayoutContext() {
+    this.layoutContextSubscription?.unsubscribe();
+    this.applicationLayoutContext = undefined;
+    this.layoutContextSubscription = useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        this.isMobile = this.resolveIsMobile();
+      },
+      true
+    );
+    this.isMobile = this.resolveIsMobile();
   }
 
   @Watch('expanded')
@@ -264,10 +328,9 @@ export class Pane {
       this.onParentSizeChange();
     }
 
-    this.isMobile = matchBreakpoint('sm');
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
+    // Re-request after providers in the tree have finished willLoad.
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
 
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
