@@ -33,7 +33,6 @@ $container-width: var(--ix-expanding-search--container-width);
   input {
     @include input-control.input-control;
 
-    box-shadow: var(--ix-expanding-search--box-shadow);
     cursor: auto !important;
     width: 100%;
   }

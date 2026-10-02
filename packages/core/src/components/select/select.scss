@@ -41,7 +41,6 @@
     border: var(--ix-select--border-width) solid var(--ix-select--border-color);
     border-radius: var(--ix-select--border-radius);
     padding: var(--ix-select--padding);
-    box-shadow: var(--ix-select--box-shadow) !important;
 
     &:hover:not(.readonly):not(.disabled) {
       background-color: var(--ix-select--background--hover);
@@ -51,8 +50,6 @@
 
   .select.readonly,
   .select.disabled {
-    box-shadow: none !important;
-
     &,
     &:hover,
     &:active {

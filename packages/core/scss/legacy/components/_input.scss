@@ -25,7 +25,6 @@ label.ix-form-label.label-alignment-left {
     background-color: #{sys.$si-sys-color-background-1};
     border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-2};
     border-radius: var(--theme-small-border-radius);
-    box-shadow: none;
     color: #{sys.$si-sys-color-text-primary};
     min-height: 2rem;
     padding: 0.25rem 0.5rem;
@@ -74,7 +73,6 @@ label.ix-form-label.label-alignment-left {
   &:read-only {
     background-color: transparent;
     border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-2};
-    box-shadow: none;
     outline: none;
 
     &::placeholder {
@@ -86,7 +84,6 @@ label.ix-form-label.label-alignment-left {
   &.disabled {
     background-color: transparent;
     border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-4};
-    box-shadow: none;
     outline: none;
 
     &::placeholder {

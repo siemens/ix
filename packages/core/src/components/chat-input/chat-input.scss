@@ -29,7 +29,6 @@
     border: var(--ix-chat-input--border-width) solid
       var(--ix-chat-input--border-color);
     border-radius: var(--ix-chat-input--border-radius);
-    box-shadow: var(--ix-chat-input--box-shadow);
     color: var(--ix-chat-input--color);
   }
 
@@ -188,7 +187,6 @@
 
   .chat-input {
     border-color: var(--ix-chat-input--border-color--disabled);
-    box-shadow: none;
     color: var(--ix-chat-input--color--disabled);
     background-color: transparent;
   }
@@ -201,7 +199,6 @@
 :host(.readonly) {
   .chat-input {
     border-color: var(--ix-chat-input--border-color--readonly);
-    box-shadow: none;
     background-color: transparent;
   }
 

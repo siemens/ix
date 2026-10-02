@@ -93,7 +93,6 @@
     min-height: var(--ix-category-filter-text-input--min-height);
     background: transparent;
     flex-grow: 1;
-    box-shadow: none;
 
     @include text-truncation.ellipsis;
     @include fonts.typography-body;

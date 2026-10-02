@@ -63,7 +63,6 @@
       --ix-input--border-radius,
       var(--theme-small-border-radius)
     );
-    box-shadow: var(--ix-input--box-shadow, none);
 
     @include fonts.typography-body;
   }
@@ -134,7 +133,6 @@
   @if $feature-read-only == true {
     &.read-only,
     &:read-only {
-      box-shadow: none;
       background-color: transparent;
       outline: none;
       border: var(--ix-input--border-width, var(--theme-border-width-default))
@@ -149,7 +147,6 @@
 
   &:disabled,
   &.disabled {
-    box-shadow: none;
     background-color: transparent;
     outline: none;
     border: var(--ix-input--border-width, var(--theme-border-width-default))
