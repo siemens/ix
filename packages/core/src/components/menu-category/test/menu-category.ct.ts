@@ -442,7 +442,8 @@ regressionTest(
     const categoryElement = page.locator('ix-menu-category');
     await expect(categoryElement).toHaveClass(/hydrated/);
 
-    // Navigate to category
+    // Navigate through skip link and burger button to the category
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
@@ -569,7 +570,8 @@ regressionTest(
     const categoryElement = page.locator('ix-menu-category');
     await expect(categoryElement).toHaveClass(/hydrated/);
 
-    // Navigate to category
+    // Navigate through skip link and burger button to the category
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');

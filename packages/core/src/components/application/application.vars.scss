@@ -11,6 +11,9 @@
 
 :host {
   --ix-application-child-header--z-index: var(--theme-z-index-sticky);
+  --ix-application-skip-link--background: #{sys.$si-sys-color-background-1};
+  --ix-application-skip-link--color: #{sys.$si-sys-color-text-accent};
+  --ix-application-skip-link--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
 
 :host {
