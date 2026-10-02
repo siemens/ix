@@ -59,7 +59,7 @@ export const config: Config = {
   },
   excludeComponents: excludeDevelopmentComponents,
   namespace: 'siemens-ix',
-  watchIgnoredRegex: [/component-doc.json/],
+  watchIgnoredRegex: [/component-(api|doc).json/],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [

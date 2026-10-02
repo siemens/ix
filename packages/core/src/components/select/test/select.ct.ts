@@ -457,6 +457,41 @@ test('filter works when typing exact text of manually selected item', async ({
   await expect(page.getByRole('option', { name: 'Item 3' })).toBeVisible();
 });
 
+test('keeps first typed character when focused via keyboard with a selected value', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <button>Start</button>
+    <ix-select value="DE" hide-list-header>
+      <ix-select-item value="DE" label="Germany"></ix-select-item>
+      <ix-select-item value="FR" label="France"></ix-select-item>
+      <ix-select-item value="AT" label="Austria"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const input = select.getByRole('combobox');
+  await expect(select).toHaveClass(/hydrated/);
+
+  await page.getByRole('button', { name: 'Start' }).focus();
+  await page.keyboard.press('Tab');
+  await expect(input).toBeFocused();
+
+  await page.keyboard.type('f');
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await page.keyboard.type('ra');
+
+  await expect(input).toHaveValue('fra');
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Germany' })
+  ).not.toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Austria' })
+  ).not.toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,
@@ -1595,4 +1630,69 @@ test('multiple mode: focused "+N" chip traps Tab navigation', async ({
   await page.keyboard.press('Shift+Tab');
   await expect(removeButtons.last()).toBeFocused();
   await expect(beforeOverflow).not.toBeFocused();
+});
+
+test('does not emit unhandled rejection when select is unmounted during validation', async ({
+  mount,
+  page,
+}) => {
+  const inputNotFoundErrors: string[] = [];
+
+  page.on('pageerror', (error) => {
+    if (error.message.includes('Input element not found')) {
+      inputNotFoundErrors.push(error.message);
+    }
+  });
+
+  await page.addInitScript(() => {
+    window.addEventListener('unhandledrejection', (event) => {
+      const msg =
+        event.reason instanceof Error
+          ? event.reason.message
+          : String(event.reason);
+      if (!msg.includes('Input element not found')) {
+        return;
+      }
+      const target = window as unknown as { __ixUnhandled?: string[] };
+      target.__ixUnhandled = target.__ixUnhandled ?? [];
+      target.__ixUnhandled.push(msg);
+    });
+  });
+
+  await mount(`<div id="select-host"></div>`);
+
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const host = document.getElementById('select-host');
+        if (!host) {
+          throw new Error('Select host element not found');
+        }
+        const select = document.createElement('ix-select');
+        select.setAttribute('required', '');
+        select.setAttribute('label', 'Example');
+
+        const item = document.createElement('ix-select-item');
+        item.setAttribute('value', 'a');
+        item.setAttribute('label', 'Option A');
+        select.appendChild(item);
+        host.appendChild(select);
+
+        setTimeout(() => {
+          host.innerHTML = '';
+          setTimeout(resolve, 0);
+        }, 0);
+      })
+  );
+
+  await page.evaluate(
+    () => new Promise<void>((resolve) => setTimeout(resolve, 0))
+  );
+
+  const injected = await page.evaluate(
+    () =>
+      (window as unknown as { __ixUnhandled?: string[] }).__ixUnhandled ?? []
+  );
+
+  expect([...inputNotFoundErrors, ...injected]).toEqual([]);
 });

@@ -1,0 +1,4 @@
+- main:
+  - heading "Report could not be generated" [level=1]
+  - text: An error occurred while generating the report. Contact your administrator for more information.
+  - button "Return to overview"

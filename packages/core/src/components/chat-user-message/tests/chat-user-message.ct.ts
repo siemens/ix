@@ -105,12 +105,19 @@ regressionTest(
 
     const message = page.locator('ix-chat-user-message');
     const actions = message.locator('.actions');
+    const box = await message.boundingBox();
 
-    await expect(actions).not.toBeVisible();
+    // Default pointer can sit over the top-left mount area and keep :hover
+    // active, which would show actions before this assertion.
+    await page.mouse.move(
+      Math.max(0, (box?.x ?? 0) + (box?.width ?? 0) + 40),
+      Math.max(0, (box?.y ?? 0) + (box?.height ?? 0) + 40)
+    );
+    await expect(actions).toHaveCSS('opacity', '0');
 
     await message.hover();
 
-    await expect(actions).toBeVisible();
+    await expect(actions).toHaveCSS('opacity', '1');
   }
 );
 

@@ -244,7 +244,6 @@ export class Chip
                     'with-icon': true,
                   }}
                   name={this.icon}
-                  size={'24'}
                   aria-label={this.ariaLabelIcon}
                   aria-hidden={a11yBoolean(iconIsDecorative)}
                   style={this.getIconStyle(variant)}

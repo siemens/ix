@@ -7,11 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { MixedInCtor, State, Watch } from '@stencil/core';
+import { MixedInCtor, State } from '@stencil/core';
 import { StencilLifecycle } from '../../component';
 import {
   A11yAttributeName,
   A11yAttributes,
+  a11yAttributes,
   a11yHostAttributes,
   getA11yAttributeNames,
 } from './../../../a11y';
@@ -19,175 +20,289 @@ import {
   interceptAriaReflectionRemovals,
   interceptHostAttributeRemovals,
 } from './aria-attribute-interceptors';
+import {
+  flushAriaAttributeMutations,
+  observeAriaAttributes,
+  runWithoutAriaAttributeObservation,
+  unobserveAriaAttributes,
+} from './aria-attribute-observer';
 
 export interface InheritAriaAttributesMixinContract {
   inheritAriaAttributes: A11yAttributes;
   getIgnoredAriaAttributes?(): A11yAttributeName[];
+  readAriaAttributesFromHost(): A11yAttributes;
+}
+
+export interface LifecycleWithInheritAriaAttributesMixin {
+  connectedCallback(): void;
+  componentWillLoad(): Promise<void> | void;
+  disconnectedCallback(): void;
 }
 
 export const InheritAriaAttributesMixin = <
   B extends MixedInCtor<StencilLifecycle>,
 >(
   Base: B
-) => {
+): B &
+  MixedInCtor<
+    InheritAriaAttributesMixinContract & LifecycleWithInheritAriaAttributesMixin
+  > => {
   class InheritAriaAttributesMixinCtor
     extends Base
     implements InheritAriaAttributesMixinContract
   {
     @State() inheritAriaAttributes: A11yAttributes = {};
 
-    // Distinguish mixin cleanup from attributes removed by consumers.
-    forwardedAriaAttributeRemovals = new Set<A11yAttributeName>();
-    forwardedAriaAttributes = new Set<A11yAttributeName>();
-    removeHostAttribute?: HTMLElement['removeAttribute'];
+    #ariaObserverInitialized = false;
+    #ariaObservationActive = false;
+    #ariaInitializationPending = false;
+    #disconnected = false;
+    #ariaAttributesBeforeDisconnect?: Map<A11yAttributeName, string>;
+    #ariaAttributesChangedWhileDisconnected = new Set<A11yAttributeName>();
+    #ariaAttributeRemovalPatched = false;
+    #readingAriaAttributes = false;
 
-    ignoredAriaAttributes?: Set<A11yAttributeName>;
+    #handleAriaMutations(changedAttributes: ReadonlySet<A11yAttributeName>) {
+      const hostElement = this.#getHostElement();
+      const ignoredAttributes = this.getIgnoredAriaAttributes();
+      let updatedAttributes = this.inheritAriaAttributes;
 
-    constructor(...args: any[]) {
-      super(...args);
+      changedAttributes.forEach((attributeName) => {
+        if (ignoredAttributes.includes(attributeName)) {
+          return;
+        }
+
+        const newValue = hostElement.getAttribute(attributeName);
+        if (newValue !== null && !this.#readingAriaAttributes) {
+          runWithoutAriaAttributeObservation(hostElement, () => {
+            hostElement.removeAttribute(attributeName);
+          });
+        }
+        const currentValue = updatedAttributes[attributeName] ?? null;
+        if (newValue === currentValue) {
+          return;
+        }
+
+        if (updatedAttributes === this.inheritAriaAttributes) {
+          updatedAttributes = { ...updatedAttributes };
+        }
+
+        if (newValue === null) {
+          delete updatedAttributes[attributeName];
+        } else {
+          updatedAttributes[attributeName] = newValue;
+        }
+      });
+
+      if (updatedAttributes !== this.inheritAriaAttributes) {
+        this.inheritAriaAttributes = updatedAttributes;
+      }
     }
 
     getIgnoredAriaAttributes(): A11yAttributeName[] {
       return [];
     }
 
-    isIgnoredAriaAttribute = (attributeName: A11yAttributeName) => {
-      this.ignoredAriaAttributes ??= new Set(this.getIgnoredAriaAttributes());
-      return this.ignoredAriaAttributes.has(attributeName);
-    };
+    readAriaAttributesFromHost(): A11yAttributes {
+      const hostElement = this.#getHostElement();
+      this.#readingAriaAttributes = true;
 
-    override componentWillLoad(): Promise<void> | void {
+      try {
+        return runWithoutAriaAttributeObservation(hostElement, () => {
+          return a11yHostAttributes(
+            hostElement,
+            this.getIgnoredAriaAttributes()
+          );
+        });
+      } finally {
+        this.#readingAriaAttributes = false;
+      }
+    }
+
+    #getHostElement(): HTMLElement {
       if (!this.hostElement) {
-        return;
+        throw new Error(
+          'Host element is not defined. Make sure to apply the InheritAriaAttributesMixin to a Stencil component.'
+        );
       }
 
-      this.ignoredAriaAttributes = new Set(this.getIgnoredAriaAttributes());
-      this.inheritAriaAttributes = a11yHostAttributes(
-        this.hostElement,
-        this.getIgnoredAriaAttributes()
-      );
-      this.forwardedAriaAttributes = new Set(
-        getA11yAttributeNames().filter(
-          (attributeName) => !this.isIgnoredAriaAttribute(attributeName)
-        )
-      );
-
-      this.removeHostAttribute = interceptHostAttributeRemovals(
-        this.hostElement,
-        {
-          isIgnored: this.isIgnoredAriaAttribute,
-          isInherited: (attributeName) =>
-            attributeName in this.inheritAriaAttributes,
-          onAttributeRemoved: (attributeName) =>
-            this.removeInheritedAriaAttribute(attributeName),
-        }
-      );
-
-      interceptAriaReflectionRemovals(
-        this.hostElement,
-        this.forwardedAriaAttributes,
-        {
-          onAttributeRemoved: (attributeName) =>
-            this.removeInheritedAriaAttribute(attributeName),
-          removeHostAttribute: (attributeName) =>
-            this.removeHostAttribute?.(attributeName),
-        }
-      );
+      return this.hostElement;
     }
 
-    removeInheritedAriaAttribute(attributeName: A11yAttributeName) {
-      if (!(attributeName in this.inheritAriaAttributes)) {
-        return;
-      }
+    #getAriaAttributesFromHost() {
+      const hostElement = this.#getHostElement();
+      const attributes = new Map<A11yAttributeName, string>();
 
-      const updatedAttributes = { ...this.inheritAriaAttributes };
-      delete updatedAttributes[attributeName];
-      this.inheritAriaAttributes = updatedAttributes;
+      a11yAttributes.forEach((attributeName) => {
+        const value = hostElement.getAttribute(attributeName);
+        if (value !== null) {
+          attributes.set(attributeName, value);
+        }
+      });
+
+      return attributes;
     }
 
-    @Watch('role')
-    @Watch('aria-activedescendant')
-    @Watch('aria-atomic')
-    @Watch('aria-autocomplete')
-    @Watch('aria-braillelabel')
-    @Watch('aria-brailleroledescription')
-    @Watch('aria-busy')
-    @Watch('aria-checked')
-    @Watch('aria-colcount')
-    @Watch('aria-colindex')
-    @Watch('aria-colindextext')
-    @Watch('aria-colspan')
-    @Watch('aria-controls')
-    @Watch('aria-current')
-    @Watch('aria-describedby')
-    @Watch('aria-description')
-    @Watch('aria-details')
-    @Watch('aria-disabled')
-    @Watch('aria-errormessage')
-    @Watch('aria-expanded')
-    @Watch('aria-flowto')
-    @Watch('aria-haspopup')
-    @Watch('aria-hidden')
-    @Watch('aria-invalid')
-    @Watch('aria-keyshortcuts')
-    @Watch('aria-label')
-    @Watch('aria-labelledby')
-    @Watch('aria-level')
-    @Watch('aria-live')
-    @Watch('aria-multiline')
-    @Watch('aria-multiselectable')
-    @Watch('aria-orientation')
-    @Watch('aria-owns')
-    @Watch('aria-placeholder')
-    @Watch('aria-posinset')
-    @Watch('aria-pressed')
-    @Watch('aria-readonly')
-    @Watch('aria-relevant')
-    @Watch('aria-required')
-    @Watch('aria-roledescription')
-    @Watch('aria-rowcount')
-    @Watch('aria-rowindex')
-    @Watch('aria-rowindextext')
-    @Watch('aria-rowspan')
-    @Watch('aria-selected')
-    @Watch('aria-setsize')
-    @Watch('aria-sort')
-    @Watch('aria-valuemax')
-    @Watch('aria-valuemin')
-    @Watch('aria-valuenow')
-    @Watch('aria-valuetext')
-    ariaAttributeChanged(
-      newValue: string | null,
-      _: string | null,
-      propName: string
-    ) {
-      const attributeName = propName as A11yAttributeName;
-
-      if (this.isIgnoredAriaAttribute(attributeName)) {
+    #patchAriaAttributeRemoval() {
+      if (
+        this.#ariaAttributeRemovalPatched ||
+        typeof MutationObserver === 'undefined'
+      ) {
         return;
       }
 
-      if (newValue === null) {
-        if (this.forwardedAriaAttributeRemovals.delete(attributeName)) {
+      const hostElement = this.#getHostElement();
+      const isIgnored = (attributeName: A11yAttributeName) =>
+        this.getIgnoredAriaAttributes().includes(attributeName);
+      const onAttributeRemoved = (attributeName: A11yAttributeName) => {
+        if (this.#readingAriaAttributes) {
           return;
         }
 
-        this.removeInheritedAriaAttribute(attributeName);
+        if (!this.#ariaObservationActive) {
+          this.#ariaAttributesChangedWhileDisconnected.add(attributeName);
+        }
+
+        this.#updateInheritedAriaAttribute(null, attributeName);
+      };
+      const removeHostAttribute = interceptHostAttributeRemovals(hostElement, {
+        isIgnored,
+        isInherited: (attributeName) =>
+          attributeName in this.inheritAriaAttributes,
+        onAttributeRemoved,
+      });
+
+      interceptAriaReflectionRemovals(
+        hostElement,
+        getA11yAttributeNames().filter(
+          (attributeName) => !isIgnored(attributeName)
+        ),
+        { onAttributeRemoved, removeHostAttribute }
+      );
+      this.#ariaAttributeRemovalPatched = true;
+    }
+
+    #observeAriaAttributes() {
+      this.#ariaObservationActive = observeAriaAttributes(
+        this.#getHostElement(),
+        (attributeNames) => this.#handleAriaMutations(attributeNames)
+      );
+    }
+
+    override connectedCallback(): void {
+      if (super.connectedCallback) {
+        super.connectedCallback();
+      }
+
+      this.#disconnected = false;
+      if (this.#ariaInitializationPending && !this.#ariaObserverInitialized) {
+        this.#ariaInitializationPending = false;
+        this.#initializeAriaAttributes();
         return;
       }
 
-      this.inheritAriaAttributes = {
-        ...this.inheritAriaAttributes,
-        [attributeName]: newValue,
-      };
-      this.forwardedAriaAttributes.add(attributeName);
+      if (this.#ariaObserverInitialized) {
+        const hostElement = this.#getHostElement();
+        this.#observeAriaAttributes();
 
-      if (this.hostElement) {
-        this.forwardedAriaAttributeRemovals.add(attributeName);
-        this.removeHostAttribute?.(attributeName);
-        queueMicrotask(() => {
-          this.forwardedAriaAttributeRemovals.delete(attributeName);
-        });
+        if (this.#ariaAttributesBeforeDisconnect) {
+          const inheritedAttributes = this.readAriaAttributesFromHost();
+
+          a11yAttributes.forEach((attributeName) => {
+            const oldValue =
+              this.#ariaAttributesBeforeDisconnect?.get(attributeName) ?? null;
+            const newValue =
+              inheritedAttributes[attributeName] ??
+              hostElement.getAttribute(attributeName);
+            if (
+              newValue !== oldValue ||
+              this.#ariaAttributesChangedWhileDisconnected.has(attributeName)
+            ) {
+              this.#updateInheritedAriaAttribute(
+                newValue ?? null,
+                attributeName
+              );
+            }
+          });
+        }
+      }
+      this.#ariaAttributesBeforeDisconnect = undefined;
+      this.#ariaAttributesChangedWhileDisconnected.clear();
+    }
+
+    override componentWillLoad(): Promise<void> | void {
+      if (super.componentWillLoad) {
+        const baseLoad = super.componentWillLoad();
+        if (baseLoad) {
+          return baseLoad.then(() =>
+            this.#initializeAriaAttributesIfConnected()
+          );
+        }
+      }
+
+      this.#initializeAriaAttributesIfConnected();
+    }
+
+    #initializeAriaAttributesIfConnected() {
+      if (this.#disconnected) {
+        this.#ariaInitializationPending = true;
+        return;
+      }
+
+      this.#initializeAriaAttributes();
+    }
+
+    #initializeAriaAttributes() {
+      this.inheritAriaAttributes = this.readAriaAttributesFromHost();
+
+      this.#patchAriaAttributeRemoval();
+      this.#ariaObserverInitialized = true;
+      this.#observeAriaAttributes();
+    }
+
+    #updateInheritedAriaAttribute(
+      newValue: string | null,
+      propName: A11yAttributeName
+    ) {
+      const ignoredAttributes = this.getIgnoredAriaAttributes();
+      if (ignoredAttributes.includes(propName)) {
+        return;
+      }
+
+      const currentValue = this.inheritAriaAttributes[propName] ?? null;
+      if (newValue === currentValue) {
+        return;
+      }
+
+      const updatedAttributes = {
+        ...this.inheritAriaAttributes,
+      };
+
+      if (newValue === null) {
+        delete updatedAttributes[propName];
+      } else {
+        updatedAttributes[propName] = newValue;
+      }
+
+      this.inheritAriaAttributes = updatedAttributes;
+    }
+
+    override disconnectedCallback(): void {
+      this.#disconnected = true;
+      this.#ariaAttributesChangedWhileDisconnected.clear();
+
+      if (this.#ariaObserverInitialized) {
+        flushAriaAttributeMutations();
+        this.#ariaAttributesBeforeDisconnect =
+          this.#getAriaAttributesFromHost();
+        unobserveAriaAttributes(this.#getHostElement());
+        this.#ariaObservationActive = false;
+      } else {
+        this.#ariaAttributesBeforeDisconnect = undefined;
+      }
+
+      if (super.disconnectedCallback) {
+        super.disconnectedCallback();
       }
     }
   }

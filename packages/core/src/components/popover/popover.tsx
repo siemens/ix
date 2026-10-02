@@ -40,6 +40,7 @@ import {
   addFocusTrap,
   focusFirstFocusTrapElement,
   FocusTrapResult,
+  getAdjacentFocusTrapElement,
   getFocusTrapFocusables,
 } from '../utils/focus/focus-trap';
 import { DefaultMixins } from '../utils/internal/component';
@@ -185,8 +186,14 @@ export class Popover
     return {
       trapFocusInShadowDom: 'both' as const,
       listenOnDocument: true,
-      shouldDeferTabTrap: (trapHost: HTMLElement) =>
-        !popoverController.isTopmostPresentedHost(trapHost),
+      shouldDeferTabTrap: (
+        trapHost: HTMLElement,
+        activeElement: Element | null
+      ) => popoverController.shouldDeferFocusTrap(trapHost, activeElement),
+      getExcludedOverlayHosts: (
+        trapHost: HTMLElement,
+        activeElement: Element | null
+      ) => popoverController.getFocusTrapExcludedHosts(trapHost, activeElement),
     };
   }
 
@@ -197,6 +204,24 @@ export class Popover
 
   getId(): string {
     return this.getHostElementId();
+  }
+
+  getTriggerElement(): HTMLElement | undefined {
+    return this.triggerElement;
+  }
+
+  getAdjacentFocusElement(
+    current: HTMLElement,
+    backwards: boolean,
+    excludedHosts?: HTMLElement[]
+  ): HTMLElement | undefined {
+    return getAdjacentFocusTrapElement(
+      this.hostElement,
+      current,
+      backwards,
+      this.getFocusTrapOptions(),
+      excludedHosts
+    );
   }
 
   getNestedPopoverIds(): string[] {
@@ -290,6 +315,8 @@ export class Popover
   }
 
   override connectedCallback() {
+    super.connectedCallback();
+
     if (this.hasDisconnected) {
       popoverController.connected(this);
       void this.initializePopover();
@@ -316,6 +343,8 @@ export class Popover
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
+
     this.hasDisconnected = true;
     this.clearHideTimeout();
     this.disposeAutoUpdate?.();
@@ -346,6 +375,7 @@ export class Popover
       this.suppressShowWatch = true;
       this.show = true;
       this.suppressShowWatch = false;
+      popoverController.didPresent(this);
 
       dialog.showPopover();
       this.registerHoverDialogListener(dialog);
@@ -415,6 +445,7 @@ export class Popover
     this.suppressShowWatch = true;
     this.show = false;
     this.suppressShowWatch = false;
+    popoverController.didDismiss(this);
     this.closeFocus = 'restore-trigger';
 
     this.updateTriggerAria(false);
@@ -686,7 +717,7 @@ export class Popover
       return undefined;
     }
 
-    if (el.tagName === 'IX-BUTTON' || el.tagName === 'IX-ICON-BUTTON') {
+    if (this.isIxButtonTrigger(el)) {
       const inner = el.shadowRoot?.querySelector<HTMLElement>(
         'button, a[role="button"]'
       );
@@ -695,6 +726,21 @@ export class Popover
       }
     }
     return el;
+  }
+
+  private isIxButtonTrigger(element: HTMLElement): boolean {
+    return (
+      element.tagName === 'IX-BUTTON' || element.tagName === 'IX-ICON-BUTTON'
+    );
+  }
+
+  private updateTriggerActive(expanded: boolean) {
+    const triggerElement = this.triggerElement;
+    if (!triggerElement || !this.isIxButtonTrigger(triggerElement)) {
+      return;
+    }
+
+    triggerElement.classList.toggle('active', expanded);
   }
 
   private clearTriggerAriaAttributes(element: HTMLElement) {
@@ -717,6 +763,8 @@ export class Popover
     if (target !== triggerElement) {
       this.clearTriggerAriaAttributes(triggerElement);
     }
+
+    this.updateTriggerActive(expanded);
   }
 
   private clearTriggerAria() {
@@ -724,6 +772,7 @@ export class Popover
       return;
     }
 
+    this.updateTriggerActive(false);
     this.clearTriggerAriaAttributes(this.triggerElement);
 
     const inner = this.triggerElement.shadowRoot?.querySelector<HTMLElement>(

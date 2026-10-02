@@ -6,18 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'misc/common-variables' as vars;
-@use 'legacy/components/forms';
+@use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
-$container-width: 11.5625rem;
+@use './expanding-search.vars' as *;
+$container-width: var(--ix-expanding-search--container-width);
 
 :host {
   display: inline-flex;
   width: auto;
-  height: vars.$x-large-space;
+  height: var(--ix-expanding-search--height);
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -25,11 +25,15 @@ $container-width: 11.5625rem;
   @include component.ix-component;
 
   .input-container {
-    transition: all var(--theme-medium-time) ease-in-out;
+    transition: all
+      var(--ix-expanding-search-input-container--transition-duration)
+      ease-in-out;
   }
 
   input {
-    box-shadow: var(--theme-input--box-shadow);
+    @include input-control.input-control;
+
+    box-shadow: var(--ix-expanding-search--box-shadow);
     cursor: auto !important;
     width: 100%;
   }
@@ -43,7 +47,7 @@ $container-width: 11.5625rem;
   }
 
   .collapsed {
-    width: vars.$large-space;
+    width: var(--ix-expanding-search-collapsed--width);
     border: none;
   }
 
@@ -56,10 +60,11 @@ $container-width: 11.5625rem;
 
   .btn-search {
     display: flex;
-    max-width: vars.$x-large-space;
-    max-height: vars.$x-large-space;
-    border-radius: var(--theme-input--border-radius);
-    transition: all var(--theme-default-time) ease-in-out;
+    max-width: var(--ix-expanding-search-button-search--max-width);
+    max-height: var(--ix-expanding-search-button-search--max-height);
+    border-radius: var(--ix-expanding-search--border-radius);
+    transition: all var(--ix-expanding-search-button--transition-duration)
+      ease-in-out;
     z-index: 1;
     align-items: center;
     position: relative;
@@ -85,15 +90,15 @@ $container-width: 11.5625rem;
   }
 
   .btn-search.btn-search--expanded {
-    margin-left: 0.25rem;
+    margin-left: var(--ix-expanding-search-button-search-expanded--margin-left);
     pointer-events: none;
   }
 
   .btn-search:active {
-    width: vars.$x-large-space;
-    height: vars.$x-large-space;
-    border-radius: var(--theme-input--border-radius);
-    border: var(--theme-std-bdr-1) !important;
+    width: var(--ix-expanding-search-button-search-active--width);
+    height: var(--ix-expanding-search-button-search-active--height);
+    border-radius: var(--ix-expanding-search--border-radius);
+    border: var(--ix-expanding-search-button--border--active) !important;
   }
 
   /*expanded view*/
@@ -106,14 +111,14 @@ $container-width: 11.5625rem;
 
   .btn-clear {
     position: absolute;
-    border-radius: var(--theme-input--border-radius);
+    border-radius: var(--ix-expanding-search--border-radius);
     right: 0px;
-    margin-right: 0.25rem;
+    margin-right: var(--ix-expanding-search-button-clear--margin-right);
   }
 
   .input {
-    padding-left: vars.$x-large-space !important;
-    padding-right: 2.5rem !important;
+    padding-left: var(--ix-expanding-search-input--padding-left) !important;
+    padding-right: var(--ix-expanding-search-input--padding-right) !important;
   }
 
   .opacity-before {

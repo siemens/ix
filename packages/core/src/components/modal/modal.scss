@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './modal.vars' as *;
+@use 'tokens/system' as sys;
 ::backdrop {
-  background: var(--theme-color-lightbox, #0000008c);
+  background: var(--ix-modal-backdrop--background);
 }
 
 :focus-visible {
@@ -19,7 +21,7 @@
   display: none;
 
   dialog {
-    --ix-dialog-padding: 1rem;
+    --ix-dialog-padding: var(--ix-modal--dialog-padding);
 
     margin: 0;
     padding: var(--ix-dialog-padding);
@@ -35,10 +37,10 @@
     flex-direction: column;
     position: fixed;
     border: none;
-    border-radius: var(--theme-default-border-radius);
-    background: var(--theme-modal--background);
-    box-shadow: var(--theme-shadow-4);
-    color: var(--theme-color-std-text);
+    border-radius: var(--ix-modal--border-radius);
+    background: var(--ix-modal--background);
+    box-shadow: var(--ix-modal--box-shadow);
+    color: var(--ix-modal--color);
     overflow: visible;
     max-height: 80vh;
     pointer-events: all;
@@ -46,23 +48,23 @@
   }
 
   .modal-size-360 {
-    width: 22.5rem;
+    width: var(--ix-modal-extra-small--width);
   }
 
   .modal-size-480 {
-    width: 30rem;
+    width: var(--ix-modal-small--width);
   }
 
   .modal-size-600 {
-    width: 37.5rem;
+    width: var(--ix-modal-medium--width);
   }
 
   .modal-size-720 {
-    width: 45rem;
+    width: var(--ix-modal-large--width);
   }
 
   .modal-size-840 {
-    width: 52.5rem;
+    width: var(--ix-modal-extra-large--width);
   }
 
   .modal-size-full-width {
@@ -85,17 +87,17 @@
     max-width: calc(100% - var(--ix-dialog-padding) * 2);
 
     min-height: calc(
-      100% -
-        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
+      100% - (var(--ix-dialog-padding) * 2) -
+        var(--ix-dialog-full-screen-height)
     );
     max-height: calc(
-      100% -
-        (var(--ix-dialog-padding) * 2) - var(--ix-dialog-full-screen-height)
+      100% - (var(--ix-dialog-padding) * 2) -
+        var(--ix-dialog-full-screen-height)
     );
   }
 
   dialog.modal-size-full-screen::backdrop {
-    background: var(--theme-modal--background);
+    background: var(--ix-modal--background);
   }
 
   .dialog-backdrop {
@@ -137,6 +139,6 @@
 :host(.with-icon) {
   ::slotted(ix-modal-footer),
   ::slotted(ix-modal-content) {
-    margin-left: 3rem;
+    margin-left: var(--ix-modal-with-icon--margin-left);
   }
 }
