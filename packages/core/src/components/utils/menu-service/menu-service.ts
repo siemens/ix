@@ -45,8 +45,13 @@ class MenuService {
     }
   }
 
-  public setIsPinned(pinned: boolean) {
+  public setIsPinned(pinned: boolean, forceNotify = false) {
     if (this.#isPinned === pinned) {
+      // Still notify when the menu `pinned` prop changes while layout pin is
+      // already true (e.g. pinning at a large breakpoint).
+      if (forceNotify) {
+        this.#pinnedChange.emit(pinned);
+      }
       return;
     }
     this.#isPinned = pinned;

@@ -313,6 +313,15 @@ regressionTest(
       .toBe(false);
 
     await expect(header.locator('ix-menu-expand-icon')).toHaveCount(1);
+
+    // Pinning later must still hide show-menu even though isPinned was already true at lg.
+    await menu.evaluate((el: HTMLIxMenuElement) => {
+      el.pinned = true;
+    });
+    await expect
+      .poll(async () => menu.evaluate((el: HTMLIxMenuElement) => el.pinned))
+      .toBe(true);
+    await expect(header.locator('ix-menu-expand-icon')).toHaveCount(0);
   }
 );
 
