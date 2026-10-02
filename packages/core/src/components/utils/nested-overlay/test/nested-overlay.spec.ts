@@ -14,7 +14,7 @@ import {
   getParentId,
   removeIdFromHierarchy,
 } from '../hierarchy';
-import { NestedOverlayStack } from '../nested-overlay-stack';
+import { NestedOverlayRegistry } from '../nested-overlay-registry';
 
 describe('nested-overlay hierarchy', () => {
   const childIdsByParent = {
@@ -55,24 +55,24 @@ describe('nested-overlay hierarchy', () => {
   });
 });
 
-describe('NestedOverlayStack', () => {
+describe('NestedOverlayRegistry', () => {
   type Instance = { id: string; persistent: boolean; open: boolean };
   type TestInstance = Instance & { getId(): string };
 
-  function createStack(
+  function createRegistry(
     dismissSpy = vi.fn<(instance: TestInstance) => void>()
   ): {
-    stack: NestedOverlayStack<TestInstance>;
+    registry: NestedOverlayRegistry<TestInstance>;
     dismissSpy: typeof dismissSpy;
   } {
-    const stack = new NestedOverlayStack<TestInstance>(
+    const registry = new NestedOverlayRegistry<TestInstance>(
       {
         blocksOutsideDismiss: (instance) => instance.persistent,
       },
       dismissSpy
     );
 
-    return { stack, dismissSpy };
+    return { registry, dismissSpy };
   }
 
   function instance(
@@ -87,44 +87,130 @@ describe('NestedOverlayStack', () => {
     };
   }
 
+  it.each([0, 1, 2])(
+    'rejects cycles with %i existing descendant links',
+    (linkCount) => {
+      const { registry } = createRegistry();
+
+      for (let index = 0; index < linkCount; index++) {
+        registry.setChildIds(`overlay-${index}`, [`overlay-${index + 1}`]);
+      }
+
+      const parentId = `overlay-${linkCount}`;
+      expect(() => registry.setChildIds(parentId, ['overlay-0'])).toThrow(
+        `Cannot assign children to overlay "${parentId}": cyclic hierarchy.`
+      );
+      expect(registry.getChildIds(parentId)).toEqual([]);
+    }
+  );
+
+  it('preserves existing children when rejecting a cyclic assignment', () => {
+    const { registry } = createRegistry();
+    registry.setChildIds('parent', ['child']);
+    registry.setChildIds('child', ['grandchild']);
+    registry.setChildIds('grandchild', ['leaf']);
+
+    expect(() =>
+      registry.setChildIds('grandchild', ['sibling', 'parent'])
+    ).toThrow(/cyclic hierarchy/);
+    expect(registry.getChildIds('grandchild')).toEqual(['leaf']);
+    expect(registry.buildPathIncluding('leaf')).toEqual(
+      new Set(['grandchild', 'child', 'parent', 'leaf'])
+    );
+  });
+
+  it('allows valid nesting and replacement of children', () => {
+    const { registry } = createRegistry();
+    registry.setChildIds('parent', ['child', 'sibling']);
+    registry.setChildIds('child', ['grandchild']);
+    registry.setChildIds('parent', ['child', 'replacement']);
+
+    expect(registry.getChildIds('parent')).toEqual(['child', 'replacement']);
+    expect(registry.getParentId('grandchild')).toBe('child');
+    expect(registry.getParentId('sibling')).toBeUndefined();
+    expect(registry.buildPathIncluding('grandchild')).toEqual(
+      new Set(['child', 'parent', 'grandchild'])
+    );
+
+    registry.setChildIds('parent', []);
+    expect(registry.getParentId('child')).toBeUndefined();
+  });
+
+  it('copies assigned child IDs to prevent unchecked mutations', () => {
+    const { registry } = createRegistry();
+    const childIds = ['child'];
+    registry.setChildIds('parent', childIds);
+
+    childIds.push('parent');
+
+    expect(registry.getChildIds('parent')).toEqual(['child']);
+  });
+
+  it('copies returned child IDs to prevent unchecked mutations', () => {
+    const { registry } = createRegistry();
+    registry.setChildIds('parent', ['child']);
+
+    registry.getChildIds('parent').push('parent');
+
+    expect(registry.getChildIds('parent')).toEqual(['child']);
+  });
+
   it('dismissOthers skips instances on the active hierarchy path', () => {
-    const { stack, dismissSpy } = createStack();
+    const { registry, dismissSpy } = createRegistry();
     const parent = instance('parent');
     const child = instance('child');
     const unrelated = instance('unrelated');
 
-    stack.connect(parent);
-    stack.connect(child);
-    stack.connect(unrelated);
-    stack.setChildIds('parent', ['child']);
+    registry.connect(parent);
+    registry.connect(child);
+    registry.connect(unrelated);
+    registry.setChildIds('parent', ['child']);
 
-    stack.dismissOthers('child');
+    expect(registry.getParentId('child')).toBe('parent');
+
+    registry.dismissOthers('child');
+
+    expect(dismissSpy).toHaveBeenCalledTimes(1);
+    expect(dismissSpy).toHaveBeenCalledWith(unrelated);
+  });
+
+  it('dismissOthers skips related instances outside its own hierarchy', () => {
+    const { registry, dismissSpy } = createRegistry();
+    const active = instance('active');
+    const related = instance('related');
+    const unrelated = instance('unrelated');
+
+    registry.connect(active);
+    registry.connect(related);
+    registry.connect(unrelated);
+
+    registry.dismissOthers('active', ['related']);
 
     expect(dismissSpy).toHaveBeenCalledTimes(1);
     expect(dismissSpy).toHaveBeenCalledWith(unrelated);
   });
 
   it('dismissAll respects blocksOutsideDismiss unless policy is ignored', () => {
-    const { stack, dismissSpy } = createStack();
+    const { registry, dismissSpy } = createRegistry();
     const dismissible = instance('dismissible');
     const persistent = instance('persistent', { persistent: true });
 
-    stack.connect(dismissible);
-    stack.connect(persistent);
+    registry.connect(dismissible);
+    registry.connect(persistent);
 
-    stack.dismissAll();
+    registry.dismissAll();
 
     expect(dismissSpy).toHaveBeenCalledTimes(1);
     expect(dismissSpy).toHaveBeenCalledWith(dismissible);
   });
 
   it('dismissAll with ignorePolicyForIds dismisses persistent instances', () => {
-    const { stack, dismissSpy } = createStack();
+    const { registry, dismissSpy } = createRegistry();
     const persistent = instance('persistent', { persistent: true });
 
-    stack.connect(persistent);
+    registry.connect(persistent);
 
-    stack.dismissAll({ ignorePolicyForIds: ['persistent'] });
+    registry.dismissAll({ ignorePolicyForIds: ['persistent'] });
 
     expect(dismissSpy).toHaveBeenCalledOnce();
   });
