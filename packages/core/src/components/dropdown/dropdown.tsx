@@ -319,6 +319,13 @@ export class Dropdown
   }
 
   override disconnectedCallback() {
+    this.triggerResolutionToken++;
+    this.disposeClickListener?.();
+    this.disposeClickListener = undefined;
+    this.disposeKeyListener?.();
+    this.disposeKeyListener = undefined;
+    this.triggerElement = undefined;
+
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
@@ -640,12 +647,14 @@ export class Dropdown
     }
   }
 
-  private async registerListener(element: ElementReference) {
-    if (!element) {
+  private async registerListener(element: ElementReference | undefined) {
+    const resolutionToken = ++this.triggerResolutionToken;
+    this.triggerElement = undefined;
+
+    if (!element || !this.hostElement.isConnected) {
       return;
     }
 
-    const resolutionToken = ++this.triggerResolutionToken;
     const immediateElement = this.resolveImmediateElement(element);
     const canRegisterImmediately =
       immediateElement &&
@@ -663,7 +672,7 @@ export class Dropdown
       return;
     }
 
-    const resolvedElement = await this.resolveElement(element);
+    const resolvedElement = await this.resolveElement(element, resolutionToken);
 
     if (!resolvedElement || resolutionToken !== this.triggerResolutionToken) {
       return;
@@ -742,10 +751,20 @@ export class Dropdown
     return `${side}-${alignment}`;
   }
 
-  private async resolveElement(element: ElementReference) {
+  private async resolveElement(
+    element: ElementReference,
+    resolutionToken = this.triggerResolutionToken
+  ) {
     const el = await findElement(element);
 
-    return this.checkForSubmenuAnchor(el);
+    if (
+      resolutionToken !== this.triggerResolutionToken ||
+      !this.hostElement.isConnected
+    ) {
+      return undefined;
+    }
+
+    return this.checkForSubmenuAnchor(el, resolutionToken);
   }
 
   private resolveImmediateElement(
@@ -774,13 +793,23 @@ export class Dropdown
     return undefined;
   }
 
-  private async checkForSubmenuAnchor(element?: Element) {
+  private async checkForSubmenuAnchor(
+    element: Element | undefined,
+    resolutionToken: number
+  ) {
     if (!element) {
       return undefined;
     }
 
     if (hasDropdownItemWrapperImplemented(element)) {
       const dropdownItem = await element.getDropdownItemElement();
+      if (
+        resolutionToken !== this.triggerResolutionToken ||
+        !this.hostElement.isConnected
+      ) {
+        return undefined;
+      }
+
       dropdownItem.isSubMenu = true;
       this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
     }
@@ -794,10 +823,17 @@ export class Dropdown
   }
 
   private async resolveAnchorElement() {
-    if (this.anchor) {
-      this.anchorElement = await this.resolveElement(this.anchor);
-    } else if (this.trigger) {
-      this.anchorElement = await this.resolveElement(this.trigger);
+    const anchor = this.anchor || this.trigger;
+    const resolutionToken = this.triggerResolutionToken;
+    const resolvedElement = anchor
+      ? await this.resolveElement(anchor, resolutionToken)
+      : undefined;
+
+    if (
+      resolutionToken === this.triggerResolutionToken &&
+      anchor === (this.anchor || this.trigger)
+    ) {
+      this.anchorElement = resolvedElement;
     }
   }
 
@@ -970,7 +1006,7 @@ export class Dropdown
 
   @Watch('trigger')
   async changedTrigger(
-    newTriggerValue: ElementReference,
+    newTriggerValue: ElementReference | undefined,
     oldTriggerValue: ElementReference | undefined
   ) {
     if (newTriggerValue !== oldTriggerValue) {

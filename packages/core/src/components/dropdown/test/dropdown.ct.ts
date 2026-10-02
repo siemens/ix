@@ -25,6 +25,21 @@ async function waitForDropdownTrigger(trigger: Locator) {
   );
 }
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`<div>
+    <button id="trigger">Open menu</button>
+    <ix-dropdown trigger="trigger" host-role="dialog" aria-label="Options">
+      <button>Action</button>
+    </ix-dropdown>
+  </div>`);
+
+  await expect(page.locator('ix-dropdown')).toHaveClass(/\bhydrated\b/);
+  await page.getByRole('button', { name: 'Open menu' }).click();
+  await expect(page.getByRole('dialog', { name: 'Options' })).toBeVisible();
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
@@ -112,8 +127,10 @@ regressionTest('trigger toggles', async ({ mount, page }) => {
     </ix-dropdown>
   `);
 
-  await page.locator('ix-button').click();
   const dropdown = page.locator('.dropdown-menu');
+  await expect(dropdown).toHaveClass(/\bhydrated\b/);
+  await waitForDropdownTrigger(page.locator('#trigger'));
+  await page.locator('ix-button').click();
   await expect(dropdown).toHaveClass(/show/);
   await expect(dropdown).toBeVisible();
 
@@ -148,6 +165,198 @@ regressionTest(
     });
 
     await expect(page.locator('ix-dropdown')).toHaveAttribute('show');
+  }
+);
+
+for (const clearedTrigger of ['', undefined]) {
+  regressionTest(
+    `clears resolved trigger when set to ${String(clearedTrigger)}`,
+    async ({ mount, page }) => {
+      await mount(`<div>
+      <ix-dropdown-item id="trigger" label="Open"></ix-dropdown-item>
+      <ix-dropdown trigger="trigger"></ix-dropdown>
+    </div>`);
+
+      const dropdown = page.locator('ix-dropdown');
+      const trigger = page.locator('#trigger');
+      await expect(dropdown).toHaveClass(/\bhydrated\b/);
+      await waitForDropdownTrigger(trigger);
+      await expect(dropdown).toHaveAttribute('role', 'menu');
+
+      await dropdown.evaluate((element: HTMLIxDropdownElement, value) => {
+        element.trigger = value;
+      }, clearedTrigger);
+
+      await expect(dropdown).not.toHaveAttribute('role');
+      await trigger.click();
+      await expect(dropdown).not.toHaveAttribute('show');
+    }
+  );
+}
+
+for (const scenario of ['empty', 'undefined', 'replaced', 'disconnected']) {
+  regressionTest(
+    `ignores stale trigger resolution when ${scenario}`,
+    async ({ mount, page }) => {
+      await mount(`<div>
+      <button id="replacement">Replacement</button>
+      <ix-dropdown-item id="stale" label="Stale trigger"></ix-dropdown-item>
+      <ix-dropdown></ix-dropdown>
+    </div>`);
+
+      const dropdown = page.locator('ix-dropdown');
+      const staleTrigger = page.locator('#stale');
+      await expect(dropdown).toHaveClass(/\bhydrated\b/);
+      await expect(staleTrigger).toHaveClass(/\bhydrated\b/);
+
+      const result = await dropdown.evaluate(
+        async (element: HTMLIxDropdownElement, scenario) => {
+          const stale =
+            document.querySelector<HTMLIxDropdownItemElement>('#stale')!;
+          let resolveTrigger!: (trigger: HTMLElement) => void;
+          element.trigger = new Promise<HTMLElement>((resolve) => {
+            resolveTrigger = resolve;
+          });
+
+          if (scenario === 'disconnected') {
+            element.remove();
+          } else {
+            element.trigger =
+              scenario === 'empty'
+                ? ''
+                : scenario === 'undefined'
+                  ? undefined
+                  : document.querySelector<HTMLElement>('#replacement')!;
+          }
+
+          resolveTrigger(stale);
+          await new Promise(requestAnimationFrame);
+          stale.click();
+          stale.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+
+          return {
+            show: element.show,
+            isSubMenu: stale.isSubMenu,
+            zIndex: element.style.zIndex,
+          };
+        },
+        scenario
+      );
+
+      expect(result).toEqual({ show: false, isSubMenu: false, zIndex: '' });
+      await expect(staleTrigger).not.toHaveAttribute(
+        'data-ix-dropdown-trigger'
+      );
+      if (scenario === 'replaced') {
+        await page.getByRole('button', { name: 'Replacement' }).click();
+        await expect(dropdown).toHaveAttribute('show');
+      }
+    }
+  );
+}
+
+for (const scenario of ['cleared', 'replaced', 'disconnected']) {
+  regressionTest(
+    `ignores stale submenu wrapper resolution when ${scenario}`,
+    async ({ mount, page }) => {
+      await mount(`<div>
+      <button id="wrapper">Wrapper</button>
+      <button id="replacement">Replacement</button>
+      <ix-dropdown-item id="item" label="Wrapped item"></ix-dropdown-item>
+      <ix-dropdown></ix-dropdown>
+    </div>`);
+
+      const dropdown = page.locator('ix-dropdown');
+      await expect(dropdown).toHaveClass(/\bhydrated\b/);
+      await expect(page.locator('#item')).toHaveClass(/\bhydrated\b/);
+
+      const result = await dropdown.evaluate(
+        async (element: HTMLIxDropdownElement, scenario) => {
+          const wrapper =
+            document.querySelector<HTMLButtonElement>('#wrapper')!;
+          const item =
+            document.querySelector<HTMLIxDropdownItemElement>('#item')!;
+          let resolveItem!: (item: HTMLIxDropdownItemElement) => void;
+          let notifyStarted!: () => void;
+          const started = new Promise<void>((resolve) => {
+            notifyStarted = resolve;
+          });
+          const pendingItem = new Promise<HTMLIxDropdownItemElement>(
+            (resolve) => {
+              resolveItem = resolve;
+            }
+          );
+          Object.assign(wrapper, {
+            getDropdownItemElement: () => {
+              notifyStarted();
+              return pendingItem;
+            },
+          });
+
+          element.trigger = wrapper;
+          await started;
+          if (scenario === 'disconnected') {
+            element.remove();
+          } else {
+            element.trigger =
+              scenario === 'cleared'
+                ? undefined
+                : document.querySelector<HTMLElement>('#replacement')!;
+          }
+
+          resolveItem(item);
+          await new Promise(requestAnimationFrame);
+          wrapper.click();
+          return {
+            show: element.show,
+            isSubMenu: item.isSubMenu,
+            zIndex: element.style.zIndex,
+          };
+        },
+        scenario
+      );
+
+      expect(result).toEqual({ show: false, isSubMenu: false, zIndex: '' });
+      await expect(page.locator('#wrapper')).not.toHaveAttribute(
+        'data-ix-dropdown-trigger'
+      );
+    }
+  );
+}
+
+regressionTest(
+  'disposes trigger listeners on disconnect and restores them on reconnect',
+  async ({ mount, page }) => {
+    await mount(`<div>
+    <button id="trigger">Open</button>
+    <ix-dropdown trigger="trigger"></ix-dropdown>
+  </div>`);
+
+    const dropdown = page.locator('ix-dropdown');
+    await expect(dropdown).toHaveClass(/\bhydrated\b/);
+    await waitForDropdownTrigger(page.locator('#trigger'));
+
+    const disconnectedShow = await dropdown.evaluate(
+      (element: HTMLIxDropdownElement) => {
+        const parent = element.parentElement;
+        if (!parent) {
+          throw new Error('Dropdown must be attached before disconnecting');
+        }
+        const trigger = document.querySelector<HTMLButtonElement>('#trigger')!;
+        element.remove();
+        trigger.click();
+        trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+        const show = element.show;
+        parent.append(element);
+        return show;
+      }
+    );
+
+    expect(disconnectedShow).toBe(false);
+    await page.getByRole('button', { name: 'Open' }).click();
+    await expect(dropdown).toHaveAttribute('show');
+    await page.getByRole('button', { name: 'Open' }).click();
+    await expect(dropdown).not.toHaveAttribute('show');
   }
 );
 
