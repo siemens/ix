@@ -25,7 +25,7 @@ label.ix-form-label.label-alignment-left {
     background-color: #{sys.$si-sys-color-background-1};
     border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-2};
     border-radius: var(--theme-small-border-radius);
-    box-shadow: var(--theme-inset-shadow-1);
+    box-shadow: none;
     color: #{sys.$si-sys-color-text-primary};
     min-height: 2rem;
     padding: 0.25rem 0.5rem;

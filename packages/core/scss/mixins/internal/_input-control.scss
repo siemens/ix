@@ -27,7 +27,7 @@
     );
     border: solid 1px
       var(--ix-input--border-color, #{sys.$si-sys-color-border-2});
-    box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
+    box-shadow: var(--ix-input--box-shadow, none);
     padding-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
     padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   }
@@ -65,7 +65,7 @@
         --ix-input--focus--outline-offset,
         var(--theme-focus-outline-offset)
       );
-      box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
+      box-shadow: var(--ix-input--box-shadow, none);
       outline: 1px solid #{sys.$si-sys-color-effects-focus};
     }
   }

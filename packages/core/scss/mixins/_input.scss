@@ -63,7 +63,7 @@
       --ix-input--border-radius,
       var(--theme-small-border-radius)
     );
-    box-shadow: var(--ix-input--box-shadow, var(--theme-inset-shadow-1));
+    box-shadow: var(--ix-input--box-shadow, none);
 
     @include fonts.typography-body;
   }

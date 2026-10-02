@@ -10,7 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-select--box-shadow: var(--theme-inset-shadow-1);
+  --ix-select--box-shadow: none;
   --ix-select--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-select--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-select--background: #{sys.$si-sys-color-background-1};
