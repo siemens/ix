@@ -21,6 +21,8 @@ async function openAndSettlePopover(page: Page) {
   const triggerButton = trigger.getByRole('button');
 
   await expect(trigger).toBeVisible();
+  await trigger.evaluate((el: HTMLIxButtonElement) => el.componentOnReady());
+  await expect(trigger).toHaveAttribute('data-ix-popover-trigger', '');
   await popover.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
   await expect(popover).toHaveAttribute('show', '');
 
@@ -62,6 +64,13 @@ regressionTest.describe('popover', () => {
     regressionTest(variant, async ({ page }) => {
       await page.goto(`popover/${variant}`);
       await openAndSettlePopover(page);
+
+      if (variant === 'nesting') {
+        await expect(page.locator('ix-popover#inner-popover')).toHaveAttribute(
+          'show',
+          ''
+        );
+      }
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         snapshotOptions
