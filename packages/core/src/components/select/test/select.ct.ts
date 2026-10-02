@@ -7,7 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+  test,
+} from '@utils/test';
 import { selectController } from './select-controller';
 
 test('a test', async ({ mount, page }) => {
@@ -58,6 +63,87 @@ test('renders', async ({ mount, page }) => {
   await expect(page.getByRole('option', { name: 'Item 1' })).toBeVisible();
   await expect(page.getByRole('option', { name: 'Item 2' })).toBeVisible();
 });
+
+regressionTest(
+  'required select uses native form validation',
+  async ({ mount, page }) => {
+    await mount(`
+    <form>
+      <ix-select name="item" required allow-clear invalid-text="Select an item">
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+    const form = page.locator('form');
+    const select = page.locator('ix-select');
+    await preventFormSubmission(form);
+    await form.evaluate((element: HTMLFormElement) => {
+      element.addEventListener('submit', () => {
+        element.dataset.submitted = 'true';
+      });
+    });
+
+    await expect(select).toHaveClass(/hydrated/);
+    await expect(select).not.toHaveClass(/ix-invalid--required/);
+
+    await page.getByRole('button', { name: 'Submit' }).click();
+    await expect(form).not.toHaveAttribute('data-submitted');
+    expect(
+      await form.evaluate((element: HTMLFormElement) => element.checkValidity())
+    ).toBe(false);
+    await expect(select).toHaveClass(/ix-invalid--required/);
+    await expect(select.locator('ix-field-wrapper')).toContainText(
+      'Select an item'
+    );
+
+    await select.locator('[data-select-dropdown]').click();
+    await page.getByRole('option', { name: 'Item 1' }).click();
+    await expect(select).not.toHaveClass(/ix-invalid--required/);
+    expect(
+      await form.evaluate((element: HTMLFormElement) => element.checkValidity())
+    ).toBe(true);
+    await page.getByRole('button', { name: 'Submit' }).click();
+    await expect(form).toHaveAttribute('data-submitted', 'true');
+
+    await select.locator('ix-icon-button.clear').click();
+    await expect(select).toHaveClass(/ix-invalid--required/);
+
+    await select.evaluate((element: HTMLIxSelectElement) => {
+      element.required = false;
+    });
+    await expect(select).not.toHaveClass(/ix-invalid--required/);
+    expect(
+      await form.evaluate((element: HTMLFormElement) => element.checkValidity())
+    ).toBe(true);
+  }
+);
+
+regressionTest(
+  'novalidate form skips required select validation',
+  async ({ mount, page }) => {
+    await mount(`
+    <form novalidate>
+      <ix-select name="item" required>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+    const form = page.locator('form');
+    const select = page.locator('ix-select');
+    await preventFormSubmission(form);
+    await expect(select).toHaveClass(/hydrated/);
+
+    expect(
+      await form.evaluate((element: HTMLFormElement) => element.checkValidity())
+    ).toBe(true);
+    await page.getByRole('button', { name: 'Submit' }).click();
+    await expect(select).not.toHaveClass(/ix-invalid--required/);
+  }
+);
 
 test('does not show a scrollbar caused by the focus proxy', async ({
   mount,
