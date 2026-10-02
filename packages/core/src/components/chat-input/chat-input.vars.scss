@@ -17,13 +17,12 @@
   --ix-chat-input--border-color--focus: #{sys.$si-sys-color-border-1};
   --ix-chat-input--border-color--disabled: #{sys.$si-sys-color-border-4};
   --ix-chat-input--border-color--readonly: #{sys.$si-sys-color-border-4};
-  --ix-chat-input--border-radius: var(--theme-small-border-radius);
-  --ix-chat-input--border-width: var(--theme-border-width-default);
-  --ix-chat-input--box-shadow: none;
+  --ix-chat-input--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-chat-input--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-chat-input--color: #{sys.$si-sys-color-text-primary};
   --ix-chat-input--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-chat-input-placeholder--color: #{sys.$si-sys-color-text-secondary};
-  --ix-chat-input--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-chat-input--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-chat-input--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-chat-input-character-limit-soft-icon--color: #{sys.$si-sys-color-text-information};
   --ix-chat-input-character-limit-hard-icon--color: #{sys.$si-sys-color-text-warning};
@@ -38,7 +37,7 @@
   );
   --ix-chat-input-follow-up-prompts--min-width: #{sys.$si-sys-sizing-size-120};
   --ix-chat-input-attachments-wrap--max-height: calc(
-    #{sys.$si-sys-sizing-size-110} + var(--theme-space-2)
+    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-50}
   );
   --ix-chat-input-has-attachment-scrollbar--padding-bottom: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-chat-input-textarea--min-height: #{sys.$si-sys-sizing-size-80};

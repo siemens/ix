@@ -17,8 +17,8 @@
   --ix-message-bar--border-color--info: #{sys.$si-sys-color-border-information};
   --ix-message-bar--border-color--neutral: #{sys.$si-sys-color-border-neutral};
   --ix-message-bar--border-color--primary: #{sys.$si-sys-color-border-accent};
-  --ix-message-bar--border-radius: var(--theme-default-border-radius);
-  --ix-message-bar--border-width: var(--theme-border-width-thick);
+  --ix-message-bar--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-message-bar--border-width: #{sys.$si-sys-sizing-border-width-selected};
   --ix-message-bar--background: #{sys.$si-sys-color-background-accent-secondary};
 }
 

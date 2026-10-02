@@ -85,6 +85,7 @@
       position: relative;
       flex-direction: row;
       flex-wrap: nowrap;
+      align-items: baseline;
 
       margin-left: var(--ix-application-header-name--margin-left);
       margin-right: var(--ix-application-header-name--margin-right);
@@ -112,7 +113,6 @@
 
     .application-name-suffix {
       flex: 1 1 auto;
-      margin-top: 0.4rem;
       min-width: 0;
       flex-shrink: 1;
       color: var(--ix-application-header-name-suffix--color);

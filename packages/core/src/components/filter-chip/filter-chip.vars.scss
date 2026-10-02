@@ -10,7 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-filter-chip--border-width: var(--theme-focus--border-thickness);
+  --ix-filter-chip--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-filter-chip--background: transparent;
   --ix-filter-chip--border-color--disabled: #{sys.$si-sys-color-border-3};
   --ix-filter-chip--color--disabled: #{sys.$si-sys-color-text-disabled};

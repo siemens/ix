@@ -94,7 +94,6 @@
     background: transparent;
     color: inherit;
     flex-grow: 1;
-    box-shadow: none;
 
     @include text-truncation.ellipsis;
     @include fonts.typography-body;

@@ -15,7 +15,7 @@
     --si-ref-typography-font-weight-bold
   );
   --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
-  --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-date-picker--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-date-picker-day--background: rgba(0, 0, 0, 0);
   --ix-date-picker-day--background--active: #{sys.$si-sys-color-background-active};
   --ix-date-picker-day--background--disabled: rgba(0, 0, 0, 0);

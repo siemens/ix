@@ -64,18 +64,18 @@
       );
       --ix-card-accordion-expand-content--border-radius: 0
         0
-        var(--theme-default-border-radius)
-        var(--theme-default-border-radius);
+        #{sys.$si-sys-sizing-border-radius-sm}
+        #{sys.$si-sys-sizing-border-radius-sm};
 
       @if $variant != 'outline' and $variant != 'filled' {
         --ix-card-accordion-expand-content--border-radius: 0
           0
           calc(
-            var(--theme-default-border-radius) +
+            #{sys.$si-sys-sizing-border-radius-sm} +
               var(--ix-push-card--border-width)
           )
           calc(
-            var(--theme-default-border-radius) +
+            #{sys.$si-sys-sizing-border-radius-sm} +
               var(--ix-push-card--border-width)
           );
       }

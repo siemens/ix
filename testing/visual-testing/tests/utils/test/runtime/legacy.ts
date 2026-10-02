@@ -1,12 +1,10 @@
 /*
- * SPDX-FileCopyrightText: 2025 Siemens AG
+ * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-.ag-tooltip {
-  box-shadow: var(--si-sys-color-effects-shadow-4) !important;
-}
+import './main';
+import '@siemens/ix/css/legacy.css';

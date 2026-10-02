@@ -17,7 +17,7 @@
   align-items: flex-start;
   width: 100%;
   min-width: 0;
-  gap: var(--theme-space-3);
+  gap: #{sys.$si-sys-sizing-spacing-y-60};
   box-sizing: border-box;
   color: var(--ix-chat-ai-message--color);
 
@@ -29,8 +29,8 @@
     align-items: stretch;
     width: 100%;
     min-width: 0;
-    gap: var(--theme-space-3);
-    font-size: var(--theme-font-size-l);
+    gap: #{sys.$si-sys-sizing-spacing-y-60};
+    font: #{sys.$si-sys-typography-body-lg};
     line-height: 1.5;
     overflow-wrap: anywhere;
   }
@@ -47,15 +47,15 @@
   .message ::slotted(h4),
   .message ::slotted(h5),
   .message ::slotted(h6) {
-    font-size: var(--theme-font-size-l);
-    font-weight: var(--theme-font-weight-bold);
+    font: #{sys.$si-sys-typography-body-lg};
+    font-weight: var(--si-ref-typography-font-weight-bold);
     line-height: 1.2;
   }
 
   .meta {
     display: none;
     align-items: center;
-    gap: var(--theme-space-3);
+    gap: #{sys.$si-sys-sizing-spacing-x-60};
     width: 100%;
     min-height: var(--ix-chat-ai-message-meta--min-height);
   }

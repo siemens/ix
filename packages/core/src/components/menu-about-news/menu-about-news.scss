@@ -30,7 +30,7 @@ $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
 
   margin-inline-start: var(--margin) !important;
 
-  box-shadow: var(--theme-shadow-4);
+  box-shadow: #{sys.$si-sys-color-effects-shadow-4};
   @include component.ix-component;
 
   .banner-container {

@@ -63,8 +63,8 @@ $chip-color-sys-values: (
 :host {
   --ix-chip--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-chip-close--color: #{sys.$si-sys-color-text-primary};
-  --ix-chip-attachment--border-radius: var(--theme-small-border-radius);
-  --ix-chip--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-chip-attachment--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-chip--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-chip-warning-icon--color: #{sys.$si-sys-color-text-warning};
   --ix-chip-primary-icon--color: #{sys.$si-sys-color-text-accent};
 
