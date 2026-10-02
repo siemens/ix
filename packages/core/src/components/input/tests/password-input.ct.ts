@@ -15,8 +15,8 @@ test.describe('password input', () => {
 
   test('accessibility', async ({ mount, makeAxeBuilder }) => {
     await mount(`
-      <ix-input type="password" value="secret123"></ix-input>
-      <ix-input type="password" disabled value="secret123"></ix-input>
+      <ix-input label="Password" type="password" value="secret123"></ix-input>
+      <ix-input label="Disabled password" type="password" disabled value="secret123"></ix-input>
     `);
 
     const results = await makeAxeBuilder().analyze();

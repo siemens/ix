@@ -137,17 +137,15 @@ regressionTest(
     await expect(dropdownButton.locator('ix-dropdown')).toHaveClass(/show/);
     await expect(dropdownButton).toHaveAttribute('aria-activedescendant', /.+/);
 
-    const activeDescendant = await dropdownButton.getAttribute(
-      'aria-activedescendant'
-    );
-
-    if (!activeDescendant) {
-      throw new Error('Expected active descendant id');
-    }
-
     const item1 = splitButton.getByRole('menuitem', { name: 'Item 1' });
     await expect(item1).toBeVisible();
-    await expect(item1).toHaveAttribute('id', activeDescendant);
+    await expect(item1).toHaveAttribute('id', /.+/);
+    const item1Id = await item1.evaluate((element) => element.id);
+
+    await expect(dropdownButton).toHaveAttribute(
+      'aria-activedescendant',
+      item1Id
+    );
 
     const dropdownItem1 = splitButton.locator('ix-dropdown-item', {
       hasText: /Item 1/,

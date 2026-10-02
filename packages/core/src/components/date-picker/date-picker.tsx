@@ -357,6 +357,7 @@ export class DatePicker
           break;
       }
 
+      event.preventDefault();
       return;
     }
 
@@ -887,7 +888,18 @@ export class DatePicker
     return rows;
   }
 
-  public changeFocusedDay() {
+  public changeFocusedDay(focusTarget?: EventTarget) {
+    const focusedDayElement =
+      focusTarget instanceof HTMLElement
+        ? focusTarget.closest<HTMLElement>('[data-calendar-day]')
+        : null;
+    const focusedDay = focusedDayElement?.dataset.calendarDay;
+
+    if (focusedDay) {
+      this.focusedDay = Number.parseInt(focusedDay, 10);
+      return;
+    }
+
     if (this.monthChangedFromFocus) {
       return;
     }
@@ -967,9 +979,9 @@ export class DatePicker
     return (
       <Host
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
-        onFocusin={() => {
+        onFocusin={(event: FocusEvent) => {
           if (hasKeyboardMode()) {
-            this.changeFocusedDay();
+            this.changeFocusedDay(event.composedPath()[0]);
           }
         }}
       >

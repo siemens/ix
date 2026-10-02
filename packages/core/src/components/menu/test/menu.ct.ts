@@ -328,7 +328,7 @@ regressionTest('should close about by item click', async ({ mount, page }) => {
 
 regressionTest(
   'should close menu by bottom icon click',
-  async ({ mount, page }) => {
+  async ({ mount, page, makeAxeBuilder }) => {
     await mount(`
     <ix-menu>
       <ix-menu-item>Random</ix-menu-item>
@@ -353,6 +353,9 @@ regressionTest(
 
     await expect(innerMenu).not.toHaveClass(/expanded/);
     await expect(element).toBeVisible();
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );
 
@@ -435,8 +438,13 @@ regressionTest(
     const items = page.locator('ix-menu-item');
     await expect(items).toHaveCount(3);
 
+    const firstItemButton = items.first().locator('button, a');
+
     // Wait for roving tabindex to be initialised (set by rAF in componentDidLoad)
-    await expect(items.first()).toHaveAttribute('aria-setsize', '3');
+    await expect(firstItemButton).toHaveAttribute('aria-setsize', '3');
+    await expect(firstItemButton).toHaveAttribute('aria-posinset', '1');
+    await expect(items.first()).not.toHaveAttribute('aria-setsize');
+    await expect(items.first()).not.toHaveAttribute('aria-posinset');
 
     // Tab twice: skip burger button and reach menu navigation container
     await page.keyboard.press('Tab');
@@ -453,6 +461,16 @@ regressionTest(
 
     await page.keyboard.press('ArrowUp');
     await expect(items.nth(1)).toBeFocused();
+
+    const thirdItemButton = items.nth(2).locator('button, a');
+    await items.nth(2).evaluate((item) => {
+      item.setAttribute('disabled', '');
+    });
+    await page.keyboard.press('ArrowDown');
+
+    await expect(firstItemButton).toHaveAttribute('aria-setsize', '2');
+    await expect(thirdItemButton).not.toHaveAttribute('aria-setsize');
+    await expect(thirdItemButton).not.toHaveAttribute('aria-posinset');
   }
 );
 

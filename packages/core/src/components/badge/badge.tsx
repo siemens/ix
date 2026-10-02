@@ -213,22 +213,20 @@ export class Badge
 
   private hasDisconnected = false;
 
+  override keepAriaAttributesOnHost(): boolean {
+    return !this.hasAnchor;
+  }
+
   override componentWillLoad() {
-    // Mixin strips host ARIA into `inheritAriaAttributes` and removes them from the host.
+    this.hasAnchor = this.detectHasAnchor();
     super.componentWillLoad();
     this.descriptionId = `${this.getHostElementId()}-description`;
-    const hasAnchor = this.detectHasAnchor();
 
-    if (hasAnchor) {
-      this.hasAnchor = true;
+    if (this.hasAnchor) {
       // Attached: discard host ARIA — the anchor owns naming; the indicator is decorative
       // (`aria-hidden`) and count/label text is exposed via `aria-describedby` on the anchor.
       this.inheritAriaAttributes = {};
-      return;
     }
-
-    this.hasAnchor = false;
-    // Standalone: keep mixin-captured ARIA and re-apply on `<Host>` in `render()`.
   }
 
   override componentDidLoad() {
