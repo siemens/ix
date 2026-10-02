@@ -423,6 +423,13 @@ export class CategoryFilter {
   }
 
   private handleInputElementKeyDown(e: KeyboardEvent) {
+    // The host is the dropdown trigger, which would otherwise treat Home/End
+    // as dropdown navigation and cancel the native caret movement.
+    if (e.key === 'Home' || e.key === 'End') {
+      e.stopPropagation();
+      return;
+    }
+
     switch (e.code) {
       case 'ArrowDown': {
         this.onArrowDown(e);
