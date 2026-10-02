@@ -1,0 +1,28 @@
+packages/core/src/components/application-header/application-header.tsx
+  h_c5a773bf2fda8b 150,162,191-195,213,354-357,386
+packages/core/src/components/application/application.scss
+  h_c5a773bf2fda8b 97-111
+packages/core/src/components/menu/menu.tsx
+  h_c5a773bf2fda8b 114
+packages/core/src/components/menu/test/menu.ct.ts
+  h_c5a773bf2fda8b 185-288
+packages/core/src/components/pane-layout/pane-layout.tsx
+  h_c5a773bf2fda8b 24-27,29,78-79,101,110,117-120,132-148
+packages/core/src/components/pane/pane.tsx
+  h_c5a773bf2fda8b 33-36,53,199-200,220,231-234,246-262,333
+packages/core/src/components/pane/test/panes.ct.ts
+  h_c5a773bf2fda8b 563-564
+packages/core/src/components/utils/breakpoints.ts
+  h_c5a773bf2fda8b 27-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1d8ac2f06677b9e7dd1354000df0a365ad5c3599",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
