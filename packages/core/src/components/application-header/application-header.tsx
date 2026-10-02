@@ -188,9 +188,11 @@ export class ApplicationHeader {
       this.menuExpanded = show;
     });
 
-    this.menuPinned = menuController.isPinned;
-    this.menuPinnedDisposable = menuController.pinnedChange.on((pinned) => {
-      this.menuPinned = pinned;
+    // Use the menu's `pinned` prop, not menuController.isPinned — that flag is
+    // also set for a normal large breakpoint menu via setPinned(mode === 'lg').
+    this.syncMenuPinnedFromMenu();
+    this.menuPinnedDisposable = menuController.pinnedChange.on(() => {
+      this.syncMenuPinnedFromMenu();
     });
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
@@ -212,6 +214,10 @@ export class ApplicationHeader {
     this.menuDisposable?.dispose();
     this.menuPinnedDisposable?.dispose();
     this.modeDisposable?.dispose();
+  }
+
+  private syncMenuPinnedFromMenu() {
+    this.menuPinned = menuController.nativeElement?.pinned === true;
   }
 
   @Watch('applicationLayoutContext')

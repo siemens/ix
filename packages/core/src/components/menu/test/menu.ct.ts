@@ -286,6 +286,36 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'show-menu stays visible next to an unpinned large menu',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    // Header outside the frame keeps show-menu; menu inside the app still
+    // marks menuController.isPinned at lg via setPinned(mode === 'lg').
+    await mount(`
+      <div>
+        <ix-application-header name="Test" show-menu></ix-application-header>
+        <ix-application>
+          <ix-menu>
+            <ix-menu-item>Item</ix-menu-item>
+          </ix-menu>
+        </ix-application>
+      </div>
+    `);
+
+    const menu = page.locator('ix-menu');
+    const header = page.locator('ix-application-header');
+    await expect(menu).toHaveClass(/hydrated/);
+    await expect(header).toHaveClass(/hydrated/);
+    await expect(menu).toHaveClass(/breakpoint-lg/);
+    await expect
+      .poll(async () => menu.evaluate((el: HTMLIxMenuElement) => el.pinned))
+      .toBe(false);
+
+    await expect(header.locator('ix-menu-expand-icon')).toHaveCount(1);
+  }
+);
+
 regressionTest.describe('pinned menu keeps layout bus for pane', () => {
   const pinnedMenuWithPane = `
     <ix-application>
