@@ -141,13 +141,16 @@ export class MenuAbout {
         {!this.suppressLegacyTabs ? (
           <ix-tab-set>
             <ix-tabs activeTabKey={this.activeTabKey}>
-              {this.items.map(({ label, tabKey }) => (
-                <ix-tab-item
-                  tabKey={tabKey}
-                  selected={tabKey === this.activeTabKey}
-                  label={label}
-                ></ix-tab-item>
-              ))}
+              {this.items.map((item) => {
+                const tabKey = resolveTabKey(item);
+                return (
+                  <ix-tab-item
+                    tabKey={tabKey}
+                    selected={tabKey === this.activeTabKey}
+                    label={item.label}
+                  ></ix-tab-item>
+                );
+              })}
             </ix-tabs>
             <slot></slot>
           </ix-tab-set>

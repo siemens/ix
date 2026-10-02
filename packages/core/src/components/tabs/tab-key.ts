@@ -7,6 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Preserve required tabKey types for JSX props; optional keys may still resolve to undefined.
+export function resolveTabKey(
+  element: Pick<HTMLElement, 'getAttribute'> & { tabKey: string }
+): string;
+export function resolveTabKey(
+  element: Pick<HTMLElement, 'getAttribute'> & { tabKey?: string }
+): string | undefined;
 export function resolveTabKey(
   element: Pick<HTMLElement, 'getAttribute'> & { tabKey?: string }
 ): string | undefined {

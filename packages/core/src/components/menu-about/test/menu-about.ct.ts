@@ -9,6 +9,29 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+    <ix-menu>
+      <ix-menu-about suppress-legacy-tabs>
+        <ix-tab-set>
+          <ix-tabs active-tab-key="tab-1">
+            <ix-tab-item tab-key="tab-1">Tab 1</ix-tab-item>
+            <ix-tab-item tab-key="tab-2">Tab 2</ix-tab-item>
+          </ix-tabs>
+          <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
+          <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
+        </ix-tab-set>
+      </ix-menu-about>
+    </ix-menu>
+  `);
+
+  await expect(page.locator('ix-menu-about')).toHaveClass(/\bhydrated\b/);
+  await page.locator('#aboutAndLegal').click();
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
@@ -111,6 +134,54 @@ regressionTest(
 
     const eventDetail = await eventPromise;
     expect(eventDetail).toBe('tab-2');
+  }
+);
+
+regressionTest(
+  'selects legacy tabs with attribute-only keys',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab-2" label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+
+    const about = page.locator('ix-menu-about');
+    await expect(about).toHaveClass(/\bhydrated\b/);
+    await page.locator('#aboutAndLegal').click();
+    await expect(page.getByRole('tab', { name: 'Tab 1' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+
+    await about.evaluate((element: HTMLIxMenuAboutElement) => {
+      element.querySelectorAll('ix-menu-about-item').forEach((item) => {
+        Object.defineProperty(item, 'tabKey', {
+          configurable: true,
+          value: undefined,
+        });
+      });
+      element.activeTabKey = undefined;
+      element
+        .querySelector('ix-menu-about-item')!
+        .setAttribute('label', 'First');
+    });
+
+    const firstTab = page.getByRole('tab', { name: 'First', exact: true });
+    await expect(firstTab).toHaveJSProperty('tabKey', 'tab-1');
+    await expect(firstTab).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByText('Content 1')).toBeVisible();
+    await expect(page.getByText('Content 2')).not.toBeVisible();
+
+    const secondTab = page.getByRole('tab', { name: 'Tab 2' });
+    await expect(secondTab).toHaveJSProperty('tabKey', 'tab-2');
+    await secondTab.click();
+    await expect(secondTab).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByText('Content 2')).toBeVisible();
+    await expect(page.getByText('Content 1')).not.toBeVisible();
   }
 );
 
