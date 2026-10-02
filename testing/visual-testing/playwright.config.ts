@@ -22,6 +22,15 @@ function buildProjectsWithThemes() {
 export default defineConfig({
   testMatch: path.join(__dirname, 'tests', '**', '*.e2e.ts'),
 
+  expect: {
+    toHaveScreenshot: {
+      threshold: 0.01,
+    },
+    toMatchSnapshot: {
+      threshold: 0.01,
+    },
+  },
+
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
