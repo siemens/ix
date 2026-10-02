@@ -33,6 +33,7 @@ import {
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
+  onInputFocus,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -451,7 +452,8 @@ export class DateInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
+            onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
           onBlur={() => {
