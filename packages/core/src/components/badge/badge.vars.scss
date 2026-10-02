@@ -50,3 +50,24 @@
 
   --ix-badge-pulse-color: var(--ix-badge-primary-background);
 }
+
+:host {
+  --ix-badge-indicator--width: #{sys.$si-sys-sizing-size-40};
+  --ix-badge-indicator--height: #{sys.$si-sys-sizing-size-40};
+  --ix-badge-indicator--min-width: #{sys.$si-sys-sizing-size-40};
+  --ix-badge-indicator--min-height: #{sys.$si-sys-sizing-size-40};
+  --ix-badge--height: #{sys.$si-sys-sizing-size-60};
+  --ix-badge--min-width: #{sys.$si-sys-sizing-size-60};
+  --ix-badge--min-height: #{sys.$si-sys-sizing-size-60};
+  --ix-badge-indicator--padding-inline: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-badge-label--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-badge-indicator--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-badge-indicator-outline--padding-inline: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-badge-status-icon--width: #{sys.$si-sys-sizing-size-60};
+  --ix-badge-status-icon-stack-outline--icon-size: calc(
+    #{sys.$si-sys-sizing-size-60} * 0.96
+  );
+  --ix-badge-status-icon--icon-size: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
+}

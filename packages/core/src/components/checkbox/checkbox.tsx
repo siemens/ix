@@ -251,7 +251,7 @@ export class Checkbox
             </div>
           </div>
           <ix-typography
-            format="label"
+            format="body"
             textColor={this.disabled ? 'weak' : 'std'}
           >
             {this.label}

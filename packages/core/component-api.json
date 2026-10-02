@@ -1031,7 +1031,9 @@
       "slots": [
         "default"
       ],
-      "cssParts": [],
+      "cssParts": [
+        "content"
+      ],
       "cssStates": []
     },
     {
@@ -3912,6 +3914,17 @@
           "deprecated": false
         },
         {
+          "name": "navigationMode",
+          "attribute": "navigation-mode",
+          "type": "\"active-descendant\" | \"roving-tabindex\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'active-descendant'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "placement",
           "attribute": "placement",
           "type": "\"bottom-end\" | \"bottom-start\" | \"left-end\" | \"left-start\" | \"right-end\" | \"right-start\" | \"top-end\" | \"top-start\"",
@@ -4084,6 +4097,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "navigationMode",
+          "attribute": "navigation-mode",
+          "type": "\"active-descendant\" | \"roving-tabindex\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'active-descendant'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
@@ -6920,6 +6944,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6987,6 +7022,17 @@
         {
           "name": "bottom",
           "attribute": "bottom",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -11619,7 +11665,7 @@
         {
           "name": "format",
           "attribute": "format",
-          "type": "\"body\" | \"body-lg\" | \"body-sm\" | \"body-xs\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-sm\" | \"display-xl\" | \"display-xs\" | \"display-xxl\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\" | undefined",
+          "type": "\"body\" | \"body-lg\" | \"body-lg-sbold\" | \"body-paragraph\" | \"body-paragraph-sbold\" | \"body-sbold\" | \"body-sm\" | \"body-sm-sbold\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-lg-sbold\" | \"display-sbold\" | \"display-xl\" | \"display-xl-sbold\" | \"display-xxl\" | \"display-xxl-sbold\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h5-bold\" | \"h6\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,

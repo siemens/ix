@@ -41,3 +41,23 @@
   --ix-progress-indicator-track-success--background: #{sys.$si-sys-color-background-success-subtle};
   --ix-progress-indicator-track-warning--background: #{sys.$si-sys-color-background-warning-subtle};
 }
+
+:host {
+  --ix-progress-indicator--width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-120}
+  );
+  --ix-progress-indicator-progress-container--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-progress-indicator-label--margin: #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-20}
+    0;
+  --ix-progress-indicator-helper-text--margin: #{sys.$si-sys-sizing-spacing-y-20}
+    0;
+  --ix-progress-indicator-helper-text--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-progress-indicator-icon--margin: #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-progress-indicator--margin: #{sys.$si-sys-sizing-spacing-y-40} 0;
+  --ix-progress-indicator-extra-small--margin: #{sys.$si-sys-sizing-spacing-y-20}
+    0;
+  --ix-progress-indicator-small--margin: #{sys.$si-sys-sizing-spacing-y-30} 0;
+  --ix-progress-indicator-linear-slot--min-width: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+}
