@@ -18,6 +18,7 @@ const snapshotOptions = {
 async function openAndSettlePopover(page: Page) {
   const popover = page.locator('ix-popover').first();
   const trigger = page.locator('ix-button#trigger').first();
+  const triggerButton = trigger.getByRole('button');
 
   await expect(trigger).toBeVisible();
   await popover.evaluate((el: HTMLIxPopoverElement) => el.showPopover());
@@ -25,16 +26,20 @@ async function openAndSettlePopover(page: Page) {
 
   // Scope by panel id so nested popovers (slot content) do not match twice.
   const panelId = await popover.getAttribute('data-ix-popover');
-  expect(panelId).toBeTruthy();
+  if (!panelId) {
+    throw new Error('Popover panel id is missing');
+  }
   const dialog = page.locator(`dialog#${panelId}`);
   await expect(dialog).toBeVisible();
-  await expect(trigger).toHaveClass(/\bactive\b/);
+  await expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
+  await expect(triggerButton).toHaveAttribute('aria-haspopup', 'dialog');
+  await expect(triggerButton).toHaveAttribute('aria-controls', panelId);
 
   // Pointer off trigger so the snapshot is Active-while-open, not :hover.
   await page.mouse.move(5, 5, { steps: 10 });
   await expect(popover).toHaveAttribute('show', '');
   await expect(dialog).toBeVisible();
-  await expect(trigger).toHaveClass(/\bactive\b/);
+  await expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
 }
 
 regressionTest.describe('popover', () => {
@@ -68,15 +73,20 @@ regressionTest.describe('popover', () => {
     await page.goto('popover/hover-trigger');
 
     const trigger = page.locator('ix-button#trigger');
+    const triggerButton = trigger.getByRole('button');
     const popover = page.locator('ix-popover');
 
     await trigger.hover();
     await expect(popover).toHaveAttribute('show', '');
 
     const panelId = await popover.getAttribute('data-ix-popover');
-    expect(panelId).toBeTruthy();
+    if (!panelId) {
+      throw new Error('Popover panel id is missing');
+    }
     await expect(page.locator(`dialog#${panelId}`)).toBeVisible();
-    await expect(trigger).toHaveClass(/\bactive\b/);
+    await expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(triggerButton).toHaveAttribute('aria-haspopup', 'dialog');
+    await expect(triggerButton).toHaveAttribute('aria-controls', panelId);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
       snapshotOptions

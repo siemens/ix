@@ -707,15 +707,6 @@ export class Popover
     );
   }
 
-  private updateTriggerActive(expanded: boolean) {
-    const triggerElement = this.triggerElement;
-    if (!triggerElement || !this.isIxButtonTrigger(triggerElement)) {
-      return;
-    }
-
-    triggerElement.classList.toggle('active', expanded);
-  }
-
   private clearTriggerAriaAttributes(element: HTMLElement) {
     element.removeAttribute('aria-expanded');
     element.removeAttribute('aria-controls');
@@ -736,8 +727,6 @@ export class Popover
     if (target !== triggerElement) {
       this.clearTriggerAriaAttributes(triggerElement);
     }
-
-    this.updateTriggerActive(expanded);
   }
 
   private clearTriggerAria() {
@@ -745,7 +734,6 @@ export class Popover
       return;
     }
 
-    this.updateTriggerActive(false);
     this.clearTriggerAriaAttributes(this.triggerElement);
 
     const inner = this.triggerElement.shadowRoot?.querySelector<HTMLElement>(
