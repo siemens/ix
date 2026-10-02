@@ -66,6 +66,9 @@ import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kp
 import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
+import { defineCustomElement as defineIxList } from '@siemens/ix/components/ix-list.js';
+import { defineCustomElement as defineIxListItem } from '@siemens/ix/components/ix-list-item.js';
+import { defineCustomElement as defineIxListItemSeparator } from '@siemens/ix/components/ix-list-item-separator.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -1860,6 +1863,95 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxList,
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'i18nListItem', 'i18nReorderCancelled', 'i18nReorderDropped', 'i18nReorderLifted', 'i18nReorderPosition', 'itemGap', 'variant']
+})
+@Component({
+  selector: 'ix-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'i18nListItem', 'i18nReorderCancelled', 'i18nReorderDropped', 'i18nReorderLifted', 'i18nReorderPosition', 'itemGap', 'variant'],
+  outputs: ['itemOrderChange'],
+})
+export class IxList {
+  protected el: HTMLIxListElement;
+  @Output() itemOrderChange = new EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { ListItemOrderChangeEvent as IIxListListItemOrderChangeEvent } from '@siemens/ix/components';
+
+export declare interface IxList extends Components.IxList {
+  /**
+   * Emitted after a list item has been reordered. @since 6.0.0
+   */
+  itemOrderChange: EventEmitter<CustomEvent<IIxListListItemOrderChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxListItem,
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'divider', 'icon', 'label', 'selected', 'variant']
+})
+@Component({
+  selector: 'ix-list-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'divider', 'icon', 'label', 'selected', 'variant'],
+  outputs: ['itemClick', 'selectedChange'],
+})
+export class IxListItem {
+  protected el: HTMLIxListItemElement;
+  @Output() itemClick = new EventEmitter<CustomEvent<HTMLIxListItemElement>>();
+  @Output() selectedChange = new EventEmitter<CustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItem extends Components.IxListItem {
+  /**
+   * Emitted when the primary item surface is activated. @since 6.0.0
+   */
+  itemClick: EventEmitter<CustomEvent<HTMLIxListItemElement>>;
+  /**
+   * Requests a controlled selection update when a checkbox item is activated. @since 6.0.0
+   */
+  selectedChange: EventEmitter<CustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxListItemSeparator
+})
+@Component({
+  selector: 'ix-list-item-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxListItemSeparator {
+  protected el: HTMLIxListItemSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItemSeparator extends Components.IxListItemSeparator {}
 
 
 @ProxyCmp({
