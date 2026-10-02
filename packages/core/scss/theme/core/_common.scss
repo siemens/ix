@@ -14,26 +14,14 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 @mixin setVars {
-  --theme-border-width-default: 0.0625rem;
-  --theme-border-width-none: 0rem;
-  --theme-border-width-thick: 0.125rem;
-  // 0.25rem
-  --theme-default-border-radius: 0.25rem;
   // duration in ms
   --theme-default-time: 150ms;
-  --theme-focus--border-thickness: 0.0625rem;
-  --theme-focus-border-thickness: 0.0625rem;
-  --theme-focus-outline-offset: 0.125rem;
   // duration in ms
   --theme-medium-time: 300ms;
-  // 0rem
-  --theme-min-border-radius: 0rem;
   // duration in ms
   --theme-short-time: 0ms;
   // duration in ms
   --theme-slow-time: 500ms;
-  // 0.125rem, for input-like components
-  --theme-small-border-radius: 0.125rem;
   // duration in ms
   --theme-x-slow-time: 1000ms;
 }
