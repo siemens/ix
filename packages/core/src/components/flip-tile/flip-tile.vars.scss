@@ -11,7 +11,7 @@
 
 :host {
   --ix-flip-tile-footer-icon--color--hover: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile--border-radius: var(--theme-default-border-radius);
+  --ix-flip-tile--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-flip-tile-alarm--background: #{sys.$si-sys-color-background-1};
   --ix-flip-tile-alarm--border-color: #{sys.$si-sys-color-border-danger};
   --ix-flip-tile-alarm--color: #{sys.$si-sys-color-text-primary};

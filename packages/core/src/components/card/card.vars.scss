@@ -15,9 +15,9 @@ $card-variants: outline filled alarm critical warning success info neutral
 :host {
   --ix-card--border-color: #{sys.$si-sys-color-border-3};
   --ix-card-accordion--color: #{sys.$si-sys-color-text-primary};
-  --ix-card--border-radius: var(--theme-default-border-radius);
-  --ix-card--border-width: var(--theme-border-width-default);
-  --ix-card--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-card--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-card-alarm--background: #{sys.$si-sys-color-background-danger};
   --ix-card-alarm--background--active: #{sys.$si-sys-color-background-danger-active};
   --ix-card-alarm--background--hover: #{sys.$si-sys-color-background-danger-hover};

@@ -16,7 +16,7 @@
   --ix-expanding-search-button--transition-duration: var(--theme-default-time);
   --ix-expanding-search-button--border--active: #{sys.$si-sys-sizing-border-width-default}
     solid #{sys.$si-sys-color-border-2};
-  --ix-expanding-search--border-radius: var(--theme-small-border-radius);
+  --ix-expanding-search--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
 }
 
 :host {

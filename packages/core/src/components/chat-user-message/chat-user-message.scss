@@ -28,7 +28,7 @@
     max-width: 80%;
     box-sizing: border-box;
     padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60};
-    border-radius: var(--theme-default-border-radius);
+    border-radius: #{sys.$si-sys-sizing-border-radius-sm};
     background-color: var(--ix-chat-user-message--background);
     color: var(--ix-chat-user-message--color);
   }
@@ -51,8 +51,8 @@
 
   .attachment-overflow {
     margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
-    --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
-    --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
+    --ix-dropdown-button-border-radius-left: #{sys.$si-sys-sizing-border-radius-xs};
+    --ix-dropdown-button-border-radius-right: #{sys.$si-sys-sizing-border-radius-xs};
   }
 
   .message-text {
@@ -88,7 +88,7 @@
 
   .message {
     outline: 1px solid var(--ix-chat-user-message--outline-color--focus);
-    outline-offset: var(--theme-focus-outline-offset);
+    outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   }
 }
 

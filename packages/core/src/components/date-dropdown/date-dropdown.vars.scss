@@ -13,7 +13,7 @@
   --ix-date-dropdown-divider--border: #{sys.$si-sys-sizing-border-width-default}
     solid #{sys.$si-sys-color-border-4};
   --ix-date-dropdown--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-date-dropdown--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-date-dropdown--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 }
 
 :host {

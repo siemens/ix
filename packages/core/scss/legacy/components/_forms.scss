@@ -20,7 +20,7 @@
 .ix-form-control,
 .ix-form-control-plaintext {
   color: #{sys.$si-sys-color-text-primary};
-  border-radius: var(--theme-small-border-radius);
+  border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   height: #{sys.$si-sys-sizing-size-80};
   min-height: #{sys.$si-sys-sizing-size-80};
   min-width: vars.$input-min-width;
@@ -46,7 +46,7 @@
     @include hover.focus-visible {
       background-color: #{sys.$si-sys-color-background-4};
       border-color: #{sys.$si-sys-color-border-accent-hover};
-      outline-offset: var(--theme-focus-outline-offset);
+      outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
       outline: 1px solid #{sys.$si-sys-color-effects-focus};
     }
   }

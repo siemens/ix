@@ -12,8 +12,8 @@
 :host {
   --ix-radio-checkmark--background: #{sys.$si-sys-color-text-on-accent};
   --ix-radio--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-radio--border-width: var(--theme-border-width-default);
-  --ix-radio--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-radio--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-radio--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-radio-checked--background: #{sys.$si-sys-color-background-accent};
   --ix-radio-checked--background--active: #{sys.$si-sys-color-background-accent-active};
   --ix-radio-checked--background--disabled: #{sys.$si-sys-color-text-disabled};

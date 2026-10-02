@@ -13,7 +13,7 @@
   --ix-avatar--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-avatar--background: #{sys.$si-sys-color-background-neutral};
   --ix-avatar--color: #{sys.$si-sys-color-text-on-neutral};
-  --ix-avatar--focus--outline-offset: var(--theme-focus-outline-offset);
+  --ix-avatar--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 }
 
 :host {

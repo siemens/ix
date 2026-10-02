@@ -87,8 +87,8 @@ $blind-variant-sys-values: (
   --ix-blind-outline--border-color--active: #{sys.$si-sys-color-background-selected};
   --ix-blind-header--border-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind-content--transition-duration: var(--theme-default-time);
-  --ix-blind--border-radius: var(--theme-default-border-radius);
-  --ix-blind--border-width: var(--theme-border-width-default);
+  --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-blind--background: #{sys.$si-sys-color-background-1};
 }
 

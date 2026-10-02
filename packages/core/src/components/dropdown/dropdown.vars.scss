@@ -11,7 +11,7 @@
 
 :host {
   --ix-dropdown--background: #{sys.$si-sys-color-background-3};
-  --ix-dropdown--border-radius: var(--theme-default-border-radius);
+  --ix-dropdown--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-dropdown--z-index: var(--theme-z-index-dropdown);
   --ix-dropdown--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
   --ix-dropdown--color: #{sys.$si-sys-color-text-primary};
