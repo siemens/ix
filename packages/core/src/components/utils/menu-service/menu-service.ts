@@ -12,6 +12,7 @@ import { TypedEvent } from '../typed-event';
 class MenuService {
   #menuElement: HTMLIxMenuElement | null = null;
   #menuExpandChange = new TypedEvent<boolean>();
+  #pinnedChange = new TypedEvent<boolean>();
   #isPinned = false;
   #expandChangeListener: ((event: Event) => void) | null = null;
 
@@ -40,11 +41,16 @@ class MenuService {
       }
       this.#expandChangeListener = null;
       this.#menuElement = null;
+      this.setIsPinned(false);
     }
   }
 
   public setIsPinned(pinned: boolean) {
+    if (this.#isPinned === pinned) {
+      return;
+    }
     this.#isPinned = pinned;
+    this.#pinnedChange.emit(pinned);
   }
 
   public async open() {
@@ -80,6 +86,10 @@ class MenuService {
 
   get expandChange() {
     return this.#menuExpandChange;
+  }
+
+  get pinnedChange() {
+    return this.#pinnedChange;
   }
 
   get isPinned() {

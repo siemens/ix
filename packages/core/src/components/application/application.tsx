@@ -86,6 +86,7 @@ export class Application {
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
+  @State() menuPinned = false;
 
   private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
 
@@ -100,6 +101,7 @@ export class Application {
   }
 
   private modeDisposable?: Disposable;
+  private pinnedDisposable?: Disposable;
 
   private onContentClick() {
     if (menuController.isPinned) {
@@ -132,10 +134,16 @@ export class Application {
       this.forceBreakpoint || applicationLayoutService.breakpoint;
 
     this.forceLayoutChange(this.forceBreakpoint);
+
+    this.menuPinned = menuController.isPinned;
+    this.pinnedDisposable = menuController.pinnedChange.on((pinned) => {
+      this.menuPinned = pinned;
+    });
   }
 
   disconnectedCallback() {
     this.modeDisposable?.dispose();
+    this.pinnedDisposable?.dispose();
   }
 
   @Watch('theme')
@@ -183,6 +191,7 @@ export class Application {
         data-role=""
         class={{
           [`breakpoint-${this.breakpoint}`]: true,
+          'menu-pinned': this.menuPinned,
         }}
       >
         <slot name="application-header"></slot>

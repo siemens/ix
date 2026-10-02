@@ -84,6 +84,18 @@
   }
 }
 
+:host(.breakpoint-md.menu-pinned) {
+  --ix-application-menu-margin-left: 0;
+
+  aside.slotted {
+    margin-left: 0;
+  }
+
+  aside:not(.slotted) + .content-area {
+    margin-left: 0;
+  }
+}
+
 :host(.breakpoint-lg) {
   --ix-application-menu-margin-left: 0;
 }

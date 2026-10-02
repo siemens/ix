@@ -128,6 +128,60 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'should be open when pinned and start-expanded are set',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu pinned start-expanded>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-application>
+    `);
+    await page
+      .locator('ix-application')
+      .evaluate((app: HTMLIxApplicationElement) => (app.breakpoints = ['lg']));
+
+    const menu = page.locator('ix-menu');
+    await expect(menu).toHaveClass(/hydrated/);
+    await expect(menu).toHaveClass(/expanded/);
+  }
+);
+
+regressionTest(
+  'pinned menu does not add overlay content margin at medium breakpoint',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1000, height: 800 });
+    await mount(`
+      <ix-application>
+        <ix-menu pinned>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+        <div>Main content</div>
+      </ix-application>
+    `);
+
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    await expect(application).toHaveClass(/hydrated/);
+    await expect(menu).toHaveClass(/hydrated/);
+    await expect
+      .poll(async () => menu.evaluate((el: HTMLIxMenuElement) => el.pinned))
+      .toBe(true);
+
+    // Pinned menus occupy layout flow; keep viewport breakpoint but drop overlay margin.
+    await expect(application).toHaveClass(/menu-pinned/);
+    await expect
+      .poll(async () =>
+        application.evaluate((el: HTMLIxApplicationElement) => {
+          const contentArea = el.shadowRoot?.querySelector('.content-area');
+          return contentArea ? getComputedStyle(contentArea).marginLeft : null;
+        })
+      )
+      .toBe('0px');
+  }
+);
+
 regressionTest.describe('pinned menu keeps layout bus for pane', () => {
   const pinnedMenuWithPane = `
     <ix-application>

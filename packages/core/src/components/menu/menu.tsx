@@ -112,6 +112,9 @@ export class Menu {
     if (newPinned) {
       // Keep desktop chrome locally without freezing the shared layout bus.
       this.breakpoint = 'lg';
+      if (this.startExpanded) {
+        this.toggleMenu(true);
+      }
       return;
     }
 
@@ -417,6 +420,10 @@ export class Menu {
   private onBreakpointChange(mode: Breakpoint, initial = false) {
     if (this.pinned) {
       this.setPinned(true);
+      this.breakpoint = 'lg';
+      if (initial && this.startExpanded) {
+        this.toggleMenu(true);
+      }
       return;
     }
 
