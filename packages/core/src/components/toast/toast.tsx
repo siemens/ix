@@ -212,7 +212,9 @@ export class Toast {
           }}
         >
           {(this.type || this.icon) && !this.hideIcon ? (
-            <div class="toast-icon">{this.getIcon()}</div>
+            <div class="toast-icon" aria-hidden="true">
+              {this.getIcon()}
+            </div>
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (

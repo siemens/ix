@@ -36,6 +36,6 @@
     #{sys.$si-sys-sizing-spacing-y-20};
   --ix-toast-icon--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
   --ix-toast-content--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-toast-title--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-toast-title--margin: 0 0 0 #{sys.$si-sys-sizing-spacing-y-20};
   --ix-toast-action--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
 }
