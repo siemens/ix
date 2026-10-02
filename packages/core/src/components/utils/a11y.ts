@@ -60,7 +60,8 @@ export const getFallbackLabelFromIconName = (iconName?: string) => {
 
 export const a11yHostAttributes = (
   hostElement: HTMLElement,
-  ignoreAttributes: A11yAttributeName[] = []
+  ignoreAttributes: A11yAttributeName[] = [],
+  removeAttributes = true
 ): Record<A11yAttributeName, string> => {
   const attributeObject: Record<string, string> = {};
   a11yAttributes.forEach((attr) => {
@@ -68,7 +69,9 @@ export const a11yHostAttributes = (
       const value = hostElement.getAttribute(attr);
       if (value !== null && !ignoreAttributes.includes(attr)) {
         attributeObject[attr] = hostElement.getAttribute(attr) ?? '';
-        hostElement.removeAttribute(attr);
+        if (removeAttributes) {
+          hostElement.removeAttribute(attr);
+        }
       }
     }
   });

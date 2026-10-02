@@ -980,6 +980,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
           </ix-dropdown-button>
         </ix-dropdown>`);
   const trigger = page.locator('ix-button').first();
+  await waitForDropdownTrigger(trigger);
   await trigger.click();
   const dropdown = page.locator('ix-dropdown').first();
 

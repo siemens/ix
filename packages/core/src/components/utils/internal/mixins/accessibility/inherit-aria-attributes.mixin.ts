@@ -30,6 +30,7 @@ import {
 export interface InheritAriaAttributesMixinContract {
   inheritAriaAttributes: A11yAttributes;
   getIgnoredAriaAttributes?(): A11yAttributeName[];
+  keepAriaAttributesOnHost?(): boolean;
   readAriaAttributesFromHost(): A11yAttributes;
 }
 
@@ -73,7 +74,11 @@ export const InheritAriaAttributesMixin = <
         }
 
         const newValue = hostElement.getAttribute(attributeName);
-        if (newValue !== null && !this.#readingAriaAttributes) {
+        if (
+          newValue !== null &&
+          !this.#readingAriaAttributes &&
+          !this.keepAriaAttributesOnHost()
+        ) {
           runWithoutAriaAttributeObservation(hostElement, () => {
             hostElement.removeAttribute(attributeName);
           });
@@ -103,6 +108,10 @@ export const InheritAriaAttributesMixin = <
       return [];
     }
 
+    keepAriaAttributesOnHost(): boolean {
+      return false;
+    }
+
     readAriaAttributesFromHost(): A11yAttributes {
       const hostElement = this.#getHostElement();
       this.#readingAriaAttributes = true;
@@ -111,7 +120,8 @@ export const InheritAriaAttributesMixin = <
         return runWithoutAriaAttributeObservation(hostElement, () => {
           return a11yHostAttributes(
             hostElement,
-            this.getIgnoredAriaAttributes()
+            this.getIgnoredAriaAttributes(),
+            !this.keepAriaAttributesOnHost()
           );
         });
       } finally {
