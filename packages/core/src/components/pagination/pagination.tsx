@@ -17,7 +17,6 @@ import {
   Prop,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { a11yBoolean } from '../utils/a11y';
 import {
   iconChevronLeftSmall,
   iconChevronRightSmall,
@@ -166,7 +165,8 @@ export class Pagination {
       onClick: () => this.selectPage(index),
       selected: this.selectedPage === index,
       ariaAttributes: {
-        'aria-pressed': a11yBoolean(this.selectedPage === index),
+        'aria-label': `${this.i18nPage} ${index + 1}`,
+        ...(this.selectedPage === index ? { 'aria-current': 'page' } : {}),
       },
     };
 
@@ -185,20 +185,34 @@ export class Pagination {
     let start = 0;
     let end = Math.min(this.count, this.maxCountPages);
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
+    const jump = Math.max(0, 2 * pageCount + 1);
 
     if (hasOverflowStart) {
       const baseButtonProps = {
         ...this.baseButtonConfig,
         onClick: () => {
           if (hasOverflowEnd) {
-            this.selectPage(this.selectedPage - Math.max(0, 2 * pageCount + 1));
+            this.selectPage(this.selectedPage - jump);
           } else {
             this.selectPage(this.count - this.maxCountPages);
           }
         },
       };
       pageButtons.push(this.getPageButton(0));
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <BaseButton
+          {...baseButtonProps}
+          ariaAttributes={{
+            'aria-label': `Jump backward to ${this.i18nPage} ${
+              (hasOverflowEnd
+                ? this.selectedPage - jump
+                : this.count - this.maxCountPages) + 1
+            }`,
+          }}
+        >
+          ...
+        </BaseButton>
+      );
 
       if (hasOverflowEnd) {
         start = this.count - this.maxCountPages + 2;
@@ -226,13 +240,26 @@ export class Pagination {
         ...this.baseButtonConfig,
         onClick: () => {
           if (hasOverflowStart) {
-            this.selectPage(this.selectedPage + Math.max(0, 2 * pageCount + 1));
+            this.selectPage(this.selectedPage + jump);
           } else {
             this.selectPage(this.maxCountPages - 1);
           }
         },
       };
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <BaseButton
+          {...baseButtonProps}
+          ariaAttributes={{
+            'aria-label': `Jump forward to ${this.i18nPage} ${
+              (hasOverflowStart
+                ? this.selectedPage + jump
+                : this.maxCountPages - 1) + 1
+            }`,
+          }}
+        >
+          ...
+        </BaseButton>
+      );
       pageButtons.push(this.getPageButton(this.count - 1));
     }
 
@@ -249,9 +276,10 @@ export class Pagination {
 
   render() {
     return (
-      <Host>
+      <Host role="navigation" aria-label="Pagination">
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
+          tabIndex={!this.count || this.selectedPage === 0 ? -1 : 0}
           variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
@@ -298,6 +326,9 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
+          tabIndex={
+            !this.count || this.selectedPage === this.count - 1 ? -1 : 0
+          }
           variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}
