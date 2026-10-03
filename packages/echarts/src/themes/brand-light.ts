@@ -8,57 +8,57 @@
  */
 
 const textStyleDefault = {
-  color: '#000028',
-  fontFamily: 'Siemens Sans, sans-serif',
+  color: '#4C4C68',
+  fontFamily: 'Siemens Sans, "Siemens Sans", Arial, Helvetica, sans-serif',
 };
 
 const colors = [
-  '#009999' /* theme-chart-3 */,
-  '#005159' /* theme-chart-2 */,
-  '#00004A' /* theme-chart-8 */,
-  '#1A747D' /* theme-chart-1 */,
-  '#3664C6' /* theme-chart-6 */,
-  '#002949' /* theme-chart-4 */,
-  '#7353E5' /* theme-chart-10 */,
-  '#553BA3' /* theme-chart-9 */,
-  '#740089' /* theme-chart-11 */,
-  '#BE5925' /* theme-chart-14 */,
-  '#4F153D' /* theme-chart-13 */,
-  '#C04774' /* theme-chart-12 */,
-  '#00237A' /* theme-chart-7 */,
-  '#801100' /* theme-chart-15 */,
-  '#805800' /* theme-chart-16 */,
-  '#5E5E4A' /* theme-chart-17 */,
-  '#4C4C68' /* theme-chart-5 */,
+  '#009999' /* si/sys/data/categorical/1 */,
+  '#005159' /* si/sys/data/categorical/2 */,
+  '#00890E' /* si/sys/data/categorical/3 */,
+  '#1A747D' /* si/sys/data/categorical/4 */,
+  '#3664C6' /* si/sys/data/categorical/5 */,
+  '#002949' /* si/sys/data/categorical/6 */,
+  '#7353E5' /* si/sys/data/categorical/7 */,
+  '#553BA3' /* si/sys/data/categorical/8 */,
+  '#740089' /* si/sys/data/categorical/9 */,
+  '#D72339' /* si/sys/data/categorical/10 */,
+  '#4F153D' /* si/sys/data/categorical/11 */,
+  '#C04774' /* si/sys/data/categorical/12 */,
+  '#00237A' /* si/sys/data/categorical/13 */,
+  '#801100' /* si/sys/data/categorical/14 */,
+  '#805800' /* si/sys/data/categorical/15 */,
+  '#757563' /* si/sys/data/categorical/16 */,
+  '#4C4C68' /* si/sys/data/categorical/17 */,
 ];
 
 const axisCommon = {
   axisLine: {
     show: true,
     lineStyle: {
-      color: 'rgba(0,0,40,0.3)',
+      color: '#66667E' /* si/sys/border/2 */,
     },
   },
   axisTick: {
     show: true,
     lineStyle: {
-      color: 'rgba(0,0,40,0.3)',
+      color: '#66667E' /* si/sys/border/2 */,
     },
   },
   axisLabel: {
     show: true,
-    color: '#000028',
+    color: '#000028' /* si/sys/text/primary */,
   },
   splitLine: {
     show: true,
     lineStyle: {
-      color: ['rgba(0,0,40,0.1)'],
+      color: ['#E5E5E9' /* si/sys/border/4 */],
     },
   },
   splitArea: {
     show: false,
     areaStyle: {
-      color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+      color: ['transparent', '#FFFFFF'],
     },
   },
 };
@@ -67,11 +67,14 @@ export default {
   themeName: 'theme-brand-light',
   theme: {
     color: colors,
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'transparent',
     textStyle: textStyleDefault,
     title: {
       textStyle: textStyleDefault,
-      subtextStyle: textStyleDefault,
+      subtextStyle: {
+        ...textStyleDefault,
+        color: '#000028' /* si/sys/background/1 */,
+      },
     },
     line: {
       itemStyle: {
@@ -94,82 +97,121 @@ export default {
       symbolSize: 4,
       symbol: 'circle',
       smooth: false,
+      splitArea: {
+        areaStyle: {
+          color: ['transparent', '#FFFFFF'],
+        },
+      },
+      axisName: {
+        color: '#000028' /* si/sys/text/primary */,
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#000028' /* si/sys/border/1 */,
+        },
+      },
+      splitLine: {
+        lineStyle: {
+          color: '#9999A9' /* si/sys/border/3 */,
+        },
+      },
+      label: {
+        textBorderColor: '#FFFFFF',
+        textBorderWidth: 0,
+      },
     },
     bar: {
       itemStyle: {
         barBorderWidth: 0,
-        barBorderColor: '#000028',
+        barBorderColor: '#9999A9' /* si/sys/border/3 */,
       },
     },
     pie: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9' /* si/sys/border/3 */,
+      },
+      label: {
+        color: '#000028' /* si/sys/text/primary */,
+        textBorderColor: '#FFFFFF',
+        textBorderWidth: 0,
       },
     },
     scatter: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9' /* si/sys/border/3 */,
       },
     },
     boxplot: {
       itemStyle: {
-        borderWidth: 0,
-        borderColor: '#000028',
+        borderWidth: 1,
+        borderColor: '#000028' /* si/sys/border/1 */,
+        color: '#009999' /* si/sys/background/accent */,
+      },
+      label: {
+        color: '#000028' /* si/sys/text/primary */,
+        textBorderColor: '#FFFFFF',
+        textBorderWidth: 0,
       },
     },
     parallel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9' /* si/sys/border/3 */,
       },
     },
     sankey: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9' /* si/sys/border/3 */,
       },
     },
     funnel: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9' /* si/sys/border/3 */,
       },
     },
     gauge: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#9999A9' /* si/sys/border/3 */,
       },
       axisLabel: {
-        color: '#000028',
+        color: '#000028' /* si/sys/text/primary */,
+      },
+      title: {
+        color: '#000028' /* si/sys/text/primary */,
+      },
+      detail: {
+        color: '#000028' /* si/sys/text/primary */,
       },
     },
     candlestick: {
       itemStyle: {
-        color: '#01893a',
-        color0: '#d72339',
-        borderColor: '#01893a',
-        borderColor0: '#d72339',
+        color: '#D72339' /* si/sys/background/danger */,
+        color0: '#1C703F' /* si/sys/background/success */,
+        borderColor: '#D72339' /* si/sys/border/danger */,
+        borderColor0: '#1C703F' /* si/sys/border/success */,
         borderWidth: 1,
       },
     },
     graph: {
       itemStyle: {
         borderWidth: 0,
-        borderColor: '#000028',
+        borderColor: '#009999' /* si/sys/data/categorical/1 */,
       },
       lineStyle: {
         width: '1',
-        color: '#000028',
+        color: '#009999' /* si/sys/data/categorical/1 */,
       },
       symbolSize: 4,
       symbol: 'circle',
       smooth: false,
       color: colors,
       label: {
-        color: '#ffffff',
+        color: '#FFFFFF' /* si/sys/text/on-accent */,
       },
     },
     categoryAxis: axisCommon,
@@ -178,11 +220,11 @@ export default {
     timeAxis: axisCommon,
     toolbox: {
       iconStyle: {
-        borderColor: '#000028',
+        borderColor: '#4C4C68' /* si/sys/text/secondary */,
       },
       emphasis: {
         iconStyle: {
-          borderColor: '#196269',
+          borderColor: '#005159' /* si/sys/border/accent-hover */,
         },
       },
     },
@@ -190,56 +232,59 @@ export default {
       textStyle: textStyleDefault,
     },
     tooltip: {
-      backgroundColor: '#ffffffcc',
-      borderColor: '#00002833',
+      textStyle: {
+        color: '#000028' /* si/sys/text/primary */
+      },
+      backgroundColor: '#FFFFFF' /* si/sys/background/3 */,
+      borderColor: '#FFFFFF' /* si/sys/background/3 */,
       axisPointer: {
         lineStyle: {
-          color: '#000028',
+          color: '#000028' /* si/sys/background/inverse */,
           width: '1',
         },
         crossStyle: {
-          color: '#000028',
+          color: '#000028' /* si/sys/background/inverse */,
           width: '1',
         },
       },
     },
     timeline: {
       lineStyle: {
-        color: 'transparent',
+        color: 'transparent' /* transparent */,
         width: '1',
       },
       itemStyle: {
-        color: '#000028',
+        color: '#00890E' /* si/sys/data/categorical/3 */,
         borderWidth: '1',
       },
       controlStyle: {
-        color: '#007993',
-        borderColor: '#007993',
+        color: '#006B80' /* si/sys/text/accent */,
+        borderColor: '#006B80' /* si/sys/border/accent */,
         borderWidth: '1',
       },
       checkpointStyle: {
-        color: '#196269',
-        borderColor: '#ffffff',
+        color: '#009999' /* si/sys/data/categorical/1 */,
+        borderColor: '#FFFFFF' /* si/sys/text/on-accent */,
       },
       label: {
-        color: '#000028',
+        color: '#000028' /* si/sys/text/primary */,
       },
       emphasis: {
         itemStyle: {
-          color: '#000028',
+          color: '#00890E' /* si/sys/data/categorical/3 */,
         },
         controlStyle: {
-          color: '#007993',
-          borderColor: '#007993',
+          color: '#006B80' /* si/sys/text/accent */,
+          borderColor: '#006B80' /* si/sys/border/accent */,
           borderWidth: '1',
         },
         label: {
-          color: '#000028',
+          color: '#000028' /* si/sys/text/primary */,
         },
       },
     },
     visualMap: {
-      color: ['#d72339', '#e96401', '#e9c32a'],
+      color: ['#D72339', '#C75300', '#EDBF00'],
     },
     dataZoom: {
       handleSize: 'undefined%',
@@ -247,22 +292,22 @@ export default {
     },
     markPoint: {
       label: {
-        color: '#000028',
-        textBorderColor: '#fff',
+        color: '#000028' /* si/sys/text/primary */,
+        textBorderColor: '#FFFFFF' /* si/sys/text/on-accent */,
         textBorderWidth: 1,
       },
     },
     markLine: {
       label: {
-        color: '#000028',
-        textBorderColor: '#fff',
+        color: '#000028' /* si/sys/text/primary */,
+        textBorderColor: '#FFFFFF' /* si/sys/text/on-accent */,
         textBorderWidth: 1,
       },
     },
     markArea: {
       label: {
-        color: '#000028',
-        textBorderColor: '#fff',
+        color: '#000028' /* si/sys/text/primary */,
+        textBorderColor: '#FFFFFF' /* si/sys/text/on-accent */,
         textBorderWidth: 1,
       },
     },
