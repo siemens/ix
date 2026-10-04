@@ -14,3 +14,12 @@
   --ix-tooltip--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
   --ix-tooltip--background: #{sys.$si-sys-color-background-3};
 }
+
+:host {
+  --ix-tooltip-dialog--max-width: calc(
+    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-50}
+  );
+  --ix-tooltip-container--padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-tooltip-icon--margin: #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-20}
+    #{sys.$si-sys-sizing-spacing-y-10} 0;
+}

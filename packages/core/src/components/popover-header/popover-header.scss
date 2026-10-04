@@ -8,13 +8,14 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './popover-header.vars' as *;
 :host {
   display: flex;
-  padding: 0.75rem;
+  padding: var(--ix-popover-header--padding);
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--ix-popover-header--gap);
 
   @include component.ix-component;
 
@@ -25,7 +26,7 @@
   .additional-items {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--ix-popover-header-additional-items--gap);
   }
 
   .popover-close {

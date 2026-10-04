@@ -12,3 +12,18 @@
 :host {
   --ix-pill-outline--background: #{sys.$si-sys-color-background-accent-secondary};
 }
+
+:host {
+  --ix-pill--height: #{sys.$si-sys-sizing-size-60};
+  --ix-pill--max-height: #{sys.$si-sys-sizing-size-60};
+  --ix-pill--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-pill-outline-icon--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-pill-outline-icon--padding-right: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-pill-solid-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-pill-solid-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-pill-with-gap--gap: #{sys.$si-sys-sizing-spacing-x-20};
+}

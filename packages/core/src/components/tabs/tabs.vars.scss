@@ -15,3 +15,10 @@
   --ix-tabs-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
   --ix-tabs-indicator--height: 0.0625rem;
 }
+
+:host {
+  --ix-tabs--padding-right: calc(
+    #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-tabs-context-menu--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+}

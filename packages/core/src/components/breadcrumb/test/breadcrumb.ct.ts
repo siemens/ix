@@ -56,9 +56,9 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
   const breadcrumbItem1 = page.locator('ix-breadcrumb-item').nth(0);
   const breadcrumbItemNewItem = page.locator('ix-breadcrumb-item').nth(3);
 
-  const showHiddenButton = breadcrumb.getByLabel(
-    'Show previous breadcrumb items'
-  );
+  const showHiddenButton = breadcrumb.getByRole('button', {
+    name: 'Show previous breadcrumb items',
+  });
 
   await expect(breadcrumbItem1).not.toBeVisible();
   await expect(breadcrumbItemNewItem).toBeVisible();
@@ -158,9 +158,9 @@ regressionTest.describe('keyboard navigation', () => {
       ];
     });
 
-    const previousButton = breadcrumb.getByLabel(
-      'Show previous breadcrumb items'
-    );
+    const previousButton = breadcrumb.getByRole('button', {
+      name: 'Show previous breadcrumb items',
+    });
     await previousButton.waitFor({ state: 'visible' });
     await expect(previousButton).toBeVisible();
 

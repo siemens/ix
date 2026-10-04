@@ -22,7 +22,7 @@ export default () => {
 
       <IxTile size="medium">
         <div slot="header">Tile header</div>
-        <div className="text-l">92.8 °C</div>
+        <div className="typography-body-lg">92.8 °C</div>
       </IxTile>
 
       <IxTile size="big">
