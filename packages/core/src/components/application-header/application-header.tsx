@@ -410,7 +410,7 @@ export class ApplicationHeader {
               {this.name}
             </ix-typography>
             {this.nameSuffix && this.breakpoint !== 'sm' && (
-              <ix-typography format="body-xs" class="application-name-suffix">
+              <ix-typography format="body-sm" class="application-name-suffix">
                 {this.nameSuffix}
               </ix-typography>
             )}

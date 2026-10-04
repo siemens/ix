@@ -1020,7 +1020,7 @@ export declare interface IxDivider extends Components.IxDivider {}
 
 
 @ProxyCmp({
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'navigationMode', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   methods: ['updatePosition']
 })
 @Component({
@@ -1028,7 +1028,7 @@ export declare interface IxDivider extends Components.IxDivider {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'navigationMode', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   outputs: ['showChange', 'showChanged'],
   standalone: false
 })
@@ -1056,14 +1056,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'placement', 'variant']
+  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'navigationMode', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'placement', 'variant'],
+  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'navigationMode', 'placement', 'variant'],
   outputs: ['showChange', 'showChanged'],
   standalone: false
 })
@@ -1967,14 +1967,14 @@ export declare interface IxMenuAvatarItem extends Components.IxMenuAvatarItem {
 
 
 @ProxyCmp({
-  inputs: ['icon', 'label', 'notifications', 'tooltipText']
+  inputs: ['disableTooltip', 'icon', 'label', 'notifications', 'tooltipText']
 })
 @Component({
   selector: 'ix-menu-category',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['icon', 'label', 'notifications', 'tooltipText'],
+  inputs: ['disableTooltip', 'icon', 'label', 'notifications', 'tooltipText'],
   standalone: false
 })
 export class IxMenuCategory {
@@ -1990,14 +1990,14 @@ export declare interface IxMenuCategory extends Components.IxMenuCategory {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'bottom', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText']
+  inputs: ['active', 'bottom', 'disableTooltip', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText']
 })
 @Component({
   selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'bottom', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText'],
+  inputs: ['active', 'bottom', 'disableTooltip', 'disabled', 'home', 'href', 'icon', 'label', 'notifications', 'rel', 'target', 'tooltipText'],
   standalone: false
 })
 export class IxMenuItem {

@@ -231,7 +231,10 @@ export class SplitButton
           onShowChanged={({ detail }) => (this.showDropdown = detail)}
           aria-controls={`${this.internalId}-${PROXY_LIST_ID_SUFFIX}`}
         >
-          <FocusProxy hostId={this.internalId} otherProps={{}}></FocusProxy>
+          <FocusProxy
+            hostId={this.internalId}
+            otherProps={{ role: 'presentation' }}
+          ></FocusProxy>
           <slot></slot>
         </ix-dropdown-button>
       </Host>

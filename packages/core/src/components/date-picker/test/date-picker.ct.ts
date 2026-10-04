@@ -17,9 +17,13 @@ const getDateObj = async (page: Page) => {
 };
 
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-picker></ix-date-picker>`);
+  await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
   await expect(datePicker).toHaveClass(/hydrated/);
+  const days = datePicker.locator('[data-calendar-day]');
+  await expect(days).toHaveCount(31);
+  await expect(days.first()).toHaveCSS('font-size', '14px');
+  await expect(days.first()).toHaveCSS('line-height', '16px');
 });
 
 regressionTest('translation', async ({ mount, page }) => {
@@ -140,7 +144,9 @@ regressionTest.describe('date picker tests single', () => {
     'select different date from specific month',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
-      const monthSelection = page.getByLabel('Select month');
+      const monthSelection = page.getByRole('button', {
+        name: 'Select month',
+      });
 
       await expect(monthSelection).toBeVisible();
       await monthSelection.click();
@@ -152,7 +158,9 @@ regressionTest.describe('date picker tests single', () => {
       await expect(itemJanuary).toBeVisible();
       await itemJanuary.click();
 
-      const yearSelection = page.getByLabel('Select year');
+      const yearSelection = page.getByRole('button', {
+        name: 'Select year',
+      });
       await expect(yearSelection).toBeVisible();
       await yearSelection.click();
 

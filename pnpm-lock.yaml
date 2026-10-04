@@ -16,8 +16,8 @@ catalogs:
       specifier: ^1.58.1
       version: 1.58.1
     '@siemens/ix-icons':
-      specifier: 0.0.0-20260917085159
-      version: 0.0.0-20260917085159
+      specifier: 0.0.0-20260924154901
+      version: 0.0.0-20260924154901
     eslint:
       specifier: ^9.39.3
       version: 9.39.3
@@ -42,6 +42,9 @@ patchedDependencies:
   '@stencil/core':
     hash: 5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193
     path: patches/@stencil__core.patch
+  '@stencil/vue-output-target':
+    hash: a12a6ca0484d92fbfcfb71f925f721ce35975e7c681730a9a5610f7e1c237dc4
+    path: patches/@stencil__vue-output-target.patch
 
 importers:
 
@@ -116,7 +119,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.14
@@ -259,7 +262,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.28(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -374,7 +377,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@20.3.28(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.25(@angular/compiler@20.3.28)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -462,7 +465,7 @@ importers:
         version: 1.58.1
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@stencil-community/eslint-plugin':
         specifier: ^0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5)
@@ -486,7 +489,7 @@ importers:
         version: 1.11.3(@playwright/test@1.58.1)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(happy-dom@20.4.0)(jsdom@25.0.1)(vitest@4.1.4(@types/node@20.16.5)(happy-dom@20.4.0)(jsdom@25.0.1)(msw@2.10.2(@types/node@20.16.5)(typescript@5.4.5))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.27.2)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.20.5)(yaml@2.9.1)))
       '@stencil/vue-output-target':
         specifier: ^0.13.2
-        version: 0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
+        version: 0.13.2(patch_hash=a12a6ca0484d92fbfcfb71f925f721ce35975e7c681730a9a5610f7e1c237dc4)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -739,7 +742,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       vite:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
@@ -781,7 +784,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -820,11 +823,11 @@ importers:
         specifier: ^11.0.4
         version: 11.0.4
       '@types/react':
-        specifier: ^19
-        version: 19.1.0
+        specifier: ^19.2.14
+        version: 19.2.14
       '@types/react-dom':
         specifier: ^19
-        version: 19.1.1(@types/react@19.1.0)
+        version: 19.1.1(@types/react@19.2.14)
       '@vitejs/plugin-legacy':
         specifier: ^5.0.0
         version: 5.4.2(terser@5.46.0)(vite@7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.9.1))
@@ -875,11 +878,11 @@ importers:
         specifier: ^20
         version: 20.16.5
       '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.2.14
+        version: 19.2.14
       '@types/react-dom':
         specifier: ^19.1.1
-        version: 19.1.1(@types/react@19.1.0)
+        version: 19.1.1(@types/react@19.2.14)
       typescript:
         specifier: ^5
         version: 5.8.3
@@ -994,7 +997,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -1045,11 +1048,11 @@ importers:
         specifier: ^20.16.0
         version: 20.16.5
       '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.2.14
+        version: 19.2.14
       '@types/react-dom':
         specifier: ^19.1.1
-        version: 19.1.1(@types/react@19.1.0)
+        version: 19.1.1(@types/react@19.2.14)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.6.0(vite@7.3.5(@types/node@20.16.5)(jiti@2.6.1)(less@4.3.0)(lightningcss@1.33.0)(sass-embedded@1.93.0)(sass@1.93.0)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1))
@@ -1089,7 +1092,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@stencil/core':
         specifier: ^4.43.4
         version: 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
@@ -1152,7 +1155,7 @@ importers:
         version: 3.5.0
       '@stencil/vue-output-target':
         specifier: ^0.13.2
-        version: 0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
+        version: 0.13.2(patch_hash=a12a6ca0484d92fbfcfb71f925f721ce35975e7c681730a9a5610f7e1c237dc4)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -1213,7 +1216,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../vue
@@ -1349,7 +1352,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260917085159
+        version: 0.0.0-20260924154901
       '@types/node':
         specifier: ^24.0.14
         version: 24.0.14
@@ -4461,8 +4464,8 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@0.0.0-20260917085159':
-    resolution: {integrity: sha512-NAWi+LIA1h375eYZgADGTpR7TlPaGLQIrhCYLfCVwvpiJsr+oFdWFTttuzYNVX6n9AjIro1cmLuYaXLAIF3gjA==}
+  '@siemens/ix-icons@0.0.0-20260924154901':
+    resolution: {integrity: sha512-C2cSZqsIAwiAC37QX8yh7NCqeYCZaOSZPLTh5M3I+AcMXm8mihYGmFH619SmcPGDC/f69fVWsSxsJZKQ5eTY9g==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@siemens/ix-icons@3.5.0':
@@ -5101,9 +5104,6 @@ packages:
 
   '@types/react@18.3.26':
     resolution: {integrity: sha512-RFA/bURkcKzx/X9oumPG9Vp3D3JUgus/d0b67KB0t5S/raciymilkOa66olh78MUI92QLbEJevO7rvqU/kjwKA==}
-
-  '@types/react@19.1.0':
-    resolution: {integrity: sha512-UaicktuQI+9UKyA4njtDOGBD/67t8YEBt2xdfqu8+gP9hqPUPsiXlNPcpS2gVdjmis5GKPG3fCxbQLVgxsQZ8w==}
 
   '@types/react@19.2.14':
     resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
@@ -16706,7 +16706,7 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@0.0.0-20260917085159': {}
+  '@siemens/ix-icons@0.0.0-20260924154901': {}
 
   '@siemens/ix-icons@3.5.0': {}
 
@@ -16864,13 +16864,13 @@ snapshots:
       happy-dom: 20.4.0
       jsdom: 25.0.1
 
-  '@stencil/vue-output-target@0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
+  '@stencil/vue-output-target@0.13.2(patch_hash=a12a6ca0484d92fbfcfb71f925f721ce35975e7c681730a9a5610f7e1c237dc4)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
     dependencies:
       vue: 3.5.17(typescript@5.4.5)
     optionalDependencies:
       '@stencil/core': 4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
-  '@stencil/vue-output-target@0.13.2(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.13.2(patch_hash=a12a6ca0484d92fbfcfb71f925f721ce35975e7c681730a9a5610f7e1c237dc4)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
     dependencies:
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
@@ -17371,30 +17371,26 @@ snapshots:
 
   '@types/react-dom@18.2.14':
     dependencies:
-      '@types/react': 19.2.14
+      '@types/react': 18.3.26
 
-  '@types/react-dom@19.1.1(@types/react@19.1.0)':
+  '@types/react-dom@19.1.1(@types/react@19.2.14)':
     dependencies:
-      '@types/react': 19.1.0
+      '@types/react': 19.2.14
 
   '@types/react-router-dom@5.3.3':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.0
+      '@types/react': 18.3.26
       '@types/react-router': 5.1.20
 
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.1.0
+      '@types/react': 18.3.26
 
   '@types/react@18.3.26':
     dependencies:
       '@types/prop-types': 15.7.9
-      csstype: 3.2.3
-
-  '@types/react@19.1.0':
-    dependencies:
       csstype: 3.2.3
 
   '@types/react@19.2.14':
