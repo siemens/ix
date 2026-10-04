@@ -61,6 +61,26 @@ export class Menu {
    */
   @Prop({ mutable: true }) showSettings = false;
 
+  @Watch('showSettings')
+  onShowSettingsChange(show: boolean) {
+    if (!this.settings) {
+      return;
+    }
+
+    this.settings.show = show;
+
+    if (show) {
+      const wasAboutVisible = this.showAbout;
+      this.showAbout = false;
+      if (this.about) {
+        this.about.show = false;
+      }
+      if (!wasAboutVisible) {
+        this.animateOverlayFadeIn();
+      }
+    }
+  }
+
   /**
    * Is about tab visible
    */
@@ -346,6 +366,8 @@ export class Menu {
   }
 
   componentDidLoad() {
+    this.onShowSettingsChange(this.showSettings);
+
     requestAnimationFrame(() => {
       this.suppressAnchorWrapperTabStops();
       this.handleOverflowIndicator();
@@ -560,14 +582,8 @@ export class Menu {
       return;
     }
 
-    if (!this.isOverlayVisible()) {
-      this.animateOverlayFadeIn();
-    }
-
     if (show) {
-      this.resetOverlay();
       this.showSettings = show;
-      this.settings.show = this.showSettings;
     } else {
       this.onOverlayClose();
     }
