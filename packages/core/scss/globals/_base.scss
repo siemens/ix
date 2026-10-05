@@ -10,7 +10,7 @@
 @use '../tokens/system' as system;
 
 [data-ix-theme] {
-  color: #{system.$si-sys-text-primary};
+  color: #{system.$si-sys-color-text-primary};
 }
 
 body {

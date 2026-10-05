@@ -12,5 +12,5 @@ import { IxTimeInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTimeInput readOnly></IxTimeInput>
+  <IxTimeInput read-only></IxTimeInput>
 </template>

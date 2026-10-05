@@ -14,7 +14,7 @@ export default () => {
     <IxDateInput
       label="Begin"
       name="begin"
-      helper-text="Some helper text"
+      helperText="Some helper text"
       value="2026/02/08"
     ></IxDateInput>
   );

@@ -17,9 +17,13 @@ const getDateObj = async (page: Page) => {
 };
 
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-picker></ix-date-picker>`);
+  await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
   await expect(datePicker).toHaveClass(/hydrated/);
+  const days = datePicker.locator('[data-calendar-day]');
+  await expect(days).toHaveCount(31);
+  await expect(days.first()).toHaveCSS('font-size', '14px');
+  await expect(days.first()).toHaveCSS('line-height', '16px');
 });
 
 regressionTest('translation', async ({ mount, page }) => {
@@ -52,6 +56,8 @@ regressionTest.describe('date picker tests single', () => {
     await expect(currentDate).resolves.toEqual({
       from: '2024/10/10',
       to: undefined,
+      isoFrom: '2024-10-10',
+      isoTo: undefined,
     });
   });
 
@@ -63,6 +69,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2024/10/10',
       to: undefined,
+      isoFrom: '2024-10-10',
+      isoTo: undefined,
     });
   });
 });
@@ -80,6 +88,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/05',
       to: undefined,
+      isoFrom: '2023-09-05',
+      isoTo: undefined,
     });
   });
 
@@ -90,6 +100,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/19',
       to: undefined,
+      isoFrom: '2023-09-19',
+      isoTo: undefined,
     });
   });
 
@@ -102,6 +114,8 @@ regressionTest.describe('date picker tests single', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/10/31',
       to: undefined,
+      isoFrom: '2023-10-31',
+      isoTo: undefined,
     });
   });
 
@@ -120,6 +134,8 @@ regressionTest.describe('date picker tests single', () => {
       expect((await getDateObj(page))[0]).toEqual({
         from: '2023/08/31',
         to: undefined,
+        isoFrom: '2023-08-31',
+        isoTo: undefined,
       });
     }
   );
@@ -128,7 +144,9 @@ regressionTest.describe('date picker tests single', () => {
     'select different date from specific month',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
-      const monthSelection = page.getByLabel('Select month');
+      const monthSelection = page.getByRole('button', {
+        name: 'Select month',
+      });
 
       await expect(monthSelection).toBeVisible();
       await monthSelection.click();
@@ -140,7 +158,9 @@ regressionTest.describe('date picker tests single', () => {
       await expect(itemJanuary).toBeVisible();
       await itemJanuary.click();
 
-      const yearSelection = page.getByLabel('Select year');
+      const yearSelection = page.getByRole('button', {
+        name: 'Select year',
+      });
       await expect(yearSelection).toBeVisible();
       await yearSelection.click();
 
@@ -156,6 +176,8 @@ regressionTest.describe('date picker tests single', () => {
       expect((await getDateObj(page))[0]).toEqual({
         from: '2021/01/01',
         to: undefined,
+        isoFrom: '2021-01-01',
+        isoTo: undefined,
       });
     }
   );
@@ -189,6 +211,8 @@ regressionTest.describe('date picker tests single', () => {
       await expect(currentDateOld).resolves.toEqual({
         from: '2023/09/05',
         to: undefined,
+        isoFrom: '2023-09-05',
+        isoTo: undefined,
       });
 
       const errors: string[] = [];
@@ -209,6 +233,8 @@ regressionTest.describe('date picker tests single', () => {
       await expect(currentDate).resolves.toEqual({
         from: '2023/09/05',
         to: undefined,
+        isoFrom: '2023-09-05',
+        isoTo: undefined,
       });
 
       expect(errors).toContain(
@@ -231,6 +257,8 @@ regressionTest.describe('date picker tests range', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/05',
       to: '2023/09/10',
+      isoFrom: '2023-09-05',
+      isoTo: '2023-09-10',
     });
   });
 
@@ -243,6 +271,8 @@ regressionTest.describe('date picker tests range', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/12',
       to: '2023/09/17',
+      isoFrom: '2023-09-12',
+      isoTo: '2023-09-17',
     });
   });
 
@@ -268,6 +298,8 @@ regressionTest.describe('date picker tests range', () => {
         expect(eventDetail).toEqual({
           from: undefined,
           to: undefined,
+          isoFrom: undefined,
+          isoTo: undefined,
         });
       }
     );
@@ -283,6 +315,8 @@ regressionTest.describe('date picker tests range', () => {
     expect((await getDateObj(page))[0]).toEqual({
       from: '2023/09/28',
       to: '2023/10/05',
+      isoFrom: '2023-09-28',
+      isoTo: '2023-10-05',
     });
   });
 
@@ -323,6 +357,242 @@ regressionTest.describe('date picker tests range', () => {
 
     expect(await dateSelectEventPromise).toBeTruthy();
   });
+});
+
+regressionTest.describe('locale support', () => {
+  regressionTest(
+    'locale-dependent format produces localized from value',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 März 2023" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const currentDate = datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      const result = await currentDate;
+      expect(result.from).toContain('März');
+      expect(result.isoFrom).toBe('2023-03-05');
+      expect(result.isoTo).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'isoFrom remains ISO regardless of locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/09/05" locale="ja" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const result = await datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      expect(result.isoFrom).toBe('2023-09-05');
+      expect(result.isoTo).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'numeric-only format produces same output regardless of locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/09/05" locale="ru" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const result = await datePicker.evaluate(
+        (element: HTMLIxDatePickerElement) => element.getCurrentDate()
+      );
+
+      expect(result.from).toBe('2023/09/05');
+      expect(result.isoFrom).toBe('2023-09-05');
+    }
+  );
+});
+
+regressionTest.describe('runtime locale and format updates', () => {
+  regressionTest(
+    'locale change re-parses from value that was invalid under the previous locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 March 2023" locale="de" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      // "March" is not a German month name, so nothing is selected yet
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'en');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: '05 March 2023',
+        to: undefined,
+        isoFrom: '2023-03-05',
+        isoTo: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'locale change re-parses from and to of a range',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 March 2023" to="10 March 2023" locale="de" format="dd MMMM yyyy"></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'en');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: '05 March 2023',
+        to: '10 March 2023',
+        isoFrom: '2023-03-05',
+        isoTo: '2023-03-10',
+      });
+    }
+  );
+
+  regressionTest(
+    'locale change invalidates a from value that no longer parses',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 March 2023" locale="en" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toMatchObject({ isoFrom: '2023-03-05' });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'de');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'format change re-parses from value immediately',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05.09.2023" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+
+      // Does not match the default format yyyy/LL/dd
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: undefined,
+        to: undefined,
+        isoFrom: undefined,
+        isoTo: undefined,
+      });
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('format', 'dd.LL.yyyy');
+      });
+
+      await expect(
+        datePicker.evaluate((element: HTMLIxDatePickerElement) =>
+          element.getCurrentDate()
+        )
+      ).resolves.toEqual({
+        from: '05.09.2023',
+        to: undefined,
+        isoFrom: '2023-09-05',
+        isoTo: undefined,
+      });
+    }
+  );
+
+  regressionTest(
+    'locale change translates the header without leaving the browsed month',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="05 September 2023" locale="en" format="dd MMMM yyyy" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      const datePicker = page.locator(DatePickerSelector);
+      const monthLabel = datePicker.locator(
+        '.month-selector [slot="button-label"]'
+      );
+
+      await expect(monthLabel).toHaveText('September');
+
+      await page.locator('ix-icon-button').nth(1).click();
+      await expect(monthLabel).toHaveText('October');
+
+      await datePicker.evaluate((element: HTMLElement) => {
+        element.setAttribute('locale', 'de');
+      });
+
+      // Translated, but still on the month the user navigated to
+      await expect(monthLabel).toHaveText('Oktober');
+    }
+  );
 });
 
 regressionTest.describe('keyboard navigation', () => {
@@ -381,4 +651,93 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('Enter');
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
+});
+
+regressionTest.describe('week start index', () => {
+  const getColumnOfFirstDay = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) => {
+      const cell = picker.shadowRoot?.querySelector('[data-calendar-day="1"]');
+      const row = cell?.closest('[role="row"]');
+      if (!cell || !row) {
+        return -1;
+      }
+      return [...row.querySelectorAll('[role="gridcell"]')].indexOf(cell);
+    });
+  };
+
+  const getColumnHeaders = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [
+        ...(picker.shadowRoot?.querySelectorAll('[role="columnheader"]') ?? []),
+      ].map((header) => header.textContent?.trim() ?? '')
+    );
+  };
+
+  regressionTest(
+    'places the first day correctly by default',
+    async ({ mount, page }) => {
+      // 1 April 2026 is a Wednesday, the third column of a Monday-first grid.
+      await mount(`<ix-date-picker from="2026/04/01"></ix-date-picker>`);
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(2);
+    }
+  );
+
+  regressionTest(
+    'shifts the first day when the week starts later',
+    async ({ mount, page }) => {
+      // weekStartIndex 1 makes Tuesday the first column, so Wednesday moves to
+      // the second.
+      await mount(
+        `<ix-date-picker from="2026/04/01" week-start-index="1"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(1);
+    }
+  );
+
+  regressionTest(
+    'places a month that starts on a Sunday',
+    async ({ mount, page }) => {
+      // Sunday is Luxon weekday 7, the value that used to index past the end of
+      // the weekday-name array.
+      await mount(
+        `<ix-date-picker from="2026/03/01" week-start-index="1"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(5);
+    }
+  );
+
+  regressionTest(
+    'places the first day in a non-English locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      expect(await getColumnOfFirstDay(page)).toBe(1);
+    }
+  );
+
+  regressionTest(
+    'lines the day grid up with the column headers',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[0]).toBe('Die');
+
+      // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+    }
+  );
 });

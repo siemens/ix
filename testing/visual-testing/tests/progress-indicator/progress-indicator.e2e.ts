@@ -86,7 +86,7 @@ regressionTest.describe('progress-indicator', () => {
 
       for (const locator of progressIndicators) {
         await locator.evaluate((el: HTMLIxProgressIndicatorElement) => {
-          el.label = 'Progress Indicator';
+          el.label = `Progress indicator (${el.size})`;
           el.helperText = 'A helper text for the progress indicator';
         });
       }

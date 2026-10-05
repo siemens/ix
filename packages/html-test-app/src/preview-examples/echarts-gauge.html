@@ -52,11 +52,11 @@ LICENSE file in the root directory of this source tree.
 
       function getGaugeColor(value) {
         if (value > 60)
-          return getComputedCSSProperty('--si-sys-background-success');
+          return getComputedCSSProperty('--si-sys-color-background-success');
         else if (value > 25)
-          return getComputedCSSProperty('--si-sys-background-warning');
+          return getComputedCSSProperty('--si-sys-color-background-warning');
         else {
-          return getComputedCSSProperty('--si-sys-background-danger');
+          return getComputedCSSProperty('--si-sys-color-background-danger');
         }
       }
 
@@ -74,7 +74,7 @@ LICENSE file in the root directory of this source tree.
                     [
                       1,
                       getComputedCSSProperty(
-                        '--si-sys-data-sequential-deep-blue-4'
+                        '--si-sys-color-data-sequential-deep-blue-4'
                       ),
                     ],
                   ],
@@ -95,7 +95,7 @@ LICENSE file in the root directory of this source tree.
                 show: true,
                 distance: 30,
                 fontSize: 16,
-                color: getComputedCSSProperty('--si-sys-text-primary'),
+                color: getComputedCSSProperty('--si-sys-color-text-primary'),
               },
               progress: {
                 show: true,
@@ -122,7 +122,9 @@ LICENSE file in the root directory of this source tree.
                     fontSize: '1.5rem',
                     width: 250,
                     lineHeight: 35,
-                    color: getComputedCSSProperty('--si-sys-text-secondary'),
+                    color: getComputedCSSProperty(
+                      '--si-sys-color-text-secondary'
+                    ),
                     formatter: '{value}Mbps \nNetwork Speed',
                   },
                   pointer: {
@@ -150,13 +152,22 @@ LICENSE file in the root directory of this source tree.
                   color: [
                     [
                       0.25,
-                      getComputedCSSProperty('--si-sys-background-danger'),
+                      getComputedCSSProperty(
+                        '--si-sys-color-background-danger'
+                      ),
                     ],
                     [
                       0.6,
-                      getComputedCSSProperty('--si-sys-background-warning'),
+                      getComputedCSSProperty(
+                        '--si-sys-color-background-warning'
+                      ),
                     ],
-                    [1, getComputedCSSProperty('--si-sys-background-success')],
+                    [
+                      1,
+                      getComputedCSSProperty(
+                        '--si-sys-color-background-success'
+                      ),
+                    ],
                   ],
                 },
               },
@@ -177,7 +188,9 @@ LICENSE file in the root directory of this source tree.
           return;
         }
 
-        const colorValue = getComputedCSSProperty('--si-sys-text-primary');
+        const colorValue = getComputedCSSProperty(
+          '--si-sys-color-text-primary'
+        );
         if (!colorValue || colorValue.trim() === '') {
           requestAnimationFrame(() => waitForThemeAndInit(retries - 1));
           return;

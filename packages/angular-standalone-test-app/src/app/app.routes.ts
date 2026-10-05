@@ -172,6 +172,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datepicker-range').then((m) => m.default),
   'preview/datetimepicker': () =>
     import('../preview-examples/datetimepicker').then((m) => m.default),
+  'preview/datetimepicker-locale': () =>
+    import('../preview-examples/datetimepicker-locale').then((m) => m.default),
   'preview/datetime-input': () =>
     import('../preview-examples/datetime-input').then((m) => m.default),
   'preview/datetime-input-disabled': () =>
@@ -206,6 +208,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/dropdown-icon').then((m) => m.default),
   'preview/dropdown-quick-actions': () =>
     import('../preview-examples/dropdown-quick-actions').then((m) => m.default),
+  'preview/dropdown-roving-tabindex': () =>
+    import('../preview-examples/dropdown-roving-tabindex').then(
+      (m) => m.default
+    ),
   'preview/dropdown-submenu': () =>
     import('../preview-examples/dropdown-submenu').then((m) => m.default),
   'preview/echarts': () =>
@@ -254,6 +260,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/empty-state-compact-break').then(
       (m) => m.default
     ),
+  'preview/info-page': () =>
+    import('../preview-examples/info-page').then((m) => m.default),
   'preview/event-list': () =>
     import('../preview-examples/event-list').then((m) => m.default),
   'preview/event-list-compact': () =>

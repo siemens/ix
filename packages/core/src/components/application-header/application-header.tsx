@@ -410,7 +410,7 @@ export class ApplicationHeader {
               {this.name}
             </ix-typography>
             {this.nameSuffix && this.breakpoint !== 'sm' && (
-              <ix-typography format="body-xs" class="application-name-suffix">
+              <ix-typography format="body-sm" class="application-name-suffix">
                 {this.nameSuffix}
               </ix-typography>
             )}
@@ -432,6 +432,7 @@ export class ApplicationHeader {
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
+              size="24"
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
               aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}

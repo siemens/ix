@@ -82,19 +82,21 @@ import { Component } from '@angular/core';
         <ix-col>
           <ix-pill
             variant="custom"
-            pillColor="var(--si-sys-text-inverse)"
-            background="var(--si-sys-background-accent-hover)"
+            pillColor="var(--si-sys-color-text-inverse)"
+            background="var(--si-sys-color-background-accent-hover)"
             icon="info"
-          >Custom</ix-pill>
+            >Custom</ix-pill
+          >
         </ix-col>
         <ix-col>
           <ix-pill
             variant="custom"
             outline
-            pillColor="var(--si-sys-text-accent-hover)"
-            background="var(--si-sys-background-accent-hover)"
+            pillColor="var(--si-sys-color-text-accent-hover)"
+            background="var(--si-sys-color-background-accent-hover)"
             icon="info"
-          >Custom</ix-pill>
+            >Custom</ix-pill
+          >
         </ix-col>
       </ix-row>
     </ix-layout-grid>

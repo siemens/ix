@@ -7,8 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 :host {
   --ix-popover-header-close-button--border-radius: var(
     --theme-small-border-radius
   );
+}
+
+:host {
+  --ix-popover-header--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-popover-header--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-popover-header-additional-items--gap: #{sys.$si-sys-sizing-spacing-x-20};
 }
