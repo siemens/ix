@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div class="require-confirmation">
+  <ix-toggle
+    aria-label="Require confirmation"
+    text-on="Require confirmation: on"
+    text-off="Require confirmation: off"
+    [checked]="requireConfirmation"
+    (checkedChange)="onCheckedChange($event)"
+  ></ix-toggle>
+  <ix-typography>
+    {{ requireConfirmation ? descriptions.on : descriptions.off }}
+  </ix-typography>
+  <ix-datetime-picker
+    from="2026/10/05"
+    time="09:30:00"
+    single-selection
+    [requireConfirmation]="requireConfirmation"
+    (dateChange)="log('dateChange', $event)"
+    (timeChange)="log('timeChange', $event)"
+    (dateSelect)="log('dateSelect', $event)"
+    (dateCancel)="log('dateCancel', $event)"
+  ></ix-datetime-picker>
+  <ix-typography format="label">Emitted events (latest first)</ix-typography>
+  <ul class="event-log">
+    @for (event of events; track $index) {
+    <li>{{ event }}</li>
+    }
+  </ul>
+</div>

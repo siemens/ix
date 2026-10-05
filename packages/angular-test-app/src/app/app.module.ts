@@ -78,14 +78,17 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownPresets from '../preview-examples/date-dropdown-presets';
+import DateDropdownRequireConfirmation from '../preview-examples/date-dropdown-require-confirmation';
 import DateRange from '../preview-examples/date-range';
 import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputRequireConfirmation from '../preview-examples/date-input-require-confirmation';
 import DateInputValidation from '../preview-examples/date-input-validation';
 import DateInputWithSlots from '../preview-examples/date-input-with-slots';
+import DatePickerRequireConfirmation from '../preview-examples/date-picker-require-confirmation';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -96,8 +99,10 @@ import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
 import DatetimeInputMinMaxDate from '../preview-examples/datetime-input-min-max-date';
 import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
+import DatetimeInputRequireConfirmation from '../preview-examples/datetime-input-require-confirmation';
 import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
+import DatetimePickerRequireConfirmation from '../preview-examples/datetime-picker-require-confirmation';
 import Divider from '../preview-examples/divider';
 import Dropdown from '../preview-examples/dropdown';
 import DropdownButton from '../preview-examples/dropdown-button';
@@ -252,6 +257,8 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
+import TimeInputRequireConfirmation from '../preview-examples/time-input-require-confirmation';
+import TimePickerRequireConfirmation from '../preview-examples/time-picker-require-confirmation';
 import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import TimepickerMinMaxTime from '../preview-examples/timepicker-min-max-time';
@@ -343,14 +350,17 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CustomFieldValidation,
     DateDropdown,
     DateDropdownPresets,
+    DateDropdownRequireConfirmation,
     DateRange,
     DatetimeRange,
     DateInput,
     DateInputDisabled,
     DateInputLabel,
     DateInputReadonly,
+    DateInputRequireConfirmation,
     DateInputValidation,
     DateInputWithSlots,
+    DatePickerRequireConfirmation,
     ContentExample,
     ContentHeader,
     ContentHeaderNoBack,
@@ -366,8 +376,10 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     DatetimeInputLabel,
     DatetimeInputMinMaxDate,
     DatetimeInputReadonly,
+    DatetimeInputRequireConfirmation,
     DatetimeInputValidation,
     DatetimeInputWithSlots,
+    DatetimePickerRequireConfirmation,
     Divider,
     DropdownButtonIcon,
     DropdownButton,
@@ -502,6 +514,8 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ThemeSwitcher,
     Tile,
     TimeInput,
+    TimeInputRequireConfirmation,
+    TimePickerRequireConfirmation,
     TimeRange,
     Timepicker,
     TimepickerMinMaxTime,

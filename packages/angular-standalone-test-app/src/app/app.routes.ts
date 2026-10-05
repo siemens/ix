@@ -148,6 +148,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-dropdown').then((m) => m.default),
   'preview/date-dropdown-presets': () =>
     import('../preview-examples/date-dropdown-presets').then((m) => m.default),
+  'preview/date-dropdown-require-confirmation': () =>
+    import('../preview-examples/date-dropdown-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/date-range': () =>
     import('../preview-examples/date-range').then((m) => m.default),
   'preview/datetime-range': () =>
@@ -160,10 +164,18 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-input-label').then((m) => m.default),
   'preview/date-input-readonly': () =>
     import('../preview-examples/date-input-readonly').then((m) => m.default),
+  'preview/date-input-require-confirmation': () =>
+    import('../preview-examples/date-input-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/date-input-validation': () =>
     import('../preview-examples/date-input-validation').then((m) => m.default),
   'preview/date-input-with-slots': () =>
     import('../preview-examples/date-input-with-slots').then((m) => m.default),
+  'preview/date-picker-require-confirmation': () =>
+    import('../preview-examples/date-picker-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/datepicker': () =>
     import('../preview-examples/datepicker').then((m) => m.default),
   'preview/datepicker-locale': () =>
@@ -190,12 +202,20 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datetime-input-readonly').then(
       (m) => m.default
     ),
+  'preview/datetime-input-require-confirmation': () =>
+    import('../preview-examples/datetime-input-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/datetime-input-validation': () =>
     import('../preview-examples/datetime-input-validation').then(
       (m) => m.default
     ),
   'preview/datetime-input-with-slots': () =>
     import('../preview-examples/datetime-input-with-slots').then(
+      (m) => m.default
+    ),
+  'preview/datetime-picker-require-confirmation': () =>
+    import('../preview-examples/datetime-picker-require-confirmation').then(
       (m) => m.default
     ),
   'preview/dropdown': () =>
@@ -647,10 +667,18 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/time-input-label').then((m) => m.default),
   'preview/time-input-readonly': () =>
     import('../preview-examples/time-input-readonly').then((m) => m.default),
+  'preview/time-input-require-confirmation': () =>
+    import('../preview-examples/time-input-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/time-input-validation': () =>
     import('../preview-examples/time-input-validation').then((m) => m.default),
   'preview/time-input-with-slots': () =>
     import('../preview-examples/time-input-with-slots').then((m) => m.default),
+  'preview/time-picker-require-confirmation': () =>
+    import('../preview-examples/time-picker-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/timepicker-format-adjusted': () =>
     import('../preview-examples/timepicker-format-adjusted').then(
       (m) => m.default
