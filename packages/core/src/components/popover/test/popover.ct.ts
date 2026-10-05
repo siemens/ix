@@ -1162,16 +1162,26 @@ regressionTest.describe('ix-popover', () => {
   regressionTest.describe('accessibility', () => {
     regressionTest(
       'updates trigger aria-expanded and aria-controls',
-      async ({ mount, page }) => {
+      async ({ mount, page, makeAxeBuilder }) => {
         await mountPopover(mount, page, interactivePopoverMarkup());
         const popover = new PopoverPage(page);
 
         await popover.expectAriaExpanded('false');
+        await expect(popover.trigger).not.toHaveAttribute('aria-expanded');
+        expect(
+          (await makeAxeBuilder().include('ix-button#trigger').analyze())
+            .violations
+        ).toEqual([]);
         await popover.open();
 
         const popoverEl = await popover.getPopover();
         await popover.expectAriaExpanded('true');
         await popover.expectAriaControlsMatch(popoverEl);
+        await expect(popover.trigger).not.toHaveAttribute('aria-expanded');
+        expect(
+          (await makeAxeBuilder().include('ix-button#trigger').analyze())
+            .violations
+        ).toEqual([]);
       }
     );
 

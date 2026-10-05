@@ -533,6 +533,10 @@ export class Popover
         this.hostElement
       )) as HTMLElement;
 
+      if (el.tagName === 'IX-BUTTON') {
+        await (el as HTMLIxButtonElement).componentOnReady();
+      }
+
       if (
         registryId !== this.triggerRegistryId ||
         this.trigger !== currentTrigger ||
@@ -695,9 +699,14 @@ export class Popover
       return;
     }
 
-    this.triggerElement.setAttribute('aria-haspopup', 'dialog');
-    this.triggerElement.setAttribute('aria-expanded', String(expanded));
-    this.triggerElement.setAttribute('aria-controls', this.popoverPanelId);
+    const ariaElement =
+      this.triggerElement.shadowRoot?.querySelector<HTMLElement>(
+        'button, a[role="button"]'
+      ) ?? this.triggerElement;
+
+    ariaElement.setAttribute('aria-haspopup', 'dialog');
+    ariaElement.setAttribute('aria-expanded', String(expanded));
+    ariaElement.setAttribute('aria-controls', this.popoverPanelId);
   }
 
   private clearTriggerAria() {
