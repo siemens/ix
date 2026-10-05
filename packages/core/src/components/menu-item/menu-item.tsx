@@ -96,7 +96,7 @@ export class MenuItem
   /**
    * Disable the tooltip for this menu item.
    *
-   * @since 6.0.0
+   * @since 5.3.0
    */
   @Prop() disableTooltip = false;
 

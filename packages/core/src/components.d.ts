@@ -2862,7 +2862,7 @@ export namespace Components {
     interface IxMenuCategory {
         /**
           * Disable the tooltip for this menu category.
-          * @since 6.0.0
+          * @since 5.3.0
           * @default false
          */
         "disableTooltip": boolean;
@@ -2924,7 +2924,7 @@ export namespace Components {
         "bottom": boolean;
         /**
           * Disable the tooltip for this menu item.
-          * @since 6.0.0
+          * @since 5.3.0
           * @default false
          */
         "disableTooltip": boolean;
@@ -9945,7 +9945,7 @@ declare namespace LocalJSX {
     interface IxMenuCategory {
         /**
           * Disable the tooltip for this menu category.
-          * @since 6.0.0
+          * @since 5.3.0
           * @default false
          */
         "disableTooltip"?: boolean;
@@ -10007,7 +10007,7 @@ declare namespace LocalJSX {
         "bottom"?: boolean;
         /**
           * Disable the tooltip for this menu item.
-          * @since 6.0.0
+          * @since 5.3.0
           * @default false
          */
         "disableTooltip"?: boolean;

@@ -84,7 +84,7 @@ export class MenuCategory
   /**
    * Disable the tooltip for this menu category.
    *
-   * @since 6.0.0
+   * @since 5.3.0
    */
   @Prop() disableTooltip = false;
 
