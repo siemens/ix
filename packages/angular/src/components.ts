@@ -765,7 +765,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
 
 
 @ProxyCmp({
-  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'enableTopLayer', 'format', 'from', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
+  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
   methods: ['getDateRange']
 })
 @Component({
@@ -773,13 +773,14 @@ export declare interface IxCustomField extends Components.IxCustomField {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'enableTopLayer', 'format', 'from', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
-  outputs: ['dateRangeChange'],
+  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
+  outputs: ['dateRangeChange', 'dateSelect'],
   standalone: false
 })
 export class IxDateDropdown {
   protected el: HTMLIxDateDropdownElement;
   @Output() dateRangeChange = new EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>();
+  @Output() dateSelect = new EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -797,11 +798,20 @@ This event is emitted when the date range changes within the component.
 The event payload contains information about the selected date range.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
+  /**
+   * Emitted when the user selects a date range.
+
+If `requireConfirmation` is enabled, this event is only emitted when the
+selection is confirmed with the confirm button. Otherwise it is emitted
+for every date or predefined range picked in the dropdown and when the
+dropdown is closed. It is not emitted for programmatic changes. @since 6.0.0
+   */
+  dateSelect: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -809,7 +819,7 @@ The event payload contains information about the selected date range.
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   outputs: ['valueChange', 'validityStateChange', 'ixChange'],
   standalone: false
 })
@@ -844,7 +854,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelMonthSelection', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'ariaLabelYearSelection', 'corners', 'enableTopLayer', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
+  inputs: ['ariaLabelMonthSelection', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'ariaLabelYearSelection', 'corners', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -852,8 +862,8 @@ export declare interface IxDateInput extends Components.IxDateInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelMonthSelection', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'ariaLabelYearSelection', 'corners', 'enableTopLayer', 'format', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
-  outputs: ['dateChange', 'dateRangeChange', 'dateSelect'],
+  inputs: ['ariaLabelMonthSelection', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'ariaLabelYearSelection', 'corners', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'weekStartIndex'],
+  outputs: ['dateChange', 'dateRangeChange', 'dateSelect', 'dateCancel'],
   standalone: false
 })
 export class IxDatePicker {
@@ -861,6 +871,7 @@ export class IxDatePicker {
   @Output() dateChange = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
   @Output() dateRangeChange = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
   @Output() dateSelect = new EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>();
+  @Output() dateCancel = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -890,18 +901,23 @@ The `DateChangeEvent` contains `from` and `to` properties formatted according to
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+  /**
+   * Emitted when the pending selection is discarded via the cancel button.
+Only emitted when `requireConfirmation` is enabled. @since 6.0.0
+   */
+  dateCancel: EventEmitter<CustomEvent<void>>;
 }
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex']
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   outputs: ['valueChange', 'validityStateChange', 'ixFocus', 'ixBlur', 'ixChange'],
   standalone: false
 })
@@ -955,15 +971,15 @@ Does NOT fire when:
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nAm', 'i18nDone', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'requireConfirmation', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nAm', 'i18nDone', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
-  outputs: ['timeChange', 'dateChange', 'dateSelect'],
+  inputs: ['ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'dateFormat', 'from', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nTime', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'requireConfirmation', 'showTimeReference', 'showWeekNumbers', 'singleSelection', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
+  outputs: ['timeChange', 'dateChange', 'dateSelect', 'dateCancel'],
   standalone: false
 })
 export class IxDatetimePicker {
@@ -971,6 +987,7 @@ export class IxDatetimePicker {
   @Output() timeChange = new EventEmitter<CustomEvent<string>>();
   @Output() dateChange = new EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>();
   @Output() dateSelect = new EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>();
+  @Output() dateCancel = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -994,6 +1011,11 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
    * Datetime selection event. Emitted when the user confirms the selection.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
+  /**
+   * Emitted when the pending selection is discarded via the cancel button.
+Only emitted when `requireConfirmation` is enabled. @since 6.0.0
+   */
+  dateCancel: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2987,7 +3009,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
+  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2995,7 +3017,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
+  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange', 'ixChange'],
   standalone: false
 })
@@ -3030,7 +3052,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'requireConfirmation', 'secondInterval', 'time'],
   methods: ['getCurrentTime', 'getCurrentIsoTime']
 })
 @Component({
@@ -3038,14 +3060,15 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nConfirmTime', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'secondInterval', 'time'],
-  outputs: ['timeSelect', 'timeChange'],
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'requireConfirmation', 'secondInterval', 'time'],
+  outputs: ['timeSelect', 'timeChange', 'timeCancel'],
   standalone: false
 })
 export class IxTimePicker {
   protected el: HTMLIxTimePickerElement;
   @Output() timeSelect = new EventEmitter<CustomEvent<string>>();
   @Output() timeChange = new EventEmitter<CustomEvent<string>>();
+  @Output() timeCancel = new EventEmitter<CustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -3062,6 +3085,11 @@ export declare interface IxTimePicker extends Components.IxTimePicker {
    * Time change event. Emitted when the selected time changes while interacting with the picker.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Emitted when the pending selection is discarded via the cancel button.
+Only emitted when `requireConfirmation` is enabled. @since 6.0.0
+   */
+  timeCancel: EventEmitter<CustomEvent<void>>;
 }
 
 

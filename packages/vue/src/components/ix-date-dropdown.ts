@@ -23,9 +23,14 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
   'weekStartIndex',
   'i18nDone',
   'i18nNoRange',
+  'requireConfirmation',
+  'i18nConfirm',
+  'i18nCancel',
   'today',
   'enableTopLayer',
-  'dateRangeChange'
+  'dateRangeChange',
+  'dateSelect'
 ], [
-  'dateRangeChange'
+  'dateRangeChange',
+  'dateSelect'
 ]);
