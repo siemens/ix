@@ -29,11 +29,11 @@ onMounted(() => {
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
     <IxMenu ref="menu">
-      <IxMenuAbout enableLegacyTabs activeTabKey="tab-1">
-        <IxMenuAboutItem tabKey="tab-1" label="Tab 1"
+      <IxMenuAbout enable-legacy-tabs active-tab-key="tab-1">
+        <IxMenuAboutItem tab-key="tab-1" label="Tab 1"
           >Content 1</IxMenuAboutItem
         >
-        <IxMenuAboutItem tabKey="tab-2" label="Tab 2"
+        <IxMenuAboutItem tab-key="tab-2" label="Tab 2"
           >Content 2</IxMenuAboutItem
         >
       </IxMenuAbout>
