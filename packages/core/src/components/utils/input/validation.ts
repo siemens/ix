@@ -409,14 +409,15 @@ export function HookValidationLifecycle(options?: {
               return;
             }
 
+            // A missing required value is shown only once the field is touched
+            // (`ix-invalid--required`), so it is not announced before either
+            const validByValidity =
+              validityState.valid || (!touched && validityState.valueMissing);
             const consumerValid = consumerValidityCheck(host);
-            syncAriaInvalid(
-              validationElement,
-              validityState.valid && consumerValid
-            );
+            syncAriaInvalid(validationElement, validByValidity && consumerValid);
             syncAriaMessageReferences(
               validationElement,
-              !validityState.valid || !consumerValid,
+              !validByValidity || !consumerValid,
               messageElements
             );
           }
