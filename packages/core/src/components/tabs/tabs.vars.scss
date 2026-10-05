@@ -10,8 +10,15 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-tabs--outline-color--focus: #{sys.$si-sys-effects-focus};
-  --ix-tabs-indicator--background: #{sys.$si-sys-border-3};
-  --ix-tabs-indicator--background--selected: #{sys.$si-sys-background-accent-hover};
+  --ix-tabs--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-tabs-indicator--background: #{sys.$si-sys-color-border-3};
+  --ix-tabs-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
   --ix-tabs-indicator--height: 0.0625rem;
+}
+
+:host {
+  --ix-tabs--padding-right: calc(
+    #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  --ix-tabs-context-menu--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
 }

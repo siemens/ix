@@ -87,11 +87,13 @@ import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale.vue';
 import Divider from './preview-examples/divider.vue';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon.vue';
 import DropdownButton from './preview-examples/dropdown-button.vue';
 import DropdownIcon from './preview-examples/dropdown-icon.vue';
 import DropdownQuickActions from './preview-examples/dropdown-quick-actions.vue';
+import DropdownRovingTabindex from './preview-examples/dropdown-roving-tabindex.vue';
 import DropdownSubmenu from './preview-examples/dropdown-submenu.vue';
 import Dropdown from './preview-examples/dropdown.vue';
 import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
@@ -112,6 +114,7 @@ import Echarts from './preview-examples/echarts.vue';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break.vue';
 import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
+import InfoPage from './preview-examples/info-page.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
 import EventListFilled from './preview-examples/event-list-filled.vue';
@@ -332,11 +335,13 @@ const routes: IxPreviewRoutes = {
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,
   '/preview/dropdown-icon': DropdownIcon,
   '/preview/dropdown-quick-actions': DropdownQuickActions,
+  '/preview/dropdown-roving-tabindex': DropdownRovingTabindex,
   '/preview/dropdown-submenu': DropdownSubmenu,
   '/preview/dropdown': Dropdown,
   '/preview/echarts': Echarts,
@@ -357,6 +362,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/info-page': InfoPage,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,

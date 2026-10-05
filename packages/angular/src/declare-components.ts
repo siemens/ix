@@ -54,6 +54,7 @@ export const DIRECTIVES = [
   d.IxHelperText,
   d.IxIconButton,
   d.IxIconToggleButton,
+  d.IxInfoPage,
   d.IxInput,
   d.IxKeyValue,
   d.IxKeyValueList,

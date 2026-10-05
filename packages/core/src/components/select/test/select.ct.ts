@@ -457,6 +457,41 @@ test('filter works when typing exact text of manually selected item', async ({
   await expect(page.getByRole('option', { name: 'Item 3' })).toBeVisible();
 });
 
+test('keeps first typed character when focused via keyboard with a selected value', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <button>Start</button>
+    <ix-select value="DE" hide-list-header>
+      <ix-select-item value="DE" label="Germany"></ix-select-item>
+      <ix-select-item value="FR" label="France"></ix-select-item>
+      <ix-select-item value="AT" label="Austria"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const input = select.getByRole('combobox');
+  await expect(select).toHaveClass(/hydrated/);
+
+  await page.getByRole('button', { name: 'Start' }).focus();
+  await page.keyboard.press('Tab');
+  await expect(input).toBeFocused();
+
+  await page.keyboard.type('f');
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await page.keyboard.type('ra');
+
+  await expect(input).toHaveValue('fra');
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Germany' })
+  ).not.toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Austria' })
+  ).not.toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,

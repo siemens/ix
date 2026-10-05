@@ -81,6 +81,7 @@ import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
 import Datetimepicker from '../preview-examples/datetimepicker';
+import DatetimepickerLocale from '../preview-examples/datetimepicker-locale';
 import DatetimeInput from '../preview-examples/datetime-input';
 import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
@@ -94,6 +95,7 @@ import DropdownButton from '../preview-examples/dropdown-button';
 import DropdownButtonIcon from '../preview-examples/dropdown-button-icon';
 import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
+import DropdownRovingTabindex from '../preview-examples/dropdown-roving-tabindex';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
 import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
@@ -113,6 +115,7 @@ import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import InfoPage from '../preview-examples/info-page';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -566,6 +569,10 @@ const routes: Routes = [
         component: DatepickerLocale,
       },
       {
+        path: 'datetimepicker-locale',
+        component: DatetimepickerLocale,
+      },
+      {
         path: 'datepicker-range',
         component: DatepickerRange,
       },
@@ -626,6 +633,10 @@ const routes: Routes = [
         component: DropdownQuickActions,
       },
       {
+        path: 'dropdown-roving-tabindex',
+        component: DropdownRovingTabindex,
+      },
+      {
         path: 'dropdown-submenu',
         component: DropdownSubmenu,
       },
@@ -671,6 +682,10 @@ const routes: Routes = [
       {
         path: 'empty-state',
         component: EmptyState,
+      },
+      {
+        path: 'info-page',
+        component: InfoPage,
       },
       {
         path: 'event-list',
@@ -1066,6 +1081,7 @@ const routes: Routes = [
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'info-page', component: InfoPage },
       { path: 'key-value', component: KeyValue },
       {
         path: 'toggle-button-subtle-secondary',
