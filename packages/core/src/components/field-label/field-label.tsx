@@ -19,6 +19,9 @@ import { IxComponentInterface } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { closestPassShadow } from '../utils/shadow-dom';
 
+/**
+ * @slot default - Field label content.
+ */
 @Component({
   tag: 'ix-field-label',
   styleUrl: 'field-label.scss',
@@ -210,7 +213,7 @@ export class FormFieldLabel implements IxComponentInterface {
         >
           <ix-typography
             textColor={this.isInvalid ? 'alarm' : 'soft'}
-            format="label"
+            format="body"
           >
             <slot></slot>
             {this.required && <span>*</span>}

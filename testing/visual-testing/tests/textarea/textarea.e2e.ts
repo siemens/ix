@@ -29,6 +29,8 @@ regressionTest.describe('textarea', () => {
     await page.goto('textarea/disabled', {
       skipIxHydrationCheck: true,
     });
+    await expect(page.locator('ix-textarea').first()).toHaveClass(/hydrated/);
+
     expect(await page.screenshot()).toMatchSnapshot();
   });
 });

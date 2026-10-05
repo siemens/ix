@@ -28,6 +28,7 @@ import {
 
 /**
  * @form-ready
+ * @slot default - Radio button label.
  */
 @Component({
   tag: 'ix-radio',
@@ -228,7 +229,7 @@ export class Radio implements IxFormComponent<string> {
           </div>
           {this.label && (
             <ix-typography
-              format="label"
+              format="body"
               textColor={this.disabled ? 'weak' : 'std'}
             >
               {this.label}

@@ -17,8 +17,20 @@ regressionTest.describe('echarts', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('basic v5', async ({ page }) => {
+    await page.goto('v5/basic.html');
+
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('more colors', async ({ page }) => {
     await page.goto('more-colors.html');
+
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('more colors v5', async ({ page }) => {
+    await page.goto('v5/more-colors.html');
 
     await expect(page).toHaveScreenshot();
   });

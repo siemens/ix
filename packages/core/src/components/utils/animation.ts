@@ -33,12 +33,12 @@ export default class Animation {
   }
 
   private static ensureCache() {
-    if (this.#cache !== null) return;
+    if (this.#cache !== null) return this.#cache;
 
     if (typeof window === 'undefined') {
       // SSR only
       this.#cache = { ...this.#FALLBACKS };
-      return;
+      return this.#cache;
     }
 
     const root = document.documentElement || document.body;
@@ -57,6 +57,8 @@ export default class Animation {
       slow: read('--theme-slow-time', this.#FALLBACKS.slow),
       xslow: read('--theme-x-slow-time', this.#FALLBACKS.xslow),
     };
+
+    return this.#cache;
   }
 
   static prefersReducedMotion(): boolean {
@@ -65,32 +67,27 @@ export default class Animation {
   }
 
   static get shortTime() {
-    this.ensureCache();
-    const t = this.#cache!.short;
+    const t = this.ensureCache().short;
     return this.prefersReducedMotion() ? 0 : t;
   }
 
   static get defaultTime() {
-    this.ensureCache();
-    const t = this.#cache!.default;
+    const t = this.ensureCache().default;
     return this.prefersReducedMotion() ? 0 : t;
   }
 
   static get mediumTime() {
-    this.ensureCache();
-    const t = this.#cache!.medium;
+    const t = this.ensureCache().medium;
     return this.prefersReducedMotion() ? 0 : t;
   }
 
   static get slowTime() {
-    this.ensureCache();
-    const t = this.#cache!.slow;
+    const t = this.ensureCache().slow;
     return this.prefersReducedMotion() ? 0 : t;
   }
 
   static get xSlowTime() {
-    this.ensureCache();
-    const t = this.#cache!.xslow;
+    const t = this.ensureCache().xslow;
     return this.prefersReducedMotion() ? 0 : t;
   }
 }

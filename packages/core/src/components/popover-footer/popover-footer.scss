@@ -1,0 +1,39 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
+
+@use './popover-footer.vars' as *;
+:host {
+  display: flex;
+  padding: var(--ix-popover-footer--padding);
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ix-popover-footer--gap);
+
+  @include component.ix-component;
+
+  .footer-start,
+  .footer-end {
+    display: flex;
+    gap: var(--ix-popover-footer-footer-end--gap);
+  }
+}
+
+:host(.alignment-vertical) {
+  .footer-end {
+    flex-direction: column;
+    width: 100%;
+
+    ::slotted(*) {
+      width: 100%;
+    }
+  }
+}

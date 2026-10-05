@@ -37,6 +37,7 @@ import { Disposable } from '../utils/typed-event';
  * @slot secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown.
  * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.
  * @slot logo - Place a company logo inside the header. Alternatively the companyLogo property can be set.
+ * @slot ix-application-header-avatar - Place an avatar at the end of the header.
  */
 @Component({
   tag: 'ix-application-header',
@@ -409,7 +410,7 @@ export class ApplicationHeader {
               {this.name}
             </ix-typography>
             {this.nameSuffix && this.breakpoint !== 'sm' && (
-              <ix-typography format="body-xs" class="application-name-suffix">
+              <ix-typography format="body-sm" class="application-name-suffix">
                 {this.nameSuffix}
               </ix-typography>
             )}
@@ -431,6 +432,7 @@ export class ApplicationHeader {
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
+              size="24"
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
               aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}

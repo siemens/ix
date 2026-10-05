@@ -11,12 +11,14 @@
  * If you want to modify the example styles do this only inside the html-test-app
  */
 
-@import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+@import '@siemens/ix/css/default.css';
+/* Required while the preview collection still includes legacy native form demos. */
+@import '@siemens/ix/css/legacy.css';
 
 html {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
 }
 
 #root {

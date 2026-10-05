@@ -12,6 +12,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 
 /**
  * @slot header - Display content at the top of the content page
+ * @slot default - Main page content.
  */
 @Component({
   tag: 'ix-content',

@@ -18,6 +18,7 @@ import AboutAndLegalLegacy from './preview-examples/about-and-legal-legacy.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
+import AgGridStriped from './preview-examples/aggrid-striped.vue';
 import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
 import ApplicationHeader from './preview-examples/application-header.vue';
@@ -26,6 +27,11 @@ import ApplicationAdvanced from './preview-examples/application-advanced.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import Badge from './preview-examples/badge.vue';
+import BadgeCounter from './preview-examples/badge-counter.vue';
+import BadgeDot from './preview-examples/badge-dot.vue';
+import BadgeLabel from './preview-examples/badge-label.vue';
+import BadgeStatusIcon from './preview-examples/badge-status-icon.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import Blind from './preview-examples/blind.vue';
@@ -50,11 +56,16 @@ import CardList from './preview-examples/card-list.vue';
 import Card from './preview-examples/card.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
+import Chat from './preview-examples/chat.vue';
+import ChatAiMessage from './preview-examples/chat-ai-message.vue';
+import ChatInput from './preview-examples/chat-input.vue';
+import ChatUserMessage from './preview-examples/chat-user-message.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow.vue';
 import ContentHeaderWithSlot from './preview-examples/content-header-with-slot.vue';
 import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
@@ -76,11 +87,13 @@ import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
+import DatetimepickerLocale from './preview-examples/datetimepicker-locale.vue';
 import Divider from './preview-examples/divider.vue';
 import DropdownButtonIcon from './preview-examples/dropdown-button-icon.vue';
 import DropdownButton from './preview-examples/dropdown-button.vue';
 import DropdownIcon from './preview-examples/dropdown-icon.vue';
 import DropdownQuickActions from './preview-examples/dropdown-quick-actions.vue';
+import DropdownRovingTabindex from './preview-examples/dropdown-roving-tabindex.vue';
 import DropdownSubmenu from './preview-examples/dropdown-submenu.vue';
 import Dropdown from './preview-examples/dropdown.vue';
 import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
@@ -101,6 +114,7 @@ import Echarts from './preview-examples/echarts.vue';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break.vue';
 import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
 import EmptyState from './preview-examples/empty-state.vue';
+import InfoPage from './preview-examples/info-page.vue';
 import EventListCompact from './preview-examples/event-list-compact.vue';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height.vue';
 import EventListFilled from './preview-examples/event-list-filled.vue';
@@ -175,6 +189,7 @@ import PaneLayout from './preview-examples/pane-layout.vue';
 import Pane from './preview-examples/pane.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import Pill from './preview-examples/pill.vue';
+import Popover from './preview-examples/popover.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
@@ -262,6 +277,7 @@ const routes: IxPreviewRoutes = {
   '/preview/action-card': ActionCard,
   '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
+  '/preview/aggrid-striped': AgGridStriped,
   '/preview/application': Application,
   '/preview/application-advanced': ApplicationAdvanced,
   '/preview/application-header': ApplicationHeader,
@@ -271,6 +287,11 @@ const routes: IxPreviewRoutes = {
   '/preview/avatar-image': AvatarImage,
   '/preview/avatar-initials': AvatarInitials,
   '/preview/avatar': Avatar,
+  '/preview/badge': Badge,
+  '/preview/badge-counter': BadgeCounter,
+  '/preview/badge-dot': BadgeDot,
+  '/preview/badge-label': BadgeLabel,
+  '/preview/badge-status-icon': BadgeStatusIcon,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
@@ -292,6 +313,10 @@ const routes: IxPreviewRoutes = {
   '/preview/card-list': CardList,
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
+  '/preview/chat': Chat,
+  '/preview/chat-ai-message': ChatAiMessage,
+  '/preview/chat-input': ChatInput,
+  '/preview/chat-user-message': ChatUserMessage,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,
@@ -304,16 +329,19 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
   '/preview/content-header': ContentHeader,
+  '/preview/content-header-text-overflow': ContentHeaderTextOverflow,
   '/preview/content-header-with-slot': ContentHeaderWithSlot,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datepicker': Datepicker,
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datetimepicker': Datetimepicker,
+  '/preview/datetimepicker-locale': DatetimepickerLocale,
   '/preview/divider': Divider,
   '/preview/dropdown-button-icon': DropdownButtonIcon,
   '/preview/dropdown-button': DropdownButton,
   '/preview/dropdown-icon': DropdownIcon,
   '/preview/dropdown-quick-actions': DropdownQuickActions,
+  '/preview/dropdown-roving-tabindex': DropdownRovingTabindex,
   '/preview/dropdown-submenu': DropdownSubmenu,
   '/preview/dropdown': Dropdown,
   '/preview/echarts': Echarts,
@@ -334,6 +362,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact-break': EmptyStateCompactBreak,
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
+  '/preview/info-page': InfoPage,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
@@ -412,6 +441,7 @@ const routes: IxPreviewRoutes = {
   '/preview/toggle-custom-toggle': ToggleCustomLabel,
   '/preview/tree': Tree,
   '/preview/tree-custom': TreeCustom,
+  '/preview/popover': Popover,
   '/preview/popover-news': PopoverNews,
   '/preview/settings': Settings,
   '/preview/settings-legacy': SettingsLegacy,

@@ -65,7 +65,7 @@ regressionTest(
       </ix-application>
     `);
 
-    const settingsButton = page.getByRole('button', { name: 'Settings' });
+    const settingsButton = page.getByRole('menuitem', { name: 'Settings' });
     await settingsButton.click();
 
     // Wait for the menu to be visible

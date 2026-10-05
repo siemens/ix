@@ -33,6 +33,9 @@ interface MessageTypeConfig {
   color: NotificationColor;
 }
 
+/**
+ * @slot default - Message content.
+ */
 @Component({
   tag: 'ix-message-bar',
   styleUrl: 'message-bar.scss',
@@ -74,14 +77,13 @@ export class MessageBar {
     string,
     MessageTypeConfig
   > = {
-    //TODO(IX-3400): Replace icon colors with proper CSS variables when available
-    alarm: { icon: iconError, color: 'color-alarm' },
-    critical: { icon: iconWarningRhomb, color: 'color-critical' },
-    warning: { icon: iconWarning, color: 'color-warning-text' },
-    success: { icon: iconSuccess, color: 'color-success' },
-    info: { icon: iconInfo, color: 'color-info' },
-    neutral: { icon: iconNotification, color: 'color-neutral' },
-    primary: { icon: iconNotification, color: 'color-primary' },
+    alarm: { icon: iconError, color: '--si-sys-color-text-danger' },
+    critical: { icon: iconWarningRhomb, color: '--si-sys-color-text-critical' },
+    warning: { icon: iconWarning, color: '--si-sys-color-text-warning' },
+    success: { icon: iconSuccess, color: '--si-sys-color-text-success' },
+    info: { icon: iconInfo, color: '--si-sys-color-text-information' },
+    neutral: { icon: iconNotification, color: '--si-sys-color-text-secondary' },
+    primary: { icon: iconNotification, color: '--si-sys-color-text-accent' },
   };
 
   private divElement?: HTMLElement;
@@ -125,8 +127,7 @@ export class MessageBar {
           {!this.persistent && (
             <ix-icon-button
               icon={iconClose}
-              iconColor="color-soft-text"
-              size="24"
+              iconColor="--si-sys-color-text-secondary"
               variant="tertiary"
               onClick={() => {
                 if (this.divElement) {

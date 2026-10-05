@@ -36,7 +36,6 @@ export default class Echarts implements OnDestroy, OnInit {
     legend: {
       icon: 'rect',
       bottom: 0,
-      left: 0,
     },
     grid: {
       left: '3%',

@@ -30,6 +30,7 @@ node_modules
 
 # misc
 .turbo
+/.sdd/
 /.sass-cache
 /connect.lock
 /coverage

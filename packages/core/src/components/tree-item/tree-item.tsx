@@ -11,6 +11,9 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot default - Tree item content and nested items.
+ */
 @Component({
   tag: 'ix-tree-item',
   styleUrl: 'tree-item.scss',
@@ -68,11 +71,10 @@ export class TreeItem {
           {this.hasChildren ? (
             <ix-icon
               name={iconChevronRightSmall}
-              size="24"
               class={{
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
-              color="color-std-text"
+              color="--si-sys-color-text-primary"
               onClick={(e: Event) => {
                 if (isDisabled) {
                   return;

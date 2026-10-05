@@ -13,6 +13,9 @@ import { IxComponentInterface } from '../utils/internal';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * @slot default - Pill label.
+ */
 @Component({
   tag: 'ix-pill',
   styleUrl: 'pill.scss',
@@ -180,7 +183,9 @@ export class Pill
             />
           )}
           <span class="slot-container">
-            <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
+            <ix-typography format="body">
+              <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
+            </ix-typography>
           </span>
         </div>
         {this.getTooltip()}

@@ -21,6 +21,9 @@ import {
 } from '@stencil/core';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
+/**
+ * @slot default - About overlay content.
+ */
 @Component({
   tag: 'ix-menu-about',
   styleUrl: 'menu-about.scss',
@@ -119,12 +122,11 @@ export class MenuAbout {
         }}
       >
         <div class={'about-header'}>
-          <h2 class="text-h2">{this.label}</h2>
+          <h2 class="typography-h2">{this.label}</h2>
           <ix-icon-button
             variant="tertiary"
-            size="24"
             icon={iconClose}
-            iconColor="color-soft-text"
+            iconColor="--si-sys-color-text-secondary"
             aria-label={this.ariaLabelCloseButton}
             onClick={(e) =>
               this.close.emit({

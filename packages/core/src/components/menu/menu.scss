@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
-@use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 @use '~animate.css/animate.min';
+@use 'tokens/system' as sys;
 
-$menu-expanded-width: 16rem;
+@use './menu.vars' as *;
+$menu-expanded-width: var(--ix-menu--expanded-width);
 
 :host {
   display: flex;
@@ -20,7 +20,7 @@ $menu-expanded-width: 16rem;
   position: absolute;
   height: 100%;
   min-height: min-content;
-  z-index: var(--theme-z-index-sticky);
+  z-index: var(--ix-menu--z-index);
   width: auto;
 
   bottom: 0;
@@ -40,6 +40,11 @@ $menu-expanded-width: 16rem;
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &:focus-visible {
+      outline: 1px solid var(--ix-menu-tabs--outline-color--focus);
+      outline-offset: -1px;
+    }
   }
 
   .show-scrollbar {
@@ -54,29 +59,47 @@ $menu-expanded-width: 16rem;
     overflow: hidden;
     display: block;
     position: relative;
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--ix-menu-tabs-shadow-container--margin-bottom);
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .menu-navigation {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+
+    &.menu-navigation--fill {
+      flex: 1 1 auto;
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--ix-menu-navigation--outline-color--focus);
+      outline-offset: -1px;
+    }
   }
 
   .tabs--shadow {
     opacity: 0;
     position: absolute;
     width: 100%;
-    height: 0.625rem;
+    height: 0.0625rem;
 
-    background: linear-gradient(var(--theme-color-shadow-1), transparent);
+    background-color: var(--ix-menu--background);
+    box-sizing: border-box;
+    box-shadow: var(--ix-menu-tabs-shadow--box-shadow);
     pointer-events: none;
-    z-index: var(--theme-z-index-sticky);
+    z-index: var(--ix-menu--z-index);
 
-    transition: opacity var(--theme-default-time);
+    transition: opacity var(--ix-menu-tabs-shadow--transition-duration);
   }
+
   .tabs--shadow-top {
     top: 0;
-    background: linear-gradient(var(--theme-color-shadow-1), transparent);
   }
 
   .tabs--shadow-bottom {
-    bottom: 0;
-    background: linear-gradient(transparent, var(--theme-color-shadow-1));
+    transform: rotate(180deg);
   }
 
   .tabs--shadow--show {
@@ -87,31 +110,31 @@ $menu-expanded-width: 16rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    width: calc(3.25rem + var(--ix-application-menu-safe-area-left, 0rem));
+    width: var(--ix-menu--width);
     height: 100%;
-    padding-block-end: calc(1rem + var(--ix-safe-area-inset-bottom, 0rem));
+    padding-block-end: var(--ix-menu--padding-block-end);
     overflow: hidden;
 
-    padding-left: var(--ix-application-menu-safe-area-left, 0rem);
+    padding-left: var(--ix-application-menu-safe-area-left, 0);
 
     &.expanded {
-      box-shadow: var(--theme-navigation--box-shadow);
+      box-shadow: var(--ix-menu--box-shadow);
     }
 
-    background-color: var(--theme-nav--background);
-    transition: width var(--theme-default-time) ease-in-out;
+    background-color: var(--ix-menu--background);
+    transition: width var(--ix-menu-panel--transition-duration) ease-in-out;
   }
 
   .menu-overlay {
     display: none;
     position: absolute;
-    width: calc(100vw - 3.25rem);
+    width: var(--ix-menu-overlay--width);
     height: 100%;
-    left: 3.25rem;
+    left: var(--ix-menu-overlay--left);
     z-index: -1;
     backdrop-filter: blur(1rem);
-    background-color: var(--theme-sidebar-overlay-blur);
-    transition: left var(--theme-default-time) ease-in-out;
+    background-color: var(--ix-menu-overlay--background);
+    transition: left var(--ix-menu-overlay--transition-duration) ease-in-out;
   }
 
   .menu-overlay.visible {
@@ -132,20 +155,22 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-avatar {
-    max-height: 3rem;
+    max-height: var(--ix-menu-avatar--max-height);
   }
 
   .avatar {
-    margin-bottom: 2rem;
+    margin-bottom: var(--ix-menu-avatar--margin-bottom);
   }
 
   #cui-imprint {
     .cui-imprint-product-name {
-      margin-bottom: vars.$default-space;
+      margin-bottom: var(--ix-menu-cui-imprint-product-name--margin-bottom);
     }
 
     .cui-imprint-product-description {
-      margin-bottom: vars.$x-large-space;
+      margin-bottom: var(
+        --ix-menu-cui-imprint-product-description--margin-bottom
+      );
     }
 
     .cui-imprint-link-container {
@@ -159,11 +184,11 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-buttons {
-    margin: 0.5rem 0 0 0.625rem;
-  }
+    margin: var(--ix-menu-buttons--margin);
 
-  .menu-buttons > :last-child {
-    margin-bottom: 1rem;
+    &:not(:empty) {
+      margin-bottom: var(--ix-menu-empty--margin-bottom);
+    }
   }
 }
 

@@ -27,6 +27,9 @@ import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
+/**
+ * @slot default - Range field controls.
+ */
 @Component({
   tag: 'ix-range-field',
   styleUrl: 'range-field.scss',
@@ -197,6 +200,7 @@ export class RangeField extends Mixin(...DefaultMixins) {
               'has-label': this.hasLabel,
             }}
             name={iconArrowRight}
+            size="24"
           ></ix-icon>
         )}
         <slot></slot>

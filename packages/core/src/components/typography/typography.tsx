@@ -14,12 +14,34 @@ import type {
   TypographyColors,
 } from './typography.types';
 
+/**
+ * @slot default - Text content.
+ */
 @Component({
   tag: 'ix-typography',
   styleUrl: 'typography.scss',
   shadow: true,
 })
 export class IxTypography {
+  private static readonly textColors: Record<TypographyColors, string> = {
+    alarm: '--si-sys-color-text-danger',
+    'alarm-contrast': '--si-sys-color-text-on-danger',
+    contrast: '--si-sys-color-text-primary',
+    'critical-contrast': '--si-sys-color-text-on-warning',
+    'info-contrast': '--si-sys-color-text-on-information',
+    'inv-contrast': '--si-sys-color-text-inverse',
+    'inv-soft': '--si-sys-color-text-inverse',
+    'inv-std': '--si-sys-color-text-inverse',
+    'inv-weak': '--si-sys-color-text-inverse',
+    'neutral-contrast': '--si-sys-color-text-primary',
+    'primary-contrast': '--si-sys-color-text-on-accent',
+    soft: '--si-sys-color-text-secondary',
+    std: '--si-sys-color-text-primary',
+    'success-contrast': '--si-sys-color-text-on-success',
+    'warning-contrast': '--si-sys-color-text-on-warning',
+    weak: '--si-sys-color-text-disabled',
+  };
+
   /**
    * Text format
    */
@@ -41,11 +63,7 @@ export class IxTypography {
   @Prop() textDecoration: TextDecoration = 'none';
 
   private static getTextColor(color: TypographyColors) {
-    if (color.startsWith('inv-') || !color.endsWith('-contrast')) {
-      return `var(--theme-color-${color}-text)`;
-    }
-
-    return `var(--theme-color-${color.replace('-', '--')})`;
+    return `var(${IxTypography.textColors[color]})`;
   }
 
   render() {

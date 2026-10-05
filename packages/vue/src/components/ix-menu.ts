@@ -15,6 +15,8 @@ export const IxMenu: StencilVueComponent<JSX.IxMenu> = /*@__PURE__*/ defineConta
   'expand',
   'startExpanded',
   'pinned',
+  'i18nAriaLabelMenu',
+  'i18nNavigationHint',
   'i18nLegal',
   'i18nSettings',
   'i18nToggleTheme',

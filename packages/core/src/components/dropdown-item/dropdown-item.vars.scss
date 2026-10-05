@@ -1,0 +1,32 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-dropdown-item-checkmark--color: #{sys.$si-sys-color-text-accent};
+  --ix-dropdown-item-icon--color: #{sys.$si-sys-color-text-primary};
+  --ix-dropdown-item--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-dropdown-item--border-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-dropdown-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+}
+
+:host {
+  --ix-dropdown-item--item-padding: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item--item-padding-right: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-dropdown-item--height: #{sys.$si-sys-sizing-size-90};
+  --ix-dropdown-item-no-checkmark--padding-inline-start: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-dropdown-item-checked--width: #{sys.$si-sys-sizing-size-50};
+  --ix-dropdown-item-checked--min-width: #{sys.$si-sys-sizing-size-50};
+  --ix-dropdown-item-checked--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-dropdown-item-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item-icon-only--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item-submenu--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+}

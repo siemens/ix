@@ -10,6 +10,10 @@
 import { Component, h, Host, Prop } from '@stencil/core';
 import type { PushCardVariant } from './push-card.types';
 
+/**
+ * @slot title-action - Action displayed next to the card title.
+ * @slot default - Expandable card content.
+ */
 @Component({
   tag: 'ix-push-card',
   styleUrl: 'push-card.scss',
@@ -72,7 +76,7 @@ export class PushCard {
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
               ) : null}
-              <ix-typography format="display-xxl">
+              <ix-typography format="display-lg-sbold">
                 {this.notification ?? 0}
               </ix-typography>
               <slot name="title-action"></slot>

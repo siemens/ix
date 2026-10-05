@@ -33,6 +33,9 @@ import {
   AriaActiveDescendantMixinContract,
 } from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
 
+/**
+ * @slot default - Dropdown items for the split button.
+ */
 @Component({
   tag: 'ix-split-button',
   styleUrl: 'split-button.scss',
@@ -228,7 +231,10 @@ export class SplitButton
           onShowChanged={({ detail }) => (this.showDropdown = detail)}
           aria-controls={`${this.internalId}-${PROXY_LIST_ID_SUFFIX}`}
         >
-          <FocusProxy hostId={this.internalId} otherProps={{}}></FocusProxy>
+          <FocusProxy
+            hostId={this.internalId}
+            otherProps={{ role: 'presentation' }}
+          ></FocusProxy>
           <slot></slot>
         </ix-dropdown-button>
       </Host>

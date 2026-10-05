@@ -21,6 +21,9 @@ import { a11yBoolean } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 
+/**
+ * @slot default - Avatar dropdown items.
+ */
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',
@@ -117,8 +120,8 @@ export class MenuAvatar {
           <ix-avatar image={this.image} initials={this.initials}></ix-avatar>
 
           <div class="avatar-name">
-            <span class="text-default-single">{this.top}</span>
-            <span class="text-default-single">{this.bottom}</span>
+            <span class="typography-body">{this.top}</span>
+            <span class="typography-body">{this.bottom}</span>
           </div>
         </button>
         {!!tooltipText && (

@@ -20,7 +20,12 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { DateTime } from 'luxon';
+import { DateTime, Info } from 'luxon';
+import {
+  formatWithLocale,
+  parseWithLocale,
+  toISOTime,
+} from '../utils/date-time-locale';
 import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
@@ -65,8 +70,8 @@ const MINUTE_INTERVAL_DEFAULT = 1;
 const SECOND_INTERVAL_DEFAULT = 1;
 const MILLISECOND_INTERVAL_DEFAULT = 100;
 
-const CONFIRM_BUTTON_DEFAULT = 'Confirm';
-const HEADER_DEFAULT = 'Time';
+const MERIDIEM_AM_DEFAULT = 'AM';
+const MERIDIEM_PM_DEFAULT = 'PM';
 
 const FORMATTED_TIME_EMPTY: TimeOutputFormat = {
   hour: '',
@@ -102,6 +107,30 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
+   * Locale identifier (e.g. 'en' or 'de'). Passed to Luxon for locale-aware parsing and formatting.
+   *
+   * @since 6.0.0
+   */
+  @Prop() locale?: string;
+  @Watch('locale')
+  watchLocalePropHandler() {
+    this.updateMeridiemLabels();
+    if (this._time) {
+      this.setTimeRef();
+      this.formattedTime = this.getFormattedTime();
+      this.setTimePickerDescriptors();
+      this.setInitialFocusedValueAndUnit();
+      this.watchHourIntervalPropHandler(this.hourInterval);
+      this.watchMinuteIntervalPropHandler(this.minuteInterval);
+      this.watchSecondIntervalPropHandler(this.secondInterval);
+      this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
+      this.warnConstraintTimesIfInvalid({});
+    } else {
+      this.initPicker();
+    }
+  }
+
+  /**
    * Corner style.
    */
   @Prop() corners: TimePickerCorners = 'rounded';
@@ -128,7 +157,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) hourInterval: number = HOUR_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) hourInterval: number = 1;
   @Watch('hourInterval')
   watchHourIntervalPropHandler(newValue: number) {
     if (
@@ -149,7 +178,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) minuteInterval: number = MINUTE_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) minuteInterval: number = 1;
   @Watch('minuteInterval')
   watchMinuteIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 59) {
@@ -166,7 +195,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) secondInterval: number = SECOND_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) secondInterval: number = 1;
   @Watch('secondInterval')
   watchSecondIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 59) {
@@ -183,8 +212,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    *
    * @since 3.2.0
    */
-  @Prop({ mutable: true }) millisecondInterval: number =
-    MILLISECOND_INTERVAL_DEFAULT;
+  @Prop({ mutable: true }) millisecondInterval: number = 100;
   @Watch('millisecondInterval')
   watchMillisecondIntervalPropHandler(newValue: number) {
     if (newValue >= 0 && newValue <= 999) {
@@ -211,7 +239,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     if (!trimmed) {
       return;
     }
-    const parsed = DateTime.fromFormat(trimmed, this.format);
+    const parsed = parseWithLocale(trimmed, this.format, this.locale);
     if (parsed.isValid) {
       return;
     }
@@ -239,8 +267,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    const minParsed = DateTime.fromFormat(minTrimmed, this.format);
-    const maxParsed = DateTime.fromFormat(maxTrimmed, this.format);
+    const minParsed = parseWithLocale(minTrimmed, this.format, this.locale);
+    const maxParsed = parseWithLocale(maxTrimmed, this.format, this.locale);
 
     if (!minParsed.isValid || !maxParsed.isValid) {
       return;
@@ -276,7 +304,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    const timeFormat = DateTime.fromFormat(newValue, this.format);
+    const timeFormat = parseWithLocale(newValue, this.format, this.locale);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
     }
@@ -317,13 +345,12 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   /**
    * Text of the time confirm button.
    */
-  @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime =
-    CONFIRM_BUTTON_DEFAULT;
+  @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime = 'Confirm';
 
   /**
    * Text for the top header.
    */
-  @Prop({ attribute: 'i18n-header' }) i18nHeader: string = HEADER_DEFAULT;
+  @Prop({ attribute: 'i18n-header' }) i18nHeader: string = 'Time';
 
   /**
    * Text for the hour column header.
@@ -352,6 +379,30 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop({ attribute: 'i18n-millisecond-column-header' })
   i18nMillisecondColumnHeader: string = 'ms';
 
+  @Watch('i18nHourColumnHeader')
+  @Watch('i18nMinuteColumnHeader')
+  @Watch('i18nSecondColumnHeader')
+  @Watch('i18nMillisecondColumnHeader')
+  watchColumnHeaderPropHandler() {
+    this.setTimePickerDescriptors();
+  }
+
+  /**
+   * Label for the AM button in 12-hour mode.
+   * If not set, falls back to the first value of `Info.meridiems()` from Luxon.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-am' }) i18nAm?: string;
+
+  /**
+   * Label for the PM button in 12-hour mode.
+   * If not set, falls back to the second value of `Info.meridiems()` from Luxon.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-pm' }) i18nPm?: string;
+
   /**
    * Time event. Emitted when the user confirms the selected time.
    */
@@ -367,7 +418,19 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @Method()
   async getCurrentTime(): Promise<string | undefined> {
-    return this._time?.toFormat(this.format);
+    return this._time
+      ? formatWithLocale(this._time, this.format, this.locale)
+      : undefined;
+  }
+
+  /**
+   * Get the current time in ISO format
+   *
+   * @since 6.0.0
+   */
+  @Method()
+  async getCurrentIsoTime(): Promise<string | undefined> {
+    return toISOTime(this._time);
   }
 
   @State() private _time?: DateTime;
@@ -381,6 +444,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   @State() private timeRef?: 'AM' | 'PM' | undefined;
+  @State() private amLabel: string = MERIDIEM_AM_DEFAULT;
+  @State() private pmLabel: string = MERIDIEM_PM_DEFAULT;
   @State() private formattedTime: TimeOutputFormat = FORMATTED_TIME_EMPTY;
   @State() private timePickerDescriptors: TimePickerDescriptor[] = [];
   @State() private isUnitFocused: boolean = false;
@@ -394,12 +459,24 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this.initPicker();
   }
 
+  @Watch('i18nAm')
+  @Watch('i18nPm')
+  watchI18nMeridiemPropHandler() {
+    this.updateMeridiemLabels();
+  }
+
+  private updateMeridiemLabels() {
+    const meridiems = Info.meridiems({ locale: this.locale ?? 'en' });
+    this.amLabel = this.i18nAm ?? meridiems[0];
+    this.pmLabel = this.i18nPm ?? meridiems[1];
+  }
+
   private initPicker() {
     let parsedTime: DateTime | undefined;
     let timePropDoesNotMatchFormat = false;
 
     if (this.time) {
-      parsedTime = DateTime.fromFormat(this.time, this.format);
+      parsedTime = parseWithLocale(this.time, this.format, this.locale);
 
       if (!parsedTime.isValid) {
         timePropDoesNotMatchFormat = true;
@@ -414,6 +491,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = parsedTime;
 
+    this.updateMeridiemLabels();
     this.setTimeRef();
     this.formattedTime = this.getFormattedTime();
     this.setTimePickerDescriptors();
@@ -454,14 +532,16 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       if (active !== elementContainer) {
         elementContainer.focus({ preventScroll: true });
       }
-    }
 
-    if (!this.isElementVisible(elementContainer, elementList)) {
-      this.scrollElementIntoView(
-        elementContainer,
-        elementList,
-        this.focusScrollAlignment
-      );
+      // Only keyboard focus should scroll clipped cells. Mouse focus must not,
+      // or mousedown scrolls the cell away before mouseup and the click is lost.
+      if (!this.isElementVisible(elementContainer, elementList)) {
+        this.scrollElementIntoView(
+          elementContainer,
+          elementList,
+          this.focusScrollAlignment
+        );
+      }
     }
   }
 
@@ -645,9 +725,13 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       if (!dropdown.classList.contains('show')) {
         // keep picker in sync with input
         if (this.time) {
-          const timeFormat = DateTime.fromFormat(this.time, this.format);
+          const timeFormat = parseWithLocale(
+            this.time,
+            this.format,
+            this.locale
+          );
           if (timeFormat.isValid) {
-            this._time = DateTime.fromFormat(this.time, this.format);
+            this._time = parseWithLocale(this.time, this.format, this.locale);
             this.setInitialFocusedValueAndUnit();
           }
         }
@@ -720,7 +804,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    this.timeChange.emit(this._time.toFormat(this.format));
+    this.timeChange.emit(
+      formatWithLocale(this._time, this.format, this.locale)
+    );
   }
 
   /** `_time` or “now” (constraints, AM/PM, confirm). */
@@ -749,7 +835,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       this.minTime,
       this.maxTime,
       this.format,
-      baseDay
+      baseDay,
+      this.locale
     );
   }
 
@@ -1098,7 +1185,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private isSelected(unit: TimePickerDescriptorUnit, number: number): boolean {
-    return this.formattedTime![unit] === String(number);
+    return this.formattedTime[unit] === String(number);
   }
 
   /** Roving tabindex: one tab stop per column; active column only the focused cell has `tabindex=0`. */
@@ -1156,7 +1243,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = candidate;
     this.elementListScrollToTop(unit, number, 'smooth');
-    this.timeChange.emit(this._time.toFormat(this.format));
+    this.timeChange.emit(
+      formatWithLocale(this._time, this.format, this.locale)
+    );
   }
 
   private updateDescriptorFocusedValue(
@@ -1347,10 +1436,13 @@ export class TimePicker extends Mixin(...DefaultMixins) {
               <div class="flex">
                 <div class="column-separator"></div>
                 <div class="columns">
-                  <div class="column-header" title="AM/PM" />
+                  <div
+                    class="column-header"
+                    title={`${this.amLabel}/${this.pmLabel}`}
+                  />
                   <div
                     role="listbox"
-                    aria-label="AM/PM"
+                    aria-label={`${this.amLabel}/${this.pmLabel}`}
                     class="element-list"
                     tabindex={-1}
                   >
@@ -1364,9 +1456,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       }}
                       onClick={() => this.changeTimeReference('AM')}
                       tabindex="0"
-                      aria-label="AM"
+                      aria-label={this.amLabel}
                     >
-                      AM
+                      {this.amLabel}
                     </button>
                     <button
                       role="option"
@@ -1378,9 +1470,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
                       }}
                       onClick={() => this.changeTimeReference('PM')}
                       tabindex="0"
-                      aria-label="PM"
+                      aria-label={this.pmLabel}
                     >
-                      PM
+                      {this.pmLabel}
                     </button>
                   </div>
                 </div>
@@ -1399,7 +1491,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
               class="confirm-button"
               disabled={this.isConfirmDisabled()}
               onClick={() => {
-                this.timeSelect.emit(this._time?.toFormat(this.format));
+                this.timeSelect.emit(
+                  this._time
+                    ? formatWithLocale(this._time, this.format, this.locale)
+                    : undefined
+                );
               }}
             >
               {this.i18nConfirmTime}

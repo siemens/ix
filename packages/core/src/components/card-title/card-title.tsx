@@ -1,6 +1,7 @@
 import { Component, h, Host } from '@stencil/core';
 
 /**
+ * @slot default - Card title.
  * @slot title-actions - Place additional actions inside title
  */
 @Component({

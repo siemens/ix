@@ -27,6 +27,10 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * @slot default - Toast message content.
+ * @slot action - Action displayed next to the toast message.
+ */
 @Component({
   tag: 'ix-toast',
   styleUrl: 'toast.scss',
@@ -59,7 +63,8 @@ export class Toast {
   @Prop() icon?: string;
 
   /**
-   * Icon color of toast
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-color-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -106,7 +111,7 @@ export class Toast {
             data-testid="toast-icon"
             name={iconInfo}
             size="24"
-            color="color-std-text"
+            color="--si-sys-color-text-primary"
           />
         );
 
@@ -116,7 +121,7 @@ export class Toast {
             data-testid="toast-icon"
             name={iconError}
             size="24"
-            color="color-alarm"
+            color="--si-sys-color-text-danger"
           />
         );
 
@@ -126,18 +131,17 @@ export class Toast {
             data-testid="toast-icon"
             name={iconSuccess}
             size="24"
-            color="color-success"
+            color="--si-sys-color-text-success"
           />
         );
 
       case 'warning':
-        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
         return (
           <ix-icon
             data-testid="toast-icon"
             name={iconWarning}
             size="24"
-            color="color-warning-text"
+            color="--si-sys-color-text-warning"
           />
         );
 
@@ -226,8 +230,7 @@ export class Toast {
           <div class="toast-close">
             <ix-icon-button
               icon={iconClose}
-              iconColor="color-soft-text"
-              size="24"
+              iconColor="--si-sys-color-text-secondary"
               variant="tertiary"
               onClick={() => this.closeToast.emit()}
               aria-label={this.ariaLabelCloseIconButton}

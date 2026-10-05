@@ -16,6 +16,9 @@ import {
 } from '../utils/input';
 import { IxComponentInterface } from '../utils/internal';
 
+/**
+ * @slot default - The form control.
+ */
 @Component({
   tag: 'ix-custom-field',
   styleUrl: 'custom-field.scss',

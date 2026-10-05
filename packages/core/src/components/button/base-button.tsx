@@ -10,7 +10,9 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import { ButtonVariant } from './button';
+import { ButtonIconSize, DEFAULT_BUTTON_ICON_SIZE } from './base-button.types';
 import { AnchorInterface } from './button.interface';
+import type { SpinnerSize } from '../spinner/spinner.types';
 
 export type ButtonAlignment = 'center' | 'start';
 
@@ -39,30 +41,33 @@ export type BaseButtonProps = {
   selected: boolean;
   disabled: boolean;
   loading: boolean;
+  inert?: boolean;
   icon?: string;
   iconRight?: string;
   onClick?: Function;
   ariaAttributes?: A11yAttributes;
   extraClasses?: { [key: string]: boolean };
-  iconSize?: string;
+  iconSize?: ButtonIconSize;
   iconColor?: string;
   alignment?: ButtonAlignment;
   tabIndex?: number;
   afterContent?: any;
 } & AnchorInterface;
 
-const getSpinnerSize = (btnProps: BaseButtonProps) => {
+const getSpinnerSize = (btnProps: BaseButtonProps): SpinnerSize => {
   if (!btnProps.icon) {
-    return 'small';
+    return 'sm';
   }
 
   switch (btnProps.iconSize) {
     case '12':
-      return 'xx-small';
+      return 'xxs';
     case '16':
-      return 'x-small';
+      return 'xs';
+    case DEFAULT_BUTTON_ICON_SIZE:
+      return 'sm';
     default:
-      return 'small';
+      return 'sm';
   }
 };
 
@@ -99,6 +104,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
 
   const commonAttributes = {
     ...ariaAttributes,
+    inert: props.inert ? true : undefined,
     tabindex: props.disabled ? -1 : (props.tabIndex ?? 0),
     class: {
       ...getButtonClasses(
@@ -167,6 +173,7 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     <button
       {...commonAttributes}
       aria-disabled={a11yBoolean(props.disabled)}
+      disabled={props.disabled || props.loading}
       onClick={(e: Event) => handleOnClick(e, props)}
       type={props.type}
     >

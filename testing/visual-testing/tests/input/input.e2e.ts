@@ -79,7 +79,7 @@ regressionTest.describe('input', () => {
       skipIxHydrationCheck: true,
     });
     const input = await page.waitForSelector('input');
-    await input.hover();
+    await input.hover({ force: true });
     await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
@@ -96,6 +96,15 @@ regressionTest.describe('input', () => {
     await page.goto('input/tooltip');
 
     await page.locator('ix-input').hover();
+
+    await expect(page.locator('ix-tooltip')).toHaveClass(/visible/);
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('tooltip when input focused', async ({ page }) => {
+    await page.goto('input/tooltip');
+
+    await page.locator('ix-input').locator('input').focus();
 
     await expect(page.locator('ix-tooltip')).toHaveClass(/visible/);
     await expect(page).toHaveScreenshot();

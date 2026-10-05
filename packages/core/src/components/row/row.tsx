@@ -9,6 +9,9 @@
 
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * @slot default - Row content.
+ */
 @Component({
   tag: 'ix-row',
   styleUrl: 'row.scss',
