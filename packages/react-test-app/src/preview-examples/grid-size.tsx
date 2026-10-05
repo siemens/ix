@@ -41,16 +41,16 @@ export default () => {
       <h4>Stack columns on smaller screens</h4>
       <IxLayoutGrid>
         <IxRow>
-          <IxCol size="12" size-md="3">
+          <IxCol size="12" sizeMd="3">
             <IxTypography format="display">1</IxTypography>
           </IxCol>
-          <IxCol size="12" size-md="3">
+          <IxCol size="12" sizeMd="3">
             <IxTypography format="display">2</IxTypography>
           </IxCol>
-          <IxCol size="12" size-md="3">
+          <IxCol size="12" sizeMd="3">
             <IxTypography format="display">3</IxTypography>
           </IxCol>
-          <IxCol size="12" size-md="3">
+          <IxCol size="12" sizeMd="3">
             <IxTypography format="display">4</IxTypography>
           </IxCol>
         </IxRow>
