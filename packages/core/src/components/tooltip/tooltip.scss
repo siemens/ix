@@ -8,11 +8,12 @@
  */
 
 @use './tooltip.vars' as *;
+@use 'tokens/system' as sys;
 .dialog {
   margin: 0;
   padding: 0;
   border: none;
-  max-width: 18.25rem;
+  max-width: var(--ix-tooltip-dialog--max-width);
   width: max-content;
   background-color: transparent;
   overflow-wrap: break-word;
@@ -27,7 +28,7 @@
   height: fit-content;
   background: var(--ix-tooltip--background);
   color: var(--ix-tooltip--color);
-  padding: 0.375rem 0.75rem;
+  padding: var(--ix-tooltip-container--padding);
 
   box-shadow: var(--ix-tooltip--box-shadow);
   border-radius: 0.25rem;
@@ -41,7 +42,7 @@
   display: flex;
 
   ::slotted(ix-icon) {
-    margin: 0.125rem 0.25rem 0.125rem 0;
+    margin: var(--ix-tooltip-icon--margin);
   }
 }
 

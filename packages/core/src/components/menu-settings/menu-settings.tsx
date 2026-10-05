@@ -128,7 +128,7 @@ export class MenuSettings {
         }}
       >
         <div class={'settings-header'}>
-          <h2 class="text-h2">{this.label}</h2>
+          <h2 class="typography-h2">{this.label}</h2>
           <ix-icon-button
             variant="tertiary"
             icon={iconClose}

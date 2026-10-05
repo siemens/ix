@@ -348,7 +348,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                   ref={this.thumbRef}
                   class="thumb"
                   style={{
-                    left: `calc(${valueInPercentage} * (100% - 1rem))`,
+                    left: `calc(${valueInPercentage} * (100% - var(--thumb-size)))`,
                   }}
                 ></div>
                 <svg class="ticks" xmlns="http://www.w3.org/2000/svg">

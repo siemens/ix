@@ -82,3 +82,21 @@
   --ix-radio-unchecked--border-color--warning--active: #{sys.$si-sys-color-border-warning};
   --ix-radio-unchecked--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
 }
+
+:host {
+  --ix-radio-checkmark--border-width-initial: #{sys.$si-sys-sizing-border-width-default};
+  --ix-radio-checkmark--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  --ix-radio--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-radio-checkmark--width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--min-width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--max-width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--min-height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-checkmark--max-height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-button--height: #{sys.$si-sys-sizing-size-70};
+  --ix-radio-button--width: #{sys.$si-sys-sizing-size-70};
+  --ix-radio-selection-indicator--width: #{sys.$si-sys-sizing-size-30};
+  --ix-radio-selection-indicator--height: #{sys.$si-sys-sizing-size-30};
+  --ix-radio--margin: #{sys.$si-sys-sizing-spacing-y-10} 0 #{sys.$si-sys-sizing-spacing-y-10}
+    #{sys.$si-sys-sizing-spacing-x-40};
+}

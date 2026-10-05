@@ -7,15 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
 $border-radius: 100px;
 $outline-border-width: 0.0625rem;
 
-@mixin chip-container($interaction: true, $padding-inline: 0.75rem) {
+@mixin chip-container(
+  $interaction: true,
+  $padding-inline: var(--ix-chip--padding-inline)
+) {
   .container {
     display: inline-flex;
     width: inherit;
@@ -24,11 +27,11 @@ $outline-border-width: 0.0625rem;
     position: relative;
     align-items: center;
     border-radius: $border-radius;
-    padding: 0.5rem;
+    padding: var(--ix-chip-container--padding);
     vertical-align: top;
 
-    height: vars.$default-control-height;
-    max-height: vars.$default-control-height;
+    height: var(--ix-chip-container--height);
+    max-height: var(--ix-chip-container--max-height);
 
     @if $interaction {
       cursor: pointer;
@@ -44,13 +47,13 @@ $outline-border-width: 0.0625rem;
     }
 
     .with-icon {
-      margin-right: vars.$tiny-space;
+      margin-right: var(--ix-chip-with-icon--margin-right);
     }
 
     .close-button-container {
       display: inline-flex;
       margin-left: auto;
-      padding-left: 0.5rem;
+      padding-left: var(--ix-chip-close-button-container--padding-left);
     }
 
     .slot-container {
@@ -84,7 +87,9 @@ $outline-border-width: 0.0625rem;
       }
 
       &.closable:not(.inactive) {
-        padding-right: calc(0.25rem - #{$outline-border-width});
+        padding-right: calc(
+          var(--ix-chip-inactive-outline--padding-right) - #{$outline-border-width}
+        );
       }
 
       &.closable.inactive,
@@ -97,7 +102,7 @@ $outline-border-width: 0.0625rem;
       padding-left: $padding-inline;
 
       &.closable:not(.inactive) {
-        padding-right: 0.25rem;
+        padding-right: var(--ix-chip-inactive-outline--padding-right);
       }
 
       &.closable.inactive,

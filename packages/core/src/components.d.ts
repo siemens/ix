@@ -565,6 +565,11 @@ export namespace Components {
          */
         "iconSize": ButtonIconSize;
         /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert": boolean;
+        /**
           * Loading button
           * @default false
          */
@@ -1987,6 +1992,12 @@ export namespace Components {
          */
         "keyboardItemTriggerKeys": string[];
         /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -2077,9 +2088,15 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         /**
           * Placement of the dropdown
          */
@@ -2614,6 +2631,11 @@ export namespace Components {
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert": boolean;
         /**
           * Loading button
           * @default false
@@ -8473,6 +8495,11 @@ declare namespace LocalJSX {
          */
         "iconSize"?: ButtonIconSize;
         /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert"?: boolean;
+        /**
           * Loading button
           * @default false
          */
@@ -9977,6 +10004,12 @@ declare namespace LocalJSX {
          */
         "keyboardItemTriggerKeys"?: string[];
         /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -10076,9 +10109,15 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
         /**
           * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
          */
@@ -10655,6 +10694,11 @@ declare namespace LocalJSX {
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert"?: boolean;
         /**
           * Loading button
           * @default false
@@ -13833,6 +13877,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
         "form": string;
         "icon": string;
         "iconRight": string;
@@ -14117,6 +14162,7 @@ declare namespace LocalJSX {
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
         "focusCheckedItem": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
@@ -14131,6 +14177,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
         "focusCheckedItem": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         "enableTopLayer": boolean;
         "suppressAriaActiveDescendant": boolean;
     }
@@ -14255,6 +14302,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
     }
     interface IxIconToggleButtonAttributes {
         "variant": ButtonVariant;

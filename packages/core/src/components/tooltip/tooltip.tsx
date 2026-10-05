@@ -503,7 +503,7 @@ export class Tooltip {
 
     for (const element of elements) {
       if (element.tagName.toLowerCase() === 'ix-icon') {
-        (element as HTMLIxIconElement).size = '16';
+        element.setAttribute('size', '16');
       }
     }
   }

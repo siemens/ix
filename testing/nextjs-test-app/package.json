@@ -17,8 +17,8 @@
   "devDependencies": {
     "@stencil/ssr": "^0.4.0",
     "@types/node": "^20",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.1.1",
     "typescript": "^5"
   }
 }

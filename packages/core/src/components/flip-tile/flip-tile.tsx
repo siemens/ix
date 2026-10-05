@@ -207,7 +207,7 @@ export class FlipTile {
       >
         <div class="flip-tile-container">
           <div class="flip-tile-header">
-            <div class="header-slot-container text-l-title">
+            <div class="header-slot-container">
               <slot name="header"></slot>
             </div>
             <ix-icon-button

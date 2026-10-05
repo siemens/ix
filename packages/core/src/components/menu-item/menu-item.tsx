@@ -317,7 +317,7 @@ export class MenuItem
           <div class="pill">{this.notifications}</div>
         </div>
       ) : null,
-      <span id={this.internalItemId} class="tab-text text-default">
+      <span id={this.internalItemId} class="tab-text typography-body">
         {this.label}
         <slot></slot>
       </span>,
