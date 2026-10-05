@@ -129,6 +129,27 @@ regressionTest(
     );
     const toggleByRole = page.getByRole('switch', { name: 'Power' });
     await expect(toggleByRole).toBeVisible();
+
+    const toggle = page.locator('ix-toggle');
+    await toggle.evaluate((element) => {
+      element.setAttribute('aria-label', 'Backup power');
+    });
+
+    await expect(
+      page.getByRole('switch', { name: 'Backup power' })
+    ).toBeVisible();
+
+    await toggle.evaluate((element) => {
+      element.setAttribute('role', 'button');
+      element.setAttribute('aria-checked', 'true');
+      element.setAttribute('aria-disabled', 'true');
+      element.setAttribute('aria-required', 'true');
+    });
+
+    await expect(toggle).toHaveAttribute('role', 'switch');
+    await expect(toggle).toHaveAttribute('aria-checked', 'false');
+    await expect(toggle).toHaveAttribute('aria-disabled', 'false');
+    await expect(toggle).toHaveAttribute('aria-required', 'false');
   }
 );
 

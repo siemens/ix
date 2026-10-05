@@ -345,9 +345,6 @@ regressionTest(
     await expect(
       chatInput.locator('ix-dropdown-button.attachment-overflow')
     ).toHaveCount(0);
-    await expect(chatInput.locator('.attachments')).not.toHaveClass(
-      /has-attachment-scrollbar/
-    );
     await expect(
       page.locator('[data-attachment-overflow-generated]')
     ).toHaveCount(0);

@@ -56,6 +56,16 @@ regressionTest(
     await expect(
       page.getByRole('button', { name: 'Close chip' })
     ).toBeVisible();
+
+    await chip.evaluate((element) => {
+      element.setAttribute('aria-label', 'Project Beta');
+    });
+
+    await expect(chip).not.toHaveAttribute('aria-label');
+    await expect(
+      page.getByRole('button', { name: 'Project Beta' })
+    ).toBeVisible();
+    await expect(chip).toHaveAttribute('role', 'group');
   }
 );
 

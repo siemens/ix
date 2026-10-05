@@ -14,7 +14,12 @@ import {
   A11yAttributes,
   a11yAttributes,
   a11yHostAttributes,
+  getA11yAttributeNames,
 } from './../../../a11y';
+import {
+  interceptAriaReflectionRemovals,
+  interceptHostAttributeRemovals,
+} from './aria-attribute-interceptors';
 import {
   flushAriaAttributeMutations,
   observeAriaAttributes,
@@ -25,6 +30,7 @@ import {
 export interface InheritAriaAttributesMixinContract {
   inheritAriaAttributes: A11yAttributes;
   getIgnoredAriaAttributes?(): A11yAttributeName[];
+  keepAriaAttributesOnHost?(): boolean;
   readAriaAttributesFromHost(): A11yAttributes;
 }
 
@@ -68,6 +74,15 @@ export const InheritAriaAttributesMixin = <
         }
 
         const newValue = hostElement.getAttribute(attributeName);
+        if (
+          newValue !== null &&
+          !this.#readingAriaAttributes &&
+          !this.keepAriaAttributesOnHost()
+        ) {
+          runWithoutAriaAttributeObservation(hostElement, () => {
+            hostElement.removeAttribute(attributeName);
+          });
+        }
         const currentValue = updatedAttributes[attributeName] ?? null;
         if (newValue === currentValue) {
           return;
@@ -93,20 +108,25 @@ export const InheritAriaAttributesMixin = <
       return [];
     }
 
+    keepAriaAttributesOnHost(): boolean {
+      return false;
+    }
+
     readAriaAttributesFromHost(): A11yAttributes {
       const hostElement = this.#getHostElement();
-      return runWithoutAriaAttributeObservation(hostElement, () => {
-        this.#readingAriaAttributes = true;
+      this.#readingAriaAttributes = true;
 
-        try {
+      try {
+        return runWithoutAriaAttributeObservation(hostElement, () => {
           return a11yHostAttributes(
             hostElement,
-            this.getIgnoredAriaAttributes()
+            this.getIgnoredAriaAttributes(),
+            !this.keepAriaAttributesOnHost()
           );
-        } finally {
-          this.#readingAriaAttributes = false;
-        }
-      });
+        });
+      } finally {
+        this.#readingAriaAttributes = false;
+      }
     }
 
     #getHostElement(): HTMLElement {
@@ -142,32 +162,33 @@ export const InheritAriaAttributesMixin = <
       }
 
       const hostElement = this.#getHostElement();
-      const removeAttribute = hostElement.removeAttribute.bind(hostElement);
-
-      // ARIA attributes are moved from the host to the internal element during
-      // initialization. When Angular later calls removeAttribute(), the host
-      // attribute is already absent, so no MutationObserver record is created.
-      // Intercept the call to also clear the forwarded internal attribute.
-      hostElement.removeAttribute = (attributeName) => {
-        removeAttribute(attributeName);
-
-        if (a11yAttributes.includes(attributeName as A11yAttributeName)) {
-          if (this.#readingAriaAttributes) {
-            return;
-          }
-
-          if (!this.#ariaObservationActive) {
-            this.#ariaAttributesChangedWhileDisconnected.add(
-              attributeName as A11yAttributeName
-            );
-          }
-
-          this.#updateInheritedAriaAttribute(
-            null,
-            attributeName as A11yAttributeName
-          );
+      const isIgnored = (attributeName: A11yAttributeName) =>
+        this.getIgnoredAriaAttributes().includes(attributeName);
+      const onAttributeRemoved = (attributeName: A11yAttributeName) => {
+        if (this.#readingAriaAttributes) {
+          return;
         }
+
+        if (!this.#ariaObservationActive) {
+          this.#ariaAttributesChangedWhileDisconnected.add(attributeName);
+        }
+
+        this.#updateInheritedAriaAttribute(null, attributeName);
       };
+      const removeHostAttribute = interceptHostAttributeRemovals(hostElement, {
+        isIgnored,
+        isInherited: (attributeName) =>
+          attributeName in this.inheritAriaAttributes,
+        onAttributeRemoved,
+      });
+
+      interceptAriaReflectionRemovals(
+        hostElement,
+        getA11yAttributeNames().filter(
+          (attributeName) => !isIgnored(attributeName)
+        ),
+        { onAttributeRemoved, removeHostAttribute }
+      );
       this.#ariaAttributeRemovalPatched = true;
     }
 
