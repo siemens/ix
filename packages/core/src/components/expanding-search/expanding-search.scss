@@ -9,27 +9,21 @@
 @use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './expanding-search.vars' as *;
 $container-width: var(--ix-expanding-search--container-width);
 
 :host {
   display: inline-flex;
-  width: var(--ix-expanding-search-button-search--max-width);
+  width: var(--ix-expanding-search-collapsed--width);
   height: var(--ix-expanding-search--height);
   align-items: center;
   justify-content: space-between;
   position: relative;
-  transition: width var(--theme-medium-time) ease-in-out;
+  transition: width
+    var(--ix-expanding-search-input-container--transition-duration) ease-in-out;
 
   @include component.ix-component;
-
-  .input-container {
-    transition: all
-      var(--ix-expanding-search-input-container--transition-duration)
-      ease-in-out;
-  }
 
   input {
     @include input-control.input-control;
@@ -38,24 +32,15 @@ $container-width: var(--ix-expanding-search--container-width);
     cursor: auto !important;
     width: 100%;
     transition-property: padding, opacity;
-    transition-duration: var(--theme-medium-time), var(--theme-default-time);
+    transition-duration: var(
+        --ix-expanding-search-input-container--transition-duration
+      ),
+      var(--theme-default-time);
     transition-timing-function: ease-in-out;
 
     &::placeholder {
       transition: opacity var(--theme-default-time) ease-in-out;
     }
-  }
-
-  .expanded {
-    width: $container-width;
-
-    &.fullWidth {
-      width: 100%;
-    }
-  }
-
-  .collapsed {
-    width: var(--ix-expanding-search-button-search--max-width);
   }
 
   /*collapsed view*/
@@ -113,6 +98,7 @@ $container-width: var(--ix-expanding-search--container-width);
     display: flex;
     position: absolute;
     inset-inline-start: 0;
+    width: 100%;
     align-items: center;
     flex-wrap: nowrap;
   }
@@ -152,8 +138,4 @@ $container-width: var(--ix-expanding-search--container-width);
 
 :host(.expanded.fullWidth) {
   width: 100%;
-
-  .fullWidth {
-    width: 100% !important;
-  }
 }

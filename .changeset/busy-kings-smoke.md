@@ -1,5 +1,5 @@
 ---
-'@siemens/ix': minor
+'@siemens/ix': patch
 ---
 
-Ix-expandingSearch animation mechanism
+Fix expanding-search fields jumping during expansion and collapse when aligned to the right, including full-width fields and custom animation durations.
