@@ -13,6 +13,6 @@ import { IxSpinner } from '@siemens/ix-angular/standalone';
 @Component({
   selector: 'app-example',
   imports: [IxSpinner],
-  template: ` <ix-spinner size="large"></ix-spinner> `,
+  template: ` <ix-spinner size="xxl"></ix-spinner> `,
 })
 export default class SpinnerLarge {}

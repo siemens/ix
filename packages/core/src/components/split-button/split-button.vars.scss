@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-split-button-left-button--width: calc(
+    100% - #{sys.$si-sys-sizing-size-80}
+  );
+  --ix-split-button-right-button--width: #{sys.$si-sys-sizing-size-80};
+}

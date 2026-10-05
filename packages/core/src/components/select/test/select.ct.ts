@@ -457,6 +457,41 @@ test('filter works when typing exact text of manually selected item', async ({
   await expect(page.getByRole('option', { name: 'Item 3' })).toBeVisible();
 });
 
+test('keeps first typed character when focused via keyboard with a selected value', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <button>Start</button>
+    <ix-select value="DE" hide-list-header>
+      <ix-select-item value="DE" label="Germany"></ix-select-item>
+      <ix-select-item value="FR" label="France"></ix-select-item>
+      <ix-select-item value="AT" label="Austria"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const input = select.getByRole('combobox');
+  await expect(select).toHaveClass(/hydrated/);
+
+  await page.getByRole('button', { name: 'Start' }).focus();
+  await page.keyboard.press('Tab');
+  await expect(input).toBeFocused();
+
+  await page.keyboard.type('f');
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await page.keyboard.type('ra');
+
+  await expect(input).toHaveValue('fra');
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Germany' })
+  ).not.toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Austria' })
+  ).not.toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,
@@ -1460,6 +1495,74 @@ test('multiple mode: removing a hidden item from "+N" dropdown updates count', a
   await hiddenChip.locator('ix-icon-button button').click();
 
   await expect(overflowChip).not.toHaveText(initialCount ?? '');
+});
+
+test('multiple mode: "+N" chip tooltip (title) updates when hidden count changes', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+      <ix-select-item value="5" label="Item number five"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+  const initialCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', initialCount);
+
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4', '5'];
+  });
+
+  await expect(overflowChip).not.toHaveText(initialCount);
+  const updatedCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', updatedCount);
+});
+
+test('multiple mode: "+N" chip tooltip (title) updates after removing a hidden item', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+  const initialCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', initialCount);
+
+  await overflowChip.click();
+  await select
+    .locator('ix-dropdown.overflow-dropdown ix-filter-chip.chip-hidden-item')
+    .first()
+    .locator('ix-icon-button button')
+    .click();
+
+  await expect(overflowChip).not.toHaveText(initialCount);
+  const updatedCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', updatedCount);
 });
 
 test('multiple mode: focused "+N" chip opens overflow dropdown with Enter', async ({

@@ -37,7 +37,7 @@
     "@vitejs/plugin-vue-jsx": "^5.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitest/browser": "^3.2.4",
-    "@vue/tsconfig": "^0.7.0",
+    "@vue/tsconfig": "^0.9.1",
     "framework-tests": "workspace:*",
     "playwright": "catalog:",
     "typescript": "~5.8.0",

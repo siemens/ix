@@ -77,16 +77,16 @@ function EventListExample() {
   return (
     <div className={styles.Example}>
       <IxEventList compact>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 1
         </IxEventListItem>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 2
         </IxEventListItem>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 3
         </IxEventListItem>
-        <IxEventListItem itemColor="--si-sys-background-accent">
+        <IxEventListItem itemColor="--si-sys-color-background-accent">
           Text 4
         </IxEventListItem>
       </IxEventList>
@@ -129,7 +129,7 @@ function TypographyExample() {
       <IxTypography format="h2">Block H2</IxTypography>
       <IxTypography format="display">Block Display</IxTypography>
       <IxTypography format="body">Block Body</IxTypography>
-      <IxTypography format="label-sm">Block Label</IxTypography>
+      <IxTypography format="body-sm">Small Body</IxTypography>
     </div>
   );
 }

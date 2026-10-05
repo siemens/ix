@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
     <ix-event-list>
       @for (item of items; track i; let i = $index) {
       <ix-event-list-item
-        itemColor="--si-sys-background-accent"
+        itemColor="--si-sys-color-background-accent"
         [selected]="selectedIndex === i"
         (click)="selectedIndex = i"
       >
