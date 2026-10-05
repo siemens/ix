@@ -1,0 +1,8 @@
+- main:
+  - switch "Require confirmation"
+  - text: A date picked in the dropdown is applied immediately.
+  - textbox "Date": /\d+\/\d+\/\d+/
+  - button "Open calendar"
+  - text: Emitted events (latest first)
+  - list:
+    - listitem: "/valueChange: \"\\d+\\/\\d+\\/\\d+\"/"

@@ -1,0 +1,8 @@
+- main:
+  - switch "Require confirmation"
+  - text: A date and time picked in the dropdown are applied when you click Done.
+  - textbox "Date and time": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+  - button "Toggle calendar"
+  - text: Emitted events (latest first)
+  - list:
+    - listitem: "/valueChange: \"\\d+\\/\\d+\\/\\d+ \\d+:\\d+:\\d+\"/"

@@ -1,0 +1,209 @@
+- main:
+  - switch "Require confirmation"
+  - text: dateChange and timeChange are emitted for every picked value.
+  - button "Previous month"
+  - button "Select month"
+  - button "Select year"
+  - button "Next month"
+  - grid:
+    - row "Mon Tue Wed Thu Fri Sat Sun":
+      - columnheader "Mon"
+      - columnheader "Tue"
+      - columnheader "Wed"
+      - columnheader "Thu"
+      - columnheader "Fri"
+      - columnheader "Sat"
+      - columnheader "Sun"
+    - row /1 October \d+ 2 October \d+ 3 October \d+ 4 October \d+/:
+      - gridcell
+      - gridcell
+      - gridcell
+      - gridcell /1 October \d+/
+      - gridcell /2 October \d+/
+      - gridcell /3 October \d+/
+      - gridcell /4 October \d+/
+    - row /5 October \d+ 6 October \d+ 7 October \d+ 8 October \d+ 9 October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /5 October \d+/ [selected]
+      - gridcell /6 October \d+/
+      - gridcell /7 October \d+/
+      - gridcell /8 October \d+/
+      - gridcell /9 October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+    - row /\d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+    - row /\d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+    - row /\d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell
+  - text: Time hr
+  - listbox "hr":
+    - 'option "hr: 0"'
+    - 'option "hr: 1"'
+    - 'option "hr: 2"'
+    - 'option "hr: 3"'
+    - 'option "hr: 4"'
+    - 'option "hr: 5"'
+    - 'option "hr: 6"'
+    - 'option "hr: 7"'
+    - 'option "hr: 8"'
+    - 'option "hr: 9" [selected]'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+    - 'option /hr: \d+/'
+  - text: ": min"
+  - listbox "min":
+    - 'option "min: 0"'
+    - 'option "min: 1"'
+    - 'option "min: 2"'
+    - 'option "min: 3"'
+    - 'option "min: 4"'
+    - 'option "min: 5"'
+    - 'option "min: 6"'
+    - 'option "min: 7"'
+    - 'option "min: 8"'
+    - 'option "min: 9"'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/ [selected]'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+    - 'option /min: \d+/'
+  - text: ": sec"
+  - listbox "sec":
+    - 'option "sec: 0" [selected]'
+    - 'option "sec: 1"'
+    - 'option "sec: 2"'
+    - 'option "sec: 3"'
+    - 'option "sec: 4"'
+    - 'option "sec: 5"'
+    - 'option "sec: 6"'
+    - 'option "sec: 7"'
+    - 'option "sec: 8"'
+    - 'option "sec: 9"'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+    - 'option /sec: \d+/'
+  - button "Done"
+  - text: Emitted events (latest first)
+  - list

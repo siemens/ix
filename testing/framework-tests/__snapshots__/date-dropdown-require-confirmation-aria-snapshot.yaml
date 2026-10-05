@@ -1,0 +1,6 @@
+- main:
+  - switch "Require confirmation"
+  - text: The range picked in the dropdown is applied when you click Done or when the dropdown closes, including when you click outside it.
+  - button /\d+\/\d+\/\d+ - \d+\/\d+\/\d+/
+  - text: Emitted events (latest first)
+  - list

@@ -1,0 +1,8 @@
+- main:
+  - switch "Require confirmation"
+  - text: A time picked in the dropdown is applied when you click Confirm.
+  - textbox "Time": /\d+:\d+/
+  - button "Toggle time picker"
+  - text: Emitted events (latest first)
+  - list:
+    - listitem: "/valueChange: \"\\d+:\\d+\"/"

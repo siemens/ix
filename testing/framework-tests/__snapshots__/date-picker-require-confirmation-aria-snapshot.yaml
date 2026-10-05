@@ -1,0 +1,59 @@
+- main:
+  - switch "Require confirmation"
+  - text: dateChange and dateRangeChange are emitted for every picked date.
+  - button "Change calendar view to previous month"
+  - button "Select month"
+  - button "Select year"
+  - button "Change calendar view to next month"
+  - grid:
+    - row "Mon Tue Wed Thu Fri Sat Sun":
+      - columnheader "Mon"
+      - columnheader "Tue"
+      - columnheader "Wed"
+      - columnheader "Thu"
+      - columnheader "Fri"
+      - columnheader "Sat"
+      - columnheader "Sun"
+    - row /1 October \d+ 2 October \d+ 3 October \d+ 4 October \d+/:
+      - gridcell
+      - gridcell
+      - gridcell
+      - gridcell /1 October \d+/
+      - gridcell /2 October \d+/
+      - gridcell /3 October \d+/
+      - gridcell /4 October \d+/
+    - row /5 October \d+ 6 October \d+ 7 October \d+ 8 October \d+ 9 October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /5 October \d+/ [selected]
+      - gridcell /6 October \d+/
+      - gridcell /7 October \d+/
+      - gridcell /8 October \d+/
+      - gridcell /9 October \d+/ [selected]
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+    - row /\d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+    - row /\d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+    - row /\d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+ \d+ October \d+/:
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell /\d+ October \d+/
+      - gridcell
+  - button "Done"
+  - text: Emitted events (latest first)
+  - list
