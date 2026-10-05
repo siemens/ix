@@ -131,7 +131,7 @@ export async function runAdd(
 
 export const addCommand = new Command('add')
   .description('Install or update a pattern from an IX registry')
-  .argument('<patternName>', 'Pattern name (e.g. hero)')
+  .argument('<patternName>', 'Pattern name (e.g. change-password)')
   .option('-r, --registry <url>', 'Registry base URL', defaultRegistry)
   .option(
     '-t, --tag <tag>',

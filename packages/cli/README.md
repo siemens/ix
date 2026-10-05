@@ -51,6 +51,32 @@ installation currently supports React and Angular only; a detected Vue project
 receives an explicit unsupported-framework error rather than installing React
 code.
 
+## MCP configuration
+
+**_Internal/Experimental:_** Just for internal validation will be removed in the future!
+
+Initialize the configuration for your MCP client from the project root:
+
+```sh
+ix mcp init --config vscode
+ix mcp init --config claude
+ix mcp init --config cursor
+```
+
+Generated configurations use the current Node.js executable and absolute paths
+to this local CLI, not an unpublished npm package. Source-mode configurations
+also use the workspace's local `tsx` executable. Keep that CLI installation
+available. If its path or the Node.js installation moves, remove the generated
+`siemensix` entry and rerun initialization to regenerate those paths.
+
+Existing servers and customized IX commands are preserved. Reinitialization
+upgrades legacy `npx @siemens/ix-cli@latest` entries while retaining registry/tag
+arguments and other server options.
+
+Only missing files are initialized as empty. Invalid JSON, non-object
+configurations, and other read errors abort before writing the configuration or
+instructions.
+
 ## MCP registry selection
 
 MCP run commands accept `--registry` and `--tag` (defaulting to the configured

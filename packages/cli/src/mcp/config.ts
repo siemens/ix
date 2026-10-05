@@ -7,29 +7,108 @@
  * LICENSE file in the root directory of this source tree.
  */
 import fs from 'fs-extra';
+import { createRequire } from 'node:module';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import deepmerge from 'deepmerge';
 import dedent from 'dedent';
 import { Framework } from '../detect';
 import { usageAngular, usageReact, usageVue } from './prompts/icons';
 
-const CLI = '@siemens/ix-cli@latest';
-
-const overwriteMerge = (_: any[], sourceArray: any[]) => sourceArray;
+const overwriteMerge = (_: unknown[], sourceArray: unknown[]) => sourceArray;
 
 export type MCPConfigName = 'claude' | 'cursor' | 'vscode';
+
+type MCPServerConfig = {
+  command: string;
+  args: string[];
+};
 
 type MCPConfig = {
   name: MCPConfigName;
   label: string;
   configPath: string;
-  config: Record<string, unknown>;
+  serverKey: 'servers' | 'mcpServers';
   instructionPath: string;
   instructionContent: string;
 };
 
 const INSTRUCTION_START_MARKER = '<!-- ix-mcp-instructions:start -->';
 const INSTRUCTION_END_MARKER = '<!-- ix-mcp-instructions:end -->';
+
+function getLocalMCPServer(framework: Framework): MCPServerConfig {
+  const modulePath = fileURLToPath(import.meta.url);
+  const runArgs = ['mcp', `run-${framework}`];
+
+  if (path.extname(modulePath) === '.ts') {
+    const require = createRequire(import.meta.url);
+    return {
+      command: process.execPath,
+      args: [
+        require.resolve('tsx/cli'),
+        fileURLToPath(new URL('../cli.ts', import.meta.url)),
+        ...runArgs,
+      ],
+    };
+  }
+
+  // The bundled build inlines this module into dist/cli.mjs.
+  return {
+    command: process.execPath,
+    args: [modulePath, ...runArgs],
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return (
+    Array.isArray(value) && value.every((item) => typeof item === 'string')
+  );
+}
+
+async function readOptionalText(filePath: string): Promise<string | undefined> {
+  try {
+    return await fs.readFile(filePath, 'utf-8');
+  } catch (error) {
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+      return undefined;
+    }
+    throw new Error(
+      `Unable to read ${filePath}: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+      { cause: error }
+    );
+  }
+}
+
+async function readMCPConfig(
+  configPath: string
+): Promise<Record<string, unknown>> {
+  const content = await readOptionalText(configPath);
+  if (content === undefined) return {};
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(content);
+  } catch (error) {
+    throw new Error(
+      `Invalid JSON in ${configPath}: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+      { cause: error }
+    );
+  }
+  if (!isRecord(parsed)) {
+    throw new Error(
+      `Invalid MCP configuration in ${configPath}: expected a JSON object.`
+    );
+  }
+  return parsed;
+}
 
 const instructionContent = (withFrontmatter = false, framework?: Framework) => {
   const iconUsage =
@@ -81,46 +160,25 @@ const getMCPConfigs = (framework: Framework): MCPConfig[] => [
     name: 'vscode',
     label: 'VS Code',
     configPath: '.vscode/mcp.json',
+    serverKey: 'servers',
     instructionPath: '.github/copilot-instructions.md',
     instructionContent: instructionContent(false, framework),
-    config: {
-      servers: {
-        siemensix: {
-          command: 'npx',
-          args: [CLI, 'mcp', `run-${framework}`],
-        },
-      },
-    },
   },
   {
     name: 'claude',
     label: 'Claude Code',
     configPath: '.mcp.json',
+    serverKey: 'mcpServers',
     instructionPath: 'CLAUDE.md',
     instructionContent: instructionContent(false, framework),
-    config: {
-      mcpServers: {
-        siemensix: {
-          command: 'npx',
-          args: [CLI, 'mcp', `run-${framework}`],
-        },
-      },
-    },
   },
   {
     name: 'cursor',
     label: 'Cursor',
     configPath: '.cursor/mcp.json',
+    serverKey: 'mcpServers',
     instructionPath: '.cursor/rules/siemens-ix.mdc',
     instructionContent: instructionContent(true, framework),
-    config: {
-      mcpServers: {
-        siemensix: {
-          command: 'npx',
-          args: [CLI, 'mcp', `run-${framework}`],
-        },
-      },
-    },
   },
 ];
 
@@ -139,20 +197,44 @@ export const initMCPConfig = async (
     throw new Error(`Unknown MCP config '${configName}'`);
   }
 
-  const dirname = path.dirname(config.configPath);
-  await fs.ensureDir(dirname);
+  const [existingConfig, instructionText] = await Promise.all([
+    readMCPConfig(config.configPath),
+    readOptionalText(config.instructionPath),
+  ]);
+  const existingInstructions = instructionText ?? '';
+  const server = getLocalMCPServer(framework);
+  const existingServers = existingConfig[config.serverKey];
+  if (isRecord(existingServers)) {
+    const existingServer = existingServers.siemensix;
+    if (
+      isRecord(existingServer) &&
+      existingServer.command === 'npx' &&
+      isStringArray(existingServer.args) &&
+      existingServer.args[0] === '@siemens/ix-cli@latest' &&
+      existingServer.args[1] === 'mcp' &&
+      /^run-(react|angular|vue)$/.test(existingServer.args[2])
+    ) {
+      existingServers.siemensix = {
+        ...existingServer,
+        ...server,
+        args: [...server.args, ...existingServer.args.slice(3)],
+      };
+    }
+  }
 
-  let existingConfig = {};
-  try {
-    const content = await fs.readFile(config.configPath, 'utf-8');
-    existingConfig = JSON.parse(content);
-  } catch {}
-
-  const mergedConfig = deepmerge(
-    config.config as Record<string, unknown>,
+  const mergedConfig = deepmerge<Record<string, unknown>>(
+    { [config.serverKey]: { siemensix: server } },
     existingConfig,
     { arrayMerge: overwriteMerge }
   );
+
+  const writeInstructions = !existingInstructions.includes(
+    INSTRUCTION_START_MARKER
+  );
+  await fs.ensureDir(path.dirname(config.configPath));
+  if (writeInstructions) {
+    await fs.ensureDir(path.dirname(config.instructionPath));
+  }
 
   await fs.writeFile(
     config.configPath,
@@ -160,15 +242,7 @@ export const initMCPConfig = async (
     'utf-8'
   );
 
-  const instructionDirname = path.dirname(config.instructionPath);
-  await fs.ensureDir(instructionDirname);
-
-  let existingInstructions = '';
-  try {
-    existingInstructions = await fs.readFile(config.instructionPath, 'utf-8');
-  } catch {}
-
-  if (!existingInstructions.includes(INSTRUCTION_START_MARKER)) {
+  if (writeInstructions) {
     const normalized = existingInstructions.trim();
     const mergedInstructions = normalized
       ? `${normalized}\n\n${config.instructionContent}\n`

@@ -5,9 +5,11 @@
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { Command, Option } from 'commander';
@@ -18,6 +20,11 @@ import {
 } from '../src/commands/mcp';
 import { initMCPConfig } from '../src/mcp/config';
 import { createServer } from '../src/mcp/server';
+
+const localCliArgs = [
+  createRequire(import.meta.url).resolve('tsx/cli'),
+  fileURLToPath(new URL('../src/cli.ts', import.meta.url)),
+];
 
 function parsedRegistryOptions(args: string[]) {
   const command = new Command();
@@ -86,8 +93,8 @@ test('generated MCP configs use siemensix and preserve existing shadcn servers',
       const servers = config[target.serverKey];
       assert.deepEqual(servers.shadcn, shadcnConfig);
       assert.deepEqual(servers.siemensix, {
-        command: 'npx',
-        args: ['@siemens/ix-cli@latest', 'mcp', 'run-react'],
+        command: process.execPath,
+        args: [...localCliArgs, 'mcp', 'run-react'],
       });
       assert.deepEqual(Object.keys(servers).sort(), ['shadcn', 'siemensix']);
 
@@ -125,8 +132,9 @@ test('MCP init detects Vue projects and generates a runnable Vue server', async 
     const config = JSON.parse(
       await fs.readFile(path.join(root, '.vscode/mcp.json'), 'utf8')
     );
+    assert.equal(config.servers.siemensix.command, process.execPath);
     assert.deepEqual(config.servers.siemensix.args, [
-      '@siemens/ix-cli@latest',
+      ...localCliArgs,
       'mcp',
       'run-vue',
     ]);
