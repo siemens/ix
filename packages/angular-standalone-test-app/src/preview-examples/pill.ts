@@ -17,7 +17,7 @@ import { IxPill } from '@siemens/ix-angular/standalone';
   template: `
     <ix-pill
       variant="custom"
-      pillPolor="var(--si-sys-color-text-inverse)"
+      pillColor="var(--si-sys-color-text-inverse)"
       background="var(--si-sys-color-background-accent-hover)"
       >Label</ix-pill
     >
