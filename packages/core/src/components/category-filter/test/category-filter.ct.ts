@@ -49,7 +49,7 @@ regressionTest.describe('scroll behavior', () => {
     'should not scroll the page when adding a token',
     async ({ page }) => {
       const categoryFilter = page.locator('ix-category-filter');
-      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await expect(categoryFilter).toHaveAttribute('hydrated');
       await categoryFilter.evaluate((el) =>
         el.scrollIntoView({ block: 'center' })
       );
@@ -71,7 +71,7 @@ regressionTest.describe('scroll behavior', () => {
     'should not scroll the page when setting filterState programmatically',
     async ({ page }) => {
       const categoryFilter = page.locator('ix-category-filter');
-      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await expect(categoryFilter).toHaveAttribute('hydrated');
       await expect(categoryFilter).not.toBeInViewport();
 
       await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
@@ -89,7 +89,7 @@ regressionTest.describe('scroll behavior', () => {
     'should keep input visible when tokens overflow the container',
     async ({ page }) => {
       const categoryFilter = page.locator('ix-category-filter');
-      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await expect(categoryFilter).toHaveAttribute('hydrated');
       await categoryFilter.evaluate((el) => {
         el.style.width = '300px';
         el.scrollIntoView({ block: 'center' });
@@ -114,7 +114,7 @@ regressionTest.describe('scroll behavior', () => {
     'should keep input visible when filterState tokens overflow the container',
     async ({ page }) => {
       const categoryFilter = page.locator('ix-category-filter');
-      await expect(categoryFilter).toHaveClass(/hydrated/);
+      await expect(categoryFilter).toHaveAttribute('hydrated');
       await categoryFilter.evaluate((el) => {
         el.style.width = '300px';
         el.scrollIntoView({ block: 'center' });

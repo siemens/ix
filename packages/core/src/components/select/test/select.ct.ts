@@ -472,7 +472,7 @@ test('keeps first typed character when focused via keyboard with a selected valu
 
   const select = page.locator('ix-select');
   const input = select.getByRole('combobox');
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
 
   await page.getByRole('button', { name: 'Start' }).focus();
   await page.keyboard.press('Tab');

@@ -247,7 +247,7 @@ regressionTest('opens and closes the dropdown', async ({ mount, page }) => {
   `);
 
   const dropdownButton = page.locator('ix-dropdown-button');
-  await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+  await expect(dropdownButton).toHaveAttribute('hydrated');
   await expect(dropdownButton.locator('ix-button button')).toHaveAttribute(
     'aria-hidden',
     'true'
@@ -283,7 +283,7 @@ for (const key of ['Enter', 'Space']) {
       );
 
       const dropdownButton = page.locator('ix-dropdown-button');
-      await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+      await expect(dropdownButton).toHaveAttribute('hydrated');
 
       await page.getByRole('button', { name: 'Before' }).focus();
       await page.keyboard.press('Tab');
@@ -313,7 +313,7 @@ regressionTest(
     );
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await dropdownButton.evaluate(
       (element: HTMLIxDropdownButtonElement) =>
         (element.ariaLabelDropdownButton = 'Actions')
@@ -411,7 +411,7 @@ regressionTest(
     `);
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
 
     for (const ariaLabel of ['', '   ']) {
@@ -443,7 +443,7 @@ regressionTest(
     `);
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await dropdownButton.evaluate(
       (element: HTMLIxDropdownButtonElement) => (element.label = null)
     );
@@ -469,7 +469,7 @@ regressionTest(
     `);
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await dropdownButton.evaluate(
       (element: HTMLIxDropdownButtonElement) => (element.label = null)
     );
@@ -726,7 +726,7 @@ regressionTest(
         })
     );
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
@@ -771,7 +771,7 @@ regressionTest(
     const item1 = page.locator('#tab-1');
     const after = page.locator('#after');
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await button.focus();
     await page.keyboard.press('ArrowDown');
     await expect(item1).toBeFocused();
@@ -800,7 +800,7 @@ regressionTest(
     const button = page.locator('ix-dropdown-button');
     const item1 = page.locator('#dynamic-1');
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await button.focus();
     await page.keyboard.press('ArrowDown');
     await expect(button).toHaveAttribute('aria-activedescendant', 'dynamic-1');

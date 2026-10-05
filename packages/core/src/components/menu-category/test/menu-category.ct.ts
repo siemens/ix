@@ -30,7 +30,7 @@ async function collapseApplicationMenu(page: Page) {
 
 async function openCollapsedCategoryDropdown(page: Page) {
   const category = page.locator('ix-menu-category');
-  await expect(category).toHaveClass(/hydrated/);
+  await expect(category).toHaveAttribute('hydrated');
   await collapseApplicationMenu(page);
   await category.hover();
 
@@ -854,7 +854,7 @@ regressionTest(
     `);
 
     const category = page.locator('ix-menu-category');
-    await expect(category).toHaveClass(/hydrated/);
+    await expect(category).toHaveAttribute('hydrated');
     await category.hover();
 
     const dropdown = category.locator('ix-dropdown');
@@ -883,7 +883,7 @@ regressionTest(
     const categoryParent = page
       .locator('ix-menu-category')
       .locator('.category-parent');
-    await expect(categoryParent).toHaveClass(/hydrated/);
+    await expect(categoryParent).toHaveAttribute('hydrated');
 
     await categoryParent.hover();
     await page.waitForTimeout(1500);

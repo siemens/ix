@@ -332,7 +332,7 @@ regressionTest('can disable tooltip', async ({ mount, page }) => {
   `);
 
   const menuItem = page.locator('ix-menu-item');
-  await expect(menuItem).toHaveClass(/hydrated/);
+  await expect(menuItem).toHaveAttribute('hydrated');
 
   await menuItem.hover();
   await page.waitForTimeout(1500);

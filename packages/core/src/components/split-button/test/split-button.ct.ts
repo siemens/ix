@@ -124,7 +124,7 @@ regressionTest(
     });
     const dropdownButton = splitButton.locator('ix-dropdown-button');
 
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await expect(dropdownButton).toHaveAccessibleName('dropdown button');
     let accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
