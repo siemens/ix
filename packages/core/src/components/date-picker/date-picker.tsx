@@ -91,6 +91,8 @@ export class DatePicker
 
   @Watch('from')
   watchFromPropHandler(newValue: string) {
+    this.resetPendingRange();
+
     if (!newValue) {
       this.currFromDate = undefined;
 
@@ -113,6 +115,8 @@ export class DatePicker
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
+    this.resetPendingRange();
+
     if (!newValue) {
       this.currToDate = undefined;
 
@@ -150,6 +154,29 @@ export class DatePicker
    * Text of the date select button.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
+
+  /**
+   * If true, a selection is only applied after the user confirms it with the
+   * confirm button. `dateChange` and `dateRangeChange` are deferred until then,
+   * and the cancel button discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel = 'Cancel';
 
   /**
    * ARIA label for the previous month icon button.
@@ -236,6 +263,7 @@ export class DatePicker
    * Re-parse `from`/`to` with the current `format` and `locale`.
    */
   private refreshSelectedDates() {
+    this.resetPendingRange();
     this.currFromDate = this.from
       ? tryParseWithLocale(this.from, this.format, this.locale)
       : undefined;
@@ -288,6 +316,14 @@ export class DatePicker
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
+   * Emitted when the pending selection is discarded via the cancel button.
+   * Only emitted when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Event() dateCancel!: EventEmitter<void>;
+
+  /**
    * Get the currently selected date or range. The object returned contains `from` and `to` properties
    * formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
@@ -321,6 +357,23 @@ export class DatePicker
   @State()
   currFromDate?: DateTime;
   @State() currToDate?: DateTime;
+
+  /**
+   * Unconfirmed range selection, used only when `requireConfirmation` is true
+   */
+  @State() private pendingRange?: { from?: DateTime; to?: DateTime };
+
+  private resetPendingRange = () => {
+    this.pendingRange = undefined;
+  };
+
+  private get selectedFrom(): DateTime | undefined {
+    return this.pendingRange ? this.pendingRange.from : this.currFromDate;
+  }
+
+  private get selectedTo(): DateTime | undefined {
+    return this.pendingRange ? this.pendingRange.to : this.currToDate;
+  }
 
   /**
    * The month on display, as the first of that month. Carries the displayed
@@ -457,6 +510,9 @@ export class DatePicker
    * month; it is normalised to the first of that month.
    */
   private setDisplayedMonth(month: DateTime) {
+    if (this.selectedMonthDate?.hasSame(month, 'month')) {
+      return;
+    }
     this.selectedMonthDate = month.startOf('month');
   }
 
@@ -567,6 +623,20 @@ export class DatePicker
     dayElement.focus();
   }
 
+  /**
+   * Discards a pending selection made while `requireConfirmation` is enabled
+   * and shows the month of the committed selection again.
+   * @internal
+   */
+  @Method()
+  async discardPendingSelection(): Promise<void> {
+    this.resetPendingRange();
+
+    if (this.currFromDate) {
+      this.setDisplayedMonth(this.currFromDate);
+    }
+  }
+
   private setTranslations() {
     this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
   }
@@ -574,6 +644,32 @@ export class DatePicker
   private async onDone() {
     const date = await this.getCurrentDate();
     this.dateSelect.emit(date);
+  }
+
+  private async onConfirm() {
+    const hasPendingSelection = !!this.pendingRange;
+
+    if (this.pendingRange) {
+      this.currFromDate = this.pendingRange.from;
+      this.currToDate = this.pendingRange.to;
+      this.resetPendingRange();
+    }
+
+    const date = await this.getCurrentDate();
+
+    if (hasPendingSelection) {
+      this.dateChange.emit(date);
+      if (!this.singleSelection) {
+        this.dateRangeChange.emit(date);
+      }
+    }
+
+    this.dateSelect.emit(date);
+  }
+
+  private async onCancel() {
+    await this.discardPendingSelection();
+    this.dateCancel.emit();
   }
 
   private changeCalendarView(number: -1 | 1) {
@@ -597,34 +693,40 @@ export class DatePicker
     }
 
     const date = dayOfMonth(this.selectedMonthDate, selectedDay);
+    let from = this.selectedFrom;
+    let to = this.selectedTo;
 
-    if (this.singleSelection || this.currFromDate === undefined) {
-      this.currFromDate = date;
-      this.onDateChange();
+    if (this.singleSelection || (from !== undefined && to !== undefined)) {
+      from = date;
+      to = undefined;
+      this.applySelection(from, to);
+      return;
+    }
+    if (from === undefined) {
+      from = date;
+      this.applySelection(from, to);
+      return;
+    }
+    if (date < from) {
+      to = from;
+      from = date;
+    } else {
+      // Set the range normally
+      to = date;
+    }
+
+    this.applySelection(from, to);
+  }
+
+  private applySelection(from?: DateTime, to?: DateTime) {
+    if (this.requireConfirmation) {
+      this.pendingRange = { from, to };
 
       return;
     }
 
-    // Reset the range selection
-    if (this.currToDate !== undefined) {
-      this.currFromDate = date;
-      this.currToDate = undefined;
-      this.onDateChange();
-
-      return;
-    }
-
-    // Swap from/to if the second date is before the current date
-    if (date < this.currFromDate) {
-      this.currToDate = this.currFromDate;
-      this.currFromDate = date;
-      this.onDateChange();
-
-      return;
-    }
-
-    // Set the range normally
-    this.currToDate = date;
+    this.currFromDate = from;
+    this.currToDate = to;
     this.onDateChange();
   }
 
@@ -645,15 +747,15 @@ export class DatePicker
       isToday: () => todayObj.hasSame(selectedDayObj, 'day'),
       isSelected: () =>
         !!(
-          this.currFromDate?.hasSame(selectedDayObj, 'day') ||
-          this.currToDate?.hasSame(selectedDayObj, 'day')
+          this.selectedFrom?.hasSame(selectedDayObj, 'day') ||
+          this.selectedTo?.hasSame(selectedDayObj, 'day')
         ),
       isRange: () =>
         !!(
-          this.currFromDate &&
-          selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
-          this.currToDate !== undefined &&
-          selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
+          this.selectedFrom &&
+          selectedDayObj.startOf('day') > this.selectedFrom.startOf('day') &&
+          this.selectedTo !== undefined &&
+          selectedDayObj.startOf('day') < this.selectedTo.startOf('day')
         ),
     };
   }
@@ -987,19 +1089,19 @@ export class DatePicker
               );
             })}
           </div>
-          <div
-            class={{
-              button: true,
-              hidden: this.singleSelection || this.embedded,
-            }}
-          >
-            <ix-button
-              hidden={this.singleSelection || this.embedded}
-              onClick={() => this.onDone()}
-            >
-              {this.i18nDone}
-            </ix-button>
-          </div>
+          {(this.requireConfirmation ||
+            !(this.singleSelection || this.embedded)) && (
+            <ix-confirmation-footer
+              class="button"
+              requireConfirmation={this.requireConfirmation}
+              i18nDone={this.i18nDone}
+              i18nConfirm={this.i18nConfirm}
+              i18nCancel={this.i18nCancel}
+              onDoneClick={() => this.onDone()}
+              onConfirmClick={() => this.onConfirm()}
+              onCancelClick={() => this.onCancel()}
+            ></ix-confirmation-footer>
+          )}
         </ix-date-time-card>
       </Host>
     );

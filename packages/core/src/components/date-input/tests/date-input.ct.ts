@@ -6,11 +6,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Locator, expect } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
+import { DateTime } from 'luxon';
 import {
+  calendarDayCell,
+  createDropdownPickerAccessor,
+  formatDateTime,
   getFormValue,
+  mountHydrated,
+  PENDING_SELECTION_DISMISSALS,
   preventFormSubmission,
+  recordEvents,
   regressionTest,
+  tabUntilFocused,
 } from '@utils/test';
 
 const createDateInputAccessor = async (dateInput: Locator) => {
@@ -405,3 +413,128 @@ regressionTest.describe('keyboard navigation', () => {
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
 });
+
+const committed = DateTime.fromISO('2024-05-10');
+const picked = committed.plus({ days: 10 });
+
+const dateInputAccessor = (page: Page) =>
+  createDropdownPickerAccessor(page, {
+    host: 'ix-date-input',
+    trigger: (host) => host.getByTestId('open-calendar'),
+    dropdown: (host) => host.getByTestId('date-dropdown'),
+  });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-date-input ix-date-picker'), date);
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-date-input', {
+      value: formatDateTime(committed),
+      'require-confirmation': true,
+    });
+  });
+
+  regressionTest('confirm applies the picked date', async ({ page }) => {
+    const dateInput = dateInputAccessor(page);
+    const events = await recordEvents(dateInput.host, [
+      'valueChange',
+      'ixChange',
+    ]);
+
+    await dateInput.open();
+    await dayCell(page, picked).click();
+
+    await expect(dateInput.host.locator('input')).toHaveValue(
+      formatDateTime(committed)
+    );
+    expect(await events()).not.toContainEqual(
+      expect.objectContaining({ detail: formatDateTime(picked) })
+    );
+
+    await dateInput.host.getByTestId('confirm').click();
+
+    await dateInput.expectClosed();
+    await expect(dateInput.host.locator('input')).toHaveValue(
+      formatDateTime(picked)
+    );
+    expect(await events()).toContainEqual({
+      type: 'valueChange',
+      detail: formatDateTime(picked),
+    });
+    expect(await events()).toContainEqual({
+      type: 'ixChange',
+      detail: formatDateTime(picked),
+    });
+  });
+
+  regressionTest(
+    'footer is reachable and trapped by keyboard',
+    async ({ page }) => {
+      const dateInput = dateInputAccessor(page);
+
+      await dateInput.open();
+      await dayCell(page, picked).click();
+      await tabUntilFocused(page, 'Confirm');
+
+      // Focus stays trapped in the dropdown when tabbing past the footer
+      await page.keyboard.press('Tab');
+      await dateInput.expectOpen();
+      await tabUntilFocused(page, 'Confirm');
+      await page.keyboard.press('Enter');
+
+      await dateInput.expectClosed();
+      await expect(dateInput.host.locator('input')).toHaveValue(
+        formatDateTime(picked)
+      );
+    }
+  );
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} discards the picked date`,
+      async ({ page }) => {
+        const dateInput = dateInputAccessor(page);
+        const events = await recordEvents(dateInput.host, [
+          'valueChange',
+          'ixChange',
+        ]);
+
+        await dateInput.open();
+        await dayCell(page, picked).click();
+        await dateInput.dismiss(dismissal);
+
+        await dateInput.expectClosed();
+        await expect(dateInput.host.locator('input')).toHaveValue(
+          formatDateTime(committed)
+        );
+        expect(await events()).not.toContainEqual(
+          expect.objectContaining({ detail: formatDateTime(picked) })
+        );
+
+        await dateInput.open();
+        await expect(dayCell(page, committed)).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
+        await expect(dayCell(page, picked)).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+      }
+    );
+  }
+});
+
+regressionTest(
+  'renders no cancel button without require confirmation',
+  async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-date-input', {
+      value: formatDateTime(committed),
+    });
+    const dateInput = dateInputAccessor(page);
+
+    await dateInput.open();
+    await expect(dateInput.host.getByTestId('cancel')).toHaveCount(0);
+  }
+);

@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Page, expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { DateTime } from 'luxon';
+import {
+  calendarDayCell,
+  dateChangeDetail,
+  formatDateTime,
+  recordEvents,
+  regressionTest,
+  timePickerHourCell,
+} from '@utils/test';
 
 const DATE_TIME_PICKER_SELECTOR = 'ix-datetime-picker';
 const getHourCell = (page: Page, hour: number) =>
@@ -321,3 +329,176 @@ regressionTest.describe('datetime picker tests single', () => {
     await expect(dateChangeEvent).resolves.toBeTruthy();
   });
 });
+
+// Dates and times used by the confirmation tests. Picked dates stay in the
+// month of `committed`, which the picker shows on load.
+const TIME_FORMAT = 'HH:mm:ss';
+const committed = DateTime.fromISO('2024-05-10T10:30:00');
+const committedTo = committed.plus({ days: 2 });
+const picked = committed.plus({ days: 10, hours: 1 });
+const pickedTo = picked.plus({ days: 2 });
+
+const formatTime = (time: DateTime) => formatDateTime(time, TIME_FORMAT);
+
+const datetimePickerLocator = (page: Page) =>
+  page.locator('ix-datetime-picker');
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(datetimePickerLocator(page), date);
+
+const hourCell = (page: Page, time: DateTime) =>
+  timePickerHourCell(datetimePickerLocator(page), time);
+
+/** Mounts the picker with `from` and `time` of `from`, plus an optional `to`. */
+const mountDatetimePicker = async (
+  mount: (html: string) => Promise<unknown>,
+  page: Page,
+  {
+    from,
+    to,
+    attributes = '',
+  }: { from: DateTime; to?: DateTime; attributes?: string }
+) => {
+  const toAttribute = to ? ` to="${formatDateTime(to)}"` : '';
+  await mount(
+    `<ix-datetime-picker from="${formatDateTime(from)}"${toAttribute} time="${formatTime(from)}" ${attributes}></ix-datetime-picker>`
+  );
+  await expect(datetimePickerLocator(page)).toHaveClass(/hydrated/);
+};
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatetimePicker(mount, page, {
+      from: committed,
+      attributes: 'single-selection require-confirmation',
+    });
+  });
+
+  regressionTest('emits changes only when confirmed', async ({ page }) => {
+    const datetimePicker = datetimePickerLocator(page);
+    const events = await recordEvents(datetimePicker, [
+      'dateChange',
+      'timeChange',
+      'dateSelect',
+      'dateCancel',
+    ]);
+
+    await dayCell(page, picked).click();
+    await hourCell(page, picked).click();
+    expect(await events()).toEqual([]);
+
+    await datetimePicker.getByTestId('confirm').click();
+
+    expect(await events()).toEqual([
+      {
+        type: 'dateChange',
+        detail: expect.objectContaining(dateChangeDetail(picked)),
+      },
+      { type: 'timeChange', detail: formatTime(picked) },
+      {
+        type: 'dateSelect',
+        detail: expect.objectContaining({
+          ...dateChangeDetail(picked),
+          time: formatTime(picked),
+        }),
+      },
+    ]);
+  });
+
+  regressionTest(
+    'cancel restores the confirmed date and time',
+    async ({ page }) => {
+      const datetimePicker = datetimePickerLocator(page);
+      const events = await recordEvents(datetimePicker, [
+        'dateChange',
+        'timeChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, picked).click();
+      await hourCell(page, picked).click();
+      await datetimePicker.getByTestId('cancel').click();
+
+      await expect(dayCell(page, committed)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, picked)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      await expect(hourCell(page, committed)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateCancel',
+      ]);
+    }
+  );
+});
+
+regressionTest.describe('require confirmation option', () => {
+  regressionTest(
+    'does not leak pending range changes',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, {
+        from: committed,
+        to: committedTo,
+        attributes: 'require-confirmation',
+      });
+      const events = await recordEvents(datetimePickerLocator(page), [
+        'dateChange',
+        'dateRangeChange',
+      ]);
+
+      await dayCell(page, picked).click();
+      await dayCell(page, pickedTo).click();
+
+      expect(await events()).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'renders no cancel button without require confirmation',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, { from: committed });
+      const datetimePicker = datetimePickerLocator(page);
+
+      await expect(datetimePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        datetimePicker.getByRole('button', { name: 'Done' })
+      ).toBeVisible();
+    }
+  );
+});
+
+regressionTest(
+  'done button is full-width only on small screens',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 });
+    await mountDatetimePicker(mount, page, {
+      from: committed,
+      attributes: 'single-selection',
+    });
+    const footer = page.locator(
+      'ix-datetime-picker ix-confirmation-footer.layout-responsive'
+    );
+    const done = footer.getByTestId('confirm');
+
+    const isFullWidth = async () => {
+      const footerBox = await footer.boundingBox();
+      const doneBox = await done.boundingBox();
+      if (!footerBox || !doneBox) {
+        throw new Error('Footer is not rendered');
+      }
+      return Math.round(doneBox.width) === Math.round(footerBox.width);
+    };
+
+    await expect.poll(isFullWidth).toBe(false);
+
+    await page.setViewportSize({ width: 500, height: 768 });
+    await expect.poll(isFullWidth).toBe(true);
+  }
+);

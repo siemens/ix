@@ -115,7 +115,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Watch('locale')
   watchLocalePropHandler() {
     this.updateMeridiemLabels();
-    if (this._time) {
+    if (this.selectedTime) {
       this.setTimeRef();
       this.formattedTime = this.getFormattedTime();
       this.setTimePickerDescriptors();
@@ -299,6 +299,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   @Watch('time')
   watchTimePropHandler(newValue: string | undefined) {
+    this.pendingTime = undefined;
+
     if (newValue === undefined || newValue === '') {
       this._time = this.getDefaultTime();
       return;
@@ -344,8 +346,26 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Text of the time confirm button.
+   *
+   * @since 6.0.0
    */
-  @Prop({ attribute: 'i18n-confirm-time' }) i18nConfirmTime = 'Confirm';
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
+
+  /**
+   * If true, a selected time is only applied after the user confirms it with
+   * the confirm button. `timeChange` is deferred until then, and the cancel
+   * button discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation = false;
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel = 'Cancel';
 
   /**
    * Text for the top header.
@@ -414,6 +434,14 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Event() timeChange!: EventEmitter<string>;
 
   /**
+   * Emitted when the pending selection is discarded via the cancel button.
+   * Only emitted when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Event() timeCancel!: EventEmitter<void>;
+
+  /**
    * Get the current time based on the wanted format
    */
   @Method()
@@ -433,8 +461,41 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     return toISOTime(this._time);
   }
 
+  /**
+   * Discards a pending selection made while `requireConfirmation` is enabled.
+   * @internal
+   */
+  @Method()
+  async discardPendingSelection(): Promise<void> {
+    this.pendingTime = undefined;
+  }
+
   @State() private _time?: DateTime;
+
+  /**
+   * Time selected while `requireConfirmation` is enabled but not yet
+   * confirmed. `undefined` when there is nothing pending; the committed time
+   * stays in `_time` until confirmation.
+   */
+  @State() private pendingTime?: DateTime;
+
+  /** The time shown in the picker: the pending selection, else `_time`. */
+  private get selectedTime(): DateTime | undefined {
+    return this.pendingTime ?? this._time;
+  }
+
+  private setSelectedTime(time: DateTime) {
+    if (this.requireConfirmation) {
+      this.pendingTime = time;
+      return;
+    }
+
+    this._time = time;
+    this.timeChange.emit(formatWithLocale(time, this.format, this.locale));
+  }
+
   @Watch('_time')
+  @Watch('pendingTime')
   onTimeChange() {
     const formattedTimeOld = this.formattedTime;
     this.setTimeRef();
@@ -490,6 +551,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     }
 
     this._time = parsedTime;
+    this.pendingTime = undefined;
 
     this.updateMeridiemLabels();
     this.setTimeRef();
@@ -732,6 +794,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
           );
           if (timeFormat.isValid) {
             this._time = parseWithLocale(this.time, this.format, this.locale);
+            this.pendingTime = undefined;
             this.setInitialFocusedValueAndUnit();
           }
         }
@@ -762,18 +825,17 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private getFormattedTime(): TimeOutputFormat {
-    if (!this._time) {
+    const time = this.selectedTime;
+    if (!time) {
       return FORMATTED_TIME_EMPTY;
     }
 
     return {
       hour:
-        this.timeRef !== undefined
-          ? this._time.toFormat('h')
-          : this._time.toFormat('H'),
-      minute: this._time.toFormat('m'),
-      second: this._time.toFormat('s'),
-      millisecond: this._time.toFormat('S'),
+        this.timeRef !== undefined ? time.toFormat('h') : time.toFormat('H'),
+      minute: time.toFormat('m'),
+      second: time.toFormat('s'),
+      millisecond: time.toFormat('S'),
     };
   }
 
@@ -782,36 +844,30 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return;
     }
 
-    if (!this._time) {
-      this._time = DateTime.now().startOf('day');
-    }
-
-    const previousTime = this._time;
+    const previousTime = this.selectedTime ?? DateTime.now().startOf('day');
     const previousRef = this.timeRef;
 
     this.timeRef = newTimeRef;
-    const currentHour = this._time.hour;
+    const currentHour = previousTime.hour;
+    let nextTime = previousTime;
 
     if (newTimeRef === 'PM' && currentHour < 12) {
-      this._time = this._time.plus({ hours: 12 });
+      nextTime = previousTime.plus({ hours: 12 });
     } else if (newTimeRef === 'AM' && currentHour >= 12) {
-      this._time = this._time.minus({ hours: 12 });
+      nextTime = previousTime.minus({ hours: 12 });
     }
 
-    if (!this.isWithinTimeConstraints(this._time)) {
-      this._time = previousTime;
+    if (!this.isWithinTimeConstraints(nextTime)) {
       this.timeRef = previousRef;
       return;
     }
 
-    this.timeChange.emit(
-      formatWithLocale(this._time, this.format, this.locale)
-    );
+    this.setSelectedTime(nextTime);
   }
 
-  /** `_time` or “now” (constraints, AM/PM, confirm). */
+  /** `selectedTime` or “now” (constraints, AM/PM, confirm). */
   private referenceOrNow(): DateTime {
-    return this._time ?? DateTime.now();
+    return this.selectedTime ?? DateTime.now();
   }
 
   private setTimeRef() {
@@ -848,7 +904,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     const referenceClock = this.referenceOrNow();
     return {
       bounds: this.getConstraintBounds(referenceClock),
-      selectionBase: this._time ?? referenceClock.startOf('day'),
+      selectionBase: this.selectedTime ?? referenceClock.startOf('day'),
     };
   }
 
@@ -863,7 +919,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     bounds?: { min: DateTime | null; max: DateTime | null },
     selectionBase?: DateTime
   ): boolean {
-    const base = selectionBase ?? this._time ?? DateTime.now().startOf('day');
+    const base =
+      selectionBase ?? this.selectedTime ?? DateTime.now().startOf('day');
     const effectiveBounds = bounds ?? this.getConstraintBounds();
 
     if (
@@ -949,7 +1006,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       return selectionBase;
     }
 
-    let base = this._time ?? selectionBase;
+    let base = this.selectedTime ?? selectionBase;
 
     for (let i = 1; i < targetIndex; i++) {
       const unit = order[i];
@@ -1237,15 +1294,40 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     if (!candidate) {
       return;
     }
-    if (this._time && candidate.toMillis() === this._time.toMillis()) {
+    if (
+      this.selectedTime &&
+      candidate.toMillis() === this.selectedTime.toMillis()
+    ) {
       return;
     }
 
-    this._time = candidate;
+    this.setSelectedTime(candidate);
     this.elementListScrollToTop(unit, number, 'smooth');
-    this.timeChange.emit(
-      formatWithLocale(this._time, this.format, this.locale)
+  }
+
+  private onDone() {
+    this.timeSelect.emit(
+      this._time
+        ? formatWithLocale(this._time, this.format, this.locale)
+        : undefined
     );
+  }
+
+  private onConfirm() {
+    if (this.pendingTime) {
+      this._time = this.pendingTime;
+      this.pendingTime = undefined;
+      this.timeChange.emit(
+        formatWithLocale(this._time, this.format, this.locale)
+      );
+    }
+
+    this.onDone();
+  }
+
+  private onCancel() {
+    this.pendingTime = undefined;
+    this.timeCancel.emit();
   }
 
   private updateDescriptorFocusedValue(
@@ -1480,27 +1562,20 @@ export class TimePicker extends Mixin(...DefaultMixins) {
             )}
           </div>
 
-          <div
-            class={{
-              footer: true,
-              'footer--compact': this.timePickerDescriptors.length <= 2,
-            }}
-            slot="footer"
-          >
-            <ix-button
-              class="confirm-button"
-              disabled={this.isConfirmDisabled()}
-              onClick={() => {
-                this.timeSelect.emit(
-                  this._time
-                    ? formatWithLocale(this._time, this.format, this.locale)
-                    : undefined
-                );
-              }}
-            >
-              {this.i18nConfirmTime}
-            </ix-button>
-          </div>
+          {!this.dateTimePickerAppearance && (
+            <ix-confirmation-footer
+              slot="footer"
+              layout={this.timePickerDescriptors.length <= 2 ? 'center' : 'end'}
+              requireConfirmation={this.requireConfirmation}
+              i18nDone={this.i18nConfirm}
+              i18nConfirm={this.i18nConfirm}
+              i18nCancel={this.i18nCancel}
+              primaryActionDisabled={this.isConfirmDisabled()}
+              onDoneClick={() => this.onDone()}
+              onConfirmClick={() => this.onConfirm()}
+              onCancelClick={() => this.onCancel()}
+            ></ix-confirmation-footer>
+          )}
         </ix-date-time-card>
       </Host>
     );

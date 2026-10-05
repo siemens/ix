@@ -308,6 +308,22 @@ export class TimeInput
   @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
 
   /**
+   * If true, a time picked in the dropdown is only applied after the user
+   * confirms it with the confirm button. The cancel button, pressing Escape
+   * or clicking outside the dropdown discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation: boolean = false;
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
+
+  /**
    * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -723,6 +739,10 @@ export class TimeInput
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show && this.requireConfirmation) {
+              this.timePickerRef.current?.discardPendingSelection();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.timePickerRef,
@@ -742,7 +762,13 @@ export class TimeInput
             millisecondInterval={this.millisecondInterval}
             embedded
             hideHeader={this.hideHeader}
-            i18nConfirmTime={this.i18nSelectTime}
+            i18nConfirm={this.i18nSelectTime}
+            i18nCancel={this.i18nCancel}
+            requireConfirmation={this.requireConfirmation}
+            onTimeCancel={(event: CustomEvent<void>) => {
+              event.stopPropagation();
+              this.show = false;
+            }}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}
             i18nSecondColumnHeader={this.i18nSecondColumnHeader}

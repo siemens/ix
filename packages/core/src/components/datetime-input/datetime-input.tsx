@@ -160,8 +160,22 @@ export class DatetimeInput
   /** Error message when datetime cannot be parsed */
   @Prop() i18nErrorDateTimeUnparsable: string = 'Date time is not valid';
 
-  /** Text for confirm button in picker (prop name matches datetime-picker) */
-  @Prop() i18nDone: string = 'Confirm';
+  /** Text for done button in picker (prop name matches datetime-picker) */
+  @Prop() i18nDone: string = 'Done';
+
+  /**
+   * Text for confirm button in picker when `requireConfirmation` is enabled
+   *
+   * @since 6.0.0
+   */
+  @Prop() i18nConfirm: string = 'Confirm';
+
+  /**
+   * Text for cancel button in picker when `requireConfirmation` is enabled
+   *
+   * @since 6.0.0
+   */
+  @Prop() i18nCancel: string = 'Cancel';
 
   /** Header text for time picker section */
   @Prop() i18nTime: string = 'Time';
@@ -194,6 +208,15 @@ export class DatetimeInput
    * Enable Popover API rendering for dropdown.
    */
   @Prop() enableTopLayer: boolean = false;
+
+  /**
+   * If true, a date and time picked in the dropdown are only applied after the
+   * user confirms them with the confirm button. The cancel button, pressing
+   * Escape or clicking outside the dropdown discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation: boolean = false;
 
   /** Emitted when the datetime value changes. Payload is display format or undefined */
   @Event() valueChange!: EventEmitter<string | undefined>;
@@ -821,6 +844,10 @@ export class DatetimeInput
           trigger={this.inputElementRef.waitForCurrent()}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show && this.requireConfirmation) {
+              this.datetimePickerRef.current?.discardPendingSelection();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.datetimePickerRef,
@@ -844,6 +871,9 @@ export class DatetimeInput
             embedded
             from={this.from ?? ''}
             i18nDone={this.i18nDone}
+            i18nConfirm={this.i18nConfirm}
+            i18nCancel={this.i18nCancel}
+            requireConfirmation={this.requireConfirmation}
             i18nTime={this.i18nTime}
             locale={this.locale}
             maxDate={this.maxDate}
@@ -857,6 +887,10 @@ export class DatetimeInput
             timeFormat={this.timeOnlyFormat}
             weekStartIndex={this.weekStartIndex}
             onDateSelect={this.handleDateSelect}
+            onDateCancel={(event) => {
+              event.stopPropagation();
+              this.closeDropdown();
+            }}
           ></ix-datetime-picker>
         </ix-dropdown>
       </Host>

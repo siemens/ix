@@ -36,6 +36,13 @@ export const DAYS_IN_WEEK = 7;
 /** Monday, the default first column. */
 const MONDAY = 0 as WeekdayIndex;
 
+export type DateRangeValue = {
+  from?: string;
+  to?: string;
+  isoFrom?: string;
+  isoTo?: string;
+};
+
 /**
  * Narrow the public `weekStartIndex` prop into a {@link WeekdayIndex}.
  *

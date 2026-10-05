@@ -6,17 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export type DateDropdownOption = {
+import type { DateRangeValue } from '../utils/calendar.util';
+
+export type DateDropdownOption = Pick<DateRangeValue, 'from' | 'to'> & {
   id: string;
   label: string;
-  from?: string;
-  to?: string;
 };
 
-export type DateRangeChangeEvent = {
+export type DateRangeChangeEvent = DateRangeValue & {
   id: string;
-  from?: string;
-  to?: string;
-  isoFrom?: string;
-  isoTo?: string;
 };

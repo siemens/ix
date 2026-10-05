@@ -167,26 +167,6 @@
     }
   }
 
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--ix-time-picker-footer--gap);
-    flex-wrap: wrap;
-
-    .confirm-button {
-      margin-left: auto;
-    }
-
-    &--compact {
-      flex-direction: column;
-      align-items: center;
-
-      .confirm-button {
-        margin-left: initial;
-      }
-    }
-  }
-
   .default-space {
     margin-left: var(--ix-time-picker-default-space--margin-left);
   }

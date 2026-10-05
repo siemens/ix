@@ -28,6 +28,11 @@ import type {
 } from './datetime-picker.types';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks';
+import type { DateRangeValue } from '../utils/calendar.util';
+
+type DatetimePickerSelection = Pick<DateRangeValue, 'from' | 'to'> & {
+  time?: string;
+};
 
 @Component({
   tag: 'ix-datetime-picker',
@@ -114,6 +119,29 @@ export class DatetimePicker
    * Text of the date select button.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
+
+  /**
+   * If true, a selection is only applied after the user confirms it with the
+   * confirm button. `dateChange` and `timeChange` are deferred until then,
+   * and the cancel button discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm: string = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
 
   /**
    * Top label of the time picker.
@@ -222,9 +250,29 @@ export class DatetimePicker
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 
+  /**
+   * Emitted when the pending selection is discarded via the cancel button.
+   * Only emitted when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Event() dateCancel!: EventEmitter<void>;
+
   private datePickerElement?: HTMLIxDatePickerElement;
   private timePickerElement?: HTMLIxTimePickerElement;
   @State() private selectedFromDate?: string;
+
+  /** Committed selection while `requireConfirmation` is enabled. */
+  @State() private actual: DatetimePickerSelection = {};
+
+  /**
+   * Changes made in the embedded pickers while `requireConfirmation` is
+   * enabled but not yet confirmed. `undefined` when there is nothing pending.
+   */
+  @State() private pending?: {
+    date?: DateTimeDateChangeEvent;
+    time?: string;
+  };
 
   private hasTimeConstraintsConfigured(): boolean {
     return !!(this.minTime?.trim() || this.maxTime?.trim());
@@ -243,6 +291,13 @@ export class DatetimePicker
   @Watch('from')
   watchFromPropHandler(value: string | undefined) {
     this.selectedFromDate = value;
+    this.resetActual();
+  }
+
+  @Watch('to')
+  @Watch('time')
+  watchSelectionPropHandler() {
+    this.resetActual();
   }
 
   @Watch('singleSelection')
@@ -262,7 +317,39 @@ export class DatetimePicker
 
   componentWillLoad() {
     this.selectedFromDate = this.from;
+    this.resetActual();
     this.warnIfRangeModeIgnoresTimeConstraints();
+  }
+
+  private resetActual() {
+    this.actual = { from: this.from, to: this.to, time: this.time };
+    this.pending = undefined;
+  }
+
+  /**
+   * Values passed to the embedded pickers: the props, or with
+   * `requireConfirmation` the pending selection on top of the committed one.
+   */
+  private get pickerSelection(): DatetimePickerSelection {
+    if (!this.requireConfirmation) {
+      return { from: this.from, to: this.to, time: this.time };
+    }
+
+    const { date, time } = this.pending ?? {};
+
+    return {
+      from: date === undefined ? this.actual.from : this.dateFrom(date),
+      to: date === undefined ? this.actual.to : this.dateTo(date),
+      time: time ?? this.actual.time,
+    };
+  }
+
+  private dateFrom(date: DateTimeDateChangeEvent): string | undefined {
+    return typeof date === 'string' ? date : date?.from;
+  }
+
+  private dateTo(date: DateTimeDateChangeEvent): string | undefined {
+    return typeof date === 'string' ? undefined : date?.to;
   }
 
   private get dateOnlyFormat(): string {
@@ -350,6 +437,44 @@ export class DatetimePicker
     };
   }
 
+  private async onConfirm() {
+    const pending = this.pending;
+
+    if (pending) {
+      this.actual = this.pickerSelection;
+      this.pending = undefined;
+
+      if (pending.date !== undefined) {
+        this.dateChange.emit(pending.date);
+      }
+
+      if (pending.time !== undefined) {
+        this.timeChange.emit(pending.time);
+      }
+    }
+
+    await this.onDone();
+  }
+
+  private onCancel() {
+    this.discardPending();
+    this.dateCancel.emit();
+  }
+
+  private discardPending() {
+    this.pending = undefined;
+    this.selectedFromDate = this.actual.from;
+  }
+
+  /**
+   * Discards a pending selection made while `requireConfirmation` is enabled.
+   * @internal
+   */
+  @Method()
+  async discardPendingSelection(): Promise<void> {
+    this.discardPending();
+  }
+
   private async onDone() {
     const date = await this.datePickerElement?.getCurrentDate();
     const time = await this.timePickerElement?.getCurrentTime();
@@ -370,11 +495,13 @@ export class DatetimePicker
     event.stopPropagation();
 
     const { detail: date } = event;
-    if (typeof date === 'string') {
-      this.selectedFromDate = date;
-    } else {
-      this.selectedFromDate = date?.from;
+    this.selectedFromDate = this.dateFrom(date);
+
+    if (this.requireConfirmation) {
+      this.pending = { ...this.pending, date };
+      return;
     }
+
     this.dateChange.emit(date);
   }
 
@@ -383,6 +510,12 @@ export class DatetimePicker
     event.stopPropagation();
 
     const { detail: time } = event;
+
+    if (this.requireConfirmation) {
+      this.pending = { ...this.pending, time };
+      return;
+    }
+
     this.timeChange.emit(time);
   }
 
@@ -400,6 +533,7 @@ export class DatetimePicker
 
   render() {
     const { minTime, maxTime } = this.getEffectiveTimeConstraints();
+    const selection = this.pickerSelection;
 
     return (
       <Host>
@@ -418,8 +552,14 @@ export class DatetimePicker
                   corners="left"
                   singleSelection={this.singleSelection}
                   onDateChange={(event) => this.onDateChange(event)}
-                  from={this.from}
-                  to={this.to}
+                  onDateRangeChange={(event) => {
+                    // Pending range changes must not leave the component
+                    if (this.requireConfirmation) {
+                      event.stopPropagation();
+                    }
+                  }}
+                  from={selection.from}
+                  to={selection.to}
                   format={this.dateFormat}
                   minDate={this.minDate}
                   maxDate={this.maxDate}
@@ -447,7 +587,7 @@ export class DatetimePicker
                   onTimeChange={(event) => this.onTimeChange(event)}
                   format={this.timeFormat}
                   locale={this.locale}
-                  time={this.time}
+                  time={selection.time}
                   minTime={minTime}
                   maxTime={maxTime}
                   i18nAm={this.i18nAm}
@@ -466,11 +606,17 @@ export class DatetimePicker
             </ix-row>
           </ix-layout-grid>
 
-          <div slot="footer" class="btn-select-date-container">
-            <ix-button class="btn-select-date" onClick={() => this.onDone()}>
-              {this.i18nDone}
-            </ix-button>
-          </div>
+          <ix-confirmation-footer
+            slot="footer"
+            layout="responsive"
+            requireConfirmation={this.requireConfirmation}
+            i18nDone={this.i18nDone}
+            i18nConfirm={this.i18nConfirm}
+            i18nCancel={this.i18nCancel}
+            onDoneClick={() => this.onDone()}
+            onConfirmClick={() => this.onConfirm()}
+            onCancelClick={() => this.onCancel()}
+          ></ix-confirmation-footer>
         </ix-date-time-card>
       </Host>
     );

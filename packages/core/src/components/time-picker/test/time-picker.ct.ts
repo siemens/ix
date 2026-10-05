@@ -7,20 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { DateTime } from 'luxon';
+import {
+  formatDateTime,
+  recordEvents,
+  regressionTest,
+  timePickerCell,
+  timePickerHourCell,
+} from '@utils/test';
 
 const TIME_PICKER_SELECTOR = 'ix-time-picker';
-
-function timePickerCell(
-  picker: Locator,
-  unit: 'hr' | 'min' | 'sec',
-  value: number
-) {
-  return picker.getByRole('option', {
-    name: `${unit}: ${value}`,
-    exact: true,
-  });
-}
 
 function timePickerUnitList(picker: Locator, unit: 'hr' | 'min' | 'sec') {
   return timePickerCell(picker, unit, 0).locator('..');
@@ -797,4 +793,181 @@ regressionTest.describe('time picker tests', () => {
       expect(await checkScrollAlignment(secondColumn)).toBe(true);
     }
   );
+});
+
+// Times used by the confirmation and disabled state tests.
+const TIME_FORMAT = 'HH:mm';
+const committedTime = DateTime.fromISO('2024-05-10T10:30');
+const pickedTime = committedTime.plus({ hours: 1 });
+const minTime = committedTime.set({ hour: 9, minute: 0 });
+const maxTime = committedTime.set({ hour: 17, minute: 0 });
+const beforeMinTime = minTime.minus({ hours: 1 });
+const withinRangeTime = minTime.plus({ hours: 1 });
+
+const formatTime = (time: DateTime) => formatDateTime(time, TIME_FORMAT);
+
+const mountTimePicker = async (
+  mount: (html: string) => Promise<unknown>,
+  page: Page,
+  time: DateTime,
+  attributes = ''
+) => {
+  await mount(
+    `<ix-time-picker format="${TIME_FORMAT}" time="${formatTime(time)}" ${attributes}></ix-time-picker>`
+  );
+  await expect(page.locator('ix-time-picker')).toHaveClass(/hydrated/);
+};
+
+const minMaxAttributes = `min-time="${formatTime(minTime)}" max-time="${formatTime(maxTime)}"`;
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountTimePicker(mount, page, committedTime, 'require-confirmation');
+  });
+
+  regressionTest(
+    'picking does not emit timeChange until confirmed',
+    async ({ page }) => {
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, [
+        'timeChange',
+        'timeSelect',
+        'timeCancel',
+      ]);
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+
+      await expect(timePickerHourCell(timePicker, pickedTime)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      expect(await events()).toEqual([]);
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBe(formatTime(committedTime));
+
+      await timePicker.getByTestId('confirm').click();
+
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: formatTime(pickedTime) },
+        { type: 'timeSelect', detail: formatTime(pickedTime) },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'cancel discards the pending time and emits timeCancel',
+    async ({ page }) => {
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, [
+        'timeChange',
+        'timeSelect',
+        'timeCancel',
+      ]);
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await timePicker.getByTestId('cancel').click();
+
+      await expect(
+        timePickerHourCell(timePicker, committedTime)
+      ).toHaveAttribute('aria-selected', 'true');
+      await expect(timePickerHourCell(timePicker, pickedTime)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([{ type: 'timeCancel', detail: null }]);
+    }
+  );
+});
+
+regressionTest.describe('require confirmation option', () => {
+  regressionTest(
+    'renders no cancel button without require confirmation',
+    async ({ mount, page }) => {
+      await mountTimePicker(mount, page, committedTime);
+      const timePicker = page.locator('ix-time-picker');
+
+      await expect(timePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        timePicker.getByRole('button', { name: 'Confirm' })
+      ).toBeVisible();
+    }
+  );
+});
+
+regressionTest.describe('confirm button disabled state', () => {
+  for (const requireConfirmation of [false, true]) {
+    regressionTest(
+      `follows the min/max time${requireConfirmation ? ' with require confirmation' : ''}`,
+      async ({ mount, page }) => {
+        await mountTimePicker(
+          mount,
+          page,
+          beforeMinTime,
+          `${minMaxAttributes}${requireConfirmation ? ' require-confirmation' : ''}`
+        );
+        const timePicker = page.locator('ix-time-picker');
+        const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+
+        await expect(confirm).toBeDisabled();
+
+        await timePickerHourCell(timePicker, withinRangeTime).click();
+
+        await expect(confirm).toBeEnabled();
+      }
+    );
+  }
+
+  regressionTest(
+    'cancel re-evaluates against the committed time',
+    async ({ mount, page }) => {
+      await mountTimePicker(
+        mount,
+        page,
+        beforeMinTime,
+        `${minMaxAttributes} require-confirmation`
+      );
+      const timePicker = page.locator('ix-time-picker');
+      const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+
+      await timePickerHourCell(timePicker, withinRangeTime).click();
+      await expect(confirm).toBeEnabled();
+
+      await timePicker.getByTestId('cancel').click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+});
+
+regressionTest.describe('footer layout', () => {
+  regressionTest(
+    'is centered with two columns or fewer',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-picker format="HH:mm"></ix-time-picker>`);
+      await expect(page.locator('ix-confirmation-footer')).toHaveClass(
+        /layout-center/
+      );
+    }
+  );
+
+  regressionTest(
+    'is aligned to the end with more columns',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-picker format="HH:mm:ss"></ix-time-picker>`);
+      await expect(page.locator('ix-confirmation-footer')).toHaveClass(
+        /layout-end/
+      );
+    }
+  );
+
+  regressionTest('uses i18nConfirm as label', async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm" i18n-confirm="Apply"></ix-time-picker>`
+    );
+    await expect(
+      page.locator('ix-time-picker').getByRole('button', { name: 'Apply' })
+    ).toBeVisible();
+  });
 });

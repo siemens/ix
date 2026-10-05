@@ -23,6 +23,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
+import { ConfirmationFooterLayout } from "./components/confirmation-footer/confirmation-footer.types";
 import { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
@@ -82,6 +83,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
+export { ConfirmationFooterLayout } from "./components/confirmation-footer/confirmation-footer.types";
 export { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
@@ -1044,6 +1046,42 @@ export namespace Components {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * Footer of the date and time pickers. Shows a single done button, or cancel
+     * and confirm buttons when `requireConfirmation` is enabled.
+     */
+    interface IxConfirmationFooter {
+        /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
+          * Text of the done button shown when `requireConfirmation` is disabled.
+          * @default 'Done'
+         */
+        "i18nDone": string;
+        /**
+          * Button layout: - `end`: buttons aligned to the end - `center`: buttons stacked and centered - `full-width`: buttons stretched across the full width - `responsive`: `end`, switching to `full-width` on small screens
+          * @default 'end'
+         */
+        "layout": ConfirmationFooterLayout;
+        /**
+          * Disable the done or confirm button.
+          * @default false
+         */
+        "primaryActionDisabled": boolean;
+        /**
+          * Show cancel and confirm buttons instead of the single done button.
+          * @default false
+         */
+        "requireConfirmation": boolean;
+    }
     interface IxContent {
     }
     interface IxContentHeader {
@@ -1157,6 +1195,18 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
           * Text for the done button. Will be used for translation.
           * @default 'Done'
          */
@@ -1185,6 +1235,12 @@ export namespace Components {
           * @default ''
          */
         "minDate": string;
+        /**
+          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button. The trigger label, `dateRangeChange` and `dateSelect` are deferred until then. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
@@ -1268,6 +1324,18 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
           * I18n string for the error message when the date is not parsable.
           * @default 'Date is not valid'
          */
@@ -1316,6 +1384,12 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * If true, changes require clicking confirm. Cancel, Escape or clicking outside all discard pending selections.  If false, changes are applied immediately without requiring confirmation.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Required attribute.
          */
@@ -1388,6 +1462,10 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * Discards a pending selection made while `requireConfirmation` is enabled and shows the month of the committed selection again.
+         */
+        "discardPendingSelection": () => Promise<void>;
+        /**
           * @default false
          */
         "embedded": boolean;
@@ -1414,6 +1492,18 @@ export namespace Components {
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
@@ -1434,6 +1524,12 @@ export namespace Components {
          */
         "minDate": string;
         "navigateCalendar": (direction: -1 | 1, byYear: boolean) => Promise<void>;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `dateRangeChange` are deferred until then, and the cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
@@ -1548,8 +1644,20 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-          * Text for confirm button in picker (prop name matches datetime-picker)
+          * Text for cancel button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text for confirm button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
           * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
+          * Text for done button in picker (prop name matches datetime-picker)
+          * @default 'Done'
          */
         "i18nDone": string;
         /**
@@ -1615,6 +1723,12 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
+          * If true, a date and time picked in the dropdown are only applied after the user confirms them with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
+        /**
           * Whether the field is required
           * @default false
          */
@@ -1675,6 +1789,10 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
+          * Discards a pending selection made while `requireConfirmation` is enabled.
+         */
+        "discardPendingSelection": () => Promise<void>;
+        /**
           * @default false
          */
         "embedded": boolean;
@@ -1690,6 +1808,18 @@ export namespace Components {
           * @default 'AM'
          */
         "i18nAm": string;
+        /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
         /**
           * Text of the date select button.
           * @default 'Done'
@@ -1753,6 +1883,12 @@ export namespace Components {
           * @since 5.0.0
          */
         "minTime"?: string;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Show AM/PM time reference control.
           * @default false
@@ -4487,6 +4623,12 @@ export namespace Components {
          */
         "i18nAm": string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -4583,6 +4725,12 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
+          * If true, a time picked in the dropdown is only applied after the user confirms it with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
+        /**
           * Required attribute.
          */
         "required"?: boolean;
@@ -4630,6 +4778,10 @@ export namespace Components {
          */
         "dateTimePickerAppearance": boolean;
         /**
+          * Discards a pending selection made while `requireConfirmation` is enabled.
+         */
+        "discardPendingSelection": () => Promise<void>;
+        /**
           * Embedded style (for use in other components).
           * @default false
          */
@@ -4666,10 +4818,17 @@ export namespace Components {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
           * Text of the time confirm button.
+          * @since 6.0.0
           * @default 'Confirm'
          */
-        "i18nConfirmTime": string;
+        "i18nConfirm": string;
         /**
           * Text for the top header.
           * @default 'Time'
@@ -4727,6 +4886,12 @@ export namespace Components {
           * @default 1
          */
         "minuteInterval": number;
+        /**
+          * If true, a selected time is only applied after the user confirms it with the confirm button. `timeChange` is deferred until then, and the cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Interval for second selection.
           * @since 3.2.0
@@ -5166,6 +5331,10 @@ export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
 export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
+}
+export interface IxConfirmationFooterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxConfirmationFooterElement;
 }
 export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -5708,6 +5877,29 @@ declare global {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
     };
+    interface HTMLIxConfirmationFooterElementEventMap {
+        "doneClick": void;
+        "confirmClick": void;
+        "cancelClick": void;
+    }
+    /**
+     * Footer of the date and time pickers. Shows a single done button, or cancel
+     * and confirm buttons when `requireConfirmation` is enabled.
+     */
+    interface HTMLIxConfirmationFooterElement extends Components.IxConfirmationFooter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxConfirmationFooterElementEventMap>(type: K, listener: (this: HTMLIxConfirmationFooterElement, ev: IxConfirmationFooterCustomEvent<HTMLIxConfirmationFooterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxConfirmationFooterElementEventMap>(type: K, listener: (this: HTMLIxConfirmationFooterElement, ev: IxConfirmationFooterCustomEvent<HTMLIxConfirmationFooterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxConfirmationFooterElement: {
+        prototype: HTMLIxConfirmationFooterElement;
+        new (): HTMLIxConfirmationFooterElement;
+    };
     interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
     }
     var HTMLIxContentElement: {
@@ -5751,6 +5943,7 @@ declare global {
     };
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
+        "dateSelect": DateRangeChangeEvent;
     }
     interface HTMLIxDateDropdownElement extends Components.IxDateDropdown, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateDropdownElementEventMap>(type: K, listener: (this: HTMLIxDateDropdownElement, ev: IxDateDropdownCustomEvent<HTMLIxDateDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5794,6 +5987,7 @@ declare global {
         "dateChange": DateChangeEvent;
         "dateRangeChange": DateChangeEvent;
         "dateSelect": DateChangeEvent;
+        "dateCancel": void;
     }
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatePickerElementEventMap>(type: K, listener: (this: HTMLIxDatePickerElement, ev: IxDatePickerCustomEvent<HTMLIxDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5844,6 +6038,7 @@ declare global {
         "timeChange": string;
         "dateChange": DateTimeDateChangeEvent;
         "dateSelect": DateTimeSelectEvent;
+        "dateCancel": void;
     }
     interface HTMLIxDatetimePickerElement extends Components.IxDatetimePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatetimePickerElementEventMap>(type: K, listener: (this: HTMLIxDatetimePickerElement, ev: IxDatetimePickerCustomEvent<HTMLIxDatetimePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6853,6 +7048,7 @@ declare global {
     interface HTMLIxTimePickerElementEventMap {
         "timeSelect": string;
         "timeChange": string;
+        "timeCancel": void;
     }
     interface HTMLIxTimePickerElement extends Components.IxTimePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimePickerElementEventMap>(type: K, listener: (this: HTMLIxTimePickerElement, ev: IxTimePickerCustomEvent<HTMLIxTimePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7057,6 +7253,7 @@ declare global {
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
+        "ix-confirmation-footer": HTMLIxConfirmationFooterElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
@@ -8171,6 +8368,54 @@ declare namespace LocalJSX {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * Footer of the date and time pickers. Shows a single done button, or cancel
+     * and confirm buttons when `requireConfirmation` is enabled.
+     */
+    interface IxConfirmationFooter {
+        /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
+          * Text of the done button shown when `requireConfirmation` is disabled.
+          * @default 'Done'
+         */
+        "i18nDone"?: string;
+        /**
+          * Button layout: - `end`: buttons aligned to the end - `center`: buttons stacked and centered - `full-width`: buttons stretched across the full width - `responsive`: `end`, switching to `full-width` on small screens
+          * @default 'end'
+         */
+        "layout"?: ConfirmationFooterLayout;
+        /**
+          * Emitted when the cancel button is clicked. Does not bubble outside parent's shadow root.
+         */
+        "onCancelClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
+        /**
+          * Emitted when the confirm button is clicked (`requireConfirmation` enabled). Does not bubble outside parent's shadow root.
+         */
+        "onConfirmClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
+        /**
+          * Emitted when the done button is clicked (`requireConfirmation` disabled). Does not bubble outside parent's shadow root.
+         */
+        "onDoneClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
+        /**
+          * Disable the done or confirm button.
+          * @default false
+         */
+        "primaryActionDisabled"?: boolean;
+        /**
+          * Show cancel and confirm buttons instead of the single done button.
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
+    }
     interface IxContent {
     }
     interface IxContentHeader {
@@ -8284,6 +8529,18 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * Text for the done button. Will be used for translation.
           * @default 'Done'
          */
@@ -8316,6 +8573,17 @@ declare namespace LocalJSX {
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
+        /**
+          * Emitted when the user selects a date range.  If `requireConfirmation` is enabled, this event is only emitted when the selection is confirmed with the confirm button. Otherwise it is emitted for every date or predefined range picked in the dropdown and when the dropdown is closed. It is not emitted for programmatic changes.
+          * @since 6.0.0
+         */
+        "onDateSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
+        /**
+          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button. The trigger label, `dateRangeChange` and `dateSelect` are deferred until then. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
@@ -8392,6 +8660,18 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * I18n string for the error message when the date is not parsable.
           * @default 'Date is not valid'
          */
@@ -8450,6 +8730,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * If true, changes require clicking confirm. Cancel, Escape or clicking outside all discard pending selections.  If false, changes are applied immediately without requiring confirmation.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Required attribute.
          */
@@ -8541,6 +8827,18 @@ declare namespace LocalJSX {
          */
         "from"?: string | undefined;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
@@ -8560,6 +8858,11 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
+          * Emitted when the pending selection is discarded via the cancel button. Only emitted when `requireConfirmation` is enabled.
+          * @since 6.0.0
+         */
+        "onDateCancel"?: (event: IxDatePickerCustomEvent<void>) => void;
+        /**
           * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
@@ -8571,6 +8874,12 @@ declare namespace LocalJSX {
           * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `dateRangeChange` are deferred until then, and the cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
@@ -8668,8 +8977,20 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-          * Text for confirm button in picker (prop name matches datetime-picker)
+          * Text for cancel button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text for confirm button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
           * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
+          * Text for done button in picker (prop name matches datetime-picker)
+          * @default 'Done'
          */
         "i18nDone"?: string;
         /**
@@ -8750,6 +9071,12 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
+          * If true, a date and time picked in the dropdown are only applied after the user confirms them with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
+        /**
           * Whether the field is required
           * @default false
          */
@@ -8824,6 +9151,18 @@ declare namespace LocalJSX {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
@@ -8887,6 +9226,11 @@ declare namespace LocalJSX {
          */
         "minTime"?: string;
         /**
+          * Emitted when the pending selection is discarded via the cancel button. Only emitted when `requireConfirmation` is enabled.
+          * @since 6.0.0
+         */
+        "onDateCancel"?: (event: IxDatetimePickerCustomEvent<void>) => void;
+        /**
           * Date change event. Emitted when the date changes in the embedded date picker.
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
@@ -8898,6 +9242,12 @@ declare namespace LocalJSX {
           * Time change event. Emitted when the time changes in the embedded time picker.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Show AM/PM time reference control.
           * @default false
@@ -11826,6 +12176,12 @@ declare namespace LocalJSX {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -11932,6 +12288,12 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
+          * If true, a time picked in the dropdown is only applied after the user confirms it with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
+        /**
           * Required attribute.
          */
         "required"?: boolean;
@@ -12006,10 +12368,17 @@ declare namespace LocalJSX {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
           * Text of the time confirm button.
+          * @since 6.0.0
           * @default 'Confirm'
          */
-        "i18nConfirmTime"?: string;
+        "i18nConfirm"?: string;
         /**
           * Text for the top header.
           * @default 'Time'
@@ -12068,6 +12437,11 @@ declare namespace LocalJSX {
          */
         "minuteInterval"?: number;
         /**
+          * Emitted when the pending selection is discarded via the cancel button. Only emitted when `requireConfirmation` is enabled.
+          * @since 6.0.0
+         */
+        "onTimeCancel"?: (event: IxTimePickerCustomEvent<void>) => void;
+        /**
           * Time change event. Emitted when the selected time changes while interacting with the picker.
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
@@ -12075,6 +12449,12 @@ declare namespace LocalJSX {
           * Time event. Emitted when the user confirms the selected time.
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
+        /**
+          * If true, a selected time is only applied after the user confirms it with the confirm button. `timeChange` is deferred until then, and the cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Interval for second selection.
           * @since 3.2.0
@@ -12691,6 +13071,14 @@ declare namespace LocalJSX {
         "sizeMd": ColumnSize;
         "sizeLg": ColumnSize;
     }
+    interface IxConfirmationFooterAttributes {
+        "requireConfirmation": boolean;
+        "i18nDone": string;
+        "i18nConfirm": string;
+        "i18nCancel": string;
+        "primaryActionDisabled": boolean;
+        "layout": ConfirmationFooterLayout;
+    }
     interface IxContentHeaderAttributes {
         "variant": ContentHeaderVariant;
         "headerTitle": string;
@@ -12727,6 +13115,9 @@ declare namespace LocalJSX {
         "weekStartIndex": number;
         "i18nDone": string;
         "i18nNoRange": string;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "today": string;
         "enableTopLayer": boolean;
     }
@@ -12757,6 +13148,9 @@ declare namespace LocalJSX {
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
     }
     interface IxDatePickerAttributes {
         "format": string;
@@ -12767,6 +13161,9 @@ declare namespace LocalJSX {
         "minDate": string;
         "maxDate": string;
         "i18nDone": string;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
         "ariaLabelMonthSelection": string;
@@ -12808,6 +13205,8 @@ declare namespace LocalJSX {
         "showTextAsTooltip": boolean;
         "i18nErrorDateTimeUnparsable": string;
         "i18nDone": string;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "i18nTime": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
@@ -12817,6 +13216,7 @@ declare namespace LocalJSX {
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
+        "requireConfirmation": boolean;
     }
     interface IxDatetimePickerAttributes {
         "singleSelection": boolean;
@@ -12832,6 +13232,9 @@ declare namespace LocalJSX {
         "showTimeReference": boolean;
         "timeReference": 'AM' | 'PM';
         "i18nDone": string;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "i18nTime": string;
         "i18nAm": string;
         "i18nPm": string;
@@ -13501,6 +13904,8 @@ declare namespace LocalJSX {
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
         "ariaLabelTimeToggleButton": string;
+        "requireConfirmation": boolean;
+        "i18nCancel": string;
     }
     interface IxTimePickerAttributes {
         "format": string;
@@ -13516,7 +13921,9 @@ declare namespace LocalJSX {
         "time": string;
         "minTime": string;
         "maxTime": string;
-        "i18nConfirmTime": string;
+        "i18nConfirm": string;
+        "requireConfirmation": boolean;
+        "i18nCancel": string;
         "i18nHeader": string;
         "i18nHourColumnHeader": string;
         "i18nMinuteColumnHeader": string;
@@ -13637,6 +14044,7 @@ declare namespace LocalJSX {
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
         "ix-col": Omit<IxCol, keyof IxColAttributes> & { [K in keyof IxCol & keyof IxColAttributes]?: IxCol[K] } & { [K in keyof IxCol & keyof IxColAttributes as `attr:${K}`]?: IxColAttributes[K] } & { [K in keyof IxCol & keyof IxColAttributes as `prop:${K}`]?: IxCol[K] };
+        "ix-confirmation-footer": Omit<IxConfirmationFooter, keyof IxConfirmationFooterAttributes> & { [K in keyof IxConfirmationFooter & keyof IxConfirmationFooterAttributes]?: IxConfirmationFooter[K] } & { [K in keyof IxConfirmationFooter & keyof IxConfirmationFooterAttributes as `attr:${K}`]?: IxConfirmationFooterAttributes[K] } & { [K in keyof IxConfirmationFooter & keyof IxConfirmationFooterAttributes as `prop:${K}`]?: IxConfirmationFooter[K] };
         "ix-content": IxContent;
         "ix-content-header": Omit<IxContentHeader, keyof IxContentHeaderAttributes> & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes]?: IxContentHeader[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `attr:${K}`]?: IxContentHeaderAttributes[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `prop:${K}`]?: IxContentHeader[K] };
         "ix-css-grid": IxCssGrid;
@@ -13798,6 +14206,11 @@ declare module "@stencil/core" {
             "ix-checkbox-group": LocalJSX.IntrinsicElements["ix-checkbox-group"] & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IntrinsicElements["ix-chip"] & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             "ix-col": LocalJSX.IntrinsicElements["ix-col"] & JSXBase.HTMLAttributes<HTMLIxColElement>;
+            /**
+             * Footer of the date and time pickers. Shows a single done button, or cancel
+             * and confirm buttons when `requireConfirmation` is enabled.
+             */
+            "ix-confirmation-footer": LocalJSX.IntrinsicElements["ix-confirmation-footer"] & JSXBase.HTMLAttributes<HTMLIxConfirmationFooterElement>;
             "ix-content": LocalJSX.IntrinsicElements["ix-content"] & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             "ix-content-header": LocalJSX.IntrinsicElements["ix-content-header"] & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IntrinsicElements["ix-css-grid"] & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;

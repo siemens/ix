@@ -46,16 +46,6 @@
   @media (min-width: 576px) {
     min-width: max-content;
 
-    .btn-select-date-container {
-      display: inline-flex;
-      flex-grow: 1;
-
-      ix-button {
-        margin-left: auto;
-        margin-top: auto;
-      }
-    }
-
     .min-width {
       width: min-content;
     }
@@ -74,16 +64,5 @@
   .individual {
     box-shadow: none;
     border: none;
-  }
-
-  .btn-select-date-container {
-    display: flex;
-    justify-content: flex-end;
-
-    @media (max-width: 576px) {
-      & .btn-select-date {
-        width: 100%;
-      }
-    }
   }
 }

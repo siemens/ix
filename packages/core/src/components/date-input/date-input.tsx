@@ -242,6 +242,30 @@ export class DateInput
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * If true, changes require clicking confirm.
+   * Cancel, Escape or clicking outside all discard pending selections.
+   *
+   * If false, changes are applied immediately without requiring confirmation.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation: boolean = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm: string = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
+
+  /**
    * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -334,6 +358,10 @@ export class DateInput
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+  }
+
+  private discardPendingSelection() {
+    this.datepickerRef.current?.discardPendingSelection();
   }
 
   @Watch('value')
@@ -596,6 +624,10 @@ export class DateInput
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show && this.requireConfirmation) {
+              this.discardPendingSelection();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.datepickerRef,
@@ -622,6 +654,18 @@ export class DateInput
                 this.ixChange.emit(from);
                 this.initialValue = from;
               }
+            }}
+            requireConfirmation={this.requireConfirmation}
+            i18nConfirm={this.i18nConfirm}
+            i18nCancel={this.i18nCancel}
+            onDateSelect={(event) => {
+              // With requireConfirmation the value is committed by the dateChange emitted on confirm
+              event.stopPropagation();
+              this.closeDropdown();
+            }}
+            onDateCancel={(event) => {
+              event.stopPropagation();
+              this.closeDropdown();
             }}
             showWeekNumbers={this.showWeekNumbers}
             weekStartIndex={this.weekStartIndex}

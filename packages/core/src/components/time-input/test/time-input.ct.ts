@@ -6,8 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { expect, Page } from '@playwright/test';
+import { DateTime } from 'luxon';
+import {
+  createDropdownPickerAccessor,
+  formatDateTime,
+  mountHydrated,
+  PENDING_SELECTION_DISMISSALS,
+  recordEvents,
+  regressionTest,
+  tabUntilFocused,
+  timePickerHourCell,
+} from '@utils/test';
 
 type HTMLIxTimeInputElement = HTMLElement & {
   value: string;
@@ -466,5 +476,125 @@ regressionTest.describe(
         await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
       }
     );
+  }
+);
+
+// Times used by the confirmation tests.
+const TIME_FORMAT = 'HH:mm';
+const committedTime = DateTime.fromISO('2024-05-10T10:30');
+const pickedTime = committedTime.plus({ hours: 1 });
+
+const formatTime = (time: DateTime) => formatDateTime(time, TIME_FORMAT);
+
+const timeInputAccessor = (page: Page) =>
+  createDropdownPickerAccessor(page, {
+    host: 'ix-time-input',
+    trigger: (host) => host.getByTestId('open-time-picker'),
+    dropdown: (host) => host.getByTestId('time-dropdown'),
+  });
+
+const hourCell = (page: Page, time: DateTime) =>
+  timePickerHourCell(page.locator('ix-time-input ix-time-picker'), time);
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      value: formatTime(committedTime),
+      format: TIME_FORMAT,
+      'require-confirmation': true,
+    });
+  });
+
+  regressionTest('confirm applies the picked time', async ({ page }) => {
+    const timeInput = timeInputAccessor(page);
+    const events = await recordEvents(timeInput.host, [
+      'valueChange',
+      'ixChange',
+      'timeChange',
+    ]);
+
+    await timeInput.open();
+    await hourCell(page, pickedTime).click();
+
+    await expect(timeInput.host.locator('input')).toHaveValue(
+      formatTime(committedTime)
+    );
+    expect(await events()).toEqual([]);
+
+    await timeInput.host.getByTestId('confirm').click();
+
+    await timeInput.expectClosed();
+    await expect(timeInput.host.locator('input')).toHaveValue(
+      formatTime(pickedTime)
+    );
+    expect(await events()).toContainEqual({
+      type: 'valueChange',
+      detail: formatTime(pickedTime),
+    });
+    expect(await events()).toContainEqual({
+      type: 'ixChange',
+      detail: formatTime(pickedTime),
+    });
+  });
+
+  regressionTest('cancel is reachable by keyboard', async ({ page }) => {
+    const timeInput = timeInputAccessor(page);
+
+    await timeInput.open();
+    await hourCell(page, pickedTime).click();
+    await tabUntilFocused(page, 'Cancel');
+    await page.keyboard.press('Enter');
+
+    await timeInput.expectClosed();
+    await expect(timeInput.host.locator('input')).toHaveValue(
+      formatTime(committedTime)
+    );
+  });
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} discards the picked time`,
+      async ({ page }) => {
+        const timeInput = timeInputAccessor(page);
+        const events = await recordEvents(timeInput.host, [
+          'valueChange',
+          'ixChange',
+        ]);
+
+        await timeInput.open();
+        await hourCell(page, pickedTime).click();
+        await timeInput.dismiss(dismissal);
+
+        await timeInput.expectClosed();
+        await expect(timeInput.host.locator('input')).toHaveValue(
+          formatTime(committedTime)
+        );
+        expect(await events()).toEqual([]);
+
+        await timeInput.open();
+        await expect(hourCell(page, committedTime)).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
+        await expect(hourCell(page, pickedTime)).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+      }
+    );
+  }
+});
+
+regressionTest(
+  'renders no cancel button without require confirmation',
+  async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      value: formatTime(committedTime),
+      format: TIME_FORMAT,
+    });
+    const timeInput = timeInputAccessor(page);
+
+    await timeInput.open();
+    await expect(timeInput.host.getByTestId('cancel')).toHaveCount(0);
   }
 );
