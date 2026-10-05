@@ -1,0 +1,44 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+
+@use './confirmation-footer.vars' as *;
+
+@mixin full-width {
+  width: 100%;
+
+  ix-button {
+    flex: 1 1 0;
+  }
+}
+
+:host {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--ix-confirmation-footer--gap);
+
+  @include component.ix-component;
+}
+
+:host(.layout-center) {
+  flex-direction: column;
+  align-items: center;
+}
+
+:host(.layout-full-width) {
+  @include full-width;
+}
+
+@media (max-width: 576px) {
+  :host(.layout-responsive) {
+    @include full-width;
+  }
+}
