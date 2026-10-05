@@ -1,0 +1,79 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date dropdown require confirmation example</title>
+    <link rel="stylesheet" href="./date-dropdown-require-confirmation.css" />
+  </head>
+  <body>
+    <div class="require-confirmation">
+      <ix-toggle
+        aria-label="Require confirmation"
+        text-on="Require confirmation: on"
+        text-off="Require confirmation: off"
+      ></ix-toggle>
+      <ix-typography class="description"></ix-typography>
+      <ix-date-dropdown from="2026/10/05" to="2026/10/09"></ix-date-dropdown>
+      <ix-typography format="label"
+        >Emitted events (latest first)</ix-typography
+      >
+      <ul class="event-log"></ul>
+    </div>
+
+    <script>
+      const descriptions = {
+        off: 'The range picked in the dropdown is applied when you click Done or when the dropdown closes, including when you click outside it.',
+        on: 'The range picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it.',
+      };
+
+      const component = document.querySelector('ix-date-dropdown');
+      const description = document.querySelector('.description');
+      const eventLog = document.querySelector('.event-log');
+      let requireConfirmation = false;
+      let events = [];
+
+      function render() {
+        description.textContent = requireConfirmation
+          ? descriptions.on
+          : descriptions.off;
+        eventLog.replaceChildren(
+          ...events.map((text) => {
+            const item = document.createElement('li');
+            item.textContent = text;
+            return item;
+          })
+        );
+      }
+
+      document
+        .querySelector('ix-toggle')
+        .addEventListener('checkedChange', (event) => {
+          requireConfirmation = event.detail;
+          component.requireConfirmation = requireConfirmation;
+          events = [];
+          render();
+        });
+
+      ['dateRangeChange', 'dateSelect'].forEach((name) =>
+        component.addEventListener(name, (event) => {
+          const detail = JSON.stringify(event.detail) ?? '';
+          events = [`${name}: ${detail}`, ...events].slice(0, 5);
+          render();
+        })
+      );
+
+      render();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
