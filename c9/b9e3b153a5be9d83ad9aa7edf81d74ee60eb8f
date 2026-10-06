@@ -1,0 +1,16 @@
+packages/core/package.json
+  h_c5a773bf2fda8b 188
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 196-198,908-910,1160-1162
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c9b9e3b153a5be9d83ad9aa7edf81d74ee60eb8f",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
