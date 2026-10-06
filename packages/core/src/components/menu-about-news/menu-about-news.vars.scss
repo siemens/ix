@@ -17,3 +17,28 @@
   --ix-menu-about-news-body--color: #{sys.$si-sys-color-text-primary};
   --ix-menu-about-news--z-index: var(--theme-z-index-sticky);
 }
+
+:host {
+  --ix-menu-about-news--left: calc(
+    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} + #{sys.$si-sys-sizing-spacing-x-10} *
+      0.2
+  );
+  --ix-menu-about-news--expanded-left-offset: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
+      0.8
+  );
+  --ix-menu-about-news--margin: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-menu-about-news--width: calc(#{sys.$si-sys-sizing-size-90} * 8);
+  --ix-menu-about-news--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-menu-about-news--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-menu-about-news-banner-container--left: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-menu-about-news-icon--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-menu-about-news-cui-popover-news-header--margin-bottom: #{sys.$si-sys-sizing-spacing-y-100};
+  --ix-menu-about-news-cui-popover-news-header--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-120};
+  --ix-menu-about-news-cui-popover-news-header--margin-block-start: calc(
+    -1 * #{sys.$si-sys-sizing-spacing-y-20}
+  );
+  --ix-menu-about-news-cui-popover-news-footer--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-menu-about-news-icon--top: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-menu-about-news-icon--right: #{sys.$si-sys-sizing-spacing-x-40};
+}

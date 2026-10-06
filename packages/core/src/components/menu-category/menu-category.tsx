@@ -252,6 +252,10 @@ export class MenuCategory
 
       if (ref) {
         dropdownController.dismiss(ref);
+
+        if (!ref.isPresent()) {
+          this.showDropdown = false;
+        }
       }
     }
   }
@@ -615,7 +619,7 @@ export class MenuCategory
             aria-hidden="true"
             suppressChecked
           >
-            <ix-typography format="label" bold textColor="std">
+            <ix-typography format="body" bold textColor="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

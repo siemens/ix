@@ -10,17 +10,20 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
+@use 'tokens/system' as sys;
 
 @use './group.vars' as *;
 
 $header-height: 4rem;
+$header-height: var(--ix-group--header-height);
+$header-height-focus-visible: calc($header-height - 2px);
 
 :host {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 19.75rem;
-  min-width: 12rem;
+  width: var(--ix-group--width);
+  min-width: var(--ix-group--min-width);
   border-color: var(--ix-group-item--border-color);
 
   @include text-truncation.ellipsis;
@@ -50,6 +53,29 @@ $header-height: 4rem;
         background-color: var(--ix-group-item--background--selected);
       }
     }
+
+    //@include hover.focus-visible {
+    //  height: $header-height-focus-visible;
+    //  min-height: $header-height-focus-visible;
+    //
+    //  border: 1px solid var(--ix-group-header--border-color--focus);
+    //  border-radius: var(--ix-group-header--border-radius--focus)
+    //    var(--ix-group-header--border-radius--focus) 0px 0px;
+    //  outline: none;
+    //
+    //  .group-header-selection-indicator {
+    //    width: var(--ix-group-header-selection-indicator--width--focus);
+    //  }
+    //
+    //  .group-header-content {
+    //    padding: var(--ix-group-header-content--padding--focus);
+    //  }
+    //
+    //  .btn-expand-header {
+    //    margin-top: var(--ix-group-button-expand-header--margin-top);
+    //    margin-bottom: var(--ix-group-button-expand-header--margin-bottom);
+    //  }
+    //}
 
     &.selected {
       background-color: var(--ix-group-item--background--selected);
@@ -83,7 +109,7 @@ $header-height: 4rem;
   }
 
   .group-header-selection-indicator {
-    width: vars.$tiny-space;
+    width: var(--ix-group-header-selection-indicator--width);
     border-top-left-radius: var(--ix-group--border-radius);
   }
 
@@ -122,7 +148,7 @@ $header-height: 4rem;
     min-width: 0;
     flex-grow: 1;
     flex-basis: 0;
-    padding: 0.5rem;
+    padding: var(--ix-group-header-content--padding);
     padding-left: 0;
 
     @include text-truncation.ellipsis;
@@ -134,9 +160,8 @@ $header-height: 4rem;
     .group-header-title {
       display: flex;
       align-items: center;
-      font-size: 1rem;
-      font-weight: vars.$font-weight-bold;
-      height: 1.5rem;
+      font: var(--ix-group-header--font);
+      height: var(--ix-group-header-title--height);
 
       & > * {
         min-width: 0;
@@ -147,8 +172,8 @@ $header-height: 4rem;
     }
 
     .group-subheader {
-      height: 1.25rem;
-      font-size: 0.875rem;
+      height: var(--ix-group-subheader--height);
+      font: var(--ix-group-subheader--font);
       color: var(--ix-group-subheader--color);
 
       @include text-truncation.ellipsis();
@@ -156,30 +181,42 @@ $header-height: 4rem;
   }
 
   .expand-icon {
-    padding: 0.125rem 0.437rem;
+    padding: var(--ix-group-expand-icon--padding);
     color: var(--ix-group-expand-icon--color);
   }
 
   .btn-expand-header {
-    appearance: none;
-    display: flex;
-    align-items: flex-start;
-    align-self: flex-start;
-    order: -1;
-    margin: vars.$small-space;
-    margin-inline-end: vars.$small-space;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: inherit;
-    line-height: 0;
-    cursor: pointer;
-    border-radius: var(--ix-group-header--border-radius--focus);
+    margin: var(--ix-group-button-expand-header--margin);
+    margin-inline-end: var(--ix-group-button-expand-header--margin-inline-end);
+    min-width: var(--ix-group-button-expand-header--min-width);
 
-    @include hover.focus-visible {
-      outline: 1px solid var(--ix-group-header--border-color--focus);
-      outline-offset: -1px;
+    ix-icon:not([size]) {
+      block-size: var(--ix-group-icon--icon-size);
+      inline-size: var(--ix-group-icon--icon-size);
+      min-block-size: var(--ix-group-icon--icon-size);
+      min-inline-size: var(--ix-group-icon--icon-size);
     }
+
+    //.btn-expand-header {
+    //  appearance: none;
+    //  display: flex;
+    //  align-items: flex-start;
+    //  align-self: flex-start;
+    //  order: -1;
+    //  margin: vars.$small-space;
+    //  margin-inline-end: vars.$small-space;
+    //  padding: 0;
+    //  border: none;
+    //  background: transparent;
+    //  color: inherit;
+    //  line-height: 0;
+    //  cursor: pointer;
+    //  border-radius: var(--ix-group-header--border-radius--focus);
+    //
+    //  @include hover.focus-visible {
+    //    outline: 1px solid var(--ix-group-header--border-color--focus);
+    //    outline-offset: -1px;
+    //  }
   }
 
   .group-content {

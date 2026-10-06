@@ -49,3 +49,11 @@
   --ix-flip-tile-warning-footer--border-color: rgba(0, 0, 0, 0);
   --ix-flip-tile-warning-footer--color: #{sys.$si-sys-color-text-on-warning};
 }
+
+:host {
+  --ix-flip-tile-header--height: #{sys.$si-sys-sizing-size-90};
+  --ix-flip-tile-header--padding: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-flip-tile-content-container--margin: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-flip-tile-footer--height: #{sys.$si-sys-sizing-size-100};
+  --ix-flip-tile-footer--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+}

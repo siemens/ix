@@ -16,3 +16,17 @@
   --ix-modal--color: #{sys.$si-sys-color-text-primary};
   --ix-modal--background: #{sys.$si-sys-color-background-3};
 }
+
+:host {
+  --ix-modal--dialog-padding: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-modal-extra-small--width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-100}
+  );
+  --ix-modal-small--width: #{sys.$si-sys-sizing-size-180};
+  --ix-modal-medium--width: #{sys.$si-sys-sizing-size-190};
+  --ix-modal-large--width: #{sys.$si-sys-sizing-size-200};
+  --ix-modal-extra-large--width: calc(
+    #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-140} + #{sys.$si-sys-sizing-spacing-x-80}
+  );
+  --ix-modal-with-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-110};
+}

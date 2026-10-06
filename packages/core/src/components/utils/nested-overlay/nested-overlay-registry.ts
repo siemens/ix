@@ -11,6 +11,7 @@ import {
   buildComposedPath,
   buildPathIncluding,
   ChildIdsByParent,
+  getParentId as findParentId,
   removeIdFromHierarchy,
 } from './hierarchy';
 import { DismissAllOptions, OverlayDismissPolicy } from './types';
@@ -19,7 +20,7 @@ export interface OverlayInstanceBase {
   getId(): string;
 }
 
-export class NestedOverlayStack<T extends OverlayInstanceBase> {
+export class NestedOverlayRegistry<T extends OverlayInstanceBase> {
   private readonly instances = new Map<string, T>();
   private readonly childIdsByParent: ChildIdsByParent = {};
 
@@ -55,7 +56,25 @@ export class NestedOverlayStack<T extends OverlayInstanceBase> {
   }
 
   setChildIds(parentId: string, childIds: string[]): void {
-    this.childIdsByParent[parentId] = childIds;
+    const pendingIds = [...childIds];
+    const visitedIds = new Set<string>();
+
+    for (const childId of pendingIds) {
+      if (childId === parentId) {
+        throw new Error(
+          `Cannot assign children to overlay "${parentId}": cyclic hierarchy.`
+        );
+      }
+
+      if (visitedIds.has(childId)) {
+        continue;
+      }
+
+      visitedIds.add(childId);
+      pendingIds.push(...this.getChildIds(childId));
+    }
+
+    this.childIdsByParent[parentId] = [...childIds];
   }
 
   deleteChildIdsEntry(parentId: string): void {
@@ -63,11 +82,11 @@ export class NestedOverlayStack<T extends OverlayInstanceBase> {
   }
 
   getChildIds(parentId: string): string[] {
-    return this.childIdsByParent[parentId] || [];
+    return [...(this.childIdsByParent[parentId] || [])];
   }
 
-  getChildIdsByParent(): ChildIdsByParent {
-    return this.childIdsByParent;
+  getParentId(childId: string): string | undefined {
+    return findParentId(childId, this.childIdsByParent);
   }
 
   removeFromHierarchy(id: string): void {
@@ -130,8 +149,9 @@ export class NestedOverlayStack<T extends OverlayInstanceBase> {
     });
   }
 
-  dismissOthers(activeId: string): void {
+  dismissOthers(activeId: string, relatedIds: string[] = []): void {
     const path = this.buildPathIncluding(activeId);
+    relatedIds.forEach((id) => path.add(id));
 
     this.forEach((instance) => {
       if (

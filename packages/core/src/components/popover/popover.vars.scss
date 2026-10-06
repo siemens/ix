@@ -28,3 +28,15 @@
   --ix-popover-close-button--background--active: #{sys.$si-sys-color-background-selected};
   --ix-popover-close-button--background--hover: #{sys.$si-sys-color-background-hover};
 }
+
+:host {
+  --ix-popover-dialog--width: calc(
+    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-130}
+  );
+  --ix-popover-dialog--min-width: #{sys.$si-sys-sizing-size-160};
+  --ix-popover-dialog--max-width: #{sys.$si-sys-sizing-size-190};
+  --ix-popover-dialog--max-height: calc(100vh - #{sys.$si-sys-sizing-size-80});
+  --ix-popover-container--max-height: calc(
+    100vh - #{sys.$si-sys-sizing-size-80}
+  );
+}

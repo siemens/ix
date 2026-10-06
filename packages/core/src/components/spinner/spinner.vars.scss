@@ -15,3 +15,14 @@
   --ix-spinner-primary--border-color: #{sys.$si-sys-color-border-accent-hover};
   --ix-spinner-primary-track--border-color: #{sys.$si-sys-color-border-4};
 }
+
+:host {
+  --ix-spinner-track--border-width-default: #{sys.$si-sys-sizing-border-width-default};
+  --ix-spinner-track--border-width-selected: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-spinner-track--border-width-emphasis: #{sys.$si-sys-sizing-border-width-emphasis};
+  --ix-spinner-medium--size: #{sys.$si-sys-sizing-size-80};
+  --ix-spinner-extra-extra-small--size: #{sys.$si-sys-sizing-size-40};
+  --ix-spinner-extra-small--size: #{sys.$si-sys-sizing-size-50};
+  --ix-spinner-small--size: #{sys.$si-sys-sizing-size-60};
+  --ix-spinner-large--size: #{sys.$si-sys-sizing-size-130};
+}
