@@ -134,7 +134,7 @@ regressionTest('renders', async ({ mount, page }) => {
     `<ix-time-picker format="HH:mm:ss" time="00:15:12"></ix-time-picker>`
   );
   const timePicker = page.locator(TIME_PICKER_SELECTOR);
-  await expect(timePicker).toHaveClass(/hydrated/);
+  await expect(timePicker).toHaveAttribute('hydrated');
   const selectedValues = timePicker.getByRole('option', { selected: true });
   await expect(selectedValues).toHaveCount(3);
   await expect(selectedValues.first()).toHaveCSS('font-size', '14px');
@@ -156,7 +156,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="10:00:00" max-time="14:00:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     await expect(timePickerCell(picker, 'hr', 8)).toBeDisabled();
     await expect(timePickerCell(picker, 'hr', 12)).not.toBeDisabled();
     await expect(timePickerCell(picker, 'hr', 15)).toBeDisabled();
@@ -170,7 +170,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="13:30:00" max-time="17:30:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     await expect(timePickerCell(picker, 'hr', 12)).toBeDisabled();
     await expect(timePickerCell(picker, 'hr', 13)).not.toBeDisabled();
@@ -185,7 +185,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="13:00:00" max-time="17:30:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     const hour13 = timePickerCell(picker, 'hr', 13);
     await expect(hour13).not.toBeDisabled();
     await hour13.focus();
@@ -202,7 +202,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="13:00:00" max-time="17:30:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     const hour13 = timePickerCell(picker, 'hr', 13);
     await expect(hour13).not.toBeDisabled();
     await hour13.focus();
@@ -219,7 +219,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="13:00:00" max-time="17:30:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     await timePickerCell(picker, 'hr', 13).focus();
     await page.keyboard.press('Enter');
     await page.keyboard.press('Tab');
@@ -244,7 +244,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="08:00:00" min-time="10:00:00" max-time="14:00:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     await expect(timePickerCell(picker, 'hr', 8)).toBeDisabled();
     const hour10 = timePickerCell(picker, 'hr', 10);
     await expect(hour10).not.toBeDisabled();
@@ -265,7 +265,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="09:00:00" max-time="17:30:00"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     await timePickerCell(picker, 'hr', 12).focus();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
@@ -289,7 +289,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="14:30:00" locale="de"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     const result = await picker.evaluate(async (el: HTMLElement) => {
       return await (el as HTMLIxTimePickerElement).getCurrentTime();
     });
@@ -305,7 +305,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 午後" locale="ja"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     const result = await picker.evaluate(async (el: HTMLElement) => {
       return await (el as HTMLIxTimePickerElement).getCurrentTime();
     });
@@ -320,7 +320,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     const timeChangePromise = page.evaluate(() => {
       return new Promise((resolve) => {
@@ -344,7 +344,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     const timeSelectPromise = page.evaluate(() => {
       return new Promise((resolve) => {
@@ -368,7 +368,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 AM" locale="en"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('AM');
     await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('PM');
@@ -394,7 +394,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 PM" i18n-am="Vorm." i18n-pm="Nachm."></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     await expect(picker.locator('[data-am-pm-id="AM"]')).toHaveText('Vorm.');
     await expect(picker.locator('[data-am-pm-id="PM"]')).toHaveText('Nachm.');
   }
@@ -407,7 +407,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="10:00:00" max-time="14:00:00" locale="de"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     await expect(timePickerCell(picker, 'hr', 8)).toBeDisabled();
     await expect(timePickerCell(picker, 'hr', 12)).not.toBeDisabled();
     await expect(timePickerCell(picker, 'hr', 15)).toBeDisabled();
@@ -421,7 +421,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     // hour 7 (07 AM = 07:00) is below minTime 09:00 → disabled
     await expect(timePickerCell(picker, 'hr', 7)).toBeDisabled();
     // hour 9 is the minTime boundary → enabled
@@ -436,7 +436,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 PM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
     // hour 6 PM = 18:00, above maxTime 17:00 → disabled
     await expect(timePickerCell(picker, 'hr', 6)).toBeDisabled();
   }
@@ -449,7 +449,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     const timeChangePromise = page.evaluate(() => {
       return new Promise((resolve) => {
@@ -474,7 +474,7 @@ regressionTest(
       `<ix-time-picker format="hh:mm a" time="02:30 PM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     const timeSelectPromise = page.evaluate(() => {
       return new Promise((resolve) => {
@@ -498,7 +498,7 @@ regressionTest(
       `<ix-time-picker format="HH:mm:ss" time="14:30:00" locale="en"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/hydrated/);
+    await expect(picker).toHaveAttribute('hydrated');
 
     await picker.evaluate((el: HTMLElement) => {
       (el as HTMLIxTimePickerElement).locale = 'de';
@@ -520,7 +520,7 @@ regressionTest(
     );
 
     const picker = page.locator(TIME_PICKER_SELECTOR);
-    await expect(picker).toHaveClass(/\bhydrated\b/);
+    await expect(picker).toHaveAttribute('hydrated');
     await waitForScrollAnimations(page);
 
     const minuteList = timePickerUnitList(picker, 'min');

@@ -14,7 +14,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane-layout></ix-pane-layout>`);
   const pane = page.locator('ix-pane-layout');
-  await expect(pane).toHaveClass(/hydrated/);
+  await expect(pane).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('pane-layout with floating pane', () => {

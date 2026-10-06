@@ -20,7 +20,7 @@ regressionTest('renders', async ({ mount, page }) => {
       </ix-menu>
     `);
   const element = page.locator('ix-menu');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
@@ -496,7 +496,7 @@ regressionTest(
     });
 
     await mount(`<ix-menu><ix-menu-item>Item</ix-menu-item></ix-menu>`);
-    await expect(page.locator('ix-menu')).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
 
     await page.evaluate(() => {
       document.querySelector('ix-menu')?.remove();
@@ -507,7 +507,7 @@ regressionTest(
       document.body.appendChild(menu);
     });
 
-    await expect(page.locator('ix-menu')).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
 
     expect(consoleWarnings).not.toContain('Menu already defined');
   }
@@ -546,7 +546,7 @@ regressionTest.describe('menu-avatar tooltip', () => {
       await button.hover();
 
       const tooltip = page.locator('ix-tooltip');
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText('John Doe');
 
@@ -556,7 +556,7 @@ regressionTest.describe('menu-avatar tooltip', () => {
 
       await button.hover();
 
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText('other text');
     }
