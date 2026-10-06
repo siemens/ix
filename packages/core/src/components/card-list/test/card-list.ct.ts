@@ -56,7 +56,7 @@ regressionTest(
     const content = cardList.locator('.CardList__Content');
     const after = page.getByRole('button', { name: 'After' });
 
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(collapseButton).toBeVisible();
 
     await cardAction.focus();
@@ -99,7 +99,7 @@ regressionTest(
     });
     const cardAction = page.getByRole('button', { name: 'Card action' });
 
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(collapseButton).toBeVisible();
 
     await cardAction.focus();
@@ -123,7 +123,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(cardList.locator('.CardList_Title')).toHaveCount(0);
   }
 );
@@ -150,7 +150,7 @@ regressionTest(
     });
     const content = cardList.locator('.CardList__Content');
 
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(collapseButton).toBeVisible();
     await expect(showMoreCard).toBeVisible();
 
