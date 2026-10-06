@@ -34,7 +34,7 @@ import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
     </IxLayoutGrid>
 
     <h4>Grid without margin</h4>
-    <IxLayoutGrid noMargin>
+    <IxLayoutGrid no-margin>
       <IxRow>
         <IxCol><IxTypography format="display">1</IxTypography></IxCol>
         <IxCol><IxTypography format="display">2</IxTypography></IxCol>

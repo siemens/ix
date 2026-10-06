@@ -16,8 +16,8 @@ import { IxGroup, IxGroupItem } from '@siemens/ix-angular/standalone';
   template: `
     <ix-group
       header="Header text"
-      sub-header="Subheader text"
-      suppress-header-selection
+      subHeader="Subheader text"
+      suppressHeaderSelection
     >
       <ix-group-item text="Example text 1"></ix-group-item>
       <ix-group-item text="Example text 2"></ix-group-item>
