@@ -113,9 +113,7 @@ export class Tooltip {
   private isDialogUsable(
     dialog?: HTMLDialogElement | null
   ): dialog is HTMLDialogElement {
-    return Boolean(
-      dialog && this.hostElement.isConnected && dialog.parentNode
-    );
+    return Boolean(dialog && this.hostElement.isConnected && dialog.parentNode);
   }
 
   private invokePopover(
