@@ -8,7 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'tokens/system' as sys;
 
 @use './toast.vars' as *;
@@ -63,7 +63,7 @@
         overflow-wrap: break-word;
         word-break: break-word;
 
-        @include fonts.text-default;
+        @include fonts.typography-body-paragraph;
       }
 
       .toast-action {

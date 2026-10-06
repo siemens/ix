@@ -8,7 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'tokens/system' as sys;
 
 @use './tile.vars' as *;
@@ -50,7 +50,7 @@ $width: var(--ix-tile--width);
     display: flex;
     align-items: center;
 
-    @include fonts.text-l-title;
+    @include fonts.typography-body-lg-sbold;
   }
 
   .tile-header,

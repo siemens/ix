@@ -67,9 +67,9 @@ export function closestPassShadow(node: Node | null, selector: string) {
   if (node instanceof HTMLElement) {
     if (node.matches(selector)) {
       return node;
-    } else {
-      return closestPassShadow(node.parentNode, selector);
     }
+
+    return closestPassShadow(node.assignedSlot ?? node.parentNode, selector);
   }
 
   return closestPassShadow(node.parentNode, selector);

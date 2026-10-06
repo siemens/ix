@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'legacy/mixins/fonts';
+@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 @use 'tokens/system' as sys;
@@ -66,7 +66,7 @@ $focusBorderWidth: 1px;
   }
 
   .group-entry-text {
-    @include fonts.text-default;
+    font: var(--ix-group-item--font);
     @include text-truncation.ellipsis();
   }
 
@@ -79,7 +79,7 @@ $focusBorderWidth: 1px;
 
     &,
     span {
-      @include fonts.text-default;
+      font: var(--ix-group-item--font);
       @include text-truncation.ellipsis;
     }
   }

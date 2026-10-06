@@ -8,7 +8,6 @@
  */
 
 @use '../button/button';
-@use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
 @use 'mixins/input';
@@ -93,14 +92,15 @@
     height: var(--ix-category-filter-text-input--height);
     min-height: var(--ix-category-filter-text-input--min-height);
     background: transparent;
+    color: inherit;
     flex-grow: 1;
     box-shadow: none;
 
     @include text-truncation.ellipsis;
-    @include legacy-fonts.text-default;
+    @include fonts.typography-body;
 
     &::placeholder {
-      @include fonts.typography-label;
+      @include fonts.typography-body;
       color: var(--ix-category-filter-placeholder--color);
     }
 
@@ -167,7 +167,7 @@
   ix-dropdown {
     min-width: var(--ix-category-filter--min-width) !important;
 
-    @include legacy-fonts.text-default-single;
+    @include fonts.typography-body;
 
     .dropdown-item-container {
       display: flex;
@@ -193,7 +193,7 @@
         justify-content: flex-start;
         flex-grow: 1;
 
-        @include legacy-fonts.text-default-single;
+        @include fonts.typography-body;
         @include text-truncation.ellipsis;
         @include hover.focus-visible {
           border-color: var(
