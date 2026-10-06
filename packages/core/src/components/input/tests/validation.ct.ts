@@ -913,5 +913,53 @@ test.describe('prevent initial require validation', async () => {
 
       await expect(inputComponent).toHaveClass(/ix-invalid/);
     });
+
+    test(`${selector} - should not mark the native control invalid on initial load`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`<${selector} required></${selector}>`);
+
+      const inputComponent = page.locator(selector);
+      const input = inputComponent.locator(getInputSelector(selector));
+
+      await expect(inputComponent).toBeVisible();
+      // The validation hook runs in a timeout after connecting.
+      await page.waitForTimeout(100);
+      await expect(input).not.toHaveAttribute('aria-invalid', 'true');
+      await expect(input).not.toHaveAttribute('aria-errormessage');
+    });
+  });
+
+  test('ix-input - should mark the native control invalid once touched', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-input required></ix-input>');
+
+    const inputComponent = page.locator('ix-input');
+    const input = inputComponent.locator('input');
+
+    await input.focus();
+    await input.blur();
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    await expect(input).toHaveAttribute(
+      'aria-errormessage',
+      /^ix-component-ix-field-wrapper-.*/
+    );
+  });
+
+  test('ix-date-input - should mark unparsable text invalid before it is touched', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-date-input required></ix-date-input>');
+
+    const input = page.locator('ix-date-input').locator('input');
+
+    await input.fill('invalid-date');
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
   });
 });
