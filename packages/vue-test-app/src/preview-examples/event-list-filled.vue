@@ -24,7 +24,7 @@ const items = [
       v-for="item in items"
       :key="item.text"
       variant="filled"
-      :itemColor="item.color"
+      :item-color="item.color"
     >
       {{ item.text }}
     </IxEventListItem>
