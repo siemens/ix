@@ -1,0 +1,20 @@
+.changeset/tooltip-popover-detached-guard.md
+  h_c5a773bf2fda8b 5
+packages/core/src/components/tooltip/test/tooltip-popover-guard.ct.ts
+  h_c5a773bf2fda8b 1-116
+packages/core/src/components/tooltip/test/tooltip.spec.tsx
+  h_c5a773bf2fda8b 21-38,42,50-58,60,71-73,75,79,81,84-90,92-116
+packages/core/src/components/tooltip/tooltip.tsx
+  h_c5a773bf2fda8b 109-128,143,149,175-178,247,254,266-269,271,289-293,299-303
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a0b6fbc606b332761d804a75570dbfea35427ec5",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
