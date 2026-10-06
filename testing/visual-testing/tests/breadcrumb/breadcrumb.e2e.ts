@@ -20,7 +20,13 @@ regressionTest.describe('breadcrumb', () => {
 
   regressionTest('lazyLoaded', async ({ page }) => {
     await page.goto('breadcrumb/lazyLoaded');
-    await page.locator('ix-dropdown-button[aria-label="Item3"]').click();
+    const nextButton = page.getByRole('button', {
+      name: 'Show Item3 next items',
+    });
+    await nextButton.click();
+    await expect(
+      nextButton.getByRole('menuitem', { name: 'Next Item 1' })
+    ).toBeVisible();
 
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
