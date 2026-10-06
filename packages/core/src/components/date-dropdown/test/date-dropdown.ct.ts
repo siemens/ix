@@ -253,7 +253,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`<ix-date-dropdown locale="en"></ix-date-dropdown>`);
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/hydrated/);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
 
     const rangeOptions: DateDropdownOption[] = [
       {
