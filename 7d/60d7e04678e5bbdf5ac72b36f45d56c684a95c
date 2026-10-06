@@ -1,0 +1,170 @@
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 680-760
+packages/angular-standalone-test-app/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 14
+packages/angular-standalone-test-app/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 2,13,16-17,25-32
+packages/angular-standalone-test-app/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+packages/angular-standalone-test-app/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+packages/angular-standalone-test-app/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+packages/angular-test-app/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 5
+packages/angular-test-app/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 13,16-17,25-32
+packages/angular-test-app/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+packages/angular-test-app/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+packages/angular-test-app/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 11,18,138,145,251,258,274,281,2552,2559
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 123,130,250,257,363,370,386,393,2664,2671
+packages/core/component-api.json
+  h_c5a773bf2fda8b 27-37,60-61,65,94,97,620-630,644,647,957-958,967-977,992,995,1036-1046,1050,1053,8370-8380,8423-8424,8428,8446,8449
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 18,77,138-143,154-156,158,169-170,406-411,417-418,570-571,574-580,587-588,590,604-610,612,3749-3754,3773-3775,3777,3783-3784,7206-7211,7222-7224,7226,7237-7238,7487-7492,7498-7499,7665-7666,7669-7675,7682-7683,7685,7700-7706,7708,11066-11071,11090-11092,11094,11100-11101,12561,12568,12620,12657-12658,12660,12666,13385,13387
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 24,26-33,70-73,75,78,91,98-100
+packages/core/src/components/action-card/action-card.types.ts
+  h_c5a773bf2fda8b 10,12
+packages/core/src/components/action-card/test/action-card.ct.ts
+  h_c5a773bf2fda8b 19,23,26,44,46
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 14,23,41-53,73-74,97-99,107-122,144,166-167,176,178-191,194-198,201,221-254
+packages/core/src/components/blind/blind.tsx
+  h_c5a773bf2fda8b 61,63-71,149
+packages/core/src/components/blind/blind.types.ts
+  h_c5a773bf2fda8b 9,11
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 11-14,16-19,21-23,25-27,29-35,37-39,42-43,45-47,52-54,64-66,68-77
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 17,23-33,37,39-40,47
+packages/core/src/components/card-accordion/card-accordion.scss
+  h_c5a773bf2fda8b 14,40-41,46-53,87,97-99,134
+packages/core/src/components/card-accordion/card-accordion.tsx
+  h_c5a773bf2fda8b 46,50-58,115
+packages/core/src/components/card-accordion/card-accordion.types.ts
+  h_c5a773bf2fda8b 2,9,16
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 23-36,43-46
+packages/core/src/components/card-list/card-list.scss
+  h_c5a773bf2fda8b 117-122,129,132,134-136,138-139,144-145,148-149,155-160
+packages/core/src/components/card-list/card-list.vars.scss
+  h_c5a773bf2fda8b 26-27,30,32
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 14,22,30-35,51-58,72-73,76-80,82-91,93-96,98-100,104-105,108-113,116-118,121-122,125-126,129-130,133-139,142-144,147-151
+packages/core/src/components/card/card.tsx
+  h_c5a773bf2fda8b 1-8,10,25-33,35,43-46,48,55-56
+packages/core/src/components/card/card.types.ts
+  h_c5a773bf2fda8b 9-14
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 10,13-54,60-62,64-76,79,81-89
+packages/core/src/components/push-card/push-card.scss
+  h_c5a773bf2fda8b 12,26,29-30,35-37,47-48,51-58,60-64,66-68
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 51,53-60,68-71,73,77-87,105-109
+packages/core/src/components/push-card/push-card.types.ts
+  h_c5a773bf2fda8b 2,9,11
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 14,16,20,22-42,44-45
+packages/core/src/public-api.ts
+  h_c5a773bf2fda8b 24-25
+packages/html-test-app/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 29
+packages/html-test-app/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 29-35,38-39,52-64
+packages/html-test-app/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 32,56,70,77,84
+packages/html-test-app/src/preview-examples/card.html
+  h_c5a773bf2fda8b 28
+packages/html-test-app/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 30
+packages/react-test-app/src/preview-examples/action-card.tsx
+  h_c5a773bf2fda8b 19
+packages/react-test-app/src/preview-examples/blind-variants.tsx
+  h_c5a773bf2fda8b 22-23,32-33,36,40,48,56-57,60,64-80,88
+packages/react-test-app/src/preview-examples/card-list.tsx
+  h_c5a773bf2fda8b 22,46,60,67,74
+packages/react-test-app/src/preview-examples/card.tsx
+  h_c5a773bf2fda8b 17
+packages/react-test-app/src/preview-examples/push-card.tsx
+  h_c5a773bf2fda8b 10,14-91,94-166
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 137,144,243-244,321,323,337-338,1779,1781
+packages/storybook-docs/src/stories/action-card/accessibility/a11y-action-card.stories.ts
+  h_c5a773bf2fda8b 23,46,51,86,91-101,116,121-122,127,132
+packages/storybook-docs/src/stories/action-card/action-card.stories.ts
+  h_c5a773bf2fda8b 23,73,78,82,87,91,96,100,105-114,118,123-132,145,150-151,155,160
+packages/storybook-docs/src/stories/card.stories.tsx
+  h_c5a773bf2fda8b 24-29,35-69
+packages/storybook-docs/src/stories/push-card.stories.ts
+  h_c5a773bf2fda8b 22,37
+packages/vue-test-app/src/preview-examples/action-card.vue
+  h_c5a773bf2fda8b 24
+packages/vue-test-app/src/preview-examples/blind-variants.vue
+  h_c5a773bf2fda8b 22-23,30-31,49-66
+packages/vue-test-app/src/preview-examples/card-list.vue
+  h_c5a773bf2fda8b 22,46,53,60,67,74
+packages/vue-test-app/src/preview-examples/card.vue
+  h_c5a773bf2fda8b 22
+packages/vue-test-app/src/preview-examples/push-card.vue
+  h_c5a773bf2fda8b 21
+packages/vue/src/components/ix-action-card.ts
+  h_c5a773bf2fda8b 11,18
+packages/vue/src/components/ix-blind.ts
+  h_c5a773bf2fda8b 15
+packages/vue/src/components/ix-card-accordion.ts
+  h_c5a773bf2fda8b 13
+packages/vue/src/components/ix-card.ts
+  h_c5a773bf2fda8b 11,13
+packages/vue/src/components/ix-push-card.ts
+  h_c5a773bf2fda8b 16,18
+testing/framework-tests/__snapshots__/action-card-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-4
+testing/framework-tests/__snapshots__/blind-variants-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-51
+testing/framework-tests/__snapshots__/card-list-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-39
+testing/framework-tests/tests/working-with-axe.spec.ts
+  h_c5a773bf2fda8b 90-94
+testing/framework-tests/tests/working.spec.ts
+  h_c5a773bf2fda8b 90-98
+testing/visual-testing/tests/action-card/basic/index.html
+  h_c5a773bf2fda8b 41,59,77,83,89
+testing/visual-testing/tests/action-card/selected/index.html
+  h_c5a773bf2fda8b 41,62,83,90,97
+testing/visual-testing/tests/blind/basic/index.html
+  h_c5a773bf2fda8b 43,46,49,63,72
+testing/visual-testing/tests/blind/custom-header/index.html
+  h_c5a773bf2fda8b 46,49,58,67-68
+testing/visual-testing/tests/card-list/basic/index.html
+  h_c5a773bf2fda8b 43,50,57,85,99
+testing/visual-testing/tests/card-list/layout-scroll/index.html
+  h_c5a773bf2fda8b 43,50,57,85,128
+testing/visual-testing/tests/card-list/long-label/index.html
+  h_c5a773bf2fda8b 46,53,60,88,131
+testing/visual-testing/tests/card/basic/index.html
+  h_c5a773bf2fda8b 15,29,31,34,36,39,41,44,46,54,56,59,61,64,66,69,71,74,76,79,81
+testing/visual-testing/tests/card/selected/index.html
+  h_c5a773bf2fda8b 15,29,31,34,36,39,41,49,51,54,56,59,61,64,66,69,71,74,76
+testing/visual-testing/tests/push-card/basic/index.html
+  h_c5a773bf2fda8b 49,58,67,103,121,130,139
+testing/visual-testing/tests/push-card/push-card.e2e.ts
+  h_c5a773bf2fda8b 52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7d60d7e04678e5bbdf5ac72b36f45d56c684a95c",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
