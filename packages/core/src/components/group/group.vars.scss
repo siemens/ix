@@ -43,20 +43,6 @@
   --ix-group--min-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
   );
-  --ix-group-header-selection-indicator--width--focus: calc(
-    #{sys.$si-sys-sizing-spacing-x-20} - 1px
-  );
-  --ix-group-header-content--padding--focus: calc(
-      #{sys.$si-sys-sizing-spacing-y-40} - 1px
-    )
-    calc(#{sys.$si-sys-sizing-spacing-x-40} - 1px)
-    calc(#{sys.$si-sys-sizing-spacing-y-40} - 1px) 0;
-  --ix-group-button-expand-header--margin-top: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - 1px
-  );
-  --ix-group-button-expand-header--margin-bottom: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - 1px
-  );
   --ix-group-header-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-group-header-content--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-group-header-title--height: #{sys.$si-sys-sizing-size-70};
@@ -64,7 +50,6 @@
   --ix-group-expand-icon--padding: #{sys.$si-sys-sizing-spacing-y-10} calc(#{sys.$si-sys-sizing-spacing-x-60} *
         0.437);
   --ix-group-button-expand-header--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-group-button-expand-header--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-group-button-expand-header--min-width: #{sys.$si-sys-sizing-size-70};
+  --ix-group-button-expand-header--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-group-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
 }
