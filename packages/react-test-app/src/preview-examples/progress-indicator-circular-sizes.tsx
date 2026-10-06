@@ -10,7 +10,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         size="xs"
       >
         75%
@@ -20,7 +20,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         size="sm"
       >
         75%
@@ -30,7 +30,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         size="md"
       >
         75%
@@ -40,7 +40,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         size="lg"
       >
         75%
@@ -50,7 +50,7 @@ export default () => {
         type="circular"
         label="Download"
         value={75}
-        helper-text="This is a help text for the progress indicator"
+        helperText="This is a help text for the progress indicator"
         size="xl"
       >
         75%
