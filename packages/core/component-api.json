@@ -5932,6 +5932,28 @@
           "deprecated": false
         },
         {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "\"action\" | \"external\" | \"file\" | \"internal\" | \"none\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'internal'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconPosition",
+          "attribute": "icon-position",
+          "type": "\"end\" | \"start\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'start'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "target",
           "attribute": "target",
           "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\"",

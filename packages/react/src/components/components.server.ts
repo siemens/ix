@@ -1278,7 +1278,9 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     properties: {
         disabled: 'disabled',
         url: 'url',
-        target: 'target'
+        target: 'target',
+        icon: 'icon',
+        iconPosition: 'icon-position'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxLinkButton as StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents, Components.IxLinkButton>,

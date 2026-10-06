@@ -1729,14 +1729,14 @@ export declare interface IxLayoutGrid extends Components.IxLayoutGrid {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'target', 'url']
+  inputs: ['disabled', 'icon', 'iconPosition', 'target', 'url']
 })
 @Component({
   selector: 'ix-link-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'target', 'url'],
+  inputs: ['disabled', 'icon', 'iconPosition', 'target', 'url'],
   standalone: false
 })
 export class IxLinkButton {

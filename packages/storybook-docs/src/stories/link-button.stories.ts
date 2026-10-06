@@ -41,3 +41,12 @@ export const Default: Story = {
     defaultSlot: 'My link',
   },
 };
+
+export const ExternalLink: Story = {
+  args: {
+    defaultSlot: 'Open external link',
+    icon: 'external',
+    iconPosition: 'end',
+    url: 'https://ix.siemens.io/',
+  },
+};
