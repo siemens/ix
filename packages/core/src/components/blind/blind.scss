@@ -193,8 +193,8 @@
   }
   &:has(.blind-header:focus-visible) {
     .blind-header-wrapper {
-      outline: var(--si-sys-sizing-border-width-default) solid
-        var(--si-sys-color-effects-focus);
+      outline: var(--ix-blind-header-wrapper--outline-width) solid
+        var(--ix-blind-header-wrapper--outline-color);
       outline-offset: 0;
     }
   }
