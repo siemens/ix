@@ -364,19 +364,6 @@ export class Select
   watchValue(value: string | string[]) {
     this.value = value;
     this.updateSelection();
-    this.syncValidationClasses();
-  }
-
-  @Watch('required')
-  watchRequired() {
-    this.syncValidationClasses();
-  }
-
-  @Listen('invalid')
-  onInvalid(event: Event) {
-    event.preventDefault();
-    this.touched = true;
-    this.syncValidationClasses();
   }
 
   @Watch('disabled')
@@ -545,25 +532,6 @@ export class Select
     }
   }
 
-  syncValidationClasses() {
-    if (this.formInternals.form?.noValidate) {
-      this.hostElement.classList.remove('ix-invalid--required');
-      this.formInternals.setValidity({});
-      return;
-    }
-
-    const isMissingValue = this.required && !this.hasValue();
-    this.hostElement.classList.toggle(
-      'ix-invalid--required',
-      isMissingValue && this.touched
-    );
-    const message = this.invalidText?.trim() ? this.invalidText : ' ';
-    this.formInternals.setValidity(
-      isMissingValue ? { valueMissing: true } : {},
-      isMissingValue ? message : undefined
-    );
-  }
-
   override componentDidLoad() {
     this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
@@ -606,7 +574,6 @@ export class Select
   override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
-    this.syncValidationClasses();
   }
 
   override disconnectedCallback(): void {
@@ -741,11 +708,9 @@ export class Select
   private clear() {
     this.clearInput();
     this.selectedLabels = [];
-    this.touched = true;
     const emptyValue = this.isSingleMode ? '' : [];
     this.value = emptyValue;
     this.emitValueChange(emptyValue);
-    this.syncValidationClasses();
     this.dropdownShow = false;
   }
 
@@ -753,7 +718,6 @@ export class Select
     this.ixBlur.emit();
     this.touched = true;
     this.hasInputFocus = false;
-    this.syncValidationClasses();
 
     if (this.editable) {
       return;
@@ -1500,15 +1464,6 @@ export class Select
             this.hasInputFocus && !this.dropdownItemsVisualFocused,
         }}
         tabIndex={this.disabled ? -1 : 0}
-        onFocus={(event: FocusEvent) => {
-          if (
-            this.inputElement &&
-            event.target === this.hostElement &&
-            !this.dropdownShow
-          ) {
-            this.inputElement.focus();
-          }
-        }}
       >
         <ix-field-wrapper
           required={this.required}
@@ -1556,7 +1511,6 @@ export class Select
                     class={{
                       'allow-clear':
                         this.allowClear && !!this.selectedLabels?.length,
-                      'ix-invalid': this.isInvalid,
                     }}
                     placeholder={this.placeholderValue()}
                     value={this.inputValue ?? ''}
