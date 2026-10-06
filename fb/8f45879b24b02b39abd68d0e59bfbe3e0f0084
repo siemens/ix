@@ -1,0 +1,14 @@
+.changeset/eix-394-pane-layout-breakpoint.md
+  h_c5a773bf2fda8b 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fb8f45879b24b02b39abd68d0e59bfbe3e0f0084",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
