@@ -1,6 +1,5 @@
 ---
-"@siemens/ix-aggrid": patch
 "@siemens/ix": patch
 ---
 
-fix (core): Update workflow border radius.
+Update ix-workflow border radius form 1px to 0.25 REM.
