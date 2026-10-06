@@ -126,6 +126,11 @@ export class Panes {
     if (forcedBreakpoint) {
       return forcedBreakpoint === 'sm';
     }
+    // Nested panes follow the shared layout bus so a pinned menu (frozen at lg)
+    // keeps them desktop instead of reading the raw viewport.
+    if (this.applicationLayoutContext) {
+      return applicationLayoutService.breakpoint === 'sm';
+    }
     return matchBreakpoint('sm');
   }
 

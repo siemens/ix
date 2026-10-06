@@ -107,18 +107,14 @@ export class Menu {
 
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
-    // forceNotify: at lg, isPinned is already true via setPinned(mode === 'lg'),
-    // so consumers must still learn about the `pinned` prop change.
-    this.setPinned(this.pinned, true);
-
+    this.setPinned(this.pinned);
     if (newPinned) {
-      // Keep desktop chrome locally without freezing the shared layout bus.
-      // startExpanded is applied on initial load only (see onBreakpointChange).
-      this.breakpoint = 'lg';
+      applicationLayoutService.disableBreakpointDetection();
+      applicationLayoutService.setBreakpoint('lg');
       return;
     }
 
-    this.onBreakpointChange(applicationLayoutService.breakpoint);
+    applicationLayoutService.enableBreakpointDetection();
   }
 
   /**
@@ -412,21 +408,12 @@ export class Menu {
     this.isDarkMode = themeSwitcher.getMode() === 'dark';
   }
 
-  private setPinned(pinned: boolean, forceNotify = false) {
+  private setPinned(pinned: boolean) {
     this.showPinned = pinned;
-    menuController.setIsPinned(pinned, forceNotify);
+    menuController.setIsPinned(pinned);
   }
 
   private onBreakpointChange(mode: Breakpoint, initial = false) {
-    if (this.pinned) {
-      this.setPinned(true);
-      this.breakpoint = 'lg';
-      if (initial && this.startExpanded) {
-        this.toggleMenu(true);
-      }
-      return;
-    }
-
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }

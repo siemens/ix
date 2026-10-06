@@ -13,14 +13,8 @@ import { regressionTest, viewPorts } from '@utils/test';
 
 async function expectPaneIsMobile(page: Page, isMobile: boolean) {
   const pane = page.locator('ix-pane').first();
-  await expect
-    .poll(async () =>
-      pane.evaluate((el: HTMLIxPaneElement) => ({
-        isMobile: el.isMobile,
-        mobilePane: !!el.shadowRoot?.querySelector('.mobile-pane'),
-      }))
-    )
-    .toEqual({ isMobile, mobilePane: isMobile });
+  await expect(pane).toHaveJSProperty('isMobile', isMobile);
+  await expect(pane.locator('.mobile-pane')).toHaveCount(isMobile ? 1 : 0);
 }
 
 async function remountRightPane(page: Page) {
@@ -608,6 +602,47 @@ regressionTest.describe('pane under application without forced layout', () => {
 
       await remountRightPane(page);
       await expectPaneIsMobile(page, true);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+});
+
+regressionTest.describe('pane under pinned menu', () => {
+  const pinnedMenuApp = `
+    <ix-application>
+      <ix-menu pinned>
+        <ix-menu-item>Item</ix-menu-item>
+      </ix-menu>
+      ${paneLayoutMarkup}
+    </ix-application>
+  `;
+
+  regressionTest(
+    'stays desktop when window shrinks',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(pinnedMenuApp);
+
+      await expect(page.locator('ix-pane')).toHaveClass(/hydrated/);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'new pane stays desktop after remount while narrow',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(pinnedMenuApp);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await remountRightPane(page);
+      await expectPaneIsMobile(page, false);
 
       await page.setViewportSize(viewPorts.lg);
       await expectPaneIsMobile(page, false);
