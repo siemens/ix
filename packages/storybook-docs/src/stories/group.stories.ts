@@ -8,13 +8,18 @@
  */
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
-import { genericRender, makeArgTypes, GenericArgs } from './utils/generic-render';
+import {
+  genericRender,
+  makeArgTypes,
+  GenericArgs,
+} from './utils/generic-render';
 
-type GroupElements = Components.IxGroup & GenericArgs & {
-  itemCount: number;
-  hasFooter: boolean;
-  hasDropdown: boolean;
-};
+type GroupElements = Components.IxGroup &
+  GenericArgs & {
+    itemCount: number;
+    hasFooter: boolean;
+    hasDropdown: boolean;
+  };
 
 const meta = {
   title: 'Example/Group',
@@ -25,7 +30,9 @@ const meta = {
       'hasFooter',
       'hasDropdown',
     ]);
-    const groupElement = container.querySelector('ix-group') as HTMLIxGroupElement;
+    const groupElement = container.querySelector(
+      'ix-group'
+    ) as HTMLIxGroupElement;
 
     // Add group items based on itemCount
     for (let i = 0; i < args.itemCount; i++) {
@@ -44,7 +51,7 @@ const meta = {
       footerDiv.slot = 'footer';
       footerDiv.innerHTML = '<ix-button>Footer content</ix-button>';
       footerDiv.style.padding = '8px 16px';
-      footerDiv.style.color = 'var(--si-sys-text-secondary)';
+      footerDiv.style.color = 'var(--si-sys-color-text-secondary)';
       footerDiv.style.fontSize = '12px';
       groupElement.appendChild(footerDiv);
     }

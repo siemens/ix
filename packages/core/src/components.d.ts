@@ -14,6 +14,7 @@ import { BlindVariant } from "./components/blind/blind.types";
 import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
+import { ButtonIconSize } from "./components/button/base-button.types";
 import { CardVariant } from "./components/card/card.types";
 import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
@@ -49,6 +50,7 @@ import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollap
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
+import { SpinnerSize } from "./components/spinner/spinner.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
 import { TabClickDetail } from "./components/tab-item/tab-item.types";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
@@ -71,6 +73,7 @@ export { BlindVariant } from "./components/blind/blind.types";
 export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
+export { ButtonIconSize } from "./components/button/base-button.types";
 export { CardVariant } from "./components/card/card.types";
 export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
@@ -106,6 +109,7 @@ export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollap
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
 export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
+export { SpinnerSize } from "./components/spinner/spinner.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
 export { TabClickDetail } from "./components/tab-item/tab-item.types";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
@@ -512,9 +516,15 @@ export namespace Components {
          */
         "iconRight"?: string;
         /**
-          * @default '24'
+          * Size of leading and trailing icons
+          * @default '20'
          */
-        "iconSize": '12' | '16' | '24';
+        "iconSize": ButtonIconSize;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert": boolean;
         /**
           * Loading button
           * @default false
@@ -581,7 +591,7 @@ export namespace Components {
     }
     interface IxCardList {
         /**
-          * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
+          * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
           * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
@@ -1848,6 +1858,12 @@ export namespace Components {
          */
         "keyboardItemTriggerKeys": string[];
         /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -1933,9 +1949,15 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         /**
           * Placement of the dropdown
          */
@@ -2084,7 +2106,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -2394,9 +2416,14 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert": boolean;
         /**
           * Loading button
           * @default false
@@ -2408,10 +2435,11 @@ export namespace Components {
          */
         "oval": boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         /**
           * Type of the button
           * @default 'button'
@@ -2460,10 +2488,11 @@ export namespace Components {
          */
         "pressed": boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         /**
           * Button variant.
           * @default 'subtle-primary'
@@ -2490,7 +2519,7 @@ export namespace Components {
         /**
           * Color of the default icon.
           * @since 6.0.0
-          * @default '--si-sys-background-warning'
+          * @default '--si-sys-color-background-warning'
          */
         "iconColor": string;
         /**
@@ -2937,6 +2966,12 @@ export namespace Components {
     }
     interface IxMenuCategory {
         /**
+          * Disable the tooltip for this menu category.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip": boolean;
+        /**
           * Icon of the category
          */
         "icon"?: string;
@@ -2992,6 +3027,12 @@ export namespace Components {
           * @default false
          */
         "bottom": boolean;
+        /**
+          * Disable the tooltip for this menu item.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip": boolean;
         /**
           * Disable tab and remove event handlers
           * @default false
@@ -3175,7 +3216,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
     }
@@ -3598,7 +3639,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -3648,7 +3689,7 @@ export namespace Components {
          */
         "showTextAsTooltip": boolean;
         /**
-          * The size of the progress indicator.
+          * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
           * @default 'md'
          */
         "size": ProgressIndicatorSize;
@@ -4092,10 +4133,10 @@ export namespace Components {
          */
         "hideTrack": boolean;
         /**
-          * Size of spinner
-          * @default 'medium'
+          * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @default 'md'
          */
-        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size": SpinnerSize;
         /**
           * Variant of spinner
           * @default 'secondary'
@@ -4719,7 +4760,7 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -7537,9 +7578,15 @@ declare namespace LocalJSX {
          */
         "iconRight"?: string;
         /**
-          * @default '24'
+          * Size of leading and trailing icons
+          * @default '20'
          */
-        "iconSize"?: '12' | '16' | '24';
+        "iconSize"?: ButtonIconSize;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert"?: boolean;
         /**
           * Loading button
           * @default false
@@ -7607,7 +7654,7 @@ declare namespace LocalJSX {
     }
     interface IxCardList {
         /**
-          * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
+          * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
           * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
@@ -8955,6 +9002,12 @@ declare namespace LocalJSX {
          */
         "keyboardItemTriggerKeys"?: string[];
         /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
+        /**
           * Move dropdown along main axis of alignment
          */
         "offset"?: {
@@ -9049,9 +9102,15 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Set label
+          * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
+          * @since 5.2.0
+          * @default 'active-descendant'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
         /**
           * Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
          */
@@ -9211,7 +9270,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
          */
         "itemColor"?: string;
         /**
@@ -9552,9 +9611,14 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
+        /**
+          * @since 6.0.0
+          * @default false
+         */
+        "inert"?: boolean;
         /**
           * Loading button
           * @default false
@@ -9566,10 +9630,11 @@ declare namespace LocalJSX {
          */
         "oval"?: boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size"?: '24' | '16' | '12';
+        "size"?: ButtonIconSize;
         /**
           * Type of the button
           * @default 'button'
@@ -9622,10 +9687,11 @@ declare namespace LocalJSX {
          */
         "pressed"?: boolean;
         /**
-          * Size of icon in button
-          * @default '24'
+          * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
+          * @since 6.0.0 Size `20` is available
+          * @default '20'
          */
-        "size"?: '24' | '16' | '12';
+        "size"?: ButtonIconSize;
         /**
           * Button variant.
           * @default 'subtle-primary'
@@ -9652,7 +9718,7 @@ declare namespace LocalJSX {
         /**
           * Color of the default icon.
           * @since 6.0.0
-          * @default '--si-sys-background-warning'
+          * @default '--si-sys-color-background-warning'
          */
         "iconColor"?: string;
         /**
@@ -10133,6 +10199,12 @@ declare namespace LocalJSX {
     }
     interface IxMenuCategory {
         /**
+          * Disable the tooltip for this menu category.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip"?: boolean;
+        /**
           * Icon of the category
          */
         "icon"?: string;
@@ -10188,6 +10260,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "bottom"?: boolean;
+        /**
+          * Disable the tooltip for this menu item.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableTooltip"?: boolean;
         /**
           * Disable tab and remove event handlers
           * @default false
@@ -10384,7 +10462,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -10840,7 +10918,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
          */
         "iconColor"?: string;
@@ -10895,7 +10973,7 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The size of the progress indicator.
+          * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
           * @default 'md'
          */
         "size"?: ProgressIndicatorSize;
@@ -11372,10 +11450,10 @@ declare namespace LocalJSX {
          */
         "hideTrack"?: boolean;
         /**
-          * Size of spinner
-          * @default 'medium'
+          * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @default 'md'
          */
-        "size"?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size"?: SpinnerSize;
         /**
           * Variant of spinner
           * @default 'secondary'
@@ -12030,7 +12108,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Icon color as a CSS custom property name, for example `--si-sys-text-primary`.
+          * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
          */
         "iconColor"?: string;
         /**
@@ -12497,11 +12575,12 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
         "form": string;
         "icon": string;
         "iconRight": string;
         "alignment": 'center' | 'start';
-        "iconSize": '12' | '16' | '24';
+        "iconSize": ButtonIconSize;
         "href": string;
         "target": AnchorTarget;
         "rel": string;
@@ -12781,6 +12860,7 @@ declare namespace LocalJSX {
         "disableFocusTrap": boolean;
         "enableTopLayer": boolean;
         "focusCheckedItem": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         "discoverAllSubmenus": boolean;
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
@@ -12795,6 +12875,7 @@ declare namespace LocalJSX {
         "placement": AlignedPlacement;
         "ariaLabelDropdownButton": string;
         "focusCheckedItem": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
         "enableTopLayer": boolean;
         "suppressAriaActiveDescendant": boolean;
     }
@@ -12914,11 +12995,12 @@ declare namespace LocalJSX {
         "variant": IconButtonVariant;
         "oval": boolean;
         "icon": string;
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         "iconColor": string;
         "disabled": boolean;
         "type": 'button' | 'submit';
         "loading": boolean;
+        "inert": boolean;
     }
     interface IxIconToggleButtonAttributes {
         "variant": ButtonVariant;
@@ -12927,7 +13009,7 @@ declare namespace LocalJSX {
         "icon": string;
         "oval": boolean;
         "pressed": boolean;
-        "size": '24' | '16' | '12';
+        "size": ButtonIconSize;
         "disabled": boolean;
         "loading": boolean;
     }
@@ -13045,6 +13127,7 @@ declare namespace LocalJSX {
         "icon": string;
         "notifications": number;
         "tooltipText": string;
+        "disableTooltip": boolean;
     }
     interface IxMenuExpandIconAttributes {
         "i18nExpand": string;
@@ -13062,6 +13145,7 @@ declare namespace LocalJSX {
         "active": boolean;
         "disabled": boolean;
         "tooltipText": string;
+        "disableTooltip": boolean;
         "href": string;
         "target": AnchorTarget;
         "rel": string;
@@ -13313,7 +13397,7 @@ declare namespace LocalJSX {
     }
     interface IxSpinnerAttributes {
         "variant": 'primary' | 'secondary';
-        "size": 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+        "size": SpinnerSize;
         "hideTrack": boolean;
     }
     interface IxSplitButtonAttributes {

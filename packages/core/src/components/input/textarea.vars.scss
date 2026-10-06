@@ -10,16 +10,16 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-textarea--background--invalid: #{sys.$si-sys-background-1};
-  --ix-textarea--background--invalid--hover: #{sys.$si-sys-background-4};
-  --ix-textarea--background--warning: #{sys.$si-sys-background-1};
-  --ix-textarea--background--warning--hover: #{sys.$si-sys-background-4};
-  --ix-textarea--border-color--info: #{sys.$si-sys-border-information};
-  --ix-textarea--border-color--info--active: #{sys.$si-sys-border-information};
-  --ix-textarea--border-color--info--hover: #{sys.$si-sys-border-information};
-  --ix-textarea--border-color--invalid: #{sys.$si-sys-border-danger};
-  --ix-textarea--border-color--invalid--active: #{sys.$si-sys-border-danger};
-  --ix-textarea--border-color--invalid--hover: #{sys.$si-sys-border-danger};
-  --ix-textarea--border-color--warning--active: #{sys.$si-sys-background-warning};
-  --ix-textarea--border-color--warning--hover: #{sys.$si-sys-background-warning};
+  --ix-textarea--background--invalid: #{sys.$si-sys-color-background-1};
+  --ix-textarea--background--invalid--hover: #{sys.$si-sys-color-background-4};
+  --ix-textarea--background--warning: #{sys.$si-sys-color-background-1};
+  --ix-textarea--background--warning--hover: #{sys.$si-sys-color-background-4};
+  --ix-textarea--border-color--info: #{sys.$si-sys-color-border-information};
+  --ix-textarea--border-color--info--active: #{sys.$si-sys-color-border-information};
+  --ix-textarea--border-color--info--hover: #{sys.$si-sys-color-border-information};
+  --ix-textarea--border-color--invalid: #{sys.$si-sys-color-border-danger};
+  --ix-textarea--border-color--invalid--active: #{sys.$si-sys-color-border-danger};
+  --ix-textarea--border-color--invalid--hover: #{sys.$si-sys-color-border-danger};
+  --ix-textarea--border-color--warning--active: #{sys.$si-sys-color-border-warning};
+  --ix-textarea--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
 }

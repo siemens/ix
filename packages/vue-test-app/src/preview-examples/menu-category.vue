@@ -22,7 +22,11 @@ import {
     <IxMenu>
       <IxMenuItem home :icon="iconHome"> Home </IxMenuItem>
       <IxMenuItem :icon="iconGlobe">Normal Tab</IxMenuItem>
-      <IxMenuCategory label="Top level Category" :icon="iconRocket">
+      <IxMenuCategory
+        label="Top level Category"
+        :icon="iconRocket"
+        disable-tooltip
+      >
         <IxMenuItem :icon="iconGlobe">Nested Tab</IxMenuItem>
         <IxMenuItem :icon="iconGlobe">Nested Tab</IxMenuItem>
       </IxMenuCategory>

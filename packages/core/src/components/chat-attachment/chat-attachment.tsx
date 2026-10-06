@@ -101,7 +101,7 @@ export class ChatAttachment {
     if (this.status === 'loading') {
       return (
         <span class="status-content">
-          <ix-spinner size="xx-small" variant="primary"></ix-spinner>
+          <ix-spinner size="xxs" variant="primary"></ix-spinner>
           <span class="status-label">{this.fileName}</span>
         </span>
       );

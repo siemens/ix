@@ -32,6 +32,7 @@ import {
 } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
+import { DEFAULT_BUTTON_ICON_SIZE } from '../button/base-button.types';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   AriaActiveDescendantMixinContract,
@@ -71,7 +72,9 @@ export class DropdownButton
   @Prop({ reflect: true }) disabled = false;
 
   /**
-   * Set label
+   * Set label text.
+   * An empty or omitted label renders an icon-only trigger.
+   * Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
    */
   @Prop() label?: string | null;
 
@@ -107,6 +110,21 @@ export class DropdownButton
   @Prop() focusCheckedItem: boolean = false;
 
   /**
+   * Controls how keyboard navigation moves focus between dropdown items.
+   *
+   * - `active-descendant`: DOM focus stays on the dropdown button while a visual
+   *   focus indicator moves between the items, exposed via `aria-activedescendant`.
+   * - `roving-tabindex`: real DOM focus is moved to each item using a roving
+   *   `tabindex` (`0` for the active item, `-1` for the others). No
+   *   `aria-activedescendant` is used because the focused item is announced
+   *   directly.
+   *
+   * @since 5.2.0
+   */
+  @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
+    'active-descendant';
+
+  /**
    * Enable Popover API rendering for dropdown.
    *
    * @default false
@@ -134,8 +152,13 @@ export class DropdownButton
   @State() dropdownShow = false;
 
   private inheritAriaAttributes: A11yAttributes = {};
-  private hostAriaLabel?: string;
+  @State() private hostAriaLabel?: string;
+  @State() private buttonLabelSlotText?: string;
+  private ariaLabelObserver?: MutationObserver;
+  private buttonLabelObserver?: MutationObserver;
+  private hasConnected = false;
   private renderedAriaLabel?: string;
+  private renderedAriaLabelMutation?: string;
 
   private dropdownButtonId = this.getHostElementId();
 
@@ -149,13 +172,39 @@ export class DropdownButton
     tabs: boolean;
   };
 
+  private getTextLabel() {
+    if (typeof this.label !== 'string') {
+      return undefined;
+    }
+    return this.label.trim() || undefined;
+  }
+
+  private isIconOnly() {
+    return this.label !== null && this.getTextLabel() === undefined;
+  }
+
+  private getButtonLabelSlotText(nodes: Node[] = []) {
+    const slottedNodes =
+      nodes.length > 0
+        ? nodes
+        : Array.from(this.hostElement.children).filter(
+            (element) => element.getAttribute('slot') === 'button-label'
+          );
+    const text = slottedNodes
+      .map((node) => node.textContent)
+      .join(' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    return text || undefined;
+  }
+
   private getTriangle() {
     return (
       <div
         class={{
           triangle: true,
           [this.variant]: true,
-          hide: !!this.label,
+          hide: !this.isIconOnly(),
           disabled: this.disabled,
         }}
       ></div>
@@ -168,6 +217,106 @@ export class DropdownButton
     }
     this.dropdownShow = event.detail;
   };
+
+  override connectedCallback(): void {
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
+
+    const hostAriaLabel = this.getHostAriaLabel();
+    if (!this.hasConnected || hostAriaLabel !== this.renderedAriaLabel) {
+      this.hostAriaLabel = hostAriaLabel;
+    }
+    this.hasConnected = true;
+    this.buttonLabelSlotText = this.getButtonLabelSlotText();
+    if (
+      hostAriaLabel === undefined &&
+      this.hostElement.hasAttribute('aria-label')
+    ) {
+      this.hostElement.setAttribute('aria-label', this.getFallbackAriaLabel());
+    }
+
+    if (typeof MutationObserver === 'undefined') {
+      return;
+    }
+
+    this.ariaLabelObserver ??= new MutationObserver(() => {
+      const ariaLabel =
+        this.hostElement.getAttribute('aria-label') ?? undefined;
+      if (
+        this.renderedAriaLabelMutation !== undefined &&
+        ariaLabel === this.renderedAriaLabelMutation
+      ) {
+        this.renderedAriaLabelMutation = undefined;
+        return;
+      }
+
+      const normalizedAriaLabel = this.getHostAriaLabel();
+      if (normalizedAriaLabel === undefined) {
+        this.hostAriaLabel = undefined;
+        const fallbackAriaLabel = this.getFallbackAriaLabel();
+        this.renderedAriaLabelMutation = fallbackAriaLabel;
+        this.hostElement.setAttribute('aria-label', fallbackAriaLabel);
+        return;
+      }
+      this.hostAriaLabel = normalizedAriaLabel;
+    });
+    this.ariaLabelObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['aria-label'],
+    });
+
+    this.buttonLabelObserver ??= new MutationObserver(() => {
+      this.buttonLabelSlotText = this.getButtonLabelSlotText();
+    });
+    this.buttonLabelObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['slot'],
+      characterData: true,
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.ariaLabelObserver?.disconnect();
+    this.buttonLabelObserver?.disconnect();
+  }
+
+  private getHostAriaLabel() {
+    const ariaLabel = this.hostElement.getAttribute('aria-label');
+    return ariaLabel?.trim() ? ariaLabel : undefined;
+  }
+
+  private getLabelAriaLabel() {
+    const configuredAriaLabel =
+      typeof this.ariaLabelDropdownButton === 'string'
+        ? this.ariaLabelDropdownButton.trim() || undefined
+        : undefined;
+    return (
+      configuredAriaLabel ||
+      this.getTextLabel() ||
+      (this.label === null ? this.buttonLabelSlotText : undefined)
+    );
+  }
+
+  private getFallbackAriaLabel() {
+    return (
+      this.getLabelAriaLabel() ||
+      (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
+    );
+  }
+
+  private getMenuAriaLabel() {
+    return this.hostAriaLabel || this.getLabelAriaLabel() || 'Menu';
+  }
+
+  private getAriaLabel() {
+    return this.hostAriaLabel !== undefined
+      ? this.hostAriaLabel
+      : this.getFallbackAriaLabel();
+  }
 
   override componentDidLoad(): void {
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement, [
@@ -183,11 +332,12 @@ export class DropdownButton
   }
 
   override componentWillRender(): Promise<void> | void {
-    const hostAriaLabel =
-      this.hostElement.getAttribute('aria-label') ?? undefined;
-    if (hostAriaLabel !== this.renderedAriaLabel) {
-      this.hostAriaLabel = hostAriaLabel;
-    }
+    const ariaLabel = this.getAriaLabel();
+    this.renderedAriaLabelMutation =
+      this.hostElement.getAttribute('aria-label') !== ariaLabel
+        ? ariaLabel
+        : undefined;
+    this.renderedAriaLabel = ariaLabel;
 
     this.hostContext = {
       breadcrumb: !!closestPassShadow(this.hostElement, 'ix-breadcrumb'),
@@ -205,7 +355,11 @@ export class DropdownButton
   }
 
   override isAriaActiveDescendantActive(): boolean {
-    return !this.suppressAriaActiveDescendant && this.dropdownShow;
+    return (
+      !this.suppressAriaActiveDescendant &&
+      this.dropdownShow &&
+      this.navigationMode !== 'roving-tabindex'
+    );
   }
 
   override getAriaActiveDescendantProxyItemId(): string | boolean {
@@ -219,12 +373,8 @@ export class DropdownButton
   }
 
   override render() {
-    const ariaLabel =
-      this.hostAriaLabel ||
-      this.ariaLabelDropdownButton ||
-      this.label ||
-      (this.dropdownShow ? 'Close dropdown' : 'Open dropdown');
-    this.renderedAriaLabel = ariaLabel;
+    const isIconOnly = this.isIconOnly();
+    const ariaLabel = this.getAriaLabel();
 
     const ariaAttributes = {
       ...this.inheritAriaAttributes,
@@ -256,6 +406,7 @@ export class DropdownButton
       <Host
         class={{
           disabled: this.disabled,
+          'icon-only': isIconOnly,
           'host-context-breadcrumb': !!this.hostContext?.breadcrumb,
           'host-context-date-picker': !!this.hostContext?.datePicker,
           'host-context-tabs': !!this.hostContext?.tabs,
@@ -265,7 +416,7 @@ export class DropdownButton
         {...ariaAttributes}
       >
         <div class="dropdown-button">
-          {this.label || this.label === null ? (
+          {!isIconOnly ? (
             <ix-button
               {...commonProperties}
               class={{
@@ -273,19 +424,15 @@ export class DropdownButton
                 active: this.dropdownShow,
               }}
               alignment="start"
+              aria-hidden="true"
               inert={true}
               ref={(ref) => forceTabIndex(ref, -1)}
-              ariaLabelButton={
-                this.ariaLabelDropdownButton ??
-                (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
-              }
             >
               <div class={'content'}>
                 {this.icon ? (
                   <ix-icon
                     aria-hidden="true"
                     name={this.icon}
-                    size="24"
                     class={'dropdown-icon'}
                   ></ix-icon>
                 ) : null}
@@ -310,12 +457,14 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
+                size={
+                  this.hostContext?.splitButton
+                    ? DEFAULT_BUTTON_ICON_SIZE
+                    : '24'
+                }
+                aria-hidden="true"
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
-                aria-label={
-                  this.ariaLabelDropdownButton ??
-                  (this.dropdownShow ? 'Close dropdown' : 'Open dropdown')
-                }
               ></ix-icon-button>
               {!hideChevron && this.getTriangle()}
             </div>
@@ -326,13 +475,14 @@ export class DropdownButton
           role="menu"
           ref={this.dropdownRef}
           id={`dropdown-button-menu-${this.dropdownButtonId}`}
-          aria-labelledby={`dropdown-button-${this.dropdownButtonId}`}
+          aria-label={this.getMenuAriaLabel()}
           trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
+          navigationMode={this.navigationMode}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,

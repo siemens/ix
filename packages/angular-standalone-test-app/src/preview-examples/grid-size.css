@@ -29,7 +29,7 @@
   align-items: center;
   flex: 1 0 0;
   align-self: stretch;
-  border: 1px solid var(--si-sys-border-3);
+  border: 1px solid var(--si-sys-color-border-3);
   background: transparent;
   border-radius: 3px;
 }

@@ -47,6 +47,7 @@ export class CategoryFilter {
   private inputListener?: DisposableEventListener;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
+  private tokenListElement?: HTMLDivElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
   private a11yAttributes?: A11yAttributes;
@@ -422,6 +423,13 @@ export class CategoryFilter {
   }
 
   private handleInputElementKeyDown(e: KeyboardEvent) {
+    // The host is the dropdown trigger, which would otherwise treat Home/End
+    // as dropdown navigation and cancel the native caret movement.
+    if (e.key === 'Home' || e.key === 'End') {
+      e.stopPropagation();
+      return;
+    }
+
     switch (e.code) {
       case 'ArrowDown': {
         this.onArrowDown(e);
@@ -791,10 +799,28 @@ export class CategoryFilter {
   }
 
   componentDidRender() {
-    if (this.isScrollStateDirty) {
-      this.textInput?.current?.scrollIntoView();
-      this.isScrollStateDirty = false;
+    if (!this.isScrollStateDirty || !this.tokenListElement) {
+      return;
     }
+
+    const chips = Array.from(
+      this.tokenListElement.querySelectorAll('ix-filter-chip')
+    );
+    // A token added during a pending render is only in the DOM after the next render
+    if (chips.length !== this.filterTokens.length) {
+      return;
+    }
+
+    this.isScrollStateDirty = false;
+    this.scrollTokenListToEnd(this.tokenListElement, chips);
+  }
+
+  private async scrollTokenListToEnd(
+    tokenList: HTMLElement,
+    chips: HTMLIxFilterChipElement[]
+  ) {
+    await Promise.all(chips.map((chip) => chip.componentOnReady()));
+    tokenList.scrollTop = tokenList.scrollHeight;
   }
 
   disconnectedCallback() {
@@ -829,7 +855,7 @@ export class CategoryFilter {
         }}
         variant="tertiary"
         icon={iconClear}
-        iconColor="--si-sys-text-secondary"
+        iconColor="--si-sys-color-text-secondary"
         size="16"
         aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
@@ -838,14 +864,14 @@ export class CategoryFilter {
 
   private getIconColor() {
     if (this.disabled) {
-      return '--si-sys-text-disabled';
+      return '--si-sys-color-text-disabled';
     }
 
     if (this.readonly) {
-      return '--si-sys-text-primary';
+      return '--si-sys-color-text-primary';
     }
 
-    return '--si-sys-text-accent';
+    return '--si-sys-color-text-accent';
   }
 
   render() {
@@ -869,7 +895,10 @@ export class CategoryFilter {
               size="16"
             ></ix-icon>
             <div class="token-container">
-              <div class="list-unstyled">
+              <div
+                class="list-unstyled"
+                ref={(el) => (this.tokenListElement = el)}
+              >
                 {this.filterTokens.map((value, index) => (
                   <span
                     key={value.toString()}
