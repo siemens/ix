@@ -14,7 +14,7 @@ export default () => {
     <>
       <IxSlider
         trace
-        trace-reference={50}
+        traceReference={50}
         marker={[0, 25, 50, 75, 100]}
         value={25}
       >
@@ -28,7 +28,7 @@ export default () => {
         value={20}
         step={10}
         trace
-        trace-reference={10}
+        traceReference={10}
         marker={[0, 10, 20, 30, 40, 50]}
       >
         <span slot="label-start">0</span>
