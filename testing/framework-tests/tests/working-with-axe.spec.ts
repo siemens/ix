@@ -87,3 +87,8 @@ import './generated/badge-counter-axe.spec';
 import './generated/badge-label-axe.spec';
 import './generated/badge-dot-axe.spec';
 import './generated/badge-status-icon-axe.spec';
+
+// Card family — action-card axe only.
+// card / push-card / card-list / blind axe fail on pre-existing icon-alt and
+// accordion button-name issues outside EIX-410 scope.
+import './generated/action-card-axe.spec';

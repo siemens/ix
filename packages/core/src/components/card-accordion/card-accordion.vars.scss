@@ -90,7 +90,10 @@
   --ix-card-accordion--expanded-height: calc(
     #{sys.$si-sys-sizing-size-160} - #{sys.$si-sys-sizing-spacing-y-20}
   );
-  --ix-card-accordion-expand-action--height: #{sys.$si-sys-sizing-size-90};
+  /* Figma _Push card accordion: p-8 + icon-md (20) = 36 */
+  --ix-card-accordion-expand-action--height: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  );
   --ix-card-accordion-expand-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-card-accordion-expand-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-accordion-expand-content-body--height: calc(

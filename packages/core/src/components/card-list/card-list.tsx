@@ -491,7 +491,6 @@ export class CardList {
                   <div class="Show__All__Card__Content">
                     <ix-icon
                       name={iconMoreMenu}
-                      size={'32'}
                       class={'Show__All__Card__Icon'}
                     ></ix-icon>
                     <span class="Show__All__Card__Text">

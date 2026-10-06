@@ -48,9 +48,16 @@ export class PushCard {
   @Prop() subheading?: string;
 
   /**
-   * Card variant
+   * Card status variant
    */
-  @Prop() variant: PushCardVariant = 'outline';
+  @Prop() variant: PushCardVariant = 'default';
+
+  /**
+   * Show the card with an outline border.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline: boolean = true;
 
   /**
    * Expand the card
@@ -58,21 +65,32 @@ export class PushCard {
   @Prop() expanded: boolean = false;
 
   /**
-   * If true, disables hover and active styles and changes cursor to default
+   * Enable pointer interaction on the upper card region.
+   * Default is `false`; only the accordion control is interactive.
+   *
+   * @since 6.0.0
    */
-  @Prop() passive: boolean = false;
+  @Prop() clickable: boolean = false;
 
   render() {
     return (
-      <Host class={`card-${this.variant}`}>
-        <ix-card variant={this.variant} passive={this.passive}>
+      <Host
+        class={{
+          [`card-${this.variant}`]: true,
+          outline: this.outline,
+        }}
+      >
+        <ix-card
+          variant={this.variant}
+          outline={this.outline}
+          clickable={this.clickable}
+        >
           <ix-card-content>
             <ix-card-title>
               {this.icon ? (
                 <ix-icon
                   class={'icon'}
                   name={this.icon}
-                  size="32"
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
               ) : null}
@@ -84,7 +102,11 @@ export class PushCard {
             <ix-typography format="h4">{this.heading}</ix-typography>
             <ix-typography>{this.subheading}</ix-typography>
           </ix-card-content>
-          <ix-card-accordion collapse={!this.expanded} variant={this.variant}>
+          <ix-card-accordion
+            collapse={!this.expanded}
+            variant={this.variant}
+            outline={this.outline}
+          >
             <slot></slot>
           </ix-card-accordion>
         </ix-card>

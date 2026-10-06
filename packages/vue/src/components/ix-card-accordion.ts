@@ -10,6 +10,7 @@ export const IxCardAccordion: StencilVueComponent<JSX.IxCardAccordion> = /*@__PU
   'ariaLabelExpandButton',
   'collapse',
   'variant',
+  'outline',
   'accordionExpand'
 ], [
   'accordionExpand'

@@ -58,9 +58,17 @@ export class Blind {
   @Prop() icon?: string;
 
   /**
-   * Blind variant
+   * Blind status variant
    */
-  @Prop() variant: BlindVariant = 'filled';
+  @Prop() variant: BlindVariant = 'default';
+
+  /**
+   * Show the blind with an outline border.
+   * Default is `false` (filled), matching the previous default `variant="filled"`.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline: boolean = false;
 
   /**
    * Collapsed state changed
@@ -138,6 +146,7 @@ export class Blind {
     return (
       <Host
         class={{
+          outline: this.outline,
           [`blind-${this.variant}`]: true,
         }}
       >

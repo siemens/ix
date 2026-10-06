@@ -19,7 +19,8 @@ export default () => {
         <div>Filled content</div>
       </IxBlind>
       <IxBlind
-        variant="outline"
+        variant="default"
+        outline
         icon={iconBulb}
         label="Outline"
         sublabel="sublabel"
@@ -28,15 +29,15 @@ export default () => {
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'alarm'}
-        label="Alarm"
+        variant="danger"
+        label="Danger"
         sublabel="sublabel"
       >
-        <div>Alarm content</div>
+        <div>Danger content</div>
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'critical'}
+        variant="critical"
         label="Critical"
         sublabel="sublabel"
       >
@@ -44,7 +45,7 @@ export default () => {
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'warning'}
+        variant="warning"
         label="Warning"
         sublabel="sublabel"
       >
@@ -52,15 +53,31 @@ export default () => {
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'info'}
-        label="Info"
+        variant="information"
+        label="Information"
         sublabel="sublabel"
       >
-        <div>Info content</div>
+        <div>Information content</div>
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'success'}
+        variant="caution"
+        label="Caution"
+        sublabel="sublabel"
+      >
+        <div>Caution content</div>
+      </IxBlind>
+      <IxBlind
+        icon={iconBulb}
+        variant="accent"
+        label="Accent"
+        sublabel="sublabel"
+      >
+        <div>Accent content</div>
+      </IxBlind>
+      <IxBlind
+        icon={iconBulb}
+        variant="success"
         label="Success"
         sublabel="sublabel"
       >
@@ -68,7 +85,7 @@ export default () => {
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'neutral'}
+        variant="neutral"
         label="Neutral"
         sublabel="sublabel"
       >

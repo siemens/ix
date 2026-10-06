@@ -14,7 +14,7 @@ import { iconCapacity } from '@siemens/ix-icons/icons';
 
 export default () => {
   return (
-    <IxCard variant="outline" onClick={console.log}>
+    <IxCard variant="default" clickable onClick={console.log}>
       <IxCardContent>
         <IxIcon name={iconCapacity}></IxIcon>
         <IxTypography bold>Number of components</IxTypography>

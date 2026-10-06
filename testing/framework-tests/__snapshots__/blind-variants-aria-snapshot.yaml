@@ -1,40 +1,51 @@
-- button "Example sublabel" [expanded]
-- img
-- img
-- text: Example sublabel
-- region "Example sublabel"
-- button "Outline sublabel" [expanded]
-- img
-- img
-- text: Outline sublabel
-- region "Outline sublabel"
-- button "Alarm sublabel" [expanded]
-- img
-- img
-- text: Alarm sublabel
-- region "Alarm sublabel"
-- button "Critical sublabel" [expanded]
-- img
-- img
-- text: Critical sublabel
-- region "Critical sublabel"
-- button "Warning sublabel" [expanded]
-- img
-- img
-- text: Warning sublabel
-- region "Warning sublabel"
-- button "Info sublabel" [expanded]
-- img
-- img
-- text: Info sublabel
-- region "Info sublabel"
-- button "Success sublabel" [expanded]
-- img
-- img
-- text: Success sublabel
-- region "Success sublabel"
-- button "Neutral sublabel" [expanded]
-- img
-- img
-- text: Neutral sublabel
-- region "Neutral sublabel"
+- main:
+  - button "Example sublabel" [expanded]
+  - img
+  - img
+  - text: Example sublabel
+  - region "Example sublabel"
+  - button "Outline sublabel" [expanded]
+  - img
+  - img
+  - text: Outline sublabel
+  - region "Outline sublabel"
+  - button "Danger sublabel" [expanded]
+  - img
+  - img
+  - text: Danger sublabel
+  - region "Danger sublabel"
+  - button "Critical sublabel" [expanded]
+  - img
+  - img
+  - text: Critical sublabel
+  - region "Critical sublabel"
+  - button "Warning sublabel" [expanded]
+  - img
+  - img
+  - text: Warning sublabel
+  - region "Warning sublabel"
+  - button "Information sublabel" [expanded]
+  - img
+  - img
+  - text: Information sublabel
+  - region "Information sublabel"
+  - button "Caution sublabel" [expanded]
+  - img
+  - img
+  - text: Caution sublabel
+  - region "Caution sublabel"
+  - button "Accent sublabel" [expanded]
+  - img
+  - img
+  - text: Accent sublabel
+  - region "Accent sublabel"
+  - button "Success sublabel" [expanded]
+  - img
+  - img
+  - text: Success sublabel
+  - region "Success sublabel"
+  - button "Neutral sublabel" [expanded]
+  - img
+  - img
+  - text: Neutral sublabel
+  - region "Neutral sublabel"

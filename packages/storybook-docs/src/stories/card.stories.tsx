@@ -21,9 +21,49 @@ const meta = {
     </ix-card>
   )),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-card'),
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components?node-id=104612-25078&m=dev',
+    },
+  },
 } satisfies Meta<Element>;
 
 export default meta;
 type Story = StoryObj<Element>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    variant: 'default',
+    outline: true,
+    clickable: false,
+  },
+};
+
+export const Filled: Story = {
+  args: {
+    variant: 'default',
+    outline: false,
+  },
+};
+
+export const DangerOutline: Story = {
+  args: {
+    variant: 'danger',
+    outline: true,
+  },
+};
+
+export const DangerFilled: Story = {
+  args: {
+    variant: 'danger',
+    outline: false,
+  },
+};
+
+export const Clickable: Story = {
+  args: {
+    variant: 'default',
+    clickable: true,
+  },
+};

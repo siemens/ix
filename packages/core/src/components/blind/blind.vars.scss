@@ -7,78 +7,51 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'tokens/system' as sys;
 @use 'sass:map';
+@use 'tokens/system' as sys;
 
-// si/sys token values per variant (background/hover/active/contrast), per the
-// SI Theme Token Migration Guide. Naming isn't uniform across variants, so
-// each variant needs an explicit mapping rather than string interpolation.
-$blind-variant-sys-values: (
-  alarm: (
-    background: sys.$si-sys-color-background-danger,
-    hover: sys.$si-sys-color-background-danger-hover,
-    active: sys.$si-sys-color-background-danger-active,
-    contrast: sys.$si-sys-color-text-on-danger,
-  ),
-  critical: (
-    background: sys.$si-sys-color-background-critical,
-    hover: sys.$si-sys-color-background-critical-hover,
-    active: sys.$si-sys-color-background-critical-active,
-    contrast: sys.$si-sys-color-text-on-critical,
-  ),
-  info: (
-    background: sys.$si-sys-color-background-information,
-    hover: sys.$si-sys-color-background-information-hover,
-    active: sys.$si-sys-color-background-information-active,
-    contrast: sys.$si-sys-color-text-on-information,
-  ),
-  neutral: (
-    background: sys.$si-sys-color-background-neutral,
-    hover: sys.$si-sys-color-background-neutral-hover,
-    active: sys.$si-sys-color-background-neutral-active,
-    contrast: sys.$si-sys-color-text-on-neutral,
-  ),
-  primary: (
-    background: sys.$si-sys-color-background-accent,
-    hover: sys.$si-sys-color-background-accent-hover,
-    active: sys.$si-sys-color-background-accent-active,
-    contrast: sys.$si-sys-color-text-on-accent,
-  ),
-  success: (
-    background: sys.$si-sys-color-background-success,
-    hover: sys.$si-sys-color-background-success-hover,
-    active: sys.$si-sys-color-background-success-active,
-    contrast: sys.$si-sys-color-text-on-success,
+$blind-status-variants: danger warning caution information accent critical
+  success neutral;
+
+$blind-status-sys: (
+  danger: (
+    border: sys.$si-sys-color-border-danger,
+    strong: sys.$si-sys-color-background-danger,
   ),
   warning: (
-    background: sys.$si-sys-color-background-warning,
-    hover: sys.$si-sys-color-background-warning-hover,
-    active: sys.$si-sys-color-background-warning-active,
-    contrast: sys.$si-sys-color-text-on-warning,
+    border: sys.$si-sys-color-border-warning,
+    strong: sys.$si-sys-color-background-warning,
+  ),
+  caution: (
+    border: sys.$si-sys-color-border-caution,
+    strong: sys.$si-sys-color-background-caution,
+  ),
+  information: (
+    border: sys.$si-sys-color-border-information,
+    strong: sys.$si-sys-color-background-information,
+  ),
+  accent: (
+    border: sys.$si-sys-color-border-accent,
+    strong: sys.$si-sys-color-background-accent,
+  ),
+  critical: (
+    border: sys.$si-sys-color-border-critical,
+    strong: sys.$si-sys-color-background-critical,
+  ),
+  success: (
+    border: sys.$si-sys-color-border-success,
+    strong: sys.$si-sys-color-background-success,
+  ),
+  neutral: (
+    border: sys.$si-sys-color-border-neutral,
+    strong: sys.$si-sys-color-background-neutral,
   ),
 );
 
-@mixin variant-vars($variant) {
-  $sys-values: map.get($blind-variant-sys-values, $variant);
-
-  @if $sys-values {
-    --ix-blind-#{$variant}--background: #{map.get($sys-values, background)};
-    --ix-blind-#{$variant}--background--hover: #{map.get($sys-values, hover)};
-    --ix-blind-#{$variant}--background--active: #{map.get($sys-values, active)};
-    --ix-blind-#{$variant}--color: #{map.get($sys-values, contrast)};
-  } @else if $variant == 'filled' {
-    --ix-blind-filled--background: transparent;
-    --ix-blind-filled--background--hover: transparent;
-    --ix-blind-filled--background--active: transparent;
-    --ix-blind-filled--color: light-dark(
-      rgba(0, 10, 20, 0.9),
-      rgba(245, 252, 255, 0.9)
-    );
-  }
-}
-
 :host {
-  --ix-blind-outline-header--background: transparent;
+  --ix-blind-header--background: transparent;
+  --ix-blind-header--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-blind-header--background--active: #{sys.$si-sys-color-background-selected};
   --ix-blind-header--color: #{sys.$si-sys-color-text-primary};
   --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
   --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
@@ -87,6 +60,16 @@ $blind-variant-sys-values: (
   --ix-blind-outline--border-color--active: #{sys.$si-sys-color-background-selected};
   --ix-blind-header--border-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind--background: #{sys.$si-sys-color-background-1};
+  --ix-blind-status-color: transparent;
+  --ix-blind-status-color-strong: transparent;
+  --ix-blind-strip-height: 0px;
+}
+
+@each $status, $values in $blind-status-sys {
+  :host(.blind-#{$status}) {
+    --ix-blind-status-color: #{map.get($values, border)};
+    --ix-blind-status-color-strong: #{map.get($values, strong)};
+  }
 }
 
 :host {

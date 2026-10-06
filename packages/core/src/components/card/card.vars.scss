@@ -7,10 +7,51 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:map';
 @use 'tokens/system' as sys;
 
-$card-variants: outline filled alarm critical warning success info neutral
-  primary;
+/// Status variants that use strip / status border (excludes `default`).
+$card-status-variants: danger warning caution information accent critical
+  success neutral;
+
+/// All card `variant` values including `default`.
+$card-variants: default #{$card-status-variants};
+
+/// SDL status chrome: strip + outline border colors.
+$card-status-sys: (
+  danger: (
+    status: sys.$si-sys-color-border-danger,
+    status-strong: sys.$si-sys-color-background-danger,
+  ),
+  warning: (
+    status: sys.$si-sys-color-border-warning,
+    status-strong: sys.$si-sys-color-background-warning,
+  ),
+  caution: (
+    status: sys.$si-sys-color-border-caution,
+    status-strong: sys.$si-sys-color-background-caution,
+  ),
+  information: (
+    status: sys.$si-sys-color-border-information,
+    status-strong: sys.$si-sys-color-background-information,
+  ),
+  accent: (
+    status: sys.$si-sys-color-border-accent,
+    status-strong: sys.$si-sys-color-background-accent,
+  ),
+  critical: (
+    status: sys.$si-sys-color-border-critical,
+    status-strong: sys.$si-sys-color-background-critical,
+  ),
+  success: (
+    status: sys.$si-sys-color-border-success,
+    status-strong: sys.$si-sys-color-background-success,
+  ),
+  neutral: (
+    status: sys.$si-sys-color-border-neutral,
+    status-strong: sys.$si-sys-color-background-neutral,
+  ),
+);
 
 :host {
   --ix-card--border-color: #{sys.$si-sys-color-border-3};
@@ -34,68 +75,18 @@ $card-variants: outline filled alarm critical warning success info neutral
   --ix-card-critical--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
   --ix-card-critical--color: #{sys.$si-sys-color-text-on-critical};
   --ix-card-filled--background: #{sys.$si-sys-color-background-1};
-  --ix-card-filled--background--active: #{sys.$si-sys-color-background-selected};
   --ix-card-filled--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-card-filled--background--active: #{sys.$si-sys-color-background-selected};
   --ix-card-filled--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-card-filled--border-color: rgba(0, 0, 0, 0);
-  --ix-card-filled--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-filled--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-filled--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-filled--color: #{sys.$si-sys-color-text-primary};
-  --ix-card-info--background: #{sys.$si-sys-color-background-information};
-  --ix-card-info--background--active: #{sys.$si-sys-color-background-information-active};
-  --ix-card-info--background--hover: #{sys.$si-sys-color-background-information-hover};
-  --ix-card-info--background--selected: #{sys.$si-sys-color-background-information};
-  --ix-card-info--border-color: rgba(0, 0, 0, 0);
-  --ix-card-info--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-info--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-info--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-info--color: #{sys.$si-sys-color-text-on-information};
-  --ix-card-neutral--background: #{sys.$si-sys-color-background-neutral};
-  --ix-card-neutral--background--active: #{sys.$si-sys-color-background-neutral-active};
-  --ix-card-neutral--background--hover: #{sys.$si-sys-color-background-neutral-hover};
-  --ix-card-neutral--background--selected: #{sys.$si-sys-color-background-neutral};
-  --ix-card-neutral--border-color: rgba(0, 0, 0, 0);
-  --ix-card-neutral--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-neutral--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-neutral--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-neutral--color: #{sys.$si-sys-color-text-on-neutral};
-  --ix-card-outline--background: rgba(0, 0, 0, 0);
-  --ix-card-outline--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-card-outline--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-outline--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-card-outline--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-outline--border-color--active: #{sys.$si-sys-color-border-3};
-  --ix-card-outline--border-color--hover: #{sys.$si-sys-color-border-3};
-  --ix-card-outline--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-outline--color: #{sys.$si-sys-color-text-primary};
-  --ix-card-primary--background: #{sys.$si-sys-color-background-accent};
-  --ix-card-primary--background--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-card-primary--background--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-card-primary--background--selected: #{sys.$si-sys-color-background-accent};
-  --ix-card-primary--border-color: rgba(0, 0, 0, 0);
-  --ix-card-primary--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-primary--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-primary--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-primary--color: #{sys.$si-sys-color-text-on-accent};
-  --ix-card-success--background: #{sys.$si-sys-color-background-success};
-  --ix-card-success--background--active: #{sys.$si-sys-color-background-success-active};
-  --ix-card-success--background--hover: #{sys.$si-sys-color-background-success-hover};
-  --ix-card-success--background--selected: #{sys.$si-sys-color-background-success};
-  --ix-card-success--border-color: rgba(0, 0, 0, 0);
-  --ix-card-success--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-success--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-success--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-success--color: #{sys.$si-sys-color-text-on-success};
-  --ix-card-warning--background: #{sys.$si-sys-color-background-warning};
-  --ix-card-warning--background--active: #{sys.$si-sys-color-background-warning-active};
-  --ix-card-warning--background--hover: #{sys.$si-sys-color-background-warning-hover};
-  --ix-card-warning--background--selected: #{sys.$si-sys-color-background-warning};
-  --ix-card-warning--border-color: rgba(0, 0, 0, 0);
-  --ix-card-warning--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-warning--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-warning--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-warning--color: #{sys.$si-sys-color-text-on-warning};
+
+  --ix-card-status-color: transparent;
+}
+
+@each $status, $values in $card-status-sys {
+  :host(.card-#{$status}) {
+    --ix-card-status-color: #{map.get($values, status)};
+    --ix-card-status-color-strong: #{map.get($values, status-strong)};
+  }
 }
 
 :host {

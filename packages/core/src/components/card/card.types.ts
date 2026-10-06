@@ -6,13 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export type CardVariant =
-  | 'alarm'
-  | 'critical'
-  | 'warning'
-  | 'info'
-  | 'neutral'
-  | 'success'
-  | 'primary'
-  | 'outline'
-  | 'filled';
+import type { StatusVariant } from '../utils/status.types';
+
+/** @deprecated Use {@link StatusVariant} */
+export type CardVariant = StatusVariant;
+
+export type { StatusVariant };
