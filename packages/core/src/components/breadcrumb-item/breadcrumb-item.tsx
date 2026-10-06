@@ -170,6 +170,7 @@ export class BreadcrumbItem
                   name={iconChevronRightSmall}
                   size="16"
                   class={'chevron'}
+                  aria-hidden="true"
                 ></ix-icon>
               )}
             </Fragment>
