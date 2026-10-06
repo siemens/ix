@@ -584,7 +584,7 @@ regressionTest.describe('nested dropdown 2/3', () => {
       )
       .toBe(true);
 
-    await expect(nestedDropdownItem).toHaveClass(/hydrated/);
+    await expect(nestedDropdownItem).toHaveAttribute('hydrated');
   });
 });
 
@@ -701,7 +701,7 @@ regressionTest.describe('resolve during element connect', () => {
     });
 
     const dropdown = page.locator('ix-dropdown');
-    await expect(dropdown).toHaveClass(/hydrated/);
+    await expect(dropdown).toHaveAttribute('hydrated');
     await page.locator('ix-button').first().click();
 
     await expect
@@ -764,10 +764,10 @@ regressionTest.describe('A11y', () => {
           icons: { iconPrint },
         }
       );
-      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown-item').first()).toHaveClass(
-        /hydrated/
+      await expect(page.locator('#trigger')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown-item').first()).toHaveAttribute(
+        'hydrated'
       );
     });
 
@@ -830,10 +830,10 @@ regressionTest.describe('A11y', () => {
           icons: { iconPrint },
         }
       );
-      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown-item').first()).toHaveClass(
-        /hydrated/
+      await expect(page.locator('#trigger')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown-item').first()).toHaveAttribute(
+        'hydrated'
       );
     });
 
@@ -989,8 +989,8 @@ regressionTest.describe('A11y', () => {
         </ix-dropdown>
         <button id="after">After</button>
       `);
-      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
+      await expect(page.locator('#trigger')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
     });
 
     regressionTest(
@@ -1098,7 +1098,7 @@ regressionTest.describe('A11y', () => {
       const submenu = page.locator('#submenu');
       const enabledSubitem = page.locator('#enabled-subitem');
 
-      await expect(submenu).toHaveClass(/hydrated/);
+      await expect(submenu).toHaveAttribute('hydrated');
       await trigger.focus();
       await page.keyboard.press('ArrowDown');
       await expect(submenuTrigger).toBeFocused();
@@ -1236,11 +1236,11 @@ regressionTest.describe('A11y', () => {
         <button id="after">After</button>
       `);
 
-      await expect(page.locator('#parent-dropdown')).toHaveClass(
-        /\bhydrated\b/
+      await expect(page.locator('#parent-dropdown')).toHaveAttribute(
+        'hydrated'
       );
-      await expect(page.locator('#original-submenu')).toHaveClass(
-        /\bhydrated\b/
+      await expect(page.locator('#original-submenu')).toHaveAttribute(
+        'hydrated'
       );
       await expect(page.locator('#submenu-trigger')).toHaveAttribute(
         'data-ix-dropdown-trigger'
@@ -1257,7 +1257,7 @@ regressionTest.describe('A11y', () => {
         document.body.appendChild(replacement);
       });
       const replacement = page.locator('#replacement-submenu');
-      await expect(replacement).toHaveClass(/\bhydrated\b/);
+      await expect(replacement).toHaveAttribute('hydrated');
 
       await page.locator('#trigger').focus();
       await page.keyboard.press('ArrowDown');
@@ -1287,8 +1287,8 @@ regressionTest.describe('A11y', () => {
         <button id="positive-tabindex" tabindex="1">Positive tabindex</button>
         <button id="after">After</button>
       `);
-      await expect(page.locator('#trigger')).toHaveClass(/hydrated/);
-      await expect(page.locator('ix-dropdown')).toHaveClass(/hydrated/);
+      await expect(page.locator('#trigger')).toHaveAttribute('hydrated');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
     });
 
     regressionTest(
@@ -1490,8 +1490,8 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await trigger.click();
 
   const dropdown = page.locator('#dropdown');
-  await expect(trigger).toHaveClass(/hydrated/);
-  await expect(dropdown).toHaveClass(/hydrated/);
+  await expect(trigger).toHaveAttribute('hydrated');
+  await expect(dropdown).toHaveAttribute('hydrated');
   await expect(trigger).toBeVisible();
   await expect(dropdown).toBeVisible();
 

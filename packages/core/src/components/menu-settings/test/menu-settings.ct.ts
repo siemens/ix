@@ -24,7 +24,7 @@ test('should not change tab', async ({ mount, page }) => {
   await element.click();
 
   const tabItems = page.locator('ix-tab-item');
-  await expect(tabItems.first()).toHaveClass(/hydrated/);
+  await expect(tabItems.first()).toHaveAttribute('hydrated');
 
   await settings.evaluate((e) => {
     e.addEventListener('tabChange', (event) => event.preventDefault());
@@ -54,7 +54,7 @@ test('tabChange event should fire exactly once per tab click', async ({
   await element.click();
 
   const tabItems = page.locator('ix-tab-item');
-  await expect(tabItems.first()).toHaveClass(/hydrated/);
+  await expect(tabItems.first()).toHaveAttribute('hydrated');
 
   const eventPromise = settings.evaluate((e) => {
     return new Promise<string>((resolve) => {
