@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-Fix `ix-tooltip` to guard `showPopover()` / `hidePopover()` calls against a detached dialog, avoiding errors when the tooltip is disconnected before the deferred callback runs. Fixes #2559
+Fix `ix-tooltip` to skip `showPopover()` / `hidePopover()` when the dialog is detached, the host is gone, or those methods are missing. Fixes #2559

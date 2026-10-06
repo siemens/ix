@@ -106,8 +106,26 @@ export class Tooltip {
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
-  private get arrowElement(): HTMLElement {
-    return this.hostElement.shadowRoot!.querySelector('.arrow')!;
+  private get arrowElement(): HTMLElement | null {
+    return this.hostElement.shadowRoot?.querySelector('.arrow') ?? null;
+  }
+
+  private isDialogUsable(
+    dialog?: HTMLDialogElement | null
+  ): dialog is HTMLDialogElement {
+    return Boolean(
+      dialog && this.hostElement.isConnected && dialog.parentNode
+    );
+  }
+
+  private invokePopover(
+    dialog: HTMLDialogElement,
+    method: 'showPopover' | 'hidePopover'
+  ) {
+    const action = dialog[method];
+    if (typeof action === 'function') {
+      action.call(dialog);
+    }
   }
 
   /** @internal */
@@ -122,13 +140,13 @@ export class Tooltip {
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.showTooltipTimeout = setTimeout(() => {
-      if (!dialog.isConnected) {
+      if (!this.isDialogUsable(dialog)) {
         return;
       }
       const wasVisible = this.visible;
       this.setAnchorElement(anchorElement);
       if (!wasVisible) {
-        dialog.showPopover();
+        this.invokePopover(dialog, 'showPopover');
       }
       this.applyTooltipPosition(anchorElement, dialog);
       this.registerTooltipListener(dialog);
@@ -152,12 +170,12 @@ export class Tooltip {
 
     this.hideTooltipTimeout = setTimeout(() => {
       const wasVisible = this.visible;
-      this.setAnchorElement();
-      if (wasVisible) {
-        dialog.hidePopover();
-      }
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();
+      this.setAnchorElement();
+      if (wasVisible && this.isDialogUsable(dialog)) {
+        this.invokePopover(dialog, 'hidePopover');
+      }
     }, hideDelay);
   }
 
@@ -226,15 +244,14 @@ export class Tooltip {
     target: Element,
     dialog: HTMLDialogElement
   ): Promise<ComputePositionReturn> {
+    const arrowElement = this.arrowElement;
     return computePosition(target, dialog, {
       strategy: 'fixed',
       placement: this.placement,
       middleware: [
         shift(),
         offset(12),
-        arrow({
-          element: this.arrowElement,
-        }),
+        ...(arrowElement ? [arrow({ element: arrowElement })] : []),
         flip({
           fallbackStrategy: 'initialPlacement',
           fallbackAxisSideDirection: 'end',
@@ -246,8 +263,12 @@ export class Tooltip {
   }
 
   private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
+    const arrowElement = this.arrowElement;
+    if (!arrowElement) {
+      return;
+    }
     const arrowPosition = this.computeArrowPosition(computeResponse);
-    Object.assign(this.arrowElement.style, arrowPosition);
+    Object.assign(arrowElement.style, arrowPosition);
   }
 
   private async applyTooltipPosition(
@@ -265,10 +286,20 @@ export class Tooltip {
         target,
         dialog,
         async () => {
+          if (!this.isDialogUsable(dialog)) {
+            this.disposeAutoUpdate?.();
+            return;
+          }
+
           const computeResponse = await this.computeTooltipPosition(
             target,
             dialog
           );
+
+          if (!this.isDialogUsable(dialog)) {
+            this.disposeAutoUpdate?.();
+            return;
+          }
 
           const isHidden = computeResponse.middlewareData.hide?.referenceHidden;
 
