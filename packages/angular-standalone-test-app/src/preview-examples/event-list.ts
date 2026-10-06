@@ -15,16 +15,16 @@ import { IxEventList, IxEventListItem } from '@siemens/ix-angular/standalone';
   imports: [IxEventList, IxEventListItem],
   template: `
     <ix-event-list>
-      <ix-event-list-item item-color="--si-sys-color-background-accent"
+      <ix-event-list-item itemColor="--si-sys-color-background-accent"
         >Text 1</ix-event-list-item
       >
-      <ix-event-list-item item-color="--si-sys-color-background-accent"
+      <ix-event-list-item itemColor="--si-sys-color-background-accent"
         >Text 2</ix-event-list-item
       >
-      <ix-event-list-item item-color="--si-sys-color-background-danger"
+      <ix-event-list-item itemColor="--si-sys-color-background-danger"
         >Text 3</ix-event-list-item
       >
-      <ix-event-list-item item-color="--si-sys-color-background-success"
+      <ix-event-list-item itemColor="--si-sys-color-background-success"
         >Text 4</ix-event-list-item
       >
     </ix-event-list>
