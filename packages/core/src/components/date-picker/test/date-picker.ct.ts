@@ -656,7 +656,9 @@ regressionTest.describe('keyboard navigation', () => {
 regressionTest.describe('month dropdown min/max range', () => {
   const openMonthDropdown = async (page: Page) => {
     await page.waitForSelector('ix-date-time-card');
-    const monthSelection = page.getByLabel('Select month');
+    const monthSelection = page.getByRole('button', {
+      name: 'Select month',
+    });
 
     await expect(monthSelection).toBeVisible();
     await monthSelection.click();
@@ -665,7 +667,7 @@ regressionTest.describe('month dropdown min/max range', () => {
   };
 
   const expectMonths = async (
-    monthSelection: ReturnType<Page['getByLabel']>,
+    monthSelection: ReturnType<Page['getByRole']>,
     enabled: string[],
     disabled: string[]
   ) => {
@@ -799,7 +801,9 @@ regressionTest.describe('year dropdown sync', () => {
         .locator(DatePickerSelector)
         .evaluate((element) => element.setAttribute('to', '2028/03/12'));
 
-      const yearSelection = page.getByLabel('Select year');
+      const yearSelection = page.getByRole('button', {
+        name: 'Select year',
+      });
       await yearSelection.click();
 
       await expect(
