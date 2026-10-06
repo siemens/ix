@@ -20,15 +20,16 @@ regressionTest.describe('breadcrumb', () => {
 
   regressionTest('lazyLoaded', async ({ page }) => {
     await page.goto('breadcrumb/lazyLoaded');
-    const nextButton = page.getByRole('button', {
-      name: 'Show Item3 next items',
-    });
+    const nextButton = page.locator('ix-breadcrumb .next-button');
+    await expect(nextButton).toHaveAttribute(
+      'aria-label',
+      'Show Item3 next items'
+    );
     await nextButton.click();
     await expect(
       nextButton.getByRole('menuitem', { name: 'Next Item 1' })
     ).toBeVisible();
 
-    await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
