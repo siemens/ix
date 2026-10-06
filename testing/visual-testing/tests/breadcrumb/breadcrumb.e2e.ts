@@ -20,11 +20,9 @@ regressionTest.describe('breadcrumb', () => {
 
   regressionTest('lazyLoaded', async ({ page }) => {
     await page.goto('breadcrumb/lazyLoaded');
-    const nextButton = page.locator('ix-breadcrumb .next-button');
-    await expect(nextButton).toHaveAttribute(
-      'aria-label',
-      'Show Item3 next items'
-    );
+    const nextButton = page.getByRole('button', {
+      name: 'Show next breadcrumb items',
+    });
     await nextButton.click();
     await expect(
       nextButton.getByRole('menuitem', { name: 'Next Item 1' })

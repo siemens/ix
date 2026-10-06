@@ -17,13 +17,21 @@
 import { Locator } from '@playwright/test';
 import { regressionTest, expect } from '@utils/test';
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
   <ix-breadcrumb>
     <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
     <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
     <ix-breadcrumb-item breadcrumb-key="item-3">Item 3</ix-breadcrumb-item>
   </ix-breadcrumb>`);
+
+  const breadcrumb = page.locator('ix-breadcrumb');
+  await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
+    bc.nextItems = [{ label: 'Next Item 1', breadcrumbKey: 'next-item-1' }];
+  });
+  await expect(
+    breadcrumb.getByRole('button', { name: 'Show next breadcrumb items' })
+  ).toBeVisible();
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
@@ -237,7 +245,7 @@ regressionTest.describe('keyboard navigation', () => {
 });
 
 regressionTest(
-  'should set aria-label on next dropdown button matching last item label',
+  'should set a translatable aria-label on the next dropdown button',
   async ({ mount, page }) => {
     await mount(`
   <ix-breadcrumb>
@@ -251,11 +259,22 @@ regressionTest(
       bc.nextItems = [{ label: 'Next Item 1', breadcrumbKey: 'next-item-1' }];
     });
 
-    const nextButton = breadcrumb.locator('ix-dropdown-button.next-button');
+    const nextButton = breadcrumb.getByRole('button', {
+      name: 'Show next breadcrumb items',
+    });
     await expect(nextButton).toBeVisible();
     await expect(nextButton).toHaveAttribute(
       'aria-label',
-      'Show Item 3 next items'
+      'Show next breadcrumb items'
     );
+
+    await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
+      bc.ariaLabelNextButton = 'Weitere Breadcrumb-Elemente anzeigen';
+    });
+    await expect(
+      breadcrumb.getByRole('button', {
+        name: 'Weitere Breadcrumb-Elemente anzeigen',
+      })
+    ).toBeVisible();
   }
 );
