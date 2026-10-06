@@ -2,6 +2,6 @@
 '@siemens/ix': patch
 ---
 
-Fix `ix-pane` staying in mobile mode after the window is maximized when a pane is created while the layout is held at desktop (for example a pinned `ix-menu`, or `ix-application` with `forceBreakpoint`). Nested panes now follow that application layout. Standalone panes still follow the viewport.
+Fix `ix-pane` staying in mobile mode after the window is maximized when a nested pane is created while the application layout is held at desktop. Nested panes now follow `ix-application` layout (`forceBreakpoint` when set). Standalone panes still follow the viewport.
 
 Fixes #2849
