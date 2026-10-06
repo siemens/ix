@@ -1,0 +1,28 @@
+.changeset/eix-394-pane-layout-breakpoint.md
+  h_c5a773bf2fda8b 5
+packages/core/src/components/application-header/application-header.tsx
+  h_c5a773bf2fda8b 374
+packages/core/src/components/menu/menu.tsx
+  h_c5a773bf2fda8b 110,112-113,117,411,413
+packages/core/src/components/menu/test/menu.ct.ts
+  h_c5a773bf2fda8b 11
+packages/core/src/components/pane-layout/pane-layout.tsx
+  h_c5a773bf2fda8b 129-133
+packages/core/src/components/pane/pane.tsx
+  h_c5a773bf2fda8b 243-247
+packages/core/src/components/pane/test/panes.ct.ts
+  h_c5a773bf2fda8b 16-17,611-651
+packages/core/src/components/utils/menu-service/menu-service.ts
+  h_c5a773bf2fda8b 46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c8126ef2775f2f124e781c8dd193b1c4e85b1173",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
