@@ -11,6 +11,7 @@
 @use './card.vars' as card-vars;
 
 @use './card.vars' as *;
+
 :host {
   display: flex;
   position: relative;
@@ -18,13 +19,19 @@
   align-items: flex-start;
   align-self: flex-start;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
 
   width: var(--ix-card--width);
 
   border: var(--ix-card--border-width) solid
     var(--ix-card-border-color, var(--ix-card--border-color));
   border-radius: var(--ix-card--border-radius);
+
+  color: var(--ix-card-default--color);
+
+  --ix-card-background: var(--ix-card-default--background);
+  --ix-card-border-color: var(--ix-card-default--border-color);
+  --ix-card-strip-height: 0px;
 
   @include component.ix-component;
 
@@ -41,6 +48,14 @@
     overflow: hidden;
   }
 
+  .card-content::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: var(--ix-card-strip-height);
+    background-color: var(--ix-card-status-color-strong, var(--ix-card-status-color));
+  }
+
   .card-content-wrapper {
     height: 100%;
     width: 100%;
@@ -54,71 +69,83 @@
   }
 }
 
+:host(.clickable) {
+  cursor: pointer;
+}
+
+/* outline=false → filled surface */
+:host(:not(.outline)) {
+  --ix-card-background: var(--ix-card-filled--background);
+  --ix-card-border-color: transparent;
+}
+
+/*
+ * Status chrome (Figma Status indicator):
+ * - 8px top strip for every non-default variant
+ * - outline: 1px status border on sides/bottom (top edge is the strip)
+ * - filled: no border, strip on neutral body
+ */
+@each $status in card-vars.$card-status-variants {
+  :host(.card-#{$status}) {
+    --ix-card-strip-height: var(--ix-card--strip-height);
+  }
+
+  :host(.outline.card-#{$status}) {
+    --ix-card-border-color: var(--ix-card-status-color);
+    border-top-width: 0;
+  }
+
+  :host(:not(.outline).card-#{$status}) {
+    --ix-card-background: var(--ix-card-filled--background);
+    --ix-card-border-color: transparent;
+  }
+}
+
+:host(.selected) {
+  --ix-card-border-color: var(--ix-card-default--border-color--selected);
+}
+
+@each $status in card-vars.$card-status-variants {
+  :host(.selected.outline.card-#{$status}) {
+    /* Selected accent border on sides/bottom; status strip stays on top */
+    border-top-width: 0;
+    --ix-card-strip-height: var(--ix-card--strip-height);
+  }
+}
+
+/* Hover / active only when clickable */
+:host(.clickable.outline:hover) {
+  --ix-card-background: var(--ix-card-default--background--hover);
+}
+
+:host(.clickable.outline:active) {
+  --ix-card-background: var(--ix-card-default--background--active);
+}
+
+:host(.clickable:not(.outline):hover) {
+  --ix-card-background: var(--ix-card-filled--background--hover);
+}
+
+:host(.clickable:not(.outline):active) {
+  --ix-card-background: var(--ix-card-filled--background--active);
+}
+
+:host(.selected:not(.clickable)),
+:host(.selected) {
+  --ix-card-background: var(--ix-card-default--background--selected);
+}
+
+:host(.selected:not(.outline)) {
+  --ix-card-background: var(--ix-card-filled--background--selected);
+}
+
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
     color: var(--ix-card-accordion--color);
   }
 }
 
-@mixin card-variants($variant) {
-  :host(.card-#{$variant}) {
-    --ix-card-background: var(--ix-card-#{$variant}--background);
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
-
-    color: var(--ix-card-#{$variant}--color);
-
-    @if $variant == outline {
-      @include accordionChevronColorPrimary;
-    }
-
-    @if $variant == filled {
-      @include accordionChevronColorPrimary;
-    }
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  @include card-variants($variant);
-}
-
-:host(:not(.card-insight, .card-outline)) {
-  --ix-card-border-color: transparent;
-}
-
-@mixin card-variants-active($variant) {
-  :host(.card-#{$variant}:active) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--active);
-    --ix-card-background: var(--ix-card-#{$variant}--background--active);
-  }
-}
-
-@mixin card-variants-hover($variant) {
-  :host(.card-#{$variant}:hover) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--hover);
-    --ix-card-background: var(--ix-card-#{$variant}--background--hover);
-  }
-}
-
-@mixin card-variants-selected($variant) {
-  :host(.selected.card-#{$variant}) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--selected);
-    --ix-card-background: var(--ix-card-#{$variant}--background--selected);
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  @include card-variants-hover($variant);
-  @include card-variants-active($variant);
-  @include card-variants-selected($variant);
-}
-
-:host(.passive) {
-  cursor: default;
-}
-
-@each $variant in card-vars.$card-variants {
-  :host(.passive.card-#{$variant}) {
-    --ix-card-background: var(--ix-card-#{$variant}--background);
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
-  }
+:host(.outline),
+:host(:not(.outline)) {
+  @include accordionChevronColorPrimary;
 }

@@ -7,6 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { CardVariant } from '../card/card.types';
+import type { StatusVariant } from '../utils/status.types';
 
-export type ActionCardVariant = CardVariant;
+export type ActionCardVariant = StatusVariant;

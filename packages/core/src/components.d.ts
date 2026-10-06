@@ -15,7 +15,7 @@ import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { ButtonIconSize } from "./components/button/base-button.types";
-import { CardVariant } from "./components/card/card.types";
+import { StatusVariant } from "./components/utils/status.types";
 import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
@@ -74,7 +74,7 @@ export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { ButtonIconSize } from "./components/button/base-button.types";
-export { CardVariant } from "./components/card/card.types";
+export { StatusVariant } from "./components/utils/status.types";
 export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
@@ -141,6 +141,12 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction. When `false`, the wrapping button is disabled. Default is `true` for action cards.
+          * @since 6.0.0
+          * @default true
+         */
+        "clickable": boolean;
+        /**
           * Card heading
          */
         "heading"?: string;
@@ -150,10 +156,11 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with an outline border.
+          * @since 6.0.0
+          * @default true
          */
-        "passive": boolean;
+        "outline": boolean;
         /**
           * Card selection
           * @default false
@@ -164,8 +171,8 @@ export namespace Components {
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'default'
          */
         "variant": ActionCardVariant;
     }
@@ -426,12 +433,18 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Show the blind with an outline border. Default is `false` (filled), matching the previous default `variant="filled"`.
+          * @since 6.0.0
+          * @default false
+         */
+        "outline": boolean;
+        /**
           * Secondary label inside blind header
          */
         "sublabel"?: string;
         /**
-          * Blind variant
-          * @default 'filled'
+          * Blind status variant
+          * @default 'default'
          */
         "variant": BlindVariant;
     }
@@ -609,20 +622,27 @@ export namespace Components {
      */
     interface IxCard {
         /**
-          * If true, disables hover and active styles and changes cursor to default
+          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable basic card).
+          * @since 6.0.0
           * @default false
          */
-        "passive": boolean;
+        "clickable": boolean;
+        /**
+          * Show the card with an outline border. When `false`, the card uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
+          * @default true
+         */
+        "outline": boolean;
         /**
           * Show card in selected state
           * @default false
          */
         "selected": boolean;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'default'
          */
-        "variant": CardVariant;
+        "variant": StatusVariant;
     }
     /**
      * Expandable card section that shows or hides content within a card list.
@@ -641,9 +661,15 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * Show accordion with different color variants
+          * Match the parent card outline mode. When `false`, uses filled accordion chrome.
+          * @since 6.0.0
+          * @default true
+         */
+        "outline": boolean;
+        /**
+          * Accordion status variant (aligned with the parent card)
           * @since 4.0.0
-          * @default 'outline'
+          * @default 'default'
          */
         "variant": CardAccordionVariant;
     }
@@ -4137,6 +4163,12 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
+          * @since 6.0.0
+          * @default false
+         */
+        "clickable": boolean;
+        /**
           * Expand the card
           * @default false
          */
@@ -4154,17 +4186,18 @@ export namespace Components {
          */
         "notification"?: string;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with an outline border.
+          * @since 6.0.0
+          * @default true
          */
-        "passive": boolean;
+        "outline": boolean;
         /**
           * Card subheading
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'default'
          */
         "variant": PushCardVariant;
     }
@@ -8188,6 +8221,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction. When `false`, the wrapping button is disabled. Default is `true` for action cards.
+          * @since 6.0.0
+          * @default true
+         */
+        "clickable"?: boolean;
+        /**
           * Card heading
          */
         "heading"?: string;
@@ -8197,10 +8236,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with an outline border.
+          * @since 6.0.0
+          * @default true
          */
-        "passive"?: boolean;
+        "outline"?: boolean;
         /**
           * Card selection
           * @default false
@@ -8211,8 +8251,8 @@ declare namespace LocalJSX {
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'default'
          */
         "variant"?: ActionCardVariant;
     }
@@ -8486,12 +8526,18 @@ declare namespace LocalJSX {
          */
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
         /**
+          * Show the blind with an outline border. Default is `false` (filled), matching the previous default `variant="filled"`.
+          * @since 6.0.0
+          * @default false
+         */
+        "outline"?: boolean;
+        /**
           * Secondary label inside blind header
          */
         "sublabel"?: string;
         /**
-          * Blind variant
-          * @default 'filled'
+          * Blind status variant
+          * @default 'default'
          */
         "variant"?: BlindVariant;
     }
@@ -8683,20 +8729,27 @@ declare namespace LocalJSX {
      */
     interface IxCard {
         /**
-          * If true, disables hover and active styles and changes cursor to default
+          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable basic card).
+          * @since 6.0.0
           * @default false
          */
-        "passive"?: boolean;
+        "clickable"?: boolean;
+        /**
+          * Show the card with an outline border. When `false`, the card uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
+          * @default true
+         */
+        "outline"?: boolean;
         /**
           * Show card in selected state
           * @default false
          */
         "selected"?: boolean;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'default'
          */
-        "variant"?: CardVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Expandable card section that shows or hides content within a card list.
@@ -8716,9 +8769,15 @@ declare namespace LocalJSX {
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
         /**
-          * Show accordion with different color variants
+          * Match the parent card outline mode. When `false`, uses filled accordion chrome.
+          * @since 6.0.0
+          * @default true
+         */
+        "outline"?: boolean;
+        /**
+          * Accordion status variant (aligned with the parent card)
           * @since 4.0.0
-          * @default 'outline'
+          * @default 'default'
          */
         "variant"?: CardAccordionVariant;
     }
@@ -12433,6 +12492,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
+          * @since 6.0.0
+          * @default false
+         */
+        "clickable"?: boolean;
+        /**
           * Expand the card
           * @default false
          */
@@ -12450,17 +12515,18 @@ declare namespace LocalJSX {
          */
         "notification"?: string;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with an outline border.
+          * @since 6.0.0
+          * @default true
          */
-        "passive"?: boolean;
+        "outline"?: boolean;
         /**
           * Card subheading
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'default'
          */
         "variant"?: PushCardVariant;
     }
@@ -14027,13 +14093,14 @@ declare namespace LocalJSX {
 
     interface IxActionCardAttributes {
         "variant": ActionCardVariant;
+        "outline": boolean;
         "icon": string | undefined;
         "ariaLabelIcon": string;
         "heading": string;
         "subheading": string;
         "selected": boolean;
         "ariaLabelCard": string;
-        "passive": boolean;
+        "clickable": boolean;
     }
     interface IxApplicationAttributes {
         "theme": string;
@@ -14085,6 +14152,7 @@ declare namespace LocalJSX {
         "sublabel": string;
         "icon": string;
         "variant": BlindVariant;
+        "outline": boolean;
     }
     interface IxBreadcrumbAttributes {
         "visibleItemCount": number;
@@ -14122,14 +14190,16 @@ declare namespace LocalJSX {
         "rel": string;
     }
     interface IxCardAttributes {
-        "variant": CardVariant;
+        "variant": StatusVariant;
+        "outline": boolean;
         "selected": boolean;
-        "passive": boolean;
+        "clickable": boolean;
     }
     interface IxCardAccordionAttributes {
         "ariaLabelExpandButton": string;
         "collapse": boolean;
         "variant": CardAccordionVariant;
+        "outline": boolean;
     }
     interface IxCardListAttributes {
         "ariaLabelExpandButton": string;
@@ -14853,8 +14923,9 @@ declare namespace LocalJSX {
         "heading": string;
         "subheading": string;
         "variant": PushCardVariant;
+        "outline": boolean;
         "expanded": boolean;
-        "passive": boolean;
+        "clickable": boolean;
     }
     interface IxRadioAttributes {
         "name": string;

@@ -21,6 +21,8 @@ export * from './components/breadcrumb/breadcrumb.types';
 export type { IxDropdownItemRole } from './components/dropdown-item/dropdown-item.types';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
+export type { StatusVariant } from './components/utils/status.types';
+export { STATUS_VARIANTS, STATUS_EMPHASIS_VARIANTS } from './components/utils/status.types';
 export { ElementReference } from './components/utils/element-reference';
 export * from './components/utils/modal';
 export * from './components/utils/typed-event';

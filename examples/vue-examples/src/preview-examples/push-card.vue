@@ -18,7 +18,7 @@ import { IxPushCard } from '@siemens/ix-vue';
     notification="99"
     heading="Heading content"
     subheading="Subheading"
-    variant="outline"
+    variant="default"
   >
     <table class="table">
       <thead>

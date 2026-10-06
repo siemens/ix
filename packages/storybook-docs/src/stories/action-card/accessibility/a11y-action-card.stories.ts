@@ -20,7 +20,7 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=6396-139860&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components?node-id=104612-25078&m=dev',
     },
     a11y: {
       test: 'error',
@@ -43,12 +43,12 @@ export const IconSelected: Story = {
   },
 };
 
-export const VariantAlarmSelected: Story = {
+export const VariantDangerSelected: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'alarm',
+    variant: 'danger',
     selected: true,
   },
 };
@@ -83,12 +83,22 @@ export const VariantWarningSelected: Story = {
   },
 };
 
-export const VariantInfoSelected: Story = {
+export const VariantCautionSelected: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'info',
+    variant: 'caution',
+    selected: true,
+  },
+};
+
+export const VariantInformationSelected: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+    variant: 'information',
     selected: true,
   },
 };
@@ -103,22 +113,23 @@ export const VariantNeutralSelected: Story = {
   },
 };
 
-export const VariantOutlineSelected: Story = {
+export const VariantDefaultOutlineSelected: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'outline',
+    variant: 'default',
+    outline: true,
     selected: true,
   },
 };
 
-export const VariantPrimarySelected: Story = {
+export const VariantAccentSelected: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'primary',
+    variant: 'accent',
     selected: true,
   },
 };

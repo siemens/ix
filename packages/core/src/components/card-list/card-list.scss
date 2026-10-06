@@ -113,6 +113,12 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     --ix-card-border-color: var(--ix-card-list-show-all--border-color);
     color: var(--ix-card-list-show-all--color);
 
+    /* End card owns padding; neutralize ix-card-content default inset */
+    ix-card-content {
+      --ix-card-content--padding: 0;
+      height: 100%;
+    }
+
     @include hover.focus-visible {
       outline: var(--ix-card-list-show-all--outline-width--focus) solid
         var(--ix-card-list-show-all--outline-color--focus);
@@ -120,25 +126,38 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     }
   }
 
+  /* Figma End card: justify-end, gap 8, px 16 / py 8, icon 64 */
   .Show__All__Card__Content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
+    gap: #{sys.$si-sys-sizing-spacing-y-40};
+    box-sizing: border-box;
     height: 100%;
+    width: 100%;
+    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
   }
 
   .Show__All__Card__Icon {
     display: flex;
-    position: absolute;
+    position: relative;
+    flex-shrink: 0;
     height: var(--ix-card-list-show-all-card-icon--icon-size);
     width: var(--ix-card-list-show-all-card-icon--icon-size);
+    min-height: var(--ix-card-list-show-all-card-icon--icon-size);
+    min-width: var(--ix-card-list-show-all-card-icon--icon-size);
     justify-content: center;
     align-items: center;
   }
 
   .Show__All__Card__Text {
-    margin-bottom: 0;
-    margin-top: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    min-height: #{sys.$si-sys-sizing-size-100};
+    width: 100%;
     text-align: center;
   }
 

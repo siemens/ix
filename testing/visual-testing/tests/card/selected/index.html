@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
-    <title>Stencil Component Starter</title>
+    <title>Card selected</title>
     <style>
       ix-card {
         margin: 1rem;
@@ -26,24 +26,19 @@ SPDX-License-Identifier: MIT
     </style>
   </head>
   <body>
-    <ix-card selected>
+    <ix-card selected variant="default">
       <div class="card-content">
-        <ix-typography>Insight</ix-typography>
+        <ix-typography>Default</ix-typography>
       </div>
     </ix-card>
-    <ix-card selected variant="filled">
+    <ix-card selected variant="default" outline="false">
       <div class="card-content">
-        <ix-typography>Notification</ix-typography>
+        <ix-typography>Filled</ix-typography>
       </div>
     </ix-card>
-    <ix-card selected variant="alarm">
+    <ix-card selected variant="danger">
       <div class="card-content">
-        <ix-typography>Alarm</ix-typography>
-      </div>
-    </ix-card>
-    <ix-card selected variant="critical">
-      <div class="card-content">
-        <ix-typography>Critical</ix-typography>
+        <ix-typography>Danger</ix-typography>
       </div>
     </ix-card>
     <ix-card selected variant="warning">
@@ -51,14 +46,24 @@ SPDX-License-Identifier: MIT
         <ix-typography>Warning</ix-typography>
       </div>
     </ix-card>
-    <ix-card selected variant="info">
+    <ix-card selected variant="caution">
       <div class="card-content">
-        <ix-typography>Info</ix-typography>
+        <ix-typography>Caution</ix-typography>
       </div>
     </ix-card>
-    <ix-card selected variant="neutral">
+    <ix-card selected variant="information">
       <div class="card-content">
-        <ix-typography>Neutral</ix-typography>
+        <ix-typography>Information</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="accent">
+      <div class="card-content">
+        <ix-typography>Accent</ix-typography>
+      </div>
+    </ix-card>
+    <ix-card selected variant="critical">
+      <div class="card-content">
+        <ix-typography>Critical</ix-typography>
       </div>
     </ix-card>
     <ix-card selected variant="success">
@@ -66,19 +71,9 @@ SPDX-License-Identifier: MIT
         <ix-typography>Success</ix-typography>
       </div>
     </ix-card>
-    <ix-card selected variant="primary">
+    <ix-card selected variant="neutral">
       <div class="card-content">
-        <ix-typography>Primary</ix-typography>
-      </div>
-    </ix-card>
-    <ix-card selected variant="outline">
-      <div class="card-content">
-        <ix-typography>Outline</ix-typography>
-      </div>
-    </ix-card>
-    <ix-card selected variant="filled">
-      <div class="card-content">
-        <ix-typography>Filled</ix-typography>
+        <ix-typography>Neutral</ix-typography>
       </div>
     </ix-card>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>

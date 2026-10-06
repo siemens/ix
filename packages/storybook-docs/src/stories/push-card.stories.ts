@@ -19,7 +19,7 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=6396-139080&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components?node-id=104612-25078&m=dev',
     },
   },
 } satisfies Meta<Element>;
@@ -34,6 +34,6 @@ export const Default: Story = {
     notification: '99',
     heading: 'Heading content',
     subheading: 'Subheading',
-    variant: 'outline',
+    variant: 'default',
   },
 };
