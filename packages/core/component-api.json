@@ -2493,7 +2493,7 @@
           "default": "'Done'",
           "optional": false,
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "i18nNoRange",
@@ -10258,6 +10258,17 @@
           "deprecated": false
         },
         {
+          "name": "i18nDone",
+          "attribute": "i18n-done",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Done'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nErrorTimeUnparsable",
           "attribute": "i18n-error-time-unparsable",
           "type": "string",
@@ -10464,7 +10475,7 @@
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
+          "default": "true",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -10692,6 +10703,17 @@
           "deprecated": false
         },
         {
+          "name": "i18nDone",
+          "attribute": "i18n-done",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Done'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nHeader",
           "attribute": "i18n-header",
           "type": "string",
@@ -10814,7 +10836,7 @@
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
+          "default": "true",
           "optional": false,
           "required": false,
           "deprecated": false

@@ -237,7 +237,7 @@ regressionTest(
   'minTime/maxTime: keyboard works when time is outside range',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="HH:mm:ss" time="08:00:00" min-time="10:00:00" max-time="14:00:00"></ix-time-picker>`
+      `<ix-time-picker format="HH:mm:ss" time="08:00:00" min-time="10:00:00" max-time="14:00:00" require-confirmation="false"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
     await expect(picker).toHaveClass(/hydrated/);
@@ -258,7 +258,7 @@ regressionTest(
   'minTime/maxTime: repeated ArrowDown then Enter updates hour',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="09:00:00" max-time="17:30:00"></ix-time-picker>`
+      `<ix-time-picker format="HH:mm:ss" time="12:00:00" min-time="09:00:00" max-time="17:30:00" require-confirmation="false"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
     await expect(picker).toHaveClass(/hydrated/);
@@ -313,7 +313,7 @@ regressionTest(
   'timeChange event payload uses locale-formatted string',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja"></ix-time-picker>`
+      `<ix-time-picker format="hh:mm a" time="02:30 午前" locale="ja" require-confirmation="false"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
     await expect(picker).toHaveClass(/hydrated/);
@@ -352,8 +352,9 @@ regressionTest(
       });
     });
 
-    await picker.locator('ix-button').click();
-    expect(await timeSelectPromise).toBe('02:30 午前');
+    await timePickerCell(picker, 'hr', 5).click();
+    await picker.getByRole('button', { name: 'Confirm' }).click();
+    expect(await timeSelectPromise).toBe('05:30 午前');
   }
 );
 
@@ -442,7 +443,7 @@ regressionTest(
   '12h minTime/maxTime: clicking a valid hour emits timeChange with locale-formatted value',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en"></ix-time-picker>`
+      `<ix-time-picker format="hh:mm a" time="09:00 AM" min-time="09:00 AM" max-time="05:00 PM" locale="en" require-confirmation="false"></ix-time-picker>`
     );
     const picker = page.locator(TIME_PICKER_SELECTOR);
     await expect(picker).toHaveClass(/hydrated/);
@@ -482,8 +483,9 @@ regressionTest(
       });
     });
 
-    await picker.locator('ix-button').click();
-    expect(await timeSelectPromise).toBe('02:30 PM');
+    await timePickerCell(picker, 'hr', 3).click();
+    await picker.getByRole('button', { name: 'Confirm' }).click();
+    expect(await timeSelectPromise).toBe('03:30 PM');
   }
 );
 
@@ -512,7 +514,7 @@ regressionTest(
   'clicking a partially visible minute cell selects it',
   async ({ mount, page }) => {
     await mount(
-      `<ix-time-picker format="HH:mm:ss" time="15:00:39"></ix-time-picker>`
+      `<ix-time-picker format="HH:mm:ss" time="15:00:39" require-confirmation="false"></ix-time-picker>`
     );
 
     const picker = page.locator(TIME_PICKER_SELECTOR);
@@ -572,11 +574,13 @@ regressionTest.describe('time picker tests', () => {
       `<ix-time-picker
         time="09:10:11"
         format="hh:mm:ss"
+        require-confirmation="false"
       >
       </ix-time-picker>
       <ix-time-picker
         time="10:11:12 AM"
         format="hh:mm:ss a"
+        require-confirmation="false"
       >
       </ix-time-picker>`
     );
@@ -671,7 +675,7 @@ regressionTest.describe('time picker tests', () => {
   );
 
   regressionTest(
-    'should fire timeSelect event when confirm button is clicked',
+    'should fire timeSelect event when done button is clicked',
     async ({ page }) => {
       await page.waitForSelector('ix-date-time-card');
 
@@ -685,13 +689,16 @@ regressionTest.describe('time picker tests', () => {
         });
       });
 
-      // Click the "Confirm" button on the first time picker
-      await page.locator('ix-time-picker').first().locator('ix-button').click();
+      const firstPicker = page.locator('ix-time-picker').first();
+      await firstPicker
+        .locator('[data-element-container-id="hour-12"]')
+        .click();
+      await firstPicker.getByRole('button', { name: 'Done' }).click();
 
       // Wait for the event to be fired and get the event detail
       const eventDetail = await timeSelectPromise;
 
-      expect(eventDetail).toBe('09:10:11');
+      expect(eventDetail).toBe('12:10:11');
     }
   );
 
@@ -884,15 +891,121 @@ regressionTest.describe('require confirmation', () => {
 
 regressionTest.describe('require confirmation option', () => {
   regressionTest(
-    'renders no cancel button without require confirmation',
+    'requires confirmation by default',
     async ({ mount, page }) => {
       await mountTimePicker(mount, page, committedTime);
       const timePicker = page.locator('ix-time-picker');
 
-      await expect(timePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        timePicker.getByRole('button', { name: 'Cancel' })
+      ).toBeVisible();
       await expect(
         timePicker.getByRole('button', { name: 'Confirm' })
       ).toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'renders a done button and no cancel button without require confirmation',
+    async ({ mount, page }) => {
+      await mountTimePicker(
+        mount,
+        page,
+        committedTime,
+        'require-confirmation="false"'
+      );
+      const timePicker = page.locator('ix-time-picker');
+
+      await expect(timePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        timePicker.getByRole('button', { name: 'Done' })
+      ).toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'emits timeChange for every pick without require confirmation',
+    async ({ mount, page }) => {
+      await mountTimePicker(
+        mount,
+        page,
+        committedTime,
+        'require-confirmation="false"'
+      );
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, ['timeChange']);
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+
+      await expect
+        .poll(events)
+        .toEqual([{ type: 'timeChange', detail: formatTime(pickedTime) }]);
+    }
+  );
+});
+
+regressionTest.describe('primary button without changes', () => {
+  regressionTest(
+    'confirm is disabled until a different time is picked',
+    async ({ mount, page }) => {
+      await mountTimePicker(mount, page, committedTime);
+      const timePicker = page.locator('ix-time-picker');
+      const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+
+      await expect(confirm).toBeDisabled();
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await expect(confirm).toBeEnabled();
+
+      // Re-selecting the committed time leaves nothing to confirm
+      await timePickerHourCell(timePicker, committedTime).click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'done is disabled until a different time is picked and after done',
+    async ({ mount, page }) => {
+      await mountTimePicker(
+        mount,
+        page,
+        committedTime,
+        'require-confirmation="false"'
+      );
+      const timePicker = page.locator('ix-time-picker');
+      const done = timePicker.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeDisabled();
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await expect(done).toBeEnabled();
+
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'done stays enabled when the host echoes timeChange back to time',
+    async ({ mount, page }) => {
+      await mountTimePicker(
+        mount,
+        page,
+        committedTime,
+        'require-confirmation="false"'
+      );
+      const timePicker = page.locator('ix-time-picker');
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+        el.addEventListener('timeChange', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        })
+      );
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+
+      await expect(
+        timePicker.getByRole('button', { name: 'Done' })
+      ).toBeEnabled();
     }
   );
 });
@@ -906,10 +1019,12 @@ regressionTest.describe('confirm button disabled state', () => {
           mount,
           page,
           beforeMinTime,
-          `${minMaxAttributes}${requireConfirmation ? ' require-confirmation' : ''}`
+          `${minMaxAttributes} require-confirmation="${requireConfirmation}"`
         );
         const timePicker = page.locator('ix-time-picker');
-        const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+        const confirm = timePicker.getByRole('button', {
+          name: requireConfirmation ? 'Confirm' : 'Done',
+        });
 
         await expect(confirm).toBeDisabled();
 

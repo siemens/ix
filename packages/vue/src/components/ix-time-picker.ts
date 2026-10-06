@@ -21,6 +21,7 @@ export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/
   'minTime',
   'maxTime',
   'i18nConfirm',
+  'i18nDone',
   'requireConfirmation',
   'i18nCancel',
   'i18nHeader',

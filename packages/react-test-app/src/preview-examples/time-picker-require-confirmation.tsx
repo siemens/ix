@@ -18,7 +18,7 @@ const descriptions = {
 };
 
 export default () => {
-  const [requireConfirmation, setRequireConfirmation] = useState(false);
+  const [requireConfirmation, setRequireConfirmation] = useState(true);
   const [events, setEvents] = useState<string[]>([]);
 
   const log = (name: string, detail: unknown) =>

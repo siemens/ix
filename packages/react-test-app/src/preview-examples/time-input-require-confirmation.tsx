@@ -13,12 +13,12 @@ import { IxTimeInput, IxToggle, IxTypography } from '@siemens/ix-react';
 import { useState } from 'react';
 
 const descriptions = {
-  off: 'A time picked in the dropdown is applied when you click Confirm.',
+  off: 'A time picked in the dropdown is applied immediately. Done closes the dropdown.',
   on: 'A time picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it. Reopening the dropdown shows the applied time.',
 };
 
 export default () => {
-  const [requireConfirmation, setRequireConfirmation] = useState(false);
+  const [requireConfirmation, setRequireConfirmation] = useState(true);
   const [events, setEvents] = useState<string[]>([]);
 
   const log = (name: string, detail: unknown) =>

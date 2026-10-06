@@ -20,7 +20,7 @@ export default class DatetimeInputRequireConfirmation {
   events: string[] = [];
 
   readonly descriptions = {
-    off: 'A date and time picked in the dropdown are applied when you click Done.',
+    off: 'A date and time picked in the dropdown are applied immediately. Done closes the dropdown.',
     on: 'A date and time picked in the dropdown are applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards them.',
   };
 

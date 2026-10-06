@@ -4,7 +4,7 @@
 
 Add an opt-in `requireConfirmation` property to `ix-date-dropdown`, `ix-date-input`, `ix-time-input`, `ix-datetime-input`, `ix-date-picker`, `ix-time-picker` and `ix-datetime-picker`.
 
-When `requireConfirmation` is enabled, a selection is applied only when the user clicks **Confirm**. Until then the trigger label and input value stay unchanged and no change events are emitted. **Cancel**, pressing <kbd>Escape</kbd> or clicking outside the dropdown discards the pending selection, and reopening the dropdown shows the last confirmed value. The default is `false`, which keeps the existing behavior.
+When `requireConfirmation` is enabled, a selection is applied only when the user clicks **Confirm**. Until then the trigger label and input value stay unchanged and no change events are emitted. **Cancel**, pressing <kbd>Escape</kbd> or clicking outside the dropdown discards the pending selection, and reopening the dropdown shows the last confirmed value. **Confirm** is disabled until the user picks something different from the confirmed value, and while a range has only a start date. The default is `false`, except for `ix-time-picker` and `ix-time-input`, where it is `true`.
 
 - New `i18nConfirm` and `i18nCancel` properties set the button labels in confirmation mode. `ix-time-input` keeps using `i18nSelectTime` for its confirm label.
 - New `dateCancel` event on `ix-date-picker` and `ix-datetime-picker`, and `timeCancel` event on `ix-time-picker`, emitted when the user clicks Cancel.

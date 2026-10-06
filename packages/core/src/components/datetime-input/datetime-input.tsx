@@ -698,8 +698,31 @@ export class DatetimeInput
   private readonly handleDateSelect = (event: CustomEvent) => {
     const { from, time } = event.detail;
 
-    if (!from || !time) {
+    // Without requireConfirmation the value was already applied on change
+    if (this.requireConfirmation && !this.applyPickerDateTime(from, time)) {
       return;
+    }
+
+    this.closeDropdown();
+  };
+
+  /** Applies every picker change while `requireConfirmation` is disabled. */
+  private readonly handlePickerChange = async () => {
+    if (this.requireConfirmation) {
+      return;
+    }
+
+    const picker = this.datetimePickerRef.current;
+    const date = await (await picker?.getDatepickerElement())?.getCurrentDate();
+    const time = await (await picker?.getTimepickerElement())?.getCurrentTime();
+
+    this.applyPickerDateTime(date?.from, time);
+  };
+
+  /** Returns whether the date and time were complete and valid. */
+  private applyPickerDateTime(from?: string, time?: string): boolean {
+    if (!from || !time) {
+      return false;
     }
 
     const dateOnly = DateTime.fromFormat(from, this.dateOnlyFormat, {
@@ -710,7 +733,7 @@ export class DatetimeInput
     });
 
     if (!dateOnly.isValid || !timeOnly.isValid) {
-      return;
+      return false;
     }
 
     const dateTimeCombined = dateOnly.set({
@@ -727,8 +750,9 @@ export class DatetimeInput
     );
     this.onInput(displayValue);
     this.emitChange(displayValue);
-    this.closeDropdown();
-  };
+
+    return true;
+  }
 
   getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
     return this.dropdownElementRef;
@@ -845,7 +869,7 @@ export class DatetimeInput
           onShowChanged={(event) => {
             this.show = event.detail;
 
-            if (!this.show && this.requireConfirmation) {
+            if (!this.show) {
               this.datetimePickerRef.current?.discardPendingSelection();
             }
           }}
@@ -887,6 +911,8 @@ export class DatetimeInput
             timeFormat={this.timeOnlyFormat}
             weekStartIndex={this.weekStartIndex}
             onDateSelect={this.handleDateSelect}
+            onDateChange={this.handlePickerChange}
+            onTimeChange={this.handlePickerChange}
             onDateCancel={(event) => {
               event.stopPropagation();
               this.closeDropdown();

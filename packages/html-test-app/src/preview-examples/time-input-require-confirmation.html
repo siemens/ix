@@ -18,6 +18,7 @@ LICENSE file in the root directory of this source tree.
   <body>
     <div class="require-confirmation">
       <ix-toggle
+        checked
         aria-label="Require confirmation"
         text-on="Require confirmation: on"
         text-off="Require confirmation: off"
@@ -32,14 +33,14 @@ LICENSE file in the root directory of this source tree.
 
     <script>
       const descriptions = {
-        off: 'A time picked in the dropdown is applied when you click Confirm.',
+        off: 'A time picked in the dropdown is applied immediately. Done closes the dropdown.',
         on: 'A time picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it. Reopening the dropdown shows the applied time.',
       };
 
       const component = document.querySelector('ix-time-input');
       const description = document.querySelector('.description');
       const eventLog = document.querySelector('.event-log');
-      let requireConfirmation = false;
+      let requireConfirmation = true;
       let events = [];
 
       function render() {

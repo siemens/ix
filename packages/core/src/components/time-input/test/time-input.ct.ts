@@ -109,7 +109,10 @@ regressionTest.describe('time input tests', () => {
         .locator('ix-time-picker [data-element-container-id="second-45"]')
         .click();
 
-      await page.locator('ix-time-picker ix-button').click();
+      await page
+        .locator('ix-time-picker')
+        .getByRole('button', { name: 'Confirm' })
+        .click();
 
       await expect(
         page.locator('ix-dropdown[data-testid="time-dropdown"]')
@@ -158,7 +161,10 @@ regressionTest.describe('time input tests', () => {
         .locator('ix-time-picker [data-element-container-id="second-30"]')
         .click();
 
-      await page.locator('ix-time-picker ix-button').click();
+      await page
+        .locator('ix-time-picker')
+        .getByRole('button', { name: 'Confirm' })
+        .click();
 
       await expect(input).not.toHaveClass(/is-invalid/);
       await expect(visibleInvalidText).toHaveCount(0);
@@ -281,7 +287,10 @@ regressionTest.describe('time input min/max tests', () => {
       await page
         .locator('ix-time-picker [data-element-container-id="second-0"]')
         .click();
-      await page.locator('ix-time-picker ix-button').click();
+      await page
+        .locator('ix-time-picker')
+        .getByRole('button', { name: 'Confirm' })
+        .click();
 
       await expect(page.locator('input')).toHaveValue('16:00:00');
       await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
@@ -585,16 +594,66 @@ regressionTest.describe('require confirmation', () => {
   }
 });
 
-regressionTest(
-  'renders no cancel button without require confirmation',
-  async ({ mount, page }) => {
+regressionTest.describe('without require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
     await mountHydrated(mount, page, 'ix-time-input', {
       value: formatTime(committedTime),
       format: TIME_FORMAT,
+      'require-confirmation': 'false',
     });
+  });
+
+  regressionTest('renders no cancel button', async ({ page }) => {
     const timeInput = timeInputAccessor(page);
 
     await timeInput.open();
     await expect(timeInput.host.getByTestId('cancel')).toHaveCount(0);
-  }
-);
+    await expect(
+      timeInput.host.getByRole('button', { name: 'Done' })
+    ).toBeDisabled();
+  });
+
+  regressionTest(
+    'applies every picked time and stays open until done',
+    async ({ page }) => {
+      const timeInput = timeInputAccessor(page);
+      const events = await recordEvents(timeInput.host, [
+        'valueChange',
+        'ixChange',
+      ]);
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+
+      await expect(timeInput.host.locator('input')).toHaveValue(
+        formatTime(pickedTime)
+      );
+      expect(await events()).toContainEqual({
+        type: 'ixChange',
+        detail: formatTime(pickedTime),
+      });
+      await timeInput.expectOpen();
+
+      await timeInput.host.getByRole('button', { name: 'Done' }).click();
+
+      await timeInput.expectClosed();
+      await expect(timeInput.host.locator('input')).toHaveValue(
+        formatTime(pickedTime)
+      );
+    }
+  );
+
+  regressionTest('disables done again after reopening', async ({ page }) => {
+    const timeInput = timeInputAccessor(page);
+    const done = timeInput.host.getByRole('button', { name: 'Done' });
+
+    await timeInput.open();
+    await hourCell(page, pickedTime).click();
+    await expect(done).toBeEnabled();
+    await timeInput.dismiss('escape');
+    await timeInput.expectClosed();
+
+    await timeInput.open();
+    await expect(done).toBeDisabled();
+  });
+});

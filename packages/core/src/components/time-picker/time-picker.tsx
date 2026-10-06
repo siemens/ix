@@ -303,12 +303,19 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     if (newValue === undefined || newValue === '') {
       this._time = this.getDefaultTime();
+      this.doneBaseline = this._time;
       return;
     }
 
     const timeFormat = parseWithLocale(newValue, this.format, this.locale);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
+    }
+
+    // A prop that just echoes the current time back (e.g. two-way binding to
+    // `timeChange`) is not an external change and keeps the done baseline
+    if (!this.isSameTime(timeFormat, this._time)) {
+      this.doneBaseline = timeFormat;
     }
 
     this._time = timeFormat;
@@ -345,20 +352,32 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
-   * Text of the time confirm button.
+   * Text of the time confirm button shown when `requireConfirmation` is enabled.
    *
    * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
 
   /**
+   * Text of the done button shown when `requireConfirmation` is disabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
+
+  /**
    * If true, a selected time is only applied after the user confirms it with
    * the confirm button. `timeChange` is deferred until then, and the cancel
    * button discards the pending selection.
    *
+   * If false, `timeChange` is emitted for every selection and the done button
+   * emits `timeSelect`.
+   *
    * @since 6.0.0
    */
-  @Prop() requireConfirmation = false;
+  // Confirmation is the default for time selection. Opt out with `require-confirmation="false"`
+  // eslint-disable-next-line @stencil-community/ban-default-true
+  @Prop() requireConfirmation = true;
 
   /**
    * Text of the cancel button shown when `requireConfirmation` is enabled.
@@ -479,14 +498,34 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @State() private pendingTime?: DateTime;
 
+  /**
+   * Time the done button compares against while `requireConfirmation` is
+   * disabled: the time at load, at the last done click, when the surrounding
+   * dropdown closed or at the last external `time` change.
+   */
+  @State() private doneBaseline?: DateTime;
+
   /** The time shown in the picker: the pending selection, else `_time`. */
   private get selectedTime(): DateTime | undefined {
     return this.pendingTime ?? this._time;
   }
 
+  /** Whether both times are unset or equal in every unit `format` shows. */
+  private isSameTime(a?: DateTime, b?: DateTime): boolean {
+    if (!a || !b) {
+      return !a && !b;
+    }
+
+    return (
+      formatWithLocale(a, this.format, this.locale) ===
+      formatWithLocale(b, this.format, this.locale)
+    );
+  }
+
   private setSelectedTime(time: DateTime) {
     if (this.requireConfirmation) {
-      this.pendingTime = time;
+      // Re-selecting the committed time leaves nothing to confirm
+      this.pendingTime = this.isSameTime(time, this._time) ? undefined : time;
       return;
     }
 
@@ -552,6 +591,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = parsedTime;
     this.pendingTime = undefined;
+    this.doneBaseline = parsedTime;
 
     this.updateMeridiemLabels();
     this.setTimeRef();
@@ -795,6 +835,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
           if (timeFormat.isValid) {
             this._time = parseWithLocale(this.time, this.format, this.locale);
             this.pendingTime = undefined;
+            this.doneBaseline = this._time;
             this.setInitialFocusedValueAndUnit();
           }
         }
@@ -1146,7 +1187,15 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this.updateDescriptorFocusedValue(unit, next);
   }
 
-  private isConfirmDisabled(): boolean {
+  private isPrimaryActionDisabled(): boolean {
+    const isUnchanged = this.requireConfirmation
+      ? !this.pendingTime
+      : this.isSameTime(this._time, this.doneBaseline);
+
+    return isUnchanged || this.isOutsideConstraints();
+  }
+
+  private isOutsideConstraints(): boolean {
     const referenceClock = this.referenceOrNow();
     const { min, max } = this.getConstraintBounds(referenceClock);
     if (!hasActiveTimePickerConstraints(min, max)) {
@@ -1306,6 +1355,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private onDone() {
+    this.doneBaseline = this._time;
     this.timeSelect.emit(
       this._time
         ? formatWithLocale(this._time, this.format, this.locale)
@@ -1567,10 +1617,10 @@ export class TimePicker extends Mixin(...DefaultMixins) {
               slot="footer"
               layout={this.timePickerDescriptors.length <= 2 ? 'center' : 'end'}
               requireConfirmation={this.requireConfirmation}
-              i18nDone={this.i18nConfirm}
+              i18nDone={this.i18nDone}
               i18nConfirm={this.i18nConfirm}
               i18nCancel={this.i18nCancel}
-              primaryActionDisabled={this.isConfirmDisabled()}
+              primaryActionDisabled={this.isPrimaryActionDisabled()}
               onDoneClick={() => this.onDone()}
               onConfirmClick={() => this.onConfirm()}
               onCancelClick={() => this.onCancel()}

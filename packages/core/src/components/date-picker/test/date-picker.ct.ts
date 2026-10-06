@@ -285,29 +285,13 @@ regressionTest.describe('date picker tests range', () => {
 
   regressionTest.describe('date picker range undefined values test', () => {
     regressionTest(
-      'dateSelect event with undefined from and to values',
+      'done is disabled without a selection',
       async ({ mount, page }) => {
         await mount(`<ix-date-picker></ix-date-picker>`);
 
         await page.waitForSelector('ix-date-time-card');
 
-        const dateSelectEventPromise = page.evaluate(() => {
-          return new Promise((resolve) => {
-            document.addEventListener('dateSelect', (event) => {
-              resolve((event as CustomEvent).detail);
-            });
-          });
-        });
-
-        await page.getByText('Done').click();
-
-        const eventDetail = await dateSelectEventPromise;
-        expect(eventDetail).toEqual({
-          from: undefined,
-          to: undefined,
-          isoFrom: undefined,
-          isoTo: undefined,
-        });
+        await expect(page.getByRole('button', { name: 'Done' })).toBeDisabled();
       }
     );
   });
@@ -360,10 +344,30 @@ regressionTest.describe('date picker tests range', () => {
       });
     });
 
+    await page.getByText(/^12$/).click();
+    await page.getByText(/^17$/).click();
     await page.getByText('Done').click();
 
     expect(await dateSelectEventPromise).toBeTruthy();
   });
+
+  regressionTest(
+    'done is disabled while the range is incomplete or unchanged',
+    async ({ page }) => {
+      const done = page.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^12$/).click();
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^17$/).click();
+      await expect(done).toBeEnabled();
+
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
 });
 
 regressionTest.describe('locale support', () => {
@@ -1215,6 +1219,54 @@ regressionTest.describe('require confirmation option', () => {
       await expect(
         datePicker.getByRole('button', { name: 'Done' })
       ).toBeVisible();
+    }
+  );
+});
+
+regressionTest.describe('confirm button disabled state', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(committedFrom)}" to="${formatDateTime(committedTo)}" require-confirmation`
+    );
+  });
+
+  regressionTest('is disabled without a pending range', async ({ page }) => {
+    await expect(
+      page.locator('ix-date-picker').getByRole('button', { name: 'Confirm' })
+    ).toBeDisabled();
+  });
+
+  regressionTest(
+    'is disabled while the pending range is incomplete',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+    }
+  );
+
+  regressionTest(
+    'is disabled again after re-selecting the committed range',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+
+      await dayCell(page, committedFrom).click();
+      await dayCell(page, committedTo).click();
+      await expect(confirm).toBeDisabled();
     }
   );
 });

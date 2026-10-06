@@ -16,7 +16,7 @@ const descriptions = {
   on: 'timeChange is emitted only when you click Confirm. Cancel discards the picked time and emits timeCancel.',
 };
 
-const requireConfirmation = ref(false);
+const requireConfirmation = ref(true);
 const events = ref<string[]>([]);
 
 const onCheckedChange = (event: CustomEvent<boolean>) => {

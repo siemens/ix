@@ -1,6 +1,6 @@
 - main:
-  - switch "Require confirmation"
-  - text: A time picked in the dropdown is applied when you click Confirm.
+  - switch "Require confirmation" [checked]
+  - text: A time picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it. Reopening the dropdown shows the applied time.
   - textbox "Time": /\d+:\d+/
   - button "Toggle time picker"
   - text: Emitted events (latest first)

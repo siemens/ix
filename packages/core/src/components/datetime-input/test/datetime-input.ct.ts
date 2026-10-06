@@ -371,32 +371,28 @@ regressionTest(
 );
 
 regressionTest(
-  'emits ixChange when datetime is picked',
+  'emits ixChange for every datetime picked',
   async ({ mount, page }) => {
     await mount(
-      `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>`
+      `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11" require-confirmation="false"></ix-datetime-input>`
     );
 
     const dateTimeInputElement = page.locator('ix-datetime-input');
     const dateTimeAccessor = await createAccessor(dateTimeInputElement);
-
-    const ixChangePromise = dateTimeInputElement.evaluate((el) => {
-      return new Promise<string | undefined>((resolve) => {
-        el.addEventListener(
-          'ixChange',
-          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
-          { once: true }
-        );
-      });
-    });
+    const events = await recordEvents(dateTimeInputElement, ['ixChange']);
 
     await dateTimeAccessor.openByCalendar();
     await dateTimeAccessor.selectDay(15);
+    await expect
+      .poll(events)
+      .toEqual([{ type: 'ixChange', detail: '2024/05/15 09:10:11' }]);
+
     await dateTimeAccessor.selectTime(14, 30, 45);
     await dateTimeAccessor.confirm();
 
-    const emittedValue = await ixChangePromise;
-    expect(emittedValue).toBe('2024/05/15 14:30:45');
+    await expect
+      .poll(async () => (await events()).at(-1))
+      .toEqual({ type: 'ixChange', detail: '2024/05/15 14:30:45' });
   }
 );
 
@@ -1711,3 +1707,52 @@ regressionTest(
     ).toBeVisible();
   }
 );
+
+regressionTest.describe('without require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-datetime-input', {
+      value: formatValue(committed),
+    });
+  });
+
+  regressionTest(
+    'applies every pick and stays open until done',
+    async ({ page }) => {
+      const datetimeInput = datetimeInputAccessor(page);
+      const input = datetimeInput.host.locator('input');
+
+      await datetimeInput.open();
+      await dayCell(page, pickedDate).click();
+      await expect(input).toHaveValue(formatValue(pickedDate));
+
+      await hourCell(page, picked).click();
+      await expect(input).toHaveValue(formatValue(picked));
+      await datetimeInput.expectOpen();
+
+      await datetimeInput.host.getByRole('button', { name: 'Done' }).click();
+
+      await datetimeInput.expectClosed();
+      await expect(input).toHaveValue(formatValue(picked));
+    }
+  );
+
+  regressionTest(
+    'done is disabled until something is picked and after reopening',
+    async ({ page }) => {
+      const datetimeInput = datetimeInputAccessor(page);
+      const done = datetimeInput.host.getByRole('button', { name: 'Done' });
+
+      await datetimeInput.open();
+      await expect(done).toBeDisabled();
+
+      await dayCell(page, pickedDate).click();
+      await expect(done).toBeEnabled();
+
+      await datetimeInput.dismiss('escape');
+      await datetimeInput.expectClosed();
+
+      await datetimeInput.open();
+      await expect(done).toBeDisabled();
+    }
+  );
+});

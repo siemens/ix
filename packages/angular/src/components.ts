@@ -804,7 +804,9 @@ The event payload contains information about the selected date range.
 If `requireConfirmation` is enabled, this event is only emitted when the
 selection is confirmed with the confirm button. Otherwise it is emitted
 for every date or predefined range picked in the dropdown and when the
-dropdown is closed. It is not emitted for programmatic changes. @since 6.0.0
+dropdown is closed. Closing the dropdown with only a start date picked
+reverts the selection, and the event carries the reverted value. It is
+not emitted for programmatic changes. @since 6.0.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }
@@ -3009,7 +3011,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
+  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nDone', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -3017,7 +3019,7 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
+  inputs: ['ariaLabelTimeToggleButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nDone', 'i18nErrorTimeUnparsable', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'i18nSelectTime', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'secondInterval', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
   outputs: ['valueChange', 'validityStateChange', 'ixChange'],
   standalone: false
 })
@@ -3052,7 +3054,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'requireConfirmation', 'secondInterval', 'time'],
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'requireConfirmation', 'secondInterval', 'time'],
   methods: ['getCurrentTime', 'getCurrentIsoTime']
 })
 @Component({
@@ -3060,7 +3062,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'requireConfirmation', 'secondInterval', 'time'],
+  inputs: ['corners', 'embedded', 'format', 'hideHeader', 'hourInterval', 'i18nAm', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nHeader', 'i18nHourColumnHeader', 'i18nMillisecondColumnHeader', 'i18nMinuteColumnHeader', 'i18nPm', 'i18nSecondColumnHeader', 'locale', 'maxTime', 'millisecondInterval', 'minTime', 'minuteInterval', 'requireConfirmation', 'secondInterval', 'time'],
   outputs: ['timeSelect', 'timeChange', 'timeCancel'],
   standalone: false
 })

@@ -18,6 +18,7 @@ LICENSE file in the root directory of this source tree.
   <body>
     <div class="require-confirmation">
       <ix-toggle
+        checked
         aria-label="Require confirmation"
         text-on="Require confirmation: on"
         text-off="Require confirmation: off"
@@ -39,7 +40,7 @@ LICENSE file in the root directory of this source tree.
       const component = document.querySelector('ix-time-picker');
       const description = document.querySelector('.description');
       const eventLog = document.querySelector('.event-log');
-      let requireConfirmation = false;
+      let requireConfirmation = true;
       let events = [];
 
       function render() {

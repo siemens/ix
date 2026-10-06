@@ -1208,6 +1208,7 @@ export namespace Components {
         "i18nConfirm": string;
         /**
           * Text for the done button. Will be used for translation.
+          * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
           * @default 'Done'
          */
         "i18nDone": string;
@@ -1789,7 +1790,7 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
-          * Discards a pending selection made while `requireConfirmation` is enabled.
+          * Discards a pending selection made while `requireConfirmation` is enabled. Without `requireConfirmation` the selection was already emitted, so the props are taken as the new committed selection instead.
          */
         "discardPendingSelection": () => Promise<void>;
         /**
@@ -1884,7 +1885,7 @@ export namespace Components {
          */
         "minTime"?: string;
         /**
-          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.
+          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.  If false, `dateChange` and `timeChange` are emitted for every selection and the done button emits `dateSelect`.
           * @since 6.0.0
           * @default false
          */
@@ -4629,6 +4630,12 @@ export namespace Components {
          */
         "i18nCancel": string;
         /**
+          * Text of the time picker done button shown when `requireConfirmation` is disabled.
+          * @since 6.0.0
+          * @default 'Done'
+         */
+        "i18nDone": string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -4660,7 +4667,7 @@ export namespace Components {
          */
         "i18nSecondColumnHeader": string;
         /**
-          * Text of the time picker confirm button.
+          * Text of the time picker confirm button shown when `requireConfirmation` is enabled.
           * @default 'Confirm'
          */
         "i18nSelectTime": string;
@@ -4725,9 +4732,9 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * If true, a time picked in the dropdown is only applied after the user confirms it with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * If true, a time picked in the dropdown is only applied after the user confirms it with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.  If false, every time picked in the dropdown is applied immediately and the done button closes the dropdown.
           * @since 6.0.0
-          * @default false
+          * @default true
          */
         "requireConfirmation": boolean;
         /**
@@ -4824,11 +4831,17 @@ export namespace Components {
          */
         "i18nCancel": string;
         /**
-          * Text of the time confirm button.
+          * Text of the time confirm button shown when `requireConfirmation` is enabled.
           * @since 6.0.0
           * @default 'Confirm'
          */
         "i18nConfirm": string;
+        /**
+          * Text of the done button shown when `requireConfirmation` is disabled.
+          * @since 6.0.0
+          * @default 'Done'
+         */
+        "i18nDone": string;
         /**
           * Text for the top header.
           * @default 'Time'
@@ -4887,9 +4900,9 @@ export namespace Components {
          */
         "minuteInterval": number;
         /**
-          * If true, a selected time is only applied after the user confirms it with the confirm button. `timeChange` is deferred until then, and the cancel button discards the pending selection.
+          * If true, a selected time is only applied after the user confirms it with the confirm button. `timeChange` is deferred until then, and the cancel button discards the pending selection.  If false, `timeChange` is emitted for every selection and the done button emits `timeSelect`.
           * @since 6.0.0
-          * @default false
+          * @default true
          */
         "requireConfirmation": boolean;
         /**
@@ -8542,6 +8555,7 @@ declare namespace LocalJSX {
         "i18nConfirm"?: string;
         /**
           * Text for the done button. Will be used for translation.
+          * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -8574,7 +8588,7 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
-          * Emitted when the user selects a date range.  If `requireConfirmation` is enabled, this event is only emitted when the selection is confirmed with the confirm button. Otherwise it is emitted for every date or predefined range picked in the dropdown and when the dropdown is closed. It is not emitted for programmatic changes.
+          * Emitted when the user selects a date range.  If `requireConfirmation` is enabled, this event is only emitted when the selection is confirmed with the confirm button. Otherwise it is emitted for every date or predefined range picked in the dropdown and when the dropdown is closed. Closing the dropdown with only a start date picked reverts the selection, and the event carries the reverted value. It is not emitted for programmatic changes.
           * @since 6.0.0
          */
         "onDateSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
@@ -9243,7 +9257,7 @@ declare namespace LocalJSX {
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
-          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.
+          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.  If false, `dateChange` and `timeChange` are emitted for every selection and the done button emits `dateSelect`.
           * @since 6.0.0
           * @default false
          */
@@ -12182,6 +12196,12 @@ declare namespace LocalJSX {
          */
         "i18nCancel"?: string;
         /**
+          * Text of the time picker done button shown when `requireConfirmation` is disabled.
+          * @since 6.0.0
+          * @default 'Done'
+         */
+        "i18nDone"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -12213,7 +12233,7 @@ declare namespace LocalJSX {
          */
         "i18nSecondColumnHeader"?: string;
         /**
-          * Text of the time picker confirm button.
+          * Text of the time picker confirm button shown when `requireConfirmation` is enabled.
           * @default 'Confirm'
          */
         "i18nSelectTime"?: string;
@@ -12288,9 +12308,9 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * If true, a time picked in the dropdown is only applied after the user confirms it with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * If true, a time picked in the dropdown is only applied after the user confirms it with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.  If false, every time picked in the dropdown is applied immediately and the done button closes the dropdown.
           * @since 6.0.0
-          * @default false
+          * @default true
          */
         "requireConfirmation"?: boolean;
         /**
@@ -12374,11 +12394,17 @@ declare namespace LocalJSX {
          */
         "i18nCancel"?: string;
         /**
-          * Text of the time confirm button.
+          * Text of the time confirm button shown when `requireConfirmation` is enabled.
           * @since 6.0.0
           * @default 'Confirm'
          */
         "i18nConfirm"?: string;
+        /**
+          * Text of the done button shown when `requireConfirmation` is disabled.
+          * @since 6.0.0
+          * @default 'Done'
+         */
+        "i18nDone"?: string;
         /**
           * Text for the top header.
           * @default 'Time'
@@ -12450,9 +12476,9 @@ declare namespace LocalJSX {
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
-          * If true, a selected time is only applied after the user confirms it with the confirm button. `timeChange` is deferred until then, and the cancel button discards the pending selection.
+          * If true, a selected time is only applied after the user confirms it with the confirm button. `timeChange` is deferred until then, and the cancel button discards the pending selection.  If false, `timeChange` is emitted for every selection and the done button emits `timeSelect`.
           * @since 6.0.0
-          * @default false
+          * @default true
          */
         "requireConfirmation"?: boolean;
         /**
@@ -13891,6 +13917,7 @@ declare namespace LocalJSX {
         "secondInterval": number;
         "millisecondInterval": number;
         "i18nSelectTime": string;
+        "i18nDone": string;
         "i18nTime": string;
         "i18nHourColumnHeader": string;
         "i18nMinuteColumnHeader": string;
@@ -13922,6 +13949,7 @@ declare namespace LocalJSX {
         "minTime": string;
         "maxTime": string;
         "i18nConfirm": string;
+        "i18nDone": string;
         "requireConfirmation": boolean;
         "i18nCancel": string;
         "i18nHeader": string;

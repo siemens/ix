@@ -13,7 +13,7 @@ import { IxDateDropdown, IxToggle, IxTypography } from '@siemens/ix-react';
 import { useState } from 'react';
 
 const descriptions = {
-  off: 'The range picked in the dropdown is applied when you click Done or when the dropdown closes, including when you click outside it.',
+  off: 'The picked range is applied immediately and the dropdown closes once it is complete. Closing the dropdown with only a start date picked reverts the range.',
   on: 'The range picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it.',
 };
 

@@ -13,6 +13,9 @@ import {
   dayOfMonth,
   isDayWithinRange,
   isMonthWithinRange,
+  isPartialRange,
+  isSameDayOrUnset,
+  isSameRange,
   isYearWithinRange,
   monthNameOf,
   monthsOfYear,
@@ -477,5 +480,59 @@ describe('calendarRowsFor', () => {
 
       expect(sundayFirst[0].weekNumber).toBe(27);
     });
+  });
+});
+
+describe('isSameDayOrUnset', () => {
+  const day = DateTime.fromISO('2026-07-05T08:00');
+
+  it('treats two unset dates as the same', () => {
+    expect(isSameDayOrUnset(undefined, undefined)).toBe(true);
+  });
+
+  it('treats a set and an unset date as different', () => {
+    expect(isSameDayOrUnset(day, undefined)).toBe(false);
+    expect(isSameDayOrUnset(undefined, day)).toBe(false);
+  });
+
+  it('ignores the time of day', () => {
+    expect(isSameDayOrUnset(day, day.set({ hour: 23 }))).toBe(true);
+  });
+
+  it('distinguishes the same day in another month', () => {
+    expect(isSameDayOrUnset(day, day.plus({ months: 1 }))).toBe(false);
+  });
+});
+
+describe('isSameRange', () => {
+  const from = DateTime.fromISO('2026-07-05');
+  const to = DateTime.fromISO('2026-07-10');
+
+  it('matches ranges selecting the same days', () => {
+    expect(isSameRange({ from, to }, { from, to: to.set({ hour: 5 }) })).toBe(
+      true
+    );
+  });
+
+  it('does not match a partial range with the full range', () => {
+    expect(isSameRange({ from }, { from, to })).toBe(false);
+  });
+
+  it('matches two empty ranges', () => {
+    expect(isSameRange({}, {})).toBe(true);
+  });
+});
+
+describe('isPartialRange', () => {
+  it('is partial with a start but no end', () => {
+    expect(isPartialRange({ from: '2026/07/05' })).toBe(true);
+    expect(isPartialRange({ from: '2026/07/05', to: '' })).toBe(true);
+  });
+
+  it('is not partial when complete or empty', () => {
+    expect(isPartialRange({ from: '2026/07/05', to: '2026/07/10' })).toBe(
+      false
+    );
+    expect(isPartialRange({})).toBe(false);
   });
 });

@@ -206,13 +206,15 @@ regressionTest.describe('locale support', () => {
         });
       });
 
+      await datetimePicker.getByText(/^12$/).first().click();
+      await datetimePicker.getByText(/^15$/).first().click();
       await datetimePicker.getByRole('button', { name: 'Done' }).click();
 
       const detail = JSON.parse(await dateSelectEvent);
-      expect(detail.from).toBe('05 März 2023');
-      expect(detail.to).toBe('10 März 2023');
-      expect(detail.isoFrom).toBe('2023-03-05');
-      expect(detail.isoTo).toBe('2023-03-10');
+      expect(detail.from).toBe('12 März 2023');
+      expect(detail.to).toBe('15 März 2023');
+      expect(detail.isoFrom).toBe('2023-03-12');
+      expect(detail.isoTo).toBe('2023-03-15');
       expect(detail.time).toBe('14:30:00');
       expect(detail.isoTime).toMatch(/^14:30:00/);
     }
@@ -260,12 +262,13 @@ regressionTest.describe('locale support', () => {
         });
       });
 
+      await datetimePicker.getByText(/^17$/).first().click();
       await datetimePicker.getByRole('button', { name: 'Done' }).click();
 
       const detail = JSON.parse(await dateSelectEvent);
       expect(detail.time).toBe('02:30:00 PM');
       expect(detail.isoTime).toMatch(/^14:30:00/);
-      expect(detail.isoFrom).toBe('2023-03-05');
+      expect(detail.isoFrom).toBe('2023-03-17');
     }
   );
 
@@ -470,6 +473,98 @@ regressionTest.describe('require confirmation option', () => {
       await expect(
         datetimePicker.getByRole('button', { name: 'Done' })
       ).toBeVisible();
+    }
+  );
+});
+
+regressionTest.describe('primary button disabled state', () => {
+  regressionTest(
+    'confirm is disabled until something different is picked',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, {
+        from: committed,
+        attributes: 'single-selection require-confirmation',
+      });
+      const confirm = datetimePickerLocator(page).getByRole('button', {
+        name: 'Confirm',
+      });
+
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, picked).click();
+      await expect(confirm).toBeEnabled();
+
+      // Re-selecting the committed date leaves nothing to confirm
+      await dayCell(page, committed).click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'confirm is disabled while the range is incomplete',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, {
+        from: committed,
+        to: committedTo,
+        attributes: 'require-confirmation',
+      });
+      const confirm = datetimePickerLocator(page).getByRole('button', {
+        name: 'Confirm',
+      });
+
+      await dayCell(page, picked).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+    }
+  );
+
+  regressionTest(
+    'done is disabled until something different is picked and after done',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, {
+        from: committed,
+        attributes: 'single-selection',
+      });
+      const done = datetimePickerLocator(page).getByRole('button', {
+        name: 'Done',
+      });
+
+      await expect(done).toBeDisabled();
+
+      await hourCell(page, picked).click();
+      await expect(done).toBeEnabled();
+
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'done stays enabled when the host echoes changes back to the props',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, {
+        from: committed,
+        attributes: 'single-selection',
+      });
+      const datetimePicker = datetimePickerLocator(page);
+      await datetimePicker.evaluate((el: HTMLIxDatetimePickerElement) => {
+        el.addEventListener('dateChange', (event) => {
+          const detail = (event as CustomEvent).detail;
+          el.from = typeof detail === 'string' ? detail : detail.from;
+        });
+        el.addEventListener('timeChange', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        });
+      });
+
+      await dayCell(page, picked).click();
+      await hourCell(page, picked).click();
+
+      await expect(
+        datetimePicker.getByRole('button', { name: 'Done' })
+      ).toBeEnabled();
     }
   );
 });

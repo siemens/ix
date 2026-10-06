@@ -21,7 +21,7 @@ import {
   styleUrls: ['./time-picker-require-confirmation.css'],
 })
 export default class TimePickerRequireConfirmation {
-  requireConfirmation = false;
+  requireConfirmation = true;
   events: string[] = [];
 
   readonly descriptions = {

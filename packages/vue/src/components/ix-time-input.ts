@@ -29,6 +29,7 @@ export const IxTimeInput: StencilVueComponent<JSX.IxTimeInput> = /*@__PURE__*/ d
   'secondInterval',
   'millisecondInterval',
   'i18nSelectTime',
+  'i18nDone',
   'i18nTime',
   'i18nHourColumnHeader',
   'i18nMinuteColumnHeader',

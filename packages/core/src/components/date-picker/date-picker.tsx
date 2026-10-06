@@ -38,6 +38,9 @@ import {
   dayOfMonth,
   isDayWithinRange,
   isMonthWithinRange,
+  isPartialRange,
+  isSameDayOrUnset,
+  isSameRange,
   isYearWithinRange,
   monthNameOf,
   monthsOfYear,
@@ -94,7 +97,7 @@ export class DatePicker
     this.resetPendingRange();
 
     if (!newValue) {
-      this.currFromDate = undefined;
+      this.setCommittedDate('currFromDate', undefined);
 
       return;
     }
@@ -102,7 +105,7 @@ export class DatePicker
     const date = tryParseWithLocale(newValue, this.format, this.locale);
 
     if (date) {
-      this.currFromDate = date;
+      this.setCommittedDate('currFromDate', date);
       this.updateSelectedYearMonth(date);
     }
   }
@@ -118,7 +121,7 @@ export class DatePicker
     this.resetPendingRange();
 
     if (!newValue) {
-      this.currToDate = undefined;
+      this.setCommittedDate('currToDate', undefined);
 
       return;
     }
@@ -126,7 +129,7 @@ export class DatePicker
     const date = tryParseWithLocale(newValue, this.format, this.locale);
 
     if (date) {
-      this.currToDate = date;
+      this.setCommittedDate('currToDate', date);
       this.updateSelectedYearMonth(date);
     }
   }
@@ -270,6 +273,7 @@ export class DatePicker
     this.currToDate = this.to
       ? tryParseWithLocale(this.to, this.format, this.locale)
       : undefined;
+    this.resetDoneBaseline();
   }
 
   /**
@@ -366,6 +370,50 @@ export class DatePicker
   private resetPendingRange = () => {
     this.pendingRange = undefined;
   };
+
+  /**
+   * Selection the done button compares against while `requireConfirmation`
+   * is disabled: the selection at load, at the last done click or at the last
+   * external `from`/`to` change.
+   */
+  @State() private doneBaseline: { from?: DateTime; to?: DateTime } = {};
+
+  private resetDoneBaseline() {
+    this.doneBaseline = { from: this.currFromDate, to: this.currToDate };
+  }
+
+  /**
+   * Applies a `from`/`to` prop change. A prop that just echoes the current
+   * selection back (e.g. two-way binding to `dateChange`) is not an external
+   * change and keeps the done baseline.
+   */
+  private setCommittedDate(
+    key: 'currFromDate' | 'currToDate',
+    date: DateTime | undefined
+  ) {
+    const isEcho = isSameDayOrUnset(this[key], date);
+    this[key] = date;
+
+    if (!isEcho) {
+      this.resetDoneBaseline();
+    }
+  }
+
+  private isIncomplete(range: { from?: DateTime; to?: DateTime }): boolean {
+    return !this.singleSelection && isPartialRange(range);
+  }
+
+  private isPrimaryActionDisabled(): boolean {
+    if (this.requireConfirmation) {
+      return !this.pendingRange || this.isIncomplete(this.pendingRange);
+    }
+
+    const current = { from: this.currFromDate, to: this.currToDate };
+
+    return (
+      this.isIncomplete(current) || isSameRange(current, this.doneBaseline)
+    );
+  }
 
   private get selectedFrom(): DateTime | undefined {
     return this.pendingRange ? this.pendingRange.from : this.currFromDate;
@@ -642,6 +690,7 @@ export class DatePicker
   }
 
   private async onDone() {
+    this.resetDoneBaseline();
     const date = await this.getCurrentDate();
     this.dateSelect.emit(date);
   }
@@ -720,7 +769,15 @@ export class DatePicker
 
   private applySelection(from?: DateTime, to?: DateTime) {
     if (this.requireConfirmation) {
-      this.pendingRange = { from, to };
+      const committed = {
+        from: this.currFromDate,
+        to: this.singleSelection ? undefined : this.currToDate,
+      };
+
+      // Re-selecting the committed selection leaves nothing to confirm
+      this.pendingRange = isSameRange({ from, to }, committed)
+        ? undefined
+        : { from, to };
 
       return;
     }
@@ -1097,6 +1154,7 @@ export class DatePicker
               i18nDone={this.i18nDone}
               i18nConfirm={this.i18nConfirm}
               i18nCancel={this.i18nCancel}
+              primaryActionDisabled={this.isPrimaryActionDisabled()}
               onDoneClick={() => this.onDone()}
               onConfirmClick={() => this.onConfirm()}
               onCancelClick={() => this.onCancel()}

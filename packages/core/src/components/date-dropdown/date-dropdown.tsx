@@ -39,6 +39,7 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { BaseButton } from '../button/base-button';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
+import { isPartialRange } from '../utils/calendar.util';
 
 @Component({
   tag: 'ix-date-dropdown',
@@ -182,6 +183,9 @@ export class DateDropdown
 
   /**
    * Text for the done button. Will be used for translation.
+   *
+   * @deprecated The done button was removed. Without `requireConfirmation`
+   * the dropdown closes once a complete date or range is selected.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
@@ -241,7 +245,9 @@ export class DateDropdown
    * If `requireConfirmation` is enabled, this event is only emitted when the
    * selection is confirmed with the confirm button. Otherwise it is emitted
    * for every date or predefined range picked in the dropdown and when the
-   * dropdown is closed. It is not emitted for programmatic changes.
+   * dropdown is closed. Closing the dropdown with only a start date picked
+   * reverts the selection, and the event carries the reverted value. It is
+   * not emitted for programmatic changes.
    *
    * @since 6.0.0
    */
@@ -258,6 +264,15 @@ export class DateDropdown
   @State() private pendingRangeValue?: DateRangeChangeEvent;
   @State() private pendingRangeId?: LiteralStringUnion<'custom'>;
   @State() private show = false;
+
+  /**
+   * Committed selection when the dropdown opened while `requireConfirmation`
+   * is disabled. Restored if the dropdown closes with an incomplete range.
+   */
+  private selectionOnOpen?: {
+    rangeValue?: DateRangeChangeEvent;
+    rangeId: LiteralStringUnion<'custom'>;
+  };
 
   private readonly triggerRef = makeRef<HTMLElement>();
 
@@ -390,10 +405,9 @@ export class DateDropdown
       return;
     }
 
-    this.onRangeListSelect(id);
-
-    if (this.findRangeOption(id) && this.currentRangeValue) {
-      this.emitDateSelect(this.currentRangeValue);
+    // A predefined range is always complete. Closing emits `dateRangeChange` and `dateSelect`
+    if (this.setDateRangeSelection(id)) {
+      this.closeDropdown();
     }
   }
 
@@ -425,6 +439,32 @@ export class DateDropdown
         this.pendingRangeValue = value;
       }
     }
+
+    this.normalizePendingSelection();
+  }
+
+  /** Re-selecting the committed range leaves nothing to confirm. */
+  private normalizePendingSelection() {
+    const pending = this.displayedRangeValue;
+    const committed = this.currentRangeValue;
+
+    if (
+      (pending?.from || undefined) === (committed?.from || undefined) &&
+      (pending?.to || undefined) === (committed?.to || undefined)
+    ) {
+      this.clearPendingSelection();
+    }
+  }
+
+  private isIncomplete(rangeValue?: DateRangeChangeEvent): boolean {
+    return !this.singleSelection && !!rangeValue && isPartialRange(rangeValue);
+  }
+
+  private isConfirmDisabled(): boolean {
+    return (
+      this.pendingRangeValue === undefined ||
+      this.isIncomplete(this.pendingRangeValue)
+    );
   }
 
   /**
@@ -472,13 +512,6 @@ export class DateDropdown
     this.pendingRangeId = undefined;
   }
 
-  private onDone() {
-    if (this.currentRangeValue) {
-      this.emitDateRangeChange(this.currentRangeValue);
-      this.closeDropdown();
-    }
-  }
-
   private onConfirm() {
     if (this.pendingRangeValue) {
       this.currentRangeValue = this.pendingRangeValue;
@@ -503,11 +536,21 @@ export class DateDropdown
 
     if (this.requireConfirmation) {
       this.pendingRangeValue = rangeValue;
+      this.pendingRangeId = 'custom';
+      this.normalizePendingSelection();
       return;
     }
 
     this.currentRangeValue = rangeValue;
-    this.emitDateSelect(rangeValue);
+    this.selectedDateRangeId = 'custom';
+
+    if (this.isIncomplete(rangeValue)) {
+      this.emitDateSelect(rangeValue);
+      return;
+    }
+
+    // Closing emits `dateRangeChange` and `dateSelect`
+    this.closeDropdown();
   }
 
   private onDropdownShowChanged(show: boolean) {
@@ -516,9 +559,18 @@ export class DateDropdown
     if (this.requireConfirmation) {
       // Opening shows the committed selection, closing without confirming discards the pending one
       this.clearPendingSelection();
-    } else if (!show && this.currentRangeValue) {
-      this.emitDateRangeChange(this.currentRangeValue);
-      this.emitDateSelect(this.currentRangeValue);
+    } else if (show) {
+      this.selectionOnOpen = {
+        rangeValue: this.currentRangeValue,
+        rangeId: this.selectedDateRangeId,
+      };
+    } else {
+      this.revertIncompleteSelection();
+
+      if (this.currentRangeValue) {
+        this.emitDateRangeChange(this.currentRangeValue);
+        this.emitDateSelect(this.currentRangeValue);
+      }
     }
 
     if (show && hasKeyboardMode()) {
@@ -527,6 +579,17 @@ export class DateDropdown
         datePicker?.focus();
       });
     }
+  }
+
+  /** Restores the selection from opening if only a start date was picked. */
+  private revertIncompleteSelection() {
+    if (!this.isIncomplete(this.currentRangeValue) || !this.selectionOnOpen) {
+      return;
+    }
+
+    this.currentRangeValue = this.selectionOnOpen.rangeValue;
+    this.selectedDateRangeId = this.selectionOnOpen.rangeId;
+    this.selectionOnOpen = undefined;
   }
 
   private closeDropdown() {
@@ -545,8 +608,9 @@ export class DateDropdown
         return range;
       }
 
-      if (this.currentRangeValue.to) {
-        range += ` - ${this.currentRangeValue.to}`;
+      // A trailing separator without end date tells the user to pick one
+      if (!this.singleSelection) {
+        range += ` - ${this.currentRangeValue.to ?? ''}`;
       }
 
       return range;
@@ -646,32 +710,25 @@ export class DateDropdown
                 onDateRangeChange={(e) => e.stopPropagation()}
                 format={this.format}
                 singleSelection={this.singleSelection}
-                from={
-                  this.requireConfirmation
-                    ? this.displayedRangeValue?.from
-                    : this.from || this.currentRangeValue?.from
-                }
-                to={
-                  this.requireConfirmation
-                    ? this.displayedRangeValue?.to
-                    : this.to || this.currentRangeValue?.to
-                }
+                from={this.displayedRangeValue?.from}
+                to={this.displayedRangeValue?.to}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
                 today={this.today}
                 weekStartIndex={this.weekStartIndex}
                 showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
-              <ix-confirmation-footer
-                class="pull-right"
-                requireConfirmation={this.requireConfirmation}
-                i18nDone={this.i18nDone}
-                i18nConfirm={this.i18nConfirm}
-                i18nCancel={this.i18nCancel}
-                onDoneClick={() => this.onDone()}
-                onConfirmClick={() => this.onConfirm()}
-                onCancelClick={() => this.closeDropdown()}
-              ></ix-confirmation-footer>
+              {this.requireConfirmation && (
+                <ix-confirmation-footer
+                  class="pull-right"
+                  requireConfirmation
+                  i18nConfirm={this.i18nConfirm}
+                  i18nCancel={this.i18nCancel}
+                  primaryActionDisabled={this.isConfirmDisabled()}
+                  onConfirmClick={() => this.onConfirm()}
+                  onCancelClick={() => this.closeDropdown()}
+                ></ix-confirmation-footer>
+              )}
             </div>
           </div>
         </ix-dropdown>

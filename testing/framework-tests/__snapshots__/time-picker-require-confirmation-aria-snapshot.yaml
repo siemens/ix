@@ -1,6 +1,6 @@
 - main:
-  - switch "Require confirmation"
-  - text: timeChange is emitted for every picked value. Time hr
+  - switch "Require confirmation" [checked]
+  - text: timeChange is emitted only when you click Confirm. Cancel discards the picked time and emits timeCancel. Time hr
   - listbox "hr":
     - 'option "hr: 0"'
     - 'option "hr: 1"'
@@ -88,6 +88,7 @@
     - 'option /min: \d+/'
     - 'option /min: \d+/'
     - 'option /min: \d+/'
-  - button "Confirm"
+  - button "Cancel"
+  - button "Confirm" [disabled]
   - text: Emitted events (latest first)
   - list

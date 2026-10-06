@@ -16,11 +16,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./time-input-require-confirmation.css'],
 })
 export default class TimeInputRequireConfirmation {
-  requireConfirmation = false;
+  requireConfirmation = true;
   events: string[] = [];
 
   readonly descriptions = {
-    off: 'A time picked in the dropdown is applied when you click Confirm.',
+    off: 'A time picked in the dropdown is applied immediately. Done closes the dropdown.',
     on: 'A time picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it. Reopening the dropdown shows the applied time.',
   };
 
