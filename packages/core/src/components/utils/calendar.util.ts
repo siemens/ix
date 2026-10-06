@@ -227,3 +227,25 @@ export function isYearWithinRange(
 
   return !isBefore && !isAfter;
 }
+
+/** Whether `a` and `b` are both unset or fall on the same day. */
+export function isSameDayOrUnset(a?: DateTime, b?: DateTime): boolean {
+  if (!a || !b) {
+    return !a && !b;
+  }
+
+  return a.hasSame(b, 'day');
+}
+
+/** Whether both ranges select the same days. */
+export function isSameRange(
+  a: { from?: DateTime; to?: DateTime },
+  b: { from?: DateTime; to?: DateTime }
+): boolean {
+  return isSameDayOrUnset(a.from, b.from) && isSameDayOrUnset(a.to, b.to);
+}
+
+/** Whether a range has a start but no end yet. */
+export function isPartialRange<T>(range: { from?: T; to?: T }): boolean {
+  return !!range.from && !range.to;
+}
