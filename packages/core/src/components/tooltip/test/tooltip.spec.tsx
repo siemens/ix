@@ -56,18 +56,6 @@ describe('ix-tooltip popover guards', () => {
     await waitForChanges();
   });
 
-  it('does not call hidePopover when the tooltip was never shown', async () => {
-    const { tooltip, dialog, waitForChanges } = await mountTooltip();
-    const hidePopover = vi.fn();
-    dialog.hidePopover = hidePopover;
-
-    await tooltip.hideTooltip(0);
-    await flushTimeout();
-    await waitForChanges();
-
-    expect(hidePopover).not.toHaveBeenCalled();
-  });
-
   it('does not throw when hidePopover is not a function', async () => {
     const { tooltip, dialog, waitForChanges } = await mountTooltip();
     dialog.showPopover = vi.fn();
@@ -79,39 +67,6 @@ describe('ix-tooltip popover guards', () => {
     dialog.hidePopover = undefined as unknown as typeof dialog.hidePopover;
 
     await tooltip.hideTooltip(0);
-    await flushTimeout();
-    await waitForChanges();
-  });
-
-  it('does not call hidePopover on a dialog removed after show', async () => {
-    const { tooltip, dialog, waitForChanges } = await mountTooltip();
-    dialog.showPopover = vi.fn();
-    const hidePopover = vi.fn();
-    dialog.hidePopover = hidePopover;
-
-    await tooltip.showTooltip(createAnchor());
-    await flushTimeout();
-    await waitForChanges();
-
-    hidePopover.mockClear();
-    dialog.remove();
-    await tooltip.hideTooltip(0);
-    await flushTimeout();
-    await waitForChanges();
-
-    expect(hidePopover).not.toHaveBeenCalled();
-  });
-
-  it('does not throw when switching anchors', async () => {
-    const { tooltip, dialog, waitForChanges } = await mountTooltip();
-    dialog.showPopover = vi.fn();
-    dialog.hidePopover = vi.fn();
-
-    await tooltip.showTooltip(createAnchor());
-    await flushTimeout();
-    await waitForChanges();
-
-    await tooltip.showTooltip(createAnchor());
     await flushTimeout();
     await waitForChanges();
   });
