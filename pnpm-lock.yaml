@@ -159,9 +159,6 @@ importers:
       '@siemens/ix':
         specifier: ~5.2.1
         version: link:../core
-      '@siemens/ix-icons':
-        specifier: ^3.5.0
-        version: 3.5.0
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -196,6 +193,9 @@ importers:
       '@jest/globals':
         specifier: ^30.2.0
         version: 30.2.0
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 0.0.0-20260924154901
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.13
@@ -895,9 +895,6 @@ importers:
       '@siemens/ix':
         specifier: ~5.2.1
         version: link:../core
-      '@siemens/ix-icons':
-        specifier: ^3.5.0
-        version: 3.5.0
       '@stencil/react-output-target':
         specifier: ^1.5.3
         version: 1.5.3(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -908,6 +905,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
         version: 8.5.0(@rollup/wasm-node@4.63.4)(tslib@2.8.1)(typescript@5.8.3)
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 0.0.0-20260924154901
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1153,13 +1153,13 @@ importers:
       '@siemens/ix':
         specifier: ~5.2.1
         version: link:../core
-      '@siemens/ix-icons':
-        specifier: ^3.5.0
-        version: 3.5.0
       '@stencil/vue-output-target':
         specifier: ^0.13.2
         version: 0.13.2(patch_hash=a12a6ca0484d92fbfcfb71f925f721ce35975e7c681730a9a5610f7e1c237dc4)(@stencil/core@4.43.5(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
+      '@siemens/ix-icons':
+        specifier: 'catalog:'
+        version: 0.0.0-20260924154901
       '@testing-library/vue':
         specifier: ^8.1.0
         version: 8.1.0(@vue/compiler-sfc@3.5.17)(vue@3.5.17(typescript@5.8.3))
@@ -4469,10 +4469,6 @@ packages:
 
   '@siemens/ix-icons@0.0.0-20260924154901':
     resolution: {integrity: sha512-C2cSZqsIAwiAC37QX8yh7NCqeYCZaOSZPLTh5M3I+AcMXm8mihYGmFH619SmcPGDC/f69fVWsSxsJZKQ5eTY9g==}
-    engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
-
-  '@siemens/ix-icons@3.5.0':
-    resolution: {integrity: sha512-FP/7jnjoTfIvIah5OkJ7nLoXjyNy2rcUClGk29NLd4h/If/lz5liu7AMrCNKV9BTNCWQM8UI1wmoeF8xWz5d+A==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@sigstore/bundle@3.1.0':
@@ -16838,8 +16834,6 @@ snapshots:
   '@sideway/pinpoint@2.0.0': {}
 
   '@siemens/ix-icons@0.0.0-20260924154901': {}
-
-  '@siemens/ix-icons@3.5.0': {}
 
   '@sigstore/bundle@3.1.0':
     dependencies:
