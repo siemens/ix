@@ -6,13 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'mixins/input';
+@use './input-control.mixins' as input;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/validation/form-component';
-@use 'tokens/system' as sys;
 
-@use './input.vars' as *;
-@include input.form($component: 'input');
+@include input.form;
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
@@ -100,7 +98,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
     }
 
     .input-wrapper:hover input:not(:disabled):not(:read-only) {
-      @include input.element-input-hover('input');
+      @include input.element-input-hover;
     }
   }
 
@@ -118,7 +116,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
   // select / category-filter use the same host class with local SCSS).
   :host(.active:not(.disabled):not(.readonly)) {
     input:not(:disabled):not(:read-only) {
-      @include input.element-input-hover('input');
+      @include input.element-input-hover;
     }
   }
 

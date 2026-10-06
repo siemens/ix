@@ -8,10 +8,10 @@
  */
 
 @use '../icon-button/icon-button';
-@use 'mixins/internal/input-control';
+@use '../input/input-control.mixins' as input-control;
 @use 'mixins/shadow-dom/component';
 
-@use './pagination.vars' as *;
+@use './pagination.vars';
 :host {
   @include component.ix-component;
 
@@ -31,7 +31,7 @@
   }
 
   .page-selection {
-    @include input-control.input-control('pagination-page-selection');
+    @include input-control.input-control;
 
     width: var(--ix-pagination-page-selection--width);
     text-align: center;

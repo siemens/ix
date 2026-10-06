@@ -6,11 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'mixins/internal/input-control';
+@use '../input/input-control.mixins' as input-control;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 
-@use './expanding-search.vars' as *;
+@use './expanding-search.vars';
 $container-width: var(--ix-expanding-search--container-width);
 
 :host {
@@ -30,7 +30,7 @@ $container-width: var(--ix-expanding-search--container-width);
   }
 
   input {
-    @include input-control.input-control('expanding-search-input');
+    @include input-control.input-control;
 
     cursor: auto !important;
     width: 100%;
