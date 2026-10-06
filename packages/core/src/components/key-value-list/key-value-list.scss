@@ -1,7 +1,8 @@
 @use './key-value-list.vars' as *;
 :host(.keyValueList) {
   ::slotted(ix-key-value) {
-    border-bottom: 1px solid var(--ix-key-value-list-item--border-color);
+    border-bottom: var(--ix-key-value-list--border-width) solid
+      var(--ix-key-value-list-item--border-color);
   }
 }
 

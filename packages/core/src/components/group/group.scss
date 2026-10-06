@@ -10,11 +10,10 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './group.vars' as *;
 $header-height: var(--ix-group--header-height);
-$header-height-focus-visible: calc($header-height - 2px);
+$header-height-focus-visible: var(--ix-group--header-height--focus);
 
 :host {
   display: flex;
@@ -58,7 +57,8 @@ $header-height-focus-visible: calc($header-height - 2px);
       height: $header-height-focus-visible;
       min-height: $header-height-focus-visible;
 
-      border: 1px solid var(--ix-group-header--border-color--focus);
+      border: var(--ix-group-header--border-width) solid
+        var(--ix-group-header--border-color--focus);
       border-radius: var(--ix-group-header--border-radius--focus)
         var(--ix-group-header--border-radius--focus) 0px 0px;
       outline: none;
@@ -167,8 +167,8 @@ $header-height-focus-visible: calc($header-height - 2px);
   .group-content {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    margin-top: 1px;
+    gap: var(--ix-group-content--gap);
+    margin-top: var(--ix-group-content--margin-top);
   }
 
   .footer {

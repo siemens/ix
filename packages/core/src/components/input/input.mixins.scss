@@ -12,7 +12,7 @@
 @use 'tokens/system' as sys;
 
 @use './input.vars' as *;
-@include input.form;
+@include input.form($component: 'input');
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
@@ -100,7 +100,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
     }
 
     .input-wrapper:hover input:not(:disabled):not(:read-only) {
-      @include input.element-input-hover;
+      @include input.element-input-hover('input');
     }
   }
 
@@ -118,7 +118,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
   // select / category-filter use the same host class with local SCSS).
   :host(.active:not(.disabled):not(.readonly)) {
     input:not(:disabled):not(:read-only) {
-      @include input.element-input-hover;
+      @include input.element-input-hover('input');
     }
   }
 

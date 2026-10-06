@@ -11,9 +11,6 @@
 
 :host {
   --ix-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-button--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-button--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-button--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-button-danger-primary--background: #{sys.$si-sys-color-background-danger};
   --ix-button-danger-primary--background--active: #{sys.$si-sys-color-background-danger-active};
   --ix-button-danger-primary--background--disabled: #{sys.$si-sys-color-background-1};
@@ -179,6 +176,10 @@
 }
 
 :host {
+  --ix-button--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-button--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-button--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-button--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
   --ix-button--height: #{sys.$si-sys-sizing-size-80};
   --ix-button--margin-right: #{sys.$si-sys-sizing-spacing-x-20};

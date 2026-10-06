@@ -20,4 +20,9 @@
   --ix-date-time-card-content--padding: 0 #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
   --ix-date-time-card-time-picker--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
   --ix-date-time-card-footer--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-date-time-card-standalone-appearance--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-date-time-card-rounded--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-date-time-card-left--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-date-time-card-right--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-date-time-card-separator--height: #{sys.$si-sys-sizing-border-width-default};
 }

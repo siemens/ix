@@ -9,11 +9,9 @@
 
 @use 'mixins/shadow-dom/component';
 @use './badge.vars' as *;
-@use 'tokens/system' as sys;
 
 $predefined-variants: primary, alarm, critical, warning, info, neutral, success;
 $status-icon-variants: alarm, critical, warning, info, success;
-$border-radius: 100px;
 
 :host {
   display: inline-block;
@@ -39,8 +37,8 @@ $border-radius: 100px;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border-radius: $border-radius;
-  font: #{sys.$si-sys-typography-body-sbold};
+  border-radius: var(--ix-badge-indicator--border-radius);
+  font: var(--ix-badge-indicator--font);
   max-width: var(--ix-badge-max-width);
   z-index: 1;
   pointer-events: none;
@@ -97,7 +95,7 @@ $border-radius: 100px;
 
 /* Standalone host uses font-size: 0 for sizing; restore text for nested tooltip. */
 :host ix-tooltip {
-  font-size: 0.875rem;
+  font-size: var(--ix-badge-tooltip--font-size);
   line-height: normal;
 }
 
@@ -132,15 +130,15 @@ $border-radius: 100px;
 
 :host([type='counter']) .indicator {
   padding-inline: var(--ix-badge-indicator--padding-inline);
-  font-weight: bold;
-  line-height: 1.25rem;
+  font-weight: var(--ix-badge-counter--font-weight);
+  line-height: var(--ix-badge--line-height);
 }
 
 :host([type='label']) .indicator {
   padding-inline: var(--ix-badge-label--padding-inline);
   gap: var(--ix-badge-indicator--gap);
-  font-weight: 400;
-  line-height: 1.25rem;
+  font-weight: var(--ix-badge-label--font-weight);
+  line-height: var(--ix-badge--line-height);
 }
 
 :host([type='label']:not(.attached)) .indicator {
@@ -162,7 +160,7 @@ $border-radius: 100px;
 
 :host([type='counter']) .label,
 :host([type='label']) .label {
-  line-height: 1.25rem;
+  line-height: var(--ix-badge--line-height);
 }
 
 :host([type='status-icon']) .indicator {
@@ -265,7 +263,9 @@ $border-radius: 100px;
     .indicator {
       background-color: var(--ix-badge-outline-background);
       color: var(--ix-badge-default-color);
-      border: 0.0625rem solid var(--ix-badge-#{$variant}-border-color);
+      border: var(--ix-badge-indicator--border-width)
+        solid
+        var(--ix-badge-#{$variant}-border-color);
     }
   }
 }
@@ -284,13 +284,15 @@ $border-radius: 100px;
 
   .indicator {
     background-color: var(--ix-badge-outline-background);
-    border: 0.0625rem solid var(--ix-badge-custom-background);
+    border: var(--ix-badge-indicator--border-width) solid
+      var(--ix-badge-custom-background);
     color: var(--ix-badge-custom-color, var(--ix-badge-default-color));
   }
 }
 
 :host(.border:not(.outline):not([type='status-icon'])) .indicator {
-  outline: 0.0625rem solid var(--ix-badge-contrast-ring-color);
+  outline: var(--ix-badge-indicator--outline-width) solid
+    var(--ix-badge-contrast-ring-color);
   outline-offset: 0;
 }
 
@@ -321,7 +323,7 @@ $border-radius: 100px;
 :host([type='status-icon'].enable-animation) .indicator::after {
   content: '';
   position: absolute;
-  inset: 0.025rem;
+  inset: var(--ix-badge-pulse-status--inset);
   z-index: -1;
   pointer-events: none;
   border-radius: inherit;
@@ -337,7 +339,7 @@ $border-radius: 100px;
 :host(.enable-animation:not([type='status-icon'])) .indicator::after {
   content: '';
   position: absolute;
-  inset: 0.03125rem; /* 0.5px */
+  inset: var(--ix-badge-pulse-border--inset);
   z-index: -1;
   pointer-events: none;
   box-sizing: border-box;
@@ -363,13 +365,13 @@ $border-radius: 100px;
 
 @keyframes ix-badge-pulse-border {
   0% {
-    inset: 0.03125rem; /* 0.5px */
+    inset: var(--ix-badge-pulse-border--inset);
     border-width: 0;
     opacity: 0;
   }
 
   5% {
-    inset: 0.03125rem;
+    inset: var(--ix-badge-pulse-border--inset);
     border-width: 0;
     opacity: 0.5;
   }
@@ -380,19 +382,19 @@ $border-radius: 100px;
 
   80% {
     animation-timing-function: ease-out;
-    inset: -0.46875rem; /* -7.5px */
-    border-width: 0.5rem; /* 8px */
+    inset: var(--ix-badge-pulse-border--inset--expanded);
+    border-width: var(--ix-badge-pulse-border--border-width--expanded);
     opacity: 0.1;
   }
 
   90% {
-    inset: -0.59375rem; /* -9.5px */
-    border-width: 0.625rem; /* 10px */
+    inset: var(--ix-badge-pulse-border--inset--end);
+    border-width: var(--ix-badge-pulse-border--border-width--end);
     opacity: 0;
   }
 
   100% {
-    inset: 0.03125rem;
+    inset: var(--ix-badge-pulse-border--inset);
     border-width: 0;
     opacity: 0;
   }

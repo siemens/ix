@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './chat-attachment.vars' as *;
 :host {
@@ -36,12 +35,12 @@
   }
 
   .status-content {
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-chat-attachment-status-content--gap);
   }
 
   .status-content ix-spinner {
     scale: 1.7;
-    margin-left: 0.1875rem;
+    margin-left: var(--ix-chat-attachment-status-content--margin-left);
   }
 
   .file-name {
@@ -86,5 +85,5 @@
 }
 
 :host(.has-remove-button) {
-  gap: #{sys.$si-sys-sizing-spacing-x-30};
+  gap: var(--ix-chat-attachment-has-remove-button--gap);
 }

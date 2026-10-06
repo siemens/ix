@@ -10,7 +10,6 @@
 @use '../icon-button/icon-button';
 @use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './pagination.vars' as *;
 :host {
@@ -32,7 +31,7 @@
   }
 
   .page-selection {
-    @include input-control.input-control;
+    @include input-control.input-control('pagination-page-selection');
 
     width: var(--ix-pagination-page-selection--width);
     text-align: center;
@@ -72,6 +71,6 @@
   }
 
   button + button {
-    margin-inline-start: 0.125rem;
+    margin-inline-start: var(--ix-pagination-button--margin-inline-start);
   }
 }

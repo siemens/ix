@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use './mixins/action.mixin';
-@use 'tokens/system' as sys;
 @use './chat-user-message.vars';
 
 :host {
@@ -25,10 +24,10 @@
   .message {
     width: fit-content;
     min-width: var(--ix-chat-user-message-message--min-width);
-    max-width: 80%;
+    max-width: var(--ix-chat-user-message-message--max-width);
     box-sizing: border-box;
-    padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60};
-    border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+    padding: var(--ix-chat-user-message-message--padding);
+    border-radius: var(--ix-chat-user-message-message--border-radius);
     background-color: var(--ix-chat-user-message--background);
     color: var(--ix-chat-user-message--color);
   }
@@ -37,22 +36,28 @@
     display: none;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: #{sys.$si-sys-sizing-spacing-y-40} 0;
+    gap: var(--ix-chat-user-message-attachments--gap) 0;
     width: 100%;
-    max-width: 75%;
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+    max-width: var(--ix-chat-user-message-attachments--max-width);
+    margin-bottom: var(--ix-chat-user-message-attachments--margin-bottom);
     overflow: hidden;
   }
 
   .attachments ::slotted(ix-chat-attachment) {
     flex: var(--ix-chat-user-message-attachments--flex);
-    padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+    padding-left: var(--ix-chat-user-message-attachments--padding-left);
   }
 
   .attachment-overflow {
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
-    --ix-dropdown-button-border-radius-left: #{sys.$si-sys-sizing-border-radius-xs};
-    --ix-dropdown-button-border-radius-right: #{sys.$si-sys-sizing-border-radius-xs};
+    margin-bottom: var(
+      --ix-chat-user-message-attachment-overflow--margin-bottom
+    );
+    --ix-dropdown-button-border-radius-left: var(
+      --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-left
+    );
+    --ix-dropdown-button-border-radius-right: var(
+      --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-right
+    );
   }
 
   .message-text {
@@ -65,9 +70,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-chat-user-message-actions--gap);
     min-height: var(--ix-chat-user-message-actions--min-height);
-    margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+    margin-top: var(--ix-chat-user-message-actions--margin-top);
 
     @include action.animate-action;
   }
@@ -87,8 +92,9 @@
   outline: none;
 
   .message {
-    outline: 1px solid var(--ix-chat-user-message--outline-color--focus);
-    outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+    outline: var(--ix-chat-user-message--outline-width--focus) solid
+      var(--ix-chat-user-message--outline-color--focus);
+    outline-offset: var(--ix-chat-user-message-message--outline-offset);
   }
 }
 

@@ -12,9 +12,6 @@
 :host {
   --ix-checkbox-checkmark--color: #{sys.$si-sys-color-text-on-accent};
   --ix-checkbox--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-checkbox-label--gap: #{sys.$si-sys-sizing-spacing-x-30};
-  --ix-checkbox--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-checkbox--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-checkbox-checked--background: #{sys.$si-sys-color-background-accent};
   --ix-checkbox-checked--background--active: #{sys.$si-sys-color-background-accent-active};
   --ix-checkbox-checked--background--disabled: #{sys.$si-sys-color-text-disabled};
@@ -121,6 +118,9 @@
 }
 
 :host {
+  --ix-checkbox-label--gap: #{sys.$si-sys-sizing-spacing-x-30};
+  --ix-checkbox--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-checkbox--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-checkbox--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
   --ix-checkbox-button--height: #{sys.$si-sys-sizing-size-70};
   --ix-checkbox-button--width: #{sys.$si-sys-sizing-size-70};

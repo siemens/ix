@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './chat-ai-message.vars';
 
 :host {
@@ -17,7 +16,7 @@
   align-items: flex-start;
   width: 100%;
   min-width: 0;
-  gap: #{sys.$si-sys-sizing-spacing-y-60};
+  gap: var(--ix-chat-ai-message--gap);
   box-sizing: border-box;
   color: var(--ix-chat-ai-message--color);
 
@@ -29,8 +28,8 @@
     align-items: stretch;
     width: 100%;
     min-width: 0;
-    gap: #{sys.$si-sys-sizing-spacing-y-60};
-    font: #{sys.$si-sys-typography-body-lg};
+    gap: var(--ix-chat-ai-message-message--gap);
+    font: var(--ix-chat-ai-message-message--font);
     line-height: 1.5;
     overflow-wrap: anywhere;
   }
@@ -47,15 +46,15 @@
   .message ::slotted(h4),
   .message ::slotted(h5),
   .message ::slotted(h6) {
-    font: #{sys.$si-sys-typography-body-lg};
-    font-weight: var(--si-ref-typography-font-weight-bold);
+    font: var(--ix-chat-ai-message-message--font);
+    font-weight: var(--ix-chat-ai-message-message--font-weight);
     line-height: 1.2;
   }
 
   .meta {
     display: none;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-60};
+    gap: var(--ix-chat-ai-message-meta--gap);
     width: 100%;
     min-height: var(--ix-chat-ai-message-meta--min-height);
   }

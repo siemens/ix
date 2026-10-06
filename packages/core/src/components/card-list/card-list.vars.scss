@@ -10,17 +10,18 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-card-list-title-button--transition-duration: var(--theme-default-time);
-  --ix-card-list-content--transition-duration: var(--theme-default-time);
   --ix-card-list-show-all--border-color: #{sys.$si-sys-color-text-accent};
   --ix-card-list-show-all--color: #{sys.$si-sys-color-text-accent};
   --ix-card-list-show-all--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-card-list-show-all--focus-outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-card-list-show-all--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-card-list-show-all--background--active: #{sys.$si-sys-color-background-selected};
 }
 
 :host {
+  --ix-card-list-title-button--transition-duration: var(--theme-default-time);
+  --ix-card-list-content--transition-duration: var(--theme-default-time);
+  --ix-card-list-show-all--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-card-list-show-all--focus-outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-card-list-title--height: #{sys.$si-sys-sizing-size-70};
   --ix-card-list--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-list-title--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};

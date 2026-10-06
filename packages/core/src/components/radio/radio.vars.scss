@@ -12,8 +12,6 @@
 :host {
   --ix-radio-checkmark--background: #{sys.$si-sys-color-text-on-accent};
   --ix-radio--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-radio--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-radio--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-radio-checked--background: #{sys.$si-sys-color-background-accent};
   --ix-radio-checked--background--active: #{sys.$si-sys-color-background-accent-active};
   --ix-radio-checked--background--disabled: #{sys.$si-sys-color-text-disabled};
@@ -81,9 +79,12 @@
   --ix-radio-unchecked--border-color--warning: #{sys.$si-sys-color-border-warning};
   --ix-radio-unchecked--border-color--warning--active: #{sys.$si-sys-color-border-warning};
   --ix-radio-unchecked--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
+  --ix-radio-checkmark--border-color: white;
 }
 
 :host {
+  --ix-radio--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-radio--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-radio-checkmark--border-width-initial: #{sys.$si-sys-sizing-border-width-default};
   --ix-radio-checkmark--border-radius: #{sys.$si-sys-sizing-border-radius-full};
   --ix-radio--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};

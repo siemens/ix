@@ -8,12 +8,11 @@
  */
 
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
-$border-radius: 100px;
-$outline-border-width: 0.0625rem;
+$border-radius: var(--ix-chip--border-radius);
+$outline-border-width: var(--ix-chip--border-width--focus);
 
 @mixin chip-container(
   $interaction: true,
@@ -132,7 +131,9 @@ $outline-border-width: 0.0625rem;
       }
 
       &:focus-visible {
-        outline: 1px solid #199fff;
+        outline: var(--ix-chip--outline-width--focus)
+          solid
+          var(--ix-chip-container--outline-color--focus);
         outline-offset: var(--ix-chip--focus--outline-offset);
       }
     }
@@ -212,7 +213,9 @@ $outline-border-width: 0.0625rem;
 
       @if $interaction {
         &:focus-visible {
-          outline: 1px solid #199fff;
+          outline: var(--ix-chip--outline-width--focus)
+            solid
+            var(--ix-chip-container--outline-color--focus);
           outline-offset: var(--ix-chip--focus--outline-offset);
         }
       }
@@ -247,12 +250,12 @@ $outline-border-width: 0.0625rem;
       }
 
       &:hover::after {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: var(--ix-chip-container--background-color--hover);
       }
 
       &.active::after,
       &:active::after {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: var(--ix-chip-container--background-color--active);
       }
     }
   }

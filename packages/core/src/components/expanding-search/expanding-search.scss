@@ -9,7 +9,6 @@
 @use 'mixins/internal/input-control';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './expanding-search.vars' as *;
 $container-width: var(--ix-expanding-search--container-width);
@@ -31,7 +30,7 @@ $container-width: var(--ix-expanding-search--container-width);
   }
 
   input {
-    @include input-control.input-control;
+    @include input-control.input-control('expanding-search-input');
 
     cursor: auto !important;
     width: 100%;
@@ -82,8 +81,8 @@ $container-width: var(--ix-expanding-search--container-width);
     }
 
     @include hover.focus-visible {
-      outline: var(--focus--border-color);
-      outline-width: 1px;
+      outline: var(--ix-expanding-search-button-search--outline-color--focus);
+      outline-width: var(--ix-expanding-search--outline-width--focus);
       outline-style: solid;
     }
   }

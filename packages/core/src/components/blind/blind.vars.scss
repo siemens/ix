@@ -86,13 +86,13 @@ $blind-variant-sys-values: (
   --ix-blind-outline--border-color--hover: #{sys.$si-sys-color-background-hover};
   --ix-blind-outline--border-color--active: #{sys.$si-sys-color-background-selected};
   --ix-blind-header--border-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-blind-content--transition-duration: var(--theme-default-time);
-  --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-blind--background: #{sys.$si-sys-color-background-1};
 }
 
 :host {
+  --ix-blind-content--transition-duration: var(--theme-default-time);
+  --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};

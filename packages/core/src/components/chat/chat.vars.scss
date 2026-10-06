@@ -17,5 +17,8 @@
     #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-90}
   );
   --ix-chat-messages--max-width: #{sys.$si-sys-sizing-size-200};
+  --ix-chat-messages--gap: #{sys.$si-sys-sizing-spacing-y-90};
+  --ix-chat-messages--padding: #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90};
   --ix-chat-prompt--max-width: #{sys.$si-sys-sizing-size-200};
+  --ix-chat-prompt--padding: #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90};
 }

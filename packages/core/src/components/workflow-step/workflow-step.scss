@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 
 @use './workflow-step.vars' as *;
@@ -50,7 +49,7 @@
 
       .line {
         width: 100%;
-        height: 0.125rem;
+        height: var(--ix-workflow-step-line--height);
         background-color: var(--ix-workflow-step-icon-default--color);
 
         &.first,
@@ -130,7 +129,7 @@
         height: 100%;
 
         .line {
-          width: 0.125rem;
+          width: var(--ix-workflow-step-line--width);
           height: 100%;
 
           &.first,
@@ -185,8 +184,9 @@
     }
 
     &:focus-visible {
-      outline: 1px solid #{sys.$si-sys-color-effects-focus};
-      outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+      outline: var(--ix-workflow-step--outline-width--focus) solid
+        var(--ix-workflow-step-step--outline-color--focus);
+      outline-offset: var(--ix-workflow-step-step--outline-offset);
     }
 
     &.selected {

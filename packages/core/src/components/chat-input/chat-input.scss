@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
-@use 'tokens/system' as sys;
 @use './chat-input.vars';
 
 :host {
@@ -23,7 +22,7 @@
     flex-direction: column;
     width: 100%;
     min-height: var(--ix-chat-input--min-height);
-    padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
+    padding: var(--ix-chat-input--padding);
     box-sizing: border-box;
     background-color: var(--ix-chat-input--background);
     border: var(--ix-chat-input--border-width) solid
@@ -36,9 +35,9 @@
     display: none;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-chat-input-follow-up-prompts--gap);
     width: 100%;
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+    margin-bottom: var(--ix-chat-input-follow-up-prompts--margin-bottom);
   }
 
   .follow-up-prompts ::slotted(*) {
@@ -60,7 +59,8 @@
   }
 
   .chat-input:focus-within {
-    outline: 1px solid var(--ix-chat-input--outline-color--focus);
+    outline: var(--ix-chat-input--outline-width--focus) solid
+      var(--ix-chat-input--outline-color--focus);
     outline-offset: var(--ix-chat-input--focus--outline-offset);
     border-color: var(--ix-chat-input--border-color--focus);
   }
@@ -70,8 +70,8 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    gap: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
-    margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
+    gap: var(--ix-chat-input-attachments--gap);
+    margin-bottom: var(--ix-chat-input-attachments--margin-bottom);
   }
 
   .attachments.has-attachments {
@@ -127,9 +127,9 @@
   .character-limit {
     display: flex;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-chat-input-character-limit--gap);
     width: 100%;
-    margin-top: #{sys.$si-sys-sizing-spacing-y-50};
+    margin-top: var(--ix-chat-input-character-limit--margin-top);
   }
 
   .character-limit ix-icon {
@@ -150,14 +150,14 @@
     justify-content: space-between;
     width: 100%;
     min-height: var(--ix-chat-input-action-row--min-height);
-    margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+    margin-top: var(--ix-chat-input-action-row--margin-top);
   }
 
   .left-actions,
   .right-actions {
     display: flex;
     align-items: center;
-    gap: #{sys.$si-sys-sizing-spacing-x-40};
+    gap: var(--ix-chat-input-left-actions--gap);
   }
 
   .left-actions {
@@ -173,7 +173,7 @@
   .disclaimer {
     display: block;
     width: 100%;
-    margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+    margin-top: var(--ix-chat-input-disclaimer--margin-top);
     text-align: center;
   }
 }

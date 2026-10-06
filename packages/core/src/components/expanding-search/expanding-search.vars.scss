@@ -10,16 +10,57 @@
 @use 'tokens/system' as sys;
 
 :host {
+  --ix-expanding-search-button-search--outline-color--focus: var(
+    --focus--border-color
+  );
+  --ix-expanding-search-input--color: var(
+    --ix-input--color,
+    #{sys.$si-sys-color-text-primary}
+  );
+  --ix-expanding-search-input--background: var(
+    --ix-input--background,
+    #{sys.$si-sys-color-background-1}
+  );
+  --ix-expanding-search-input--border-color: var(
+    --ix-input--border-color,
+    #{sys.$si-sys-color-border-2}
+  );
+  --ix-expanding-search-input-hint--color: var(
+    --ix-input-hint--color,
+    #{sys.$si-sys-color-text-secondary}
+  );
+  --ix-expanding-search-input--background--hover: var(
+    --ix-input--background--hover,
+    #{sys.$si-sys-color-background-4}
+  );
+  --ix-expanding-search-input--border-color--hover: var(
+    --ix-input--border-color--hover,
+    #{sys.$si-sys-color-border-accent-hover}
+  );
+  --ix-expanding-search-input--background--focus: var(
+    --ix-input--background--focus,
+    #{sys.$si-sys-color-background-4}
+  );
+  --ix-expanding-search-input--border-color--focus: var(
+    --ix-input--border-color--focus,
+    #{sys.$si-sys-color-border-accent-hover}
+  );
+  --ix-expanding-search-input--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-expanding-search-input--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-expanding-search-input--border-color-bottom--disabled: var(
+    --ix-input--border-color-bottom--disabled,
+    #{sys.$si-sys-color-border-4}
+  );
+  --ix-expanding-search-button--border--active: #{sys.$si-sys-sizing-border-width-default}
+    solid #{sys.$si-sys-color-border-2};
+}
+
+:host {
   --ix-expanding-search-input-container--transition-duration: var(
     --theme-medium-time
   );
   --ix-expanding-search-button--transition-duration: var(--theme-default-time);
-  --ix-expanding-search-button--border--active: #{sys.$si-sys-sizing-border-width-default}
-    solid #{sys.$si-sys-color-border-2};
   --ix-expanding-search--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-}
-
-:host {
   --ix-expanding-search--container-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-border-width-default}
   );
@@ -33,4 +74,23 @@
   --ix-expanding-search-button-clear--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-expanding-search-input--padding-left: #{sys.$si-sys-sizing-spacing-x-90};
   --ix-expanding-search-input--padding-right: #{sys.$si-sys-sizing-spacing-x-100};
+  --ix-expanding-search--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-expanding-search-input--border-radius: var(
+    --ix-input--border-radius,
+    #{sys.$si-sys-sizing-border-radius-xs}
+  );
+  --ix-expanding-search-input--height: #{sys.$si-sys-sizing-size-80};
+  --ix-expanding-search-input--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-expanding-search-input--min-width: #{sys.$si-sys-sizing-size-80};
+  --ix-expanding-search-input--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-expanding-search-input--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-expanding-search-input--focus--outline-offset: var(
+    --ix-input--focus--outline-offset,
+    #{sys.$si-sys-sizing-focus-ring-offset}
+  );
+  --ix-expanding-search-input--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-expanding-search-input-spin-button--margin-right: calc(
+    #{sys.$si-sys-sizing-spacing-x-10} * -1
+  );
+  --ix-expanding-search-input-spin-button--margin-left: #{sys.$si-sys-sizing-spacing-x-10};
 }
