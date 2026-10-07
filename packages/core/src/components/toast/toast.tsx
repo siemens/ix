@@ -152,7 +152,7 @@ export class Toast {
 
   private close() {
     if (this.hostElement) {
-      this.hostElement.classList.add('animate__fadeOut');
+      this.hostElement.classList.add('toast-fade-out');
     }
     setTimeout(() => {
       this.closeToast.emit();
@@ -196,12 +196,7 @@ export class Toast {
     progressBarClass.push('toast-progress-bar--animated');
 
     return (
-      <Host
-        role="alert"
-        aria-live="polite"
-        aria-atomic="true"
-        class="animate__animated animate__fadeIn"
-      >
+      <Host role="alert" aria-live="polite" aria-atomic="true">
         <div
           class="toast-body"
           onPointerLeave={() => {

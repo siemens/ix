@@ -26,7 +26,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
@@ -668,20 +668,32 @@ export class Menu {
         return;
       }
 
-      animate(overlayContainer, {
-        duration: Animation.mediumTime,
-        backdropFilter: [0, 'blur(1rem)'],
-        translateX: ['-4rem', 0],
-        opacity: [0, 1],
-        easing: 'easeInSine',
-        onBegin: () => {
-          if (this.showPinned) {
-            return;
-          }
+      animate(
+        overlayContainer,
+        [
+          {
+            backdropFilter: 'blur(0)',
+            transform: 'translateX(-4rem)',
+            opacity: 0,
+          },
+          {
+            backdropFilter: 'blur(1rem)',
+            transform: 'translateX(0)',
+            opacity: 1,
+          },
+        ],
+        {
+          duration: Animation.mediumTime,
+          easing: Easing.easeInSine,
+          onBegin: () => {
+            if (this.showPinned) {
+              return;
+            }
 
-          this.toggleMenu(false);
-        },
-      });
+            this.toggleMenu(false);
+          },
+        }
+      );
     });
   }
 
@@ -694,14 +706,26 @@ export class Menu {
         return;
       }
 
-      animate(overlayContainer, {
-        duration: Animation.mediumTime,
-        backdropFilter: ['blur(1rem)', 0],
-        translateX: [0, '-4rem'],
-        opacity: [1, 0],
-        easing: 'easeInSine',
-        onComplete: () => onComplete(),
-      });
+      animate(
+        overlayContainer,
+        [
+          {
+            backdropFilter: 'blur(1rem)',
+            transform: 'translateX(0)',
+            opacity: 1,
+          },
+          {
+            backdropFilter: 'blur(0)',
+            transform: 'translateX(-4rem)',
+            opacity: 0,
+          },
+        ],
+        {
+          duration: Animation.mediumTime,
+          easing: Easing.easeInSine,
+          onComplete: () => onComplete(),
+        }
+      );
     });
   }
 

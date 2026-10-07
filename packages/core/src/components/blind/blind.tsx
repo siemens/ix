@@ -18,7 +18,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 import type { BlindVariant } from './blind.types';
@@ -84,7 +84,9 @@ export class Blind {
   }
 
   get content() {
-    return this.hostElement.shadowRoot!.querySelector('.blind-content');
+    return this.hostElement.shadowRoot!.querySelector<HTMLElement>(
+      '.blind-content'
+    );
   }
 
   @Watch('collapsed')
@@ -101,37 +103,28 @@ export class Blind {
   }
 
   private rotateChevronUp() {
-    if (!this.chevronRef || !this.content) {
-      return;
-    }
-
-    animate(this.chevronRef, {
-      duration: Animation.defaultTime,
-      easing: 'easeInOutSine',
-      rotateZ: 180,
-    });
-    animate(this.content, {
-      duration: Animation.defaultTime,
-      easing: 'easeInOutSine',
-      opacity: 1,
-    });
+    this.animateChevron(180, 1);
   }
 
   private rotateChevronDown() {
-    if (!this.chevronRef || !this.content) {
+    this.animateChevron(0, 0);
+  }
+
+  private animateChevron(rotation: number, contentOpacity: number) {
+    const chevron = this.chevronRef;
+    const content = this.content;
+
+    if (!chevron || !content) {
       return;
     }
 
-    animate(this.chevronRef, {
+    const options = {
       duration: Animation.defaultTime,
-      easing: 'easeInOutSine',
-      rotateZ: 0,
-    });
-    animate(this.content, {
-      duration: Animation.defaultTime,
-      easing: 'easeInOutSine',
-      opacity: 0,
-    });
+      easing: Easing.easeInOutSine,
+    };
+
+    animate(chevron, [{ transform: `rotateZ(${rotation}deg)` }], options);
+    animate(content, [{ opacity: contentOpacity }], options);
   }
 
   render() {

@@ -164,6 +164,10 @@
     padding-bottom: 2px;
   }
 
+  .token-fade-in {
+    animation: category-filter-token-fade-in var(--theme-default-time) both;
+  }
+
   ix-dropdown {
     min-width: var(--ix-category-filter--min-width) !important;
 
@@ -231,5 +235,14 @@
   .input-container:not(.readonly):not(.disabled) {
     border-color: var(--ix-category-filter--border-color--hover) !important;
     background-color: var(--ix-category-filter--background--hover);
+  }
+}
+
+@keyframes category-filter-token-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -19,7 +19,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate } from '../utils/animate';
 import Animation from '../utils/animation';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileVariant } from './flip-tile.types';
@@ -156,24 +156,19 @@ export class FlipTile {
     this.isFlipAnimationActive = true;
 
     animate(
-      this.hostElement.shadowRoot!.querySelector('.flip-tile-container')!,
+      this.hostElement.shadowRoot!.querySelector<HTMLElement>(
+        '.flip-tile-container'
+      )!,
+      [
+        { transform: 'rotateY(0)', offset: 0 },
+        { transform: 'rotateY(90deg)', offset: 0.5 },
+        { transform: 'rotateY(270deg)', offset: 0.51 },
+        { transform: 'rotateY(360deg)', offset: 1 },
+      ],
       {
-        keyframes: {
-          '0%': {
-            transform: 'rotateY(0)',
-          },
-          '50%': {
-            transform: 'rotateY(90deg)',
-          },
-          '51%': {
-            transform: 'rotateY(270deg)',
-          },
-          '100%': {
-            transform: 'rotateY(360deg)',
-          },
-        },
         duration: Animation.defaultTime,
         easing: 'ease-in-out',
+        persist: false,
         onComplete: () => {
           this.index = index;
           this.updateContentVisibility(this.index);

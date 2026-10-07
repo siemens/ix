@@ -10,7 +10,7 @@
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 
 /**
  * @slot default - Event list items.
@@ -135,9 +135,10 @@ export class EventList {
         return;
       }
 
-      animate(listElement, {
-        opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
+      animate(listElement as HTMLElement, [{ opacity: 1 }, { opacity: 0 }], {
         duration: EventList.fadeOutDuration,
+        easing: Easing.easeInSine,
+        persist: false,
         onComplete: () => {
           resolve();
         },
@@ -150,17 +151,15 @@ export class EventList {
       return;
     }
 
-    const listItems = this.hostElement.querySelectorAll('ix-event-list-item');
+    const listItems =
+      this.hostElement.querySelectorAll<HTMLElement>('ix-event-list-item');
     listItems.forEach((e, i) => {
       const delay = i * 80;
-      const offset = delay / (delay + EventList.fadeInDuration);
-      animate(e, {
-        offset: offset,
+      animate(e, [{ opacity: 0 }, { opacity: 1 }], {
         duration: EventList.fadeInDuration + delay,
-        opacity: [0, 1],
-        easing: 'easeInOutSine',
+        easing: Easing.easeInOutSine,
         delay: delay,
-        autoplay: true,
+        persist: false,
       });
     });
   }

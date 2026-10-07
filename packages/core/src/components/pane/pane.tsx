@@ -25,8 +25,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type { JSAnimation } from 'animejs';
-import { animate } from 'animejs';
+import { animate, AnimationControl, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
@@ -177,7 +176,7 @@ export class Pane {
   private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
   private static readonly collapsedPane = '40px';
   private static readonly collapsedPaneMobile = '48px';
-  private readonly animations: Map<string, JSAnimation> = new Map();
+  private readonly animations: Map<string, AnimationControl> = new Map();
   private animationCounter = 0;
 
   private mutationObserver?: MutationObserver;
@@ -403,12 +402,10 @@ export class Pane {
 
   private animateVerticalFadeIn(size: string) {
     let key = this.getKey();
-    let animation = animate(this.hostElement, {
+    let animation = animate(this.hostElement, [{ width: size }], {
       duration: Animation.mediumTime,
-      width: size,
-      easing: 'easeInOutSine',
-      delay: 0,
-      begin: () => {
+      easing: Easing.easeInOutSine,
+      onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
           this.animateVerticalPadding('0px');
@@ -416,7 +413,7 @@ export class Pane {
           this.animateVerticalPadding('8px');
         }
       },
-      complete: () => {
+      onComplete: () => {
         this.onAnimationComplete(key);
       },
     });
@@ -426,11 +423,9 @@ export class Pane {
 
   private animateHorizontalFadeIn(size: string) {
     let key = this.getKey();
-    let animation = animate(this.hostElement, {
+    let animation = animate(this.hostElement, [{ height: size }], {
       duration: Animation.mediumTime,
-      height: size,
-      easing: 'easeInOutSine',
-      delay: 0,
+      easing: Easing.easeInOutSine,
       onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
@@ -459,63 +454,60 @@ export class Pane {
     this.animations.delete(key);
   }
 
+  private getTitleDiv() {
+    return this.hostElement.shadowRoot?.querySelector<HTMLElement>(
+      '#title-div'
+    );
+  }
+
   private removePadding() {
-    animate(this.hostElement.shadowRoot!.querySelector('#title-div')!, {
-      duration: 0,
-      paddingTop: 0,
-      paddingBottom: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      delay: 0,
-    });
+    const titleDiv = this.getTitleDiv();
+
+    if (!titleDiv) {
+      return;
+    }
+
+    titleDiv.style.paddingTop = '0px';
+    titleDiv.style.paddingBottom = '0px';
+    titleDiv.style.paddingLeft = '0px';
+    titleDiv.style.paddingRight = '0px';
   }
 
   private animateHorizontalPadding(
     size: string,
     duration = Animation.mediumTime
   ) {
-    let key = this.getKey();
-    let animation = animate(
-      this.hostElement.shadowRoot!.querySelector('#title-div')!,
-      {
-        duration: duration,
-        paddingTop: size,
-        paddingBottom: size,
-        easing: 'easeInOutSine',
-        delay: 0,
-        onComplete: () => {
-          this.animations.delete(key);
-        },
-      }
-    );
-
-    this.animations.set(key, animation);
+    this.animatePadding({ paddingTop: size, paddingBottom: size }, duration);
   }
 
   private animateVerticalPadding(
     size: string,
     duration = Animation.mediumTime
   ) {
-    let key = this.getKey();
-    let animation = animate(
-      this.hostElement.shadowRoot!.querySelector('#title-div')!,
-      {
-        duration: duration,
-        paddingLeft: size,
-        paddingRight: size,
-        easing: 'easeInOutSine',
-        delay: 0,
-        onComplete: () => {
-          this.animations.delete(key);
-        },
-      }
-    );
+    this.animatePadding({ paddingLeft: size, paddingRight: size }, duration);
+  }
+
+  private animatePadding(padding: Keyframe, duration: number) {
+    const titleDiv = this.getTitleDiv();
+
+    if (!titleDiv) {
+      return;
+    }
+
+    const key = this.getKey();
+    const animation = animate(titleDiv, [padding], {
+      duration,
+      easing: Easing.easeInOutSine,
+      onComplete: () => {
+        this.animations.delete(key);
+      },
+    });
 
     this.animations.set(key, animation);
   }
 
   private clearAnimations() {
-    this.animations.forEach((animation) => animation.pause());
+    this.animations.forEach((animation) => animation.stop());
     this.animations.clear();
     this.animationCounter = 0;
   }

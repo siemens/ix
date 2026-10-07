@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use '~animate.css/animate.min';
 @use 'tokens/system' as sys;
 
 @use './menu.vars' as *;

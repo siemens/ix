@@ -17,7 +17,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 import { focusElementInContext } from '../utils/focus/focus-utilities';
@@ -108,19 +108,23 @@ export class Modal {
     const dialog = this.getDialogElement();
     dialog.classList.remove('modal-open-settled');
     const duration = this.disableAnimation ? 0 : Animation.mediumTime;
-    const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
+    const [fromY, toY] = this.centered ? ['-90%', '-50%'] : ['0px', '40px'];
 
     const markEntranceSettled = () =>
       dialog.classList.add('modal-open-settled');
 
-    animate(dialog, {
-      duration,
-      opacity: [0, 1],
-      translateY,
-      translateX: ['-50%', '-50%'],
-      easing: 'easeOutSine',
-      complete: markEntranceSettled,
-    });
+    animate(
+      dialog,
+      [
+        { opacity: 0, transform: `translateX(-50%) translateY(${fromY})` },
+        { opacity: 1, transform: `translateX(-50%) translateY(${toY})` },
+      ],
+      {
+        duration,
+        easing: Easing.easeOutSine,
+        onComplete: markEntranceSettled,
+      }
+    );
 
     if (duration === 0) {
       markEntranceSettled();
@@ -131,20 +135,24 @@ export class Modal {
     const dialog = this.getDialogElement();
     dialog.classList.remove('modal-open-settled');
     const duration = this.disableAnimation ? 0 : Animation.mediumTime;
-    const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
+    const [fromY, toY] = this.centered ? ['-50%', '-90%'] : ['40px', '0px'];
 
-    animate(dialog, {
-      duration,
-      opacity: [1, 0],
-      translateY,
-      translateX: ['-50%', '-50%'],
-      easing: 'easeInSine',
-      complete: () => {
-        if (completeCallback) {
-          completeCallback();
-        }
-      },
-    });
+    animate(
+      dialog,
+      [
+        { opacity: 1, transform: `translateX(-50%) translateY(${fromY})` },
+        { opacity: 0, transform: `translateX(-50%) translateY(${toY})` },
+      ],
+      {
+        duration,
+        easing: Easing.easeInSine,
+        onComplete: () => {
+          if (completeCallback) {
+            completeCallback();
+          }
+        },
+      }
+    );
   }
 
   private closeDialog<T = unknown>(

@@ -27,7 +27,7 @@
   border-radius: var(--ix-toast--border-radius);
   box-shadow: var(--ix-toast--box-shadow);
 
-  --animate-duration: var(--ix-toast--animation-duration);
+  animation: toast-fade-in var(--ix-toast--animation-duration) both;
 
   @include component.ix-component;
 
@@ -104,5 +104,27 @@
     100% {
       transform: scaleX(0);
     }
+  }
+}
+
+:host(.toast-fade-out) {
+  animation: toast-fade-out var(--ix-toast--animation-duration) both;
+}
+
+@keyframes toast-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toast-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

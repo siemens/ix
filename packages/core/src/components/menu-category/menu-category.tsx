@@ -21,7 +21,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
@@ -155,18 +155,27 @@ export class MenuCategory
       return;
     }
 
-    animate(this.menuItemsContainer, {
-      duration: DefaultAnimationTimeout,
-      easing: 'easeInSine',
-      opacity: [1, 0],
-      maxHeight: [this.getNestedItemsHeight() + DefaultIxMenuItemHeight, 0],
-      onComplete: () => {
-        setTimeout(() => {
-          this.showItems = false;
-          this.showDropdown = false;
-        }, DefaultAnimationTimeout + slotHideThresholdMs);
-      },
-    });
+    const expandedHeight = `${
+      this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+    }px`;
+
+    animate(
+      this.menuItemsContainer,
+      [
+        { opacity: 1, maxHeight: expandedHeight },
+        { opacity: 0, maxHeight: '0px' },
+      ],
+      {
+        duration: DefaultAnimationTimeout,
+        easing: Easing.easeInSine,
+        onComplete: () => {
+          setTimeout(() => {
+            this.showItems = false;
+            this.showDropdown = false;
+          }, DefaultAnimationTimeout + slotHideThresholdMs);
+        },
+      }
+    );
   }
 
   private animateFadeIn() {
@@ -177,15 +186,24 @@ export class MenuCategory
       return;
     }
 
-    animate(this.menuItemsContainer, {
-      duration: DefaultAnimationTimeout,
-      easing: 'easeInSine',
-      opacity: [0, 1],
-      maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
-      onComplete: () => {
-        this.clearMenuItemsContainerStyles();
-      },
-    });
+    const expandedHeight = `${
+      this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+    }px`;
+
+    animate(
+      this.menuItemsContainer,
+      [
+        { opacity: 0, maxHeight: '0px' },
+        { opacity: 1, maxHeight: expandedHeight },
+      ],
+      {
+        duration: DefaultAnimationTimeout,
+        easing: Easing.easeInSine,
+        onComplete: () => {
+          this.clearMenuItemsContainerStyles();
+        },
+      }
+    );
   }
 
   private isPointerMovingInsideCategory(relatedTarget: EventTarget | null) {
