@@ -6,8 +6,6 @@ New `requireConfirmation` property for `ix-date-dropdown`, `ix-date-input`, `ix-
 
 `ix-time-picker` and `ix-time-input` always require confirmation (as they did before).
 
-Rename the `ix-time-picker` property `i18nConfirmTime` (`i18n-confirm-time`) to `i18nConfirm` (`i18n-confirm`), matching the other date and time components.
-
 There is some minor new behavior when `requireConfirmation` is `false` (default).
 
 See `BREAKING_CHANGES/v6.md` for details and migration.
