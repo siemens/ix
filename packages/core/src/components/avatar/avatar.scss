@@ -84,6 +84,7 @@
       position: relative;
       flex-direction: column;
       justify-content: center;
+      min-width: 0;
       max-width: var(--ix-avatar-user--max-width);
       width: 100%;
       overflow: hidden;
@@ -99,6 +100,29 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    &.user-info--no-truncate {
+      height: auto;
+
+      .user {
+        max-width: unset;
+        overflow: visible;
+      }
+
+      .username {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+      }
+
+      .extra {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+      }
     }
   }
 }

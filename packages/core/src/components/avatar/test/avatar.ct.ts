@@ -27,6 +27,37 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
 });
 
 regressionTest.describe('embedded into header', () => {
+  regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar username="John" extra="Doe">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('renders', async ({ page, mount }) => {
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar></ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const avatar = page.locator('ix-avatar');
+
+    await expect(avatar).toHaveClass(/\bhydrated\b/);
+    await expect(avatar).toBeVisible();
+  });
+
   regressionTest('show avatar as clickable', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
@@ -168,6 +199,119 @@ regressionTest.describe('embedded into header', () => {
 
       await expect(userInfo).not.toBeVisible();
       await expect(avatar.locator('ix-divider')).not.toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'should apply no-truncate class when wrapUsername is true',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" wrap-username>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      await expect(avatar.locator('.user-info')).toHaveClass(
+        /\buser-info--no-truncate\b/
+      );
+    }
+  );
+
+  regressionTest(
+    'should not apply no-truncate class when wrapUsername is false',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo">
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      await expect(avatar.locator('.user-info')).not.toHaveClass(
+        /\buser-info--no-truncate\b/
+      );
+    }
+  );
+
+  regressionTest(
+    'should keep the popup width fixed and show wrapped user information',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" extra="bar" wrap-username>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
+
+      const dropdown = avatar.locator('ix-dropdown');
+      const userInfo = avatar.locator('.user-info');
+      const username = userInfo.locator('.username');
+      const extra = userInfo.locator('.extra');
+
+      const initialMetrics = await userInfo.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        };
+      });
+
+      const longUsername = 'verylongstringthatisnotfullydisplayed';
+      const longExtra = 'verylongextrainformationthatisnotfullydisplayed';
+      await avatar.evaluate(
+        (element, values) => {
+          element.setAttribute('username', values.username);
+          element.setAttribute('extra', values.extra);
+        },
+        { username: longUsername, extra: longExtra }
+      );
+
+      await expect(username).toHaveText(longUsername);
+      await expect(extra).toHaveText(longExtra);
+      await expect(username).toHaveCSS('white-space', 'normal');
+      await expect(extra).toHaveCSS('white-space', 'normal');
+
+      const updatedMetrics = await userInfo.evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          width: Math.round(rect.width),
+          height: Math.round(rect.height),
+        };
+      });
+
+      expect(updatedMetrics.width).toBe(initialMetrics.width);
+      expect(updatedMetrics.height).toBeGreaterThan(initialMetrics.height);
+
+      const dropdownBounds = await dropdown.boundingBox();
+      const userInfoBounds = await userInfo.boundingBox();
+
+      if (!dropdownBounds || !userInfoBounds) {
+        throw new Error('Dropdown and user information must be visible');
+      }
+
+      expect(userInfoBounds.y).toBeGreaterThanOrEqual(dropdownBounds.y);
+      expect(userInfoBounds.y + userInfoBounds.height).toBeLessThanOrEqual(
+        dropdownBounds.y + dropdownBounds.height
+      );
     }
   );
 
