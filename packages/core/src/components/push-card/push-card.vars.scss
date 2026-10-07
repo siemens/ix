@@ -13,7 +13,8 @@
   --ix-push-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-push-card--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-push-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-push-card-accordion--border-color: #{sys.$si-sys-color-border-3};
+  /* Figma accordion separator: border-t with background/0 */
+  --ix-push-card-accordion--border-color: #{sys.$si-sys-color-background-0};
   /* Wider than base ix-card */
   --ix-push-card--width: #{sys.$si-sys-sizing-size-170};
 }

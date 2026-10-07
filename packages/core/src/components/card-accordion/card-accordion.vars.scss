@@ -25,16 +25,21 @@
   /* Outline accordion chrome */
   --ix-card-accordion-chrome--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-chrome--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-accordion-chrome--background--active: #{sys.$si-sys-color-background-selected};
+  --ix-card-accordion-chrome--background--active: #{sys.$si-sys-color-background-active};
   --ix-card-accordion-chrome-footer--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-chrome-frame--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-chrome-frame--border-color: #{sys.$si-sys-color-border-3};
   --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  /* Outline bar stays square; filled collapsed rounds bottom corners */
+  --ix-card-accordion-expand-action--border-bottom-left-radius: #{sys.$si-sys-sizing-border-radius-none};
+  --ix-card-accordion-expand-action--border-bottom-right-radius: #{sys.$si-sys-sizing-border-radius-none};
 }
 
 :host(:not(.outline)) {
   --ix-card-accordion-chrome-frame--border-color: transparent;
   --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+  --ix-card-accordion-expand-action--border-bottom-left-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-card-accordion-expand-action--border-bottom-right-radius: #{sys.$si-sys-sizing-border-radius-sm};
 }
 
 :host {
@@ -44,6 +49,9 @@
   --ix-card-accordion-expand-action--height: calc(
     #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
   );
+  /* Separator above the expand bar (push-card sets these) */
+  --ix-card-accordion-expand-action--border-top-width: #{sys.$si-sys-sizing-border-width-none};
+  --ix-card-accordion-expand-action--border-top-color: transparent;
   --ix-card-accordion-expand-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-card-accordion-expand-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-accordion-expand-content-body--height: calc(

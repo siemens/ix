@@ -44,9 +44,6 @@
     &::part(content) {
       overflow: visible;
     }
-
-    border-bottom: var(--ix-push-card--border-width) solid
-      var(--ix-push-card-accordion--border-color);
   }
 
   ix-card-accordion {
@@ -55,17 +52,12 @@
     /* No inner border around expanded content */
     --ix-card-accordion-chrome-frame--border-color: transparent;
     --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
-  }
-}
-
-:host(.outline) {
-  ix-card-content {
-    border-bottom-color: #{sys.$si-sys-color-border-3};
-  }
-}
-
-:host(:not(.outline)) {
-  ix-card-content {
-    border-bottom-color: transparent;
+    /* Separator on accordion top (not content bottom) — matches Figma */
+    --ix-card-accordion-expand-action--border-top-width: var(
+      --ix-push-card--border-width
+    );
+    --ix-card-accordion-expand-action--border-top-color: var(
+      --ix-push-card-accordion--border-color
+    );
   }
 }
