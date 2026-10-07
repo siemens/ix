@@ -28,7 +28,7 @@ import { IxPill } from '@siemens/ix-vue';
   <IxPill :icon="iconStar">Label</IxPill>
   <IxPill :icon="iconStar" aria-label="Featured"></IxPill>
   <IxPill :icon="iconStar" class="styled">Label</IxPill>
-  <IxPill variant="primary" outline alignLeft :icon="iconStar" class="styled"
+  <IxPill variant="primary" outline align-left :icon="iconStar" class="styled"
     >Label</IxPill
   >
 
@@ -37,7 +37,7 @@ import { IxPill } from '@siemens/ix-vue';
 
   <IxPill variant="alarm" :icon="iconStar">Label</IxPill>
   <IxPill variant="alarm" :icon="iconStar" class="styled">Label</IxPill>
-  <IxPill variant="alarm" alignLeft :icon="iconStar" class="styled">
+  <IxPill variant="alarm" align-left :icon="iconStar" class="styled">
     Label
   </IxPill>
   <IxPill :icon="iconStar" class="styled-ellipsis-4">Label</IxPill>
