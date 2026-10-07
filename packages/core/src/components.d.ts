@@ -136,11 +136,10 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Enable pointer interaction. When `false`, the wrapping button is disabled. Default is `true` for action cards.
+          * Enable pointer interaction. When `false`, the wrapping button is disabled. When omitted, the action card is clickable (`true`).
           * @since 6.0.0
-          * @default true
          */
-        "clickable": boolean;
+        "clickable"?: boolean;
         /**
           * Card heading
          */
@@ -151,11 +150,10 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
-          * Show the card with an outline border.
+          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
           * @since 6.0.0
-          * @default true
          */
-        "outline": boolean;
+        "outline"?: boolean;
         /**
           * Card selection
           * @default false
@@ -573,11 +571,10 @@ export namespace Components {
          */
         "clickable": boolean;
         /**
-          * Show the card with an outline border. When `false`, the card uses a filled surface; status variants then show a top color strip.
+          * Show the card with an outline border. When omitted, outline chrome is used (`true`). When `false`, the card uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
-          * @default true
          */
-        "outline": boolean;
+        "outline"?: boolean;
         /**
           * Show card in selected state
           * @default false
@@ -601,11 +598,10 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * Match the parent card outline mode. When `false`, uses filled accordion chrome.
+          * Match the parent card outline mode. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
           * @since 6.0.0
-          * @default true
          */
-        "outline": boolean;
+        "outline"?: boolean;
         /**
           * Accordion status variant (aligned with the parent card)
           * @since 4.0.0
@@ -3770,11 +3766,10 @@ export namespace Components {
          */
         "notification"?: string;
         /**
-          * Show the card with an outline border.
+          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
           * @since 6.0.0
-          * @default true
          */
-        "outline": boolean;
+        "outline"?: boolean;
         /**
           * Card subheading
          */
@@ -7204,9 +7199,8 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Enable pointer interaction. When `false`, the wrapping button is disabled. Default is `true` for action cards.
+          * Enable pointer interaction. When `false`, the wrapping button is disabled. When omitted, the action card is clickable (`true`).
           * @since 6.0.0
-          * @default true
          */
         "clickable"?: boolean;
         /**
@@ -7219,9 +7213,8 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
-          * Show the card with an outline border.
+          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
           * @since 6.0.0
-          * @default true
          */
         "outline"?: boolean;
         /**
@@ -7668,9 +7661,8 @@ declare namespace LocalJSX {
          */
         "clickable"?: boolean;
         /**
-          * Show the card with an outline border. When `false`, the card uses a filled surface; status variants then show a top color strip.
+          * Show the card with an outline border. When omitted, outline chrome is used (`true`). When `false`, the card uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
-          * @default true
          */
         "outline"?: boolean;
         /**
@@ -7697,9 +7689,8 @@ declare namespace LocalJSX {
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
         /**
-          * Match the parent card outline mode. When `false`, uses filled accordion chrome.
+          * Match the parent card outline mode. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
           * @since 6.0.0
-          * @default true
          */
         "outline"?: boolean;
         /**
@@ -11087,9 +11078,8 @@ declare namespace LocalJSX {
          */
         "notification"?: string;
         /**
-          * Show the card with an outline border.
+          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
           * @since 6.0.0
-          * @default true
          */
         "outline"?: boolean;
         /**
