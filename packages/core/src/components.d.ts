@@ -3369,6 +3369,16 @@ export namespace Components {
          */
         "ariaLabelPageSelection": string;
         /**
+          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "arialLabelPageBackward"?: string;
+        /**
+          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "arialLabelPageForward"?: string;
+        /**
           * Total number of pages
           * @default 0
          */
@@ -10632,6 +10642,16 @@ declare namespace LocalJSX {
          */
         "ariaLabelPageSelection"?: string;
         /**
+          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "arialLabelPageBackward"?: string;
+        /**
+          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "arialLabelPageForward"?: string;
+        /**
           * Total number of pages
           * @default 0
          */
@@ -13237,6 +13257,8 @@ declare namespace LocalJSX {
         "ariaLabelChevronLeftIconButton": string;
         "ariaLabelChevronRightIconButton": string;
         "ariaLabelPageSelection": string;
+        "arialLabelPageBackward": string;
+        "arialLabelPageForward": string;
     }
     interface IxPaneAttributes {
         "heading": string;

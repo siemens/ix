@@ -7500,6 +7500,26 @@
           "deprecated": false
         },
         {
+          "name": "arialLabelPageBackward",
+          "attribute": "arial-label-page-backward",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "arialLabelPageForward",
+          "attribute": "arial-label-page-forward",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "count",
           "attribute": "count",
           "type": "number",

@@ -32,6 +32,62 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(element).toHaveAttribute('hydrated');
 });
 
+regressionTest('uses default jump button labels', async ({ mount, page }) => {
+  await mount('<ix-pagination count="10" selected-page="5"></ix-pagination>');
+  const pagination = page.locator('ix-pagination');
+
+  await expect(
+    pagination.getByRole('button', { name: 'Jump backward to Page 3' })
+  ).toBeVisible();
+  await expect(
+    pagination.getByRole('button', { name: 'Jump forward to Page 9' })
+  ).toBeVisible();
+
+  await pagination.evaluate((element: HTMLIxPaginationElement) => {
+    element.selectedPage = 9;
+  });
+  await expect(
+    pagination.getByRole('button', { name: 'Jump backward to Page 4' })
+  ).toBeVisible();
+});
+
+regressionTest('uses custom jump button labels', async ({ mount, page }) => {
+  await mount(`
+    <ix-pagination
+      count="10"
+      selected-page="5"
+      i18n-page="Sheet"
+      arial-label-page-backward="Earlier pages"
+      arial-label-page-forward="Later pages"
+    ></ix-pagination>
+  `);
+  const pagination = page.locator('ix-pagination');
+
+  await expect(
+    pagination.getByRole('button', { name: 'Earlier pages', exact: true })
+  ).toBeVisible();
+  await expect(
+    pagination.getByRole('button', { name: 'Later pages', exact: true })
+  ).toBeVisible();
+});
+
+regressionTest(
+  'uses page translation in default jump labels',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-pagination count="10" selected-page="5" i18n-page="Sheet"></ix-pagination>'
+    );
+    const pagination = page.locator('ix-pagination');
+
+    await expect(
+      pagination.getByRole('button', { name: 'Jump backward to Sheet 3' })
+    ).toBeVisible();
+    await expect(
+      pagination.getByRole('button', { name: 'Jump forward to Sheet 9' })
+    ).toBeVisible();
+  }
+);
+
 regressionTest('advanced', async ({ mount, page }) => {
   await mount(`
     <ix-pagination advanced>

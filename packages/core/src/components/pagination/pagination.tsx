@@ -115,6 +115,23 @@ export class Pagination {
    * @since 4.1.0
    */
   @Prop() ariaLabelPageSelection = 'Page selection input';
+
+  /**
+   * ARIA label for the jump backward button. Overrides the default label
+   * "Jump backward to [Page] [target page]".
+   *
+   * @since 6.0.0
+   */
+  @Prop() arialLabelPageBackward?: string;
+
+  /**
+   * ARIA label for the jump forward button. Overrides the default label
+   * "Jump forward to [Page] [target page]".
+   *
+   * @since 6.0.0
+   */
+  @Prop() arialLabelPageForward?: string;
+
   /**
    * Page selection event
    */
@@ -203,11 +220,13 @@ export class Pagination {
         <BaseButton
           {...baseButtonProps}
           ariaAttributes={{
-            'aria-label': `Jump backward to ${this.i18nPage} ${
-              (hasOverflowEnd
-                ? this.selectedPage - jump
-                : this.count - this.maxCountPages) + 1
-            }`,
+            'aria-label':
+              this.arialLabelPageBackward ??
+              `Jump backward to ${this.i18nPage} ${
+                (hasOverflowEnd
+                  ? this.selectedPage - jump
+                  : this.count - this.maxCountPages) + 1
+              }`,
           }}
         >
           ...
@@ -250,11 +269,13 @@ export class Pagination {
         <BaseButton
           {...baseButtonProps}
           ariaAttributes={{
-            'aria-label': `Jump forward to ${this.i18nPage} ${
-              (hasOverflowStart
-                ? this.selectedPage + jump
-                : this.maxCountPages - 1) + 1
-            }`,
+            'aria-label':
+              this.arialLabelPageForward ??
+              `Jump forward to ${this.i18nPage} ${
+                (hasOverflowStart
+                  ? this.selectedPage + jump
+                  : this.maxCountPages - 1) + 1
+              }`,
           }}
         >
           ...
