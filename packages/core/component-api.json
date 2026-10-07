@@ -11216,6 +11216,28 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelTreeCollapsed",
+          "attribute": "aria-label-tree-collapsed",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Expand tree item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelTreeExpanded",
+          "attribute": "aria-label-tree-expanded",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Collapse tree item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "context",
           "type": "TreeItemContext | undefined",
           "mutable": false,

@@ -52,13 +52,6 @@
 
     .icon-toggle {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: inherit;
-      cursor: inherit;
       outline: none;
 
       &:focus-visible {
@@ -67,7 +60,7 @@
 
       ix-icon {
         transition: transform var(--ix-tree-item-expand-icon--transition-duration)
-        ease-in-out;
+          ease-in-out;
 
         &.icon-toggle-down {
           transform: rotate(90deg);

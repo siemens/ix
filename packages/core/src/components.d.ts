@@ -4976,6 +4976,18 @@ export namespace Components {
          */
         "ariaLabelChevronIcon"?: string;
         /**
+          * ARIA label for the expand control when the tree item is collapsed.
+          * @since 6.0.0
+          * @default 'Expand tree item'
+         */
+        "ariaLabelTreeCollapsed": string;
+        /**
+          * ARIA label for the collapse control when the tree item is expanded.
+          * @since 6.0.0
+          * @default 'Collapse tree item'
+         */
+        "ariaLabelTreeExpanded": string;
+        /**
           * Context
          */
         "context"?: TreeItemContext;
@@ -12337,6 +12349,18 @@ declare namespace LocalJSX {
          */
         "ariaLabelChevronIcon"?: string;
         /**
+          * ARIA label for the expand control when the tree item is collapsed.
+          * @since 6.0.0
+          * @default 'Expand tree item'
+         */
+        "ariaLabelTreeCollapsed"?: string;
+        /**
+          * ARIA label for the collapse control when the tree item is expanded.
+          * @since 6.0.0
+          * @default 'Collapse tree item'
+         */
+        "ariaLabelTreeExpanded"?: string;
+        /**
           * Context
          */
         "context"?: TreeItemContext;
@@ -13589,6 +13613,8 @@ declare namespace LocalJSX {
         "hasChildren": boolean;
         "disabled": boolean;
         "ariaLabelChevronIcon": string;
+        "ariaLabelTreeCollapsed": string;
+        "ariaLabelTreeExpanded": string;
     }
     interface IxTypographyAttributes {
         "format": TypographyFormat;

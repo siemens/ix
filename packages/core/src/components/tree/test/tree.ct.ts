@@ -118,7 +118,35 @@ regressionTest('renders', async ({ mount, page }) => {
   const item = tree.locator('ix-tree-item').nth(0);
   await expect(tree).toHaveAttribute('hydrated');
   await expect(item).toBeVisible();
+  await expect(item.locator('.icon-toggle')).toHaveCSS('width', '24px');
+  await expect(item.locator('.icon-toggle')).toHaveCSS('height', '24px');
 });
+
+regressionTest(
+  'uses configurable expand and collapse labels',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    const item = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+
+    await item.evaluate((element: HTMLIxTreeItemElement) => {
+      element.ariaLabelTreeCollapsed = 'Open branch';
+      element.ariaLabelTreeExpanded = 'Close branch';
+    });
+
+    await item.getByRole('button', { name: 'Open branch' }).click();
+    await expect(item.getByRole('button', { name: 'Close branch' })).toBeVisible();
+
+    await item.evaluate((element: HTMLIxTreeItemElement) => {
+      element.ariaLabelChevronIcon = 'Toggle branch';
+    });
+    await expect(
+      item.getByRole('button', { name: 'Toggle branch' })
+    ).toBeVisible();
+  }
+);
 
 regressionTest('update tree', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
@@ -866,7 +894,11 @@ regressionTest(
     const parent = tree.locator('ix-tree-item', { hasText: 'Disabled Parent' });
     const container = parent.locator('.tree-node-container');
 
-    await expect(parent.locator('.icon-toggle')).toBeDisabled();
+    const chevron = parent.locator('.icon-toggle');
+    await expect(chevron).toHaveAttribute('aria-disabled', 'true');
+    await expect(chevron).toHaveAttribute('tabindex', '-1');
+    await chevron.dispatchEvent('click');
+    await chevron.dispatchEvent('keydown', { key: 'Enter' });
     await container.focus();
     await page.keyboard.press('Enter');
 

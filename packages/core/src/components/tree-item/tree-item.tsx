@@ -49,6 +49,20 @@ export class TreeItem {
   @Prop() ariaLabelChevronIcon?: string;
 
   /**
+   * ARIA label for the expand control when the tree item is collapsed.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelTreeCollapsed = 'Expand tree item';
+
+  /**
+   * ARIA label for the collapse control when the tree item is expanded.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelTreeExpanded = 'Collapse tree item';
+
+  /**
    * Expand/Collapsed toggled
    */
   @Event() toggle!: EventEmitter<void>;
@@ -57,6 +71,15 @@ export class TreeItem {
    * Click on item not on the expand/collapse icon
    */
   @Event() itemClick!: EventEmitter<void>;
+
+  private onToggle(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.disabled || this.context?.isDisabled) {
+      return;
+    }
+    this.toggle.emit();
+  }
 
   render() {
     const isDisabled = this.disabled || this.context?.isDisabled;
@@ -70,33 +93,35 @@ export class TreeItem {
       >
         <div class="icon-toggle-container">
           {this.hasChildren ? (
-            <button
-              type="button"
+            <span
               class="icon-toggle"
-              disabled={!!isDisabled}
+              role="button"
+              tabIndex={isDisabled ? -1 : 0}
+              aria-disabled={a11yBoolean(!!isDisabled)}
               aria-expanded={a11yBoolean(!!this.context?.isExpanded)}
               aria-label={
                 this.ariaLabelChevronIcon ??
                 (this.context?.isExpanded
-                  ? 'Collapse tree item'
-                  : 'Expand tree item')
+                  ? this.ariaLabelTreeExpanded
+                  : this.ariaLabelTreeCollapsed)
               }
-              onClick={(e: Event) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggle.emit();
+              onClick={(event: MouseEvent) => this.onToggle(event)}
+              onKeyDown={(event: KeyboardEvent) => {
+                if (event.key === ' ' || event.key === 'Enter') {
+                  this.onToggle(event);
+                }
               }}
             >
               <ix-icon
                 name={iconChevronRightSmall}
                 size="24"
                 class={{
-                  ['icon-toggle-down']: !!this.context?.isExpanded,
+                  'icon-toggle-down': !!this.context?.isExpanded,
                 }}
                 color="color-std-text"
                 aria-hidden="true"
               />
-            </button>
+            </span>
           ) : null}
         </div>
         <div
