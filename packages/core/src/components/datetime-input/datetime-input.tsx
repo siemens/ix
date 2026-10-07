@@ -712,11 +712,10 @@ export class DatetimeInput
       return;
     }
 
-    const picker = this.datetimePickerRef.current;
-    const date = await (await picker?.getDatepickerElement())?.getCurrentDate();
-    const time = await (await picker?.getTimepickerElement())?.getCurrentTime();
+    const selection =
+      await this.datetimePickerRef.current?.getCurrentSelection();
 
-    this.applyPickerDateTime(date?.from, time);
+    this.applyPickerDateTime(selection?.from, selection?.time);
   };
 
   /** Returns whether the date and time were complete and valid. */

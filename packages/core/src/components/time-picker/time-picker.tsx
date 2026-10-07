@@ -141,9 +141,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop() embedded = false;
 
   /**
-   * @internal Temporary prop needed until datetime-picker is reworked for new design.
+   * Hides the footer with the cancel and confirm buttons, e.g. when a parent
+   * component confirms the selection itself.
+   * @internal
    */
-  @Prop() dateTimePickerAppearance: boolean = false;
+  @Prop() hideFooter = false;
 
   /**
    * Hides the header of the picker.
@@ -303,19 +305,12 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     if (newValue === undefined || newValue === '') {
       this._time = this.getDefaultTime();
-      this.doneBaseline = this._time;
       return;
     }
 
     const timeFormat = parseWithLocale(newValue, this.format, this.locale);
     if (!timeFormat.isValid) {
       throw new Error('Format is not supported or not correct');
-    }
-
-    // A prop that just echoes the current time back (e.g. two-way binding to
-    // `timeChange`) is not an external change and keeps the done baseline
-    if (!this.isSameTime(timeFormat, this._time)) {
-      this.doneBaseline = timeFormat;
     }
 
     this._time = timeFormat;
@@ -352,35 +347,14 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
-   * Text of the time confirm button shown when `requireConfirmation` is enabled.
+   * Text of the time confirm button.
    *
    * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
 
   /**
-   * Text of the done button shown when `requireConfirmation` is disabled.
-   *
-   * @since 6.0.0
-   */
-  @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
-
-  /**
-   * If true, a selected time is only applied after the user confirms it with
-   * the confirm button. `timeChange` is deferred until then, and the cancel
-   * button discards the pending selection.
-   *
-   * If false, `timeChange` is emitted for every selection and the done button
-   * emits `timeSelect`.
-   *
-   * @since 6.0.0
-   */
-  // Confirmation is the default for time selection. Opt out with `require-confirmation="false"`
-  // eslint-disable-next-line @stencil-community/ban-default-true
-  @Prop() requireConfirmation = true;
-
-  /**
-   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   * Text of the cancel button.
    *
    * @since 6.0.0
    */
@@ -448,20 +422,19 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Event() timeSelect!: EventEmitter<string>;
 
   /**
-   * Time change event. Emitted when the selected time changes while interacting with the picker.
+   * Time change event. Emitted for every time picked in the picker, before it is confirmed.
    */
   @Event() timeChange!: EventEmitter<string>;
 
   /**
    * Emitted when the pending selection is discarded via the cancel button.
-   * Only emitted when `requireConfirmation` is enabled.
    *
    * @since 6.0.0
    */
   @Event() timeCancel!: EventEmitter<void>;
 
   /**
-   * Get the current time based on the wanted format
+   * Get the current confirmed time based on the wanted format
    */
   @Method()
   async getCurrentTime(): Promise<string | undefined> {
@@ -471,7 +444,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
-   * Get the current time in ISO format
+   * Get the current confirmed time in ISO format
    *
    * @since 6.0.0
    */
@@ -481,7 +454,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
-   * Discards a pending selection made while `requireConfirmation` is enabled.
+   * Discards the selection that has not been confirmed yet.
    * @internal
    */
   @Method()
@@ -492,18 +465,10 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @State() private _time?: DateTime;
 
   /**
-   * Time selected while `requireConfirmation` is enabled but not yet
-   * confirmed. `undefined` when there is nothing pending; the committed time
-   * stays in `_time` until confirmation.
+   * Time selected but not yet confirmed. `undefined` when there is nothing
+   * pending; the committed time stays in `_time` until confirmation.
    */
   @State() private pendingTime?: DateTime;
-
-  /**
-   * Time the done button compares against while `requireConfirmation` is
-   * disabled: the time at load, at the last done click, when the surrounding
-   * dropdown closed or at the last external `time` change.
-   */
-  @State() private doneBaseline?: DateTime;
 
   /** The time shown in the picker: the pending selection, else `_time`. */
   private get selectedTime(): DateTime | undefined {
@@ -523,13 +488,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private setSelectedTime(time: DateTime) {
-    if (this.requireConfirmation) {
-      // Re-selecting the committed time leaves nothing to confirm
-      this.pendingTime = this.isSameTime(time, this._time) ? undefined : time;
-      return;
-    }
-
-    this._time = time;
+    this.pendingTime = this.isSameTime(time, this._time) ? undefined : time;
     this.timeChange.emit(formatWithLocale(time, this.format, this.locale));
   }
 
@@ -591,7 +550,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     this._time = parsedTime;
     this.pendingTime = undefined;
-    this.doneBaseline = parsedTime;
 
     this.updateMeridiemLabels();
     this.setTimeRef();
@@ -835,7 +793,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
           if (timeFormat.isValid) {
             this._time = parseWithLocale(this.time, this.format, this.locale);
             this.pendingTime = undefined;
-            this.doneBaseline = this._time;
             this.setInitialFocusedValueAndUnit();
           }
         }
@@ -1187,12 +1144,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this.updateDescriptorFocusedValue(unit, next);
   }
 
-  private isPrimaryActionDisabled(): boolean {
-    const isUnchanged = this.requireConfirmation
-      ? !this.pendingTime
-      : this.isSameTime(this._time, this.doneBaseline);
-
-    return isUnchanged || this.isOutsideConstraints();
+  private isConfirmDisabled(): boolean {
+    return !this.pendingTime || this.isOutsideConstraints();
   }
 
   private isOutsideConstraints(): boolean {
@@ -1354,25 +1307,17 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this.elementListScrollToTop(unit, number, 'smooth');
   }
 
-  private onDone() {
-    this.doneBaseline = this._time;
+  private onConfirm() {
+    if (this.pendingTime) {
+      this._time = this.pendingTime;
+      this.pendingTime = undefined;
+    }
+
     this.timeSelect.emit(
       this._time
         ? formatWithLocale(this._time, this.format, this.locale)
         : undefined
     );
-  }
-
-  private onConfirm() {
-    if (this.pendingTime) {
-      this._time = this.pendingTime;
-      this.pendingTime = undefined;
-      this.timeChange.emit(
-        formatWithLocale(this._time, this.format, this.locale)
-      );
-    }
-
-    this.onDone();
   }
 
   private onCancel() {
@@ -1477,7 +1422,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
           embedded={this.embedded}
           timePickerAppearance={true}
           corners={this.corners}
-          hasFooter={!this.dateTimePickerAppearance}
+          hasFooter={!this.hideFooter}
           hideHeader={this.hideHeader}
         >
           <div class="header" slot="header">
@@ -1612,16 +1557,14 @@ export class TimePicker extends Mixin(...DefaultMixins) {
             )}
           </div>
 
-          {!this.dateTimePickerAppearance && (
+          {!this.hideFooter && (
             <ix-confirmation-footer
               slot="footer"
               layout={this.timePickerDescriptors.length <= 2 ? 'center' : 'end'}
-              requireConfirmation={this.requireConfirmation}
-              i18nDone={this.i18nDone}
+              requireConfirmation
               i18nConfirm={this.i18nConfirm}
               i18nCancel={this.i18nCancel}
-              primaryActionDisabled={this.isPrimaryActionDisabled()}
-              onDoneClick={() => this.onDone()}
+              primaryActionDisabled={this.isConfirmDisabled()}
               onConfirmClick={() => this.onConfirm()}
               onCancelClick={() => this.onCancel()}
             ></ix-confirmation-footer>

@@ -247,8 +247,6 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
-import TimeInputRequireConfirmation from '../preview-examples/time-input-require-confirmation';
-import TimePickerRequireConfirmation from '../preview-examples/time-picker-require-confirmation';
 import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import TimepickerMinMaxTime from '../preview-examples/timepicker-min-max-time';
@@ -1052,14 +1050,6 @@ const routes: Routes = [
       {
         path: 'tile',
         component: Tile,
-      },
-      {
-        path: 'time-input-require-confirmation',
-        component: TimeInputRequireConfirmation,
-      },
-      {
-        path: 'time-picker-require-confirmation',
-        component: TimePickerRequireConfirmation,
       },
       {
         path: 'timepicker',

@@ -247,8 +247,6 @@ import TextareaRowCols from './preview-examples/textarea-rows-cols';
 import TextareaValidation from './preview-examples/textarea-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
-import TimeInputRequireConfirmation from './preview-examples/time-input-require-confirmation';
-import TimePickerRequireConfirmation from './preview-examples/time-picker-require-confirmation';
 import timeInputDisabled from './preview-examples/time-input-disabled.tsx';
 import timeInputLabel from './preview-examples/time-input-label.tsx';
 import timeInputReadonly from './preview-examples/time-input-readonly.tsx';
@@ -564,10 +562,8 @@ const routes: IxPreviewRoutes = {
   '/preview/time-input-disabled': timeInputDisabled,
   '/preview/time-input-label': timeInputLabel,
   '/preview/time-input-readonly': timeInputReadonly,
-  '/preview/time-input-require-confirmation': TimeInputRequireConfirmation,
   '/preview/time-input-validation': timeInputValidation,
   '/preview/time-input-with-slots': timeInputWithSlots,
-  '/preview/time-picker-require-confirmation': TimePickerRequireConfirmation,
   '/preview/timepicker-format-adjusted': timepickerFormatAdjusted,
   '/preview/timepicker-intervals': timepickerIntervals,
   '/preview/timepicker-min-max-time': timepickerMinMaxTime,

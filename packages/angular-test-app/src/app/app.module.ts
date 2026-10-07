@@ -257,8 +257,6 @@ import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import TimeInput from '../preview-examples/time-input';
-import TimeInputRequireConfirmation from '../preview-examples/time-input-require-confirmation';
-import TimePickerRequireConfirmation from '../preview-examples/time-picker-require-confirmation';
 import TimeRange from '../preview-examples/time-range';
 import Timepicker from '../preview-examples/timepicker';
 import TimepickerMinMaxTime from '../preview-examples/timepicker-min-max-time';
@@ -514,8 +512,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     ThemeSwitcher,
     Tile,
     TimeInput,
-    TimeInputRequireConfirmation,
-    TimePickerRequireConfirmation,
     TimeRange,
     Timepicker,
     TimepickerMinMaxTime,

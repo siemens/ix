@@ -28,6 +28,7 @@ import type {
 } from './datetime-picker.types';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks';
+import { parseWithLocale, toISOTime } from '../utils/date-time-locale';
 import { isPartialRange, type DateRangeValue } from '../utils/calendar.util';
 
 type DatetimePickerSelection = Pick<DateRangeValue, 'from' | 'to'> & {
@@ -540,18 +541,33 @@ export class DatetimePicker
   }
 
   private async emitDateSelect() {
-    const date = await this.datePickerElement?.getCurrentDate();
-    const time = await this.timePickerElement?.getCurrentTime();
-    const isoTime = await this.timePickerElement?.getCurrentIsoTime();
+    this.dateSelect.emit(await this.getCurrentSelection());
+  }
 
-    this.dateSelect.emit({
+  /**
+   * The selection shown in the embedded pickers. The time comes from the
+   * tracked `timeChange` events, as the time picker only commits a time on
+   * its own confirm button. Without a picked time it falls back to the time
+   * the time picker shows.
+   * @internal
+   */
+  @Method()
+  async getCurrentSelection(): Promise<DateTimeSelectEvent> {
+    const date = await this.datePickerElement?.getCurrentDate();
+    const time =
+      this.pickerSelection.time ||
+      (await this.timePickerElement?.getCurrentTime());
+
+    return {
       from: date?.from ?? '',
       to: date?.to ?? '',
       time: time ?? '',
       isoFrom: date?.isoFrom,
       isoTo: date?.isoTo,
-      isoTime,
-    });
+      isoTime: time
+        ? toISOTime(parseWithLocale(time, this.timeFormat, this.locale))
+        : undefined,
+    };
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
@@ -650,8 +666,7 @@ export class DatetimePicker
                   class="min-width"
                   ref={(ref) => (this.timePickerElement = ref)}
                   embedded
-                  dateTimePickerAppearance={true}
-                  requireConfirmation={false}
+                  hideFooter
                   onTimeChange={(event) => this.onTimeChange(event)}
                   format={this.timeFormat}
                   locale={this.locale}

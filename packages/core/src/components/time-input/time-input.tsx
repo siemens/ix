@@ -212,16 +212,9 @@ export class TimeInput
   @Prop() millisecondInterval: number = 100;
 
   /**
-   * Text of the time picker confirm button shown when `requireConfirmation` is enabled.
+   * Text of the time picker confirm button.
    */
   @Prop({ attribute: 'i18n-select-time' }) i18nSelectTime: string = 'Confirm';
-
-  /**
-   * Text of the time picker done button shown when `requireConfirmation` is disabled.
-   *
-   * @since 6.0.0
-   */
-  @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
 
   /**
    * Text for the time picker top label.
@@ -315,21 +308,8 @@ export class TimeInput
   @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
 
   /**
-   * If true, a time picked in the dropdown is only applied after the user
-   * confirms it with the confirm button. The cancel button, pressing Escape
-   * or clicking outside the dropdown discards the pending selection.
-   *
-   * If false, every time picked in the dropdown is applied immediately and
-   * the done button closes the dropdown.
-   *
-   * @since 6.0.0
-   */
-  // Confirmation is the default for time selection. Opt out with `require-confirmation="false"`
-  // eslint-disable-next-line @stencil-community/ban-default-true
-  @Prop() requireConfirmation: boolean = true;
-
-  /**
-   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   * Text of the time picker cancel button. Cancel, pressing Escape or
+   * clicking outside the dropdown discards the time picked in the dropdown.
    *
    * @since 6.0.0
    */
@@ -558,14 +538,6 @@ export class TimeInput
     this.syncPickerTimeFromValue();
   }
 
-  private applyPickerTime(time: string) {
-    this.onInput(time);
-    if (this.initialValue !== time) {
-      this.ixChange.emit(time);
-      this.initialValue = time;
-    }
-  }
-
   onTimeIconClick(event: Event) {
     handleIconClick(
       event,
@@ -760,7 +732,7 @@ export class TimeInput
           onShowChanged={(event) => {
             this.show = event.detail;
 
-            if (!this.show && this.requireConfirmation) {
+            if (!this.show) {
               this.timePickerRef.current?.discardPendingSelection();
             }
           }}
@@ -783,9 +755,7 @@ export class TimeInput
             embedded
             hideHeader={this.hideHeader}
             i18nConfirm={this.i18nSelectTime}
-            i18nDone={this.i18nDone}
             i18nCancel={this.i18nCancel}
-            requireConfirmation={this.requireConfirmation}
             onTimeCancel={(event: CustomEvent<void>) => {
               event.stopPropagation();
               this.show = false;
@@ -797,16 +767,11 @@ export class TimeInput
             i18nMillisecondColumnHeader={this.i18nMillisecondColumnHeader}
             i18nAm={this.i18nAm}
             i18nPm={this.i18nPm}
-            onTimeChange={(event: IxTimePickerCustomEvent<string>) => {
-              // With requireConfirmation the value is committed by timeSelect
-              if (!this.requireConfirmation) {
-                this.applyPickerTime(event.detail);
-              }
-            }}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
-              // Without requireConfirmation the value was already applied by timeChange
-              if (this.requireConfirmation) {
-                this.applyPickerTime(event.detail);
+              this.onInput(event.detail);
+              if (this.initialValue !== event.detail) {
+                this.ixChange.emit(event.detail);
+                this.initialValue = event.detail;
               }
               this.show = false;
             }}

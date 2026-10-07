@@ -10258,17 +10258,6 @@
           "deprecated": false
         },
         {
-          "name": "i18nDone",
-          "attribute": "i18n-done",
-          "type": "string",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "default": "'Done'",
-          "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "i18nErrorTimeUnparsable",
           "attribute": "i18n-error-time-unparsable",
           "type": "string",
@@ -10465,17 +10454,6 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "false",
-          "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "requireConfirmation",
-          "attribute": "require-confirmation",
-          "type": "boolean",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "default": "true",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -10703,17 +10681,6 @@
           "deprecated": false
         },
         {
-          "name": "i18nDone",
-          "attribute": "i18n-done",
-          "type": "string",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "default": "'Done'",
-          "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "i18nHeader",
           "attribute": "i18n-header",
           "type": "string",
@@ -10826,17 +10793,6 @@
           "mutable": true,
           "reflectToAttribute": false,
           "default": "1",
-          "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "requireConfirmation",
-          "attribute": "require-confirmation",
-          "type": "boolean",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "default": "true",
           "optional": false,
           "required": false,
           "deprecated": false

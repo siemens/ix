@@ -505,12 +505,11 @@ const timeInputAccessor = (page: Page) =>
 const hourCell = (page: Page, time: DateTime) =>
   timePickerHourCell(page.locator('ix-time-input ix-time-picker'), time);
 
-regressionTest.describe('require confirmation', () => {
+regressionTest.describe('confirmation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mountHydrated(mount, page, 'ix-time-input', {
       value: formatTime(committedTime),
       format: TIME_FORMAT,
-      'require-confirmation': true,
     });
   });
 
@@ -519,7 +518,6 @@ regressionTest.describe('require confirmation', () => {
     const events = await recordEvents(timeInput.host, [
       'valueChange',
       'ixChange',
-      'timeChange',
     ]);
 
     await timeInput.open();
@@ -592,68 +590,4 @@ regressionTest.describe('require confirmation', () => {
       }
     );
   }
-});
-
-regressionTest.describe('without require confirmation', () => {
-  regressionTest.beforeEach(async ({ mount, page }) => {
-    await mountHydrated(mount, page, 'ix-time-input', {
-      value: formatTime(committedTime),
-      format: TIME_FORMAT,
-      'require-confirmation': 'false',
-    });
-  });
-
-  regressionTest('renders no cancel button', async ({ page }) => {
-    const timeInput = timeInputAccessor(page);
-
-    await timeInput.open();
-    await expect(timeInput.host.getByTestId('cancel')).toHaveCount(0);
-    await expect(
-      timeInput.host.getByRole('button', { name: 'Done' })
-    ).toBeDisabled();
-  });
-
-  regressionTest(
-    'applies every picked time and stays open until done',
-    async ({ page }) => {
-      const timeInput = timeInputAccessor(page);
-      const events = await recordEvents(timeInput.host, [
-        'valueChange',
-        'ixChange',
-      ]);
-
-      await timeInput.open();
-      await hourCell(page, pickedTime).click();
-
-      await expect(timeInput.host.locator('input')).toHaveValue(
-        formatTime(pickedTime)
-      );
-      expect(await events()).toContainEqual({
-        type: 'ixChange',
-        detail: formatTime(pickedTime),
-      });
-      await timeInput.expectOpen();
-
-      await timeInput.host.getByRole('button', { name: 'Done' }).click();
-
-      await timeInput.expectClosed();
-      await expect(timeInput.host.locator('input')).toHaveValue(
-        formatTime(pickedTime)
-      );
-    }
-  );
-
-  regressionTest('disables done again after reopening', async ({ page }) => {
-    const timeInput = timeInputAccessor(page);
-    const done = timeInput.host.getByRole('button', { name: 'Done' });
-
-    await timeInput.open();
-    await hourCell(page, pickedTime).click();
-    await expect(done).toBeEnabled();
-    await timeInput.dismiss('escape');
-    await timeInput.expectClosed();
-
-    await timeInput.open();
-    await expect(done).toBeDisabled();
-  });
 });

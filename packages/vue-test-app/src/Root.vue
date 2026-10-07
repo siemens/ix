@@ -238,8 +238,6 @@ import TextareaFieldValidation from './preview-examples/textarea-validation.vue'
 import TextareaField from './preview-examples/textarea.vue';
 import ThemeSwitcher from './preview-examples/theme-switcher.vue';
 import Tile from './preview-examples/tile.vue';
-import TimeInputRequireConfirmation from './preview-examples/time-input-require-confirmation.vue';
-import TimePickerRequireConfirmation from './preview-examples/time-picker-require-confirmation.vue';
 import TimeInput from './preview-examples/time-input.vue';
 import TimeInputDisabled from './preview-examples/time-input-disabled.vue';
 import TimeInputLabel from './preview-examples/time-input-label.vue';
@@ -455,8 +453,6 @@ const routes: IxPreviewRoutes = {
   '/preview/input-validation': InputValidation,
   '/preview/input-with-slots': InputWithSlots,
   '/preview/tile': Tile,
-  '/preview/time-input-require-confirmation': TimeInputRequireConfirmation,
-  '/preview/time-picker-require-confirmation': TimePickerRequireConfirmation,
   '/preview/time-input': TimeInput,
   '/preview/time-input-disabled': TimeInputDisabled,
   '/preview/time-input-label': TimeInputLabel,

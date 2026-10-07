@@ -667,18 +667,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/time-input-label').then((m) => m.default),
   'preview/time-input-readonly': () =>
     import('../preview-examples/time-input-readonly').then((m) => m.default),
-  'preview/time-input-require-confirmation': () =>
-    import('../preview-examples/time-input-require-confirmation').then(
-      (m) => m.default
-    ),
   'preview/time-input-validation': () =>
     import('../preview-examples/time-input-validation').then((m) => m.default),
   'preview/time-input-with-slots': () =>
     import('../preview-examples/time-input-with-slots').then((m) => m.default),
-  'preview/time-picker-require-confirmation': () =>
-    import('../preview-examples/time-picker-require-confirmation').then(
-      (m) => m.default
-    ),
   'preview/timepicker-format-adjusted': () =>
     import('../preview-examples/timepicker-format-adjusted').then(
       (m) => m.default

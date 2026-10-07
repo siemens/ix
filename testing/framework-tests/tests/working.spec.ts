@@ -94,5 +94,3 @@ import './generated/date-input-require-confirmation.spec';
 import './generated/date-picker-require-confirmation.spec';
 import './generated/datetime-input-require-confirmation.spec';
 import './generated/datetime-picker-require-confirmation.spec';
-import './generated/time-input-require-confirmation.spec';
-import './generated/time-picker-require-confirmation.spec';
