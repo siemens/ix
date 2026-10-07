@@ -48,7 +48,7 @@ test('renders', async ({ mount, page }) => {
         </ix-select>
     `);
   const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
 
@@ -115,7 +115,7 @@ test('does not open the dropdown when disabled', async ({ mount, page }) => {
   const select = page.locator('ix-select');
   const dropdown = select.locator('ix-dropdown');
 
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
   await expect(dropdown).not.toHaveClass(/show/);
 
   await select.locator('.select').click();
@@ -144,7 +144,7 @@ test('toggles disabled without dropdown trigger errors', async ({
   const select = page.locator('ix-select');
   const dropdownTrigger = page.locator('[data-select-dropdown]');
 
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
   await expect(dropdownTrigger).toHaveCount(1);
 
   await select.evaluate((element: HTMLIxSelectElement) => {
@@ -173,7 +173,7 @@ test('does not select an item when ix-select-item is disabled', async ({
   `);
 
   const select = page.locator('ix-select');
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
 
@@ -224,7 +224,7 @@ test('does not open the dropdown when readonly', async ({ mount, page }) => {
   const select = page.locator('ix-select');
   const dropdown = select.locator('ix-dropdown');
 
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
   await expect(dropdown).not.toHaveClass(/show/);
 
   await select.locator('.select').click();
@@ -240,7 +240,7 @@ test('editable mode', async ({ mount, page }) => {
         </ix-select>
     `);
   const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
   await page.getByTestId('input').fill('Not existing');
@@ -472,7 +472,7 @@ test('keeps first typed character when focused via keyboard with a selected valu
 
   const select = page.locator('ix-select');
   const input = select.getByRole('combobox');
-  await expect(select).toHaveClass(/hydrated/);
+  await expect(select).toHaveAttribute('hydrated');
 
   await page.getByRole('button', { name: 'Start' }).focus();
   await page.keyboard.press('Tab');
@@ -529,7 +529,7 @@ test('type in a novel item name in editable mode and then remove it', async ({
     `);
 
   const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
+  await expect(element).toHaveAttribute('hydrated');
 
   await page.locator('[data-select-dropdown]').click();
   await page.getByTestId('input').fill('test');
@@ -592,7 +592,7 @@ test('check if clear button visible in disabled', async ({ mount, page }) => {
     `);
 
   const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(selectElement).toHaveAttribute('hydrated');
 
   const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
   await expect(clearButton).toBeVisible();
@@ -639,7 +639,7 @@ test('pass object as value and check if it is selectable', async ({
         </ix-select>
     `);
   const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(selectElement).toHaveAttribute('hydrated');
 
   async function setSelectItemValue(index: number): Promise<void> {
     await page
@@ -726,7 +726,7 @@ test.describe('Events', () => {
     await page.locator('ix-icon-button').click();
     await page.locator('ix-select-item').click();
 
-    await expect(select).toHaveClass(/hydrated/);
+    await expect(select).toHaveAttribute('hydrated');
     expect(await valueChanged).toBe('1');
   });
 
@@ -734,7 +734,7 @@ test.describe('Events', () => {
     const itemText = 'test';
     await mount(`<ix-select editable></ix-select>`);
     const select = page.locator('ix-select');
-    await expect(select).toHaveClass(/hydrated/);
+    await expect(select).toHaveAttribute('hydrated');
 
     const itemAdded = select.evaluate((elm) => {
       return new Promise<string>((resolve) => {
@@ -1019,7 +1019,7 @@ test('dropdown can be opened after clearing select in editable mode', async ({
 `);
 
   const selectElement = page.locator('ix-select');
-  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(selectElement).toHaveAttribute('hydrated');
   await page.locator('[data-select-dropdown]').click();
 
   await page.locator('ix-select-item').nth(1).click();
@@ -1495,6 +1495,74 @@ test('multiple mode: removing a hidden item from "+N" dropdown updates count', a
   await hiddenChip.locator('ix-icon-button button').click();
 
   await expect(overflowChip).not.toHaveText(initialCount ?? '');
+});
+
+test('multiple mode: "+N" chip tooltip (title) updates when hidden count changes', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+      <ix-select-item value="5" label="Item number five"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+  const initialCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', initialCount);
+
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4', '5'];
+  });
+
+  await expect(overflowChip).not.toHaveText(initialCount);
+  const updatedCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', updatedCount);
+});
+
+test('multiple mode: "+N" chip tooltip (title) updates after removing a hidden item', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-select mode="multiple" style="width: 220px; display: block;">
+      <ix-select-item value="1" label="Item number one"></ix-select-item>
+      <ix-select-item value="2" label="Item number two"></ix-select-item>
+      <ix-select-item value="3" label="Item number three"></ix-select-item>
+      <ix-select-item value="4" label="Item number four"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = ['1', '2', '3', '4'];
+  });
+
+  const overflowChip = select.locator('ix-filter-chip.chip-overflow');
+  await expect(overflowChip).toBeVisible();
+  const initialCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', initialCount);
+
+  await overflowChip.click();
+  await select
+    .locator('ix-dropdown.overflow-dropdown ix-filter-chip.chip-hidden-item')
+    .first()
+    .locator('ix-icon-button button')
+    .click();
+
+  await expect(overflowChip).not.toHaveText(initialCount);
+  const updatedCount = (await overflowChip.textContent()) ?? '';
+  await expect(overflowChip).toHaveAttribute('title', updatedCount);
 });
 
 test('multiple mode: focused "+N" chip opens overflow dropdown with Enter', async ({

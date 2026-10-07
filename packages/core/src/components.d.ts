@@ -408,6 +408,12 @@ export namespace Components {
     }
     interface IxBreadcrumb {
         /**
+          * Accessible label for the next items dropdown button used to access the dropdown list with conditionally hidden next items
+          * @since 6.0.0
+          * @default 'Show next breadcrumb items'
+         */
+        "ariaLabelNextButton": string;
+        /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
           * @default 'Show previous breadcrumb items'
          */
@@ -591,7 +597,7 @@ export namespace Components {
     }
     interface IxCardList {
         /**
-          * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
+          * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
           * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
@@ -1420,7 +1426,7 @@ export namespace Components {
         "i18nDone": string;
         "isCalendarDayFocused": () => Promise<boolean>;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
          */
         "locale"?: string;
         /**
@@ -7456,6 +7462,12 @@ declare namespace LocalJSX {
     }
     interface IxBreadcrumb {
         /**
+          * Accessible label for the next items dropdown button used to access the dropdown list with conditionally hidden next items
+          * @since 6.0.0
+          * @default 'Show next breadcrumb items'
+         */
+        "ariaLabelNextButton"?: string;
+        /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
           * @default 'Show previous breadcrumb items'
          */
@@ -7654,7 +7666,7 @@ declare namespace LocalJSX {
     }
     interface IxCardList {
         /**
-          * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
+          * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
           * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
@@ -8546,7 +8558,7 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. It also determines the default order of weekdays based on the locale's conventions. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months. When the locale changes, the weekday labels are rotated according to the `weekStartIndex`. The locale is also applied when formatting and parsing date values. For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale. Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
          */
         "locale"?: string;
         /**
@@ -12555,6 +12567,7 @@ declare namespace LocalJSX {
         "visibleItemCount": number;
         "subtle": boolean;
         "ariaLabelPreviousButton": string;
+        "ariaLabelNextButton": string;
         "enableTopLayer": boolean;
     }
     interface IxBreadcrumbItemAttributes {
