@@ -9,7 +9,12 @@
 
 @use 'mixins/shadow-dom/component';
 
-@mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
+@use './spinner.vars' as *;
+@mixin ix-spinner(
+  $size-name: 'md',
+  $size: var(--ix-spinner-medium--size),
+  $track-size: var(--ix-spinner-track--border-width-emphasis)
+) {
   :host {
     display: block;
     position: relative;
@@ -86,7 +91,7 @@
     inset: 8.33%;
     border-radius: 100%;
     border: $track-size solid
-      var(--ix-button-color, var(--theme-color-soft-text));
+      var(--ix-button-color, var(--ix-spinner--border-color));
     animation: clipMask 3s linear infinite;
   }
 
@@ -97,20 +102,40 @@
     inset: 8.33%;
     border-radius: 100%;
     //TODO(IX-3400): Replace track color with proper CSS variables when available
-    border: $track-size solid var(--theme-color-component-3);
+    border: $track-size solid var(--ix-spinner-track--border-color);
   }
 
   .primary::after {
-    border-color: var(--theme-color-dynamic);
+    border-color: var(--ix-spinner-primary--border-color);
   }
 
   .primary::before {
-    border-color: var(--theme-color-ghost--hover);
+    border-color: var(--ix-spinner-primary-track--border-color);
   }
 }
 
-@include ix-spinner($size-name: 'xx-small', $size: 0.75rem, $track-size: 1px);
-@include ix-spinner($size-name: 'x-small', $size: 1.25rem, $track-size: 2px);
-@include ix-spinner($size-name: 'small', $size: 1.5rem, $track-size: 2px);
-@include ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 2px);
-@include ix-spinner($size-name: 'large', $size: 6rem, $track-size: 4px);
+@include ix-spinner(
+  $size-name: 'xxs',
+  $size: var(--ix-spinner-extra-extra-small--size),
+  $track-size: var(--ix-spinner-track--border-width-default)
+);
+@include ix-spinner(
+  $size-name: 'xs',
+  $size: var(--ix-spinner-extra-small--size),
+  $track-size: var(--ix-spinner-track--border-width-selected)
+);
+@include ix-spinner(
+  $size-name: 'sm',
+  $size: var(--ix-spinner-small--size),
+  $track-size: var(--ix-spinner-track--border-width-selected)
+);
+@include ix-spinner(
+  $size-name: 'md',
+  $size: var(--ix-spinner-medium--size),
+  $track-size: var(--ix-spinner-track--border-width-selected)
+);
+@include ix-spinner(
+  $size-name: 'xxl',
+  $size: var(--ix-spinner-large--size),
+  $track-size: var(--ix-spinner-track--border-width-emphasis)
+);

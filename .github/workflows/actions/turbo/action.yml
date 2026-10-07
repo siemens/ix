@@ -1,10 +1,25 @@
 name: 'PNPM & Turbo Cache'
 description: 'PNPM & Turbo Cache'
+inputs:
+  save-cache:
+    description: 'Persist the Turborepo cache when the job finishes. Only the build job should do this, every other job restores what build produced.'
+    required: false
+    default: 'false'
 runs:
   using: 'composite'
   steps:
     - name: Cache turbo build setup
+      if: inputs.save-cache == 'true'
       uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
+      with:
+        path: .turbo
+        key: ${{ runner.os }}-turbo-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-
+
+    - name: Restore turbo build setup
+      if: inputs.save-cache != 'true'
+      uses: actions/cache/restore@0400d5f644dc74513175e3cd8d07132dd4860809
       with:
         path: .turbo
         key: ${{ runner.os }}-turbo-${{ github.sha }}

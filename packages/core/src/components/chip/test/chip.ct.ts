@@ -25,14 +25,14 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
       <ix-chip inactive>Inactive</ix-chip>
       <ix-chip
         variant="custom"
-        background="var(--theme-color-secondary)"
-        chip-color="var(--theme-color-std-text)"
+        background="var(--si-sys-color-background-accent-secondary)"
+        chip-color="var(--si-sys-color-text-primary)"
         closable
       >Custom filled</ix-chip>
       <ix-chip
         variant="custom"
-        background="var(--theme-color-primary)"
-        chip-color="var(--theme-color-primary--contrast)"
+        background="var(--si-sys-color-background-accent)"
+        chip-color="var(--si-sys-color-text-on-accent)"
         outline
         closable
       >Custom outline</ix-chip>
@@ -62,7 +62,7 @@ regressionTest(
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-chip></ix-chip>`);
   const datePicker = page.locator('ix-chip');
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await expect(datePicker).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('default variant fallback', () => {
@@ -71,7 +71,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip>Default</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       await expect(chip).toHaveAttribute('variant', 'primary');
       await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
     }
@@ -82,7 +82,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="">Empty variant</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
     }
   );
@@ -92,7 +92,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="not-a-variant">Bad variant</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
     }
   );
@@ -102,7 +102,7 @@ regressionTest.describe('default variant fallback', () => {
     async ({ mount, page }) => {
       await mount(`<ix-chip outline>Default outline</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       const wrap = chip.locator('.chip-wrap');
       await expect(wrap).toHaveClass(/primary/);
       await expect(wrap).toHaveClass(/outline/);
@@ -151,7 +151,8 @@ regressionTest.describe('chip test', () => {
 regressionTest('check inactive class', async ({ mount, page }) => {
   await mount(`<ix-chip inactive>test</ix-chip>`);
   const chip = page.locator('ix-chip');
-  await expect(chip).toHaveClass('inactive hydrated');
+  await expect(chip).toHaveClass('inactive');
+  await expect(chip).toHaveAttribute('hydrated');
 });
 
 regressionTest(
@@ -170,9 +171,11 @@ regressionTest(
     const slotBox = await slotContainer.boundingBox();
     const closeBox = await closeButton.boundingBox();
 
-    expect(slotBox).not.toBeNull();
-    expect(closeBox).not.toBeNull();
-    expect(slotBox!.x + slotBox!.width).toBeLessThanOrEqual(closeBox!.x);
+    if (!slotBox || !closeBox) {
+      throw new Error('Expected chip slot and close button bounding boxes');
+    }
+
+    expect(slotBox.x + slotBox.width).toBeLessThanOrEqual(closeBox.x);
   }
 );
 
@@ -234,7 +237,9 @@ regressionTest(
     const chipMain = page.locator('ix-chip').locator('.chip-main');
     const chipMainBox = await chipMain.boundingBox();
 
-    expect(chipMainBox).not.toBeNull();
+    if (!chipMainBox) {
+      throw new Error('Expected chip main bounding box');
+    }
 
     const getBackgroundColor = () =>
       chipMain.evaluate((element) => getComputedStyle(element).backgroundColor);
@@ -242,8 +247,8 @@ regressionTest(
     const defaultBackgroundColor = await getBackgroundColor();
 
     await page.mouse.move(
-      chipMainBox!.x + chipMainBox!.width / 2,
-      chipMainBox!.y + chipMainBox!.height / 2
+      chipMainBox.x + chipMainBox.width / 2,
+      chipMainBox.y + chipMainBox.height / 2
     );
     await expect.poll(getBackgroundColor).toBe(defaultBackgroundColor);
 

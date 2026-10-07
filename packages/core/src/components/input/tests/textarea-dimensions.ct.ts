@@ -15,7 +15,7 @@ regressionTest(
     await mount(`<ix-textarea></ix-textarea>`);
 
     const hostElement = page.locator('ix-textarea');
-    await expect(hostElement).toHaveClass(/hydrated/);
+    await expect(hostElement).toHaveAttribute('hydrated');
 
     const textarea = hostElement.locator('textarea');
 
@@ -105,7 +105,7 @@ regressionTest(
     );
 
     const hostElement = page.locator('ix-textarea');
-    await expect(hostElement).toHaveClass(/hydrated/);
+    await expect(hostElement).toHaveAttribute('hydrated');
 
     const textarea = hostElement.locator('textarea');
 

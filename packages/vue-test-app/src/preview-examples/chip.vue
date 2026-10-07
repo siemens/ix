@@ -34,8 +34,8 @@ import { IxChip } from '@siemens/ix-vue';
       <IxChip
         :icon="iconPrint"
         variant="custom"
-        background="var(--theme-chart-11)"
-        chip-color="var(--theme-color-inv-std-text)"
+        background="var(--si-sys-color-data-categorical-9)"
+        chip-color="var(--si-sys-color-text-inverse)"
         closable
       >
         Custom
@@ -67,8 +67,8 @@ import { IxChip } from '@siemens/ix-vue';
       <IxChip
         :icon="iconPrint"
         variant="custom"
-        background="var(--theme-chart-11)"
-        chip-color="var(--theme-chip-outline--color)"
+        background="var(--si-sys-color-data-categorical-9)"
+        chip-color="var(--si-sys-color-text-primary)"
         outline
         closable
       >

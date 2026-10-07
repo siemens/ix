@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-radio-group-checkbox-container--gap: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-radio-group-checkbox-container--margin: #{sys.$si-sys-sizing-spacing-y-30}
+    0;
+}

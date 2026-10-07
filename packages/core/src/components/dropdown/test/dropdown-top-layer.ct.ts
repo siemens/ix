@@ -192,10 +192,11 @@ regressionTest.describe('enableTopLayer feature', () => {
           const triggerBox = await trigger.boundingBox();
           const dialogBox = await dialog.boundingBox();
 
-          expect(triggerBox).toBeTruthy();
-          expect(dialogBox).toBeTruthy();
+          if (!triggerBox || !dialogBox) {
+            throw new Error('Expected trigger and dialog bounding boxes');
+          }
 
-          expect(dialogBox!.y).toBeGreaterThanOrEqual(triggerBox!.y);
+          expect(dialogBox.y).toBeGreaterThanOrEqual(triggerBox.y);
         }).toPass({ timeout: 2000 });
       }
     );
@@ -263,11 +264,12 @@ regressionTest.describe('enableTopLayer feature', () => {
           const dialogBox = await dialog.boundingBox();
           const overlayBox = await page.locator('#overlay-row').boundingBox();
 
-          expect(dialogBox).toBeTruthy();
-          expect(overlayBox).toBeTruthy();
+          if (!dialogBox || !overlayBox) {
+            throw new Error('Expected dialog and overlay bounding boxes');
+          }
 
-          const dialogBottom = dialogBox!.y + dialogBox!.height;
-          const overlayTop = overlayBox!.y;
+          const dialogBottom = dialogBox.y + dialogBox.height;
+          const overlayTop = overlayBox.y;
 
           expect(dialogBottom).toBeGreaterThan(overlayTop);
         }).toPass({ timeout: 2000 });

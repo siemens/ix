@@ -39,10 +39,10 @@ regressionTest('renders all components', async ({ mount, page }) => {
     </ix-tab-set>
   `);
 
-  await expect(page.locator('ix-tab-set')).toHaveClass(/\bhydrated\b/);
-  await expect(page.locator('ix-tabs')).toHaveClass(/\bhydrated\b/);
-  await expect(page.locator('ix-tab-panel').nth(0)).toHaveClass(/\bhydrated\b/);
-  await expect(page.locator('ix-tab-panel').nth(1)).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-tab-set')).toHaveAttribute('hydrated');
+  await expect(page.locator('ix-tabs')).toHaveAttribute('hydrated');
+  await expect(page.locator('ix-tab-panel').nth(0)).toHaveAttribute('hydrated');
+  await expect(page.locator('ix-tab-panel').nth(1)).toHaveAttribute('hydrated');
 });
 
 regressionTest(
@@ -148,8 +148,12 @@ regressionTest(
 
     const tabItemId = await firstTabItem.getAttribute('id');
 
+    if (!tabItemId) {
+      throw new Error('Expected first tab item id');
+    }
+
     const panel = page.locator('ix-tab-panel').nth(0);
-    await expect(panel).toHaveAttribute('aria-labelledby', tabItemId!);
+    await expect(panel).toHaveAttribute('aria-labelledby', tabItemId);
   }
 );
 

@@ -135,7 +135,6 @@ export class BreadcrumbItem
       iconOval: false,
       disabled: false,
       icon: this.icon,
-      iconSize: '16',
       loading: false,
       selected: false,
       type: 'button',
@@ -171,6 +170,7 @@ export class BreadcrumbItem
                   name={iconChevronRightSmall}
                   size="16"
                   class={'chevron'}
+                  aria-hidden="true"
                 ></ix-icon>
               )}
             </Fragment>

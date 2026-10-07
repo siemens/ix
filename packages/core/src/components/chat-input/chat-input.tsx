@@ -181,14 +181,14 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   private isAttachmentScrollbarUpdateQueued = false;
 
   override componentWillLoad() {
-    super.componentWillLoad!();
+    super.componentWillLoad?.();
     this.updateFormInternalValue(this.value);
     this.initialValue = this.value;
     this.updateHasFollowUp();
   }
 
   override componentDidLoad() {
-    super.componentDidLoad!();
+    super.componentDidLoad?.();
     this.updateHasFollowUp();
     this.initAttachmentMutationObserver();
     this.scheduleAttachmentScrollbarUpdate();
@@ -196,13 +196,13 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   }
 
   override componentDidRender() {
-    super.componentDidRender!();
+    super.componentDidRender?.();
     this.scheduleAttachmentScrollbarUpdate();
     this.updateTextareaHeight();
   }
 
   override disconnectedCallback() {
-    super.disconnectedCallback!();
+    super.disconnectedCallback?.();
     this.attachmentResizeObserver?.disconnect();
     this.attachmentMutationObserver?.disconnect();
   }
@@ -582,7 +582,6 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
                 class="submit-button"
                 disabled={disabledSubmitButton}
                 icon={submitButtonIcon}
-                size="24"
                 variant="tertiary"
                 onClick={() => this.submitPrompt()}
               ></ix-icon-button>

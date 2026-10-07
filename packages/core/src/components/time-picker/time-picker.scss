@@ -8,12 +8,11 @@
  */
 
 @use 'misc/common-variables' as vars;
+@use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
-@use 'mixins/input';
-@use 'legacy/components/forms';
+@use 'tokens/system' as sys;
 
-@include input.form;
-
+@use './time-picker.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -33,7 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: vars.$default-control-height;
+    height: var(--ix-time-picker-header--height);
   }
 
   .clock {
@@ -53,11 +52,11 @@
         justify-content: space-around;
 
         .column-header {
-          height: 2.5rem;
-          width: 2.5rem;
-          line-height: 2.5rem;
+          height: var(--ix-time-picker-column-header--height);
+          width: var(--ix-time-picker-column-header--width);
+          line-height: var(--ix-time-picker-column-header--line-height);
           text-align: center;
-          color: var(--theme-color-soft-text);
+          color: var(--ix-time-picker-column-header--color);
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -65,12 +64,14 @@
       }
 
       .column-separator {
+        @include fonts.typography-body-paragraph;
+
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100%;
-        margin-top: 3rem;
-        width: 0.5rem;
+        margin-top: var(--ix-time-picker-column-separator--margin-top);
+        width: var(--ix-time-picker-column-separator--width);
       }
     }
 
@@ -79,7 +80,7 @@
       overflow: auto;
       padding: 0.0625rem;
       margin: -0.0625rem;
-      max-height: calc(2.5rem * 6 + 0.125rem * 6);
+      max-height: var(--ix-time-picker-element-list--max-height);
 
       button {
         all: unset;
@@ -87,28 +88,29 @@
 
       .element-container {
         box-sizing: border-box;
-        width: 2.5rem;
-        height: 2.5rem;
-        margin-bottom: 0.125rem;
+        width: var(--ix-time-picker-element-container--width);
+        height: var(--ix-time-picker-element-container--height);
+        margin-bottom: var(--ix-time-picker-element-container--margin-bottom);
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        color: var(--theme-color-primary);
+        color: var(--ix-time-picker-day--color);
 
         &:hover:not(.disabled) {
-          background-color: var(--theme-datepicker-day--background--hover);
+          background-color: var(--ix-time-picker-day--background--hover);
         }
 
         &:focus-visible {
-          box-shadow: 0 0 0 1px var(--theme-color-focus-bdr);
+          box-shadow: 0 0 0 1px
+            var(--ix-time-picker-day--box-shadow-color--focus);
         }
 
         &.disabled {
           cursor: default;
 
           &:not(.selected) {
-            color: var(--theme-color-weak-text);
+            color: var(--ix-time-picker-day--color--disabled);
           }
         }
 
@@ -118,33 +120,40 @@
         }
 
         &.selected {
-          background-color: var(--theme-datepicker-day--background--selected);
-          color: var(--theme-datepicker-day--color--selected);
-          font-weight: var(--theme-font-weight-bold);
+          background-color: var(--ix-time-picker-day--background--selected);
+          color: var(--ix-time-picker-day--color--selected);
+          font-weight: var(--ix-time-picker-day--font-weight--selected);
 
           &:hover:not(.disabled) {
             background-color: var(
-              --theme-datepicker-day--background--selected-hover
+              --ix-time-picker-day--background--selected-hover
+            );
+          }
+
+          &:active:not(.disabled) {
+            background-color: var(
+              --ix-time-picker-day--background--selected-active
             );
           }
 
           &:focus-visible {
-            border: 0.0625rem solid var(--theme-color-inv-contrast-text);
+            border: 0.0625rem solid
+              var(--ix-time-picker-day--border-color--selected-focus);
           }
 
           &.disabled {
             background-color: var(
-              --theme-datepicker-day--background--selected-disabled
+              --ix-time-picker-day--background--selected-disabled
             );
-            color: var(--theme-datepicker-day--color--selected-disabled);
+            color: var(--ix-time-picker-day--color--selected-disabled);
           }
         }
       }
 
       .element-list-padding {
-        width: 2.5rem;
-        height: calc(2.5rem * 5 + 5 * 0.125rem);
-        min-height: calc(2.5rem * 5 + 5 * 0.125rem);
+        width: var(--ix-time-picker-element-list-padding--width);
+        height: var(--ix-time-picker-element-list-padding--height);
+        min-height: var(--ix-time-picker-element-list-padding--min-height);
       }
     }
 
@@ -161,7 +170,7 @@
   .footer {
     display: flex;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: var(--ix-time-picker-footer--gap);
     flex-wrap: wrap;
 
     .confirm-button {
@@ -179,7 +188,7 @@
   }
 
   .default-space {
-    margin-left: vars.$default-space;
+    margin-left: var(--ix-time-picker-default-space--margin-left);
   }
 
   .text-align {
