@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "catalog:",
     "@testing-library/vue": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.70.0",
@@ -52,7 +51,7 @@
     "vue-tsc": "^2.2.10"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "catalog:",
+    "@siemens/ix-icons": "^3.5.0",
     "vue": ">=3.2.45"
   }
 }
