@@ -27,11 +27,10 @@
         {
           "name": "clickable",
           "attribute": "clickable",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "true",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -59,11 +58,10 @@
         {
           "name": "outline",
           "attribute": "outline",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "true",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -970,11 +968,10 @@
         {
           "name": "outline",
           "attribute": "outline",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "true",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -1039,11 +1036,10 @@
         {
           "name": "outline",
           "attribute": "outline",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "true",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -8479,11 +8475,10 @@
         {
           "name": "outline",
           "attribute": "outline",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "true",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
