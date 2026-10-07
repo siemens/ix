@@ -8,6 +8,7 @@
  */
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './card-accordion.vars' as *;
 
@@ -27,6 +28,7 @@
     all: unset;
     display: flex;
     position: relative;
+    box-sizing: border-box;
 
     appearance: button;
 
@@ -35,6 +37,15 @@
 
     align-items: center;
     justify-content: flex-start;
+
+    border-top: var(--ix-card-accordion-expand-action--border-top-width) solid
+      var(--ix-card-accordion-expand-action--border-top-color);
+    border-bottom-left-radius: var(
+      --ix-card-accordion-expand-action--border-bottom-left-radius
+    );
+    border-bottom-right-radius: var(
+      --ix-card-accordion-expand-action--border-bottom-right-radius
+    );
 
     background-color: var(--ix-card-accordion-chrome--background);
 
@@ -50,6 +61,12 @@
 
     &:active {
       background: var(--ix-card-accordion-chrome--background--active);
+    }
+
+    /* Expanded: content owns the bottom corners */
+    &.show {
+      border-bottom-left-radius: #{sys.$si-sys-sizing-border-radius-none};
+      border-bottom-right-radius: #{sys.$si-sys-sizing-border-radius-none};
     }
   }
 
