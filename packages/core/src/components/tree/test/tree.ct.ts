@@ -861,7 +861,7 @@ regressionTest(
       }
     );
 
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     const parent = tree.locator('ix-tree-item', { hasText: 'Disabled Parent' });
     const container = parent.locator('.tree-node-container');
