@@ -1,0 +1,20 @@
+packages/angular/package.json
+  h_c5a773bf2fda8b 25
+packages/react/package.json
+  h_c5a773bf2fda8b 73
+packages/vue/package.json
+  h_c5a773bf2fda8b 54
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 162-164,898-900,1156-1158,4474-4477,16842-16843
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3d7c3bd5d6def3d03915d67791a0276c3c8ddb88",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
