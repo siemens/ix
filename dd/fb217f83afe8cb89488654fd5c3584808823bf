@@ -1,0 +1,18 @@
+packages/core/component-api.json
+  h_c5a773bf2fda8b 30,33,61,64,968,971,1036,1039,8421,8424
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 139,142,153,156,574,577,601,604,3769,3772,7202,7216,7664,7692,11081
+packages/react-test-app/src/preview-examples/push-card.tsx
+  h_c5a773bf2fda8b 15-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ddfb217f83afe8cb89488654fd5c3584808823bf",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
