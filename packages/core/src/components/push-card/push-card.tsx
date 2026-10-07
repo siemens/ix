@@ -54,10 +54,11 @@ export class PushCard {
 
   /**
    * Show the card with an outline border.
+   * When omitted, outline chrome is used (`true`).
    *
    * @since 6.0.0
    */
-  @Prop() outline: boolean = true;
+  @Prop() outline?: boolean;
 
   /**
    * Expand the card
@@ -72,17 +73,21 @@ export class PushCard {
    */
   @Prop() clickable: boolean = false;
 
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
   render() {
     return (
       <Host
         class={{
           [`card-${this.variant}`]: true,
-          outline: this.outline,
+          outline: this.isOutline,
         }}
       >
         <ix-card
           variant={this.variant}
-          outline={this.outline}
+          outline={this.isOutline}
           clickable={this.clickable}
         >
           <ix-card-content>

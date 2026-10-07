@@ -28,11 +28,12 @@ export class Card {
 
   /**
    * Show the card with an outline border.
+   * When omitted, outline chrome is used (`true`).
    * When `false`, the card uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
    */
-  @Prop() outline: boolean = true;
+  @Prop() outline?: boolean;
 
   /**
    * Show card in selected state
@@ -47,12 +48,16 @@ export class Card {
    */
   @Prop() clickable: boolean = false;
 
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
   render() {
     return (
       <Host
         class={{
           selected: this.selected,
-          outline: this.outline,
+          outline: this.isOutline,
           clickable: this.clickable,
           [`card-${this.variant}`]: true,
         }}

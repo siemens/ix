@@ -27,10 +27,11 @@ export class IxActionCard {
 
   /**
    * Show the card with an outline border.
+   * When omitted, outline chrome is used (`true`).
    *
    * @since 6.0.0
    */
-  @Prop() outline: boolean = true;
+  @Prop() outline?: boolean;
 
   /**
    * Card icon
@@ -68,11 +69,19 @@ export class IxActionCard {
 
   /**
    * Enable pointer interaction. When `false`, the wrapping button is disabled.
-   * Default is `true` for action cards.
+   * When omitted, the action card is clickable (`true`).
    *
    * @since 6.0.0
    */
-  @Prop() clickable: boolean = true;
+  @Prop() clickable?: boolean;
+
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
+  private get isClickable() {
+    return this.clickable !== false;
+  }
 
   private getSubheadingTextColor() {
     return this.variant === 'default' ? 'soft' : undefined;
@@ -88,16 +97,16 @@ export class IxActionCard {
       <Host>
         <button
           type="button"
-          disabled={!this.clickable}
+          disabled={!this.isClickable}
           aria-label={this.ariaLabelCard}
           aria-labelledby={ariaLabelledBy}
         >
           <ix-card
             selected={this.selected}
             variant={this.variant}
-            outline={this.outline}
-            clickable={this.clickable}
-            class={this.clickable ? 'pointer' : undefined}
+            outline={this.isOutline}
+            clickable={this.isClickable}
+            class={this.isClickable ? 'pointer' : undefined}
           >
             <ix-card-content>
               {this.icon ? (
