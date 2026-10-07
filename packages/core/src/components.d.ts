@@ -8569,7 +8569,7 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
-          * Emitted when the user selects a date range.  If `requireConfirmation` is enabled, this event is only emitted when the selection is confirmed with the confirm button. Otherwise it is emitted for every date or predefined range picked in the dropdown and when the dropdown is closed. Closing the dropdown with only a start date picked reverts the selection, and the event carries the reverted value. It is not emitted for programmatic changes.
+          * Emitted when the user selects a date range - when requireConfirmation is enabled only emitted when the selection is confirmed. Should be used only to track on-going date selections, does not reflect the user's final decision.  It is not emitted for programmatic changes.
           * @since 6.0.0
          */
         "onDateSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
