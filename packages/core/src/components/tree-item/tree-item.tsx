@@ -7,17 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-} from '@stencil/core';
+import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Tree item content and nested items.
@@ -28,8 +21,6 @@ import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
   shadow: true,
 })
 export class TreeItem {
-  @Element() hostElement!: HTMLIxTreeItemElement;
-
   /**
    * Text
    */
@@ -53,7 +44,7 @@ export class TreeItem {
   @Prop() disabled = false;
 
   /**
-   * ARIA label for the chevron icon
+   * ARIA label for the expand/collapse button
    */
   @Prop() ariaLabelChevronIcon?: string;
 
@@ -79,17 +70,11 @@ export class TreeItem {
       >
         <div class="icon-toggle-container">
           {this.hasChildren ? (
-            <ix-icon
-              name={iconChevronRightSmall}
-              size="24"
-              class={{
-                ['icon-toggle-down']: !!this.context?.isExpanded,
-              }}
-              color="color-std-text"
-              tabIndex={isDisabled ? -1 : 0}
-              role="button"
-              aria-expanded={!!this.context?.isExpanded}
-              aria-disabled={isDisabled ?? false}
+            <button
+              type="button"
+              class="icon-toggle"
+              disabled={!!isDisabled}
+              aria-expanded={a11yBoolean(!!this.context?.isExpanded)}
               aria-label={
                 this.ariaLabelChevronIcon ??
                 (this.context?.isExpanded
@@ -97,31 +82,28 @@ export class TreeItem {
                   : 'Expand tree item')
               }
               onClick={(e: Event) => {
-                if (isDisabled) {
-                  return;
-                }
                 e.preventDefault();
                 e.stopPropagation();
                 this.toggle.emit();
               }}
-              onKeyDown={(e: KeyboardEvent) => {
-                if (isDisabled) {
-                  return;
-                }
-                if (e.key === ' ' || e.key === 'Enter') {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  this.toggle.emit();
-                }
-              }}
-            />
+            >
+              <ix-icon
+                name={iconChevronRightSmall}
+                size="24"
+                class={{
+                  ['icon-toggle-down']: !!this.context?.isExpanded,
+                }}
+                color="color-std-text"
+                aria-hidden="true"
+              />
+            </button>
           ) : null}
         </div>
         <div
           class="tree-node-container"
           role="button"
           tabIndex={isDisabled ? -1 : 0}
-          aria-disabled={isDisabled ?? false}
+          aria-disabled={a11yBoolean(!!isDisabled)}
           onKeyDown={(e: KeyboardEvent) => {
             if (isDisabled) {
               return;

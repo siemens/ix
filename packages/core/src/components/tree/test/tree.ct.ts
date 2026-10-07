@@ -771,83 +771,50 @@ regressionTest(
   }
 );
 
-regressionTest(
-  'should expand item when Enter is pressed on chevron',
-  async ({ mount, page }) => {
-    const tree = await initializeTree(mount, page);
+for (const key of ['Enter', 'Space']) {
+  regressionTest(
+    `should expand item when ${key} is pressed on chevron`,
+    async ({ mount, page }) => {
+      const tree = await initializeTree(mount, page);
+      const sampleItem = tree.locator('ix-tree-item', {
+        hasText: 'Sample',
+        hasNotText: 'Child',
+      });
+      const chevron = sampleItem.getByRole('button', {
+        name: 'Expand tree item',
+      });
 
-    const sampleItem = tree.locator('ix-tree-item', {
-      hasText: 'Sample',
-      hasNotText: 'Child',
-    });
-    const chevron = sampleItem.locator('ix-icon');
+      await chevron.focus();
+      await page.keyboard.press(key);
 
-    await chevron.focus();
-    await page.keyboard.press('Enter');
+      await expect(
+        tree.locator('ix-tree-item', { hasText: 'Sample Child ' }).first()
+      ).toBeVisible();
+      const expandedChevron = sampleItem.getByRole('button', {
+        name: 'Collapse tree item',
+      });
+      await expect(expandedChevron).toBeFocused();
+      await expect(expandedChevron).toHaveAttribute('aria-expanded', 'true');
+    }
+  );
 
-    const children = tree.locator('ix-tree-item', {
-      hasText: 'Sample Child ',
-    });
-    await expect(children.nth(0)).toBeVisible();
-  }
-);
+  regressionTest(
+    `should select item when ${key} is pressed on tree-node-container`,
+    async ({ mount, page }) => {
+      const tree = await initializeTree(mount, page);
+      const sampleItem = tree.locator('ix-tree-item', {
+        hasText: 'Sample',
+        hasNotText: 'Child',
+      });
+      const container = sampleItem.locator('.tree-node-container');
 
-regressionTest(
-  'should expand item when Space is pressed on chevron',
-  async ({ mount, page }) => {
-    const tree = await initializeTree(mount, page);
+      await container.focus();
+      await page.keyboard.press(key);
 
-    const sampleItem = tree.locator('ix-tree-item', {
-      hasText: 'Sample',
-      hasNotText: 'Child',
-    });
-    const chevron = sampleItem.locator('ix-icon');
-
-    await chevron.focus();
-    await page.keyboard.press('Space');
-
-    const children = tree.locator('ix-tree-item', {
-      hasText: 'Sample Child ',
-    });
-    await expect(children.nth(0)).toBeVisible();
-  }
-);
-
-regressionTest(
-  'should select item when Enter is pressed on tree-node-container',
-  async ({ mount, page }) => {
-    const tree = await initializeTree(mount, page);
-
-    const sampleItem = tree.locator('ix-tree-item', {
-      hasText: 'Sample',
-      hasNotText: 'Child',
-    });
-    const container = sampleItem.locator('.tree-node-container');
-
-    await container.focus();
-    await page.keyboard.press('Enter');
-
-    await expect(sampleItem).toHaveClass(/selected/);
-  }
-);
-
-regressionTest(
-  'should select item when Space is pressed on tree-node-container',
-  async ({ mount, page }) => {
-    const tree = await initializeTree(mount, page);
-
-    const sampleItem = tree.locator('ix-tree-item', {
-      hasText: 'Sample',
-      hasNotText: 'Child',
-    });
-    const container = sampleItem.locator('.tree-node-container');
-
-    await container.focus();
-    await page.keyboard.press('Space');
-
-    await expect(sampleItem).toHaveClass(/selected/);
-  }
-);
+      await expect(sampleItem).toHaveClass(/selected/);
+    }
+  );
+}
 
 regressionTest(
   'disabled item should not respond to keyboard activation',
@@ -899,6 +866,7 @@ regressionTest(
     const parent = tree.locator('ix-tree-item', { hasText: 'Disabled Parent' });
     const container = parent.locator('.tree-node-container');
 
+    await expect(parent.locator('.icon-toggle')).toBeDisabled();
     await container.focus();
     await page.keyboard.press('Enter');
 
@@ -909,22 +877,28 @@ regressionTest(
   }
 );
 
-regressionTest(
-  'should preserve focus on tree-node-container after refreshTree',
-  async ({ mount, page }) => {
-    const tree = await initializeTree(mount, page);
+for (const selector of ['.icon-toggle', '.tree-node-container']) {
+  for (const force of [false, true]) {
+    regressionTest(
+      `should preserve focus on ${selector} after refreshTree (force: ${force})`,
+      async ({ mount, page }) => {
+        const tree = await initializeTree(mount, page);
+        const sampleItem = tree.locator('ix-tree-item', {
+          hasText: 'Sample',
+          hasNotText: 'Child',
+        });
+        const control = sampleItem.locator(selector);
 
-    const sampleItem = tree.locator('ix-tree-item', {
-      hasText: 'Sample',
-      hasNotText: 'Child',
-    });
-    const container = sampleItem.locator('.tree-node-container');
+        await control.focus();
+        await expect(control).toBeFocused();
 
-    await container.focus();
-    await expect(container).toBeFocused();
+        await tree.evaluate(
+          (el: HTMLIxTreeElement, force) => el.refreshTree({ force }),
+          force
+        );
 
-    await tree.evaluate((el: HTMLIxTreeElement) => el.refreshTree());
-
-    await expect(container).toBeFocused();
+        await expect(control).toBeFocused();
+      }
+    );
   }
-);
+}

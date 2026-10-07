@@ -50,16 +50,27 @@
     height: 2rem;
     min-width: 2rem;
 
-    ix-icon {
-      transition: transform var(--theme-default-time) ease-in-out;
+    .icon-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: inherit;
       outline: none;
-
-      &.icon-toggle-down {
-        transform: rotate(90deg);
-      }
 
       &:focus-visible {
         @include focus-visible.ix-focus-visible;
+      }
+
+      ix-icon {
+        transition: transform var(--theme-default-time) ease-in-out;
+
+        &.icon-toggle-down {
+          transform: rotate(90deg);
+        }
       }
     }
   }

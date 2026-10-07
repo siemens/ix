@@ -4812,7 +4812,7 @@ export namespace Components {
     }
     interface IxTreeItem {
         /**
-          * ARIA label for the chevron icon
+          * ARIA label for the expand/collapse button
          */
         "ariaLabelChevronIcon"?: string;
         /**
@@ -12010,7 +12010,7 @@ declare namespace LocalJSX {
     }
     interface IxTreeItem {
         /**
-          * ARIA label for the chevron icon
+          * ARIA label for the expand/collapse button
          */
         "ariaLabelChevronIcon"?: string;
         /**

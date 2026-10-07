@@ -314,35 +314,6 @@ export class Tree {
     );
   }
 
-  private getFocusedTreeNodeInfo(): {
-    nodeId: string;
-    target: 'chevron' | 'item';
-  } | null {
-    const activeEl = document.activeElement;
-    if (!(activeEl instanceof HTMLElement)) {
-      return null;
-    }
-
-    const nodeId = this.getTreeNodeId(activeEl);
-    if (!nodeId) {
-      return null;
-    }
-
-    const shadowActive = activeEl.shadowRoot?.activeElement;
-    if (shadowActive?.tagName === 'IX-ICON') {
-      return { nodeId, target: 'chevron' };
-    }
-
-    if (
-      shadowActive instanceof HTMLElement &&
-      shadowActive.classList.contains('tree-node-container')
-    ) {
-      return { nodeId, target: 'item' };
-    }
-
-    return null;
-  }
-
   /**
    * Refresh the list.
    * This will re-render the list with the current model and context.
@@ -350,32 +321,39 @@ export class Tree {
   @Method()
   async refreshTree(options: RefreshTreeOptions = defaultRefreshTreeOptions) {
     if (this.hyperlist) {
-      const focusInfo = this.getFocusedTreeNodeInfo();
+      const focusedItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+        'ix-tree-item:focus-within'
+      );
+      const focusedControl = focusedItem?.shadowRoot?.activeElement;
+      const focusedId = focusedItem?.dataset.treeNodeId;
 
       this.hyperlist.refresh(
         this.hostElement,
         this.getVirtualizerOptions(options)
       );
 
-      if (focusInfo) {
-        const treeItem = this.hostElement.querySelector<HTMLElement>(
-          `[data-tree-node-id="${CSS.escape(focusInfo.nodeId)}"]`
+      if (
+        focusedId &&
+        focusedControl instanceof HTMLElement &&
+        focusedControl.matches('.icon-toggle, .tree-node-container')
+      ) {
+        const treeItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+          `[data-tree-node-id="${CSS.escape(focusedId)}"]`
         );
-        if (focusInfo.target === 'chevron') {
-          const chevron =
-            treeItem?.shadowRoot?.querySelector<HTMLElement>('ix-icon');
-          if (chevron) {
-            chevron.focus();
-          } else {
-            treeItem?.shadowRoot
-              ?.querySelector<HTMLElement>('.tree-node-container')
-              ?.focus();
-          }
-        } else {
-          treeItem?.shadowRoot
-            ?.querySelector<HTMLElement>('.tree-node-container')
-            ?.focus();
+        if (treeItem && treeItem !== focusedItem) {
+          await treeItem.componentOnReady();
         }
+        const selector = focusedControl.matches('.icon-toggle')
+          ? '.icon-toggle'
+          : '.tree-node-container';
+        const control =
+          treeItem?.shadowRoot?.querySelector<HTMLElement>(selector);
+        (
+          control ??
+          treeItem?.shadowRoot?.querySelector<HTMLElement>(
+            '.tree-node-container'
+          )
+        )?.focus();
       }
     }
   }
