@@ -20,7 +20,6 @@
   align-self: flex-start;
   overflow: hidden;
   cursor: default;
-  /* Figma Card shell outer size includes border (214×120) */
   box-sizing: border-box;
 
   width: var(--ix-card--width);
@@ -82,9 +81,9 @@
 }
 
 /*
- * Status chrome (Figma Status indicator):
- * - 8px top strip for every non-default variant
- * - outline: 1px status border on sides/bottom (top edge is the strip)
+ * Status chrome:
+ * - top strip for every non-default variant
+ * - outline: status border on sides/bottom (top edge is the strip)
  * - filled: no border, strip on neutral body
  */
 @each $status in card-vars.$card-status-variants {

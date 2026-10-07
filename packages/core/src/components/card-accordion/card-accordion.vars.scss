@@ -22,7 +22,7 @@
   --ix-card-accordion-footer--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-card-accordion--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 
-  /* Outline accordion chrome (matches Figma “For outline”) */
+  /* Outline accordion chrome */
   --ix-card-accordion-chrome--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-chrome--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-card-accordion-chrome--background--active: #{sys.$si-sys-color-background-selected};
@@ -41,7 +41,6 @@
   --ix-card-accordion--expanded-height: calc(
     #{sys.$si-sys-sizing-size-160} - #{sys.$si-sys-sizing-spacing-y-20}
   );
-  /* Figma _Push card accordion: p-8 + icon-md (20) = 36 */
   --ix-card-accordion-expand-action--height: calc(
     #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
   );

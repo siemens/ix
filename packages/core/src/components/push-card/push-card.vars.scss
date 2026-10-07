@@ -14,19 +14,14 @@
   --ix-push-card--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-push-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-push-card-accordion--border-color: #{sys.$si-sys-color-border-3};
-  /* Figma Push card width (320); base ix-card defaults to 214 */
+  /* Wider than base ix-card */
   --ix-push-card--width: #{sys.$si-sys-sizing-size-170};
 }
 
 :host {
-  /* Figma Count frame: 40px glyph in 48px row, 16px gap to count text */
   --ix-push-card-icon--icon-size: #{sys.$si-sys-sizing-size-90};
   --ix-push-card--height: #{sys.$si-sys-sizing-size-100};
-  /*
-   * Figma Push Card collapsed = 258.
-   * No strip: Card content 220 + accordion 36 (+ borders).
-   * With 8px status strip: Card content 212 + accordion 36.
-   */
+  /* Content height without status strip; strip variants shorten below */
   --ix-push-card-content--height: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} +
       #{sys.$si-sys-sizing-spacing-y-50} + #{sys.$si-sys-sizing-size-30}

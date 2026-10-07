@@ -25,7 +25,7 @@
   }
 
   .icon {
-    /* Figma Glyph 40×40 — omit size attr so CSS wins over ix-icon defaults */
+    /* Explicit size so CSS wins over ix-icon defaults */
     height: var(--ix-push-card-icon--icon-size);
     width: var(--ix-push-card-icon--icon-size);
     min-height: var(--ix-push-card-icon--icon-size);
@@ -34,7 +34,6 @@
 
   ix-card-title {
     height: var(--ix-push-card--height);
-    /* Figma Count frame: no extra title margins; card-content gap = 8px */
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -53,7 +52,7 @@
   ix-card-accordion {
     --ix-card-accordion-expand-content--border-radius: 0 0
       var(--ix-push-card--border-radius) var(--ix-push-card--border-radius);
-    /* Figma Accordion frame: fill only — no inner border around expanded content */
+    /* No inner border around expanded content */
     --ix-card-accordion-chrome-frame--border-color: transparent;
     --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
   }
