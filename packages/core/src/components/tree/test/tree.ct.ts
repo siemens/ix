@@ -137,7 +137,9 @@ regressionTest(
     });
 
     await item.getByRole('button', { name: 'Open branch' }).click();
-    await expect(item.getByRole('button', { name: 'Close branch' })).toBeVisible();
+    await expect(
+      item.getByRole('button', { name: 'Close branch' })
+    ).toBeVisible();
 
     await item.evaluate((element: HTMLIxTreeItemElement) => {
       element.ariaLabelChevronIcon = 'Toggle branch';
