@@ -1,0 +1,22 @@
+packages/core/src/components/card-accordion/card-accordion.scss
+  h_c5a773bf2fda8b 11,31,41-49,65-70
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 28,33-35,41-42,52-54
+packages/core/src/components/card-content/card-content.scss
+  h_c5a773bf2fda8b 14-15
+packages/core/src/components/push-card/push-card.scss
+  h_c5a773bf2fda8b 55-61
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 16-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f5598ae8142cf98be8f36073119d5cd71086481f",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
