@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('date dropdown', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('date-dropdown/basic');
-    const dateDropdown = page.locator('ix-date-dropdown').first();
+    const dateDropdown = page.locator('ix-date-dropdown[variant="tertiary"]');
     await dateDropdown.click();
     const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
 

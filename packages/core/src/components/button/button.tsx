@@ -18,7 +18,12 @@ import {
   Mixin,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
-import { BaseButtonStyle, BaseButtonVariant } from './base-button.types';
+import {
+  BaseButtonStyle,
+  BaseButtonVariant,
+  ButtonIconSize,
+  DEFAULT_BUTTON_ICON_SIZE,
+} from './base-button.types';
 import { IxButtonComponent } from './button-component';
 import { AnchorTarget } from './button.interface';
 import { DefaultMixins } from '../utils/internal/component';
@@ -66,6 +71,13 @@ export class Button
   @Prop() loading: boolean = false;
 
   /**
+   * @internal
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
+  @Prop({ reflect: true }) inert = false;
+
+  /**
    * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
    *
    * @since 3.1.0
@@ -86,8 +98,12 @@ export class Button
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
 
-  /** @internal */
-  @Prop() iconSize: '12' | '16' | '24' = '24';
+  /**
+   * Size of leading and trailing icons
+   *
+   * @internal
+   */
+  @Prop() iconSize: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
@@ -191,6 +207,7 @@ export class Button
       iconRight: this.iconRight,
       iconSize: this.iconSize,
       loading: this.loading,
+      inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,

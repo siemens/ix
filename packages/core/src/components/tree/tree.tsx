@@ -181,7 +181,7 @@ export class Tree {
 
         const el = innerElement;
         el.setAttribute('data-tree-node-id', item.id);
-        el.style.paddingRight = '1rem';
+        el.style.paddingRight = 'var(--si-sys-sizing-spacing-x-60)';
         this.updatePadding(el, item);
 
         this.dirtyItems.delete(item.id);

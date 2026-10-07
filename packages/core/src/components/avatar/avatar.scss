@@ -7,14 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use './../button/button-mixin';
-@use 'mixins/text-truncation';
-@use 'mixins/hover';
 @use 'mixins/scrollbar';
+@use 'tokens/system' as sys;
 
 @use '../utils/focus/focus-proxy' as focus-proxy;
 
+@use './avatar.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -27,10 +26,10 @@
     align-items: center;
 
     > .avatar-image {
-      height: 2rem;
-      width: 2rem;
-      min-height: 2rem;
-      min-width: 2rem;
+      height: var(--ix-avatar-image--height);
+      width: var(--ix-avatar-image--width);
+      min-height: var(--ix-avatar-image--min-height);
+      min-width: var(--ix-avatar-image--min-width);
       border-radius: 100px;
     }
 
@@ -38,13 +37,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 2rem;
-      width: 2rem;
-      min-height: 2rem;
-      min-width: 2rem;
+      height: var(--ix-avatar-initials--height);
+      width: var(--ix-avatar-initials--width);
+      min-height: var(--ix-avatar-initials--min-height);
+      min-width: var(--ix-avatar-initials--min-width);
       border-radius: 100px;
-      background-color: var(--theme-avatar--background);
-      color: var(--theme-avatar--color);
+      background-color: var(--ix-avatar--background);
+      color: var(--ix-avatar--color);
 
       > ix-typography {
         // Fix to get the text vertically centered
@@ -53,11 +52,11 @@
     }
 
     #avatar-path-background {
-      fill: var(--theme-avatar--background);
+      fill: var(--ix-avatar--background);
     }
 
     #avatar-path-person {
-      fill: var(--theme-avatar--color);
+      fill: var(--ix-avatar--color);
     }
   }
 }
@@ -67,16 +66,16 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    height: 2.5rem;
-    padding: 1rem;
-    width: 12.75rem;
-    min-width: 12.75rem;
-    max-width: 12.75rem;
+    height: var(--ix-avatar-user-info--height);
+    padding: var(--ix-avatar-user-info--padding);
+    width: var(--ix-avatar-user-info--width);
+    min-width: var(--ix-avatar-user-info--min-width);
+    max-width: var(--ix-avatar-user-info--max-width);
 
-    gap: 1rem;
+    gap: var(--ix-avatar-user-info--gap);
 
     .avatar {
-      width: 2rem;
+      width: var(--ix-avatar-user-info-avatar--width);
       pointer-events: none;
     }
 
@@ -85,7 +84,7 @@
       position: relative;
       flex-direction: column;
       justify-content: center;
-      max-width: 10rem;
+      max-width: var(--ix-avatar-user--max-width);
       width: 100%;
       overflow: hidden;
     }
@@ -115,11 +114,11 @@
     }
   }
 
-  @include button-mixin.btn-base-variant('tertiary');
+  @include button-mixin.btn-base-variant('subtle-tertiary');
 
   button:focus-visible {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-btn--focus--outline-offset);
+    outline: 1px solid var(--ix-avatar--outline-color--focus);
+    outline-offset: var(--ix-avatar--focus--outline-offset);
   }
 
   .avatar {
@@ -127,4 +126,10 @@
   }
 
   @include focus-proxy.focus-proxy();
+}
+
+:host(.avatar-button.active) {
+  .btn-subtle-tertiary:not(.disabled):not(:disabled) {
+    @include button-mixin.btn-active-look('subtle-tertiary');
+  }
 }

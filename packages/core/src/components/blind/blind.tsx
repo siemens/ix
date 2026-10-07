@@ -161,11 +161,6 @@ export class Blind {
             <ix-icon
               class="collapse-icon"
               name={iconChevronDownSmall}
-              color={
-                this.variant === 'filled' || this.variant === 'outline'
-                  ? 'color-std-text'
-                  : `color-${this.variant}--contrast`
-              }
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
@@ -178,16 +173,11 @@ export class Blind {
                     <ix-icon
                       class="blind-header-title-icon"
                       name={this.icon}
-                      color={
-                        this.variant === 'filled' || this.variant === 'outline'
-                          ? 'color-std-text'
-                          : `color-${this.variant}--contrast`
-                      }
                     ></ix-icon>
                   )}
                   <div class={'blind-header-title-row'}>
                     <div class="blind-header-title-col">
-                      <ix-typography title={this.label} format="label-lg" bold>
+                      <ix-typography title={this.label} format="body-lg" bold>
                         <div
                           class="blind-header-title-label"
                           title={this.label}

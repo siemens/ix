@@ -18,7 +18,7 @@ import {
   VNode,
   Watch,
 } from '@stencil/core';
-import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
+import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   InheritAriaAttributesMixin,
@@ -245,6 +245,8 @@ export class Badge
   }
 
   override connectedCallback() {
+    super.connectedCallback();
+
     if (this.hasDisconnected) {
       this.syncAnchorDescribedBy();
       this.hasDisconnected = false;
@@ -252,6 +254,8 @@ export class Badge
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
+
     this.clearAnchorDescribedBy();
     this.hasDisconnected = true;
   }
@@ -306,7 +310,7 @@ export class Badge
       this.hasAnchor = true;
       // Strip any ARIA still on the host (e.g. re-applied while standalone) and discard —
       // attached mode must not keep role / aria-* on the wrapper.
-      a11yHostAttributes(this.hostElement);
+      this.readAriaAttributesFromHost();
       this.inheritAriaAttributes = {};
       this.descriptionId = `${this.getHostElementId()}-description`;
       return;
@@ -314,7 +318,7 @@ export class Badge
 
     this.hasAnchor = false;
     // Leaving attached: capture any author ARIA set on the host for standalone `<Host>`.
-    this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
+    this.inheritAriaAttributes = this.readAriaAttributesFromHost();
   }
 
   private getResolvedVariant(): BadgeVariant {
@@ -566,7 +570,6 @@ export class Badge
           <ix-icon
             class="status-icon"
             name={getBadgeStatusIcon(variant, true)}
-            size="16"
             aria-hidden={a11yBoolean(true)}
           />
         );
@@ -578,13 +581,11 @@ export class Badge
           <ix-icon
             class="status-icon status-icon-plate"
             name={getBadgeStatusIconPlate(variant)}
-            size="16"
             aria-hidden={a11yBoolean(true)}
           />
           <ix-icon
             class="status-icon status-icon-glyph"
             name={getBadgeStatusIcon(variant, false)}
-            size="16"
             aria-hidden={a11yBoolean(true)}
           />
         </span>

@@ -77,7 +77,7 @@ const initializeTree = async (mount: Mount, page: Page) => {
   );
 
   const item = tree.locator('ix-tree-item').nth(0);
-  await expect(tree).toHaveClass(/hydrated/);
+  await expect(tree).toHaveAttribute('hydrated');
   await expect(item).toBeVisible();
 
   return tree;
@@ -116,7 +116,7 @@ regressionTest.describe('accessibility', () => {
 regressionTest('renders', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
   const item = tree.locator('ix-tree-item').nth(0);
-  await expect(tree).toHaveClass(/hydrated/);
+  await expect(tree).toHaveAttribute('hydrated');
   await expect(item).toBeVisible();
 });
 
@@ -185,7 +185,7 @@ regressionTest('update tree', async ({ mount, page }) => {
     },
   });
 
-  await expect(tree).toHaveClass(/hydrated/);
+  await expect(tree).toHaveAttribute('hydrated');
   await expect(item).toBeVisible();
   await expect(item2).toBeVisible();
 
@@ -339,7 +339,7 @@ regressionTest(
   'should expand and collapse but not select item when toggle icon is clicked twice',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     const sampleItem = tree.locator('ix-tree-item', {
       hasText: 'Sample',
@@ -376,7 +376,7 @@ regressionTest(
   'should select but not toggle item when it is clicked',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     const sampleItem = tree.locator('ix-tree-item', {
       hasText: 'Sample',
@@ -400,7 +400,7 @@ regressionTest(
   'should select item when icon-toggle-container is clicked without the toggle icon to be visible',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     await tree
       .locator('ix-tree-item', {
@@ -423,7 +423,7 @@ regressionTest(
   'item should stay selected when toggle icon is clicked',
   async ({ mount, page }) => {
     const tree = await initializeTree(mount, page);
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     await tree
       .locator('ix-tree-item', {
@@ -460,7 +460,7 @@ regressionTest(
     await tree.evaluate((treeElement: HTMLIxTreeElement) => {
       treeElement.setAttribute('toggle-on-item-click', 'true');
     });
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     const sampleItem = tree.locator('ix-tree-item', {
       hasText: 'Sample',
@@ -577,7 +577,7 @@ regressionTest(
       [createLargeTreeModel(50)]
     );
 
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     const rafCallCount = await page.evaluate(() => {
       return new Promise<number>((resolve) => {
@@ -617,7 +617,7 @@ regressionTest(
       [createLargeTreeModel(100)]
     );
 
-    await expect(tree).toHaveClass(/hydrated/);
+    await expect(tree).toHaveAttribute('hydrated');
 
     const rafCalledDuringScroll = await tree.evaluate((element) => {
       return new Promise<boolean>((resolve) => {
@@ -683,7 +683,7 @@ async function assertDisabledItemCannotBeSelectedOrToggled(
     { model, context }
   );
 
-  await expect(tree).toHaveClass(/hydrated/);
+  await expect(tree).toHaveAttribute('hydrated');
 
   const parent = tree.locator('ix-tree-item', { hasText: parentLabel });
 

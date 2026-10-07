@@ -88,19 +88,21 @@ import {
         <ix-col>
           <ix-pill
             variant="custom"
-            pill-color="var(--theme-color-inv-std-text)"
-            background="var(--theme-color-dynamic)"
+            pillColor="var(--si-sys-color-text-inverse)"
+            background="var(--si-sys-color-background-accent-hover)"
             icon="info"
-          >Custom</ix-pill>
+            >Custom</ix-pill
+          >
         </ix-col>
         <ix-col>
           <ix-pill
             variant="custom"
             outline
-            pill-color="var(--theme-color-dynamic)"
-            background="var(--theme-color-dynamic)"
+            pillColor="var(--si-sys-color-text-accent-hover)"
+            background="var(--si-sys-color-background-accent-hover)"
             icon="info"
-          >Custom</ix-pill>
+            >Custom</ix-pill
+          >
         </ix-col>
       </ix-row>
     </ix-layout-grid>

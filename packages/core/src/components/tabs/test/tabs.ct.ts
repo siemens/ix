@@ -48,8 +48,22 @@ regressionTest('renders', async ({ mount, page }) => {
   const tabs = page.locator('ix-tabs');
   const tab = page.locator('ix-tab-item').nth(0);
 
-  await expect(tabs).toHaveClass(/\bhydrated\b/);
+  await expect(tabs).toHaveAttribute('hydrated');
   await expect(tab).toHaveClass(/\bselected\b/);
+});
+
+regressionTest('preserves the tablist role', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs role="navigation" aria-label="Process steps">
+      <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+    </ix-tabs>
+  `);
+  const tabs = page.locator('ix-tabs');
+  const tablist = tabs.getByRole('tablist');
+
+  await expect(tabs).toHaveAttribute('role', 'navigation');
+  await expect(tablist).toHaveAttribute('role', 'tablist');
+  await expect(tablist).toHaveAttribute('aria-label', 'Process steps');
 });
 
 regressionTest('should change tab', async ({ mount, page }) => {
@@ -65,7 +79,7 @@ regressionTest('should change tab', async ({ mount, page }) => {
 
   await tab.click();
 
-  await expect(tabs).toHaveClass(/\bhydrated\b/);
+  await expect(tabs).toHaveAttribute('hydrated');
   await expect(tab).toHaveClass(/\bselected\b/);
 });
 
@@ -91,7 +105,7 @@ regressionTest(
 
     await lastTab.click();
 
-    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(tabs).toHaveAttribute('hydrated');
     await expect(firstTab).toHaveClass(/\bselected\b/);
     await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
@@ -122,7 +136,7 @@ regressionTest(
       );
     });
 
-    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(tabs).toHaveAttribute('hydrated');
     await expect(firstTab).toHaveClass(/\bselected\b/);
 
     await secondTab.click();
@@ -155,7 +169,7 @@ regressionTest(
 
     await lastTab.click();
 
-    await expect(tabs).toHaveClass(/\bhydrated\b/);
+    await expect(tabs).toHaveAttribute('hydrated');
     await expect(firstTab).toHaveClass(/\bselected\b/);
     await expect(lastTab).not.toHaveClass(/\bselected\b/);
   }
@@ -271,6 +285,83 @@ regressionTest(
   }
 );
 
+for (const { keyFirst, preventChange } of [
+  { keyFirst: true, preventChange: false },
+  { keyFirst: false, preventChange: false },
+  { keyFirst: true, preventChange: true },
+]) {
+  regressionTest(
+    `dynamic tabs - restores active tab when ${
+      keyFirst ? 'key' : 'item'
+    } changes first${preventChange ? ' with cancellation' : ''}`,
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-tabs active-tab-key="tab-1">
+          <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+          <ix-tab-item tab-key="tab-2">Item 2</ix-tab-item>
+        </ix-tabs>
+      `);
+
+      const tabs = page.locator('ix-tabs');
+      await expect(tabs).toHaveAttribute('hydrated');
+      await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      await tabs.evaluate((element: HTMLIxTabsElement) => {
+        element.activeTabKey = 'tab-2';
+        element.querySelector('ix-tab-item')!.remove();
+      });
+      await expect(tabs.getByRole('tab', { name: 'Item 2' })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      const changes = await tabs.evaluateHandle((element, preventChange) => {
+        const details: (string | undefined)[] = [];
+        element.addEventListener(
+          'tabChange',
+          (event: CustomEvent<string | undefined>) => {
+            details.push(event.detail);
+            if (preventChange) {
+              event.preventDefault();
+            }
+          }
+        );
+        return details;
+      }, preventChange);
+
+      await tabs.evaluate((element: HTMLIxTabsElement, keyFirst) => {
+        if (keyFirst) {
+          element.activeTabKey = 'tab-1';
+        }
+        const firstTab = document.createElement('ix-tab-item');
+        firstTab.textContent = 'Item 1';
+        element.prepend(firstTab);
+        firstTab.tabKey = 'tab-1';
+        if (!keyFirst) {
+          element.activeTabKey = 'tab-1';
+        }
+      }, keyFirst);
+
+      await expect(tabs.getByRole('tab', { name: 'Item 1' })).toHaveAttribute(
+        'aria-selected',
+        preventChange ? 'false' : 'true'
+      );
+      await expect(tabs.getByRole('tab', { name: 'Item 2' })).toHaveAttribute(
+        'aria-selected',
+        preventChange ? 'true' : 'false'
+      );
+      await expect(tabs).toHaveJSProperty(
+        'activeTabKey',
+        preventChange ? 'tab-2' : 'tab-1'
+      );
+      expect(await changes.jsonValue()).toEqual(['tab-1']);
+    }
+  );
+}
+
 regressionTest(
   'dynamic tabs - should preserve default classes when adding custom classes during re-render',
   async ({ mount, page }) => {
@@ -296,7 +387,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'bottom']) {
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
+    await expect(tabs.nth(1)).toHaveAttribute('hydrated');
+    for (const className of ['new', 'bottom']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );
@@ -339,7 +432,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'top']) {
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
+    await expect(tabs.nth(1)).toHaveAttribute('hydrated');
+    for (const className of ['new', 'top']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );
@@ -375,9 +470,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    await expect(tabs.nth(0)).toHaveClass(/hydrated/);
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
 
-    for (const className of ['new', 'hydrated', 'bottom', 'stretched']) {
+    for (const className of ['new', 'bottom', 'stretched']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );
@@ -413,7 +508,9 @@ regressionTest(
 
     const tabs = page.locator('ix-tab-item');
 
-    for (const className of ['new', 'hydrated', 'bottom']) {
+    await expect(tabs.nth(0)).toHaveAttribute('hydrated');
+    await expect(tabs.nth(1)).toHaveAttribute('hydrated');
+    for (const className of ['new', 'bottom']) {
       await expect(tabs.nth(0)).toHaveClass(
         new RegExp(String.raw`\b${className}\b`)
       );

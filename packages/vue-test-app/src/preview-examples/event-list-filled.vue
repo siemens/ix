@@ -11,10 +11,10 @@
 import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
 
 const items = [
-  { text: 'Text 1', color: 'color-primary' },
-  { text: 'Text 2', color: 'color-primary' },
-  { text: 'Text 3', color: 'color-alarm' },
-  { text: 'Text 4', color: 'color-success' },
+  { text: 'Text 1', color: '--si-sys-color-background-accent' },
+  { text: 'Text 2', color: '--si-sys-color-background-accent' },
+  { text: 'Text 3', color: '--si-sys-color-background-danger' },
+  { text: 'Text 4', color: '--si-sys-color-background-success' },
 ];
 </script>
 
@@ -24,7 +24,7 @@ const items = [
       v-for="item in items"
       :key="item.text"
       variant="filled"
-      :itemColor="item.color"
+      :item-color="item.color"
     >
       {{ item.text }}
     </IxEventListItem>

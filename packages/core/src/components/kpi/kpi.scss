@@ -7,18 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './kpi.vars' as *;
 :host {
   display: flex;
   flex-grow: 1;
-  height: vars.$large-control-height;
-  border-radius: var(--theme-kpi--border-radius);
-  padding: 0.375rem vars.$tiny-space;
+  height: var(--ix-kpi--height);
+  border-radius: var(--ix-kpi--border-radius);
+  padding: var(--ix-kpi--padding);
   min-width: 0;
 
   @include component.ix-component;
@@ -34,22 +35,22 @@
     border-block-end: 2px solid grey;
 
     &.alarm {
-      border-block-end-color: var(--theme-color-alarm);
+      border-block-end-color: var(--ix-kpi-display--border-color--alarm);
     }
 
     &.warning {
-      border-block-end-color: var(--theme-color-warning);
+      border-block-end-color: var(--ix-kpi-display--border-color--warning);
     }
 
     .kpi-label {
       display: flex;
       align-items: center;
-      color: var(--theme-kpi-display-label--color);
+      color: var(--ix-kpi-display-label--color);
       flex-grow: 1;
       flex-shrink: 9999;
 
       ix-icon {
-        margin-inline-end: vars.$tiny-space;
+        margin-inline-end: var(--ix-kpi-icon--margin-inline-end);
       }
     }
 
@@ -59,14 +60,14 @@
     }
 
     .kpi-value {
-      color: var(--theme-kpi-display-value--color);
+      color: var(--ix-kpi-display-value--color);
 
-      @include fonts.text-xl;
+      @include fonts.typography-h3;
     }
 
     .kpi-unit {
-      margin-inline-start: vars.$small-space;
-      color: var(--theme-kpi-display-units--color);
+      margin-inline-start: var(--ix-kpi-unit--margin-inline-start);
+      color: var(--ix-kpi-display-units--color);
     }
 
     .kpi-label,
@@ -76,11 +77,11 @@
   }
 
   @include hover.hover {
-    background-color: var(--theme-kpi-display--background--hover);
+    background-color: var(--ix-kpi-display--background--hover);
   }
 
   @include hover.active {
-    background-color: var(--theme-kpi-display--background--active);
+    background-color: var(--ix-kpi-display--background--active);
   }
 
   @include hover.focus-visible {
@@ -89,7 +90,7 @@
 }
 
 :host(.stacked) {
-  height: 3.75rem;
+  height: var(--ix-kpi-stacked--height);
 
   .kpi-container {
     justify-content: center;

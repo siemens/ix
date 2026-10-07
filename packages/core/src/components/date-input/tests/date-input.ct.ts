@@ -39,7 +39,7 @@ const createDateInputAccessor = async (dateInput: Locator) => {
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+  await expect(dateInputElement).toHaveAttribute('hydrated');
 });
 
 regressionTest(
@@ -47,7 +47,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
 
     const dateInput = await createDateInputAccessor(dateInputElement);
     await dateInput.openByCalender();
@@ -60,7 +60,7 @@ regressionTest(
 regressionTest('select date by focus', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+  await expect(dateInputElement).toHaveAttribute('hydrated');
 
   const dateDropdown = dateInputElement.getByTestId('date-dropdown');
   const dateInput = await createDateInputAccessor(dateInputElement);
@@ -76,7 +76,7 @@ regressionTest('select date by focus', async ({ mount, page }) => {
 regressionTest('select date by input', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+  await expect(dateInputElement).toHaveAttribute('hydrated');
 
   const dateInput = await createDateInputAccessor(dateInputElement);
   await dateInput.openByCalender();
@@ -99,7 +99,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
 
     const dateInput = await createDateInputAccessor(dateInputElement);
     await dateInputElement.locator('input').fill('2025/10/10/10');
@@ -122,7 +122,7 @@ regressionTest(
       `<ix-date-input value="2024/05/05" i18n-error-date-unparsable="Datum nicht korrekt!"></ix-date-input>`
     );
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
 
     const dateInput = await createDateInputAccessor(dateInputElement);
     await dateInputElement.locator('input').fill('2025/10/10/10');
@@ -220,7 +220,7 @@ regressionTest(
 
     const dateInputElement = page.locator('ix-date-input');
 
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
     await dateInputElement.locator('input').fill('invalid-date');
     await dateInputElement.locator('input').blur();
     await expect(
@@ -232,11 +232,127 @@ regressionTest(
   }
 );
 
+regressionTest('locale-aware input parsing', async ({ mount, page }) => {
+  await mount(
+    `<ix-date-input locale="de" format="dd MMMM yyyy"></ix-date-input>`
+  );
+
+  const dateInputElement = page.locator('ix-date-input');
+  await expect(dateInputElement).toHaveAttribute('hydrated');
+
+  const input = dateInputElement.locator('input');
+  await input.fill('05 März 2023');
+  await input.blur();
+
+  await expect(input).not.toHaveClass(/is-invalid/);
+  await expect(dateInputElement).toHaveAttribute('value', '05 März 2023');
+});
+
+regressionTest.describe('runtime locale and format updates', () => {
+  const expectValueParsable = async (dateInput: Locator, parsable: boolean) => {
+    await expect
+      .poll(() =>
+        dateInput.evaluate(async (el: HTMLIxDateInputElement) => {
+          const { valid } = await el.getValidityState();
+          return valid;
+        })
+      )
+      .toBe(parsable);
+  };
+
+  const patchAttribute = (dateInput: Locator, name: string, value: string) =>
+    dateInput.evaluate(
+      (el, [attr, next]) => el.setAttribute(attr, next),
+      [name, value]
+    );
+
+  regressionTest('locale', async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="05 März 2023" locale="en" format="dd MMMM yyyy"></ix-date-input>`
+    );
+
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput).toHaveAttribute('hydrated');
+
+    // "März" is unknown to the English locale
+    await expectValueParsable(dateInput, false);
+
+    await patchAttribute(dateInput, 'locale', 'de');
+
+    await expectValueParsable(dateInput, true);
+    await expect(dateInput.locator('input')).not.toHaveClass(/is-invalid/);
+  });
+
+  regressionTest('format', async ({ mount, page }) => {
+    await mount(`<ix-date-input value="05.09.2023"></ix-date-input>`);
+
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput).toHaveAttribute('hydrated');
+
+    // Does not match the default format yyyy/LL/dd
+    await expectValueParsable(dateInput, false);
+
+    await patchAttribute(dateInput, 'format', 'dd.LL.yyyy');
+
+    await expectValueParsable(dateInput, true);
+    await expect(dateInput.locator('input')).not.toHaveClass(/is-invalid/);
+  });
+
+  regressionTest('reaches the nested picker', async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2023/09/05" locale="en"></ix-date-input>`
+    );
+
+    const dateInput = page.locator('ix-date-input');
+    await expect(dateInput).toHaveAttribute('hydrated');
+
+    const accessor = await createDateInputAccessor(dateInput);
+    await accessor.openByCalender();
+
+    // Weekday headers are rendered Monday-first, so index 1 is Tuesday
+    const tuesdayHeader = dateInput.locator('ix-dropdown .week-day').nth(1);
+    await expect(tuesdayHeader).toHaveText('Tue');
+
+    await patchAttribute(dateInput, 'locale', 'de');
+
+    await expect(tuesdayHeader).toHaveText('Die');
+    // The numeric value still parses, so the selection is kept
+    await expect(dateInput.locator('.calendar-item.selected')).toHaveText('5');
+  });
+});
+
+regressionTest(
+  'forwards weekStartIndex to the nested date picker',
+  async ({ mount, page }) => {
+    // weekStartIndex 6 is Sunday. 1 September 2023 is a Friday, five columns
+    // along from Sunday, versus four in the Monday-first default.
+    await mount(
+      `<ix-date-input value="2023/09/01" week-start-index="6"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveAttribute('hydrated');
+
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInput.openByCalender();
+
+    const column = await page.$eval('ix-date-picker', (picker) => {
+      const cell = picker.shadowRoot?.querySelector('[data-calendar-day="1"]');
+      const row = cell?.closest('[role="row"]');
+      if (!cell || !row) {
+        return -1;
+      }
+      return [...row.querySelectorAll('[role="gridcell"]')].indexOf(cell);
+    });
+
+    expect(column).toBe(5);
+  }
+);
+
 regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input value="2023/09/05"></ix-date-input>`);
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
     await dateInputElement.locator('input').focus();
     await page.keyboard.press('ArrowDown');
     await expect(page.locator('[data-calendar-day="5"]')).toBeFocused();

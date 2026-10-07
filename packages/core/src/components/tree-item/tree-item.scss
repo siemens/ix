@@ -7,16 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/shadow-dom/focus-visible';
+@use 'tokens/system' as sys;
 
+@use './tree-item.vars' as *;
 :host {
   display: flex;
   align-items: center;
 
-  height: 32px;
+  height: var(--ix-tree-item--height);
   width: 100%;
 
   cursor: pointer;
@@ -26,7 +27,7 @@
   .tree-node-container {
     display: flex;
     align-items: center;
-    height: vars.$x-large-space;
+    height: var(--ix-tree-item-tree-node-container--height);
     flex-grow: 1;
     align-items: center;
     outline: none;
@@ -46,9 +47,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    min-width: 2rem;
+    width: var(--ix-tree-item-icon-toggle-container--icon-size);
+    height: var(--ix-tree-item-icon-toggle-container--icon-size);
+    min-width: var(--ix-tree-item-icon-toggle-container--icon-size);
 
     .icon-toggle {
       display: flex;
@@ -66,7 +67,8 @@
       }
 
       ix-icon {
-        transition: transform var(--theme-default-time) ease-in-out;
+        transition: transform var(--ix-tree-item-expand-icon--transition-duration)
+        ease-in-out;
 
         &.icon-toggle-down {
           transform: rotate(90deg);
@@ -78,26 +80,26 @@
 
 :host(:not(.disabled):not(.selected).hover),
 :host(:not(.disabled):not(.selected):hover) {
-  background-color: var(--theme-tree-item--background--hover);
+  background-color: var(--ix-tree-item--background--hover);
 }
 
 :host(:not(.disabled):not(.selected).active),
 :host(:not(.disabled):not(.selected):active) {
-  background-color: var(--theme-tree-item--background--active);
+  background-color: var(--ix-tree-item--background--active);
 }
 
 :host(.selected) {
-  background-color: var(--theme-tree-item--background--selected);
+  background-color: var(--ix-tree-item--background--selected);
 }
 
 :host(.selected.hover),
 :host(.selected:hover) {
-  background-color: var(--theme-tree-item--background--selected-hover);
+  background-color: var(--ix-tree-item--background--selected-hover);
 }
 
 :host(.selected.active),
 :host(.selected:active) {
-  background-color: var(--theme-tree-item--background--selected-active);
+  background-color: var(--ix-tree-item--background--selected-active);
 }
 
 :host(.disabled) {

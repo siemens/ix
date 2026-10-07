@@ -9,6 +9,23 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`<ix-avatar aria-label="User"></ix-avatar>`);
+
+  const avatar = page.locator('ix-avatar');
+  await expect(avatar).toHaveAttribute('hydrated');
+  await expect(avatar).toBeVisible();
+});
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-avatar aria-label="User" username="foo" extra="bar" aria-label-tooltip="myTooltip"></ix-avatar>`
+  );
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest.describe('embedded into header', () => {
   regressionTest('show avatar as clickable', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
@@ -24,6 +41,40 @@ regressionTest.describe('embedded into header', () => {
 
     await expect(avatar.locator('button')).toBeVisible();
   });
+
+  regressionTest(
+    'marks the header avatar trigger active while the dropdown is open',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
+      <ix-application-header name="Test">
+        <ix-avatar>
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+      );
+
+      const avatar = page.locator('ix-avatar');
+      const trigger = avatar.locator('button');
+      const dropdown = avatar.locator('ix-dropdown');
+
+      await expect(avatar).not.toHaveClass(/\bactive\b/);
+      await expect(trigger).not.toHaveClass(/\bactive\b/);
+
+      await trigger.click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(avatar).toHaveClass(/\bactive\b/);
+      await expect(trigger).toHaveClass(/\bactive\b/);
+      await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+
+      await page.keyboard.press('Escape');
+      await expect(dropdown).not.toHaveClass(/show/);
+      await expect(avatar).not.toHaveClass(/\bactive\b/);
+      await expect(trigger).not.toHaveClass(/\bactive\b/);
+    }
+  );
 
   regressionTest('show avatar dropdown', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
@@ -141,7 +192,7 @@ regressionTest.describe('embedded into header', () => {
       await avatar.hover();
 
       const tooltip = avatar.getByLabel('myTooltip');
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/foo/);
 
@@ -149,7 +200,7 @@ regressionTest.describe('embedded into header', () => {
         avatar.setAttribute('tooltip-text', 'other text')
       );
 
-      await expect(tooltip).toHaveClass(/hydrated/);
+      await expect(tooltip).toHaveAttribute('hydrated');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/other text/);
     }

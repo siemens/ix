@@ -8,8 +8,8 @@
  */
 
 import '@testing-library/jest-dom/vitest';
-import { defineCustomElements } from './loader';
 
+const { defineCustomElements } = await import('./loader');
 defineCustomElements(window);
 
 Object.defineProperty(HTMLFormElement.prototype, 'requestSubmit', {

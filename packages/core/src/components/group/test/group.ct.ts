@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-group></ix-group>`);
   const group = page.locator('ix-group');
-  await expect(group).toHaveClass(/hydrated/);
+  await expect(group).toHaveAttribute('hydrated');
 });
 
 regressionTest('hide expand icon initial', async ({ mount, page }) => {
@@ -22,7 +22,7 @@ regressionTest('hide expand icon initial', async ({ mount, page }) => {
     </ix-group>
   `);
   const group = page.locator('ix-group');
-  await expect(group).toHaveClass(/hydrated/);
+  await expect(group).toHaveAttribute('hydrated');
 
   const expandIcon = group.getByTestId('expand-collapsed-icon');
   await expect(expandIcon).not.toBeVisible();
@@ -42,7 +42,7 @@ regressionTest('show expand icon initial', async ({ mount, page }) => {
     </ix-group>
   `);
   const group = page.locator('ix-group');
-  await expect(group).toHaveClass(/hydrated/);
+  await expect(group).toHaveAttribute('hydrated');
 
   const expandIcon = group.getByTestId('expand-collapsed-icon');
   await expect(expandIcon).toBeVisible();
@@ -71,7 +71,7 @@ regressionTest(
     await expandIcon.click();
 
     const groupItem = page.locator('ix-group-item').first();
-    await expect(group).toHaveClass(/hydrated/);
+    await expect(group).toHaveAttribute('hydrated');
 
     await groupItem.evaluate((item) => {
       item.addEventListener('click', () => (item.innerHTML += 'Clicked'));
@@ -96,14 +96,14 @@ regressionTest(
     await expandIcon.click();
 
     const groupItem = page.locator('ix-group-item').first();
-    await expect(group).toHaveClass(/hydrated/);
+    await expect(group).toHaveAttribute('hydrated');
 
     await group.evaluate((item) => {
       item.addEventListener('selectItem', (e) => e.preventDefault());
     });
 
     await groupItem.click();
-    await expect(groupItem).not.toHaveClass(/hydrated selected/);
+    await expect(groupItem).not.toHaveClass(/\bselected\b/);
   }
 );
 
@@ -148,6 +148,39 @@ regressionTest(
     await groupHeader.click();
 
     await expect(group).not.toHaveAttribute('selected');
+  }
+);
+
+regressionTest(
+  'marks the context menu trigger active while the dropdown is open',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-group header="Header text">
+        <ix-dropdown slot="dropdown">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+        <ix-group-item>Item 1</ix-group-item>
+      </ix-group>
+    `);
+
+    const group = page.locator('ix-group');
+    const trigger = group.locator('ix-group-context-menu ix-icon-button');
+    const dropdown = group.locator('ix-dropdown');
+
+    await expect(group).toHaveAttribute('hydrated');
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
+
+    await trigger.click();
+    await expect(dropdown).toHaveClass(/show/);
+    await expect(trigger).toHaveClass(/\bactive\b/);
+    await expect(trigger.locator('button')).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(dropdown).not.toHaveClass(/show/);
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
   }
 );
 

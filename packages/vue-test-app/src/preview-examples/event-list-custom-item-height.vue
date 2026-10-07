@@ -12,8 +12,12 @@ import { IxEventList, IxEventListItem } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxEventList itemHeight="L">
-    <IxEventListItem itemColor="color-primary">Text 1</IxEventListItem>
-    <IxEventListItem itemColor="color-primary">Text 2</IxEventListItem>
+  <IxEventList item-height="L">
+    <IxEventListItem item-color="--si-sys-color-background-accent"
+      >Text 1</IxEventListItem
+    >
+    <IxEventListItem item-color="--si-sys-color-background-accent"
+      >Text 2</IxEventListItem
+    >
   </IxEventList>
 </template>

@@ -8,7 +8,9 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './application.vars' as *;
 :host {
   display: flex;
   position: relative;
@@ -20,7 +22,7 @@
   @include component.ix-component;
 
   ix-application-header {
-    z-index: calc(var(--theme-z-index-sticky) + 1);
+    z-index: calc(var(--ix-application-child-header--z-index) + 1);
   }
 
   .logo-wrapper {
@@ -65,8 +67,8 @@
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu-margin-left: calc(
-    3.25rem + var(--ix-application-menu-safe-area-left, 0rem)
+  --ix-application-menu-margin-left: var(
+    --ix-application-breakpoint-md--application-menu-margin-left
   );
 
   aside.slotted {

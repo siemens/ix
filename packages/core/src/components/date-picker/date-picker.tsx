@@ -24,8 +24,27 @@ import {
   Watch,
   Mixin,
 } from '@stencil/core';
-import { DateTime, Info } from 'luxon';
+import { DateTime } from 'luxon';
+import {
+  formatWithLocale,
+  parseWithLocale,
+  toISODate,
+  tryParseWithLocale,
+} from '../utils/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import {
+  CalendarRow,
+  calendarRowsFor,
+  dayOfMonth,
+  isDayWithinRange,
+  isMonthWithinRange,
+  isYearWithinRange,
+  monthNameOf,
+  monthsOfYear,
+  WeekdayIndex,
+  weekdayNamesFrom,
+  weekStartFrom,
+} from '../utils/calendar.util';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -33,11 +52,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
-
-interface CalendarWeek {
-  weekNumber: number;
-  dayNumbers: (number | undefined)[];
-}
+import { DatePickerYearMonth } from './date-picker.types';
 
 @Component({
   tag: 'ix-date-picker',
@@ -82,7 +97,7 @@ export class DatePicker
       return;
     }
 
-    const date = this.parseDateString(newValue);
+    const date = tryParseWithLocale(newValue, this.format, this.locale);
 
     if (date) {
       this.currFromDate = date;
@@ -104,7 +119,7 @@ export class DatePicker
       return;
     }
 
-    const date = this.parseDateString(newValue);
+    const date = tryParseWithLocale(newValue, this.format, this.locale);
 
     if (date) {
       this.currToDate = date;
@@ -123,6 +138,13 @@ export class DatePicker
    * If not set there will be no restriction.
    */
   @Prop() maxDate = '';
+
+  @Watch('format')
+  @Watch('minDate')
+  @Watch('maxDate')
+  onDateBoundOrFormatChange() {
+    this.refreshDates();
+  }
 
   /**
    * Text of the date select button.
@@ -160,23 +182,66 @@ export class DatePicker
   @Prop() ariaLabelYearSelection?: string = 'Select year';
 
   /**
-   * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+   * The index of the day the week starts on, as a 0-based index into Luxon's
+   * `Info.weekdays()` array. That array is always ordered Monday-first
+   * regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday.
+   * E.g. weekStartIndex = 6 results in starting the week on Sunday.
    */
   @Prop() weekStartIndex = 0;
 
   /**
+   * The public `weekStartIndex` prop, narrowed and sanitised for the calendar
+   * helpers. Converting in one place keeps the raw number from reaching them.
+   */
+  private get weekStart(): WeekdayIndex {
+    return weekStartFrom(this.weekStartIndex);
+  }
+
+  /**
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months.
-   * It also determines the default order of weekdays based on the locale's conventions.
    * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
-   * It does not affect the values returned by methods and events.
+   * The locale is also applied when formatting and parsing date values.
+   * For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale.
+   * Use the `isoFrom` and `isoTo` fields on events for locale-independent values.
    */
   @Prop() locale?: string;
 
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
+    this.refreshDates();
+    this.calendarDirty = true;
+  }
+
+  /**
+   * Re-parse every date the component holds as a string with the current
+   * `format` and `locale`.
+   */
+  private refreshDates() {
+    this.refreshBoundDates();
+    this.refreshSelectedDates();
+  }
+
+  private refreshBoundDates() {
+    this._minDateObj = this.minDate
+      ? parseWithLocale(this.minDate, this.format, this.locale)
+      : undefined;
+    this._maxDateObj = this.maxDate
+      ? parseWithLocale(this.maxDate, this.format, this.locale)
+      : undefined;
+  }
+
+  /**
+   * Re-parse `from`/`to` with the current `format` and `locale`.
+   */
+  private refreshSelectedDates() {
+    this.currFromDate = this.from
+      ? tryParseWithLocale(this.from, this.format, this.locale)
+      : undefined;
+    this.currToDate = this.to
+      ? tryParseWithLocale(this.to, this.format, this.locale)
+      : undefined;
   }
 
   /**
@@ -201,51 +266,55 @@ export class DatePicker
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+   * formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Date range change event. Emitted when the date range selection changes and the component is in range mode.
+   * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Date selection event. Emitted when the selection is confirmed via the date select button.
+   * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Get the currently selected date or range. The object returned contains `from` and `to` properties.
-   * The property strings are formatted according to the `format` property and not affected by the `locale` property.
-   * The locale applied is always `en-US`.
+   * Get the currently selected date or range. The object returned contains `from` and `to` properties
+   * formatted according to the `format` and `locale` properties.
+   * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Method()
   async getCurrentDate(): Promise<DateChangeEvent> {
     const _from = this.currFromDate?.isValid
-      ? this.currFromDate?.toFormat(this.format)
+      ? formatWithLocale(this.currFromDate, this.format, this.locale)
       : undefined;
     const _to = this.currToDate?.isValid
-      ? this.currToDate?.toFormat(this.format)
+      ? formatWithLocale(this.currToDate, this.format, this.locale)
       : undefined;
 
     if (!this.singleSelection) {
       return {
         from: _from,
         to: _to,
+        isoFrom: toISODate(this.currFromDate),
+        isoTo: toISODate(this.currToDate),
       };
     }
 
     return {
       from: _from,
       to: undefined,
+      isoFrom: toISODate(this.currFromDate),
+      isoTo: undefined,
     };
   }
 
@@ -253,12 +322,16 @@ export class DatePicker
   currFromDate?: DateTime;
   @State() currToDate?: DateTime;
 
-  @State() selectedYear = 0;
-  @State() tempYear = 0;
+  /**
+   * The month on display, as the first of that month. Carries the displayed
+   * year with it, so the two can never drift apart. The calendar grid, the
+   * header and the month/year dropdown all read it, so they always agree.
+   * Write it through {@link setDisplayedMonth}.
+   */
+  @State() selectedMonthDate: DateTime = DateTime.local().startOf('month');
+
   @State() startYear = 0;
   @State() endYear = 0;
-  @State() selectedMonth = 0;
-  @State() tempMonth = 0;
 
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -267,13 +340,14 @@ export class DatePicker
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames: string[] = [];
-  @State() monthNames: string[] = [];
   @State() focusedDay: number = 1;
 
   private isDayFocus = false;
   private monthChangedFromFocus = false;
-  private readonly DAYS_IN_WEEK = 7;
-  private calendar: CalendarWeek[] = [];
+  private calendar: CalendarRow[] = [];
+  private _minDateObj?: DateTime;
+  private _maxDateObj?: DateTime;
+  private calendarDirty = true;
 
   onKeyDown(event: KeyboardEvent) {
     if (!this.isDayFocus) {
@@ -340,9 +414,7 @@ export class DatePicker
   }
 
   private getDaysInCurrentMonth(): number {
-    return (
-      DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth || 0
-    );
+    return this.selectedMonthDate.daysInMonth ?? 0;
   }
 
   private getFirstDayOfWeek(day: number): number {
@@ -367,25 +439,36 @@ export class DatePicker
     return DateTime.fromISO(this.today);
   }
 
-  private parseDateString(dateString: string): DateTime | undefined {
-    const date = DateTime.fromFormat(dateString, this.format);
-
-    if (!date.isValid) {
-      console.error(date.invalidExplanation);
-
-      return undefined;
-    }
-
-    return date;
-  }
-
   /**
    * @internal
    */
   @Method()
-  async updateSelectedYearMonth(date: DateTime) {
-    this.selectedYear = date.year;
-    this.selectedMonth = date.month - 1;
+  async updateSelectedYearMonth(date: DatePickerYearMonth) {
+    this.setDisplayedMonth(
+      DateTime.fromObject({
+        year: date.year,
+        month: date.month,
+      })
+    );
+  }
+
+  /**
+   * The single way to move the calendar. `month` may be any day of the target
+   * month; it is normalised to the first of that month.
+   */
+  private setDisplayedMonth(month: DateTime) {
+    this.selectedMonthDate = month.startOf('month');
+  }
+
+  @Watch('selectedMonthDate')
+  onCalendarStateChange() {
+    this.calendarDirty = true;
+  }
+
+  @Watch('weekStartIndex')
+  onWeekStartIndexChange() {
+    this.setTranslations();
+    this.calendarDirty = true;
   }
 
   onDayBlur() {
@@ -398,23 +481,16 @@ export class DatePicker
 
   override componentWillLoad() {
     this.setTranslations();
+    this.refreshDates();
 
-    this.currFromDate = this.from
-      ? DateTime.fromFormat(this.from, this.format)
-      : undefined;
-    this.currToDate = this.to
-      ? DateTime.fromFormat(this.to, this.format)
-      : undefined;
+    const initialMonth = (this.currFromDate ?? this.getDateTimeNow()).startOf(
+      'month'
+    );
 
-    const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
-    this.startYear = year - 101;
-    this.endYear = year + 101;
+    this.startYear = initialMonth.year - 101;
+    this.endYear = initialMonth.year + 101;
 
-    this.selectedMonth =
-      (this.currFromDate?.month ?? this.getDateTimeNow().month) - 1;
-    this.selectedYear = year;
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
+    this.setDisplayedMonth(initialMonth);
   }
 
   private keyboardNavigationYearSelection?: () => void;
@@ -430,7 +506,10 @@ export class DatePicker
   }
 
   override componentWillRender() {
-    this.calculateCalendar();
+    if (this.calendarDirty) {
+      this.calendar = calendarRowsFor(this.selectedMonthDate, this.weekStart);
+      this.calendarDirty = false;
+    }
   }
 
   override componentDidRender() {
@@ -489,34 +568,7 @@ export class DatePicker
   }
 
   private setTranslations() {
-    this.dayNames = this.rotateWeekDayNames(
-      Info.weekdays('long', {
-        locale: this.locale,
-      }),
-      this.weekStartIndex
-    );
-
-    this.monthNames = Info.months('long', {
-      locale: this.locale,
-    });
-  }
-
-  /**
-   * Rotate the WeekdayNames array.
-   * Based on the position that should be the new 0-index.
-   */
-  private rotateWeekDayNames(weekdays: string[], index: number): string[] {
-    const clone = [...weekdays];
-
-    if (index === 0) {
-      return clone;
-    }
-
-    index = -index;
-    const len = weekdays.length;
-
-    clone.push(...clone.splice(0, ((-index % len) + len) % len));
-    return clone;
+    this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
   }
 
   private async onDone() {
@@ -524,139 +576,18 @@ export class DatePicker
     this.dateSelect.emit(date);
   }
 
-  private calculateCalendar() {
-    const calendar: CalendarWeek[] = [];
-    const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
-    const monthStart = month.startOf('month');
-    const monthEnd = month.endOf('month');
-    let startWeek = monthStart.weekNumber;
-    let endWeek = monthEnd.weekNumber;
-    let monthStartWeekDayIndex = monthStart.weekday - 1;
-    let monthEndWeekDayIndex = monthEnd.weekday - 1;
-
-    if (this.weekStartIndex !== 0) {
-      // Find the positions where to start/stop counting the day-numbers based on which day the week starts
-      const weekdays = Info.weekdays();
-      const monthStartWeekDayName = weekdays[monthStart.weekday];
-
-      monthStartWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthStartWeekDayName
-      );
-      const monthEndWeekDayName = weekdays[monthEnd.weekday];
-      monthEndWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthEndWeekDayName
-      );
-    }
-
-    let correctLastWeek = false;
-    if (endWeek === 1) {
-      endWeek = monthEnd.weeksInWeekYear + 1;
-      correctLastWeek = true;
-    }
-
-    let correctFirstWeek = false;
-    if (startWeek === monthStart.weeksInWeekYear) {
-      startWeek = 1;
-      endWeek++;
-
-      correctFirstWeek = true;
-    }
-
-    let currDayNumber = 1;
-    for (
-      let weekIndex = startWeek;
-      weekIndex <= endWeek && currDayNumber <= 31;
-      weekIndex++
-    ) {
-      const daysArr: (number | undefined)[] = [];
-
-      for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
-        // Display empty cells until the calender starts/has ended
-        if (
-          (weekIndex === startWeek && j < monthStartWeekDayIndex) ||
-          (weekIndex === endWeek && j > monthEndWeekDayIndex)
-        ) {
-          daysArr.push(undefined);
-        } else {
-          daysArr.push(currDayNumber++);
-        }
-      }
-
-      if (correctFirstWeek || correctLastWeek) {
-        if (weekIndex === 1) {
-          calendar.push({
-            weekNumber: monthStart.weeksInWeekYear,
-            dayNumbers: daysArr,
-          });
-        } else if (weekIndex === monthEnd.weekNumber) {
-          calendar.push({
-            weekNumber: 1,
-            dayNumbers: daysArr,
-          });
-        } else {
-          calendar.push({
-            weekNumber: weekIndex - 1,
-            dayNumbers: daysArr,
-          });
-        }
-        continue;
-      }
-
-      calendar.push({
-        weekNumber: weekIndex,
-        dayNumbers: daysArr,
-      });
-    }
-
-    this.calendar = calendar;
-  }
-
-  private selectMonth(month: number) {
-    this.selectedMonth = month;
-    this.selectedYear = this.tempYear;
-    this.tempMonth = month;
-  }
-
   private changeCalendarView(number: -1 | 1) {
-    if (this.selectedMonth + number < 0) {
-      this.selectedYear--;
-      this.selectedMonth = 11;
-    } else if (this.selectedMonth + number > 11) {
-      this.selectedYear++;
-      this.selectedMonth = 0;
-    } else {
-      this.selectedMonth += number;
-    }
-
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
+    this.setDisplayedMonth(this.selectedMonthDate.plus({ months: number }));
   }
 
   private navigateByMonthOrYear(unit: 'month' | 'year', direction: -1 | 1) {
-    let targetYear = this.selectedYear;
-    let targetMonth = this.selectedMonth;
+    const targetMonth = this.selectedMonthDate.plus(
+      unit === 'year' ? { years: direction } : { months: direction }
+    );
 
-    if (unit === 'year') {
-      targetYear += direction;
-    } else {
-      targetMonth += direction;
-      if (targetMonth < 0) {
-        targetMonth = 11;
-        targetYear--;
-      } else if (targetMonth > 11) {
-        targetMonth = 0;
-        targetYear++;
-      }
-    }
+    this.focusedDay = Math.min(this.focusedDay, targetMonth.daysInMonth ?? 0);
 
-    const daysInTargetMonth =
-      DateTime.utc(targetYear, targetMonth + 1).daysInMonth || 0;
-    this.focusedDay = Math.min(this.focusedDay, daysInTargetMonth);
-
-    this.selectedYear = targetYear;
-    this.selectedMonth = targetMonth;
-    this.tempYear = targetYear;
-    this.tempMonth = targetMonth;
+    this.setDisplayedMonth(targetMonth);
     this.monthChangedFromFocus = true;
   }
 
@@ -665,9 +596,7 @@ export class DatePicker
       return;
     }
 
-    const date = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
-    );
+    const date = dayOfMonth(this.selectedMonthDate, selectedDay);
 
     if (this.singleSelection || this.currFromDate === undefined) {
       this.currFromDate = date;
@@ -710,9 +639,7 @@ export class DatePicker
 
   private getUtilitiesBasedOnDay(day: number) {
     const todayObj = this.getDateTimeNow();
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
-    );
+    const selectedDayObj = dayOfMonth(this.selectedMonthDate, day);
     return {
       isFirstDay: () => day === 1,
       isToday: () => todayObj.hasSame(selectedDayObj, 'day'),
@@ -731,12 +658,12 @@ export class DatePicker
     };
   }
 
-  private getDayClasses(day: number): Record<string, boolean> {
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
-    );
+  private getDayClasses(
+    day: number,
+    util: ReturnType<DatePicker['getUtilitiesBasedOnDay']>
+  ): Record<string, boolean> {
+    const selectedDayObj = dayOfMonth(this.selectedMonthDate, day);
 
-    const util = this.getUtilitiesBasedOnDay(day);
     return {
       'calendar-item': true,
       'empty-day': day === undefined,
@@ -749,72 +676,35 @@ export class DatePicker
   }
 
   private isWithinMinMaxYear(year: number): boolean {
-    const minDateYear = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format).year
-      : undefined;
-    const maxDateYear = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format).year
-      : undefined;
-    const isBefore = minDateYear ? year < minDateYear : false;
-    const isAfter = maxDateYear ? year > maxDateYear : false;
-
-    return !isBefore && !isAfter;
+    return isYearWithinRange(year, this._minDateObj, this._maxDateObj);
   }
 
-  private isWithinMinMaxMonth(month: number): boolean {
-    const minDateObj = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format)
-      : undefined;
-    const maxDateObj = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format)
-      : undefined;
-    const minDateMonth = minDateObj?.month;
-    const maxDateMonth = maxDateObj?.month;
-    const isBefore = minDateMonth
-      ? this.tempYear === minDateObj.year && month < minDateMonth
-      : false;
-    const isAfter = maxDateMonth
-      ? this.tempYear === maxDateObj.year && month > maxDateMonth
-      : false;
-
-    return !isBefore && !isAfter;
+  /** `month` is the first of the month being offered, so it carries its year. */
+  private isWithinMinMaxMonth(month: DateTime): boolean {
+    return isMonthWithinRange(month, this._minDateObj, this._maxDateObj);
   }
 
   private isWithinMinMaxDate(date: DateTime): boolean {
-    const _minDate = this.minDate
-      ? DateTime.fromFormat(this.minDate, this.format)
-      : undefined;
-    const _maxDate = this.maxDate
-      ? DateTime.fromFormat(this.maxDate, this.format)
-      : undefined;
-    const isBefore = _minDate
-      ? date.startOf('day') < _minDate.startOf('day')
-      : false;
-    const isAfter = _maxDate
-      ? date.startOf('day') > _maxDate.startOf('day')
-      : false;
-
-    return !isBefore && !isAfter;
+    return isDayWithinRange(date, this._minDateObj, this._maxDateObj);
   }
 
   private renderMonths() {
-    return this.monthNames.map((month, index) => {
-      const selected =
-        this.tempYear === this.selectedYear && this.tempMonth === index;
+    return monthsOfYear(this.selectedMonthDate.year).map((month) => {
+      const name = monthNameOf(month, this.locale);
 
       return (
         <ix-dropdown-item
-          checked={selected}
-          key={month}
+          checked={month.hasSame(this.selectedMonthDate, 'month')}
+          key={name}
           class={{
             'month-dropdown-item': true,
-            'disabled-item': !this.isWithinMinMaxMonth(index),
+            'disabled-item': !this.isWithinMinMaxMonth(month),
           }}
           onClick={() => {
-            this.selectMonth(index);
+            this.setDisplayedMonth(month);
           }}
         >
-          <span class="capitalize monthMargin">{`${month}`}</span>
+          <span class="capitalize monthMargin">{name}</span>
         </ix-dropdown-item>
       );
     });
@@ -824,7 +714,7 @@ export class DatePicker
     const rows = [];
 
     for (let year = this.startYear; year <= this.endYear; year++) {
-      const selected = this.tempYear === year;
+      const selected = this.selectedMonthDate.year === year;
 
       rows.push(
         <ix-dropdown-item
@@ -835,8 +725,7 @@ export class DatePicker
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={() => {
-            this.tempYear = year;
-            this.selectedYear = this.tempYear;
+            this.setDisplayedMonth(this.selectedMonthDate.set({ year }));
           }}
         >
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -924,6 +813,11 @@ export class DatePicker
   );
 
   override render() {
+    // Formatted once per render rather than per day cell, which would repeat
+    // the same locale lookup up to 42 times.
+    const monthLabel = monthNameOf(this.selectedMonthDate, this.locale);
+    const yearLabel = this.selectedMonthDate.year;
+
     return (
       <Host
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
@@ -955,7 +849,7 @@ export class DatePicker
                 }}
               >
                 <ix-typography bold class="capitalize" slot="button-label">
-                  {this.monthNames[this.selectedMonth]}
+                  {monthLabel}
                 </ix-typography>
                 {this.renderMonths()}
               </ix-dropdown-button>
@@ -1008,7 +902,7 @@ export class DatePicker
                   <div class="sentinel" data-sentinel="top"></div>
                 </div>
                 <ix-typography bold class="capitalize" slot="button-label">
-                  {this.selectedYear}
+                  {yearLabel}
                 </ix-typography>
                 {this.renderYears()}
                 <div class="infinite-scrolling-spacer">
@@ -1054,19 +948,20 @@ export class DatePicker
                     </div>
                   )}
                   {week.dayNumbers.map((day) => {
-                    return day ? (
+                    if (!day) {
+                      return <div role="gridcell"></div>;
+                    }
+                    const util = this.getUtilitiesBasedOnDay(day);
+
+                    return (
                       <div
                         role="gridcell"
-                        aria-selected={
-                          this.getUtilitiesBasedOnDay(day).isSelected()
-                            ? 'true'
-                            : 'false'
-                        }
+                        aria-selected={util.isSelected() ? 'true' : 'false'}
                         key={day}
                         id={`day-cell-${day}`}
                         data-calendar-day={day}
                         data-date-value={`${week.weekNumber}-${day}`}
-                        class={this.getDayClasses(day)}
+                        class={this.getDayClasses(day, util)}
                         onClick={(e) => {
                           const target = e.currentTarget as HTMLElement;
                           this.selectDay(day, target);
@@ -1079,15 +974,13 @@ export class DatePicker
                           }
                         }}
                         tabIndex={day === this.focusedDay ? 0 : -1}
-                        autofocus={this.getUtilitiesBasedOnDay(day).isToday()}
+                        autofocus={util.isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
-                        aria-label={`${day} ${Info.months()[this.selectedMonth]} ${this.selectedYear}`}
+                        aria-label={`${day} ${monthLabel} ${yearLabel}`}
                       >
                         {day}
                       </div>
-                    ) : (
-                      <div role="gridcell"></div>
                     );
                   })}
                 </div>

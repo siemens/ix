@@ -17,7 +17,7 @@ function getCircularSize(size: ProgressIndicatorSize) {
     case 'xs':
       return 16;
     case 'sm':
-      return 24;
+      return 20;
     case 'md':
       return 32;
     case 'lg':
