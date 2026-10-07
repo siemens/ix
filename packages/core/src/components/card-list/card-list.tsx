@@ -493,9 +493,12 @@ export class CardList {
                       name={iconMoreMenu}
                       class={'Show__All__Card__Icon'}
                     ></ix-icon>
-                    <span class="Show__All__Card__Text">
+                    <ix-typography
+                      class="Show__All__Card__Text"
+                      format="body-lg-sbold"
+                    >
                       {this.i18nMoreCards} ({this.numberOfOverflowingElements})
-                    </span>
+                    </ix-typography>
                   </div>
                 </ix-card-content>
               </ix-card>

@@ -112,12 +112,23 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     height: var(--ix-card-list-show-all-card--height);
 
     --ix-card-border-color: var(--ix-card-list-show-all--border-color);
+    --ix-card-background: var(--ix-card-list-show-all--background);
     color: var(--ix-card-list-show-all--color);
 
     /* End card owns padding; neutralize ix-card-content default inset */
     ix-card-content {
       --ix-card-content--padding: 0;
       height: 100%;
+    }
+
+    &:hover {
+      --ix-card-background: var(--ix-card-list-show-all--background--hover);
+      color: var(--ix-card-list-show-all--color--hover);
+    }
+
+    &:active {
+      --ix-card-background: var(--ix-card-list-show-all--background--active);
+      color: var(--ix-card-list-show-all--color--hover);
     }
 
     @include hover.focus-visible {
@@ -171,13 +182,5 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
     margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
-
-    .Show__All__Card:hover {
-      background-color: var(--ix-card-list-show-all--background--hover);
-    }
-
-    .Show__All__Card:active {
-      background-color: var(--ix-card-list-show-all--background--active);
-    }
   }
 }
