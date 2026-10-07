@@ -1,13 +1,13 @@
 ---
-'@siemens/ix': minor
+'@siemens/ix': major
 ---
 
-Add an opt-in `requireConfirmation` property to `ix-date-dropdown`, `ix-date-input`, `ix-time-input`, `ix-datetime-input`, `ix-date-picker`, `ix-time-picker` and `ix-datetime-picker`.
+New `requireConfirmation` property for `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input`, `ix-date-picker` and `ix-datetime-picker` - when `true` a selection is only applied on **Confirm**, with **Cancel** to discard it. 
 
-When `requireConfirmation` is enabled, a selection is applied only when the user clicks **Confirm**. Until then the trigger label and input value stay unchanged and no change events are emitted. **Cancel**, pressing <kbd>Escape</kbd> or clicking outside the dropdown discards the pending selection, and reopening the dropdown shows the last confirmed value. **Confirm** is disabled until the user picks something different from the confirmed value, and while a range has only a start date. The default is `false`, except for `ix-time-picker` and `ix-time-input`, where it is `true`.
+`ix-time-picker` and `ix-time-input` always require confirmation (as they did before).
 
-- New `i18nConfirm` and `i18nCancel` properties set the button labels in confirmation mode. `ix-time-input` keeps using `i18nSelectTime` for its confirm label.
-- New `dateCancel` event on `ix-date-picker` and `ix-datetime-picker`, and `timeCancel` event on `ix-time-picker`, emitted when the user clicks Cancel.
-- New `dateSelect` event on `ix-date-dropdown`, emitted when the user selects a date range. With `requireConfirmation` it is emitted only on Confirm. Without it, it is emitted for every picked date or predefined range and when the dropdown closes. It is not emitted for programmatic changes.
-- `ix-datetime-input`: the default of `i18nDone` changes from `'Confirm'` to `'Done'`, aligning it with the other date and time components. Set `i18n-done="Confirm"` to keep the previous label.
-- New exported `DateRangeValue` type (`from`, `to`, `isoFrom`, `isoTo`). `DateChangeEvent`, `DateRangeChangeEvent`, `DateTimeSelectEvent` and `DateDropdownOption` are now based on it; their shapes are unchanged.
+Rename the `ix-time-picker` property `i18nConfirmTime` (`i18n-confirm-time`) to `i18nConfirm` (`i18n-confirm`), matching the other date and time components.
+
+There is some minor new behavior when `requireConfirmation` is `false` (default).
+
+See `BREAKING_CHANGES/v6.md` for details and migration.
