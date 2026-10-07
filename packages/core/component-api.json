@@ -653,6 +653,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "ariaLabelNextButton",
+          "attribute": "aria-label-next-button",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Show next breadcrumb items'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelPreviousButton",
           "attribute": "aria-label-previous-button",
           "type": "string",
