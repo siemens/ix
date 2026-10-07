@@ -38,7 +38,7 @@
   }
 
   .col-separator {
-    border-bottom: 0.0625rem solid
+    border-bottom: var(--ix-datetime-picker-col-separator--border-width) solid
       var(--ix-datetime-picker-separator--background);
     border-right: none;
   }
@@ -55,7 +55,7 @@
     }
 
     .col-separator {
-      border-right: 0.0625rem solid
+      border-right: var(--ix-datetime-picker-col-separator--border-width) solid
         var(--ix-datetime-picker-separator--background);
       border-bottom: none;
     }

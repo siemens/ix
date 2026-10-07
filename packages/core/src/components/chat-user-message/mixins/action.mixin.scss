@@ -1,6 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use '../chat-user-message.vars';
+
 @mixin animate-action() {
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity var(--ix-chat-user-message-action--transition-duration)
+    ease-in-out;
 }
 
 @mixin show-action() {

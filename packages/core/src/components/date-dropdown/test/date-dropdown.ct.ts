@@ -29,7 +29,7 @@ const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('date dropdown tests', () => {
@@ -147,7 +147,7 @@ regressionTest.describe('date dropdown tests', () => {
       const format = 'yyyy/LL/dd';
 
       const dateDropdown = page.locator('ix-date-dropdown');
-      await expect(dateDropdown).toHaveClass(/hydrated/);
+      await expect(dateDropdown).toHaveAttribute('hydrated');
 
       const eventPromise = dateDropdown.evaluate((e) => {
         return new Promise<any>((resolve) => {
@@ -182,7 +182,7 @@ regressionTest.describe('date dropdown tests', () => {
 
   regressionTest('check initial date', async ({ page }) => {
     const dateDropDownButton = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropDownButton).toHaveClass(/hydrated/);
+    await expect(dateDropDownButton).toHaveAttribute('hydrated');
 
     const initialSetDate = await dateDropDownButton.evaluate(
       (el: HTMLIxDateDropdownElement) => el.getDateRange()
@@ -208,7 +208,7 @@ regressionTest('set date from a button', async ({ mount, page }) => {
   );
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
   const setButton = page.locator('#set-tomorrow');
-  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toHaveAttribute('hydrated');
 
   await setButton.click();
 
@@ -225,7 +225,7 @@ regressionTest('select different year', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown from="2024/02/16"></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
 
-  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toHaveAttribute('hydrated');
   await expect(dateDropdown).toBeVisible();
 
   const dateDropdownTrigger = dateDropdown.getByTestId('date-dropdown-trigger');
@@ -269,7 +269,7 @@ regressionTest(
       `<ix-date-dropdown locale="en" require-confirmation></ix-date-dropdown>`
     );
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/hydrated/);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
 
     const rangeOptions: DateDropdownOption[] = [
       {
@@ -361,7 +361,7 @@ regressionTest(
       `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
     );
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/hydrated/);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
 
     await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
       el.from = '05 März 2023';
@@ -386,7 +386,7 @@ regressionTest(
       `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
     );
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/hydrated/);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
 
     const options: DateDropdownOption[] = [
       {

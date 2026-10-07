@@ -21,7 +21,6 @@
   --ix-slider-thumb--background--warning: #{sys.$si-sys-color-background-warning};
   --ix-slider-thumb--background: #{sys.$si-sys-color-background-accent};
   --ix-slider-thumb--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-slider-thumb--transition-duration: var(--theme-default-time);
   --ix-slider-trace--background--disabled: #{sys.$si-sys-color-border-2};
   --ix-slider-trace--background--info: #{sys.$si-sys-color-border-information};
   --ix-slider-trace--background--invalid: #{sys.$si-sys-color-border-danger};
@@ -41,8 +40,24 @@
 }
 
 :host {
+  --ix-slider-thumb--transition-duration: var(--theme-default-time);
   --ix-slider--min-height: #{sys.$si-sys-sizing-size-80};
   --ix-slider--thumb-size: #{sys.$si-sys-sizing-size-50};
   --ix-slider--height: #{sys.$si-sys-sizing-size-70};
   --ix-slider-label--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-slider-input--margin-top: calc(
+    (var(--ix-slider-input--track-height) - var(--ix-slider--thumb-size)) / 2
+  );
+  --ix-slider-trace--height: var(--ix-slider-track--height);
+  --ix-slider-trace--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-slider-reference--width: #{sys.$si-sys-sizing-size-10};
+  --ix-slider-reference--height: #{sys.$si-sys-sizing-size-50};
+  --ix-slider-input--track-height: var(--ix-slider-track--height);
+  --ix-slider--z-index: 10;
+  --ix-slider--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-slider--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-slider-ticks--tick-size: calc(var(--ix-slider--thumb-size) * 0.375);
+  --ix-slider-track--height: #{sys.$si-sys-sizing-size-20};
+  --ix-slider-track--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-slider-thumb--border-radius: #{sys.$si-sys-sizing-border-radius-full};
 }

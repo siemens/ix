@@ -10,12 +10,12 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-menu-category-chevron--transition-duration: var(--theme-default-time);
-  --ix-menu-category-items--transition-duration: var(--theme-default-time);
   --ix-menu-category--background--expanded: #{sys.$si-sys-color-background-selected};
 }
 
 :host {
+  --ix-menu-category-chevron--transition-duration: var(--theme-default-time);
+  --ix-menu-category-items--transition-duration: var(--theme-default-time);
   --ix-menu-category-category-text--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-menu-category-category-chevron--block-size: #{sys.$si-sys-sizing-icon-lg};
   --ix-menu-category-category-chevron--inline-size: #{sys.$si-sys-sizing-icon-lg};
@@ -32,4 +32,8 @@
     #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
   );
   --ix-menu-category--menu-item-height: #{sys.$si-sys-sizing-size-90};
+  --ix-menu-category-category-dropdown--max-height: calc(
+    50vh - var(--ix-menu-category-category-dropdown--viewport-offset)
+  );
+  --ix-menu-category-category-dropdown--viewport-offset: #{sys.$si-sys-sizing-size-100};
 }

@@ -410,6 +410,12 @@ export namespace Components {
     }
     interface IxBreadcrumb {
         /**
+          * Accessible label for the next items dropdown button used to access the dropdown list with conditionally hidden next items
+          * @since 6.0.0
+          * @default 'Show next breadcrumb items'
+         */
+        "ariaLabelNextButton": string;
+        /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
           * @default 'Show previous breadcrumb items'
          */
@@ -7647,6 +7653,12 @@ declare namespace LocalJSX {
     }
     interface IxBreadcrumb {
         /**
+          * Accessible label for the next items dropdown button used to access the dropdown list with conditionally hidden next items
+          * @since 6.0.0
+          * @default 'Show next breadcrumb items'
+         */
+        "ariaLabelNextButton"?: string;
+        /**
           * Accessibility label for the dropdown button (ellipsis icon) used to access the dropdown list with conditionally hidden previous items
           * @default 'Show previous breadcrumb items'
          */
@@ -12919,6 +12931,7 @@ declare namespace LocalJSX {
         "visibleItemCount": number;
         "subtle": boolean;
         "ariaLabelPreviousButton": string;
+        "ariaLabelNextButton": string;
         "enableTopLayer": boolean;
     }
     interface IxBreadcrumbItemAttributes {

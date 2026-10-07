@@ -8,7 +8,6 @@
  */
 
 @use './tooltip.vars' as *;
-@use 'tokens/system' as sys;
 .dialog {
   margin: 0;
   padding: 0;
@@ -31,7 +30,7 @@
   padding: var(--ix-tooltip-container--padding);
 
   box-shadow: var(--ix-tooltip--box-shadow);
-  border-radius: 0.25rem;
+  border-radius: var(--ix-tooltip-container--border-radius);
 }
 
 .content-wrapper {
@@ -49,8 +48,8 @@
 .arrow,
 .arrow::before {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: var(--ix-tooltip-arrow--width);
+  height: var(--ix-tooltip-arrow--height);
   background: inherit;
 }
 

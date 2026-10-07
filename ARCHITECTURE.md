@@ -110,9 +110,8 @@ Preview example changes can affect accessibility tree snapshots in `testing/fram
 - Parsing and formatting stay in `packages/core/src/components/utils/date-time-locale.ts`. Keep the two concerns separate.
 - Carry a Luxon `DateTime` between components and helpers; do not pass bare month or weekday numbers around. Luxon counts months `1-12` and weekdays `1-7` (Monday = 1), while the `Info.months()` / `Info.weekdays()` name arrays are 0-based, and mixing the two bases silently shifts the calendar by one.
 - `weekStartIndex` is the one plain number that crosses the boundary. Narrow it with `weekStartFrom()` into a `WeekdayIndex` at the edge rather than passing the raw prop value inwards.
-- The `ix/no-luxon-calendar-ordinals` ESLint rule enforces this across the date component directories. `calendar.util.ts` is deliberately out of scope as the single module allowed to touch both bases. Move the logic into that module rather than disabling the rule.
-- A new date component directory inherits none of this until it is added to the rule's `files` list in `packages/core/eslint.config.cjs`.
-- Cover new calendar logic with unit tests in `packages/core/src/components/utils/test/calendar.util.spec.ts`; the rule checks syntax, only tests check that the calendar is correct.
+- `calendar.util.ts` is the single module allowed to touch both bases. Move such logic into that module rather than mixing them inside a component.
+- Cover new calendar logic with unit tests in `packages/core/src/components/utils/test/calendar.util.spec.ts`.
 
 ---
 

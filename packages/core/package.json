@@ -97,7 +97,6 @@
     "./scss/tokens/system": "./scss/tokens/_system.scss",
     "./scss/tokens/legacy": "./scss/tokens/_legacy.scss",
     "./scss/misc/common-variables": "./scss/misc/_common-variables.scss",
-    "./scss/deprecated/components": "./scss/deprecated/_components.scss",
     "./scss/mixins/breakpoints": "./scss/mixins/_breakpoints.scss",
     "./scss/mixins/break-points": "./scss/mixins/_break-points.scss",
     "./scss/mixins/fonts": "./scss/mixins/_fonts.scss",
