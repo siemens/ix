@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'tokens/system' as sys;
-
 @use './content-header.vars' as *;
 :host {
   display: flex;
@@ -55,7 +53,7 @@
   }
 
   .subtitle {
-    margin-top: -0.125rem;
+    margin-top: var(--ix-content-header-subtitle--margin-top);
   }
 
   .backButton {
