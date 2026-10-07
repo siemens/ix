@@ -1,0 +1,16 @@
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 93-95
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 16-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cfa7056268f60bc82e843b6aae594f69a7259483",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
