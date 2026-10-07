@@ -22,7 +22,8 @@
   --ix-card-list-content--transition-duration: var(--theme-default-time);
   --ix-card-list-show-all--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
   --ix-card-list-show-all--focus-outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-card-list-title--height: #{sys.$si-sys-sizing-size-70};
+  /* Figma Header: icon-button 32 (p-6 + icon-md) */
+  --ix-card-list-title--height: #{sys.$si-sys-sizing-size-80};
   --ix-card-list--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-list-title--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
   /* Figma Header gap between collapse control and label = 16 */

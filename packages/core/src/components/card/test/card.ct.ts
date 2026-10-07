@@ -12,7 +12,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders with non-clickable default', async ({ mount, page }) => {
   await mount(`<ix-card></ix-card>`);
   const card = page.locator('ix-card');
-  await expect(card).toHaveClass(/\bhydrated\b/);
+  await expect(card).toHaveAttribute('hydrated', '');
   await expect(card).toHaveClass(/\boutline\b/);
   await expect(card).not.toHaveClass(/\bclickable\b/);
   await expect(card).toHaveClass(/\bcard-default\b/);
@@ -24,11 +24,13 @@ regressionTest('outline status uses status border class', async ({ mount, page }
   await expect(card).toHaveClass(/\bcard-danger\b/);
   await expect(card).toHaveClass(/\boutline\b/);
 
-  const stripHeight = await card.evaluate((el) =>
-    getComputedStyle(el).getPropertyValue('--ix-card-strip-height').trim()
-  );
-  expect(stripHeight).not.toBe('0px');
-  expect(stripHeight).not.toBe('');
+  const stripHeightPx = await card.evaluate((el) => {
+    const strip = el.shadowRoot?.querySelector('.card-content') as HTMLElement;
+    return strip
+      ? parseFloat(getComputedStyle(strip, '::before').height)
+      : NaN;
+  });
+  expect(stripHeightPx).toBe(8);
 });
 
 regressionTest('filled status enables strip via host classes', async ({ mount, page }) => {
@@ -37,11 +39,21 @@ regressionTest('filled status enables strip via host classes', async ({ mount, p
   await expect(card).toHaveClass(/\bcard-danger\b/);
   await expect(card).not.toHaveClass(/\boutline\b/);
 
-  const stripHeight = await card.evaluate((el) =>
-    getComputedStyle(el).getPropertyValue('--ix-card-strip-height').trim()
-  );
-  expect(stripHeight).not.toBe('0px');
-  expect(stripHeight).not.toBe('');
+  const stripHeightPx = await card.evaluate((el) => {
+    const strip = el.shadowRoot?.querySelector('.card-content') as HTMLElement;
+    return strip
+      ? parseFloat(getComputedStyle(strip, '::before').height)
+      : NaN;
+  });
+  expect(stripHeightPx).toBe(8);
+});
+
+regressionTest('default width matches Figma Card shell (214)', async ({ mount, page }) => {
+  await mount(`<ix-card></ix-card>`);
+  const card = page.locator('ix-card');
+  await expect(card).toBeVisible();
+  const width = await card.evaluate((el) => el.getBoundingClientRect().width);
+  expect(width).toBe(214);
 });
 
 regressionTest('clickable enables host class', async ({ mount, page }) => {

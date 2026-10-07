@@ -7,20 +7,128 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:list';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './blind.vars' as blind-vars;
+@use 'tokens/system' as sys;
 
 @use './blind.vars' as *;
+@mixin blind($variant: 'filled') {
+  :host(.blind-#{$variant}) {
+    @include blind-vars.variant-vars($variant);
+
+    .blind-header {
+      @if $variant == 'outline' {
+        background-color: var(--ix-blind-outline-header--background);
+      } @else {
+        background-color: var(--ix-blind-#{$variant}--background);
+      }
+
+      @if $variant == 'filled' or $variant == 'outline' {
+        @include hover.ghost-hover-pressed;
+      } @else {
+        @include hover.hover {
+          background-color: var(--ix-blind-#{$variant}--background--hover);
+        }
+
+        @include hover.active {
+          background-color: var(--ix-blind-#{$variant}--background--active);
+        }
+      }
+    }
+
+    @if $variant == 'filled' or $variant == 'outline' {
+      .blind-header-title-label,
+      .blind-header-title-icon,
+      .collapse-icon {
+        color: var(--ix-blind-header--color);
+      }
+
+      .blind-header-title-sublabel {
+        color: var(--ix-blind-header-sublabel--color);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--ix-blind-header-actions--color);
+      }
+    } @else {
+      .blind-header-title-label,
+      .blind-header-title-sublabel,
+      .blind-header-title-icon,
+      .collapse-icon {
+        color: var(--ix-blind-#{$variant}--color);
+      }
+
+      .header-actions {
+        --ix-icon-button-color: var(--ix-blind-#{$variant}--color);
+      }
+    }
+
+    @if $variant == 'outline' {
+      .blind-header-wrapper {
+        border: solid
+          var(--ix-blind--border-width)
+          var(--ix-blind-outline--border-color);
+        border-bottom: none;
+        border-radius: var(--ix-blind--border-radius)
+          var(--ix-blind--border-radius)
+          0
+          0;
+
+        @include hover.hover {
+          border-color: var(--ix-blind-outline--border-color--hover);
+        }
+
+        @include hover.active {
+          border-color: var(--ix-blind-outline--border-color--active);
+        }
+      }
+
+      .blind-header {
+        border-radius: 0;
+      }
+    }
+
+    @if $variant != 'filled' {
+      .blind-content {
+        border-radius: 0
+          0
+          var(--ix-blind--border-radius)
+          var(--ix-blind--border-radius);
+
+        @if $variant == 'outline' {
+          border: solid
+            var(--ix-blind--border-width)
+            var(--ix-blind-outline--border-color);
+          border-top: none;
+        } @else {
+          border: solid
+            var(--ix-blind--border-width)
+            var(--ix-blind-#{$variant}--background);
+          border-top: none;
+        }
+      }
+    }
+
+    @if $variant != 'outline' {
+      background-color: var(--ix-blind--background);
+    }
+  }
+
+  @if not list.index(('filled', 'outline'), $variant) {
+    :host(.blind-#{$variant}[collapsed]) .blind-content {
+      border-width: 0;
+    }
+  }
+}
 
 :host {
   display: flex;
   flex-direction: column;
   border-radius: var(--ix-blind--border-radius);
   overflow: hidden;
-  background-color: var(--ix-blind--background);
 
   ix-icon:not([size]) {
     block-size: var(--ix-blind-icon--icon-size);
@@ -36,19 +144,6 @@
     min-height: var(--ix-blind-header-wrapper--min-height);
     height: var(--ix-blind-header-wrapper--height);
     overflow: hidden;
-  }
-
-  .blind-header-wrapper::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--ix-blind-strip-height);
-    background-color: var(--ix-blind-status-color-strong);
-    z-index: 1;
-    pointer-events: none;
   }
 
   .blind-header-content {
@@ -70,8 +165,6 @@
     align-items: center;
     flex-grow: 1;
     margin-right: var(--ix-blind-header-title--margin-right);
-    height: 100%;
-    min-width: 0;
   }
 
   .blind-header {
@@ -94,30 +187,11 @@
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
       0 0;
     cursor: pointer;
-    background-color: var(--ix-blind-header--background);
-
-    @include hover.ghost-hover-pressed;
 
     @include hover.focus-visible {
       border-color: var(--ix-blind-header--border-color--focus);
       outline: none;
     }
-  }
-
-  .blind-header-title-label,
-  .blind-header-title-icon,
-  .collapse-icon {
-    color: var(--ix-blind-header--color);
-  }
-
-  .blind-header-title-sublabel {
-    color: var(--ix-blind-header-sublabel--color);
-  }
-
-  .header-actions {
-    --ix-icon-button-color: var(--ix-blind-header-actions--color);
-    pointer-events: all;
-    margin-left: auto;
   }
 
   .blind-header-title-icon,
@@ -141,7 +215,6 @@
   .blind-header-title-col:not(:first-of-type) {
     justify-content: flex-end;
   }
-
   ix-typography {
     flex-grow: 1;
     @include text-truncation.ellipsis;
@@ -157,14 +230,26 @@
     @include text-truncation.ellipsis;
   }
 
+  .blind-header-title {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    min-width: 0;
+  }
+
+  .blind-header-labels {
+    display: inline-flex;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
   .blind-content {
     display: block;
     padding: var(--ix-blind-content--padding);
     transition-property: padding;
     transition-duration: var(--ix-blind-content--transition-duration);
     transition-timing-function: ease-in;
-    border-radius: 0 0 var(--ix-blind--border-radius)
-      var(--ix-blind--border-radius);
 
     &.hide {
       max-height: 0;
@@ -173,32 +258,30 @@
       border-width: 0;
     }
   }
-}
 
-/* Default outline */
-:host(.outline) {
-  background-color: transparent;
-
-  .blind-header-wrapper {
-    border: solid var(--ix-blind--border-width)
-      var(--ix-blind-outline--border-color);
-    border-bottom: none;
-    border-radius: var(--ix-blind--border-radius)
-      var(--ix-blind--border-radius) 0 0;
-  }
-
-  .blind-header {
-    border-radius: 0;
-  }
-
-  .blind-content {
-    border: solid var(--ix-blind--border-width)
-      var(--ix-blind-outline--border-color);
-    border-top: none;
+  .header-actions {
+    pointer-events: all;
+    margin-left: auto;
   }
 }
 
-:host(.outline[collapsed]) {
+$blind-variants: (
+  alarm,
+  critical,
+  info,
+  neutral,
+  filled,
+  success,
+  warning,
+  primary,
+  outline
+);
+
+@each $variant in $blind-variants {
+  @include blind($variant);
+}
+
+:host(.blind-outline[collapsed]) {
   .blind-header-wrapper {
     box-sizing: border-box;
     border-bottom: solid var(--ix-blind--border-width)
@@ -216,39 +299,5 @@
 
   .blind-content {
     border-width: 0;
-  }
-}
-
-/*
- * Status chrome (Figma Status indicator):
- * - 8px top strip for every non-default variant
- * - outline: 1px status border; top edge is the strip (no thick border-top)
- * - filled: strip on neutral header surface
- */
-@each $status in blind-vars.$blind-status-variants {
-  :host(.blind-#{$status}) {
-    --ix-blind-strip-height: var(--ix-blind--strip-height);
-  }
-
-  :host(.outline.blind-#{$status}) {
-    .blind-header-wrapper {
-      border-color: var(--ix-blind-status-color);
-      border-top-width: 0;
-    }
-
-    .blind-content {
-      border-color: var(--ix-blind-status-color);
-    }
-  }
-
-  :host(.outline.blind-#{$status}[collapsed]) {
-    .blind-header-wrapper {
-      border-color: var(--ix-blind-status-color);
-      border-top-width: 0;
-    }
-  }
-
-  :host(:not(.outline).blind-#{$status}) {
-    --ix-blind-header--background: #{sys.$si-sys-color-background-1};
   }
 }

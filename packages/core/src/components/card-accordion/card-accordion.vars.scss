@@ -10,83 +10,34 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-card-accordion--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-card-accordion-content--color: #{sys.$si-sys-color-text-primary};
-  --ix-card-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-alarm-accordion--background: #{sys.$si-sys-color-background-danger};
-  --ix-card-accordion-alarm-accordion--background--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-card-accordion-alarm-accordion--background--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-card-accordion-alarm-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-alarm-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-alarm-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion-critical-accordion--background: #{sys.$si-sys-color-background-critical};
-  --ix-card-accordion-critical-accordion--background--active: #{sys.$si-sys-color-background-critical-active};
-  --ix-card-accordion-critical-accordion--background--hover: #{sys.$si-sys-color-background-critical-hover};
-  --ix-card-accordion-critical-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-critical-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-critical-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion-filled-accordion--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-filled-accordion--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-card-accordion-filled-accordion--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-accordion-filled-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-filled-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-filled-accordion-frame--border-color: rgba(0, 0, 0, 0);
-  --ix-card-accordion-info-accordion--background: #{sys.$si-sys-color-background-information};
-  --ix-card-accordion-info-accordion--background--active: #{sys.$si-sys-color-background-information-active};
-  --ix-card-accordion-info-accordion--background--hover: #{sys.$si-sys-color-background-information-hover};
-  --ix-card-accordion-info-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-info-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-info-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion-neutral-accordion--background: #{sys.$si-sys-color-background-neutral};
-  --ix-card-accordion-neutral-accordion--background--active: #{sys.$si-sys-color-background-neutral-active};
-  --ix-card-accordion-neutral-accordion--background--hover: #{sys.$si-sys-color-background-neutral-hover};
-  --ix-card-accordion-neutral-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-neutral-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-neutral-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion-outline-accordion--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-outline-accordion--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-card-accordion-outline-accordion--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-accordion-outline-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-outline-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-outline-accordion-frame--border-color: rgba(0, 0, 0, 0);
-  --ix-card-accordion-primary-accordion--background: #{sys.$si-sys-color-background-accent};
-  --ix-card-accordion-primary-accordion--background--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-card-accordion-primary-accordion--background--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-card-accordion-primary-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-primary-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-primary-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion-success-accordion--background: #{sys.$si-sys-color-background-success};
-  --ix-card-accordion-success-accordion--background--active: #{sys.$si-sys-color-background-success-active};
-  --ix-card-accordion-success-accordion--background--hover: #{sys.$si-sys-color-background-success-hover};
-  --ix-card-accordion-success-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-success-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-success-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion-warning-accordion--background: #{sys.$si-sys-color-background-warning};
-  --ix-card-accordion-warning-accordion--background--active: #{sys.$si-sys-color-background-warning-active};
-  --ix-card-accordion-warning-accordion--background--hover: #{sys.$si-sys-color-background-warning-hover};
-  --ix-card-accordion-warning-accordion-footer--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-warning-accordion-frame--background: #{sys.$si-sys-color-background-1};
-  --ix-card-accordion-warning-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-}
-
-:host {
   --ix-card-accordion--transition-duration: var(--theme-default-time);
   --ix-card-accordion-expand-icon--transition-duration: var(
     --theme-default-time
   );
   --ix-card-accordion-content--transition-duration: var(--theme-default-time);
+  --ix-card-accordion--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-card-accordion--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-card-accordion-content--color: #{sys.$si-sys-color-text-primary};
+  --ix-card-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-footer--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-card-accordion-alarm-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion-critical-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion-filled-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
-  --ix-card-accordion-info-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion-neutral-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion-outline-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
-  --ix-card-accordion-primary-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion-success-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion-warning-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-card-accordion--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+
+  /* Outline accordion chrome (matches Figma “For outline”) */
+  --ix-card-accordion-chrome--background: #{sys.$si-sys-color-background-1};
+  --ix-card-accordion-chrome--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-card-accordion-chrome--background--active: #{sys.$si-sys-color-background-selected};
+  --ix-card-accordion-chrome-footer--background: #{sys.$si-sys-color-background-1};
+  --ix-card-accordion-chrome-frame--background: #{sys.$si-sys-color-background-1};
+  --ix-card-accordion-chrome-frame--border-color: #{sys.$si-sys-color-border-3};
+  --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+}
+
+:host(:not(.outline)) {
+  --ix-card-accordion-chrome-frame--border-color: transparent;
+  --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+}
+
+:host {
   --ix-card-accordion--expanded-height: calc(
     #{sys.$si-sys-sizing-size-160} - #{sys.$si-sys-sizing-spacing-y-20}
   );

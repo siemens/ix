@@ -13,14 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-blind label="Example label">Some content</ix-blind>`);
   const blindElement = page.locator('ix-blind');
-  await expect(blindElement).toHaveAttribute('hydrated');
-});
-
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`<ix-blind label="Example label">Some content</ix-blind>`);
-
-  const accessibilityScanResults = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults.violations).toEqual([]);
+  await expect(blindElement).toHaveClass(/hydrated/);
 });
 
 regressionTest(

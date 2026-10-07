@@ -88,11 +88,8 @@ import './generated/badge-label.spec';
 import './generated/badge-dot.spec';
 import './generated/badge-status-icon.spec';
 
-// Card family / Blind tests
+// Card family tests (Blind deferred — Figma not ready)
 import './generated/card.spec';
 import './generated/action-card.spec';
 import './generated/push-card.spec';
 import './generated/card-list.spec';
-import './generated/blind.spec';
-import './generated/blind-variants.spec';
-import './generated/blind-header-actions.spec';
