@@ -2,4 +2,4 @@
 '@siemens/ix': major
 ---
 
-Refactor card, action card, push card, and card accordion for the shared `StatusVariant` set: boolean `outline`, color strip for filled status (SDL `si-sys-*` tokens), and `clickable` replacing removed `passive`. Basic card defaults to non-clickable. Blind is unchanged (Figma not ready). See `BREAKING_CHANGES/v6.md` for migration.
+Migrate card, action card, push card, and card accordion to the shared `StatusVariant` API: boolean `outline` (replacing layout variants), filled status top color strip via SDL `si-sys-*` tokens, and `clickable` instead of `passive`. Basic and push cards default to non-clickable; action cards remain clickable when `clickable` is omitted. Blind is unchanged (Figma not ready). See `BREAKING_CHANGES/v6.md` for migration.

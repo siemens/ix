@@ -61,16 +61,13 @@ regressionTest(
   }
 );
 
-regressionTest(
-  'default width is 214',
-  async ({ mount, page }) => {
-    await mount(`<ix-card></ix-card>`);
-    const card = page.locator('ix-card');
-    await expect(card).toBeVisible();
-    const width = await card.evaluate((el) => el.getBoundingClientRect().width);
-    expect(width).toBe(214);
-  }
-);
+regressionTest('default width is 214', async ({ mount, page }) => {
+  await mount(`<ix-card></ix-card>`);
+  const card = page.locator('ix-card');
+  await expect(card).toBeVisible();
+  const width = await card.evaluate((el) => el.getBoundingClientRect().width);
+  expect(width).toBe(214);
+});
 
 regressionTest('clickable enables host class', async ({ mount, page }) => {
   await mount(`<ix-card clickable></ix-card>`);
