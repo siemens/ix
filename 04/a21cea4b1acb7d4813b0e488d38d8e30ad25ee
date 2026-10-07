@@ -1,0 +1,56 @@
+.changeset/eix-410-card-status-variants.md
+  h_c5a773bf2fda8b 5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 681,683-685,747-748
+packages/angular-standalone-test-app/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 2,13,16-17,25-26
+packages/angular-test-app/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 13,16-17,25-26
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 138,145
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 250,257
+packages/core/component-api.json
+  h_c5a773bf2fda8b 633,636
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 411-412,7486-7487
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 10,15,18-125,233-246,262-264,266,268-281,284
+packages/core/src/components/blind/blind.tsx
+  h_c5a773bf2fda8b 61,63
+packages/core/src/components/blind/blind.types.ts
+  h_c5a773bf2fda8b 10-20
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 11,13-21,23-27,29-33,35-39,41-45,48-51,53-57,61-79,81,91
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 22-31,35,37-38,45
+packages/html-test-app/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 29,32-33,46-47
+packages/react-test-app/src/preview-examples/blind-variants.tsx
+  h_c5a773bf2fda8b 22,31-32,35,39,47,55-56,59,63,71
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 243
+packages/vue-test-app/src/preview-examples/blind-variants.vue
+  h_c5a773bf2fda8b 22,29-30,48-49
+testing/framework-tests/__snapshots__/blind-variants-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-40
+testing/framework-tests/tests/working-with-axe.spec.ts
+  h_c5a773bf2fda8b 92
+testing/framework-tests/tests/working.spec.ts
+  h_c5a773bf2fda8b 91
+testing/visual-testing/tests/blind/basic/index.html
+  h_c5a773bf2fda8b 43,46,49,63,72
+testing/visual-testing/tests/blind/custom-header/index.html
+  h_c5a773bf2fda8b 46,49,58,67-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "04a21cea4b1acb7d4813b0e488d38d8e30ad25ee",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
