@@ -1,0 +1,30 @@
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 11,13-21,23-27,29-33,35-39,41-45,48-51,53-57,61-79,81,89-91
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 18,20-21,23-40
+packages/core/src/components/card-list/card-list.scss
+  h_c5a773bf2fda8b 11
+packages/core/src/components/card-list/card-list.vars.scss
+  h_c5a773bf2fda8b 25-26
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 23-24
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 59-76,93-97
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 15,27-33,42-56
+packages/core/src/components/push-card/push-card.scss
+  h_c5a773bf2fda8b 9,12,16,20,28,31-32,37-39,49-50,53-60,62-66,68-70
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 16-22,24-44,46-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "27c46ae434278ee47932cccac935ecc15e7ac48b",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
