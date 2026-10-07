@@ -433,18 +433,12 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Show the blind with an outline border. Default is `false` (filled), matching the previous default `variant="filled"`.
-          * @since 6.0.0
-          * @default false
-         */
-        "outline": boolean;
-        /**
           * Secondary label inside blind header
          */
         "sublabel"?: string;
         /**
-          * Blind status variant
-          * @default 'default'
+          * Blind variant
+          * @default 'filled'
          */
         "variant": BlindVariant;
     }
@@ -8526,18 +8520,12 @@ declare namespace LocalJSX {
          */
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
         /**
-          * Show the blind with an outline border. Default is `false` (filled), matching the previous default `variant="filled"`.
-          * @since 6.0.0
-          * @default false
-         */
-        "outline"?: boolean;
-        /**
           * Secondary label inside blind header
          */
         "sublabel"?: string;
         /**
-          * Blind status variant
-          * @default 'default'
+          * Blind variant
+          * @default 'filled'
          */
         "variant"?: BlindVariant;
     }
@@ -14152,7 +14140,6 @@ declare namespace LocalJSX {
         "sublabel": string;
         "icon": string;
         "variant": BlindVariant;
-        "outline": boolean;
     }
     interface IxBreadcrumbAttributes {
         "visibleItemCount": number;

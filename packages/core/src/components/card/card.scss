@@ -20,6 +20,8 @@
   align-self: flex-start;
   overflow: hidden;
   cursor: default;
+  /* Figma Card shell outer size includes border (214×120) */
+  box-sizing: border-box;
 
   width: var(--ix-card--width);
 

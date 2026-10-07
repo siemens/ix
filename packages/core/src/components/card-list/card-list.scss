@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
 

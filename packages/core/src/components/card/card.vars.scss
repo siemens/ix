@@ -56,24 +56,24 @@ $card-status-sys: (
 :host {
   --ix-card--border-color: #{sys.$si-sys-color-border-3};
   --ix-card-accordion--color: #{sys.$si-sys-color-text-primary};
-  --ix-card-alarm--background: #{sys.$si-sys-color-background-danger};
-  --ix-card-alarm--background--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-card-alarm--background--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-card-alarm--background--selected: #{sys.$si-sys-color-background-danger};
-  --ix-card-alarm--border-color: rgba(0, 0, 0, 0);
-  --ix-card-alarm--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-alarm--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-alarm--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-alarm--color: #{sys.$si-sys-color-text-on-danger};
-  --ix-card-critical--background: #{sys.$si-sys-color-background-critical};
-  --ix-card-critical--background--active: #{sys.$si-sys-color-background-critical-active};
-  --ix-card-critical--background--hover: #{sys.$si-sys-color-background-critical-hover};
-  --ix-card-critical--background--selected: #{sys.$si-sys-color-background-critical};
-  --ix-card-critical--border-color: rgba(0, 0, 0, 0);
-  --ix-card-critical--border-color--active: rgba(0, 0, 0, 0);
-  --ix-card-critical--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-card-critical--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-critical--color: #{sys.$si-sys-color-text-on-critical};
+  --ix-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-card--border-width: #{sys.$si-sys-sizing-border-width-default};
+  /* Figma Status indicator height (8px) — not border-width-emphasis (4px) */
+  --ix-card--strip-height: #{sys.$si-sys-sizing-size-30};
+  --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+
+  /* Default / outline chrome */
+  --ix-card-default--background: transparent;
+  --ix-card-default--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-card-default--background--active: #{sys.$si-sys-color-background-selected};
+  --ix-card-default--background--selected: #{sys.$si-sys-color-background-selected};
+  --ix-card-default--border-color: #{sys.$si-sys-color-border-3};
+  --ix-card-default--border-color--hover: #{sys.$si-sys-color-border-3};
+  --ix-card-default--border-color--active: #{sys.$si-sys-color-border-3};
+  --ix-card-default--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
+  --ix-card-default--color: #{sys.$si-sys-color-text-primary};
+
+  /* Filled (outline=false) body — shared for default and status */
   --ix-card-filled--background: #{sys.$si-sys-color-background-1};
   --ix-card-filled--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-card-filled--background--active: #{sys.$si-sys-color-background-selected};
@@ -90,9 +90,10 @@ $card-status-sys: (
 }
 
 :host {
-  --ix-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-card--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-card--width: #{sys.$si-sys-sizing-size-170};
+  /* Figma Card shell 214×120 — same width calc as action-card */
+  --ix-card--width: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} +
+      #{sys.$si-sys-sizing-spacing-x-30}
+  );
   --ix-card-content--height: calc(100% - #{sys.$si-sys-sizing-size-80});
 }
