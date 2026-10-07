@@ -9,7 +9,6 @@
 
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'mixins/shadow-dom/focus-visible';
 @use 'tokens/system' as sys;
 
 @use './tree-item.vars' as *;
@@ -35,7 +34,7 @@
     @include text-truncation.ellipsis;
 
     &:focus-visible {
-      @include focus-visible.ix-focus-visible;
+      outline: 1px solid var(--ix-tree-item--outline-color--focus);
     }
 
     .tree-node-text {
@@ -63,7 +62,7 @@
       outline: none;
 
       &:focus-visible {
-        @include focus-visible.ix-focus-visible;
+        outline: 1px solid var(--ix-tree-item--outline-color--focus);
       }
 
       ix-icon {
