@@ -7575,6 +7575,17 @@
           "deprecated": false
         },
         {
+          "name": "i18nPagination",
+          "attribute": "i18n-pagination",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Pagination'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "itemCount",
           "attribute": "item-count",
           "type": "number",
