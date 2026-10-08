@@ -7,21 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './ix-playground.vars';
+
 :host {
   display: block;
 }
 
 .playground {
   display: grid;
-  gap: 2rem;
-  max-width: 64rem;
-  padding: 2rem;
+  gap: var(--ix-playground--gap);
+  max-width: var(--ix-playground--max-width);
+  padding: var(--ix-playground--padding);
 }
 
 .playground header,
 .scenario {
   display: grid;
-  gap: 1rem;
+  gap: var(--ix-playground-scenario--gap);
 }
 
 .playground h1,
@@ -32,7 +34,7 @@
 }
 
 .playground ol {
-  padding-inline-start: 1.5rem;
+  padding-inline-start: var(--ix-playground--padding-inline-start);
 }
 
 .scenario {

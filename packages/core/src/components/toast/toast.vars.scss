@@ -10,16 +10,16 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-toast--animation-duration: var(--theme-medium-time);
   --ix-toast--background: #{sys.$si-sys-color-background-1};
   --ix-toast--border-color: rgba(0, 0, 0, 0);
-  --ix-toast--border-radius: var(--theme-default-border-radius);
-  --ix-toast--border-width: var(--theme-border-width-none);
   --ix-toast--box-shadow: #{sys.$si-sys-color-effects-shadow-4};
   --ix-toast-timer-value--background: #{sys.$si-sys-color-border-3};
 }
 
 :host {
+  --ix-toast--animation-duration: var(--theme-medium-time);
+  --ix-toast--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-toast--border-width: #{sys.$si-sys-sizing-border-width-none};
   --ix-toast--min-width: calc(
     #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
   );
@@ -38,4 +38,6 @@
   --ix-toast-content--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
   --ix-toast-title--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
   --ix-toast-action--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-toast-close--opacity: 0.6;
+  --ix-toast-progress-bar--height: #{sys.$si-sys-sizing-size-10};
 }

@@ -656,6 +656,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "ariaLabelNextButton",
+          "attribute": "aria-label-next-button",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Show next breadcrumb items'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelPreviousButton",
           "attribute": "aria-label-previous-button",
           "type": "string",
@@ -4816,6 +4827,26 @@
       "tag": "ix-group",
       "deprecated": false,
       "properties": [
+        {
+          "name": "ariaLabelExpand",
+          "attribute": "aria-label-expand",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelSelect",
+          "attribute": "aria-label-select",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "expandOnHeaderClick",
           "attribute": "expand-on-header-click",

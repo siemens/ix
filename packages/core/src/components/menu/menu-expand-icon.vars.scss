@@ -10,15 +10,20 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-menu-expand-icon--transition-delay: var(--theme-default-time);
-  --ix-menu-expand-icon--border-radius: var(--theme-small-border-radius);
   --ix-menu-expand-icon--background--active: #{sys.$si-sys-color-background-selected};
   --ix-menu-expand-icon--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-menu-expand-icon--color: #{sys.$si-sys-color-text-primary};
 }
 
 :host {
+  --ix-menu-expand-icon--transition-delay: var(--theme-default-time);
+  --ix-menu-expand-icon--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-menu-expand-icon--height: #{sys.$si-sys-sizing-size-80};
   --ix-menu-expand-icon--width: #{sys.$si-sys-sizing-size-80};
   --ix-menu-expand-icon-menu-expand-button--width: #{sys.$si-sys-sizing-size-80};
+  --ix-menu-expand-icon-line--x: 2px;
+  --ix-menu-expand-icon-line--transition-duration: 0.075s;
+  --ix-menu-expand-icon-line-1--y: 11px;
+  --ix-menu-expand-icon-line--x--expanded: 9;
+  --ix-menu-expand-icon-line-3--y: 11px;
 }

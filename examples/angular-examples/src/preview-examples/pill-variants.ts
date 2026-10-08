@@ -82,7 +82,7 @@ import { Component } from '@angular/core';
         <ix-col>
           <ix-pill
             variant="custom"
-            pill-color="var(--si-sys-color-text-inverse)"
+            pillColor="var(--si-sys-color-text-inverse)"
             background="var(--si-sys-color-background-accent-hover)"
             icon="info"
             >Custom</ix-pill
@@ -92,7 +92,7 @@ import { Component } from '@angular/core';
           <ix-pill
             variant="custom"
             outline
-            pill-color="var(--si-sys-color-text-accent-hover)"
+            pillColor="var(--si-sys-color-text-accent-hover)"
             background="var(--si-sys-color-background-accent-hover)"
             icon="info"
             >Custom</ix-pill

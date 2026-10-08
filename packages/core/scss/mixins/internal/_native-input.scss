@@ -1,0 +1,280 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use '../fonts';
+@use '../validation/form-component';
+@use '../../tokens/system' as sys;
+
+// Native inputs cannot use :host defaults. Keep their published fallbacks here.
+$-border-width: var(
+  --ix-input--border-width,
+  #{sys.$si-sys-sizing-border-width-default}
+);
+
+@mixin element-input-focus {
+  outline: 1px solid
+    var(--ix-input--outline-color--focus, #{sys.$si-sys-color-effects-focus});
+  outline-offset: var(
+    --ix-input--focus--outline-offset,
+    #{sys.$si-sys-sizing-focus-ring-offset}
+  );
+  border-color: var(
+    --ix-input--border-color--focus,
+    #{sys.$si-sys-color-border-1}
+  ) !important;
+}
+
+@mixin element-input-hover {
+  border-color: var(
+    --ix-input--border-color--hover,
+    #{sys.$si-sys-color-border-1}
+  ) !important;
+  background-color: var(
+    --ix-input--background--hover,
+    #{sys.$si-sys-color-background-4}
+  );
+}
+
+@mixin element-input(
+  $feature-read-only: true,
+  $padding: 0.25rem 0.5rem,
+  $density-aware: false
+) {
+  & {
+    @if $density-aware {
+      min-height: #{sys.$si-sys-sizing-size-80};
+    } @else {
+      min-height: 2rem;
+    }
+    width: auto;
+    @if $density-aware {
+      padding: #{sys.$si-sys-sizing-spacing-y-20}
+        #{sys.$si-sys-sizing-spacing-x-40};
+    } @else {
+      padding: $padding;
+    }
+    background-color: var(
+      --ix-input--background,
+      #{sys.$si-sys-color-background-1}
+    );
+    color: var(--ix-input--color, #{sys.$si-sys-color-text-primary});
+    appearance: textfield;
+    text-overflow: ellipsis;
+    border: $-border-width solid
+      var(--ix-input--border-color, #{sys.$si-sys-color-border-2});
+    border-radius: var(
+      --ix-input--border-radius,
+      #{sys.$si-sys-sizing-border-radius-xs}
+    );
+
+    @include fonts.typography-body;
+  }
+
+  &[type='number'] {
+    text-align: right;
+
+    &::-webkit-inner-spin-button {
+      margin-right: -2px;
+      margin-left: 2px;
+      display: none;
+    }
+  }
+
+  &:-webkit-autofill,
+  &:autofill {
+    -webkit-box-shadow: 0 0 0 1000px
+      var(--ix-input--background--autofill, rgba(0, 0, 0, 0)) inset !important;
+    -webkit-text-fill-color: var(
+      --ix-input--color--autofill,
+      #{sys.$si-sys-color-text-primary}
+    ) !important;
+    background-color: var(
+      --ix-input--background--autofill,
+      rgba(0, 0, 0, 0)
+    ) !important;
+    border: $-border-width solid
+      var(--ix-input--border-color--autofill, #{sys.$si-sys-color-border-2}) !important;
+    color: var(
+      --ix-input--color--autofill,
+      #{sys.$si-sys-color-text-primary}
+    ) !important;
+  }
+
+  &::placeholder {
+    color: var(--ix-input-hint--color, #{sys.$si-sys-color-text-secondary});
+  }
+
+  &.hover,
+  &:hover {
+    &:not(
+        .readonly,
+        .read-only,
+        .disabled,
+        [readonly],
+        [disabled],
+        :read-only
+      ) {
+      @include element-input-hover;
+    }
+  }
+
+  &.focus,
+  &:focus {
+    &:not(
+        .readonly,
+        .read-only,
+        .disabled,
+        [readonly],
+        [disabled],
+        :read-only
+      ) {
+      @include element-input-focus;
+    }
+  }
+
+  @if $feature-read-only == true {
+    &.read-only,
+    &:read-only {
+      background-color: transparent;
+      outline: none;
+      border: $-border-width
+        solid
+        var(--ix-input--border-color--readonly, #{sys.$si-sys-color-border-4});
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: transparent;
+    outline: none;
+    border: $-border-width solid
+      var(--ix-input--border-color--disabled, #{sys.$si-sys-color-border-4});
+  }
+
+  &:disabled::placeholder,
+  &.disabled::placeholder {
+    color: transparent;
+  }
+}
+
+@mixin element-textarea {
+  & {
+    min-height: #{sys.$si-sys-sizing-size-80};
+    padding: calc(#{sys.$si-sys-sizing-spacing-y-30} - #{$-border-width})
+      calc(#{sys.$si-sys-sizing-spacing-x-40} - #{$-border-width});
+
+    &:not([rows]) {
+      height: calc(
+        #{sys.$si-sys-sizing-size-100} + 2 * (#{sys.$si-sys-sizing-spacing-y-20} -
+              #{sys.$si-sys-sizing-spacing-y-10})
+      );
+    }
+  }
+}
+
+@mixin form($namespace: '') {
+  input#{$namespace} {
+    @include element-input($density-aware: true);
+  }
+
+  textarea#{$namespace} {
+    @include element-input($density-aware: true);
+    @include element-textarea;
+  }
+
+  @include form-component.input-valid;
+
+  @include form-component.input-info {
+    & {
+      border-color: var(
+        --ix-input--border-color--info,
+        #{sys.$si-sys-color-border-information}
+      );
+    }
+
+    &:hover {
+      border-color: var(
+        --ix-input--border-color--info--hover,
+        #{sys.$si-sys-color-border-information}
+      ) !important;
+    }
+
+    &:active {
+      border-color: var(
+        --ix-input--border-color--info--active,
+        #{sys.$si-sys-color-border-information}
+      ) !important;
+    }
+  }
+
+  @include form-component.input-warning {
+    & {
+      background-color: var(
+        --ix-input--background--warning,
+        #{sys.$si-sys-color-background-1}
+      );
+      border-color: var(
+        --ix-input--border-color--warning--active,
+        #{sys.$si-sys-color-border-warning}
+      ) !important;
+    }
+
+    &:hover {
+      background-color: var(
+        --ix-input--background--warning--hover,
+        #{sys.$si-sys-color-background-4}
+      );
+      border-color: var(
+        --ix-input--border-color--warning--hover,
+        #{sys.$si-sys-color-border-warning}
+      ) !important;
+    }
+
+    &:active {
+      border-color: var(
+        --ix-input--border-color--warning--active,
+        #{sys.$si-sys-color-border-warning}
+      ) !important;
+    }
+  }
+
+  @include form-component.input-invalid {
+    & {
+      background-color: var(
+        --ix-input--background--invalid,
+        #{sys.$si-sys-color-background-1}
+      );
+      border-color: var(
+        --ix-input--border-color--invalid,
+        #{sys.$si-sys-color-border-danger}
+      ) !important;
+    }
+
+    &:hover {
+      background-color: var(
+        --ix-input--background--invalid--hover,
+        #{sys.$si-sys-color-background-4}
+      );
+      border-color: var(
+        --ix-input--border-color--invalid--hover,
+        #{sys.$si-sys-color-border-danger}
+      ) !important;
+    }
+
+    &:active {
+      border-color: var(
+        --ix-input--border-color--invalid--active,
+        #{sys.$si-sys-color-border-danger}
+      ) !important;
+    }
+  }
+}

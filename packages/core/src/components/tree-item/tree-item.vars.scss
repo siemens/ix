@@ -10,7 +10,6 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-tree-item-expand-icon--transition-duration: var(--theme-default-time);
   --ix-tree-item--background--active: #{sys.$si-sys-color-background-selected};
   --ix-tree-item--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-tree-item--background--selected: #{sys.$si-sys-color-background-selected};
@@ -19,7 +18,9 @@
 }
 
 :host {
+  --ix-tree-item-expand-icon--transition-duration: var(--theme-default-time);
   --ix-tree-item--height: #{sys.$si-sys-sizing-size-80};
   --ix-tree-item-tree-node-container--height: #{sys.$si-sys-sizing-size-80};
   --ix-tree-item-icon-toggle-container--icon-size: #{sys.$si-sys-sizing-size-80};
+  --ix-tree-item--opacity: 0.5;
 }

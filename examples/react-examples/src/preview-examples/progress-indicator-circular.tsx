@@ -15,7 +15,7 @@ export default () => {
       type="circular"
       label="Download"
       value={75}
-      helper-text="This is a help text for the progress indicator"
+      helperText="This is a help text for the progress indicator"
     >
       75%
     </IxProgressIndicator>
