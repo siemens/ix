@@ -33,6 +33,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 /**
  * Tabbed navigation for switching between related views.
  *
+ * @documentation https://ix.siemens.io//docs/components/tabs/code.md
  * @figma-main-component-id 427:6367
  *
  * @slot - Tab items.

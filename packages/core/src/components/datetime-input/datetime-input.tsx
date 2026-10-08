@@ -66,6 +66,7 @@ import {
 /**
  * Text input for entering and validating a combined date and time value.
  *
+ * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
  * @since 5.0.0
  * @form-ready
  *

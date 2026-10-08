@@ -30,6 +30,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 /**
  * Field that combines two inputs to capture a date, time, or datetime range.
  *
+ * @documentation https://ix.siemens.io//docs/components/range-field/guide.md
  * @slot - Range field content.
  */
 @Component({

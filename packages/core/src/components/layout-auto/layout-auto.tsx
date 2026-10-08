@@ -4,6 +4,7 @@ import { IxComponentInterface } from '../utils/internal';
 /**
  * Responsive form layout that automatically adjusts columns to the available width.
  *
+ * @documentation https://ix.siemens.io//docs/components/layout-auto/code.md
  * @slot - Layout content.
  */
 @Component({

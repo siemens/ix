@@ -36,6 +36,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 /**
  * Collapsible list group with a selectable header and nested items.
  *
+ * @documentation https://ix.siemens.io//docs/components/group/code.md
  * @figma-main-component-id 1274:38298
  *
  * @slot header - Additional header content.

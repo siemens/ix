@@ -35,6 +35,7 @@ import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 /**
  * Displays hierarchical data as an expandable tree.
  *
+ * @documentation https://ix.siemens.io//docs/components/tree/code.md
  * @slot - Tree items.
  */
 @Component({

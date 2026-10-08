@@ -34,6 +34,7 @@ import {
 /**
  * Icon button that toggles between a pressed and unpressed state.
  *
+ * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
  * @figma-main-component-id 107597:25227
  */
 @Component({

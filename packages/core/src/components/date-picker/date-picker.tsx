@@ -57,6 +57,7 @@ import { DatePickerYearMonth } from './date-picker.types';
 /**
  * Calendar for selecting a single date or a date range.
  *
+ * @documentation https://ix.siemens.io//docs/components/date-picker/guide.md
  * @figma-main-component-id 561:6290
  */
 @Component({

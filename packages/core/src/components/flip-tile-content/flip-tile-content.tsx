@@ -11,6 +11,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 /**
  * Content for a single side of a flip tile.
  *
+ * @documentation https://ix.siemens.io//docs/components/flip/code.md
  * @figma-main-component-id 407:3446
  *
  * @slot - Flip tile content.

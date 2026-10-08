@@ -13,6 +13,7 @@ import type { KeyValueLabelPosition } from './key-value.types';
 /**
  * Displays a labeled key together with its value.
  *
+ * @documentation https://ix.siemens.io//docs/components/key-value/code.md
  * @figma-main-component-id 4727:112546
  *
  * @slot custom-value - Optional custom value at key value instead of text value

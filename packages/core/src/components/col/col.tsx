@@ -16,6 +16,7 @@ type GridBreakpoint = Breakpoint | '';
 /**
  * Column within the responsive layout grid.
  *
+ * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
  * @slot - Column content.
  */
 @Component({

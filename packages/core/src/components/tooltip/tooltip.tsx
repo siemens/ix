@@ -49,6 +49,7 @@ let tooltipInstance = 0;
 /**
  * Small overlay that shows contextual information when hovering or focusing an element.
  *
+ * @documentation https://ix.siemens.io//docs/components/tooltip/guide.md
  * @figma-main-component-id 1239:30786
  * @slot title-icon - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title

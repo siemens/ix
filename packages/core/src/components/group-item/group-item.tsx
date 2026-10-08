@@ -22,6 +22,7 @@ import { a11yBoolean } from '../utils/a11y';
 /**
  * A single selectable item within a group.
  *
+ * @documentation https://ix.siemens.io//docs/components/group/code.md
  * @figma-main-component-id 1274:34186
  *
  * @slot - Group item content.

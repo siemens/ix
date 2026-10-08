@@ -24,6 +24,7 @@ import { getSlottedElements } from '../utils/shadow-dom';
 /**
  * Menu entry that displays the current user's avatar and account actions.
  *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
  * @slot - Avatar dropdown content.
  */
 @Component({

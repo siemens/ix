@@ -42,6 +42,7 @@ import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 /**
  * Dropdown for selecting a date or a relative date range.
  *
+ * @documentation https://ix.siemens.io//docs/components/date-dropdown/code.md
  * @figma-main-component-id 45886:27067
  */
 @Component({

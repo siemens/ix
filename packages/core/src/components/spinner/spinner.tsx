@@ -14,6 +14,7 @@ import type { SpinnerSize } from './spinner.types';
 /**
  * Animated indicator that signals an ongoing loading process.
  *
+ * @documentation https://ix.siemens.io//docs/components/spinner/code.md
  * @figma-main-component-id 453:5375
  */
 @Component({

@@ -23,6 +23,7 @@ import { IxButtonComponent } from '../button/button-component';
 /**
  * Search input that expands from an icon when activated.
  *
+ * @documentation https://ix.siemens.io//docs/components/expanding-search/code.md
  * @figma-main-component-id 680:9354
  */
 @Component({

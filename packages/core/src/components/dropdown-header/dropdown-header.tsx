@@ -12,6 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 /**
  * Non-interactive heading that labels a group of dropdown items.
  *
+ * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
  * @figma-main-component-id 1233:33137
  */
 @Component({

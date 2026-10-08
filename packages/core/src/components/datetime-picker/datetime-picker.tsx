@@ -32,6 +32,7 @@ import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks
 /**
  * Combined calendar and time selector for picking a date and time.
  *
+ * @documentation https://ix.siemens.io//docs/components/date-time-picker/guide.md
  * @figma-main-component-id 70466:78415
  */
 @Component({

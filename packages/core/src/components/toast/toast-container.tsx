@@ -15,6 +15,7 @@ import { ToastConfig } from './toast-utils';
 /**
  * Container that positions and manages toast notifications.
  *
+ * @documentation https://ix.siemens.io//docs/components/toast/guide.md
  * @slot - Toast messages.
  */
 @Component({

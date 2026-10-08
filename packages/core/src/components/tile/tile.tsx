@@ -12,6 +12,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 /**
  * Container that presents grouped information in a compact tile.
  *
+ * @documentation https://ix.siemens.io//docs/components/tile/code.md
  * @figma-main-component-id 1431:43158
  *
  * @slot header - Header content.

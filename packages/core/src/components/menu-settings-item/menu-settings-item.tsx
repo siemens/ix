@@ -23,6 +23,7 @@ import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 /**
  * A single tab or entry within the settings overlay.
  *
+ * @documentation https://ix.siemens.io//docs/components/settings/guide.md
  * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-settings-item
  *
  * @slot - Settings item content.

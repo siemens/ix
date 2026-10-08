@@ -26,6 +26,7 @@ import {
 /**
  * Control for navigating between pages of content.
  *
+ * @documentation https://ix.siemens.io//docs/components/pagination/code.md
  * @figma-main-component-id 2302:67995, 2554:79100
  */
 @Component({
