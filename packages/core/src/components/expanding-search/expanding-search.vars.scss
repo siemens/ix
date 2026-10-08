@@ -10,20 +10,23 @@
 @use 'tokens/system' as sys;
 
 :host {
+  --ix-expanding-search-button-search--outline-color--focus: var(
+    --focus--border-color
+  );
+  --ix-expanding-search-button--border--active: #{sys.$si-sys-sizing-border-width-default}
+    solid #{sys.$si-sys-color-border-2};
+}
+
+:host {
   --ix-expanding-search-input-container--transition-duration: var(
     --theme-medium-time
   );
   --ix-expanding-search-button--transition-duration: var(--theme-default-time);
-  --ix-expanding-search-button--border--active: var(--theme-std-bdr-1);
-  --ix-expanding-search--border-radius: var(--theme-small-border-radius);
-  --ix-expanding-search--box-shadow: none;
-}
-
-:host {
+  --ix-expanding-search--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-expanding-search--container-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-border-width-default}
   );
-  --ix-expanding-search--height: #{sys.$si-sys-sizing-size-80};
+  --ix-expanding-search--height: var(--ix-input--min-height);
   --ix-expanding-search-collapsed--width: #{sys.$si-sys-sizing-size-80};
   --ix-expanding-search-button-search--max-width: #{sys.$si-sys-sizing-size-80};
   --ix-expanding-search-button-search--max-height: #{sys.$si-sys-sizing-size-80};
@@ -33,4 +36,5 @@
   --ix-expanding-search-button-clear--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-expanding-search-input--padding-left: #{sys.$si-sys-sizing-spacing-x-90};
   --ix-expanding-search-input--padding-right: #{sys.$si-sys-sizing-spacing-x-100};
+  --ix-expanding-search--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }

@@ -31,7 +31,7 @@
     max-height: $size;
     border-radius: 100%;
     position: relative;
-    animation: rotate 2s linear infinite;
+    animation: rotate var(--ix-spinner--rotation-duration) linear infinite;
 
     @keyframes rotate {
       100% {
@@ -92,7 +92,7 @@
     border-radius: 100%;
     border: $track-size solid
       var(--ix-button-color, var(--ix-spinner--border-color));
-    animation: clipMask 3s linear infinite;
+    animation: clipMask var(--ix-spinner--mask-duration) linear infinite;
   }
 
   .#{$size-name}:not(.hide-track)::before {

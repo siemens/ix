@@ -63,43 +63,43 @@
   .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
       outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
-      outline-offset: var(--theme-focus-outline-offset);
+      outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }
 
   .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
       outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
-      outline-offset: var(--theme-focus-outline-offset);
+      outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }
 
   .ix-form-control[type='checkbox']:not(:checked) {
     & + label:before {
       background-color: #{sys.$si-sys-color-background-accent-secondary};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-1};
+      border: #{sys.$si-sys-sizing-border-width-default} solid #{sys.$si-sys-color-border-1};
     }
 
     &:hover + label:before {
       background-color: #{sys.$si-sys-color-background-accent-secondary-hover};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
+      border: #{sys.$si-sys-sizing-border-width-default} solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:active + label:before {
       background-color: #{sys.$si-sys-color-background-accent-secondary-active};
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-border-accent-hover};
+      border: #{sys.$si-sys-sizing-border-width-default} solid #{sys.$si-sys-color-border-accent-hover};
     }
 
     &:disabled + label::before {
       background-color: transparent;
-      border: var(--theme-border-width-default) solid #{sys.$si-sys-color-text-disabled};
+      border: #{sys.$si-sys-sizing-border-width-default} solid #{sys.$si-sys-color-text-disabled};
     }
   }
 
   .ix-form-control[type='checkbox']:checked {
     & + label:before {
       background-color: #{sys.$si-sys-color-background-accent-hover};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     & + label:after {
@@ -120,17 +120,17 @@
 
     &:hover + label:before {
       background-color: #{sys.$si-sys-color-background-accent-hover};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:active + label:before {
       background-color: #{sys.$si-sys-color-background-accent-active};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:disabled + label:before {
       background-color: #{sys.$si-sys-color-text-disabled};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:disabled + label::after {
@@ -159,22 +159,22 @@
 
     & + label:before {
       background-color: #{sys.$si-sys-color-background-accent-hover};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:hover + label:before {
       background-color: #{sys.$si-sys-color-background-accent-hover};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:active + label:before {
       background-color: #{sys.$si-sys-color-background-accent-active};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:disabled + label::before {
       background-color: #{sys.$si-sys-color-text-disabled};
-      border: var(--theme-border-width-default) solid transparent;
+      border: #{sys.$si-sys-sizing-border-width-default} solid transparent;
     }
 
     &:disabled + label::after {

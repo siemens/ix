@@ -17,6 +17,7 @@ import {
   Listen,
   Prop,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Group item content.
@@ -108,7 +109,13 @@ export class GroupItem {
           selected: this.selected && !this.suppressSelection,
         }}
       >
-        <button tabindex={this.disabled ? -1 : 0} disabled={this.disabled}>
+        <button
+          tabindex={this.disabled ? -1 : 0}
+          disabled={this.disabled}
+          aria-pressed={
+            this.suppressSelection ? undefined : a11yBoolean(this.selected)
+          }
+        >
           <div class="group-entry-selection-indicator"></div>
           {this.icon ? (
             <ix-icon

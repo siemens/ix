@@ -13,17 +13,35 @@ import {
   regressionTest,
 } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `<ix-toggle text-on="On" text-off="Off" aria-label="Wi-Fi"></ix-toggle>`
+  );
+
+  const unchecked = await makeAxeBuilder().analyze();
+  expect(unchecked.violations).toEqual([]);
+
+  await page.getByRole('switch', { name: 'Wi-Fi' }).click();
+  await expect(page.locator('ix-toggle')).toHaveAttribute(
+    'aria-checked',
+    'true'
+  );
+
+  const checked = await makeAxeBuilder().analyze();
+  expect(checked.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-toggle></ix-toggle>`);
   const toggle = page.locator('ix-toggle');
-  await expect(toggle).toHaveClass(/hydrated/);
+  await expect(toggle).toHaveAttribute('hydrated');
   await expect(toggle).toBeVisible();
 });
 
 regressionTest('should toggle', async ({ mount, page }) => {
   await mount(`<ix-toggle></ix-toggle>`);
   const toggle = page.locator('ix-toggle');
-  await expect(toggle).toHaveClass(/hydrated/);
+  await expect(toggle).toHaveAttribute('hydrated');
   await toggle.click();
 
   await expect(toggle).toHaveJSProperty('checked', true);
@@ -41,7 +59,7 @@ regressionTest(
       });
     });
 
-    await expect(toggle).toHaveClass(/hydrated/);
+    await expect(toggle).toHaveAttribute('hydrated');
 
     await toggle.click();
 
@@ -52,7 +70,7 @@ regressionTest(
 regressionTest('should not toggle if disabled', async ({ mount, page }) => {
   await mount(`<ix-toggle disabled></ix-toggle>`);
   const toggle = page.locator('ix-toggle');
-  await expect(toggle).toHaveClass(/hydrated/);
+  await expect(toggle).toHaveAttribute('hydrated');
   await toggle.click({
     force: true,
   });
@@ -67,7 +85,7 @@ regressionTest(
       `<ix-toggle indeterminate aria-label="Test switch"></ix-toggle>`
     );
     const toggle = page.locator('ix-toggle');
-    await expect(toggle).toHaveClass(/hydrated/);
+    await expect(toggle).toHaveAttribute('hydrated');
     await expect(toggle).toHaveJSProperty('indeterminate', true);
     await expect(toggle).toHaveJSProperty('checked', false);
     await expect(toggle).toHaveAttribute('aria-checked', 'mixed');
@@ -112,7 +130,7 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
   );
 
   const toggle = page.locator('ix-toggle');
-  await expect(toggle).toHaveClass(/hydrated/);
+  await expect(toggle).toHaveAttribute('hydrated');
   await expect(toggle).toHaveJSProperty('checked', true);
 
   const formElement = page.locator('form');

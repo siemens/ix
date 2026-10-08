@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './typography.vars';
+
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/fonts' as font-mixins;
@@ -135,5 +137,5 @@
 }
 
 :host(.typography-weight-bold) {
-  font-weight: 700 !important;
+  font-weight: var(--ix-typography-weight-bold--font-weight) !important;
 }

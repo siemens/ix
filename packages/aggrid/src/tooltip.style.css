@@ -8,5 +8,5 @@
  */
 
 .ag-tooltip {
-  box-shadow: var(--theme-shadow-4) !important;
+  box-shadow: var(--si-sys-color-effects-shadow-4) !important;
 }

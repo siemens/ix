@@ -212,18 +212,18 @@
   --si-sys-color-data-sequential-yellow-2: var(--si-ref-color-data-yellow-400);
   --si-sys-color-data-sequential-yellow-3: var(--si-ref-color-data-yellow-500);
   --si-sys-color-data-sequential-yellow-4: var(--si-ref-color-data-yellow-700);
-  --si-sys-color-effects-backdrop: rgb(from var(--si-ref-color-main-brand-black) r g b / 0.70);
+  --si-sys-color-effects-backdrop: rgb(from var(--si-ref-color-main-brand-black) r g b / 0.7);
   // Reserved for focus ring, for keyboard navigation.
   --si-sys-color-effects-focus: var(--si-ref-color-main-brand-focus);
   --si-sys-color-effects-logo: var(--si-ref-color-main-brand-white);
   // Use for minimal separation from the parent surface. Suitable for small controls, selected items, and subtle raised content.
-  --si-sys-color-effects-shadow-1: 0px -0.25px 1px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.80), 0px 0.5px 1px 0px var(--si-ref-color-main-brand-black);
+  --si-sys-color-effects-shadow-1: 0px -0.25px 1px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.8), 0px 0.5px 1px 0px var(--si-ref-color-main-brand-black);
   // Use for standard raised UI that remains within the normal page flow, such as cards, tiles, and floating action controls.
-  --si-sys-color-effects-shadow-2: 0px -0.25px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.20), 0px 1px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.60);
+  --si-sys-color-effects-shadow-2: 0px -0.25px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.2), 0px 1px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.6);
   // Use for temporary or interactive floating UI, such as menus, dropdowns, tooltips, and popovers.
-  --si-sys-color-effects-shadow-3: 0px -0.25px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.20), 0px 2px 6px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.60);
+  --si-sys-color-effects-shadow-3: 0px -0.25px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.2), 0px 2px 6px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.6);
   // Use for the highest visual elevation, where UI appears above the application content, such as dialogs, modal panels, notifications, and drag previews.
-  --si-sys-color-effects-shadow-4: 0px -0.25px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.20), 0px 4px 12px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.60);
+  --si-sys-color-effects-shadow-4: 0px -0.25px 2px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.2), 0px 4px 12px 0px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.6);
   // Accent text color for active states on interactive elements.
   --si-sys-color-text-accent-active: var(--si-ref-color-main-bold-turquoise-500);
   // Accent text color for hover states on interactive elements.

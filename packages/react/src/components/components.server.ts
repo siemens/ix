@@ -257,6 +257,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
         visibleItemCount: 'visible-item-count',
         subtle: 'subtle',
         ariaLabelPreviousButton: 'aria-label-previous-button',
+        ariaLabelNextButton: 'aria-label-next-button',
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
@@ -1057,7 +1058,9 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents, Compo
         expanded: 'expanded',
         selected: 'selected',
         index: 'index',
-        expandOnHeaderClick: 'expand-on-header-click'
+        expandOnHeaderClick: 'expand-on-header-click',
+        ariaLabelSelect: 'aria-label-select',
+        ariaLabelExpand: 'aria-label-expand'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxGroup as StencilReactComponent<IxGroupElement, IxGroupEvents, Components.IxGroup>,

@@ -10,7 +10,6 @@
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './event-list-item.vars' as *;
 $default-event-list-item-height: var(--ix-event-list-item--height);
@@ -106,7 +105,7 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
       flex-grow: 1;
       width: var(--ix-event-list-item-container--width);
       height: 100%;
-      border: 0.062rem solid;
+      border: var(--ix-event-list-item-container--border-width) solid;
       border-color: var(--ix-event-list-item--border-color);
       border-top-left-radius: 0;
       border-top-right-radius: var(
@@ -140,7 +139,7 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
     .chevron-icon {
       margin-left: auto;
       margin-right: var(--ix-event-list-item-chevron-icon--margin-right);
-      opacity: 0.6;
+      opacity: var(--ix-event-list-item-chevron-icon--opacity);
       align-self: center;
     }
 

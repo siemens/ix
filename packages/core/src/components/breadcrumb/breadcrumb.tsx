@@ -66,6 +66,14 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
   @Prop() ariaLabelPreviousButton = 'Show previous breadcrumb items';
 
   /**
+   * Accessible label for the next items dropdown button used to access the dropdown list
+   * with conditionally hidden next items
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelNextButton = 'Show next breadcrumb items';
+
+  /**
    * Enable Popover API rendering for dropdown.
    *
    * @default false
@@ -176,6 +184,7 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
               name={iconChevronRightSmall}
               size="16"
               class={'chevron'}
+              aria-hidden="true"
             ></ix-icon>
             {this.items
               .slice(0, this.items.length - this.visibleItemCount)
@@ -208,12 +217,14 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
             variant="tertiary"
             enableTopLayer={this.enableTopLayer}
             aria-current="page"
+            aria-label={this.ariaLabelNextButton}
           >
             <ix-icon
               slot="button-label"
               name={iconChevronRightSmall}
               size="16"
               class={'chevron'}
+              aria-hidden="true"
             ></ix-icon>
             {this.nextItems?.map((item) => (
               <ix-dropdown-item

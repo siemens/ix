@@ -11,18 +11,22 @@ import { regressionTest } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
-  await expect(page.locator('ix-expanding-search')).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-expanding-search')).toHaveAttribute('hydrated');
+
+  const collapsed = await makeAxeBuilder().analyze();
+  expect(collapsed.violations).toEqual([]);
+
   await page.getByRole('button', { name: 'Open search' }).click();
   await expect(page.locator('ix-expanding-search')).toHaveClass(/\bexpanded\b/);
 
-  const results = await makeAxeBuilder().analyze();
-  expect(results.violations).toEqual([]);
+  const expanded = await makeAxeBuilder().analyze();
+  expect(expanded.violations).toEqual([]);
 });
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const button = page.locator('ix-expanding-search');
-  await expect(button).toHaveClass(/\bhydrated\b/);
+  await expect(button).toHaveAttribute('hydrated');
   await expect(button).toBeVisible();
 });
 
@@ -131,7 +135,7 @@ for (const alignment of ['flex-start', 'flex-end']) {
         `);
           const element = page.locator('ix-expanding-search');
           const input = page.getByRole('textbox', { name: 'Search input' });
-          await expect(element).toHaveClass(/\bhydrated\b/);
+          await expect(element).toHaveAttribute('hydrated');
           if (duration) {
             await expect(element).toHaveCSS('transition-duration', duration);
           }
