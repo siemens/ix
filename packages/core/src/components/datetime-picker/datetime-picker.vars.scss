@@ -12,3 +12,7 @@
 :host {
   --ix-datetime-picker-separator--background: #{sys.$si-sys-color-border-4};
 }
+
+:host {
+  --ix-datetime-picker-col-separator--border-width: #{sys.$si-sys-sizing-border-width-default};
+}

@@ -268,6 +268,11 @@ Visual regression tests run across multiple themes: `theme-classic-light`, `them
 
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
+Fixtures in `testing/visual-testing` normally load `tests/utils/test/runtime/main.ts`,
+which includes foundation, utility, reset, and base styles. Fixtures that use native
+compatibility controls such as `.ix-form-control` or `.ix-form-label` should load
+`tests/utils/test/runtime/legacy.ts` instead to opt in to `legacy.css`.
+
 1. Build the library: `pnpm build --filter \!documentation`
 
 2. Start the playwright docker container mounting the current working directory into the container's _work_ directory:

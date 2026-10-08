@@ -10,7 +10,6 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './time-picker.vars' as *;
 :host {
@@ -78,8 +77,8 @@
     .element-list {
       list-style-type: none;
       overflow: auto;
-      padding: 0.0625rem;
-      margin: -0.0625rem;
+      padding: var(--ix-time-picker-element-list--padding);
+      margin: var(--ix-time-picker-element-list--margin);
       max-height: var(--ix-time-picker-element-list--max-height);
 
       button {
@@ -102,7 +101,8 @@
         }
 
         &:focus-visible {
-          box-shadow: 0 0 0 1px
+          box-shadow: 0 0 0
+            var(--ix-time-picker-element-container--box-shadow-width)
             var(--ix-time-picker-day--box-shadow-color--focus);
         }
 
@@ -137,7 +137,7 @@
           }
 
           &:focus-visible {
-            border: 0.0625rem solid
+            border: var(--ix-time-picker-element-container--border-width) solid
               var(--ix-time-picker-day--border-color--selected-focus);
           }
 

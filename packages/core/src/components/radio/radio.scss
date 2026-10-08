@@ -30,7 +30,8 @@
     height: var(--ix-radio-checkmark--height);
     min-height: var(--ix-radio-checkmark--min-height);
     max-height: var(--ix-radio-checkmark--max-height);
-    border: var(--ix-radio-checkmark--border-width-initial) solid white;
+    border: var(--ix-radio-checkmark--border-width-initial) solid
+      var(--ix-radio-checkmark--border-color);
     border-radius: var(--ix-radio-checkmark--border-radius);
   }
 
