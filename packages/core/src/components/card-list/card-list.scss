@@ -121,11 +121,14 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
       height: 100%;
     }
 
+    /* Beat ix-card :host(.clickable…) hover/active so End-card accent chrome wins */
+    &.clickable:hover,
     &:hover {
       --ix-card-background: var(--ix-card-list-show-all--background--hover);
       color: var(--ix-card-list-show-all--color--hover);
     }
 
+    &.clickable:active,
     &:active {
       --ix-card-background: var(--ix-card-list-show-all--background--active);
       color: var(--ix-card-list-show-all--color--hover);

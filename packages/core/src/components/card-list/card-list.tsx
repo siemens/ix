@@ -481,6 +481,7 @@ export class CardList {
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
+                clickable
                 role="button"
                 tabindex="0"
                 aria-label={`${this.i18nMoreCards} (${this.numberOfOverflowingElements})`}
