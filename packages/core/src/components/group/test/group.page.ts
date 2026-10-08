@@ -54,7 +54,7 @@ export class GroupPage {
   }
 
   async expectHydrated(): Promise<void> {
-    await expect(this.host).toHaveClass(/hydrated/);
+    await expect(this.host).toHaveAttribute('hydrated');
   }
 
   async expectExpanded(expanded = true): Promise<void> {
