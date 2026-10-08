@@ -1,0 +1,22 @@
+packages/core/src/components/card-list/card-list.scss
+  h_c5a773bf2fda8b 124-125,131
+packages/core/src/components/card-list/card-list.tsx
+  h_c5a773bf2fda8b 479
+packages/core/src/components/utils/status.types.ts
+  h_c5a773bf2fda8b 12-13,26-30,43-47
+packages/react-test-app/src/preview-examples/card-list.tsx
+  h_c5a773bf2fda8b 18,22-23
+packages/vue-test-app/src/preview-examples/card-list.vue
+  h_c5a773bf2fda8b 53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c48046beb3b45203b76e7f0f5245b22a27ed6bf6",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
