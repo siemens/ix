@@ -3404,6 +3404,12 @@ export namespace Components {
          */
         "i18nPage": string;
         /**
+          * i18n label for the pagination navigation landmark
+          * @since 6.0.0
+          * @default 'Pagination'
+         */
+        "i18nPagination": string;
+        /**
           * Number of items shown at once. Can only be changed in advanced mode.
           * @default 15
          */
@@ -10677,6 +10683,12 @@ declare namespace LocalJSX {
          */
         "i18nPage"?: string;
         /**
+          * i18n label for the pagination navigation landmark
+          * @since 6.0.0
+          * @default 'Pagination'
+         */
+        "i18nPagination"?: string;
+        /**
           * Number of items shown at once. Can only be changed in advanced mode.
           * @default 15
          */
@@ -13252,6 +13264,7 @@ declare namespace LocalJSX {
         "count": number;
         "selectedPage": number;
         "i18nPage": string;
+        "i18nPagination": string;
         "i18nOf": string;
         "i18nItems": string;
         "ariaLabelChevronLeftIconButton": string;

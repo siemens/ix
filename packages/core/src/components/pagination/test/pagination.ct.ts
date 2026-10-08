@@ -30,6 +30,27 @@ regressionTest('renders', async ({ mount, page }) => {
   const element = page.locator('ix-pagination');
 
   await expect(element).toHaveAttribute('hydrated');
+  await expect(
+    page.getByRole('navigation', { name: 'Pagination' })
+  ).toBeVisible();
+});
+
+regressionTest('localizes the navigation landmark', async ({ mount, page }) => {
+  await mount(
+    '<ix-pagination i18n-pagination="Seitennavigation"></ix-pagination>'
+  );
+  const pagination = page.locator('ix-pagination');
+
+  await expect(
+    page.getByRole('navigation', { name: 'Seitennavigation' })
+  ).toBeVisible();
+
+  await pagination.evaluate((element: HTMLIxPaginationElement) => {
+    element.i18nPagination = 'Blättern';
+  });
+  await expect(
+    page.getByRole('navigation', { name: 'Blättern' })
+  ).toBeVisible();
 });
 
 regressionTest('uses default jump button labels', async ({ mount, page }) => {

@@ -1600,6 +1600,7 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         count: 'count',
         selectedPage: 'selected-page',
         i18nPage: 'i18n-page',
+        i18nPagination: 'i18n-pagination',
         i18nOf: 'i18n-of',
         i18nItems: 'i18n-items',
         ariaLabelChevronLeftIconButton: 'aria-label-chevron-left-icon-button',

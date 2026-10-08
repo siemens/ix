@@ -83,6 +83,13 @@ export class Pagination {
   @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
+   * i18n label for the pagination navigation landmark
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-pagination' }) i18nPagination = 'Pagination';
+
+  /**
    * i18n label for 'of'
    */
   @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
@@ -297,7 +304,7 @@ export class Pagination {
 
   render() {
     return (
-      <Host role="navigation" aria-label="Pagination">
+      <Host role="navigation" aria-label={this.i18nPagination}>
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
           tabIndex={!this.count || this.selectedPage === 0 ? -1 : 0}

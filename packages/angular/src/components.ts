@@ -2265,14 +2265,14 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
 
 
 @ProxyCmp({
-  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelJumpBackward', 'ariaLabelJumpForward', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'itemCountOptions', 'selectedPage']
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelJumpBackward', 'ariaLabelJumpForward', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'i18nPagination', 'itemCount', 'itemCountOptions', 'selectedPage']
 })
 @Component({
   selector: 'ix-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelJumpBackward', 'ariaLabelJumpForward', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'itemCountOptions', 'selectedPage'],
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelJumpBackward', 'ariaLabelJumpForward', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'i18nPagination', 'itemCount', 'itemCountOptions', 'selectedPage'],
   outputs: ['pageSelected', 'itemCountChanged'],
   standalone: false
 })
