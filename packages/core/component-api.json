@@ -176,9 +176,9 @@
           "deprecated": false
         },
         {
-          "name": "skipLinkMainTargetId",
-          "attribute": "skip-link-main-target-id",
-          "type": "string | undefined",
+          "name": "skipLinkMainTarget",
+          "attribute": "skip-link-main-target",
+          "type": "HTMLElement | string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,

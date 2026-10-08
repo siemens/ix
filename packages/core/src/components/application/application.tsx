@@ -20,9 +20,7 @@ import { hasSlottedContent, hasSlottedElements } from '../utils/shadow-dom';
 import { themeSwitcher, ThemeVariant } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
-const DEFAULT_SKIP_LINK_MAIN_LABEL = 'Skip to main content';
 const DEFAULT_SKIP_LINK_MAIN_TARGET_ID = 'ix-application-main-content';
-const DEFAULT_SKIP_LINK_FOOTER_LABEL = 'Skip to footer';
 const DEFAULT_SKIP_LINK_FOOTER_TARGET_ID = 'ix-application-footer';
 
 /**
@@ -104,7 +102,7 @@ export class Application {
    * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-skip-to-main' }) i18nSkipToMain =
-    DEFAULT_SKIP_LINK_MAIN_LABEL;
+    'Skip to main content';
 
   /**
    * Localized text for the link that focuses the application footer.
@@ -112,15 +110,16 @@ export class Application {
    * @since 6.0.0
    */
   @Prop({ attribute: 'i18n-skip-to-footer' }) i18nSkipToFooter =
-    DEFAULT_SKIP_LINK_FOOTER_LABEL;
+    'Skip to footer';
 
   /**
-   * ID of a light-DOM descendant to focus when the Main skip link is activated.
-   * Falls back to the internal main region when the target cannot be used.
+   * Element, or ID of an element, to focus when the Main skip link is
+   * activated. The element must be focusable, e.g. by setting `tabindex="-1"`.
+   * Falls back to the internal main region when the element cannot be focused.
    *
    * @since 6.0.0
    */
-  @Prop() skipLinkMainTargetId?: string;
+  @Prop() skipLinkMainTarget?: string | HTMLElement;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
@@ -129,7 +128,6 @@ export class Application {
   private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
   private mainElement?: HTMLElement;
   private footerElement?: HTMLElement;
-  private temporaryFocusTargetRestore?: () => void;
 
   get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
@@ -170,132 +168,23 @@ export class Application {
     }
   }
 
-  private get skipLinkMainLabel() {
-    return this.i18nSkipToMain?.trim() || DEFAULT_SKIP_LINK_MAIN_LABEL;
-  }
-
-  private get skipLinkFooterLabel() {
-    return this.i18nSkipToFooter?.trim() || DEFAULT_SKIP_LINK_FOOTER_LABEL;
-  }
-
   private get skipLinkMainHref() {
-    const targetId = this.skipLinkMainTargetId?.trim();
-    return `#${targetId || DEFAULT_SKIP_LINK_MAIN_TARGET_ID}`;
+    const target = this.skipLinkMainTarget;
+    const targetId =
+      typeof target === 'string' && target
+        ? target
+        : DEFAULT_SKIP_LINK_MAIN_TARGET_ID;
+    return `#${targetId}`;
   }
 
-  private warn(message: string) {
-    console.warn(`ix-application: ${message}`);
-  }
-
-  private validateSkipLinkLabel(
-    propertyName: 'i18nSkipToMain' | 'i18nSkipToFooter',
-    label: string | undefined,
-    fallback: string
-  ) {
-    if (!label?.trim()) {
-      this.warn(
-        `${propertyName} must not be empty. Using "${fallback}" instead.`
-      );
-    }
-  }
-
-  @Watch('i18nSkipToMain')
-  onI18nSkipToMainChange(label: string | undefined) {
-    this.validateSkipLinkLabel(
-      'i18nSkipToMain',
-      label,
-      DEFAULT_SKIP_LINK_MAIN_LABEL
-    );
-  }
-
-  @Watch('i18nSkipToFooter')
-  onI18nSkipToFooterChange(label: string | undefined) {
-    this.validateSkipLinkLabel(
-      'i18nSkipToFooter',
-      label,
-      DEFAULT_SKIP_LINK_FOOTER_LABEL
-    );
-  }
-
-  private isOwnedLightDomDescendant(element: HTMLElement) {
-    return element.closest('ix-application') === this.hostElement;
-  }
-
-  private isUsableSkipLinkTarget(element: HTMLElement) {
-    if (
-      element.matches(':disabled') ||
-      element.closest('[hidden], [inert], [aria-hidden="true"]')
-    ) {
-      return false;
+  private resolveSkipLinkMainTarget() {
+    const target = this.skipLinkMainTarget;
+    if (typeof target !== 'string') {
+      return target;
     }
 
-    const { display, visibility } = getComputedStyle(element);
-    return (
-      display !== 'none' &&
-      visibility !== 'hidden' &&
-      element.getClientRects().length > 0
-    );
-  }
-
-  private findCustomSkipLinkTarget(targetId: string) {
-    const matches = Array.from(
-      this.hostElement.querySelectorAll(`[id="${CSS.escape(targetId)}"]`)
-    ).filter(
-      (element): element is HTMLElement =>
-        element instanceof HTMLElement &&
-        this.isOwnedLightDomDescendant(element)
-    );
-
-    if (matches.length !== 1 || !this.isUsableSkipLinkTarget(matches[0])) {
-      this.warn(
-        `skipLinkMainTargetId "${targetId}" must identify one usable descendant. Falling back to the main content.`
-      );
-      return;
-    }
-
-    return matches[0];
-  }
-
-  private restoreTemporaryTargetFocusability = () => {
-    this.temporaryFocusTargetRestore?.();
-  };
-
-  private focusCustomSkipLinkTarget(target: HTMLElement) {
-    this.restoreTemporaryTargetFocusability();
-
-    if (target.tabIndex < 0 && !target.hasAttribute('tabindex')) {
-      target.setAttribute('tabindex', '-1');
-      const restore = () => {
-        target.removeEventListener('blur', restore);
-        if (target.getAttribute('tabindex') === '-1') {
-          target.removeAttribute('tabindex');
-        }
-        if (this.temporaryFocusTargetRestore === restore) {
-          this.temporaryFocusTargetRestore = undefined;
-        }
-      };
-      this.temporaryFocusTargetRestore = restore;
-      target.addEventListener('blur', restore, { once: true });
-    }
-
-    try {
-      target.focus({ preventScroll: true });
-    } catch {
-      this.restoreTemporaryTargetFocusability();
-      return false;
-    }
-
-    if (target.ownerDocument.activeElement !== target) {
-      this.restoreTemporaryTargetFocusability();
-      return false;
-    }
-
-    target.scrollIntoView({
-      behavior: 'instant',
-      block: 'start',
-      inline: 'nearest',
-    });
-    return true;
+    const root = this.hostElement.getRootNode() as Document | ShadowRoot;
+    return root.getElementById(target);
   }
 
   private focusMainContent() {
@@ -310,22 +199,10 @@ export class Application {
   private onSkipLinkMainClick(event: MouseEvent) {
     event.preventDefault();
 
-    const targetId = this.skipLinkMainTargetId?.trim();
-    if (!targetId) {
-      this.focusMainContent();
-      return;
-    }
+    const target = this.resolveSkipLinkMainTarget();
+    target?.focus();
 
-    const target = this.findCustomSkipLinkTarget(targetId);
-    if (!target) {
-      this.focusMainContent();
-      return;
-    }
-
-    if (!this.focusCustomSkipLinkTarget(target)) {
-      this.warn(
-        `skipLinkMainTargetId "${targetId}" does not identify a focusable descendant. Falling back to the main content.`
-      );
+    if (!target?.matches(':focus')) {
       this.focusMainContent();
     }
   }
@@ -333,10 +210,6 @@ export class Application {
   private onSkipLinkFooterClick(event: MouseEvent) {
     event.preventDefault();
     this.footerElement?.focus({ preventScroll: true });
-
-    if (this.hostElement.shadowRoot?.activeElement !== this.footerElement) {
-      this.warn('Could not focus the application footer.');
-    }
   }
 
   private updateFooterSlotted() {
@@ -344,16 +217,6 @@ export class Application {
   }
 
   componentWillLoad() {
-    this.validateSkipLinkLabel(
-      'i18nSkipToMain',
-      this.i18nSkipToMain,
-      DEFAULT_SKIP_LINK_MAIN_LABEL
-    );
-    this.validateSkipLinkLabel(
-      'i18nSkipToFooter',
-      this.i18nSkipToFooter,
-      DEFAULT_SKIP_LINK_FOOTER_LABEL
-    );
     this.setBreakpoints(this.breakpoints);
 
     this.contextProvider = useContextProvider(
@@ -381,7 +244,6 @@ export class Application {
 
   disconnectedCallback() {
     this.modeDisposable?.dispose();
-    this.restoreTemporaryTargetFocusability();
   }
 
   @Watch('theme')
@@ -430,7 +292,7 @@ export class Application {
                 href={this.skipLinkMainHref}
                 onClick={(event) => this.onSkipLinkMainClick(event)}
               >
-                {this.skipLinkMainLabel}
+                {this.i18nSkipToMain}
               </a>
             </li>
             {this.footerSlotted && (
@@ -440,7 +302,7 @@ export class Application {
                   href={`#${DEFAULT_SKIP_LINK_FOOTER_TARGET_ID}`}
                   onClick={(event) => this.onSkipLinkFooterClick(event)}
                 >
-                  {this.skipLinkFooterLabel}
+                  {this.i18nSkipToFooter}
                 </a>
               </li>
             )}

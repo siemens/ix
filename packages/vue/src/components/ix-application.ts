@@ -15,5 +15,5 @@ export const IxApplication: StencilVueComponent<JSX.IxApplication> = /*@__PURE__
   'disableSkipLinks',
   'i18nSkipToMain',
   'i18nSkipToFooter',
-  'skipLinkMainTargetId'
+  'skipLinkMainTarget'
 ]);

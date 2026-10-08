@@ -203,10 +203,10 @@ export namespace Components {
          */
         "i18nSkipToMain": string;
         /**
-          * ID of a light-DOM descendant to focus when the Main skip link is activated. Falls back to the internal main region when the target cannot be used.
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
           * @since 6.0.0
          */
-        "skipLinkMainTargetId"?: string;
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -7267,10 +7267,10 @@ declare namespace LocalJSX {
          */
         "i18nSkipToMain"?: string;
         /**
-          * ID of a light-DOM descendant to focus when the Main skip link is activated. Falls back to the internal main region when the target cannot be used.
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
           * @since 6.0.0
          */
-        "skipLinkMainTargetId"?: string;
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -12565,7 +12565,7 @@ declare namespace LocalJSX {
         "disableSkipLinks": boolean;
         "i18nSkipToMain": string;
         "i18nSkipToFooter": string;
-        "skipLinkMainTargetId": string;
+        "skipLinkMainTarget": string | HTMLElement;
     }
     interface IxApplicationHeaderAttributes {
         "name": string;

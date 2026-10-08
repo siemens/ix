@@ -6,18 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, type Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
-
-const captureWarnings = (page: Page) => {
-  const warnings: string[] = [];
-  page.on('console', (message) => {
-    if (message.type() === 'warning') {
-      warnings.push(message.text());
-    }
-  });
-  return warnings;
-};
 
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
@@ -278,187 +268,77 @@ regressionTest(
 );
 
 regressionTest(
-  'focuses and scrolls to a configured light-DOM target',
+  'focuses and scrolls to a target configured by ID',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 800, height: 400 });
     await mount(`
-      <ix-application skip-link-main-target-id="page-title">
+      <ix-application skip-link-main-target="page-title">
         <div style="height: 900px"></div>
-        <h1 id="page-title">Page title</h1>
-        <button id="next">Next</button>
+        <h1 id="page-title" tabindex="-1">Page title</h1>
       </ix-application>
     `);
 
     const link = page.getByRole('link', { name: 'Skip to main content' });
-    const target = page.locator('#page-title');
+    const target = page.getByRole('heading', { name: 'Page title' });
     const main = page.locator('ix-application main');
 
     await link.focus();
     await link.press('Enter');
 
     await expect(target).toBeFocused();
-    await expect(target).toHaveAttribute('tabindex', '-1');
     await expect
       .poll(() => main.evaluate((element) => element.scrollTop))
       .toBeGreaterThan(0);
-
-    await page.locator('#next').focus();
-    await expect(target).not.toHaveAttribute('tabindex');
   }
 );
 
 regressionTest(
-  'supports custom target IDs that require selector escaping',
+  'focuses a target configured as element',
   async ({ mount, page }) => {
     await mount(`
-      <ix-application skip-link-main-target-id='content"section'>
-        <h1 id='content"section'>Escaped target</h1>
+      <ix-application>
+        <button>Target</button>
       </ix-application>
     `);
 
-    const link = page.getByRole('link', { name: 'Skip to main content' });
-    await link.focus();
-    await link.press('Enter');
+    const target = page.getByRole('button', { name: 'Target' });
+    await page
+      .locator('ix-application')
+      .evaluate((element: HTMLIxApplicationElement) => {
+        element.skipLinkMainTarget = element.querySelector('button')!;
+      });
 
-    await expect(page.getByText('Escaped target')).toBeFocused();
-  }
-);
-
-regressionTest(
-  'restores temporary focusability when switching custom targets',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-application skip-link-main-target-id="first-target">
-        <h1 id="first-target">First target</h1>
-        <h2 id="second-target">Second target</h2>
-        <button id="next">Next</button>
-      </ix-application>
-    `);
-
-    const application = page.locator('ix-application');
-    const link = page.getByRole('link', { name: 'Skip to main content' });
-    const firstTarget = page.locator('#first-target');
-    const secondTarget = page.locator('#second-target');
-
-    await link.evaluate((element: HTMLAnchorElement) => element.click());
-    await expect(firstTarget).toBeFocused();
-    await expect(firstTarget).toHaveAttribute('tabindex', '-1');
-
-    await application.evaluate((element: HTMLIxApplicationElement) => {
-      element.skipLinkMainTargetId = 'second-target';
-    });
-    await expect(link).toHaveAttribute('href', '#second-target');
-    await link.evaluate((element: HTMLAnchorElement) => element.click());
-
-    await expect(firstTarget).not.toHaveAttribute('tabindex');
-    await expect(secondTarget).toBeFocused();
-    await expect(secondTarget).toHaveAttribute('tabindex', '-1');
-
-    await page.locator('#next').focus();
-    await expect(secondTarget).not.toHaveAttribute('tabindex');
-  }
-);
-
-regressionTest(
-  'preserves existing target focusability',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-application skip-link-main-target-id="target">
-        <div id="target" tabindex="0">Target</div>
-        <button id="next">Next</button>
-      </ix-application>
-    `);
-
-    const target = page.locator('#target');
-    const link = page.getByRole('link', { name: 'Skip to main content' });
-    await link.focus();
-    await link.press('Enter');
-    await expect(target).toBeFocused();
-
-    await page.locator('#next').focus();
-    await expect(target).toHaveAttribute('tabindex', '0');
-  }
-);
-
-regressionTest(
-  'does not add tabindex to a naturally focusable target',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-application skip-link-main-target-id="target">
-        <button id="target">Target</button>
-      </ix-application>
-    `);
-
-    const target = page.locator('#target');
     const link = page.getByRole('link', { name: 'Skip to main content' });
     await link.focus();
     await link.press('Enter');
 
     await expect(target).toBeFocused();
-    await expect(target).not.toHaveAttribute('tabindex');
   }
 );
 
-const invalidTargetCases = [
+const unfocusableTargetCases = [
   {
     name: 'missing',
     markup: `
-      <ix-application skip-link-main-target-id="target">
+      <ix-application skip-link-main-target="target">
         Page content
       </ix-application>
     `,
   },
   {
-    name: 'duplicate',
+    name: 'non-focusable',
     markup: `
-      <ix-application skip-link-main-target-id="target">
-        <div id="target">First</div>
-        <div id="target">Second</div>
-      </ix-application>
-    `,
-  },
-  {
-    name: 'out-of-scope',
-    markup: `
-      <div id="target">Outside target</div>
-      <ix-application skip-link-main-target-id="target">
-        Page content
-      </ix-application>
-    `,
-  },
-  {
-    name: 'hidden',
-    markup: `
-      <ix-application skip-link-main-target-id="target">
-        <div id="target" hidden>Hidden target</div>
-      </ix-application>
-    `,
-  },
-  {
-    name: 'inert',
-    markup: `
-      <ix-application skip-link-main-target-id="target">
-        <div inert>
-          <div id="target">Inert target</div>
-        </div>
-      </ix-application>
-    `,
-  },
-  {
-    name: 'disabled',
-    markup: `
-      <ix-application skip-link-main-target-id="target">
-        <button id="target" disabled>Disabled target</button>
+      <ix-application skip-link-main-target="target">
+        <div id="target">Target</div>
       </ix-application>
     `,
   },
 ];
 
-for (const { name, markup } of invalidTargetCases) {
+for (const { name, markup } of unfocusableTargetCases) {
   regressionTest(
-    `warns and falls back for a ${name} custom target`,
+    `falls back to the main region for a ${name} target`,
     async ({ mount, page }) => {
-      const warnings = captureWarnings(page);
       await mount(markup);
 
       const link = page.getByRole('link', { name: 'Skip to main content' });
@@ -466,9 +346,6 @@ for (const { name, markup } of invalidTargetCases) {
       await link.press('Enter');
 
       await expect(page.locator('ix-application main')).toBeFocused();
-      expect(warnings).toContainEqual(
-        expect.stringContaining('skipLinkMainTargetId "target"')
-      );
     }
   );
 }
@@ -480,9 +357,9 @@ regressionTest(
       <ix-application
         i18n-skip-to-main="Zum Inhalt springen"
         i18n-skip-to-footer="Zur Fußzeile springen"
-        skip-link-main-target-id="content"
+        skip-link-main-target="content"
       >
-        <div id="content">Inhalt</div>
+        <div id="content" tabindex="-1">Inhalt</div>
         <div slot="bottom">Fußzeile</div>
       </ix-application>
     `);
@@ -493,35 +370,6 @@ regressionTest(
     await expect(
       page.getByRole('link', { name: 'Zur Fußzeile springen' })
     ).toHaveAttribute('href', '#ix-application-footer');
-  }
-);
-
-regressionTest(
-  'warns and falls back when localized text is empty',
-  async ({ mount, page }) => {
-    const warnings = captureWarnings(page);
-    await mount(`
-      <ix-application
-        i18n-skip-to-main="   "
-        i18n-skip-to-footer="   "
-      >
-        Page content
-        <div slot="bottom">Footer content</div>
-      </ix-application>
-    `);
-
-    await expect(
-      page.getByRole('link', { name: 'Skip to main content' })
-    ).toBeVisible();
-    await expect(
-      page.getByRole('link', { name: 'Skip to footer' })
-    ).toBeVisible();
-    expect(warnings).toContainEqual(
-      expect.stringContaining('i18nSkipToMain must not be empty')
-    );
-    expect(warnings).toContainEqual(
-      expect.stringContaining('i18nSkipToFooter must not be empty')
-    );
   }
 );
 

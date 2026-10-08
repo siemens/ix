@@ -64,7 +64,7 @@ export const MainAndFooterSkipLinks: Story = {
  */
 export const CustomSkipLinkTarget: Story = {
   args: {
-    skipLinkMainTargetId: 'application-story-content',
+    skipLinkMainTarget: 'application-story-content',
   },
 };
 
