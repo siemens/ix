@@ -190,8 +190,8 @@ $header-height: var(--ix-group--header-height);
   .group-content {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    margin-top: 1px;
+    gap: var(--ix-group-content--gap);
+    margin-top: var(--ix-group-content--margin-top);
   }
 
   .footer {

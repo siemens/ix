@@ -8,7 +8,6 @@
  */
 
 @use './field-wrapper.vars' as *;
-@use 'tokens/system' as sys;
 @mixin helper-text {
   .bottom-text {
     display: flex;
@@ -21,7 +20,7 @@
   }
 
   .text-icon {
-    margin: 0.125rem;
+    margin: var(--ix-field-wrapper-text-icon--margin);
   }
 
   .text-icon.invalid {

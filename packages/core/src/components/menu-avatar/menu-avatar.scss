@@ -10,7 +10,6 @@
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './menu-avatar.vars' as *;
 :host {
@@ -49,7 +48,7 @@
       }
     }
 
-    border-radius: 1.25rem;
+    border-radius: var(--ix-menu-avatar-avatar--border-radius);
 
     @include hover.hover {
       background-color: var(--ix-menu-avatar-button--background--hover);
@@ -63,6 +62,7 @@
   }
 
   .avatar:focus-visible {
-    outline: 1px solid var(--ix-menu-avatar-button--outline-color--focus);
+    outline: var(--ix-menu-avatar--outline-width--focus) solid
+      var(--ix-menu-avatar-button--outline-color--focus);
   }
 }

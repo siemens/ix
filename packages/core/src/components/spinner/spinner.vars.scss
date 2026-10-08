@@ -25,4 +25,6 @@
   --ix-spinner-extra-small--size: #{sys.$si-sys-sizing-size-50};
   --ix-spinner-small--size: #{sys.$si-sys-sizing-size-60};
   --ix-spinner-large--size: #{sys.$si-sys-sizing-size-130};
+  --ix-spinner--rotation-duration: 2s;
+  --ix-spinner--mask-duration: 3s;
 }

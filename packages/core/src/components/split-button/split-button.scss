@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './../utils/focus/focus-proxy';
 
@@ -30,12 +29,18 @@
   @include component.ix-component;
 
   .left-button-border {
-    border-top-width: 0.125rem;
+    border-top-width: var(
+      --ix-split-button-left-button-border--border-top-width
+    );
     border-right-width: 0;
-    border-left-width: 0.125rem;
-    border-bottom-width: 0.125rem;
+    border-left-width: var(
+      --ix-split-button-left-button-border--border-left-width
+    );
+    border-bottom-width: var(
+      --ix-split-button-left-button-border--border-bottom-width
+    );
 
-    margin-right: 0.125rem;
+    margin-right: var(--ix-split-button-left-button-border--margin-right);
   }
 
   @include focus-proxy.focus-proxy;

@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './upload.vars' as *;
 :host {
@@ -32,7 +31,8 @@
 
     padding: var(--ix-upload-file-upload-area--padding);
 
-    border: 1px dashed var(--ix-upload--border-color);
+    border: var(--ix-upload-file-upload-area--border-width) dashed
+      var(--ix-upload--border-color);
     border-radius: var(--ix-upload--border-radius);
     color: var(--ix-upload-text--color);
 
@@ -42,7 +42,7 @@
 
       .glyph {
         align-self: flex-start;
-        margin-block-start: 3px;
+        margin-block-start: var(--ix-upload-glyph--margin-block-start);
       }
 
       > div {
@@ -91,13 +91,14 @@
 
     .loader {
       margin: var(--ix-upload-loader--margin);
-      font-size: 0.937rem;
+      font-size: var(--ix-upload-loader--font-size);
       width: var(--ix-upload-loader--width);
       height: var(--ix-upload-loader--height);
       border-radius: 50%;
       position: relative;
       text-indent: -9999em;
-      animation: optimise-loading 1.1s infinite ease;
+      animation: optimise-loading var(--ix-upload-loader--animation-duration)
+        infinite ease;
       transform: translateZ(0);
     }
 

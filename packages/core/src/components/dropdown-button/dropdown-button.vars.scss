@@ -17,12 +17,23 @@ $dropdown-button-variants: button-variants.$btn-variants;
 :host {
   --ix-dropdown-button-border-radius-left: var(--ix-button--border-radius);
   --ix-dropdown-button-border-radius-right: var(--ix-button--border-radius);
-}
-
-:host {
   --ix-dropdown-button--height: #{sys.$si-sys-sizing-size-80};
   --ix-dropdown-button-dropdown-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-dropdown-button-host-context-date-picker--max-height: calc(
     #{sys.$si-sys-sizing-size-140} * 2 + #{sys.$si-sys-sizing-spacing-y-40} + #{sys.$si-sys-sizing-spacing-y-10}
   );
+  --ix-dropdown-button-triangle--edge-inset: calc(
+    #{sys.$si-sys-sizing-spacing-x-10} * 1.5
+  );
+  --ix-dropdown-button-triangle--margin-inline-start: calc(
+    var(--ix-dropdown-button--height) -
+      var(--ix-dropdown-button-triangle--border-width) -
+      var(--ix-dropdown-button-triangle--edge-inset)
+  );
+  --ix-dropdown-button-triangle--margin-block-start: calc(
+    0px - var(--ix-dropdown-button-triangle--border-width) -
+      var(--ix-dropdown-button-triangle--edge-inset)
+  );
+  --ix-dropdown-button-triangle--border-width: #{sys.$si-sys-sizing-border-width-emphasis};
+  --ix-dropdown-button--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }

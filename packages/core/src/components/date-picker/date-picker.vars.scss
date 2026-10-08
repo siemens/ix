@@ -11,11 +11,6 @@
 
 :host {
   --ix-date-picker-day--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-date-picker-day--font-weight--selected: var(
-    --si-ref-typography-font-weight-bold
-  );
-  --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
-  --ix-date-picker--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-date-picker-day--background: rgba(0, 0, 0, 0);
   --ix-date-picker-day--background--active: #{sys.$si-sys-color-background-active};
   --ix-date-picker-day--background--disabled: rgba(0, 0, 0, 0);
@@ -44,6 +39,11 @@
 }
 
 :host {
+  --ix-date-picker-day--font-weight--selected: var(
+    --si-ref-typography-font-weight-bold
+  );
+  --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
+  --ix-date-picker--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-date-picker--max-width: calc(
     #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60}
   );
@@ -80,4 +80,13 @@
   --ix-date-picker-first-of-type--padding-bottom: #{sys.$si-sys-sizing-spacing-y-120};
   --ix-date-picker-last-of-type--padding-top: #{sys.$si-sys-sizing-spacing-y-120};
   --ix-date-picker-year-selector--button-padding: 0 #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-date-picker-dropdown--font-size: 14px;
+  --ix-date-picker-dropdown--line-height: 20px;
+  --ix-date-picker-calendar-item--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-date-picker--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-date-picker-today--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-date-picker-today--box-shadow-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-date-picker-range--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-date-picker-week-number--font-size: 10px;
+  --ix-date-picker-week-number--line-height: 14px;
 }

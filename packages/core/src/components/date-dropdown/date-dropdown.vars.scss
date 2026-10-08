@@ -10,12 +10,13 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-date-dropdown-divider--border: var(--theme-x-weak-bdr-1);
+  --ix-date-dropdown-divider--border: #{sys.$si-sys-sizing-border-width-default}
+    solid #{sys.$si-sys-color-border-4};
   --ix-date-dropdown--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-date-dropdown--focus--outline-offset: var(--theme-focus-outline-offset);
 }
 
 :host {
+  --ix-date-dropdown--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-date-dropdown-pull-right--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
   --ix-date-dropdown-quick-selection--gap: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-date-dropdown-quick-selection--padding: #{sys.$si-sys-sizing-spacing-y-40}
@@ -37,4 +38,5 @@
   --ix-date-dropdown-quick-selection--max-height: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
   );
+  --ix-date-dropdown--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }
