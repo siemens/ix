@@ -261,6 +261,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
         visibleItemCount: 'visible-item-count',
         subtle: 'subtle',
         ariaLabelPreviousButton: 'aria-label-previous-button',
+        ariaLabelNextButton: 'aria-label-next-button',
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,

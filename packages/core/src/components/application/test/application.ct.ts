@@ -45,7 +45,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-application>Page content</ix-application>`);
 
   const application = page.locator('ix-application');
-  await expect(application).toHaveClass(/\bhydrated\b/);
+  await expect(application).toHaveAttribute('hydrated');
   await expect(application).toBeVisible();
 });
 
@@ -83,7 +83,7 @@ regressionTest(
       </ix-application>
     `);
 
-    await expect(page.locator('ix-application')).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-application')).toHaveAttribute('hydrated');
     await expect(
       page.getByRole('link', { name: 'Skip to footer' })
     ).toHaveCount(1);
@@ -543,7 +543,7 @@ regressionTest(
       page.getByRole('link', { name: 'Skip to footer' })
     ).toHaveCount(0);
 
-    await expect(page.locator('ix-application')).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-application')).toHaveAttribute('hydrated');
     await page.keyboard.press('Tab');
     await expect(
       page.getByRole('button', { name: 'Header action' })

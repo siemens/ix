@@ -330,7 +330,7 @@ regressionTest(
       `<ix-date-input value="2023/09/01" week-start-index="6"></ix-date-input>`
     );
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
 
     const dateInput = await createDateInputAccessor(dateInputElement);
     await dateInput.openByCalender();

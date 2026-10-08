@@ -7,21 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use 'mixins/text-truncation';
 
 @use './chip.vars' as *;
 $predefined-chips: alarm, critical, warning, info, neutral, success;
-$border-radius: 100px;
+$border-radius: var(--ix-chip--border-radius);
 $padding-inline: var(--ix-chip--padding-inline);
 $close-size: var(--ix-chip--close-size);
 $close-inset: var(--ix-chip--close-inset);
 // 1px at 16px root; padding calcs subtract this to align with outline border
-$outline-border-width: 0.0625rem;
+$outline-border-width: var(--ix-chip--border-width--focus);
 
 @mixin chip-focus-outline {
   &:focus-visible {
-    outline: 1px solid var(--ix-chip--outline-color--focus);
+    outline: var(--ix-chip--outline-width--focus) solid
+      var(--ix-chip--outline-color--focus);
     outline-offset: var(--ix-chip--focus--outline-offset);
   }
 }

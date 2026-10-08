@@ -4,3 +4,7 @@
   --ix-key-value-list-item--border-color: #{sys.$si-sys-color-border-4};
   --ix-key-value-list-item--background--alternating: #{sys.$si-sys-color-background-1};
 }
+
+:host {
+  --ix-key-value-list--border-width: #{sys.$si-sys-sizing-border-width-default};
+}

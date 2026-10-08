@@ -9,7 +9,6 @@
 
 @use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './menu-about-news.vars' as *;
 $left: var(--ix-menu-about-news--left);
 $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
@@ -25,23 +24,23 @@ $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
   border-radius: var(--ix-menu-about-news--border-radius);
   padding: var(--ix-menu-about-news--padding);
   left: $left;
-  z-index: 10000;
+  z-index: var(--ix-menu-about-news-desktop--z-index);
   transition: left var(--ix-menu-about-news--transition-duration);
 
   margin-inline-start: var(--margin) !important;
 
-  box-shadow: var(--theme-shadow-4);
+  box-shadow: var(--ix-menu-about-news--box-shadow);
   @include component.ix-component;
 
   .banner-container {
     position: absolute;
-    top: 0.0625rem;
+    top: var(--ix-menu-about-news-banner-container--top);
     left: var(--ix-menu-about-news-banner-container--left);
 
     svg {
       position: absolute;
-      height: 3.625rem;
-      width: 3rem;
+      height: var(--ix-menu-about-news-svg--height);
+      width: var(--ix-menu-about-news-svg--width);
 
       polygon {
         fill: var(--ix-menu-about-news-banner--fill);
@@ -85,10 +84,13 @@ $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
 
   #arrow {
     position: absolute;
-    width: 0.5rem;
-    height: 0.5rem;
+    width: var(--ix-menu-about-news-arrow--width);
+    height: var(--ix-menu-about-news-arrow--height);
     background-color: var(--ix-menu-about-news-arrow--background);
-    transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
+    transform: translateX(
+        calc(var(--margin) * -1 - var(--ix-menu-about-news-arrow--transform))
+      )
+      rotateZ(45deg);
   }
 }
 
@@ -104,12 +106,14 @@ $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
   :host {
     display: flex;
     flex-direction: column;
-    max-height: calc(100vh - 4.75rem);
-    width: calc(100% - 2rem);
-    max-width: 30rem;
-    transform: translateX(calc(1rem - 50%));
-    left: calc(50% - 1rem) !important;
-    bottom: 1rem !important;
+    max-height: var(--ix-menu-about-news-mobile--max-height);
+    width: var(--ix-menu-about-news-mobile--width);
+    max-width: var(--ix-menu-about-news-mobile--max-width);
+    transform: translateX(
+      calc(var(--ix-menu-about-news-mobile--side-inset) - 50%)
+    );
+    left: calc(50% - var(--ix-menu-about-news-mobile--side-inset)) !important;
+    bottom: var(--ix-menu-about-news-mobile--bottom) !important;
     margin-inline: 0 !important;
     z-index: calc(var(--ix-menu-about-news--z-index) - 1);
 

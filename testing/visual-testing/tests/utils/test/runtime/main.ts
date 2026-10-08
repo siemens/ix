@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import '@siemens/ix/css/foundation.css';
-import '@siemens/ix/css/legacy.css';
+import '@siemens/ix/css/utilities.css';
+import '@siemens/ix/css/reset.css';
+import '@siemens/ix/css/base.css';
 
 import { showMessage } from '@siemens/ix';
 import { defineCustomElements } from '@siemens/ix/loader';

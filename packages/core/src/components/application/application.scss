@@ -9,14 +9,13 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/fonts';
-@use 'tokens/system' as sys;
 
 @use './application.vars' as *;
 :host {
   display: flex;
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: var(--ix-application--width);
+  height: var(--ix-application--height);
 
   flex-direction: column;
 
@@ -35,10 +34,11 @@
     inset-block-start: -100%;
     inset-inline-start: calc(
       var(--ix-safe-area-inset-left, 0rem) +
-        var(--theme-focus--border-thickness) + var(--theme-focus-outline-offset)
+        var(--ix-application-skip-link--outline-width--focus) +
+        var(--ix-application-skip-link--outline-offset--focus)
     );
     z-index: calc(var(--theme-z-index-fixed) + 1);
-    padding: var(--theme-space-1) var(--theme-space-3);
+    padding: var(--ix-application-skip-link--padding);
     background-color: var(--ix-application-skip-link--background);
     color: var(--ix-application-skip-link--color);
     white-space: nowrap;
@@ -46,15 +46,15 @@
     &:focus {
       inset-block-start: calc(
         var(--ix-safe-area-inset-top, 0rem) +
-          var(--theme-focus--border-thickness) +
-          var(--theme-focus-outline-offset)
+          var(--ix-application-skip-link--outline-width--focus) +
+          var(--ix-application-skip-link--outline-offset--focus)
       );
     }
 
     &:focus-visible {
-      outline: var(--theme-focus--border-thickness) solid
+      outline: var(--ix-application-skip-link--outline-width--focus) solid
         var(--ix-application-skip-link--outline-color--focus);
-      outline-offset: var(--theme-focus-outline-offset);
+      outline-offset: var(--ix-application-skip-link--outline-offset--focus);
     }
   }
 
@@ -109,8 +109,9 @@
 
 :host(:dir(rtl)) .skip-link {
   inset-inline-start: calc(
-    var(--ix-safe-area-inset-right, 0rem) + var(--theme-focus--border-thickness) +
-      var(--theme-focus-outline-offset)
+    var(--ix-safe-area-inset-right, 0rem) +
+      var(--ix-application-skip-link--outline-width--focus) +
+      var(--ix-application-skip-link--outline-offset--focus)
   );
 }
 

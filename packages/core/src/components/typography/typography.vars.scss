@@ -1,0 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+:host {
+  --ix-typography-weight-bold--font-weight: var(
+    --si-ref-typography-font-weight-bold
+  );
+}
