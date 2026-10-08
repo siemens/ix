@@ -122,7 +122,7 @@ export class Pagination {
    *
    * @since 6.0.0
    */
-  @Prop() arialLabelPageBackward?: string;
+  @Prop() ariaLabelJumpBackward?: string;
 
   /**
    * ARIA label for the jump forward button. Overrides the default label
@@ -130,7 +130,7 @@ export class Pagination {
    *
    * @since 6.0.0
    */
-  @Prop() arialLabelPageForward?: string;
+  @Prop() ariaLabelJumpForward?: string;
 
   /**
    * Page selection event
@@ -221,7 +221,7 @@ export class Pagination {
           {...baseButtonProps}
           ariaAttributes={{
             'aria-label':
-              this.arialLabelPageBackward ??
+              this.ariaLabelJumpBackward ??
               `Jump backward to ${this.i18nPage} ${
                 (hasOverflowEnd
                   ? this.selectedPage - jump
@@ -270,7 +270,7 @@ export class Pagination {
           {...baseButtonProps}
           ariaAttributes={{
             'aria-label':
-              this.arialLabelPageForward ??
+              this.ariaLabelJumpForward ??
               `Jump forward to ${this.i18nPage} ${
                 (hasOverflowStart
                   ? this.selectedPage + jump

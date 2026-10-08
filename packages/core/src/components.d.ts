@@ -3363,21 +3363,21 @@ export namespace Components {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
+          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "ariaLabelJumpBackward"?: string;
+        /**
+          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "ariaLabelJumpForward"?: string;
+        /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
           * @since 4.1.0
           * @default 'Page selection input'
          */
         "ariaLabelPageSelection": string;
-        /**
-          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
-          * @since 6.0.0
-         */
-        "arialLabelPageBackward"?: string;
-        /**
-          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
-          * @since 6.0.0
-         */
-        "arialLabelPageForward"?: string;
         /**
           * Total number of pages
           * @default 0
@@ -10636,21 +10636,21 @@ declare namespace LocalJSX {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
+          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "ariaLabelJumpBackward"?: string;
+        /**
+          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
+          * @since 6.0.0
+         */
+        "ariaLabelJumpForward"?: string;
+        /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
           * @since 4.1.0
           * @default 'Page selection input'
          */
         "ariaLabelPageSelection"?: string;
-        /**
-          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
-          * @since 6.0.0
-         */
-        "arialLabelPageBackward"?: string;
-        /**
-          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
-          * @since 6.0.0
-         */
-        "arialLabelPageForward"?: string;
         /**
           * Total number of pages
           * @default 0
@@ -13257,8 +13257,8 @@ declare namespace LocalJSX {
         "ariaLabelChevronLeftIconButton": string;
         "ariaLabelChevronRightIconButton": string;
         "ariaLabelPageSelection": string;
-        "arialLabelPageBackward": string;
-        "arialLabelPageForward": string;
+        "ariaLabelJumpBackward": string;
+        "ariaLabelJumpForward": string;
     }
     interface IxPaneAttributes {
         "heading": string;

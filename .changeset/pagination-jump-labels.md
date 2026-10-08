@@ -5,4 +5,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Allow replacing the accessible labels of pagination jump buttons with `arialLabelPageBackward` and `arialLabelPageForward` in core and framework wrappers. By default, the labels announce each button's calculated destination page.
+Allow replacing the accessible labels of pagination jump buttons with `ariaLabelJumpBackward` and `ariaLabelJumpForward` in core and framework wrappers. By default, the labels announce each button's calculated destination page.

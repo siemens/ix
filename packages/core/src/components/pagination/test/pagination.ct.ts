@@ -57,8 +57,8 @@ regressionTest('uses custom jump button labels', async ({ mount, page }) => {
       count="10"
       selected-page="5"
       i18n-page="Sheet"
-      arial-label-page-backward="Earlier pages"
-      arial-label-page-forward="Later pages"
+      aria-label-jump-backward="Earlier pages"
+      aria-label-jump-forward="Later pages"
     ></ix-pagination>
   `);
   const pagination = page.locator('ix-pagination');
