@@ -9,6 +9,8 @@
 
 /**
  * Shared semantic status set for IX components (card family first; EIX-259 will adopt more broadly).
+ *
+ * @since 6.0.0
  */
 export type StatusVariant =
   | 'default'
@@ -21,6 +23,11 @@ export type StatusVariant =
   | 'success'
   | 'neutral';
 
+/**
+ * Ordered list of all `StatusVariant` values.
+ *
+ * @since 6.0.0
+ */
 export const STATUS_VARIANTS: readonly StatusVariant[] = [
   'default',
   'danger',
@@ -33,7 +40,11 @@ export const STATUS_VARIANTS: readonly StatusVariant[] = [
   'neutral',
 ] as const;
 
-/** Status values that show a strip or status border (excludes `default`). */
+/**
+ * Status values that show a strip or status border (excludes `default`).
+ *
+ * @since 6.0.0
+ */
 export const STATUS_EMPHASIS_VARIANTS = [
   'danger',
   'warning',

@@ -50,7 +50,7 @@ import { IxCardList, IxPushCard } from '@siemens/ix-vue';
       notification="1"
       heading="Heading content"
       subheading="Subheading"
-      variant="default" :outline="false"
+      variant="warning"
     ></IxPushCard>
     <IxPushCard
       :icon="iconRocket"
