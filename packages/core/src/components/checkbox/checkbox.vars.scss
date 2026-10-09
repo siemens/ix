@@ -122,8 +122,9 @@
   --ix-checkbox--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-checkbox--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-checkbox--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-checkbox-button--height: #{sys.$si-sys-sizing-size-70};
-  --ix-checkbox-button--width: #{sys.$si-sys-sizing-size-70};
+  --ix-checkbox-button--height: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox-button--width: #{sys.$si-sys-sizing-size-60};
+  --ix-checkbox--target-size: #{sys.$si-sys-sizing-size-70};
   --ix-checkbox--width: #{sys.$si-sys-sizing-size-60};
   --ix-checkbox--min-width: #{sys.$si-sys-sizing-size-60};
   --ix-checkbox--max-width: #{sys.$si-sys-sizing-size-60};

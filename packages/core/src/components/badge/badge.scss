@@ -163,6 +163,11 @@ $status-icon-variants: alarm, critical, warning, info, success;
   line-height: var(--ix-badge--line-height);
 }
 
+/* Center digits optically (cap height) independent of font ascent/descent metrics. */
+:host([type='counter']) .label {
+  text-box: trim-both cap alphabetic;
+}
+
 :host([type='status-icon']) .indicator {
   display: inline-flex;
   align-items: center;

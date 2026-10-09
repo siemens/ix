@@ -15,7 +15,9 @@
   // default size-60 so they retain default geometry and scale with density.
   $checkmark-width: calc(#{$size} * 0.32);
   $checkmark-height: calc(#{$size} * 0.208);
-  $checkmark-margin-top: calc(#{$size} * 0.3);
+  // The box is vertically centered on the first text line (see `label:before`),
+  // so the marks are positioned relative to that line's center (`1lh / 2`).
+  $checkmark-margin-top: calc(1lh / 2 - #{$size} * 0.15);
   $checkmark-margin-horizontal: calc(#{$size} * 0.336);
   $checkmark-margin-bottom: calc(#{$size} * 0.15);
 
@@ -151,7 +153,7 @@
       height: 0;
       border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: calc(#{sys.$si-sys-sizing-size-60} / 2.5) 0 0
+      margin: calc(1lh / 2 - 0.0625rem) 0 0
         calc(
           (#{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-size-40}) / 2
         );

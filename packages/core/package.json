@@ -111,7 +111,8 @@
     "./scss/ix-legacy.scss": "./scss/ix-legacy.scss",
     "./scss/ix-reset.scss": "./scss/ix-reset.scss",
     "./scss/ix-scrollbar.scss": "./scss/ix-scrollbar.scss",
-    "./scss/ix-utilities.scss": "./scss/ix-utilities.scss"
+    "./scss/ix-utilities.scss": "./scss/ix-utilities.scss",
+    "./tokens/manifest.json": "./tokens/manifest.json"
   },
   "scripts": {
     "build": "stencil build --prod && npm run build.scss",
