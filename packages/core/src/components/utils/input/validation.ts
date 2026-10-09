@@ -230,10 +230,15 @@ export function HookValidationLifecycle(options?: {
               );
             }
 
-            if (!validityState.valid) {
-              validationElement?.setAttribute('aria-invalid', 'true');
+            // `ix-invalid` is set by the application for custom validation,
+            // so the native validity state alone does not tell the whole story.
+            const isInvalid =
+              !validityState.valid || host.classList.contains('ix-invalid');
 
-              if (ariaErrorMessageElement && !validityState.valid) {
+            if (isInvalid) {
+              validationElement.setAttribute('aria-invalid', 'true');
+
+              if (ariaErrorMessageElement) {
                 validationElement.setAttribute(
                   'aria-errormessage',
                   `${ariaErrorMessageElement.id}`
@@ -244,7 +249,8 @@ export function HookValidationLifecycle(options?: {
                 );
               }
             } else {
-              validationElement?.removeAttribute('aria-invalid');
+              validationElement.removeAttribute('aria-invalid');
+              validationElement.removeAttribute('aria-errormessage');
             }
           }
         }
