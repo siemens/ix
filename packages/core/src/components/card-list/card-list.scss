@@ -142,10 +142,6 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     text-align: center;
   }
 
-  .CardList__Style__Infinite__Scroll .Show__All__Card {
-    margin-top: var(--ix-card-list-show-all-card--margin-top);
-  }
-
   ::slotted(.display-none) {
     display: none !important;
   }

@@ -83,19 +83,26 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
 });
 
 regressionTest(
-  'label-less host size matches 24px active area',
-  async ({
-    mount,
-
-    page,
-  }) => {
+  'label-less checkbox has 20px layout size and 24px active area',
+  async ({ mount, page }) => {
     await mount(
-      `<ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox>`
+      `<div style="padding: 1rem"><ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox></div>`
     );
     const checkbox = page.locator('ix-checkbox');
     await expect(checkbox).toHaveClass(/label-less/);
-    await expect(checkbox).toHaveCSS('width', '24px');
-    await expect(checkbox).toHaveCSS('height', '24px');
+    await expect(checkbox).toHaveCSS('width', '20px');
+    await expect(checkbox).toHaveCSS('height', '20px');
+
+    const box = await checkbox.boundingBox();
+    if (!box) {
+      throw new Error('checkbox has no bounding box');
+    }
+    const centerY = box.y + box.height / 2;
+    await page.mouse.click(box.x - 1.5, centerY);
+    await expect(checkbox).toHaveJSProperty('checked', true);
+
+    await page.mouse.click(box.x - 3, centerY);
+    await expect(checkbox).toHaveJSProperty('checked', true);
   }
 );
 
@@ -108,10 +115,13 @@ regressionTest(
     const checkbox = page.locator('ix-checkbox');
     await expect(checkbox).not.toHaveClass(/label-less/);
     await expect(checkbox).toHaveText(/Custom slot label text/);
-    const width = await checkbox.evaluate((element) =>
-      Number.parseFloat(getComputedStyle(element).width)
-    );
-    expect(width).toBeGreaterThan(24);
+    await expect
+      .poll(() =>
+        checkbox.evaluate((element) =>
+          Number.parseFloat(getComputedStyle(element).width)
+        )
+      )
+      .toBeGreaterThan(24);
   }
 );
 

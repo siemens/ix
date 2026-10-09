@@ -139,7 +139,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(selectedValues).toHaveCount(3);
   await expect(selectedValues.first()).toHaveCSS('font-size', '14px');
   await expect(selectedValues.first()).toHaveCSS('line-height', '16px');
-  await expect(selectedValues.first()).toHaveCSS('font-weight', '700');
+  await expect(selectedValues.first()).toHaveCSS('font-weight', '600');
 
   const unselectedValue = timePicker
     .getByRole('option', { selected: false })
