@@ -11,6 +11,12 @@
 
 :host {
   --ix-application-child-header--z-index: var(--theme-z-index-sticky);
+  --ix-application-skip-link--background: #{sys.$si-sys-color-background-1};
+  --ix-application-skip-link--color: #{sys.$si-sys-color-text-accent};
+  --ix-application-skip-link--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-application-skip-link--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-application-skip-link--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-application-skip-link--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application--width: 100vw;
   --ix-application--height: 100vh;
   --ix-application-breakpoint-md--application-menu-margin-left: calc(

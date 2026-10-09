@@ -438,7 +438,8 @@ regressionTest(
     // Wait for roving tabindex to be initialised (set by rAF in componentDidLoad)
     await expect(items.first()).toHaveAttribute('aria-setsize', '3');
 
-    // Tab twice: skip burger button and reach menu navigation container
+    // Tab through skip link and burger button to reach menu navigation container
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
