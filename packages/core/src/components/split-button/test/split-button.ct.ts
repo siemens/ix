@@ -106,7 +106,7 @@ regressionTest(
     const dropdownIconButton = page.locator(
       'ix-split-button ix-dropdown-button ix-icon-button'
     );
-    await expect(dropdownIconButton).toHaveClass(/hydrated/);
+    await expect(dropdownIconButton).toHaveAttribute('hydrated');
     await expect(dropdownIconButton).toHaveClass(/btn-icon-32/);
     await expect(dropdownIconButton.locator('ix-icon')).toHaveClass(/size-20/);
   }
@@ -124,7 +124,7 @@ regressionTest(
     });
     const dropdownButton = splitButton.locator('ix-dropdown-button');
 
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await expect(dropdownButton).toHaveAccessibleName('dropdown button');
     let accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);

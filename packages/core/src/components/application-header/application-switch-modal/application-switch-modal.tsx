@@ -66,7 +66,7 @@ function ApplicationItem(props: {
             ></ix-icon>
           )}
         </ix-typography>
-        <ix-typography format="label-sm" textColor="soft">
+        <ix-typography format="body-sm" textColor="soft">
           {props.description}
         </ix-typography>
       </div>
@@ -74,7 +74,11 @@ function ApplicationItem(props: {
   );
 }
 
-/** @internal */
+/**
+ * Modal that lets users switch between related applications.
+ *
+ * @internal
+ */
 @Component({
   tag: 'ix-application-switch-modal',
   styleUrl: 'application-switch-modal.scss',

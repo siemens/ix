@@ -21,7 +21,11 @@ import {
 import { DefaultMixins } from '../utils/internal/component';
 
 /**
- * @slot default - News content.
+ * News panel shown within the application menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+ *
+ * @slot - About news content.
  */
 @Component({
   tag: 'ix-menu-about-news',
@@ -93,7 +97,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         </div>
 
         <div class="cui-popover-news-header">
-          <ix-typography format="label" bold>
+          <ix-typography format="body" bold>
             {this.label}
           </ix-typography>
         </div>

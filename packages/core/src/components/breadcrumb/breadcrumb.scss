@@ -7,9 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './breadcrumb.vars' as *;
 :host {
@@ -41,13 +39,13 @@
     .more-text-ellipsis {
       width: var(--ix-breadcrumb-more-text-ellipsis--width);
       display: inline-block;
-      font-weight: vars.$font-weight-bold;
+      font: var(--ix-breadcrumb-ellipsis--font);
     }
 
     ix-icon {
       // line-height: unset; --> Note: 'line-height' can't be applied due to shadow DOM encapsulation at ix-icon
       // using padding-top to achieve same position as before
-      padding-top: 2px;
+      padding-top: var(--ix-breadcrumb-more-text-icon--padding-top);
     }
   }
 

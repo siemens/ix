@@ -37,4 +37,18 @@
   --ix-menu-item-tab-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-menu-item-tab-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-menu-item-tab-text--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-menu-item-tab--z-index: 500;
+  --ix-menu-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-menu-item-tab--outline-offset: calc(
+    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+  );
+  --ix-menu-item-notification--top: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-menu-item-notification--left: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-menu-item-pill--height: 0.5rem;
+  --ix-menu-item-pill--min-width: 1rem;
+  --ix-menu-item-pill--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  --ix-menu-item-pill--font-size: 0.75rem;
+  --ix-menu-item-pill--font-weight: var(--si-ref-typography-font-weight-bold);
+  --ix-menu-item-tab--width: #{sys.$si-sys-sizing-border-width-emphasis};
+  --ix-menu-item-notification--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
 }

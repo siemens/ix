@@ -24,6 +24,7 @@
 }
 
 :host {
+  --ix-group-item--font: #{sys.$si-sys-typography-body-paragraph};
   --ix-group-item--min-height: calc(
     #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
   );
@@ -33,4 +34,14 @@
   --ix-group-item-group-footer--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
   --ix-group-item-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-group-item-group-entry-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-group-item--border-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-group-item-group-footer--border-width: var(
+    --ix-group-item--border-width--focus
+  );
+  --ix-group-item-icon--margin-top: calc(
+    #{sys.$si-sys-sizing-spacing-y-10} * -1
+  );
+  --ix-group-item--border-top-width: calc(
+    #{sys.$si-sys-sizing-border-width-default} * 0.992
+  );
 }

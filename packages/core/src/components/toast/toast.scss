@@ -8,8 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'legacy/mixins/fonts';
-@use 'tokens/system' as sys;
+@use 'mixins/fonts';
 
 @use './toast.vars' as *;
 :host {
@@ -63,7 +62,7 @@
         overflow-wrap: break-word;
         word-break: break-word;
 
-        @include fonts.text-default;
+        @include fonts.typography-body-paragraph;
       }
 
       .toast-action {
@@ -78,7 +77,7 @@
     pointer-events: all;
     margin-left: auto;
     margin-right: 0px;
-    opacity: 0.6;
+    opacity: var(--ix-toast-close--opacity);
     &:hover {
       opacity: 1;
     }
@@ -87,7 +86,7 @@
   .toast-progress-bar {
     position: absolute;
     bottom: 0;
-    height: 0.125rem;
+    height: var(--ix-toast-progress-bar--height);
     width: 100%;
     background-color: var(--ix-toast-timer-value--background);
     transform-origin: left;

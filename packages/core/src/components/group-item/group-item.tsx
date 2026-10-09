@@ -17,9 +17,15 @@ import {
   Listen,
   Prop,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
- * @slot default - Group item content.
+ * A single selectable item within a group.
+ *
+ * @documentation https://ix.siemens.io//docs/components/group/code.md
+ * @figma-main-component-id 1274:34186
+ *
+ * @slot - Group item content.
  */
 @Component({
   tag: 'ix-group-item',
@@ -108,7 +114,13 @@ export class GroupItem {
           selected: this.selected && !this.suppressSelection,
         }}
       >
-        <button tabindex={this.disabled ? -1 : 0} disabled={this.disabled}>
+        <button
+          tabindex={this.disabled ? -1 : 0}
+          disabled={this.disabled}
+          aria-pressed={
+            this.suppressSelection ? undefined : a11yBoolean(this.selected)
+          }
+        >
           <div class="group-entry-selection-indicator"></div>
           {this.icon ? (
             <ix-icon

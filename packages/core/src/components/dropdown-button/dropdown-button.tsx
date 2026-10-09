@@ -45,8 +45,13 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 
 /**
- * @slot button-label - Custom content displayed next to the button label.
- * @slot default - Dropdown items.
+ * Button that opens an attached dropdown menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @figma-main-component-id 294:1198
+ *
+ * @slot button-label - Custom button label.
+ * @slot - Dropdown content.
  */
 @Component({
   tag: 'ix-dropdown-button',
@@ -108,6 +113,21 @@ export class DropdownButton
    * @since 5.0.0
    */
   @Prop() focusCheckedItem: boolean = false;
+
+  /**
+   * Controls how keyboard navigation moves focus between dropdown items.
+   *
+   * - `active-descendant`: DOM focus stays on the dropdown button while a visual
+   *   focus indicator moves between the items, exposed via `aria-activedescendant`.
+   * - `roving-tabindex`: real DOM focus is moved to each item using a roving
+   *   `tabindex` (`0` for the active item, `-1` for the others). No
+   *   `aria-activedescendant` is used because the focused item is announced
+   *   directly.
+   *
+   * @since 5.2.0
+   */
+  @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
+    'active-descendant';
 
   /**
    * Enable Popover API rendering for dropdown.
@@ -340,7 +360,11 @@ export class DropdownButton
   }
 
   override isAriaActiveDescendantActive(): boolean {
-    return !this.suppressAriaActiveDescendant && this.dropdownShow;
+    return (
+      !this.suppressAriaActiveDescendant &&
+      this.dropdownShow &&
+      this.navigationMode !== 'roving-tabindex'
+    );
   }
 
   override getAriaActiveDescendantProxyItemId(): string | boolean {
@@ -463,6 +487,7 @@ export class DropdownButton
           enableTopLayer={this.enableTopLayer}
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
+          navigationMode={this.navigationMode}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,

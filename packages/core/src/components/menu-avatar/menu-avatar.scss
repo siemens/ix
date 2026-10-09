@@ -10,7 +10,6 @@
 @use 'mixins/text-truncation';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './menu-avatar.vars' as *;
 :host {
@@ -43,13 +42,13 @@
       margin-left: var(--ix-menu-avatar-avatar-name--margin-left);
       line-height: 1.14;
 
-      .text-default-single {
+      .typography-body {
         color: var(--ix-menu-avatar-item-primary--color);
         @include text-truncation.ellipsis;
       }
     }
 
-    border-radius: 1.25rem;
+    border-radius: var(--ix-menu-avatar-avatar--border-radius);
 
     @include hover.hover {
       background-color: var(--ix-menu-avatar-button--background--hover);
@@ -63,6 +62,7 @@
   }
 
   .avatar:focus-visible {
-    outline: 1px solid var(--ix-menu-avatar-button--outline-color--focus);
+    outline: var(--ix-menu-avatar--outline-width--focus) solid
+      var(--ix-menu-avatar-button--outline-color--focus);
   }
 }

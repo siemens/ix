@@ -2,8 +2,13 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import type { CardVariant } from './card.types';
 
 /**
- * @slot default - Main card content.
- * @slot card-accordion - Accordion displayed in the card footer.
+ * Flexible container that groups related content and actions.
+ *
+ * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @figma-main-component-id 104612:25530
+ *
+ * @slot - Card content.
+ * @slot card-accordion - Accordion content displayed at the bottom of the card.
  */
 @Component({
   tag: 'ix-card',

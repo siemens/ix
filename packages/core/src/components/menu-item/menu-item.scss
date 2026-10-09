@@ -9,7 +9,6 @@
 
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './menu-item.vars' as *;
 $menuItemHeight: var(--ix-menu-item--height);
@@ -32,7 +31,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     align-items: center;
     height: var(--ix-menu-item-height, $menuItemHeight);
     width: calc(100%);
-    z-index: 500;
+    z-index: var(--ix-menu-item-tab--z-index);
     padding-left: $menuItemPadding;
 
     @include hover.ghost-hover-pressed;
@@ -49,29 +48,29 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   }
 
   .tab:focus-visible {
-    outline: 1px solid var(--ix-menu-item-tab--outline-color--focus);
-    outline-offset: -1px;
+    outline: var(--ix-menu-item--outline-width--focus) solid
+      var(--ix-menu-item-tab--outline-color--focus);
+    outline-offset: var(--ix-menu-item-tab--outline-offset);
   }
 
   .notification {
     display: inline-flex;
     position: absolute;
-    top: 0.25rem;
-    left: 1.5rem;
+    top: var(--ix-menu-item-notification--top);
+    left: var(--ix-menu-item-notification--left);
 
     .pill {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      height: 0.5rem;
-      min-width: 1rem;
+      height: var(--ix-menu-item-pill--height);
+      min-width: var(--ix-menu-item-pill--min-width);
       position: relative;
-      border-radius: 6.25rem;
+      border-radius: var(--ix-menu-item-pill--border-radius);
       background-color: var(--ix-menu-item-notification--background);
-      font-size: 0.75rem;
-      font-weight: bold;
+      font-size: var(--ix-menu-item-pill--font-size);
+      font-weight: var(--ix-menu-item-pill--font-weight);
       line-height: 1;
-      font-family: Siemens Sans, Arial, sans-serif;
       color: var(--ix-menu-item-notification--color);
       padding: var(--ix-menu-item-pill--padding);
     }
@@ -98,7 +97,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     content: '';
     background-color: var(--ix-menu-item-primary--border-color--selected);
     height: var(--ix-menu-item-height, $menuItemHeight);
-    width: 0.25rem;
+    width: var(--ix-menu-item-tab--width);
     left: 0;
     position: absolute;
   }
@@ -171,7 +170,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
       position: relative;
       top: 0;
       left: 0;
-      padding-left: 0.5rem;
+      padding-left: var(--ix-menu-item-notification--padding-left);
     }
 
     .tab-icon {

@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './action-card.vars';
 
 :host {
@@ -37,7 +36,8 @@
     box-shadow: initial;
 
     &:focus-visible {
-      outline: 1px solid var(--ix-action-card--outline-color--focus);
+      outline: var(--ix-action-card--outline-width--focus) solid
+        var(--ix-action-card--outline-color--focus);
       outline-offset: var(--ix-action-card--focus--outline-offset);
     }
 
@@ -49,5 +49,9 @@
   ix-card {
     width: 100%;
     height: 100%;
+
+    div {
+      padding-top: var(--ix-action-card--content-padding-top);
+    }
   }
 }

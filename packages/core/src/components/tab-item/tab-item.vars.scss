@@ -41,10 +41,12 @@
 }
 
 :host {
+  --ix-tab-item--font: #{sys.$si-sys-typography-h5};
+  --ix-tab-item-pill--font: #{sys.$si-sys-typography-body-sm};
   --ix-tab-item--size-size: #{sys.$si-sys-sizing-size-90};
   --ix-tab-item--min-height: #{sys.$si-sys-sizing-size-90};
   --ix-tab-item--max-height: #{sys.$si-sys-sizing-size-90};
-  --ix-tab-item--padding: 0.0625rem #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-tab-item--padding: calc(#{sys.$si-sys-sizing-spacing-y-10} / 2) #{sys.$si-sys-sizing-spacing-x-80};
   --ix-tab-item--gap: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-tab-item-circle--height: #{sys.$si-sys-sizing-size-100};
   --ix-tab-item-circle--width: #{sys.$si-sys-sizing-size-100};
@@ -63,4 +65,17 @@
   --ix-tab-item-small-tab--max-height: #{sys.$si-sys-sizing-size-80};
   --ix-tab-item-small-tab--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
   --ix-tab-item-icon--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-tab-item-circle--border-width: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-tab-item-counter--height: 16px;
+  --ix-tab-item-counter--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-tab-item-counter--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  --ix-tab-item-counter--bottom: #{sys.$si-sys-sizing-spacing-y-30};
+  --ix-tab-item-counter--padding-left: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-tab-item-counter--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-tab-item-indicator--height: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-tab-item-circle--outline-offset: calc(
+    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+  );
+  --ix-tab-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-tab-item-circle--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
 }

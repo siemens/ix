@@ -14,4 +14,8 @@
     100% - #{sys.$si-sys-sizing-size-80}
   );
   --ix-split-button-right-button--width: #{sys.$si-sys-sizing-size-80};
+  --ix-split-button-left-button-border--border-top-width: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-split-button-left-button-border--border-left-width: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-split-button-left-button-border--border-bottom-width: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-split-button-left-button-border--margin-right: #{sys.$si-sys-sizing-spacing-x-10};
 }

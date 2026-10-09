@@ -165,14 +165,14 @@ export declare interface IxBlind extends Components.IxBlind {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount']
+  inputs: ['ariaLabelNextButton', 'ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount']
 })
 @Component({
   selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount'],
+  inputs: ['ariaLabelNextButton', 'ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount'],
   outputs: ['itemClick', 'nextClick'],
   standalone: false
 })
@@ -1020,7 +1020,7 @@ export declare interface IxDivider extends Components.IxDivider {}
 
 
 @ProxyCmp({
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'navigationMode', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   methods: ['updatePosition']
 })
 @Component({
@@ -1028,7 +1028,7 @@ export declare interface IxDivider extends Components.IxDivider {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
+  inputs: ['anchor', 'closeBehavior', 'disableFocusHandling', 'disableFocusTrap', 'enableTopLayer', 'focusCheckedItem', 'header', 'navigationMode', 'placement', 'positioningStrategy', 'show', 'suppressAutomaticPlacement', 'suppressTriggerVisibilityCheck', 'trigger'],
   outputs: ['showChange', 'showChanged'],
   standalone: false
 })
@@ -1056,14 +1056,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'placement', 'variant']
+  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'navigationMode', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'placement', 'variant'],
+  inputs: ['ariaLabelDropdownButton', 'closeBehavior', 'disabled', 'enableTopLayer', 'focusCheckedItem', 'icon', 'label', 'navigationMode', 'placement', 'variant'],
   outputs: ['showChange', 'showChanged'],
   standalone: false
 })
@@ -1377,14 +1377,14 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
 
 
 @ProxyCmp({
-  inputs: ['expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
+  inputs: ['ariaLabelExpand', 'ariaLabelSelect', 'expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
 @Component({
   selector: 'ix-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
+  inputs: ['ariaLabelExpand', 'ariaLabelSelect', 'expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
   outputs: ['selectGroup', 'selectItem', 'expandedChanged'],
   standalone: false
 })

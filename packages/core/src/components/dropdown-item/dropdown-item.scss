@@ -9,12 +9,11 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './dropdown-item.vars' as *;
 $itemPadding: var(--ix-dropdown-item--item-padding);
 $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
-$focusBorder: 0.0625rem;
+$focusBorder: var(--ix-dropdown-item--border-width--focus);
 
 @mixin applyItemWidth($padding, $paddingRight) {
   width: calc(100% - #{$padding} - #{$paddingRight});
@@ -41,7 +40,7 @@ $focusBorder: 0.0625rem;
     flex-direction: row;
     align-items: center;
     position: relative;
-    height: calc(100% - 2px);
+    height: var(--ix-dropdown-item--inner-height);
     border: $focusBorder solid transparent;
     white-space: nowrap;
 
@@ -144,8 +143,9 @@ $focusBorder: 0.0625rem;
 }
 
 :host(.outline-visible) {
-  outline: 0.0625rem solid var(--ix-dropdown-item--outline-color--focus);
-  outline-offset: -0.0625rem;
+  outline: var(--ix-dropdown-item--outline-width--focus) solid
+    var(--ix-dropdown-item--outline-color--focus);
+  outline-offset: var(--ix-dropdown-item-outline-visible--outline-offset);
 }
 
 :host([hidden]) {

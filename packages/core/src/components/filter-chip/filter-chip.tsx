@@ -16,10 +16,13 @@ import {
   h,
   Host,
   Prop,
+  State,
 } from '@stencil/core';
 
 /**
- * @slot default - Filter chip label.
+ * Dismissible chip that represents an applied filter.
+ *
+ * @slot - Filter chip label.
  */
 @Component({
   tag: 'ix-filter-chip',
@@ -57,6 +60,26 @@ export class FilterChip {
    */
   @Event() closeClick!: EventEmitter<void>;
 
+  @State() private slotText = '';
+
+  private slotObserver?: MutationObserver;
+
+  connectedCallback() {
+    this.slotText = this.hostElement.textContent ?? '';
+    this.slotObserver = new MutationObserver(() => {
+      this.slotText = this.hostElement.textContent ?? '';
+    });
+    this.slotObserver.observe(this.hostElement, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  }
+
+  disconnectedCallback() {
+    this.slotObserver?.disconnect();
+  }
+
   private onCloseClick(event: Event) {
     event.preventDefault();
     event.stopPropagation();
@@ -71,7 +94,7 @@ export class FilterChip {
           readonly: this.readonly,
           'hide-close-button': this.hideCloseButton,
         }}
-        title={this.hostElement.textContent}
+        title={this.slotText}
       >
         <div class="slot-container">
           <slot></slot>

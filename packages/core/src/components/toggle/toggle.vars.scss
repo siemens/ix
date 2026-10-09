@@ -10,8 +10,6 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-toggle-track--transition-duration: var(--theme-default-time);
-  --ix-toggle-thumb--transition-duration: var(--theme-default-time);
   --ix-toggle--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-toggle-label--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-toggle--color: #{sys.$si-sys-color-text-primary};
@@ -214,11 +212,13 @@
 }
 
 :host {
+  --ix-toggle-track--transition-duration: var(--theme-default-time);
+  --ix-toggle-thumb--transition-duration: var(--theme-default-time);
   --ix-toggle--min-height: #{sys.$si-sys-sizing-size-70};
   --ix-toggle--max-height: calc(100% - #{sys.$si-sys-sizing-spacing-y-40});
   --ix-toggle--margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-toggle--margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-toggle-label--margin-block-start: #{sys.$si-sys-sizing-spacing-y-10};
+  --ix-toggle-label--margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-toggle-label--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-toggle-label--min-height: #{sys.$si-sys-sizing-size-60};
   --ix-toggle-switch--width: #{sys.$si-sys-sizing-size-100};
@@ -237,4 +237,12 @@
     #{sys.$si-sys-sizing-size-70}
   );
   --ix-toggle-slider--transform: translateX(#{sys.$si-sys-sizing-spacing-x-50});
+  --ix-toggle-slider--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  --ix-toggle-slider--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-toggle-switch--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-toggle--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-toggle-switch--outline-offset: calc(
+    #{sys.$si-sys-sizing-focus-ring-offset} / 2
+  );
+  --ix-toggle-switch--opacity: 0.5;
 }

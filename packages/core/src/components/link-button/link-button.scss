@@ -9,14 +9,11 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './link-button.vars' as *;
 :host {
   display: inline-flex;
   height: var(--ix-link-button--height);
-  font-size: vars.$font-size-default;
-  font-weight: vars.$font-weight-normal;
   min-width: var(--ix-link-button--min-width);
 
   .link-button {
@@ -39,7 +36,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       text-decoration: underline;
-      text-underline-offset: 0.2rem;
+      text-underline-offset: var(--ix-link-button-link--text-underline-offset);
     }
 
     @include hover.hover {
@@ -61,6 +58,7 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--ix-link-button--outline-color--focus);
+    outline: var(--ix-link-button--outline-width--focus) solid
+      var(--ix-link-button--outline-color--focus);
   }
 }

@@ -44,7 +44,12 @@ const HideDropdownGracePeriodMs = 250;
 let categorySequenceId = 0;
 
 /**
- * @slot default - Menu items in the category.
+ * Expandable category that groups related items in the side menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 4533:132499
+ *
+ * @slot - Menu category items.
  */
 @Component({
   tag: 'ix-menu-category',
@@ -619,7 +624,7 @@ export class MenuCategory
             aria-hidden="true"
             suppressChecked
           >
-            <ix-typography format="label" bold textColor="std">
+            <ix-typography format="body" bold textColor="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

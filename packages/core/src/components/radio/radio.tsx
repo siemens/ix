@@ -27,8 +27,13 @@ import {
 } from '../utils/input';
 
 /**
+ * Lets users select a single option from a set.
+ *
+ * @documentation https://ix.siemens.io//docs/components/radio/guide.md
+ * @figma-main-component-id 42365:44481
  * @form-ready
- * @slot default - Radio button label.
+ *
+ * @slot - Radio label.
  */
 @Component({
   tag: 'ix-radio',
@@ -229,7 +234,7 @@ export class Radio implements IxFormComponent<string> {
           </div>
           {this.label && (
             <ix-typography
-              format="label"
+              format="body"
               textColor={this.disabled ? 'weak' : 'std'}
             >
               {this.label}

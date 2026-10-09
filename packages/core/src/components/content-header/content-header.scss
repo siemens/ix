@@ -62,7 +62,7 @@
   }
 
   .subtitle {
-    margin-top: -0.125rem;
+    margin-top: var(--ix-content-header-subtitle--margin-top);
   }
 
   .backButton {

@@ -28,7 +28,12 @@ import {
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 /**
- * @slot default - Tab label.
+ * A single selectable tab within a tab set.
+ *
+ * @documentation https://ix.siemens.io//docs/components/tabs/code.md
+ * @figma-main-component-id 426:4122
+ *
+ * @slot - Tab label.
  */
 @Component({
   tag: 'ix-tab-item',

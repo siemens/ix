@@ -10,7 +10,7 @@
 @use '../../misc/common-variables' as vars;
 @use '../../mixins/hover';
 @use '../../mixins/text-truncation';
-@use '../mixins/fonts';
+@use '../../mixins/fonts';
 @use '../../tokens/system' as sys;
 
 @mixin from-control-invalid {
@@ -20,17 +20,16 @@
 .ix-form-control,
 .ix-form-control-plaintext {
   color: #{sys.$si-sys-color-text-primary};
-  border-radius: var(--theme-small-border-radius);
+  border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   height: #{sys.$si-sys-sizing-size-80};
   min-height: #{sys.$si-sys-sizing-size-80};
   min-width: vars.$input-min-width;
   background-color: #{sys.$si-sys-color-background-1};
   border: solid 1px #{sys.$si-sys-color-border-2};
-  box-shadow: var(--theme-inset-shadow-1);
   padding-inline-start: vars.$input-padding-x;
   padding-inline-end: vars.$input-padding-x;
 
-  @include fonts.text-default();
+  @include fonts.typography-body;
   @include text-truncation.ellipsis;
 
   &::placeholder {
@@ -47,8 +46,7 @@
     @include hover.focus-visible {
       background-color: #{sys.$si-sys-color-background-4};
       border-color: #{sys.$si-sys-color-border-accent-hover};
-      outline-offset: var(--theme-focus-outline-offset);
-      box-shadow: var(--theme-inset-shadow-1);
+      outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
       outline: 1px solid #{sys.$si-sys-color-effects-focus};
     }
   }
@@ -81,7 +79,6 @@
 .ix-form-control[readonly],
 .ix-form-control[readOnly],
 .ix-form-control.readonly {
-  box-shadow: none !important;
   outline: none !important;
   border-color: #{sys.$si-sys-color-border-2};
   cursor: default !important;

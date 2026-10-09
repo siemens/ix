@@ -7,11 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './kpi.vars' as *;
 :host {
@@ -32,7 +31,8 @@
     display: flex;
     height: 100%;
     width: 100%;
-    border-block-end: 2px solid grey;
+    border-block-end: var(--ix-kpi-container--border-width) solid
+      var(--ix-kpi-container--border-block-end-color);
 
     &.alarm {
       border-block-end-color: var(--ix-kpi-display--border-color--alarm);
@@ -62,7 +62,7 @@
     .kpi-value {
       color: var(--ix-kpi-display-value--color);
 
-      @include fonts.text-xl;
+      @include fonts.typography-h3;
     }
 
     .kpi-unit {
@@ -72,7 +72,7 @@
 
     .kpi-label,
     .kpi-unit {
-      margin-block-start: 0.125rem;
+      margin-block-start: var(--ix-kpi-label--margin-block-start);
     }
   }
 
@@ -85,7 +85,8 @@
   }
 
   @include hover.focus-visible {
-    outline: 1px solid var(--focus--border-color);
+    outline: var(--ix-kpi--outline-width--focus) solid
+      var(--ix-kpi--outline-color--focus);
   }
 }
 

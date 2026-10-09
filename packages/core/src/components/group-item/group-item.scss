@@ -7,13 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'legacy/mixins/fonts';
+@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './group-item.vars' as *;
-$focusBorderWidth: 1px;
+$focusBorderWidth: var(--ix-group-item--border-width--focus);
 
 :host {
   display: flex;
@@ -32,7 +31,7 @@ $focusBorderWidth: 1px;
     position: relative;
     outline: none;
     background-color: var(--ix-group-item--background);
-    border: 1px solid transparent;
+    border: var(--ix-group-item-group-footer--border-width) solid transparent;
     color: var(--ix-group-item--color);
     cursor: pointer;
 
@@ -55,18 +54,18 @@ $focusBorderWidth: 1px;
 
   ix-icon {
     margin-right: var(--ix-group-item-icon--margin-right);
-    margin-top: -0.125rem;
+    margin-top: var(--ix-group-item-icon--margin-top);
   }
 
   .group-entry-selection-indicator {
     position: absolute;
-    left: -#{$focusBorderWidth};
-    height: calc(100% + #{$focusBorderWidth * 2});
+    left: calc(0px - #{$focusBorderWidth});
+    height: calc(100% + 2 * #{$focusBorderWidth});
     width: var(--ix-group-item-group-entry-selection-indicator--width);
   }
 
   .group-entry-text {
-    @include fonts.text-default;
+    font: var(--ix-group-item--font);
     @include text-truncation.ellipsis();
   }
 
@@ -79,14 +78,14 @@ $focusBorderWidth: 1px;
 
     &,
     span {
-      @include fonts.text-default;
+      font: var(--ix-group-item--font);
       @include text-truncation.ellipsis;
     }
   }
 }
 
 :host(.selected) {
-  border-top-width: 0.062rem !important;
+  border-top-width: var(--ix-group-item--border-top-width) !important;
   background-color: var(--ix-group-item--background--selected);
 
   .group-entry-selection-indicator {

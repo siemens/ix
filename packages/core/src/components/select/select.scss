@@ -8,11 +8,10 @@
  */
 
 @use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
 @use 'mixins/validation/form-component';
-@use 'tokens/system' as sys;
 
 @use '../utils/focus/focus-proxy' as focus-proxy;
 
@@ -41,7 +40,6 @@
     border: var(--ix-select--border-width) solid var(--ix-select--border-color);
     border-radius: var(--ix-select--border-radius);
     padding: var(--ix-select--padding);
-    box-shadow: var(--ix-select--box-shadow) !important;
 
     &:hover:not(.readonly):not(.disabled) {
       background-color: var(--ix-select--background--hover);
@@ -51,8 +49,6 @@
 
   .select.readonly,
   .select.disabled {
-    box-shadow: none !important;
-
     &,
     &:hover,
     &:active {
@@ -127,7 +123,8 @@
           cursor: pointer;
 
           &:focus-visible {
-            outline: 1px solid var(--ix-select--outline-color--focus);
+            outline: var(--ix-select--outline-width--focus) solid
+              var(--ix-select--outline-color--focus);
             outline-offset: var(--ix-select--focus--outline-offset);
           }
         }
@@ -143,11 +140,12 @@
 
     input {
       background: transparent;
+      color: var(--ix-select--color);
       height: var(--ix-select-input-container--height);
       width: 100%;
 
       @include text-truncation.ellipsis;
-      @include fonts.text-default;
+      @include fonts.typography-body;
 
       &,
       &:hover,
@@ -214,7 +212,8 @@
 :host(.ix-focused),
 :host(.show-focus-outline) {
   .select {
-    outline: 1px solid var(--ix-select--outline-color--focus);
+    outline: var(--ix-select--outline-width--focus) solid
+      var(--ix-select--outline-color--focus);
     outline-offset: var(--ix-select--focus--outline-offset);
   }
 }
