@@ -2,25 +2,17 @@
 
 > Expandable category that groups related items in the side menu.
 
+- Web component: `<ix-menu-category>`
+- React/Vue: `IxMenuCategory` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-menu-category>` (`IxModule` from `@siemens/ix-angular` or `IxMenuCategory` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/application-menu/guide.md
+- https://ix.siemens.io/docs/components/application-menu/guide.md
 
 ## Figma IDs
 
 - 4533:132499
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -34,6 +26,28 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Menu category items.
+
+## Dependencies
+
+- Renders: `ix-divider`, `ix-dropdown`, `ix-dropdown-item`, `ix-menu-item`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application-advanced (angular, angular-standalone, html, react, vue)
+- menu-category (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

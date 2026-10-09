@@ -2,49 +2,15 @@
 
 > A single step within a workflow step sequence.
 
+- Web component: `<ix-workflow-step>`
+- React/Vue: `IxWorkflowStep` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-workflow-step>` (`IxModule` from `@siemens/ix-angular` or `IxWorkflowStep` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/workflow/code.md
+- https://ix.siemens.io/docs/components/workflow/code.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- workflow
-  - angular:
-    - `angular/workflow.css`: [file](../../examples/angular/workflow.css)
-    - `angular/workflow.ts`: [file](../../examples/angular/workflow.ts)
-  - angular-standalone:
-    - `angular-standalone/workflow.css`: [file](../../examples/angular-standalone/workflow.css)
-    - `angular-standalone/workflow.ts`: [file](../../examples/angular-standalone/workflow.ts)
-  - html:
-    - `html/workflow.css`: [file](../../examples/html/workflow.css)
-    - `html/workflow.html`: [file](../../examples/html/workflow.html)
-  - react:
-    - `react/workflow.scoped.css`: [file](../../examples/react/workflow.scoped.css)
-    - `react/workflow.tsx`: [file](../../examples/react/workflow.tsx)
-  - vue:
-    - `vue/workflow.css`: [file](../../examples/vue/workflow.css)
-    - `vue/workflow.vue`: [file](../../examples/vue/workflow.vue)
-- workflow-vertical
-  - angular:
-    - `angular/workflow-vertical.ts`: [file](../../examples/angular/workflow-vertical.ts)
-  - angular-standalone:
-    - `angular-standalone/workflow-vertical.ts`: [file](../../examples/angular-standalone/workflow-vertical.ts)
-  - html:
-    - `html/workflow-vertical.html`: [file](../../examples/html/workflow-vertical.html)
-  - react:
-    - `react/workflow-vertical.tsx`: [file](../../examples/react/workflow-vertical.tsx)
-  - vue:
-    - `vue/workflow-vertical.vue`: [file](../../examples/vue/workflow-vertical.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -60,7 +26,29 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Workflow step content.
 - `custom-icon` - Custom step icon.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- workflow (angular, angular-standalone, html, react, vue)
+- workflow-vertical (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

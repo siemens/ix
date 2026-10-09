@@ -2,25 +2,17 @@
 
 > Button combined with an attached dropdown for related actions.
 
+- Web component: `<ix-split-button>`
+- React/Vue: `IxSplitButton` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-split-button>` (`IxModule` from `@siemens/ix-angular` or `IxSplitButton` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/split-button/guide.md
+- https://ix.siemens.io/docs/components/split-button/guide.md
 
 ## Figma IDs
 
 - 237:4370
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -40,6 +32,28 @@ Pattern and file links are relative to this Markdown file.
 
 - `buttonClick` - Button clicked
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Dropdown content.
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-dropdown-button`, `ix-icon-button`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- split-button (angular, angular-standalone, html, react, vue)
+- split-button-icons (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

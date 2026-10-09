@@ -2,6 +2,10 @@
 
 > A page layout for communicating information or errors and guiding users towards a solution.
 
+- Web component: `<ix-info-page>`
+- React/Vue: `IxInfoPage` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-info-page>` (`IxModule` from `@siemens/ix-angular` or `IxInfoPage` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
 - None
@@ -9,28 +13,6 @@
 ## Figma IDs
 
 - 145668:12518
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- info-page
-  - angular:
-    - `angular/info-page.ts`: [file](../../examples/angular/info-page.ts)
-  - angular-standalone:
-    - `angular-standalone/info-page.ts`: [file](../../examples/angular-standalone/info-page.ts)
-  - html:
-    - `html/info-page.html`: [file](../../examples/html/info-page.html)
-  - react:
-    - `react/info-page.tsx`: [file](../../examples/react/info-page.tsx)
-  - vue:
-    - `vue/info-page.vue`: [file](../../examples/vue/info-page.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -44,7 +26,28 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `actions` - Optional actions related to the message.
 - `image` - An optional illustration or custom icon replacing the default icon.
+
+## Dependencies
+
+- Renders: `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- info-page (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

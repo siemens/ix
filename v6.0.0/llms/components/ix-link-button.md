@@ -2,46 +2,17 @@
 
 > Button styled as a hyperlink that navigates to a target.
 
+- Web component: `<ix-link-button>`
+- React/Vue: `IxLinkButton` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-link-button>` (`IxModule` from `@siemens/ix-angular` or `IxLinkButton` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/link-button/guide.md
+- https://ix.siemens.io/docs/components/link-button/guide.md
 
 ## Figma IDs
 
 - 107603:15976
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- link-button
-  - angular:
-    - `angular/link-button.ts`: [file](../../examples/angular/link-button.ts)
-  - angular-standalone:
-    - `angular-standalone/link-button.ts`: [file](../../examples/angular-standalone/link-button.ts)
-  - html:
-    - `html/link-button.html`: [file](../../examples/html/link-button.html)
-  - react:
-    - `react/link-button.tsx`: [file](../../examples/react/link-button.tsx)
-  - vue:
-    - `vue/link-button.vue`: [file](../../examples/vue/link-button.vue)
-- link-button-disabled
-  - angular:
-    - `angular/link-button-disabled.ts`: [file](../../examples/angular/link-button-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/link-button-disabled.ts`: [file](../../examples/angular-standalone/link-button-disabled.ts)
-  - html:
-    - `html/link-button-disabled.html`: [file](../../examples/html/link-button-disabled.html)
-  - react:
-    - `react/link-button-disabled.tsx`: [file](../../examples/react/link-button-disabled.tsx)
-  - vue:
-    - `vue/link-button-disabled.vue`: [file](../../examples/vue/link-button-disabled.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -53,6 +24,28 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Link button label.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- link-button (angular, angular-standalone, html, react, vue)
+- link-button-disabled (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

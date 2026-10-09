@@ -2,25 +2,17 @@
 
 > No component summary available.
 
+- Web component: `<ix-chat-input>`
+- React/Vue: `IxChatInput` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-chat-input>` (`IxModule` from `@siemens/ix-angular` or `IxChatInput` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/chat-input/guide.md
+- https://ix.siemens.io/docs/components/chat-input/guide.md
 
 ## Figma IDs
 
 - 133528:32836
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -48,9 +40,32 @@ Pattern and file links are relative to this Markdown file.
 - `promptSubmit` - Event emitted when the prompt is submitted by the send button or Enter key.
 - `valueChange` - Event emitted when the value of the chat input changes.
 
+## Methods
+
+- `focusInput() => Promise<void>` - Focuses the chat input.
+- `getNativeInputElement() => Promise<HTMLTextAreaElement>` - Returns the native textarea element used by the chat input.
+
 ## Slots
 
 - `attachments` - Attachments displayed above the prompt text area
 - `end` - Element will be displayed in the right action area before the submit button
 - `follow-up` - Optional refresh action and follow-up prompt buttons displayed above the chat input
 - `start` - Element will be displayed in the left action area
+
+## Dependencies
+
+- Renders: `ix-icon-button`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- chat (angular, angular-standalone, html, react, vue)
+- chat-input (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

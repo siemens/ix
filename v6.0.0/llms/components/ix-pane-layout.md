@@ -2,37 +2,17 @@
 
 > Layout container that arranges collapsible panes around a content area.
 
+- Web component: `<ix-pane-layout>`
+- React/Vue: `IxPaneLayout` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-pane-layout>` (`IxModule` from `@siemens/ix-angular` or `IxPaneLayout` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/panes/guide.md
+- https://ix.siemens.io/docs/components/panes/guide.md
 
 ## Figma IDs
 
 - 19924:12291
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- pane-layout
-  - angular:
-    - `angular/pane-layout.html`: [file](../../examples/angular/pane-layout.html)
-    - `angular/pane-layout.ts`: [file](../../examples/angular/pane-layout.ts)
-  - angular-standalone:
-    - `angular-standalone/pane-layout.html`: [file](../../examples/angular-standalone/pane-layout.html)
-    - `angular-standalone/pane-layout.ts`: [file](../../examples/angular-standalone/pane-layout.ts)
-  - html:
-    - `html/pane-layout.html`: [file](../../examples/html/pane-layout.html)
-  - react:
-    - `react/pane-layout.tsx`: [file](../../examples/react/pane-layout.tsx)
-  - vue:
-    - `vue/pane-layout.vue`: [file](../../examples/vue/pane-layout.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -44,6 +24,10 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Main pane content.
@@ -52,3 +36,20 @@ Pattern and file links are relative to this Markdown file.
 - `left` - Content displayed in the left pane.
 - `right` - Content displayed in the right pane.
 - `top` - Content displayed in the top pane.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- pane-layout (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

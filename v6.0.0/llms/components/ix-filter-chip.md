@@ -2,23 +2,15 @@
 
 > Dismissible chip that represents an applied filter.
 
+- Web component: `<ix-filter-chip>`
+- React/Vue: `IxFilterChip` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-filter-chip>` (`IxModule` from `@siemens/ix-angular` or `IxFilterChip` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
 - None
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -33,6 +25,27 @@ Pattern and file links are relative to this Markdown file.
 
 - `closeClick` - Close clicked
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Filter chip label.
+
+## Dependencies
+
+- Renders: `ix-icon-button`
+- Rendered by: `ix-category-filter`, `ix-select`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- None
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

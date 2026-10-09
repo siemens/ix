@@ -2,50 +2,17 @@
 
 > Header area of a content page showing the title and page-level actions.
 
+- Web component: `<ix-content-header>`
+- React/Vue: `IxContentHeader` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-content-header>` (`IxModule` from `@siemens/ix-angular` or `IxContentHeader` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/content-header/guide.md
+- https://ix.siemens.io/docs/components/content-header/guide.md
 
 ## Figma IDs
 
 - 4727:112521
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- content-header
-  - angular:
-    - `angular/content-header.html`: [file](../../examples/angular/content-header.html)
-    - `angular/content-header.ts`: [file](../../examples/angular/content-header.ts)
-  - angular-standalone:
-    - `angular-standalone/content-header.html`: [file](../../examples/angular-standalone/content-header.html)
-    - `angular-standalone/content-header.ts`: [file](../../examples/angular-standalone/content-header.ts)
-  - html:
-    - `html/content-header.html`: [file](../../examples/html/content-header.html)
-  - react:
-    - `react/content-header.tsx`: [file](../../examples/react/content-header.tsx)
-  - vue:
-    - `vue/content-header.vue`: [file](../../examples/vue/content-header.vue)
-- content-header-text-overflow
-  - angular:
-    - `angular/content-header-text-overflow.html`: [file](../../examples/angular/content-header-text-overflow.html)
-    - `angular/content-header-text-overflow.ts`: [file](../../examples/angular/content-header-text-overflow.ts)
-  - angular-standalone:
-    - `angular-standalone/content-header-text-overflow.html`: [file](../../examples/angular-standalone/content-header-text-overflow.html)
-    - `angular-standalone/content-header-text-overflow.ts`: [file](../../examples/angular-standalone/content-header-text-overflow.ts)
-  - html:
-    - `html/content-header-text-overflow.html`: [file](../../examples/html/content-header-text-overflow.html)
-  - react:
-    - `react/content-header-text-overflow.tsx`: [file](../../examples/react/content-header-text-overflow.tsx)
-  - vue:
-    - `vue/content-header-text-overflow.vue`: [file](../../examples/vue/content-header-text-overflow.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -59,7 +26,36 @@ Pattern and file links are relative to this Markdown file.
 
 - `backButtonClick` - Triggered when back button is clicked
 
+## Methods
+
+- None
+
 ## Slots
 
 - `default` - Default slot for action buttons or other content
 - `header` - Content to be placed in the header area next to the title
+
+## Dependencies
+
+- Renders: `ix-icon-button`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application (angular, angular-standalone, html, react, vue)
+- application-advanced (angular, angular-standalone, html, react, vue)
+- application-app-switch (angular, angular-standalone, html, react, vue)
+- application-breakpoints (angular, angular-standalone, html, react, vue)
+- content (angular, angular-standalone, html, react, vue)
+- content-header (angular, angular-standalone, html, react, vue)
+- content-header-no-back (angular, angular-standalone, html, react, vue)
+- content-header-text-overflow (angular, angular-standalone, html, react, vue)
+- content-header-with-slot (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

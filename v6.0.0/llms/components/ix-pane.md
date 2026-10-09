@@ -2,50 +2,17 @@
 
 > Collapsible side panel docked to an edge of the layout.
 
+- Web component: `<ix-pane>`
+- React/Vue: `IxPane` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-pane>` (`IxModule` from `@siemens/ix-angular` or `IxPane` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/panes/guide.md
+- https://ix.siemens.io/docs/components/panes/guide.md
 
 ## Figma IDs
 
 - 19924:12291
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- pane
-  - angular:
-    - `angular/pane.html`: [file](../../examples/angular/pane.html)
-    - `angular/pane.ts`: [file](../../examples/angular/pane.ts)
-  - angular-standalone:
-    - `angular-standalone/pane.html`: [file](../../examples/angular-standalone/pane.html)
-    - `angular-standalone/pane.ts`: [file](../../examples/angular-standalone/pane.ts)
-  - html:
-    - `html/pane.html`: [file](../../examples/html/pane.html)
-  - react:
-    - `react/pane.tsx`: [file](../../examples/react/pane.tsx)
-  - vue:
-    - `vue/pane.vue`: [file](../../examples/vue/pane.vue)
-- pane-layout
-  - angular:
-    - `angular/pane-layout.html`: [file](../../examples/angular/pane-layout.html)
-    - `angular/pane-layout.ts`: [file](../../examples/angular/pane-layout.ts)
-  - angular-standalone:
-    - `angular-standalone/pane-layout.html`: [file](../../examples/angular-standalone/pane-layout.html)
-    - `angular-standalone/pane-layout.ts`: [file](../../examples/angular-standalone/pane-layout.ts)
-  - html:
-    - `html/pane-layout.html`: [file](../../examples/html/pane-layout.html)
-  - react:
-    - `react/pane-layout.tsx`: [file](../../examples/react/pane-layout.tsx)
-  - vue:
-    - `vue/pane-layout.vue`: [file](../../examples/vue/pane-layout.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -68,7 +35,29 @@ Pattern and file links are relative to this Markdown file.
 - `expandedChanged` - This event is triggered when the pane either expands or contracts
 - `variantChanged` - This event is triggered when the variant of the pane is changed
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Pane content.
 - `header` - Additional slot for the header content
+
+## Dependencies
+
+- Renders: `ix-icon-button`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- pane (angular, angular-standalone, html, react, vue)
+- pane-layout (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

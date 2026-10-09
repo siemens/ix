@@ -2,48 +2,15 @@
 
 > A single tab or entry within the about overlay.
 
+- Web component: `<ix-menu-about-item>`
+- React/Vue: `IxMenuAboutItem` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-menu-about-item>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAboutItem` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/about-and-legal/guide.md
+- https://ix.siemens.io/docs/components/about-and-legal/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- about-and-legal-legacy
-  - angular:
-    - `angular/about-and-legal-legacy.html`: [file](../../examples/angular/about-and-legal-legacy.html)
-    - `angular/about-and-legal-legacy.ts`: [file](../../examples/angular/about-and-legal-legacy.ts)
-  - angular-standalone:
-    - `angular-standalone/about-and-legal-legacy.html`: [file](../../examples/angular-standalone/about-and-legal-legacy.html)
-    - `angular-standalone/about-and-legal-legacy.ts`: [file](../../examples/angular-standalone/about-and-legal-legacy.ts)
-  - html:
-    - `html/about-and-legal-legacy.html`: [file](../../examples/html/about-and-legal-legacy.html)
-  - react:
-    - `react/about-and-legal-legacy.tsx`: [file](../../examples/react/about-and-legal-legacy.tsx)
-  - vue:
-    - `vue/about-and-legal-legacy.vue`: [file](../../examples/vue/about-and-legal-legacy.vue)
-- popover-news
-  - angular:
-    - `angular/popover-news.html`: [file](../../examples/angular/popover-news.html)
-    - `angular/popover-news.ts`: [file](../../examples/angular/popover-news.ts)
-  - angular-standalone:
-    - `angular-standalone/popover-news.html`: [file](../../examples/angular-standalone/popover-news.html)
-    - `angular-standalone/popover-news.ts`: [file](../../examples/angular-standalone/popover-news.ts)
-  - html:
-    - `html/popover-news.html`: [file](../../examples/html/popover-news.html)
-  - react:
-    - `react/popover-news.tsx`: [file](../../examples/react/popover-news.tsx)
-  - vue:
-    - `vue/popover-news.vue`: [file](../../examples/vue/popover-news.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -56,6 +23,28 @@ Pattern and file links are relative to this Markdown file.
 
 - `labelChange` - Label changed
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - About item content.
+
+## Dependencies
+
+- Renders: `ix-tab-panel`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- about-and-legal-legacy (angular, angular-standalone, html, react, vue)
+- popover-news (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

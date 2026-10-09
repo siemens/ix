@@ -2,32 +2,17 @@
 
 > Button that displays only an icon to trigger an action.
 
+- Web component: `<ix-icon-button>`
+- React/Vue: `IxIconButton` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-icon-button>` (`IxModule` from `@siemens/ix-angular` or `IxIconButton` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/icon-button/guide.md
+- https://ix.siemens.io/docs/components/icon-button/guide.md
 
 ## Figma IDs
 
 - 270:941
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- [upload](../patterns.md#upload)
-  - angular:
-    - `angular/upload.ts`: [file](../../patterns/angular/upload.ts)
-    - `angular/upload.html`: [file](../../patterns/angular/upload.html)
-    - `angular/upload.css`: [file](../../patterns/angular/upload.css)
-  - react:
-    - `react/upload.tsx`: [file](../../patterns/react/upload.tsx)
-    - `react/upload.module.css`: [file](../../patterns/react/upload.module.css)
 
 ## Properties
 
@@ -44,6 +29,40 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - None
+
+## Dependencies
+
+- Renders: `ix-spinner`
+- Rendered by: `ix-application-header`, `ix-card-list`, `ix-category-filter`, `ix-chat-input`, `ix-content-header`, `ix-date-input`, `ix-date-picker`, `ix-datetime-input`, `ix-dropdown-button`, `ix-expanding-search`, `ix-filter-chip`, `ix-flip-tile`, `ix-group-context-menu`, `ix-input`, `ix-menu`, `ix-menu-about`, `ix-menu-about-news`, `ix-menu-expand-icon`, `ix-menu-settings`, `ix-message-bar`, `ix-modal-header`, `ix-number-input`, `ix-pagination`, `ix-pane`, `ix-popover-header`, `ix-select`, `ix-split-button`, `ix-tab-item`, `ix-time-input`, `ix-toast`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application-header (angular, angular-standalone, html, react, vue)
+- badge (angular, angular-standalone, html, react, vue)
+- blind-header-actions (angular, angular-standalone, html, react, vue)
+- button-loading (angular, angular-standalone, html, react, vue)
+- button-with-icon (angular, angular-standalone, html, react, vue)
+- chat (angular, angular-standalone, html, react, vue)
+- chat-ai-message (angular, angular-standalone, html, react, vue)
+- chat-input (angular, angular-standalone, html, react, vue)
+- chat-user-message (angular, angular-standalone, html, react, vue)
+- content-header-no-back (angular, angular-standalone, html, react, vue)
+- custom-field (angular, angular-standalone, html, react, vue)
+- dropdown-quick-actions (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- tile (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- [upload](../patterns.md#upload): Use this pattern to provide a file upload area with a list of uploaded files and remove actions for each file.

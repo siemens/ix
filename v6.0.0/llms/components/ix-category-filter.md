@@ -2,46 +2,17 @@
 
 > Input for building and refining searches using category-based filter criteria.
 
+- Web component: `<ix-category-filter>`
+- React/Vue: `IxCategoryFilter` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-category-filter>` (`IxModule` from `@siemens/ix-angular` or `IxCategoryFilter` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/category-filter/guide.md
+- https://ix.siemens.io/docs/components/category-filter/guide.md
 
 ## Figma IDs
 
 - 1221:30316
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- category-filter
-  - angular:
-    - `angular/category-filter.ts`: [file](../../examples/angular/category-filter.ts)
-  - angular-standalone:
-    - `angular-standalone/category-filter.ts`: [file](../../examples/angular-standalone/category-filter.ts)
-  - html:
-    - `html/category-filter.html`: [file](../../examples/html/category-filter.html)
-  - react:
-    - `react/category-filter.tsx`: [file](../../examples/react/category-filter.tsx)
-  - vue:
-    - `vue/category-filter.vue`: [file](../../examples/vue/category-filter.vue)
-- category-filter-suggestions
-  - angular:
-    - `angular/category-filter-suggestions.ts`: [file](../../examples/angular/category-filter-suggestions.ts)
-  - angular-standalone:
-    - `angular-standalone/category-filter-suggestions.ts`: [file](../../examples/angular-standalone/category-filter-suggestions.ts)
-  - html:
-    - `html/category-filter-suggestions.html`: [file](../../examples/html/category-filter-suggestions.html)
-  - react:
-    - `react/category-filter-suggestions.tsx`: [file](../../examples/react/category-filter-suggestions.tsx)
-  - vue:
-    - `vue/category-filter-suggestions.vue`: [file](../../examples/vue/category-filter-suggestions.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -70,6 +41,28 @@ Pattern and file links are relative to this Markdown file.
 - `filterCleared` - Event dispatched whenever the filter gets cleared.
 - `inputChanged` - Event dispatched whenever the text input changes.
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-dropdown`, `ix-filter-chip`, `ix-icon-button`, `ix-spinner`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- category-filter (angular, angular-standalone, html, react, vue)
+- category-filter-suggestions (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

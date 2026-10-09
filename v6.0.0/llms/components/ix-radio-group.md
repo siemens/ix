@@ -2,37 +2,17 @@
 
 > Groups related radio buttons so only one can be selected.
 
+- Web component: `<ix-radio-group>`
+- React/Vue: `IxRadioGroup` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-radio-group>` (`IxModule` from `@siemens/ix-angular` or `IxRadioGroup` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/radio/guide.md
+- https://ix.siemens.io/docs/components/radio/guide.md
 
 ## Figma IDs
 
 - 42365:44973
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- radio-group
-  - angular:
-    - `angular/radio-group.html`: [file](../../examples/angular/radio-group.html)
-    - `angular/radio-group.ts`: [file](../../examples/angular/radio-group.ts)
-  - angular-standalone:
-    - `angular-standalone/radio-group.html`: [file](../../examples/angular-standalone/radio-group.html)
-    - `angular-standalone/radio-group.ts`: [file](../../examples/angular-standalone/radio-group.ts)
-  - html:
-    - `html/radio-group.html`: [file](../../examples/html/radio-group.html)
-  - react:
-    - `react/radio-group.tsx`: [file](../../examples/react/radio-group.tsx)
-  - vue:
-    - `vue/radio-group.vue`: [file](../../examples/vue/radio-group.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -50,6 +30,30 @@ Pattern and file links are relative to this Markdown file.
 
 - `valueChange` - Event emitted when the value of the radiobutton group changes
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Radio components.
+
+## Dependencies
+
+- Renders: `ix-field-wrapper`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application-breakpoints (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- radio-group (angular, angular-standalone, html, react, vue)
+- radio-validation (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

@@ -2,63 +2,17 @@
 
 > Lets users select a single option from a set.
 
+- Web component: `<ix-radio>`
+- React/Vue: `IxRadio` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-radio>` (`IxModule` from `@siemens/ix-angular` or `IxRadio` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/radio/guide.md
+- https://ix.siemens.io/docs/components/radio/guide.md
 
 ## Figma IDs
 
 - 42365:44481
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- radio
-  - angular:
-    - `angular/radio.html`: [file](../../examples/angular/radio.html)
-    - `angular/radio.ts`: [file](../../examples/angular/radio.ts)
-  - angular-standalone:
-    - `angular-standalone/radio.html`: [file](../../examples/angular-standalone/radio.html)
-    - `angular-standalone/radio.ts`: [file](../../examples/angular-standalone/radio.ts)
-  - html:
-    - `html/radio.html`: [file](../../examples/html/radio.html)
-  - react:
-    - `react/radio.tsx`: [file](../../examples/react/radio.tsx)
-  - vue:
-    - `vue/radio.vue`: [file](../../examples/vue/radio.vue)
-- radio-disabled
-  - angular:
-    - `angular/radio-disabled.html`: [file](../../examples/angular/radio-disabled.html)
-    - `angular/radio-disabled.ts`: [file](../../examples/angular/radio-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/radio-disabled.html`: [file](../../examples/angular-standalone/radio-disabled.html)
-    - `angular-standalone/radio-disabled.ts`: [file](../../examples/angular-standalone/radio-disabled.ts)
-  - html:
-    - `html/radio-disabled.html`: [file](../../examples/html/radio-disabled.html)
-  - react:
-    - `react/radio-disabled.tsx`: [file](../../examples/react/radio-disabled.tsx)
-  - vue:
-    - `vue/radio-disabled.vue`: [file](../../examples/vue/radio-disabled.vue)
-- radio-group
-  - angular:
-    - `angular/radio-group.html`: [file](../../examples/angular/radio-group.html)
-    - `angular/radio-group.ts`: [file](../../examples/angular/radio-group.ts)
-  - angular-standalone:
-    - `angular-standalone/radio-group.html`: [file](../../examples/angular-standalone/radio-group.html)
-    - `angular-standalone/radio-group.ts`: [file](../../examples/angular-standalone/radio-group.ts)
-  - html:
-    - `html/radio-group.html`: [file](../../examples/html/radio-group.html)
-  - react:
-    - `react/radio-group.tsx`: [file](../../examples/react/radio-group.tsx)
-  - vue:
-    - `vue/radio-group.vue`: [file](../../examples/vue/radio-group.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -75,6 +29,32 @@ Pattern and file links are relative to this Markdown file.
 - `ixBlur` - Event emitted when the radio is blurred
 - `valueChange` - Event emitted when the value of the radio changes
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Radio label.
+
+## Dependencies
+
+- Renders: `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application-breakpoints (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- radio (angular, angular-standalone, html, react, vue)
+- radio-disabled (angular, angular-standalone, html, react, vue)
+- radio-group (angular, angular-standalone, html, react, vue)
+- radio-validation (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

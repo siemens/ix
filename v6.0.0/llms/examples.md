@@ -2,11 +2,11 @@
 
 > Example-focused LLM documentation generated from registry example JSON metadata and component relationships.
 
-Each example includes related iX component tags, framework variants, and files. File and component links are relative to this Markdown file. A missing component relationship means the relationship map does not list one; it does not prove that the example uses no iX components.
+Each example includes the iX components found in its sources across all frameworks, framework variants, and files. File and component links are relative to this Markdown file. For a compact per-framework index, use `examples/{framework}.md`.
 
 ## about-and-legal
 
-- Used iX components (relationship map): [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
 
 ### angular
 
@@ -37,7 +37,7 @@ Files:
 
 ## about-and-legal-legacy
 
-- Used iX components (relationship map): [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-menu-about-item`](components/ix-menu-about-item.md)
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-menu-about-item`](components/ix-menu-about-item.md)
 
 ### angular
 
@@ -68,7 +68,7 @@ Files:
 
 ## action-card
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-action-card`](components/ix-action-card.md)
 
 ### angular
 
@@ -99,7 +99,7 @@ Files:
 
 ## add-icons
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -133,7 +133,7 @@ Files:
 
 ## aggrid
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -164,7 +164,7 @@ Files:
 
 ## aggrid-striped
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -193,7 +193,7 @@ Files:
 
 ## application
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-content`](components/ix-content.md), [`ix-content-header`](components/ix-content-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-item`](components/ix-menu-item.md)
 
 ### angular
 
@@ -224,7 +224,7 @@ Files:
 
 ## application-advanced
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-avatar`](components/ix-avatar.md), [`ix-content`](components/ix-content.md), [`ix-content-header`](components/ix-content-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-menu-category`](components/ix-menu-category.md), [`ix-menu-item`](components/ix-menu-item.md), [`ix-menu-settings`](components/ix-menu-settings.md)
 
 ### angular
 
@@ -255,7 +255,7 @@ Files:
 
 ## application-app-switch
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-avatar`](components/ix-avatar.md), [`ix-content`](components/ix-content.md), [`ix-content-header`](components/ix-content-header.md), [`ix-dropdown-button`](components/ix-dropdown-button.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-item`](components/ix-menu-item.md)
 
 ### angular
 
@@ -286,7 +286,7 @@ Files:
 
 ## application-breakpoints
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-avatar`](components/ix-avatar.md), [`ix-content`](components/ix-content.md), [`ix-content-header`](components/ix-content-header.md), [`ix-dropdown-button`](components/ix-dropdown-button.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-item`](components/ix-menu-item.md), [`ix-radio`](components/ix-radio.md), [`ix-radio-group`](components/ix-radio-group.md)
 
 ### angular
 
@@ -317,7 +317,7 @@ Files:
 
 ## application-header
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-application-header`](components/ix-application-header.md), [`ix-avatar`](components/ix-avatar.md), [`ix-dropdown-button`](components/ix-dropdown-button.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -348,7 +348,7 @@ Files:
 
 ## aria-label-properties
 
-- Used iX components (relationship map): [`ix-date-picker`](components/ix-date-picker.md)
+- Used iX components: [`ix-date-picker`](components/ix-date-picker.md)
 
 ### html
 
@@ -357,7 +357,7 @@ Files:
 
 ## avatar
 
-- Used iX components (relationship map): [`ix-avatar`](components/ix-avatar.md)
+- Used iX components: [`ix-avatar`](components/ix-avatar.md)
 
 ### angular
 
@@ -386,7 +386,7 @@ Files:
 
 ## avatar-image
 
-- Used iX components (relationship map): [`ix-avatar`](components/ix-avatar.md)
+- Used iX components: [`ix-avatar`](components/ix-avatar.md)
 
 ### angular
 
@@ -415,7 +415,7 @@ Files:
 
 ## avatar-initials
 
-- Used iX components (relationship map): [`ix-avatar`](components/ix-avatar.md)
+- Used iX components: [`ix-avatar`](components/ix-avatar.md)
 
 ### angular
 
@@ -444,7 +444,7 @@ Files:
 
 ## badge
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-badge`](components/ix-badge.md), [`ix-button`](components/ix-button.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -480,7 +480,7 @@ Files:
 
 ## badge-counter
 
-- Used iX components (relationship map): [`ix-badge`](components/ix-badge.md)
+- Used iX components: [`ix-badge`](components/ix-badge.md)
 
 ### angular
 
@@ -516,7 +516,7 @@ Files:
 
 ## badge-dot
 
-- Used iX components (relationship map): [`ix-badge`](components/ix-badge.md)
+- Used iX components: [`ix-badge`](components/ix-badge.md)
 
 ### angular
 
@@ -552,7 +552,7 @@ Files:
 
 ## badge-label
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-badge`](components/ix-badge.md)
 
 ### angular
 
@@ -588,7 +588,7 @@ Files:
 
 ## badge-status-icon
 
-- Used iX components (relationship map): [`ix-badge`](components/ix-badge.md)
+- Used iX components: [`ix-badge`](components/ix-badge.md)
 
 ### angular
 
@@ -624,7 +624,7 @@ Files:
 
 ## basic-navigation-migration
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -653,7 +653,7 @@ Files:
 
 ## blind
 
-- Used iX components (relationship map): [`ix-blind`](components/ix-blind.md)
+- Used iX components: [`ix-blind`](components/ix-blind.md)
 
 ### angular
 
@@ -689,7 +689,7 @@ Files:
 
 ## blind-header-actions
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-blind`](components/ix-blind.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -723,7 +723,7 @@ Files:
 
 ## blind-variants
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-blind`](components/ix-blind.md)
 
 ### angular
 
@@ -759,7 +759,7 @@ Files:
 
 ## breadcrumb
 
-- Used iX components (relationship map): [`ix-breadcrumb`](components/ix-breadcrumb.md), [`ix-breadcrumb-item`](components/ix-breadcrumb-item.md)
+- Used iX components: [`ix-breadcrumb`](components/ix-breadcrumb.md), [`ix-breadcrumb-item`](components/ix-breadcrumb-item.md)
 
 ### angular
 
@@ -788,7 +788,7 @@ Files:
 
 ## breadcrumb-next-items
 
-- Used iX components (relationship map): [`ix-breadcrumb`](components/ix-breadcrumb.md), [`ix-breadcrumb-item`](components/ix-breadcrumb-item.md)
+- Used iX components: [`ix-breadcrumb`](components/ix-breadcrumb.md), [`ix-breadcrumb-item`](components/ix-breadcrumb-item.md)
 
 ### angular
 
@@ -817,7 +817,7 @@ Files:
 
 ## breadcrumb-truncate
 
-- Used iX components (relationship map): [`ix-breadcrumb`](components/ix-breadcrumb.md), [`ix-breadcrumb-item`](components/ix-breadcrumb-item.md)
+- Used iX components: [`ix-breadcrumb`](components/ix-breadcrumb.md), [`ix-breadcrumb-item`](components/ix-breadcrumb-item.md)
 
 ### angular
 
@@ -846,7 +846,7 @@ Files:
 
 ## button-danger-primary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -882,7 +882,7 @@ Files:
 
 ## button-danger-secondary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -918,7 +918,7 @@ Files:
 
 ## button-danger-tertiary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -954,7 +954,7 @@ Files:
 
 ## button-group
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -983,7 +983,7 @@ Files:
 
 ## button-loading
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1019,7 +1019,7 @@ Files:
 
 ## button-secondary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1053,7 +1053,7 @@ Files:
 
 ## button-subtle-primary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1087,7 +1087,7 @@ Files:
 
 ## button-subtle-secondary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1121,7 +1121,7 @@ Files:
 
 ## button-subtle-tertiary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1155,7 +1155,7 @@ Files:
 
 ## button-tertiary
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1189,7 +1189,7 @@ Files:
 
 ## button-text-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1223,7 +1223,7 @@ Files:
 
 ## button-with-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1259,7 +1259,7 @@ Files:
 
 ## button-with-link
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1290,7 +1290,7 @@ Files:
 
 ## buttons
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -1324,7 +1324,7 @@ Files:
 
 ## card
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-card`](components/ix-card.md), [`ix-card-content`](components/ix-card-content.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -1360,7 +1360,7 @@ Files:
 
 ## card-list
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-card-list`](components/ix-card-list.md), [`ix-push-card`](components/ix-push-card.md)
 
 ### angular
 
@@ -1391,7 +1391,7 @@ Files:
 
 ## category-filter
 
-- Used iX components (relationship map): [`ix-category-filter`](components/ix-category-filter.md)
+- Used iX components: [`ix-category-filter`](components/ix-category-filter.md)
 
 ### angular
 
@@ -1420,7 +1420,7 @@ Files:
 
 ## category-filter-suggestions
 
-- Used iX components (relationship map): [`ix-category-filter`](components/ix-category-filter.md)
+- Used iX components: [`ix-category-filter`](components/ix-category-filter.md)
 
 ### angular
 
@@ -1449,7 +1449,7 @@ Files:
 
 ## chat
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-chat`](components/ix-chat.md), [`ix-chat-ai-message`](components/ix-chat-ai-message.md), [`ix-chat-attachment`](components/ix-chat-attachment.md), [`ix-chat-input`](components/ix-chat-input.md), [`ix-chat-user-message`](components/ix-chat-user-message.md), [`ix-chip`](components/ix-chip.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1480,7 +1480,7 @@ Files:
 
 ## chat-ai-message
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-chat`](components/ix-chat.md), [`ix-chat-ai-message`](components/ix-chat-ai-message.md), [`ix-chip`](components/ix-chip.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1511,7 +1511,7 @@ Files:
 
 ## chat-input
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-chat`](components/ix-chat.md), [`ix-chat-attachment`](components/ix-chat-attachment.md), [`ix-chat-input`](components/ix-chat-input.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1542,7 +1542,7 @@ Files:
 
 ## chat-user-message
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-chat`](components/ix-chat.md), [`ix-chat-attachment`](components/ix-chat-attachment.md), [`ix-chat-user-message`](components/ix-chat-user-message.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1573,7 +1573,7 @@ Files:
 
 ## checkbox
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -1602,7 +1602,7 @@ Files:
 
 ## checkbox-indeterminate
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -1631,7 +1631,7 @@ Files:
 
 ## chip
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-chip`](components/ix-chip.md)
 
 ### angular
 
@@ -1665,7 +1665,7 @@ Files:
 
 ## content
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-content`](components/ix-content.md), [`ix-content-header`](components/ix-content-header.md)
 
 ### angular
 
@@ -1696,7 +1696,7 @@ Files:
 
 ## content-header
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-content-header`](components/ix-content-header.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-content-header`](components/ix-content-header.md)
 
 ### angular
 
@@ -1727,7 +1727,7 @@ Files:
 
 ## content-header-no-back
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-content-header`](components/ix-content-header.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -1758,7 +1758,7 @@ Files:
 
 ## content-header-text-overflow
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-content-header`](components/ix-content-header.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-content-header`](components/ix-content-header.md)
 
 ### angular
 
@@ -1789,7 +1789,7 @@ Files:
 
 ## content-header-with-slot
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-content-header`](components/ix-content-header.md), [`ix-pill`](components/ix-pill.md)
 
 ### angular
 
@@ -1825,7 +1825,7 @@ Files:
 
 ## custom-field
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-custom-field`](components/ix-custom-field.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -1856,7 +1856,7 @@ Files:
 
 ## custom-field-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-custom-field`](components/ix-custom-field.md)
 
 ### angular
 
@@ -1887,7 +1887,7 @@ Files:
 
 ## date-dropdown
 
-- Used iX components (relationship map): [`ix-date-dropdown`](components/ix-date-dropdown.md)
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
 
 ### angular
 
@@ -1918,7 +1918,7 @@ Files:
 
 ## date-dropdown-presets
 
-- Used iX components (relationship map): [`ix-date-dropdown`](components/ix-date-dropdown.md)
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
 
 ### angular
 
@@ -1949,7 +1949,7 @@ Files:
 
 ## date-dropdown-user-range
 
-- Used iX components (relationship map): [`ix-date-dropdown`](components/ix-date-dropdown.md)
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
 
 ### angular
 
@@ -1980,7 +1980,7 @@ Files:
 
 ## date-input
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
 
 ### angular
 
@@ -2011,7 +2011,7 @@ Files:
 
 ## date-input-disabled
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
 
 ### angular
 
@@ -2042,7 +2042,7 @@ Files:
 
 ## date-input-label
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
 
 ### angular
 
@@ -2073,7 +2073,7 @@ Files:
 
 ## date-input-min-max-date
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
 
 ### angular
 
@@ -2104,7 +2104,7 @@ Files:
 
 ## date-input-readonly
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
 
 ### angular
 
@@ -2135,7 +2135,7 @@ Files:
 
 ## date-input-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
 
 ### angular
 
@@ -2166,7 +2166,7 @@ Files:
 
 ## date-input-with-slots
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-date-input`](components/ix-date-input.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -2197,7 +2197,7 @@ Files:
 
 ## date-range
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md), [`ix-range-field`](components/ix-range-field.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md), [`ix-range-field`](components/ix-range-field.md)
 
 ### angular
 
@@ -2226,7 +2226,7 @@ Files:
 
 ## datepicker
 
-- Used iX components (relationship map): [`ix-date-picker`](components/ix-date-picker.md)
+- Used iX components: [`ix-date-picker`](components/ix-date-picker.md)
 
 ### angular
 
@@ -2255,7 +2255,7 @@ Files:
 
 ## datepicker-locale
 
-- Used iX components (relationship map): [`ix-col`](components/ix-col.md), [`ix-date-picker`](components/ix-date-picker.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
+- Used iX components: [`ix-col`](components/ix-col.md), [`ix-date-picker`](components/ix-date-picker.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -2286,7 +2286,7 @@ Files:
 
 ## datepicker-range
 
-- Used iX components (relationship map): [`ix-date-picker`](components/ix-date-picker.md)
+- Used iX components: [`ix-date-picker`](components/ix-date-picker.md)
 
 ### angular
 
@@ -2315,7 +2315,7 @@ Files:
 
 ## datetime-input
 
-- Used iX components (relationship map): [`ix-datetime-input`](components/ix-datetime-input.md)
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
 
 ### angular
 
@@ -2346,7 +2346,7 @@ Files:
 
 ## datetime-input-disabled
 
-- Used iX components (relationship map): [`ix-datetime-input`](components/ix-datetime-input.md)
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
 
 ### angular
 
@@ -2377,7 +2377,7 @@ Files:
 
 ## datetime-input-label
 
-- Used iX components (relationship map): [`ix-datetime-input`](components/ix-datetime-input.md)
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
 
 ### angular
 
@@ -2408,7 +2408,7 @@ Files:
 
 ## datetime-input-min-max-date
 
-- Used iX components (relationship map): [`ix-datetime-input`](components/ix-datetime-input.md)
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
 
 ### angular
 
@@ -2439,7 +2439,7 @@ Files:
 
 ## datetime-input-readonly
 
-- Used iX components (relationship map): [`ix-datetime-input`](components/ix-datetime-input.md)
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
 
 ### angular
 
@@ -2470,7 +2470,7 @@ Files:
 
 ## datetime-input-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
 
 ### angular
 
@@ -2501,7 +2501,7 @@ Files:
 
 ## datetime-input-with-slots
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -2532,7 +2532,7 @@ Files:
 
 ## datetime-range
 
-- Used iX components (relationship map): [`ix-datetime-input`](components/ix-datetime-input.md), [`ix-range-field`](components/ix-range-field.md)
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md), [`ix-range-field`](components/ix-range-field.md)
 
 ### angular
 
@@ -2561,7 +2561,7 @@ Files:
 
 ## datetimepicker
 
-- Used iX components (relationship map): [`ix-datetime-picker`](components/ix-datetime-picker.md)
+- Used iX components: [`ix-datetime-picker`](components/ix-datetime-picker.md)
 
 ### angular
 
@@ -2590,7 +2590,7 @@ Files:
 
 ## datetimepicker-locale
 
-- Used iX components (relationship map): [`ix-col`](components/ix-col.md), [`ix-datetime-picker`](components/ix-datetime-picker.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
+- Used iX components: [`ix-col`](components/ix-col.md), [`ix-datetime-picker`](components/ix-datetime-picker.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -2621,7 +2621,7 @@ Files:
 
 ## divider
 
-- Used iX components (relationship map): [`ix-divider`](components/ix-divider.md)
+- Used iX components: [`ix-divider`](components/ix-divider.md)
 
 ### angular
 
@@ -2650,7 +2650,7 @@ Files:
 
 ## drawer
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -2674,7 +2674,7 @@ Files:
 
 ## drawer-full-height
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -2698,7 +2698,7 @@ Files:
 
 ## dropdown
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-divider`](components/ix-divider.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-header`](components/ix-dropdown-header.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-divider`](components/ix-divider.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-header`](components/ix-dropdown-header.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
 
 ### angular
 
@@ -2727,7 +2727,7 @@ Files:
 
 ## dropdown-button
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-dropdown-button`](components/ix-dropdown-button.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
 
 ### angular
 
@@ -2761,7 +2761,7 @@ Files:
 
 ## dropdown-button-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-dropdown-button`](components/ix-dropdown-button.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
 
 ### angular
 
@@ -2795,7 +2795,7 @@ Files:
 
 ## dropdown-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
 
 ### angular
 
@@ -2824,7 +2824,7 @@ Files:
 
 ## dropdown-quick-actions
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-divider`](components/ix-divider.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-dropdown-quick-actions`](components/ix-dropdown-quick-actions.md), [`ix-icon-button`](components/ix-icon-button.md)
 
 ### angular
 
@@ -2855,7 +2855,7 @@ Files:
 
 ## dropdown-roving-tabindex
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-divider`](components/ix-divider.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-header`](components/ix-dropdown-header.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-divider`](components/ix-divider.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-header`](components/ix-dropdown-header.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
 
 ### angular
 
@@ -2884,7 +2884,7 @@ Files:
 
 ## dropdown-submenu
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-item`](components/ix-dropdown-item.md)
 
 ### angular
 
@@ -2913,7 +2913,7 @@ Files:
 
 ## echarts
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -2949,7 +2949,7 @@ Files:
 
 ## echarts-bar-horizontal-stacked
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -2985,7 +2985,7 @@ Files:
 
 ## echarts-bar-simple
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3021,7 +3021,7 @@ Files:
 
 ## echarts-circle
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3057,7 +3057,7 @@ Files:
 
 ## echarts-empty-state
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-empty-state`](components/ix-empty-state.md)
 
 ### angular
 
@@ -3093,7 +3093,7 @@ Files:
 
 ## echarts-gauge
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3129,7 +3129,7 @@ Files:
 
 ## echarts-line-advanced
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3165,7 +3165,7 @@ Files:
 
 ## echarts-line-multiple-y-axis
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3201,7 +3201,7 @@ Files:
 
 ## echarts-line-simple
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3237,7 +3237,7 @@ Files:
 
 ## echarts-pie
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3273,7 +3273,7 @@ Files:
 
 ## echarts-progress-arc
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3309,7 +3309,7 @@ Files:
 
 ## echarts-progress-circle
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3345,7 +3345,7 @@ Files:
 
 ## echarts-special-3d
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3381,7 +3381,7 @@ Files:
 
 ## echarts-special-toolbox
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3417,7 +3417,7 @@ Files:
 
 ## echarts-special-zoom
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -3453,7 +3453,7 @@ Files:
 
 ## empty-state
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-empty-state`](components/ix-empty-state.md)
 
 ### angular
 
@@ -3482,7 +3482,7 @@ Files:
 
 ## empty-state-compact
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-empty-state`](components/ix-empty-state.md)
 
 ### angular
 
@@ -3511,7 +3511,7 @@ Files:
 
 ## empty-state-compact-break
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-empty-state`](components/ix-empty-state.md)
 
 ### angular
 
@@ -3540,7 +3540,7 @@ Files:
 
 ## event-list
 
-- Used iX components (relationship map): [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
+- Used iX components: [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
 
 ### angular
 
@@ -3569,7 +3569,7 @@ Files:
 
 ## event-list-compact
 
-- Used iX components (relationship map): [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
+- Used iX components: [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
 
 ### angular
 
@@ -3598,7 +3598,7 @@ Files:
 
 ## event-list-custom-item-height
 
-- Used iX components (relationship map): [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
+- Used iX components: [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
 
 ### angular
 
@@ -3627,7 +3627,7 @@ Files:
 
 ## event-list-custom-item-height-in-number
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
 
 ### angular
 
@@ -3651,7 +3651,7 @@ Files:
 
 ## event-list-filled
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
 
 ### angular
 
@@ -3680,7 +3680,7 @@ Files:
 
 ## event-list-selected
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-event-list`](components/ix-event-list.md), [`ix-event-list-item`](components/ix-event-list-item.md)
 
 ### angular
 
@@ -3709,7 +3709,7 @@ Files:
 
 ## expanding-search
 
-- Used iX components (relationship map): [`ix-expanding-search`](components/ix-expanding-search.md)
+- Used iX components: [`ix-expanding-search`](components/ix-expanding-search.md)
 
 ### angular
 
@@ -3738,7 +3738,7 @@ Files:
 
 ## flip-tile
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-flip-tile`](components/ix-flip-tile.md), [`ix-flip-tile-content`](components/ix-flip-tile-content.md)
 
 ### angular
 
@@ -3772,7 +3772,7 @@ Files:
 
 ## form-checkbox
 
-- Used iX components (relationship map): [`ix-checkbox`](components/ix-checkbox.md)
+- Used iX components: [`ix-checkbox`](components/ix-checkbox.md)
 
 ### angular
 
@@ -3803,7 +3803,7 @@ Files:
 
 ## form-checkbox-disabled
 
-- Used iX components (relationship map): [`ix-checkbox`](components/ix-checkbox.md)
+- Used iX components: [`ix-checkbox`](components/ix-checkbox.md)
 
 ### angular
 
@@ -3834,7 +3834,7 @@ Files:
 
 ## form-checkbox-group
 
-- Used iX components (relationship map): [`ix-checkbox`](components/ix-checkbox.md), [`ix-checkbox-group`](components/ix-checkbox-group.md)
+- Used iX components: [`ix-checkbox`](components/ix-checkbox.md), [`ix-checkbox-group`](components/ix-checkbox-group.md)
 
 ### angular
 
@@ -3865,7 +3865,7 @@ Files:
 
 ## form-checkbox-group-indeterminate
 
-- Used iX components (relationship map): [`ix-checkbox`](components/ix-checkbox.md), [`ix-checkbox-group`](components/ix-checkbox-group.md)
+- Used iX components: [`ix-checkbox`](components/ix-checkbox.md), [`ix-checkbox-group`](components/ix-checkbox-group.md)
 
 ### angular
 
@@ -3901,7 +3901,7 @@ Files:
 
 ## form-checkbox-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-checkbox`](components/ix-checkbox.md), [`ix-checkbox-group`](components/ix-checkbox-group.md)
 
 ### angular
 
@@ -3932,7 +3932,7 @@ Files:
 
 ## form-layout-auto
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-field-label`](components/ix-field-label.md), [`ix-input`](components/ix-input.md), [`ix-layout-auto`](components/ix-layout-auto.md), [`ix-select`](components/ix-select.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-field-label`](components/ix-field-label.md), [`ix-input`](components/ix-input.md), [`ix-layout-auto`](components/ix-layout-auto.md), [`ix-select`](components/ix-select.md)
 
 ### angular
 
@@ -3963,7 +3963,7 @@ Files:
 
 ## form-layout-grid
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-col`](components/ix-col.md), [`ix-field-label`](components/ix-field-label.md), [`ix-input`](components/ix-input.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-col`](components/ix-col.md), [`ix-field-label`](components/ix-field-label.md), [`ix-input`](components/ix-input.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md)
 
 ### angular
 
@@ -3999,7 +3999,7 @@ Files:
 
 ## form-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-checkbox`](components/ix-checkbox.md), [`ix-checkbox-group`](components/ix-checkbox-group.md), [`ix-custom-field`](components/ix-custom-field.md), [`ix-date-input`](components/ix-date-input.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-input`](components/ix-input.md), [`ix-layout-auto`](components/ix-layout-auto.md), [`ix-number-input`](components/ix-number-input.md), [`ix-radio`](components/ix-radio.md), [`ix-radio-group`](components/ix-radio-group.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md), [`ix-textarea`](components/ix-textarea.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -4034,7 +4034,7 @@ Files:
 
 ## grid
 
-- Used iX components (relationship map): [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
+- Used iX components: [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -4070,7 +4070,7 @@ Files:
 
 ## grid-padding
 
-- Used iX components (relationship map): [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
+- Used iX components: [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -4106,7 +4106,7 @@ Files:
 
 ## grid-size
 
-- Used iX components (relationship map): [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
+- Used iX components: [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -4142,7 +4142,7 @@ Files:
 
 ## group
 
-- Used iX components (relationship map): [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
+- Used iX components: [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
 
 ### angular
 
@@ -4171,7 +4171,7 @@ Files:
 
 ## group-context-menu
 
-- Used iX components (relationship map): [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
+- Used iX components: [`ix-dropdown`](components/ix-dropdown.md), [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
 
 ### angular
 
@@ -4200,7 +4200,7 @@ Files:
 
 ## group-custom-entry
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
 
 ### angular
 
@@ -4229,7 +4229,7 @@ Files:
 
 ## group-header-suppressed
 
-- Used iX components (relationship map): [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
+- Used iX components: [`ix-group`](components/ix-group.md), [`ix-group-item`](components/ix-group-item.md)
 
 ### angular
 
@@ -4258,7 +4258,7 @@ Files:
 
 ## html-table
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -4289,7 +4289,7 @@ Files:
 
 ## html-table-striped
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -4320,7 +4320,7 @@ Files:
 
 ## icon-toggle-button-secondary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-icon-toggle-button`](components/ix-icon-toggle-button.md)
 
 ### angular
 
@@ -4354,7 +4354,7 @@ Files:
 
 ## icon-toggle-button-subtle-primary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-icon-toggle-button`](components/ix-icon-toggle-button.md)
 
 ### angular
 
@@ -4388,7 +4388,7 @@ Files:
 
 ## icon-toggle-button-subtle-secondary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-icon-toggle-button`](components/ix-icon-toggle-button.md)
 
 ### angular
 
@@ -4422,7 +4422,7 @@ Files:
 
 ## icon-toggle-button-subtle-tertiary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-icon-toggle-button`](components/ix-icon-toggle-button.md)
 
 ### angular
 
@@ -4456,7 +4456,7 @@ Files:
 
 ## icon-toggle-button-tertiary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-icon-toggle-button`](components/ix-icon-toggle-button.md)
 
 ### angular
 
@@ -4490,7 +4490,7 @@ Files:
 
 ## info-page
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-info-page`](components/ix-info-page.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-info-page`](components/ix-info-page.md)
 
 ### angular
 
@@ -4519,7 +4519,7 @@ Files:
 
 ## input
 
-- Used iX components (relationship map): [`ix-input`](components/ix-input.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-date-input`](components/ix-date-input.md), [`ix-input`](components/ix-input.md), [`ix-number-input`](components/ix-number-input.md), [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -4550,7 +4550,7 @@ Files:
 
 ## input-disabled
 
-- Used iX components (relationship map): [`ix-input`](components/ix-input.md)
+- Used iX components: [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4581,7 +4581,7 @@ Files:
 
 ## input-form-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4597,7 +4597,7 @@ Files:
 
 ## input-label
 
-- Used iX components (relationship map): [`ix-input`](components/ix-input.md)
+- Used iX components: [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4628,7 +4628,7 @@ Files:
 
 ## input-legacy
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -4657,7 +4657,7 @@ Files:
 
 ## input-legacy-disabled
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -4686,7 +4686,7 @@ Files:
 
 ## input-legacy-readonly
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -4715,7 +4715,7 @@ Files:
 
 ## input-pattern
 
-- Used iX components (relationship map): [`ix-input`](components/ix-input.md)
+- Used iX components: [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4746,7 +4746,7 @@ Files:
 
 ## input-readonly
 
-- Used iX components (relationship map): [`ix-input`](components/ix-input.md)
+- Used iX components: [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4777,7 +4777,7 @@ Files:
 
 ## input-types
 
-- Used iX components (relationship map): [`ix-input`](components/ix-input.md)
+- Used iX components: [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4813,7 +4813,7 @@ Files:
 
 ## input-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-input`](components/ix-input.md)
 
 ### angular
 
@@ -4844,7 +4844,7 @@ Files:
 
 ## input-with-slots
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-input`](components/ix-input.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -4875,7 +4875,7 @@ Files:
 
 ## key-value
 
-- Used iX components (relationship map): [`ix-key-value`](components/ix-key-value.md)
+- Used iX components: [`ix-key-value`](components/ix-key-value.md)
 
 ### angular
 
@@ -4904,7 +4904,7 @@ Files:
 
 ## key-value-list
 
-- Used iX components (relationship map): [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
+- Used iX components: [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
 
 ### angular
 
@@ -4933,7 +4933,7 @@ Files:
 
 ## key-value-list-striped
 
-- Used iX components (relationship map): [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
+- Used iX components: [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
 
 ### angular
 
@@ -4962,7 +4962,7 @@ Files:
 
 ## key-value-list-with-custom-value
 
-- Used iX components (relationship map): [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
+- Used iX components: [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
 
 ### angular
 
@@ -4996,7 +4996,7 @@ Files:
 
 ## key-value-list-with-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
 
 ### angular
 
@@ -5025,7 +5025,7 @@ Files:
 
 ## key-value-with-custom-value
 
-- Used iX components (relationship map): [`ix-key-value`](components/ix-key-value.md)
+- Used iX components: [`ix-key-value`](components/ix-key-value.md)
 
 ### angular
 
@@ -5059,7 +5059,7 @@ Files:
 
 ## key-value-with-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-key-value`](components/ix-key-value.md)
 
 ### angular
 
@@ -5088,7 +5088,7 @@ Files:
 
 ## key-value-with-label-left
 
-- Used iX components (relationship map): [`ix-key-value`](components/ix-key-value.md)
+- Used iX components: [`ix-key-value`](components/ix-key-value.md)
 
 ### angular
 
@@ -5117,7 +5117,7 @@ Files:
 
 ## kpi
 
-- Used iX components (relationship map): [`ix-kpi`](components/ix-kpi.md)
+- Used iX components: [`ix-kpi`](components/ix-kpi.md)
 
 ### angular
 
@@ -5151,7 +5151,7 @@ Files:
 
 ## layout-auto
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-layout-auto`](components/ix-layout-auto.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -5187,7 +5187,7 @@ Files:
 
 ## layout-auto-custom
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-layout-auto`](components/ix-layout-auto.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -5218,7 +5218,7 @@ Files:
 
 ## link-button
 
-- Used iX components (relationship map): [`ix-link-button`](components/ix-link-button.md)
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
 
 ### angular
 
@@ -5247,7 +5247,7 @@ Files:
 
 ## link-button-disabled
 
-- Used iX components (relationship map): [`ix-link-button`](components/ix-link-button.md)
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
 
 ### angular
 
@@ -5276,7 +5276,7 @@ Files:
 
 ## loading
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -5305,7 +5305,7 @@ Files:
 
 ## map-navigation-migration
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -5324,7 +5324,7 @@ Files:
 
 ## menu-category
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-category`](components/ix-menu-category.md), [`ix-menu-item`](components/ix-menu-item.md)
 
 ### angular
 
@@ -5355,7 +5355,7 @@ Files:
 
 ## menu-with-bottom-tabs
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-menu`](components/ix-menu.md), [`ix-menu-item`](components/ix-menu-item.md)
 
 ### angular
 
@@ -5384,7 +5384,7 @@ Files:
 
 ## message
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -5413,7 +5413,7 @@ Files:
 
 ## message-bar
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-message-bar`](components/ix-message-bar.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-message-bar`](components/ix-message-bar.md)
 
 ### angular
 
@@ -5448,7 +5448,7 @@ Files:
 
 ## message-bar-removal
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-message-bar`](components/ix-message-bar.md)
 
 ### angular
 
@@ -5478,7 +5478,7 @@ Files:
 
 ## modal
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### html
 
@@ -5497,7 +5497,7 @@ Files:
 
 ## modal-by-instance
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -5511,7 +5511,7 @@ Files:
 
 ## modal-by-instance-content
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### angular
 
@@ -5525,7 +5525,7 @@ Files:
 
 ## modal-by-template
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal`](components/ix-modal.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### angular
 
@@ -5539,7 +5539,7 @@ Files:
 
 ## modal-close
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### angular
 
@@ -5570,7 +5570,7 @@ Files:
 
 ## modal-form-ix-button-submit
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-input`](components/ix-input.md), [`ix-modal`](components/ix-modal.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### angular
 
@@ -5601,7 +5601,7 @@ Files:
 
 ## modal-non-blocking
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -5625,7 +5625,7 @@ Files:
 
 ## modal-sizes
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md)
 
 ### angular
 
@@ -5661,7 +5661,7 @@ Files:
 
 ## number-input
 
-- Used iX components (relationship map): [`ix-number-input`](components/ix-number-input.md)
+- Used iX components: [`ix-number-input`](components/ix-number-input.md)
 
 ### angular
 
@@ -5692,7 +5692,7 @@ Files:
 
 ## number-input-disabled
 
-- Used iX components (relationship map): [`ix-number-input`](components/ix-number-input.md)
+- Used iX components: [`ix-number-input`](components/ix-number-input.md)
 
 ### angular
 
@@ -5723,7 +5723,7 @@ Files:
 
 ## number-input-label
 
-- Used iX components (relationship map): [`ix-number-input`](components/ix-number-input.md)
+- Used iX components: [`ix-number-input`](components/ix-number-input.md)
 
 ### angular
 
@@ -5754,7 +5754,7 @@ Files:
 
 ## number-input-readonly
 
-- Used iX components (relationship map): [`ix-number-input`](components/ix-number-input.md)
+- Used iX components: [`ix-number-input`](components/ix-number-input.md)
 
 ### angular
 
@@ -5785,7 +5785,7 @@ Files:
 
 ## number-input-stepper-button
 
-- Used iX components (relationship map): [`ix-number-input`](components/ix-number-input.md)
+- Used iX components: [`ix-number-input`](components/ix-number-input.md)
 
 ### angular
 
@@ -5816,7 +5816,7 @@ Files:
 
 ## number-input-validation
 
-- Used iX components (relationship map): [`ix-number-input`](components/ix-number-input.md)
+- Used iX components: [`ix-number-input`](components/ix-number-input.md)
 
 ### angular
 
@@ -5847,7 +5847,7 @@ Files:
 
 ## number-input-with-slots
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-number-input`](components/ix-number-input.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -5878,7 +5878,7 @@ Files:
 
 ## pagination
 
-- Used iX components (relationship map): [`ix-pagination`](components/ix-pagination.md)
+- Used iX components: [`ix-pagination`](components/ix-pagination.md)
 
 ### angular
 
@@ -5907,7 +5907,7 @@ Files:
 
 ## pagination-advanced
 
-- Used iX components (relationship map): [`ix-pagination`](components/ix-pagination.md)
+- Used iX components: [`ix-pagination`](components/ix-pagination.md)
 
 ### angular
 
@@ -5936,7 +5936,7 @@ Files:
 
 ## pane
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-pane`](components/ix-pane.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-pane`](components/ix-pane.md)
 
 ### angular
 
@@ -5967,7 +5967,7 @@ Files:
 
 ## pane-layout
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-pane`](components/ix-pane.md), [`ix-pane-layout`](components/ix-pane-layout.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-pane`](components/ix-pane.md), [`ix-pane-layout`](components/ix-pane-layout.md)
 
 ### angular
 
@@ -5998,7 +5998,7 @@ Files:
 
 ## pill
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-pill`](components/ix-pill.md)
 
 ### angular
 
@@ -6033,7 +6033,7 @@ Files:
 
 ## pill-variants
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-pill`](components/ix-pill.md), [`ix-row`](components/ix-row.md)
 
 ### angular
 
@@ -6067,7 +6067,7 @@ Files:
 
 ## popover
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-pill`](components/ix-pill.md), [`ix-popover`](components/ix-popover.md), [`ix-popover-content`](components/ix-popover-content.md), [`ix-popover-footer`](components/ix-popover-footer.md), [`ix-popover-header`](components/ix-popover-header.md), [`ix-popover-image`](components/ix-popover-image.md)
 
 ### angular
 
@@ -6098,7 +6098,7 @@ Files:
 
 ## popover-news
 
-- Used iX components (relationship map): [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-menu-about-item`](components/ix-menu-about-item.md), [`ix-menu-about-news`](components/ix-menu-about-news.md)
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-about`](components/ix-menu-about.md), [`ix-menu-about-item`](components/ix-menu-about-item.md), [`ix-menu-about-news`](components/ix-menu-about-news.md)
 
 ### angular
 
@@ -6129,7 +6129,7 @@ Files:
 
 ## progress-indicator
 
-- Used iX components (relationship map): [`ix-progress-indicator`](components/ix-progress-indicator.md)
+- Used iX components: [`ix-progress-indicator`](components/ix-progress-indicator.md)
 
 ### angular
 
@@ -6165,7 +6165,7 @@ Files:
 
 ## progress-indicator-circular
 
-- Used iX components (relationship map): [`ix-progress-indicator`](components/ix-progress-indicator.md)
+- Used iX components: [`ix-progress-indicator`](components/ix-progress-indicator.md)
 
 ### angular
 
@@ -6196,7 +6196,7 @@ Files:
 
 ## progress-indicator-circular-sizes
 
-- Used iX components (relationship map): [`ix-progress-indicator`](components/ix-progress-indicator.md)
+- Used iX components: [`ix-progress-indicator`](components/ix-progress-indicator.md)
 
 ### angular
 
@@ -6227,7 +6227,7 @@ Files:
 
 ## progress-indicator-circular-status
 
-- Used iX components (relationship map): [`ix-progress-indicator`](components/ix-progress-indicator.md)
+- Used iX components: [`ix-progress-indicator`](components/ix-progress-indicator.md)
 
 ### angular
 
@@ -6258,7 +6258,7 @@ Files:
 
 ## progress-indicator-linear-sizes
 
-- Used iX components (relationship map): [`ix-progress-indicator`](components/ix-progress-indicator.md)
+- Used iX components: [`ix-progress-indicator`](components/ix-progress-indicator.md)
 
 ### angular
 
@@ -6289,7 +6289,7 @@ Files:
 
 ## progress-indicator-linear-status
 
-- Used iX components (relationship map): [`ix-progress-indicator`](components/ix-progress-indicator.md)
+- Used iX components: [`ix-progress-indicator`](components/ix-progress-indicator.md)
 
 ### angular
 
@@ -6320,7 +6320,7 @@ Files:
 
 ## push-card
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-push-card`](components/ix-push-card.md)
 
 ### angular
 
@@ -6351,7 +6351,7 @@ Files:
 
 ## radio
 
-- Used iX components (relationship map): [`ix-radio`](components/ix-radio.md)
+- Used iX components: [`ix-radio`](components/ix-radio.md)
 
 ### angular
 
@@ -6382,7 +6382,7 @@ Files:
 
 ## radio-button
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -6416,7 +6416,7 @@ Files:
 
 ## radio-disabled
 
-- Used iX components (relationship map): [`ix-radio`](components/ix-radio.md)
+- Used iX components: [`ix-radio`](components/ix-radio.md)
 
 ### angular
 
@@ -6447,7 +6447,7 @@ Files:
 
 ## radio-group
 
-- Used iX components (relationship map): [`ix-radio`](components/ix-radio.md), [`ix-radio-group`](components/ix-radio-group.md)
+- Used iX components: [`ix-radio`](components/ix-radio.md), [`ix-radio-group`](components/ix-radio-group.md)
 
 ### angular
 
@@ -6478,7 +6478,7 @@ Files:
 
 ## radio-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-radio`](components/ix-radio.md), [`ix-radio-group`](components/ix-radio-group.md)
 
 ### angular
 
@@ -6509,7 +6509,7 @@ Files:
 
 ## range-field
 
-- Used iX components (relationship map): [`ix-date-input`](components/ix-date-input.md), [`ix-datetime-input`](components/ix-datetime-input.md), [`ix-range-field`](components/ix-range-field.md), [`ix-time-input`](components/ix-time-input.md)
+- Used iX components: [`ix-date-input`](components/ix-date-input.md), [`ix-datetime-input`](components/ix-datetime-input.md), [`ix-range-field`](components/ix-range-field.md), [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -6538,7 +6538,7 @@ Files:
 
 ## select
 
-- Used iX components (relationship map): [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
+- Used iX components: [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -6567,7 +6567,7 @@ Files:
 
 ## select-editable
 
-- Used iX components (relationship map): [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
+- Used iX components: [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -6596,7 +6596,7 @@ Files:
 
 ## select-multiple
 
-- Used iX components (relationship map): [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
+- Used iX components: [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -6625,7 +6625,7 @@ Files:
 
 ## select-ng-model
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -6639,7 +6639,7 @@ Files:
 
 ## select-validation
 
-- Used iX components (relationship map): [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
+- Used iX components: [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -6670,7 +6670,7 @@ Files:
 
 ## settings
 
-- Used iX components (relationship map): [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-settings`](components/ix-menu-settings.md), [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-settings`](components/ix-menu-settings.md), [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
 
 ### angular
 
@@ -6701,7 +6701,7 @@ Files:
 
 ## settings-legacy
 
-- Used iX components (relationship map): [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-settings`](components/ix-menu-settings.md), [`ix-menu-settings-item`](components/ix-menu-settings-item.md)
+- Used iX components: [`ix-application`](components/ix-application.md), [`ix-application-header`](components/ix-application-header.md), [`ix-menu`](components/ix-menu.md), [`ix-menu-settings`](components/ix-menu-settings.md), [`ix-menu-settings-item`](components/ix-menu-settings-item.md)
 
 ### angular
 
@@ -6732,7 +6732,7 @@ Files:
 
 ## slider
 
-- Used iX components (relationship map): [`ix-slider`](components/ix-slider.md)
+- Used iX components: [`ix-slider`](components/ix-slider.md)
 
 ### angular
 
@@ -6768,7 +6768,7 @@ Files:
 
 ## slider-error
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-slider`](components/ix-slider.md)
 
 ### angular
 
@@ -6799,7 +6799,7 @@ Files:
 
 ## slider-marker
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-slider`](components/ix-slider.md)
 
 ### angular
 
@@ -6830,7 +6830,7 @@ Files:
 
 ## slider-trace
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-slider`](components/ix-slider.md)
 
 ### angular
 
@@ -6861,7 +6861,7 @@ Files:
 
 ## slider-validation
 
-- Used iX components (relationship map): [`ix-slider`](components/ix-slider.md)
+- Used iX components: [`ix-slider`](components/ix-slider.md)
 
 ### angular
 
@@ -6892,7 +6892,7 @@ Files:
 
 ## spinner
 
-- Used iX components (relationship map): [`ix-spinner`](components/ix-spinner.md)
+- Used iX components: [`ix-spinner`](components/ix-spinner.md)
 
 ### angular
 
@@ -6921,7 +6921,7 @@ Files:
 
 ## spinner-large
 
-- Used iX components (relationship map): [`ix-spinner`](components/ix-spinner.md)
+- Used iX components: [`ix-spinner`](components/ix-spinner.md)
 
 ### angular
 
@@ -6950,7 +6950,7 @@ Files:
 
 ## split-button
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-split-button`](components/ix-split-button.md)
 
 ### angular
 
@@ -6984,7 +6984,7 @@ Files:
 
 ## split-button-icons
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-dropdown-item`](components/ix-dropdown-item.md), [`ix-split-button`](components/ix-split-button.md)
 
 ### angular
 
@@ -7013,7 +7013,7 @@ Files:
 
 ## tabs
 
-- Used iX components (relationship map): [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
+- Used iX components: [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
 
 ### angular
 
@@ -7047,7 +7047,7 @@ Files:
 
 ## tabs-overflow
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
 
 ### angular
 
@@ -7076,7 +7076,7 @@ Files:
 
 ## tabs-rounded
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-tab-item`](components/ix-tab-item.md), [`ix-tabs`](components/ix-tabs.md)
 
 ### angular
 
@@ -7105,7 +7105,7 @@ Files:
 
 ## textarea
 
-- Used iX components (relationship map): [`ix-textarea`](components/ix-textarea.md)
+- Used iX components: [`ix-textarea`](components/ix-textarea.md)
 
 ### angular
 
@@ -7136,7 +7136,7 @@ Files:
 
 ## textarea-disabled
 
-- Used iX components (relationship map): [`ix-textarea`](components/ix-textarea.md)
+- Used iX components: [`ix-textarea`](components/ix-textarea.md)
 
 ### angular
 
@@ -7167,7 +7167,7 @@ Files:
 
 ## textarea-legacy
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -7196,7 +7196,7 @@ Files:
 
 ## textarea-legacy-disabled
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -7225,7 +7225,7 @@ Files:
 
 ## textarea-legacy-readonly
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: None listed in relationship map
 
 ### angular
 
@@ -7254,7 +7254,7 @@ Files:
 
 ## textarea-readonly
 
-- Used iX components (relationship map): [`ix-textarea`](components/ix-textarea.md)
+- Used iX components: [`ix-textarea`](components/ix-textarea.md)
 
 ### angular
 
@@ -7285,7 +7285,7 @@ Files:
 
 ## textarea-rows-cols
 
-- Used iX components (relationship map): [`ix-textarea`](components/ix-textarea.md)
+- Used iX components: [`ix-textarea`](components/ix-textarea.md)
 
 ### angular
 
@@ -7316,7 +7316,7 @@ Files:
 
 ## textarea-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-textarea`](components/ix-textarea.md)
 
 ### angular
 
@@ -7347,7 +7347,7 @@ Files:
 
 ## theme-switcher
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-checkbox`](components/ix-checkbox.md), [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -7383,7 +7383,7 @@ Files:
 
 ## tile
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-tile`](components/ix-tile.md)
 
 ### angular
 
@@ -7417,7 +7417,7 @@ Files:
 
 ## time-input
 
-- Used iX components (relationship map): [`ix-time-input`](components/ix-time-input.md)
+- Used iX components: [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -7448,7 +7448,7 @@ Files:
 
 ## time-input-disabled
 
-- Used iX components (relationship map): [`ix-time-input`](components/ix-time-input.md)
+- Used iX components: [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -7479,7 +7479,7 @@ Files:
 
 ## time-input-label
 
-- Used iX components (relationship map): [`ix-time-input`](components/ix-time-input.md)
+- Used iX components: [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -7510,7 +7510,7 @@ Files:
 
 ## time-input-readonly
 
-- Used iX components (relationship map): [`ix-time-input`](components/ix-time-input.md)
+- Used iX components: [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -7541,7 +7541,7 @@ Files:
 
 ## time-input-validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -7572,7 +7572,7 @@ Files:
 
 ## time-input-with-slots
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-time-input`](components/ix-time-input.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -7603,7 +7603,7 @@ Files:
 
 ## time-range
 
-- Used iX components (relationship map): [`ix-range-field`](components/ix-range-field.md), [`ix-time-input`](components/ix-time-input.md)
+- Used iX components: [`ix-range-field`](components/ix-range-field.md), [`ix-time-input`](components/ix-time-input.md)
 
 ### angular
 
@@ -7632,7 +7632,7 @@ Files:
 
 ## timepicker
 
-- Used iX components (relationship map): [`ix-time-picker`](components/ix-time-picker.md)
+- Used iX components: [`ix-time-picker`](components/ix-time-picker.md)
 
 ### angular
 
@@ -7663,7 +7663,7 @@ Files:
 
 ## timepicker-format-adjusted
 
-- Used iX components (relationship map): [`ix-time-picker`](components/ix-time-picker.md)
+- Used iX components: [`ix-time-picker`](components/ix-time-picker.md)
 
 ### angular
 
@@ -7694,7 +7694,7 @@ Files:
 
 ## timepicker-intervals
 
-- Used iX components (relationship map): [`ix-time-picker`](components/ix-time-picker.md)
+- Used iX components: [`ix-time-picker`](components/ix-time-picker.md)
 
 ### angular
 
@@ -7725,7 +7725,7 @@ Files:
 
 ## timepicker-min-max-time
 
-- Used iX components (relationship map): [`ix-time-picker`](components/ix-time-picker.md)
+- Used iX components: [`ix-time-picker`](components/ix-time-picker.md)
 
 ### angular
 
@@ -7756,7 +7756,7 @@ Files:
 
 ## toast
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-toast-container`](components/ix-toast-container.md)
 
 ### angular
 
@@ -7785,7 +7785,7 @@ Files:
 
 ## toast-custom
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-toast-container`](components/ix-toast-container.md)
 
 ### angular
 
@@ -7814,7 +7814,7 @@ Files:
 
 ## toast-position
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-toast-container`](components/ix-toast-container.md)
 
 ### angular
 
@@ -7843,7 +7843,7 @@ Files:
 
 ## toggle
 
-- Used iX components (relationship map): [`ix-toggle`](components/ix-toggle.md)
+- Used iX components: [`ix-toggle`](components/ix-toggle.md)
 
 ### angular
 
@@ -7872,7 +7872,7 @@ Files:
 
 ## toggle-button-primary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle-button`](components/ix-toggle-button.md)
 
 ### angular
 
@@ -7906,7 +7906,7 @@ Files:
 
 ## toggle-button-secondary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle-button`](components/ix-toggle-button.md)
 
 ### angular
 
@@ -7940,7 +7940,7 @@ Files:
 
 ## toggle-button-subtle-primary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle-button`](components/ix-toggle-button.md)
 
 ### angular
 
@@ -7974,7 +7974,7 @@ Files:
 
 ## toggle-button-subtle-secondary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle-button`](components/ix-toggle-button.md)
 
 ### angular
 
@@ -8008,7 +8008,7 @@ Files:
 
 ## toggle-button-subtle-tertiary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle-button`](components/ix-toggle-button.md)
 
 ### angular
 
@@ -8042,7 +8042,7 @@ Files:
 
 ## toggle-button-tertiary
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle-button`](components/ix-toggle-button.md)
 
 ### angular
 
@@ -8076,7 +8076,7 @@ Files:
 
 ## toggle-checked
 
-- Used iX components (relationship map): [`ix-toggle`](components/ix-toggle.md)
+- Used iX components: [`ix-toggle`](components/ix-toggle.md)
 
 ### angular
 
@@ -8105,7 +8105,7 @@ Files:
 
 ## toggle-custom-label
 
-- Used iX components (relationship map): [`ix-toggle`](components/ix-toggle.md)
+- Used iX components: [`ix-toggle`](components/ix-toggle.md)
 
 ### angular
 
@@ -8134,7 +8134,7 @@ Files:
 
 ## toggle-disabled
 
-- Used iX components (relationship map): [`ix-toggle`](components/ix-toggle.md)
+- Used iX components: [`ix-toggle`](components/ix-toggle.md)
 
 ### angular
 
@@ -8163,7 +8163,7 @@ Files:
 
 ## toggle-indeterminate
 
-- Used iX components (relationship map): [`ix-toggle`](components/ix-toggle.md)
+- Used iX components: [`ix-toggle`](components/ix-toggle.md)
 
 ### angular
 
@@ -8192,7 +8192,7 @@ Files:
 
 ## toggle-ng-model
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-toggle`](components/ix-toggle.md)
 
 ### angular
 
@@ -8206,7 +8206,7 @@ Files:
 
 ## tooltip
 
-- Used iX components (relationship map): [`ix-button`](components/ix-button.md), [`ix-tooltip`](components/ix-tooltip.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-tooltip`](components/ix-tooltip.md)
 
 ### angular
 
@@ -8242,7 +8242,7 @@ Files:
 
 ## tooltip-with-icon
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-tooltip`](components/ix-tooltip.md)
 
 ### angular
 
@@ -8273,7 +8273,7 @@ Files:
 
 ## tree
 
-- Used iX components (relationship map): [`ix-tree`](components/ix-tree.md)
+- Used iX components: [`ix-tree`](components/ix-tree.md)
 
 ### angular
 
@@ -8302,7 +8302,7 @@ Files:
 
 ## tree-custom
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-tree`](components/ix-tree.md)
 
 ### angular
 
@@ -8331,7 +8331,7 @@ Files:
 
 ## upload
 
-- Used iX components (relationship map): [`ix-upload`](components/ix-upload.md)
+- Used iX components: [`ix-upload`](components/ix-upload.md)
 
 ### angular
 
@@ -8360,7 +8360,7 @@ Files:
 
 ## validation
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md)
 
 ### angular
 
@@ -8384,7 +8384,7 @@ Files:
 
 ## validation-select
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-select`](components/ix-select.md), [`ix-select-item`](components/ix-select-item.md)
 
 ### angular
 
@@ -8415,7 +8415,7 @@ Files:
 
 ## vertical-tabs
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-menu`](components/ix-menu.md), [`ix-menu-item`](components/ix-menu-item.md)
 
 ### angular
 
@@ -8449,7 +8449,7 @@ Files:
 
 ## vertical-tabs-with-avatar
 
-- Used iX components (relationship map): None listed in relationship map
+- Used iX components: [`ix-menu`](components/ix-menu.md), [`ix-menu-avatar`](components/ix-menu-avatar.md), [`ix-menu-avatar-item`](components/ix-menu-avatar-item.md), [`ix-menu-item`](components/ix-menu-item.md)
 
 ### angular
 
@@ -8483,7 +8483,7 @@ Files:
 
 ## workflow
 
-- Used iX components (relationship map): [`ix-workflow-step`](components/ix-workflow-step.md), [`ix-workflow-steps`](components/ix-workflow-steps.md)
+- Used iX components: [`ix-workflow-step`](components/ix-workflow-step.md), [`ix-workflow-steps`](components/ix-workflow-steps.md)
 
 ### angular
 
@@ -8517,7 +8517,7 @@ Files:
 
 ## workflow-vertical
 
-- Used iX components (relationship map): [`ix-workflow-step`](components/ix-workflow-step.md), [`ix-workflow-steps`](components/ix-workflow-steps.md)
+- Used iX components: [`ix-workflow-step`](components/ix-workflow-step.md), [`ix-workflow-steps`](components/ix-workflow-steps.md)
 
 ### angular
 

@@ -2,66 +2,17 @@
 
 > Tabbed navigation for switching between related views.
 
+- Web component: `<ix-tabs>`
+- React/Vue: `IxTabs` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-tabs>` (`IxModule` from `@siemens/ix-angular` or `IxTabs` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/tabs/code.md
+- https://ix.siemens.io/docs/components/tabs/code.md
 
 ## Figma IDs
 
 - 427:6367
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- about-and-legal
-  - angular:
-    - `angular/about-and-legal.html`: [file](../../examples/angular/about-and-legal.html)
-    - `angular/about-and-legal.ts`: [file](../../examples/angular/about-and-legal.ts)
-  - angular-standalone:
-    - `angular-standalone/about-and-legal.html`: [file](../../examples/angular-standalone/about-and-legal.html)
-    - `angular-standalone/about-and-legal.ts`: [file](../../examples/angular-standalone/about-and-legal.ts)
-  - html:
-    - `html/about-and-legal.html`: [file](../../examples/html/about-and-legal.html)
-  - react:
-    - `react/about-and-legal.tsx`: [file](../../examples/react/about-and-legal.tsx)
-  - vue:
-    - `vue/about-and-legal.vue`: [file](../../examples/vue/about-and-legal.vue)
-- settings
-  - angular:
-    - `angular/settings.html`: [file](../../examples/angular/settings.html)
-    - `angular/settings.ts`: [file](../../examples/angular/settings.ts)
-  - angular-standalone:
-    - `angular-standalone/settings.html`: [file](../../examples/angular-standalone/settings.html)
-    - `angular-standalone/settings.ts`: [file](../../examples/angular-standalone/settings.ts)
-  - html:
-    - `html/settings.html`: [file](../../examples/html/settings.html)
-  - react:
-    - `react/settings.tsx`: [file](../../examples/react/settings.tsx)
-  - vue:
-    - `vue/settings.vue`: [file](../../examples/vue/settings.vue)
-- tabs
-  - angular:
-    - `angular/tabs.css`: [file](../../examples/angular/tabs.css)
-    - `angular/tabs.ts`: [file](../../examples/angular/tabs.ts)
-  - angular-standalone:
-    - `angular-standalone/tabs.css`: [file](../../examples/angular-standalone/tabs.css)
-    - `angular-standalone/tabs.ts`: [file](../../examples/angular-standalone/tabs.ts)
-  - html:
-    - `html/tabs.css`: [file](../../examples/html/tabs.css)
-    - `html/tabs.html`: [file](../../examples/html/tabs.html)
-  - react:
-    - `react/tabs.scoped.css`: [file](../../examples/react/tabs.scoped.css)
-    - `react/tabs.tsx`: [file](../../examples/react/tabs.tsx)
-  - vue:
-    - `vue/tabs.css`: [file](../../examples/vue/tabs.css)
-    - `vue/tabs.vue`: [file](../../examples/vue/tabs.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -78,6 +29,31 @@ Pattern and file links are relative to this Markdown file.
 - `tabChange` - Tab selection event. Event detail contains the new active tab key.
 - `tabClose` - Tab close event. Event detail contains the closed tab key.
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Tab items.
+
+## Dependencies
+
+- Renders: `ix-dropdown-button`, `ix-dropdown-item`
+- Rendered by: `ix-menu-about`, `ix-menu-settings`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- about-and-legal (angular, angular-standalone, html, react, vue)
+- settings (angular, angular-standalone, html, react, vue)
+- tabs (angular, angular-standalone, html, react, vue)
+- tabs-overflow (angular, angular-standalone, html, react, vue)
+- tabs-rounded (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

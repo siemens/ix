@@ -2,107 +2,17 @@
 
 > Shows progress through a sequence of steps.
 
+- Web component: `<ix-progress-indicator>`
+- React/Vue: `IxProgressIndicator` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-progress-indicator>` (`IxModule` from `@siemens/ix-angular` or `IxProgressIndicator` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/progress-indicator/guide.md
+- https://ix.siemens.io/docs/components/progress-indicator/guide.md
 
 ## Figma IDs
 
 - 69677:5549
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- progress-indicator
-  - angular:
-    - `angular/progress-indicator.css`: [file](../../examples/angular/progress-indicator.css)
-    - `angular/progress-indicator.html`: [file](../../examples/angular/progress-indicator.html)
-    - `angular/progress-indicator.ts`: [file](../../examples/angular/progress-indicator.ts)
-  - angular-standalone:
-    - `angular-standalone/progress-indicator.css`: [file](../../examples/angular-standalone/progress-indicator.css)
-    - `angular-standalone/progress-indicator.html`: [file](../../examples/angular-standalone/progress-indicator.html)
-    - `angular-standalone/progress-indicator.ts`: [file](../../examples/angular-standalone/progress-indicator.ts)
-  - html:
-    - `html/progress-indicator.css`: [file](../../examples/html/progress-indicator.css)
-    - `html/progress-indicator.html`: [file](../../examples/html/progress-indicator.html)
-  - react:
-    - `react/progress-indicator.scoped.css`: [file](../../examples/react/progress-indicator.scoped.css)
-    - `react/progress-indicator.tsx`: [file](../../examples/react/progress-indicator.tsx)
-  - vue:
-    - `vue/progress-indicator.css`: [file](../../examples/vue/progress-indicator.css)
-    - `vue/progress-indicator.vue`: [file](../../examples/vue/progress-indicator.vue)
-- progress-indicator-circular
-  - angular:
-    - `angular/progress-indicator-circular.html`: [file](../../examples/angular/progress-indicator-circular.html)
-    - `angular/progress-indicator-circular.ts`: [file](../../examples/angular/progress-indicator-circular.ts)
-  - angular-standalone:
-    - `angular-standalone/progress-indicator-circular.html`: [file](../../examples/angular-standalone/progress-indicator-circular.html)
-    - `angular-standalone/progress-indicator-circular.ts`: [file](../../examples/angular-standalone/progress-indicator-circular.ts)
-  - html:
-    - `html/progress-indicator-circular.html`: [file](../../examples/html/progress-indicator-circular.html)
-  - react:
-    - `react/progress-indicator-circular.tsx`: [file](../../examples/react/progress-indicator-circular.tsx)
-  - vue:
-    - `vue/progress-indicator-circular.vue`: [file](../../examples/vue/progress-indicator-circular.vue)
-- progress-indicator-circular-sizes
-  - angular:
-    - `angular/progress-indicator-circular-sizes.html`: [file](../../examples/angular/progress-indicator-circular-sizes.html)
-    - `angular/progress-indicator-circular-sizes.ts`: [file](../../examples/angular/progress-indicator-circular-sizes.ts)
-  - angular-standalone:
-    - `angular-standalone/progress-indicator-circular-sizes.html`: [file](../../examples/angular-standalone/progress-indicator-circular-sizes.html)
-    - `angular-standalone/progress-indicator-circular-sizes.ts`: [file](../../examples/angular-standalone/progress-indicator-circular-sizes.ts)
-  - html:
-    - `html/progress-indicator-circular-sizes.html`: [file](../../examples/html/progress-indicator-circular-sizes.html)
-  - react:
-    - `react/progress-indicator-circular-sizes.tsx`: [file](../../examples/react/progress-indicator-circular-sizes.tsx)
-  - vue:
-    - `vue/progress-indicator-circular-sizes.vue`: [file](../../examples/vue/progress-indicator-circular-sizes.vue)
-- progress-indicator-circular-status
-  - angular:
-    - `angular/progress-indicator-circular-status.html`: [file](../../examples/angular/progress-indicator-circular-status.html)
-    - `angular/progress-indicator-circular-status.ts`: [file](../../examples/angular/progress-indicator-circular-status.ts)
-  - angular-standalone:
-    - `angular-standalone/progress-indicator-circular-status.html`: [file](../../examples/angular-standalone/progress-indicator-circular-status.html)
-    - `angular-standalone/progress-indicator-circular-status.ts`: [file](../../examples/angular-standalone/progress-indicator-circular-status.ts)
-  - html:
-    - `html/progress-indicator-circular-status.html`: [file](../../examples/html/progress-indicator-circular-status.html)
-  - react:
-    - `react/progress-indicator-circular-status.tsx`: [file](../../examples/react/progress-indicator-circular-status.tsx)
-  - vue:
-    - `vue/progress-indicator-circular-status.vue`: [file](../../examples/vue/progress-indicator-circular-status.vue)
-- progress-indicator-linear-sizes
-  - angular:
-    - `angular/progress-indicator-linear-sizes.html`: [file](../../examples/angular/progress-indicator-linear-sizes.html)
-    - `angular/progress-indicator-linear-sizes.ts`: [file](../../examples/angular/progress-indicator-linear-sizes.ts)
-  - angular-standalone:
-    - `angular-standalone/progress-indicator-linear-sizes.html`: [file](../../examples/angular-standalone/progress-indicator-linear-sizes.html)
-    - `angular-standalone/progress-indicator-linear-sizes.ts`: [file](../../examples/angular-standalone/progress-indicator-linear-sizes.ts)
-  - html:
-    - `html/progress-indicator-linear-sizes.html`: [file](../../examples/html/progress-indicator-linear-sizes.html)
-  - react:
-    - `react/progress-indicator-linear-sizes.tsx`: [file](../../examples/react/progress-indicator-linear-sizes.tsx)
-  - vue:
-    - `vue/progress-indicator-linear-sizes.vue`: [file](../../examples/vue/progress-indicator-linear-sizes.vue)
-- progress-indicator-linear-status
-  - angular:
-    - `angular/progress-indicator-linear-status.html`: [file](../../examples/angular/progress-indicator-linear-status.html)
-    - `angular/progress-indicator-linear-status.ts`: [file](../../examples/angular/progress-indicator-linear-status.ts)
-  - angular-standalone:
-    - `angular-standalone/progress-indicator-linear-status.html`: [file](../../examples/angular-standalone/progress-indicator-linear-status.html)
-    - `angular-standalone/progress-indicator-linear-status.ts`: [file](../../examples/angular-standalone/progress-indicator-linear-status.ts)
-  - html:
-    - `html/progress-indicator-linear-status.html`: [file](../../examples/html/progress-indicator-linear-status.html)
-  - react:
-    - `react/progress-indicator-linear-status.tsx`: [file](../../examples/react/progress-indicator-linear-status.tsx)
-  - vue:
-    - `vue/progress-indicator-linear-status.vue`: [file](../../examples/vue/progress-indicator-linear-status.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -121,7 +31,33 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Progress indicator label.
 - `helper-text` - Helper text displayed below the progress indicator.
+
+## Dependencies
+
+- Renders: `ix-tooltip`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- progress-indicator (angular, angular-standalone, html, react, vue)
+- progress-indicator-circular (angular, angular-standalone, html, react, vue)
+- progress-indicator-circular-sizes (angular, angular-standalone, html, react, vue)
+- progress-indicator-circular-status (angular, angular-standalone, html, react, vue)
+- progress-indicator-linear-sizes (angular, angular-standalone, html, react, vue)
+- progress-indicator-linear-status (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

@@ -2,55 +2,17 @@
 
 > Groups related checkboxes together.
 
+- Web component: `<ix-checkbox-group>`
+- React/Vue: `IxCheckboxGroup` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-checkbox-group>` (`IxModule` from `@siemens/ix-angular` or `IxCheckboxGroup` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/checkbox/guide.md
+- https://ix.siemens.io/docs/components/checkbox/guide.md
 
 ## Figma IDs
 
 - 84992:87199
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- form-checkbox-group
-  - angular:
-    - `angular/form-checkbox-group.html`: [file](../../examples/angular/form-checkbox-group.html)
-    - `angular/form-checkbox-group.ts`: [file](../../examples/angular/form-checkbox-group.ts)
-  - angular-standalone:
-    - `angular-standalone/form-checkbox-group.html`: [file](../../examples/angular-standalone/form-checkbox-group.html)
-    - `angular-standalone/form-checkbox-group.ts`: [file](../../examples/angular-standalone/form-checkbox-group.ts)
-  - html:
-    - `html/form-checkbox-group.html`: [file](../../examples/html/form-checkbox-group.html)
-  - react:
-    - `react/form-checkbox-group.tsx`: [file](../../examples/react/form-checkbox-group.tsx)
-  - vue:
-    - `vue/form-checkbox-group.vue`: [file](../../examples/vue/form-checkbox-group.vue)
-- form-checkbox-group-indeterminate
-  - angular:
-    - `angular/form-checkbox-group-indeterminate.css`: [file](../../examples/angular/form-checkbox-group-indeterminate.css)
-    - `angular/form-checkbox-group-indeterminate.html`: [file](../../examples/angular/form-checkbox-group-indeterminate.html)
-    - `angular/form-checkbox-group-indeterminate.ts`: [file](../../examples/angular/form-checkbox-group-indeterminate.ts)
-  - angular-standalone:
-    - `angular-standalone/form-checkbox-group-indeterminate.css`: [file](../../examples/angular-standalone/form-checkbox-group-indeterminate.css)
-    - `angular-standalone/form-checkbox-group-indeterminate.html`: [file](../../examples/angular-standalone/form-checkbox-group-indeterminate.html)
-    - `angular-standalone/form-checkbox-group-indeterminate.ts`: [file](../../examples/angular-standalone/form-checkbox-group-indeterminate.ts)
-  - html:
-    - `html/form-checkbox-group-indeterminate.css`: [file](../../examples/html/form-checkbox-group-indeterminate.css)
-    - `html/form-checkbox-group-indeterminate.html`: [file](../../examples/html/form-checkbox-group-indeterminate.html)
-  - react:
-    - `react/form-checkbox-group-indeterminate.scoped.css`: [file](../../examples/react/form-checkbox-group-indeterminate.scoped.css)
-    - `react/form-checkbox-group-indeterminate.tsx`: [file](../../examples/react/form-checkbox-group-indeterminate.tsx)
-  - vue:
-    - `vue/form-checkbox-group-indeterminate.css`: [file](../../examples/vue/form-checkbox-group-indeterminate.css)
-    - `vue/form-checkbox-group-indeterminate.vue`: [file](../../examples/vue/form-checkbox-group-indeterminate.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -67,6 +29,30 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Checkbox components.
+
+## Dependencies
+
+- Renders: `ix-field-wrapper`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- form-checkbox-group (angular, angular-standalone, html, react, vue)
+- form-checkbox-group-indeterminate (angular, angular-standalone, html, react, vue)
+- form-checkbox-validation (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

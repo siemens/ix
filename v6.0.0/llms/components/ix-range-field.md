@@ -2,66 +2,15 @@
 
 > Field that combines two inputs to capture a date, time, or datetime range.
 
+- Web component: `<ix-range-field>`
+- React/Vue: `IxRangeField` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-range-field>` (`IxModule` from `@siemens/ix-angular` or `IxRangeField` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/range-field/guide.md
+- https://ix.siemens.io/docs/components/range-field/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- date-range
-  - angular:
-    - `angular/date-range.ts`: [file](../../examples/angular/date-range.ts)
-  - angular-standalone:
-    - `angular-standalone/date-range.ts`: [file](../../examples/angular-standalone/date-range.ts)
-  - html:
-    - `html/date-range.html`: [file](../../examples/html/date-range.html)
-  - react:
-    - `react/date-range.tsx`: [file](../../examples/react/date-range.tsx)
-  - vue:
-    - `vue/date-range.vue`: [file](../../examples/vue/date-range.vue)
-- datetime-range
-  - angular:
-    - `angular/datetime-range.ts`: [file](../../examples/angular/datetime-range.ts)
-  - angular-standalone:
-    - `angular-standalone/datetime-range.ts`: [file](../../examples/angular-standalone/datetime-range.ts)
-  - html:
-    - `html/datetime-range.html`: [file](../../examples/html/datetime-range.html)
-  - react:
-    - `react/datetime-range.tsx`: [file](../../examples/react/datetime-range.tsx)
-  - vue:
-    - `vue/datetime-range.vue`: [file](../../examples/vue/datetime-range.vue)
-- range-field
-  - angular:
-    - `angular/range-field.ts`: [file](../../examples/angular/range-field.ts)
-  - angular-standalone:
-    - `angular-standalone/range-field.ts`: [file](../../examples/angular-standalone/range-field.ts)
-  - html:
-    - `html/range-field.html`: [file](../../examples/html/range-field.html)
-  - react:
-    - `react/range-field.tsx`: [file](../../examples/react/range-field.tsx)
-  - vue:
-    - `vue/range-field.vue`: [file](../../examples/vue/range-field.vue)
-- time-range
-  - angular:
-    - `angular/time-range.ts`: [file](../../examples/angular/time-range.ts)
-  - angular-standalone:
-    - `angular-standalone/time-range.ts`: [file](../../examples/angular-standalone/time-range.ts)
-  - html:
-    - `html/time-range.html`: [file](../../examples/html/time-range.html)
-  - react:
-    - `react/time-range.tsx`: [file](../../examples/react/time-range.tsx)
-  - vue:
-    - `vue/time-range.vue`: [file](../../examples/vue/time-range.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -74,6 +23,30 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Range field content.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- date-range (angular, angular-standalone, html, react, vue)
+- datetime-range (angular, angular-standalone, html, react, vue)
+- range-field (angular, angular-standalone, html, react, vue)
+- time-range (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

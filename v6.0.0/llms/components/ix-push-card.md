@@ -2,25 +2,17 @@
 
 > Card that highlights a notification or push message with an icon and value.
 
+- Web component: `<ix-push-card>`
+- React/Vue: `IxPushCard` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-push-card>` (`IxModule` from `@siemens/ix-angular` or `IxPushCard` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/card/guide.md
+- https://ix.siemens.io/docs/components/card/guide.md
 
 ## Figma IDs
 
 - 104612:25695
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -37,7 +29,29 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Card content.
 - `title-action` - Action displayed next to the title.
+
+## Dependencies
+
+- Renders: `ix-card`, `ix-card-accordion`, `ix-card-content`, `ix-card-title`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- card-list (angular, angular-standalone, html, react, vue)
+- push-card (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

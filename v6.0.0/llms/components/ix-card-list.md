@@ -2,25 +2,17 @@
 
 > Container that arranges multiple cards in a list or grid layout.
 
+- Web component: `<ix-card-list>`
+- React/Vue: `IxCardList` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-card-list>` (`IxModule` from `@siemens/ix-angular` or `IxCardList` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/card-list/guide.md
+- https://ix.siemens.io/docs/components/card-list/guide.md
 
 ## Figma IDs
 
 - 104638:14632
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -41,6 +33,27 @@ Pattern and file links are relative to this Markdown file.
 - `showAllClick` - Fire event when the collapse state is changed by the user
 - `showMoreCardClick` - Fire event when the show more card is clicked.
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Cards displayed in the list.
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-card`, `ix-card-content`, `ix-icon-button`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- card-list (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

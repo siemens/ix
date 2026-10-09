@@ -2,62 +2,17 @@
 
 > Calendar for selecting a single date or a date range.
 
+- Web component: `<ix-date-picker>`
+- React/Vue: `IxDatePicker` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-date-picker>` (`IxModule` from `@siemens/ix-angular` or `IxDatePicker` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/date-picker/guide.md
+- https://ix.siemens.io/docs/components/date-picker/guide.md
 
 ## Figma IDs
 
 - 561:6290
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- aria-label-properties
-  - html:
-    - `html/aria-label-properties.html`: [file](../../examples/html/aria-label-properties.html)
-- datepicker
-  - angular:
-    - `angular/datepicker.ts`: [file](../../examples/angular/datepicker.ts)
-  - angular-standalone:
-    - `angular-standalone/datepicker.ts`: [file](../../examples/angular-standalone/datepicker.ts)
-  - html:
-    - `html/datepicker.html`: [file](../../examples/html/datepicker.html)
-  - react:
-    - `react/datepicker.tsx`: [file](../../examples/react/datepicker.tsx)
-  - vue:
-    - `vue/datepicker.vue`: [file](../../examples/vue/datepicker.vue)
-- datepicker-locale
-  - angular:
-    - `angular/datepicker-locale.html`: [file](../../examples/angular/datepicker-locale.html)
-    - `angular/datepicker-locale.ts`: [file](../../examples/angular/datepicker-locale.ts)
-  - angular-standalone:
-    - `angular-standalone/datepicker-locale.html`: [file](../../examples/angular-standalone/datepicker-locale.html)
-    - `angular-standalone/datepicker-locale.ts`: [file](../../examples/angular-standalone/datepicker-locale.ts)
-  - html:
-    - `html/datepicker-locale.html`: [file](../../examples/html/datepicker-locale.html)
-  - react:
-    - `react/datepicker-locale.tsx`: [file](../../examples/react/datepicker-locale.tsx)
-  - vue:
-    - `vue/datepicker-locale.vue`: [file](../../examples/vue/datepicker-locale.vue)
-- datepicker-range
-  - angular:
-    - `angular/datepicker-range.ts`: [file](../../examples/angular/datepicker-range.ts)
-  - angular-standalone:
-    - `angular-standalone/datepicker-range.ts`: [file](../../examples/angular-standalone/datepicker-range.ts)
-  - html:
-    - `html/datepicker-range.html`: [file](../../examples/html/datepicker-range.html)
-  - react:
-    - `react/datepicker-range.tsx`: [file](../../examples/react/datepicker-range.tsx)
-  - vue:
-    - `vue/datepicker-range.vue`: [file](../../examples/vue/datepicker-range.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -84,6 +39,30 @@ Pattern and file links are relative to this Markdown file.
 - `dateRangeChange` - Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 - `dateSelect` - Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 
+## Methods
+
+- `getCurrentDate() => Promise<DateChangeEvent>` - Get the currently selected date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-date-time-card`, `ix-dropdown-button`, `ix-dropdown-item`, `ix-icon-button`, `ix-typography`
+- Rendered by: `ix-date-dropdown`, `ix-date-input`, `ix-datetime-picker`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- aria-label-properties (html)
+- datepicker (angular, angular-standalone, html, react, vue)
+- datepicker-locale (angular, angular-standalone, html, react, vue)
+- datepicker-range (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

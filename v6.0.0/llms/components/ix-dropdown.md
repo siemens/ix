@@ -2,57 +2,17 @@
 
 > Floating overlay that displays a list of options or actions anchored to a trigger.
 
+- Web component: `<ix-dropdown>`
+- React/Vue: `IxDropdown` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-dropdown>` (`IxModule` from `@siemens/ix-angular` or `IxDropdown` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/dropdown/guide.md
+- https://ix.siemens.io/docs/components/dropdown/guide.md
 
 ## Figma IDs
 
 - 1233:32649
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- dropdown
-  - angular:
-    - `angular/dropdown.ts`: [file](../../examples/angular/dropdown.ts)
-  - angular-standalone:
-    - `angular-standalone/dropdown.ts`: [file](../../examples/angular-standalone/dropdown.ts)
-  - html:
-    - `html/dropdown.html`: [file](../../examples/html/dropdown.html)
-  - react:
-    - `react/dropdown.tsx`: [file](../../examples/react/dropdown.tsx)
-  - vue:
-    - `vue/dropdown.vue`: [file](../../examples/vue/dropdown.vue)
-- dropdown-roving-tabindex
-  - angular:
-    - `angular/dropdown-roving-tabindex.ts`: [file](../../examples/angular/dropdown-roving-tabindex.ts)
-  - angular-standalone:
-    - `angular-standalone/dropdown-roving-tabindex.ts`: [file](../../examples/angular-standalone/dropdown-roving-tabindex.ts)
-  - html:
-    - `html/dropdown-roving-tabindex.html`: [file](../../examples/html/dropdown-roving-tabindex.html)
-  - react:
-    - `react/dropdown-roving-tabindex.tsx`: [file](../../examples/react/dropdown-roving-tabindex.tsx)
-  - vue:
-    - `vue/dropdown-roving-tabindex.vue`: [file](../../examples/vue/dropdown-roving-tabindex.vue)
-- group-context-menu
-  - angular:
-    - `angular/group-context-menu.ts`: [file](../../examples/angular/group-context-menu.ts)
-  - angular-standalone:
-    - `angular-standalone/group-context-menu.ts`: [file](../../examples/angular-standalone/group-context-menu.ts)
-  - html:
-    - `html/group-context-menu.html`: [file](../../examples/html/group-context-menu.html)
-  - react:
-    - `react/group-context-menu.tsx`: [file](../../examples/react/group-context-menu.tsx)
-  - vue:
-    - `vue/group-context-menu.vue`: [file](../../examples/vue/group-context-menu.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -76,6 +36,33 @@ Pattern and file links are relative to this Markdown file.
 - `showChange` - Fire event before visibility of dropdown has changed, preventing event will cancel showing dropdown
 - `showChanged` - Fire event after visibility of dropdown has changed
 
+## Methods
+
+- `updatePosition() => Promise<void>` - Update position of dropdown
+
 ## Slots
 
 - `` - Dropdown content.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: `ix-application-header`, `ix-avatar`, `ix-category-filter`, `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input`, `ix-dropdown-button`, `ix-menu-avatar`, `ix-menu-category`, `ix-select`, `ix-time-input`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- blind-header-actions (angular, angular-standalone, html, react, vue)
+- dropdown (angular, angular-standalone, html, react, vue)
+- dropdown-icon (angular, angular-standalone, html, react, vue)
+- dropdown-quick-actions (angular, angular-standalone, html, react, vue)
+- dropdown-roving-tabindex (angular, angular-standalone, html, react, vue)
+- dropdown-submenu (angular, angular-standalone, html, react, vue)
+- group-context-menu (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

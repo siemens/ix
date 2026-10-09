@@ -2286,7 +2286,16 @@
         "entrypoint": "v6.0.0/llms.txt",
         "components": "v6.0.0/llms/components.md",
         "examples": "v6.0.0/llms/examples.md",
-        "patterns": "v6.0.0/llms/patterns.md"
+        "patterns": "v6.0.0/llms/patterns.md",
+        "catalog": "v6.0.0/llms/catalog.md",
+        "figma": "v6.0.0/llms/figma.md",
+        "exampleIndexes": {
+          "angular": "v6.0.0/llms/examples/angular.md",
+          "angular-standalone": "v6.0.0/llms/examples/angular-standalone.md",
+          "html": "v6.0.0/llms/examples/html.md",
+          "react": "v6.0.0/llms/examples/react.md",
+          "vue": "v6.0.0/llms/examples/vue.md"
+        }
       }
     }
   }

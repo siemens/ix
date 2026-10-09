@@ -2,25 +2,17 @@
 
 > Compact label that highlights a status, count, or category.
 
+- Web component: `<ix-pill>`
+- React/Vue: `IxPill` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-pill>` (`IxModule` from `@siemens/ix-angular` or `IxPill` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/pill/guide.md
+- https://ix.siemens.io/docs/components/pill/guide.md
 
 ## Figma IDs
 
 - 312:1219
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -37,6 +29,30 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Pill content.
+
+## Dependencies
+
+- Renders: `ix-tooltip`, `ix-typography`
+- Rendered by: `ix-tab-item`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- content-header-with-slot (angular, angular-standalone, html, react, vue)
+- pill (angular, angular-standalone, html, react, vue)
+- pill-variants (angular, angular-standalone, html, react, vue)
+- popover (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

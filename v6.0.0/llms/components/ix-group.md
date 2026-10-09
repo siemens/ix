@@ -2,68 +2,17 @@
 
 > Collapsible list group with a selectable header and nested items.
 
+- Web component: `<ix-group>`
+- React/Vue: `IxGroup` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-group>` (`IxModule` from `@siemens/ix-angular` or `IxGroup` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/group/code.md
+- https://ix.siemens.io/docs/components/group/code.md
 
 ## Figma IDs
 
 - 1274:38298
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- group
-  - angular:
-    - `angular/group.ts`: [file](../../examples/angular/group.ts)
-  - angular-standalone:
-    - `angular-standalone/group.ts`: [file](../../examples/angular-standalone/group.ts)
-  - html:
-    - `html/group.html`: [file](../../examples/html/group.html)
-  - react:
-    - `react/group.tsx`: [file](../../examples/react/group.tsx)
-  - vue:
-    - `vue/group.vue`: [file](../../examples/vue/group.vue)
-- group-context-menu
-  - angular:
-    - `angular/group-context-menu.ts`: [file](../../examples/angular/group-context-menu.ts)
-  - angular-standalone:
-    - `angular-standalone/group-context-menu.ts`: [file](../../examples/angular-standalone/group-context-menu.ts)
-  - html:
-    - `html/group-context-menu.html`: [file](../../examples/html/group-context-menu.html)
-  - react:
-    - `react/group-context-menu.tsx`: [file](../../examples/react/group-context-menu.tsx)
-  - vue:
-    - `vue/group-context-menu.vue`: [file](../../examples/vue/group-context-menu.vue)
-- group-custom-entry
-  - angular:
-    - `angular/group-custom-entry.ts`: [file](../../examples/angular/group-custom-entry.ts)
-  - angular-standalone:
-    - `angular-standalone/group-custom-entry.ts`: [file](../../examples/angular-standalone/group-custom-entry.ts)
-  - html:
-    - `html/group-custom-entry.html`: [file](../../examples/html/group-custom-entry.html)
-  - react:
-    - `react/group-custom-entry.tsx`: [file](../../examples/react/group-custom-entry.tsx)
-  - vue:
-    - `vue/group-custom-entry.vue`: [file](../../examples/vue/group-custom-entry.vue)
-- group-header-suppressed
-  - angular:
-    - `angular/group-header-suppressed.ts`: [file](../../examples/angular/group-header-suppressed.ts)
-  - angular-standalone:
-    - `angular-standalone/group-header-suppressed.ts`: [file](../../examples/angular-standalone/group-header-suppressed.ts)
-  - html:
-    - `html/group-header-suppressed.html`: [file](../../examples/html/group-header-suppressed.html)
-  - react:
-    - `react/group-header-suppressed.tsx`: [file](../../examples/react/group-header-suppressed.tsx)
-  - vue:
-    - `vue/group-header-suppressed.vue`: [file](../../examples/vue/group-header-suppressed.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -83,9 +32,33 @@ Pattern and file links are relative to this Markdown file.
 - `selectGroup` - Emits when whole group gets selected.
 - `selectItem` - Emits when group item gets selected.
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Group content.
 - `dropdown` - Dropdown content displayed in the group header.
 - `footer` - Footer content.
 - `header` - Additional header content.
+
+## Dependencies
+
+- Renders: `ix-group-context-menu`, `ix-group-item`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- group (angular, angular-standalone, html, react, vue)
+- group-context-menu (angular, angular-standalone, html, react, vue)
+- group-custom-entry (angular, angular-standalone, html, react, vue)
+- group-header-suppressed (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

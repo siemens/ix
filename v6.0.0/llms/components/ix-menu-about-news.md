@@ -2,35 +2,15 @@
 
 > News panel shown within the application menu.
 
+- Web component: `<ix-menu-about-news>`
+- React/Vue: `IxMenuAboutNews` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-menu-about-news>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAboutNews` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/popover-news/guide.md
+- https://ix.siemens.io/docs/components/popover-news/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- popover-news
-  - angular:
-    - `angular/popover-news.html`: [file](../../examples/angular/popover-news.html)
-    - `angular/popover-news.ts`: [file](../../examples/angular/popover-news.ts)
-  - angular-standalone:
-    - `angular-standalone/popover-news.html`: [file](../../examples/angular-standalone/popover-news.html)
-    - `angular-standalone/popover-news.ts`: [file](../../examples/angular-standalone/popover-news.ts)
-  - html:
-    - `html/popover-news.html`: [file](../../examples/html/popover-news.html)
-  - react:
-    - `react/popover-news.tsx`: [file](../../examples/react/popover-news.tsx)
-  - vue:
-    - `vue/popover-news.vue`: [file](../../examples/vue/popover-news.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -47,6 +27,27 @@ Pattern and file links are relative to this Markdown file.
 - `closePopover` - Popover closed
 - `showMore` - Show More button is pressed
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - About news content.
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-icon-button`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- popover-news (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

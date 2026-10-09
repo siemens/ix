@@ -2,25 +2,17 @@
 
 > Compact element that represents an attribute, tag, or entity, optionally dismissible.
 
+- Web component: `<ix-chip>`
+- React/Vue: `IxChip` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-chip>` (`IxModule` from `@siemens/ix-angular` or `IxChip` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/chip/guide.md
+- https://ix.siemens.io/docs/components/chip/guide.md
 
 ## Figma IDs
 
 - 286:1758
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -40,6 +32,29 @@ Pattern and file links are relative to this Markdown file.
 
 - `closeChip` - Fire event if close button is clicked
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Chip content.
+
+## Dependencies
+
+- Renders: `ix-tooltip`
+- Rendered by: `ix-chat-attachment`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- chat (angular, angular-standalone, html, react, vue)
+- chat-ai-message (angular, angular-standalone, html, react, vue)
+- chip (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

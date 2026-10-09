@@ -2,25 +2,17 @@
 
 > Icon button that toggles between a pressed and unpressed state.
 
+- Web component: `<ix-icon-toggle-button>`
+- React/Vue: `IxIconToggleButton` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-icon-toggle-button>` (`IxModule` from `@siemens/ix-angular` or `IxIconToggleButton` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/toggle-button/guide.md
+- https://ix.siemens.io/docs/components/toggle-button/guide.md
 
 ## Figma IDs
 
 - 107597:25227
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -38,6 +30,31 @@ Pattern and file links are relative to this Markdown file.
 
 - `pressedChange` - Pressed change event
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-spinner`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- icon-toggle-button-secondary (angular, angular-standalone, html, react, vue)
+- icon-toggle-button-subtle-primary (angular, angular-standalone, html, react, vue)
+- icon-toggle-button-subtle-secondary (angular, angular-standalone, html, react, vue)
+- icon-toggle-button-subtle-tertiary (angular, angular-standalone, html, react, vue)
+- icon-toggle-button-tertiary (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

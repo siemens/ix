@@ -2,94 +2,15 @@
 
 > A selectable option within a select control.
 
+- Web component: `<ix-select-item>`
+- React/Vue: `IxSelectItem` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-select-item>` (`IxModule` from `@siemens/ix-angular` or `IxSelectItem` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/select/guide.md
+- https://ix.siemens.io/docs/components/select/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- datepicker-locale
-  - angular:
-    - `angular/datepicker-locale.html`: [file](../../examples/angular/datepicker-locale.html)
-    - `angular/datepicker-locale.ts`: [file](../../examples/angular/datepicker-locale.ts)
-  - angular-standalone:
-    - `angular-standalone/datepicker-locale.html`: [file](../../examples/angular-standalone/datepicker-locale.html)
-    - `angular-standalone/datepicker-locale.ts`: [file](../../examples/angular-standalone/datepicker-locale.ts)
-  - html:
-    - `html/datepicker-locale.html`: [file](../../examples/html/datepicker-locale.html)
-  - react:
-    - `react/datepicker-locale.tsx`: [file](../../examples/react/datepicker-locale.tsx)
-  - vue:
-    - `vue/datepicker-locale.vue`: [file](../../examples/vue/datepicker-locale.vue)
-- datetimepicker-locale
-  - angular:
-    - `angular/datetimepicker-locale.html`: [file](../../examples/angular/datetimepicker-locale.html)
-    - `angular/datetimepicker-locale.ts`: [file](../../examples/angular/datetimepicker-locale.ts)
-  - angular-standalone:
-    - `angular-standalone/datetimepicker-locale.html`: [file](../../examples/angular-standalone/datetimepicker-locale.html)
-    - `angular-standalone/datetimepicker-locale.ts`: [file](../../examples/angular-standalone/datetimepicker-locale.ts)
-  - html:
-    - `html/datetimepicker-locale.html`: [file](../../examples/html/datetimepicker-locale.html)
-  - react:
-    - `react/datetimepicker-locale.tsx`: [file](../../examples/react/datetimepicker-locale.tsx)
-  - vue:
-    - `vue/datetimepicker-locale.vue`: [file](../../examples/vue/datetimepicker-locale.vue)
-- select
-  - angular:
-    - `angular/select.ts`: [file](../../examples/angular/select.ts)
-  - angular-standalone:
-    - `angular-standalone/select.ts`: [file](../../examples/angular-standalone/select.ts)
-  - html:
-    - `html/select.html`: [file](../../examples/html/select.html)
-  - react:
-    - `react/select.tsx`: [file](../../examples/react/select.tsx)
-  - vue:
-    - `vue/select.vue`: [file](../../examples/vue/select.vue)
-- select-editable
-  - angular:
-    - `angular/select-editable.ts`: [file](../../examples/angular/select-editable.ts)
-  - angular-standalone:
-    - `angular-standalone/select-editable.ts`: [file](../../examples/angular-standalone/select-editable.ts)
-  - html:
-    - `html/select-editable.html`: [file](../../examples/html/select-editable.html)
-  - react:
-    - `react/select-editable.tsx`: [file](../../examples/react/select-editable.tsx)
-  - vue:
-    - `vue/select-editable.vue`: [file](../../examples/vue/select-editable.vue)
-- select-multiple
-  - angular:
-    - `angular/select-multiple.ts`: [file](../../examples/angular/select-multiple.ts)
-  - angular-standalone:
-    - `angular-standalone/select-multiple.ts`: [file](../../examples/angular-standalone/select-multiple.ts)
-  - html:
-    - `html/select-multiple.html`: [file](../../examples/html/select-multiple.html)
-  - react:
-    - `react/select-multiple.tsx`: [file](../../examples/react/select-multiple.tsx)
-  - vue:
-    - `vue/select-multiple.vue`: [file](../../examples/vue/select-multiple.vue)
-- select-validation
-  - angular:
-    - `angular/select-validation.html`: [file](../../examples/angular/select-validation.html)
-    - `angular/select-validation.ts`: [file](../../examples/angular/select-validation.ts)
-  - angular-standalone:
-    - `angular-standalone/select-validation.html`: [file](../../examples/angular-standalone/select-validation.html)
-    - `angular-standalone/select-validation.ts`: [file](../../examples/angular-standalone/select-validation.ts)
-  - html:
-    - `html/select-validation.html`: [file](../../examples/html/select-validation.html)
-  - react:
-    - `react/select-validation.tsx`: [file](../../examples/react/select-validation.tsx)
-  - vue:
-    - `vue/select-validation.vue`: [file](../../examples/vue/select-validation.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -104,6 +25,36 @@ Pattern and file links are relative to this Markdown file.
 
 - `itemClick` - Item clicked
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-dropdown-item`
+- Rendered by: `ix-pagination`, `ix-select`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- datepicker-locale (angular, angular-standalone, html, react, vue)
+- datetimepicker-locale (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- select (angular, angular-standalone, html, react, vue)
+- select-editable (angular, angular-standalone, html, react, vue)
+- select-multiple (angular, angular-standalone, html, react, vue)
+- select-ng-model (angular, angular-standalone)
+- select-validation (angular, angular-standalone, html, react, vue)
+- theme-switcher (angular, angular-standalone, html, react, vue)
+- validation-select (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

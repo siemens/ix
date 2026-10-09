@@ -2,41 +2,17 @@
 
 > Inline bar that displays a contextual message or notification.
 
+- Web component: `<ix-message-bar>`
+- React/Vue: `IxMessageBar` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-message-bar>` (`IxModule` from `@siemens/ix-angular` or `IxMessageBar` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/messagebar/code.md
+- https://ix.siemens.io/docs/components/messagebar/code.md
 
 ## Figma IDs
 
 - 103814:17693
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- message-bar
-  - angular:
-    - `angular/message-bar.css`: [file](../../examples/angular/message-bar.css)
-    - `angular/message-bar.html`: [file](../../examples/angular/message-bar.html)
-    - `angular/message-bar.ts`: [file](../../examples/angular/message-bar.ts)
-  - angular-standalone:
-    - `angular-standalone/message-bar.css`: [file](../../examples/angular-standalone/message-bar.css)
-    - `angular-standalone/message-bar.ts`: [file](../../examples/angular-standalone/message-bar.ts)
-  - html:
-    - `html/message-bar.css`: [file](../../examples/html/message-bar.css)
-    - `html/message-bar.html`: [file](../../examples/html/message-bar.html)
-  - react:
-    - `react/message-bar.scoped.css`: [file](../../examples/react/message-bar.scoped.css)
-    - `react/message-bar.tsx`: [file](../../examples/react/message-bar.tsx)
-  - vue:
-    - `vue/message-bar.css`: [file](../../examples/vue/message-bar.css)
-    - `vue/message-bar.vue`: [file](../../examples/vue/message-bar.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -48,6 +24,28 @@ Pattern and file links are relative to this Markdown file.
 - `closeAnimationCompleted` - An event emitted when the close animation is completed
 - `closedChange` - An event emitted when the close button is clicked
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Message content.
+
+## Dependencies
+
+- Renders: `ix-icon-button`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- message-bar (angular, angular-standalone, html, react, vue)
+- message-bar-removal (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

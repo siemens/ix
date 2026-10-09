@@ -2,57 +2,17 @@
 
 > Displays a user's profile image, initials, or a placeholder icon.
 
+- Web component: `<ix-avatar>`
+- React/Vue: `IxAvatar` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-avatar>` (`IxModule` from `@siemens/ix-angular` or `IxAvatar` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/avatar/guide.md
+- https://ix.siemens.io/docs/components/avatar/guide.md
 
 ## Figma IDs
 
 - 308:1151
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- avatar
-  - angular:
-    - `angular/avatar.ts`: [file](../../examples/angular/avatar.ts)
-  - angular-standalone:
-    - `angular-standalone/avatar.ts`: [file](../../examples/angular-standalone/avatar.ts)
-  - html:
-    - `html/avatar.html`: [file](../../examples/html/avatar.html)
-  - react:
-    - `react/avatar.tsx`: [file](../../examples/react/avatar.tsx)
-  - vue:
-    - `vue/avatar.vue`: [file](../../examples/vue/avatar.vue)
-- avatar-image
-  - angular:
-    - `angular/avatar-image.ts`: [file](../../examples/angular/avatar-image.ts)
-  - angular-standalone:
-    - `angular-standalone/avatar-image.ts`: [file](../../examples/angular-standalone/avatar-image.ts)
-  - html:
-    - `html/avatar-image.html`: [file](../../examples/html/avatar-image.html)
-  - react:
-    - `react/avatar-image.tsx`: [file](../../examples/react/avatar-image.tsx)
-  - vue:
-    - `vue/avatar-image.vue`: [file](../../examples/vue/avatar-image.vue)
-- avatar-initials
-  - angular:
-    - `angular/avatar-initials.ts`: [file](../../examples/angular/avatar-initials.ts)
-  - angular-standalone:
-    - `angular-standalone/avatar-initials.ts`: [file](../../examples/angular-standalone/avatar-initials.ts)
-  - html:
-    - `html/avatar-initials.html`: [file](../../examples/html/avatar-initials.html)
-  - react:
-    - `react/avatar-initials.tsx`: [file](../../examples/react/avatar-initials.tsx)
-  - vue:
-    - `vue/avatar-initials.vue`: [file](../../examples/vue/avatar-initials.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -67,6 +27,33 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Dropdown content displayed below the avatar.
+
+## Dependencies
+
+- Renders: `ix-divider`, `ix-dropdown`, `ix-spinner`, `ix-tooltip`, `ix-typography`
+- Rendered by: `ix-menu-avatar`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application-advanced (angular, angular-standalone, html, react, vue)
+- application-app-switch (angular, angular-standalone, html, react, vue)
+- application-breakpoints (angular, angular-standalone, html, react, vue)
+- application-header (angular, angular-standalone, html, react, vue)
+- avatar (angular, angular-standalone, html, react, vue)
+- avatar-image (angular, angular-standalone, html, react, vue)
+- avatar-initials (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

@@ -2,48 +2,15 @@
 
 > Settings overlay opened from the application menu.
 
+- Web component: `<ix-menu-settings>`
+- React/Vue: `IxMenuSettings` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-menu-settings>` (`IxModule` from `@siemens/ix-angular` or `IxMenuSettings` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/settings/guide.md
+- https://ix.siemens.io/docs/components/settings/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- settings
-  - angular:
-    - `angular/settings.html`: [file](../../examples/angular/settings.html)
-    - `angular/settings.ts`: [file](../../examples/angular/settings.ts)
-  - angular-standalone:
-    - `angular-standalone/settings.html`: [file](../../examples/angular-standalone/settings.html)
-    - `angular-standalone/settings.ts`: [file](../../examples/angular-standalone/settings.ts)
-  - html:
-    - `html/settings.html`: [file](../../examples/html/settings.html)
-  - react:
-    - `react/settings.tsx`: [file](../../examples/react/settings.tsx)
-  - vue:
-    - `vue/settings.vue`: [file](../../examples/vue/settings.vue)
-- settings-legacy
-  - angular:
-    - `angular/settings-legacy.html`: [file](../../examples/angular/settings-legacy.html)
-    - `angular/settings-legacy.ts`: [file](../../examples/angular/settings-legacy.ts)
-  - angular-standalone:
-    - `angular-standalone/settings-legacy.html`: [file](../../examples/angular-standalone/settings-legacy.html)
-    - `angular-standalone/settings-legacy.ts`: [file](../../examples/angular-standalone/settings-legacy.ts)
-  - html:
-    - `html/settings-legacy.html`: [file](../../examples/html/settings-legacy.html)
-  - react:
-    - `react/settings-legacy.tsx`: [file](../../examples/react/settings-legacy.tsx)
-  - vue:
-    - `vue/settings-legacy.vue`: [file](../../examples/vue/settings-legacy.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -59,6 +26,29 @@ Pattern and file links are relative to this Markdown file.
 - `close` - Popover closed
 - `tabChange` - Active tab changed
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Settings menu content.
+
+## Dependencies
+
+- Renders: `ix-icon-button`, `ix-tab-item`, `ix-tab-set`, `ix-tabs`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application-advanced (angular, angular-standalone, html, react, vue)
+- settings (angular, angular-standalone, html, react, vue)
+- settings-legacy (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

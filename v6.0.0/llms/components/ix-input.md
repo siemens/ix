@@ -2,164 +2,20 @@
 
 > Text input for entering and validating a single-line value.
 
+- Web component: `<ix-input>`
+- React/Vue: `IxInput` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-input>` (`IxModule` from `@siemens/ix-angular` or `IxInput` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/forms-field/guide.md
-- https://ix.siemens.io//docs/components/forms-layout/guide.md
-- https://ix.siemens.io//docs/components/forms-validation/guide.md
-- https://ix.siemens.io//docs/components/input/guide.md
+- https://ix.siemens.io/docs/components/forms-field/guide.md
+- https://ix.siemens.io/docs/components/forms-layout/guide.md
+- https://ix.siemens.io/docs/components/forms-validation/guide.md
+- https://ix.siemens.io/docs/components/input/guide.md
 
 ## Figma IDs
 
 - 42365:39459
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- form-layout-auto
-  - angular:
-    - `angular/form-layout-auto.html`: [file](../../examples/angular/form-layout-auto.html)
-    - `angular/form-layout-auto.ts`: [file](../../examples/angular/form-layout-auto.ts)
-  - angular-standalone:
-    - `angular-standalone/form-layout-auto.html`: [file](../../examples/angular-standalone/form-layout-auto.html)
-    - `angular-standalone/form-layout-auto.ts`: [file](../../examples/angular-standalone/form-layout-auto.ts)
-  - html:
-    - `html/form-layout-auto.html`: [file](../../examples/html/form-layout-auto.html)
-  - react:
-    - `react/form-layout-auto.tsx`: [file](../../examples/react/form-layout-auto.tsx)
-  - vue:
-    - `vue/form-layout-auto.vue`: [file](../../examples/vue/form-layout-auto.vue)
-- form-layout-grid
-  - angular:
-    - `angular/form-layout-grid.css`: [file](../../examples/angular/form-layout-grid.css)
-    - `angular/form-layout-grid.html`: [file](../../examples/angular/form-layout-grid.html)
-    - `angular/form-layout-grid.ts`: [file](../../examples/angular/form-layout-grid.ts)
-  - angular-standalone:
-    - `angular-standalone/form-layout-grid.css`: [file](../../examples/angular-standalone/form-layout-grid.css)
-    - `angular-standalone/form-layout-grid.html`: [file](../../examples/angular-standalone/form-layout-grid.html)
-    - `angular-standalone/form-layout-grid.ts`: [file](../../examples/angular-standalone/form-layout-grid.ts)
-  - html:
-    - `html/form-layout-grid.css`: [file](../../examples/html/form-layout-grid.css)
-    - `html/form-layout-grid.html`: [file](../../examples/html/form-layout-grid.html)
-  - react:
-    - `react/form-layout-grid.scoped.css`: [file](../../examples/react/form-layout-grid.scoped.css)
-    - `react/form-layout-grid.tsx`: [file](../../examples/react/form-layout-grid.tsx)
-  - vue:
-    - `vue/form-layout-grid.css`: [file](../../examples/vue/form-layout-grid.css)
-    - `vue/form-layout-grid.vue`: [file](../../examples/vue/form-layout-grid.vue)
-- input
-  - angular:
-    - `angular/input.html`: [file](../../examples/angular/input.html)
-    - `angular/input.ts`: [file](../../examples/angular/input.ts)
-  - angular-standalone:
-    - `angular-standalone/input.html`: [file](../../examples/angular-standalone/input.html)
-    - `angular-standalone/input.ts`: [file](../../examples/angular-standalone/input.ts)
-  - html:
-    - `html/input.html`: [file](../../examples/html/input.html)
-  - react:
-    - `react/input.tsx`: [file](../../examples/react/input.tsx)
-  - vue:
-    - `vue/input.vue`: [file](../../examples/vue/input.vue)
-- input-disabled
-  - angular:
-    - `angular/input-disabled.html`: [file](../../examples/angular/input-disabled.html)
-    - `angular/input-disabled.ts`: [file](../../examples/angular/input-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/input-disabled.html`: [file](../../examples/angular-standalone/input-disabled.html)
-    - `angular-standalone/input-disabled.ts`: [file](../../examples/angular-standalone/input-disabled.ts)
-  - html:
-    - `html/input-disabled.html`: [file](../../examples/html/input-disabled.html)
-  - react:
-    - `react/input-disabled.tsx`: [file](../../examples/react/input-disabled.tsx)
-  - vue:
-    - `vue/input-disabled.vue`: [file](../../examples/vue/input-disabled.vue)
-- input-label
-  - angular:
-    - `angular/input-label.html`: [file](../../examples/angular/input-label.html)
-    - `angular/input-label.ts`: [file](../../examples/angular/input-label.ts)
-  - angular-standalone:
-    - `angular-standalone/input-label.html`: [file](../../examples/angular-standalone/input-label.html)
-    - `angular-standalone/input-label.ts`: [file](../../examples/angular-standalone/input-label.ts)
-  - html:
-    - `html/input-label.html`: [file](../../examples/html/input-label.html)
-  - react:
-    - `react/input-label.tsx`: [file](../../examples/react/input-label.tsx)
-  - vue:
-    - `vue/input-label.vue`: [file](../../examples/vue/input-label.vue)
-- input-pattern
-  - angular:
-    - `angular/input-pattern.html`: [file](../../examples/angular/input-pattern.html)
-    - `angular/input-pattern.ts`: [file](../../examples/angular/input-pattern.ts)
-  - angular-standalone:
-    - `angular-standalone/input-pattern.html`: [file](../../examples/angular-standalone/input-pattern.html)
-    - `angular-standalone/input-pattern.ts`: [file](../../examples/angular-standalone/input-pattern.ts)
-  - html:
-    - `html/input-pattern.html`: [file](../../examples/html/input-pattern.html)
-  - react:
-    - `react/input-pattern.tsx`: [file](../../examples/react/input-pattern.tsx)
-  - vue:
-    - `vue/input-pattern.vue`: [file](../../examples/vue/input-pattern.vue)
-- input-readonly
-  - angular:
-    - `angular/input-readonly.html`: [file](../../examples/angular/input-readonly.html)
-    - `angular/input-readonly.ts`: [file](../../examples/angular/input-readonly.ts)
-  - angular-standalone:
-    - `angular-standalone/input-readonly.html`: [file](../../examples/angular-standalone/input-readonly.html)
-    - `angular-standalone/input-readonly.ts`: [file](../../examples/angular-standalone/input-readonly.ts)
-  - html:
-    - `html/input-readonly.html`: [file](../../examples/html/input-readonly.html)
-  - react:
-    - `react/input-readonly.tsx`: [file](../../examples/react/input-readonly.tsx)
-  - vue:
-    - `vue/input-readonly.vue`: [file](../../examples/vue/input-readonly.vue)
-- input-types
-  - angular:
-    - `angular/input-types.css`: [file](../../examples/angular/input-types.css)
-    - `angular/input-types.html`: [file](../../examples/angular/input-types.html)
-    - `angular/input-types.ts`: [file](../../examples/angular/input-types.ts)
-  - angular-standalone:
-    - `angular-standalone/input-types.css`: [file](../../examples/angular-standalone/input-types.css)
-    - `angular-standalone/input-types.html`: [file](../../examples/angular-standalone/input-types.html)
-    - `angular-standalone/input-types.ts`: [file](../../examples/angular-standalone/input-types.ts)
-  - html:
-    - `html/input-types.css`: [file](../../examples/html/input-types.css)
-    - `html/input-types.html`: [file](../../examples/html/input-types.html)
-  - react:
-    - `react/input-types.scoped.css`: [file](../../examples/react/input-types.scoped.css)
-    - `react/input-types.tsx`: [file](../../examples/react/input-types.tsx)
-  - vue:
-    - `vue/input-types.css`: [file](../../examples/vue/input-types.css)
-    - `vue/input-types.vue`: [file](../../examples/vue/input-types.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- [change-password](../patterns.md#change-password)
-  - angular:
-    - `angular/change-password.ts`: [file](../../patterns/angular/change-password.ts)
-    - `angular/change-password.html`: [file](../../patterns/angular/change-password.html)
-    - `angular/change-password.css`: [file](../../patterns/angular/change-password.css)
-  - react:
-    - `react/change-password.tsx`: [file](../../patterns/react/change-password.tsx)
-    - `react/change-password.module.css`: [file](../../patterns/react/change-password.module.css)
-- [login-overlay](../patterns.md#login-overlay)
-  - angular:
-    - `angular/login-overlay.ts`: [file](../../patterns/angular/login-overlay.ts)
-    - `angular/login-overlay.html`: [file](../../patterns/angular/login-overlay.html)
-    - `angular/login-overlay.css`: [file](../../patterns/angular/login-overlay.css)
-  - react:
-    - `react/login-overlay.tsx`: [file](../../patterns/react/login-overlay.tsx)
-    - `react/login-overlay.module.css`: [file](../../patterns/react/login-overlay.module.css)
-- [password-criteria](../patterns.md#password-criteria)
-  - angular:
-    - `angular/password-criteria.ts`: [file](../../patterns/angular/password-criteria.ts)
-    - `angular/password-criteria.html`: [file](../../patterns/angular/password-criteria.html)
-    - `angular/password-criteria.css`: [file](../../patterns/angular/password-criteria.css)
-  - react:
-    - `react/password-criteria.tsx`: [file](../../patterns/react/password-criteria.tsx)
-    - `react/password-criteria.module.css`: [file](../../patterns/react/password-criteria.module.css)
 
 ## Properties
 
@@ -191,7 +47,45 @@ Pattern and file links are relative to this Markdown file.
 - `validityStateChange` - Event emitted when the validity state of the text field changes.
 - `valueChange` - Event emitted when the value of the text field changes.
 
+## Methods
+
+- `focusInput() => Promise<void>` - Focuses the input field
+- `getNativeInputElement() => Promise<HTMLInputElement>` - Returns the native input element used in the text field.
+- `getValidityState() => Promise<ValidityState>` - Returns the validity state of the input field.
+
 ## Slots
 
 - `end` - Element will be displayed at the end of the input
 - `start` - Element will be displayed at the start of the input
+
+## Dependencies
+
+- Renders: `ix-field-wrapper`, `ix-icon-button`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- custom-field (angular, angular-standalone, html, react, vue)
+- form-layout-auto (angular, angular-standalone, html, react, vue)
+- form-layout-grid (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- input (angular, angular-standalone, html, react, vue)
+- input-disabled (angular, angular-standalone, html, react, vue)
+- input-form-validation (angular, angular-standalone)
+- input-label (angular, angular-standalone, html, react, vue)
+- input-pattern (angular, angular-standalone, html, react, vue)
+- input-readonly (angular, angular-standalone, html, react, vue)
+- input-types (angular, angular-standalone, html, react, vue)
+- input-validation (angular, angular-standalone, html, react, vue)
+- input-with-slots (angular, angular-standalone, html, react, vue)
+- modal-form-ix-button-submit (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- [change-password](../patterns.md#change-password): Use this pattern to present a change-password modal with current password, new password, password requirement validation, confirmation validation, and save or cancel actions.
+- [login-overlay](../patterns.md#login-overlay): Use this pattern to build a branded login overlay with username and password inputs, recovery and registration links, and alternative sign-in actions.
+- [password-criteria](../patterns.md#password-criteria): Use this pattern to show a password input together with live password requirement validation and visual valid or invalid states.

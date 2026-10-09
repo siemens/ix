@@ -2,100 +2,17 @@
 
 > Displays a labeled key together with its value.
 
+- Web component: `<ix-key-value>`
+- React/Vue: `IxKeyValue` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-key-value>` (`IxModule` from `@siemens/ix-angular` or `IxKeyValue` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/key-value/code.md
+- https://ix.siemens.io/docs/components/key-value/code.md
 
 ## Figma IDs
 
 - 4727:112546
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- key-value
-  - angular:
-    - `angular/key-value.ts`: [file](../../examples/angular/key-value.ts)
-  - angular-standalone:
-    - `angular-standalone/key-value.ts`: [file](../../examples/angular-standalone/key-value.ts)
-  - html:
-    - `html/key-value.html`: [file](../../examples/html/key-value.html)
-  - react:
-    - `react/key-value.tsx`: [file](../../examples/react/key-value.tsx)
-  - vue:
-    - `vue/key-value.vue`: [file](../../examples/vue/key-value.vue)
-- key-value-list
-  - angular:
-    - `angular/key-value-list.ts`: [file](../../examples/angular/key-value-list.ts)
-  - angular-standalone:
-    - `angular-standalone/key-value-list.ts`: [file](../../examples/angular-standalone/key-value-list.ts)
-  - html:
-    - `html/key-value-list.html`: [file](../../examples/html/key-value-list.html)
-  - react:
-    - `react/key-value-list.tsx`: [file](../../examples/react/key-value-list.tsx)
-  - vue:
-    - `vue/key-value-list.vue`: [file](../../examples/vue/key-value-list.vue)
-- key-value-list-striped
-  - angular:
-    - `angular/key-value-list-striped.ts`: [file](../../examples/angular/key-value-list-striped.ts)
-  - angular-standalone:
-    - `angular-standalone/key-value-list-striped.ts`: [file](../../examples/angular-standalone/key-value-list-striped.ts)
-  - html:
-    - `html/key-value-list-striped.html`: [file](../../examples/html/key-value-list-striped.html)
-  - react:
-    - `react/key-value-list-striped.tsx`: [file](../../examples/react/key-value-list-striped.tsx)
-  - vue:
-    - `vue/key-value-list-striped.vue`: [file](../../examples/vue/key-value-list-striped.vue)
-- key-value-list-with-custom-value
-  - angular:
-    - `angular/key-value-list-with-custom-value.css`: [file](../../examples/angular/key-value-list-with-custom-value.css)
-    - `angular/key-value-list-with-custom-value.ts`: [file](../../examples/angular/key-value-list-with-custom-value.ts)
-  - angular-standalone:
-    - `angular-standalone/key-value-list-with-custom-value.css`: [file](../../examples/angular-standalone/key-value-list-with-custom-value.css)
-    - `angular-standalone/key-value-list-with-custom-value.ts`: [file](../../examples/angular-standalone/key-value-list-with-custom-value.ts)
-  - html:
-    - `html/key-value-list-with-custom-value.css`: [file](../../examples/html/key-value-list-with-custom-value.css)
-    - `html/key-value-list-with-custom-value.html`: [file](../../examples/html/key-value-list-with-custom-value.html)
-  - react:
-    - `react/key-value-list-with-custom-value.scoped.css`: [file](../../examples/react/key-value-list-with-custom-value.scoped.css)
-    - `react/key-value-list-with-custom-value.tsx`: [file](../../examples/react/key-value-list-with-custom-value.tsx)
-  - vue:
-    - `vue/key-value-list-with-custom-value.css`: [file](../../examples/vue/key-value-list-with-custom-value.css)
-    - `vue/key-value-list-with-custom-value.vue`: [file](../../examples/vue/key-value-list-with-custom-value.vue)
-- key-value-with-custom-value
-  - angular:
-    - `angular/key-value-with-custom-value.css`: [file](../../examples/angular/key-value-with-custom-value.css)
-    - `angular/key-value-with-custom-value.ts`: [file](../../examples/angular/key-value-with-custom-value.ts)
-  - angular-standalone:
-    - `angular-standalone/key-value-with-custom-value.css`: [file](../../examples/angular-standalone/key-value-with-custom-value.css)
-    - `angular-standalone/key-value-with-custom-value.ts`: [file](../../examples/angular-standalone/key-value-with-custom-value.ts)
-  - html:
-    - `html/key-value-with-custom-value.css`: [file](../../examples/html/key-value-with-custom-value.css)
-    - `html/key-value-with-custom-value.html`: [file](../../examples/html/key-value-with-custom-value.html)
-  - react:
-    - `react/key-value-with-custom-value.scoped.css`: [file](../../examples/react/key-value-with-custom-value.scoped.css)
-    - `react/key-value-with-custom-value.tsx`: [file](../../examples/react/key-value-with-custom-value.tsx)
-  - vue:
-    - `vue/key-value-with-custom-value.css`: [file](../../examples/vue/key-value-with-custom-value.css)
-    - `vue/key-value-with-custom-value.vue`: [file](../../examples/vue/key-value-with-custom-value.vue)
-- key-value-with-label-left
-  - angular:
-    - `angular/key-value-with-label-left.ts`: [file](../../examples/angular/key-value-with-label-left.ts)
-  - angular-standalone:
-    - `angular-standalone/key-value-with-label-left.ts`: [file](../../examples/angular-standalone/key-value-with-label-left.ts)
-  - html:
-    - `html/key-value-with-label-left.html`: [file](../../examples/html/key-value-with-label-left.html)
-  - react:
-    - `react/key-value-with-label-left.tsx`: [file](../../examples/react/key-value-with-label-left.tsx)
-  - vue:
-    - `vue/key-value-with-label-left.vue`: [file](../../examples/vue/key-value-with-label-left.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -109,6 +26,34 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `custom-value` - Optional custom value at key value instead of text value
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- key-value (angular, angular-standalone, html, react, vue)
+- key-value-list (angular, angular-standalone, html, react, vue)
+- key-value-list-striped (angular, angular-standalone, html, react, vue)
+- key-value-list-with-custom-value (angular, angular-standalone, html, react, vue)
+- key-value-list-with-icon (angular, angular-standalone, html, react, vue)
+- key-value-with-custom-value (angular, angular-standalone, html, react, vue)
+- key-value-with-icon (angular, angular-standalone, html, react, vue)
+- key-value-with-label-left (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

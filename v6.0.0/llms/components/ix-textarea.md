@@ -2,74 +2,15 @@
 
 > Multi-line text input for entering and validating longer text.
 
+- Web component: `<ix-textarea>`
+- React/Vue: `IxTextarea` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-textarea>` (`IxModule` from `@siemens/ix-angular` or `IxTextarea` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/textarea/guide.md
+- https://ix.siemens.io/docs/components/textarea/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- textarea
-  - angular:
-    - `angular/textarea.html`: [file](../../examples/angular/textarea.html)
-    - `angular/textarea.ts`: [file](../../examples/angular/textarea.ts)
-  - angular-standalone:
-    - `angular-standalone/textarea.html`: [file](../../examples/angular-standalone/textarea.html)
-    - `angular-standalone/textarea.ts`: [file](../../examples/angular-standalone/textarea.ts)
-  - html:
-    - `html/textarea.html`: [file](../../examples/html/textarea.html)
-  - react:
-    - `react/textarea.tsx`: [file](../../examples/react/textarea.tsx)
-  - vue:
-    - `vue/textarea.vue`: [file](../../examples/vue/textarea.vue)
-- textarea-disabled
-  - angular:
-    - `angular/textarea-disabled.html`: [file](../../examples/angular/textarea-disabled.html)
-    - `angular/textarea-disabled.ts`: [file](../../examples/angular/textarea-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/textarea-disabled.html`: [file](../../examples/angular-standalone/textarea-disabled.html)
-    - `angular-standalone/textarea-disabled.ts`: [file](../../examples/angular-standalone/textarea-disabled.ts)
-  - html:
-    - `html/textarea-disabled.html`: [file](../../examples/html/textarea-disabled.html)
-  - react:
-    - `react/textarea-disabled.tsx`: [file](../../examples/react/textarea-disabled.tsx)
-  - vue:
-    - `vue/textarea-disabled.vue`: [file](../../examples/vue/textarea-disabled.vue)
-- textarea-readonly
-  - angular:
-    - `angular/textarea-readonly.html`: [file](../../examples/angular/textarea-readonly.html)
-    - `angular/textarea-readonly.ts`: [file](../../examples/angular/textarea-readonly.ts)
-  - angular-standalone:
-    - `angular-standalone/textarea-readonly.html`: [file](../../examples/angular-standalone/textarea-readonly.html)
-    - `angular-standalone/textarea-readonly.ts`: [file](../../examples/angular-standalone/textarea-readonly.ts)
-  - html:
-    - `html/textarea-readonly.html`: [file](../../examples/html/textarea-readonly.html)
-  - react:
-    - `react/textarea-readonly.tsx`: [file](../../examples/react/textarea-readonly.tsx)
-  - vue:
-    - `vue/textarea-readonly.vue`: [file](../../examples/vue/textarea-readonly.vue)
-- textarea-rows-cols
-  - angular:
-    - `angular/textarea-rows-cols.html`: [file](../../examples/angular/textarea-rows-cols.html)
-    - `angular/textarea-rows-cols.ts`: [file](../../examples/angular/textarea-rows-cols.ts)
-  - angular-standalone:
-    - `angular-standalone/textarea-rows-cols.html`: [file](../../examples/angular-standalone/textarea-rows-cols.html)
-    - `angular-standalone/textarea-rows-cols.ts`: [file](../../examples/angular-standalone/textarea-rows-cols.ts)
-  - html:
-    - `html/textarea-rows-cols.html`: [file](../../examples/html/textarea-rows-cols.html)
-  - react:
-    - `react/textarea-rows-cols.tsx`: [file](../../examples/react/textarea-rows-cols.tsx)
-  - vue:
-    - `vue/textarea-rows-cols.vue`: [file](../../examples/vue/textarea-rows-cols.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -103,6 +44,33 @@ Pattern and file links are relative to this Markdown file.
 - `validityStateChange` - Event emitted when the validity state of the textarea field changes.
 - `valueChange` - Event emitted when the value of the textarea field changes.
 
+## Methods
+
+- `focusInput() => Promise<void>` - Focuses the input field
+- `getNativeInputElement() => Promise<HTMLTextAreaElement>` - Get the native textarea element.
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-field-wrapper`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- form-validation (angular, angular-standalone, html, react, vue)
+- textarea (angular, angular-standalone, html, react, vue)
+- textarea-disabled (angular, angular-standalone, html, react, vue)
+- textarea-readonly (angular, angular-standalone, html, react, vue)
+- textarea-rows-cols (angular, angular-standalone, html, react, vue)
+- textarea-validation (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

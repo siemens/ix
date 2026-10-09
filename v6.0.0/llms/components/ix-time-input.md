@@ -2,98 +2,17 @@
 
 > Text input for entering and validating a time value.
 
+- Web component: `<ix-time-input>`
+- React/Vue: `IxTimeInput` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-time-input>` (`IxModule` from `@siemens/ix-angular` or `IxTimeInput` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/input-time/guide.md
+- https://ix.siemens.io/docs/components/input-time/guide.md
 
 ## Figma IDs
 
 - 68801:5742
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- range-field
-  - angular:
-    - `angular/range-field.ts`: [file](../../examples/angular/range-field.ts)
-  - angular-standalone:
-    - `angular-standalone/range-field.ts`: [file](../../examples/angular-standalone/range-field.ts)
-  - html:
-    - `html/range-field.html`: [file](../../examples/html/range-field.html)
-  - react:
-    - `react/range-field.tsx`: [file](../../examples/react/range-field.tsx)
-  - vue:
-    - `vue/range-field.vue`: [file](../../examples/vue/range-field.vue)
-- time-input
-  - angular:
-    - `angular/time-input.html`: [file](../../examples/angular/time-input.html)
-    - `angular/time-input.ts`: [file](../../examples/angular/time-input.ts)
-  - angular-standalone:
-    - `angular-standalone/time-input.html`: [file](../../examples/angular-standalone/time-input.html)
-    - `angular-standalone/time-input.ts`: [file](../../examples/angular-standalone/time-input.ts)
-  - html:
-    - `html/time-input.html`: [file](../../examples/html/time-input.html)
-  - react:
-    - `react/time-input.tsx`: [file](../../examples/react/time-input.tsx)
-  - vue:
-    - `vue/time-input.vue`: [file](../../examples/vue/time-input.vue)
-- time-input-disabled
-  - angular:
-    - `angular/time-input-disabled.html`: [file](../../examples/angular/time-input-disabled.html)
-    - `angular/time-input-disabled.ts`: [file](../../examples/angular/time-input-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/time-input-disabled.html`: [file](../../examples/angular-standalone/time-input-disabled.html)
-    - `angular-standalone/time-input-disabled.ts`: [file](../../examples/angular-standalone/time-input-disabled.ts)
-  - html:
-    - `html/time-input-disabled.html`: [file](../../examples/html/time-input-disabled.html)
-  - react:
-    - `react/time-input-disabled.tsx`: [file](../../examples/react/time-input-disabled.tsx)
-  - vue:
-    - `vue/time-input-disabled.vue`: [file](../../examples/vue/time-input-disabled.vue)
-- time-input-label
-  - angular:
-    - `angular/time-input-label.html`: [file](../../examples/angular/time-input-label.html)
-    - `angular/time-input-label.ts`: [file](../../examples/angular/time-input-label.ts)
-  - angular-standalone:
-    - `angular-standalone/time-input-label.html`: [file](../../examples/angular-standalone/time-input-label.html)
-    - `angular-standalone/time-input-label.ts`: [file](../../examples/angular-standalone/time-input-label.ts)
-  - html:
-    - `html/time-input-label.html`: [file](../../examples/html/time-input-label.html)
-  - react:
-    - `react/time-input-label.tsx`: [file](../../examples/react/time-input-label.tsx)
-  - vue:
-    - `vue/time-input-label.vue`: [file](../../examples/vue/time-input-label.vue)
-- time-input-readonly
-  - angular:
-    - `angular/time-input-readonly.html`: [file](../../examples/angular/time-input-readonly.html)
-    - `angular/time-input-readonly.ts`: [file](../../examples/angular/time-input-readonly.ts)
-  - angular-standalone:
-    - `angular-standalone/time-input-readonly.html`: [file](../../examples/angular-standalone/time-input-readonly.html)
-    - `angular-standalone/time-input-readonly.ts`: [file](../../examples/angular-standalone/time-input-readonly.ts)
-  - html:
-    - `html/time-input-readonly.html`: [file](../../examples/html/time-input-readonly.html)
-  - react:
-    - `react/time-input-readonly.tsx`: [file](../../examples/react/time-input-readonly.tsx)
-  - vue:
-    - `vue/time-input-readonly.vue`: [file](../../examples/vue/time-input-readonly.vue)
-- time-range
-  - angular:
-    - `angular/time-range.ts`: [file](../../examples/angular/time-range.ts)
-  - angular-standalone:
-    - `angular-standalone/time-range.ts`: [file](../../examples/angular-standalone/time-range.ts)
-  - html:
-    - `html/time-range.html`: [file](../../examples/html/time-range.html)
-  - react:
-    - `react/time-range.tsx`: [file](../../examples/react/time-range.tsx)
-  - vue:
-    - `vue/time-range.vue`: [file](../../examples/vue/time-range.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -139,7 +58,37 @@ Pattern and file links are relative to this Markdown file.
 - `validityStateChange` - Validation state change event. Emitted when the validation state changes.
 - `valueChange` - Value change event. Emitted when the input value changes.
 
+## Methods
+
+- `focusInput() => Promise<void>` - Focuses the input field
+- `getNativeInputElement() => Promise<HTMLInputElement>` - Get the native input element
+
 ## Slots
 
 - `end` - Element will be displayed at the end of the input
 - `start` - Element will be displayed at the start of the input
+
+## Dependencies
+
+- Renders: `ix-dropdown`, `ix-field-wrapper`, `ix-icon-button`, `ix-time-picker`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- input (angular, angular-standalone, html, react, vue)
+- range-field (angular, angular-standalone, html, react, vue)
+- time-input (angular, angular-standalone, html, react, vue)
+- time-input-disabled (angular, angular-standalone, html, react, vue)
+- time-input-label (angular, angular-standalone, html, react, vue)
+- time-input-readonly (angular, angular-standalone, html, react, vue)
+- time-input-validation (angular, angular-standalone, html, react, vue)
+- time-input-with-slots (angular, angular-standalone, html, react, vue)
+- time-range (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

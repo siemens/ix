@@ -2,81 +2,17 @@
 
 > Lets users select an option or toggle a single value on or off.
 
+- Web component: `<ix-checkbox>`
+- React/Vue: `IxCheckbox` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-checkbox>` (`IxModule` from `@siemens/ix-angular` or `IxCheckbox` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/checkbox/guide.md
+- https://ix.siemens.io/docs/components/checkbox/guide.md
 
 ## Figma IDs
 
 - 42365:47165
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- form-checkbox
-  - angular:
-    - `angular/form-checkbox.html`: [file](../../examples/angular/form-checkbox.html)
-    - `angular/form-checkbox.ts`: [file](../../examples/angular/form-checkbox.ts)
-  - angular-standalone:
-    - `angular-standalone/form-checkbox.html`: [file](../../examples/angular-standalone/form-checkbox.html)
-    - `angular-standalone/form-checkbox.ts`: [file](../../examples/angular-standalone/form-checkbox.ts)
-  - html:
-    - `html/form-checkbox.html`: [file](../../examples/html/form-checkbox.html)
-  - react:
-    - `react/form-checkbox.tsx`: [file](../../examples/react/form-checkbox.tsx)
-  - vue:
-    - `vue/form-checkbox.vue`: [file](../../examples/vue/form-checkbox.vue)
-- form-checkbox-disabled
-  - angular:
-    - `angular/form-checkbox-disabled.html`: [file](../../examples/angular/form-checkbox-disabled.html)
-    - `angular/form-checkbox-disabled.ts`: [file](../../examples/angular/form-checkbox-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/form-checkbox-disabled.html`: [file](../../examples/angular-standalone/form-checkbox-disabled.html)
-    - `angular-standalone/form-checkbox-disabled.ts`: [file](../../examples/angular-standalone/form-checkbox-disabled.ts)
-  - html:
-    - `html/form-checkbox-disabled.html`: [file](../../examples/html/form-checkbox-disabled.html)
-  - react:
-    - `react/form-checkbox-disabled.tsx`: [file](../../examples/react/form-checkbox-disabled.tsx)
-  - vue:
-    - `vue/form-checkbox-disabled.vue`: [file](../../examples/vue/form-checkbox-disabled.vue)
-- form-checkbox-group
-  - angular:
-    - `angular/form-checkbox-group.html`: [file](../../examples/angular/form-checkbox-group.html)
-    - `angular/form-checkbox-group.ts`: [file](../../examples/angular/form-checkbox-group.ts)
-  - angular-standalone:
-    - `angular-standalone/form-checkbox-group.html`: [file](../../examples/angular-standalone/form-checkbox-group.html)
-    - `angular-standalone/form-checkbox-group.ts`: [file](../../examples/angular-standalone/form-checkbox-group.ts)
-  - html:
-    - `html/form-checkbox-group.html`: [file](../../examples/html/form-checkbox-group.html)
-  - react:
-    - `react/form-checkbox-group.tsx`: [file](../../examples/react/form-checkbox-group.tsx)
-  - vue:
-    - `vue/form-checkbox-group.vue`: [file](../../examples/vue/form-checkbox-group.vue)
-- form-checkbox-group-indeterminate
-  - angular:
-    - `angular/form-checkbox-group-indeterminate.css`: [file](../../examples/angular/form-checkbox-group-indeterminate.css)
-    - `angular/form-checkbox-group-indeterminate.html`: [file](../../examples/angular/form-checkbox-group-indeterminate.html)
-    - `angular/form-checkbox-group-indeterminate.ts`: [file](../../examples/angular/form-checkbox-group-indeterminate.ts)
-  - angular-standalone:
-    - `angular-standalone/form-checkbox-group-indeterminate.css`: [file](../../examples/angular-standalone/form-checkbox-group-indeterminate.css)
-    - `angular-standalone/form-checkbox-group-indeterminate.html`: [file](../../examples/angular-standalone/form-checkbox-group-indeterminate.html)
-    - `angular-standalone/form-checkbox-group-indeterminate.ts`: [file](../../examples/angular-standalone/form-checkbox-group-indeterminate.ts)
-  - html:
-    - `html/form-checkbox-group-indeterminate.css`: [file](../../examples/html/form-checkbox-group-indeterminate.css)
-    - `html/form-checkbox-group-indeterminate.html`: [file](../../examples/html/form-checkbox-group-indeterminate.html)
-  - react:
-    - `react/form-checkbox-group-indeterminate.scoped.css`: [file](../../examples/react/form-checkbox-group-indeterminate.scoped.css)
-    - `react/form-checkbox-group-indeterminate.tsx`: [file](../../examples/react/form-checkbox-group-indeterminate.tsx)
-  - vue:
-    - `vue/form-checkbox-group-indeterminate.css`: [file](../../examples/vue/form-checkbox-group-indeterminate.css)
-    - `vue/form-checkbox-group-indeterminate.vue`: [file](../../examples/vue/form-checkbox-group-indeterminate.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -94,6 +30,33 @@ Pattern and file links are relative to this Markdown file.
 - `ixBlur` - Event emitted when the checkbox is blurred
 - `valueChange` - Event emitted when the value of the checkbox changes
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Checkbox label.
+
+## Dependencies
+
+- Renders: `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- form-checkbox (angular, angular-standalone, html, react, vue)
+- form-checkbox-disabled (angular, angular-standalone, html, react, vue)
+- form-checkbox-group (angular, angular-standalone, html, react, vue)
+- form-checkbox-group-indeterminate (angular, angular-standalone, html, react, vue)
+- form-checkbox-validation (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- theme-switcher (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

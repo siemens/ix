@@ -2,48 +2,17 @@
 
 > Combined calendar and time selector for picking a date and time.
 
+- Web component: `<ix-datetime-picker>`
+- React/Vue: `IxDatetimePicker` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-datetime-picker>` (`IxModule` from `@siemens/ix-angular` or `IxDatetimePicker` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/date-time-picker/guide.md
+- https://ix.siemens.io/docs/components/date-time-picker/guide.md
 
 ## Figma IDs
 
 - 70466:78415
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- datetimepicker
-  - angular:
-    - `angular/datetimepicker.ts`: [file](../../examples/angular/datetimepicker.ts)
-  - angular-standalone:
-    - `angular-standalone/datetimepicker.ts`: [file](../../examples/angular-standalone/datetimepicker.ts)
-  - html:
-    - `html/datetimepicker.html`: [file](../../examples/html/datetimepicker.html)
-  - react:
-    - `react/datetimepicker.tsx`: [file](../../examples/react/datetimepicker.tsx)
-  - vue:
-    - `vue/datetimepicker.vue`: [file](../../examples/vue/datetimepicker.vue)
-- datetimepicker-locale
-  - angular:
-    - `angular/datetimepicker-locale.html`: [file](../../examples/angular/datetimepicker-locale.html)
-    - `angular/datetimepicker-locale.ts`: [file](../../examples/angular/datetimepicker-locale.ts)
-  - angular-standalone:
-    - `angular-standalone/datetimepicker-locale.html`: [file](../../examples/angular-standalone/datetimepicker-locale.html)
-    - `angular-standalone/datetimepicker-locale.ts`: [file](../../examples/angular-standalone/datetimepicker-locale.ts)
-  - html:
-    - `html/datetimepicker-locale.html`: [file](../../examples/html/datetimepicker-locale.html)
-  - react:
-    - `react/datetimepicker-locale.tsx`: [file](../../examples/react/datetimepicker-locale.tsx)
-  - vue:
-    - `vue/datetimepicker-locale.vue`: [file](../../examples/vue/datetimepicker-locale.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -79,6 +48,28 @@ Pattern and file links are relative to this Markdown file.
 - `dateSelect` - Datetime selection event. Emitted when the user confirms the selection.
 - `timeChange` - Time change event. Emitted when the time changes in the embedded time picker.
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-col`, `ix-date-picker`, `ix-date-time-card`, `ix-layout-grid`, `ix-row`, `ix-time-picker`
+- Rendered by: `ix-datetime-input`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- datetimepicker (angular, angular-standalone, html, react, vue)
+- datetimepicker-locale (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

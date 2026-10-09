@@ -2,23 +2,15 @@
 
 > Transient notification message that appears temporarily.
 
+- Web component: `<ix-toast>`
+- React/Vue: `IxToast` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-toast>` (`IxModule` from `@siemens/ix-angular` or `IxToast` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/toast/guide.md
+- https://ix.siemens.io/docs/components/toast/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -37,7 +29,30 @@ Pattern and file links are relative to this Markdown file.
 
 - `closeToast` - Toast closed
 
+## Methods
+
+- `isPaused() => Promise<boolean>` - Returns whether the toast is currently paused (auto-close is paused).
+- `pause() => Promise<void>` - Pause the toast's auto-close progress bar and timer.
+- `resume() => Promise<void>` - Resume the toast's auto-close progress bar and timer if previously paused.
+
 ## Slots
 
 - `` - Toast message content.
 - `action` - Toast action content.
+
+## Dependencies
+
+- Renders: `ix-icon-button`, `ix-typography`
+- Rendered by: `ix-toast-container`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- None
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

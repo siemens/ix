@@ -2,111 +2,17 @@
 
 > Text input for entering and validating a date value.
 
+- Web component: `<ix-date-input>`
+- React/Vue: `IxDateInput` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-date-input>` (`IxModule` from `@siemens/ix-angular` or `IxDateInput` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/input-date/guide.md
+- https://ix.siemens.io/docs/components/input-date/guide.md
 
 ## Figma IDs
 
 - 442365:42749
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- date-input
-  - angular:
-    - `angular/date-input.html`: [file](../../examples/angular/date-input.html)
-    - `angular/date-input.ts`: [file](../../examples/angular/date-input.ts)
-  - angular-standalone:
-    - `angular-standalone/date-input.html`: [file](../../examples/angular-standalone/date-input.html)
-    - `angular-standalone/date-input.ts`: [file](../../examples/angular-standalone/date-input.ts)
-  - html:
-    - `html/date-input.html`: [file](../../examples/html/date-input.html)
-  - react:
-    - `react/date-input.tsx`: [file](../../examples/react/date-input.tsx)
-  - vue:
-    - `vue/date-input.vue`: [file](../../examples/vue/date-input.vue)
-- date-input-disabled
-  - angular:
-    - `angular/date-input-disabled.html`: [file](../../examples/angular/date-input-disabled.html)
-    - `angular/date-input-disabled.ts`: [file](../../examples/angular/date-input-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/date-input-disabled.html`: [file](../../examples/angular-standalone/date-input-disabled.html)
-    - `angular-standalone/date-input-disabled.ts`: [file](../../examples/angular-standalone/date-input-disabled.ts)
-  - html:
-    - `html/date-input-disabled.html`: [file](../../examples/html/date-input-disabled.html)
-  - react:
-    - `react/date-input-disabled.tsx`: [file](../../examples/react/date-input-disabled.tsx)
-  - vue:
-    - `vue/date-input-disabled.vue`: [file](../../examples/vue/date-input-disabled.vue)
-- date-input-label
-  - angular:
-    - `angular/date-input-label.html`: [file](../../examples/angular/date-input-label.html)
-    - `angular/date-input-label.ts`: [file](../../examples/angular/date-input-label.ts)
-  - angular-standalone:
-    - `angular-standalone/date-input-label.html`: [file](../../examples/angular-standalone/date-input-label.html)
-    - `angular-standalone/date-input-label.ts`: [file](../../examples/angular-standalone/date-input-label.ts)
-  - html:
-    - `html/date-input-label.html`: [file](../../examples/html/date-input-label.html)
-  - react:
-    - `react/date-input-label.tsx`: [file](../../examples/react/date-input-label.tsx)
-  - vue:
-    - `vue/date-input-label.vue`: [file](../../examples/vue/date-input-label.vue)
-- date-input-min-max-date
-  - angular:
-    - `angular/date-input-min-max-date.html`: [file](../../examples/angular/date-input-min-max-date.html)
-    - `angular/date-input-min-max-date.ts`: [file](../../examples/angular/date-input-min-max-date.ts)
-  - angular-standalone:
-    - `angular-standalone/date-input-min-max-date.html`: [file](../../examples/angular-standalone/date-input-min-max-date.html)
-    - `angular-standalone/date-input-min-max-date.ts`: [file](../../examples/angular-standalone/date-input-min-max-date.ts)
-  - html:
-    - `html/date-input-min-max-date.html`: [file](../../examples/html/date-input-min-max-date.html)
-  - react:
-    - `react/date-input-min-max-date.tsx`: [file](../../examples/react/date-input-min-max-date.tsx)
-  - vue:
-    - `vue/date-input-min-max-date.vue`: [file](../../examples/vue/date-input-min-max-date.vue)
-- date-input-readonly
-  - angular:
-    - `angular/date-input-readonly.html`: [file](../../examples/angular/date-input-readonly.html)
-    - `angular/date-input-readonly.ts`: [file](../../examples/angular/date-input-readonly.ts)
-  - angular-standalone:
-    - `angular-standalone/date-input-readonly.html`: [file](../../examples/angular-standalone/date-input-readonly.html)
-    - `angular-standalone/date-input-readonly.ts`: [file](../../examples/angular-standalone/date-input-readonly.ts)
-  - html:
-    - `html/date-input-readonly.html`: [file](../../examples/html/date-input-readonly.html)
-  - react:
-    - `react/date-input-readonly.tsx`: [file](../../examples/react/date-input-readonly.tsx)
-  - vue:
-    - `vue/date-input-readonly.vue`: [file](../../examples/vue/date-input-readonly.vue)
-- date-range
-  - angular:
-    - `angular/date-range.ts`: [file](../../examples/angular/date-range.ts)
-  - angular-standalone:
-    - `angular-standalone/date-range.ts`: [file](../../examples/angular-standalone/date-range.ts)
-  - html:
-    - `html/date-range.html`: [file](../../examples/html/date-range.html)
-  - react:
-    - `react/date-range.tsx`: [file](../../examples/react/date-range.tsx)
-  - vue:
-    - `vue/date-range.vue`: [file](../../examples/vue/date-range.vue)
-- range-field
-  - angular:
-    - `angular/range-field.ts`: [file](../../examples/angular/range-field.ts)
-  - angular-standalone:
-    - `angular-standalone/range-field.ts`: [file](../../examples/angular-standalone/range-field.ts)
-  - html:
-    - `html/range-field.html`: [file](../../examples/html/range-field.html)
-  - react:
-    - `react/range-field.tsx`: [file](../../examples/react/range-field.tsx)
-  - vue:
-    - `vue/range-field.vue`: [file](../../examples/vue/range-field.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -143,7 +49,39 @@ Pattern and file links are relative to this Markdown file.
 - `validityStateChange` - Validation state change event. Emitted when the validation state changes.
 - `valueChange` - Value change event. Emitted when the input value changes.
 
+## Methods
+
+- `focusInput() => Promise<void>` - Focuses the input field
+- `getNativeInputElement() => Promise<HTMLInputElement>` - Get the native input element
+
 ## Slots
 
 - `end` - Element will be displayed at the end of the input
 - `start` - Element will be displayed at the start of the input
+
+## Dependencies
+
+- Renders: `ix-date-picker`, `ix-dropdown`, `ix-field-wrapper`, `ix-icon-button`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- date-input (angular, angular-standalone, html, react, vue)
+- date-input-disabled (angular, angular-standalone, html, react, vue)
+- date-input-label (angular, angular-standalone, html, react, vue)
+- date-input-min-max-date (angular, angular-standalone, html, react, vue)
+- date-input-readonly (angular, angular-standalone, html, react, vue)
+- date-input-validation (angular, angular-standalone, html, react, vue)
+- date-input-with-slots (angular, angular-standalone, html, react, vue)
+- date-range (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- input (angular, angular-standalone, html, react, vue)
+- range-field (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

@@ -2,57 +2,17 @@
 
 > A single entry within an event list.
 
+- Web component: `<ix-event-list-item>`
+- React/Vue: `IxEventListItem` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-event-list-item>` (`IxModule` from `@siemens/ix-angular` or `IxEventListItem` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/event-list/code.md
+- https://ix.siemens.io/docs/components/event-list/code.md
 
 ## Figma IDs
 
 - 1433:41688
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- event-list
-  - angular:
-    - `angular/event-list.ts`: [file](../../examples/angular/event-list.ts)
-  - angular-standalone:
-    - `angular-standalone/event-list.ts`: [file](../../examples/angular-standalone/event-list.ts)
-  - html:
-    - `html/event-list.html`: [file](../../examples/html/event-list.html)
-  - react:
-    - `react/event-list.tsx`: [file](../../examples/react/event-list.tsx)
-  - vue:
-    - `vue/event-list.vue`: [file](../../examples/vue/event-list.vue)
-- event-list-compact
-  - angular:
-    - `angular/event-list-compact.ts`: [file](../../examples/angular/event-list-compact.ts)
-  - angular-standalone:
-    - `angular-standalone/event-list-compact.ts`: [file](../../examples/angular-standalone/event-list-compact.ts)
-  - html:
-    - `html/event-list-compact.html`: [file](../../examples/html/event-list-compact.html)
-  - react:
-    - `react/event-list-compact.tsx`: [file](../../examples/react/event-list-compact.tsx)
-  - vue:
-    - `vue/event-list-compact.vue`: [file](../../examples/vue/event-list-compact.vue)
-- event-list-custom-item-height
-  - angular:
-    - `angular/event-list-custom-item-height.ts`: [file](../../examples/angular/event-list-custom-item-height.ts)
-  - angular-standalone:
-    - `angular-standalone/event-list-custom-item-height.ts`: [file](../../examples/angular-standalone/event-list-custom-item-height.ts)
-  - html:
-    - `html/event-list-custom-item-height.html`: [file](../../examples/html/event-list-custom-item-height.html)
-  - react:
-    - `react/event-list-custom-item-height.tsx`: [file](../../examples/react/event-list-custom-item-height.tsx)
-  - vue:
-    - `vue/event-list-custom-item-height.vue`: [file](../../examples/vue/event-list-custom-item-height.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -66,6 +26,32 @@ Pattern and file links are relative to this Markdown file.
 
 - `itemClick` - Event list item click
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Event list item content.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- event-list (angular, angular-standalone, html, react, vue)
+- event-list-compact (angular, angular-standalone, html, react, vue)
+- event-list-custom-item-height (angular, angular-standalone, html, react, vue)
+- event-list-custom-item-height-in-number (angular, html, react, vue)
+- event-list-filled (angular, angular-standalone, html, react, vue)
+- event-list-selected (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

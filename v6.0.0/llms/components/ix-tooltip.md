@@ -2,42 +2,17 @@
 
 > Small overlay that shows contextual information when hovering or focusing an element.
 
+- Web component: `<ix-tooltip>`
+- React/Vue: `IxTooltip` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-tooltip>` (`IxModule` from `@siemens/ix-angular` or `IxTooltip` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/tooltip/guide.md
+- https://ix.siemens.io/docs/components/tooltip/guide.md
 
 ## Figma IDs
 
 - 1239:30786
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- tooltip
-  - angular:
-    - `angular/tooltip.css`: [file](../../examples/angular/tooltip.css)
-    - `angular/tooltip.html`: [file](../../examples/angular/tooltip.html)
-    - `angular/tooltip.ts`: [file](../../examples/angular/tooltip.ts)
-  - angular-standalone:
-    - `angular-standalone/tooltip.css`: [file](../../examples/angular-standalone/tooltip.css)
-    - `angular-standalone/tooltip.html`: [file](../../examples/angular-standalone/tooltip.html)
-    - `angular-standalone/tooltip.ts`: [file](../../examples/angular-standalone/tooltip.ts)
-  - html:
-    - `html/tooltip.css`: [file](../../examples/html/tooltip.css)
-    - `html/tooltip.html`: [file](../../examples/html/tooltip.html)
-  - react:
-    - `react/tooltip.scoped.css`: [file](../../examples/react/tooltip.scoped.css)
-    - `react/tooltip.tsx`: [file](../../examples/react/tooltip.tsx)
-  - vue:
-    - `vue/tooltip.css`: [file](../../examples/vue/tooltip.css)
-    - `vue/tooltip.vue`: [file](../../examples/vue/tooltip.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -50,8 +25,30 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Tooltip content.
 - `title-content` - Content of tooltip title
 - `title-icon` - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
+
+## Dependencies
+
+- Renders: `ix-typography`
+- Rendered by: `ix-avatar`, `ix-badge`, `ix-chip`, `ix-field-wrapper`, `ix-menu-avatar`, `ix-menu-item`, `ix-pill`, `ix-progress-indicator`, `ix-slider`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- tooltip (angular, angular-standalone, html, react, vue)
+- tooltip-with-icon (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

@@ -2,105 +2,20 @@
 
 > Text input for entering and validating a numeric value.
 
+- Web component: `<ix-number-input>`
+- React/Vue: `IxNumberInput` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-number-input>` (`IxModule` from `@siemens/ix-angular` or `IxNumberInput` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/forms-field/guide.md
-- https://ix.siemens.io//docs/components/forms-layout/guide.md
-- https://ix.siemens.io//docs/components/forms-validation/guide.md
-- https://ix.siemens.io//docs/components/input-number/guide.md
+- https://ix.siemens.io/docs/components/forms-field/guide.md
+- https://ix.siemens.io/docs/components/forms-layout/guide.md
+- https://ix.siemens.io/docs/components/forms-validation/guide.md
+- https://ix.siemens.io/docs/components/input-number/guide.md
 
 ## Figma IDs
 
 - 42365:39459
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- number-input
-  - angular:
-    - `angular/number-input.html`: [file](../../examples/angular/number-input.html)
-    - `angular/number-input.ts`: [file](../../examples/angular/number-input.ts)
-  - angular-standalone:
-    - `angular-standalone/number-input.html`: [file](../../examples/angular-standalone/number-input.html)
-    - `angular-standalone/number-input.ts`: [file](../../examples/angular-standalone/number-input.ts)
-  - html:
-    - `html/number-input.html`: [file](../../examples/html/number-input.html)
-  - react:
-    - `react/number-input.tsx`: [file](../../examples/react/number-input.tsx)
-  - vue:
-    - `vue/number-input.vue`: [file](../../examples/vue/number-input.vue)
-- number-input-disabled
-  - angular:
-    - `angular/number-input-disabled.html`: [file](../../examples/angular/number-input-disabled.html)
-    - `angular/number-input-disabled.ts`: [file](../../examples/angular/number-input-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/number-input-disabled.html`: [file](../../examples/angular-standalone/number-input-disabled.html)
-    - `angular-standalone/number-input-disabled.ts`: [file](../../examples/angular-standalone/number-input-disabled.ts)
-  - html:
-    - `html/number-input-disabled.html`: [file](../../examples/html/number-input-disabled.html)
-  - react:
-    - `react/number-input-disabled.tsx`: [file](../../examples/react/number-input-disabled.tsx)
-  - vue:
-    - `vue/number-input-disabled.vue`: [file](../../examples/vue/number-input-disabled.vue)
-- number-input-label
-  - angular:
-    - `angular/number-input-label.html`: [file](../../examples/angular/number-input-label.html)
-    - `angular/number-input-label.ts`: [file](../../examples/angular/number-input-label.ts)
-  - angular-standalone:
-    - `angular-standalone/number-input-label.html`: [file](../../examples/angular-standalone/number-input-label.html)
-    - `angular-standalone/number-input-label.ts`: [file](../../examples/angular-standalone/number-input-label.ts)
-  - html:
-    - `html/number-input-label.html`: [file](../../examples/html/number-input-label.html)
-  - react:
-    - `react/number-input-label.tsx`: [file](../../examples/react/number-input-label.tsx)
-  - vue:
-    - `vue/number-input-label.vue`: [file](../../examples/vue/number-input-label.vue)
-- number-input-readonly
-  - angular:
-    - `angular/number-input-readonly.html`: [file](../../examples/angular/number-input-readonly.html)
-    - `angular/number-input-readonly.ts`: [file](../../examples/angular/number-input-readonly.ts)
-  - angular-standalone:
-    - `angular-standalone/number-input-readonly.html`: [file](../../examples/angular-standalone/number-input-readonly.html)
-    - `angular-standalone/number-input-readonly.ts`: [file](../../examples/angular-standalone/number-input-readonly.ts)
-  - html:
-    - `html/number-input-readonly.html`: [file](../../examples/html/number-input-readonly.html)
-  - react:
-    - `react/number-input-readonly.tsx`: [file](../../examples/react/number-input-readonly.tsx)
-  - vue:
-    - `vue/number-input-readonly.vue`: [file](../../examples/vue/number-input-readonly.vue)
-- number-input-stepper-button
-  - angular:
-    - `angular/number-input-stepper-button.html`: [file](../../examples/angular/number-input-stepper-button.html)
-    - `angular/number-input-stepper-button.ts`: [file](../../examples/angular/number-input-stepper-button.ts)
-  - angular-standalone:
-    - `angular-standalone/number-input-stepper-button.html`: [file](../../examples/angular-standalone/number-input-stepper-button.html)
-    - `angular-standalone/number-input-stepper-button.ts`: [file](../../examples/angular-standalone/number-input-stepper-button.ts)
-  - html:
-    - `html/number-input-stepper-button.html`: [file](../../examples/html/number-input-stepper-button.html)
-  - react:
-    - `react/number-input-stepper-button.tsx`: [file](../../examples/react/number-input-stepper-button.tsx)
-  - vue:
-    - `vue/number-input-stepper-button.vue`: [file](../../examples/vue/number-input-stepper-button.vue)
-- number-input-validation
-  - angular:
-    - `angular/number-input-validation.html`: [file](../../examples/angular/number-input-validation.html)
-    - `angular/number-input-validation.ts`: [file](../../examples/angular/number-input-validation.ts)
-  - angular-standalone:
-    - `angular-standalone/number-input-validation.html`: [file](../../examples/angular-standalone/number-input-validation.html)
-    - `angular-standalone/number-input-validation.ts`: [file](../../examples/angular-standalone/number-input-validation.ts)
-  - html:
-    - `html/number-input-validation.html`: [file](../../examples/html/number-input-validation.html)
-  - react:
-    - `react/number-input-validation.tsx`: [file](../../examples/react/number-input-validation.tsx)
-  - vue:
-    - `vue/number-input-validation.vue`: [file](../../examples/vue/number-input-validation.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -134,7 +49,37 @@ Pattern and file links are relative to this Markdown file.
 - `validityStateChange` - Event emitted when the validity state of the input field changes
 - `valueChange` - Event emitted when the value of the input field changes
 
+## Methods
+
+- `focusInput() => Promise<void>` - Focuses the input field
+- `getNativeInputElement() => Promise<HTMLInputElement>` - Returns the native input element used under the hood
+
 ## Slots
 
 - `end` - Element will be displayed at the end of the input
 - `start` - Element will be displayed at the start of the input
+
+## Dependencies
+
+- Renders: `ix-field-wrapper`, `ix-icon-button`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- form-validation (angular, angular-standalone, html, react, vue)
+- input (angular, angular-standalone, html, react, vue)
+- number-input (angular, angular-standalone, html, react, vue)
+- number-input-disabled (angular, angular-standalone, html, react, vue)
+- number-input-label (angular, angular-standalone, html, react, vue)
+- number-input-readonly (angular, angular-standalone, html, react, vue)
+- number-input-stepper-button (angular, angular-standalone, html, react, vue)
+- number-input-validation (angular, angular-standalone, html, react, vue)
+- number-input-with-slots (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

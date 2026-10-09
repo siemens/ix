@@ -2,35 +2,17 @@
 
 > Search input that expands from an icon when activated.
 
+- Web component: `<ix-expanding-search>`
+- React/Vue: `IxExpandingSearch` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-expanding-search>` (`IxModule` from `@siemens/ix-angular` or `IxExpandingSearch` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/expanding-search/code.md
+- https://ix.siemens.io/docs/components/expanding-search/code.md
 
 ## Figma IDs
 
 - 680:9354
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- expanding-search
-  - angular:
-    - `angular/expanding-search.ts`: [file](../../examples/angular/expanding-search.ts)
-  - angular-standalone:
-    - `angular-standalone/expanding-search.ts`: [file](../../examples/angular-standalone/expanding-search.ts)
-  - html:
-    - `html/expanding-search.html`: [file](../../examples/html/expanding-search.html)
-  - react:
-    - `react/expanding-search.tsx`: [file](../../examples/react/expanding-search.tsx)
-  - vue:
-    - `vue/expanding-search.vue`: [file](../../examples/vue/expanding-search.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -47,6 +29,27 @@ Pattern and file links are relative to this Markdown file.
 
 - `valueChange` - Value changed
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-icon-button`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- expanding-search (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

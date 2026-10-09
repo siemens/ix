@@ -2,25 +2,17 @@
 
 > No component summary available.
 
+- Web component: `<ix-chat-attachment>`
+- React/Vue: `IxChatAttachment` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-chat-attachment>` (`IxModule` from `@siemens/ix-angular` or `IxChatAttachment` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/chat-attachment/guide.md
+- https://ix.siemens.io/docs/components/chat-attachment/guide.md
 
 ## Figma IDs
 
 - 133528:33258
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -36,6 +28,29 @@ Pattern and file links are relative to this Markdown file.
 - `attachmentClick` - Event emitted when the attachment is clicked.
 - `removeClick` - Event emitted when the remove action is clicked.
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-chip`, `ix-spinner`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- chat (angular, angular-standalone, html, react, vue)
+- chat-input (angular, angular-standalone, html, react, vue)
+- chat-user-message (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

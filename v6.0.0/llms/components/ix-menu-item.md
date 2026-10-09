@@ -2,25 +2,17 @@
 
 > Navigation entry within the side menu.
 
+- Web component: `<ix-menu-item>`
+- React/Vue: `IxMenuItem` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-menu-item>` (`IxModule` from `@siemens/ix-angular` or `IxMenuItem` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/application-menu/guide.md
+- https://ix.siemens.io/docs/components/application-menu/guide.md
 
 ## Figma IDs
 
 - 308:1293
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -41,6 +33,34 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Menu item label.
+
+## Dependencies
+
+- Renders: `ix-tooltip`
+- Rendered by: `ix-menu`, `ix-menu-category`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- application (angular, angular-standalone, html, react, vue)
+- application-advanced (angular, angular-standalone, html, react, vue)
+- application-app-switch (angular, angular-standalone, html, react, vue)
+- application-breakpoints (angular, angular-standalone, html, react, vue)
+- menu-category (angular, angular-standalone, html, react, vue)
+- menu-with-bottom-tabs (angular, angular-standalone, html, react, vue)
+- vertical-tabs (angular, angular-standalone, html, react, vue)
+- vertical-tabs-with-avatar (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

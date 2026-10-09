@@ -2,63 +2,17 @@
 
 > Dropdown for selecting a date or a relative date range.
 
+- Web component: `<ix-date-dropdown>`
+- React/Vue: `IxDateDropdown` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-date-dropdown>` (`IxModule` from `@siemens/ix-angular` or `IxDateDropdown` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/date-dropdown/code.md
+- https://ix.siemens.io/docs/components/date-dropdown/code.md
 
 ## Figma IDs
 
 - 45886:27067
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- date-dropdown
-  - angular:
-    - `angular/date-dropdown.html`: [file](../../examples/angular/date-dropdown.html)
-    - `angular/date-dropdown.ts`: [file](../../examples/angular/date-dropdown.ts)
-  - angular-standalone:
-    - `angular-standalone/date-dropdown.html`: [file](../../examples/angular-standalone/date-dropdown.html)
-    - `angular-standalone/date-dropdown.ts`: [file](../../examples/angular-standalone/date-dropdown.ts)
-  - html:
-    - `html/date-dropdown.html`: [file](../../examples/html/date-dropdown.html)
-  - react:
-    - `react/date-dropdown.tsx`: [file](../../examples/react/date-dropdown.tsx)
-  - vue:
-    - `vue/date-dropdown.vue`: [file](../../examples/vue/date-dropdown.vue)
-- date-dropdown-presets
-  - angular:
-    - `angular/date-dropdown-presets.html`: [file](../../examples/angular/date-dropdown-presets.html)
-    - `angular/date-dropdown-presets.ts`: [file](../../examples/angular/date-dropdown-presets.ts)
-  - angular-standalone:
-    - `angular-standalone/date-dropdown-presets.html`: [file](../../examples/angular-standalone/date-dropdown-presets.html)
-    - `angular-standalone/date-dropdown-presets.ts`: [file](../../examples/angular-standalone/date-dropdown-presets.ts)
-  - html:
-    - `html/date-dropdown-presets.html`: [file](../../examples/html/date-dropdown-presets.html)
-  - react:
-    - `react/date-dropdown-presets.tsx`: [file](../../examples/react/date-dropdown-presets.tsx)
-  - vue:
-    - `vue/date-dropdown-presets.vue`: [file](../../examples/vue/date-dropdown-presets.vue)
-- date-dropdown-user-range
-  - angular:
-    - `angular/date-dropdown-user-range.html`: [file](../../examples/angular/date-dropdown-user-range.html)
-    - `angular/date-dropdown-user-range.ts`: [file](../../examples/angular/date-dropdown-user-range.ts)
-  - angular-standalone:
-    - `angular-standalone/date-dropdown-user-range.html`: [file](../../examples/angular-standalone/date-dropdown-user-range.html)
-    - `angular-standalone/date-dropdown-user-range.ts`: [file](../../examples/angular-standalone/date-dropdown-user-range.ts)
-  - html:
-    - `html/date-dropdown-user-range.html`: [file](../../examples/html/date-dropdown-user-range.html)
-  - react:
-    - `react/date-dropdown-user-range.tsx`: [file](../../examples/react/date-dropdown-user-range.tsx)
-  - vue:
-    - `vue/date-dropdown-user-range.vue`: [file](../../examples/vue/date-dropdown-user-range.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -84,6 +38,29 @@ Pattern and file links are relative to this Markdown file.
 
 - `dateRangeChange` - EventEmitter for date range change events. This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
 
+## Methods
+
+- `getDateRange() => Promise<DateRangeChangeEvent>` - Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-date-picker`, `ix-dropdown`, `ix-spinner`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- date-dropdown (angular, angular-standalone, html, react, vue)
+- date-dropdown-presets (angular, angular-standalone, html, react, vue)
+- date-dropdown-user-range (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

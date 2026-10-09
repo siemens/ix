@@ -2,57 +2,17 @@
 
 > Navigation trail that shows the user's location within a hierarchy.
 
+- Web component: `<ix-breadcrumb>`
+- React/Vue: `IxBreadcrumb` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-breadcrumb>` (`IxModule` from `@siemens/ix-angular` or `IxBreadcrumb` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/breadcrumb/guide.md
+- https://ix.siemens.io/docs/components/breadcrumb/guide.md
 
 ## Figma IDs
 
 - 1603:54616
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- breadcrumb
-  - angular:
-    - `angular/breadcrumb.ts`: [file](../../examples/angular/breadcrumb.ts)
-  - angular-standalone:
-    - `angular-standalone/breadcrumb.ts`: [file](../../examples/angular-standalone/breadcrumb.ts)
-  - html:
-    - `html/breadcrumb.html`: [file](../../examples/html/breadcrumb.html)
-  - react:
-    - `react/breadcrumb.tsx`: [file](../../examples/react/breadcrumb.tsx)
-  - vue:
-    - `vue/breadcrumb.vue`: [file](../../examples/vue/breadcrumb.vue)
-- breadcrumb-next-items
-  - angular:
-    - `angular/breadcrumb-next-items.ts`: [file](../../examples/angular/breadcrumb-next-items.ts)
-  - angular-standalone:
-    - `angular-standalone/breadcrumb-next-items.ts`: [file](../../examples/angular-standalone/breadcrumb-next-items.ts)
-  - html:
-    - `html/breadcrumb-next-items.html`: [file](../../examples/html/breadcrumb-next-items.html)
-  - react:
-    - `react/breadcrumb-next-items.tsx`: [file](../../examples/react/breadcrumb-next-items.tsx)
-  - vue:
-    - `vue/breadcrumb-next-items.vue`: [file](../../examples/vue/breadcrumb-next-items.vue)
-- breadcrumb-truncate
-  - angular:
-    - `angular/breadcrumb-truncate.ts`: [file](../../examples/angular/breadcrumb-truncate.ts)
-  - angular-standalone:
-    - `angular-standalone/breadcrumb-truncate.ts`: [file](../../examples/angular-standalone/breadcrumb-truncate.ts)
-  - html:
-    - `html/breadcrumb-truncate.html`: [file](../../examples/html/breadcrumb-truncate.html)
-  - react:
-    - `react/breadcrumb-truncate.tsx`: [file](../../examples/react/breadcrumb-truncate.tsx)
-  - vue:
-    - `vue/breadcrumb-truncate.vue`: [file](../../examples/vue/breadcrumb-truncate.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -68,6 +28,29 @@ Pattern and file links are relative to this Markdown file.
 - `itemClick` - Crumb item clicked event
 - `nextClick` - Next item clicked event
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Breadcrumb items.
+
+## Dependencies
+
+- Renders: `ix-dropdown-button`, `ix-dropdown-item`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- breadcrumb (angular, angular-standalone, html, react, vue)
+- breadcrumb-next-items (angular, angular-standalone, html, react, vue)
+- breadcrumb-truncate (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

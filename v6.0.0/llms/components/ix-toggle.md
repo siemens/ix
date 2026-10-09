@@ -2,79 +2,17 @@
 
 > Switch control for toggling a single setting on or off.
 
+- Web component: `<ix-toggle>`
+- React/Vue: `IxToggle` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-toggle>` (`IxModule` from `@siemens/ix-angular` or `IxToggle` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/toggle/guide.md
+- https://ix.siemens.io/docs/components/toggle/guide.md
 
 ## Figma IDs
 
 - 43875:36542
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- toggle
-  - angular:
-    - `angular/toggle.ts`: [file](../../examples/angular/toggle.ts)
-  - angular-standalone:
-    - `angular-standalone/toggle.ts`: [file](../../examples/angular-standalone/toggle.ts)
-  - html:
-    - `html/toggle.html`: [file](../../examples/html/toggle.html)
-  - react:
-    - `react/toggle.tsx`: [file](../../examples/react/toggle.tsx)
-  - vue:
-    - `vue/toggle.vue`: [file](../../examples/vue/toggle.vue)
-- toggle-checked
-  - angular:
-    - `angular/toggle-checked.ts`: [file](../../examples/angular/toggle-checked.ts)
-  - angular-standalone:
-    - `angular-standalone/toggle-checked.ts`: [file](../../examples/angular-standalone/toggle-checked.ts)
-  - html:
-    - `html/toggle-checked.html`: [file](../../examples/html/toggle-checked.html)
-  - react:
-    - `react/toggle-checked.tsx`: [file](../../examples/react/toggle-checked.tsx)
-  - vue:
-    - `vue/toggle-checked.vue`: [file](../../examples/vue/toggle-checked.vue)
-- toggle-custom-label
-  - angular:
-    - `angular/toggle-custom-label.ts`: [file](../../examples/angular/toggle-custom-label.ts)
-  - angular-standalone:
-    - `angular-standalone/toggle-custom-label.ts`: [file](../../examples/angular-standalone/toggle-custom-label.ts)
-  - html:
-    - `html/toggle-custom-label.html`: [file](../../examples/html/toggle-custom-label.html)
-  - react:
-    - `react/toggle-custom-label.tsx`: [file](../../examples/react/toggle-custom-label.tsx)
-  - vue:
-    - `vue/toggle-custom-label.vue`: [file](../../examples/vue/toggle-custom-label.vue)
-- toggle-disabled
-  - angular:
-    - `angular/toggle-disabled.ts`: [file](../../examples/angular/toggle-disabled.ts)
-  - angular-standalone:
-    - `angular-standalone/toggle-disabled.ts`: [file](../../examples/angular-standalone/toggle-disabled.ts)
-  - html:
-    - `html/toggle-disabled.html`: [file](../../examples/html/toggle-disabled.html)
-  - react:
-    - `react/toggle-disabled.tsx`: [file](../../examples/react/toggle-disabled.tsx)
-  - vue:
-    - `vue/toggle-disabled.vue`: [file](../../examples/vue/toggle-disabled.vue)
-- toggle-indeterminate
-  - angular:
-    - `angular/toggle-indeterminate.ts`: [file](../../examples/angular/toggle-indeterminate.ts)
-  - angular-standalone:
-    - `angular-standalone/toggle-indeterminate.ts`: [file](../../examples/angular-standalone/toggle-indeterminate.ts)
-  - html:
-    - `html/toggle-indeterminate.html`: [file](../../examples/html/toggle-indeterminate.html)
-  - react:
-    - `react/toggle-indeterminate.tsx`: [file](../../examples/react/toggle-indeterminate.tsx)
-  - vue:
-    - `vue/toggle-indeterminate.vue`: [file](../../examples/vue/toggle-indeterminate.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -94,6 +32,32 @@ Pattern and file links are relative to this Markdown file.
 - `checkedChange` - An event will be dispatched each time the slide-toggle changes its value.
 - `ixBlur` - An event will be dispatched each time the toggle is blurred.
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- toggle (angular, angular-standalone, html, react, vue)
+- toggle-checked (angular, angular-standalone, html, react, vue)
+- toggle-custom-label (angular, angular-standalone, html, react, vue)
+- toggle-disabled (angular, angular-standalone, html, react, vue)
+- toggle-indeterminate (angular, angular-standalone, html, react, vue)
+- toggle-ng-model (angular, angular-standalone)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

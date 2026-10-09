@@ -2,35 +2,15 @@
 
 > A single tab or entry within the settings overlay.
 
+- Web component: `<ix-menu-settings-item>`
+- React/Vue: `IxMenuSettingsItem` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-menu-settings-item>` (`IxModule` from `@siemens/ix-angular` or `IxMenuSettingsItem` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/settings/guide.md
+- https://ix.siemens.io/docs/components/settings/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- settings-legacy
-  - angular:
-    - `angular/settings-legacy.html`: [file](../../examples/angular/settings-legacy.html)
-    - `angular/settings-legacy.ts`: [file](../../examples/angular/settings-legacy.ts)
-  - angular-standalone:
-    - `angular-standalone/settings-legacy.html`: [file](../../examples/angular-standalone/settings-legacy.html)
-    - `angular-standalone/settings-legacy.ts`: [file](../../examples/angular-standalone/settings-legacy.ts)
-  - html:
-    - `html/settings-legacy.html`: [file](../../examples/html/settings-legacy.html)
-  - react:
-    - `react/settings-legacy.tsx`: [file](../../examples/react/settings-legacy.tsx)
-  - vue:
-    - `vue/settings-legacy.vue`: [file](../../examples/vue/settings-legacy.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -43,6 +23,27 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Settings item content.
+
+## Dependencies
+
+- Renders: `ix-tab-panel`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- settings-legacy (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

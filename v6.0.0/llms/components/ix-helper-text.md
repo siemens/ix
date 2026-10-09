@@ -2,25 +2,17 @@
 
 > Supplementary text that provides guidance or validation feedback for a form field.
 
+- Web component: `<ix-helper-text>`
+- React/Vue: `IxHelperText` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-helper-text>` (`IxModule` from `@siemens/ix-angular` or `IxHelperText` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/forms-field/guide.md
-- https://ix.siemens.io//docs/components/forms-layout/guide.md
-- https://ix.siemens.io//docs/components/forms-validation/guide.md
+- https://ix.siemens.io/docs/components/forms-field/guide.md
+- https://ix.siemens.io/docs/components/forms-layout/guide.md
+- https://ix.siemens.io/docs/components/forms-validation/guide.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -37,6 +29,27 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- None
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

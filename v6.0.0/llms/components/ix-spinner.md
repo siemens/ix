@@ -2,46 +2,17 @@
 
 > Animated indicator that signals an ongoing loading process.
 
+- Web component: `<ix-spinner>`
+- React/Vue: `IxSpinner` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-spinner>` (`IxModule` from `@siemens/ix-angular` or `IxSpinner` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/spinner/code.md
+- https://ix.siemens.io/docs/components/spinner/code.md
 
 ## Figma IDs
 
 - 453:5375
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- spinner
-  - angular:
-    - `angular/spinner.ts`: [file](../../examples/angular/spinner.ts)
-  - angular-standalone:
-    - `angular-standalone/spinner.ts`: [file](../../examples/angular-standalone/spinner.ts)
-  - html:
-    - `html/spinner.html`: [file](../../examples/html/spinner.html)
-  - react:
-    - `react/spinner.tsx`: [file](../../examples/react/spinner.tsx)
-  - vue:
-    - `vue/spinner.vue`: [file](../../examples/vue/spinner.vue)
-- spinner-large
-  - angular:
-    - `angular/spinner-large.ts`: [file](../../examples/angular/spinner-large.ts)
-  - angular-standalone:
-    - `angular-standalone/spinner-large.ts`: [file](../../examples/angular-standalone/spinner-large.ts)
-  - html:
-    - `html/spinner-large.html`: [file](../../examples/html/spinner-large.html)
-  - react:
-    - `react/spinner-large.tsx`: [file](../../examples/react/spinner-large.tsx)
-  - vue:
-    - `vue/spinner-large.vue`: [file](../../examples/vue/spinner-large.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -52,6 +23,28 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: None
+- Rendered by: `ix-application-switch-modal`, `ix-avatar`, `ix-breadcrumb-item`, `ix-button`, `ix-category-filter`, `ix-chat-attachment`, `ix-date-dropdown`, `ix-icon-button`, `ix-icon-toggle-button`, `ix-menu-expand-icon`, `ix-modal-loading`, `ix-pagination`, `ix-toggle-button`, `ix-upload`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- spinner (angular, angular-standalone, html, react, vue)
+- spinner-large (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

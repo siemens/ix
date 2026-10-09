@@ -2,47 +2,18 @@
 
 > Control for navigating between pages of content.
 
+- Web component: `<ix-pagination>`
+- React/Vue: `IxPagination` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-pagination>` (`IxModule` from `@siemens/ix-angular` or `IxPagination` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/pagination/code.md
+- https://ix.siemens.io/docs/components/pagination/code.md
 
 ## Figma IDs
 
 - 2302:67995
 - 2554:79100
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- pagination
-  - angular:
-    - `angular/pagination.ts`: [file](../../examples/angular/pagination.ts)
-  - angular-standalone:
-    - `angular-standalone/pagination.ts`: [file](../../examples/angular-standalone/pagination.ts)
-  - html:
-    - `html/pagination.html`: [file](../../examples/html/pagination.html)
-  - react:
-    - `react/pagination.tsx`: [file](../../examples/react/pagination.tsx)
-  - vue:
-    - `vue/pagination.vue`: [file](../../examples/vue/pagination.vue)
-- pagination-advanced
-  - angular:
-    - `angular/pagination-advanced.ts`: [file](../../examples/angular/pagination-advanced.ts)
-  - angular-standalone:
-    - `angular-standalone/pagination-advanced.ts`: [file](../../examples/angular-standalone/pagination-advanced.ts)
-  - html:
-    - `html/pagination-advanced.html`: [file](../../examples/html/pagination-advanced.html)
-  - react:
-    - `react/pagination-advanced.tsx`: [file](../../examples/react/pagination-advanced.tsx)
-  - vue:
-    - `vue/pagination-advanced.vue`: [file](../../examples/vue/pagination-advanced.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -64,6 +35,28 @@ Pattern and file links are relative to this Markdown file.
 - `itemCountChanged` - Item count change event
 - `pageSelected` - Page selection event
 
+## Methods
+
+- None
+
 ## Slots
+
+- None
+
+## Dependencies
+
+- Renders: `ix-icon-button`, `ix-select`, `ix-select-item`, `ix-spinner`, `ix-typography`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- pagination (angular, angular-standalone, html, react, vue)
+- pagination-advanced (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
 
 - None

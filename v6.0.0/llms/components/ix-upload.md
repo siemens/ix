@@ -2,42 +2,17 @@
 
 > Control for selecting and uploading files.
 
+- Web component: `<ix-upload>`
+- React/Vue: `IxUpload` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-upload>` (`IxModule` from `@siemens/ix-angular` or `IxUpload` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/upload/guide.md
+- https://ix.siemens.io/docs/components/upload/guide.md
 
 ## Figma IDs
 
 - 1028:14676
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- upload
-  - angular:
-    - `angular/upload.ts`: [file](../../examples/angular/upload.ts)
-  - angular-standalone:
-    - `angular-standalone/upload.ts`: [file](../../examples/angular-standalone/upload.ts)
-  - html:
-    - `html/upload.html`: [file](../../examples/html/upload.html)
-  - react:
-    - `react/upload.tsx`: [file](../../examples/react/upload.tsx)
-  - vue:
-    - `vue/upload.vue`: [file](../../examples/vue/upload.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- [upload](../patterns.md#upload)
-  - angular:
-    - `angular/upload.ts`: [file](../../patterns/angular/upload.ts)
-    - `angular/upload.html`: [file](../../patterns/angular/upload.html)
-    - `angular/upload.css`: [file](../../patterns/angular/upload.css)
-  - react:
-    - `react/upload.tsx`: [file](../../patterns/react/upload.tsx)
-    - `react/upload.module.css`: [file](../../patterns/react/upload.module.css)
 
 ## Properties
 
@@ -58,6 +33,27 @@ Pattern and file links are relative to this Markdown file.
 
 - `filesChanged` - You get an array of Files after drop-action or browse action is finished
 
+## Methods
+
+- `setFilesToUpload(obj: any) => Promise<void>` - Set files
+
 ## Slots
 
 - None
+
+## Dependencies
+
+- Renders: `ix-button`, `ix-spinner`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- upload (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- [upload](../patterns.md#upload): Use this pattern to provide a file upload area with a list of uploaded files and remove actions for each file.

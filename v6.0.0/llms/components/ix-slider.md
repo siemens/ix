@@ -2,55 +2,17 @@
 
 > Lets users choose a numeric value by dragging along a track.
 
+- Web component: `<ix-slider>`
+- React/Vue: `IxSlider` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-slider>` (`IxModule` from `@siemens/ix-angular` or `IxSlider` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/slider/code.md
+- https://ix.siemens.io/docs/components/slider/code.md
 
 ## Figma IDs
 
 - 50042:20986
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- slider
-  - angular:
-    - `angular/slider.css`: [file](../../examples/angular/slider.css)
-    - `angular/slider.html`: [file](../../examples/angular/slider.html)
-    - `angular/slider.ts`: [file](../../examples/angular/slider.ts)
-  - angular-standalone:
-    - `angular-standalone/slider.css`: [file](../../examples/angular-standalone/slider.css)
-    - `angular-standalone/slider.html`: [file](../../examples/angular-standalone/slider.html)
-    - `angular-standalone/slider.ts`: [file](../../examples/angular-standalone/slider.ts)
-  - html:
-    - `html/slider.css`: [file](../../examples/html/slider.css)
-    - `html/slider.html`: [file](../../examples/html/slider.html)
-  - react:
-    - `react/slider.scoped.css`: [file](../../examples/react/slider.scoped.css)
-    - `react/slider.tsx`: [file](../../examples/react/slider.tsx)
-  - vue:
-    - `vue/slider.css`: [file](../../examples/vue/slider.css)
-    - `vue/slider.vue`: [file](../../examples/vue/slider.vue)
-- slider-validation
-  - angular:
-    - `angular/slider-validation.html`: [file](../../examples/angular/slider-validation.html)
-    - `angular/slider-validation.ts`: [file](../../examples/angular/slider-validation.ts)
-  - angular-standalone:
-    - `angular-standalone/slider-validation.html`: [file](../../examples/angular-standalone/slider-validation.html)
-    - `angular-standalone/slider-validation.ts`: [file](../../examples/angular-standalone/slider-validation.ts)
-  - html:
-    - `html/slider-validation.html`: [file](../../examples/html/slider-validation.html)
-  - react:
-    - `react/slider-validation.tsx`: [file](../../examples/react/slider-validation.tsx)
-  - vue:
-    - `vue/slider-validation.vue`: [file](../../examples/vue/slider-validation.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
-
-- None
 
 ## Properties
 
@@ -74,7 +36,32 @@ Pattern and file links are relative to this Markdown file.
 
 - `valueChange` - Will emit the value when it changes
 
+## Methods
+
+- None
+
 ## Slots
 
 - `label-end` - Element will be displayed at the end of the slider
 - `label-start` - Element will be displayed at the start of the slider
+
+## Dependencies
+
+- Renders: `ix-field-wrapper`, `ix-tooltip`
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- slider (angular, angular-standalone, html, react, vue)
+- slider-error (angular, angular-standalone, html, react, vue)
+- slider-marker (angular, angular-standalone, html, react, vue)
+- slider-trace (angular, angular-standalone, html, react, vue)
+- slider-validation (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

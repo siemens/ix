@@ -2,7 +2,9 @@
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all 114 generated component detail files. Each detail file includes API metadata, related examples and patterns from generated relationship maps, and Figma IDs.
+This index links to all 114 generated component detail files. Each detail file includes properties, events, methods, slots, framework names, dependencies, documentation links, Figma IDs, related examples, and related patterns.
+
+For a compact one-line-per-component overview with React names and Figma IDs, use [catalog.md](catalog.md).
 
 ## Components
 

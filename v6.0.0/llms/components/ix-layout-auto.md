@@ -2,35 +2,15 @@
 
 > Responsive form layout that automatically adjusts columns to the available width.
 
+- Web component: `<ix-layout-auto>`
+- React/Vue: `IxLayoutAuto` from `@siemens/ix-react` / `@siemens/ix-vue`
+- Angular: `<ix-layout-auto>` (`IxModule` from `@siemens/ix-angular` or `IxLayoutAuto` from `@siemens/ix-angular/standalone`)
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/layout-auto/code.md
+- https://ix.siemens.io/docs/components/layout-auto/code.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- form-layout-auto
-  - angular:
-    - `angular/form-layout-auto.html`: [file](../../examples/angular/form-layout-auto.html)
-    - `angular/form-layout-auto.ts`: [file](../../examples/angular/form-layout-auto.ts)
-  - angular-standalone:
-    - `angular-standalone/form-layout-auto.html`: [file](../../examples/angular-standalone/form-layout-auto.html)
-    - `angular-standalone/form-layout-auto.ts`: [file](../../examples/angular-standalone/form-layout-auto.ts)
-  - html:
-    - `html/form-layout-auto.html`: [file](../../examples/html/form-layout-auto.html)
-  - react:
-    - `react/form-layout-auto.tsx`: [file](../../examples/react/form-layout-auto.tsx)
-  - vue:
-    - `vue/form-layout-auto.vue`: [file](../../examples/vue/form-layout-auto.vue)
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -45,6 +25,30 @@ Pattern and file links are relative to this Markdown file.
 
 - None
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Layout content.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: None
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- form-layout-auto (angular, angular-standalone, html, react, vue)
+- form-validation (angular, angular-standalone, html, react, vue)
+- layout-auto (angular, angular-standalone, html, react, vue)
+- layout-auto-custom (angular, angular-standalone, html, react, vue)
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None
