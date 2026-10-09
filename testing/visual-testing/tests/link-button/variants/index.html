@@ -1,0 +1,71 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link button icon variants</title>
+    <style>
+      .variants {
+        display: grid;
+        grid-template-columns: 8rem 12rem;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconArrowRight,
+        iconChevronRightSmall,
+        iconDocument,
+        iconOpenExternal,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconArrowRight,
+        iconChevronRightSmall,
+        iconDocument,
+        iconOpenExternal,
+      });
+    </script>
+  </head>
+  <body>
+    <div class="variants">
+      <span>Icon</span>
+      <span>Start</span>
+
+      <span>Internal</span>
+      <ix-link-button icon="internal" icon-position="start" url="/">
+        Link text
+      </ix-link-button>
+
+      <span>External</span>
+      <ix-link-button icon="external" icon-position="start" url="/">
+        Link text
+      </ix-link-button>
+
+      <span>File</span>
+      <ix-link-button icon="file" icon-position="start" url="/">
+        Link text
+      </ix-link-button>
+
+      <span>Action</span>
+      <ix-link-button icon="action" icon-position="start" url="/">
+        Link text
+      </ix-link-button>
+
+      <span>None</span>
+      <ix-link-button icon="none" icon-position="start" url="/">
+        Link text
+      </ix-link-button>
+    </div>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

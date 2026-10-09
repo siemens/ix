@@ -20,31 +20,15 @@ const icons = {
   iconOpenExternal,
 };
 
-regressionTest(
-  'renders with the default icon at the start',
-  async ({ mount, page }) => {
-    await mount('<ix-link-button url="/link">Link text</ix-link-button>', {
-      icons,
-    });
+regressionTest('renders without an icon by default', async ({ mount, page }) => {
+  await mount('<ix-link-button url="/link">Link text</ix-link-button>');
 
-    const linkButton = page.locator('ix-link-button');
-    const link = linkButton.getByRole('link', { name: 'Link text' });
-    await expect(linkButton).toHaveClass(/hydrated/);
-    await expect
-      .poll(() =>
-        link
-          .locator('ix-icon')
-          .evaluate((element: HTMLIxIconElement) => element.name)
-      )
-      .toBe(iconChevronRightSmall);
-    await expect(link.locator('ix-icon')).toHaveAttribute(
-      'aria-hidden',
-      'true'
-    );
-    await expect(link.locator('ix-icon')).toBeVisible();
-    await expect(link.locator('ix-icon + .link')).toHaveCount(1);
-  }
-);
+  const linkButton = page.locator('ix-link-button');
+  const link = linkButton.getByRole('link', { name: 'Link text' });
+  await expect(linkButton).toHaveClass(/hydrated/);
+  await expect(link).toBeVisible();
+  await expect(link.locator('ix-icon')).toHaveCount(0);
+});
 
 regressionTest(
   'selects each icon and places it at either end',

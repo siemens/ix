@@ -2731,9 +2731,9 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Icon displayed alongside the link label. Use `none` to hide the icon.
+          * Icon displayed alongside the link label. Defaults to `none`.
           * @since 6.0.0
-          * @default 'internal'
+          * @default 'none'
          */
         "icon": 'none' | 'internal' | 'external' | 'file' | 'action';
         /**
@@ -9945,9 +9945,9 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Icon displayed alongside the link label. Use `none` to hide the icon.
+          * Icon displayed alongside the link label. Defaults to `none`.
           * @since 6.0.0
-          * @default 'internal'
+          * @default 'none'
          */
         "icon"?: 'none' | 'internal' | 'external' | 'file' | 'action';
         /**

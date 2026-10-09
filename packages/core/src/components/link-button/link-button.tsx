@@ -49,11 +49,10 @@ export class LinkButton {
   @Prop() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
 
   /**
-   * Icon displayed alongside the link label. Use `none` to hide the icon.
+   * Icon displayed alongside the link label. Defaults to `none`.
    * @since 6.0.0
    */
-  @Prop() icon: 'none' | 'internal' | 'external' | 'file' | 'action' =
-    'internal';
+  @Prop() icon: 'none' | 'internal' | 'external' | 'file' | 'action' = 'none';
 
   /**
    * Position of the icon relative to the link label.

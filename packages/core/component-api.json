@@ -5937,7 +5937,7 @@
           "type": "\"action\" | \"external\" | \"file\" | \"internal\" | \"none\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'internal'",
+          "default": "'none'",
           "optional": false,
           "required": false,
           "deprecated": false
