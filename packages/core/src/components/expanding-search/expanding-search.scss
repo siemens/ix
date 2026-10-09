@@ -15,38 +15,31 @@ $container-width: var(--ix-expanding-search--container-width);
 
 :host {
   display: inline-flex;
-  width: auto;
+  width: var(--ix-expanding-search-collapsed--width);
   height: var(--ix-expanding-search--height);
   align-items: center;
   justify-content: space-between;
   position: relative;
+  transition: width
+    var(--ix-expanding-search-input-container--transition-duration) ease-in-out;
 
   @include component.ix-component;
-
-  .input-container {
-    transition: all
-      var(--ix-expanding-search-input-container--transition-duration)
-      ease-in-out;
-  }
 
   input {
     @include input-control.input-control;
 
     cursor: auto !important;
     width: 100%;
-  }
+    transition-property: padding, opacity;
+    transition-duration: var(
+        --ix-expanding-search-input-container--transition-duration
+      ),
+      var(--theme-default-time);
+    transition-timing-function: ease-in-out;
 
-  .expanded {
-    width: $container-width;
-
-    &.fullWidth {
-      width: 100%;
+    &::placeholder {
+      transition: opacity var(--theme-default-time) ease-in-out;
     }
-  }
-
-  .collapsed {
-    width: var(--ix-expanding-search-collapsed--width);
-    border: none;
   }
 
   /*collapsed view*/
@@ -103,6 +96,8 @@ $container-width: var(--ix-expanding-search--container-width);
   .input-container {
     display: flex;
     position: absolute;
+    inset-inline-start: 0;
+    width: 100%;
     align-items: center;
     flex-wrap: nowrap;
   }
@@ -121,21 +116,25 @@ $container-width: var(--ix-expanding-search--container-width);
 
   .opacity-before {
     opacity: 0;
+
+    &::placeholder {
+      opacity: 0;
+    }
   }
 
   .opacity-after {
     opacity: 1;
+    &::placeholder {
+      opacity: 1;
+      transition-delay: var(--ix-expanding-search-button--transition-duration);
+    }
   }
 }
 
-:host(.right-position) {
-  width: $container-width !important;
+:host(.expanded) {
+  width: $container-width;
 }
 
-:host(.right-position.fullWidth) {
-  width: 100% !important;
-
-  .fullWidth {
-    width: 100% !important;
-  }
+:host(.expanded.fullWidth) {
+  width: 100%;
 }
