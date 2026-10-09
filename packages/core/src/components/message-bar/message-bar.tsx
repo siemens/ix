@@ -34,7 +34,12 @@ interface MessageTypeConfig {
 }
 
 /**
- * @slot default - Message content.
+ * Inline bar that displays a contextual message or notification.
+ *
+ * @documentation https://ix.siemens.io//docs/components/messagebar/code.md
+ * @figma-main-component-id 103814:17693
+ *
+ * @slot - Message content.
  */
 @Component({
   tag: 'ix-message-bar',

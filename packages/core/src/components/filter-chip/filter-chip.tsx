@@ -20,7 +20,9 @@ import {
 } from '@stencil/core';
 
 /**
- * @slot default - Filter chip label.
+ * Dismissible chip that represents an applied filter.
+ *
+ * @slot - Filter chip label.
  */
 @Component({
   tag: 'ix-filter-chip',
