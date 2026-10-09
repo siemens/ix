@@ -11,8 +11,8 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-event-list-item--transition-duration: var(--theme-default-time);
-  --ix-event-list-item-empty-indicator--border: var(--theme-weak-bdr-1);
+  --ix-event-list-item-empty-indicator--border: #{sys.$si-sys-sizing-border-width-default}
+    solid #{sys.$si-sys-color-border-4};
   --ix-event-list-item-chevron--color: #{sys.$si-sys-color-text-secondary};
   --ix-event-list-item-filled--background: #{sys.$si-sys-color-background-1};
   --ix-event-list-item-filled--background--active: #{sys.$si-sys-color-background-selected};
@@ -24,8 +24,6 @@
   --ix-event-list-item-filled--border-color--disabled: rgba(0, 0, 0, 0);
   --ix-event-list-item-filled--border-color--hover: rgba(0, 0, 0, 0);
   --ix-event-list-item-filled--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-event-list-item-indicator--width: var(--theme-size--2);
-  --ix-event-list-item-indicator-opacity--disabled: 0.3;
   --ix-event-list-item-outline--background: rgba(0, 0, 0, 0);
   --ix-event-list-item-outline--background--active: #{sys.$si-sys-color-background-selected};
   --ix-event-list-item-outline--background--disabled: rgba(0, 0, 0, 0);
@@ -39,6 +37,9 @@
 }
 
 :host {
+  --ix-event-list-item--transition-duration: var(--theme-default-time);
+  --ix-event-list-item-indicator--width: #{sys.$si-sys-sizing-size-30};
+  --ix-event-list-item-indicator-opacity--disabled: 0.3;
   --ix-event-list-item--height: #{sys.$si-sys-sizing-size-90};
   --ix-event-list-item--border-radius: #{vars.$default-border-radius};
   --ix-event-list-item--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
@@ -56,4 +57,8 @@
   --ix-event-list-item-container--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-event-list-item-event-content--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-event-list-item-chevron-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-event-list-item-container--border-width: calc(
+    #{sys.$si-sys-sizing-border-width-default} * 0.992
+  );
+  --ix-event-list-item-chevron-icon--opacity: 0.6;
 }

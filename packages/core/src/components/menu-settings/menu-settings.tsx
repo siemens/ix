@@ -22,7 +22,11 @@ import {
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 /**
- * @slot default - Settings overlay content.
+ * Settings overlay opened from the application menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+ *
+ * @slot - Settings menu content.
  */
 @Component({
   tag: 'ix-menu-settings',

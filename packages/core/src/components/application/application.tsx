@@ -21,11 +21,15 @@ import { themeSwitcher, ThemeVariant } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
 /**
- * @slot application-header - Header displayed at the top of the application.
- * @slot menu - Main application navigation.
- * @slot application-sidebar - Sidebar displayed next to the main content.
- * @slot default - Main application content.
- * @slot bottom - Footer displayed below the main content.
+ * Root container that sets up the overall application shell and layout.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application/guide.md
+ *
+ * @slot application-header - Application header, typically an `ix-application-header`.
+ * @slot menu - Application menu, typically an `ix-menu`.
+ * @slot application-sidebar - Application sidebar content.
+ * @slot - Main application content.
+ * @slot bottom - Content displayed at the bottom of the application layout.
  */
 @Component({
   tag: 'ix-application',

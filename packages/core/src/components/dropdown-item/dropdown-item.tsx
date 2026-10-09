@@ -34,7 +34,12 @@ import { FocusVisibleMixin } from '../utils/internal/mixins/focus-visible.mixin'
 import type { IxDropdownItemRole } from './dropdown-item.types';
 
 /**
- * @slot default - Dropdown item content.
+ * Selectable entry within a dropdown menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @figma-main-component-id 1603:52792
+ *
+ * @slot - Dropdown item label.
  */
 @Component({
   tag: 'ix-dropdown-item',

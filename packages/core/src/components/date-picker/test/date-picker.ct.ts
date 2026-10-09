@@ -949,7 +949,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2023/09/01" week-start-index="6" single-selection></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(5);
     }
   );
@@ -962,7 +964,9 @@ regressionTest.describe('week start index', () => {
       // same weekday, which only holds if the names are rebuilt with the grid.
       await mount(`<ix-date-picker from="2023/09/01"></ix-date-picker>`);
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(4);
 
       const fridayHeader = (await getColumnHeaders(page))[4];
@@ -990,7 +994,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       expect(await getRenderedDays(page)).toEqual(
         Array.from({ length: 31 }, (_, index) => index + 1)
@@ -1007,7 +1013,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/02/01" week-start-index="6"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       const days = await getRenderedDays(page);
       expect(days).toHaveLength(28);
@@ -1024,7 +1032,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       expect(await getRowWidths(page)).toEqual([7, 7, 7, 7, 7, 7]);
     }
@@ -1039,7 +1049,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2023/12/01" week-start-index="6" show-week-numbers></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       const weekNumbers = await getWeekNumbers(page);
       expect(weekNumbers).toEqual([48, 49, 50, 51, 52, 1]);
@@ -1054,7 +1066,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2023/12/01" week-start-index="6" locale="en"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       const headers = await getColumnHeaders(page);
       expect(headers[0]).toBe('Sun');

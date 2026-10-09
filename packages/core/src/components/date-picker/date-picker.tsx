@@ -54,6 +54,12 @@ import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DatePickerYearMonth } from './date-picker.types';
 
+/**
+ * Calendar for selecting a single date or a date range.
+ *
+ * @documentation https://ix.siemens.io//docs/components/date-picker/guide.md
+ * @figma-main-component-id 561:6290
+ */
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',

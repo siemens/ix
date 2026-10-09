@@ -21,4 +21,6 @@
   --ix-link-button--height: #{sys.$si-sys-sizing-size-80};
   --ix-link-button--min-width: #{sys.$si-sys-sizing-size-80};
   --ix-link-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-20} 0 0;
+  --ix-link-button-link--text-underline-offset: 0.2rem;
+  --ix-link-button--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }

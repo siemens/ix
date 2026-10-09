@@ -34,6 +34,8 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
+ * @figma-main-component-id 133528:32836
  * @since 5.2.0
  * @form-ready
  * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the chat input

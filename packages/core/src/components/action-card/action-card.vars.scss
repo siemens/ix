@@ -10,12 +10,13 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-action-card--border-radius: var(--theme-default-border-radius);
-  --ix-action-card--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-action-card--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
 
 :host {
+  --ix-action-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-action-card--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-action-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-action-card--min-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} + #{sys.$si-sys-sizing-spacing-x-30}
   );
