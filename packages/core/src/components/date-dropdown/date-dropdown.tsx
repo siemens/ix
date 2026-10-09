@@ -208,7 +208,8 @@ export class DateDropdown
   /**
    * EventEmitter for date range change events.
    *
-   * This event is emitted when the date range changes within the component.
+   * Emitted when Done confirms a range, a preset is selected, or the range
+   * properties change. Dismissing the dropdown discards pending edits.
    * The event payload contains information about the selected date range.
    */
   @Event()
@@ -235,11 +236,16 @@ export class DateDropdown
 
   private readonly datePickerRef = makeRef<HTMLIxDatePickerElement>();
 
+  private confirmedRangeValue?: typeof this.currentRangeValue;
+
   private inheritAriaAttributes: A11yAttributes = {};
 
   override componentWillLoad() {
     this.initialize();
     this.setDateRangeSelection(this.dateRangeId);
+    this.confirmedRangeValue = this.currentRangeValue
+      ? { ...this.currentRangeValue }
+      : undefined;
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
   }
 
@@ -319,6 +325,7 @@ export class DateDropdown
     );
     if (this.currentRangeValue) {
       this.currentRangeValue = { ...this.currentRangeValue, isoFrom, isoTo };
+      this.confirmedRangeValue = { ...this.currentRangeValue };
     }
     this.dateRangeChange.emit({ ...rangeValue, isoFrom, isoTo });
   }
@@ -436,8 +443,11 @@ export class DateDropdown
           suppressOverflowBehavior
           onShowChanged={async ({ detail: show }) => {
             this.show = show;
-            if (!show && this.currentRangeValue) {
-              this.onDateSelect(this.currentRangeValue);
+            if (!show) {
+              this.currentRangeValue = this.confirmedRangeValue
+                ? { ...this.confirmedRangeValue }
+                : undefined;
+              this.refreshIsoValues();
             }
 
             if (show && hasKeyboardMode()) {
@@ -490,8 +500,8 @@ export class DateDropdown
                 onDateRangeChange={(e) => e.stopPropagation()}
                 format={this.format}
                 singleSelection={this.singleSelection}
-                from={this.from || this.currentRangeValue?.from}
-                to={this.to || this.currentRangeValue?.to}
+                from={this.currentRangeValue?.from}
+                to={this.currentRangeValue?.to}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
                 today={this.today}

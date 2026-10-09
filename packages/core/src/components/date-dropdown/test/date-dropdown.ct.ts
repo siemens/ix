@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 import { DateTime } from 'luxon';
 import { DateDropdownOption } from '../date-dropdown.types';
@@ -17,6 +17,210 @@ regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
   await expect(dateDropdown).toHaveAttribute('hydrated');
+});
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `<ix-date-dropdown aria-label="Date range" from="2024/02/16" to="2024/02/18"></ix-date-dropdown>`
+  );
+  await expect(page.locator(DATE_DROPDOWN_SELECTOR)).toHaveClass(
+    /\bhydrated\b/
+  );
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest.describe('custom range confirmation', () => {
+  const initialRange = {
+    id: 'custom',
+    from: '2024/02/16',
+    to: '2024/02/18',
+    isoFrom: '2024-02-16',
+    isoTo: '2024-02-18',
+  };
+
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`
+      <div>
+        <ix-date-dropdown from="2024/02/16" to="2024/02/18" locale="en"></ix-date-dropdown>
+        <button>Outside</button>
+      </div>
+    `);
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveClass(/\bhydrated\b/);
+    await dateDropdown.evaluate((el) => {
+      el.dataset.rangeEvents = '[]';
+      el.addEventListener('dateRangeChange', (event) => {
+        const events = JSON.parse(el.dataset.rangeEvents ?? '[]');
+        events.push((event as CustomEvent).detail);
+        el.dataset.rangeEvents = JSON.stringify(events);
+      });
+    });
+  });
+
+  const editRange = async (page: Page) => {
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await dateDropdown.getByTestId('date-dropdown-trigger').click();
+    const datePicker = dateDropdown.locator('ix-date-picker');
+    await datePicker
+      .getByRole('gridcell', { name: '20 February 2024', exact: true })
+      .click();
+    await datePicker
+      .getByRole('gridcell', { name: '22 February 2024', exact: true })
+      .click();
+    const range = await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+      el.getDateRange()
+    );
+    expect(range.from).toBe('2024/02/20');
+    expect(range.to).toBe('2024/02/22');
+    await expect(dateDropdown).toHaveAttribute('data-range-events', '[]');
+    return dateDropdown;
+  };
+
+  for (const dismissal of ['outside click', 'Escape']) {
+    regressionTest(
+      `discards the pending range on ${dismissal}`,
+      async ({ page }) => {
+        const dateDropdown = await editRange(page);
+        if (dismissal === 'outside click') {
+          await page
+            .getByRole('button', { name: 'Outside', exact: true })
+            .click();
+        } else {
+          await page.keyboard.press('Escape');
+        }
+
+        await expect(
+          dateDropdown.getByTestId('date-dropdown')
+        ).not.toBeVisible();
+        await expect(dateDropdown).toHaveAttribute('data-range-events', '[]');
+        expect(
+          await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+            el.getDateRange()
+          )
+        ).toEqual(initialRange);
+        await expect(
+          dateDropdown.getByTestId('date-dropdown-trigger')
+        ).toHaveAttribute('aria-label', '2024/02/16 - 2024/02/18');
+
+        await dateDropdown.getByTestId('date-dropdown-trigger').click();
+        expect(
+          await dateDropdown
+            .locator('ix-date-picker')
+            .evaluate((el: HTMLIxDatePickerElement) => el.getCurrentDate())
+        ).toMatchObject({ from: initialRange.from, to: initialRange.to });
+      }
+    );
+  }
+
+  regressionTest(
+    'Done confirms the pending range exactly once',
+    async ({ page }) => {
+      const dateDropdown = await editRange(page);
+      await dateDropdown
+        .getByRole('button', { name: 'Done', exact: true })
+        .click();
+      await expect(dateDropdown.getByTestId('date-dropdown')).not.toBeVisible();
+
+      const events = await dateDropdown.evaluate((el) =>
+        JSON.parse(el.dataset.rangeEvents ?? '[]')
+      );
+      expect(events).toEqual([
+        {
+          id: 'custom',
+          from: '2024/02/20',
+          to: '2024/02/22',
+          isoFrom: '2024-02-20',
+          isoTo: '2024-02-22',
+        },
+      ]);
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toEqual(events[0]);
+    }
+  );
+
+  regressionTest(
+    'keeps an explicitly selected preset on dismissal',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+        el.dateRangeOptions = [
+          {
+            id: 'week',
+            label: 'One week',
+            from: '2024/02/01',
+            to: '2024/02/07',
+          },
+          {
+            id: 'later',
+            label: 'Later week',
+            from: '2024/02/10',
+            to: '2024/02/17',
+          },
+        ];
+        el.dateRangeId = 'week';
+      });
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toHaveAttribute('aria-label', '2024/02/01 - 2024/02/07');
+      await dateDropdown.evaluate((el) => (el.dataset.rangeEvents = '[]'));
+      await dateDropdown.getByTestId('date-dropdown-trigger').click();
+      await dateDropdown.getByRole('button', { name: /Later week/ }).click();
+      const confirmedRange = await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement) => el.getDateRange()
+      );
+      await page.keyboard.press('Escape');
+      await expect(dateDropdown.getByTestId('date-dropdown')).not.toBeVisible();
+
+      expect(
+        await dateDropdown.evaluate((el) =>
+          JSON.parse(el.dataset.rangeEvents ?? '[]')
+        )
+      ).toEqual([confirmedRange]);
+      expect(confirmedRange.id).toBe('later');
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toEqual(confirmedRange);
+    }
+  );
+
+  regressionTest(
+    'keeps an external range update on dismissal',
+    async ({ page }) => {
+      const dateDropdown = await editRange(page);
+      await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+        el.from = '2024/03/01';
+        el.to = '2024/03/03';
+      });
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toHaveAttribute('aria-label', '2024/03/01 - 2024/03/03');
+      const events = await dateDropdown.getAttribute('data-range-events');
+      if (events === null) {
+        throw new Error('Date range event capture is missing');
+      }
+      await page.getByRole('button', { name: 'Outside', exact: true }).click();
+      await expect(dateDropdown.getByTestId('date-dropdown')).not.toBeVisible();
+      await expect(dateDropdown).toHaveAttribute('data-range-events', events);
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toEqual({
+        id: 'custom',
+        from: '2024/03/01',
+        to: '2024/03/03',
+        isoFrom: '2024-03-01',
+        isoTo: '2024-03-03',
+      });
+    }
+  );
 });
 
 regressionTest.describe('date dropdown tests', () => {
