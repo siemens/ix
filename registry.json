@@ -2,2271 +2,1149 @@
   "$schema": "./registry.schema.json",
   "name": "siemens-ix-registry",
   "dist-tags": {
-    "latest": "v5.2.1"
+    "latest": "main"
   },
   "versions": {
-    "v5.2.0": {
-      "blocks": [
+    "main": {
+      "patterns": [
         {
           "name": "change-password",
-          "path": "v5.2.0/blocks/change-password.json"
+          "path": "main/patterns/change-password.json"
         },
         {
           "name": "error-page",
-          "path": "v5.2.0/blocks/error-page.json"
+          "path": "main/patterns/error-page.json"
         },
         {
           "name": "login-overlay",
-          "path": "v5.2.0/blocks/login-overlay.json"
+          "path": "main/patterns/login-overlay.json"
         },
         {
           "name": "password-criteria",
-          "path": "v5.2.0/blocks/password-criteria.json"
+          "path": "main/patterns/password-criteria.json"
         },
         {
           "name": "upload",
-          "path": "v5.2.0/blocks/upload.json"
+          "path": "main/patterns/upload.json"
         }
       ],
       "examples": [
         {
           "name": "about-and-legal",
-          "path": "v5.2.0/examples/about-and-legal.json"
+          "path": "main/examples/about-and-legal.json"
         },
         {
           "name": "about-and-legal-legacy",
-          "path": "v5.2.0/examples/about-and-legal-legacy.json"
+          "path": "main/examples/about-and-legal-legacy.json"
         },
         {
           "name": "action-card",
-          "path": "v5.2.0/examples/action-card.json"
+          "path": "main/examples/action-card.json"
         },
         {
           "name": "add-icons",
-          "path": "v5.2.0/examples/add-icons.json"
+          "path": "main/examples/add-icons.json"
         },
         {
           "name": "aggrid",
-          "path": "v5.2.0/examples/aggrid.json"
-        },
-        {
-          "name": "application",
-          "path": "v5.2.0/examples/application.json"
-        },
-        {
-          "name": "application-advanced",
-          "path": "v5.2.0/examples/application-advanced.json"
-        },
-        {
-          "name": "application-app-switch",
-          "path": "v5.2.0/examples/application-app-switch.json"
-        },
-        {
-          "name": "application-breakpoints",
-          "path": "v5.2.0/examples/application-breakpoints.json"
-        },
-        {
-          "name": "application-header",
-          "path": "v5.2.0/examples/application-header.json"
-        },
-        {
-          "name": "aria-label-properties",
-          "path": "v5.2.0/examples/aria-label-properties.json"
-        },
-        {
-          "name": "avatar",
-          "path": "v5.2.0/examples/avatar.json"
-        },
-        {
-          "name": "avatar-image",
-          "path": "v5.2.0/examples/avatar-image.json"
-        },
-        {
-          "name": "avatar-initials",
-          "path": "v5.2.0/examples/avatar-initials.json"
-        },
-        {
-          "name": "badge",
-          "path": "v5.2.0/examples/badge.json"
-        },
-        {
-          "name": "badge-counter",
-          "path": "v5.2.0/examples/badge-counter.json"
-        },
-        {
-          "name": "badge-dot",
-          "path": "v5.2.0/examples/badge-dot.json"
-        },
-        {
-          "name": "badge-label",
-          "path": "v5.2.0/examples/badge-label.json"
-        },
-        {
-          "name": "badge-status-icon",
-          "path": "v5.2.0/examples/badge-status-icon.json"
-        },
-        {
-          "name": "basic-navigation-migration",
-          "path": "v5.2.0/examples/basic-navigation-migration.json"
-        },
-        {
-          "name": "blind",
-          "path": "v5.2.0/examples/blind.json"
-        },
-        {
-          "name": "blind-header-actions",
-          "path": "v5.2.0/examples/blind-header-actions.json"
-        },
-        {
-          "name": "blind-variants",
-          "path": "v5.2.0/examples/blind-variants.json"
-        },
-        {
-          "name": "breadcrumb",
-          "path": "v5.2.0/examples/breadcrumb.json"
-        },
-        {
-          "name": "breadcrumb-next-items",
-          "path": "v5.2.0/examples/breadcrumb-next-items.json"
-        },
-        {
-          "name": "breadcrumb-truncate",
-          "path": "v5.2.0/examples/breadcrumb-truncate.json"
-        },
-        {
-          "name": "button-danger-primary",
-          "path": "v5.2.0/examples/button-danger-primary.json"
-        },
-        {
-          "name": "button-danger-secondary",
-          "path": "v5.2.0/examples/button-danger-secondary.json"
-        },
-        {
-          "name": "button-danger-tertiary",
-          "path": "v5.2.0/examples/button-danger-tertiary.json"
-        },
-        {
-          "name": "button-group",
-          "path": "v5.2.0/examples/button-group.json"
-        },
-        {
-          "name": "button-loading",
-          "path": "v5.2.0/examples/button-loading.json"
-        },
-        {
-          "name": "button-secondary",
-          "path": "v5.2.0/examples/button-secondary.json"
-        },
-        {
-          "name": "button-subtle-primary",
-          "path": "v5.2.0/examples/button-subtle-primary.json"
-        },
-        {
-          "name": "button-subtle-secondary",
-          "path": "v5.2.0/examples/button-subtle-secondary.json"
-        },
-        {
-          "name": "button-subtle-tertiary",
-          "path": "v5.2.0/examples/button-subtle-tertiary.json"
-        },
-        {
-          "name": "button-tertiary",
-          "path": "v5.2.0/examples/button-tertiary.json"
-        },
-        {
-          "name": "button-text-icon",
-          "path": "v5.2.0/examples/button-text-icon.json"
-        },
-        {
-          "name": "button-with-icon",
-          "path": "v5.2.0/examples/button-with-icon.json"
-        },
-        {
-          "name": "button-with-link",
-          "path": "v5.2.0/examples/button-with-link.json"
-        },
-        {
-          "name": "buttons",
-          "path": "v5.2.0/examples/buttons.json"
-        },
-        {
-          "name": "card",
-          "path": "v5.2.0/examples/card.json"
-        },
-        {
-          "name": "card-list",
-          "path": "v5.2.0/examples/card-list.json"
-        },
-        {
-          "name": "category-filter",
-          "path": "v5.2.0/examples/category-filter.json"
-        },
-        {
-          "name": "category-filter-suggestions",
-          "path": "v5.2.0/examples/category-filter-suggestions.json"
-        },
-        {
-          "name": "chat",
-          "path": "v5.2.0/examples/chat.json"
-        },
-        {
-          "name": "chat-ai-message",
-          "path": "v5.2.0/examples/chat-ai-message.json"
-        },
-        {
-          "name": "chat-input",
-          "path": "v5.2.0/examples/chat-input.json"
-        },
-        {
-          "name": "chat-user-message",
-          "path": "v5.2.0/examples/chat-user-message.json"
-        },
-        {
-          "name": "checkbox",
-          "path": "v5.2.0/examples/checkbox.json"
-        },
-        {
-          "name": "checkbox-indeterminate",
-          "path": "v5.2.0/examples/checkbox-indeterminate.json"
-        },
-        {
-          "name": "chip",
-          "path": "v5.2.0/examples/chip.json"
-        },
-        {
-          "name": "content",
-          "path": "v5.2.0/examples/content.json"
-        },
-        {
-          "name": "content-header",
-          "path": "v5.2.0/examples/content-header.json"
-        },
-        {
-          "name": "content-header-no-back",
-          "path": "v5.2.0/examples/content-header-no-back.json"
-        },
-        {
-          "name": "content-header-with-slot",
-          "path": "v5.2.0/examples/content-header-with-slot.json"
-        },
-        {
-          "name": "custom-field",
-          "path": "v5.2.0/examples/custom-field.json"
-        },
-        {
-          "name": "custom-field-validation",
-          "path": "v5.2.0/examples/custom-field-validation.json"
-        },
-        {
-          "name": "date-dropdown",
-          "path": "v5.2.0/examples/date-dropdown.json"
-        },
-        {
-          "name": "date-dropdown-presets",
-          "path": "v5.2.0/examples/date-dropdown-presets.json"
-        },
-        {
-          "name": "date-dropdown-user-range",
-          "path": "v5.2.0/examples/date-dropdown-user-range.json"
-        },
-        {
-          "name": "date-input",
-          "path": "v5.2.0/examples/date-input.json"
-        },
-        {
-          "name": "date-input-disabled",
-          "path": "v5.2.0/examples/date-input-disabled.json"
-        },
-        {
-          "name": "date-input-label",
-          "path": "v5.2.0/examples/date-input-label.json"
-        },
-        {
-          "name": "date-input-min-max-date",
-          "path": "v5.2.0/examples/date-input-min-max-date.json"
-        },
-        {
-          "name": "date-input-readonly",
-          "path": "v5.2.0/examples/date-input-readonly.json"
-        },
-        {
-          "name": "date-input-validation",
-          "path": "v5.2.0/examples/date-input-validation.json"
-        },
-        {
-          "name": "date-input-with-slots",
-          "path": "v5.2.0/examples/date-input-with-slots.json"
-        },
-        {
-          "name": "date-range",
-          "path": "v5.2.0/examples/date-range.json"
-        },
-        {
-          "name": "datepicker",
-          "path": "v5.2.0/examples/datepicker.json"
-        },
-        {
-          "name": "datepicker-locale",
-          "path": "v5.2.0/examples/datepicker-locale.json"
-        },
-        {
-          "name": "datepicker-range",
-          "path": "v5.2.0/examples/datepicker-range.json"
-        },
-        {
-          "name": "datetime-input",
-          "path": "v5.2.0/examples/datetime-input.json"
-        },
-        {
-          "name": "datetime-input-disabled",
-          "path": "v5.2.0/examples/datetime-input-disabled.json"
-        },
-        {
-          "name": "datetime-input-label",
-          "path": "v5.2.0/examples/datetime-input-label.json"
-        },
-        {
-          "name": "datetime-input-min-max-date",
-          "path": "v5.2.0/examples/datetime-input-min-max-date.json"
-        },
-        {
-          "name": "datetime-input-readonly",
-          "path": "v5.2.0/examples/datetime-input-readonly.json"
-        },
-        {
-          "name": "datetime-input-validation",
-          "path": "v5.2.0/examples/datetime-input-validation.json"
-        },
-        {
-          "name": "datetime-input-with-slots",
-          "path": "v5.2.0/examples/datetime-input-with-slots.json"
-        },
-        {
-          "name": "datetime-range",
-          "path": "v5.2.0/examples/datetime-range.json"
-        },
-        {
-          "name": "datetimepicker",
-          "path": "v5.2.0/examples/datetimepicker.json"
-        },
-        {
-          "name": "divider",
-          "path": "v5.2.0/examples/divider.json"
-        },
-        {
-          "name": "drawer",
-          "path": "v5.2.0/examples/drawer.json"
-        },
-        {
-          "name": "drawer-full-height",
-          "path": "v5.2.0/examples/drawer-full-height.json"
-        },
-        {
-          "name": "dropdown",
-          "path": "v5.2.0/examples/dropdown.json"
-        },
-        {
-          "name": "dropdown-button",
-          "path": "v5.2.0/examples/dropdown-button.json"
-        },
-        {
-          "name": "dropdown-button-icon",
-          "path": "v5.2.0/examples/dropdown-button-icon.json"
-        },
-        {
-          "name": "dropdown-icon",
-          "path": "v5.2.0/examples/dropdown-icon.json"
-        },
-        {
-          "name": "dropdown-quick-actions",
-          "path": "v5.2.0/examples/dropdown-quick-actions.json"
-        },
-        {
-          "name": "dropdown-submenu",
-          "path": "v5.2.0/examples/dropdown-submenu.json"
-        },
-        {
-          "name": "echarts",
-          "path": "v5.2.0/examples/echarts.json"
-        },
-        {
-          "name": "echarts-bar-horizontal-stacked",
-          "path": "v5.2.0/examples/echarts-bar-horizontal-stacked.json"
-        },
-        {
-          "name": "echarts-bar-simple",
-          "path": "v5.2.0/examples/echarts-bar-simple.json"
-        },
-        {
-          "name": "echarts-circle",
-          "path": "v5.2.0/examples/echarts-circle.json"
-        },
-        {
-          "name": "echarts-empty-state",
-          "path": "v5.2.0/examples/echarts-empty-state.json"
-        },
-        {
-          "name": "echarts-gauge",
-          "path": "v5.2.0/examples/echarts-gauge.json"
-        },
-        {
-          "name": "echarts-line-advanced",
-          "path": "v5.2.0/examples/echarts-line-advanced.json"
-        },
-        {
-          "name": "echarts-line-multiple-y-axis",
-          "path": "v5.2.0/examples/echarts-line-multiple-y-axis.json"
-        },
-        {
-          "name": "echarts-line-simple",
-          "path": "v5.2.0/examples/echarts-line-simple.json"
-        },
-        {
-          "name": "echarts-pie",
-          "path": "v5.2.0/examples/echarts-pie.json"
-        },
-        {
-          "name": "echarts-progress-arc",
-          "path": "v5.2.0/examples/echarts-progress-arc.json"
-        },
-        {
-          "name": "echarts-progress-circle",
-          "path": "v5.2.0/examples/echarts-progress-circle.json"
-        },
-        {
-          "name": "echarts-special-3d",
-          "path": "v5.2.0/examples/echarts-special-3d.json"
-        },
-        {
-          "name": "echarts-special-toolbox",
-          "path": "v5.2.0/examples/echarts-special-toolbox.json"
-        },
-        {
-          "name": "echarts-special-zoom",
-          "path": "v5.2.0/examples/echarts-special-zoom.json"
-        },
-        {
-          "name": "empty-state",
-          "path": "v5.2.0/examples/empty-state.json"
-        },
-        {
-          "name": "empty-state-compact",
-          "path": "v5.2.0/examples/empty-state-compact.json"
-        },
-        {
-          "name": "empty-state-compact-break",
-          "path": "v5.2.0/examples/empty-state-compact-break.json"
-        },
-        {
-          "name": "event-list",
-          "path": "v5.2.0/examples/event-list.json"
-        },
-        {
-          "name": "event-list-compact",
-          "path": "v5.2.0/examples/event-list-compact.json"
-        },
-        {
-          "name": "event-list-custom-item-height",
-          "path": "v5.2.0/examples/event-list-custom-item-height.json"
-        },
-        {
-          "name": "event-list-custom-item-height-in-number",
-          "path": "v5.2.0/examples/event-list-custom-item-height-in-number.json"
-        },
-        {
-          "name": "event-list-filled",
-          "path": "v5.2.0/examples/event-list-filled.json"
-        },
-        {
-          "name": "event-list-selected",
-          "path": "v5.2.0/examples/event-list-selected.json"
-        },
-        {
-          "name": "expanding-search",
-          "path": "v5.2.0/examples/expanding-search.json"
-        },
-        {
-          "name": "flip-tile",
-          "path": "v5.2.0/examples/flip-tile.json"
-        },
-        {
-          "name": "form-checkbox",
-          "path": "v5.2.0/examples/form-checkbox.json"
-        },
-        {
-          "name": "form-checkbox-disabled",
-          "path": "v5.2.0/examples/form-checkbox-disabled.json"
-        },
-        {
-          "name": "form-checkbox-group",
-          "path": "v5.2.0/examples/form-checkbox-group.json"
-        },
-        {
-          "name": "form-checkbox-group-indeterminate",
-          "path": "v5.2.0/examples/form-checkbox-group-indeterminate.json"
-        },
-        {
-          "name": "form-checkbox-validation",
-          "path": "v5.2.0/examples/form-checkbox-validation.json"
-        },
-        {
-          "name": "form-layout-auto",
-          "path": "v5.2.0/examples/form-layout-auto.json"
-        },
-        {
-          "name": "form-layout-grid",
-          "path": "v5.2.0/examples/form-layout-grid.json"
-        },
-        {
-          "name": "form-validation",
-          "path": "v5.2.0/examples/form-validation.json"
-        },
-        {
-          "name": "grid",
-          "path": "v5.2.0/examples/grid.json"
-        },
-        {
-          "name": "grid-padding",
-          "path": "v5.2.0/examples/grid-padding.json"
-        },
-        {
-          "name": "grid-size",
-          "path": "v5.2.0/examples/grid-size.json"
-        },
-        {
-          "name": "group",
-          "path": "v5.2.0/examples/group.json"
-        },
-        {
-          "name": "group-context-menu",
-          "path": "v5.2.0/examples/group-context-menu.json"
-        },
-        {
-          "name": "group-custom-entry",
-          "path": "v5.2.0/examples/group-custom-entry.json"
-        },
-        {
-          "name": "group-header-suppressed",
-          "path": "v5.2.0/examples/group-header-suppressed.json"
-        },
-        {
-          "name": "html-table",
-          "path": "v5.2.0/examples/html-table.json"
-        },
-        {
-          "name": "html-table-striped",
-          "path": "v5.2.0/examples/html-table-striped.json"
-        },
-        {
-          "name": "icon-toggle-button-secondary",
-          "path": "v5.2.0/examples/icon-toggle-button-secondary.json"
-        },
-        {
-          "name": "icon-toggle-button-subtle-primary",
-          "path": "v5.2.0/examples/icon-toggle-button-subtle-primary.json"
-        },
-        {
-          "name": "icon-toggle-button-subtle-secondary",
-          "path": "v5.2.0/examples/icon-toggle-button-subtle-secondary.json"
-        },
-        {
-          "name": "icon-toggle-button-subtle-tertiary",
-          "path": "v5.2.0/examples/icon-toggle-button-subtle-tertiary.json"
-        },
-        {
-          "name": "icon-toggle-button-tertiary",
-          "path": "v5.2.0/examples/icon-toggle-button-tertiary.json"
-        },
-        {
-          "name": "input",
-          "path": "v5.2.0/examples/input.json"
-        },
-        {
-          "name": "input-disabled",
-          "path": "v5.2.0/examples/input-disabled.json"
-        },
-        {
-          "name": "input-form-validation",
-          "path": "v5.2.0/examples/input-form-validation.json"
-        },
-        {
-          "name": "input-label",
-          "path": "v5.2.0/examples/input-label.json"
-        },
-        {
-          "name": "input-legacy",
-          "path": "v5.2.0/examples/input-legacy.json"
-        },
-        {
-          "name": "input-legacy-disabled",
-          "path": "v5.2.0/examples/input-legacy-disabled.json"
-        },
-        {
-          "name": "input-legacy-readonly",
-          "path": "v5.2.0/examples/input-legacy-readonly.json"
-        },
-        {
-          "name": "input-pattern",
-          "path": "v5.2.0/examples/input-pattern.json"
-        },
-        {
-          "name": "input-readonly",
-          "path": "v5.2.0/examples/input-readonly.json"
-        },
-        {
-          "name": "input-types",
-          "path": "v5.2.0/examples/input-types.json"
-        },
-        {
-          "name": "input-validation",
-          "path": "v5.2.0/examples/input-validation.json"
-        },
-        {
-          "name": "input-with-slots",
-          "path": "v5.2.0/examples/input-with-slots.json"
-        },
-        {
-          "name": "key-value",
-          "path": "v5.2.0/examples/key-value.json"
-        },
-        {
-          "name": "key-value-list",
-          "path": "v5.2.0/examples/key-value-list.json"
-        },
-        {
-          "name": "key-value-list-striped",
-          "path": "v5.2.0/examples/key-value-list-striped.json"
-        },
-        {
-          "name": "key-value-list-with-custom-value",
-          "path": "v5.2.0/examples/key-value-list-with-custom-value.json"
-        },
-        {
-          "name": "key-value-list-with-icon",
-          "path": "v5.2.0/examples/key-value-list-with-icon.json"
-        },
-        {
-          "name": "key-value-with-custom-value",
-          "path": "v5.2.0/examples/key-value-with-custom-value.json"
-        },
-        {
-          "name": "key-value-with-icon",
-          "path": "v5.2.0/examples/key-value-with-icon.json"
-        },
-        {
-          "name": "key-value-with-label-left",
-          "path": "v5.2.0/examples/key-value-with-label-left.json"
-        },
-        {
-          "name": "kpi",
-          "path": "v5.2.0/examples/kpi.json"
-        },
-        {
-          "name": "layout-auto",
-          "path": "v5.2.0/examples/layout-auto.json"
-        },
-        {
-          "name": "layout-auto-custom",
-          "path": "v5.2.0/examples/layout-auto-custom.json"
-        },
-        {
-          "name": "link-button",
-          "path": "v5.2.0/examples/link-button.json"
-        },
-        {
-          "name": "link-button-disabled",
-          "path": "v5.2.0/examples/link-button-disabled.json"
-        },
-        {
-          "name": "loading",
-          "path": "v5.2.0/examples/loading.json"
-        },
-        {
-          "name": "map-navigation-migration",
-          "path": "v5.2.0/examples/map-navigation-migration.json"
-        },
-        {
-          "name": "menu-category",
-          "path": "v5.2.0/examples/menu-category.json"
-        },
-        {
-          "name": "menu-with-bottom-tabs",
-          "path": "v5.2.0/examples/menu-with-bottom-tabs.json"
-        },
-        {
-          "name": "message",
-          "path": "v5.2.0/examples/message.json"
-        },
-        {
-          "name": "message-bar",
-          "path": "v5.2.0/examples/message-bar.json"
-        },
-        {
-          "name": "message-bar-removal",
-          "path": "v5.2.0/examples/message-bar-removal.json"
-        },
-        {
-          "name": "modal",
-          "path": "v5.2.0/examples/modal.json"
-        },
-        {
-          "name": "modal-by-instance",
-          "path": "v5.2.0/examples/modal-by-instance.json"
-        },
-        {
-          "name": "modal-by-instance-content",
-          "path": "v5.2.0/examples/modal-by-instance-content.json"
-        },
-        {
-          "name": "modal-by-template",
-          "path": "v5.2.0/examples/modal-by-template.json"
-        },
-        {
-          "name": "modal-close",
-          "path": "v5.2.0/examples/modal-close.json"
-        },
-        {
-          "name": "modal-form-ix-button-submit",
-          "path": "v5.2.0/examples/modal-form-ix-button-submit.json"
-        },
-        {
-          "name": "modal-non-blocking",
-          "path": "v5.2.0/examples/modal-non-blocking.json"
-        },
-        {
-          "name": "modal-sizes",
-          "path": "v5.2.0/examples/modal-sizes.json"
-        },
-        {
-          "name": "number-input",
-          "path": "v5.2.0/examples/number-input.json"
-        },
-        {
-          "name": "number-input-disabled",
-          "path": "v5.2.0/examples/number-input-disabled.json"
-        },
-        {
-          "name": "number-input-label",
-          "path": "v5.2.0/examples/number-input-label.json"
-        },
-        {
-          "name": "number-input-readonly",
-          "path": "v5.2.0/examples/number-input-readonly.json"
-        },
-        {
-          "name": "number-input-stepper-button",
-          "path": "v5.2.0/examples/number-input-stepper-button.json"
-        },
-        {
-          "name": "number-input-validation",
-          "path": "v5.2.0/examples/number-input-validation.json"
-        },
-        {
-          "name": "number-input-with-slots",
-          "path": "v5.2.0/examples/number-input-with-slots.json"
-        },
-        {
-          "name": "pagination",
-          "path": "v5.2.0/examples/pagination.json"
-        },
-        {
-          "name": "pagination-advanced",
-          "path": "v5.2.0/examples/pagination-advanced.json"
-        },
-        {
-          "name": "pane",
-          "path": "v5.2.0/examples/pane.json"
-        },
-        {
-          "name": "pane-layout",
-          "path": "v5.2.0/examples/pane-layout.json"
-        },
-        {
-          "name": "pill",
-          "path": "v5.2.0/examples/pill.json"
-        },
-        {
-          "name": "pill-variants",
-          "path": "v5.2.0/examples/pill-variants.json"
-        },
-        {
-          "name": "popover",
-          "path": "v5.2.0/examples/popover.json"
-        },
-        {
-          "name": "popover-news",
-          "path": "v5.2.0/examples/popover-news.json"
-        },
-        {
-          "name": "progress-indicator",
-          "path": "v5.2.0/examples/progress-indicator.json"
-        },
-        {
-          "name": "progress-indicator-circular",
-          "path": "v5.2.0/examples/progress-indicator-circular.json"
-        },
-        {
-          "name": "progress-indicator-circular-sizes",
-          "path": "v5.2.0/examples/progress-indicator-circular-sizes.json"
-        },
-        {
-          "name": "progress-indicator-circular-status",
-          "path": "v5.2.0/examples/progress-indicator-circular-status.json"
-        },
-        {
-          "name": "progress-indicator-linear-sizes",
-          "path": "v5.2.0/examples/progress-indicator-linear-sizes.json"
-        },
-        {
-          "name": "progress-indicator-linear-status",
-          "path": "v5.2.0/examples/progress-indicator-linear-status.json"
-        },
-        {
-          "name": "push-card",
-          "path": "v5.2.0/examples/push-card.json"
-        },
-        {
-          "name": "radio",
-          "path": "v5.2.0/examples/radio.json"
-        },
-        {
-          "name": "radio-button",
-          "path": "v5.2.0/examples/radio-button.json"
-        },
-        {
-          "name": "radio-disabled",
-          "path": "v5.2.0/examples/radio-disabled.json"
-        },
-        {
-          "name": "radio-group",
-          "path": "v5.2.0/examples/radio-group.json"
-        },
-        {
-          "name": "radio-validation",
-          "path": "v5.2.0/examples/radio-validation.json"
-        },
-        {
-          "name": "range-field",
-          "path": "v5.2.0/examples/range-field.json"
-        },
-        {
-          "name": "select",
-          "path": "v5.2.0/examples/select.json"
-        },
-        {
-          "name": "select-editable",
-          "path": "v5.2.0/examples/select-editable.json"
-        },
-        {
-          "name": "select-multiple",
-          "path": "v5.2.0/examples/select-multiple.json"
-        },
-        {
-          "name": "select-ng-model",
-          "path": "v5.2.0/examples/select-ng-model.json"
-        },
-        {
-          "name": "select-validation",
-          "path": "v5.2.0/examples/select-validation.json"
-        },
-        {
-          "name": "settings",
-          "path": "v5.2.0/examples/settings.json"
-        },
-        {
-          "name": "settings-legacy",
-          "path": "v5.2.0/examples/settings-legacy.json"
-        },
-        {
-          "name": "slider",
-          "path": "v5.2.0/examples/slider.json"
-        },
-        {
-          "name": "slider-error",
-          "path": "v5.2.0/examples/slider-error.json"
-        },
-        {
-          "name": "slider-marker",
-          "path": "v5.2.0/examples/slider-marker.json"
-        },
-        {
-          "name": "slider-trace",
-          "path": "v5.2.0/examples/slider-trace.json"
-        },
-        {
-          "name": "slider-validation",
-          "path": "v5.2.0/examples/slider-validation.json"
-        },
-        {
-          "name": "spinner",
-          "path": "v5.2.0/examples/spinner.json"
-        },
-        {
-          "name": "spinner-large",
-          "path": "v5.2.0/examples/spinner-large.json"
-        },
-        {
-          "name": "split-button",
-          "path": "v5.2.0/examples/split-button.json"
-        },
-        {
-          "name": "split-button-icons",
-          "path": "v5.2.0/examples/split-button-icons.json"
-        },
-        {
-          "name": "tabs",
-          "path": "v5.2.0/examples/tabs.json"
-        },
-        {
-          "name": "tabs-overflow",
-          "path": "v5.2.0/examples/tabs-overflow.json"
-        },
-        {
-          "name": "tabs-rounded",
-          "path": "v5.2.0/examples/tabs-rounded.json"
-        },
-        {
-          "name": "textarea",
-          "path": "v5.2.0/examples/textarea.json"
-        },
-        {
-          "name": "textarea-disabled",
-          "path": "v5.2.0/examples/textarea-disabled.json"
-        },
-        {
-          "name": "textarea-legacy",
-          "path": "v5.2.0/examples/textarea-legacy.json"
-        },
-        {
-          "name": "textarea-legacy-disabled",
-          "path": "v5.2.0/examples/textarea-legacy-disabled.json"
-        },
-        {
-          "name": "textarea-legacy-readonly",
-          "path": "v5.2.0/examples/textarea-legacy-readonly.json"
-        },
-        {
-          "name": "textarea-readonly",
-          "path": "v5.2.0/examples/textarea-readonly.json"
-        },
-        {
-          "name": "textarea-rows-cols",
-          "path": "v5.2.0/examples/textarea-rows-cols.json"
-        },
-        {
-          "name": "textarea-validation",
-          "path": "v5.2.0/examples/textarea-validation.json"
-        },
-        {
-          "name": "theme-switcher",
-          "path": "v5.2.0/examples/theme-switcher.json"
-        },
-        {
-          "name": "tile",
-          "path": "v5.2.0/examples/tile.json"
-        },
-        {
-          "name": "time-input",
-          "path": "v5.2.0/examples/time-input.json"
-        },
-        {
-          "name": "time-input-disabled",
-          "path": "v5.2.0/examples/time-input-disabled.json"
-        },
-        {
-          "name": "time-input-label",
-          "path": "v5.2.0/examples/time-input-label.json"
-        },
-        {
-          "name": "time-input-readonly",
-          "path": "v5.2.0/examples/time-input-readonly.json"
-        },
-        {
-          "name": "time-input-validation",
-          "path": "v5.2.0/examples/time-input-validation.json"
-        },
-        {
-          "name": "time-input-with-slots",
-          "path": "v5.2.0/examples/time-input-with-slots.json"
-        },
-        {
-          "name": "time-range",
-          "path": "v5.2.0/examples/time-range.json"
-        },
-        {
-          "name": "timepicker",
-          "path": "v5.2.0/examples/timepicker.json"
-        },
-        {
-          "name": "timepicker-format-adjusted",
-          "path": "v5.2.0/examples/timepicker-format-adjusted.json"
-        },
-        {
-          "name": "timepicker-intervals",
-          "path": "v5.2.0/examples/timepicker-intervals.json"
-        },
-        {
-          "name": "timepicker-min-max-time",
-          "path": "v5.2.0/examples/timepicker-min-max-time.json"
-        },
-        {
-          "name": "toast",
-          "path": "v5.2.0/examples/toast.json"
-        },
-        {
-          "name": "toast-custom",
-          "path": "v5.2.0/examples/toast-custom.json"
-        },
-        {
-          "name": "toast-position",
-          "path": "v5.2.0/examples/toast-position.json"
-        },
-        {
-          "name": "toggle",
-          "path": "v5.2.0/examples/toggle.json"
-        },
-        {
-          "name": "toggle-button-primary",
-          "path": "v5.2.0/examples/toggle-button-primary.json"
-        },
-        {
-          "name": "toggle-button-secondary",
-          "path": "v5.2.0/examples/toggle-button-secondary.json"
-        },
-        {
-          "name": "toggle-button-subtle-primary",
-          "path": "v5.2.0/examples/toggle-button-subtle-primary.json"
-        },
-        {
-          "name": "toggle-button-subtle-secondary",
-          "path": "v5.2.0/examples/toggle-button-subtle-secondary.json"
-        },
-        {
-          "name": "toggle-button-subtle-tertiary",
-          "path": "v5.2.0/examples/toggle-button-subtle-tertiary.json"
-        },
-        {
-          "name": "toggle-button-tertiary",
-          "path": "v5.2.0/examples/toggle-button-tertiary.json"
-        },
-        {
-          "name": "toggle-checked",
-          "path": "v5.2.0/examples/toggle-checked.json"
-        },
-        {
-          "name": "toggle-custom-label",
-          "path": "v5.2.0/examples/toggle-custom-label.json"
-        },
-        {
-          "name": "toggle-disabled",
-          "path": "v5.2.0/examples/toggle-disabled.json"
-        },
-        {
-          "name": "toggle-indeterminate",
-          "path": "v5.2.0/examples/toggle-indeterminate.json"
-        },
-        {
-          "name": "toggle-ng-model",
-          "path": "v5.2.0/examples/toggle-ng-model.json"
-        },
-        {
-          "name": "tooltip",
-          "path": "v5.2.0/examples/tooltip.json"
-        },
-        {
-          "name": "tooltip-with-icon",
-          "path": "v5.2.0/examples/tooltip-with-icon.json"
-        },
-        {
-          "name": "tree",
-          "path": "v5.2.0/examples/tree.json"
-        },
-        {
-          "name": "tree-custom",
-          "path": "v5.2.0/examples/tree-custom.json"
-        },
-        {
-          "name": "upload",
-          "path": "v5.2.0/examples/upload.json"
-        },
-        {
-          "name": "validation",
-          "path": "v5.2.0/examples/validation.json"
-        },
-        {
-          "name": "validation-select",
-          "path": "v5.2.0/examples/validation-select.json"
-        },
-        {
-          "name": "vertical-tabs",
-          "path": "v5.2.0/examples/vertical-tabs.json"
-        },
-        {
-          "name": "vertical-tabs-with-avatar",
-          "path": "v5.2.0/examples/vertical-tabs-with-avatar.json"
-        },
-        {
-          "name": "workflow",
-          "path": "v5.2.0/examples/workflow.json"
-        },
-        {
-          "name": "workflow-vertical",
-          "path": "v5.2.0/examples/workflow-vertical.json"
-        }
-      ],
-      "components": {
-        "componentDoc": "v5.2.0/ix/component-doc.json",
-        "componentIndex": "v5.2.0/ix/component-index.json",
-        "componentSearchIndex": "v5.2.0/ix/component-search-index.json",
-        "componentRelatedExamples": "v5.2.0/ix/component-related-examples.json"
-      },
-      "llms": {
-        "entrypoint": "v5.2.0/llms.txt",
-        "components": "v5.2.0/llms/components.md",
-        "blocks": "v5.2.0/llms/blocks.md"
-      },
-      "searchIndex": {
-        "blocks": {
-          "react": "v5.2.0/search-index-react.json",
-          "angular": "v5.2.0/search-index-angular.json"
-        },
-        "examples": {
-          "html": "v5.2.0/examples-search-index-html.json",
-          "react": "v5.2.0/examples-search-index-react.json",
-          "angular": "v5.2.0/examples-search-index-angular.json",
-          "angular-standalone": "v5.2.0/examples-search-index-angular-standalone.json",
-          "vue": "v5.2.0/examples-search-index-vue.json"
-        }
-      }
-    },
-    "v5.2.1": {
-      "blocks": [
-        {
-          "name": "change-password",
-          "path": "v5.2.1/blocks/change-password.json"
-        },
-        {
-          "name": "error-page",
-          "path": "v5.2.1/blocks/error-page.json"
-        },
-        {
-          "name": "login-overlay",
-          "path": "v5.2.1/blocks/login-overlay.json"
-        },
-        {
-          "name": "password-criteria",
-          "path": "v5.2.1/blocks/password-criteria.json"
-        },
-        {
-          "name": "upload",
-          "path": "v5.2.1/blocks/upload.json"
-        }
-      ],
-      "examples": [
-        {
-          "name": "about-and-legal",
-          "path": "v5.2.1/examples/about-and-legal.json"
-        },
-        {
-          "name": "about-and-legal-legacy",
-          "path": "v5.2.1/examples/about-and-legal-legacy.json"
-        },
-        {
-          "name": "action-card",
-          "path": "v5.2.1/examples/action-card.json"
-        },
-        {
-          "name": "add-icons",
-          "path": "v5.2.1/examples/add-icons.json"
-        },
-        {
-          "name": "aggrid",
-          "path": "v5.2.1/examples/aggrid.json"
+          "path": "main/examples/aggrid.json"
         },
         {
           "name": "aggrid-striped",
-          "path": "v5.2.1/examples/aggrid-striped.json"
+          "path": "main/examples/aggrid-striped.json"
         },
         {
           "name": "application",
-          "path": "v5.2.1/examples/application.json"
+          "path": "main/examples/application.json"
         },
         {
           "name": "application-advanced",
-          "path": "v5.2.1/examples/application-advanced.json"
+          "path": "main/examples/application-advanced.json"
         },
         {
           "name": "application-app-switch",
-          "path": "v5.2.1/examples/application-app-switch.json"
+          "path": "main/examples/application-app-switch.json"
         },
         {
           "name": "application-breakpoints",
-          "path": "v5.2.1/examples/application-breakpoints.json"
+          "path": "main/examples/application-breakpoints.json"
         },
         {
           "name": "application-header",
-          "path": "v5.2.1/examples/application-header.json"
+          "path": "main/examples/application-header.json"
         },
         {
           "name": "aria-label-properties",
-          "path": "v5.2.1/examples/aria-label-properties.json"
+          "path": "main/examples/aria-label-properties.json"
         },
         {
           "name": "avatar",
-          "path": "v5.2.1/examples/avatar.json"
+          "path": "main/examples/avatar.json"
         },
         {
           "name": "avatar-image",
-          "path": "v5.2.1/examples/avatar-image.json"
+          "path": "main/examples/avatar-image.json"
         },
         {
           "name": "avatar-initials",
-          "path": "v5.2.1/examples/avatar-initials.json"
+          "path": "main/examples/avatar-initials.json"
         },
         {
           "name": "badge",
-          "path": "v5.2.1/examples/badge.json"
+          "path": "main/examples/badge.json"
         },
         {
           "name": "badge-counter",
-          "path": "v5.2.1/examples/badge-counter.json"
+          "path": "main/examples/badge-counter.json"
         },
         {
           "name": "badge-dot",
-          "path": "v5.2.1/examples/badge-dot.json"
+          "path": "main/examples/badge-dot.json"
         },
         {
           "name": "badge-label",
-          "path": "v5.2.1/examples/badge-label.json"
+          "path": "main/examples/badge-label.json"
         },
         {
           "name": "badge-status-icon",
-          "path": "v5.2.1/examples/badge-status-icon.json"
+          "path": "main/examples/badge-status-icon.json"
         },
         {
           "name": "basic-navigation-migration",
-          "path": "v5.2.1/examples/basic-navigation-migration.json"
+          "path": "main/examples/basic-navigation-migration.json"
         },
         {
           "name": "blind",
-          "path": "v5.2.1/examples/blind.json"
+          "path": "main/examples/blind.json"
         },
         {
           "name": "blind-header-actions",
-          "path": "v5.2.1/examples/blind-header-actions.json"
+          "path": "main/examples/blind-header-actions.json"
         },
         {
           "name": "blind-variants",
-          "path": "v5.2.1/examples/blind-variants.json"
+          "path": "main/examples/blind-variants.json"
         },
         {
           "name": "breadcrumb",
-          "path": "v5.2.1/examples/breadcrumb.json"
+          "path": "main/examples/breadcrumb.json"
         },
         {
           "name": "breadcrumb-next-items",
-          "path": "v5.2.1/examples/breadcrumb-next-items.json"
+          "path": "main/examples/breadcrumb-next-items.json"
         },
         {
           "name": "breadcrumb-truncate",
-          "path": "v5.2.1/examples/breadcrumb-truncate.json"
+          "path": "main/examples/breadcrumb-truncate.json"
         },
         {
           "name": "button-danger-primary",
-          "path": "v5.2.1/examples/button-danger-primary.json"
+          "path": "main/examples/button-danger-primary.json"
         },
         {
           "name": "button-danger-secondary",
-          "path": "v5.2.1/examples/button-danger-secondary.json"
+          "path": "main/examples/button-danger-secondary.json"
         },
         {
           "name": "button-danger-tertiary",
-          "path": "v5.2.1/examples/button-danger-tertiary.json"
+          "path": "main/examples/button-danger-tertiary.json"
         },
         {
           "name": "button-group",
-          "path": "v5.2.1/examples/button-group.json"
+          "path": "main/examples/button-group.json"
         },
         {
           "name": "button-loading",
-          "path": "v5.2.1/examples/button-loading.json"
+          "path": "main/examples/button-loading.json"
         },
         {
           "name": "button-secondary",
-          "path": "v5.2.1/examples/button-secondary.json"
+          "path": "main/examples/button-secondary.json"
         },
         {
           "name": "button-subtle-primary",
-          "path": "v5.2.1/examples/button-subtle-primary.json"
+          "path": "main/examples/button-subtle-primary.json"
         },
         {
           "name": "button-subtle-secondary",
-          "path": "v5.2.1/examples/button-subtle-secondary.json"
+          "path": "main/examples/button-subtle-secondary.json"
         },
         {
           "name": "button-subtle-tertiary",
-          "path": "v5.2.1/examples/button-subtle-tertiary.json"
+          "path": "main/examples/button-subtle-tertiary.json"
         },
         {
           "name": "button-tertiary",
-          "path": "v5.2.1/examples/button-tertiary.json"
+          "path": "main/examples/button-tertiary.json"
         },
         {
           "name": "button-text-icon",
-          "path": "v5.2.1/examples/button-text-icon.json"
+          "path": "main/examples/button-text-icon.json"
         },
         {
           "name": "button-with-icon",
-          "path": "v5.2.1/examples/button-with-icon.json"
+          "path": "main/examples/button-with-icon.json"
         },
         {
           "name": "button-with-link",
-          "path": "v5.2.1/examples/button-with-link.json"
+          "path": "main/examples/button-with-link.json"
         },
         {
           "name": "buttons",
-          "path": "v5.2.1/examples/buttons.json"
+          "path": "main/examples/buttons.json"
         },
         {
           "name": "card",
-          "path": "v5.2.1/examples/card.json"
+          "path": "main/examples/card.json"
         },
         {
           "name": "card-list",
-          "path": "v5.2.1/examples/card-list.json"
+          "path": "main/examples/card-list.json"
         },
         {
           "name": "category-filter",
-          "path": "v5.2.1/examples/category-filter.json"
+          "path": "main/examples/category-filter.json"
         },
         {
           "name": "category-filter-suggestions",
-          "path": "v5.2.1/examples/category-filter-suggestions.json"
+          "path": "main/examples/category-filter-suggestions.json"
         },
         {
           "name": "chat",
-          "path": "v5.2.1/examples/chat.json"
+          "path": "main/examples/chat.json"
         },
         {
           "name": "chat-ai-message",
-          "path": "v5.2.1/examples/chat-ai-message.json"
+          "path": "main/examples/chat-ai-message.json"
         },
         {
           "name": "chat-input",
-          "path": "v5.2.1/examples/chat-input.json"
+          "path": "main/examples/chat-input.json"
         },
         {
           "name": "chat-user-message",
-          "path": "v5.2.1/examples/chat-user-message.json"
+          "path": "main/examples/chat-user-message.json"
         },
         {
           "name": "checkbox",
-          "path": "v5.2.1/examples/checkbox.json"
+          "path": "main/examples/checkbox.json"
         },
         {
           "name": "checkbox-indeterminate",
-          "path": "v5.2.1/examples/checkbox-indeterminate.json"
+          "path": "main/examples/checkbox-indeterminate.json"
         },
         {
           "name": "chip",
-          "path": "v5.2.1/examples/chip.json"
+          "path": "main/examples/chip.json"
         },
         {
           "name": "content",
-          "path": "v5.2.1/examples/content.json"
+          "path": "main/examples/content.json"
         },
         {
           "name": "content-header",
-          "path": "v5.2.1/examples/content-header.json"
+          "path": "main/examples/content-header.json"
         },
         {
           "name": "content-header-no-back",
-          "path": "v5.2.1/examples/content-header-no-back.json"
+          "path": "main/examples/content-header-no-back.json"
         },
         {
           "name": "content-header-text-overflow",
-          "path": "v5.2.1/examples/content-header-text-overflow.json"
+          "path": "main/examples/content-header-text-overflow.json"
         },
         {
           "name": "content-header-with-slot",
-          "path": "v5.2.1/examples/content-header-with-slot.json"
+          "path": "main/examples/content-header-with-slot.json"
         },
         {
           "name": "custom-field",
-          "path": "v5.2.1/examples/custom-field.json"
+          "path": "main/examples/custom-field.json"
         },
         {
           "name": "custom-field-validation",
-          "path": "v5.2.1/examples/custom-field-validation.json"
+          "path": "main/examples/custom-field-validation.json"
         },
         {
           "name": "date-dropdown",
-          "path": "v5.2.1/examples/date-dropdown.json"
+          "path": "main/examples/date-dropdown.json"
         },
         {
           "name": "date-dropdown-presets",
-          "path": "v5.2.1/examples/date-dropdown-presets.json"
+          "path": "main/examples/date-dropdown-presets.json"
         },
         {
           "name": "date-dropdown-user-range",
-          "path": "v5.2.1/examples/date-dropdown-user-range.json"
+          "path": "main/examples/date-dropdown-user-range.json"
         },
         {
           "name": "date-input",
-          "path": "v5.2.1/examples/date-input.json"
+          "path": "main/examples/date-input.json"
         },
         {
           "name": "date-input-disabled",
-          "path": "v5.2.1/examples/date-input-disabled.json"
+          "path": "main/examples/date-input-disabled.json"
         },
         {
           "name": "date-input-label",
-          "path": "v5.2.1/examples/date-input-label.json"
+          "path": "main/examples/date-input-label.json"
         },
         {
           "name": "date-input-min-max-date",
-          "path": "v5.2.1/examples/date-input-min-max-date.json"
+          "path": "main/examples/date-input-min-max-date.json"
         },
         {
           "name": "date-input-readonly",
-          "path": "v5.2.1/examples/date-input-readonly.json"
+          "path": "main/examples/date-input-readonly.json"
         },
         {
           "name": "date-input-validation",
-          "path": "v5.2.1/examples/date-input-validation.json"
+          "path": "main/examples/date-input-validation.json"
         },
         {
           "name": "date-input-with-slots",
-          "path": "v5.2.1/examples/date-input-with-slots.json"
+          "path": "main/examples/date-input-with-slots.json"
         },
         {
           "name": "date-range",
-          "path": "v5.2.1/examples/date-range.json"
+          "path": "main/examples/date-range.json"
         },
         {
           "name": "datepicker",
-          "path": "v5.2.1/examples/datepicker.json"
+          "path": "main/examples/datepicker.json"
         },
         {
           "name": "datepicker-locale",
-          "path": "v5.2.1/examples/datepicker-locale.json"
+          "path": "main/examples/datepicker-locale.json"
         },
         {
           "name": "datepicker-range",
-          "path": "v5.2.1/examples/datepicker-range.json"
+          "path": "main/examples/datepicker-range.json"
         },
         {
           "name": "datetime-input",
-          "path": "v5.2.1/examples/datetime-input.json"
+          "path": "main/examples/datetime-input.json"
         },
         {
           "name": "datetime-input-disabled",
-          "path": "v5.2.1/examples/datetime-input-disabled.json"
+          "path": "main/examples/datetime-input-disabled.json"
         },
         {
           "name": "datetime-input-label",
-          "path": "v5.2.1/examples/datetime-input-label.json"
+          "path": "main/examples/datetime-input-label.json"
         },
         {
           "name": "datetime-input-min-max-date",
-          "path": "v5.2.1/examples/datetime-input-min-max-date.json"
+          "path": "main/examples/datetime-input-min-max-date.json"
         },
         {
           "name": "datetime-input-readonly",
-          "path": "v5.2.1/examples/datetime-input-readonly.json"
+          "path": "main/examples/datetime-input-readonly.json"
         },
         {
           "name": "datetime-input-validation",
-          "path": "v5.2.1/examples/datetime-input-validation.json"
+          "path": "main/examples/datetime-input-validation.json"
         },
         {
           "name": "datetime-input-with-slots",
-          "path": "v5.2.1/examples/datetime-input-with-slots.json"
+          "path": "main/examples/datetime-input-with-slots.json"
         },
         {
           "name": "datetime-range",
-          "path": "v5.2.1/examples/datetime-range.json"
+          "path": "main/examples/datetime-range.json"
         },
         {
           "name": "datetimepicker",
-          "path": "v5.2.1/examples/datetimepicker.json"
+          "path": "main/examples/datetimepicker.json"
+        },
+        {
+          "name": "datetimepicker-locale",
+          "path": "main/examples/datetimepicker-locale.json"
         },
         {
           "name": "divider",
-          "path": "v5.2.1/examples/divider.json"
+          "path": "main/examples/divider.json"
         },
         {
           "name": "drawer",
-          "path": "v5.2.1/examples/drawer.json"
+          "path": "main/examples/drawer.json"
         },
         {
           "name": "drawer-full-height",
-          "path": "v5.2.1/examples/drawer-full-height.json"
+          "path": "main/examples/drawer-full-height.json"
         },
         {
           "name": "dropdown",
-          "path": "v5.2.1/examples/dropdown.json"
+          "path": "main/examples/dropdown.json"
         },
         {
           "name": "dropdown-button",
-          "path": "v5.2.1/examples/dropdown-button.json"
+          "path": "main/examples/dropdown-button.json"
         },
         {
           "name": "dropdown-button-icon",
-          "path": "v5.2.1/examples/dropdown-button-icon.json"
+          "path": "main/examples/dropdown-button-icon.json"
         },
         {
           "name": "dropdown-icon",
-          "path": "v5.2.1/examples/dropdown-icon.json"
+          "path": "main/examples/dropdown-icon.json"
         },
         {
           "name": "dropdown-quick-actions",
-          "path": "v5.2.1/examples/dropdown-quick-actions.json"
+          "path": "main/examples/dropdown-quick-actions.json"
+        },
+        {
+          "name": "dropdown-roving-tabindex",
+          "path": "main/examples/dropdown-roving-tabindex.json"
         },
         {
           "name": "dropdown-submenu",
-          "path": "v5.2.1/examples/dropdown-submenu.json"
+          "path": "main/examples/dropdown-submenu.json"
         },
         {
           "name": "echarts",
-          "path": "v5.2.1/examples/echarts.json"
+          "path": "main/examples/echarts.json"
         },
         {
           "name": "echarts-bar-horizontal-stacked",
-          "path": "v5.2.1/examples/echarts-bar-horizontal-stacked.json"
+          "path": "main/examples/echarts-bar-horizontal-stacked.json"
         },
         {
           "name": "echarts-bar-simple",
-          "path": "v5.2.1/examples/echarts-bar-simple.json"
+          "path": "main/examples/echarts-bar-simple.json"
         },
         {
           "name": "echarts-circle",
-          "path": "v5.2.1/examples/echarts-circle.json"
+          "path": "main/examples/echarts-circle.json"
         },
         {
           "name": "echarts-empty-state",
-          "path": "v5.2.1/examples/echarts-empty-state.json"
+          "path": "main/examples/echarts-empty-state.json"
         },
         {
           "name": "echarts-gauge",
-          "path": "v5.2.1/examples/echarts-gauge.json"
+          "path": "main/examples/echarts-gauge.json"
         },
         {
           "name": "echarts-line-advanced",
-          "path": "v5.2.1/examples/echarts-line-advanced.json"
+          "path": "main/examples/echarts-line-advanced.json"
         },
         {
           "name": "echarts-line-multiple-y-axis",
-          "path": "v5.2.1/examples/echarts-line-multiple-y-axis.json"
+          "path": "main/examples/echarts-line-multiple-y-axis.json"
         },
         {
           "name": "echarts-line-simple",
-          "path": "v5.2.1/examples/echarts-line-simple.json"
+          "path": "main/examples/echarts-line-simple.json"
         },
         {
           "name": "echarts-pie",
-          "path": "v5.2.1/examples/echarts-pie.json"
+          "path": "main/examples/echarts-pie.json"
         },
         {
           "name": "echarts-progress-arc",
-          "path": "v5.2.1/examples/echarts-progress-arc.json"
+          "path": "main/examples/echarts-progress-arc.json"
         },
         {
           "name": "echarts-progress-circle",
-          "path": "v5.2.1/examples/echarts-progress-circle.json"
+          "path": "main/examples/echarts-progress-circle.json"
         },
         {
           "name": "echarts-special-3d",
-          "path": "v5.2.1/examples/echarts-special-3d.json"
+          "path": "main/examples/echarts-special-3d.json"
         },
         {
           "name": "echarts-special-toolbox",
-          "path": "v5.2.1/examples/echarts-special-toolbox.json"
+          "path": "main/examples/echarts-special-toolbox.json"
         },
         {
           "name": "echarts-special-zoom",
-          "path": "v5.2.1/examples/echarts-special-zoom.json"
+          "path": "main/examples/echarts-special-zoom.json"
         },
         {
           "name": "empty-state",
-          "path": "v5.2.1/examples/empty-state.json"
+          "path": "main/examples/empty-state.json"
         },
         {
           "name": "empty-state-compact",
-          "path": "v5.2.1/examples/empty-state-compact.json"
+          "path": "main/examples/empty-state-compact.json"
         },
         {
           "name": "empty-state-compact-break",
-          "path": "v5.2.1/examples/empty-state-compact-break.json"
+          "path": "main/examples/empty-state-compact-break.json"
         },
         {
           "name": "event-list",
-          "path": "v5.2.1/examples/event-list.json"
+          "path": "main/examples/event-list.json"
         },
         {
           "name": "event-list-compact",
-          "path": "v5.2.1/examples/event-list-compact.json"
+          "path": "main/examples/event-list-compact.json"
         },
         {
           "name": "event-list-custom-item-height",
-          "path": "v5.2.1/examples/event-list-custom-item-height.json"
+          "path": "main/examples/event-list-custom-item-height.json"
         },
         {
           "name": "event-list-custom-item-height-in-number",
-          "path": "v5.2.1/examples/event-list-custom-item-height-in-number.json"
+          "path": "main/examples/event-list-custom-item-height-in-number.json"
         },
         {
           "name": "event-list-filled",
-          "path": "v5.2.1/examples/event-list-filled.json"
+          "path": "main/examples/event-list-filled.json"
         },
         {
           "name": "event-list-selected",
-          "path": "v5.2.1/examples/event-list-selected.json"
+          "path": "main/examples/event-list-selected.json"
         },
         {
           "name": "expanding-search",
-          "path": "v5.2.1/examples/expanding-search.json"
+          "path": "main/examples/expanding-search.json"
         },
         {
           "name": "flip-tile",
-          "path": "v5.2.1/examples/flip-tile.json"
+          "path": "main/examples/flip-tile.json"
         },
         {
           "name": "form-checkbox",
-          "path": "v5.2.1/examples/form-checkbox.json"
+          "path": "main/examples/form-checkbox.json"
         },
         {
           "name": "form-checkbox-disabled",
-          "path": "v5.2.1/examples/form-checkbox-disabled.json"
+          "path": "main/examples/form-checkbox-disabled.json"
         },
         {
           "name": "form-checkbox-group",
-          "path": "v5.2.1/examples/form-checkbox-group.json"
+          "path": "main/examples/form-checkbox-group.json"
         },
         {
           "name": "form-checkbox-group-indeterminate",
-          "path": "v5.2.1/examples/form-checkbox-group-indeterminate.json"
+          "path": "main/examples/form-checkbox-group-indeterminate.json"
         },
         {
           "name": "form-checkbox-validation",
-          "path": "v5.2.1/examples/form-checkbox-validation.json"
+          "path": "main/examples/form-checkbox-validation.json"
         },
         {
           "name": "form-layout-auto",
-          "path": "v5.2.1/examples/form-layout-auto.json"
+          "path": "main/examples/form-layout-auto.json"
         },
         {
           "name": "form-layout-grid",
-          "path": "v5.2.1/examples/form-layout-grid.json"
+          "path": "main/examples/form-layout-grid.json"
         },
         {
           "name": "form-validation",
-          "path": "v5.2.1/examples/form-validation.json"
+          "path": "main/examples/form-validation.json"
         },
         {
           "name": "grid",
-          "path": "v5.2.1/examples/grid.json"
+          "path": "main/examples/grid.json"
         },
         {
           "name": "grid-padding",
-          "path": "v5.2.1/examples/grid-padding.json"
+          "path": "main/examples/grid-padding.json"
         },
         {
           "name": "grid-size",
-          "path": "v5.2.1/examples/grid-size.json"
+          "path": "main/examples/grid-size.json"
         },
         {
           "name": "group",
-          "path": "v5.2.1/examples/group.json"
+          "path": "main/examples/group.json"
         },
         {
           "name": "group-context-menu",
-          "path": "v5.2.1/examples/group-context-menu.json"
+          "path": "main/examples/group-context-menu.json"
         },
         {
           "name": "group-custom-entry",
-          "path": "v5.2.1/examples/group-custom-entry.json"
+          "path": "main/examples/group-custom-entry.json"
         },
         {
           "name": "group-header-suppressed",
-          "path": "v5.2.1/examples/group-header-suppressed.json"
+          "path": "main/examples/group-header-suppressed.json"
         },
         {
           "name": "html-table",
-          "path": "v5.2.1/examples/html-table.json"
+          "path": "main/examples/html-table.json"
         },
         {
           "name": "html-table-striped",
-          "path": "v5.2.1/examples/html-table-striped.json"
+          "path": "main/examples/html-table-striped.json"
         },
         {
           "name": "icon-toggle-button-secondary",
-          "path": "v5.2.1/examples/icon-toggle-button-secondary.json"
+          "path": "main/examples/icon-toggle-button-secondary.json"
         },
         {
           "name": "icon-toggle-button-subtle-primary",
-          "path": "v5.2.1/examples/icon-toggle-button-subtle-primary.json"
+          "path": "main/examples/icon-toggle-button-subtle-primary.json"
         },
         {
           "name": "icon-toggle-button-subtle-secondary",
-          "path": "v5.2.1/examples/icon-toggle-button-subtle-secondary.json"
+          "path": "main/examples/icon-toggle-button-subtle-secondary.json"
         },
         {
           "name": "icon-toggle-button-subtle-tertiary",
-          "path": "v5.2.1/examples/icon-toggle-button-subtle-tertiary.json"
+          "path": "main/examples/icon-toggle-button-subtle-tertiary.json"
         },
         {
           "name": "icon-toggle-button-tertiary",
-          "path": "v5.2.1/examples/icon-toggle-button-tertiary.json"
+          "path": "main/examples/icon-toggle-button-tertiary.json"
+        },
+        {
+          "name": "info-page",
+          "path": "main/examples/info-page.json"
         },
         {
           "name": "input",
-          "path": "v5.2.1/examples/input.json"
+          "path": "main/examples/input.json"
         },
         {
           "name": "input-disabled",
-          "path": "v5.2.1/examples/input-disabled.json"
+          "path": "main/examples/input-disabled.json"
         },
         {
           "name": "input-form-validation",
-          "path": "v5.2.1/examples/input-form-validation.json"
+          "path": "main/examples/input-form-validation.json"
         },
         {
           "name": "input-label",
-          "path": "v5.2.1/examples/input-label.json"
+          "path": "main/examples/input-label.json"
         },
         {
           "name": "input-legacy",
-          "path": "v5.2.1/examples/input-legacy.json"
+          "path": "main/examples/input-legacy.json"
         },
         {
           "name": "input-legacy-disabled",
-          "path": "v5.2.1/examples/input-legacy-disabled.json"
+          "path": "main/examples/input-legacy-disabled.json"
         },
         {
           "name": "input-legacy-readonly",
-          "path": "v5.2.1/examples/input-legacy-readonly.json"
+          "path": "main/examples/input-legacy-readonly.json"
         },
         {
           "name": "input-pattern",
-          "path": "v5.2.1/examples/input-pattern.json"
+          "path": "main/examples/input-pattern.json"
         },
         {
           "name": "input-readonly",
-          "path": "v5.2.1/examples/input-readonly.json"
+          "path": "main/examples/input-readonly.json"
         },
         {
           "name": "input-types",
-          "path": "v5.2.1/examples/input-types.json"
+          "path": "main/examples/input-types.json"
         },
         {
           "name": "input-validation",
-          "path": "v5.2.1/examples/input-validation.json"
+          "path": "main/examples/input-validation.json"
         },
         {
           "name": "input-with-slots",
-          "path": "v5.2.1/examples/input-with-slots.json"
+          "path": "main/examples/input-with-slots.json"
         },
         {
           "name": "key-value",
-          "path": "v5.2.1/examples/key-value.json"
+          "path": "main/examples/key-value.json"
         },
         {
           "name": "key-value-list",
-          "path": "v5.2.1/examples/key-value-list.json"
+          "path": "main/examples/key-value-list.json"
         },
         {
           "name": "key-value-list-striped",
-          "path": "v5.2.1/examples/key-value-list-striped.json"
+          "path": "main/examples/key-value-list-striped.json"
         },
         {
           "name": "key-value-list-with-custom-value",
-          "path": "v5.2.1/examples/key-value-list-with-custom-value.json"
+          "path": "main/examples/key-value-list-with-custom-value.json"
         },
         {
           "name": "key-value-list-with-icon",
-          "path": "v5.2.1/examples/key-value-list-with-icon.json"
+          "path": "main/examples/key-value-list-with-icon.json"
         },
         {
           "name": "key-value-with-custom-value",
-          "path": "v5.2.1/examples/key-value-with-custom-value.json"
+          "path": "main/examples/key-value-with-custom-value.json"
         },
         {
           "name": "key-value-with-icon",
-          "path": "v5.2.1/examples/key-value-with-icon.json"
+          "path": "main/examples/key-value-with-icon.json"
         },
         {
           "name": "key-value-with-label-left",
-          "path": "v5.2.1/examples/key-value-with-label-left.json"
+          "path": "main/examples/key-value-with-label-left.json"
         },
         {
           "name": "kpi",
-          "path": "v5.2.1/examples/kpi.json"
+          "path": "main/examples/kpi.json"
         },
         {
           "name": "layout-auto",
-          "path": "v5.2.1/examples/layout-auto.json"
+          "path": "main/examples/layout-auto.json"
         },
         {
           "name": "layout-auto-custom",
-          "path": "v5.2.1/examples/layout-auto-custom.json"
+          "path": "main/examples/layout-auto-custom.json"
         },
         {
           "name": "link-button",
-          "path": "v5.2.1/examples/link-button.json"
+          "path": "main/examples/link-button.json"
         },
         {
           "name": "link-button-disabled",
-          "path": "v5.2.1/examples/link-button-disabled.json"
+          "path": "main/examples/link-button-disabled.json"
         },
         {
           "name": "loading",
-          "path": "v5.2.1/examples/loading.json"
+          "path": "main/examples/loading.json"
         },
         {
           "name": "map-navigation-migration",
-          "path": "v5.2.1/examples/map-navigation-migration.json"
+          "path": "main/examples/map-navigation-migration.json"
         },
         {
           "name": "menu-category",
-          "path": "v5.2.1/examples/menu-category.json"
+          "path": "main/examples/menu-category.json"
         },
         {
           "name": "menu-with-bottom-tabs",
-          "path": "v5.2.1/examples/menu-with-bottom-tabs.json"
+          "path": "main/examples/menu-with-bottom-tabs.json"
         },
         {
           "name": "message",
-          "path": "v5.2.1/examples/message.json"
+          "path": "main/examples/message.json"
         },
         {
           "name": "message-bar",
-          "path": "v5.2.1/examples/message-bar.json"
+          "path": "main/examples/message-bar.json"
         },
         {
           "name": "message-bar-removal",
-          "path": "v5.2.1/examples/message-bar-removal.json"
+          "path": "main/examples/message-bar-removal.json"
         },
         {
           "name": "modal",
-          "path": "v5.2.1/examples/modal.json"
+          "path": "main/examples/modal.json"
         },
         {
           "name": "modal-by-instance",
-          "path": "v5.2.1/examples/modal-by-instance.json"
+          "path": "main/examples/modal-by-instance.json"
         },
         {
           "name": "modal-by-instance-content",
-          "path": "v5.2.1/examples/modal-by-instance-content.json"
+          "path": "main/examples/modal-by-instance-content.json"
         },
         {
           "name": "modal-by-template",
-          "path": "v5.2.1/examples/modal-by-template.json"
+          "path": "main/examples/modal-by-template.json"
         },
         {
           "name": "modal-close",
-          "path": "v5.2.1/examples/modal-close.json"
+          "path": "main/examples/modal-close.json"
         },
         {
           "name": "modal-form-ix-button-submit",
-          "path": "v5.2.1/examples/modal-form-ix-button-submit.json"
+          "path": "main/examples/modal-form-ix-button-submit.json"
         },
         {
           "name": "modal-non-blocking",
-          "path": "v5.2.1/examples/modal-non-blocking.json"
+          "path": "main/examples/modal-non-blocking.json"
         },
         {
           "name": "modal-sizes",
-          "path": "v5.2.1/examples/modal-sizes.json"
+          "path": "main/examples/modal-sizes.json"
         },
         {
           "name": "number-input",
-          "path": "v5.2.1/examples/number-input.json"
+          "path": "main/examples/number-input.json"
         },
         {
           "name": "number-input-disabled",
-          "path": "v5.2.1/examples/number-input-disabled.json"
+          "path": "main/examples/number-input-disabled.json"
         },
         {
           "name": "number-input-label",
-          "path": "v5.2.1/examples/number-input-label.json"
+          "path": "main/examples/number-input-label.json"
         },
         {
           "name": "number-input-readonly",
-          "path": "v5.2.1/examples/number-input-readonly.json"
+          "path": "main/examples/number-input-readonly.json"
         },
         {
           "name": "number-input-stepper-button",
-          "path": "v5.2.1/examples/number-input-stepper-button.json"
+          "path": "main/examples/number-input-stepper-button.json"
         },
         {
           "name": "number-input-validation",
-          "path": "v5.2.1/examples/number-input-validation.json"
+          "path": "main/examples/number-input-validation.json"
         },
         {
           "name": "number-input-with-slots",
-          "path": "v5.2.1/examples/number-input-with-slots.json"
+          "path": "main/examples/number-input-with-slots.json"
         },
         {
           "name": "pagination",
-          "path": "v5.2.1/examples/pagination.json"
+          "path": "main/examples/pagination.json"
         },
         {
           "name": "pagination-advanced",
-          "path": "v5.2.1/examples/pagination-advanced.json"
+          "path": "main/examples/pagination-advanced.json"
         },
         {
           "name": "pane",
-          "path": "v5.2.1/examples/pane.json"
+          "path": "main/examples/pane.json"
         },
         {
           "name": "pane-layout",
-          "path": "v5.2.1/examples/pane-layout.json"
+          "path": "main/examples/pane-layout.json"
         },
         {
           "name": "pill",
-          "path": "v5.2.1/examples/pill.json"
+          "path": "main/examples/pill.json"
         },
         {
           "name": "pill-variants",
-          "path": "v5.2.1/examples/pill-variants.json"
+          "path": "main/examples/pill-variants.json"
         },
         {
           "name": "popover",
-          "path": "v5.2.1/examples/popover.json"
+          "path": "main/examples/popover.json"
         },
         {
           "name": "popover-news",
-          "path": "v5.2.1/examples/popover-news.json"
+          "path": "main/examples/popover-news.json"
         },
         {
           "name": "progress-indicator",
-          "path": "v5.2.1/examples/progress-indicator.json"
+          "path": "main/examples/progress-indicator.json"
         },
         {
           "name": "progress-indicator-circular",
-          "path": "v5.2.1/examples/progress-indicator-circular.json"
+          "path": "main/examples/progress-indicator-circular.json"
         },
         {
           "name": "progress-indicator-circular-sizes",
-          "path": "v5.2.1/examples/progress-indicator-circular-sizes.json"
+          "path": "main/examples/progress-indicator-circular-sizes.json"
         },
         {
           "name": "progress-indicator-circular-status",
-          "path": "v5.2.1/examples/progress-indicator-circular-status.json"
+          "path": "main/examples/progress-indicator-circular-status.json"
         },
         {
           "name": "progress-indicator-linear-sizes",
-          "path": "v5.2.1/examples/progress-indicator-linear-sizes.json"
+          "path": "main/examples/progress-indicator-linear-sizes.json"
         },
         {
           "name": "progress-indicator-linear-status",
-          "path": "v5.2.1/examples/progress-indicator-linear-status.json"
+          "path": "main/examples/progress-indicator-linear-status.json"
         },
         {
           "name": "push-card",
-          "path": "v5.2.1/examples/push-card.json"
+          "path": "main/examples/push-card.json"
         },
         {
           "name": "radio",
-          "path": "v5.2.1/examples/radio.json"
+          "path": "main/examples/radio.json"
         },
         {
           "name": "radio-button",
-          "path": "v5.2.1/examples/radio-button.json"
+          "path": "main/examples/radio-button.json"
         },
         {
           "name": "radio-disabled",
-          "path": "v5.2.1/examples/radio-disabled.json"
+          "path": "main/examples/radio-disabled.json"
         },
         {
           "name": "radio-group",
-          "path": "v5.2.1/examples/radio-group.json"
+          "path": "main/examples/radio-group.json"
         },
         {
           "name": "radio-validation",
-          "path": "v5.2.1/examples/radio-validation.json"
+          "path": "main/examples/radio-validation.json"
         },
         {
           "name": "range-field",
-          "path": "v5.2.1/examples/range-field.json"
+          "path": "main/examples/range-field.json"
         },
         {
           "name": "select",
-          "path": "v5.2.1/examples/select.json"
+          "path": "main/examples/select.json"
         },
         {
           "name": "select-editable",
-          "path": "v5.2.1/examples/select-editable.json"
+          "path": "main/examples/select-editable.json"
         },
         {
           "name": "select-multiple",
-          "path": "v5.2.1/examples/select-multiple.json"
+          "path": "main/examples/select-multiple.json"
         },
         {
           "name": "select-ng-model",
-          "path": "v5.2.1/examples/select-ng-model.json"
+          "path": "main/examples/select-ng-model.json"
         },
         {
           "name": "select-validation",
-          "path": "v5.2.1/examples/select-validation.json"
+          "path": "main/examples/select-validation.json"
         },
         {
           "name": "settings",
-          "path": "v5.2.1/examples/settings.json"
+          "path": "main/examples/settings.json"
         },
         {
           "name": "settings-legacy",
-          "path": "v5.2.1/examples/settings-legacy.json"
+          "path": "main/examples/settings-legacy.json"
         },
         {
           "name": "slider",
-          "path": "v5.2.1/examples/slider.json"
+          "path": "main/examples/slider.json"
         },
         {
           "name": "slider-error",
-          "path": "v5.2.1/examples/slider-error.json"
+          "path": "main/examples/slider-error.json"
         },
         {
           "name": "slider-marker",
-          "path": "v5.2.1/examples/slider-marker.json"
+          "path": "main/examples/slider-marker.json"
         },
         {
           "name": "slider-trace",
-          "path": "v5.2.1/examples/slider-trace.json"
+          "path": "main/examples/slider-trace.json"
         },
         {
           "name": "slider-validation",
-          "path": "v5.2.1/examples/slider-validation.json"
+          "path": "main/examples/slider-validation.json"
         },
         {
           "name": "spinner",
-          "path": "v5.2.1/examples/spinner.json"
+          "path": "main/examples/spinner.json"
         },
         {
           "name": "spinner-large",
-          "path": "v5.2.1/examples/spinner-large.json"
+          "path": "main/examples/spinner-large.json"
         },
         {
           "name": "split-button",
-          "path": "v5.2.1/examples/split-button.json"
+          "path": "main/examples/split-button.json"
         },
         {
           "name": "split-button-icons",
-          "path": "v5.2.1/examples/split-button-icons.json"
+          "path": "main/examples/split-button-icons.json"
         },
         {
           "name": "tabs",
-          "path": "v5.2.1/examples/tabs.json"
+          "path": "main/examples/tabs.json"
         },
         {
           "name": "tabs-overflow",
-          "path": "v5.2.1/examples/tabs-overflow.json"
+          "path": "main/examples/tabs-overflow.json"
         },
         {
           "name": "tabs-rounded",
-          "path": "v5.2.1/examples/tabs-rounded.json"
+          "path": "main/examples/tabs-rounded.json"
         },
         {
           "name": "textarea",
-          "path": "v5.2.1/examples/textarea.json"
+          "path": "main/examples/textarea.json"
         },
         {
           "name": "textarea-disabled",
-          "path": "v5.2.1/examples/textarea-disabled.json"
+          "path": "main/examples/textarea-disabled.json"
         },
         {
           "name": "textarea-legacy",
-          "path": "v5.2.1/examples/textarea-legacy.json"
+          "path": "main/examples/textarea-legacy.json"
         },
         {
           "name": "textarea-legacy-disabled",
-          "path": "v5.2.1/examples/textarea-legacy-disabled.json"
+          "path": "main/examples/textarea-legacy-disabled.json"
         },
         {
           "name": "textarea-legacy-readonly",
-          "path": "v5.2.1/examples/textarea-legacy-readonly.json"
+          "path": "main/examples/textarea-legacy-readonly.json"
         },
         {
           "name": "textarea-readonly",
-          "path": "v5.2.1/examples/textarea-readonly.json"
+          "path": "main/examples/textarea-readonly.json"
         },
         {
           "name": "textarea-rows-cols",
-          "path": "v5.2.1/examples/textarea-rows-cols.json"
+          "path": "main/examples/textarea-rows-cols.json"
         },
         {
           "name": "textarea-validation",
-          "path": "v5.2.1/examples/textarea-validation.json"
+          "path": "main/examples/textarea-validation.json"
         },
         {
           "name": "theme-switcher",
-          "path": "v5.2.1/examples/theme-switcher.json"
+          "path": "main/examples/theme-switcher.json"
         },
         {
           "name": "tile",
-          "path": "v5.2.1/examples/tile.json"
+          "path": "main/examples/tile.json"
         },
         {
           "name": "time-input",
-          "path": "v5.2.1/examples/time-input.json"
+          "path": "main/examples/time-input.json"
         },
         {
           "name": "time-input-disabled",
-          "path": "v5.2.1/examples/time-input-disabled.json"
+          "path": "main/examples/time-input-disabled.json"
         },
         {
           "name": "time-input-label",
-          "path": "v5.2.1/examples/time-input-label.json"
+          "path": "main/examples/time-input-label.json"
         },
         {
           "name": "time-input-readonly",
-          "path": "v5.2.1/examples/time-input-readonly.json"
+          "path": "main/examples/time-input-readonly.json"
         },
         {
           "name": "time-input-validation",
-          "path": "v5.2.1/examples/time-input-validation.json"
+          "path": "main/examples/time-input-validation.json"
         },
         {
           "name": "time-input-with-slots",
-          "path": "v5.2.1/examples/time-input-with-slots.json"
+          "path": "main/examples/time-input-with-slots.json"
         },
         {
           "name": "time-range",
-          "path": "v5.2.1/examples/time-range.json"
+          "path": "main/examples/time-range.json"
         },
         {
           "name": "timepicker",
-          "path": "v5.2.1/examples/timepicker.json"
+          "path": "main/examples/timepicker.json"
         },
         {
           "name": "timepicker-format-adjusted",
-          "path": "v5.2.1/examples/timepicker-format-adjusted.json"
+          "path": "main/examples/timepicker-format-adjusted.json"
         },
         {
           "name": "timepicker-intervals",
-          "path": "v5.2.1/examples/timepicker-intervals.json"
+          "path": "main/examples/timepicker-intervals.json"
         },
         {
           "name": "timepicker-min-max-time",
-          "path": "v5.2.1/examples/timepicker-min-max-time.json"
+          "path": "main/examples/timepicker-min-max-time.json"
         },
         {
           "name": "toast",
-          "path": "v5.2.1/examples/toast.json"
+          "path": "main/examples/toast.json"
         },
         {
           "name": "toast-custom",
-          "path": "v5.2.1/examples/toast-custom.json"
+          "path": "main/examples/toast-custom.json"
         },
         {
           "name": "toast-position",
-          "path": "v5.2.1/examples/toast-position.json"
+          "path": "main/examples/toast-position.json"
         },
         {
           "name": "toggle",
-          "path": "v5.2.1/examples/toggle.json"
+          "path": "main/examples/toggle.json"
         },
         {
           "name": "toggle-button-primary",
-          "path": "v5.2.1/examples/toggle-button-primary.json"
+          "path": "main/examples/toggle-button-primary.json"
         },
         {
           "name": "toggle-button-secondary",
-          "path": "v5.2.1/examples/toggle-button-secondary.json"
+          "path": "main/examples/toggle-button-secondary.json"
         },
         {
           "name": "toggle-button-subtle-primary",
-          "path": "v5.2.1/examples/toggle-button-subtle-primary.json"
+          "path": "main/examples/toggle-button-subtle-primary.json"
         },
         {
           "name": "toggle-button-subtle-secondary",
-          "path": "v5.2.1/examples/toggle-button-subtle-secondary.json"
+          "path": "main/examples/toggle-button-subtle-secondary.json"
         },
         {
           "name": "toggle-button-subtle-tertiary",
-          "path": "v5.2.1/examples/toggle-button-subtle-tertiary.json"
+          "path": "main/examples/toggle-button-subtle-tertiary.json"
         },
         {
           "name": "toggle-button-tertiary",
-          "path": "v5.2.1/examples/toggle-button-tertiary.json"
+          "path": "main/examples/toggle-button-tertiary.json"
         },
         {
           "name": "toggle-checked",
-          "path": "v5.2.1/examples/toggle-checked.json"
+          "path": "main/examples/toggle-checked.json"
         },
         {
           "name": "toggle-custom-label",
-          "path": "v5.2.1/examples/toggle-custom-label.json"
+          "path": "main/examples/toggle-custom-label.json"
         },
         {
           "name": "toggle-disabled",
-          "path": "v5.2.1/examples/toggle-disabled.json"
+          "path": "main/examples/toggle-disabled.json"
         },
         {
           "name": "toggle-indeterminate",
-          "path": "v5.2.1/examples/toggle-indeterminate.json"
+          "path": "main/examples/toggle-indeterminate.json"
         },
         {
           "name": "toggle-ng-model",
-          "path": "v5.2.1/examples/toggle-ng-model.json"
+          "path": "main/examples/toggle-ng-model.json"
         },
         {
           "name": "tooltip",
-          "path": "v5.2.1/examples/tooltip.json"
+          "path": "main/examples/tooltip.json"
         },
         {
           "name": "tooltip-with-icon",
-          "path": "v5.2.1/examples/tooltip-with-icon.json"
+          "path": "main/examples/tooltip-with-icon.json"
         },
         {
           "name": "tree",
-          "path": "v5.2.1/examples/tree.json"
+          "path": "main/examples/tree.json"
         },
         {
           "name": "tree-custom",
-          "path": "v5.2.1/examples/tree-custom.json"
+          "path": "main/examples/tree-custom.json"
         },
         {
           "name": "upload",
-          "path": "v5.2.1/examples/upload.json"
+          "path": "main/examples/upload.json"
         },
         {
           "name": "validation",
-          "path": "v5.2.1/examples/validation.json"
+          "path": "main/examples/validation.json"
         },
         {
           "name": "validation-select",
-          "path": "v5.2.1/examples/validation-select.json"
+          "path": "main/examples/validation-select.json"
         },
         {
           "name": "vertical-tabs",
-          "path": "v5.2.1/examples/vertical-tabs.json"
+          "path": "main/examples/vertical-tabs.json"
         },
         {
           "name": "vertical-tabs-with-avatar",
-          "path": "v5.2.1/examples/vertical-tabs-with-avatar.json"
+          "path": "main/examples/vertical-tabs-with-avatar.json"
         },
         {
           "name": "workflow",
-          "path": "v5.2.1/examples/workflow.json"
+          "path": "main/examples/workflow.json"
         },
         {
           "name": "workflow-vertical",
-          "path": "v5.2.1/examples/workflow-vertical.json"
+          "path": "main/examples/workflow-vertical.json"
         }
       ],
       "components": {
-        "componentDoc": "v5.2.1/ix/component-doc.json",
-        "componentRelatedExamples": "v5.2.1/ix/component-related-examples.json",
-        "componentRelatedBlocks": "v5.2.1/ix/component-related-blocks.json"
+        "componentDoc": "main/ix/component-doc.json",
+        "componentRelatedExamples": "main/ix/component-related-examples.json",
+        "componentRelatedPatterns": "main/ix/component-related-patterns.json"
       },
-      "documentationSearchIndex": "v5.2.1/documentation-search-index.json",
+      "documentationSearchIndex": "main/documentation-search-index.json",
       "llms": {
-        "entrypoint": "v5.2.1/llms.txt",
-        "components": "v5.2.1/llms/components.md",
-        "examples": "v5.2.1/llms/examples.md",
-        "blocks": "v5.2.1/llms/blocks.md"
+        "entrypoint": "main/llms.txt",
+        "components": "main/llms/components.md",
+        "examples": "main/llms/examples.md",
+        "patterns": "main/llms/patterns.md"
       }
     }
   }
