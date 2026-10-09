@@ -25,8 +25,11 @@ const mediaQueryCollection: Array<{
 ];
 
 /**
+ * CSS grid container for arranging child items in a grid layout.
+ *
  * @internal
- * @slot default - Grid items arranged by the configured template.
+ *
+ * @slot - Grid items.
  */
 @Component({
   tag: 'ix-css-grid',
