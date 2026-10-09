@@ -92,12 +92,63 @@ const updateModel = async (tree: Locator, updatedModel: any) => {
   );
 };
 
+regressionTest.describe('accessibility', () => {
+  regressionTest('collapsed', async ({ mount, page, makeAxeBuilder }) => {
+    await initializeTree(mount, page);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('expanded', async ({ mount, page, makeAxeBuilder }) => {
+    const tree = await initializeTree(mount, page);
+
+    await tree
+      .locator('ix-tree-item', { hasText: 'Sample', hasNotText: 'Child' })
+      .locator('ix-icon')
+      .click();
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
   const item = tree.locator('ix-tree-item').nth(0);
   await expect(tree).toHaveAttribute('hydrated');
   await expect(item).toBeVisible();
+  await expect(item.locator('.icon-toggle')).toHaveCSS('width', '24px');
+  await expect(item.locator('.icon-toggle')).toHaveCSS('height', '24px');
 });
+
+regressionTest(
+  'uses configurable expand and collapse labels',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    const item = tree.locator('ix-tree-item', {
+      hasText: 'Sample',
+      hasNotText: 'Child',
+    });
+
+    await item.evaluate((element: HTMLIxTreeItemElement) => {
+      element.ariaLabelTreeCollapsed = 'Open branch';
+      element.ariaLabelTreeExpanded = 'Close branch';
+    });
+
+    await item.getByRole('button', { name: 'Open branch' }).click();
+    await expect(
+      item.getByRole('button', { name: 'Close branch' })
+    ).toBeVisible();
+
+    await item.evaluate((element: HTMLIxTreeItemElement) => {
+      element.ariaLabelChevronIcon = 'Toggle branch';
+    });
+    await expect(
+      item.getByRole('button', { name: 'Toggle branch' })
+    ).toBeVisible();
+  }
+);
 
 regressionTest('update tree', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
@@ -749,3 +800,139 @@ regressionTest(
     );
   }
 );
+
+for (const key of ['Enter', 'Space']) {
+  regressionTest(
+    `should expand item when ${key} is pressed on chevron`,
+    async ({ mount, page }) => {
+      const tree = await initializeTree(mount, page);
+      const sampleItem = tree.locator('ix-tree-item', {
+        hasText: 'Sample',
+        hasNotText: 'Child',
+      });
+      const chevron = sampleItem.getByRole('button', {
+        name: 'Expand tree item',
+      });
+
+      await chevron.focus();
+      await page.keyboard.press(key);
+
+      await expect(
+        tree.locator('ix-tree-item', { hasText: 'Sample Child ' }).first()
+      ).toBeVisible();
+      const expandedChevron = sampleItem.getByRole('button', {
+        name: 'Collapse tree item',
+      });
+      await expect(expandedChevron).toBeFocused();
+      await expect(expandedChevron).toHaveAttribute('aria-expanded', 'true');
+    }
+  );
+
+  regressionTest(
+    `should select item when ${key} is pressed on tree-node-container`,
+    async ({ mount, page }) => {
+      const tree = await initializeTree(mount, page);
+      const sampleItem = tree.locator('ix-tree-item', {
+        hasText: 'Sample',
+        hasNotText: 'Child',
+      });
+      const container = sampleItem.locator('.tree-node-container');
+
+      await container.focus();
+      await page.keyboard.press(key);
+
+      await expect(sampleItem).toHaveClass(/selected/);
+    }
+  );
+}
+
+regressionTest(
+  'disabled item should not respond to keyboard activation',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 20rem; width: 100%;">
+        <ix-tree root="root"></ix-tree>
+      </div>
+    `);
+
+    const tree = page.locator('ix-tree');
+    await tree.evaluate(
+      (element: HTMLIxTreeElement, args) => {
+        element.model = args.model;
+        element.context = args.context;
+      },
+      {
+        model: {
+          root: {
+            id: 'root',
+            data: { name: '' },
+            hasChildren: true,
+            children: ['parent'],
+          },
+          parent: {
+            id: 'parent',
+            data: { name: 'Disabled Parent' },
+            hasChildren: true,
+            children: ['child'],
+            disabled: true,
+          },
+          child: {
+            id: 'child',
+            data: { name: 'Child' },
+            hasChildren: false,
+            children: [],
+          },
+        } as TreeModel<unknown>,
+        context: {
+          root: { isExpanded: true, isSelected: false },
+          parent: { isExpanded: false, isSelected: false },
+          child: { isExpanded: false, isSelected: false },
+        } as TreeContext,
+      }
+    );
+
+    await expect(tree).toHaveAttribute('hydrated');
+
+    const parent = tree.locator('ix-tree-item', { hasText: 'Disabled Parent' });
+    const container = parent.locator('.tree-node-container');
+
+    const chevron = parent.locator('.icon-toggle');
+    await expect(chevron).toHaveAttribute('aria-disabled', 'true');
+    await expect(chevron).toHaveAttribute('tabindex', '-1');
+    await chevron.dispatchEvent('click');
+    await chevron.dispatchEvent('keydown', { key: 'Enter' });
+    await container.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(parent).not.toHaveClass(/selected/);
+    await expect(
+      tree.locator('ix-tree-item', { hasText: 'Child' })
+    ).not.toBeVisible();
+  }
+);
+
+for (const selector of ['.icon-toggle', '.tree-node-container']) {
+  for (const force of [false, true]) {
+    regressionTest(
+      `should preserve focus on ${selector} after refreshTree (force: ${force})`,
+      async ({ mount, page }) => {
+        const tree = await initializeTree(mount, page);
+        const sampleItem = tree.locator('ix-tree-item', {
+          hasText: 'Sample',
+          hasNotText: 'Child',
+        });
+        const control = sampleItem.locator(selector);
+
+        await control.focus();
+        await expect(control).toBeFocused();
+
+        await tree.evaluate(
+          (el: HTMLIxTreeElement, force) => el.refreshTree({ force }),
+          force
+        );
+
+        await expect(control).toBeFocused();
+      }
+    );
+  }
+}

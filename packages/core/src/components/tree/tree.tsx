@@ -321,10 +321,40 @@ export class Tree {
   @Method()
   async refreshTree(options: RefreshTreeOptions = defaultRefreshTreeOptions) {
     if (this.hyperlist) {
+      const focusedItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+        'ix-tree-item:focus-within'
+      );
+      const focusedControl = focusedItem?.shadowRoot?.activeElement;
+      const focusedId = focusedItem?.dataset.treeNodeId;
+
       this.hyperlist.refresh(
         this.hostElement,
         this.getVirtualizerOptions(options)
       );
+
+      if (
+        focusedId &&
+        focusedControl instanceof HTMLElement &&
+        focusedControl.matches('.icon-toggle, .tree-node-container')
+      ) {
+        const treeItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+          `[data-tree-node-id="${CSS.escape(focusedId)}"]`
+        );
+        if (treeItem && treeItem !== focusedItem) {
+          await treeItem.componentOnReady();
+        }
+        const selector = focusedControl.matches('.icon-toggle')
+          ? '.icon-toggle'
+          : '.tree-node-container';
+        const control =
+          treeItem?.shadowRoot?.querySelector<HTMLElement>(selector);
+        (
+          control ??
+          treeItem?.shadowRoot?.querySelector<HTMLElement>(
+            '.tree-node-container'
+          )
+        )?.focus();
+      }
     }
   }
 

@@ -10,6 +10,7 @@
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @slot default - Tree item content and nested items.
@@ -43,9 +44,23 @@ export class TreeItem {
   @Prop() disabled = false;
 
   /**
-   * ARIA label for the chevron icon
+   * ARIA label for the expand/collapse button
    */
   @Prop() ariaLabelChevronIcon?: string;
+
+  /**
+   * ARIA label for the expand control when the tree item is collapsed.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelTreeCollapsed = 'Expand tree item';
+
+  /**
+   * ARIA label for the collapse control when the tree item is expanded.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelTreeExpanded = 'Collapse tree item';
 
   /**
    * Expand/Collapsed toggled
@@ -56,6 +71,15 @@ export class TreeItem {
    * Click on item not on the expand/collapse icon
    */
   @Event() itemClick!: EventEmitter<void>;
+
+  private onToggle(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.disabled || this.context?.isDisabled) {
+      return;
+    }
+    this.toggle.emit();
+  }
 
   render() {
     const isDisabled = this.disabled || this.context?.isDisabled;
@@ -69,31 +93,52 @@ export class TreeItem {
       >
         <div class="icon-toggle-container">
           {this.hasChildren ? (
-            <ix-icon
-              name={iconChevronRightSmall}
-              class={{
-                ['icon-toggle-down']: !!this.context?.isExpanded,
-              }}
-              color="--si-sys-color-text-primary"
-              onClick={(e: Event) => {
-                if (isDisabled) {
-                  return;
-                }
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggle.emit();
-              }}
+            <span
+              class="icon-toggle"
+              role="button"
+              tabIndex={isDisabled ? -1 : 0}
+              aria-disabled={a11yBoolean(!!isDisabled)}
+              aria-expanded={a11yBoolean(!!this.context?.isExpanded)}
               aria-label={
                 this.ariaLabelChevronIcon ??
                 (this.context?.isExpanded
-                  ? 'Collapse tree item'
-                  : 'Expand tree item')
+                  ? this.ariaLabelTreeExpanded
+                  : this.ariaLabelTreeCollapsed)
               }
-            />
+              onClick={(event: MouseEvent) => this.onToggle(event)}
+              onKeyDown={(event: KeyboardEvent) => {
+                if (event.key === ' ' || event.key === 'Enter') {
+                  this.onToggle(event);
+                }
+              }}
+            >
+              <ix-icon
+                name={iconChevronRightSmall}
+                size="24"
+                class={{
+                  'icon-toggle-down': !!this.context?.isExpanded,
+                }}
+                color="color-std-text"
+                aria-hidden="true"
+              />
+            </span>
           ) : null}
         </div>
         <div
           class="tree-node-container"
+          role="button"
+          tabIndex={isDisabled ? -1 : 0}
+          aria-disabled={a11yBoolean(!!isDisabled)}
+          onKeyDown={(e: KeyboardEvent) => {
+            if (isDisabled) {
+              return;
+            }
+            if (e.key === ' ' || e.key === 'Enter') {
+              e.preventDefault();
+              e.stopPropagation();
+              (e.currentTarget as HTMLElement).click();
+            }
+          }}
           onClick={() => {
             if (isDisabled) {
               return;

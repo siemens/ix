@@ -28,8 +28,13 @@
     height: var(--ix-tree-item-tree-node-container--height);
     flex-grow: 1;
     align-items: center;
+    outline: none;
 
     @include text-truncation.ellipsis;
+
+    &:focus-visible {
+      outline: 1px solid var(--ix-tree-item--outline-color--focus);
+    }
 
     .tree-node-text {
       @include text-truncation.ellipsis;
@@ -44,12 +49,21 @@
     height: var(--ix-tree-item-icon-toggle-container--icon-size);
     min-width: var(--ix-tree-item-icon-toggle-container--icon-size);
 
-    ix-icon {
-      transition: transform var(--ix-tree-item-expand-icon--transition-duration)
-        ease-in-out;
+    .icon-toggle {
+      display: flex;
+      outline: none;
 
-      &.icon-toggle-down {
-        transform: rotate(90deg);
+      &:focus-visible {
+        outline: 1px solid var(--ix-tree-item--outline-color--focus);
+      }
+
+      ix-icon {
+        transition: transform var(--ix-tree-item-expand-icon--transition-duration)
+          ease-in-out;
+
+        &.icon-toggle-down {
+          transform: rotate(90deg);
+        }
       }
     }
   }
