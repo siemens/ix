@@ -1,5 +1,12 @@
 # @siemens/ix-angular
 
+## 5.3.0
+
+### Patch Changes
+
+- Updated dependencies [[`5f9b1b7`](https://github.com/siemens/ix/commit/5f9b1b7e9e1409c57f5d9cf7f58f40f9a832af36), [`58b7da4`](https://github.com/siemens/ix/commit/58b7da438959739db7df1aacc6dbc57b164a6464), [`280f85c`](https://github.com/siemens/ix/commit/280f85c79383e87bf386a1e605f52cbb12444af7), [`ce59db2`](https://github.com/siemens/ix/commit/ce59db2e9f8ab98734e919f0863dec0c070bd05e)]:
+  - @siemens/ix@5.3.0
+
 ## 5.2.1
 
 ### Patch Changes
