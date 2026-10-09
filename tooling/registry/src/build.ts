@@ -454,6 +454,7 @@ const task = new Listr<Ctx>([
         ),
         patternsDir: path.join(ctx.dist, 'patterns'),
         examplesDir: path.join(ctx.dist, 'examples'),
+        workspaceRoot: __workspace_root,
       });
 
       await updateLlmsRegistry(registryPath, {

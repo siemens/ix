@@ -2037,9 +2037,6 @@ importers:
       react-patterns:
         specifier: 'workspace:'
         version: link:../../patterns/react-patterns
-      tsdown:
-        specifier: ^0.20.1
-        version: 0.20.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(synckit@0.11.13)(typescript@5.9.3)
       tsx:
         specifier: ^4.21.0
         version: 4.21.0

@@ -118,46 +118,27 @@ For local development, `pnpm --filter registry dev` builds the `development`
 entry with unprefixed artifact paths and serves `dist` directly. Deployment
 builds set `REGISTRY_PATH_PREFIX` explicitly before the merge step.
 
-## iX skill search bundle
+## LLM artifacts
 
-The source for the consumer-facing search helper is
-`tooling/registry/src/skill/search.mjs`. The registry bundle pipeline generates
-these installed skill files:
+Each registry version publishes plain Markdown for agents that can only read
+files or fetch URLs (no scripts or runtime required). They back the
+script-free `skills/ix` skill:
 
-- `skills/ix/scripts/search.mjs`
-- `skills/ix/THIRD_PARTY_LICENSES.md`
+- `llms.txt`: version entrypoint with the recommended lookup flow.
+- `llms/catalog.md`: one line per component
+  (`tag|description|react:Alias|figma:ids`).
+- `llms/figma.md`: Figma main component ID to component tag table.
+- `llms/components/<tag>.md`: properties, events, methods, slots, framework
+  names, dependencies, documentation links, Figma IDs, related examples and
+  patterns.
+- `llms/examples/<framework>.md`: one line per example
+  (`name|title|uses:ix tags|files`). `uses` is derived at build time from each
+  framework's example source.
+- `llms/components.md`, `llms/examples.md`, `llms/patterns.md`: full indexes.
 
-`IX_SEARCH_OUT_DIR` may be set to an alternate skill root; the bundle is
-written below its `scripts/` directory.
-
-Regenerate them from the repository root with:
-
-```sh
-pnpm bundle:ix-search
-```
-
-Check that both generated files match the source and installed dependencies
-with:
-
-```sh
-pnpm check:ix-search
-```
-
-The bundled helper requires `--query`, `--figma-id`, or `--component-name`.
-Without `--kind` it searches components only; use `--kind example` or
-`--kind pattern` for direct discovery. Repeated `--figma-id` and
-`--component-name` values support composed Figma selections. JSON output is an
-envelope with `status`, `version`, `source`, and `results`; partial composed
-matches also include `unmatched` diagnostics. The stable failure statuses are
-`version_unavailable`, `no_match`, `figma_main_id_unregistered`, and
-`figma_mapping_unavailable`.
-
-When `--version` is omitted, the helper resolves the installed IX version
-relative to `--project-dir`, preferring `@siemens/ix` and then compatible
-framework wrappers. If registry metadata is unavailable, it falls back to the
-installed `component-doc.json`, then to published declarations. Declaration
-fallbacks expose API text and confirmed aliases only: relationships and Figma
-mappings remain unavailable, and documentation URLs are never synthesized.
+The compact files (`catalog.md`, `figma.md`, and `examples/<framework>.md`)
+should stay below about 20 KB so that a single HTTP fetch returns them
+completely.
 
 ## Deployment safety
 

@@ -256,7 +256,7 @@ function componentApiMembers(component: ComponentDoc): string[] {
   ]);
 }
 
-function componentReactAlias(tag: string): string {
+export function componentReactAlias(tag: string): string {
   return `Ix${tag
     .slice(3)
     .split('-')
@@ -264,7 +264,7 @@ function componentReactAlias(tag: string): string {
     .join('')}`;
 }
 
-async function readReactExportNames(
+export async function readReactExportNames(
   workspaceRoot: string,
   warn?: (message: string) => void
 ): Promise<Set<string>> {
