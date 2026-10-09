@@ -1,5 +1,29 @@
 # @siemens/ix-react
 
+## 6.0.0
+
+### Major Changes
+
+- [#2702](https://github.com/siemens/ix/pull/2702) [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00) Thanks [@dmytro-halimov](https://github.com/dmytro-halimov)! - **Breaking change:** `ix-content-header` titles and subtitles now wrap by default. Set `textOverflow="ellipsis"` to preserve the previous single-line ellipsis behavior without native tooltips.
+
+- [#2733](https://github.com/siemens/ix/pull/2733) [`4acd727`](https://github.com/siemens/ix/commit/4acd7278882779beee115d6e9ec765c2e1c21590) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Correct the `onNodeToggled` event payload type by renaming `isExpaned` to `isExpanded`.
+
+  Update event handlers to access `event.detail.isExpanded` instead of
+  `event.detail.isExpaned`.
+
+- [#2721](https://github.com/siemens/ix/pull/2721) [`17a0571`](https://github.com/siemens/ix/commit/17a05710b9f211a35cf4dc7bbc8217f285c0d591) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Use `unknown` instead of `any` for modal result defaults and tree callback values so consumers explicitly narrow untyped data.
+
+### Minor Changes
+
+- [#2777](https://github.com/siemens/ix/pull/2777) [`e7c2fd0`](https://github.com/siemens/ix/commit/e7c2fd0da802c604a798f47f5078a026612f0f48) Thanks [@mistrykaran91](https://github.com/mistrykaran91)! - Add the `ix-info-page` component for displaying informational page states, including Angular, React, and Vue framework wrappers.
+
+### Patch Changes
+
+- [#2721](https://github.com/siemens/ix/pull/2721) [`13177ae`](https://github.com/siemens/ix/commit/13177aefa70f459489c812053b839e62264c64b1) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Preserve support for HTMLElement modal content, clean up failed React renders, and report invalid view removal or portal initialization errors.
+
+- Updated dependencies [[`e7c2fd0`](https://github.com/siemens/ix/commit/e7c2fd0da802c604a798f47f5078a026612f0f48), [`9c7ddbc`](https://github.com/siemens/ix/commit/9c7ddbc1367a033ad9aff676f97196fac7f4b9b1), [`efb652d`](https://github.com/siemens/ix/commit/efb652de09862f3e402ad5762204faa0d0ef4635), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`c69a0da`](https://github.com/siemens/ix/commit/c69a0da722a5eb29f8f1a4e68e59144a074803e2), [`962cdb7`](https://github.com/siemens/ix/commit/962cdb71eae348ee5a03aae4b15da25f1e231703), [`a0eedb2`](https://github.com/siemens/ix/commit/a0eedb23edfab98bd9137364ba759239a5811db1), [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00), [`bd56270`](https://github.com/siemens/ix/commit/bd5627058a9fbb07c736711f06c5e45ea012ff2d), [`47dea5b`](https://github.com/siemens/ix/commit/47dea5b1fd9ca216959dbf5c9fe0d66c90fe5006), [`97af7a2`](https://github.com/siemens/ix/commit/97af7a2eb4b0e41401a9abd4f288248e671171fc), [`51962f5`](https://github.com/siemens/ix/commit/51962f5d1bfc882caf0b33e8ad0e75e56ee6da69), [`950d343`](https://github.com/siemens/ix/commit/950d3436eca7720c79187a40ec298641ace1b546), [`b1328b2`](https://github.com/siemens/ix/commit/b1328b2955992c42f2dcb588ce74c2109255315d), [`3ea6e6b`](https://github.com/siemens/ix/commit/3ea6e6b30879063f792fd54a99e3256b2278443b), [`322fbff`](https://github.com/siemens/ix/commit/322fbffcc453c89bb5fbc51662122ee5288ce89e), [`9f7b9c3`](https://github.com/siemens/ix/commit/9f7b9c3300ebe7acb5ac301ee4a91110c0d8171b), [`9f7b9c3`](https://github.com/siemens/ix/commit/9f7b9c3300ebe7acb5ac301ee4a91110c0d8171b), [`7349a55`](https://github.com/siemens/ix/commit/7349a55a54bc8d21a6c2bdfb9d17c0ff7e2b02ce), [`08d9f79`](https://github.com/siemens/ix/commit/08d9f790435242a2a33f564f8afdc5bb11952bed), [`3fcaced`](https://github.com/siemens/ix/commit/3fcaced4ecc8063aa9e239a0238f7d3b8ad3d75a), [`51962f5`](https://github.com/siemens/ix/commit/51962f5d1bfc882caf0b33e8ad0e75e56ee6da69), [`5b30214`](https://github.com/siemens/ix/commit/5b30214fcc2ea9f8374d3aa5f0a9e58b5dafacaf), [`3b713f4`](https://github.com/siemens/ix/commit/3b713f4bf179a765fe4b0a097add3c9baaab2a8c), [`8434d9f`](https://github.com/siemens/ix/commit/8434d9f4fc83fe1d01cc4d8aaa9666e0f8802425), [`4aee443`](https://github.com/siemens/ix/commit/4aee443a11a8e9ea68ad8ed7e5b0cac747d8fec6), [`94b305c`](https://github.com/siemens/ix/commit/94b305cc433bb369731b77a5a8c0146ede150f22), [`5e45a40`](https://github.com/siemens/ix/commit/5e45a40fcc3abf82d58ae552fecb0b9a7ba39aae), [`bcd17fc`](https://github.com/siemens/ix/commit/bcd17fcba1499663610c08d1dff08c6423e8e1f4), [`7707d6b`](https://github.com/siemens/ix/commit/7707d6b3606ad0187a4381375e787aca12127d58), [`d2bee1f`](https://github.com/siemens/ix/commit/d2bee1fb2fdf0a39c4fe843f09ab973da1748faf), [`25097d9`](https://github.com/siemens/ix/commit/25097d958e662245c0bec130a2d915a9b38628cb), [`7f7b6cc`](https://github.com/siemens/ix/commit/7f7b6ccd97f282b90345e99628d1321356efa644), [`64018f4`](https://github.com/siemens/ix/commit/64018f49843e4eb8e8744a4b7f392c52a90e6708), [`e5fe894`](https://github.com/siemens/ix/commit/e5fe894b98284be1227fba8fa47fab2652ed095d)]:
+  - @siemens/ix@6.0.0
+
 ## 5.2.1
 
 ### Patch Changes

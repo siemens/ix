@@ -1,5 +1,38 @@
 # @siemens/ix-aggrid
 
+## 6.0.0
+
+### Major Changes
+
+- [#2859](https://github.com/siemens/ix/pull/2859) [`25097d9`](https://github.com/siemens/ix/commit/25097d958e662245c0bec130a2d915a9b38628cb) Thanks [@danielleroux](https://github.com/danielleroux)! - ## Migrate to SI Theme 6 tokens
+
+  Adopt SI Theme 6 semantic tokens: `--theme-si-sys-*` becomes `--si-sys-color-*`; `--theme-si-classic-ref-*` and `--theme-si-ref-*` become `--si-ref-*`; Sass variables become `$si-sys-color-*`. Choose a purpose-specific system or reference token for each legacy `--theme-*` use rather than blindly renaming its prefix. The common legacy layer removes sizing, spacing, text-decoration, effects, typography metric/shorthand, and remaining legacy color, chart, border, font-family, and branding exports; only five timing compatibility variables remain. Migrate application-owned references using `BREAKING_CHANGES/v6.md`.
+
+  Generated `--theme-<component>-*` aliases are no longer included and no longer customize migrated components. Replace them with corresponding scoped `--ix-*` properties; `BREAKING_CHANGES/v6_components_tokens.md` maps downstream alias references. Color-valued component props such as `iconColor` and event-list `itemColor` now require full CSS custom-property names including `--`; exported `NotificationColor` values include it too.
+
+  ## Customize components and density
+
+  Component-scoped `--ix-*` properties expose dimensions, spacing, icons, and density-aware geometry. `ix-action-card`, `ix-chat-input`, `ix-chat-ai-message`, and `ix-chat-user-message` also expose scoped appearance and state overrides without internal selectors. Density-aware sizing and spacing respond to live density changes across core components and legacy-backed styles while preserving default-density geometry. Remaining chat, checkbox, and event-list consumers use system tokens; default spacing and chat font sizes remain preserved, while compact density also applies to migrated spacing and typography. Standalone `ix-icon` retains the icon package's 20px default in both densities and honors explicit `size` values; applicable component-owned icons use 20px by default and 16px in compact density.
+
+  ## Styling changes and compatibility
+
+  SI Theme 6 semantic colors now drive date-picker day, range, and today states; badge status backgrounds and on-status colors; completed and selected workflow-step hover/press accents; legacy form controls; and global style utilities. The expanding-search active-button, event-list-item empty-indicator, and date-dropdown divider borders use system border colors and the default system border width. Existing component-scoped border overrides still take complete border values. Warning, critical, and neutral colors and shadows may visibly differ under SI Theme 6.
+
+  Remove the legacy shadow aliases `--theme-box-shadow-lvl-*`, `--theme-box-shadow-level-*`, and `--theme-box-shadow-insert`. Use the complete `--si-sys-color-effects-shadow-1` through `--si-sys-color-effects-shadow-4` values directly as shadows. The inset effect has no system-token replacement; remove it or define an application-owned inset shadow. Input-like controls, shared input mixins, and legacy native inputs no longer render decorative inset shadows in normal, hover, or focus states. Obsolete input, select, chat-input, and expanding-search shadow custom properties are removed; keyboard-focus indicators and browser autofill background correction are unchanged.
+
+  Native `<pre>`, `<code>`, `<kbd>`, and `<samp>` styling in the reset, globals, and legacy styles now uses `--si-ref-typography-font-family-mono`. The classic theme's monospace default changes from JetBrains Mono to `'Courier New', monospace`.
+
+  ## Integration changes
+
+  AG Grid consumes grouped `--si-sys-color-*` tokens for design-tokens 0.12 compatibility. Border and focus-border defaults use `--si-sys-sizing-border-width-default`, without changing their width or disabled column borders. Overrides of `--theme-border-width-default` and `--theme-focus-border-thickness` no longer affect these defaults; migrate to the system token or the matching AG Grid theme parameter.
+
+  ECharts `getComputedCSSProperty` no longer prepends `--theme-`. Pass complete CSS custom-property names, including `--`, and migrate legacy theme references to their SI Theme 6 equivalents.
+
+### Patch Changes
+
+- Updated dependencies [[`e7c2fd0`](https://github.com/siemens/ix/commit/e7c2fd0da802c604a798f47f5078a026612f0f48), [`9c7ddbc`](https://github.com/siemens/ix/commit/9c7ddbc1367a033ad9aff676f97196fac7f4b9b1), [`efb652d`](https://github.com/siemens/ix/commit/efb652de09862f3e402ad5762204faa0d0ef4635), [`0c95210`](https://github.com/siemens/ix/commit/0c952102075ef40aa5768488efe0198af143719a), [`c69a0da`](https://github.com/siemens/ix/commit/c69a0da722a5eb29f8f1a4e68e59144a074803e2), [`962cdb7`](https://github.com/siemens/ix/commit/962cdb71eae348ee5a03aae4b15da25f1e231703), [`a0eedb2`](https://github.com/siemens/ix/commit/a0eedb23edfab98bd9137364ba759239a5811db1), [`e77e890`](https://github.com/siemens/ix/commit/e77e890634212507a5bd94cc600937b525896e00), [`bd56270`](https://github.com/siemens/ix/commit/bd5627058a9fbb07c736711f06c5e45ea012ff2d), [`47dea5b`](https://github.com/siemens/ix/commit/47dea5b1fd9ca216959dbf5c9fe0d66c90fe5006), [`97af7a2`](https://github.com/siemens/ix/commit/97af7a2eb4b0e41401a9abd4f288248e671171fc), [`51962f5`](https://github.com/siemens/ix/commit/51962f5d1bfc882caf0b33e8ad0e75e56ee6da69), [`950d343`](https://github.com/siemens/ix/commit/950d3436eca7720c79187a40ec298641ace1b546), [`b1328b2`](https://github.com/siemens/ix/commit/b1328b2955992c42f2dcb588ce74c2109255315d), [`3ea6e6b`](https://github.com/siemens/ix/commit/3ea6e6b30879063f792fd54a99e3256b2278443b), [`322fbff`](https://github.com/siemens/ix/commit/322fbffcc453c89bb5fbc51662122ee5288ce89e), [`9f7b9c3`](https://github.com/siemens/ix/commit/9f7b9c3300ebe7acb5ac301ee4a91110c0d8171b), [`9f7b9c3`](https://github.com/siemens/ix/commit/9f7b9c3300ebe7acb5ac301ee4a91110c0d8171b), [`7349a55`](https://github.com/siemens/ix/commit/7349a55a54bc8d21a6c2bdfb9d17c0ff7e2b02ce), [`08d9f79`](https://github.com/siemens/ix/commit/08d9f790435242a2a33f564f8afdc5bb11952bed), [`3fcaced`](https://github.com/siemens/ix/commit/3fcaced4ecc8063aa9e239a0238f7d3b8ad3d75a), [`51962f5`](https://github.com/siemens/ix/commit/51962f5d1bfc882caf0b33e8ad0e75e56ee6da69), [`5b30214`](https://github.com/siemens/ix/commit/5b30214fcc2ea9f8374d3aa5f0a9e58b5dafacaf), [`3b713f4`](https://github.com/siemens/ix/commit/3b713f4bf179a765fe4b0a097add3c9baaab2a8c), [`8434d9f`](https://github.com/siemens/ix/commit/8434d9f4fc83fe1d01cc4d8aaa9666e0f8802425), [`4aee443`](https://github.com/siemens/ix/commit/4aee443a11a8e9ea68ad8ed7e5b0cac747d8fec6), [`94b305c`](https://github.com/siemens/ix/commit/94b305cc433bb369731b77a5a8c0146ede150f22), [`5e45a40`](https://github.com/siemens/ix/commit/5e45a40fcc3abf82d58ae552fecb0b9a7ba39aae), [`bcd17fc`](https://github.com/siemens/ix/commit/bcd17fcba1499663610c08d1dff08c6423e8e1f4), [`7707d6b`](https://github.com/siemens/ix/commit/7707d6b3606ad0187a4381375e787aca12127d58), [`d2bee1f`](https://github.com/siemens/ix/commit/d2bee1fb2fdf0a39c4fe843f09ab973da1748faf), [`25097d9`](https://github.com/siemens/ix/commit/25097d958e662245c0bec130a2d915a9b38628cb), [`7f7b6cc`](https://github.com/siemens/ix/commit/7f7b6ccd97f282b90345e99628d1321356efa644), [`64018f4`](https://github.com/siemens/ix/commit/64018f49843e4eb8e8744a4b7f392c52a90e6708), [`e5fe894`](https://github.com/siemens/ix/commit/e5fe894b98284be1227fba8fa47fab2652ed095d)]:
+  - @siemens/ix@6.0.0
+
 ## 5.1.0
 
 ### Minor Changes
