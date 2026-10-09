@@ -1,6 +1,7 @@
 - main:
   - button "Arrow Left"
-  - text: Content title that remains compact when horizontal space is limited Supporting context is truncated independently when space is limited
+  - heading "Content title that remains compact when horizontal space is limited" [level=2]
+  - text: Supporting context is truncated independently when space is limited
   - button "Button1"
   - button "Button2"
   - button "Button3"

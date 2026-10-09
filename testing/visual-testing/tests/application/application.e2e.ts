@@ -249,7 +249,7 @@ regressionTest.describe('application-switch', () => {
 
     await page.waitForTimeout(1000);
     const modal = page.locator('ix-modal');
-    await expect(modal).toHaveAttribute('hydrated');
+    await expect(modal).toHaveClass(/\bhydrated\b/);
 
     await expect(page).toHaveScreenshot({
       fullPage: true,

@@ -32,6 +32,19 @@
       }
     }
 
+    .header-title {
+      font: var(--ix-content-header-title--font);
+
+      margin: 0;
+      padding: 0;
+
+      &.secondary {
+        font: var(--ix-content-header-secondary--font);
+
+        padding: var(--ix-content-header-secondary--padding);
+      }
+    }
+
     .headerTitleRow {
       display: flex;
 
@@ -45,10 +58,6 @@
         align-self: flex-start;
         margin-left: var(--ix-content-header-header-slot--margin-left);
       }
-    }
-
-    .secondary {
-      padding: var(--ix-content-header-secondary--padding);
     }
   }
 
