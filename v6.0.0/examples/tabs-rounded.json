@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"tabs-rounded","variants":{"html":{"files":[{"path":"html/tabs-rounded.html"}]},"react":{"files":[{"path":"react/tabs-rounded.tsx"}]},"angular":{"files":[{"path":"angular/tabs-rounded.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/tabs-rounded.ts"}]},"vue":{"files":[{"path":"vue/tabs-rounded.vue"}]}}}

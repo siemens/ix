@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"loading","variants":{"html":{"files":[{"path":"html/loading.html"}]},"react":{"files":[{"path":"react/loading.tsx"}]},"angular":{"files":[{"path":"angular/loading.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/loading.ts"}]},"vue":{"files":[{"path":"vue/loading.vue"}]}}}

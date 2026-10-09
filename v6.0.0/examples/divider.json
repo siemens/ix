@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"divider","variants":{"html":{"files":[{"path":"html/divider.html"}]},"react":{"files":[{"path":"react/divider.tsx"}]},"angular":{"files":[{"path":"angular/divider.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/divider.ts"}]},"vue":{"files":[{"path":"vue/divider.vue"}]}}}

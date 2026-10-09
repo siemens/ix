@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"key-value","variants":{"html":{"files":[{"path":"html/key-value.html"}]},"react":{"files":[{"path":"react/key-value.tsx"}]},"angular":{"files":[{"path":"angular/key-value.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/key-value.ts"}]},"vue":{"files":[{"path":"vue/key-value.vue"}]}}}

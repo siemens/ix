@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"time-range","variants":{"html":{"files":[{"path":"html/time-range.html"}]},"react":{"files":[{"path":"react/time-range.tsx"}]},"angular":{"files":[{"path":"angular/time-range.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/time-range.ts"}]},"vue":{"files":[{"path":"vue/time-range.vue"}]}}}

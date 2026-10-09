@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"toggle","variants":{"html":{"files":[{"path":"html/toggle.html"}]},"react":{"files":[{"path":"react/toggle.tsx"}]},"angular":{"files":[{"path":"angular/toggle.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/toggle.ts"}]},"vue":{"files":[{"path":"vue/toggle.vue"}]}}}

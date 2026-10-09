@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"avatar","variants":{"html":{"files":[{"path":"html/avatar.html"}]},"react":{"files":[{"path":"react/avatar.tsx"}]},"angular":{"files":[{"path":"angular/avatar.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/avatar.ts"}]},"vue":{"files":[{"path":"vue/avatar.vue"}]}}}

@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"upload","variants":{"html":{"files":[{"path":"html/upload.html"}]},"react":{"files":[{"path":"react/upload.tsx"}]},"angular":{"files":[{"path":"angular/upload.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/upload.ts"}]},"vue":{"files":[{"path":"vue/upload.vue"}]}}}

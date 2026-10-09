@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"datepicker","variants":{"html":{"files":[{"path":"html/datepicker.html"}]},"react":{"files":[{"path":"react/datepicker.tsx"}]},"angular":{"files":[{"path":"angular/datepicker.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/datepicker.ts"}]},"vue":{"files":[{"path":"vue/datepicker.vue"}]}}}

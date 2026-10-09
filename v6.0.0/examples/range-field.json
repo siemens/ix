@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"range-field","variants":{"html":{"files":[{"path":"html/range-field.html"}]},"react":{"files":[{"path":"react/range-field.tsx"}]},"angular":{"files":[{"path":"angular/range-field.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/range-field.ts"}]},"vue":{"files":[{"path":"vue/range-field.vue"}]}}}

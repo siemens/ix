@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"checkbox","variants":{"html":{"files":[{"path":"html/checkbox.html"}]},"react":{"files":[{"path":"react/checkbox.tsx"}]},"angular":{"files":[{"path":"angular/checkbox.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/checkbox.ts"}]},"vue":{"files":[{"path":"vue/checkbox.vue"}]}}}

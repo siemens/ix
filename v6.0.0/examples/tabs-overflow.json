@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"tabs-overflow","variants":{"html":{"files":[{"path":"html/tabs-overflow.html"}]},"react":{"files":[{"path":"react/tabs-overflow.tsx"}]},"angular":{"files":[{"path":"angular/tabs-overflow.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/tabs-overflow.ts"}]},"vue":{"files":[{"path":"vue/tabs-overflow.vue"}]}}}

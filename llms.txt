@@ -14,22 +14,26 @@ Pattern docs describe copyable multi-file UI patterns built with iX packages, in
 
 If a relationship is marked unavailable in a linked file, do not infer it; the registry JSON does not provide that relationship.
 
-Latest registry tag: main.
+Latest registry tag: v6.0.0.
 
 ## Registry versions
 
-- [main](main/llms.txt): Versioned Siemens iX registry LLM entrypoint. Tags: latest.
+- [v6.0.0](v6.0.0/llms.txt): Versioned Siemens iX registry LLM entrypoint. Tags: latest.
+- [main](main/llms.txt): Versioned Siemens iX registry LLM entrypoint.
 
 ## Component docs
 
+- [v6.0.0 components](v6.0.0/llms/components.md): Component API, examples, Figma IDs, and relationship availability for v6.0.0.
 - [main components](main/llms/components.md): Component API, examples, Figma IDs, and relationship availability for main.
 
 ## Example docs
 
+- [v6.0.0 examples](v6.0.0/llms/examples.md): Registry examples with related iX components, framework variants, and source files for v6.0.0.
 - [main examples](main/llms/examples.md): Registry examples with related iX components, framework variants, and source files for main.
 
 ## Pattern docs
 
+- [v6.0.0 patterns](v6.0.0/llms/patterns.md): Registry pattern metadata, variants, files, and component usage availability for v6.0.0.
 - [main patterns](main/llms/patterns.md): Registry pattern metadata, variants, files, and component usage availability for main.
 
 ## Optional

@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"validation","variants":{"react":{"files":[{"path":"react/validation.tsx"}]},"angular":{"files":[{"path":"angular/validation.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/validation.ts"}]},"vue":{"files":[{"path":"vue/validation.vue"}]}}}

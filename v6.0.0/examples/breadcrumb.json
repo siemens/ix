@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"breadcrumb","variants":{"html":{"files":[{"path":"html/breadcrumb.html"}]},"react":{"files":[{"path":"react/breadcrumb.tsx"}]},"angular":{"files":[{"path":"angular/breadcrumb.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/breadcrumb.ts"}]},"vue":{"files":[{"path":"vue/breadcrumb.vue"}]}}}

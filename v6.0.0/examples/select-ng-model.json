@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"select-ng-model","variants":{"angular":{"files":[{"path":"angular/select-ng-model.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/select-ng-model.ts"}]}}}

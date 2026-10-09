@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"modal-by-template","variants":{"angular":{"files":[{"path":"angular/modal-by-template.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/modal-by-template.ts"}]}}}

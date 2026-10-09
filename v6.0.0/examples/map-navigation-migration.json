@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"map-navigation-migration","variants":{"react":{"files":[{"path":"react/map-navigation-migration.scoped.css"}]},"angular":{"files":[{"path":"angular/map-navigation-migration.css"}]},"angular-standalone":{"files":[{"path":"angular-standalone/map-navigation-migration.css"}]}}}

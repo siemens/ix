@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"tree","variants":{"html":{"files":[{"path":"html/tree.html"}]},"react":{"files":[{"path":"react/tree.tsx"}]},"angular":{"files":[{"path":"angular/tree.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/tree.ts"}]},"vue":{"files":[{"path":"vue/tree.vue"}]}}}

@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"group","variants":{"html":{"files":[{"path":"html/group.html"}]},"react":{"files":[{"path":"react/group.tsx"}]},"angular":{"files":[{"path":"angular/group.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/group.ts"}]},"vue":{"files":[{"path":"vue/group.vue"}]}}}

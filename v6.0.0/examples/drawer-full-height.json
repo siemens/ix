@@ -1,0 +1,1 @@
+{"$schema":"../schemas/example.schema.json","name":"drawer-full-height","variants":{"react":{"files":[{"path":"react/drawer-full-height.tsx"}]},"angular":{"files":[{"path":"angular/drawer-full-height.ts"}]},"angular-standalone":{"files":[{"path":"angular-standalone/drawer-full-height.ts"}]},"vue":{"files":[{"path":"vue/drawer-full-height.vue"}]}}}
