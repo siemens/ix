@@ -166,6 +166,7 @@ export class Blind {
             <ix-icon
               class="collapse-icon"
               name={iconChevronDownSmall}
+              aria-hidden="true"
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div

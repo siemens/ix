@@ -96,6 +96,8 @@ $blind-variant-sys-values: (
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-header-wrapper--outline-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-blind-header-wrapper--outline-color: #{sys.$si-sys-color-effects-focus};
   --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
