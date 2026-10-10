@@ -88,7 +88,13 @@ import './generated/badge-label.spec';
 import './generated/badge-dot.spec';
 import './generated/badge-status-icon.spec';
 
-// Card family tests (Blind deferred — Figma not ready)
+// Group tests
+import './generated/group.spec';
+import './generated/group-context-menu.spec';
+import './generated/group-custom-entry.spec';
+import './generated/group-header-suppressed.spec';
+
+// Card family tests
 import './generated/card.spec';
 import './generated/action-card.spec';
 import './generated/push-card.spec';

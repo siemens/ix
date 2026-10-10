@@ -14,7 +14,10 @@ import type { ColumnSize } from './col.types';
 type GridBreakpoint = Breakpoint | '';
 
 /**
- * @slot default - Column content.
+ * Column within the responsive layout grid.
+ *
+ * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+ * @slot - Column content.
  */
 @Component({
   tag: 'ix-col',
