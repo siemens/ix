@@ -27,6 +27,7 @@ declare global {
   var showMessage: any;
   var __counter: number;
   var __nbBgClick: boolean | undefined;
+  var __loggedErrors: unknown[][];
 }
 
 async function setupModalEnvironment(page: Page) {
@@ -787,5 +788,52 @@ regressionTest(
     expect(Math.abs(reopenCenterX - initialCenterX)).toBeLessThanOrEqual(
       positionTolerance
     );
+  }
+);
+
+regressionTest(
+  'logs the original error when showing the dialog fails',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    await page.evaluate(async () => {
+      globalThis.__loggedErrors = [];
+
+      const originalConsoleError = console.error;
+      console.error = (...args: unknown[]) => {
+        globalThis.__loggedErrors.push(
+          args.map((arg) =>
+            arg instanceof Error
+              ? { name: arg.name, message: arg.message }
+              : arg
+          )
+        );
+        originalConsoleError.apply(console, args);
+      };
+
+      const originalShowModal = HTMLDialogElement.prototype.showModal;
+      HTMLDialogElement.prototype.showModal = () => {
+        throw new Error('underlying dialog failure');
+      };
+
+      const modal = document.createElement('ix-modal');
+      modal.innerHTML = '<div>content</div>';
+      document.body.appendChild(modal);
+
+      try {
+        await modal.componentOnReady();
+        await modal.showModal();
+      } finally {
+        HTMLDialogElement.prototype.showModal = originalShowModal;
+        console.error = originalConsoleError;
+      }
+    });
+
+    const logged = await page.evaluate(() => globalThis.__loggedErrors);
+    const loggedText = JSON.stringify(logged.flat());
+
+    expect(loggedText).toContain('underlying dialog failure');
+    expect(loggedText).not.toContain('HTMLDialogElement not existing');
   }
 );

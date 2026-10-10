@@ -243,8 +243,8 @@ export class Modal {
       this.slideInModal();
 
       await this.scheduleInitialAutofocus();
-    } catch {
-      console.error('HTMLDialogElement not existing');
+    } catch (error) {
+      console.error('Failed to show modal dialog', error);
     }
   }
 
