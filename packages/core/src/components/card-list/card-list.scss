@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
+@use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
 
@@ -111,7 +112,27 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     height: var(--ix-card-list-show-all-card--height);
 
     --ix-card-border-color: var(--ix-card-list-show-all--border-color);
+    --ix-card-background: var(--ix-card-list-show-all--background);
     color: var(--ix-card-list-show-all--color);
+
+    /* End card owns padding; neutralize ix-card-content default inset */
+    ix-card-content {
+      --ix-card-content--padding: 0;
+      height: 100%;
+    }
+
+    /* Beat ix-card :host(.clickable…) hover/active so End-card accent chrome wins */
+    &.clickable:hover,
+    &:hover {
+      --ix-card-background: var(--ix-card-list-show-all--background--hover);
+      color: var(--ix-card-list-show-all--color--hover);
+    }
+
+    &.clickable:active,
+    &:active {
+      --ix-card-background: var(--ix-card-list-show-all--background--active);
+      color: var(--ix-card-list-show-all--color--hover);
+    }
 
     @include hover.focus-visible {
       outline: var(--ix-card-list-show-all--outline-width--focus) solid
@@ -122,23 +143,35 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
 
   .Show__All__Card__Content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
+    gap: #{sys.$si-sys-sizing-spacing-y-40};
+    box-sizing: border-box;
     height: 100%;
+    width: 100%;
+    padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
   }
 
   .Show__All__Card__Icon {
     display: flex;
-    position: absolute;
+    position: relative;
+    flex-shrink: 0;
     height: var(--ix-card-list-show-all-card-icon--icon-size);
     width: var(--ix-card-list-show-all-card-icon--icon-size);
+    min-height: var(--ix-card-list-show-all-card-icon--icon-size);
+    min-width: var(--ix-card-list-show-all-card-icon--icon-size);
     justify-content: center;
     align-items: center;
   }
 
   .Show__All__Card__Text {
-    margin-bottom: 0;
-    margin-top: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    min-height: #{sys.$si-sys-sizing-size-100};
+    width: 100%;
     text-align: center;
   }
 
@@ -152,13 +185,5 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
     margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
-
-    .Show__All__Card:hover {
-      background-color: var(--ix-card-list-show-all--background--hover);
-    }
-
-    .Show__All__Card:active {
-      background-color: var(--ix-card-list-show-all--background--active);
-    }
   }
 }

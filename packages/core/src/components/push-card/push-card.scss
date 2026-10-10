@@ -6,15 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './../card/card.vars' as card-vars;
+@use 'tokens/system' as sys;
 
 @use './push-card.vars' as *;
+
 :host {
   display: block;
   position: relative;
+  width: var(--ix-push-card--width);
 
   ix-card {
     cursor: default;
+    width: 100%;
   }
 
   ix-card-accordion {
@@ -22,12 +25,17 @@
   }
 
   .icon {
+    /* Explicit size so CSS wins over ix-icon defaults */
     height: var(--ix-push-card-icon--icon-size);
     width: var(--ix-push-card-icon--icon-size);
+    min-height: var(--ix-push-card-icon--icon-size);
+    min-width: var(--ix-push-card-icon--icon-size);
   }
 
   ix-card-title {
     height: var(--ix-push-card--height);
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   ix-card-content {
@@ -36,73 +44,20 @@
     &::part(content) {
       overflow: visible;
     }
-
-    .typography-h4 {
-      padding-top: var(--ix-push-card-content--padding-top);
-    }
   }
-}
 
-@each $variant in card-vars.$card-variants {
-  :host(.card-#{$variant}) {
-    ix-card-content {
-      border-bottom: var(--ix-push-card--border-width)
-        solid
-        var(--ix-push-card-#{$variant}-accordion--border-color);
-    }
-
-    ix-card-accordion {
-      --ix-card-accordion-#{$variant}-accordion--background--hover: var(
-        --ix-push-card-#{$variant}-accordion--background
-      );
-      --ix-card-accordion-#{$variant}-accordion--background--active: var(
-        --ix-push-card-#{$variant}-accordion--background
-      );
-      --ix-card-accordion-#{$variant}-accordion-frame--border-color: var(
-        --ix-push-card-#{$variant}-accordion--background
-      );
-      --ix-card-accordion-expand-content--border-radius: 0
-        0
-        var(--ix-push-card-card-accordion--border-radius)
-        var(--ix-push-card-card-accordion--border-radius);
-
-      @if $variant != 'outline' and $variant != 'filled' {
-        --ix-card-accordion-expand-content--border-radius: 0
-          0
-          calc(
-            var(--ix-push-card-card-accordion--border-radius) +
-              var(--ix-push-card--border-width)
-          )
-          calc(
-            var(--ix-push-card-card-accordion--border-radius) +
-              var(--ix-push-card--border-width)
-          );
-      }
-
-      @if $variant == 'outline' or $variant == 'filled' {
-        --ix-card-background: var(
-          --ix-push-card-card-accordion--card-background
-        );
-      }
-
-      @if $variant == 'outline' {
-        --ix-card-accordion-outline-accordion-frame--border-color: var(
-          --ix-push-card-card-accordion--border-color
-        );
-      }
-    }
-
-    @if $variant == 'outline' {
-      ix-card {
-        --ix-card-border-color: var(--ix-push-card-card--card-border-color);
-
-        &:hover,
-        &:active {
-          --ix-card-border-color: var(
-            --ix-push-card-card--card-border-color--active
-          );
-        }
-      }
-    }
+  ix-card-accordion {
+    --ix-card-accordion-expand-content--border-radius: 0 0
+      var(--ix-push-card--border-radius) var(--ix-push-card--border-radius);
+    /* No inner border around expanded content */
+    --ix-card-accordion-chrome-frame--border-color: transparent;
+    --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+    /* Separator on accordion top (not content bottom) — matches Figma */
+    --ix-card-accordion-expand-action--border-top-width: var(
+      --ix-push-card--border-width
+    );
+    --ix-card-accordion-expand-action--border-top-color: var(
+      --ix-push-card-accordion--border-color
+    );
   }
 }

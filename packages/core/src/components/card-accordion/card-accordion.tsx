@@ -48,11 +48,20 @@ export class CardAccordion {
   @Prop() collapse = false;
 
   /**
-   * Show accordion with different color variants
+   * Accordion status variant (aligned with the parent card)
    *
    * @since 4.0.0
    */
-  @Prop() variant: CardAccordionVariant = 'outline';
+  @Prop() variant: CardAccordionVariant = 'default';
+
+  /**
+   * Match the parent card outline mode.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses filled accordion chrome.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   @Element() hostElement!: HTMLIxCardAccordionElement;
 
@@ -104,11 +113,16 @@ export class CardAccordion {
     this.onInitialExpandChange();
   }
 
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
   render() {
     return (
       <Host
         slot="card-accordion"
         class={{
+          outline: this.isOutline,
           [`variant-${this.variant}`]: true,
         }}
       >

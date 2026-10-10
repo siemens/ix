@@ -120,14 +120,14 @@ import { defineCustomElement as defineIxWorkflowStep } from '@siemens/ix/compone
 import { defineCustomElement as defineIxWorkflowSteps } from '@siemens/ix/components/ix-workflow-steps.js';
 @ProxyCmp({
   defineCustomElementFn: defineIxActionCard,
-  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'passive', 'selected', 'subheading', 'variant']
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'clickable', 'heading', 'icon', 'outline', 'selected', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-action-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'passive', 'selected', 'subheading', 'variant'],
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'clickable', 'heading', 'icon', 'outline', 'selected', 'subheading', 'variant'],
 })
 export class IxActionCard {
   protected el: HTMLIxActionCardElement;
@@ -360,14 +360,14 @@ export declare interface IxButton extends Components.IxButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCard,
-  inputs: ['passive', 'selected', 'variant']
+  inputs: ['clickable', 'outline', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['passive', 'selected', 'variant'],
+  inputs: ['clickable', 'outline', 'selected', 'variant'],
 })
 export class IxCard {
   protected el: HTMLIxCardElement;
@@ -383,14 +383,14 @@ export declare interface IxCard extends Components.IxCard {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxCardAccordion,
-  inputs: ['ariaLabelExpandButton', 'collapse', 'variant']
+  inputs: ['ariaLabelExpandButton', 'collapse', 'outline', 'variant']
 })
 @Component({
   selector: 'ix-card-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelExpandButton', 'collapse', 'variant'],
+  inputs: ['ariaLabelExpandButton', 'collapse', 'outline', 'variant'],
 })
 export class IxCardAccordion {
   protected el: HTMLIxCardAccordionElement;
@@ -2661,14 +2661,14 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 @ProxyCmp({
   defineCustomElementFn: defineIxPushCard,
-  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'passive', 'subheading', 'variant']
+  inputs: ['ariaLabelIcon', 'clickable', 'expanded', 'heading', 'icon', 'notification', 'outline', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-push-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'passive', 'subheading', 'variant'],
+  inputs: ['ariaLabelIcon', 'clickable', 'expanded', 'heading', 'icon', 'notification', 'outline', 'subheading', 'variant'],
 })
 export class IxPushCard {
   protected el: HTMLIxPushCardElement;

@@ -93,3 +93,8 @@ import './generated/group-axe.spec';
 import './generated/group-context-menu-axe.spec';
 import './generated/group-custom-entry-axe.spec';
 import './generated/group-header-suppressed-axe.spec';
+
+// Card family — action-card axe only.
+// card / push-card / card-list axe fail on pre-existing icon-alt and
+// accordion button-name issues outside EIX-410 scope.
+import './generated/action-card-axe.spec';

@@ -8,9 +8,10 @@
  */
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use './../card/card.vars' as card-vars;
+@use 'tokens/system' as sys;
 
 @use './card-accordion.vars' as *;
+
 :host {
   display: flex;
   position: relative;
@@ -27,6 +28,7 @@
     all: unset;
     display: flex;
     position: relative;
+    box-sizing: border-box;
 
     appearance: button;
 
@@ -36,10 +38,35 @@
     align-items: center;
     justify-content: flex-start;
 
+    border-top: var(--ix-card-accordion-expand-action--border-top-width) solid
+      var(--ix-card-accordion-expand-action--border-top-color);
+    border-bottom-left-radius: var(
+      --ix-card-accordion-expand-action--border-bottom-left-radius
+    );
+    border-bottom-right-radius: var(
+      --ix-card-accordion-expand-action--border-bottom-right-radius
+    );
+
+    background-color: var(--ix-card-accordion-chrome--background);
+
     @include hover.focus-visible {
       outline: var(--ix-card-accordion--outline-width--focus) solid
         var(--ix-card-accordion--outline-color--focus);
       outline-offset: var(--ix-card-accordion--focus--outline-offset);
+    }
+
+    &:hover {
+      background: var(--ix-card-accordion-chrome--background--hover);
+    }
+
+    &:active {
+      background: var(--ix-card-accordion-chrome--background--active);
+    }
+
+    /* Expanded: content owns the bottom corners */
+    &.show {
+      border-bottom-left-radius: #{sys.$si-sys-sizing-border-radius-none};
+      border-bottom-right-radius: #{sys.$si-sys-sizing-border-radius-none};
     }
   }
 
@@ -74,6 +101,7 @@
     overflow: hidden;
     transition: height var(--ix-card-accordion-content--transition-duration)
       ease-in-out;
+    background-color: var(--ix-card-accordion-chrome-frame--background);
   }
 
   .expand-content::after {
@@ -83,6 +111,9 @@
     pointer-events: none;
     border-radius: var(--ix-card-accordion-expand-content--border-radius, 0);
     border-top: none;
+    border: var(--ix-card-accordion-chrome-frame--border-width, 0px) solid
+      transparent;
+    border-color: var(--ix-card-accordion-chrome-frame--border-color);
   }
 
   .expand-content.show {
@@ -117,58 +148,8 @@
     width: 100%;
     height: var(--ix-card-accordion-expand-content-footer--height);
 
-    background-color: var(--ix-card-accordion-footer--background);
+    background-color: var(--ix-card-accordion-chrome-footer--background);
     border-bottom-left-radius: var(--ix-card-accordion-footer--border-radius);
     border-bottom-right-radius: var(--ix-card-accordion-footer--border-radius);
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  :host(.variant-#{$variant}) {
-    .expand-action {
-      background-color: var(
-        --ix-card-accordion-#{$variant}-accordion--background
-      );
-
-      &:hover {
-        background: var(
-          --ix-card-accordion-#{$variant}-accordion--background--hover
-        );
-      }
-
-      &:active {
-        background: var(
-          --ix-card-accordion-#{$variant}-accordion--background--active
-        );
-      }
-    }
-
-    .expand-content {
-      background-color: var(
-        --ix-card-accordion-#{$variant}-accordion-frame--background
-      );
-    }
-
-    .expand-content::after {
-      border: var(
-          --ix-card-accordion-#{$variant}-accordion-frame--border-width,
-          0px
-        )
-        solid
-        transparent;
-      border-color: var(
-        --ix-card-accordion-#{$variant}-accordion-frame--border-color
-      );
-    }
-
-    .expand-content.show .expand-content-body {
-      color: var(--ix-card-accordion-content--color);
-    }
-
-    .expand-content-footer {
-      background-color: var(
-        --ix-card-accordion-#{$variant}-accordion-footer--background
-      );
-    }
   }
 }

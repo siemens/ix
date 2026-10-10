@@ -20,7 +20,7 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=6396-139860&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components?node-id=104612-25078&m=dev',
     },
     a11y: {
       test: 'error',
@@ -31,7 +31,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
     defaultSlot: 'Button',
@@ -71,12 +70,48 @@ export const Icon: Story = {
   },
 };
 
-export const VariantAlarm: Story = {
+export const VariantDanger: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'alarm',
+    variant: 'danger',
+  },
+};
+
+export const VariantWarning: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+    variant: 'warning',
+  },
+};
+
+export const VariantCaution: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+    variant: 'caution',
+  },
+};
+
+export const VariantInformation: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+    variant: 'information',
+  },
+};
+
+export const VariantAccent: Story = {
+  args: {
+    defaultSlot: 'Some content',
+    heading: 'I am a heading',
+    icon: 'add-circle-filled',
+    variant: 'accent',
   },
 };
 
@@ -98,24 +133,6 @@ export const VariantSuccess: Story = {
   },
 };
 
-export const VariantWarning: Story = {
-  args: {
-    defaultSlot: 'Some content',
-    heading: 'I am a heading',
-    icon: 'add-circle-filled',
-    variant: 'warning',
-  },
-};
-
-export const VariantInfo: Story = {
-  args: {
-    defaultSlot: 'Some content',
-    heading: 'I am a heading',
-    icon: 'add-circle-filled',
-    variant: 'info',
-  },
-};
-
 export const VariantNeutral: Story = {
   args: {
     defaultSlot: 'Some content',
@@ -125,20 +142,21 @@ export const VariantNeutral: Story = {
   },
 };
 
-export const VariantOutline: Story = {
+export const OutlineFalse: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'outline',
+    variant: 'default',
+    outline: false,
   },
 };
 
-export const VariantPrimary: Story = {
+export const NotClickable: Story = {
   args: {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'primary',
+    clickable: false,
   },
 };

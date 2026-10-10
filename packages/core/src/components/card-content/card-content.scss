@@ -11,6 +11,8 @@
 
 @use './card-content.vars' as *;
 :host {
+  /* Host itself — mixin only sets border-box on descendants */
+  box-sizing: border-box;
   display: flex;
   padding: var(--ix-card-content--padding);
   height: 100%;

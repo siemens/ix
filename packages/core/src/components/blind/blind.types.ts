@@ -6,6 +6,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { CardVariant } from '../card/card.types';
 
-export type BlindVariant = CardVariant;
+/** Legacy Blind variants (not yet migrated to shared `StatusVariant`). */
+export type BlindVariant =
+  | 'alarm'
+  | 'critical'
+  | 'warning'
+  | 'info'
+  | 'neutral'
+  | 'success'
+  | 'primary'
+  | 'outline'
+  | 'filled';

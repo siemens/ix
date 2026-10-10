@@ -19,7 +19,7 @@ import { IxCardList, IxPushCard } from '@siemens/ix-vue';
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="filled"
+      variant="default" :outline="false"
     ></IxPushCard>
     <IxPushCard
       :icon="iconBulb"
@@ -43,35 +43,35 @@ import { IxCardList, IxPushCard } from '@siemens/ix-vue';
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="filled"
+      variant="default" :outline="false"
     ></IxPushCard>
     <IxPushCard
       :icon="iconBulb"
       notification="1"
       heading="Heading content"
       subheading="Subheading"
-      variant="filled"
+      variant="warning"
     ></IxPushCard>
     <IxPushCard
       :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="filled"
+      variant="default" :outline="false"
     ></IxPushCard>
     <IxPushCard
       :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="filled"
+      variant="default" :outline="false"
     ></IxPushCard>
     <IxPushCard
       :icon="iconRocket"
       notification="3"
       heading="Heading content"
       subheading="Subheading"
-      variant="filled"
+      variant="default" :outline="false"
     ></IxPushCard>
   </IxCardList>
 </template>

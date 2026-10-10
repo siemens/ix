@@ -15,11 +15,12 @@ export default () => {
     <>
       <IxCardList label="Stack Layout" showAllCount={12} listStyle={'stack'}>
         <IxPushCard
-          icon={iconBulb}
+          icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="filled"
+          variant="default"
+          outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconBulb}
@@ -43,7 +44,7 @@ export default () => {
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="filled"
+          variant="default" outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconBulb}
@@ -57,21 +58,21 @@ export default () => {
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="filled"
+          variant="default" outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="filled"
+          variant="default" outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="filled"
+          variant="default" outline={false}
         ></IxPushCard>
       </IxCardList>
     </>

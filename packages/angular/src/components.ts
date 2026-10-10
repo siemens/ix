@@ -8,14 +8,14 @@ import { Components } from '@siemens/ix';
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'passive', 'selected', 'subheading', 'variant']
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'clickable', 'heading', 'icon', 'outline', 'selected', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-action-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'heading', 'icon', 'passive', 'selected', 'subheading', 'variant'],
+  inputs: ['ariaLabelCard', 'ariaLabelIcon', 'clickable', 'heading', 'icon', 'outline', 'selected', 'subheading', 'variant'],
   standalone: false
 })
 export class IxActionCard {
@@ -248,14 +248,14 @@ export declare interface IxButton extends Components.IxButton {}
 
 
 @ProxyCmp({
-  inputs: ['passive', 'selected', 'variant']
+  inputs: ['clickable', 'outline', 'selected', 'variant']
 })
 @Component({
   selector: 'ix-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['passive', 'selected', 'variant'],
+  inputs: ['clickable', 'outline', 'selected', 'variant'],
   standalone: false
 })
 export class IxCard {
@@ -271,14 +271,14 @@ export declare interface IxCard extends Components.IxCard {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelExpandButton', 'collapse', 'variant']
+  inputs: ['ariaLabelExpandButton', 'collapse', 'outline', 'variant']
 })
 @Component({
   selector: 'ix-card-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelExpandButton', 'collapse', 'variant'],
+  inputs: ['ariaLabelExpandButton', 'collapse', 'outline', 'variant'],
   standalone: false
 })
 export class IxCardAccordion {
@@ -2549,14 +2549,14 @@ export declare interface IxProgressIndicator extends Components.IxProgressIndica
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'passive', 'subheading', 'variant']
+  inputs: ['ariaLabelIcon', 'clickable', 'expanded', 'heading', 'icon', 'notification', 'outline', 'subheading', 'variant']
 })
 @Component({
   selector: 'ix-push-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'expanded', 'heading', 'icon', 'notification', 'passive', 'subheading', 'variant'],
+  inputs: ['ariaLabelIcon', 'clickable', 'expanded', 'heading', 'icon', 'notification', 'outline', 'subheading', 'variant'],
   standalone: false
 })
 export class IxPushCard {

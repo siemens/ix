@@ -93,3 +93,9 @@ import './generated/group.spec';
 import './generated/group-context-menu.spec';
 import './generated/group-custom-entry.spec';
 import './generated/group-header-suppressed.spec';
+
+// Card family tests
+import './generated/card.spec';
+import './generated/action-card.spec';
+import './generated/push-card.spec';
+import './generated/card-list.spec';

@@ -26,9 +26,17 @@ import type { ActionCardVariant } from './action-card.types';
 })
 export class IxActionCard {
   /**
-   * Card variant
+   * Card status variant
    */
-  @Prop() variant: ActionCardVariant = 'outline';
+  @Prop() variant: ActionCardVariant = 'default';
+
+  /**
+   * Show the card with an outline border.
+   * When omitted, outline chrome is used (`true`).
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   /**
    * Card icon
@@ -65,14 +73,23 @@ export class IxActionCard {
   @Prop() ariaLabelCard?: string;
 
   /**
-   * If true, disables hover and active styles and changes cursor to default
+   * Enable pointer interaction. When `false`, the wrapping button is disabled.
+   * When omitted, the action card is clickable (`true`).
+   *
+   * @since 6.0.0
    */
-  @Prop() passive: boolean = false;
+  @Prop() clickable?: boolean;
+
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
+  private get isClickable() {
+    return this.clickable !== false;
+  }
 
   private getSubheadingTextColor() {
-    return this.variant === 'outline' || this.variant === 'filled'
-      ? 'soft'
-      : undefined;
+    return this.variant === 'default' ? 'soft' : undefined;
   }
 
   render() {
@@ -85,15 +102,16 @@ export class IxActionCard {
       <Host>
         <button
           type="button"
-          disabled={this.passive}
+          disabled={!this.isClickable}
           aria-label={this.ariaLabelCard}
           aria-labelledby={ariaLabelledBy}
         >
           <ix-card
             selected={this.selected}
             variant={this.variant}
-            passive={this.passive}
-            class={this.passive ? undefined : 'pointer'}
+            outline={this.isOutline}
+            clickable={this.isClickable}
+            class={this.isClickable ? 'pointer' : undefined}
           >
             <ix-card-content>
               {this.icon ? (

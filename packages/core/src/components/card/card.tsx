@@ -1,5 +1,13 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import type { CardVariant } from './card.types';
+import type { StatusVariant } from '../utils/status.types';
 
 /**
  * Flexible container that groups related content and actions.
@@ -19,9 +27,18 @@ export class Card {
   @Element() hostElement!: HTMLIxCardElement;
 
   /**
-   * Card variant
+   * Card status variant
    */
-  @Prop() variant: CardVariant = 'outline';
+  @Prop() variant: StatusVariant = 'default';
+
+  /**
+   * Show the card with an outline border.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, the card uses a filled surface; status variants then show a top color strip.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   /**
    * Show card in selected state
@@ -29,17 +46,25 @@ export class Card {
   @Prop() selected: boolean = false;
 
   /**
-   * If true, disables hover and active styles and changes cursor to default
+   * Enable pointer cursor and hover/active surface styles.
+   * Default is `false` (non-clickable basic card).
+   *
+   * @since 6.0.0
    */
-  @Prop() passive: boolean = false;
+  @Prop() clickable: boolean = false;
+
+  private get isOutline() {
+    return this.outline !== false;
+  }
 
   render() {
     return (
       <Host
         class={{
           selected: this.selected,
+          outline: this.isOutline,
+          clickable: this.clickable,
           [`card-${this.variant}`]: true,
-          passive: this.passive,
         }}
       >
         <div class="card-content">
