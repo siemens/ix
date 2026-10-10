@@ -52,7 +52,7 @@
     /* No inner border around expanded content */
     --ix-card-accordion-chrome-frame--border-color: transparent;
     --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
-    /* Separator on accordion top (not content bottom) — matches Figma */
+    /* Separator on accordion top (not content bottom) */
     --ix-card-accordion-expand-action--border-top-width: var(
       --ix-push-card--border-width
     );

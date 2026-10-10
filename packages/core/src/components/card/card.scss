@@ -55,6 +55,9 @@
     width: 100%;
     height: var(--ix-card-strip-height);
     background-color: var(--ix-card-status-color-strong, var(--ix-card-status-color));
+    /* Match card top radius so strip corners don’t glitch at zoom */
+    border-top-left-radius: var(--ix-card--border-radius);
+    border-top-right-radius: var(--ix-card--border-radius);
   }
 
   .card-content-wrapper {

@@ -8,7 +8,7 @@
  */
 
 /**
- * Shared semantic status set for IX components (card family first; EIX-259 will adopt more broadly).
+ * Shared semantic status set for IX components.
  *
  * @since 6.0.0
  */
