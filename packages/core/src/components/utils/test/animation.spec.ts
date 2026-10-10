@@ -1,3 +1,6 @@
+import { readFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { beforeEach, describe, expect, it, vi, afterEach } from 'vitest';
 
 const originalWindow = Object.getOwnPropertyDescriptor(globalThis, 'window');
@@ -84,5 +87,19 @@ describe('Animation', () => {
     expect(Animation.mediumTime).toBe(300);
     expect(Animation.slowTime).toBe(500);
     expect(Animation.xSlowTime).toBe(1000);
+  });
+
+  it('must not declare static # private fields (see #2874)', async () => {
+    const source = await readFile(
+      join(dirname(fileURLToPath(import.meta.url)), '../animation.ts'),
+      'utf8'
+    );
+
+    expect(source).not.toMatch(/\bstatic\s+(?:readonly\s+)?#/);
+
+    const { default: Animation } = await import('../animation');
+    expect(Object.getOwnPropertyNames(Animation)).toEqual(
+      expect.arrayContaining(['FALLBACKS', 'cache'])
+    );
   });
 });
