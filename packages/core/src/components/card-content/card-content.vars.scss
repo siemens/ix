@@ -10,6 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-card-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  /* Default padding is the fallback on `padding` in card-content.scss so ancestors
+   * (push-card / action-card) can override --ix-card-content--padding via inheritance. */
   --ix-card-content-content-wrapper--gap: #{sys.$si-sys-sizing-spacing-y-40};
 }

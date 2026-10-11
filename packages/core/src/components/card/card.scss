@@ -32,7 +32,6 @@
 
   --ix-card-background: var(--ix-card-default--background);
   --ix-card-border-color: var(--ix-card-default--border-color);
-  --ix-card-strip-height: 0px;
 
   @include component.ix-component;
 
@@ -44,20 +43,7 @@
     width: 100%;
     height: var(--ix-card-content--height);
     background-color: var(--ix-card-background, transparent);
-    border-top-left-radius: var(--ix-card--border-radius);
-    border-top-right-radius: var(--ix-card--border-radius);
     overflow: hidden;
-  }
-
-  .card-content::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: var(--ix-card-strip-height);
-    background-color: var(--ix-card-status-color-strong, var(--ix-card-status-color));
-    /* Match card top radius so strip corners don’t glitch at zoom */
-    border-top-left-radius: var(--ix-card--border-radius);
-    border-top-right-radius: var(--ix-card--border-radius);
   }
 
   .card-content-wrapper {
@@ -83,38 +69,26 @@
   --ix-card-border-color: transparent;
 }
 
-/*
- * Status chrome:
- * - top strip for every non-default variant
- * - outline: status border on sides/bottom (top edge is the strip)
- * - filled: no border, strip on neutral body
- */
+/* Status chrome: 8px top border (background/*); content pad from card.vars */
 @each $status in card-vars.$card-status-variants {
   :host(.card-#{$status}) {
-    --ix-card-strip-height: var(--ix-card--strip-height);
+    border-top-width: var(--ix-card--strip-height);
+    border-top-color: var(--ix-card-status-color-strong);
   }
 
   :host(.outline.card-#{$status}) {
-    --ix-card-border-color: var(--ix-card-status-color);
-    border-top-width: 0;
+    --ix-card-border-color: var(--ix-card-status-color-strong);
   }
 
   :host(:not(.outline).card-#{$status}) {
     --ix-card-background: var(--ix-card-filled--background);
     --ix-card-border-color: transparent;
+    border-top-color: var(--ix-card-status-color-strong);
   }
 }
 
 :host(.selected) {
   --ix-card-border-color: var(--ix-card-default--border-color--selected);
-}
-
-@each $status in card-vars.$card-status-variants {
-  :host(.selected.outline.card-#{$status}) {
-    /* Selected accent border on sides/bottom; status strip stays on top */
-    border-top-width: 0;
-    --ix-card-strip-height: var(--ix-card--strip-height);
-  }
 }
 
 /* Hover / active only when clickable */

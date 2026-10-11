@@ -29,35 +29,32 @@ regressionTest(
     await expect(card).toHaveClass(/\bcard-danger\b/);
     await expect(card).toHaveClass(/\boutline\b/);
 
-    const stripHeightPx = await card.evaluate((el) => {
-      const strip = el.shadowRoot?.querySelector(
-        '.card-content'
-      ) as HTMLElement;
-      return strip
-        ? parseFloat(getComputedStyle(strip, '::before').height)
-        : NaN;
-    });
-    expect(stripHeightPx).toBe(8);
+    const borderTopWidth = await card.evaluate((el) =>
+      parseFloat(getComputedStyle(el).borderTopWidth)
+    );
+    expect(borderTopWidth).toBe(8);
   }
 );
 
 regressionTest(
-  'filled status enables strip via host classes',
+  'filled status uses thick top border as strip',
   async ({ mount, page }) => {
     await mount(`<ix-card variant="danger" outline="false"></ix-card>`);
     const card = page.locator('ix-card');
     await expect(card).toHaveClass(/\bcard-danger\b/);
     await expect(card).not.toHaveClass(/\boutline\b/);
 
-    const stripHeightPx = await card.evaluate((el) => {
-      const strip = el.shadowRoot?.querySelector(
-        '.card-content'
-      ) as HTMLElement;
-      return strip
-        ? parseFloat(getComputedStyle(strip, '::before').height)
-        : NaN;
+    const chrome = await card.evaluate((el) => {
+      const style = getComputedStyle(el);
+      return {
+        borderTopWidth: parseFloat(style.borderTopWidth),
+        borderTopColor: style.borderTopColor,
+        borderSideWidth: parseFloat(style.borderLeftWidth),
+      };
     });
-    expect(stripHeightPx).toBe(8);
+    expect(chrome.borderTopWidth).toBe(8);
+    expect(chrome.borderSideWidth).toBe(1);
+    expect(chrome.borderTopColor).not.toBe('rgba(0, 0, 0, 0)');
   }
 );
 

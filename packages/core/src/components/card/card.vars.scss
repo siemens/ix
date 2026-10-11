@@ -17,7 +17,7 @@ $card-status-variants: danger warning caution information accent critical
 /// All card `variant` values including `default`.
 $card-variants: default #{$card-status-variants};
 
-/// SDL status chrome: strip + outline border colors.
+/// SDL status chrome: status-strong = background/* (outline + top strip border).
 $card-status-sys: (
   danger: (
     status: sys.$si-sys-color-border-danger,
@@ -58,7 +58,7 @@ $card-status-sys: (
   --ix-card-accordion--color: #{sys.$si-sys-color-text-primary};
   --ix-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-card--border-width: #{sys.$si-sys-sizing-border-width-default};
-  /* Status strip height (size-30), not border-width-emphasis */
+  /* Status top border width (size-30) */
   --ix-card--strip-height: #{sys.$si-sys-sizing-size-30};
   --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 

@@ -14,7 +14,10 @@
   /* Host itself — mixin only sets border-box on descendants */
   box-sizing: border-box;
   display: flex;
-  padding: var(--ix-card-content--padding);
+  padding: var(
+    --ix-card-content--padding,
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
+  );
   height: 100%;
   overflow: hidden;
 

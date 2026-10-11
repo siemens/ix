@@ -27,10 +27,20 @@
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} +
       #{sys.$si-sys-sizing-spacing-y-50} + #{sys.$si-sys-sizing-size-30}
   );
+  /*
+   * Top inset from outer edge = spacing-y-60 (16).
+   * Default: pad 16 − 1px border so content aligns with status (8 + 8).
+   */
+  --ix-card-content--padding: calc(
+      #{sys.$si-sys-sizing-spacing-y-60} - #{sys.$si-sys-sizing-border-width-default}
+    )
+    #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
 }
 
-/* Status variants render the 8px strip — shorten content to keep total height.
- * Reduce top content padding by strip height so icon/text align with default cards. */
+/*
+ * Status: top border 8px vs default 1px (+7) — shorten content by that delta.
+ * Content pad top = 16 − 8 so icon/text stay aligned with default.
+ */
 :host(.card-danger),
 :host(.card-warning),
 :host(.card-caution),
@@ -41,10 +51,10 @@
 :host(.card-neutral) {
   --ix-push-card-content--height: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} +
-      #{sys.$si-sys-sizing-spacing-y-50}
+      #{sys.$si-sys-sizing-spacing-y-50} + #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-card-content--padding: calc(
       #{sys.$si-sys-sizing-spacing-y-60} - #{sys.$si-sys-sizing-size-30}
     )
-    #{sys.$si-sys-sizing-spacing-x-60};
+    #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
 }

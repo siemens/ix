@@ -51,15 +51,20 @@
   ix-card {
     width: 100%;
     height: 100%;
+    /* Default: pad 16 − 1px border so content aligns with status (8 + 8) */
+    --ix-card-content--padding: calc(
+        #{sys.$si-sys-sizing-spacing-y-60} -
+          #{sys.$si-sys-sizing-border-width-default}
+      )
+      #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
   }
 
-  /* Status strip: shrink top padding so content aligns with default action cards */
   @each $status in card-vars.$card-status-variants {
     ix-card.card-#{$status} {
       --ix-card-content--padding: calc(
           #{sys.$si-sys-sizing-spacing-y-60} - #{sys.$si-sys-sizing-size-30}
         )
-        #{sys.$si-sys-sizing-spacing-x-60};
+        #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
     }
   }
 }
