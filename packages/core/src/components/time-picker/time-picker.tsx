@@ -307,6 +307,10 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   @Watch('time')
   watchTimePropHandler(newValue: string | undefined) {
+    if (this.isPendingEcho(newValue)) {
+      return;
+    }
+
     this.pendingTime = undefined;
 
     if (newValue === undefined || newValue === '') {
@@ -424,16 +428,20 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Time event. Emitted only when the user confirms the selected time.
+   * Use it for the applied time.
    */
   @Event() timeSelect!: EventEmitter<string>;
 
   /**
-   * Time change event. Emitted for every change made.
+   * Time change event. Emitted for every change made, also for a time that is
+   * not confirmed yet. When a pending time is discarded, it is emitted with
+   * the confirmed time again. Use `timeSelect` for the applied time.
    */
   @Event() timeChange!: EventEmitter<string>;
 
   /**
-   * Emitted when the pending selection is discarded via the cancel button.
+   * Emitted when the pending selection is discarded via the cancel button,
+   * after `timeChange` reported the restored time.
    *
    * @since 6.0.0
    */
@@ -460,12 +468,38 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
-   * Discards the selection that has not been confirmed yet.
+   * Discards the selection that has not been confirmed yet and reports the
+   * restored time with `timeChange`.
    * @internal
    */
   @Method()
   async discardPendingSelection(): Promise<void> {
+    if (!this.pendingTime) {
+      return;
+    }
+
     this.pendingTime = undefined;
+
+    if (this._time) {
+      this.timeChange.emit(
+        formatWithLocale(this._time, this.format, this.locale)
+      );
+    }
+  }
+
+  /**
+   * Whether a `time` prop change just echoes the pending time back (e.g.
+   * two-way binding to `timeChange`). Such a change keeps the time pending,
+   * so it can still be confirmed or discarded.
+   */
+  private isPendingEcho(value?: string): boolean {
+    if (!this.pendingTime || !value) {
+      return false;
+    }
+
+    const time = parseWithLocale(value, this.format, this.locale);
+
+    return time.isValid && this.isSameTime(time, this.pendingTime);
   }
 
   @State() private _time?: DateTime;
@@ -1339,8 +1373,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     );
   }
 
-  private onCancel() {
-    this.pendingTime = undefined;
+  private async onCancel() {
+    await this.discardPendingSelection();
     this.timeCancel.emit();
   }
 

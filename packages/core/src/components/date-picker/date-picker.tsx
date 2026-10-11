@@ -100,6 +100,10 @@ export class DatePicker
 
   @Watch('from')
   watchFromPropHandler(newValue: string) {
+    if (this.isPendingEcho('from', newValue)) {
+      return;
+    }
+
     this.resetPendingRange();
 
     if (!newValue) {
@@ -124,6 +128,10 @@ export class DatePicker
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
+    if (this.isPendingEcho('to', newValue)) {
+      return;
+    }
+
     this.resetPendingRange();
 
     if (!newValue) {
@@ -166,8 +174,9 @@ export class DatePicker
 
   /**
    * If true, a selection is only applied after the user confirms it with the
-   * confirm button. `dateChange` and `dateRangeChange` are deferred until then,
-   * and the cancel button discards the pending selection.
+   * confirm button, which emits `dateSelect`. `dateChange` still reports
+   * every pick. The cancel button discards the
+   * pending selection.
    *
    * @since 6.0.0
    */
@@ -304,10 +313,12 @@ export class DatePicker
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+   * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties
    * formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+   * When a pending selection is discarded, it is emitted with the confirmed
+   * selection again. Use `dateSelect` to receive only the applied selection.
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
@@ -315,11 +326,17 @@ export class DatePicker
    * Date range change event. Emitted when the date range selection changes and the component is in range mode.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+   *
+   * Emitted together with `dateChange`.
+   *
+   * @deprecated since 6.0.0, use `dateChange` instead, which carries the same
+   * `from`/`to` range. Will be removed in 7.0.0.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button.
+   * Date selection event. Emitted when the selection is applied via the done
+   * button, or via the confirm button with `requireConfirmation`.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
@@ -327,7 +344,6 @@ export class DatePicker
 
   /**
    * Emitted when the pending selection is discarded via the cancel button.
-   * Only emitted when `requireConfirmation` is enabled.
    *
    * @since 6.0.0
    */
@@ -340,26 +356,30 @@ export class DatePicker
    */
   @Method()
   async getCurrentDate(): Promise<DateChangeEvent> {
-    const _from = this.currFromDate?.isValid
-      ? formatWithLocale(this.currFromDate, this.format, this.locale)
+    return this.toDateChangeEvent(this.currFromDate, this.currToDate);
+  }
+
+  private toDateChangeEvent(from?: DateTime, to?: DateTime): DateChangeEvent {
+    const _from = from?.isValid
+      ? formatWithLocale(from, this.format, this.locale)
       : undefined;
-    const _to = this.currToDate?.isValid
-      ? formatWithLocale(this.currToDate, this.format, this.locale)
+    const _to = to?.isValid
+      ? formatWithLocale(to, this.format, this.locale)
       : undefined;
 
     if (!this.singleSelection) {
       return {
         from: _from,
         to: _to,
-        isoFrom: toISODate(this.currFromDate),
-        isoTo: toISODate(this.currToDate),
+        isoFrom: toISODate(from),
+        isoTo: toISODate(to),
       };
     }
 
     return {
       from: _from,
       to: undefined,
-      isoFrom: toISODate(this.currFromDate),
+      isoFrom: toISODate(from),
       isoTo: undefined,
     };
   }
@@ -403,6 +423,23 @@ export class DatePicker
     if (!isEcho) {
       this.resetDoneBaseline();
     }
+  }
+
+  /**
+   * Whether a `from`/`to` prop change just echoes the pending selection back
+   * (e.g. two-way binding to `dateChange` with `requireConfirmation`). Such a
+   * change keeps the selection pending, so it can still be discarded.
+   */
+  private isPendingEcho(key: 'from' | 'to', value?: string): boolean {
+    if (!this.pendingRange) {
+      return false;
+    }
+
+    const date = value
+      ? tryParseWithLocale(value, this.format, this.locale)
+      : undefined;
+
+    return isSameDayOrUnset(this.pendingRange[key], date);
   }
 
   private isIncomplete(range: { from?: DateTime; to?: DateTime }): boolean {
@@ -678,13 +715,19 @@ export class DatePicker
   }
 
   /**
-   * Discards a pending selection made while `requireConfirmation` is enabled
-   * and shows the month of the committed selection again.
+   * Discards a pending selection made while `requireConfirmation` is enabled,
+   * reports the restored selection with `dateChange` and shows the month of
+   * the committed selection again.
    * @internal
    */
   @Method()
   async discardPendingSelection(): Promise<void> {
+    const hadPendingSelection = !!this.pendingRange;
     this.resetPendingRange();
+
+    if (hadPendingSelection) {
+      this.emitDateChange(this.currFromDate, this.currToDate);
+    }
 
     if (this.currFromDate) {
       this.setDisplayedMonth(this.currFromDate);
@@ -702,24 +745,14 @@ export class DatePicker
   }
 
   private async onConfirm() {
-    const hasPendingSelection = !!this.pendingRange;
-
     if (this.pendingRange) {
       this.currFromDate = this.pendingRange.from;
       this.currToDate = this.pendingRange.to;
       this.resetPendingRange();
     }
 
-    const date = await this.getCurrentDate();
-
-    if (hasPendingSelection) {
-      this.dateChange.emit(date);
-      if (!this.singleSelection) {
-        this.dateRangeChange.emit(date);
-      }
-    }
-
-    this.dateSelect.emit(date);
+    // The picks were already reported with `dateChange`
+    this.dateSelect.emit(await this.getCurrentDate());
   }
 
   private async onCancel() {
@@ -784,22 +817,21 @@ export class DatePicker
       this.pendingRange = isSameRange({ from, to }, committed)
         ? undefined
         : { from, to };
-
-      return;
+    } else {
+      this.currFromDate = from;
+      this.currToDate = to;
     }
 
-    this.currFromDate = from;
-    this.currToDate = to;
-    this.onDateChange();
+    this.emitDateChange(from, to);
   }
 
-  private onDateChange() {
-    this.getCurrentDate().then((date) => {
-      this.dateChange.emit(date);
-      if (!this.singleSelection) {
-        this.dateRangeChange.emit(date);
-      }
-    });
+  private emitDateChange(from?: DateTime, to?: DateTime) {
+    const date = this.toDateChangeEvent(from, to);
+
+    this.dateChange.emit(date);
+    if (!this.singleSelection) {
+      this.dateRangeChange.emit(date);
+    }
   }
 
   private getUtilitiesBasedOnDay(day: number) {

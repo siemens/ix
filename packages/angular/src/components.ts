@@ -796,19 +796,17 @@ export declare interface IxDateDropdown extends Components.IxDateDropdown {
 
 This event is emitted when the date range changes within the component.
 The event payload contains information about the selected date range.
+When a pending selection is discarded, it is emitted with the applied
+range again.
+
+Use `dateSelect` to only receive applied ranges.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
   /**
-   * Emitted for date range selections made by the user. It is not emitted
-for programmatic changes.
-
-With `requireConfirmation` it is only emitted on confirm, with the
-confirmed range.
-
-Without `requireConfirmation` it is emitted for every pick, so in range
-mode it is first emitted with only a start date. If the dropdown closes
-before the end date is picked, it is emitted again with the range that
-is still applied. Use `dateRangeChange` to only receive applied ranges. @since 6.0.0
+   * Emitted when the user applies a changed range: on confirm with
+`requireConfirmation`, otherwise when a complete range or a predefined
+range is picked.
+It is not emitted for programmatic prop input changes. @since 6.0.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }
@@ -887,27 +885,32 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+   * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties
 formatted according to the `format` and `locale` properties.
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+When a pending selection is discarded, it is emitted with the confirmed
+selection again. Use `dateSelect` to receive only the applied selection.
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Date range change event. Emitted when the date range selection changes and the component is in range mode.
 The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+
+Emitted together with `dateChange`. @deprecated since 6.0.0, use `dateChange` instead, which carries the same
+`from`/`to` range. Will be removed in 7.0.0.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button.
+   * Date selection event. Emitted when the selection is applied via the done
+button, or via the confirm button with `requireConfirmation`.
 The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Emitted when the pending selection is discarded via the cancel button.
-Only emitted when `requireConfirmation` is enabled. @since 6.0.0
+   * Emitted when the pending selection is discarded via the cancel button. @since 6.0.0
    */
   dateCancel: EventEmitter<CustomEvent<void>>;
 }
@@ -1005,18 +1008,30 @@ import type { DateTimeSelectEvent as IIxDatetimePickerDateTimeSelectEvent } from
 export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
    * Time change event. Emitted when the time changes in the embedded time picker.
+
+Emitted for every pick, also for a selection that is not confirmed yet
+(`requireConfirmation`). When a pending selection is discarded, it is
+emitted with the confirmed time again. Use `dateSelect` for the applied
+selection.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**
    * Date change event. Emitted when the date changes in the embedded date picker.
+
+Emitted for every pick, also for a range with only a start date and for
+a selection that is not confirmed yet (`requireConfirmation`). When a
+pending selection is discarded, it is emitted with the confirmed date
+again. Use `dateSelect` for the applied selection.
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Datetime selection event. Emitted when the user confirms the selection.
+   * Datetime selection event. Emitted when the selection is applied via the
+done button, or via the confirm button with `requireConfirmation`.
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
   /**
-   * Emitted when the pending selection is discarded via the cancel button.
+   * Emitted when the pending selection is discarded via the cancel button,
+after `dateChange`/`timeChange` reported the restored selection.
 Only emitted when `requireConfirmation` is enabled. @since 6.0.0
    */
   dateCancel: EventEmitter<CustomEvent<void>>;
@@ -3082,15 +3097,19 @@ export class IxTimePicker {
 
 export declare interface IxTimePicker extends Components.IxTimePicker {
   /**
-   * Time event. Emitted when the user confirms the selected time.
+   * Time event. Emitted only when the user confirms the selected time.
+Use it for the applied time.
    */
   timeSelect: EventEmitter<CustomEvent<string>>;
   /**
-   * Time change event. Emitted for every time picked in the picker, before it is confirmed.
+   * Time change event. Emitted for every change made, also for a time that is
+not confirmed yet. When a pending time is discarded, it is emitted with
+the confirmed time again. Use `timeSelect` for the applied time.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Emitted when the pending selection is discarded via the cancel button. @since 6.0.0
+   * Emitted when the pending selection is discarded via the cancel button,
+after `timeChange` reported the restored time. @since 6.0.0
    */
   timeCancel: EventEmitter<CustomEvent<void>>;
 }

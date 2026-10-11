@@ -364,7 +364,11 @@ const mountDatetimePicker = async (
 ) => {
   const toAttribute = to ? ` to="${formatDateTime(to)}"` : '';
   await mount(
-    `<ix-datetime-picker from="${formatDateTime(from)}"${toAttribute} time="${formatTime(from)}" ${attributes}></ix-datetime-picker>`
+    `<ix-datetime-picker from="${formatDateTime(
+      from
+    )}"${toAttribute} time="${formatTime(
+      from
+    )}" ${attributes}></ix-datetime-picker>`
   );
   await expect(datetimePickerLocator(page)).toHaveAttribute('hydrated');
 };
@@ -377,36 +381,42 @@ regressionTest.describe('require confirmation', () => {
     });
   });
 
-  regressionTest('emits changes only when confirmed', async ({ page }) => {
-    const datetimePicker = datetimePickerLocator(page);
-    const events = await recordEvents(datetimePicker, [
-      'dateChange',
-      'timeChange',
-      'dateSelect',
-      'dateCancel',
-    ]);
+  regressionTest(
+    'emits changes for every pick and dateSelect on confirm',
+    async ({ page }) => {
+      const datetimePicker = datetimePickerLocator(page);
+      const events = await recordEvents(datetimePicker, [
+        'dateChange',
+        'timeChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
 
-    await dayCell(page, picked).click();
-    await hourCell(page, picked).click();
-    expect(await events()).toEqual([]);
+      await dayCell(page, picked).click();
+      await hourCell(page, picked).click();
+      const changes = [
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(picked)),
+        },
+        { type: 'timeChange', detail: formatTime(picked) },
+      ];
+      expect(await events()).toEqual(changes);
 
-    await datetimePicker.getByTestId('confirm').click();
+      await datetimePicker.getByTestId('confirm').click();
 
-    expect(await events()).toEqual([
-      {
-        type: 'dateChange',
-        detail: expect.objectContaining(dateChangeDetail(picked)),
-      },
-      { type: 'timeChange', detail: formatTime(picked) },
-      {
-        type: 'dateSelect',
-        detail: expect.objectContaining({
-          ...dateChangeDetail(picked),
-          time: formatTime(picked),
-        }),
-      },
-    ]);
-  });
+      expect(await events()).toEqual([
+        ...changes,
+        {
+          type: 'dateSelect',
+          detail: expect.objectContaining({
+            ...dateChangeDetail(picked),
+            time: formatTime(picked),
+          }),
+        },
+      ]);
+    }
+  );
 
   regressionTest(
     'cancel restores the confirmed date and time',
@@ -435,8 +445,13 @@ regressionTest.describe('require confirmation', () => {
         'aria-selected',
         'true'
       );
-      expect((await events()).map((event) => event.type)).toEqual([
-        'dateCancel',
+      expect((await events()).slice(2)).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(committed)),
+        },
+        { type: 'timeChange', detail: formatTime(committed) },
+        { type: 'dateCancel', detail: null },
       ]);
     }
   );
@@ -477,7 +492,7 @@ regressionTest.describe('require confirmation', () => {
 
 regressionTest.describe('require confirmation option', () => {
   regressionTest(
-    'does not leak pending range changes',
+    'emits pending range changes only as dateChange',
     async ({ mount, page }) => {
       await mountDatetimePicker(mount, page, {
         from: committed,
@@ -492,7 +507,10 @@ regressionTest.describe('require confirmation option', () => {
       await dayCell(page, picked).click();
       await dayCell(page, pickedTo).click();
 
-      expect(await events()).toEqual([]);
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateChange',
+      ]);
     }
   );
 
@@ -579,7 +597,9 @@ regressionTest.describe('primary button disabled state', () => {
     'confirm applies the shown time when no time is committed',
     async ({ mount, page }) => {
       await mount(
-        `<ix-datetime-picker single-selection require-confirmation from="${formatDateTime(committed)}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
+        `<ix-datetime-picker single-selection require-confirmation from="${formatDateTime(
+          committed
+        )}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
       );
       const datetimePicker = datetimePickerLocator(page);
       await expect(datetimePicker).toHaveAttribute('hydrated');
@@ -592,9 +612,9 @@ regressionTest.describe('primary button disabled state', () => {
       await expect(confirm).toBeEnabled();
       await confirm.click();
 
+      // The shown time was not picked, so only dateSelect reports it
       const time = expect.stringMatching(/^\d{2}:\d{2}:\d{2}$/);
       expect(await events()).toEqual([
-        { type: 'timeChange', detail: time },
         {
           type: 'dateSelect',
           detail: expect.objectContaining({
@@ -611,7 +631,9 @@ regressionTest.describe('primary button disabled state', () => {
     'done applies the shown time when no time is committed',
     async ({ mount, page }) => {
       await mount(
-        `<ix-datetime-picker single-selection from="${formatDateTime(committed)}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
+        `<ix-datetime-picker single-selection from="${formatDateTime(
+          committed
+        )}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
       );
       const datetimePicker = datetimePickerLocator(page);
       await expect(datetimePicker).toHaveAttribute('hydrated');

@@ -3260,7 +3260,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "dateSelect",

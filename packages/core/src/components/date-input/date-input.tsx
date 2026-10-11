@@ -364,6 +364,14 @@ export class DateInput
     this.disposableChangesAndVisibilityObservers?.();
   }
 
+  private applyPickedDate(from?: string) {
+    this.onInput(from);
+    if (this.initialValue !== from) {
+      this.ixChange.emit(from);
+      this.initialValue = from;
+    }
+  }
+
   private discardPendingSelection() {
     this.datepickerRef.current?.discardPendingSelection();
   }
@@ -652,19 +660,19 @@ export class DateInput
             minDate={this.minDate}
             maxDate={this.maxDate}
             onDateChange={(event) => {
-              const { from } = event.detail;
-              this.onInput(from);
-              if (this.initialValue !== from) {
-                this.ixChange.emit(from);
-                this.initialValue = from;
+              // With requireConfirmation the value is applied on dateSelect
+              if (!this.requireConfirmation) {
+                this.applyPickedDate(event.detail.from);
               }
             }}
             requireConfirmation={this.requireConfirmation}
             i18nConfirm={this.i18nConfirm}
             i18nCancel={this.i18nCancel}
             onDateSelect={(event) => {
-              // With requireConfirmation the value is committed by the dateChange emitted on confirm
               event.stopPropagation();
+              if (this.requireConfirmation) {
+                this.applyPickedDate(event.detail.from);
+              }
               this.closeDropdown();
             }}
             onDateCancel={(event) => {

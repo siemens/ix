@@ -204,10 +204,10 @@ export class DateDropdown
 
   /**
    * If true, a date range picked in the dropdown is only applied after the
-   * user confirms it with the confirm button. The trigger label,
-   * `dateRangeChange` and `dateSelect` are deferred until then. The cancel
-   * button, pressing Escape or clicking outside the dropdown discards the
-   * pending selection.
+   * user confirms it with the confirm button, which emits `dateSelect`. The
+   * trigger label keeps the applied range until then, while `dateRangeChange`
+   * still reports every pick. The cancel button, pressing Escape or clicking
+   * outside the dropdown discards the pending selection.
    *
    * @since 6.0.0
    */
@@ -243,21 +243,19 @@ export class DateDropdown
    *
    * This event is emitted when the date range changes within the component.
    * The event payload contains information about the selected date range.
+   * When a pending selection is discarded, it is emitted with the applied
+   * range again.
+   *
+   * Use `dateSelect` to only receive applied ranges.
    */
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
   /**
-   * Emitted for date range selections made by the user. It is not emitted
-   * for programmatic changes.
-   *
-   * With `requireConfirmation` it is only emitted on confirm, with the
-   * confirmed range.
-   *
-   * Without `requireConfirmation` it is emitted for every pick, so in range
-   * mode it is first emitted with only a start date. If the dropdown closes
-   * before the end date is picked, it is emitted again with the range that
-   * is still applied. Use `dateRangeChange` to only receive applied ranges.
+   * Emitted when the user applies a changed range: on confirm with
+   * `requireConfirmation`, otherwise when a complete range or a predefined
+   * range is picked.
+   * It is not emitted for programmatic prop input changes.
    *
    * @since 6.0.0
    */
@@ -377,14 +375,9 @@ export class DateDropdown
     return event;
   }
 
-  private emitDateSelect(rangeValue: DateRangeChangeEvent) {
-    this.dateSelect.emit(
-      this.withIsoValues({
-        id: rangeValue.id,
-        from: rangeValue.from,
-        to: rangeValue.to,
-      })
-    );
+  /** Reports a picked or restored range that is not necessarily applied. */
+  private emitPickedRange(rangeValue: DateRangeChangeEvent) {
+    this.dateRangeChange.emit(this.withIsoValues(rangeValue));
   }
 
   private onRangeListSelect(id: string) {
@@ -401,13 +394,15 @@ export class DateDropdown
 
     this.showMonthOf(option);
 
+    const rangeValue = this.toRangeValue(option);
+    this.emitPickedRange(rangeValue);
+
     if (this.requireConfirmation) {
       this.setPendingDateRangeSelection(option);
       return;
     }
 
     // A predefined range is always complete
-    const rangeValue = this.toRangeValue(option);
     if (!this.isSameRangeValue(rangeValue, this.currentRangeValue)) {
       this.commitSelection(rangeValue);
     }
@@ -492,42 +487,38 @@ export class DateDropdown
     this.closeDropdown();
   }
 
-  /** Commits `rangeValue` and emits `dateRangeChange` and `dateSelect`. */
+  /**
+   * Commits `rangeValue` and emits `dateSelect`. The range was already
+   * reported with `dateRangeChange` when it was picked.
+   */
   private commitSelection(rangeValue: DateRangeChangeEvent) {
     this.clearPendingSelection();
     this.currentRangeValue = rangeValue;
     this.selectedDateRangeId = rangeValue.id;
 
-    const event = this.emitDateRangeChange(rangeValue);
-    this.dateSelect.emit(event);
+    this.dateSelect.emit(this.withIsoValues(rangeValue));
   }
 
   private onPickerDateChange(detail: DateChangeEvent) {
     const rangeValue = { ...detail, id: 'custom' };
 
     this.pendingRangeValue = rangeValue;
+    this.emitPickedRange(rangeValue);
 
     if (this.requireConfirmation) {
       this.normalizePendingSelection();
       return;
     }
 
+    // A range with only a start date stays pending until the end date is picked
     if (this.isIncomplete(rangeValue)) {
-      // Emitted, but stays pending until the end date is picked
-      this.emitDateSelect(rangeValue);
       return;
     }
 
-    if (!this.isSameRangeValue(rangeValue, this.currentRangeValue)) {
-      this.commitSelection(rangeValue);
-    } else {
+    if (this.isSameRangeValue(rangeValue, this.currentRangeValue)) {
       this.clearPendingSelection();
-
-      // In range mode the start date was already emitted, so report the
-      // unchanged range. In single selection mode nothing was emitted yet.
-      if (!this.singleSelection && this.currentRangeValue) {
-        this.emitDateSelect(this.currentRangeValue);
-      }
+    } else {
+      this.commitSelection(rangeValue);
     }
 
     this.closeDropdown();
@@ -539,14 +530,11 @@ export class DateDropdown
     const hadPendingSelection = this.pendingRangeValue !== undefined;
     this.clearPendingSelection();
 
-    // Without requireConfirmation the pending start date was emitted, so report the reverted range
-    if (
-      !show &&
-      hadPendingSelection &&
-      !this.requireConfirmation &&
-      this.currentRangeValue
-    ) {
-      this.emitDateSelect(this.currentRangeValue);
+    // The pending selection was emitted, so report the restored range
+    if (!show && hadPendingSelection) {
+      this.emitPickedRange(
+        this.currentRangeValue ?? { id: this.selectedDateRangeId }
+      );
     }
 
     if (show && hasKeyboardMode()) {

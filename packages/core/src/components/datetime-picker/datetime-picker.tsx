@@ -28,7 +28,11 @@ import type {
 } from './datetime-picker.types';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks';
-import { parseWithLocale, toISOTime } from '../utils/date-time-locale';
+import {
+  parseWithLocale,
+  toISODate,
+  toISOTime,
+} from '../utils/date-time-locale';
 import { isPartialRange, type DateRangeValue } from '../utils/calendar.util';
 
 type DatetimePickerSelection = Pick<DateRangeValue, 'from' | 'to'> & {
@@ -129,11 +133,11 @@ export class DatetimePicker
 
   /**
    * If true, a selection is only applied after the user confirms it with the
-   * confirm button. `dateChange` and `timeChange` are deferred until then,
-   * and the cancel button discards the pending selection.
+   * confirm button, which emits `dateSelect`. The cancel button discards the
+   * pending selection.
    *
-   * If false, `dateChange` and `timeChange` are emitted for every selection
-   * and the done button emits `dateSelect`.
+   * If false, the done button emits `dateSelect`. In both modes `dateChange`
+   * and `timeChange` are emitted for every selection.
    *
    * @since 6.0.0
    */
@@ -247,21 +251,33 @@ export class DatetimePicker
 
   /**
    * Time change event. Emitted when the time changes in the embedded time picker.
+   *
+   * Emitted for every pick, also for a selection that is not confirmed yet
+   * (`requireConfirmation`). When a pending selection is discarded, it is
+   * emitted with the confirmed time again. Use `dateSelect` for the applied
+   * selection.
    */
   @Event() timeChange!: EventEmitter<string>;
 
   /**
    * Date change event. Emitted when the date changes in the embedded date picker.
+   *
+   * Emitted for every pick, also for a range with only a start date and for
+   * a selection that is not confirmed yet (`requireConfirmation`). When a
+   * pending selection is discarded, it is emitted with the confirmed date
+   * again. Use `dateSelect` for the applied selection.
    */
   @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
-   * Datetime selection event. Emitted when the user confirms the selection.
+   * Datetime selection event. Emitted when the selection is applied via the
+   * done button, or via the confirm button with `requireConfirmation`.
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 
   /**
-   * Emitted when the pending selection is discarded via the cancel button.
+   * Emitted when the pending selection is discarded via the cancel button,
+   * after `dateChange`/`timeChange` reported the restored selection.
    * Only emitted when `requireConfirmation` is enabled.
    *
    * @since 6.0.0
@@ -279,9 +295,9 @@ export class DatetimePicker
   @State() private actual: DatetimePickerSelection = {};
 
   /**
-   * Changes made in the embedded pickers since `actual`. With
-   * `requireConfirmation` they are not yet emitted, without it they already
-   * are. `undefined` when there is nothing pending.
+   * Changes made in the embedded pickers since `actual`. They are already
+   * emitted with `dateChange`/`timeChange`, but not yet applied with
+   * `dateSelect`. `undefined` when there is nothing pending.
    */
   @State() private pending?: {
     date?: DateTimeDateChangeEvent;
@@ -341,13 +357,11 @@ export class DatetimePicker
 
   /**
    * Whether a prop change just echoes an already emitted selection back
-   * (e.g. two-way binding to `dateChange`/`timeChange` while
-   * `requireConfirmation` is disabled). Such a change keeps the pending
-   * selection the done button compares against.
+   * (e.g. two-way binding to `dateChange`/`timeChange`). Such a change keeps
+   * the pending selection, so it can still be confirmed or discarded.
    */
   private isEcho(key: keyof DatetimePickerSelection, value?: string): boolean {
     return (
-      !this.requireConfirmation &&
       this.pending !== undefined &&
       (value || undefined) === (this.pickerSelection[key] || undefined)
     );
@@ -542,17 +556,10 @@ export class DatetimePicker
     await this.includeShownTime();
     const pending = this.pending;
 
+    // The picks were already reported with `dateChange`/`timeChange`
     if (pending) {
       this.actual = this.pickerSelection;
       this.pending = undefined;
-
-      if (pending.date !== undefined) {
-        this.dateChange.emit(pending.date);
-      }
-
-      if (pending.time !== undefined) {
-        this.timeChange.emit(pending.time);
-      }
     }
 
     await this.emitDateSelect();
@@ -564,8 +571,41 @@ export class DatetimePicker
   }
 
   private discardPending() {
+    const shown = this.pickerSelection;
     this.pending = undefined;
     this.selectedFromDate = this.actual.from;
+    this.emitRestoredSelection(shown);
+  }
+
+  /** Reports the parts of `shown` that differ from the restored `actual`. */
+  private emitRestoredSelection(shown: DatetimePickerSelection) {
+    const { from, to, time } = this.actual;
+
+    if (
+      (shown.from || undefined) !== (from || undefined) ||
+      (shown.to || undefined) !== (to || undefined)
+    ) {
+      this.dateChange.emit(this.toDateChangeEvent(from, to));
+    }
+
+    // Without a committed time the time picker shows its default time again
+    if (time && shown.time !== time) {
+      this.timeChange.emit(time);
+    }
+  }
+
+  /** The `dateChange` payload the embedded date picker emits for a range. */
+  private toDateChangeEvent(from?: string, to?: string): DateChangeEvent {
+    const toIso = (value?: string) => {
+      const date = this.parseDateValue(value);
+      return date ? toISODate(date) : undefined;
+    };
+
+    if (this.singleSelection) {
+      return { from, to: undefined, isoFrom: toIso(from), isoTo: undefined };
+    }
+
+    return { from, to, isoFrom: toIso(from), isoTo: toIso(to) };
   }
 
   /**
@@ -641,9 +681,7 @@ export class DatetimePicker
       time: this.pending?.time ?? fallbackTime,
     });
 
-    if (!this.requireConfirmation) {
-      this.dateChange.emit(date);
-    }
+    this.dateChange.emit(date);
   }
 
   private async onTimeChange(event: CustomEvent<string>) {
@@ -653,9 +691,7 @@ export class DatetimePicker
     const { detail: time } = event;
     this.setPending({ ...this.pending, time });
 
-    if (!this.requireConfirmation) {
-      this.timeChange.emit(time);
-    }
+    this.timeChange.emit(time);
   }
 
   /** @internal */

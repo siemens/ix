@@ -872,7 +872,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
      * @figma-main-component-id 133528:32836
      * @since 5.2.0
-     * @form-ready
+     * @form-ready 
      */
     interface IxChatInput {
         /**
@@ -979,7 +979,7 @@ export namespace Components {
      * Lets users select an option or toggle a single value on or off.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
-     * @form-ready
+     * @form-ready 
      */
     interface IxCheckbox {
         /**
@@ -1023,7 +1023,7 @@ export namespace Components {
      * Groups related checkboxes together.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
-     * @form-ready
+     * @form-ready 
      */
     interface IxCheckboxGroup {
         /**
@@ -1366,7 +1366,7 @@ export namespace Components {
          */
         "minDate": string;
         /**
-          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button. The trigger label, `dateRangeChange` and `dateSelect` are deferred until then. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The trigger label keeps the applied range until then, while `dateRangeChange` still reports every pick. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
           * @since 6.0.0
           * @default false
          */
@@ -1406,7 +1406,7 @@ export namespace Components {
      * Text input for entering and validating a date value.
      * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
-     * @form-ready
+     * @form-ready 
      */
     interface IxDateInput {
         /**
@@ -1600,7 +1600,7 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Discards a pending selection made while `requireConfirmation` is enabled and shows the month of the committed selection again.
+          * Discards a pending selection made while `requireConfirmation` is enabled, reports the restored selection with `dateChange` and shows the month of the committed selection again.
          */
         "discardPendingSelection": () => Promise<void>;
         /**
@@ -1663,7 +1663,7 @@ export namespace Components {
         "minDate": string;
         "navigateCalendar": (direction: -1 | 1, byYear: boolean) => Promise<void>;
         /**
-          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `dateRangeChange` are deferred until then, and the cancel button discards the pending selection.
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. `dateChange` still reports every pick. The cancel button discards the pending selection.
           * @since 6.0.0
           * @default false
          */
@@ -1729,7 +1729,7 @@ export namespace Components {
      * Text input for entering and validating a combined date and time value.
      * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
      * @since 5.0.0
-     * @form-ready
+     * @form-ready 
      */
     interface IxDatetimeInput {
         /**
@@ -2036,7 +2036,7 @@ export namespace Components {
          */
         "minTime"?: string;
         /**
-          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.  If false, `dateChange` and `timeChange` are emitted for every selection and the done button emits `dateSelect`.
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The cancel button discards the pending selection.  If false, the done button emits `dateSelect`. In both modes `dateChange` and `timeChange` are emitted for every selection.
           * @since 6.0.0
           * @default false
          */
@@ -2939,7 +2939,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready
+     * @form-ready 
      */
     interface IxInput {
         /**
@@ -3728,7 +3728,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready
+     * @form-ready 
      */
     interface IxNumberInput {
         /**
@@ -4295,7 +4295,7 @@ export namespace Components {
      * Lets users select a single option from a set.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
-     * @form-ready
+     * @form-ready 
      */
     interface IxRadio {
         /**
@@ -4334,7 +4334,7 @@ export namespace Components {
      * Groups related radio buttons so only one can be selected.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
-     * @form-ready
+     * @form-ready 
      */
     interface IxRadioGroup {
         /**
@@ -4407,7 +4407,7 @@ export namespace Components {
      * Dropdown control for selecting one or more options from a list.
      * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
-     * @form-ready
+     * @form-ready 
      */
     interface IxSelect {
         /**
@@ -4608,7 +4608,7 @@ export namespace Components {
      * Lets users choose a numeric value by dragging along a track.
      * @documentation https://ix.siemens.io//docs/components/slider/code.md
      * @figma-main-component-id 50042:20986
-     * @form-ready
+     * @form-ready 
      */
     interface IxSlider {
         /**
@@ -4902,7 +4902,7 @@ export namespace Components {
     }
     /**
      * Multi-line text input for entering and validating longer text.
-     * @form-ready
+     * @form-ready 
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
@@ -5023,7 +5023,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
-     * @form-ready
+     * @form-ready 
      */
     interface IxTimeInput {
         /**
@@ -5231,7 +5231,7 @@ export namespace Components {
          */
         "corners": TimePickerCorners;
         /**
-          * Discards the selection that has not been confirmed yet.
+          * Discards the selection that has not been confirmed yet and reports the restored time with `timeChange`.
          */
         "discardPendingSelection": () => Promise<void>;
         /**
@@ -5431,7 +5431,7 @@ export namespace Components {
      * Switch control for toggling a single setting on or off.
      * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
-     * @form-ready
+     * @form-ready 
      */
     interface IxToggle {
         /**
@@ -6378,7 +6378,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
      * @figma-main-component-id 133528:32836
      * @since 5.2.0
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6414,7 +6414,7 @@ declare global {
      * Lets users select an option or toggle a single value on or off.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6434,7 +6434,7 @@ declare global {
      * Groups related checkboxes together.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
     }
@@ -6592,7 +6592,7 @@ declare global {
      * Text input for entering and validating a date value.
      * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6653,7 +6653,7 @@ declare global {
      * Text input for entering and validating a combined date and time value.
      * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
      * @since 5.0.0
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatetimeInputElementEventMap>(type: K, listener: (this: HTMLIxDatetimeInputElement, ev: IxDatetimeInputCustomEvent<HTMLIxDatetimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7074,7 +7074,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxInputElementEventMap>(type: K, listener: (this: HTMLIxInputElement, ev: IxInputCustomEvent<HTMLIxInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7482,7 +7482,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7690,7 +7690,7 @@ declare global {
      * Lets users select a single option from a set.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7713,7 +7713,7 @@ declare global {
      * Groups related radio buttons so only one can be selected.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7758,7 +7758,7 @@ declare global {
      * Dropdown control for selecting one or more options from a list.
      * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7802,7 +7802,7 @@ declare global {
      * Lets users choose a numeric value by dragging along a track.
      * @documentation https://ix.siemens.io//docs/components/slider/code.md
      * @figma-main-component-id 50042:20986
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7925,7 +7925,7 @@ declare global {
     }
     /**
      * Multi-line text input for entering and validating longer text.
-     * @form-ready
+     * @form-ready 
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
@@ -7965,7 +7965,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -8045,7 +8045,7 @@ declare global {
      * Switch control for toggling a single setting on or off.
      * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
-     * @form-ready
+     * @form-ready 
      */
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -9158,7 +9158,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
      * @figma-main-component-id 133528:32836
      * @since 5.2.0
-     * @form-ready
+     * @form-ready 
      */
     interface IxChatInput {
         /**
@@ -9274,7 +9274,7 @@ declare namespace LocalJSX {
      * Lets users select an option or toggle a single value on or off.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
-     * @form-ready
+     * @form-ready 
      */
     interface IxCheckbox {
         /**
@@ -9331,7 +9331,7 @@ declare namespace LocalJSX {
      * Groups related checkboxes together.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
-     * @form-ready
+     * @form-ready 
      */
     interface IxCheckboxGroup {
         /**
@@ -9688,16 +9688,16 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
+          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range. When a pending selection is discarded, it is emitted with the applied range again.  Use `dateSelect` to only receive applied ranges.
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
-          * Emitted for date range selections made by the user. It is not emitted for programmatic changes.  With `requireConfirmation` it is only emitted on confirm, with the confirmed range.  Without `requireConfirmation` it is emitted for every pick, so in range mode it is first emitted with only a start date. If the dropdown closes before the end date is picked, it is emitted again with the range that is still applied. Use `dateRangeChange` to only receive applied ranges.
+          * Emitted when the user applies a changed range: on confirm with `requireConfirmation`, otherwise when a complete range or a predefined range is picked. It is not emitted for programmatic prop input changes.
           * @since 6.0.0
          */
         "onDateSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
-          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button. The trigger label, `dateRangeChange` and `dateSelect` are deferred until then. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The trigger label keeps the applied range until then, while `dateRangeChange` still reports every pick. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
           * @since 6.0.0
           * @default false
          */
@@ -9737,7 +9737,7 @@ declare namespace LocalJSX {
      * Text input for entering and validating a date value.
      * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
-     * @form-ready
+     * @form-ready 
      */
     interface IxDateInput {
         /**
@@ -9984,24 +9984,25 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Emitted when the pending selection is discarded via the cancel button. Only emitted when `requireConfirmation` is enabled.
+          * Emitted when the pending selection is discarded via the cancel button.
           * @since 6.0.0
          */
         "onDateCancel"?: (event: IxDatePickerCustomEvent<void>) => void;
         /**
-          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+          * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` When a pending selection is discarded, it is emitted with the confirmed selection again. Use `dateSelect` to receive only the applied selection.
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.  Emitted together with `dateChange`.
+          * @deprecated since 6.0.0, use `dateChange` instead, which carries the same `from`/`to` range. Will be removed in 7.0.0.
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Date selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `dateRangeChange` are deferred until then, and the cancel button discards the pending selection.
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. `dateChange` still reports every pick. The cancel button discards the pending selection.
           * @since 6.0.0
           * @default false
          */
@@ -10066,7 +10067,7 @@ declare namespace LocalJSX {
      * Text input for entering and validating a combined date and time value.
      * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
      * @since 5.0.0
-     * @form-ready
+     * @form-ready 
      */
     interface IxDatetimeInput {
         /**
@@ -10362,24 +10363,24 @@ declare namespace LocalJSX {
          */
         "minTime"?: string;
         /**
-          * Emitted when the pending selection is discarded via the cancel button. Only emitted when `requireConfirmation` is enabled.
+          * Emitted when the pending selection is discarded via the cancel button, after `dateChange`/`timeChange` reported the restored selection. Only emitted when `requireConfirmation` is enabled.
           * @since 6.0.0
          */
         "onDateCancel"?: (event: IxDatetimePickerCustomEvent<void>) => void;
         /**
-          * Date change event. Emitted when the date changes in the embedded date picker.
+          * Date change event. Emitted when the date changes in the embedded date picker.  Emitted for every pick, also for a range with only a start date and for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed date again. Use `dateSelect` for the applied selection.
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Datetime selection event. Emitted when the user confirms the selection.
+          * Datetime selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`.
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Time change event. Emitted when the time changes in the embedded time picker.
+          * Time change event. Emitted when the time changes in the embedded time picker.  Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again. Use `dateSelect` for the applied selection.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
-          * If true, a selection is only applied after the user confirms it with the confirm button. `dateChange` and `timeChange` are deferred until then, and the cancel button discards the pending selection.  If false, `dateChange` and `timeChange` are emitted for every selection and the done button emits `dateSelect`.
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The cancel button discards the pending selection.  If false, the done button emits `dateSelect`. In both modes `dateChange` and `timeChange` are emitted for every selection.
           * @since 6.0.0
           * @default false
          */
@@ -11336,7 +11337,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready
+     * @form-ready 
      */
     interface IxInput {
         /**
@@ -12176,7 +12177,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready
+     * @form-ready 
      */
     interface IxNumberInput {
         /**
@@ -12777,7 +12778,7 @@ declare namespace LocalJSX {
      * Lets users select a single option from a set.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
-     * @form-ready
+     * @form-ready 
      */
     interface IxRadio {
         /**
@@ -12829,7 +12830,7 @@ declare namespace LocalJSX {
      * Groups related radio buttons so only one can be selected.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
-     * @form-ready
+     * @form-ready 
      */
     interface IxRadioGroup {
         /**
@@ -12903,7 +12904,7 @@ declare namespace LocalJSX {
      * Dropdown control for selecting one or more options from a list.
      * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
-     * @form-ready
+     * @form-ready 
      */
     interface IxSelect {
         /**
@@ -13113,7 +13114,7 @@ declare namespace LocalJSX {
      * Lets users choose a numeric value by dragging along a track.
      * @documentation https://ix.siemens.io//docs/components/slider/code.md
      * @figma-main-component-id 50042:20986
-     * @form-ready
+     * @form-ready 
      */
     interface IxSlider {
         /**
@@ -13439,7 +13440,7 @@ declare namespace LocalJSX {
     }
     /**
      * Multi-line text input for entering and validating longer text.
-     * @form-ready
+     * @form-ready 
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
@@ -13567,7 +13568,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
-     * @form-ready
+     * @form-ready 
      */
     interface IxTimeInput {
         /**
@@ -13879,16 +13880,16 @@ declare namespace LocalJSX {
          */
         "minuteInterval"?: number;
         /**
-          * Emitted when the pending selection is discarded via the cancel button.
+          * Emitted when the pending selection is discarded via the cancel button, after `timeChange` reported the restored time.
           * @since 6.0.0
          */
         "onTimeCancel"?: (event: IxTimePickerCustomEvent<void>) => void;
         /**
-          * Time change event. Emitted for every time picked in the picker, before it is confirmed.
+          * Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again. Use `timeSelect` for the applied time.
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
-          * Time event. Emitted when the user confirms the selected time.
+          * Time event. Emitted only when the user confirms the selected time. Use it for the applied time.
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
@@ -13965,7 +13966,7 @@ declare namespace LocalJSX {
      * Switch control for toggling a single setting on or off.
      * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
-     * @form-ready
+     * @form-ready 
      */
     interface IxToggle {
         /**
@@ -15754,7 +15755,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
              * @figma-main-component-id 133528:32836
              * @since 5.2.0
-             * @form-ready
+             * @form-ready 
              */
             "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
@@ -15767,14 +15768,14 @@ declare module "@stencil/core" {
              * Lets users select an option or toggle a single value on or off.
              * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
              * @figma-main-component-id 42365:47165
-             * @form-ready
+             * @form-ready 
              */
             "ix-checkbox": LocalJSX.IntrinsicElements["ix-checkbox"] & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
             /**
              * Groups related checkboxes together.
              * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
              * @figma-main-component-id 84992:87199
-             * @form-ready
+             * @form-ready 
              */
             "ix-checkbox-group": LocalJSX.IntrinsicElements["ix-checkbox-group"] & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             /**
@@ -15828,7 +15829,7 @@ declare module "@stencil/core" {
              * Text input for entering and validating a date value.
              * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
              * @figma-main-component-id 442365:42749
-             * @form-ready
+             * @form-ready 
              */
             "ix-date-input": LocalJSX.IntrinsicElements["ix-date-input"] & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             /**
@@ -15845,7 +15846,7 @@ declare module "@stencil/core" {
              * Text input for entering and validating a combined date and time value.
              * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
              * @since 5.0.0
-             * @form-ready
+             * @form-ready 
              */
             "ix-datetime-input": LocalJSX.IntrinsicElements["ix-datetime-input"] & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             /**
@@ -15989,7 +15990,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
              * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
              * @figma-main-component-id 42365:39459
-             * @form-ready
+             * @form-ready 
              */
             "ix-input": LocalJSX.IntrinsicElements["ix-input"] & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             /**
@@ -16122,7 +16123,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
              * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
              * @figma-main-component-id 42365:39459
-             * @form-ready
+             * @form-ready 
              */
             "ix-number-input": LocalJSX.IntrinsicElements["ix-number-input"] & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
             /**
@@ -16197,14 +16198,14 @@ declare module "@stencil/core" {
              * Lets users select a single option from a set.
              * @documentation https://ix.siemens.io//docs/components/radio/guide.md
              * @figma-main-component-id 42365:44481
-             * @form-ready
+             * @form-ready 
              */
             "ix-radio": LocalJSX.IntrinsicElements["ix-radio"] & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
             /**
              * Groups related radio buttons so only one can be selected.
              * @documentation https://ix.siemens.io//docs/components/radio/guide.md
              * @figma-main-component-id 42365:44973
-             * @form-ready
+             * @form-ready 
              */
             "ix-radio-group": LocalJSX.IntrinsicElements["ix-radio-group"] & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             /**
@@ -16220,7 +16221,7 @@ declare module "@stencil/core" {
              * Dropdown control for selecting one or more options from a list.
              * @documentation https://ix.siemens.io//docs/components/select/guide.md
              * @figma-main-component-id 42365:49989
-             * @form-ready
+             * @form-ready 
              */
             "ix-select": LocalJSX.IntrinsicElements["ix-select"] & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             /**
@@ -16232,7 +16233,7 @@ declare module "@stencil/core" {
              * Lets users choose a numeric value by dragging along a track.
              * @documentation https://ix.siemens.io//docs/components/slider/code.md
              * @figma-main-component-id 50042:20986
-             * @form-ready
+             * @form-ready 
              */
             "ix-slider": LocalJSX.IntrinsicElements["ix-slider"] & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             /**
@@ -16271,7 +16272,7 @@ declare module "@stencil/core" {
             "ix-tabs": LocalJSX.IntrinsicElements["ix-tabs"] & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
              * Multi-line text input for entering and validating longer text.
-             * @form-ready
+             * @form-ready 
              * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
              */
             "ix-textarea": LocalJSX.IntrinsicElements["ix-textarea"] & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
@@ -16286,7 +16287,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
              * @figma-main-component-id 68801:5742
              * @since 3.2.0
-             * @form-ready
+             * @form-ready 
              */
             "ix-time-input": LocalJSX.IntrinsicElements["ix-time-input"] & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             /**
@@ -16309,7 +16310,7 @@ declare module "@stencil/core" {
              * Switch control for toggling a single setting on or off.
              * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
              * @figma-main-component-id 43875:36542
-             * @form-ready
+             * @form-ready 
              */
             "ix-toggle": LocalJSX.IntrinsicElements["ix-toggle"] & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
             /**

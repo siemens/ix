@@ -829,12 +829,16 @@ const mountTimePicker = async (
   attributes = ''
 ) => {
   await mount(
-    `<ix-time-picker format="${TIME_FORMAT}" time="${formatTime(time)}" ${attributes}></ix-time-picker>`
+    `<ix-time-picker format="${TIME_FORMAT}" time="${formatTime(
+      time
+    )}" ${attributes}></ix-time-picker>`
   );
   await expect(page.locator('ix-time-picker')).toHaveAttribute('hydrated');
 };
 
-const minMaxAttributes = `min-time="${formatTime(minTime)}" max-time="${formatTime(maxTime)}"`;
+const minMaxAttributes = `min-time="${formatTime(
+  minTime
+)}" max-time="${formatTime(maxTime)}"`;
 
 regressionTest.describe('confirmation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
@@ -881,7 +885,7 @@ regressionTest.describe('confirmation', () => {
   );
 
   regressionTest(
-    'cancel discards the pending time and emits timeCancel',
+    'cancel restores the confirmed time with timeChange and emits timeCancel',
     async ({ page }) => {
       const timePicker = page.locator('ix-time-picker');
       const events = await recordEvents(timePicker, [
@@ -900,10 +904,42 @@ regressionTest.describe('confirmation', () => {
         'aria-selected',
         'false'
       );
-      expect((await events()).map((event) => event.type)).toEqual([
-        'timeChange',
-        'timeCancel',
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: formatTime(pickedTime) },
+        { type: 'timeChange', detail: formatTime(committedTime) },
+        { type: 'timeCancel', detail: null },
       ]);
+    }
+  );
+
+  regressionTest(
+    'binding time to timeChange keeps the pick pending',
+    async ({ page }) => {
+      const timePicker = page.locator('ix-time-picker');
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) => {
+        el.addEventListener('timeChange', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        });
+      });
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await expect(timePicker).toHaveJSProperty('time', formatTime(pickedTime));
+      await expect(timePicker.getByTestId('confirm')).toBeEnabled();
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBe(formatTime(committedTime));
+
+      await timePicker.getByTestId('cancel').click();
+
+      await expect(timePicker).toHaveJSProperty(
+        'time',
+        formatTime(committedTime)
+      );
+      await expect(
+        timePickerHourCell(timePicker, committedTime)
+      ).toHaveAttribute('aria-selected', 'true');
     }
   );
 });

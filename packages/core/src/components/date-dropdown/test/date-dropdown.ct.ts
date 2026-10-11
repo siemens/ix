@@ -492,7 +492,7 @@ regressionTest.describe('require confirmation', () => {
   });
 
   regressionTest(
-    'picking does not update the label or emit events',
+    'picking emits dateRangeChange but does not update the label',
     async ({ page }) => {
       const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
       const events = await recordEvents(dateDropdown, [
@@ -506,7 +506,22 @@ regressionTest.describe('require confirmation', () => {
       await expect(
         dateDropdown.getByTestId('date-dropdown-trigger')
       ).toContainText(formatDateRange(initialFrom, initialTo));
-      expect(await events()).toEqual([]);
+      expect(await events()).toEqual([
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining({
+            id: 'custom',
+            from: formatDateTime(pickedFrom),
+            to: undefined,
+          }),
+        },
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining(
+            rangeEvent('custom', pickedFrom, pickedTo)
+          ),
+        },
+      ]);
     }
   );
 
@@ -547,9 +562,9 @@ regressionTest.describe('require confirmation', () => {
       dateDropdown.getByTestId('date-dropdown-trigger')
     ).toContainText(formatDateRange(pickedFrom, pickedTo));
 
+    // The picks were already reported with dateRangeChange
     const expected = rangeEvent('custom', pickedFrom, pickedTo);
-    expect(await events()).toEqual([
-      { type: 'dateRangeChange', detail: expect.objectContaining(expected) },
+    expect((await events()).slice(2)).toEqual([
       { type: 'dateSelect', detail: expect.objectContaining(expected) },
     ]);
     expect(
@@ -561,7 +576,7 @@ regressionTest.describe('require confirmation', () => {
 
   for (const dismissal of PENDING_SELECTION_DISMISSALS) {
     regressionTest(
-      `${dismissal} discards the pending selection`,
+      `${dismissal} discards the pending selection and reports the restored range`,
       async ({ page }) => {
         const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
         const events = await recordEvents(dateDropdown, [
@@ -577,7 +592,17 @@ regressionTest.describe('require confirmation', () => {
         await expect(
           dateDropdown.getByTestId('date-dropdown-trigger')
         ).toContainText(formatDateRange(initialFrom, initialTo));
-        expect(await events()).toEqual([]);
+        await expect
+          .poll(async () => (await events()).slice(2))
+          .toEqual([
+            {
+              type: 'dateRangeChange',
+              detail: expect.objectContaining({
+                from: formatDateTime(initialFrom),
+                to: formatDateTime(initialTo),
+              }),
+            },
+          ]);
 
         await dateDropdownAccessor(page).open();
         await expectSelectedDays(page, [initialFrom, initialTo]);
@@ -638,14 +663,16 @@ regressionTest.describe('require confirmation', () => {
         dateDropdown.getByTestId('date-dropdown-trigger')
       ).toContainText(formatDateRange(initialFrom, initialTo));
       await expectSelectedDays(page, [presetFrom, presetTo]);
-      expect(await events()).toEqual([]);
+      const expected = rangeEvent('b', presetFrom, presetTo);
+      expect(await events()).toEqual([
+        { type: 'dateRangeChange', detail: expect.objectContaining(expected) },
+      ]);
 
       await dateDropdown.getByTestId('confirm').click();
       await expect(
         dateDropdown.getByTestId('date-dropdown-trigger')
       ).toContainText(formatDateRange(presetFrom, presetTo));
 
-      const expected = rangeEvent('b', presetFrom, presetTo);
       expect(await events()).toEqual([
         { type: 'dateRangeChange', detail: expect.objectContaining(expected) },
         { type: 'dateSelect', detail: expect.objectContaining(expected) },
@@ -654,7 +681,7 @@ regressionTest.describe('require confirmation', () => {
   );
 });
 
-regressionTest.describe('dateSelect without require confirmation', () => {
+regressionTest.describe('events without require confirmation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mountDateDropdown(mount, page);
   });
@@ -691,7 +718,7 @@ regressionTest.describe('dateSelect without require confirmation', () => {
       });
       await expect.poll(events).toEqual([
         {
-          type: 'dateSelect',
+          type: 'dateRangeChange',
           detail: expect.objectContaining({ to: undefined }),
         },
         { type: 'dateRangeChange', detail: expected },
@@ -749,7 +776,7 @@ regressionTest.describe('dateSelect without require confirmation', () => {
   );
 
   regressionTest(
-    'emits dateSelect on pick and reverts an incomplete range on outside click',
+    'emits dateRangeChange on pick and reverts an incomplete range on outside click',
     async ({ page }) => {
       const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
       const events = await recordEvents(dateDropdown, [
@@ -762,7 +789,7 @@ regressionTest.describe('dateSelect without require confirmation', () => {
 
       expect(await events()).toEqual([
         {
-          type: 'dateSelect',
+          type: 'dateRangeChange',
           detail: expect.objectContaining({
             id: 'custom',
             from: formatDateTime(pickedFrom),
@@ -776,14 +803,14 @@ regressionTest.describe('dateSelect without require confirmation', () => {
         dateDropdown.getByTestId('date-dropdown-trigger')
       ).toContainText(formatDateRange(initialFrom, initialTo));
 
-      // The range is unchanged, so only dateSelect resolves the emitted partial
+      // Nothing was applied, so only dateRangeChange reports the restored range
       const reverted = expect.objectContaining({
         from: formatDateTime(initialFrom),
         to: formatDateTime(initialTo),
       });
       await expect
         .poll(async () => (await events()).slice(1))
-        .toEqual([{ type: 'dateSelect', detail: reverted }]);
+        .toEqual([{ type: 'dateRangeChange', detail: reverted }]);
 
       await dateDropdownAccessor(page).open();
       await expectSelectedDays(page, [initialFrom, initialTo]);
@@ -808,7 +835,7 @@ regressionTest.describe('dateSelect without require confirmation', () => {
   );
 
   regressionTest(
-    'emits only dateSelect when the same range is picked again',
+    'emits only dateRangeChange when the same range is picked again',
     async ({ page }) => {
       const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
       const events = await recordEvents(dateDropdown, [
@@ -823,11 +850,11 @@ regressionTest.describe('dateSelect without require confirmation', () => {
 
       await expect.poll(events).toEqual([
         {
-          type: 'dateSelect',
+          type: 'dateRangeChange',
           detail: expect.objectContaining({ to: undefined }),
         },
         {
-          type: 'dateSelect',
+          type: 'dateRangeChange',
           detail: expect.objectContaining({
             from: formatDateTime(initialFrom),
             to: formatDateTime(initialTo),
@@ -838,7 +865,7 @@ regressionTest.describe('dateSelect without require confirmation', () => {
   );
 
   regressionTest(
-    'emits nothing when the same date is picked again in single selection',
+    'emits only dateRangeChange when the same date is picked again in single selection',
     async ({ mount, page }) => {
       await mountDateDropdown(mount, page, {
         'single-selection': true,
@@ -854,7 +881,9 @@ regressionTest.describe('dateSelect without require confirmation', () => {
       await dayCell(page, initialFrom).click();
       await dateDropdownAccessor(page).expectClosed();
 
-      expect(await events()).toEqual([]);
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateRangeChange',
+      ]);
     }
   );
 
