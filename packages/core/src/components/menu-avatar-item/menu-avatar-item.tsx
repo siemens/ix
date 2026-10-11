@@ -19,6 +19,11 @@ import {
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import { makeRef } from '../utils/make-ref';
 
+/**
+ * A single action within the avatar menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ */
 @Component({
   tag: 'ix-menu-avatar-item',
   styleUrl: 'menu-avatar-item.scss',

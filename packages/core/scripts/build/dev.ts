@@ -9,7 +9,6 @@
 import { CopyTask, JsonDocs } from '@stencil/core/internal';
 import fs from 'fs';
 import path from 'path';
-
 const isObject = (val: unknown): val is Record<string, unknown> =>
   typeof val === 'object' && val !== null && !Array.isArray(val);
 

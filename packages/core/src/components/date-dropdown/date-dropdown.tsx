@@ -42,6 +42,12 @@ import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { isPartialRange, type DateRangeValue } from '../utils/calendar.util';
 
+/**
+ * Dropdown for selecting a date or a relative date range.
+ *
+ * @documentation https://ix.siemens.io//docs/components/date-dropdown/code.md
+ * @figma-main-component-id 45886:27067
+ */
 @Component({
   tag: 'ix-date-dropdown',
   styleUrl: 'date-dropdown.scss',

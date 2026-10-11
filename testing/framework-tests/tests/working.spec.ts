@@ -94,3 +94,9 @@ import './generated/date-input-require-confirmation.spec';
 import './generated/date-picker-require-confirmation.spec';
 import './generated/datetime-input-require-confirmation.spec';
 import './generated/datetime-picker-require-confirmation.spec';
+
+// Group tests
+import './generated/group.spec';
+import './generated/group-context-menu.spec';
+import './generated/group-custom-entry.spec';
+import './generated/group-header-suppressed.spec';

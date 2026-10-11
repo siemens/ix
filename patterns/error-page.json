@@ -1,0 +1,39 @@
+{
+  "$schema": "./../tooling/registry/schemas/authored-pattern.schema.json",
+  "name": "error-page",
+  "description": "Use this pattern to show a 404 not-found error page with explanatory text and a primary action that routes users back home.",
+  "keywords": [
+    "404",
+    "error",
+    "not found",
+    "empty state",
+    "navigation",
+    "go home"
+  ],
+  "preview": "react-patterns/dist/ix/error-page",
+  "variants": {
+    "react": {
+      "files": [
+        {
+          "sourcePath": "react-patterns/src/routes/error-page/error-page.tsx"
+        },
+        {
+          "sourcePath": "react-patterns/src/routes/error-page/error-page.module.css"
+        }
+      ]
+    },
+    "angular": {
+      "files": [
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/error-page/error-page.ts"
+        },
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/error-page/error-page.html"
+        },
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/error-page/error-page.css"
+        }
+      ]
+    }
+  }
+}

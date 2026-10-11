@@ -208,6 +208,7 @@ export const testIds = [
   "date-input-disabled",
   "date-dropdown",
   "date-dropdown-require-confirmation",
+  "date-dropdown-user-range",
   "date-dropdown-presets",
   "custom-field",
   "custom-field-validation",
