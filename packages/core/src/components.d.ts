@@ -1186,6 +1186,7 @@ export namespace Components {
          */
         "requireConfirmation": boolean;
     }
+    /**
      * Main content region of an application page.
      * @documentation https://ix.siemens.io//docs/components/content/guide.md
      */

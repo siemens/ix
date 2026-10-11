@@ -311,7 +311,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
     if (newValue === undefined || newValue === '') {
       this._time = this.getDefaultTime();
-      this.hasCommittedTime = false;
       return;
     }
 
@@ -321,7 +320,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     }
 
     this._time = timeFormat;
-    this.hasCommittedTime = true;
   }
 
   /** Earliest selectable time (`format` tokens). Invalid non-empty values are ignored.
@@ -425,12 +423,12 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop({ attribute: 'i18n-pm' }) i18nPm?: string;
 
   /**
-   * Time event. Emitted when the user confirms the selected time.
+   * Time event. Emitted only when the user confirms the selected time.
    */
   @Event() timeSelect!: EventEmitter<string>;
 
   /**
-   * Time change event. Emitted for every time picked in the picker, before it is confirmed.
+   * Time change event. Emitted for every change made.
    */
   @Event() timeChange!: EventEmitter<string>;
 
@@ -473,10 +471,15 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @State() private _time?: DateTime;
 
   /**
-   * Whether `_time` is a set or confirmed time rather than the default time
-   * shown without one. The default time can be confirmed as it is.
+   * Whether the parent provided a valid `time` rather than the picker showing
+   * the default time. The default time can be confirmed as it is.
    */
-  @State() private hasCommittedTime = false;
+  private get hasCommittedTime(): boolean {
+    return (
+      !!this.time &&
+      parseWithLocale(this.time, this.format, this.locale).isValid
+    );
+  }
 
   /**
    * Time selected but not yet confirmed. `undefined` when there is nothing
@@ -563,7 +566,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     }
 
     this._time = parsedTime;
-    this.hasCommittedTime = !!this.time && !timePropDoesNotMatchFormat;
     this.pendingTime = undefined;
 
     this.updateMeridiemLabels();
@@ -807,7 +809,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
           );
           if (timeFormat.isValid) {
             this._time = parseWithLocale(this.time, this.format, this.locale);
-            this.hasCommittedTime = true;
             this.pendingTime = undefined;
             this.setInitialFocusedValueAndUnit();
           }
@@ -1330,7 +1331,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       this._time = this.pendingTime;
       this.pendingTime = undefined;
     }
-    this.hasCommittedTime = true;
 
     this.timeSelect.emit(
       this._time

@@ -956,6 +956,12 @@ regressionTest.describe('primary button without changes', () => {
       await expect(timePicker).toHaveAttribute('hydrated');
       const confirm = timePicker.getByRole('button', { name: 'Confirm' });
       const events = await recordEvents(timePicker, ['timeSelect']);
+      // Feed the confirmed time back like a parent component would
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+        el.addEventListener('timeSelect', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        })
+      );
 
       await expect(confirm).toBeEnabled();
       await confirm.click();
@@ -963,7 +969,8 @@ regressionTest.describe('primary button without changes', () => {
       expect(await events()).toEqual([
         { type: 'timeSelect', detail: expect.stringMatching(/^\d{2}:\d{2}$/) },
       ]);
-      // Once confirmed, the time has to change before it can be confirmed again
+      // Once the parent feeds the confirmed time back, the time has to change
+      // before it can be confirmed again
       await expect(confirm).toBeDisabled();
     }
   );
