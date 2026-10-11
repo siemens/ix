@@ -39,6 +39,44 @@ test.describe('validation', () => {
 
       await expect(input).toHaveClass(/ix-invalid/);
     });
+
+    test('novalidate form should not show validity feedback but still emit validityStateChange', async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        '<form novalidate><ix-input min-length="3" value="123"></ix-input></form>'
+      );
+
+      const input = page.locator('ix-input');
+      const shadowDomInput = input.locator('input');
+
+      await input.evaluate((el: HTMLElement) => {
+        el.dataset.invalidCount = '0';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          if ((event as CustomEvent<ValidityState>).detail?.valid) {
+            el.dataset.validEmitted = 'true';
+          } else {
+            el.dataset.invalidCount = `${Number(el.dataset.invalidCount) + 1}`;
+          }
+        });
+      });
+
+      await shadowDomInput.fill('12');
+      await shadowDomInput.blur();
+
+      await expect(input).toHaveAttribute('data-invalid-count', '1');
+      await expect(input).not.toHaveClass(/ix-invalid/);
+
+      // Staying invalid must not re-emit the event
+      await shadowDomInput.fill('1');
+      await shadowDomInput.blur();
+      await shadowDomInput.fill('1234');
+      await shadowDomInput.blur();
+
+      await expect(input).toHaveAttribute('data-valid-emitted', 'true');
+      await expect(input).toHaveAttribute('data-invalid-count', '1');
+    });
   });
 
   test.describe('ix-number-input', () => {
@@ -278,6 +316,52 @@ function createValidityOrValueChangePromiseSimple(
 function setElementValue(el: Element, value: string): void {
   (el as any).value = value;
 }
+
+test.describe('toggling required', () => {
+  [
+    'ix-input',
+    'ix-number-input',
+    'ix-textarea',
+    'ix-select',
+    'ix-time-input',
+    'ix-datetime-input',
+  ].forEach((selector) => {
+    test(`${selector} - updates validation state immediately`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<${selector} invalid-text="Field is required"></${selector}>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector)).first();
+      const invalidText = host
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Field is required' });
+
+      await expect(host).toHaveAttribute('hydrated');
+      if (selector === 'ix-select') {
+        await nativeInput.focus();
+      } else {
+        await nativeInput.fill('');
+      }
+      await nativeInput.blur();
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = true;
+      });
+      await expect(host).toHaveClass(/ix-invalid--required/);
+      await expect(invalidText).toBeVisible();
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = false;
+      });
+      await expect(host).not.toHaveClass(/ix-invalid/);
+      await expect(invalidText).toBeHidden();
+    });
+  });
+});
 
 test.describe('ixChange event', () => {
   test.describe('on blur', () => {

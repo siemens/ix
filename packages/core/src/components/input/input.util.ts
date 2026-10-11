@@ -52,39 +52,44 @@ export function checkAllowedKeys<T>(
   }
 }
 
+/**
+ * Last emitted validity for hosts in `novalidate` forms, where the
+ * `ix-invalid--validity-invalid` class can't be used to track it.
+ */
+const suppressedValidityStates = new WeakMap<HTMLElement, boolean>();
+
 export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
   const validityState = input.validity;
-  const currentValidityState = !comp.hostElement.classList.contains(
-    'ix-invalid--validity-invalid'
-  );
+  const currentValidityState = skipValidation
+    ? (suppressedValidityStates.get(comp.hostElement) ?? true)
+    : !comp.hostElement.classList.contains('ix-invalid--validity-invalid');
   const newValidityState = validityState.valid;
+  const validityChanged = currentValidityState !== newValidityState;
 
-  if (currentValidityState !== newValidityState) {
+  if (validityChanged) {
     const eventResult = comp.validityStateChange.emit(validityState);
     if (eventResult.defaultPrevented) {
       return;
     }
+  }
 
+  // The event above is still emitted for `novalidate` forms so consumers can
+  // run their own validation, but no visual feedback is applied.
+  if (skipValidation) {
+    suppressedValidityStates.set(comp.hostElement, newValidityState);
+    return;
+  }
+
+  if (validityChanged || (comp.value !== null && comp.value !== undefined)) {
     comp.hostElement.classList.toggle(
       'ix-invalid--validity-invalid',
       !newValidityState
     );
   }
-
-  if (comp.value === null || comp.value === undefined) {
-    return;
-  }
-
-  const skipValidation = await shouldSuppressInternalValidation(comp);
-  if (skipValidation) {
-    return;
-  }
-
-  const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
 }
 
 export function onInputBlur<T>(

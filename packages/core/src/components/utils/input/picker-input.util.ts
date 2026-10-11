@@ -57,6 +57,18 @@ export function handleIconClick(
   }
 }
 
+/**
+ * Parse errors only produce visual feedback if the form doesn't opt out of
+ * validation via `novalidate`. They are still reported through
+ * `validityStateChange` and `getValidityState` either way.
+ */
+export function shouldShowInputInvalid(
+  isInputInvalid: boolean,
+  formInternals: ElementInternals
+): boolean {
+  return isInputInvalid && !formInternals.form?.noValidate;
+}
+
 export function createValidityState(
   isInputInvalid: boolean,
   required: boolean,

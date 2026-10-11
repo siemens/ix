@@ -24,6 +24,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
@@ -74,6 +75,14 @@ export class Textarea implements IxInputFieldComponent<string> {
    * Determines if the textarea field is required.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // The native element's validity only reflects `required` after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Determines if the textarea field is disabled.
@@ -223,6 +232,16 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidate(this);
+      if (this.textAreaRef.current && this.touched) {
+        checkInternalValidity(this, this.textAreaRef.current);
+      }
+    }
   }
 
   disconnectedCallback() {

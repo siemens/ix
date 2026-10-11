@@ -25,6 +25,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -87,6 +88,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * Indicates if the field is required. When required, empty values (undefined) are not accepted.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // The native element's validity only reflects `required` after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Disables the input field
@@ -240,6 +249,16 @@ export class NumberInput implements IxInputFieldComponent<number> {
         this.hostElement,
         this.updatePaddings.bind(this)
       );
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidate(this);
+      if (this.inputRef.current && this.touched) {
+        checkInternalValidity(this, this.inputRef.current);
+      }
+    }
   }
 
   disconnectedCallback() {

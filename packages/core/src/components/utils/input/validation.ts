@@ -74,7 +74,7 @@ export type ValidationResultProperty =
 export type ValidationResults = Record<ValidationResultProperty, boolean>;
 
 function classListContains(
-  hostElement: HTMLIxFormComponentElement<unknown>,
+  hostElement: HTMLElement,
   className: string,
   includeChildren: boolean
 ) {
@@ -85,7 +85,7 @@ function classListContains(
 }
 
 export function checkFieldClasses(
-  hostElement: HTMLIxFormComponentElement<unknown>,
+  hostElement: HTMLElement,
   includeChildren = false
 ): ValidationResults {
   return {
@@ -125,13 +125,56 @@ function isMissingNativeInputError(error: unknown): boolean {
   );
 }
 
+type ValidationLifecycleState = {
+  checkIfRequiredFunction: (() => Promise<void>) | null;
+  classMutationObserver: ClassMutationObserver | null;
+  checkTimeoutId: ReturnType<typeof setTimeout> | null;
+};
+
+const validationLifecycleStates = new WeakMap<
+  object,
+  ValidationLifecycleState
+>();
+
+function getValidationLifecycleState(
+  instance: object
+): ValidationLifecycleState {
+  let state = validationLifecycleStates.get(instance);
+  if (!state) {
+    state = {
+      checkIfRequiredFunction: null,
+      classMutationObserver: null,
+      checkTimeoutId: null,
+    };
+    validationLifecycleStates.set(instance, state);
+  }
+  return state;
+}
+
+/**
+ * Re-runs the internal validation of a component decorated with
+ * `@HookValidationLifecycle`, e.g. after a validation-relevant prop changed.
+ */
+export async function revalidate(instance: object) {
+  const checkIfRequiredFunction =
+    validationLifecycleStates.get(instance)?.checkIfRequiredFunction;
+  if (!checkIfRequiredFunction) {
+    return;
+  }
+
+  try {
+    await checkIfRequiredFunction();
+  } catch (error) {
+    if (!isMissingNativeInputError(error)) {
+      console.error(error);
+    }
+  }
+}
+
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
   return (proto: IxComponentInterface, methodName: string) => {
-    let checkIfRequiredFunction: (() => Promise<void>) | null;
-    let classMutationObserver: ClassMutationObserver | null;
-    let checkTimeoutId: ReturnType<typeof setTimeout> | null = null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 
@@ -139,13 +182,14 @@ export function HookValidationLifecycle(options?: {
       const host = getElement(
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
+      const state = getValidationLifecycleState(this);
 
-      if (checkTimeoutId != null) {
-        clearTimeout(checkTimeoutId);
-        checkTimeoutId = null;
+      if (state.checkTimeoutId != null) {
+        clearTimeout(state.checkTimeoutId);
+        state.checkTimeoutId = null;
       }
 
-      checkIfRequiredFunction = async () => {
+      const checkIfRequiredFunction = async () => {
         const skipValidation = await shouldSuppressInternalValidation(host);
         if (skipValidation || !host.isConnected) {
           return;
@@ -250,19 +294,13 @@ export function HookValidationLifecycle(options?: {
         }
       };
 
+      state.checkIfRequiredFunction = checkIfRequiredFunction;
       host.addEventListener('checkedChange', checkIfRequiredFunction);
       host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
-      checkTimeoutId = setTimeout(() => {
-        checkTimeoutId = null;
-        if (checkIfRequiredFunction) {
-          void checkIfRequiredFunction().catch((error) => {
-            if (isMissingNativeInputError(error)) {
-              return;
-            }
-            console.error(error);
-          });
-        }
+      state.checkTimeoutId = setTimeout(() => {
+        state.checkTimeoutId = null;
+        void revalidate(this);
       });
       return connectedCallback?.call(this);
     };
@@ -271,14 +309,15 @@ export function HookValidationLifecycle(options?: {
       const host = getElement(
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
-      classMutationObserver = createClassMutationObserver(
-        host,
-        () => {
-          const result = checkFieldClasses(host, options?.includeChildren);
-          proto[methodName].call(this, result);
-        },
-        options
-      );
+      getValidationLifecycleState(this).classMutationObserver =
+        createClassMutationObserver(
+          host,
+          () => {
+            const result = checkFieldClasses(host, options?.includeChildren);
+            proto[methodName].call(this, result);
+          },
+          options
+        );
       const result = checkFieldClasses(host, options?.includeChildren);
       proto[methodName].call(this, result);
       return componentWillLoad?.call(this);
@@ -286,22 +325,26 @@ export function HookValidationLifecycle(options?: {
 
     proto.disconnectedCallback = function () {
       const host = getElement(this);
+      const state = getValidationLifecycleState(this);
 
-      if (checkTimeoutId != null) {
-        clearTimeout(checkTimeoutId);
-        checkTimeoutId = null;
+      if (state.checkTimeoutId != null) {
+        clearTimeout(state.checkTimeoutId);
+        state.checkTimeoutId = null;
       }
 
-      if (host && classMutationObserver) {
-        classMutationObserver.destroy();
-        classMutationObserver = null;
+      if (host && state.classMutationObserver) {
+        state.classMutationObserver.destroy();
+        state.classMutationObserver = null;
       }
 
-      if (host && checkIfRequiredFunction) {
-        host.removeEventListener('checkedChange', checkIfRequiredFunction);
-        host.removeEventListener('valueChange', checkIfRequiredFunction);
-        host.removeEventListener('ixBlur', checkIfRequiredFunction);
-        checkIfRequiredFunction = null;
+      if (host && state.checkIfRequiredFunction) {
+        host.removeEventListener(
+          'checkedChange',
+          state.checkIfRequiredFunction
+        );
+        host.removeEventListener('valueChange', state.checkIfRequiredFunction);
+        host.removeEventListener('ixBlur', state.checkIfRequiredFunction);
+        state.checkIfRequiredFunction = null;
       }
 
       return disconnectedCallback?.call(this);

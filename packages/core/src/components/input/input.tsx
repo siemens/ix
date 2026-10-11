@@ -26,6 +26,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -93,6 +94,14 @@ export class Input implements IxInputFieldComponent<string> {
    * Specifies whether the text field is required.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // The native element's validity only reflects `required` after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Specifies whether the text field is disabled.
@@ -239,6 +248,16 @@ export class Input implements IxInputFieldComponent<string> {
       this.slotEndRef.current,
       this.inputRef.current
     );
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidate(this);
+      if (this.inputRef.current && this.touched) {
+        checkInternalValidity(this, this.inputRef.current);
+      }
+    }
   }
 
   disconnectedCallback(): void {

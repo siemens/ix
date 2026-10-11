@@ -138,6 +138,12 @@ regressionTest(
   }
 );
 
+const getInvalidText = (dateInput: Locator, text: string) =>
+  dateInput
+    .locator('ix-field-wrapper')
+    .locator('ix-typography')
+    .filter({ hasText: text });
+
 regressionTest('required', async ({ mount, page }) => {
   await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
@@ -156,6 +162,144 @@ regressionTest('required', async ({ mount, page }) => {
     timeout: 5000,
   });
 });
+
+regressionTest(
+  'novalidate form does not show validation feedback for a cleared required field',
+  async ({ mount, page }) => {
+    await mount(
+      `<form novalidate><ix-date-input required invalid-text="Date is required"></ix-date-input></form>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    const input = dateInputElement.getByRole('textbox');
+
+    await dateInputElement.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        if ((event as CustomEvent<ValidityState>).detail?.valueMissing) {
+          el.dataset.valueMissingEmitted = 'true';
+        }
+      });
+    });
+
+    await input.fill('2024/05/05');
+    await input.blur();
+    await input.fill('');
+    await input.blur();
+
+    // The event is still emitted so consumers can run their own validation
+    await expect(dateInputElement).toHaveAttribute(
+      'data-value-missing-emitted',
+      'true'
+    );
+
+    await expect(dateInputElement).not.toHaveClass(/ix-invalid/);
+    await expect(
+      getInvalidText(dateInputElement, 'Date is required')
+    ).toBeHidden();
+  }
+);
+
+regressionTest(
+  'novalidate form leaves parse error feedback to the consumer',
+  async ({ mount, page }) => {
+    await mount(
+      `<form novalidate><ix-date-input info-text="Info text"></ix-date-input></form>`
+    );
+    const host = page.locator('ix-date-input');
+    const input = host.locator('input').first();
+    const fieldWrapperText = (text: string) =>
+      host
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: text });
+
+    await host.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        const { detail } = event as CustomEvent<Partial<ValidityState>>;
+        if (detail?.patternMismatch || detail?.typeMismatch) {
+          el.dataset.parseErrorEmitted = 'true';
+        }
+      });
+    });
+
+    await input.fill('abc');
+    await input.blur();
+
+    // The parse error is still reported so consumers can validate themselves
+    await expect(host).toHaveAttribute('data-parse-error-emitted', 'true');
+
+    await host.evaluate((el) => el.classList.add('ix-info'));
+    await expect(fieldWrapperText('Info text')).toBeVisible();
+    await expect(fieldWrapperText('Date is not valid')).toBeHidden();
+
+    await host.evaluate((el) => {
+      el.classList.replace('ix-info', 'ix-invalid');
+      el.setAttribute('invalid-text', 'Consumer error');
+    });
+    await expect(fieldWrapperText('Consumer error')).toBeVisible();
+  }
+);
+
+regressionTest(
+  'toggling required updates validation state immediately',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input invalid-text="Date is required"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    const input = dateInputElement.getByRole('textbox');
+
+    await input.focus();
+    await input.blur();
+    await expect(dateInputElement).not.toHaveClass(/ix-invalid--required/);
+
+    await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = true;
+    });
+    await expect(dateInputElement).toHaveClass(/ix-invalid--required/);
+    await expect(
+      getInvalidText(dateInputElement, 'Date is required')
+    ).toBeVisible();
+
+    await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = false;
+    });
+    await expect(dateInputElement).not.toHaveClass(/ix-invalid--required/);
+    await expect(
+      getInvalidText(dateInputElement, 'Date is required')
+    ).toBeHidden();
+  }
+);
+
+regressionTest(
+  'toggling required only affects the changed instance',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-date-input id="first" invalid-text="First is required"></ix-date-input>
+      <ix-date-input id="second"></ix-date-input>
+    `);
+    const first = page.locator('#first');
+    const second = page.locator('#second');
+
+    for (const dateInput of [first, second]) {
+      await dateInput.getByRole('textbox').focus();
+      await dateInput.getByRole('textbox').blur();
+    }
+
+    await first.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = true;
+    });
+    await expect(first).toHaveClass(/ix-invalid--required/);
+    await expect(second).not.toHaveClass(/ix-invalid--required/);
+
+    // Removing another instance must not tear down the remaining one's validation
+    await second.evaluate((el) => el.remove());
+    await first.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = false;
+    });
+    await expect(first).not.toHaveClass(/ix-invalid--required/);
+    await expect(getInvalidText(first, 'First is required')).toBeHidden();
+  }
+);
 
 regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await mount(

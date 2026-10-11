@@ -197,6 +197,47 @@ regressionTest.describe('time input tests', () => {
   );
 });
 
+regressionTest(
+  'novalidate form leaves parse error feedback to the consumer',
+  async ({ mount, page }) => {
+    await mount(
+      `<form novalidate><ix-time-input info-text="Info text"></ix-time-input></form>`
+    );
+    const host = page.locator('ix-time-input');
+    const input = host.locator('input').first();
+    const fieldWrapperText = (text: string) =>
+      host
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: text });
+
+    await host.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        const { detail } = event as CustomEvent<Partial<ValidityState>>;
+        if (detail?.patternMismatch || detail?.typeMismatch) {
+          el.dataset.parseErrorEmitted = 'true';
+        }
+      });
+    });
+
+    await input.fill('abc');
+    await input.blur();
+
+    // The parse error is still reported so consumers can validate themselves
+    await expect(host).toHaveAttribute('data-parse-error-emitted', 'true');
+
+    await host.evaluate((el) => el.classList.add('ix-info'));
+    await expect(fieldWrapperText('Info text')).toBeVisible();
+    await expect(fieldWrapperText('Time is not valid')).toBeHidden();
+
+    await host.evaluate((el) => {
+      el.classList.replace('ix-info', 'ix-invalid');
+      el.setAttribute('invalid-text', 'Consumer error');
+    });
+    await expect(fieldWrapperText('Consumer error')).toBeVisible();
+  }
+);
+
 regressionTest.describe('time input min/max tests', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
