@@ -288,6 +288,9 @@ export class DatetimePicker
   private timePickerElement?: HTMLIxTimePickerElement;
   @State() private selectedFromDate?: string;
 
+  /** Incremented on discard, so in-flight date changes can detect it. */
+  private discardGeneration = 0;
+
   /**
    * Committed selection: the selection at load, at the last confirm or done
    * click, or at the last external `from`/`to`/`time` change.
@@ -571,6 +574,7 @@ export class DatetimePicker
   }
 
   private discardPending() {
+    this.discardGeneration++;
     const shown = this.pickerSelection;
     this.pending = undefined;
     this.selectedFromDate = this.actual.from;
@@ -668,11 +672,17 @@ export class DatetimePicker
 
     const { detail: date } = event;
     this.selectedFromDate = this.dateFrom(date);
+    const discardGeneration = this.discardGeneration;
 
     // Without a committed time the time picker shows the current time, which
     // becomes part of the selection once a date is picked
     const fallbackTime =
       this.actual.time || (await this.timePickerElement?.getCurrentTime());
+
+    // The pending selection was discarded meanwhile
+    if (discardGeneration !== this.discardGeneration) {
+      return;
+    }
 
     // Read `pending` only after the await, so a time picked meanwhile wins
     this.setPending({
