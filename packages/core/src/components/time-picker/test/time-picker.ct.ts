@@ -831,7 +831,7 @@ const mountTimePicker = async (
   await mount(
     `<ix-time-picker format="${TIME_FORMAT}" time="${formatTime(time)}" ${attributes}></ix-time-picker>`
   );
-  await expect(page.locator('ix-time-picker')).toHaveClass(/hydrated/);
+  await expect(page.locator('ix-time-picker')).toHaveAttribute('hydrated');
 };
 
 const minMaxAttributes = `min-time="${formatTime(minTime)}" max-time="${formatTime(maxTime)}"`;
@@ -947,6 +947,26 @@ regressionTest.describe('primary button without changes', () => {
       await expect(confirm).toBeDisabled();
     }
   );
+
+  regressionTest(
+    'without a time the shown default time can be confirmed',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-picker format="${TIME_FORMAT}"></ix-time-picker>`);
+      const timePicker = page.locator('ix-time-picker');
+      await expect(timePicker).toHaveAttribute('hydrated');
+      const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+      const events = await recordEvents(timePicker, ['timeSelect']);
+
+      await expect(confirm).toBeEnabled();
+      await confirm.click();
+
+      expect(await events()).toEqual([
+        { type: 'timeSelect', detail: expect.stringMatching(/^\d{2}:\d{2}$/) },
+      ]);
+      // Once confirmed, the time has to change before it can be confirmed again
+      await expect(confirm).toBeDisabled();
+    }
+  );
 });
 
 regressionTest.describe('confirm button disabled state', () => {
@@ -1008,3 +1028,13 @@ regressionTest.describe('footer layout', () => {
     ).toBeVisible();
   });
 });
+
+regressionTest(
+  'accessibility with cancel and confirm',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountTimePicker(mount, page, committedTime);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

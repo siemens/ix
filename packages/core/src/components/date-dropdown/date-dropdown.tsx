@@ -242,11 +242,16 @@ export class DateDropdown
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
   /**
-   * Emitted when the user selects a date range - when requireConfirmation is enabled only emitted
-   * when the selection is confirmed.
-   * Should be used only to track on-going date selections, does not reflect the user's final decision.
+   * Emitted for date range selections made by the user. It is not emitted
+   * for programmatic changes.
    *
-   * It is not emitted for programmatic changes.
+   * With `requireConfirmation` it is only emitted on confirm, with the
+   * confirmed range.
+   *
+   * Without `requireConfirmation` it is emitted for every pick, so in range
+   * mode it is first emitted with only a start date. If the dropdown closes
+   * before the end date is picked, it is emitted again with the range that
+   * is still applied. Use `dateRangeChange` to only receive applied ranges.
    *
    * @since 6.0.0
    */
@@ -327,13 +332,11 @@ export class DateDropdown
   }
 
   private updateCurrentDate() {
-    this.currentRangeValue = {
+    this.currentRangeValue = this.withIsoValues({
       id: this.selectedDateRangeId,
       from: this.from,
       to: this.to,
-      isoFrom: toISODate(parseWithLocale(this.from, this.format, this.locale)),
-      isoTo: toISODate(parseWithLocale(this.to, this.format, this.locale)),
-    };
+    });
   }
 
   private refreshIsoValues() {
@@ -341,56 +344,41 @@ export class DateDropdown
       return;
     }
 
-    this.currentRangeValue = {
-      ...this.currentRangeValue,
-      isoFrom: toISODate(
-        parseWithLocale(
-          this.currentRangeValue.from ?? '',
-          this.format,
-          this.locale
-        )
-      ),
-      isoTo: toISODate(
-        parseWithLocale(
-          this.currentRangeValue.to ?? '',
-          this.format,
-          this.locale
-        )
-      ),
-    };
+    this.currentRangeValue = this.withIsoValues(this.currentRangeValue);
+  }
+
+  /** `range` with `isoFrom` and `isoTo` derived from its `from` and `to`. */
+  private withIsoValues<T extends Pick<DateRangeValue, 'from' | 'to'>>(
+    range: T
+  ): T & Pick<DateRangeValue, 'isoFrom' | 'isoTo'> {
+    const toIso = (value?: string) =>
+      toISODate(parseWithLocale(value ?? '', this.format, this.locale));
+
+    return { ...range, isoFrom: toIso(range.from), isoTo: toIso(range.to) };
   }
 
   private emitDateRangeChange(
     rangeValue: Omit<DateRangeChangeEvent, 'isoFrom' | 'isoTo'>
   ): DateRangeChangeEvent {
-    const isoFrom = toISODate(
-      parseWithLocale(rangeValue.from ?? '', this.format, this.locale)
-    );
-    const isoTo = toISODate(
-      parseWithLocale(rangeValue.to ?? '', this.format, this.locale)
-    );
+    const event = this.withIsoValues(rangeValue);
+    const { isoFrom, isoTo } = event;
     if (this.currentRangeValue) {
       this.currentRangeValue = { ...this.currentRangeValue, isoFrom, isoTo };
     }
 
-    const event = { ...rangeValue, isoFrom, isoTo };
     this.dateRangeChange.emit(event);
 
     return event;
   }
 
   private emitDateSelect(rangeValue: DateRangeChangeEvent) {
-    this.dateSelect.emit({
-      id: rangeValue.id,
-      from: rangeValue.from,
-      to: rangeValue.to,
-      isoFrom: toISODate(
-        parseWithLocale(rangeValue.from ?? '', this.format, this.locale)
-      ),
-      isoTo: toISODate(
-        parseWithLocale(rangeValue.to ?? '', this.format, this.locale)
-      ),
-    });
+    this.dateSelect.emit(
+      this.withIsoValues({
+        id: rangeValue.id,
+        from: rangeValue.from,
+        to: rangeValue.to,
+      })
+    );
   }
 
   private onRangeListSelect(id: string) {
@@ -443,10 +431,7 @@ export class DateDropdown
 
   /** Re-selecting the committed range leaves nothing to confirm. */
   private normalizePendingSelection() {
-    const pending = this.pendingRangeValue;
-    const committed = this.currentRangeValue;
-
-    if (pending?.from === committed?.from && pending?.to === committed?.to) {
+    if (this.isSameRangeValue(this.pendingRangeValue, this.currentRangeValue)) {
       this.clearPendingSelection();
     }
   }
@@ -477,15 +462,7 @@ export class DateDropdown
   }
 
   private toRangeValue(option: DateDropdownOption): DateRangeChangeEvent {
-    return {
-      ...option,
-      isoFrom: toISODate(
-        parseWithLocale(option.from ?? '', this.format, this.locale)
-      ),
-      isoTo: toISODate(
-        parseWithLocale(option.to ?? '', this.format, this.locale)
-      ),
-    };
+    return this.withIsoValues(option);
   }
 
   /** The selection shown inside the dropdown: pending, else committed. */
@@ -537,11 +514,15 @@ export class DateDropdown
 
     if (!this.isSameRangeValue(rangeValue, this.currentRangeValue)) {
       this.commitSelection(rangeValue);
-    } else if (this.singleSelection) {
-      // No start date was emitted before, so there is nothing to report
+    } else {
       this.clearPendingSelection();
+
+      // In range mode the start date was already emitted, so report the
+      // unchanged range. In single selection mode nothing was emitted yet.
+      if (!this.singleSelection && this.currentRangeValue) {
+        this.emitDateSelect(this.currentRangeValue);
+      }
     }
-    // Otherwise the unchanged range stays pending, so closing reports it with `dateSelect`
 
     this.closeDropdown();
   }
@@ -570,6 +551,7 @@ export class DateDropdown
     }
   }
 
+  /** Whether both are unset or have the same id and dates. */
   private isSameRangeValue(
     a?: DateRangeChangeEvent,
     b?: DateRangeChangeEvent
@@ -602,9 +584,14 @@ export class DateDropdown
         return range;
       }
 
-      // A trailing separator without end date tells the user to pick one
-      if (!this.singleSelection) {
-        range += ` - ${rangeValue.to ?? ''}`;
+      if (rangeValue.to) {
+        range += ` - ${rangeValue.to}`;
+      } else if (
+        rangeValue === this.pendingRangeValue &&
+        this.isIncomplete(rangeValue)
+      ) {
+        // A trailing separator tells the user to pick the end date
+        range += ' - ';
       }
 
       return range;

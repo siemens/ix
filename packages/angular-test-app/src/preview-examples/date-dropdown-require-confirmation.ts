@@ -13,24 +13,5 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   templateUrl: './date-dropdown-require-confirmation.html',
-  styleUrls: ['./date-dropdown-require-confirmation.css'],
 })
-export default class DateDropdownRequireConfirmation {
-  requireConfirmation = false;
-  events: string[] = [];
-
-  readonly descriptions = {
-    off: 'The picked range is applied immediately and the dropdown closes once it is complete. Closing the dropdown with only a start date picked reverts the range.',
-    on: 'The range picked in the dropdown is applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards it.',
-  };
-
-  onCheckedChange(event: CustomEvent<boolean>) {
-    this.requireConfirmation = event.detail;
-    this.events = [];
-  }
-
-  log(name: string, event: CustomEvent<unknown>) {
-    const detail = JSON.stringify(event.detail) ?? '';
-    this.events = [`${name}: ${detail}`, ...this.events].slice(0, 5);
-  }
-}
+export default class DateDropdownRequireConfirmation {}

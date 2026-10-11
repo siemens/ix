@@ -8400,15 +8400,15 @@ declare namespace LocalJSX {
          */
         "layout"?: ConfirmationFooterLayout;
         /**
-          * Emitted when the cancel button is clicked. Does not bubble outside parent's shadow root.
+          * Emitted when the cancel button is clicked. Does not bubble.
          */
         "onCancelClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
         /**
-          * Emitted when the confirm button is clicked (`requireConfirmation` enabled). Does not bubble outside parent's shadow root.
+          * Emitted when the confirm button is clicked (`requireConfirmation` enabled). Does not bubble.
          */
         "onConfirmClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
         /**
-          * Emitted when the done button is clicked (`requireConfirmation` disabled). Does not bubble outside parent's shadow root.
+          * Emitted when the done button is clicked (`requireConfirmation` disabled). Does not bubble.
          */
         "onDoneClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
         /**
@@ -8581,7 +8581,7 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
-          * Emitted when the user selects a date range - when requireConfirmation is enabled only emitted when the selection is confirmed. Should be used only to track on-going date selections, does not reflect the user's final decision.  It is not emitted for programmatic changes.
+          * Emitted for date range selections made by the user. It is not emitted for programmatic changes.  With `requireConfirmation` it is only emitted on confirm, with the confirmed range.  Without `requireConfirmation` it is emitted for every pick, so in range mode it is first emitted with only a start date. If the dropdown closes before the end date is picked, it is emitted again with the range that is still applied. Use `dateRangeChange` to only receive applied ranges.
           * @since 6.0.0
          */
         "onDateSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;

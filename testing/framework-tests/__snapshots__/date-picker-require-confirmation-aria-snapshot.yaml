@@ -1,6 +1,4 @@
 - main:
-  - switch "Require confirmation"
-  - text: dateChange and dateRangeChange are emitted for every picked date.
   - button "Change calendar view to previous month"
   - button "Select month"
   - button "Select year"
@@ -54,6 +52,5 @@
       - gridcell /\d+ October \d+/
       - gridcell /\d+ October \d+/
       - gridcell
-  - button "Done"
-  - text: Emitted events (latest first)
-  - list
+  - button "Cancel"
+  - button "Confirm" [disabled]

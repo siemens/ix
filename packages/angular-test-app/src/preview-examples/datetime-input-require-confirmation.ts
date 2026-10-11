@@ -13,24 +13,5 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   templateUrl: './datetime-input-require-confirmation.html',
-  styleUrls: ['./datetime-input-require-confirmation.css'],
 })
-export default class DatetimeInputRequireConfirmation {
-  requireConfirmation = false;
-  events: string[] = [];
-
-  readonly descriptions = {
-    off: 'A date and time picked in the dropdown are applied immediately. Done closes the dropdown.',
-    on: 'A date and time picked in the dropdown are applied only when you click Confirm. Cancel, pressing Escape or clicking outside the dropdown discards them.',
-  };
-
-  onCheckedChange(event: CustomEvent<boolean>) {
-    this.requireConfirmation = event.detail;
-    this.events = [];
-  }
-
-  log(name: string, event: CustomEvent<unknown>) {
-    const detail = JSON.stringify(event.detail) ?? '';
-    this.events = [`${name}: ${detail}`, ...this.events].slice(0, 5);
-  }
-}
+export default class DatetimeInputRequireConfirmation {}

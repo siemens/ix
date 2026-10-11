@@ -9,6 +9,7 @@
 import { expect, Page } from '@playwright/test';
 import { DateTime } from 'luxon';
 import {
+  analyzeWithOpenPicker,
   createDropdownPickerAccessor,
   formatDateTime,
   mountHydrated,
@@ -591,3 +592,22 @@ regressionTest.describe('confirmation', () => {
     );
   }
 });
+
+regressionTest(
+  'accessibility with cancel and confirm',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      label: 'Time',
+      value: formatTime(committedTime),
+      format: TIME_FORMAT,
+    });
+    await timeInputAccessor(page).open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      'ix-time-input',
+      '[data-testid="open-time-picker"]'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

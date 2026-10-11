@@ -1,6 +1,2 @@
 - main:
-  - switch "Require confirmation"
-  - text: The picked range is applied immediately and the dropdown closes once it is complete. Closing the dropdown with only a start date picked reverts the range.
   - button /\d+\/\d+\/\d+ - \d+\/\d+\/\d+/
-  - text: Emitted events (latest first)
-  - list

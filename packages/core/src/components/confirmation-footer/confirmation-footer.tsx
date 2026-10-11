@@ -58,17 +58,17 @@ export class ConfirmationFooter {
   @Prop() layout: ConfirmationFooterLayout = 'end';
 
   /**
-   * Emitted when the done button is clicked (`requireConfirmation` disabled). Does not bubble outside parent's shadow root.
+   * Emitted when the done button is clicked (`requireConfirmation` disabled). Does not bubble.
    */
   @Event({ bubbles: false, composed: false }) doneClick!: EventEmitter<void>;
 
   /**
-   * Emitted when the confirm button is clicked (`requireConfirmation` enabled). Does not bubble outside parent's shadow root.
+   * Emitted when the confirm button is clicked (`requireConfirmation` enabled). Does not bubble.
    */
   @Event({ bubbles: false, composed: false }) confirmClick!: EventEmitter<void>;
 
   /**
-   * Emitted when the cancel button is clicked. Does not bubble outside parent's shadow root.
+   * Emitted when the cancel button is clicked. Does not bubble.
    */
   @Event({ bubbles: false, composed: false }) cancelClick!: EventEmitter<void>;
 

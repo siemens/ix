@@ -1,6 +1,4 @@
 - main:
-  - switch "Require confirmation"
-  - text: dateChange and timeChange are emitted for every picked value.
   - button "Previous month"
   - button "Select month"
   - button "Select year"
@@ -204,6 +202,5 @@
     - 'option /sec: \d+/'
     - 'option /sec: \d+/'
     - 'option /sec: \d+/'
-  - button "Done"
-  - text: Emitted events (latest first)
-  - list
+  - button "Cancel"
+  - button "Confirm" [disabled]

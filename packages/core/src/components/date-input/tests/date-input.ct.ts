@@ -9,6 +9,7 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { DateTime } from 'luxon';
 import {
+  analyzeWithOpenPicker,
   calendarDayCell,
   createDropdownPickerAccessor,
   formatDateTime,
@@ -536,5 +537,24 @@ regressionTest(
 
     await dateInput.open();
     await expect(dateInput.host.getByTestId('cancel')).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-input label="Date" require-confirmation value="2024/05/10"></ix-date-input>`
+    );
+    const dateInput = dateInputAccessor(page);
+    await expect(dateInput.host).toHaveAttribute('hydrated');
+    await dateInput.open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      'ix-date-input',
+      '[data-testid="open-calendar"]'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );

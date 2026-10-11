@@ -366,7 +366,7 @@ const mountDatetimePicker = async (
   await mount(
     `<ix-datetime-picker from="${formatDateTime(from)}"${toAttribute} time="${formatTime(from)}" ${attributes}></ix-datetime-picker>`
   );
-  await expect(datetimePickerLocator(page)).toHaveClass(/hydrated/);
+  await expect(datetimePickerLocator(page)).toHaveAttribute('hydrated');
 };
 
 regressionTest.describe('require confirmation', () => {
@@ -440,6 +440,39 @@ regressionTest.describe('require confirmation', () => {
       ]);
     }
   );
+
+  regressionTest(
+    'keeps the confirmed time when the host binds only from',
+    async ({ page }) => {
+      const datetimePicker = datetimePickerLocator(page);
+      await datetimePicker.evaluate((el: HTMLIxDatetimePickerElement) => {
+        el.addEventListener('dateChange', (event) => {
+          const detail = (event as CustomEvent).detail;
+          el.from = typeof detail === 'string' ? detail : detail.from;
+        });
+      });
+
+      await dayCell(page, picked).click();
+      await hourCell(page, picked).click();
+      await datetimePicker.getByTestId('confirm').click();
+
+      await expect(dayCell(page, picked)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(hourCell(page, picked)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      expect(
+        (
+          await datetimePicker.evaluate((el: HTMLIxDatetimePickerElement) =>
+            el.getCurrentSelection()
+          )
+        ).time
+      ).toBe(formatTime(picked));
+    }
+  );
 });
 
 regressionTest.describe('require confirmation option', () => {
@@ -460,6 +493,28 @@ regressionTest.describe('require confirmation option', () => {
       await dayCell(page, pickedTo).click();
 
       expect(await events()).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'does not leak the embedded dateRangeChange without require confirmation',
+    async ({ mount, page }) => {
+      await mountDatetimePicker(mount, page, {
+        from: committed,
+        to: committedTo,
+      });
+      const events = await recordEvents(datetimePickerLocator(page), [
+        'dateChange',
+        'dateRangeChange',
+      ]);
+
+      await dayCell(page, picked).click();
+      await dayCell(page, pickedTo).click();
+
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateChange',
+      ]);
     }
   );
 
@@ -516,6 +571,75 @@ regressionTest.describe('primary button disabled state', () => {
       await expect(confirm).toBeDisabled();
 
       await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+    }
+  );
+
+  regressionTest(
+    'confirm applies the shown time when no time is committed',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker single-selection require-confirmation from="${formatDateTime(committed)}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
+      );
+      const datetimePicker = datetimePickerLocator(page);
+      await expect(datetimePicker).toHaveAttribute('hydrated');
+      const confirm = datetimePicker.getByRole('button', { name: 'Confirm' });
+      const events = await recordEvents(datetimePicker, [
+        'timeChange',
+        'dateSelect',
+      ]);
+
+      await expect(confirm).toBeEnabled();
+      await confirm.click();
+
+      const time = expect.stringMatching(/^\d{2}:\d{2}:\d{2}$/);
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: time },
+        {
+          type: 'dateSelect',
+          detail: expect.objectContaining({
+            from: formatDateTime(committed),
+            time,
+          }),
+        },
+      ]);
+      await expect(confirm).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'done applies the shown time when no time is committed',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker single-selection from="${formatDateTime(committed)}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
+      );
+      const datetimePicker = datetimePickerLocator(page);
+      await expect(datetimePicker).toHaveAttribute('hydrated');
+      const done = datetimePicker.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeEnabled();
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'confirm is disabled without a date until one is picked',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-picker single-selection require-confirmation time-format="${TIME_FORMAT}"></ix-datetime-picker>`
+      );
+      const datetimePicker = datetimePickerLocator(page);
+      await expect(datetimePicker).toHaveAttribute('hydrated');
+      const confirm = datetimePicker.getByRole('button', { name: 'Confirm' });
+
+      await expect(confirm).toBeDisabled();
+
+      // A time alone is incomplete
+      await hourCell(page, picked).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, DateTime.now()).click();
       await expect(confirm).toBeEnabled();
     }
   );
@@ -595,5 +719,18 @@ regressionTest(
 
     await page.setViewportSize({ width: 500, height: 768 });
     await expect.poll(isFullWidth).toBe(true);
+  }
+);
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountDatetimePicker(mount, page, {
+      from: committed,
+      attributes: 'require-confirmation',
+    });
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );

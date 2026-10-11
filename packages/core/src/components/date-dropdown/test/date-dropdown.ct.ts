@@ -8,6 +8,7 @@
  */
 import { expect, Page } from '@playwright/test';
 import {
+  analyzeWithOpenPicker,
   calendarDayCell,
   createDropdownPickerAccessor,
   dateChangeDetail,
@@ -997,3 +998,32 @@ regressionTest.describe('predefined range shows its start month', () => {
     }
   );
 });
+
+regressionTest(
+  'shows no trailing separator for a set range without end date',
+  async ({ mount, page }) => {
+    const dateDropdown = await mountDateDropdown(mount, page, {
+      to: undefined,
+    });
+
+    const trigger = dateDropdown.getByTestId('date-dropdown-trigger');
+
+    await expect(trigger).toContainText(formatDateTime(initialFrom));
+    await expect(trigger).not.toContainText(' -');
+  }
+);
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountDateDropdown(mount, page, { 'require-confirmation': true });
+    await dateDropdownAccessor(page).open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      DATE_DROPDOWN_SELECTOR,
+      '[data-testid="date-dropdown-trigger"]'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

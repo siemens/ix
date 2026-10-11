@@ -168,14 +168,14 @@ export class DatetimeInput
    *
    * @since 6.0.0
    */
-  @Prop() i18nConfirm: string = 'Confirm';
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm: string = 'Confirm';
 
   /**
    * Text for cancel button in picker when `requireConfirmation` is enabled
    *
    * @since 6.0.0
    */
-  @Prop() i18nCancel: string = 'Cancel';
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
 
   /** Header text for time picker section */
   @Prop() i18nTime: string = 'Time';

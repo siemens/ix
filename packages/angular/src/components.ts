@@ -799,11 +799,16 @@ The event payload contains information about the selected date range.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
   /**
-   * Emitted when the user selects a date range - when requireConfirmation is enabled only emitted
-when the selection is confirmed.
-Should be used only to track on-going date selections, does not reflect the user's final decision.
+   * Emitted for date range selections made by the user. It is not emitted
+for programmatic changes.
 
-It is not emitted for programmatic changes. @since 6.0.0
+With `requireConfirmation` it is only emitted on confirm, with the
+confirmed range.
+
+Without `requireConfirmation` it is emitted for every pick, so in range
+mode it is first emitted with only a start date. If the dropdown closes
+before the end date is picked, it is emitted again with the range that
+is still applied. Use `dateRangeChange` to only receive applied ranges. @since 6.0.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }

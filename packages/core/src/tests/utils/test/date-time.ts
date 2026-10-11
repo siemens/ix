@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import type AxeBuilder from '@axe-core/playwright';
 import { expect, Locator, Page } from '@playwright/test';
 import { DateTime } from 'luxon';
 import { formatWithLocale } from '../../../components/utils/date-time-locale';
@@ -96,7 +97,7 @@ export const mountHydrated = async (
   await mount(`<${tag} ${attributeString}></${tag}>`);
 
   const host = page.locator(tag).first();
-  await expect(host).toHaveClass(/hydrated/);
+  await expect(host).toHaveAttribute('hydrated');
   return host;
 };
 
@@ -139,9 +140,30 @@ export const createDropdownPickerAccessor = (
           return host.getByTestId('cancel').click();
         case 'escape':
           return page.keyboard.press('Escape');
-        case 'outside click':
-          return page.mouse.click(1200, 700);
+        case 'outside click': {
+          // Components mount at the top left, so the bottom right corner of
+          // the viewport is outside of them and their dropdown
+          const viewport = page.viewportSize();
+          if (!viewport) {
+            throw new Error('Outside click needs a fixed viewport size');
+          }
+          return page.mouse.click(viewport.width - 1, viewport.height - 1);
+        }
       }
     },
   };
 };
+
+/**
+ * Accessibility scan of a page with an open picker dropdown. The trigger of
+ * the dropdown is excluded: `ix-dropdown` sets `aria-expanded` on triggers
+ * without a matching role, which axe reports independently of the picker.
+ */
+export const analyzeWithOpenPicker = (
+  makeAxeBuilder: () => AxeBuilder,
+  host: string,
+  trigger: string
+): ReturnType<AxeBuilder['analyze']> =>
+  makeAxeBuilder()
+    .exclude({ fromShadowDom: [host, trigger] })
+    .analyze();

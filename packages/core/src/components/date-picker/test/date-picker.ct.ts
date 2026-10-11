@@ -665,18 +665,23 @@ regressionTest.describe('keyboard navigation', () => {
 });
 
 regressionTest.describe('month dropdown min/max range', () => {
+  // The dropdown button and its menu share the label, so query them by role.
+  // The menu items are slotted into the button, so they are queried from it.
   const openMonthDropdown = async (page: Page) => {
     await page.waitForSelector('ix-date-time-card');
-    const monthSelection = page.getByLabel('Select month');
+    const monthSelection = page.getByRole('button', { name: 'Select month' });
 
     await expect(monthSelection).toBeVisible();
     await monthSelection.click();
+    await expect(
+      page.getByRole('menu', { name: 'Select month' })
+    ).toBeVisible();
 
     return monthSelection;
   };
 
   const expectMonths = async (
-    monthSelection: ReturnType<Page['getByLabel']>,
+    monthSelection: ReturnType<Page['getByRole']>,
     enabled: string[],
     disabled: string[]
   ) => {
@@ -810,7 +815,8 @@ regressionTest.describe('year dropdown sync', () => {
         .locator(DatePickerSelector)
         .evaluate((element) => element.setAttribute('to', '2028/03/12'));
 
-      const yearSelection = page.getByLabel('Select year');
+      // The menu items are slotted into the button, so they are queried from it
+      const yearSelection = page.getByRole('button', { name: 'Select year' });
       await yearSelection.click();
 
       await expect(
@@ -1102,7 +1108,7 @@ const mountDatePicker = async (
   attributes: string
 ) => {
   await mount(`<ix-date-picker ${attributes}></ix-date-picker>`);
-  await expect(page.locator('ix-date-picker')).toHaveClass(/hydrated/);
+  await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
 };
 
 regressionTest.describe('require confirmation', () => {
@@ -1294,3 +1300,16 @@ regressionTest.describe('confirm button disabled state', () => {
     }
   );
 });
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker require-confirmation from="2024/05/10"></ix-date-picker>`
+    );
+    await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

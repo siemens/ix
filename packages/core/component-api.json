@@ -3355,7 +3355,7 @@
         },
         {
           "name": "i18nCancel",
-          "attribute": "i-1-8n-cancel",
+          "attribute": "i18n-cancel",
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
@@ -3366,7 +3366,7 @@
         },
         {
           "name": "i18nConfirm",
-          "attribute": "i-1-8n-confirm",
+          "attribute": "i18n-confirm",
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,

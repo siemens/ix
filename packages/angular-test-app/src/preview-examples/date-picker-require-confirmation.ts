@@ -13,24 +13,5 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   templateUrl: './date-picker-require-confirmation.html',
-  styleUrls: ['./date-picker-require-confirmation.css'],
 })
-export default class DatePickerRequireConfirmation {
-  requireConfirmation = false;
-  events: string[] = [];
-
-  readonly descriptions = {
-    off: 'dateChange and dateRangeChange are emitted for every picked date.',
-    on: 'dateChange and dateRangeChange are emitted only when you click Confirm. Cancel discards the picked dates and emits dateCancel.',
-  };
-
-  onCheckedChange(event: CustomEvent<boolean>) {
-    this.requireConfirmation = event.detail;
-    this.events = [];
-  }
-
-  log(name: string, event: CustomEvent<unknown>) {
-    const detail = JSON.stringify(event.detail) ?? '';
-    this.events = [`${name}: ${detail}`, ...this.events].slice(0, 5);
-  }
-}
+export default class DatePickerRequireConfirmation {}

@@ -758,7 +758,7 @@ export class TimeInput
             i18nCancel={this.i18nCancel}
             onTimeCancel={(event: CustomEvent<void>) => {
               event.stopPropagation();
-              this.show = false;
+              this.closeDropdown();
             }}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}
@@ -773,7 +773,7 @@ export class TimeInput
                 this.ixChange.emit(event.detail);
                 this.initialValue = event.detail;
               }
-              this.show = false;
+              this.closeDropdown();
             }}
           ></ix-time-picker>
         </ix-dropdown>

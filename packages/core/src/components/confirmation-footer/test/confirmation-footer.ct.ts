@@ -9,6 +9,26 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { recordEvents, regressionTest } from '@utils/test';
 
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`<ix-confirmation-footer></ix-confirmation-footer>`);
+  await expect(page.locator('ix-confirmation-footer')).toHaveAttribute(
+    'hydrated'
+  );
+});
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`<ix-confirmation-footer></ix-confirmation-footer>`);
+  const footer = page.locator('ix-confirmation-footer');
+  await expect(footer).toHaveAttribute('hydrated');
+  expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+
+  await footer.evaluate((el: HTMLIxConfirmationFooterElement) => {
+    el.requireConfirmation = true;
+  });
+  await expect(footer.getByRole('button', { name: 'Cancel' })).toBeVisible();
+  expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+});
+
 regressionTest('renders a single done button', async ({ mount, page }) => {
   await mount(`<ix-confirmation-footer></ix-confirmation-footer>`);
   const footer = page.locator('ix-confirmation-footer');

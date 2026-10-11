@@ -303,21 +303,34 @@ export class DatetimePicker
     }
 
     this.selectedFromDate = value;
-    this.resetActual();
+    this.applyExternalChange('from', value);
   }
 
   @Watch('to')
   watchToPropHandler(value: string | undefined) {
     if (!this.isEcho('to', value)) {
-      this.resetActual();
+      this.applyExternalChange('to', value);
     }
   }
 
   @Watch('time')
   watchTimePropHandler(value: string | undefined) {
     if (!this.isEcho('time', value)) {
-      this.resetActual();
+      this.applyExternalChange('time', value);
     }
+  }
+
+  /**
+   * Commits an external change of a single prop. The other committed values
+   * are kept, as a consumer may bind only some of the props (e.g. only `from`
+   * to `dateChange`), so the remaining props can be stale.
+   */
+  private applyExternalChange(
+    key: keyof DatetimePickerSelection,
+    value: string | undefined
+  ) {
+    this.actual = { ...this.actual, [key]: value };
+    this.pending = undefined;
   }
 
   /**
@@ -481,14 +494,46 @@ export class DatetimePicker
     }
   }
 
-  private isPrimaryActionDisabled(): boolean {
+  /** Whether `selection` has a date, and an end date in range mode. */
+  private hasCompleteDate(selection: DatetimePickerSelection): boolean {
     return (
-      this.pending === undefined ||
-      (!this.singleSelection && isPartialRange(this.pickerSelection))
+      !!selection.from && (this.singleSelection || !isPartialRange(selection))
     );
   }
 
+  /**
+   * Disabled for an incomplete selection, and when nothing changed since the
+   * committed selection. Without a complete committed selection, the shown
+   * selection can be applied as it is.
+   */
+  private isPrimaryActionDisabled(): boolean {
+    if (!this.hasCompleteDate(this.pickerSelection)) {
+      return true;
+    }
+
+    const hasCommittedSelection =
+      this.hasCompleteDate(this.actual) && !!this.actual.time;
+
+    return hasCommittedSelection && this.pending === undefined;
+  }
+
+  /**
+   * Without a committed time the time picker shows the current time, which
+   * becomes part of the selection once it is applied.
+   */
+  private async includeShownTime() {
+    if (this.pending !== undefined || this.actual.time) {
+      return;
+    }
+
+    const time = await this.timePickerElement?.getCurrentTime();
+    if (time) {
+      this.pending = { time };
+    }
+  }
+
   private async onConfirm() {
+    await this.includeShownTime();
     const pending = this.pending;
 
     if (pending) {
@@ -535,6 +580,7 @@ export class DatetimePicker
   }
 
   private async onDone() {
+    await this.includeShownTime();
     this.actual = this.pickerSelection;
     this.pending = undefined;
     await this.emitDateSelect();
@@ -579,11 +625,15 @@ export class DatetimePicker
 
     // Without a committed time the time picker shows the current time, which
     // becomes part of the selection once a date is picked
-    const time =
-      this.pending?.time ??
-      (this.actual.time || (await this.timePickerElement?.getCurrentTime()));
+    const fallbackTime =
+      this.actual.time || (await this.timePickerElement?.getCurrentTime());
 
-    this.setPending({ ...this.pending, date, time });
+    // Read `pending` only after the await, so a time picked meanwhile wins
+    this.setPending({
+      ...this.pending,
+      date,
+      time: this.pending?.time ?? fallbackTime,
+    });
 
     if (!this.requireConfirmation) {
       this.dateChange.emit(date);
@@ -635,12 +685,8 @@ export class DatetimePicker
                   corners="left"
                   singleSelection={this.singleSelection}
                   onDateChange={(event) => this.onDateChange(event)}
-                  onDateRangeChange={(event) => {
-                    // Pending range changes must not leave the component
-                    if (this.requireConfirmation) {
-                      event.stopPropagation();
-                    }
-                  }}
+                  // `dateChange` reports the range, so the embedded event must not leak
+                  onDateRangeChange={(event) => event.stopPropagation()}
                   from={selection.from}
                   to={selection.to}
                   format={this.dateFormat}
