@@ -525,8 +525,7 @@ test.describe('ixChange event', () => {
 
       const timePicker = component.locator('ix-time-picker');
       await timePicker.locator('[data-element-container-id="hour-12"]').click();
-      const confirmButton = timePicker.locator('ix-button');
-      await confirmButton.click();
+      await timePicker.getByRole('button', { name: 'Confirm' }).click();
 
       await page.waitForFunction(getIxChangeEmitted, { timeout: 5000 });
 
@@ -564,7 +563,7 @@ test.describe('ixChange event', () => {
       await component.getByRole('option', { name: 'min: 30' }).click();
       await component.getByRole('option', { name: 'sec: 45' }).click();
 
-      await component.getByRole('button', { name: 'Confirm' }).click();
+      await component.getByRole('button', { name: 'Done' }).click();
 
       await page.waitForFunction(getIxChangeEmitted, { timeout: 5000 });
 

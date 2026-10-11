@@ -646,7 +646,12 @@ export class DateDropdown
           suppressOverflowBehavior
           onShowChanged={({ detail: show }) => this.onDropdownShowChanged(show)}
         >
-          <div class="container">
+          <div
+            class={{
+              container: true,
+              'has-footer': this.requireConfirmation,
+            }}
+          >
             {this.dateRangeOptions?.length > 1 && (
               <div
                 class={{

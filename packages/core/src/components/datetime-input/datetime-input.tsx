@@ -238,10 +238,11 @@ export class DatetimeInput
    *
    * Fires in two scenarios:
    * - When the input loses focus (blur) and the value has changed
-   * - When a new date/time is selected in the picker and confirmed
+   * - When the picker closes after the value was changed in it, or on
+   *   Confirm when `requireConfirmation` is enabled
    *
    * Does NOT fire when:
-   * - The picker is opened/closed without confirming a change
+   * - The picker is opened/closed without changing the value
    * - The input is blurred without modifying the value
    * - The value is changed programmatically via the value property
    */
@@ -709,7 +710,10 @@ export class DatetimeInput
     this.closeDropdown();
   };
 
-  /** Applies every picker change while `requireConfirmation` is disabled. */
+  /**
+   * Applies every picker change while `requireConfirmation` is disabled.
+   * `ixChange` follows when the dropdown closes, like a native change event.
+   */
   private readonly handlePickerChange = async () => {
     if (this.requireConfirmation) {
       return;
@@ -718,11 +722,15 @@ export class DatetimeInput
     const selection =
       await this.datetimePickerRef.current?.getCurrentSelection();
 
-    this.applyPickerDateTime(selection?.from, selection?.time);
+    this.applyPickerDateTime(selection?.from, selection?.time, false);
   };
 
   /** Returns whether the date and time were complete and valid. */
-  private applyPickerDateTime(from?: string, time?: string): boolean {
+  private applyPickerDateTime(
+    from?: string,
+    time?: string,
+    emitChange = true
+  ): boolean {
     if (!from || !time) {
       return false;
     }
@@ -751,7 +759,9 @@ export class DatetimeInput
       this.locale
     );
     this.onInput(displayValue);
-    this.emitChange(displayValue);
+    if (emitChange) {
+      this.emitChange(displayValue);
+    }
 
     return true;
   }
@@ -873,6 +883,7 @@ export class DatetimeInput
 
             if (!this.show) {
               this.datetimePickerRef.current?.discardPendingSelection();
+              this.emitChange(this.value);
             }
           }}
           focusTrapOptions={{

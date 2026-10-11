@@ -372,7 +372,7 @@ regressionTest(
 );
 
 regressionTest(
-  'emits ixChange for every datetime picked',
+  'applies every datetime picked and emits ixChange once the picker closes',
   async ({ mount, page }) => {
     await mount(
       `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11" require-confirmation="false"></ix-datetime-input>`
@@ -380,20 +380,32 @@ regressionTest(
 
     const dateTimeInputElement = page.locator('ix-datetime-input');
     const dateTimeAccessor = await createAccessor(dateTimeInputElement);
-    const events = await recordEvents(dateTimeInputElement, ['ixChange']);
+    const events = await recordEvents(dateTimeInputElement, [
+      'ixChange',
+      'valueChange',
+    ]);
 
     await dateTimeAccessor.openByCalendar();
     await dateTimeAccessor.selectDay(15);
     await expect
-      .poll(events)
-      .toEqual([{ type: 'ixChange', detail: '2024/05/15 09:10:11' }]);
+      .poll(async () => (await events()).at(-1))
+      .toEqual({ type: 'valueChange', detail: '2024/05/15 09:10:11' });
 
     await dateTimeAccessor.selectTime(14, 30, 45);
+    await expect
+      .poll(async () => (await events()).at(-1))
+      .toEqual({ type: 'valueChange', detail: '2024/05/15 14:30:45' });
+    expect((await events()).filter(({ type }) => type === 'ixChange')).toEqual(
+      []
+    );
+
     await dateTimeAccessor.confirm();
 
     await expect
-      .poll(async () => (await events()).at(-1))
-      .toEqual({ type: 'ixChange', detail: '2024/05/15 14:30:45' });
+      .poll(async () =>
+        (await events()).filter(({ type }) => type === 'ixChange')
+      )
+      .toEqual([{ type: 'ixChange', detail: '2024/05/15 14:30:45' }]);
   }
 );
 

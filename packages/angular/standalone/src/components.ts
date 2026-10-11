@@ -1077,10 +1077,11 @@ export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
 
 Fires in two scenarios:
 - When the input loses focus (blur) and the value has changed
-- When a new date/time is selected in the picker and confirmed
+- When the picker closes after the value was changed in it, or on
+  Confirm when `requireConfirmation` is enabled
 
 Does NOT fire when:
-- The picker is opened/closed without confirming a change
+- The picker is opened/closed without changing the value
 - The input is blurred without modifying the value
 - The value is changed programmatically via the value property
    */
