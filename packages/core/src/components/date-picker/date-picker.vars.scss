@@ -40,7 +40,7 @@
 
 :host {
   --ix-date-picker-day--font-weight--selected: var(
-    --si-ref-typography-font-weight-bold
+    --si-ref-typography-font-weight-sbold
   );
   --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
   --ix-date-picker--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
