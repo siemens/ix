@@ -14,7 +14,7 @@
     "@types/node": "^20.16.0",
     "fs-extra": "^11.3.3",
     "glob": "catalog:",
-    "html-test-app": "workspace:*",
+    "html-examples": "workspace:*",
     "tsx": "^4.21.0",
     "typescript": "^5.8.2"
   },
