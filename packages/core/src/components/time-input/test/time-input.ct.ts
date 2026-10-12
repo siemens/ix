@@ -230,10 +230,17 @@ regressionTest(
     await expect(fieldWrapperText('Info text')).toBeVisible();
     await expect(fieldWrapperText('Time is not valid')).toBeHidden();
 
-    await host.evaluate((el) => {
-      el.classList.replace('ix-info', 'ix-invalid');
-      el.setAttribute('invalid-text', 'Consumer error');
-    });
+    // Without `invalid-text` the built-in message is the fallback
+    await host.evaluate((el) => el.classList.replace('ix-info', 'ix-invalid'));
+    await expect(fieldWrapperText('Time is not valid')).toBeVisible();
+
+    // An empty `invalid-text` opts out of the fallback
+    await host.evaluate((el) => el.setAttribute('invalid-text', ''));
+    await expect(fieldWrapperText('Time is not valid')).toBeHidden();
+
+    await host.evaluate((el) =>
+      el.setAttribute('invalid-text', 'Consumer error')
+    );
     await expect(fieldWrapperText('Consumer error')).toBeVisible();
   }
 );

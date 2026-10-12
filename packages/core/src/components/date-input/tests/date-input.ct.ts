@@ -11,6 +11,7 @@ import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
+  waitForRender,
 } from '@utils/test';
 
 const createDateInputAccessor = async (dateInput: Locator) => {
@@ -190,6 +191,7 @@ regressionTest(
       'data-value-missing-emitted',
       'true'
     );
+    await waitForRender(page);
 
     await expect(dateInputElement).not.toHaveClass(/ix-invalid/);
     await expect(
@@ -231,10 +233,17 @@ regressionTest(
     await expect(fieldWrapperText('Info text')).toBeVisible();
     await expect(fieldWrapperText('Date is not valid')).toBeHidden();
 
-    await host.evaluate((el) => {
-      el.classList.replace('ix-info', 'ix-invalid');
-      el.setAttribute('invalid-text', 'Consumer error');
-    });
+    // Without `invalid-text` the built-in message is the fallback
+    await host.evaluate((el) => el.classList.replace('ix-info', 'ix-invalid'));
+    await expect(fieldWrapperText('Date is not valid')).toBeVisible();
+
+    // An empty `invalid-text` opts out of the fallback
+    await host.evaluate((el) => el.setAttribute('invalid-text', ''));
+    await expect(fieldWrapperText('Date is not valid')).toBeHidden();
+
+    await host.evaluate((el) =>
+      el.setAttribute('invalid-text', 'Consumer error')
+    );
     await expect(fieldWrapperText('Consumer error')).toBeVisible();
   }
 );
@@ -291,13 +300,63 @@ regressionTest(
     await expect(first).toHaveClass(/ix-invalid--required/);
     await expect(second).not.toHaveClass(/ix-invalid--required/);
 
-    // Removing another instance must not tear down the remaining one's validation
+    // Removing another instance must keep this one's validation
     await second.evaluate((el) => el.remove());
     await first.evaluate((el: HTMLIxDateInputElement) => {
       el.required = false;
     });
     await expect(first).not.toHaveClass(/ix-invalid--required/);
     await expect(getInvalidText(first, 'First is required')).toBeHidden();
+  }
+);
+
+regressionTest(
+  'clears built-in feedback once the form opts out',
+  async ({ mount, page }) => {
+    await mount(`<form><ix-date-input></ix-date-input></form>`);
+    const host = page.locator('ix-date-input');
+    const input = host.getByRole('textbox');
+
+    await input.fill('abc');
+    await input.blur();
+    await expect(getInvalidText(host, 'Date is not valid')).toBeVisible();
+
+    await page
+      .locator('form')
+      .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+    await input.focus();
+    await input.blur();
+
+    await expect(host).not.toHaveClass(/ix-invalid/);
+    await expect(getInvalidText(host, 'Date is not valid')).toBeHidden();
+  }
+);
+
+regressionTest(
+  'keeps required feedback after being moved in the DOM',
+  async ({ mount, page }) => {
+    await mount(`
+      <div id="source">
+        <ix-date-input required invalid-text="Date is required"></ix-date-input>
+      </div>
+      <div id="target"></div>
+    `);
+    const host = page.locator('ix-date-input');
+    const input = host.getByRole('textbox');
+
+    await input.focus();
+    await input.blur();
+    await expect(getInvalidText(host, 'Date is required')).toBeVisible();
+
+    await host.evaluate((el) => {
+      el.ownerDocument.getElementById('target')?.appendChild(el);
+    });
+    await expect(page.locator('#target ix-date-input')).toBeAttached();
+
+    // Any class change re-evaluates the validation state
+    await host.evaluate((el) => el.classList.add('ix-info'));
+    await waitForRender(page);
+    await expect(getInvalidText(host, 'Date is required')).toBeVisible();
   }
 );
 

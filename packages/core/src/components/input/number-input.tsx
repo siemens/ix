@@ -25,7 +25,6 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -38,6 +37,7 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   onEnterKeyChangeEmit,
 } from './input.util';
 
@@ -93,7 +93,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   @Watch('required')
   onRequiredChange() {
-    // The native element's validity only reflects `required` after rendering
+    // Native validity reflects `required` only after rendering
     this.revalidateAfterRender = true;
   }
 
@@ -254,10 +254,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   componentDidRender() {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
-      void revalidate(this);
-      if (this.inputRef.current && this.touched) {
-        checkInternalValidity(this, this.inputRef.current);
-      }
+      void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
     }
   }
 

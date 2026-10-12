@@ -24,7 +24,6 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
@@ -33,6 +32,7 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   checkInternalValidity,
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
@@ -80,7 +80,7 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   @Watch('required')
   onRequiredChange() {
-    // The native element's validity only reflects `required` after rendering
+    // Native validity reflects `required` only after rendering
     this.revalidateAfterRender = true;
   }
 
@@ -237,10 +237,11 @@ export class Textarea implements IxInputFieldComponent<string> {
   componentDidRender() {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
-      void revalidate(this);
-      if (this.textAreaRef.current && this.touched) {
-        checkInternalValidity(this, this.textAreaRef.current);
-      }
+      void revalidateAfterPropChange(
+        this,
+        this.textAreaRef.current,
+        this.touched
+      );
     }
   }
 

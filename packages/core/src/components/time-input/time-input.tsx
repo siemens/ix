@@ -695,7 +695,7 @@ export class TimeInput
 
   override render() {
     const invalidText = getValidationText(
-      this.showInputInvalid,
+      this.isInputInvalid,
       this.invalidText,
       this.i18nErrorTimeUnparsable
     );

@@ -44,3 +44,12 @@ export const getFormValue = async (
     return formData.get(key);
   }, key);
 };
+
+/** Waits for pending re-renders, e.g. before asserting that a state didn't change */
+export const waitForRender = (page: Page) =>
+  page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve))
+      )
+  );

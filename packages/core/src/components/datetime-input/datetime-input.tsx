@@ -798,7 +798,7 @@ export class DatetimeInput
 
   override render() {
     const invalidText = getValidationText(
-      this.showInputInvalid,
+      this.isInputInvalid,
       this.invalidText,
       this.i18nErrorDateTimeUnparsable
     );

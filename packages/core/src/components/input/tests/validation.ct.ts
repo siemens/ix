@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { test, waitForRender } from '@utils/test';
 
 test.describe('validation', () => {
   test.describe('ix-input', () => {
@@ -38,44 +38,6 @@ test.describe('validation', () => {
       await shadowDomInput.blur();
 
       await expect(input).toHaveClass(/ix-invalid/);
-    });
-
-    test('novalidate form should not show validity feedback but still emit validityStateChange', async ({
-      mount,
-      page,
-    }) => {
-      await mount(
-        '<form novalidate><ix-input min-length="3" value="123"></ix-input></form>'
-      );
-
-      const input = page.locator('ix-input');
-      const shadowDomInput = input.locator('input');
-
-      await input.evaluate((el: HTMLElement) => {
-        el.dataset.invalidCount = '0';
-        el.addEventListener('validityStateChange', (event: Event) => {
-          if ((event as CustomEvent<ValidityState>).detail?.valid) {
-            el.dataset.validEmitted = 'true';
-          } else {
-            el.dataset.invalidCount = `${Number(el.dataset.invalidCount) + 1}`;
-          }
-        });
-      });
-
-      await shadowDomInput.fill('12');
-      await shadowDomInput.blur();
-
-      await expect(input).toHaveAttribute('data-invalid-count', '1');
-      await expect(input).not.toHaveClass(/ix-invalid/);
-
-      // Staying invalid must not re-emit the event
-      await shadowDomInput.fill('1');
-      await shadowDomInput.blur();
-      await shadowDomInput.fill('1234');
-      await shadowDomInput.blur();
-
-      await expect(input).toHaveAttribute('data-valid-emitted', 'true');
-      await expect(input).toHaveAttribute('data-invalid-count', '1');
     });
   });
 
@@ -361,6 +323,127 @@ test.describe('toggling required', () => {
       await expect(invalidText).toBeHidden();
     });
   });
+});
+
+test.describe('toggling required emits validityStateChange', () => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    test(selector, async ({ mount, page }) => {
+      await mount(`<${selector}></${selector}>`);
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.emitted = '';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          const { valueMissing } = (event as CustomEvent<ValidityState>).detail;
+          el.dataset.emitted += valueMissing ? 'missing,' : 'valid,';
+        });
+      });
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = true;
+      });
+      await expect(host).toHaveAttribute('data-emitted', 'missing,');
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = false;
+      });
+      await expect(host).toHaveAttribute('data-emitted', 'missing,valid,');
+    });
+  });
+});
+
+test.describe('novalidate form', () => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    test(`${selector} - should not show validity feedback but still emit validityStateChange`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form novalidate><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.invalidCount = '0';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          if ((event as CustomEvent<ValidityState>).detail?.valid) {
+            el.dataset.validEmitted = 'true';
+          } else {
+            el.dataset.invalidCount = `${Number(el.dataset.invalidCount) + 1}`;
+          }
+        });
+      });
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-invalid-count', '1');
+      await waitForRender(page);
+      await expect(host).not.toHaveClass(/ix-invalid/);
+
+      // Staying invalid must not re-emit the event
+      await nativeInput.focus();
+      await nativeInput.blur();
+      await nativeInput.fill('2');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-valid-emitted', 'true');
+      await expect(host).toHaveAttribute('data-invalid-count', '1');
+    });
+
+    test(`${selector} - should clear built-in feedback once the form opts out`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+      await expect(host).toHaveClass(/ix-invalid--required/);
+
+      await page
+        .locator('form')
+        .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+      await nativeInput.focus();
+      await nativeInput.blur();
+
+      await expect(host).not.toHaveClass(/ix-invalid/);
+    });
+  });
+});
+
+test('validation classes are applied after the field was moved in the DOM', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <div id="source"><ix-input invalid-text="Consumer error"></ix-input></div>
+    <div id="target"></div>
+  `);
+  const host = page.locator('ix-input');
+  await expect(host).toHaveAttribute('hydrated');
+
+  await host.evaluate((el) => {
+    el.ownerDocument.getElementById('target')?.appendChild(el);
+  });
+  await expect(page.locator('#target ix-input')).toBeAttached();
+  await host.evaluate((el) => el.classList.add('ix-invalid'));
+
+  await expect(
+    host
+      .locator('ix-field-wrapper')
+      .locator('ix-typography')
+      .filter({ hasText: 'Consumer error' })
+  ).toBeVisible();
 });
 
 test.describe('ixChange event', () => {

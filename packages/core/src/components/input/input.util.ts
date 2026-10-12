@@ -13,6 +13,8 @@ import {
   IxFormComponent,
   IxInputFieldComponent,
   ValidationResults,
+  clearInternalValidationClasses,
+  revalidate,
   shouldSuppressInternalValidation,
 } from '../utils/input';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -52,10 +54,7 @@ export function checkAllowedKeys<T>(
   }
 }
 
-/**
- * Last emitted validity for hosts in `novalidate` forms, where the
- * `ix-invalid--validity-invalid` class can't be used to track it.
- */
+// Last emitted validity in `novalidate` forms, where no class tracks it
 const suppressedValidityStates = new WeakMap<HTMLElement, boolean>();
 
 export async function checkInternalValidity<T>(
@@ -77,10 +76,10 @@ export async function checkInternalValidity<T>(
     }
   }
 
-  // The event above is still emitted for `novalidate` forms so consumers can
-  // run their own validation, but no visual feedback is applied.
+  // `novalidate`: still emit the event, but skip visual feedback
   if (skipValidation) {
     suppressedValidityStates.set(comp.hostElement, newValidityState);
+    clearInternalValidationClasses(comp.hostElement);
     return;
   }
 
@@ -90,6 +89,19 @@ export async function checkInternalValidity<T>(
       !newValidityState
     );
   }
+}
+
+// Revalidates after a prop like `required` changed; call after rendering
+export async function revalidateAfterPropChange<T>(
+  comp: IxFormComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement | null | undefined,
+  touched: boolean
+) {
+  // Must run first: it only emits if the class doesn't match yet
+  if (input && touched) {
+    await checkInternalValidity(comp, input);
+  }
+  await revalidate(comp);
 }
 
 export function onInputBlur<T>(
