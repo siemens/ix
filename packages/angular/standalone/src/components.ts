@@ -1123,8 +1123,8 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
 
 Emitted for every pick, also for a selection that is not confirmed yet
 (`requireConfirmation`). When a pending selection is discarded, it is
-emitted with the confirmed time again. Use `dateSelect` for the applied
-selection.
+emitted with the confirmed time again, or with an empty string if no
+time is confirmed. Use `dateSelect` for the applied selection.
    */
   timeChange: EventEmitter<CustomEvent<string>>;
   /**

@@ -490,6 +490,81 @@ regressionTest.describe('require confirmation', () => {
   );
 });
 
+regressionTest.describe('require confirmation without a confirmed time', () => {
+  // Picking an hour keeps the minutes and seconds of the default time, the
+  // current time. An hour other than the current one tells them apart.
+  const pickedHour = DateTime.now().plus({ hours: 2 });
+  const pickedTime = expect.stringMatching(
+    new RegExp(`^${pickedHour.toFormat('HH')}:\\d{2}:\\d{2}$`)
+  );
+
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-picker single-selection require-confirmation from="${formatDateTime(
+        committed
+      )}" time-format="${TIME_FORMAT}"></ix-datetime-picker>`
+    );
+    await expect(datetimePickerLocator(page)).toHaveAttribute('hydrated');
+  });
+
+  regressionTest(
+    'cancel reports an empty time after a time was picked',
+    async ({ page }) => {
+      const datetimePicker = datetimePickerLocator(page);
+      const events = await recordEvents(datetimePicker, [
+        'dateChange',
+        'timeChange',
+        'dateCancel',
+      ]);
+
+      await hourCell(page, pickedHour).click();
+      await datetimePicker.getByTestId('cancel').click();
+
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: pickedTime },
+        { type: 'timeChange', detail: '' },
+        { type: 'dateCancel', detail: null },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'cancel clears a time bound to timeChange',
+    async ({ page }) => {
+      const datetimePicker = datetimePickerLocator(page);
+      await datetimePicker.evaluate((el: HTMLIxDatetimePickerElement) => {
+        el.addEventListener('timeChange', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        });
+      });
+      const events = await recordEvents(datetimePicker, ['dateSelect']);
+
+      await hourCell(page, pickedHour).click();
+      await datetimePicker.getByTestId('cancel').click();
+
+      expect(
+        await datetimePicker.evaluate(
+          (el: HTMLIxDatetimePickerElement) => el.time
+        )
+      ).toBe('');
+
+      await datetimePicker.getByTestId('confirm').click();
+
+      // The shown default time is applied, not the cancelled one
+      expect(await events()).toEqual([
+        {
+          type: 'dateSelect',
+          detail: expect.objectContaining({
+            time: expect.not.stringMatching(
+              new RegExp(`^${pickedHour.toFormat('HH')}:`)
+            ),
+          }),
+        },
+      ]);
+    }
+  );
+});
+
 regressionTest.describe('require confirmation option', () => {
   regressionTest(
     'emits pending range changes only as dateChange',

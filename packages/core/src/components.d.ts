@@ -10376,7 +10376,7 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Time change event. Emitted when the time changes in the embedded time picker.  Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again. Use `dateSelect` for the applied selection.
+          * Time change event. Emitted when the time changes in the embedded time picker.  Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again, or with an empty string if no time is confirmed. Use `dateSelect` for the applied selection.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**

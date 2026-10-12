@@ -254,8 +254,8 @@ export class DatetimePicker
    *
    * Emitted for every pick, also for a selection that is not confirmed yet
    * (`requireConfirmation`). When a pending selection is discarded, it is
-   * emitted with the confirmed time again. Use `dateSelect` for the applied
-   * selection.
+   * emitted with the confirmed time again, or with an empty string if no
+   * time is confirmed. Use `dateSelect` for the applied selection.
    */
   @Event() timeChange!: EventEmitter<string>;
 
@@ -592,9 +592,10 @@ export class DatetimePicker
       this.dateChange.emit(this.toDateChangeEvent(from, to));
     }
 
-    // Without a committed time the time picker shows its default time again
-    if (time && shown.time !== time) {
-      this.timeChange.emit(time);
+    // Without a committed time the time picker shows its default time again,
+    // which is reported as an empty time
+    if ((shown.time || undefined) !== (time || undefined)) {
+      this.timeChange.emit(time ?? '');
     }
   }
 
