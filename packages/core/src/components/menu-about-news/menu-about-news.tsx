@@ -97,9 +97,7 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         </div>
 
         <div class="cui-popover-news-header">
-          <ix-typography format="body" bold>
-            {this.label}
-          </ix-typography>
+          <ix-typography format="h5">{this.label}</ix-typography>
         </div>
 
         <ix-icon-button
