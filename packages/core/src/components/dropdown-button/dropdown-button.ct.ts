@@ -18,7 +18,7 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
       </ix-dropdown-button>
     `);
 
-  await expect(page.locator('ix-dropdown-button')).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-dropdown-button')).toHaveAttribute('hydrated');
 
   const accessibilityScanResults = await makeAxeBuilder().analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
@@ -46,18 +46,18 @@ regressionTest(
     const labeledButton = page.locator('#labeled-button');
     const iconButton = page.locator('#icon-button');
 
-    await expect(labeledButton).toHaveClass(/\bhydrated\b/);
+    await expect(labeledButton).toHaveAttribute('hydrated');
     await expect(labeledButton).toBeVisible();
     await expect(labeledButton).toHaveAccessibleName('Actions');
-    await expect(labeledButton.locator('ix-button')).toHaveClass(
-      /\bhydrated\b/
+    await expect(labeledButton.locator('ix-button')).toHaveAttribute(
+      'hydrated'
     );
 
-    await expect(iconButton).toHaveClass(/\bhydrated\b/);
+    await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toBeVisible();
     await expect(iconButton).toHaveAccessibleName('Launch actions');
-    await expect(iconButton.locator('ix-icon-button')).toHaveClass(
-      /\bhydrated\b/
+    await expect(iconButton.locator('ix-icon-button')).toHaveAttribute(
+      'hydrated'
     );
   }
 );
@@ -128,7 +128,7 @@ regressionTest('keeps focus on the host button', async ({ mount, page }) => {
   `);
 
   const dropdownButton = page.locator('ix-dropdown-button');
-  await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+  await expect(dropdownButton).toHaveAttribute('hydrated');
 
   await page.getByRole('button', { name: 'Before' }).focus();
   await page.keyboard.press('Tab');
@@ -247,7 +247,7 @@ regressionTest('opens and closes the dropdown', async ({ mount, page }) => {
   `);
 
   const dropdownButton = page.locator('ix-dropdown-button');
-  await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+  await expect(dropdownButton).toHaveAttribute('hydrated');
   await expect(dropdownButton.locator('ix-button button')).toHaveAttribute(
     'aria-hidden',
     'true'
@@ -283,7 +283,7 @@ for (const key of ['Enter', 'Space']) {
       );
 
       const dropdownButton = page.locator('ix-dropdown-button');
-      await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+      await expect(dropdownButton).toHaveAttribute('hydrated');
 
       await page.getByRole('button', { name: 'Before' }).focus();
       await page.keyboard.press('Tab');
@@ -313,7 +313,7 @@ regressionTest(
     );
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await dropdownButton.evaluate(
       (element: HTMLIxDropdownButtonElement) =>
         (element.ariaLabelDropdownButton = 'Actions')
@@ -411,7 +411,7 @@ regressionTest(
     `);
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await expect(dropdownButton).toHaveAttribute('aria-label', 'Open dropdown');
 
     for (const ariaLabel of ['', '   ']) {
@@ -443,7 +443,7 @@ regressionTest(
     `);
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await dropdownButton.evaluate(
       (element: HTMLIxDropdownButtonElement) => (element.label = null)
     );
@@ -469,7 +469,7 @@ regressionTest(
     `);
 
     const dropdownButton = page.locator('ix-dropdown-button');
-    await expect(dropdownButton).toHaveClass(/\bhydrated\b/);
+    await expect(dropdownButton).toHaveAttribute('hydrated');
     await dropdownButton.evaluate(
       (element: HTMLIxDropdownButtonElement) => (element.label = null)
     );
@@ -526,7 +526,7 @@ regressionTest(
     );
 
     const button = page.locator('ix-dropdown-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button.locator('ix-icon.dropdown-icon')).toHaveClass(
       /size-20/
     );
@@ -551,7 +551,7 @@ regressionTest(
     );
 
     const iconButton = page.locator('ix-dropdown-button ix-icon-button');
-    await expect(iconButton).toHaveClass(/hydrated/);
+    await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toHaveClass(/btn-icon-32/);
     await expect(iconButton.locator('ix-icon')).toHaveClass(/size-24/);
   }
@@ -647,7 +647,7 @@ regressionTest(
   `);
 
     const button = page.locator('ix-dropdown-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
 
     await page.keyboard.press('Tab');
     await expect(button).toBeFocused();
@@ -685,7 +685,7 @@ regressionTest(
         })
     );
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
@@ -726,7 +726,7 @@ regressionTest(
         })
     );
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
@@ -771,7 +771,7 @@ regressionTest(
     const item1 = page.locator('#tab-1');
     const after = page.locator('#after');
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await button.focus();
     await page.keyboard.press('ArrowDown');
     await expect(item1).toBeFocused();
@@ -800,7 +800,7 @@ regressionTest(
     const button = page.locator('ix-dropdown-button');
     const item1 = page.locator('#dynamic-1');
 
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await button.focus();
     await page.keyboard.press('ArrowDown');
     await expect(button).toHaveAttribute('aria-activedescendant', 'dynamic-1');

@@ -12,7 +12,12 @@ import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
 import type { ActionCardVariant } from './action-card.types';
 
 /**
- * @slot default - Place additional non-interactive content inside the card. Avoid interactive elements (links, buttons, inputs) as the card itself is rendered as a single button.
+ * Card that represents a selectable action or option to start a task or workflow.
+ *
+ * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @figma-main-component-id 104612:25269
+ *
+ * @slot - Card content.
  */
 @Component({
   tag: 'ix-action-card',

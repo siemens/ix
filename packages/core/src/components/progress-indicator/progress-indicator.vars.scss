@@ -60,4 +60,9 @@
   --ix-progress-indicator-linear-slot--min-width: calc(
     #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-x-20}
   );
+  --ix-progress-indicator-xs--height: #{sys.$si-sys-sizing-size-10};
+  --ix-progress-indicator-sm--height: #{sys.$si-sys-sizing-size-20};
+  --ix-progress-indicator-md--height: #{sys.$si-sys-sizing-size-30};
+  --ix-progress-indicator-lg--height: #{sys.$si-sys-sizing-size-50};
+  --ix-progress-indicator-xl--height: #{sys.$si-sys-sizing-size-70};
 }

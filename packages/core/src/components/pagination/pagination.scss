@@ -8,11 +8,10 @@
  */
 
 @use '../icon-button/icon-button';
-@use 'mixins/internal/input-control';
+@use '../input/input-control.mixins' as input-control;
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
-@use './pagination.vars' as *;
+@use './pagination.vars';
 :host {
   @include component.ix-component;
 
@@ -72,6 +71,6 @@
   }
 
   button + button {
-    margin-inline-start: 0.125rem;
+    margin-inline-start: var(--ix-pagination-button--margin-inline-start);
   }
 }

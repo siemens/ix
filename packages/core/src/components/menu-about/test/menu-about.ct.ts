@@ -25,7 +25,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await page.getByText('Content 1').click();
 
   const aboutAndLegal = page.locator('ix-menu-about');
-  await expect(aboutAndLegal).toHaveClass(/hydrated/);
+  await expect(aboutAndLegal).toHaveAttribute('hydrated');
 });
 
 regressionTest('active-tab-label', async ({ mount, page }) => {
@@ -44,7 +44,7 @@ regressionTest('active-tab-label', async ({ mount, page }) => {
   await element.click();
 
   const tabItems = page.locator('ix-tab-item');
-  await expect(tabItems.first()).toHaveClass(/hydrated/);
+  await expect(tabItems.first()).toHaveAttribute('hydrated');
 
   await expect(tabItems.first()).not.toHaveClass(/\bselected\b/);
   await expect(tabItems.last()).toHaveClass(/\bselected\b/);
@@ -65,7 +65,7 @@ regressionTest('should not change tab', async ({ mount, page }) => {
   await element.click();
 
   const tabItems = page.locator('ix-tab-item');
-  await expect(tabItems.first()).toHaveClass(/hydrated/);
+  await expect(tabItems.first()).toHaveAttribute('hydrated');
 
   await about.evaluate((e) => {
     e.addEventListener('tabChange', (event) => event.preventDefault());
@@ -94,7 +94,7 @@ regressionTest(
     await element.click();
 
     const tabItems = page.locator('ix-tab-item');
-    await expect(tabItems.first()).toHaveClass(/hydrated/);
+    await expect(tabItems.first()).toHaveAttribute('hydrated');
 
     const eventPromise = about.evaluate((e) => {
       return new Promise<string>((resolve) => {

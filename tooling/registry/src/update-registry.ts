@@ -1,0 +1,250 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import fs from 'fs-extra';
+import path from 'node:path';
+import { glob } from 'glob';
+
+interface RegistryUpdateOptions {
+  version: string;
+  latestTag?: string;
+  pathPrefix?: string;
+}
+
+type UnifiedRegistry = {
+  versions: Record<
+    string,
+    {
+      patterns?: Array<{ name: string; path: string }>;
+      examples?: Array<{ name: string; path: string }>;
+      components?: {
+        componentDoc: string;
+        componentRelatedExamples: string;
+        componentRelatedPatterns?: string;
+      };
+      documentationSearchIndex?: string;
+      llms?: {
+        entrypoint: string;
+        components: string;
+        examples: string;
+        patterns: string;
+      };
+    }
+  >;
+  'dist-tags': {
+    latest: string;
+  };
+};
+
+interface ComponentsRegistryUpdateOptions extends RegistryUpdateOptions {
+  components: {
+    componentDoc: string;
+    componentRelatedExamples: string;
+    componentRelatedPatterns: string;
+  };
+}
+
+interface DocumentationSearchIndexRegistryUpdateOptions
+  extends RegistryUpdateOptions {
+  documentationSearchIndex: string;
+}
+
+interface LlmsRegistryUpdateOptions extends RegistryUpdateOptions {
+  llms: {
+    entrypoint: string;
+    components: string;
+    examples: string;
+    patterns: string;
+  };
+}
+
+function ensureVersionEntry(registry: UnifiedRegistry, version: string) {
+  registry.versions ??= {};
+  registry.versions[version] ??= {};
+  return registry.versions[version];
+}
+
+/**
+ * Update patterns registry.json with manual patterns only
+ */
+export async function updatePatternsRegistry(
+  registryPath: string,
+  patternsDir: string,
+  options: RegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json patterns section...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+
+  const patterns: Array<{ name: string; path: string }> = [];
+
+  const patternFiles = await glob(path.join(patternsDir, '*.json'), {
+    absolute: false,
+  });
+
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
+  patterns.push(
+    ...patternFiles.map((file) => {
+      const name = path.basename(file, '.json');
+      const patternPath = `patterns/${path.basename(file)}`;
+
+      return {
+        name,
+        path: normalizedPrefix
+          ? `${normalizedPrefix}/${patternPath}`
+          : patternPath,
+      };
+    })
+  );
+
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.patterns = patterns.sort((a, b) => a.name.localeCompare(b.name));
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log(`✅ Updated patterns registry with ${patterns.length} patterns`);
+}
+
+/**
+ * Update examples registry.json with generated examples only
+ */
+export async function updateExamplesRegistry(
+  registryPath: string,
+  examplesDir: string,
+  options: RegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json examples section...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+  const examples: Array<{ name: string; path: string }> = [];
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
+  if (await fs.pathExists(examplesDir)) {
+    const exampleFiles = await glob(path.join(examplesDir, '*.json'), {
+      absolute: false,
+    });
+
+    examples.push(
+      ...exampleFiles.map((file) => {
+        const name = path.basename(file, '.json');
+        const examplePath = `examples/${path.basename(file)}`;
+
+        return {
+          name,
+          path: normalizedPrefix
+            ? `${normalizedPrefix}/${examplePath}`
+            : examplePath,
+        };
+      })
+    );
+  }
+
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.examples = examples.sort((a, b) => a.name.localeCompare(b.name));
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+  console.log(`✅ Updated examples registry with ${examples.length} examples`);
+}
+
+/**
+ * Update registry.json with IX component metadata files
+ */
+export async function updateComponentsRegistry(
+  registryPath: string,
+  options: ComponentsRegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json components section...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
+  const prefixedComponents = Object.fromEntries(
+    Object.entries(options.components).map(([key, value]) => [
+      key,
+      normalizedPrefix ? `${normalizedPrefix}/${value}` : value,
+    ])
+  );
+
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.components =
+    prefixedComponents as ComponentsRegistryUpdateOptions['components'];
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log('✅ Updated components registry with IX component metadata');
+}
+
+/**
+ * Update registry.json with the versioned central documentation search index.
+ */
+export async function updateDocumentationSearchIndexRegistry(
+  registryPath: string,
+  options: DocumentationSearchIndexRegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json documentation search index...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+  const indexPath = normalizedPrefix
+    ? `${normalizedPrefix}/${options.documentationSearchIndex}`
+    : options.documentationSearchIndex;
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.documentationSearchIndex = indexPath;
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log('✅ Updated registry with central documentation search index');
+}
+
+/**
+ * Update registry.json with LLM-readable registry artifact files
+ */
+export async function updateLlmsRegistry(
+  registryPath: string,
+  options: LlmsRegistryUpdateOptions
+): Promise<void> {
+  console.log('📝 Updating registry.json llms section...');
+
+  const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
+  const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
+
+  const prefixedLlms = Object.fromEntries(
+    Object.entries(options.llms).map(([key, value]) => [
+      key,
+      normalizedPrefix ? `${normalizedPrefix}/${value}` : value,
+    ])
+  );
+
+  const versionEntry = ensureVersionEntry(registry, options.version);
+  versionEntry.llms = prefixedLlms as LlmsRegistryUpdateOptions['llms'];
+
+  registry['dist-tags'] = {
+    latest: options.latestTag ?? options.version,
+  };
+
+  await fs.writeJson(registryPath, registry, { spaces: 2 });
+
+  console.log('✅ Updated registry with llms.txt artifact metadata');
+}

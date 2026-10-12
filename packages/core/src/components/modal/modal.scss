@@ -8,7 +8,6 @@
  */
 
 @use './modal.vars' as *;
-@use 'tokens/system' as sys;
 ::backdrop {
   background: var(--ix-modal-backdrop--background);
 }
@@ -42,7 +41,7 @@
     box-shadow: var(--ix-modal--box-shadow);
     color: var(--ix-modal--color);
     overflow: visible;
-    max-height: 80vh;
+    max-height: var(--ix-modal--max-height);
     pointer-events: all;
     overflow-wrap: break-word;
   }

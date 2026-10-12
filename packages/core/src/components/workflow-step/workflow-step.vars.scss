@@ -13,7 +13,6 @@
   --ix-workflow-step-line--background--warning: #{sys.$si-sys-color-text-warning};
   --ix-workflow-step-line--background--success: #{sys.$si-sys-color-text-success};
   --ix-workflow-step-line--background--error: #{sys.$si-sys-color-text-danger};
-  --ix-workflow-step--border-radius: 1px;
   --ix-workflow-step--background: rgba(0, 0, 0, 0);
   --ix-workflow-step--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
   --ix-workflow-step--background--disabled: rgba(0, 0, 0, 0);
@@ -35,9 +34,13 @@
   --ix-workflow-step-icon-done--color--selected--hover: #{sys.$si-sys-color-text-accent-active};
   --ix-workflow-step-icon-done--color--selected--active: #{sys.$si-sys-color-text-accent-active};
   --ix-workflow-step-icon-status--color--disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-workflow-step-step--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
 
 :host {
+  --ix-workflow-step--border-radius: calc(
+    #{sys.$si-sys-sizing-border-radius-xs} / 2
+  );
   --ix-workflow-step-horizontal--width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
   );
@@ -62,4 +65,8 @@
     #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
   );
   --ix-workflow-step-text-vertical--margin: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-workflow-step-line--height: #{sys.$si-sys-sizing-size-10};
+  --ix-workflow-step-line--width: #{sys.$si-sys-sizing-size-10};
+  --ix-workflow-step--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-workflow-step-step--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 }

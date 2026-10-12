@@ -29,4 +29,12 @@
   --ix-dropdown-item-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-dropdown-item-icon-only--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-dropdown-item-submenu--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-dropdown-item--border-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-dropdown-item--inner-height: calc(
+    100% - 2 * var(--ix-dropdown-item--border-width--focus)
+  );
+  --ix-dropdown-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-dropdown-item-outline-visible--outline-offset: calc(
+    0px - var(--ix-dropdown-item--outline-width--focus)
+  );
 }

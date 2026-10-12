@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './dropdown-button.vars' as *;
 
 @mixin triangle($name: '') {
@@ -90,12 +89,15 @@
 
   .triangle {
     position: absolute;
-    margin-inline-start: 1.5625rem;
-    margin-block-start: -0.4375rem;
+    margin-inline-start: var(
+      --ix-dropdown-button-triangle--margin-inline-start
+    );
+    margin-block-start: var(--ix-dropdown-button-triangle--margin-block-start);
     border-right: 0 solid transparent;
-    border-left: 4px solid transparent;
+    border-left: var(--ix-dropdown-button-triangle--border-width) solid
+      transparent;
     border-top: 0 solid transparent;
-    border-bottom: 4px solid;
+    border-bottom: var(--ix-dropdown-button-triangle--border-width) solid;
     color: var(--ix-button-primary--color);
   }
 
@@ -133,7 +135,8 @@
 }
 
 :host(:focus-visible) {
-  outline: 1px solid var(--ix-button--outline-color--focus);
+  outline: var(--ix-dropdown-button--outline-width--focus) solid
+    var(--ix-button--outline-color--focus);
   outline-offset: var(--ix-button--focus--outline-offset);
 }
 

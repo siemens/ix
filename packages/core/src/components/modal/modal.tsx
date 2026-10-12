@@ -20,13 +20,17 @@ import {
 import { animate } from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
-import { tryFocusElement } from '../utils/focus/focus-utilities';
+import { focusElementInContext } from '../utils/focus/focus-utilities';
 import { IX_MODAL_AUTOFOCUS_SELECTOR } from '../utils/modal/modal';
 import { waitForElement } from '../utils/waitForElement';
 import { IxModalSize } from './modal.types';
 
 /**
- * @slot default - Modal sections and content.
+ * Dialog overlay that presents content or requires user interaction on top of the page.
+ *
+ * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ *
+ * @slot - Modal content.
  */
 @Component({
   tag: 'ix-modal',
@@ -210,7 +214,7 @@ export class Modal {
             IX_MODAL_AUTOFOCUS_SELECTOR
           );
           if (direct) {
-            tryFocusElement(direct, { focusVisible: true });
+            focusElementInContext(direct, direct, { focusVisible: true });
           }
           resolve();
         });
