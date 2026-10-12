@@ -470,6 +470,34 @@ regressionTest.describe('require confirmation', () => {
   });
 
   regressionTest(
+    'does not leak picker events to the host',
+    async ({ page }) => {
+      const dateInput = dateInputAccessor(page);
+      const events = await recordEvents(dateInput.host, [
+        'dateChange',
+        'dateRangeChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dateInput.open();
+      await dayCell(page, picked).click();
+      await dateInput.host.getByTestId('cancel').click();
+      await dateInput.expectClosed();
+
+      await dateInput.open();
+      await dayCell(page, picked).click();
+      await dateInput.host.getByTestId('confirm').click();
+      await dateInput.expectClosed();
+
+      await expect(dateInput.host.locator('input')).toHaveValue(
+        formatDateTime(picked)
+      );
+      expect(await events()).toEqual([]);
+    }
+  );
+
+  regressionTest(
     'footer is reachable and trapped by keyboard',
     async ({ page }) => {
       const dateInput = dateInputAccessor(page);

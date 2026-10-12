@@ -8,5 +8,5 @@ Date and time components now behave consistently when picking, confirming and cl
 
 **Breaking changes:**
 
-- There are breaking changes for `ix-time-picker`, `ix-date-dropdown`, `ix-datetime-input` and `ix-datetime-picker` components.
+- There are breaking changes for `ix-time-picker`, `ix-time-input`, `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input` and `ix-datetime-picker` components.
 See `BREAKING_CHANGES/v6.md` for details and migration instructions.

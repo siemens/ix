@@ -760,6 +760,7 @@ export class TimeInput
             hideHeader={this.hideHeader}
             i18nConfirm={this.i18nSelectTime}
             i18nCancel={this.i18nCancel}
+            onTimeChange={(event) => event.stopPropagation()}
             onTimeCancel={(event: CustomEvent<void>) => {
               event.stopPropagation();
               this.closeDropdown();
@@ -772,6 +773,7 @@ export class TimeInput
             i18nAm={this.i18nAm}
             i18nPm={this.i18nPm}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
+              event.stopPropagation();
               this.onInput(event.detail);
               if (this.initialValue !== event.detail) {
                 this.ixChange.emit(event.detail);

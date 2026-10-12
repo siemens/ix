@@ -660,11 +660,13 @@ export class DateInput
             minDate={this.minDate}
             maxDate={this.maxDate}
             onDateChange={(event) => {
+              event.stopPropagation();
               // With requireConfirmation the value is applied on dateSelect
               if (!this.requireConfirmation) {
                 this.applyPickedDate(event.detail.from);
               }
             }}
+            onDateRangeChange={(event) => event.stopPropagation()}
             requireConfirmation={this.requireConfirmation}
             i18nConfirm={this.i18nConfirm}
             i18nCancel={this.i18nCancel}

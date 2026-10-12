@@ -700,6 +700,7 @@ export class DatetimeInput
   }
 
   private readonly handleDateSelect = (event: CustomEvent) => {
+    event.stopPropagation();
     const { from, time } = event.detail;
 
     // Without requireConfirmation the value was already applied on change
@@ -714,7 +715,8 @@ export class DatetimeInput
    * Applies every picker change while `requireConfirmation` is disabled.
    * `ixChange` follows when the dropdown closes, like a native change event.
    */
-  private readonly handlePickerChange = async () => {
+  private readonly handlePickerChange = async (event: CustomEvent) => {
+    event.stopPropagation();
     if (this.requireConfirmation) {
       return;
     }

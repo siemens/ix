@@ -545,6 +545,32 @@ regressionTest.describe('confirmation', () => {
     });
   });
 
+  regressionTest(
+    'does not leak picker events to the host',
+    async ({ page }) => {
+      const timeInput = timeInputAccessor(page);
+      const events = await recordEvents(timeInput.host, [
+        'timeChange',
+        'timeSelect',
+        'timeCancel',
+        'ixChange',
+      ]);
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+      await timeInput.host.getByTestId('cancel').click();
+      await timeInput.expectClosed();
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+      await timeInput.host.getByTestId('confirm').click();
+
+      await expect
+        .poll(events)
+        .toEqual([{ type: 'ixChange', detail: formatTime(pickedTime) }]);
+    }
+  );
+
   regressionTest('cancel is reachable by keyboard', async ({ page }) => {
     const timeInput = timeInputAccessor(page);
 

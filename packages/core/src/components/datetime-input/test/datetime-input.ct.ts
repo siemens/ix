@@ -343,6 +343,39 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'does not leak picker events to the host',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11" require-confirmation></ix-datetime-input>`
+    );
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const dateTimeAccessor = await createAccessor(dateTimeInput);
+    const events = await recordEvents(dateTimeInput, [
+      'dateChange',
+      'timeChange',
+      'dateSelect',
+      'dateCancel',
+      'ixChange',
+    ]);
+
+    await dateTimeAccessor.openByCalendar();
+    await dateTimeAccessor.selectDay(15);
+    await dateTimeInput.getByTestId('cancel').click();
+    await expect(dateTimeInput.getByTestId('cancel')).not.toBeVisible();
+
+    await dateTimeAccessor.openByCalendar();
+    await dateTimeAccessor.selectDay(15);
+    await dateTimeAccessor.selectTime(14, 30, 45);
+    await dateTimeInput.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect
+      .poll(events)
+      .toEqual([{ type: 'ixChange', detail: '2024/05/15 14:30:45' }]);
+  }
+);
+
+regressionTest(
   'emits ixChange on blur when value changed',
   async ({ mount, page }) => {
     await mount(
