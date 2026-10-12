@@ -7,6 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import {
+  iconArrowRight,
+  iconChevronRightSmall,
+  iconDocument,
+  iconOpenExternal,
+} from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
@@ -36,7 +42,74 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(link).not.toHaveAttribute('title');
   await expect(link).toHaveAttribute('aria-disabled', 'false');
   await expect(link).not.toHaveAttribute('tabindex');
+  await expect(link.locator('ix-icon')).toHaveCount(0);
 });
+
+regressionTest(
+  'renders icon variants at both positions',
+  async ({ mount, page }) => {
+    const variants = [
+      { icon: 'internal', name: iconChevronRightSmall },
+      { icon: 'external', name: iconOpenExternal },
+      { icon: 'file', name: iconDocument },
+      { icon: 'action', name: iconArrowRight },
+    ];
+    const positions = ['start', 'end'];
+
+    await mount(
+      `${variants
+        .flatMap(({ icon }) =>
+          positions.map(
+            (position) =>
+              `<ix-link-button icon="${icon}" icon-position="${position}" url="/">${icon} ${position}</ix-link-button>`
+          )
+        )
+        .join('')}
+     <ix-link-button icon="none" url="/">No icon</ix-link-button>`,
+      {
+        icons: {
+          iconArrowRight,
+          iconChevronRightSmall,
+          iconDocument,
+          iconOpenExternal,
+        },
+      }
+    );
+
+    for (const { icon, name } of variants) {
+      for (const position of positions) {
+        const linkButton = page.locator(
+          `ix-link-button[icon="${icon}"][icon-position="${position}"]`
+        );
+        const link = linkButton.getByRole('link', {
+          name: `${icon} ${position}`,
+        });
+        const glyph = link.locator('ix-icon');
+
+        await expect(linkButton).toHaveAttribute('hydrated');
+        await expect(link).toHaveAttribute('href', '/');
+        await expect(glyph).toHaveCount(1);
+        await expect(glyph).toHaveJSProperty('name', name);
+        await expect(glyph).toHaveClass(/size-16/);
+        await expect(glyph).toHaveAttribute('aria-hidden', 'true');
+        await expect(
+          link.locator(
+            position === 'start' ? 'ix-icon + .link' : '.link + ix-icon'
+          )
+        ).toHaveCount(1);
+      }
+    }
+
+    await expect(
+      page
+        .locator('ix-link-button[icon="none"]')
+        .getByRole('link', {
+          name: 'No icon',
+        })
+        .locator('ix-icon')
+    ).toHaveCount(0);
+  }
+);
 
 regressionTest(
   'skips disabled link buttons during keyboard navigation',
