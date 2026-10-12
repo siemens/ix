@@ -102,7 +102,7 @@ export class MessageBar {
     if (!defaultPrevented) {
       animate(el, [{ opacity: 1 }, { opacity: 0 }], {
         duration: MessageBar.duration,
-        easing: Easing.easeOutSine,
+        easing: Easing.easeOutQuad,
         onComplete: () => {
           el.classList.add('message-bar-hidden');
           this.closeAnimationCompleted.emit();

@@ -137,7 +137,7 @@ export class EventList {
 
       animate(listElement as HTMLElement, [{ opacity: 1 }, { opacity: 0 }], {
         duration: EventList.fadeOutDuration,
-        easing: Easing.easeInSine,
+        easing: Easing.easeOutQuad,
         persist: false,
         onComplete: () => {
           resolve();
@@ -157,7 +157,7 @@ export class EventList {
       const delay = i * 80;
       animate(e, [{ opacity: 0 }, { opacity: 1 }], {
         duration: EventList.fadeInDuration + delay,
-        easing: Easing.easeInOutSine,
+        easing: Easing.easeOutQuad,
         delay: delay,
         persist: false,
       });

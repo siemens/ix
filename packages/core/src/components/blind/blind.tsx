@@ -120,7 +120,7 @@ export class Blind {
 
     const options = {
       duration: Animation.defaultTime,
-      easing: Easing.easeInOutSine,
+      easing: Easing.easeOutQuad,
     };
 
     animate(chevron, [{ transform: `rotateZ(${rotation}deg)` }], options);

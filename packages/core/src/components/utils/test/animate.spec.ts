@@ -8,6 +8,7 @@
  */
 import { describe, expect, it, vi } from 'vitest';
 import { animate } from '../animate';
+import Animation from '../animation';
 
 type FakeAnimation = {
   onfinish: (() => void) | null;
@@ -52,6 +53,26 @@ describe('animate', () => {
       iterations: 2,
       fill: 'both',
     });
+  });
+
+  it('uses zero duration and delay when reduced motion is preferred', () => {
+    const element = document.createElement('div');
+    const { animateSpy } = withFakeAnimate(element);
+    const reducedMotionSpy = vi
+      .spyOn(Animation, 'prefersReducedMotion')
+      .mockReturnValue(true);
+
+    animate(element, [{ opacity: 0 }, { opacity: 1 }], {
+      duration: 100,
+      delay: 20,
+    });
+
+    expect(animateSpy).toHaveBeenCalledWith(
+      [{ opacity: 0 }, { opacity: 1 }],
+      expect.objectContaining({ duration: 0, delay: 0 })
+    );
+
+    reducedMotionSpy.mockRestore();
   });
 
   it('calls onBegin synchronously and onComplete after finish', () => {

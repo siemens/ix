@@ -684,7 +684,7 @@ export class Menu {
         ],
         {
           duration: Animation.mediumTime,
-          easing: Easing.easeInSine,
+          easing: Easing.easeOutQuad,
           onBegin: () => {
             if (this.showPinned) {
               return;
@@ -722,7 +722,7 @@ export class Menu {
         ],
         {
           duration: Animation.mediumTime,
-          easing: Easing.easeInSine,
+          easing: Easing.easeOutQuad,
           onComplete: () => onComplete(),
         }
       );

@@ -7,10 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import Animation from './animation';
+
 export const Easing = {
   linear: 'linear',
-  easeInSine: 'cubic-bezier(0.12, 0, 0.39, 0)',
-  easeOutSine: 'cubic-bezier(0.61, 1, 0.88, 1)',
+  /** Matches the previous anime.js default easing `out(2)`. */
+  easeOutQuad: 'cubic-bezier(0.33, 0.67, 0.67, 1)',
   easeInOutSine: 'cubic-bezier(0.37, 0, 0.63, 1)',
 } as const;
 
@@ -110,21 +112,26 @@ function unregister(element: HTMLElement, running: RunningAnimation) {
  *
  * Starting an animation stops all running animations of the same element
  * that animate at least one of the same properties.
+ *
+ * If the user prefers reduced motion, duration and delay are set to `0`.
  */
 export function animate(
   element: HTMLElement,
   keyframes: Keyframe[],
   options: AnimateOptions
 ): AnimationControl {
+  const reducedMotion = Animation.prefersReducedMotion();
   const {
-    duration,
-    delay = 0,
+    duration: requestedDuration,
+    delay: requestedDelay = 0,
     easing = Easing.linear,
     iterations = 1,
     persist = true,
     onBegin,
     onComplete,
   } = options;
+  const duration = reducedMotion ? 0 : requestedDuration;
+  const delay = reducedMotion ? 0 : requestedDelay;
 
   const finalStyles = getFinalStyles(keyframes);
   const properties = new Set(finalStyles.keys());

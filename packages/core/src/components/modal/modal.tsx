@@ -121,7 +121,7 @@ export class Modal {
       ],
       {
         duration,
-        easing: Easing.easeOutSine,
+        easing: Easing.easeOutQuad,
         onComplete: markEntranceSettled,
       }
     );
@@ -145,7 +145,7 @@ export class Modal {
       ],
       {
         duration,
-        easing: Easing.easeInSine,
+        easing: Easing.easeOutQuad,
         onComplete: () => {
           if (completeCallback) {
             completeCallback();

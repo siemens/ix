@@ -404,7 +404,7 @@ export class Pane {
     let key = this.getKey();
     let animation = animate(this.hostElement, [{ width: size }], {
       duration: Animation.mediumTime,
-      easing: Easing.easeInOutSine,
+      easing: Easing.easeOutQuad,
       onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
@@ -425,7 +425,7 @@ export class Pane {
     let key = this.getKey();
     let animation = animate(this.hostElement, [{ height: size }], {
       duration: Animation.mediumTime,
-      easing: Easing.easeInOutSine,
+      easing: Easing.easeOutQuad,
       onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
@@ -497,7 +497,7 @@ export class Pane {
     const key = this.getKey();
     const animation = animate(titleDiv, [padding], {
       duration,
-      easing: Easing.easeInOutSine,
+      easing: Easing.easeOutQuad,
       onComplete: () => {
         this.animations.delete(key);
       },

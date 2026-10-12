@@ -150,7 +150,6 @@ export class MenuCategory
   }
 
   private animateFadeOut() {
-    const slotHideThresholdMs = 25;
     if (!this.menuItemsContainer) {
       return;
     }
@@ -158,21 +157,24 @@ export class MenuCategory
     const expandedHeight = `${
       this.getNestedItemsHeight() + DefaultIxMenuItemHeight
     }px`;
+    const expandedPadding = this.getMenuItemsExpandedPadding();
 
     animate(
       this.menuItemsContainer,
       [
-        { opacity: 1, maxHeight: expandedHeight },
-        { opacity: 0, maxHeight: '0px' },
+        {
+          opacity: 1,
+          maxHeight: expandedHeight,
+          paddingBlock: expandedPadding,
+        },
+        { opacity: 0, maxHeight: '0px', paddingBlock: '0px' },
       ],
       {
         duration: DefaultAnimationTimeout,
-        easing: Easing.easeInSine,
+        easing: Easing.easeOutQuad,
         onComplete: () => {
-          setTimeout(() => {
-            this.showItems = false;
-            this.showDropdown = false;
-          }, DefaultAnimationTimeout + slotHideThresholdMs);
+          this.showItems = false;
+          this.showDropdown = false;
         },
       }
     );
@@ -189,16 +191,21 @@ export class MenuCategory
     const expandedHeight = `${
       this.getNestedItemsHeight() + DefaultIxMenuItemHeight
     }px`;
+    const expandedPadding = this.getMenuItemsExpandedPadding();
 
     animate(
       this.menuItemsContainer,
       [
-        { opacity: 0, maxHeight: '0px' },
-        { opacity: 1, maxHeight: expandedHeight },
+        { opacity: 0, maxHeight: '0px', paddingBlock: '0px' },
+        {
+          opacity: 1,
+          maxHeight: expandedHeight,
+          paddingBlock: expandedPadding,
+        },
       ],
       {
         duration: DefaultAnimationTimeout,
-        easing: Easing.easeInSine,
+        easing: Easing.easeOutQuad,
         onComplete: () => {
           this.clearMenuItemsContainerStyles();
         },
@@ -507,9 +514,18 @@ export class MenuCategory
     );
   }
 
+  private getMenuItemsExpandedPadding() {
+    return (
+      getComputedStyle(this.hostElement)
+        .getPropertyValue('--ix-menu-category-menu-items-expanded--padding')
+        .trim() || '0px'
+    );
+  }
+
   clearMenuItemsContainerStyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
+    this.menuItemsContainer?.style.removeProperty('padding-block');
   }
 
   @Watch('showDropdown')
