@@ -129,7 +129,7 @@ export class Pagination {
    *
    * @since 6.0.0
    */
-  @Prop() ariaLabelJumpBackward?: string;
+  @Prop() ariaLabelJumpBackward = 'Jump backward to {page}';
 
   /**
    * ARIA label for the jump forward button. Overrides the default label
@@ -137,7 +137,7 @@ export class Pagination {
    *
    * @since 6.0.0
    */
-  @Prop() ariaLabelJumpForward?: string;
+  @Prop() ariaLabelJumpForward = 'Jump forward to {page}';
 
   /**
    * Page selection event
@@ -210,6 +210,21 @@ export class Pagination {
     let end = Math.min(this.count, this.maxCountPages);
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
     const jump = Math.max(0, 2 * pageCount + 1);
+    const jumpBackwardsLabel = this.ariaLabelJumpBackward.replace(
+      '{page}',
+      `${this.i18nPage} ${
+        (hasOverflowEnd
+          ? this.selectedPage - jump
+          : this.count - this.maxCountPages) + 1
+      }`
+    );
+    const jumpForwardsLabel = this.ariaLabelJumpForward.replace(
+      '{page}',
+      `${this.i18nPage} ${
+        (hasOverflowStart ? this.selectedPage + jump : this.maxCountPages - 1) +
+        1
+      }`
+    );
 
     if (hasOverflowStart) {
       const baseButtonProps = {
@@ -227,13 +242,7 @@ export class Pagination {
         <BaseButton
           {...baseButtonProps}
           ariaAttributes={{
-            'aria-label':
-              this.ariaLabelJumpBackward ??
-              `Jump backward to ${this.i18nPage} ${
-                (hasOverflowEnd
-                  ? this.selectedPage - jump
-                  : this.count - this.maxCountPages) + 1
-              }`,
+            'aria-label': jumpBackwardsLabel,
           }}
         >
           ...
@@ -276,13 +285,7 @@ export class Pagination {
         <BaseButton
           {...baseButtonProps}
           ariaAttributes={{
-            'aria-label':
-              this.ariaLabelJumpForward ??
-              `Jump forward to ${this.i18nPage} ${
-                (hasOverflowStart
-                  ? this.selectedPage + jump
-                  : this.maxCountPages - 1) + 1
-              }`,
+            'aria-label': jumpForwardsLabel,
           }}
         >
           ...

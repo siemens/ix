@@ -7491,20 +7491,22 @@
         {
           "name": "ariaLabelJumpBackward",
           "attribute": "aria-label-jump-backward",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
-          "optional": true,
+          "default": "'Jump backward to {page}'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
         {
           "name": "ariaLabelJumpForward",
           "attribute": "aria-label-jump-forward",
-          "type": "string | undefined",
+          "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
-          "optional": true,
+          "default": "'Jump forward to {page}'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },

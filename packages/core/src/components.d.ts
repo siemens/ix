@@ -3365,13 +3365,15 @@ export namespace Components {
         /**
           * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
           * @since 6.0.0
+          * @default 'Jump backward to {page}'
          */
-        "ariaLabelJumpBackward"?: string;
+        "ariaLabelJumpBackward": string;
         /**
           * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
           * @since 6.0.0
+          * @default 'Jump forward to {page}'
          */
-        "ariaLabelJumpForward"?: string;
+        "ariaLabelJumpForward": string;
         /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
           * @since 4.1.0
@@ -10644,11 +10646,13 @@ declare namespace LocalJSX {
         /**
           * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
           * @since 6.0.0
+          * @default 'Jump backward to {page}'
          */
         "ariaLabelJumpBackward"?: string;
         /**
           * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
           * @since 6.0.0
+          * @default 'Jump forward to {page}'
          */
         "ariaLabelJumpForward"?: string;
         /**
