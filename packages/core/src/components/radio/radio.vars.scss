@@ -94,8 +94,9 @@
   --ix-radio-checkmark--height: #{sys.$si-sys-sizing-size-60};
   --ix-radio-checkmark--min-height: #{sys.$si-sys-sizing-size-60};
   --ix-radio-checkmark--max-height: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-button--height: #{sys.$si-sys-sizing-size-70};
-  --ix-radio-button--width: #{sys.$si-sys-sizing-size-70};
+  --ix-radio-button--height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-button--width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio--target-size: #{sys.$si-sys-sizing-size-70};
   --ix-radio-selection-indicator--width: #{sys.$si-sys-sizing-size-30};
   --ix-radio-selection-indicator--height: #{sys.$si-sys-sizing-size-30};
   --ix-radio--margin: #{sys.$si-sys-sizing-spacing-y-10} 0 #{sys.$si-sys-sizing-spacing-y-10}

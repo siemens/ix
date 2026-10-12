@@ -16,16 +16,28 @@
   @include component.ix-component;
 
   .checkbox-button {
+    position: relative;
     height: var(--ix-checkbox-button--height);
     width: var(--ix-checkbox-button--width);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    // Extends the pointer target without adding layout space
+    &::before {
+      content: '';
+      position: absolute;
+      inset: calc(
+        (var(--ix-checkbox-button--height) - var(--ix-checkbox--target-size)) /
+          2
+      );
+    }
   }
 
   button {
     all: unset;
+    box-sizing: border-box;
     display: inline-flex;
     position: relative;
 
