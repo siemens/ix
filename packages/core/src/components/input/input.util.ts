@@ -69,6 +69,11 @@ export async function checkInternalValidity<T>(
   const newValidityState = validityState.valid;
   const validityChanged = currentValidityState !== newValidityState;
 
+  // Track before emitting so a prevented event isn't re-emitted next check
+  if (skipValidation) {
+    suppressedValidityStates.set(comp.hostElement, newValidityState);
+  }
+
   if (validityChanged) {
     const eventResult = comp.validityStateChange.emit(validityState);
     if (eventResult.defaultPrevented) {
@@ -78,7 +83,6 @@ export async function checkInternalValidity<T>(
 
   // `novalidate`: still emit the event, but skip visual feedback
   if (skipValidation) {
-    suppressedValidityStates.set(comp.hostElement, newValidityState);
     clearInternalValidationClasses(comp.hostElement);
     return;
   }

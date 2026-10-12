@@ -24,6 +24,13 @@ export async function isTouched<T>(host: IxFormComponent<T>) {
   }
 }
 
+/** Whether the form opts out of built-in validation feedback */
+export function isValidationSuppressedByForm(
+  form: HTMLFormElement | null | undefined
+): boolean {
+  return !!form?.noValidate;
+}
+
 export async function shouldSuppressInternalValidation<T>(
   host: IxFormComponent<T>
 ) {
@@ -31,13 +38,7 @@ export async function shouldSuppressInternalValidation<T>(
     host.getAssociatedFormElement &&
     typeof host.getAssociatedFormElement === 'function'
   ) {
-    const form = await host.getAssociatedFormElement();
-
-    if (!form) {
-      return false;
-    }
-
-    return form.noValidate;
+    return isValidationSuppressedByForm(await host.getAssociatedFormElement());
   }
 
   return false;
@@ -125,10 +126,24 @@ function isMissingNativeInputError(error: unknown): boolean {
   );
 }
 
+const internalValidationClasses = [
+  'ix-invalid--required',
+  'ix-invalid--validity-invalid',
+  'ix-invalid--validity-patternMismatch',
+];
+
+/** Removes built-in validation classes; consumer classes stay untouched */
+export function clearInternalValidationClasses(host: HTMLElement) {
+  if (internalValidationClasses.some((c) => host.classList.contains(c))) {
+    host.classList.remove(...internalValidationClasses);
+  }
+}
+
 type ValidationLifecycleState = {
   checkIfRequiredFunction: (() => Promise<void>) | null;
   classMutationObserver: ClassMutationObserver | null;
   checkTimeoutId: ReturnType<typeof setTimeout> | null;
+  hasLoaded: boolean;
 };
 
 const validationLifecycleStates = new WeakMap<
@@ -145,16 +160,14 @@ function getValidationLifecycleState(
       checkIfRequiredFunction: null,
       classMutationObserver: null,
       checkTimeoutId: null,
+      hasLoaded: false,
     };
     validationLifecycleStates.set(instance, state);
   }
   return state;
 }
 
-/**
- * Re-runs the internal validation of a component decorated with
- * `@HookValidationLifecycle`, e.g. after a validation-relevant prop changed.
- */
+/** Re-runs the validation of a `@HookValidationLifecycle` component */
 export async function revalidate(instance: object) {
   const checkIfRequiredFunction =
     validationLifecycleStates.get(instance)?.checkIfRequiredFunction;
@@ -178,6 +191,20 @@ export function HookValidationLifecycle(options?: {
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 
+    const observeFieldClasses = function (this: object, host: HTMLElement) {
+      getValidationLifecycleState(this).classMutationObserver =
+        createClassMutationObserver(
+          host,
+          () => {
+            const result = checkFieldClasses(host, options?.includeChildren);
+            proto[methodName].call(this, result);
+          },
+          options
+        );
+      const result = checkFieldClasses(host, options?.includeChildren);
+      proto[methodName].call(this, result);
+    };
+
     proto.connectedCallback = function () {
       const host = getElement(
         this
@@ -191,7 +218,13 @@ export function HookValidationLifecycle(options?: {
 
       const checkIfRequiredFunction = async () => {
         const skipValidation = await shouldSuppressInternalValidation(host);
-        if (skipValidation || !host.isConnected) {
+        if (!host.isConnected) {
+          return;
+        }
+
+        if (skipValidation) {
+          // Clear feedback from before `novalidate` was set
+          clearInternalValidationClasses(host);
           return;
         }
 
@@ -302,24 +335,22 @@ export function HookValidationLifecycle(options?: {
         state.checkTimeoutId = null;
         void revalidate(this);
       });
-      return connectedCallback?.call(this);
+
+      const result = connectedCallback?.call(this);
+
+      // Restore after a DOM move, after the component's own class observers
+      if (state.hasLoaded && !state.classMutationObserver) {
+        observeFieldClasses.call(this, host);
+      }
+      return result;
     };
 
     proto.componentWillLoad = function () {
       const host = getElement(
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
-      getValidationLifecycleState(this).classMutationObserver =
-        createClassMutationObserver(
-          host,
-          () => {
-            const result = checkFieldClasses(host, options?.includeChildren);
-            proto[methodName].call(this, result);
-          },
-          options
-        );
-      const result = checkFieldClasses(host, options?.includeChildren);
-      proto[methodName].call(this, result);
+      observeFieldClasses.call(this, host);
+      getValidationLifecycleState(this).hasLoaded = true;
       return componentWillLoad?.call(this);
     };
 
