@@ -58,8 +58,9 @@ export class PushCard {
   @Prop() variant: PushCardVariant = 'default';
 
   /**
-   * Show the card with an outline border.
+   * Show the card with outline chrome.
    * When omitted, outline chrome is used (`true`).
+   * When `false`, uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
    */

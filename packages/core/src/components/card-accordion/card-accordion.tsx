@@ -48,14 +48,14 @@ export class CardAccordion {
   @Prop() collapse = false;
 
   /**
-   * Accordion status variant (aligned with the parent card)
+   * Accordion status variant
    *
    * @since 4.0.0
    */
   @Prop() variant: CardAccordionVariant = 'default';
 
   /**
-   * Match the parent card outline mode.
+   * Show the accordion with outline chrome.
    * When omitted, outline chrome is used (`true`).
    * When `false`, uses filled accordion chrome.
    *

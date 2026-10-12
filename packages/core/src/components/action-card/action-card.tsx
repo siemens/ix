@@ -31,8 +31,9 @@ export class IxActionCard {
   @Prop() variant: ActionCardVariant = 'default';
 
   /**
-   * Show the card with an outline border.
+   * Show the card with outline chrome.
    * When omitted, outline chrome is used (`true`).
+   * When `false`, uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
    */
@@ -73,8 +74,9 @@ export class IxActionCard {
   @Prop() ariaLabelCard?: string;
 
   /**
-   * Enable pointer interaction. When `false`, the wrapping button is disabled.
-   * When omitted, the action card is clickable (`true`).
+   * Enable pointer interaction on the action card.
+   * When omitted, the card is clickable (`true`).
+   * When `false`, the wrapping button is disabled.
    *
    * @since 6.0.0
    */

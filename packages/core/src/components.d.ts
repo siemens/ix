@@ -141,7 +141,7 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Enable pointer interaction. When `false`, the wrapping button is disabled. When omitted, the action card is clickable (`true`).
+          * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
           * @since 6.0.0
          */
         "clickable"?: boolean;
@@ -155,7 +155,7 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
-          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -614,13 +614,13 @@ export namespace Components {
      */
     interface IxCard {
         /**
-          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable basic card).
+          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
           * @since 6.0.0
           * @default false
          */
         "clickable": boolean;
         /**
-          * Show the card with an outline border. When omitted, outline chrome is used (`true`). When `false`, the card uses a filled surface; status variants then show a top color strip.
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -652,12 +652,12 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * Match the parent card outline mode. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
+          * Show the accordion with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
           * @since 6.0.0
          */
         "outline"?: boolean;
         /**
-          * Accordion status variant (aligned with the parent card)
+          * Accordion status variant
           * @since 4.0.0
           * @default 'default'
          */
@@ -4176,7 +4176,7 @@ export namespace Components {
          */
         "notification"?: string;
         /**
-          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -8210,7 +8210,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Enable pointer interaction. When `false`, the wrapping button is disabled. When omitted, the action card is clickable (`true`).
+          * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
           * @since 6.0.0
          */
         "clickable"?: boolean;
@@ -8224,7 +8224,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
-          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -8710,13 +8710,13 @@ declare namespace LocalJSX {
      */
     interface IxCard {
         /**
-          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable basic card).
+          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
           * @since 6.0.0
           * @default false
          */
         "clickable"?: boolean;
         /**
-          * Show the card with an outline border. When omitted, outline chrome is used (`true`). When `false`, the card uses a filled surface; status variants then show a top color strip.
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -8749,12 +8749,12 @@ declare namespace LocalJSX {
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
         /**
-          * Match the parent card outline mode. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
+          * Show the accordion with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
           * @since 6.0.0
          */
         "outline"?: boolean;
         /**
-          * Accordion status variant (aligned with the parent card)
+          * Accordion status variant
           * @since 4.0.0
           * @default 'default'
          */
@@ -12494,7 +12494,7 @@ declare namespace LocalJSX {
          */
         "notification"?: string;
         /**
-          * Show the card with an outline border. When omitted, outline chrome is used (`true`).
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
          */
         "outline"?: boolean;

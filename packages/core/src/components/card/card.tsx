@@ -32,9 +32,9 @@ export class Card {
   @Prop() variant: StatusVariant = 'default';
 
   /**
-   * Show the card with an outline border.
+   * Show the card with outline chrome.
    * When omitted, outline chrome is used (`true`).
-   * When `false`, the card uses a filled surface; status variants then show a top color strip.
+   * When `false`, uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
    */
@@ -47,7 +47,7 @@ export class Card {
 
   /**
    * Enable pointer cursor and hover/active surface styles.
-   * Default is `false` (non-clickable basic card).
+   * Default is `false` (non-clickable).
    *
    * @since 6.0.0
    */
