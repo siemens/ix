@@ -349,6 +349,7 @@ export class DateInput
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.initialValue = this.value;
   }
 
   private updatePaddings() {
@@ -492,6 +493,7 @@ export class DateInput
             }
           }}
           onFocus={async () => {
+            this.initialValue = this.value;
             this.ixFocus.emit();
           }}
           onBlur={() => {

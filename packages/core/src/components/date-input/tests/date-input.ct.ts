@@ -147,6 +147,34 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'emits ixChange on blur only when the value changed',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveAttribute('hydrated');
+    const input = dateInputElement.locator('input');
+    const events = await recordEvents(dateInputElement, ['ixChange']);
+
+    await input.focus();
+    await input.blur();
+
+    await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+      el.value = '2024/06/06';
+    });
+    await expect(input).toHaveValue('2024/06/06');
+    await input.focus();
+    await input.blur();
+    expect(await events()).toEqual([]);
+
+    await input.fill('2024/07/07');
+    await input.blur();
+    await expect
+      .poll(events)
+      .toEqual([{ type: 'ixChange', detail: '2024/07/07' }]);
+  }
+);
+
 regressionTest('required', async ({ mount, page }) => {
   await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
@@ -537,9 +565,7 @@ regressionTest.describe('require confirmation', () => {
         await expect(dateInput.host.locator('input')).toHaveValue(
           formatDateTime(committed)
         );
-        expect(await events()).not.toContainEqual(
-          expect.objectContaining({ detail: formatDateTime(picked) })
-        );
+        expect(await events()).toEqual([]);
 
         await dateInput.open();
         await expect(dayCell(page, committed)).toHaveAttribute(

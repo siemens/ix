@@ -1320,7 +1320,7 @@ export namespace Components {
          */
         "from": string;
         /**
-          * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
+          * Retrieves the applied date range from the component. This method returns the applied date range as a `DateChangeEvent` object.  With `requireConfirmation`, a pending selection is not returned until it is confirmed. Listen to `dateRangeChange` to get every pick.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
@@ -1626,7 +1626,7 @@ export namespace Components {
          */
         "from": string | undefined;
         /**
-          * Get the currently selected date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Get the confirmed date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.  With `requireConfirmation`, a pending selection is not returned until it is confirmed. Listen to `dateChange` to get every pick.
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
         /**

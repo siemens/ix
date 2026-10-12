@@ -522,6 +522,14 @@ regressionTest.describe('require confirmation', () => {
           ),
         },
       ]);
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toMatchObject({
+        from: formatDateTime(initialFrom),
+        to: formatDateTime(initialTo),
+      });
     }
   );
 

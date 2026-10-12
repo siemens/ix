@@ -303,8 +303,11 @@ export class DateDropdown
   }
 
   /**
-   * Retrieves the currently selected date range from the component.
-   * This method returns the selected date range as a `DateChangeEvent` object.
+   * Retrieves the applied date range from the component.
+   * This method returns the applied date range as a `DateChangeEvent` object.
+   *
+   * With `requireConfirmation`, a pending selection is not returned until it is
+   * confirmed. Listen to `dateRangeChange` to get every pick.
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {

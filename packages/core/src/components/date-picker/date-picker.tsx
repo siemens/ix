@@ -350,9 +350,12 @@ export class DatePicker
   @Event() dateCancel!: EventEmitter<void>;
 
   /**
-   * Get the currently selected date or range. The object returned contains `from` and `to` properties
+   * Get the confirmed date or range. The object returned contains `from` and `to` properties
    * formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+   *
+   * With `requireConfirmation`, a pending selection is not returned until it is
+   * confirmed. Listen to `dateChange` to get every pick.
    */
   @Method()
   async getCurrentDate(): Promise<DateChangeEvent> {
