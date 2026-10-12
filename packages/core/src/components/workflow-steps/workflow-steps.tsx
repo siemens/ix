@@ -20,7 +20,10 @@ import {
 import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
- * @slot default - Workflow step items.
+ * Displays the steps of a workflow and the user's progress through them.
+ *
+ * @documentation https://ix.siemens.io//docs/components/workflow/code.md
+ * @slot - Workflow steps.
  */
 @Component({
   tag: 'ix-workflow-steps',
