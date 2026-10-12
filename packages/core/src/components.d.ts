@@ -3363,13 +3363,13 @@ export namespace Components {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
-          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
+          * ARIA label for the jump backward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump backward to Page 3"). Custom labels without `{page}` are used unchanged.
           * @since 6.0.0
           * @default 'Jump backward to {page}'
          */
         "ariaLabelJumpBackward": string;
         /**
-          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
+          * ARIA label for the jump forward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump forward to Page 9"). Custom labels without `{page}` are used unchanged.
           * @since 6.0.0
           * @default 'Jump forward to {page}'
          */
@@ -10644,13 +10644,13 @@ declare namespace LocalJSX {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
-          * ARIA label for the jump backward button. Overrides the default label "Jump backward to [Page] [target page]".
+          * ARIA label for the jump backward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump backward to Page 3"). Custom labels without `{page}` are used unchanged.
           * @since 6.0.0
           * @default 'Jump backward to {page}'
          */
         "ariaLabelJumpBackward"?: string;
         /**
-          * ARIA label for the jump forward button. Overrides the default label "Jump forward to [Page] [target page]".
+          * ARIA label for the jump forward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump forward to Page 9"). Custom labels without `{page}` are used unchanged.
           * @since 6.0.0
           * @default 'Jump forward to {page}'
          */
