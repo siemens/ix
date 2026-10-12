@@ -16,4 +16,5 @@
   --ix-key-value-content-label--min-width: calc(
     #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-spacing-x-40}
   );
+  --ix-key-value--border-width: #{sys.$si-sys-sizing-border-width-default};
 }

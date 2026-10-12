@@ -24,6 +24,7 @@ import { closestPassShadow } from '../utils/shadow-dom';
 /**
  * Header section with optional icon, title, additional items, and close button.
  *
+ * @documentation https://ix.siemens.io//docs/components/popover/guide.md
  * @slot default - Popover title (rendered as heading text).
  * @slot additional-items - Optional content beside the title (for example `ix-pill`).
  *

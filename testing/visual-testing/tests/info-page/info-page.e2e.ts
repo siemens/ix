@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest('info page', async ({ page }) => {
   await page.goto('info-page');
   const infoPage = page.locator('ix-info-page');
-  await expect(infoPage).toHaveClass(/\bhydrated\b/);
+  await expect(infoPage).toHaveAttribute('hydrated');
   await expect(infoPage.getByRole('button')).toBeVisible();
 
   expect(await infoPage.screenshot()).toMatchSnapshot();

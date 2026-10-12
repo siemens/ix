@@ -19,7 +19,7 @@ regressionTest.describe('workflow-steps', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('workflow-steps/overflow');
     const workflowSteps = page.locator('ix-workflow-steps');
-    await expect(workflowSteps).toHaveClass(/hydrated/);
+    await expect(workflowSteps).toHaveAttribute('hydrated');
 
     const stepItems = workflowSteps.locator('ix-workflow-step');
 

@@ -165,14 +165,14 @@ export declare interface IxBlind extends Components.IxBlind {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount']
+  inputs: ['ariaLabelNextButton', 'ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount']
 })
 @Component({
   selector: 'ix-breadcrumb',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount'],
+  inputs: ['ariaLabelNextButton', 'ariaLabelPreviousButton', 'enableTopLayer', 'nextItems', 'subtle', 'visibleItemCount'],
   outputs: ['itemClick', 'nextClick'],
   standalone: false
 })
@@ -1377,14 +1377,14 @@ export declare interface IxFlipTileContent extends Components.IxFlipTileContent 
 
 
 @ProxyCmp({
-  inputs: ['expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
+  inputs: ['ariaLabelExpand', 'ariaLabelSelect', 'expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection']
 })
 @Component({
   selector: 'ix-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
+  inputs: ['ariaLabelExpand', 'ariaLabelSelect', 'expandOnHeaderClick', 'expanded', 'header', 'index', 'selected', 'subHeader', 'suppressHeaderSelection'],
   outputs: ['selectGroup', 'selectItem', 'expandedChanged'],
   standalone: false
 })
@@ -2265,14 +2265,14 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
 
 
 @ProxyCmp({
-  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'itemCountOptions', 'selectedPage']
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelJumpBackward', 'ariaLabelJumpForward', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'i18nPagination', 'itemCount', 'itemCountOptions', 'selectedPage']
 })
 @Component({
   selector: 'ix-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'itemCountOptions', 'selectedPage'],
+  inputs: ['advanced', 'ariaLabelChevronLeftIconButton', 'ariaLabelChevronRightIconButton', 'ariaLabelJumpBackward', 'ariaLabelJumpForward', 'ariaLabelPageSelection', 'count', 'hideItemCount', 'i18nItems', 'i18nOf', 'i18nPage', 'i18nPagination', 'itemCount', 'itemCountOptions', 'selectedPage'],
   outputs: ['pageSelected', 'itemCountChanged'],
   standalone: false
 })

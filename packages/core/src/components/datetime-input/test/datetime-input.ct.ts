@@ -106,7 +106,7 @@ regressionTest('renders', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
   const dateTimeInputElement = page.locator('ix-datetime-input');
-  await expect(dateTimeInputElement).toHaveClass(/hydrated/);
+  await expect(dateTimeInputElement).toHaveAttribute('hydrated');
 });
 
 regressionTest('displays initial value correctly', async ({ mount, page }) => {
@@ -135,7 +135,7 @@ regressionTest(
       `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
     );
     const dateTimeInputElement = page.locator('ix-datetime-input');
-    await expect(dateTimeInputElement).toHaveClass(/hydrated/);
+    await expect(dateTimeInputElement).toHaveAttribute('hydrated');
 
     const dateTimeInput = await createAccessor(dateTimeInputElement);
     await dateTimeInput.openByCalendar();
@@ -212,7 +212,7 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
   const dateTimeInputElement = page.locator('ix-datetime-input');
-  await expect(dateTimeInputElement).toHaveClass(/hydrated/);
+  await expect(dateTimeInputElement).toHaveAttribute('hydrated');
 
   const input = dateTimeInputElement.getByRole('textbox');
   await input.fill('2025/10/10 14:30:45');
@@ -287,7 +287,7 @@ regressionTest('select date and time by focus', async ({ mount, page }) => {
     `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
   );
   const dateTimeInputElement = page.locator('ix-datetime-input');
-  await expect(dateTimeInputElement).toHaveClass(/hydrated/);
+  await expect(dateTimeInputElement).toHaveAttribute('hydrated');
 
   const dateTimeInput = await createAccessor(dateTimeInputElement);
   const input = dateTimeInputElement.getByRole('textbox');

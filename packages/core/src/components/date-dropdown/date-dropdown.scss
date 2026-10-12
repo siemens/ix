@@ -11,7 +11,6 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
 @use 'mixins/breakpoints';
-@use 'tokens/system' as sys;
 
 @use './date-dropdown.vars' as *;
 :host {
@@ -45,7 +44,8 @@
     }
 
     .btn:focus-visible {
-      outline: 1px solid var(--ix-date-dropdown--outline-color--focus);
+      outline: var(--ix-date-dropdown--outline-width--focus) solid
+        var(--ix-date-dropdown--outline-color--focus);
       outline-offset: var(--ix-date-dropdown--focus--outline-offset);
     }
 

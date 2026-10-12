@@ -9,7 +9,6 @@
 
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './tree-item.vars' as *;
 :host {
@@ -81,6 +80,6 @@
 }
 
 :host(.disabled) {
-  opacity: 0.5;
+  opacity: var(--ix-tree-item--opacity);
   pointer-events: none;
 }
