@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './chat.vars' as *;
 :host {
@@ -28,10 +27,10 @@
     flex: 1 1 auto;
     flex-direction: column;
     align-items: center;
-    gap: var(--theme-space-5);
+    gap: var(--ix-chat-messages--gap);
     min-height: 0;
     width: 100%;
-    padding: var(--theme-space-5);
+    padding: var(--ix-chat-messages--padding);
     box-sizing: border-box;
     overflow-y: auto;
   }
@@ -46,7 +45,7 @@
     display: none;
     flex: 0 0 auto;
     width: 100%;
-    padding: var(--theme-space-5);
+    padding: var(--ix-chat-prompt--padding);
     box-sizing: border-box;
   }
 

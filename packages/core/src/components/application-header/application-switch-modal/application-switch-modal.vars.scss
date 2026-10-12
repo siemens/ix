@@ -16,16 +16,20 @@
 
 :host {
   --ix-application-switch-modal-content--padding: #{sys.$si-sys-sizing-spacing-y-90};
+  --ix-application-switch-modal-content-apps--max-height: 50vh;
   --ix-application-switch-modal-content-apps--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-application-switch-modal-content-apps--gap: #{sys.$si-sys-sizing-spacing-x-80};
   --ix-application-switch-modal-loading--margin-right: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-switch-modal-app-entry--gap: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-application-switch-modal-app-entry--flex-basis: 45%;
+  --ix-application-switch-modal-app-entry--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-application-switch-modal-app-entry--padding: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - 0.0625rem
+    #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-application-switch-modal-app-entry--border-width)
   );
   --ix-application-switch-modal-app-entry--padding-inline-end: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} - 0.0625rem
+    #{sys.$si-sys-sizing-spacing-x-60} - var(--ix-application-switch-modal-app-entry--border-width)
   );
   --ix-application-switch-modal-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-switch-modal-app-icon--icon-size: #{sys.$si-sys-sizing-size-100};
+  --ix-application-switch-modal-app-icon--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
 }

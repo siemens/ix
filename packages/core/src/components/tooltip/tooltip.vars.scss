@@ -22,4 +22,7 @@
   --ix-tooltip-container--padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-50};
   --ix-tooltip-icon--margin: #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-20}
     #{sys.$si-sys-sizing-spacing-y-10} 0;
+  --ix-tooltip-container--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-tooltip-arrow--width: 12px;
+  --ix-tooltip-arrow--height: 12px;
 }

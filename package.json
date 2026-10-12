@@ -34,6 +34,8 @@
     "disable-telemetry": "turbo telemetry disable",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
     "ci:publish": "pnpm changeset publish",
+    "bundle:ix-search": "pnpm --filter registry run bundle:ix-search",
+    "check:ix-search": "pnpm --filter registry run check:ix-search",
     "ts-run": "tsx"
   },
   "dependencies": {

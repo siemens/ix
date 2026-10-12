@@ -15,7 +15,12 @@ import type {
 } from './typography.types';
 
 /**
- * @slot default - Text content.
+ * Applies consistent text styling based on the design system's typography scale.
+ *
+ * @documentation https://ix.siemens.io//docs/styles/typography/guide.md
+ * @figma-main-component-id 40211:13267
+ *
+ * @slot - Typography content.
  */
 @Component({
   tag: 'ix-typography',
@@ -27,13 +32,13 @@ export class IxTypography {
     alarm: '--si-sys-color-text-danger',
     'alarm-contrast': '--si-sys-color-text-on-danger',
     contrast: '--si-sys-color-text-primary',
-    'critical-contrast': '--si-sys-color-text-on-warning',
+    'critical-contrast': '--si-sys-color-text-on-critical',
     'info-contrast': '--si-sys-color-text-on-information',
     'inv-contrast': '--si-sys-color-text-inverse',
     'inv-soft': '--si-sys-color-text-inverse',
     'inv-std': '--si-sys-color-text-inverse',
     'inv-weak': '--si-sys-color-text-inverse',
-    'neutral-contrast': '--si-sys-color-text-primary',
+    'neutral-contrast': '--si-sys-color-text-on-neutral',
     'primary-contrast': '--si-sys-color-text-on-accent',
     soft: '--si-sys-color-text-secondary',
     std: '--si-sys-color-text-primary',

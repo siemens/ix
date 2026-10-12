@@ -8,7 +8,6 @@
  */
 
 @use './popover.vars' as *;
-@use 'tokens/system' as sys;
 :host {
   dialog.dialog {
     margin: 0;
@@ -33,7 +32,8 @@
     max-height: var(--ix-popover-container--max-height);
     background: var(--ix-popover--background);
     color: var(--ix-popover--color);
-    border: 1px solid var(--ix-popover--border-color);
+    border: var(--ix-popover-container--border-width) solid
+      var(--ix-popover--border-color);
     box-shadow: var(--ix-popover--box-shadow);
     border-radius: var(--ix-popover--border-radius);
     overflow: visible;
@@ -54,8 +54,8 @@
   .spike,
   .spike::before {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: var(--ix-popover-spike--width);
+    height: var(--ix-popover-spike--height);
     background: inherit;
   }
 

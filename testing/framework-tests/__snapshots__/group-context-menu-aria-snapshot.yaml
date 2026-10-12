@@ -1,3 +1,4 @@
-- img
-- text: Header text Subheader text
-- button "Context Menu"
+- main:
+  - button "Header text"
+  - button "Header text"
+  - button "Context Menu"

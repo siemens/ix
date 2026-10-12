@@ -15,8 +15,12 @@ import {
 } from '../utils/internal/mixins/id.mixin';
 
 /**
+ * Content region associated with a selected tab.
+ *
  * @internal
  * @since 5.0.0
+ *
+ * @slot - Tab panel content.
  * */
 @Component({
   tag: 'ix-tab-panel',
