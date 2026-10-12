@@ -30,6 +30,7 @@ test('renders application name as h1', async ({ mount, page }) => {
     name: 'Test Application',
   });
   await expect(heading).toBeVisible();
+  await expect(heading.locator('ix-typography')).toHaveCount(1);
 });
 
 test('does not render h1 when name is omitted', async ({ mount, page }) => {

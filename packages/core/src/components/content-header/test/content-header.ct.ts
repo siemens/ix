@@ -104,6 +104,7 @@ for (const { variant, expected, hasSecondaryClass } of variants) {
       const titleElement = page
         .locator('ix-content-header')
         .locator('h2.header-title');
+      await expect(titleElement.locator('ix-typography')).toHaveCount(1);
 
       if (hasSecondaryClass) {
         await expect(titleElement).toHaveClass(/\bsecondary\b/);

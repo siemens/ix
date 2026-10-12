@@ -86,7 +86,15 @@ export class ContentHeader {
                   truncate: this.textOverflow === 'ellipsis',
                 }}
               >
-                {this.headerTitle}
+                <ix-typography
+                  format={this.variant === 'secondary' ? 'h4' : 'h3'}
+                  class={{
+                    headerText: true,
+                    truncate: this.textOverflow === 'ellipsis',
+                  }}
+                >
+                  {this.headerTitle}
+                </ix-typography>
               </h2>
             )}
             <div class="headerSlot">

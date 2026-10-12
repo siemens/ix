@@ -33,14 +33,12 @@
     }
 
     .header-title {
-      font: var(--ix-content-header-title--font);
+      font: inherit;
 
       margin: 0;
       padding: 0;
 
       &.secondary {
-        font: var(--ix-content-header-secondary--font);
-
         padding: var(--ix-content-header-secondary--padding);
       }
     }
