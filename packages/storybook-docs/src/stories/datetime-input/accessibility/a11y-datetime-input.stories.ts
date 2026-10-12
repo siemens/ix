@@ -120,3 +120,14 @@ export const WithAriaLabel: Story = {
     ></ix-datetime-input>`;
   },
 };
+
+/**
+ * Datetime input that applies a selection only via the confirm button
+ */
+export const RequireConfirmation: Story = {
+  args: {
+    label: 'Date and time',
+    value: '2026/02/08 00:00:00',
+    requireConfirmation: true,
+  },
+};
