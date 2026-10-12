@@ -26,6 +26,7 @@ import {
   IxFormValidationState,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import { clearRadioGroupValidationState } from '../radio/radio-validation';
 
 /**
  * Groups related radio buttons so only one can be selected.
@@ -260,6 +261,19 @@ export class RadiobuttonGroup
     const nextRadio = radiobuttonElements[nextIndex];
     nextRadio.setCheckedState(true);
     nextRadio.focus();
+  }
+
+  @Method()
+  async clear(): Promise<void> {
+    this.touched = false;
+    this.radiobuttonElements.forEach((radio) => {
+      radio.clear();
+    });
+    this.clearValidationState();
+  }
+
+  private clearValidationState() {
+    clearRadioGroupValidationState(this.hostElement, this.radiobuttonElements);
   }
 
   render() {

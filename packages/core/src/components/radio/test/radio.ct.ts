@@ -196,3 +196,151 @@ regressionTest(
     await expect(radio).not.toHaveAttribute('disabled');
   }
 );
+
+test('should show invalid class when required radio is blurred without selection', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1" required></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+      <button type="button">Other</button>
+    </form>
+  `);
+
+  const radio1 = page.locator('ix-radio').nth(0);
+  await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+  await radio1.focus();
+  await page.locator('button').focus();
+
+  await expect(radio1).toHaveClass(/\bix-invalid--required\b/);
+  await expect(radio1).toHaveClass(/\bix-invalid\b/);
+});
+
+test('should not show invalid class before radio is touched', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1" required></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+    </form>
+  `);
+
+  const radio1 = page.locator('ix-radio').nth(0);
+  await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+  await expect(radio1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(radio1).not.toHaveClass(/\bix-invalid\b/);
+});
+
+test('should remove invalid class after selecting a radio', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1" required></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+      <button type="button">Other</button>
+    </form>
+  `);
+
+  const radio1 = page.locator('ix-radio').nth(0);
+  await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+  await radio1.focus();
+  await page.locator('button').focus();
+
+  await expect(radio1).toHaveClass(/\bix-invalid--required\b/);
+
+  await radio1.click();
+
+  await expect(radio1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(radio1).not.toHaveClass(/\bix-invalid\b/);
+});
+
+test('should not show invalid class when form has novalidate', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form novalidate>
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1" required></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+      <button type="button">Other</button>
+    </form>
+  `);
+
+  const radio1 = page.locator('ix-radio').nth(0);
+  await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+  await radio1.focus();
+  await page.locator('button').focus();
+
+  await expect(radio1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(radio1).not.toHaveClass(/\bix-invalid\b/);
+});
+
+test('should show invalid class on form submit when required and unchecked', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1" required></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+
+  const radio1 = page.locator('ix-radio').nth(0);
+  await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+  await page.locator('button[type="submit"]').click();
+
+  await expect(radio1).toHaveClass(/\bix-invalid--required\b/);
+  await expect(radio1).toHaveClass(/\bix-invalid\b/);
+});
+
+test('should not show invalid class on form submit when form has novalidate', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form novalidate>
+      <ix-radio-group>
+        <ix-radio label="Option 1" value="opt1" required></ix-radio>
+        <ix-radio label="Option 2" value="opt2"></ix-radio>
+      </ix-radio-group>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+
+  const radio1 = page.locator('ix-radio').nth(0);
+  await expect(radio1).toHaveClass(/\bhydrated\b/);
+
+  await page.locator('button[type="submit"]').click();
+
+  await expect(radio1).not.toHaveClass(/\bix-invalid--required\b/);
+  await expect(radio1).not.toHaveClass(/\bix-invalid\b/);
+});
