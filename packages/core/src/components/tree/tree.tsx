@@ -33,7 +33,10 @@ import {
 import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 
 /**
- * @slot default - Tree items.
+ * Displays hierarchical data as an expandable tree.
+ *
+ * @documentation https://ix.siemens.io//docs/components/tree/code.md
+ * @slot - Tree items.
  */
 @Component({
   tag: 'ix-tree',
@@ -181,7 +184,7 @@ export class Tree {
 
         const el = innerElement;
         el.setAttribute('data-tree-node-id', item.id);
-        el.style.paddingRight = '1rem';
+        el.style.paddingRight = 'var(--si-sys-sizing-spacing-x-60)';
         this.updatePadding(el, item);
 
         this.dirtyItems.delete(item.id);

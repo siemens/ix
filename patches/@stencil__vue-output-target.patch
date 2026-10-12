@@ -1,0 +1,36 @@
+diff --git a/dist/runtime.cjs.js b/dist/runtime.cjs.js
+index 8d1b57d..8aaa91b 100644
+--- a/dist/runtime.cjs.js
++++ b/dist/runtime.cjs.js
+@@ -247,4 +247,4 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+                 for (const key in props) {
+                     const value = props[key];
+-                    if (props.hasOwnProperty(key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
++                    if (Object.prototype.hasOwnProperty.call(props, key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
+                         navigationPayload[key] = value;
+@@ -285,5 +285,6 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+             for (const key in props) {
+                 const value = props[key];
+-                if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
++                const isAriaProp = key.startsWith(ARIA_PROP_PREFIX);
++                if (Object.prototype.hasOwnProperty.call(props, key) && value !== EMPTY_PROP && (!isAriaProp || value != null)) {
+                     propsToAdd[key] = value;
+                 }
+diff --git a/dist/runtime.js b/dist/runtime.js
+index 7efe4d9..4415241 100644
+--- a/dist/runtime.js
++++ b/dist/runtime.js
+@@ -245,4 +245,4 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+                 for (const key in props) {
+                     const value = props[key];
+-                    if (props.hasOwnProperty(key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
++                    if (Object.prototype.hasOwnProperty.call(props, key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
+                         navigationPayload[key] = value;
+@@ -283,5 +283,6 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+             for (const key in props) {
+                 const value = props[key];
+-                if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
++                const isAriaProp = key.startsWith(ARIA_PROP_PREFIX);
++                if (Object.prototype.hasOwnProperty.call(props, key) && value !== EMPTY_PROP && (!isAriaProp || value != null)) {
+                     propsToAdd[key] = value;
+                 }

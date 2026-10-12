@@ -14,9 +14,14 @@
     width: 100%;
     height: var(--ix-progress-indicator-height);
     background-color: var(--ix-progress-indicator-track--background);
-    border-radius: 2px;
+    border-radius: var(
+      --ix-progress-indicator-linear-progress-container--border-radius
+    );
     overflow: hidden;
-    margin: var(--ix-progress-indicator-margin, 0.5rem 0);
+    margin: var(
+      --ix-progress-indicator-margin,
+      var(--ix-progress-indicator-progress-container--margin)
+    );
   }
 
   @each $state in progress-vars.$progress-indicator-states {
@@ -36,6 +41,7 @@
   .progress-bar {
     height: 100%;
     background-color: var(--ix-progress-indicator-color);
-    transition: width 0.3s ease;
+    transition: width
+      var(--ix-progress-indicator-progress-bar--transition-duration) ease;
   }
 }

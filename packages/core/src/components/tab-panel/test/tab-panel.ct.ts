@@ -9,6 +9,22 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+      <ix-tab-set>
+        <ix-tabs active-tab-key="tab-1">
+          <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
+          <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
+        </ix-tabs>
+        <ix-tab-panel tab-key="tab-1">Panel one</ix-tab-panel>
+        <ix-tab-panel tab-key="tab-2">Panel two</ix-tab-panel>
+      </ix-tab-set>
+    `);
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('should render with role tabpanel', async ({ mount, page }) => {
   await mount(`
       <ix-tab-set>
@@ -20,7 +36,7 @@ regressionTest('should render with role tabpanel', async ({ mount, page }) => {
     `);
 
   const panel = page.locator('ix-tab-panel');
-  await expect(panel).toHaveClass(/\bhydrated\b/);
+  await expect(panel).toHaveAttribute('hydrated');
   await expect(panel).toHaveAttribute('role', 'tabpanel');
 });
 

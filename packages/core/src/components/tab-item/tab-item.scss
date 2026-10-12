@@ -54,19 +54,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 20px;
-  font-size: 14px;
-  font-weight: bold;
+  font: var(--ix-tab-item--font);
   background-color: var(--ix-tab-item--background);
   color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
 
-  height: 2.5rem;
-  min-height: 2.5rem;
-  max-height: 2.5rem;
+  height: var(--ix-tab-item--size-size);
+  min-height: var(--ix-tab-item--min-height);
+  max-height: var(--ix-tab-item--max-height);
 
-  padding: 0.0625rem 1.5rem;
-  gap: 0.5rem;
+  padding: var(--ix-tab-item--padding);
+  gap: var(--ix-tab-item--gap);
 
   @include component.ix-component;
 
@@ -89,11 +87,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    width: 3rem;
+    height: var(--ix-tab-item-circle--height);
+    width: var(--ix-tab-item-circle--width);
     background-color: var(--ix-tab-item-animated-circle--background);
     border-radius: 50%;
-    border: 2px solid var(--ix-tab-item-animated-circle--border-color);
+    border: var(--ix-tab-item-circle--border-width) solid
+      var(--ix-tab-item-animated-circle--border-color);
     color: var(--ix-tab-item-animated-icon--color);
     cursor: pointer;
 
@@ -109,19 +108,19 @@
   .counter {
     position: absolute;
     z-index: 1;
-    height: 16px;
+    height: var(--ix-tab-item-counter--height);
     width: auto;
     background-color: var(--ix-tab-item-pill--background);
-    border: 1px solid var(--ix-tab-item-pill--border-color);
-    border-radius: 100px;
-    bottom: 6px;
+    border: var(--ix-tab-item-counter--border-width) solid
+      var(--ix-tab-item-pill--border-color);
+    border-radius: var(--ix-tab-item-counter--border-radius);
+    bottom: var(--ix-tab-item-counter--bottom);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    font-size: 12px;
-    line-height: 14px;
+    padding-left: var(--ix-tab-item-counter--padding-left);
+    padding-right: var(--ix-tab-item-counter--padding-right);
+    font: var(--ix-tab-item-pill--font);
     color: var(--ix-tab-item-pill-outline--color);
     cursor: pointer;
 
@@ -145,9 +144,9 @@
 }
 
 :host(.circle) {
-  height: 4.5rem;
-  min-height: 4.5rem;
-  max-height: 4.5rem;
+  height: var(--ix-tab-item-circle--height--circle);
+  min-height: var(--ix-tab-item-circle--min-height);
+  max-height: var(--ix-tab-item-circle--max-height);
 }
 
 :host(.stretched) {
@@ -170,7 +169,7 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: var(--ix-tab-item-indicator--height);
     background-color: var(--ix-tab-item-indicator--background--selected);
   }
 
@@ -233,31 +232,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0.5rem;
+  padding: var(--ix-tab-item-icon-only--padding);
 }
 
 :host(.small-tab) {
-  height: 2rem;
-  min-height: 2rem;
-  max-height: 2rem;
-  padding: 1rem;
+  height: var(--ix-tab-item-small-tab--height);
+  min-height: var(--ix-tab-item-small-tab--min-height);
+  max-height: var(--ix-tab-item-small-tab--max-height);
+  padding: var(--ix-tab-item-small-tab--padding);
 }
 
 :host(.small-tab.icon) {
-  padding: 1rem 0.25rem;
+  padding: var(--ix-tab-item-icon--padding);
 }
 
 :host(:not(.circle):focus-visible) {
-  outline-offset: -0.0625rem;
-  outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
+  outline-offset: var(--ix-tab-item-circle--outline-offset);
+  outline: var(--ix-tab-item--outline-width--focus) solid
+    var(--ix-tab-item--outline-color--focus);
 }
 
 :host(.circle:focus-visible) {
   outline: none;
 
   .circle {
-    outline-offset: 0.125rem;
-    outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
+    outline-offset: var(--ix-tab-item-circle--outline-offset--focus);
+    outline: var(--ix-tab-item--outline-width--focus) solid
+      var(--ix-tab-item--outline-color--focus);
   }
 }
 

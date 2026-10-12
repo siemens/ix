@@ -7,6 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'tokens/system' as sys;
+
 :host {
   --ix-toast-container--z-index: var(--theme-z-index-toast);
+}
+
+:host {
+  --ix-toast-container--margin-block-end: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-toast-container-top-right--right: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-toast-container-top-right--top: #{sys.$si-sys-sizing-spacing-y-90};
+  --ix-toast-container-bottom-right--right: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-toast-container-bottom-right--bottom: #{sys.$si-sys-sizing-spacing-y-90};
 }

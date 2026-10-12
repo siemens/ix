@@ -7,13 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './modal-footer.vars' as *;
 :host {
   display: flex;
-  padding: 0.5rem;
+  padding: var(--ix-modal-footer--padding);
   justify-content: flex-end;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--ix-modal-footer--gap);
   align-self: stretch;
 
   @include component.ix-component;

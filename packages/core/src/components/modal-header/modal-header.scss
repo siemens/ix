@@ -8,12 +8,14 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './modal-header.vars' as *;
 :host {
   display: flex;
-  padding: 0.5rem 0 0.5rem 0.5rem;
+  padding: var(--ix-modal-header--padding);
   align-items: center;
-  gap: 1rem;
+  gap: var(--ix-modal-header--gap);
 
   @include component.ix-component;
 

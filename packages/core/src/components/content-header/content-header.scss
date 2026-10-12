@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './content-header.vars' as *;
 :host {
   display: flex;
   flex-direction: row;
@@ -18,7 +19,7 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    margin-right: 0.5rem;
+    margin-right: var(--ix-content-header-title-group--margin-right);
 
     .headerText {
       min-width: 0;
@@ -42,21 +43,21 @@
         display: inline-flex;
         flex: 0 0 auto;
         align-self: flex-start;
-        margin-left: 0.5rem;
+        margin-left: var(--ix-content-header-header-slot--margin-left);
       }
     }
 
     .secondary {
-      padding: 0.25rem 0;
+      padding: var(--ix-content-header-secondary--padding);
     }
   }
 
   .subtitle {
-    margin-top: -0.125rem;
+    margin-top: var(--ix-content-header-subtitle--margin-top);
   }
 
   .backButton {
-    margin-right: 0.5rem;
+    margin-right: var(--ix-content-header-back-button--margin-right);
   }
 
   .buttons {

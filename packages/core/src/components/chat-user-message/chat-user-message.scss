@@ -23,11 +23,11 @@
 
   .message {
     width: fit-content;
-    min-width: max(15.375rem, 45%);
-    max-width: 80%;
+    min-width: var(--ix-chat-user-message-message--min-width);
+    max-width: var(--ix-chat-user-message-message--max-width);
     box-sizing: border-box;
-    padding: var(--theme-space-2) var(--theme-space-3);
-    border-radius: var(--theme-default-border-radius);
+    padding: var(--ix-chat-user-message-message--padding);
+    border-radius: var(--ix-chat-user-message-message--border-radius);
     background-color: var(--ix-chat-user-message--background);
     color: var(--ix-chat-user-message--color);
   }
@@ -36,22 +36,28 @@
     display: none;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: var(--theme-space-1) 0;
+    gap: var(--ix-chat-user-message-attachments--gap) 0;
     width: 100%;
-    max-width: 75%;
-    margin-bottom: var(--theme-space-1);
+    max-width: var(--ix-chat-user-message-attachments--max-width);
+    margin-bottom: var(--ix-chat-user-message-attachments--margin-bottom);
     overflow: hidden;
   }
 
   .attachments ::slotted(ix-chat-attachment) {
-    flex: 0 1 6.375rem;
-    padding-left: var(--theme-space-1);
+    flex: var(--ix-chat-user-message-attachments--flex);
+    padding-left: var(--ix-chat-user-message-attachments--padding-left);
   }
 
   .attachment-overflow {
-    margin-bottom: var(--theme-space-1);
-    --ix-dropdown-button-border-radius-left: var(--theme-small-border-radius);
-    --ix-dropdown-button-border-radius-right: var(--theme-small-border-radius);
+    margin-bottom: var(
+      --ix-chat-user-message-attachment-overflow--margin-bottom
+    );
+    --ix-dropdown-button-border-radius-left: var(
+      --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-left
+    );
+    --ix-dropdown-button-border-radius-right: var(
+      --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-right
+    );
   }
 
   .message-text {
@@ -64,9 +70,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: var(--theme-space-1);
-    min-height: 2rem;
-    margin-top: var(--theme-space-1);
+    gap: var(--ix-chat-user-message-actions--gap);
+    min-height: var(--ix-chat-user-message-actions--min-height);
+    margin-top: var(--ix-chat-user-message-actions--margin-top);
 
     @include action.animate-action;
   }
@@ -86,8 +92,9 @@
   outline: none;
 
   .message {
-    outline: 1px solid var(--ix-chat-user-message--outline-color--focus);
-    outline-offset: var(--theme-focus-outline-offset);
+    outline: var(--ix-chat-user-message--outline-width--focus) solid
+      var(--ix-chat-user-message--outline-color--focus);
+    outline-offset: var(--ix-chat-user-message-message--outline-offset);
   }
 }
 

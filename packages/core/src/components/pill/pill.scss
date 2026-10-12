@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
 @use './../chip/chip-mixin';
 
@@ -14,13 +15,13 @@
 :host {
   display: inline-block;
   position: relative;
-  height: 1.25rem;
-  max-height: 1.25rem;
+  height: var(--ix-pill--height);
+  max-height: var(--ix-pill--max-height);
 
   @include component.ix-component;
 }
 
-@include chip-mixin.chip-container(false, 0.5rem);
+@include chip-mixin.chip-container(false, var(--ix-pill--padding-inline));
 
 :host {
   .container {
@@ -34,21 +35,21 @@
     &.outline {
       background-color: var(--ix-pill-outline--background);
       &.icon {
-        padding-left: 0.4375rem;
-        padding-right: 0.4375rem;
+        padding-left: var(--ix-pill-outline-icon--padding-left);
+        padding-right: var(--ix-pill-outline-icon--padding-right);
       }
     }
 
     &:not(.outline) {
       &.icon {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding-left: var(--ix-pill-solid-icon--padding-left);
+        padding-right: var(--ix-pill-solid-icon--padding-right);
       }
     }
   }
 
   .with-gap {
-    gap: 0.25rem;
+    gap: var(--ix-pill-with-gap--gap);
   }
 }
 

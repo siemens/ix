@@ -257,6 +257,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
         visibleItemCount: 'visible-item-count',
         subtle: 'subtle',
         ariaLabelPreviousButton: 'aria-label-previous-button',
+        ariaLabelNextButton: 'aria-label-next-button',
         enableTopLayer: 'enable-top-layer'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
@@ -295,6 +296,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents, Co
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
+        inert: 'inert',
         form: 'form',
         icon: 'icon',
         iconRight: 'icon-right',
@@ -839,6 +841,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
         disableFocusTrap: 'disable-focus-trap',
         enableTopLayer: 'enable-top-layer',
         focusCheckedItem: 'focus-checked-item',
+        navigationMode: 'navigation-mode',
         discoverAllSubmenus: 'discover-all-submenus',
         ignoreRelatedSubmenu: 'ignore-related-submenu',
         suppressOverflowBehavior: 'suppress-overflow-behavior',
@@ -865,6 +868,7 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
         placement: 'placement',
         ariaLabelDropdownButton: 'aria-label-dropdown-button',
         focusCheckedItem: 'focus-checked-item',
+        navigationMode: 'navigation-mode',
         enableTopLayer: 'enable-top-layer',
         suppressAriaActiveDescendant: 'suppress-aria-active-descendant'
     },
@@ -1054,7 +1058,9 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents, Compo
         expanded: 'expanded',
         selected: 'selected',
         index: 'index',
-        expandOnHeaderClick: 'expand-on-header-click'
+        expandOnHeaderClick: 'expand-on-header-click',
+        ariaLabelSelect: 'aria-label-select',
+        ariaLabelExpand: 'aria-label-expand'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxGroup as StencilReactComponent<IxGroupElement, IxGroupEvents, Components.IxGroup>,
@@ -1120,7 +1126,8 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
         iconColor: 'icon-color',
         disabled: 'disabled',
         type: 'type',
-        loading: 'loading'
+        loading: 'loading',
+        inert: 'inert'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconButton as StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>,
@@ -1406,7 +1413,8 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
         label: 'label',
         icon: 'icon',
         notifications: 'notifications',
-        tooltipText: 'tooltip-text'
+        tooltipText: 'tooltip-text',
+        disableTooltip: 'disable-tooltip'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMenuCategory as StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents, Components.IxMenuCategory>,
@@ -1426,6 +1434,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         active: 'active',
         disabled: 'disabled',
         tooltipText: 'tooltip-text',
+        disableTooltip: 'disable-tooltip',
         href: 'href',
         target: 'target',
         rel: 'rel',

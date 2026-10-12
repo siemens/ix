@@ -26,9 +26,14 @@ import { FlipTileVariant } from './flip-tile.types';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @slot header - Content displayed in the tile header.
- * @slot default - Flip tile pages.
- * @slot footer - Content displayed in the tile footer.
+ * Tile that flips between a front and back side to reveal additional content.
+ *
+ * @documentation https://ix.siemens.io//docs/components/flip/code.md
+ * @figma-main-component-id 407:3446
+ *
+ * @slot header - Header content.
+ * @slot - Front-side content.
+ * @slot footer - Back-side content.
  */
 @Component({
   tag: 'ix-flip-tile',
@@ -203,7 +208,7 @@ export class FlipTile {
       >
         <div class="flip-tile-container">
           <div class="flip-tile-header">
-            <div class="header-slot-container text-l-title">
+            <div class="header-slot-container">
               <slot name="header"></slot>
             </div>
             <ix-icon-button

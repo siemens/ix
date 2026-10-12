@@ -15,6 +15,7 @@ import { a11yBoolean } from '../utils/a11y';
  * A page layout for communicating information or errors and guiding users
  * towards a solution.
  *
+ * @figma-main-component-id 145668:12518
  * @slot image - An optional illustration or custom icon replacing the default icon.
  * @slot actions - Optional actions related to the message.
  *

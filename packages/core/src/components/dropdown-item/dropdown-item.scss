@@ -11,9 +11,9 @@
 @use 'mixins/hover';
 
 @use './dropdown-item.vars' as *;
-$itemPadding: 0.5rem;
-$itemPaddingRight: 1.5rem;
-$focusBorder: 0.0625rem;
+$itemPadding: var(--ix-dropdown-item--item-padding);
+$itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
+$focusBorder: var(--ix-dropdown-item--border-width--focus);
 
 @mixin applyItemWidth($padding, $paddingRight) {
   width: calc(100% - #{$padding} - #{$paddingRight});
@@ -27,7 +27,7 @@ $focusBorder: 0.0625rem;
   flex-direction: row;
 
   position: relative;
-  height: 2.5rem;
+  height: var(--ix-dropdown-item--height);
   width: auto;
   overflow: hidden;
   cursor: pointer;
@@ -40,7 +40,7 @@ $focusBorder: 0.0625rem;
     flex-direction: row;
     align-items: center;
     position: relative;
-    height: calc(100% - 2px);
+    height: var(--ix-dropdown-item--inner-height);
     border: $focusBorder solid transparent;
     white-space: nowrap;
 
@@ -48,7 +48,10 @@ $focusBorder: 0.0625rem;
   }
 
   .dropdown-item.no-checked-field {
-    @include applyItemWidth(1rem, $itemPaddingRight);
+    @include applyItemWidth(
+      var(--ix-dropdown-item-no-checkmark--padding-inline-start),
+      $itemPaddingRight
+    );
   }
 
   .dropdown-item-checked {
@@ -57,15 +60,19 @@ $focusBorder: 0.0625rem;
     justify-content: center;
     position: relative;
     height: 100%;
-    width: 1rem;
-    min-width: 1rem;
-    margin-right: 0.5rem;
+    width: var(--ix-dropdown-item-checked--width);
+    min-width: var(--ix-dropdown-item-checked--min-width);
+    margin-right: var(--ix-dropdown-item-checked--margin-right);
 
     color: var(--ix-dropdown-item-checkmark--color);
   }
 
   .dropdown-item-icon {
-    margin-right: 0.5rem;
+    block-size: var(--ix-dropdown-item-icon--icon-size);
+    inline-size: var(--ix-dropdown-item-icon--icon-size);
+    margin-right: var(--ix-dropdown-item-icon--margin-right);
+    min-block-size: var(--ix-dropdown-item-icon--icon-size);
+    min-inline-size: var(--ix-dropdown-item-icon--icon-size);
     color: var(--ix-dropdown-item-icon--color);
   }
 
@@ -84,7 +91,7 @@ $focusBorder: 0.0625rem;
 
 :host(.icon-only) {
   .dropdown-item-icon {
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   .dropdown-item-checked {
@@ -92,13 +99,19 @@ $focusBorder: 0.0625rem;
   }
 
   .dropdown-item {
-    @include applyItemWidth(0.5rem, 0.5rem);
+    @include applyItemWidth(
+      var(--ix-dropdown-item-icon-only--padding-inline),
+      var(--ix-dropdown-item-icon-only--padding-inline)
+    );
   }
 }
 
 :host(.submenu) {
   .dropdown-item {
-    @include applyItemWidth($itemPadding, 0.5rem);
+    @include applyItemWidth(
+      $itemPadding,
+      var(--ix-dropdown-item-submenu--padding-inline-end)
+    );
   }
 }
 
@@ -130,8 +143,9 @@ $focusBorder: 0.0625rem;
 }
 
 :host(.outline-visible) {
-  outline: 0.0625rem solid var(--ix-dropdown-item--outline-color--focus);
-  outline-offset: -0.0625rem;
+  outline: var(--ix-dropdown-item--outline-width--focus) solid
+    var(--ix-dropdown-item--outline-color--focus);
+  outline-offset: var(--ix-dropdown-item-outline-visible--outline-offset);
 }
 
 :host([hidden]) {

@@ -54,7 +54,7 @@
   .slot-header-content {
     display: inline-block;
     position: relative;
-    max-height: 2rem;
+    max-height: var(--ix-pane-slot-header-content--max-height);
   }
 
   .title-text {
@@ -193,13 +193,13 @@
   }
 
   .slot-header {
-    max-height: 2rem;
+    max-height: var(--ix-pane-slot-header--max-height);
     max-width: unset;
   }
 
   .slot-header.rotate {
     max-height: unset;
-    max-width: 2rem;
+    max-width: var(--ix-pane-rotate--max-width);
   }
 }
 
@@ -230,10 +230,10 @@
 :host(.mobile-overlay) {
   width: 100%;
   position: absolute;
-  z-index: 100 !important;
+  z-index: var(--ix-pane-mobile-overlay--z-index) !important;
 
   .side-pane-content {
-    height: calc(100% - 2.5rem);
+    height: var(--ix-pane-side-pane-content--height);
   }
 }
 

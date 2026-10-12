@@ -10,6 +10,8 @@
 import { Component, Host, State, h } from '@stencil/core';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/chat/guide.md
+ * @figma-main-component-id 133528:33258
  * @since 5.2.0
  * @slot - Chat messages, for example ix-chat-user-message and ix-chat-ai-message
  * @slot prompt - Chat input displayed below the chat messages

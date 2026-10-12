@@ -11,6 +11,7 @@ export const IxBreadcrumb: StencilVueComponent<JSX.IxBreadcrumb> = /*@__PURE__*/
   'nextItems',
   'subtle',
   'ariaLabelPreviousButton',
+  'ariaLabelNextButton',
   'enableTopLayer',
   'itemClick',
   'nextClick'

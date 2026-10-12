@@ -37,7 +37,12 @@ export type ButtonVariant =
   | `${BaseButtonStyle}-${BaseButtonVariant}`;
 
 /**
- * @slot default - Button label.
+ * Triggers an action or event when activated by the user.
+ *
+ * @documentation https://ix.siemens.io//docs/components/button/guide.md
+ * @figma-main-component-id 225:5535
+ *
+ * @slot - Button label.
  */
 @Component({
   tag: 'ix-button',
@@ -69,6 +74,13 @@ export class Button
    * Loading button
    */
   @Prop() loading: boolean = false;
+
+  /**
+   * @internal
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
+  @Prop({ reflect: true }) inert = false;
 
   /**
    * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
@@ -200,6 +212,7 @@ export class Button
       iconRight: this.iconRight,
       iconSize: this.iconSize,
       loading: this.loading,
+      inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,

@@ -1,9 +1,12 @@
+@use 'tokens/system' as sys;
+
+@use './layout-auto.vars' as *;
 :host {
   display: block;
   position: relative;
-  margin: 0 0.75rem;
+  margin: var(--ix-layout-auto--margin);
 
-  --ix-layout-grid-gap: 1.5rem;
+  --ix-layout-grid-gap: var(--ix-layout-auto--layout-grid-gap);
 
   .container {
     display: flex;

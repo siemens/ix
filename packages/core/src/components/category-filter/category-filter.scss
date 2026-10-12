@@ -7,17 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use '../button/button';
-@use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
-@use 'mixins/input';
+@use '../input/input-control.mixins' as input;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
 
 @use './category-filter-dropdown-item' as dropdown-item;
-@use './category-filter.vars' as *;
+@use './category-filter.vars';
 :host {
   display: block;
   position: relative;
@@ -27,8 +25,8 @@
 
   .reset-button {
     position: absolute;
-    top: vars.$tiny-space;
-    right: vars.$tiny-space;
+    top: var(--ix-category-filter-reset-button--top);
+    right: var(--ix-category-filter-reset-button--right);
   }
 
   .reset-button.hide-reset-button {
@@ -36,47 +34,39 @@
   }
 
   .input-container {
-    $padding-with-icon: 1px vars.$large-space 1px 1.75rem;
-    $padding-no-icon: 1px vars.$large-space 1px vars.$tiny-space;
-
     &:not(.readonly) {
-      &:not(.no-icon) {
-        @include input.element-input(false, $padding-with-icon);
-      }
-      &.no-icon {
-        @include input.element-input(false, $padding-no-icon);
-      }
+      @include input.element-input($feature-read-only: false);
     }
 
     &.readonly {
-      &:not(.no-icon) {
-        @include input.element-input(true, $padding-with-icon);
-      }
-      &.no-icon {
-        @include input.element-input(true, $padding-no-icon);
-      }
+      @include input.element-input;
+    }
+
+    &:not(.no-icon) {
+      padding: var(--ix-category-filter-input-container--padding-with-icon);
+    }
+
+    &.no-icon {
+      padding: var(--ix-category-filter-input-container--padding-no-icon);
     }
 
     &:not(.readonly):not(.disabled):hover {
-      border-color: var(--ix-category-filter--border-color--hover) !important;
-      background-color: var(--ix-category-filter--background--hover);
+      @include input.element-input-hover;
     }
 
     &:not(.readonly):not(.disabled).focus {
-      outline: 1px solid var(--ix-category-filter--outline-color--focus);
-      outline-offset: var(--ix-category-filter--focus--outline-offset);
-      border-color: var(--ix-category-filter--border-color--focus) !important;
+      @include input.element-input-focus;
     }
 
     &.disabled {
-      color: var(--ix-category-filter--color--disabled);
-      border-bottom: var(--ix-category-filter--border-width, 1px) solid
-        var(--ix-category-filter--border-color-bottom--disabled);
+      color: var(--ix-input--color--disabled);
+      border-bottom: var(--ix-input--border-width) solid
+        var(--ix-input--border-color--disabled);
     }
 
     display: flex;
     height: auto;
-    max-height: 3.75rem;
+    max-height: var(--ix-category-filter-input-container--max-height);
   }
 
   .token-container {
@@ -86,18 +76,18 @@
 
   .text-input {
     width: auto;
-    height: 1.75rem;
-    min-height: vars.$large-space;
+    height: var(--ix-category-filter-text-input--height);
+    min-height: var(--ix-category-filter-text-input--min-height);
     background: transparent;
+    color: inherit;
     flex-grow: 1;
-    box-shadow: none;
 
     @include text-truncation.ellipsis;
-    @include legacy-fonts.text-default;
+    @include fonts.typography-body;
 
     &::placeholder {
-      @include fonts.typography-label;
-      color: var(--ix-category-filter-placeholder--color);
+      @include fonts.typography-body;
+      color: var(--ix-input-hint--color);
     }
 
     &,
@@ -121,24 +111,32 @@
   }
 
   ix-icon {
+    block-size: var(--ix-category-filter-icon--icon-size);
+    inline-size: var(--ix-category-filter-icon--icon-size);
+    min-block-size: var(--ix-category-filter-icon--icon-size);
+    min-inline-size: var(--ix-category-filter-icon--icon-size);
     position: absolute;
-    top: vars.$small-space;
-    left: vars.$small-space;
+    top: var(--ix-category-filter-icon--top);
+    left: var(--ix-category-filter-icon--left);
   }
 
   ix-filter-chip {
-    margin-right: vars.$tiny-space;
+    margin-right: var(--ix-category-filter--margin-right);
   }
 
   .category-preview {
     display: flex;
     align-items: center;
-    height: vars.$large-space;
+    height: var(--ix-category-filter-category-preview--height);
     background-color: var(--ix-category-filter-category-preview--background);
-    border-top-left-radius: vars.$default-space;
-    border-bottom-left-radius: vars.$default-space;
-    padding: vars.$small-space;
-    margin: 2px 0;
+    border-top-left-radius: var(
+      --ix-category-filter-category-preview--border-top-left-radius
+    );
+    border-bottom-left-radius: var(
+      --ix-category-filter-category-preview--border-bottom-left-radius
+    );
+    padding: var(--ix-category-filter-category-preview--padding);
+    margin: var(--ix-category-filter-category-preview--margin) 0;
   }
 
   ul {
@@ -148,14 +146,14 @@
   .list-unstyled > span:not(.category-preview),
   input {
     padding-inline-start: 0;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: var(--ix-category-filter-list-unstyled--padding-top);
+    padding-bottom: var(--ix-category-filter-list-unstyled--padding-bottom);
   }
 
   ix-dropdown {
-    min-width: 10rem !important;
+    min-width: var(--ix-category-filter--min-width) !important;
 
-    @include legacy-fonts.text-default-single;
+    @include fonts.typography-body;
 
     .dropdown-item-container {
       display: flex;
@@ -164,24 +162,25 @@
       .dropdown-header {
         display: flex;
         align-items: center;
-        height: vars.$large-control-height;
+        height: var(--ix-category-filter-dropdown-header--height);
         color: var(--ix-category-filter-header--color);
-        padding: 0 vars.$default-space;
+        padding: var(--ix-category-filter-dropdown-header--padding);
       }
 
       .dropdown-item {
         @include dropdown-item.dropdown-item;
 
-        height: vars.$large-control-height;
-        margin: vars.$tiny-space vars.$small-space;
-        padding-inline: vars.$small-space;
-        border: 1px solid transparent;
-        border-radius: 100rem;
+        height: var(--ix-category-filter-dropdown-item--height);
+        margin: var(--ix-category-filter-dropdown-item--margin);
+        padding-inline: var(--ix-category-filter-dropdown-item--padding-inline);
+        border: var(--ix-category-filter-dropdown-item--border-width) solid
+          transparent;
+        border-radius: var(--ix-category-filter-dropdown-item--border-radius);
         width: auto;
         justify-content: flex-start;
         flex-grow: 1;
 
-        @include legacy-fonts.text-default-single;
+        @include fonts.typography-body;
         @include text-truncation.ellipsis;
         @include hover.focus-visible {
           border-color: var(
@@ -202,9 +201,11 @@
     }
 
     .btn-toggle-operator {
-      width: 2rem;
-      height: 2rem;
-      margin-inline: vars.$small-space;
+      width: var(--ix-category-filter-button-toggle-operator--width);
+      height: var(--ix-category-filter-button-toggle-operator--height);
+      margin-inline: var(
+        --ix-category-filter-button-toggle-operator--margin-inline
+      );
     }
   }
 
@@ -215,7 +216,6 @@
 
 :host(.active:not(.disabled)) {
   .input-container:not(.readonly):not(.disabled) {
-    border-color: var(--ix-category-filter--border-color--hover) !important;
-    background-color: var(--ix-category-filter--background--hover);
+    @include input.element-input-hover;
   }
 }

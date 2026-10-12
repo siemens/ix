@@ -10,6 +10,12 @@
 import { iconAlarm, iconWarning } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
+/**
+ * Displays a key performance indicator with a label, value, and status.
+ *
+ * @documentation https://ix.siemens.io//docs/components/kpi/code.md
+ * @figma-main-component-id 423:3986
+ */
 @Component({
   tag: 'ix-kpi',
   styleUrl: 'kpi.scss',
