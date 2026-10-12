@@ -30,6 +30,7 @@
     "scss/",
     "hydrate/",
     "api-docs/",
+    "tokens/",
     "component-doc.json"
   ],
   "exports": {
