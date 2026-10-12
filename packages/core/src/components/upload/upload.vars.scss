@@ -14,13 +14,13 @@
   --ix-upload-success-icon--color: #{sys.$si-sys-color-text-success};
   --ix-upload--border-color: #{sys.$si-sys-color-border-3};
   --ix-upload--border-color--dragover: #{sys.$si-sys-color-border-accent-hover};
-  --ix-upload--border-radius: var(--theme-default-border-radius);
   --ix-upload-text--color: #{sys.$si-sys-color-text-primary};
   --ix-upload-text--color--checking: #{sys.$si-sys-color-text-primary};
   --ix-upload-text--color--disabled: #{sys.$si-sys-color-text-disabled};
 }
 
 :host {
+  --ix-upload--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-upload--min-height: #{sys.$si-sys-sizing-size-110};
   --ix-upload--height: #{sys.$si-sys-sizing-size-110};
   --ix-upload-file-upload-area--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
@@ -33,4 +33,10 @@
   --ix-upload-state--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-upload-icon--icon-size: #{sys.$si-sys-sizing-icon-lg};
   --ix-upload-icon--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-upload-file-upload-area--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-upload-glyph--margin-block-start: calc(
+    #{sys.$si-sys-sizing-spacing-y-10} * 1.5
+  );
+  --ix-upload-loader--font-size: 0.937rem;
+  --ix-upload-loader--animation-duration: 1.1s;
 }

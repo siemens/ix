@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 @use 'mixins/shadow-dom/component';
 @use './../card/card.vars' as card-vars;
 
@@ -38,7 +37,8 @@
     justify-content: flex-start;
 
     @include hover.focus-visible {
-      outline: 1px solid var(--ix-card-accordion--outline-color--focus);
+      outline: var(--ix-card-accordion--outline-width--focus) solid
+        var(--ix-card-accordion--outline-color--focus);
       outline-offset: var(--ix-card-accordion--focus--outline-offset);
     }
   }

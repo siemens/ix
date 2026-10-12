@@ -10,7 +10,6 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-menu-avatar-button--transition-duration: var(--theme-default-time);
   --ix-menu-avatar-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-menu-avatar-button--background--active: #{sys.$si-sys-color-background-selected};
   --ix-menu-avatar-button--background--hover: #{sys.$si-sys-color-background-hover};
@@ -20,6 +19,7 @@
 }
 
 :host {
+  --ix-menu-avatar-button--transition-duration: var(--theme-default-time);
   --ix-menu-avatar--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
   --ix-menu-avatar--margin-right: #{sys.$si-sys-sizing-spacing-x-50};
   --ix-menu-avatar-avatar--height: #{sys.$si-sys-sizing-size-90};
@@ -32,4 +32,6 @@
     #{sys.$si-sys-sizing-spacing-x-60} * 0.35
   );
   --ix-menu-avatar-avatar-name--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-menu-avatar-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  --ix-menu-avatar--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }

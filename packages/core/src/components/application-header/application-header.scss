@@ -8,7 +8,6 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/breakpoints';
-@use 'tokens/system' as sys;
 
 @use './application-header.vars' as *;
 :host {
@@ -60,8 +59,9 @@
     }
 
     .app-icon.app-icon-outline {
-      outline: 1px solid var(--ix-application-header-app-icon--outline-color);
-      border-radius: 0.125rem;
+      outline: var(--ix-application-header-app-icon--outline-width) solid
+        var(--ix-application-header-app-icon--outline-color);
+      border-radius: var(--ix-application-header-app-icon--border-radius);
     }
 
     .app-icon img {
@@ -69,7 +69,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      border-radius: 0.125rem;
+      border-radius: var(--ix-application-header-app-icon--border-radius);
     }
 
     .app-switch {
@@ -85,6 +85,7 @@
       position: relative;
       flex-direction: row;
       flex-wrap: nowrap;
+      align-items: baseline;
 
       margin-left: var(--ix-application-header-name--margin-left);
       margin-right: var(--ix-application-header-name--margin-right);
@@ -112,7 +113,6 @@
 
     .application-name-suffix {
       flex: 1 1 auto;
-      margin-top: 0.4rem;
       min-width: 0;
       flex-shrink: 1;
       color: var(--ix-application-header-name-suffix--color);
@@ -170,7 +170,7 @@
     }
 
     .dropdown-content .slot-content-active ~ .slot-content-active {
-      border-top: 1px solid
+      border-top: var(--ix-application-header-dropdown-item--border-width) solid
         var(--ix-application-header-dropdown-item--border-color);
     }
 

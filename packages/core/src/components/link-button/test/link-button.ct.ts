@@ -2,88 +2,64 @@
  * SPDX-FileCopyrightText: 2026 Siemens AG
  *
  * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
-
 import { expect } from '@playwright/test';
-import {
-  iconArrowRight,
-  iconChevronRightSmall,
-  iconDocument,
-  iconOpenExternal,
-} from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
-const icons = {
-  iconArrowRight,
-  iconChevronRightSmall,
-  iconDocument,
-  iconOpenExternal,
-};
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <div>
+      <ix-link-button url="https://ix.siemens.io/">IX home</ix-link-button>
+      <ix-link-button disabled url="https://ix.siemens.io/">
+        IX home disabled
+      </ix-link-button>
+    </div>
+  `);
 
-regressionTest('renders without an icon by default', async ({ mount, page }) => {
-  await mount('<ix-link-button url="/link">Link text</ix-link-button>');
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(
+    '<ix-link-button url="https://ix.siemens.io/">IX home</ix-link-button>'
+  );
 
   const linkButton = page.locator('ix-link-button');
-  const link = linkButton.getByRole('link', { name: 'Link text' });
-  await expect(linkButton).toHaveClass(/hydrated/);
-  await expect(link).toBeVisible();
-  await expect(link.locator('ix-icon')).toHaveCount(0);
+  const link = linkButton.getByRole('link', { name: 'IX home' });
+
+  await expect(linkButton).toHaveAttribute('hydrated');
+  await expect(link).toHaveAttribute('href', 'https://ix.siemens.io/');
+  await expect(link).not.toHaveAttribute('title');
+  await expect(link).toHaveAttribute('aria-disabled', 'false');
+  await expect(link).not.toHaveAttribute('tabindex');
 });
 
 regressionTest(
-  'selects each icon and places it at either end',
+  'skips disabled link buttons during keyboard navigation',
   async ({ mount, page }) => {
-    await mount(
-      '<ix-link-button icon="none" icon-position="end" url="/link">Link text</ix-link-button>',
-      { icons }
-    );
+    await mount(`
+      <button>Previous</button>
+      <ix-link-button disabled url="https://ix.siemens.io/">IX home</ix-link-button>
+      <button>Next</button>
+    `);
 
     const linkButton = page.locator('ix-link-button');
-    const link = linkButton.getByRole('link', { name: 'Link text' });
-    await expect(link.locator('ix-icon')).toHaveCount(0);
+    const link = linkButton.getByRole('link', { name: 'IX home' });
+    const previousButton = page.getByRole('button', { name: 'Previous' });
+    const nextButton = page.getByRole('button', { name: 'Next' });
 
-    const variants = [
-      ['internal', iconChevronRightSmall],
-      ['external', iconOpenExternal],
-      ['file', iconDocument],
-      ['action', iconArrowRight],
-    ] as const;
+    await expect(linkButton).toHaveAttribute('hydrated');
+    await expect(link).toHaveAttribute('aria-disabled', 'true');
+    await expect(link).toHaveAttribute('tabindex', '-1');
+    await expect(link).not.toHaveAttribute('href');
 
-    for (const [variant, name] of variants) {
-      await linkButton.evaluate((element: HTMLIxLinkButtonElement, icon) => {
-        element.icon = icon;
-      }, variant);
-      await expect
-        .poll(() =>
-          link
-            .locator('.link + ix-icon')
-            .evaluate((element: HTMLIxIconElement) => element.name)
-        )
-        .toBe(name);
+    await previousButton.focus();
+    await page.keyboard.press('Tab');
 
-      await linkButton.evaluate((element: HTMLIxLinkButtonElement) => {
-        element.iconPosition = 'start';
-      });
-      await expect(link.locator('ix-icon + .link')).toHaveCount(1);
-
-      await linkButton.evaluate((element: HTMLIxLinkButtonElement) => {
-        element.iconPosition = 'end';
-      });
-    }
-  }
-);
-
-regressionTest(
-  'keeps the link accessible without an icon',
-  async ({ mount, page, makeAxeBuilder }) => {
-    await mount(
-      '<ix-link-button icon="none" url="/link">Link text</ix-link-button>'
-    );
-
-    await expect(
-      page.locator('ix-link-button').getByRole('link', { name: 'Link text' })
-    ).toBeVisible();
-    const results = await makeAxeBuilder().analyze();
-    expect(results.violations).toEqual([]);
+    await expect(nextButton).toBeFocused();
   }
 );

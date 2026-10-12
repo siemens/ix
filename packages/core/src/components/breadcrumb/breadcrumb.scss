@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './breadcrumb.vars' as *;
 :host {
@@ -46,7 +45,7 @@
     ix-icon {
       // line-height: unset; --> Note: 'line-height' can't be applied due to shadow DOM encapsulation at ix-icon
       // using padding-top to achieve same position as before
-      padding-top: 2px;
+      padding-top: var(--ix-breadcrumb-more-text-icon--padding-top);
     }
   }
 

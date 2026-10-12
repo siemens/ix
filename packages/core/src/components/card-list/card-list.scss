@@ -8,7 +8,6 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
 
@@ -115,7 +114,8 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     color: var(--ix-card-list-show-all--color);
 
     @include hover.focus-visible {
-      outline: 1px solid var(--ix-card-list-show-all--outline-color--focus);
+      outline: var(--ix-card-list-show-all--outline-width--focus) solid
+        var(--ix-card-list-show-all--outline-color--focus);
       outline-offset: var(--ix-card-list-show-all--focus-outline-offset);
     }
   }

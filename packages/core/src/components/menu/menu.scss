@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use '~animate.css/animate.min';
-@use 'tokens/system' as sys;
 
 @use './menu.vars' as *;
 $menu-expanded-width: var(--ix-menu--expanded-width);
@@ -42,8 +41,9 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     }
 
     &:focus-visible {
-      outline: 1px solid var(--ix-menu-tabs--outline-color--focus);
-      outline-offset: -1px;
+      outline: var(--ix-menu--outline-width--focus) solid
+        var(--ix-menu-tabs--outline-color--focus);
+      outline-offset: var(--ix-menu-tabs--outline-offset);
     }
   }
 
@@ -74,8 +74,9 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     }
 
     &:focus-visible {
-      outline: 1px solid var(--ix-menu-navigation--outline-color--focus);
-      outline-offset: -1px;
+      outline: var(--ix-menu--outline-width--focus) solid
+        var(--ix-menu-navigation--outline-color--focus);
+      outline-offset: var(--ix-menu-navigation--outline-offset);
     }
   }
 
@@ -83,7 +84,7 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     opacity: 0;
     position: absolute;
     width: 100%;
-    height: 0.0625rem;
+    height: var(--ix-menu-tabs-shadow--height);
 
     background-color: var(--ix-menu--background);
     box-sizing: border-box;
@@ -132,7 +133,7 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     height: 100%;
     left: var(--ix-menu-overlay--left);
     z-index: -1;
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(var(--ix-menu-overlay--blur-radius));
     background-color: var(--ix-menu-overlay--background);
     transition: left var(--ix-menu-overlay--transition-duration) ease-in-out;
   }

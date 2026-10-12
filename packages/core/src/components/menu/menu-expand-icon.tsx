@@ -16,6 +16,8 @@ import { getButtonClasses } from '../button/base-button';
 import { Breakpoint } from '../utils/breakpoints';
 import { a11yBoolean } from '../utils/a11y';
 /**
+ * Icon that toggles the expanded state of the side menu.
+ *
  * @internal
  */
 @Component({

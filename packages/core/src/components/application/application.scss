@@ -8,14 +8,13 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './application.vars' as *;
 :host {
   display: flex;
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: var(--ix-application--width);
+  height: var(--ix-application--height);
 
   flex-direction: column;
 

@@ -184,7 +184,7 @@ regressionTest.describe('time input tests', () => {
 
       const timeInputElement = page.locator('ix-time-input');
 
-      await expect(timeInputElement).toHaveClass(/hydrated/);
+      await expect(timeInputElement).toHaveAttribute('hydrated');
       await timeInputElement.locator('input').fill('invalid-time');
       await timeInputElement.locator('input').blur();
       await expect(
@@ -390,7 +390,7 @@ regressionTest.describe('time-input locale event emission', () => {
       );
 
       const timeInput = page.locator('ix-time-input');
-      await expect(timeInput).toHaveClass(/hydrated/);
+      await expect(timeInput).toHaveAttribute('hydrated');
 
       const valueChangePromise = page.evaluate(() => {
         return new Promise((resolve) => {

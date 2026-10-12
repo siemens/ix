@@ -16,4 +16,11 @@
 :host {
   --ix-chat-ai-message-meta--min-height: #{sys.$si-sys-sizing-size-80};
   --ix-chat-ai-message-actions--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-chat-ai-message--gap: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-chat-ai-message-message--gap: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-chat-ai-message-message--font: #{sys.$si-sys-typography-body-lg};
+  --ix-chat-ai-message-message--font-weight: var(
+    --si-ref-typography-font-weight-bold
+  );
+  --ix-chat-ai-message-meta--gap: #{sys.$si-sys-sizing-spacing-x-60};
 }

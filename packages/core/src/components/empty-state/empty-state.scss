@@ -1,5 +1,4 @@
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './empty-state.vars' as *;
 :host {
@@ -75,7 +74,7 @@
     .content__label {
       display: flex;
       flex-direction: column;
-      gap: .25rem;
+      gap: var(--ix-empty-state-content-label--gap);
     }
   }
 }
