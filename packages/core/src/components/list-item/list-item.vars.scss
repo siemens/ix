@@ -10,6 +10,8 @@
 @use 'tokens/system' as sys;
 
 :host {
+  --ix-list-item-label--font: #{sys.$si-sys-typography-body-paragraph};
+  --ix-list-item-description--font: #{sys.$si-sys-typography-body-sm};
   --ix-list-item--color: #{sys.$si-sys-color-text-primary};
   --ix-list-item--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-list-item-description--color: #{sys.$si-sys-color-text-secondary};
