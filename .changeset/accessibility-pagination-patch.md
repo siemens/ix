@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-Clarify `ix-pagination` accessibility behavior: `aria-current` on selected page buttons is now `"page"`; accessible labels and keyboard/navigation handling were updated to improve screen-reader semantics.
+Add aria-label to the ellipsed pagination buttons to improve screen-reader semantics. Previous page (arrow left) is now reachable via keyboard interaction.
