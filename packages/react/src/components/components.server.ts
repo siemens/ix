@@ -1602,11 +1602,14 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
         count: 'count',
         selectedPage: 'selected-page',
         i18nPage: 'i18n-page',
+        i18nPagination: 'i18n-pagination',
         i18nOf: 'i18n-of',
         i18nItems: 'i18n-items',
         ariaLabelChevronLeftIconButton: 'aria-label-chevron-left-icon-button',
         ariaLabelChevronRightIconButton: 'aria-label-chevron-right-icon-button',
-        ariaLabelPageSelection: 'aria-label-page-selection'
+        ariaLabelPageSelection: 'aria-label-page-selection',
+        ariaLabelJumpBackward: 'aria-label-jump-backward',
+        ariaLabelJumpForward: 'aria-label-jump-forward'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxPagination as StencilReactComponent<IxPaginationElement, IxPaginationEvents, Components.IxPagination>,
