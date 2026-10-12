@@ -1,5 +1,25 @@
 # @siemens/ix
 
+## 5.3.0
+
+### Minor Changes
+
+- [#2860](https://github.com/siemens/ix/pull/2860) [`280f85c`](https://github.com/siemens/ix/commit/280f85c79383e87bf386a1e605f52cbb12444af7) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Keep collapsed **ix-menu-category** popovers open while the pointer crosses the gap or moves diagonally toward nested items, and add **disableTooltip** on **ix-menu-item** and **ix-menu-category**.
+
+### Patch Changes
+
+- [#2855](https://github.com/siemens/ix/pull/2855) [`5f9b1b7`](https://github.com/siemens/ix/commit/5f9b1b7e9e1409c57f5d9cf7f58f40f9a832af36) Thanks [@silviowolf](https://github.com/silviowolf)! - Fix filled badge status icons to use their dedicated contrast colors, the error status uses the alarm contrast color.
+
+- [#2765](https://github.com/siemens/ix/pull/2765) [`58b7da4`](https://github.com/siemens/ix/commit/58b7da438959739db7df1aacc6dbc57b164a6464) Thanks [@alexkaduk](https://github.com/alexkaduk)! - Allow Space to be typed in the **ix-category-filter** input instead of swallowing the key as a dropdown shortcut.
+
+  Fixes [#2757](https://github.com/siemens/ix/issues/2757)
+
+- [#2848](https://github.com/siemens/ix/pull/2848) [`ce59db2`](https://github.com/siemens/ix/commit/ce59db2e9f8ab98734e919f0863dec0c070bd05e) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix **ix-select** dropping the first typed character when the select has a value and receives focus via keyboard (e.g. <kbd>Tab</kbd>) before filtering.
+
+  Thank you @marcomattes
+
+  Fixes [#2845](https://github.com/siemens/ix/issues/2845)
+
 ## 5.2.1
 
 ### Patch Changes
