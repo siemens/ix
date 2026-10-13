@@ -16,6 +16,16 @@ interface RegistryUpdateOptions {
   pathPrefix?: string;
 }
 
+type RegistryLlms = {
+  entrypoint: string;
+  components: string;
+  examples: string;
+  patterns: string;
+  catalog?: string;
+  figma?: string;
+  exampleIndexes?: Record<string, string>;
+};
+
 type UnifiedRegistry = {
   versions: Record<
     string,
@@ -28,12 +38,7 @@ type UnifiedRegistry = {
         componentRelatedPatterns?: string;
       };
       documentationSearchIndex?: string;
-      llms?: {
-        entrypoint: string;
-        components: string;
-        examples: string;
-        patterns: string;
-      };
+      llms?: RegistryLlms;
     }
   >;
   'dist-tags': {
@@ -55,12 +60,7 @@ interface DocumentationSearchIndexRegistryUpdateOptions
 }
 
 interface LlmsRegistryUpdateOptions extends RegistryUpdateOptions {
-  llms: {
-    entrypoint: string;
-    components: string;
-    examples: string;
-    patterns: string;
-  };
+  llms: RegistryLlms;
 }
 
 function ensureVersionEntry(registry: UnifiedRegistry, version: string) {
@@ -230,15 +230,30 @@ export async function updateLlmsRegistry(
   const registry = (await fs.readJson(registryPath)) as UnifiedRegistry;
   const normalizedPrefix = options.pathPrefix?.replace(/\/+$/g, '') || '';
 
-  const prefixedLlms = Object.fromEntries(
-    Object.entries(options.llms).map(([key, value]) => [
-      key,
-      normalizedPrefix ? `${normalizedPrefix}/${value}` : value,
-    ])
-  );
+  const prefix = (value: string) =>
+    normalizedPrefix ? `${normalizedPrefix}/${value}` : value;
+  const { exampleIndexes, ...files } = options.llms;
+
+  const prefixedLlms = {
+    ...Object.fromEntries(
+      Object.entries(files)
+        .filter((entry): entry is [string, string] => !!entry[1])
+        .map(([key, value]) => [key, prefix(value)])
+    ),
+    ...(exampleIndexes
+      ? {
+          exampleIndexes: Object.fromEntries(
+            Object.entries(exampleIndexes).map(([framework, value]) => [
+              framework,
+              prefix(value),
+            ])
+          ),
+        }
+      : {}),
+  } as RegistryLlms;
 
   const versionEntry = ensureVersionEntry(registry, options.version);
-  versionEntry.llms = prefixedLlms as LlmsRegistryUpdateOptions['llms'];
+  versionEntry.llms = prefixedLlms;
 
   registry['dist-tags'] = {
     latest: options.latestTag ?? options.version,

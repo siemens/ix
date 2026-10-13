@@ -27,6 +27,35 @@ const compareBy =
     return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
   };
 
+type JsonDocsSlot = JsonDocs['components'][number]['slots'][number];
+
+const AUTO_DETECTED_DEFAULT_SLOT_DOCS = 'The default slot';
+
+/**
+ * Stencil reports the unnamed slot as `''` and auto-adds it from `render()`.
+ * A JSDoc `@slot default` entry describes the same slot, so merge both into
+ * a single `''` entry and prefer the JSDoc description.
+ */
+export const normalizeDefaultSlot = (slots: JsonDocsSlot[]): JsonDocsSlot[] => {
+  const defaultSlots = slots.filter(
+    (slot) => slot.name === '' || slot.name === 'default'
+  );
+
+  if (defaultSlots.length <= 1) {
+    return slots;
+  }
+
+  const documented =
+    defaultSlots.find(
+      (slot) => slot.docs && slot.docs !== AUTO_DETECTED_DEFAULT_SLOT_DOCS
+    ) ?? defaultSlots[0];
+
+  return [
+    { ...documented, name: '' },
+    ...slots.filter((slot) => !defaultSlots.includes(slot)),
+  ];
+};
+
 export const createComponentApi = (docs: JsonDocs) => ({
   components: [...docs.components]
     .sort(compareBy((component) => component.tag))
@@ -122,6 +151,9 @@ function traverse(value: unknown, opts: TraverseOptions): void {
 
 export const customComponentDocGenerator = (docs: JsonDocs): void => {
   docs.timestamp = '';
+  docs.components.forEach((component) => {
+    component.slots = normalizeDefaultSlot(component.slots);
+  });
   const docsJson = JSON.stringify(docs, null, 2);
 
   const parsed: JsonDocs = JSON.parse(docsJson);
