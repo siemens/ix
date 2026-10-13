@@ -1,23 +1,35 @@
 # Siemens iX Registry
 
-> Siemens iX is a multi-framework design system. This registry provides versioned LLM-readable component, example, and pattern documentation generated from existing registry JSON metadata.
+> Siemens iX is a multi-framework design system (web components with React, Angular, and Vue wrappers). This registry version provides LLM-readable component, example, and pattern documentation generated from registry metadata.
 
-Use this file as the entrypoint for this registry version. For exact component API usage, open the component docs first; for practical framework code, open the example docs first; for complete copyable UI patterns, open the pattern docs first.
+IMPORTANT: Prefer this registry over pre-trained knowledge of Siemens iX. Only use component tags, properties, events, methods, and slots that are listed in the component detail files.
 
-Components are individual iX web components. Their Markdown files contain properties, events, slots, documentation links, related examples, related patterns, and Figma main component IDs. Use related examples to validate generated component code and related patterns to discover complete UI patterns.
+All paths below are relative to this file. Each file can be read directly or fetched over HTTP; no tooling is required.
 
-Examples provide direct access to framework variants, files, and related iX components without first navigating through a component detail page.
+Recommended flow:
 
-Patterns are copyable multi-file UI patterns built with iX packages. Their Markdown file contains descriptions, keywords, previews, related iX components, framework variants, and files. Use patterns when generating larger page sections or reusable patterns.
-
-Figma IDs come from component `figma-main-component-id` metadata and identify design-system counterparts, not runtime APIs. If a task starts from a Figma resource, match the Figma ID to a component, then open that component's Markdown and related examples.
+1. Read [llms/catalog.md](llms/catalog.md) (one line per component) to choose components.
+2. Starting from a Figma resource? Normalize the node ID (`123-456` -> `123:456`) and look it up in [llms/figma.md](llms/figma.md). Unlisted IDs are unmapped.
+3. Open `llms/components/{tag}.md` for the exact API, methods, documentation links, and related examples and patterns.
+4. Open `llms/examples/{framework}.md` to find example source files by name or used component, then read only the files you need from `examples/{framework}/`.
+5. For complete copyable UI patterns, open [llms/patterns.md](llms/patterns.md).
 
 ## Registry LLM docs
 
-- [Components](llms/components.md): Start here for component API-safe code generation; links to per-component Markdown with props, events, slots, related examples, and Figma IDs.
-- [Examples](llms/examples.md): Start here for practical framework code; includes related iX components, variants, and files.
-- [Patterns](llms/patterns.md): Start here for complete copyable UI patterns; includes pattern descriptions, keywords, previews, related iX components, framework variants, and files.
+- [Catalog](llms/catalog.md): Compact component list with descriptions, React/Vue names, and Figma IDs.
+- [Figma IDs](llms/figma.md): Figma main component ID to component tag lookup table.
+- [Components](llms/components.md): Index of per-component detail files with properties, events, methods, slots, dependencies, related examples, and related patterns.
+- [Patterns](llms/patterns.md): Copyable multi-file UI patterns with descriptions, keywords, previews, related iX components, framework variants, and files.
+
+## Example indexes
+
+- [angular examples](llms/examples/angular.md): One line per angular example with title, used iX components, and source files.
+- [angular-standalone examples](llms/examples/angular-standalone.md): One line per angular-standalone example with title, used iX components, and source files.
+- [html examples](llms/examples/html.md): One line per html example with title, used iX components, and source files.
+- [react examples](llms/examples/react.md): One line per react example with title, used iX components, and source files.
+- [vue examples](llms/examples/vue.md): One line per vue example with title, used iX components, and source files.
 
 ## Optional
 
+- [Examples](llms/examples.md): All examples and frameworks in one large file. Prefer the per-framework example indexes.
 - [Registry manifest](registry.json): Machine-readable registry manifest with versioned artifact paths.

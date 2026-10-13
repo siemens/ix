@@ -2,23 +2,14 @@
 
 > A single node within a tree.
 
+- Web component: `<ix-tree-item>`
+- Vue: `IxTreeItem` from `@siemens/ix-vue`
+
 ## Documentation
 
-- https://ix.siemens.io//docs/components/tree/code.md
+- https://ix.siemens.io/docs/components/tree/code.md
 
 ## Figma IDs
-
-- None
-
-## Related examples
-
-Example file links are relative to this Markdown file.
-
-- None
-
-## Related patterns
-
-Pattern and file links are relative to this Markdown file.
 
 - None
 
@@ -35,6 +26,27 @@ Pattern and file links are relative to this Markdown file.
 - `itemClick` - Click on item not on the expand/collapse icon
 - `toggle` - Expand/Collapsed toggled
 
+## Methods
+
+- None
+
 ## Slots
 
 - `` - Tree item content.
+
+## Dependencies
+
+- Renders: None
+- Rendered by: `ix-tree`
+
+## Related examples
+
+Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
+
+- None
+
+## Related patterns
+
+Copyable multi-file UI patterns; files are listed in `../patterns.md`.
+
+- None

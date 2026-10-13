@@ -24,7 +24,7 @@ Latest registry tag: v6.0.0.
 ## Component catalogs
 
 - [v6.0.0 catalog](v6.0.0/llms/catalog.md): Compact one-line-per-component list with React/Vue names and Figma IDs for v6.0.0.
-- main: Component catalog unavailable; use component docs.
+- [main catalog](main/llms/catalog.md): Compact one-line-per-component list with React/Vue names and Figma IDs for main.
 
 ## Component docs
 
