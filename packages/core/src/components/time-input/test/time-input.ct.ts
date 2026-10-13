@@ -637,3 +637,60 @@ regressionTest(
     expect(accessibilityScanResults.violations).toEqual([]);
   }
 );
+
+regressionTest.describe('required while picking', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      required: true,
+      format: TIME_FORMAT,
+    });
+    await page.locator('ix-time-input input').fill('');
+  });
+
+  regressionTest(
+    'picking does not mark the field touched',
+    async ({ page }) => {
+      const timeInput = timeInputAccessor(page);
+      const events = await recordEvents(timeInput.host, ['ixBlur']);
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+
+      expect(await events()).toEqual([]);
+      await expect(timeInput.host).not.toHaveClass(/ix-invalid--required/);
+
+      await timeInput.host.getByTestId('confirm').click();
+
+      await timeInput.expectClosed();
+      await expect(timeInput.host.locator('input')).toHaveValue(
+        new RegExp(`^${pickedTime.toFormat('HH')}:`)
+      );
+      await expect(timeInput.host).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} without a time marks the field touched`,
+      async ({ page }) => {
+        const timeInput = timeInputAccessor(page);
+        const events = await recordEvents(timeInput.host, ['ixBlur']);
+
+        await timeInput.open();
+        await hourCell(page, pickedTime).click();
+        await timeInput.dismiss(dismissal);
+        await timeInput.expectClosed();
+
+        if (dismissal === 'escape') {
+          // Escape returns focus to the field, it is left on the next Tab
+          await expect(timeInput.host.locator('input')).toBeFocused();
+          expect(await events()).toEqual([]);
+          await page.keyboard.press('Tab');
+        }
+
+        await expect(timeInput.host).toHaveClass(/ix-invalid--required/);
+        expect(await events()).toEqual([{ type: 'ixBlur', detail: null }]);
+      }
+    );
+  }
+});

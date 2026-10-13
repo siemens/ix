@@ -1821,3 +1821,80 @@ regressionTest(
     expect(accessibilityScanResults.violations).toEqual([]);
   }
 );
+
+regressionTest.describe('required while picking', () => {
+  const nextMonthDay = DateTime.now().plus({ months: 1 }).set({ day: 15 });
+
+  const pickNextMonthDay = async (page: Page) => {
+    await page
+      .locator('ix-datetime-input ix-date-picker')
+      .getByRole('button', { name: 'Next month' })
+      .click();
+    await dayCell(page, nextMonthDay).click();
+  };
+
+  for (const requireConfirmation of [false, true]) {
+    regressionTest(
+      `picking does not mark the field touched (requireConfirmation: ${requireConfirmation})`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-datetime-input', {
+          required: true,
+          'require-confirmation': requireConfirmation,
+        });
+        const datetimeInput = datetimeInputAccessor(page);
+        const events = await recordEvents(datetimeInput.host, ['ixBlur']);
+
+        await datetimeInput.open();
+        await pickNextMonthDay(page);
+
+        expect(await events()).toEqual([]);
+        await expect(datetimeInput.host).not.toHaveClass(
+          /ix-invalid--required/
+        );
+
+        await datetimeInput.host
+          .getByRole('button', {
+            name: requireConfirmation ? 'Confirm' : 'Done',
+          })
+          .click();
+
+        await datetimeInput.expectClosed();
+        await expect(datetimeInput.host.locator('input')).toHaveValue(
+          new RegExp(`^${formatDateTime(nextMonthDay)} `)
+        );
+        await expect(datetimeInput.host).not.toHaveClass(
+          /ix-invalid--required/
+        );
+      }
+    );
+  }
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} without a date marks the field touched`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-datetime-input', {
+          required: true,
+          'require-confirmation': true,
+        });
+        const datetimeInput = datetimeInputAccessor(page);
+        const events = await recordEvents(datetimeInput.host, ['ixBlur']);
+
+        await datetimeInput.open();
+        await pickNextMonthDay(page);
+        await datetimeInput.dismiss(dismissal);
+        await datetimeInput.expectClosed();
+
+        if (dismissal === 'escape') {
+          // Escape returns focus to the field, it is left on the next Tab
+          await expect(datetimeInput.host.locator('input')).toBeFocused();
+          expect(await events()).toEqual([]);
+          await page.keyboard.press('Tab');
+        }
+
+        await expect(datetimeInput.host).toHaveClass(/ix-invalid--required/);
+        expect(await events()).toEqual([{ type: 'ixBlur', detail: null }]);
+      }
+    );
+  }
+});

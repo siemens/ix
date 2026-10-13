@@ -51,6 +51,7 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
@@ -366,6 +367,11 @@ export class TimeInput
 
   public touched = false;
 
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -600,18 +606,11 @@ export class TimeInput
             }
           }}
           onFocus={async () => {
+            this.inputBlur.onFocus();
             this.initialValue = this.value;
             this.ixFocus.emit();
           }}
-          onBlur={() => {
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.touched = true;
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={() => this.inputBlur.onBlur()}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
@@ -626,6 +625,8 @@ export class TimeInput
             variant="subtle-tertiary"
             size="16"
             icon={iconClock}
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onTimeIconClick(event)}
             aria-label={this.ariaLabelTimeToggleButton}
             aria-expanded={a11yBoolean(this.show)}
@@ -647,6 +648,12 @@ export class TimeInput
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
+  }
+
+  private onInputBlur() {
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.touched = true;
+    this.emitValidityStateChangeIfChanged();
   }
 
   private emitValidityStateChangeIfChanged() {
@@ -738,6 +745,7 @@ export class TimeInput
 
             if (!this.show) {
               this.timePickerRef.current?.discardPendingSelection();
+              this.inputBlur.onPickerClosed();
             }
           }}
           focusTrapOptions={{

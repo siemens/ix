@@ -47,6 +47,7 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
@@ -277,6 +278,11 @@ export class DatetimeInput
   public invalidReason?: string;
 
   public touched = false;
+
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
 
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
@@ -651,6 +657,12 @@ export class DatetimeInput
     this.isWarning = isWarning;
   }
 
+  private onInputBlur() {
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.touched = true;
+    this.emitValidityStateChangeIfChanged();
+  }
+
   private emitValidityStateChangeIfChanged() {
     return emitPickerValidityState(this);
   }
@@ -795,15 +807,7 @@ export class DatetimeInput
           }}
           type="text"
           value={this.value ?? ''}
-          onBlur={() => {
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.touched = true;
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={() => this.inputBlur.onBlur()}
           onClick={(event) => {
             if (this.show) {
               event.stopPropagation();
@@ -811,6 +815,7 @@ export class DatetimeInput
             }
           }}
           onFocus={() => {
+            this.inputBlur.onFocus();
             onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
@@ -832,6 +837,8 @@ export class DatetimeInput
             variant="subtle-tertiary"
             icon={iconCalendar}
             size="16"
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onCalendarClick(event)}
           ></ix-icon-button>
         </SlotEnd>
@@ -886,6 +893,7 @@ export class DatetimeInput
             if (!this.show) {
               this.datetimePickerRef.current?.discardPendingSelection();
               this.emitChange(this.value);
+              this.inputBlur.onPickerClosed();
             }
           }}
           focusTrapOptions={{

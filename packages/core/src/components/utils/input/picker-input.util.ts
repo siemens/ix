@@ -76,3 +76,44 @@ export function createValidityState(
     valueMissing: !!required && !value,
   };
 }
+
+export type PickerInputBlur = {
+  /** Call from the focus handler of the text field. */
+  onFocus: () => void;
+  /** Call from the blur handler of the text field. */
+  onBlur: () => void;
+  /** Call when the picker dropdown closes. */
+  onPickerClosed: () => void;
+};
+
+/**
+ * Defers the blur of a picker input's text field while its picker is open.
+ * Moving focus into the picker does not leave the field, so it must not be
+ * marked touched or validated yet. `onLeave` runs once the field is left,
+ * either directly or by closing the picker.
+ */
+export function createPickerInputBlur(options: {
+  isPickerOpen: () => boolean;
+  onLeave: () => void;
+}): PickerInputBlur {
+  let isDeferred = false;
+
+  return {
+    onFocus: () => {
+      isDeferred = false;
+    },
+    onBlur: () => {
+      if (options.isPickerOpen()) {
+        isDeferred = true;
+        return;
+      }
+      options.onLeave();
+    },
+    onPickerClosed: () => {
+      if (isDeferred) {
+        isDeferred = false;
+        options.onLeave();
+      }
+    },
+  };
+}

@@ -45,6 +45,7 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
 } from '../utils/input/picker-input.util';
@@ -313,6 +314,11 @@ export class DateInput
 
   public touched = false;
 
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -371,6 +377,12 @@ export class DateInput
       this.ixChange.emit(from);
       this.initialValue = from;
     }
+  }
+
+  private onInputBlur() {
+    this.touched = true;
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.emitValidityStateChangeIfChanged();
   }
 
   private discardPendingSelection() {
@@ -493,18 +505,11 @@ export class DateInput
             }
           }}
           onFocus={async () => {
+            this.inputBlur.onFocus();
             this.initialValue = this.value;
             this.ixFocus.emit();
           }}
-          onBlur={() => {
-            this.touched = true;
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={() => this.inputBlur.onBlur()}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
             textAlign: this.textAlignment,
@@ -524,6 +529,8 @@ export class DateInput
             size="16"
             icon={iconCalendar}
             aria-expanded={a11yBoolean(this.show)}
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onCalenderClick(event)}
           ></ix-icon-button>
         </SlotEnd>
@@ -639,8 +646,11 @@ export class DateInput
           onShowChanged={(event) => {
             this.show = event.detail;
 
-            if (!this.show && this.requireConfirmation) {
-              this.discardPendingSelection();
+            if (!this.show) {
+              if (this.requireConfirmation) {
+                this.discardPendingSelection();
+              }
+              this.inputBlur.onPickerClosed();
             }
           }}
           focusTrapOptions={{

@@ -612,3 +612,107 @@ regressionTest(
     expect(accessibilityScanResults.violations).toEqual([]);
   }
 );
+
+regressionTest.describe('required while picking', () => {
+  const nextMonthDay = DateTime.now().plus({ months: 1 }).set({ day: 15 });
+
+  const pickNextMonthDay = async (page: Page) => {
+    await page
+      .locator('ix-date-input ix-date-picker')
+      .getByRole('button', { name: 'Next month' })
+      .click();
+    await dayCell(page, nextMonthDay).click();
+  };
+
+  for (const requireConfirmation of [false, true]) {
+    regressionTest(
+      `picking does not mark the field touched (requireConfirmation: ${requireConfirmation})`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-date-input', {
+          required: true,
+          'require-confirmation': requireConfirmation,
+        });
+        const dateInput = dateInputAccessor(page);
+        const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+        await dateInput.open();
+        await pickNextMonthDay(page);
+        if (requireConfirmation) {
+          expect(await events()).toEqual([]);
+          await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+          await dateInput.host.getByTestId('confirm').click();
+        }
+
+        await dateInput.expectClosed();
+        await expect(dateInput.host.locator('input')).toHaveValue(
+          formatDateTime(nextMonthDay)
+        );
+        await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+      }
+    );
+  }
+
+  regressionTest(
+    'month navigation does not mark the field touched',
+    async ({ mount, page }) => {
+      await mountHydrated(mount, page, 'ix-date-input', { required: true });
+      const dateInput = dateInputAccessor(page);
+      const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+      await dateInput.open();
+      await page
+        .locator('ix-date-input ix-date-picker')
+        .getByRole('button', { name: 'Next month' })
+        .click();
+
+      await dateInput.expectOpen();
+      expect(await events()).toEqual([]);
+      await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'opening from the focused field does not mark it touched',
+    async ({ mount, page }) => {
+      await mountHydrated(mount, page, 'ix-date-input', { required: true });
+      const dateInput = dateInputAccessor(page);
+      await dateInput.host.locator('input').focus();
+      const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+      await dateInput.open();
+
+      await expect(dateInput.host.locator('input')).toBeFocused();
+      expect(await events()).toEqual([]);
+      await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} without a date marks the field touched`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-date-input', {
+          required: true,
+          'require-confirmation': true,
+        });
+        const dateInput = dateInputAccessor(page);
+        const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+        await dateInput.open();
+        await pickNextMonthDay(page);
+        await dateInput.dismiss(dismissal);
+        await dateInput.expectClosed();
+
+        if (dismissal === 'escape') {
+          // Escape returns focus to the field, it is left on the next Tab
+          await expect(dateInput.host.locator('input')).toBeFocused();
+          expect(await events()).toEqual([]);
+          await page.keyboard.press('Tab');
+        }
+
+        await expect(dateInput.host).toHaveClass(/ix-invalid--required/);
+        expect(await events()).toEqual([{ type: 'ixBlur', detail: null }]);
+      }
+    );
+  }
+});
