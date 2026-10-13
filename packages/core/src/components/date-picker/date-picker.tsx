@@ -720,17 +720,18 @@ export class DatePicker
   /**
    * Discards a pending selection made while `requireConfirmation` is enabled,
    * reports the restored selection with `dateChange` and shows the month of
-   * the committed selection again.
+   * the committed selection again. Without a pending selection the displayed
+   * month is kept.
    * @internal
    */
   @Method()
   async discardPendingSelection(): Promise<void> {
-    const hadPendingSelection = !!this.pendingRange;
-    this.resetPendingRange();
-
-    if (hadPendingSelection) {
-      this.emitDateChange(this.currFromDate, this.currToDate);
+    if (!this.pendingRange) {
+      return;
     }
+
+    this.resetPendingRange();
+    this.emitDateChange(this.currFromDate, this.currToDate);
 
     if (this.currFromDate) {
       this.setDisplayedMonth(this.currFromDate);

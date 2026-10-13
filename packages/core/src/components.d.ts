@@ -1600,7 +1600,7 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Discards a pending selection made while `requireConfirmation` is enabled, reports the restored selection with `dateChange` and shows the month of the committed selection again.
+          * Discards a pending selection made while `requireConfirmation` is enabled, reports the restored selection with `dateChange` and shows the month of the committed selection again. Without a pending selection the displayed month is kept.
          */
         "discardPendingSelection": () => Promise<void>;
         /**

@@ -1244,6 +1244,26 @@ regressionTest.describe('require confirmation', () => {
   );
 
   regressionTest(
+    'discarding without a pending date keeps the browsed month',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const monthLabel = datePicker.locator(
+        '.month-selector [slot="button-label"]'
+      );
+      await expect(monthLabel).toHaveText('May');
+
+      await datePicker.locator('ix-icon-button').nth(1).click();
+      await expect(monthLabel).toHaveText('June');
+
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+        el.discardPendingSelection()
+      );
+
+      await expect(monthLabel).toHaveText('June');
+    }
+  );
+
+  regressionTest(
     'binding from to dateChange keeps the pick pending',
     async ({ page }) => {
       const datePicker = page.locator('ix-date-picker');
