@@ -3867,6 +3867,18 @@ export namespace Components {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
+          * ARIA label for the jump backward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump backward to Page 3"). Custom labels without `{page}` are used unchanged.
+          * @since 6.0.0
+          * @default 'Jump backward to {page}'
+         */
+        "ariaLabelJumpBackward": string;
+        /**
+          * ARIA label for the jump forward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump forward to Page 9"). Custom labels without `{page}` are used unchanged.
+          * @since 6.0.0
+          * @default 'Jump forward to {page}'
+         */
+        "ariaLabelJumpForward": string;
+        /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
           * @since 4.1.0
           * @default 'Page selection input'
@@ -3897,6 +3909,12 @@ export namespace Components {
           * @default 'Page'
          */
         "i18nPage": string;
+        /**
+          * i18n label for the pagination navigation landmark
+          * @since 6.0.0
+          * @default 'Pagination'
+         */
+        "i18nPagination": string;
         /**
           * Number of items shown at once. Can only be changed in advanced mode.
           * @default 15
@@ -12323,6 +12341,18 @@ declare namespace LocalJSX {
          */
         "ariaLabelChevronRightIconButton"?: string;
         /**
+          * ARIA label for the jump backward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump backward to Page 3"). Custom labels without `{page}` are used unchanged.
+          * @since 6.0.0
+          * @default 'Jump backward to {page}'
+         */
+        "ariaLabelJumpBackward"?: string;
+        /**
+          * ARIA label for the jump forward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump forward to Page 9"). Custom labels without `{page}` are used unchanged.
+          * @since 6.0.0
+          * @default 'Jump forward to {page}'
+         */
+        "ariaLabelJumpForward"?: string;
+        /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
           * @since 4.1.0
           * @default 'Page selection input'
@@ -12353,6 +12383,12 @@ declare namespace LocalJSX {
           * @default 'Page'
          */
         "i18nPage"?: string;
+        /**
+          * i18n label for the pagination navigation landmark
+          * @since 6.0.0
+          * @default 'Pagination'
+         */
+        "i18nPagination"?: string;
         /**
           * Number of items shown at once. Can only be changed in advanced mode.
           * @default 15
@@ -15109,11 +15145,14 @@ declare namespace LocalJSX {
         "count": number;
         "selectedPage": number;
         "i18nPage": string;
+        "i18nPagination": string;
         "i18nOf": string;
         "i18nItems": string;
         "ariaLabelChevronLeftIconButton": string;
         "ariaLabelChevronRightIconButton": string;
         "ariaLabelPageSelection": string;
+        "ariaLabelJumpBackward": string;
+        "ariaLabelJumpForward": string;
     }
     interface IxPaneAttributes {
         "heading": string;

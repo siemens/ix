@@ -30,6 +30,7 @@
     "scss/",
     "hydrate/",
     "api-docs/",
+    "tokens/",
     "component-doc.json"
   ],
   "exports": {
@@ -113,6 +114,7 @@
     "./scss/ix-reset.scss": "./scss/ix-reset.scss",
     "./scss/ix-scrollbar.scss": "./scss/ix-scrollbar.scss",
     "./scss/ix-utilities.scss": "./scss/ix-utilities.scss",
+    "./tokens/manifest.json": "./tokens/manifest.json",
     "./component-doc.json": "./component-doc.json",
     "./api-docs/*": "./api-docs/*"
   },
@@ -136,7 +138,6 @@
     "dependencies": [
       "@floating-ui/dom",
       "@stencil/core",
-      "animejs",
       "luxon"
     ]
   },
@@ -162,8 +163,6 @@
     "@types/node": "^20.16.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.70.0",
-    "animate.css": "~4.1.1",
-    "animejs": "^4.1.2",
     "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
@@ -190,7 +189,6 @@
     "@floating-ui/dom": "^1.6.13",
     "@siemens/ix-icons": "^3.5.0",
     "@stencil/core": "^4.43.5",
-    "animejs": "^4.1.2",
     "luxon": "^3.4.4"
   },
   "peerDependenciesMeta": {
@@ -198,9 +196,6 @@
       "optional": true
     },
     "@stencil/core": {
-      "optional": true
-    },
-    "animejs": {
       "optional": true
     },
     "luxon": {

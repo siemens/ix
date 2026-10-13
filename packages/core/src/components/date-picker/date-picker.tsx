@@ -1049,7 +1049,11 @@ export class DatePicker
                   event.stopPropagation();
                 }}
               >
-                <ix-typography bold class="capitalize" slot="button-label">
+                <ix-typography
+                  format="body-sbold"
+                  class="capitalize"
+                  slot="button-label"
+                >
                   {monthLabel}
                 </ix-typography>
                 {this.renderMonths()}
@@ -1102,7 +1106,11 @@ export class DatePicker
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="top"></div>
                 </div>
-                <ix-typography bold class="capitalize" slot="button-label">
+                <ix-typography
+                  format="body-sbold"
+                  class="capitalize"
+                  slot="button-label"
+                >
                   {yearLabel}
                 </ix-typography>
                 {this.renderYears()}
