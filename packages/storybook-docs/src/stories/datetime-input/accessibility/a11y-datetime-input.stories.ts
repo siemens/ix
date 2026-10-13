@@ -10,6 +10,7 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from '@utils/generic-render';
 import { html } from 'lit';
+import { expect, waitFor } from 'storybook/test';
 
 type Element = Components.IxDatetimeInput;
 
@@ -122,12 +123,40 @@ export const WithAriaLabel: Story = {
 };
 
 /**
- * Datetime input that applies a selection only via the confirm button
+ * Datetime input that applies a selection only via the confirm button.
+ * The picker is opened so the confirm/cancel footer is checked as well.
  */
 export const RequireConfirmation: Story = {
   args: {
     label: 'Date and time',
     value: '2026/02/08 00:00:00',
     requireConfirmation: true,
+  },
+  parameters: {
+    a11y: {
+      context: {
+        // The open trigger fails aria-allowed-attr (aria-expanded on a
+        // role-less host), which is unrelated to the footer under test.
+        exclude: [{ fromShadowDom: ['ix-datetime-input', 'ix-icon-button'] }],
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    await customElements.whenDefined('ix-datetime-input');
+    const datetimeInput = canvasElement.querySelector('ix-datetime-input')!;
+    await waitFor(() => expect(datetimeInput).toHaveAttribute('hydrated'));
+
+    datetimeInput
+      .shadowRoot!.querySelector<HTMLElement>('ix-icon-button')!
+      .click();
+
+    await waitFor(() => {
+      const footer = datetimeInput
+        .shadowRoot!.querySelector('ix-datetime-picker')
+        ?.shadowRoot?.querySelector('ix-confirmation-footer');
+      expect(
+        footer?.shadowRoot?.querySelector('[data-testid="confirm"]')
+      ).toBeVisible();
+    });
   },
 };
