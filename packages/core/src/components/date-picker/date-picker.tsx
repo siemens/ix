@@ -336,7 +336,9 @@ export class DatePicker
 
   /**
    * Date selection event. Emitted when the selection is applied via the done
-   * button, or via the confirm button with `requireConfirmation`.
+   * button, or via the confirm button with `requireConfirmation`. With
+   * `singleSelection` and without `requireConfirmation` there is no button,
+   * so it is emitted together with `dateChange` when a date is picked.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
@@ -827,6 +829,10 @@ export class DatePicker
     }
 
     this.emitDateChange(from, to);
+
+    if (this.singleSelection && !this.requireConfirmation && !this.embedded) {
+      this.dateSelect.emit(this.toDateChangeEvent(from, to));
+    }
   }
 
   private emitDateChange(from?: DateTime, to?: DateTime) {

@@ -925,7 +925,9 @@ Emitted together with `dateChange`. @deprecated since 6.0.0, use `dateChange` in
   dateRangeChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Date selection event. Emitted when the selection is applied via the done
-button, or via the confirm button with `requireConfirmation`.
+button, or via the confirm button with `requireConfirmation`. With
+`singleSelection` and without `requireConfirmation` there is no button,
+so it is emitted together with `dateChange` when a date is picked.
 The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */

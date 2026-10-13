@@ -112,6 +112,30 @@ regressionTest.describe('date picker tests single', () => {
     });
   });
 
+  regressionTest(
+    'picking a date emits dateChange and dateSelect',
+    async ({ page }) => {
+      const datePicker = page.locator(DatePickerSelector);
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+      ]);
+
+      await page.getByText(/^19$/).click();
+
+      const expected = {
+        from: '2023/09/19',
+        to: undefined,
+        isoFrom: '2023-09-19',
+        isoTo: undefined,
+      };
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+    }
+  );
+
   regressionTest('select different date in next month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 

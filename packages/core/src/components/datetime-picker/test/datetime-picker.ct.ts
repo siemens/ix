@@ -331,6 +331,24 @@ regressionTest.describe('datetime picker tests single', () => {
 
     await expect(dateChangeEvent).resolves.toBeTruthy();
   });
+
+  regressionTest(
+    'picking a date does not emit dateSelect',
+    async ({ page }) => {
+      const events = await recordEvents(datetimePickerLocator(page), [
+        'dateChange',
+        'dateSelect',
+      ]);
+
+      await page.getByText(/^17$/).first().click();
+
+      // `dateChange` is emitted asynchronously, after the embedded picker's
+      // `dateSelect` would have leaked
+      await expect
+        .poll(events)
+        .toEqual([{ type: 'dateChange', detail: expect.anything() }]);
+    }
+  );
 });
 
 // Dates and times used by the confirmation tests. Picked dates stay in the

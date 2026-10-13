@@ -740,6 +740,8 @@ export class DatetimePicker
                   onDateChange={(event) => this.onDateChange(event)}
                   // `dateChange` reports the range, so the embedded event must not leak
                   onDateRangeChange={(event) => event.stopPropagation()}
+                  // `dateSelect` carries the time, so the date-only event must not leak
+                  onDateSelect={(event) => event.stopPropagation()}
                   from={selection.from}
                   to={selection.to}
                   format={this.dateFormat}

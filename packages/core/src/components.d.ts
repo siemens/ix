@@ -10016,7 +10016,7 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Date selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`. With `singleSelection` and without `requireConfirmation` there is no button, so it is emitted together with `dateChange` when a date is picked. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
