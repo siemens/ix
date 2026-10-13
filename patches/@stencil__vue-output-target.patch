@@ -2,7 +2,7 @@ diff --git a/dist/runtime.cjs b/dist/runtime.cjs
 index 82cec86..74e3f02 100644
 --- a/dist/runtime.cjs
 +++ b/dist/runtime.cjs
-@@ -276,7 +276,7 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+@@ -276,7 +276,7 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitProps = []) => {
                  let navigationPayload = { event: ev };
                  for (const key in props) {
                      const value = props[key];
@@ -11,21 +11,11 @@ index 82cec86..74e3f02 100644
                          navigationPayload[key] = value;
                      }
                  }
-@@ -311,7 +311,8 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
-              */
-             for (const key in props) {
-                 const value = props[key];
--                if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
-+                const isAriaProp = key.startsWith(ARIA_PROP_PREFIX);
-+                if (Object.prototype.hasOwnProperty.call(props, key) && value !== EMPTY_PROP && (!isAriaProp || value != null)) {
-                     propsToAdd[key] = value;
-                 }
-                 /**
 diff --git a/dist/runtime.js b/dist/runtime.js
 index 327de60..275e226 100644
 --- a/dist/runtime.js
 +++ b/dist/runtime.js
-@@ -274,7 +274,7 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+@@ -274,7 +274,7 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitProps = []) => {
                  let navigationPayload = { event: ev };
                  for (const key in props) {
                      const value = props[key];
@@ -34,13 +24,3 @@ index 327de60..275e226 100644
                          navigationPayload[key] = value;
                      }
                  }
-@@ -309,7 +309,8 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
-              */
-             for (const key in props) {
-                 const value = props[key];
--                if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
-+                const isAriaProp = key.startsWith(ARIA_PROP_PREFIX);
-+                if (Object.prototype.hasOwnProperty.call(props, key) && value !== EMPTY_PROP && (!isAriaProp || value != null)) {
-                     propsToAdd[key] = value;
-                 }
-                 /**

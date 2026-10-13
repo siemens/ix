@@ -43,7 +43,7 @@ patchedDependencies:
     hash: 5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193
     path: patches/@stencil__core.patch
   '@stencil/vue-output-target':
-    hash: ebd2a16dddb923aeb24a05010d73cdc30c995acd4c4745118d778c0f38cfb2e7
+    hash: 4f828891eb8f31accc12ae0ccf2e8cb9f1249216e464128489bfcd008f0e93c7
     path: patches/@stencil__vue-output-target.patch
 
 importers:
@@ -751,7 +751,7 @@ importers:
         version: 1.15.1(@playwright/test@1.58.1)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(happy-dom@20.4.0)(jsdom@27.4.0)(vitest@4.1.4(@types/node@20.16.5)(happy-dom@20.4.0)(jsdom@27.4.0)(msw@2.10.2(@types/node@20.16.5)(typescript@5.4.5))(vite@8.0.10(@types/node@20.16.5)(esbuild@0.28.1)(jiti@2.6.1)(less@4.3.0)(sass-embedded@1.105.1)(sass@1.93.0)(terser@5.51.2)(tsx@4.20.5)(yaml@2.9.1)))
       '@stencil/vue-output-target':
         specifier: ^0.14.6
-        version: 0.14.6(patch_hash=ebd2a16dddb923aeb24a05010d73cdc30c995acd4c4745118d778c0f38cfb2e7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
+        version: 0.14.6(patch_hash=4f828891eb8f31accc12ae0ccf2e8cb9f1249216e464128489bfcd008f0e93c7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1137,7 +1137,7 @@ importers:
         version: 3.5.0
       '@stencil/vue-output-target':
         specifier: ^0.14.6
-        version: 0.14.6(patch_hash=ebd2a16dddb923aeb24a05010d73cdc30c995acd4c4745118d778c0f38cfb2e7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
+        version: 0.14.6(patch_hash=4f828891eb8f31accc12ae0ccf2e8cb9f1249216e464128489bfcd008f0e93c7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -20115,13 +20115,13 @@ snapshots:
       happy-dom: 20.4.0
       jsdom: 27.4.0
 
-  '@stencil/vue-output-target@0.14.6(patch_hash=ebd2a16dddb923aeb24a05010d73cdc30c995acd4c4745118d778c0f38cfb2e7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
+  '@stencil/vue-output-target@0.14.6(patch_hash=4f828891eb8f31accc12ae0ccf2e8cb9f1249216e464128489bfcd008f0e93c7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.4.5))':
     dependencies:
       vue: 3.5.17(typescript@5.4.5)
     optionalDependencies:
       '@stencil/core': 4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
 
-  '@stencil/vue-output-target@0.14.6(patch_hash=ebd2a16dddb923aeb24a05010d73cdc30c995acd4c4745118d778c0f38cfb2e7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.14.6(patch_hash=4f828891eb8f31accc12ae0ccf2e8cb9f1249216e464128489bfcd008f0e93c7)(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))':
     dependencies:
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
