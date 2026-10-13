@@ -30,6 +30,61 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(toast).toBeVisible();
 });
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount('');
+
+  await page.evaluate(() => {
+    window.toast({
+      title: 'Info',
+      message: 'This is a toast message',
+      autoClose: false,
+    });
+  });
+
+  const toast = page.locator('ix-toast');
+  await expect(toast).toHaveAttribute('hydrated');
+  await expect(toast).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+regressionTest(
+  'removes the toast after the fade-out animation ended',
+  async ({ mount, page }) => {
+    await mount('');
+
+    const events = await page.evaluate(
+      () =>
+        new Promise<string[]>((resolve) => {
+          const events: string[] = [];
+
+          window
+            .toast({ message: 'Auto close', autoCloseDelay: 200 })
+            .then(() => {
+              const element = document.querySelector('ix-toast')!;
+
+              element.addEventListener('animationend', (event) => {
+                if (event.animationName === 'toast-fade-out') {
+                  events.push('animationend');
+                }
+              });
+
+              new MutationObserver((_, observer) => {
+                if (!element.isConnected) {
+                  events.push('removed');
+                  observer.disconnect();
+                  resolve(events);
+                }
+              }).observe(document.body, { childList: true, subtree: true });
+            });
+        })
+    );
+
+    expect(events).toEqual(['animationend', 'removed']);
+  }
+);
+
 regressionTest(
   'sets live-region attributes for screen reader announcements',
   async ({ mount, page }) => {
