@@ -66,6 +66,10 @@ $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
     );
   }
 
+  .slot-container {
+    font: var(--ix-menu-about-news-content--font);
+  }
+
   .popover-body {
     color: var(--ix-menu-about-news-body--color);
   }

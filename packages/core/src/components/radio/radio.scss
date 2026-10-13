@@ -17,6 +17,7 @@
 
   .radio-checkmark {
     all: unset;
+    box-sizing: border-box;
 
     display: inline-flex;
     position: relative;
@@ -36,11 +37,21 @@
   }
 
   .radio-button {
+    position: relative;
     height: var(--ix-radio-button--height);
     width: var(--ix-radio-button--width);
     display: flex;
     align-items: center;
     justify-content: center;
+
+    // Extends the pointer target without adding layout space
+    &::before {
+      content: '';
+      position: absolute;
+      inset: calc(
+        (var(--ix-radio-button--height) - var(--ix-radio--target-size)) / 2
+      );
+    }
   }
 
   label {

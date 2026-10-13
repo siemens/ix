@@ -40,6 +40,7 @@ import type { IxDropdownItemRole } from './dropdown-item.types';
  * @figma-main-component-id 1603:52792
  *
  * @slot - Dropdown item label.
+ * @slot end - Trailing content aligned to the end of the item, rendered before the submenu indicator.
  */
 @Component({
   tag: 'ix-dropdown-item',
