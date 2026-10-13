@@ -111,6 +111,12 @@
       min-width: 0;
       flex-shrink: 0;
       max-width: 100%;
+
+      ix-typography {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
     }
 
     .application-name-suffix {
