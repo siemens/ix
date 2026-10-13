@@ -35,18 +35,28 @@ regressionTest.describe('link-button', () => {
     await page.goto('link-button/variants');
 
     const variants = ['internal', 'external', 'file', 'action', 'none'];
-    await expect(page.locator('ix-link-button')).toHaveCount(variants.length);
+    await expect(page.locator('ix-link-button')).toHaveCount(
+      variants.length * 2 - 1
+    );
     for (const icon of variants) {
-      const linkButton = page.locator(
-        `ix-link-button[icon="${icon}"][icon-position="start"]`
-      );
-      await expect(linkButton).toHaveCount(1);
-      await expect(
-        linkButton.getByRole('link', { name: 'Link text' })
-      ).toBeVisible();
-      await expect(linkButton.locator('ix-icon')).toHaveCount(
-        icon === 'none' ? 0 : 1
-      );
+      const positions = icon === 'none' ? ['start'] : ['start', 'end'];
+      for (const position of positions) {
+        const positionSelector =
+          position === 'start'
+            ? ':not([icon-position])'
+            : '[icon-position="end"]';
+        const linkButton = page.locator(
+          `ix-link-button[icon="${icon}"]${positionSelector}`
+        );
+        await expect(linkButton).toHaveCount(1);
+        await expect(linkButton).toHaveJSProperty('iconPosition', position);
+        await expect(
+          linkButton.getByRole('link', { name: 'Link text' })
+        ).toBeVisible();
+        await expect(linkButton.locator('ix-icon')).toHaveCount(
+          icon === 'none' ? 0 : 1
+        );
+      }
     }
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
