@@ -35,7 +35,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const list = page.locator('ix-list');
-  await expect(list).toHaveClass(/\bhydrated\b/);
+  await expect(list).toHaveAttribute('hydrated', '');
   await expect(list).toBeVisible();
   await expect(list).toHaveAttribute('role', 'list');
   await expect(list.locator('ix-list-item')).toHaveAttribute(
@@ -114,7 +114,7 @@ regressionTest(
     const item = page.locator('ix-list-item').first();
     const gripper = item.locator('.drag-gripper');
 
-    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(item).toHaveAttribute('hydrated', '');
     await expect(gripper).toBeEnabled();
     await gripper.focus();
     await expect(gripper).toBeFocused();
@@ -268,8 +268,8 @@ regressionTest(
     const secondCheckbox = items.nth(1).locator('ix-checkbox input');
     const secondAction = items.nth(1).getByLabel('Second action');
 
-    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
-    await expect(items.nth(1)).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-list')).toHaveAttribute('hydrated', '');
+    await expect(items.nth(1)).toHaveAttribute('hydrated', '');
     const firstPrimaryAction = items.first().locator('.primary-action');
     await firstPrimaryAction.focus();
     await firstPrimaryAction.press('ArrowDown');
@@ -510,8 +510,8 @@ regressionTest(
 
     const item = page.locator('ix-list-item').nth(2);
     const gripper = item.locator('.drag-gripper');
-    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
-    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-list')).toHaveAttribute('hydrated', '');
+    await expect(item).toHaveAttribute('hydrated', '');
     const itemBounds = await item.boundingBox();
     const gripperBounds = await gripper.boundingBox();
 
@@ -547,8 +547,8 @@ regressionTest(
 
     const item = page.locator('ix-list-item').first();
     const gripper = item.locator('.drag-gripper');
-    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
-    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-list')).toHaveAttribute('hydrated', '');
+    await expect(item).toHaveAttribute('hydrated', '');
     const itemBounds = await item.boundingBox();
     const gripperBounds = await gripper.boundingBox();
     assertNotNull(itemBounds);
@@ -595,7 +595,7 @@ regressionTest(
 
     const item = modal.locator('ix-list-item').first();
     const gripper = item.locator('.drag-gripper');
-    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(item).toHaveAttribute('hydrated', '');
     const itemBounds = await item.boundingBox();
     const gripperBounds = await gripper.boundingBox();
     assertNotNull(itemBounds);
@@ -849,8 +849,7 @@ regressionTest('applies item gap and dividers', async ({ mount, page }) => {
     'rgba(0, 0, 0, 0)'
   );
 });
-
-regressionTest(
+-regressionTest(
   'renders standalone separators and applies list gap around them',
   async ({ mount, page }) => {
     await mount(`
@@ -1001,9 +1000,9 @@ regressionTest(
   `);
 
     const items = page.locator('ix-list-item');
-    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
-    await expect(items.nth(0)).toHaveClass(/\bhydrated\b/);
-    await expect(items.nth(2)).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-list')).toHaveAttribute('hydrated', '');
+    await expect(items.nth(0)).toHaveAttribute('hydrated', '');
+    await expect(items.nth(2)).toHaveAttribute('hydrated', '');
     await items.nth(0).locator('.primary-action').focus();
     await items.nth(0).locator('.primary-action').press('ArrowDown');
     await expect(items.nth(2).locator('.primary-action')).toBeFocused();
@@ -1041,8 +1040,8 @@ regressionTest(
     const firstAction = firstItem.locator('[slot="action"] button').nth(0);
     const secondAction = firstItem.locator('[slot="action"] button').nth(1);
 
-    await expect(page.locator('ix-list')).toHaveClass(/\bhydrated\b/);
-    await expect(firstItem).toHaveClass(/\bhydrated\b/);
+    await expect(page.locator('ix-list')).toHaveAttribute('hydrated', '');
+    await expect(firstItem).toHaveAttribute('hydrated', '');
     await primaryAction.focus();
     await primaryAction.press('ArrowRight');
     await expect(firstAction).toBeFocused();
@@ -1074,7 +1073,7 @@ regressionTest(
     const primaryAction = item.locator('.primary-action');
     const checkboxButton = item.locator('ix-checkbox input');
 
-    await expect(item).toHaveClass(/\bhydrated\b/);
+    await expect(item).toHaveAttribute('hydrated', '');
     await primaryAction.focus();
     await primaryAction.press('ArrowRight');
 
