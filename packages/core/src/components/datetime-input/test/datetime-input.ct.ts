@@ -408,7 +408,7 @@ regressionTest(
   'applies every datetime picked and emits ixChange once the picker closes',
   async ({ mount, page }) => {
     await mount(
-      `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11" require-confirmation="false"></ix-datetime-input>`
+      `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>`
     );
 
     const dateTimeInputElement = page.locator('ix-datetime-input');
