@@ -4478,7 +4478,8 @@
       "events": [],
       "cssProperties": [],
       "slots": [
-        "default"
+        "default",
+        "end"
       ],
       "cssParts": [],
       "cssStates": []

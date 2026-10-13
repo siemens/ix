@@ -21,7 +21,7 @@ import type {
  * @figma-main-component-id 4727:112521
  *
  * @slot header - Content to be placed in the header area next to the title
- * @slot default - Default slot for action buttons or other content
+ * @slot - Default slot for action buttons or other content
  */
 @Component({
   tag: 'ix-content-header',
