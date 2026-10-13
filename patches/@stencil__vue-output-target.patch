@@ -1,14 +1,18 @@
-diff --git a/dist/runtime.cjs.js b/dist/runtime.cjs.js
-index 8d1b57d..8aaa91b 100644
---- a/dist/runtime.cjs.js
-+++ b/dist/runtime.cjs.js
-@@ -247,4 +247,4 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+diff --git a/dist/runtime.cjs b/dist/runtime.cjs
+index 82cec86..74e3f02 100644
+--- a/dist/runtime.cjs
++++ b/dist/runtime.cjs
+@@ -276,7 +276,7 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+                 let navigationPayload = { event: ev };
                  for (const key in props) {
                      const value = props[key];
 -                    if (props.hasOwnProperty(key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
 +                    if (Object.prototype.hasOwnProperty.call(props, key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
                          navigationPayload[key] = value;
-@@ -285,5 +285,6 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+                     }
+                 }
+@@ -311,7 +311,8 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+              */
              for (const key in props) {
                  const value = props[key];
 -                if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
@@ -16,17 +20,22 @@ index 8d1b57d..8aaa91b 100644
 +                if (Object.prototype.hasOwnProperty.call(props, key) && value !== EMPTY_PROP && (!isAriaProp || value != null)) {
                      propsToAdd[key] = value;
                  }
+                 /**
 diff --git a/dist/runtime.js b/dist/runtime.js
-index 7efe4d9..4415241 100644
+index 327de60..275e226 100644
 --- a/dist/runtime.js
 +++ b/dist/runtime.js
-@@ -245,4 +245,4 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+@@ -274,7 +274,7 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+                 let navigationPayload = { event: ev };
                  for (const key in props) {
                      const value = props[key];
 -                    if (props.hasOwnProperty(key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
 +                    if (Object.prototype.hasOwnProperty.call(props, key) && key.startsWith(ROUTER_PROP_PREFIX) && value !== EMPTY_PROP) {
                          navigationPayload[key] = value;
-@@ -283,5 +283,6 @@ const defineContainer = (name, defineCustomElement, componentProps = [], modelPr
+                     }
+                 }
+@@ -309,7 +309,8 @@ const defineContainer = (name, defineCustomElement, componentProps = [], emitPro
+              */
              for (const key in props) {
                  const value = props[key];
 -                if ((props.hasOwnProperty(key) && value !== EMPTY_PROP) || key.startsWith(ARIA_PROP_PREFIX)) {
@@ -34,3 +43,4 @@ index 7efe4d9..4415241 100644
 +                if (Object.prototype.hasOwnProperty.call(props, key) && value !== EMPTY_PROP && (!isAriaProp || value != null)) {
                      propsToAdd[key] = value;
                  }
+                 /**
