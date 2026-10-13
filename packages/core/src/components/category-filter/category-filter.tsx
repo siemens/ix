@@ -906,13 +906,7 @@ export class CategoryFilter {
                 ref={(el) => (this.tokenListElement = el)}
               >
                 {this.filterTokens.map((value, index) => (
-                  <span
-                    key={value.toString()}
-                    class={{
-                      animate__animated: true,
-                      animate__fadein: true,
-                    }}
-                  >
+                  <span key={value.toString()}>
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}
