@@ -16,7 +16,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import { NotificationColor } from '../utils/notification-color';
 import {
   iconClose,
@@ -105,10 +105,9 @@ export class MessageBar {
     const { defaultPrevented } = this.closedChange.emit();
 
     if (!defaultPrevented) {
-      animate(el, {
+      animate(el, [{ opacity: 1 }, { opacity: 0 }], {
         duration: MessageBar.duration,
-        opacity: [1, 0],
-        easing: 'easeOutSine',
+        easing: Easing.easeOutQuad,
         onComplete: () => {
           el.classList.add('message-bar-hidden');
           this.closeAnimationCompleted.emit();
