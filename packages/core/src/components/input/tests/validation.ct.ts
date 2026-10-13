@@ -419,6 +419,26 @@ test.describe('novalidate form', () => {
       await expect(host).not.toHaveClass(/ix-invalid/);
     });
   });
+
+  // Only fields with `getValidityState` get `aria-invalid` from the validation hook
+  test('ix-input - should sync aria-invalid on the native input once the form opts out', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<form><ix-input required></ix-input></form>');
+    const host = page.locator('ix-input');
+    const nativeInput = host.locator('input');
+
+    await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
+
+    await page
+      .locator('form')
+      .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+    await nativeInput.fill('2');
+
+    await expect(nativeInput).not.toHaveAttribute('aria-invalid', 'true');
+    await expect(host).not.toHaveClass(/ix-invalid/);
+  });
 });
 
 test('validation classes are applied after the field was moved in the DOM', async ({

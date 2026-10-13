@@ -139,6 +139,17 @@ export function clearInternalValidationClasses(host: HTMLElement) {
   }
 }
 
+function syncAriaInvalid(
+  validationElement: HTMLInputElement | HTMLTextAreaElement,
+  valid: boolean
+) {
+  if (valid) {
+    validationElement.removeAttribute('aria-invalid');
+  } else {
+    validationElement.setAttribute('aria-invalid', 'true');
+  }
+}
+
 type ValidationLifecycleState = {
   checkIfRequiredFunction: (() => Promise<void>) | null;
   classMutationObserver: ClassMutationObserver | null;
@@ -225,7 +236,6 @@ export function HookValidationLifecycle(options?: {
         if (skipValidation) {
           // Clear feedback from before `novalidate` was set
           clearInternalValidationClasses(host);
-          return;
         }
 
         if (!isIxInputFieldComponent(host)) {
@@ -247,6 +257,21 @@ export function HookValidationLifecycle(options?: {
         }
 
         if (!host.isConnected) {
+          return;
+        }
+
+        if (skipValidation) {
+          // Suppress visual feedback only, screen readers still follow validity
+          if (
+            validationElement &&
+            host.getValidityState &&
+            typeof host.getValidityState === 'function'
+          ) {
+            const { valid } = await host.getValidityState();
+            if (host.isConnected) {
+              syncAriaInvalid(validationElement, valid);
+            }
+          }
           return;
         }
 
@@ -307,21 +332,17 @@ export function HookValidationLifecycle(options?: {
               );
             }
 
-            if (!validityState.valid) {
-              validationElement?.setAttribute('aria-invalid', 'true');
+            syncAriaInvalid(validationElement, validityState.valid);
 
-              if (ariaErrorMessageElement && !validityState.valid) {
-                validationElement.setAttribute(
-                  'aria-errormessage',
-                  `${ariaErrorMessageElement.id}`
-                );
-                validationElement.setAttribute(
-                  'aria-describedby',
-                  `${ariaErrorMessageElement.id}`
-                );
-              }
-            } else {
-              validationElement?.removeAttribute('aria-invalid');
+            if (!validityState.valid && ariaErrorMessageElement) {
+              validationElement.setAttribute(
+                'aria-errormessage',
+                `${ariaErrorMessageElement.id}`
+              );
+              validationElement.setAttribute(
+                'aria-describedby',
+                `${ariaErrorMessageElement.id}`
+              );
             }
           }
         }
