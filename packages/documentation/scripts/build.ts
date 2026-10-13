@@ -411,6 +411,7 @@ async function generateApiMarkdown() {
     const slotOutput = Mustache.render(slotTemplate, {
       slots: slots.map((tag) => ({
         ...tag,
+        name: tag.name || 'default',
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
         docs: serializeMarkdownForJsx(
           expandJsdocNewlinesForMarkdown(parseJSDocsToMarkdown(tag.docs ?? ''))
