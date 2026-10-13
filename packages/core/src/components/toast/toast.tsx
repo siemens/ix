@@ -103,7 +103,6 @@ export class Toast {
           data-testid="toast-icon"
           name={this.icon}
           color={this.iconColor}
-          size="24"
         />
       );
     }
@@ -114,8 +113,7 @@ export class Toast {
           <ix-icon
             data-testid="toast-icon"
             name={iconInfo}
-            size="24"
-            color="--si-sys-color-text-primary"
+            color="--si-sys-color-background-information"
           />
         );
 
@@ -124,7 +122,6 @@ export class Toast {
           <ix-icon
             data-testid="toast-icon"
             name={iconError}
-            size="24"
             color="--si-sys-color-text-danger"
           />
         );
@@ -134,7 +131,6 @@ export class Toast {
           <ix-icon
             data-testid="toast-icon"
             name={iconSuccess}
-            size="24"
             color="--si-sys-color-text-success"
           />
         );
@@ -144,7 +140,6 @@ export class Toast {
           <ix-icon
             data-testid="toast-icon"
             name={iconWarning}
-            size="24"
             color="--si-sys-color-text-warning"
           />
         );
