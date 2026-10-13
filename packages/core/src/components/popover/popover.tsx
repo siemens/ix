@@ -81,7 +81,7 @@ const numberToPixel = (value?: number | null) =>
  *
  * @documentation https://ix.siemens.io//docs/components/popover/guide.md
  * @figma-main-component-id 145668:12518
- * @slot default - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
+ * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
  *
  * @since 5.1.0
  */

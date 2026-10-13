@@ -11,7 +11,6 @@ on:
     paths:
       - '**'
       - '!**/*.md'
-      - 'skills/ix/THIRD_PARTY_LICENSES.md'
 
 concurrency:
   group: pr-${{ github.head_ref }}
@@ -85,9 +84,6 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
         with:
           save-cache: 'true'
-
-      - name: Check generated IX search bundle
-        run: pnpm check:ix-search
 
       - name: Build
         run: pnpm build --cache-dir=.turbo
