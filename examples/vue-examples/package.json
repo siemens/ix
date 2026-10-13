@@ -26,7 +26,7 @@
     "echarts": "^6.0.0",
     "echarts-gl": "^2.1.0",
     "html-examples": "workspace:*",
-    "vue": "^3.4.34",
+    "vue": "^3.5.0",
     "vue-echarts": "~6.6.10"
   },
   "devDependencies": {
