@@ -1,0 +1,124 @@
+.changeset/accessibility-pagination-patch.md
+  h_c5a773bf2fda8b 1-5
+.changeset/optional-collection-peers.md
+  h_c5a773bf2fda8b 5
+.changeset/pagination-jump-labels.md
+  h_c5a773bf2fda8b 1-8
+.changeset/pagination-navigation-label.md
+  h_c5a773bf2fda8b 1-8
+.changeset/remove-animation-dependencies.md
+  h_c5a773bf2fda8b 1-9
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 327,330
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 2268,2275
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 2380,2387
+packages/core/component-api.json
+  h_c5a773bf2fda8b 7543-7564,7631-7641
+packages/core/package.json
+  h_c5a773bf2fda8b 33,117
+packages/core/scss/globals/_reset.scss
+  h_c5a773bf2fda8b 108
+packages/core/scss/legacy/components/_checkboxes.scss
+  h_c5a773bf2fda8b 18-20,156
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 3744-3755,3787-3792,12035-12046,12078-12083,14807,14813-14814
+packages/core/src/components/badge/badge.scss
+  h_c5a773bf2fda8b 166-170
+packages/core/src/components/blind/blind.tsx
+  h_c5a773bf2fda8b 21,92-94,111,115-122,126,128-132
+packages/core/src/components/category-filter/category-filter.tsx
+  h_c5a773bf2fda8b 909
+packages/core/src/components/chat-ai-message/chat-ai-message.vars.scss
+  h_c5a773bf2fda8b 21
+packages/core/src/components/checkbox/checkbox.scss
+  h_c5a773bf2fda8b 19,26-35,40
+packages/core/src/components/checkbox/checkbox.vars.scss
+  h_c5a773bf2fda8b 125-127
+packages/core/src/components/checkbox/tests/checkbox.ct.ts
+  h_c5a773bf2fda8b 86-87,89,93-105,118-124
+packages/core/src/components/date-picker/date-picker.tsx
+  h_c5a773bf2fda8b 857-861,914-918
+packages/core/src/components/date-picker/date-picker.vars.scss
+  h_c5a773bf2fda8b 43
+packages/core/src/components/empty-state/empty-state.scss
+  h_c5a773bf2fda8b 100-107
+packages/core/src/components/event-list/event-list.tsx
+  h_c5a773bf2fda8b 13,143,145-146,159-160,163,165,167
+packages/core/src/components/expanding-search/expanding-search.tsx
+  h_c5a773bf2fda8b 153,186
+packages/core/src/components/flip-tile/flip-tile.tsx
+  h_c5a773bf2fda8b 22,164-172,176
+packages/core/src/components/group/group.scss
+  h_c5a773bf2fda8b 164,166
+packages/core/src/components/input/input.animation.ts
+  h_c5a773bf2fda8b 9,14-25
+packages/core/src/components/menu-about-news/menu-about-news.scss
+  h_c5a773bf2fda8b 69-72
+packages/core/src/components/menu-about-news/menu-about-news.tsx
+  h_c5a773bf2fda8b 100
+packages/core/src/components/menu-about-news/menu-about-news.vars.scss
+  h_c5a773bf2fda8b 17
+packages/core/src/components/menu-category/menu-category.tsx
+  h_c5a773bf2fda8b 24,162-180,183-185,196-218,522-529,533
+packages/core/src/components/menu/menu.scss
+  h_c5a773bf2fda8b 11
+packages/core/src/components/menu/menu.tsx
+  h_c5a773bf2fda8b 29,676-701,714-733
+packages/core/src/components/message-bar/message-bar.tsx
+  h_c5a773bf2fda8b 19,108,110
+packages/core/src/components/modal/modal.tsx
+  h_c5a773bf2fda8b 20,115,120-131,142-159
+packages/core/src/components/pagination/pagination.tsx
+  h_c5a773bf2fda8b 91-97,131-151,202-203,222-237,244,251-260,288,294-303,320,323,370-372
+packages/core/src/components/pagination/test/pagination.ct.ts
+  h_c5a773bf2fda8b 33-35,38-111,179-180
+packages/core/src/components/pane/pane.tsx
+  h_c5a773bf2fda8b 28,185,411,413-414,422,432,434,463-468,470-479,486,493-510,516
+packages/core/src/components/radio/radio.scss
+  h_c5a773bf2fda8b 20,40,46-54
+packages/core/src/components/radio/radio.vars.scss
+  h_c5a773bf2fda8b 97-99
+packages/core/src/components/radio/test/radio.ct.ts
+  h_c5a773bf2fda8b 199-221
+packages/core/src/components/select/select.scss
+  h_c5a773bf2fda8b 158
+packages/core/src/components/select/select.vars.scss
+  h_c5a773bf2fda8b 35
+packages/core/src/components/time-picker/test/time-picker.ct.ts
+  h_c5a773bf2fda8b 142
+packages/core/src/components/time-picker/time-picker.vars.scss
+  h_c5a773bf2fda8b 29
+packages/core/src/components/toast/tests/toast.ct.ts
+  h_c5a773bf2fda8b 33-87
+packages/core/src/components/toast/toast.scss
+  h_c5a773bf2fda8b 29-31,110-131
+packages/core/src/components/toast/toast.tsx
+  h_c5a773bf2fda8b 104,117,128,139,150,162-163,165-166,168-176,178-204,244
+packages/core/src/components/typography/typography.tsx
+  h_c5a773bf2fda8b 35,41
+packages/core/src/components/utils/animate.ts
+  h_c5a773bf2fda8b 2,9-198,200-220
+packages/core/src/components/utils/test/animate.spec.ts
+  h_c5a773bf2fda8b 1-193
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 1608,1613-1615
+packages/storybook-docs/src/stories/card-list.stories.tsx
+  h_c5a773bf2fda8b 14-21,27-36,40-44,51-64
+packages/vue/src/components/ix-pagination.ts
+  h_c5a773bf2fda8b 17,23-24
+testing/visual-testing/tests/typography/text-color/index.html
+  h_c5a773bf2fda8b 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3e03cf6cd7428aa2b9e991b767abc946afa34592",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
