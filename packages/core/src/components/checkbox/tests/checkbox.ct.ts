@@ -125,7 +125,7 @@ regressionTest(
       `<ix-checkbox name="slot-label">Custom slot label text</ix-checkbox>`
     );
     const checkbox = page.locator('ix-checkbox');
-    await expect(checkbox).toHaveClass(/\bhydrated\b/);
+    await expect(checkbox).toHaveAttribute('hydrated');
     await expect(checkbox).not.toHaveClass(/label-less/);
     await expect(checkbox).toHaveText(/Custom slot label text/);
     await expect
@@ -153,7 +153,7 @@ test('Checkbox should not cause layout shift when checked', async ({
     <div id="element-below">This element should not move</div>
   `);
 
-  await expect(page.locator('ix-checkbox')).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-checkbox')).toHaveAttribute('hydrated');
 
   const initialBounds = await page.$eval('#element-below', (el) => {
     const rect = el.getBoundingClientRect();

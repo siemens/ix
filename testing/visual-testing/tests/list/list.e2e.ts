@@ -12,14 +12,14 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('list', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('list/basic');
-    await expect(page.locator('ix-list')).toHaveAttribute('hydrated', '');
+    await expect(page.locator('ix-list')).toHaveAttribute('hydrated');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('additional actions', async ({ page }) => {
     await page.goto('list/basic');
     const firstItem = page.locator('ix-list-item').first();
-    await expect(firstItem).toHaveAttribute('hydrated', '');
+    await expect(firstItem).toHaveAttribute('hydrated');
     await firstItem.hover();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -27,7 +27,7 @@ regressionTest.describe('list', () => {
   regressionTest('dragging', async ({ page }) => {
     await page.goto('list/basic');
     const items = page.locator('ix-list-item');
-    await expect(items.first()).toHaveAttribute('hydrated', '');
+    await expect(items.first()).toHaveAttribute('hydrated');
     const gripperBounds = await items
       .first()
       .locator('.drag-gripper')

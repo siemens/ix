@@ -30,7 +30,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const item = page.locator('ix-list-item');
-  await expect(item).toHaveAttribute('hydrated', '');
+  await expect(item).toHaveAttribute('hydrated');
   await expect(item).toBeVisible();
   await expect(item).toHaveAttribute('role', 'listitem');
   await expect(item.locator('.label')).toHaveText('Project Alpha');
@@ -51,7 +51,7 @@ regressionTest(
     const label = item.locator('.label');
     const extra = item.locator('.inline-extra');
 
-    await expect(item).toHaveAttribute('hydrated', '');
+    await expect(item).toHaveAttribute('hydrated');
     await expect(primaryAction).toHaveCSS('display', 'flex');
     await expect(label).toBeVisible();
     await expect(extra).toBeVisible();
@@ -82,7 +82,7 @@ regressionTest(
 
     const item = page.locator('ix-list-item');
     const primaryAction = item.locator('.primary-action');
-    await expect(item).toHaveAttribute('hydrated', '');
+    await expect(item).toHaveAttribute('hydrated');
     await expect(primaryAction).toHaveAttribute('tabindex', '0');
     await page.locator('#before-list-item').focus();
     await page.keyboard.press('Tab');
