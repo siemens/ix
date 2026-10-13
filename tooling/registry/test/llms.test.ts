@@ -36,6 +36,35 @@ test('extracts kebab-case and PascalCase iX component usages', () => {
   ]);
 });
 
+test('extracts public wrappers and aliased imports from iX packages', () => {
+  const tags = new Set(['ix-button', 'ix-modal', 'ix-tooltip']);
+  const source = `
+    import { IxButton as SaveButton, Modal, ModalRef, showModal } from '@siemens/ix-react';
+    import { IxTooltip as Hint } from '@siemens/ix-vue';
+    import { Modal as LocalModal } from './local-modal';
+    const ref = useRef<ModalRef>(null);
+    <Modal ref={ref}><SaveButton>Save</SaveButton></Modal>
+    <Hint />
+    <LocalModal />
+  `;
+
+  assert.deepEqual(extractUsedComponents(source, tags), [
+    'ix-button',
+    'ix-modal',
+    'ix-tooltip',
+  ]);
+});
+
+test('ignores non-iX components named like public wrappers', () => {
+  const tags = new Set(['ix-modal']);
+  const source = `
+    import { Modal } from './modal';
+    <Modal />
+  `;
+
+  assert.deepEqual(extractUsedComponents(source, tags), []);
+});
+
 test('humanizes example names', () => {
   assert.equal(humanizeName('date-picker-range'), 'Date picker range');
   assert.equal(humanizeName('button'), 'Button');
@@ -61,6 +90,14 @@ test('generates compact catalog, Figma, example index and detail artifacts', asy
     await fs.outputFile(
       path.join(root, 'packages/react/dist/types/components/components.d.ts'),
       'export declare const IxButton: unknown;\n'
+    );
+    await fs.outputFile(
+      path.join(root, 'packages/vue/dist/components/components.d.ts'),
+      "export { IxButton } from './ix-button.js';\nexport { IxIcon } from './ix-icon.js';\n"
+    );
+    await fs.outputFile(
+      path.join(root, 'packages/angular/dist/standalone/index.d.ts'),
+      'declare class IxButton {}\ndeclare class IxIcon {}\nexport { IxButton, IxIcon };\n'
     );
     await fs.outputJson(componentDocPath, {
       components: [
@@ -186,7 +223,15 @@ test('generates compact catalog, Figma, example index and detail artifacts', asy
       path.join(distDir, 'llms/components/ix-button.md'),
       'utf8'
     );
-    assert.match(buttonDetail, /`IxButton` from `@siemens\/ix-react`/);
+    assert.match(
+      buttonDetail,
+      /^- React: `IxButton` from `@siemens\/ix-react`$/m
+    );
+    assert.match(buttonDetail, /^- Vue: `IxButton` from `@siemens\/ix-vue`$/m);
+    assert.match(
+      buttonDetail,
+      /^- Angular: .*`IxButton` from `@siemens\/ix-angular\/standalone`/m
+    );
     assert.match(
       buttonDetail,
       /https:\/\/ix\.siemens\.io\/docs\/components\/button\.md/
@@ -203,6 +248,12 @@ test('generates compact catalog, Figma, example index and detail artifacts', asy
       'utf8'
     );
     assert.match(iconDetail, /^- icon-list \(react\)$/m);
+    assert.doesNotMatch(iconDetail, /^- React:/m);
+    assert.match(iconDetail, /^- Vue: `IxIcon` from `@siemens\/ix-vue`$/m);
+    assert.match(
+      iconDetail,
+      /^- Angular: .*`IxIcon` from `@siemens\/ix-angular\/standalone`/m
+    );
 
     const entrypoint = await fs.readFile(
       path.join(distDir, artifacts.entrypoint),

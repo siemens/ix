@@ -9,7 +9,11 @@
 import fs from 'fs-extra';
 import path from 'node:path';
 import { glob } from 'glob';
-import { componentReactAlias, readReactExportNames } from './search-index';
+import {
+  componentReactAlias,
+  readDeclarationExportNames,
+  readReactExportNames,
+} from './search-index';
 
 type DocsTag = {
   name: string;
@@ -181,11 +185,56 @@ export function humanizeName(name: string): string {
 }
 
 /**
+ * Public framework wrappers whose names do not follow the `Ix*` convention.
+ */
+const PUBLIC_WRAPPER_TAGS: Readonly<Record<string, string>> = {
+  Modal: 'ix-modal',
+};
+
+/**
+ * Maps local names imported from iX framework packages to component tags,
+ * resolving import aliases (`import { Modal as Dialog } ...`) and public
+ * wrappers such as `Modal`.
+ */
+function readImportedComponentNames(
+  source: string,
+  tagsByAlias: ReadonlyMap<string, string>,
+  componentTags: ReadonlySet<string>
+): Map<string, string> {
+  const imported = new Map<string, string>();
+
+  for (const match of source.matchAll(
+    /\bimport\s*\{([^}]*)\}\s*from\s*['"]@siemens\/ix-(?:react|vue|angular)(?:\/[^'"]*)?['"]/g
+  )) {
+    for (const specifier of (match[1] ?? '').split(',')) {
+      const parts = specifier.trim().split(/\s+/);
+      if (parts[0] === 'type') {
+        continue;
+      }
+      const importedName = parts[0];
+      const localName = parts[1] === 'as' ? parts[2] : parts[0];
+      if (!importedName || !localName) {
+        continue;
+      }
+      const tag =
+        tagsByAlias.get(importedName) ?? PUBLIC_WRAPPER_TAGS[importedName];
+      if (tag && componentTags.has(tag)) {
+        imported.set(localName, tag);
+      }
+    }
+  }
+
+  return imported;
+}
+
+/**
  * Extracts the iX component tags used by an example source file.
  *
  * Detects kebab-case custom element tags (`<ix-button`) used by HTML, Angular
- * and Vue templates as well as PascalCase wrapper tags (`<IxButton`) used by
- * React and Vue. Results are restricted to known component tags.
+ * and Vue templates, PascalCase wrapper tags (`<IxButton`) used by React and
+ * Vue, and components imported from iX framework packages under another
+ * name (public wrappers such as `<Modal>` or import aliases). Results are
+ * restricted to known component tags.
  */
 export function extractUsedComponents(
   source: string,
@@ -195,6 +244,11 @@ export function extractUsedComponents(
   const tagsByAlias = new Map(
     [...componentTags].map((tag) => [componentReactAlias(tag), tag])
   );
+  const importedNames = readImportedComponentNames(
+    source,
+    tagsByAlias,
+    componentTags
+  );
 
   for (const match of source.matchAll(/<\s*(ix-[a-z0-9-]+)(?=[\s/>])/g)) {
     const tag = match[1];
@@ -203,8 +257,9 @@ export function extractUsedComponents(
     }
   }
 
-  for (const match of source.matchAll(/<\s*(Ix[A-Z][A-Za-z0-9]*)\b/g)) {
-    const tag = tagsByAlias.get(match[1] ?? '');
+  for (const match of source.matchAll(/<\s*([A-Z][A-Za-z0-9]*)(?=[\s/>])/g)) {
+    const name = match[1] ?? '';
+    const tag = importedNames.get(name) ?? tagsByAlias.get(name);
     if (tag) {
       used.add(tag);
     }
@@ -460,7 +515,7 @@ function renderTagList(tags: string[] | undefined): string {
 
 function renderComponentDetail(
   component: ComponentDoc,
-  reactAlias: string | undefined,
+  frameworkNames: FrameworkComponentNames,
   relatedExamples: Record<string, string[]>,
   examplesByName: Record<string, ExampleDefinition>,
   relatedPatterns: Record<string, string[]>,
@@ -472,11 +527,14 @@ function renderComponentDetail(
   const patterns = [...(relatedPatterns[component.tag] ?? [])].sort();
   const names = [
     `Web component: \`<${component.tag}>\``,
-    reactAlias
-      ? `React/Vue: \`${reactAlias}\` from \`@siemens/ix-react\` / \`@siemens/ix-vue\``
+    frameworkNames.react
+      ? `React: \`${frameworkNames.react}\` from \`@siemens/ix-react\``
       : null,
-    reactAlias
-      ? `Angular: \`<${component.tag}>\` (\`IxModule\` from \`@siemens/ix-angular\` or \`${reactAlias}\` from \`@siemens/ix-angular/standalone\`)`
+    frameworkNames.vue
+      ? `Vue: \`${frameworkNames.vue}\` from \`@siemens/ix-vue\``
+      : null,
+    frameworkNames.angularStandalone
+      ? `Angular: \`<${component.tag}>\` (\`IxModule\` from \`@siemens/ix-angular\` or \`${frameworkNames.angularStandalone}\` from \`@siemens/ix-angular/standalone\`)`
       : null,
   ].filter(Boolean);
 
@@ -854,23 +912,53 @@ async function readPatterns(patternsDir: string): Promise<PatternDefinition[]> {
   return sortByName(patterns);
 }
 
-async function resolveReactAliases(
+type FrameworkComponentNames = {
+  react?: string;
+  vue?: string;
+  angularStandalone?: string;
+};
+
+/**
+ * Resolves the wrapper name of each component per framework package, so that
+ * a name is only documented for the frameworks that actually export it.
+ */
+async function resolveFrameworkNames(
   components: ComponentDoc[],
   options: GenerateLlmsOptions
-): Promise<Record<string, string>> {
+): Promise<Record<string, FrameworkComponentNames>> {
   if (!options.workspaceRoot) {
     return {};
   }
 
-  const exportNames = await readReactExportNames(
-    options.workspaceRoot,
-    options.warn
-  );
+  const packagesDir = path.join(options.workspaceRoot, 'packages');
+  const [reactNames, vueNames, angularStandaloneNames] = await Promise.all([
+    readReactExportNames(options.workspaceRoot, options.warn),
+    readDeclarationExportNames(
+      path.join(packagesDir, 'vue', 'dist'),
+      'Vue',
+      options.warn
+    ),
+    readDeclarationExportNames(
+      path.join(packagesDir, 'angular', 'dist', 'standalone'),
+      'Angular standalone',
+      options.warn
+    ),
+  ]);
 
   return Object.fromEntries(
-    components
-      .map((component) => [component.tag, componentReactAlias(component.tag)])
-      .filter(([, alias]) => exportNames.has(alias))
+    components.map((component) => {
+      const alias = componentReactAlias(component.tag);
+      return [
+        component.tag,
+        {
+          react: reactNames.has(alias) ? alias : undefined,
+          vue: vueNames.has(alias) ? alias : undefined,
+          angularStandalone: angularStandaloneNames.has(alias)
+            ? alias
+            : undefined,
+        },
+      ];
+    })
   );
 }
 
@@ -903,7 +991,12 @@ export async function generateLlmsArtifacts(
     authoredRelatedExamples,
     exampleUsage
   );
-  const reactAliases = await resolveReactAliases(components, options);
+  const frameworkNames = await resolveFrameworkNames(components, options);
+  const reactAliases = Object.fromEntries(
+    Object.entries(frameworkNames).flatMap(([tag, names]) =>
+      names.react ? [[tag, names.react]] : []
+    )
+  );
   const frameworks = [
     ...new Set(examples.flatMap((example) => exampleFrameworks(example))),
   ].sort();
@@ -962,7 +1055,7 @@ export async function generateLlmsArtifacts(
         path.join(componentDetailsDir, componentDetailFileName(component)),
         renderComponentDetail(
           component,
-          reactAliases[component.tag],
+          frameworkNames[component.tag] ?? {},
           relatedExamples,
           examplesByName,
           relatedPatterns,
