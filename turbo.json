@@ -42,11 +42,7 @@
     },
     "registry#build": {
       "dependsOn": ["^build"],
-      "outputs": [
-        "dist/**",
-        "$TURBO_ROOT$/skills/ix/scripts/search.mjs",
-        "$TURBO_ROOT$/skills/ix/THIRD_PARTY_LICENSES.md"
-      ],
+      "outputs": ["dist/**"],
       "outputLogs": "new-only"
     },
     "start": {
