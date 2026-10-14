@@ -20,6 +20,16 @@ regressionTest.describe('dropdown', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('context menu at pointer position', async ({ page }) => {
+    await page.goto('dropdown/context-menu');
+    await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
+
+    await page.mouse.click(120, 80, { button: 'right' });
+    await page.waitForSelector('.dropdown-menu.show');
+
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('checked', async ({ page }) => {
     await page.goto('dropdown/checked');
 

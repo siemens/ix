@@ -1,0 +1,44 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconCopy, iconPaste, iconTrashcan } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconCopy,
+        iconPaste,
+        iconTrashcan,
+      });
+    </script>
+  </head>
+  <body style="width: 100vw; height: 100vh">
+    <div id="area" style="position: fixed; inset: 0"></div>
+    <ix-dropdown id="context-menu" role="menu">
+      <ix-dropdown-item label="Copy" icon="copy"></ix-dropdown-item>
+      <ix-dropdown-item label="Paste" icon="paste"></ix-dropdown-item>
+      <ix-dropdown-item label="Delete" icon="trashcan"></ix-dropdown-item>
+    </ix-dropdown>
+    <script>
+      document.getElementById('area').addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        document
+          .getElementById('context-menu')
+          .showAt(event.clientX, event.clientY);
+      });
+    </script>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
