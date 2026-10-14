@@ -27,6 +27,7 @@ export { IxChip } from './ix-chip.js';
 export { IxCol } from './ix-col.js';
 export { IxContent } from './ix-content.js';
 export { IxContentHeader } from './ix-content-header.js';
+export { IxContextMenu } from './ix-context-menu.js';
 export { IxCustomField } from './ix-custom-field.js';
 export { IxDateDropdown } from './ix-date-dropdown.js';
 export { IxDateInput } from './ix-date-input.js';

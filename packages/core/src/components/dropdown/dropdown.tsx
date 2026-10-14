@@ -283,6 +283,12 @@ export class Dropdown
 
   /**
    * @internal
+   * `aria-modal` is only valid for dialog roles, e.g. not for `role="menu"`.
+   */
+  @Prop() suppressAriaModal = false;
+
+  /**
+   * @internal
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
    */
@@ -1334,6 +1340,15 @@ export class Dropdown
   }
 
   /**
+   * @internal
+   * Dismiss the dropdown including its submenus.
+   */
+  @Method()
+  async dismissDropdown() {
+    dropdownController.dismiss(this);
+  }
+
+  /**
    * Show the dropdown at the given absolute point in viewport coordinates
    * (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event.
    * Sets `anchorPosition` and moves an already visible dropdown.
@@ -1453,7 +1468,7 @@ export class Dropdown
       <Host
         {...ariaAttributes}
         tabindex={hostFocusable ? -1 : undefined}
-        aria-modal="true"
+        aria-modal={this.suppressAriaModal ? undefined : 'true'}
         data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap
         class={{

@@ -32,6 +32,7 @@ export const IxDropdown: StencilVueComponent<JSX.IxDropdown> = /*@__PURE__*/ def
   'focusHost',
   'focusTrapOptions',
   'hostRole',
+  'suppressAriaModal',
   'callbackFocusElement',
   'showChange',
   'showChanged',

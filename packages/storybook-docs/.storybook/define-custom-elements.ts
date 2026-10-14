@@ -26,6 +26,7 @@ import { defineCustomElement as ixChip } from '@siemens/ix/components/ix-chip.js
 import { defineCustomElement as ixCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as ixContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as ixContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as ixContextMenu } from '@siemens/ix/components/ix-context-menu.js';
 import { defineCustomElement as ixCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as ixDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as ixDateInput } from '@siemens/ix/components/ix-date-input.js';
@@ -139,6 +140,7 @@ ixChip();
 ixCol();
 ixContent();
 ixContentHeader();
+ixContextMenu();
 ixCustomField();
 ixDateDropdown();
 ixDateInput();
