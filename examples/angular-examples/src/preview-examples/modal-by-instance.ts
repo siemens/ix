@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
 import ModalByInstanceExample from './modal-by-instance-content';
 
@@ -17,7 +17,7 @@ import ModalByInstanceExample from './modal-by-instance-content';
   template: '<ix-button (click)="openModal()">Show modal</ix-button>',
 })
 export default class ModalByInstance {
-  constructor(private readonly modalService: ModalService) {}
+  private readonly modalService = inject(ModalService);
 
   async openModal() {
     await this.modalService.open({
