@@ -1,14 +1,14 @@
-language: "en-US"
+language: 'en-US'
 
 reviews:
-  profile: "assertive"
+  profile: 'assertive'
   path_filters:
-    - "!packages/react/src/components/**"
-    - "!packages/vue/src/components/**"
-    - "!packages/angular/standalone/src/components.ts"
-    - "!packages/angular/standalone/src/internal-components.ts"
+    - '!packages/react/src/components/**'
+    - '!packages/vue/src/components/**'
+    - '!packages/angular/standalone/src/components.ts'
+    - '!packages/angular/standalone/src/internal-components.ts'
   path_instructions:
-    - path: "**"
+    - path: '**'
       instructions: |
         Use Siemens IX review rules as the primary policy.
 
@@ -26,14 +26,14 @@ reviews:
         - If an issue is meant to close on release, require "Fixes #<issue-number>" in the changeset summary.
 
         Requirement linking:
-        - Require GitHub issue or Jira reference (IX-<number>) in PR description or commit message when work is tied to a tracked requirement.
+        - Require GitHub issue or internal reference (EIX-<number>) in PR description or commit message when work is tied to a tracked requirement.
 
         Review priorities:
         - Prioritize correctness, regressions, accessibility, release impact, and missing validation.
         - Prefer concise, actionable comments.
         - When a rule does not apply because a change is internal-only, state that explicitly.
 
-    - path: "packages/core/**"
+    - path: 'packages/core/**'
       instructions: |
         Component-level review requirements:
         - Ensure accessibility coverage exists with axe-based component tests where behavior/UI changed.
@@ -43,7 +43,7 @@ reviews:
         - Require a Storybook story for any new component or significant user-visible variation (states, themes, interactions).
         - For new component/public API additions (component, prop, method, event), require JSDoc @since tags and flag missing/incorrect versions.
 
-    - path: "packages/core/src/components/**/test/*.ct.ts"
+    - path: 'packages/core/src/components/**/test/*.ct.ts'
       instructions: |
         Component test review requirements:
         - Expect SPDX header in each .ct.ts file.
@@ -54,7 +54,7 @@ reviews:
         - Prefer Playwright locators over evaluate + shadowRoot.querySelector for assertions.
         - Avoid arbitrary timeouts/waitForTimeout.
 
-    - path: "{packages/angular-test-app,packages/angular-standalone-test-app,packages/react-test-app,packages/vue-test-app,packages/html-test-app}/src/preview-examples/**"
+    - path: '{packages/angular-test-app,packages/angular-standalone-test-app,packages/react-test-app,packages/vue-test-app,packages/html-test-app}/src/preview-examples/**'
       instructions: |
         Test-app example consistency requirements:
         - Every preview example must exist in all five test apps: angular-test-app, angular-standalone-test-app, react-test-app, vue-test-app, and html-test-app.
