@@ -22,7 +22,7 @@ import {
   weekdayColumnOf,
   weekdayNamesFrom,
   weekStartFrom,
-} from '../calendar.util';
+} from '../datetime/calendar.util';
 
 /** Luxon month ordinals, for readability in the expectations below. */
 const JUNE = 6;

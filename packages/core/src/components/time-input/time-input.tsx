@@ -60,7 +60,7 @@ import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
-import { parseWithLocale } from '../utils/date-time-locale';
+import { parseWithLocale } from '../utils/datetime/date-time-locale';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';

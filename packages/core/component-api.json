@@ -2640,7 +2640,7 @@
       "events": [
         {
           "name": "dateRangeChange",
-          "detail": "DateRangeValue & { id: string; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { id: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2648,7 +2648,7 @@
         },
         {
           "name": "dateSelect",
-          "detail": "DateRangeValue & { id: string; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { id: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3248,7 +3248,7 @@
         },
         {
           "name": "dateChange",
-          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3256,7 +3256,7 @@
         },
         {
           "name": "dateRangeChange",
-          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3264,7 +3264,7 @@
         },
         {
           "name": "dateSelect",
-          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3998,7 +3998,7 @@
         },
         {
           "name": "dateChange",
-          "detail": "\"time\" | DateRangeValue & { time: string; isoTime?: string | undefined; } | string",
+          "detail": "\"time\" | DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { time: string; isoTime?: string | undefined; } | string",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -4006,7 +4006,7 @@
         },
         {
           "name": "dateSelect",
-          "detail": "DateRangeValue & { time: string; isoTime?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { time: string; isoTime?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,

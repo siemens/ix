@@ -11,7 +11,10 @@ export * from './components/category-filter/input-state';
 export * from './components/category-filter/logical-filter-operator';
 export * from './components/date-input/date-input.types';
 export * from './components/datetime-input/datetime-input.types';
-export type { DateRangeValue } from './components/utils/calendar.util';
+export type {
+  DateRange,
+  DateRangeWithIso,
+} from './components/utils/datetime/date-time.types';
 export { FlipTileVariant } from './components/flip-tile/flip-tile.types';
 export * from './components/time-input/time-input.types';
 export * from './components/toast/toast-utils';

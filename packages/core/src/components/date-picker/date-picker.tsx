@@ -30,7 +30,7 @@ import {
   parseWithLocale,
   toISODate,
   tryParseWithLocale,
-} from '../utils/date-time-locale';
+} from '../utils/datetime/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
 import {
   CalendarRow,
@@ -47,10 +47,12 @@ import {
   WeekdayIndex,
   weekdayNamesFrom,
   weekStartFrom,
-} from '../utils/calendar.util';
+} from '../utils/datetime/calendar.util';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
+import type { DateRange } from '../utils/datetime/date-time.types';
+import { PendingSelection } from '../utils/datetime/pending-selection';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
@@ -99,25 +101,8 @@ export class DatePicker
   @Prop() from: string | undefined;
 
   @Watch('from')
-  watchFromPropHandler(newValue: string) {
-    if (this.isPendingEcho('from', newValue)) {
-      return;
-    }
-
-    this.resetPendingRange();
-
-    if (!newValue) {
-      this.setCommittedDate('currFromDate', undefined);
-
-      return;
-    }
-
-    const date = tryParseWithLocale(newValue, this.format, this.locale);
-
-    if (date) {
-      this.setCommittedDate('currFromDate', date);
-      this.updateSelectedYearMonth(date);
-    }
+  watchFromPropHandler(newValue: string | undefined) {
+    this.onDatePropChange('from', newValue);
   }
 
   /**
@@ -127,23 +112,35 @@ export class DatePicker
   @Prop() to: string | undefined;
 
   @Watch('to')
-  watchToPropHandler(newValue: string) {
-    if (this.isPendingEcho('to', newValue)) {
+  watchToPropHandler(newValue: string | undefined) {
+    this.onDatePropChange('to', newValue);
+  }
+
+  /**
+   * Applies a `from`/`to` prop change. A change that echoes the displayed
+   * selection back (e.g. two-way binding to `dateChange`) keeps a pending
+   * selection pending and the done baseline unchanged.
+   */
+  private onDatePropChange(key: 'from' | 'to', value: string | undefined) {
+    const date = value
+      ? tryParseWithLocale(value, this.format, this.locale)
+      : undefined;
+
+    // An unparsable date keeps the committed date
+    if (value && !date) {
+      this.selection = this.selection.discard();
       return;
     }
 
-    this.resetPendingRange();
-
-    if (!newValue) {
-      this.setCommittedDate('currToDate', undefined);
-
+    const selection = this.selection.withPropChange(key, date);
+    if (selection === this.selection) {
       return;
     }
 
-    const date = tryParseWithLocale(newValue, this.format, this.locale);
+    this.selection = selection;
+    this.resetDoneBaseline();
 
     if (date) {
-      this.setCommittedDate('currToDate', date);
       this.updateSelectedYearMonth(date);
     }
   }
@@ -281,13 +278,13 @@ export class DatePicker
    * Re-parse `from`/`to` with the current `format` and `locale`.
    */
   private refreshSelectedDates() {
-    this.resetPendingRange();
-    this.currFromDate = this.from
-      ? tryParseWithLocale(this.from, this.format, this.locale)
-      : undefined;
-    this.currToDate = this.to
-      ? tryParseWithLocale(this.to, this.format, this.locale)
-      : undefined;
+    const parse = (value?: string) =>
+      value ? tryParseWithLocale(value, this.format, this.locale) : undefined;
+
+    this.selection = this.selection.reset({
+      from: parse(this.from),
+      to: parse(this.to),
+    });
     this.resetDoneBaseline();
   }
 
@@ -361,7 +358,9 @@ export class DatePicker
    */
   @Method()
   async getCurrentDate(): Promise<DateChangeEvent> {
-    return this.toDateChangeEvent(this.currFromDate, this.currToDate);
+    const { from, to } = this.selection.committed;
+
+    return this.toDateChangeEvent(from, to);
   }
 
   private toDateChangeEvent(from?: DateTime, to?: DateTime): DateChangeEvent {
@@ -389,74 +388,41 @@ export class DatePicker
     };
   }
 
-  @State()
-  currFromDate?: DateTime;
-  @State() currToDate?: DateTime;
-
   /**
-   * Unconfirmed range selection, used only when `requireConfirmation` is true
+   * The committed selection and, with `requireConfirmation`, an unconfirmed
+   * selection. Without `requireConfirmation` picks are committed right away.
    */
-  @State() private pendingRange?: { from?: DateTime; to?: DateTime };
-
-  private resetPendingRange = () => {
-    this.pendingRange = undefined;
-  };
+  @State() private selection = PendingSelection.create<DateRange<DateTime>>(
+    {},
+    (a, b) =>
+      this.singleSelection
+        ? isSameDayOrUnset(a.from, b.from)
+        : isSameRange(a, b)
+  );
 
   /**
    * Selection the done button compares against while `requireConfirmation`
    * is disabled: the selection at load, at the last done click or at the last
    * external `from`/`to` change.
    */
-  @State() private doneBaseline: { from?: DateTime; to?: DateTime } = {};
+  @State() private doneBaseline: DateRange<DateTime> = {};
 
   private resetDoneBaseline() {
-    this.doneBaseline = { from: this.currFromDate, to: this.currToDate };
+    this.doneBaseline = this.selection.committed;
   }
 
-  /**
-   * Applies a `from`/`to` prop change. A prop that just echoes the current
-   * selection back (e.g. two-way binding to `dateChange`) is not an external
-   * change and keeps the done baseline.
-   */
-  private setCommittedDate(
-    key: 'currFromDate' | 'currToDate',
-    date: DateTime | undefined
-  ) {
-    const isEcho = isSameDayOrUnset(this[key], date);
-    this[key] = date;
-
-    if (!isEcho) {
-      this.resetDoneBaseline();
-    }
-  }
-
-  /**
-   * Whether a `from`/`to` prop change just echoes the pending selection back
-   * (e.g. two-way binding to `dateChange` with `requireConfirmation`). Such a
-   * change keeps the selection pending, so it can still be discarded.
-   */
-  private isPendingEcho(key: 'from' | 'to', value?: string): boolean {
-    if (!this.pendingRange) {
-      return false;
-    }
-
-    const date = value
-      ? tryParseWithLocale(value, this.format, this.locale)
-      : undefined;
-
-    return isSameDayOrUnset(this.pendingRange[key], date);
-  }
-
-  private isIncomplete(range: { from?: DateTime; to?: DateTime }): boolean {
+  private isIncomplete(range: DateRange<DateTime>): boolean {
     return !this.singleSelection && isPartialRange(range);
   }
 
   private isPrimaryActionDisabled(): boolean {
     if (this.requireConfirmation) {
-      return !this.pendingRange || this.isIncomplete(this.pendingRange);
+      const { pending } = this.selection;
+
+      return !pending || this.isIncomplete(pending);
     }
 
-    const current = { from: this.currFromDate, to: this.currToDate };
+    const current = this.selection.committed;
 
     return (
       this.isIncomplete(current) || isSameRange(current, this.doneBaseline)
@@ -464,11 +430,11 @@ export class DatePicker
   }
 
   private get selectedFrom(): DateTime | undefined {
-    return this.pendingRange ? this.pendingRange.from : this.currFromDate;
+    return this.selection.displayed.from;
   }
 
   private get selectedTo(): DateTime | undefined {
-    return this.pendingRange ? this.pendingRange.to : this.currToDate;
+    return this.selection.displayed.to;
   }
 
   /**
@@ -635,9 +601,9 @@ export class DatePicker
     this.setTranslations();
     this.refreshDates();
 
-    const initialMonth = (this.currFromDate ?? this.getDateTimeNow()).startOf(
-      'month'
-    );
+    const initialMonth = (
+      this.selection.committed.from ?? this.getDateTimeNow()
+    ).startOf('month');
 
     this.startYear = initialMonth.year - 101;
     this.endYear = initialMonth.year + 101;
@@ -728,15 +694,16 @@ export class DatePicker
    */
   @Method()
   async discardPendingSelection(): Promise<void> {
-    if (!this.pendingRange) {
+    if (!this.selection.hasPending) {
       return;
     }
 
-    this.resetPendingRange();
-    this.emitDateChange(this.currFromDate, this.currToDate);
+    this.selection = this.selection.discard();
+    const { from, to } = this.selection.committed;
+    this.emitDateChange(from, to);
 
-    if (this.currFromDate) {
-      this.setDisplayedMonth(this.currFromDate);
+    if (from) {
+      this.setDisplayedMonth(from);
     }
   }
 
@@ -751,11 +718,7 @@ export class DatePicker
   }
 
   private async onConfirm() {
-    if (this.pendingRange) {
-      this.currFromDate = this.pendingRange.from;
-      this.currToDate = this.pendingRange.to;
-      this.resetPendingRange();
-    }
+    this.selection = this.selection.commit();
 
     // The picks were already reported with `dateChange`
     this.dateSelect.emit(await this.getCurrentDate());
@@ -813,20 +776,9 @@ export class DatePicker
   }
 
   private applySelection(from?: DateTime, to?: DateTime) {
-    if (this.requireConfirmation) {
-      const committed = {
-        from: this.currFromDate,
-        to: this.singleSelection ? undefined : this.currToDate,
-      };
-
-      // Re-selecting the committed selection leaves nothing to confirm
-      this.pendingRange = isSameRange({ from, to }, committed)
-        ? undefined
-        : { from, to };
-    } else {
-      this.currFromDate = from;
-      this.currToDate = to;
-    }
+    this.selection = this.requireConfirmation
+      ? this.selection.select({ from, to })
+      : this.selection.reset({ from, to });
 
     this.emitDateChange(from, to);
 

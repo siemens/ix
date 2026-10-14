@@ -25,10 +25,11 @@ import {
   formatWithLocale,
   parseWithLocale,
   toISOTime,
-} from '../utils/date-time-locale';
+} from '../utils/datetime/date-time-locale';
 import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
+import { PendingSelection } from '../utils/datetime/pending-selection';
 import { closestPassShadow } from '../utils/shadow-dom';
 import { buildTimePickerColumnNumberArrays } from './time-picker-column-values';
 import { computeTimeWithRawUnitValue } from './time-picker-compute-time';
@@ -307,23 +308,20 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   @Watch('time')
   watchTimePropHandler(newValue: string | undefined) {
-    if (this.isPendingEcho(newValue)) {
-      return;
-    }
-
-    this.pendingTime = undefined;
-
     if (newValue === undefined || newValue === '') {
-      this._time = this.getDefaultTime();
+      this.selection = this.selection.reset({ time: this.getDefaultTime() });
       return;
     }
 
     const timeFormat = parseWithLocale(newValue, this.format, this.locale);
     if (!timeFormat.isValid) {
+      this.selection = this.selection.discard();
       throw new Error('Format is not supported or not correct');
     }
 
-    this._time = timeFormat;
+    // A time that echoes the shown time back (e.g. two-way binding to
+    // `timeChange`) keeps it pending, so it can still be confirmed or discarded
+    this.selection = this.selection.withPropChange('time', timeFormat);
   }
 
   /** Earliest selectable time (`format` tokens). Invalid non-empty values are ignored.
@@ -452,9 +450,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @Method()
   async getCurrentTime(): Promise<string | undefined> {
-    return this._time
-      ? formatWithLocale(this._time, this.format, this.locale)
-      : undefined;
+    const { time } = this.selection.committed;
+
+    return time ? formatWithLocale(time, this.format, this.locale) : undefined;
   }
 
   /**
@@ -464,7 +462,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @Method()
   async getCurrentIsoTime(): Promise<string | undefined> {
-    return toISOTime(this._time);
+    return toISOTime(this.selection.committed.time);
   }
 
   /**
@@ -474,35 +472,17 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    */
   @Method()
   async discardPendingSelection(): Promise<void> {
-    if (!this.pendingTime) {
+    if (!this.selection.hasPending) {
       return;
     }
 
-    this.pendingTime = undefined;
+    this.selection = this.selection.discard();
 
-    if (this._time) {
-      this.timeChange.emit(
-        formatWithLocale(this._time, this.format, this.locale)
-      );
+    const { time } = this.selection.committed;
+    if (time) {
+      this.timeChange.emit(formatWithLocale(time, this.format, this.locale));
     }
   }
-
-  /**
-   * Whether a `time` prop change just echoes the pending time back (e.g.
-   * two-way binding to `timeChange`). Such a change keeps the time pending,
-   * so it can still be confirmed or discarded.
-   */
-  private isPendingEcho(value?: string): boolean {
-    if (!this.pendingTime || !value) {
-      return false;
-    }
-
-    const time = parseWithLocale(value, this.format, this.locale);
-
-    return time.isValid && this.isSameTime(time, this.pendingTime);
-  }
-
-  @State() private _time?: DateTime;
 
   /**
    * Whether the parent provided a valid `time` rather than the picker showing
@@ -516,14 +496,17 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   /**
-   * Time selected but not yet confirmed. `undefined` when there is nothing
-   * pending; the committed time stays in `_time` until confirmation.
+   * The committed time, the default time while no `time` is set, and a time
+   * selected but not yet confirmed.
    */
-  @State() private pendingTime?: DateTime;
+  @State() private selection = PendingSelection.create<{ time?: DateTime }>(
+    {},
+    (a, b) => this.isSameTime(a.time, b.time)
+  );
 
-  /** The time shown in the picker: the pending selection, else `_time`. */
+  /** The time shown in the picker: the pending time, else the committed. */
   private get selectedTime(): DateTime | undefined {
-    return this.pendingTime ?? this._time;
+    return this.selection.displayed.time;
   }
 
   /** Whether both times are unset or equal in every unit `format` shows. */
@@ -539,12 +522,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private setSelectedTime(time: DateTime) {
-    this.pendingTime = this.isSameTime(time, this._time) ? undefined : time;
+    this.selection = this.selection.select({ time });
     this.timeChange.emit(formatWithLocale(time, this.format, this.locale));
   }
 
-  @Watch('_time')
-  @Watch('pendingTime')
+  @Watch('selection')
   onTimeChange() {
     const formattedTimeOld = this.formattedTime;
     this.setTimeRef();
@@ -599,8 +581,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       parsedTime = this.getDefaultTime();
     }
 
-    this._time = parsedTime;
-    this.pendingTime = undefined;
+    this.selection = this.selection.reset({ time: parsedTime });
 
     this.updateMeridiemLabels();
     this.setTimeRef();
@@ -842,8 +823,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
             this.locale
           );
           if (timeFormat.isValid) {
-            this._time = parseWithLocale(this.time, this.format, this.locale);
-            this.pendingTime = undefined;
+            this.selection = this.selection.reset({ time: timeFormat });
             this.setInitialFocusedValueAndUnit();
           }
         }
@@ -1196,7 +1176,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private isConfirmDisabled(): boolean {
-    const hasNothingToConfirm = this.hasCommittedTime && !this.pendingTime;
+    const hasNothingToConfirm =
+      this.hasCommittedTime && !this.selection.hasPending;
 
     return hasNothingToConfirm || this.isOutsideConstraints();
   }
@@ -1361,15 +1342,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private onConfirm() {
-    if (this.pendingTime) {
-      this._time = this.pendingTime;
-      this.pendingTime = undefined;
-    }
+    this.selection = this.selection.commit();
 
+    const { time } = this.selection.committed;
     this.timeSelect.emit(
-      this._time
-        ? formatWithLocale(this._time, this.format, this.locale)
-        : undefined
+      time ? formatWithLocale(time, this.format, this.locale) : undefined
     );
   }
 

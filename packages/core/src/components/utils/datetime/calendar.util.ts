@@ -5,6 +5,7 @@
  */
 
 import { DateTime, Info } from 'luxon';
+import type { DateRange } from './date-time.types';
 
 /**
  * Shared date-time and calendar logic for the date components.
@@ -35,13 +36,6 @@ export const DAYS_IN_WEEK = 7;
 
 /** Monday, the default first column. */
 const MONDAY = 0 as WeekdayIndex;
-
-export type DateRangeValue = {
-  from?: string;
-  to?: string;
-  isoFrom?: string;
-  isoTo?: string;
-};
 
 /**
  * Narrow the public `weekStartIndex` prop into a {@link WeekdayIndex}.
@@ -239,13 +233,13 @@ export function isSameDayOrUnset(a?: DateTime, b?: DateTime): boolean {
 
 /** Whether both ranges select the same days. */
 export function isSameRange(
-  a: { from?: DateTime; to?: DateTime },
-  b: { from?: DateTime; to?: DateTime }
+  a: DateRange<DateTime>,
+  b: DateRange<DateTime>
 ): boolean {
   return isSameDayOrUnset(a.from, b.from) && isSameDayOrUnset(a.to, b.to);
 }
 
 /** Whether a range has a start but no end yet. */
-export function isPartialRange<T>(range: { from?: T; to?: T }): boolean {
+export function isPartialRange<T>(range: DateRange<T>): boolean {
   return !!range.from && !range.to;
 }

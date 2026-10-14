@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 import {
   analyzeWithOpenPicker,
   calendarDayCell,
@@ -23,7 +23,10 @@ import {
   tabUntilFocused,
 } from '@utils/test';
 import { DateTime } from 'luxon';
-import { DateDropdownOption } from '../date-dropdown.types';
+import type {
+  DateDropdownOption,
+  DateRangeChangeEvent,
+} from '../date-dropdown.types';
 
 const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
 
@@ -919,6 +922,225 @@ regressionTest.describe('events without require confirmation', () => {
       );
     }
   );
+});
+
+regressionTest.describe('binding the props to dateRangeChange', () => {
+  /** Binds `dateRangeId`, `from` and `to` to `dateRangeChange`. */
+  const bindToDateRangeChange = (dateDropdown: Locator) =>
+    dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+      el.addEventListener('dateRangeChange', (event) => {
+        const { id, from, to } = (event as CustomEvent<DateRangeChangeEvent>)
+          .detail;
+        el.dateRangeId = id;
+        el.from = from ?? '';
+        el.to = to ?? '';
+      });
+    });
+
+  const expectAppliedRange = async (
+    dateDropdown: Locator,
+    from: DateTime,
+    to: DateTime
+  ) => {
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(from, to));
+    expect(
+      await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+        el.getDateRange()
+      )
+    ).toMatchObject({ from: formatDateTime(from), to: formatDateTime(to) });
+  };
+
+  regressionTest(
+    'with requireConfirmation, cancel restores the applied range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, { 'require-confirmation': true });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await bindToDateRangeChange(dateDropdown);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+
+      await expect(dateDropdown).toHaveJSProperty(
+        'to',
+        formatDateTime(pickedTo)
+      );
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+      await expect(
+        dateDropdown.getByRole('button', { name: 'Confirm' })
+      ).toBeEnabled();
+
+      await dateDropdown.getByRole('button', { name: 'Cancel' }).click();
+
+      await expect(dateDropdown).toHaveJSProperty(
+        'from',
+        formatDateTime(initialFrom)
+      );
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+    }
+  );
+
+  regressionTest(
+    'with requireConfirmation, confirm applies the range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, { 'require-confirmation': true });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await bindToDateRangeChange(dateDropdown);
+      const events = await recordEvents(dateDropdown, ['dateSelect']);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      await dateDropdown.getByRole('button', { name: 'Confirm' }).click();
+
+      await expectAppliedRange(dateDropdown, pickedFrom, pickedTo);
+      expect(await events()).toEqual([
+        {
+          type: 'dateSelect',
+          detail: expect.objectContaining(
+            rangeEvent('custom', pickedFrom, pickedTo)
+          ),
+        },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'with requireConfirmation, cancel restores the range after a predefined range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, { 'require-confirmation': true });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+          el.dateRangeOptions = dateRangeOptions;
+        },
+        [
+          { id: 'a', label: 'Range A', from: '2024/01/01', to: '2024/01/02' },
+          {
+            id: 'b',
+            label: 'Range B',
+            from: formatDateTime(presetFrom),
+            to: formatDateTime(presetTo),
+          },
+        ] satisfies DateDropdownOption[]
+      );
+      await bindToDateRangeChange(dateDropdown);
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdown.getByRole('button', { name: /Range B/ }).click();
+      await expect(dateDropdown).toHaveJSProperty('dateRangeId', 'b');
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+
+      await dateDropdown.getByRole('button', { name: 'Cancel' }).click();
+
+      await expect(dateDropdown).toHaveJSProperty('dateRangeId', 'custom');
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+    }
+  );
+
+  regressionTest(
+    'without requireConfirmation, closing with only a start date restores the range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page);
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await bindToDateRangeChange(dateDropdown);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+
+      await expect(dateDropdown).toHaveJSProperty('to', '');
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(`${formatDateTime(pickedFrom)} - `);
+
+      await dateDropdownAccessor(page).dismiss('outside click');
+
+      await expect(dateDropdown).toHaveJSProperty(
+        'to',
+        formatDateTime(initialTo)
+      );
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+    }
+  );
+});
+
+regressionTest.describe('dateRangeId without a predefined range', () => {
+  const mountWithPresetSelected = async (
+    mount: Mount,
+    page: Page,
+    attributes: MountAttributes
+  ) => {
+    await mountDateDropdown(mount, page, {
+      'date-range-id': 'preset',
+      ...attributes,
+    });
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await dateDropdown.evaluate(
+      (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+        el.dateRangeOptions = dateRangeOptions;
+      },
+      [
+        {
+          id: 'preset',
+          label: 'Preset',
+          from: formatDateTime(presetFrom),
+          to: formatDateTime(presetTo),
+        },
+      ] satisfies DateDropdownOption[]
+    );
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(presetFrom, presetTo));
+
+    return dateDropdown;
+  };
+
+  const setDateRangeId = (dateDropdown: Locator, id: string) =>
+    dateDropdown.evaluate((el: HTMLIxDateDropdownElement, id) => {
+      el.dateRangeId = id;
+    }, id);
+
+  regressionTest(
+    'selects nothing when from and to are not set',
+    async ({ mount, page }) => {
+      const dateDropdown = await mountWithPresetSelected(mount, page, {
+        from: undefined,
+        to: undefined,
+      });
+
+      await setDateRangeId(dateDropdown, 'custom');
+
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText('No range set');
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toMatchObject({ id: 'custom', isoFrom: undefined, isoTo: undefined });
+    }
+  );
+
+  regressionTest('selects from and to', async ({ mount, page }) => {
+    const dateDropdown = await mountWithPresetSelected(mount, page, {});
+    const events = await recordEvents(dateDropdown, ['dateRangeChange']);
+
+    await setDateRangeId(dateDropdown, 'custom');
+
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(initialFrom, initialTo));
+    expect(await events()).toEqual([
+      {
+        type: 'dateRangeChange',
+        detail: expect.objectContaining(
+          rangeEvent('custom', initialFrom, initialTo)
+        ),
+      },
+    ]);
+  });
 });
 
 regressionTest.describe('predefined range shows its start month', () => {

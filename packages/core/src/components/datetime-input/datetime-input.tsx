@@ -19,7 +19,7 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { formatWithLocale } from '../utils/date-time-locale';
+import { formatWithLocale } from '../utils/datetime/date-time-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -56,7 +56,7 @@ import { DateTimeInputValidityState } from './datetime-input.types';
 import {
   getLuxonDateOnlyFormatMask,
   getLuxonTimeFormatMask,
-} from '../utils/luxon-datetime-format-masks';
+} from '../utils/datetime/luxon-datetime-format-masks';
 import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {

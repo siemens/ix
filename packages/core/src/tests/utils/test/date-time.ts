@@ -10,7 +10,7 @@
 import type AxeBuilder from '@axe-core/playwright';
 import { expect, Locator, Page } from '@playwright/test';
 import { DateTime } from 'luxon';
-import { formatWithLocale } from '../../../components/utils/date-time-locale';
+import { formatWithLocale } from '../../../components/utils/datetime/date-time-locale';
 import type { Mount } from './page';
 
 /**

@@ -27,15 +27,18 @@ import type {
   DateTimeSelectEvent,
 } from './datetime-picker.types';
 import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
-import { getLuxonDateOnlyFormatMask } from '../utils/luxon-datetime-format-masks';
+import { getLuxonDateOnlyFormatMask } from '../utils/datetime/luxon-datetime-format-masks';
 import {
   parseWithLocale,
   toISODate,
   toISOTime,
-} from '../utils/date-time-locale';
-import { isPartialRange, type DateRangeValue } from '../utils/calendar.util';
+} from '../utils/datetime/date-time-locale';
+import { isPartialRange } from '../utils/datetime/calendar.util';
+import type { DateRange } from '../utils/datetime/date-time.types';
+import { isSameStringOrUnset } from '../utils/condition-checks';
+import { PendingSelection } from '../utils/datetime/pending-selection';
 
-type DatetimePickerSelection = Pick<DateRangeValue, 'from' | 'to'> & {
+type DatetimePickerSelection = DateRange<string> & {
   time?: string;
 };
 
@@ -293,19 +296,17 @@ export class DatetimePicker
 
   /**
    * Committed selection: the selection at load, at the last confirm or done
-   * click, or at the last external `from`/`to`/`time` change.
+   * click, or at the last external `from`/`to`/`time` change. Changes made in
+   * the embedded pickers since then are pending: they are already emitted
+   * with `dateChange`/`timeChange`, but not yet applied with `dateSelect`.
    */
-  @State() private actual: DatetimePickerSelection = {};
-
-  /**
-   * Changes made in the embedded pickers since `actual`. They are already
-   * emitted with `dateChange`/`timeChange`, but not yet applied with
-   * `dateSelect`. `undefined` when there is nothing pending.
-   */
-  @State() private pending?: {
-    date?: DateTimeDateChangeEvent;
-    time?: string;
-  };
+  @State() private selection = PendingSelection.create<DatetimePickerSelection>(
+    {},
+    (a, b) =>
+      isSameStringOrUnset(a.from, b.from) &&
+      isSameStringOrUnset(a.to, b.to) &&
+      isSameStringOrUnset(a.time, b.time)
+  );
 
   private hasTimeConstraintsConfigured(): boolean {
     return !!(this.minTime?.trim() || this.maxTime?.trim());
@@ -323,51 +324,36 @@ export class DatetimePicker
 
   @Watch('from')
   watchFromPropHandler(value: string | undefined) {
-    if (this.isEcho('from', value)) {
-      return;
+    if (this.applyPropChange('from', value)) {
+      this.selectedFromDate = value;
     }
-
-    this.selectedFromDate = value;
-    this.applyExternalChange('from', value);
   }
 
   @Watch('to')
   watchToPropHandler(value: string | undefined) {
-    if (!this.isEcho('to', value)) {
-      this.applyExternalChange('to', value);
-    }
+    this.applyPropChange('to', value);
   }
 
   @Watch('time')
   watchTimePropHandler(value: string | undefined) {
-    if (!this.isEcho('time', value)) {
-      this.applyExternalChange('time', value);
-    }
+    this.applyPropChange('time', value);
   }
 
   /**
-   * Commits an external change of a single prop. The other committed values
-   * are kept, as a consumer may bind only some of the props (e.g. only `from`
-   * to `dateChange`), so the remaining props can be stale.
+   * Applies a prop change unless it echoes the shown selection back (e.g.
+   * two-way binding to `dateChange`/`timeChange`), and returns whether it
+   * was applied. The other committed values are kept, as a consumer may bind
+   * only some of the props, so the remaining props can be stale.
    */
-  private applyExternalChange(
+  private applyPropChange(
     key: keyof DatetimePickerSelection,
     value: string | undefined
-  ) {
-    this.actual = { ...this.actual, [key]: value };
-    this.pending = undefined;
-  }
+  ): boolean {
+    const selection = this.selection.withPropChange(key, value);
+    const isApplied = selection !== this.selection;
+    this.selection = selection;
 
-  /**
-   * Whether a prop change just echoes an already emitted selection back
-   * (e.g. two-way binding to `dateChange`/`timeChange`). Such a change keeps
-   * the pending selection, so it can still be confirmed or discarded.
-   */
-  private isEcho(key: keyof DatetimePickerSelection, value?: string): boolean {
-    return (
-      this.pending !== undefined &&
-      (value || undefined) === (this.pickerSelection[key] || undefined)
-    );
+    return isApplied;
   }
 
   @Watch('singleSelection')
@@ -392,19 +378,16 @@ export class DatetimePicker
   }
 
   private resetActual() {
-    this.actual = { from: this.from, to: this.to, time: this.time };
-    this.pending = undefined;
+    this.selection = this.selection.reset({
+      from: this.from,
+      to: this.to,
+      time: this.time,
+    });
   }
 
-  /** Values passed to the embedded pickers: pending on top of committed. */
+  /** Values passed to the embedded pickers: pending, else committed. */
   private get pickerSelection(): DatetimePickerSelection {
-    const { date, time } = this.pending ?? {};
-
-    return {
-      from: date === undefined ? this.actual.from : this.dateFrom(date),
-      to: date === undefined ? this.actual.to : this.dateTo(date),
-      time: time ?? this.actual.time,
-    };
+    return this.selection.displayed;
   }
 
   private dateFrom(date: DateTimeDateChangeEvent): string | undefined {
@@ -500,21 +483,12 @@ export class DatetimePicker
     };
   }
 
-  private setPending(pending: {
-    date?: DateTimeDateChangeEvent;
-    time?: string;
-  }) {
-    this.pending = pending;
-    const selection = this.pickerSelection;
-
-    // Re-selecting the committed selection leaves nothing to confirm
-    if (
-      (selection.from || undefined) === (this.actual.from || undefined) &&
-      (selection.to || undefined) === (this.actual.to || undefined) &&
-      (selection.time || undefined) === (this.actual.time || undefined)
-    ) {
-      this.pending = undefined;
-    }
+  /** Picks `change` on top of the shown selection. */
+  private select(change: DatetimePickerSelection) {
+    this.selection = this.selection.select({
+      ...this.pickerSelection,
+      ...change,
+    });
   }
 
   /** Whether `selection` has a date, and an end date in range mode. */
@@ -534,10 +508,11 @@ export class DatetimePicker
       return true;
     }
 
+    const { committed } = this.selection;
     const hasCommittedSelection =
-      this.hasCompleteDate(this.actual) && !!this.actual.time;
+      this.hasCompleteDate(committed) && !!committed.time;
 
-    return hasCommittedSelection && this.pending === undefined;
+    return hasCommittedSelection && !this.selection.hasPending;
   }
 
   /**
@@ -545,25 +520,21 @@ export class DatetimePicker
    * becomes part of the selection once it is applied.
    */
   private async includeShownTime() {
-    if (this.pending !== undefined || this.actual.time) {
+    if (this.selection.hasPending || this.selection.committed.time) {
       return;
     }
 
     const time = await this.timePickerElement?.getCurrentTime();
     if (time) {
-      this.pending = { time };
+      this.select({ time });
     }
   }
 
   private async onConfirm() {
     await this.includeShownTime();
-    const pending = this.pending;
 
     // The picks were already reported with `dateChange`/`timeChange`
-    if (pending) {
-      this.actual = this.pickerSelection;
-      this.pending = undefined;
-    }
+    this.selection = this.selection.commit();
 
     await this.emitDateSelect();
   }
@@ -576,25 +547,25 @@ export class DatetimePicker
   private discardPending() {
     this.discardGeneration++;
     const shown = this.pickerSelection;
-    this.pending = undefined;
-    this.selectedFromDate = this.actual.from;
+    this.selection = this.selection.discard();
+    this.selectedFromDate = this.selection.committed.from;
     this.emitRestoredSelection(shown);
   }
 
-  /** Reports the parts of `shown` that differ from the restored `actual`. */
+  /** Reports the parts of `shown` that differ from the restored selection. */
   private emitRestoredSelection(shown: DatetimePickerSelection) {
-    const { from, to, time } = this.actual;
+    const { from, to, time } = this.selection.committed;
 
     if (
-      (shown.from || undefined) !== (from || undefined) ||
-      (shown.to || undefined) !== (to || undefined)
+      !isSameStringOrUnset(shown.from, from) ||
+      !isSameStringOrUnset(shown.to, to)
     ) {
       this.dateChange.emit(this.toDateChangeEvent(from, to));
     }
 
     // Without a committed time the time picker shows its default time again,
     // which is reported as an empty time
-    if ((shown.time || undefined) !== (time || undefined)) {
+    if (!isSameStringOrUnset(shown.time, time)) {
       this.timeChange.emit(time ?? '');
     }
   }
@@ -632,8 +603,7 @@ export class DatetimePicker
 
   private async onDone() {
     await this.includeShownTime();
-    this.actual = this.pickerSelection;
-    this.pending = undefined;
+    this.selection = this.selection.commit();
     await this.emitDateSelect();
   }
 
@@ -678,18 +648,19 @@ export class DatetimePicker
     // Without a committed time the time picker shows the current time, which
     // becomes part of the selection once a date is picked
     const fallbackTime =
-      this.actual.time || (await this.timePickerElement?.getCurrentTime());
+      this.selection.committed.time ||
+      (await this.timePickerElement?.getCurrentTime());
 
     // The pending selection was discarded meanwhile
     if (discardGeneration !== this.discardGeneration) {
       return;
     }
 
-    // Read `pending` only after the await, so a time picked meanwhile wins
-    this.setPending({
-      ...this.pending,
-      date,
-      time: this.pending?.time ?? fallbackTime,
+    // Read the selection only after the await, so a time picked meanwhile wins
+    this.select({
+      from: this.dateFrom(date),
+      to: this.dateTo(date),
+      time: this.pickerSelection.time || fallbackTime,
     });
 
     this.dateChange.emit(date);
@@ -700,7 +671,7 @@ export class DatetimePicker
     event.stopPropagation();
 
     const { detail: time } = event;
-    this.setPending({ ...this.pending, time });
+    this.select({ time });
 
     this.timeChange.emit(time);
   }
