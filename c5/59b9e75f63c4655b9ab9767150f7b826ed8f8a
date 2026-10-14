@@ -1,0 +1,26 @@
+packages/core/src/components/action-card/action-card.scss
+  h_c5a773bf2fda8b 54
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 72,90-92
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 61
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 75-102
+packages/core/src/components/ix-playground/ix-playground.tsx
+  h_c5a773bf2fda8b 9
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 32,41
+packages/storybook-docs/src/stories/card-list.stories.tsx
+  h_c5a773bf2fda8b 14-23,28,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c559b9e75f63c4655b9ab9767150f7b826ed8f8a",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
