@@ -123,7 +123,6 @@ export class CardAccordion {
         slot="card-accordion"
         class={{
           outline: this.isOutline,
-          [`variant-${this.variant}`]: true,
         }}
       >
         <button

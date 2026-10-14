@@ -69,7 +69,7 @@
   --ix-card-border-color: transparent;
 }
 
-/* Status chrome: 8px top border (background/*); content pad from card.vars */
+/* Status chrome: size-30 top border (background/*); content pad from card.vars */
 @each $status in card-vars.$card-status-variants {
   :host(.card-#{$status}) {
     border-top-width: var(--ix-card--strip-height);
@@ -87,6 +87,9 @@
   }
 }
 
+/* Selected accent border for default cards only.
+ * Status outline keeps status-strong sides (same as the top strip);
+ * `.outline.card-*` specificity already beats this rule. */
 :host(.selected) {
   --ix-card-border-color: var(--ix-card-default--border-color--selected);
 }

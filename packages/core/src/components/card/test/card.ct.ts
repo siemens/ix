@@ -72,6 +72,34 @@ regressionTest('clickable enables host class', async ({ mount, page }) => {
   await expect(card).toHaveClass(/\bclickable\b/);
 });
 
+regressionTest(
+  'selected status outline keeps status border matching strip',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-card id="status" variant="danger" outline></ix-card>
+      <ix-card id="selected" variant="danger" outline selected></ix-card>
+      <ix-card id="default-selected" variant="default" outline selected></ix-card>
+    `);
+    const status = await page.locator('#status').evaluate((el) => ({
+      left: getComputedStyle(el).borderLeftColor,
+      top: getComputedStyle(el).borderTopColor,
+    }));
+    const selected = await page.locator('#selected').evaluate((el) => ({
+      left: getComputedStyle(el).borderLeftColor,
+      top: getComputedStyle(el).borderTopColor,
+    }));
+    const defaultSelected = await page
+      .locator('#default-selected')
+      .evaluate((el) => getComputedStyle(el).borderLeftColor);
+
+    // Status selected: sides match top strip (status-strong), not accent
+    expect(selected.left).toBe(status.left);
+    expect(selected.left).toBe(selected.top);
+    // Default selected still uses accent border
+    expect(defaultSelected).not.toBe(status.left);
+  }
+);
+
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`<ix-card variant="default"><span>Content</span></ix-card>`);
   const accessibilityScanResults = await makeAxeBuilder().analyze();

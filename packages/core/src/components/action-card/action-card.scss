@@ -51,7 +51,7 @@
   ix-card {
     width: 100%;
     height: 100%;
-    /* Default: pad 16 − 1px border so content aligns with status (8 + 8) */
+    /* Default: pad 16 − 1px border so content aligns with status (size-30 + pad) */
     --ix-card-content--padding: calc(
         #{sys.$si-sys-sizing-spacing-y-60} -
           #{sys.$si-sys-sizing-border-width-default}

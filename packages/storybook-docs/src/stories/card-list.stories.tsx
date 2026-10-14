@@ -11,12 +11,21 @@ import { makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxCardList;
 
-const variants = ['filled', 'warning', 'success', 'alarm', 'info'] as const;
+const variants: Array<{
+  variant: 'default' | 'warning' | 'success' | 'danger' | 'information';
+  outline?: boolean;
+}> = [
+  { variant: 'default', outline: false },
+  { variant: 'warning' },
+  { variant: 'success' },
+  { variant: 'danger' },
+  { variant: 'information' },
+];
 
 const cards = Array.from({ length: 20 }, (_, index) => ({
   icon: index % 2 === 0 ? 'rocket' : 'bulb',
   notification: `${(index % 5) + 1}`,
-  variant: variants[index % variants.length],
+  ...variants[index % variants.length],
 }));
 
 const meta = {
@@ -32,6 +41,7 @@ const meta = {
           heading={`Heading content ${index + 1}`}
           subheading="Subheading"
           variant={card.variant}
+          outline={card.outline}
         ></ix-push-card>
       ))}
     </ix-card-list>

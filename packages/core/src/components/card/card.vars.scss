@@ -58,7 +58,7 @@ $card-status-sys: (
   --ix-card-accordion--color: #{sys.$si-sys-color-text-primary};
   --ix-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-card--border-width: #{sys.$si-sys-sizing-border-width-default};
-  /* Status top border width (size-30) */
+  /* Status top border: size-30 (8px default density, 4px compact) */
   --ix-card--strip-height: #{sys.$si-sys-sizing-size-30};
   --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 
