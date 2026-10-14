@@ -87,9 +87,7 @@
   --ix-card-accordion-primary-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-card-accordion-success-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-card-accordion-warning-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-accordion--expanded-height: calc(
-    #{sys.$si-sys-sizing-size-160} - #{sys.$si-sys-sizing-spacing-y-20}
-  );
+  --ix-card-accordion--expanded-height: #{sys.$si-sys-sizing-size-160};
   --ix-card-accordion-expand-action--height: #{sys.$si-sys-sizing-size-90};
   --ix-card-accordion-expand-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-card-accordion-expand-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-40};

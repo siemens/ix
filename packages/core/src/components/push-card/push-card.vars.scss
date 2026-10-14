@@ -175,9 +175,7 @@
   --ix-push-card-warning-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-push-card-icon--icon-size: #{sys.$si-sys-sizing-size-90};
   --ix-push-card--height: #{sys.$si-sys-sizing-size-90};
-  --ix-push-card-content--height: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-60}
-  );
+  --ix-push-card-content--height: #{sys.$si-sys-sizing-size-160};
   --ix-push-card-content--padding-top: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-push-card-card-accordion--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
 }
