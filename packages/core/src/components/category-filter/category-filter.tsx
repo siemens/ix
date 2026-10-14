@@ -31,6 +31,12 @@ import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
+/**
+ * Input for building and refining searches using category-based filter criteria.
+ *
+ * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
+ * @figma-main-component-id 1221:30316
+ */
 @Component({
   tag: 'ix-category-filter',
   styleUrl: 'category-filter.scss',
@@ -900,13 +906,7 @@ export class CategoryFilter {
                 ref={(el) => (this.tokenListElement = el)}
               >
                 {this.filterTokens.map((value, index) => (
-                  <span
-                    key={value.toString()}
-                    class={{
-                      animate__animated: true,
-                      animate__fadein: true,
-                    }}
-                  >
+                  <span key={value.toString()}>
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}

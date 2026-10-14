@@ -2,6 +2,8 @@ packages:
   - packages/*
   - tooling/*
   - testing/*
+  - patterns/*
+  - examples/*
 
 catalog:
   '@axe-core/playwright': ^4.11.0
@@ -15,7 +17,6 @@ catalog:
   vite: 7.3.5
 
 minimumReleaseAge: 2880
-
 minimumReleaseAgeExclude:
   - '@siemens/*'
 
@@ -25,4 +26,3 @@ overrides:
 
 patchedDependencies:
   '@stencil/core': 'patches/@stencil__core.patch'
-  '@stencil/vue-output-target': 'patches/@stencil__vue-output-target.patch'

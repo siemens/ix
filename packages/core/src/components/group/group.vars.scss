@@ -43,26 +43,6 @@
   --ix-group--min-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
   );
-  --ix-group-header-selection-indicator--width--focus: calc(
-    var(--ix-group-header-selection-indicator--width) -
-      var(--ix-group-header--border-width)
-  );
-  --ix-group-header-content--padding--focus: calc(
-      #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-group-header--border-width)
-    )
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-40} - var(--ix-group-header--border-width)
-    )
-    calc(
-      #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-group-header--border-width)
-    )
-    0;
-  --ix-group-button-expand-header--margin-top: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-group-header--border-width)
-  );
-  --ix-group-button-expand-header--margin-bottom: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-group-header--border-width)
-  );
   --ix-group-header-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-group-header-content--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-group-header-title--height: #{sys.$si-sys-sizing-size-70};
@@ -70,13 +50,8 @@
   --ix-group-expand-icon--padding: #{sys.$si-sys-sizing-spacing-y-10} calc(#{sys.$si-sys-sizing-spacing-x-60} *
         0.437);
   --ix-group-button-expand-header--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-group-button-expand-header--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-group-button-expand-header--min-width: #{sys.$si-sys-sizing-size-70};
+  --ix-group-button-expand-header--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-group-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-group--header-height--focus: calc(
-    var(--ix-group--header-height) - 2 * var(--ix-group-header--border-width)
-  );
-  --ix-group-header--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-group-content--gap: calc(#{sys.$si-sys-sizing-spacing-y-10} / 2);
   --ix-group-content--margin-top: calc(#{sys.$si-sys-sizing-spacing-y-10} / 2);
 }
