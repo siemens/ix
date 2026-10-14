@@ -59,6 +59,52 @@ describe('PendingSelection', () => {
     expect(selection.displayed).toBe(A);
   });
 
+  it('drops the pending value on reset', () => {
+    const selection = create().select(B).reset(B);
+
+    expect(selection.hasPending).toBe(false);
+    expect(selection.committed).toBe(B);
+  });
+
+  describe('seeded pending value', () => {
+    const seeded = () => create().reset({}, B);
+
+    it('displays the seed as pending while nothing is committed', () => {
+      const selection = seeded();
+
+      expect(selection.pending).toBe(B);
+      expect(selection.displayed).toBe(B);
+      expect(selection.committed).toEqual({});
+    });
+
+    it('commits the seed', () => {
+      const selection = seeded().commit();
+
+      expect(selection.hasPending).toBe(false);
+      expect(selection.committed).toBe(B);
+    });
+
+    it('keeps a pick pending, as nothing is committed', () => {
+      const selection = seeded().select(A);
+
+      expect(selection.pending).toBe(A);
+      expect(selection.committed).toEqual({});
+    });
+
+    it('keeps the seed pending when props echo it back', () => {
+      const selection = seeded();
+
+      expect(selection.withPropChange('from', B.from)).toBe(selection);
+    });
+
+    it('commits a prop change and drops the seed', () => {
+      const selection = seeded().withPropChange('from', A.from);
+
+      expect(selection.hasPending).toBe(false);
+      expect(selection.committed).toEqual({ from: A.from });
+    });
+  });
+
   it('returns the same instance when nothing changes', () => {
     const selection = create();
 

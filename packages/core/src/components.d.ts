@@ -5271,6 +5271,7 @@ export namespace Components {
           * Get the current confirmed time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;
+        "getDisplayedTime": () => Promise<string | undefined>;
         /**
           * Hides the footer with the cancel and confirm buttons, e.g. when a parent component confirms the selection itself.
           * @default false
@@ -10394,7 +10395,7 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Time change event. Emitted when the time changes in the embedded time picker.  Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again, or with an empty string if no time is confirmed. Use `dateSelect` for the applied selection.
+          * Time change event. Emitted when the time changes in the embedded time picker.  Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `dateSelect` for the applied selection.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
@@ -13921,7 +13922,7 @@ declare namespace LocalJSX {
          */
         "onTimeCancel"?: (event: IxTimePickerCustomEvent<void>) => void;
         /**
-          * Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again. Use `timeSelect` for the applied time.
+          * Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `timeSelect` for the applied time.
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**

@@ -944,6 +944,131 @@ regressionTest.describe('confirmation', () => {
   );
 });
 
+regressionTest.describe('without a confirmed time', () => {
+  // Picking an hour keeps the minutes of the default time, the current time.
+  // An hour other than the current one tells them apart.
+  const pickedHour = DateTime.now().plus({ hours: 2 });
+  const defaultTime = expect.stringMatching(
+    new RegExp(`^(?!${pickedHour.toFormat('HH')}:)\\d{2}:\\d{2}$`)
+  );
+  const pickedDefaultTime = expect.stringMatching(
+    new RegExp(`^${pickedHour.toFormat('HH')}:\\d{2}$`)
+  );
+
+  /**
+   * Mounts a time picker without `time`, recording its events from before it
+   * loads. With `bindTime`, `time` is bound to `timeChange`.
+   */
+  const mountWithoutTime = async (
+    mount: (html: string) => Promise<unknown>,
+    page: Page,
+    bindTime = false
+  ) => {
+    await mount(`<div id="host"></div>`);
+    const host = page.locator('#host');
+    const events = await recordEvents(host, [
+      'timeChange',
+      'timeSelect',
+      'timeCancel',
+    ]);
+
+    await host.evaluate(
+      (el, { format, bindTime }) => {
+        const timePicker = document.createElement('ix-time-picker');
+        timePicker.format = format;
+        if (bindTime) {
+          timePicker.addEventListener('timeChange', (event) => {
+            timePicker.time = (event as CustomEvent<string>).detail;
+          });
+        }
+        el.appendChild(timePicker);
+      },
+      { format: TIME_FORMAT, bindTime }
+    );
+
+    const timePicker = page.locator('ix-time-picker');
+    await expect(timePicker).toHaveAttribute('hydrated');
+
+    return { timePicker, events };
+  };
+
+  regressionTest(
+    'emits the default time with timeChange on load, pending confirmation',
+    async ({ mount, page }) => {
+      const { timePicker, events } = await mountWithoutTime(mount, page);
+
+      await expect
+        .poll(events)
+        .toEqual([{ type: 'timeChange', detail: defaultTime }]);
+      await expect(timePicker.getByTestId('confirm')).toBeEnabled();
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'cancel resets a time bound to timeChange to the default time',
+    async ({ mount, page }) => {
+      const { timePicker, events } = await mountWithoutTime(mount, page, true);
+      await expect.poll(events).toHaveLength(1);
+
+      await timePickerHourCell(timePicker, pickedHour).click();
+      await expect
+        .poll(() =>
+          timePicker.evaluate((el: HTMLIxTimePickerElement) => el.time)
+        )
+        .toEqual(pickedDefaultTime);
+
+      await timePicker.getByTestId('cancel').click();
+
+      await expect
+        .poll(() =>
+          timePicker.evaluate((el: HTMLIxTimePickerElement) => el.time)
+        )
+        .toEqual(defaultTime);
+      await expect(timePickerHourCell(timePicker, pickedHour)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: defaultTime },
+        { type: 'timeChange', detail: pickedDefaultTime },
+        { type: 'timeChange', detail: defaultTime },
+        { type: 'timeCancel', detail: null },
+      ]);
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'clearing time resets to the default time without timeChange',
+    async ({ mount, page }) => {
+      await mountTimePicker(mount, page, committedTime);
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, ['timeChange']);
+
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) => {
+        el.time = '';
+      });
+
+      await expect(timePicker.getByTestId('confirm')).toBeEnabled();
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBeUndefined();
+      expect(await events()).toEqual([]);
+    }
+  );
+});
+
 regressionTest('hides the footer with hide-footer', async ({ mount, page }) => {
   await mountTimePicker(mount, page, committedTime, 'hide-footer');
 

@@ -59,9 +59,13 @@ export class PendingSelection<T extends object> {
     return this.pending ? this.with(this.committed, undefined) : this;
   }
 
-  /** Replaces the committed value and drops the pending value. */
-  reset(committed: T): PendingSelection<T> {
-    return this.with(committed, undefined);
+  /**
+   * Replaces the committed value. `pending` seeds a value that is shown and
+   * can be confirmed before the user picked anything, e.g. a default time
+   * while nothing is committed; otherwise the pending value is dropped.
+   */
+  reset(committed: T, pending?: T): PendingSelection<T> {
+    return this.with(committed, pending);
   }
 
   /**

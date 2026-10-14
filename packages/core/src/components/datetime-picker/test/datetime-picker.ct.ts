@@ -515,6 +515,9 @@ regressionTest.describe('require confirmation without a confirmed time', () => {
   const pickedTime = expect.stringMatching(
     new RegExp(`^${pickedHour.toFormat('HH')}:\\d{2}:\\d{2}$`)
   );
+  const defaultTime = expect.stringMatching(
+    new RegExp(`^(?!${pickedHour.toFormat('HH')}:)\\d{2}:\\d{2}:\\d{2}$`)
+  );
 
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(
@@ -526,7 +529,7 @@ regressionTest.describe('require confirmation without a confirmed time', () => {
   });
 
   regressionTest(
-    'cancel reports an empty time after a time was picked',
+    'cancel resets the time picker to the default time after a time was picked',
     async ({ page }) => {
       const datetimePicker = datetimePickerLocator(page);
       const events = await recordEvents(datetimePicker, [
@@ -540,14 +543,14 @@ regressionTest.describe('require confirmation without a confirmed time', () => {
 
       expect(await events()).toEqual([
         { type: 'timeChange', detail: pickedTime },
-        { type: 'timeChange', detail: '' },
+        { type: 'timeChange', detail: defaultTime },
         { type: 'dateCancel', detail: null },
       ]);
     }
   );
 
   regressionTest(
-    'cancel clears a time bound to timeChange',
+    'cancel resets a time bound to timeChange to the default time',
     async ({ page }) => {
       const datetimePicker = datetimePickerLocator(page);
       await datetimePicker.evaluate((el: HTMLIxDatetimePickerElement) => {
@@ -564,7 +567,7 @@ regressionTest.describe('require confirmation without a confirmed time', () => {
         await datetimePicker.evaluate(
           (el: HTMLIxDatetimePickerElement) => el.time
         )
-      ).toBe('');
+      ).toEqual(defaultTime);
 
       await datetimePicker.getByTestId('confirm').click();
 

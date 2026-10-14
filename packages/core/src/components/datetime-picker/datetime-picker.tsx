@@ -257,8 +257,9 @@ export class DatetimePicker
    *
    * Emitted for every pick, also for a selection that is not confirmed yet
    * (`requireConfirmation`). When a pending selection is discarded, it is
-   * emitted with the confirmed time again, or with an empty string if no
-   * time is confirmed. Use `dateSelect` for the applied selection.
+   * emitted with the confirmed time again, or the default time if none is
+   * confirmed, which is also emitted on load. Use `dateSelect` for the
+   * applied selection.
    */
   @Event() timeChange!: EventEmitter<string>;
 
@@ -524,7 +525,7 @@ export class DatetimePicker
       return;
     }
 
-    const time = await this.timePickerElement?.getCurrentTime();
+    const time = await this.timePickerElement?.getDisplayedTime();
     if (time) {
       this.select({ time });
     }
@@ -539,21 +540,21 @@ export class DatetimePicker
     await this.emitDateSelect();
   }
 
-  private onCancel() {
-    this.discardPending();
+  private async onCancel() {
+    await this.discardPending();
     this.dateCancel.emit();
   }
 
-  private discardPending() {
+  private async discardPending() {
     this.discardGeneration++;
     const shown = this.pickerSelection;
     this.selection = this.selection.discard();
     this.selectedFromDate = this.selection.committed.from;
-    this.emitRestoredSelection(shown);
+    await this.emitRestoredSelection(shown);
   }
 
   /** Reports the parts of `shown` that differ from the restored selection. */
-  private emitRestoredSelection(shown: DatetimePickerSelection) {
+  private async emitRestoredSelection(shown: DatetimePickerSelection) {
     const { from, to, time } = this.selection.committed;
 
     if (
@@ -563,10 +564,11 @@ export class DatetimePicker
       this.dateChange.emit(this.toDateChangeEvent(from, to));
     }
 
-    // Without a committed time the time picker shows its default time again,
-    // which is reported as an empty time
-    if (!isSameStringOrUnset(shown.time, time)) {
-      this.timeChange.emit(time ?? '');
+    if (!time) {
+      // The time picker reports its reset default time with `timeChange`
+      await this.timePickerElement?.discardPendingSelection();
+    } else if (!isSameStringOrUnset(shown.time, time)) {
+      this.timeChange.emit(time);
     }
   }
 
@@ -593,12 +595,16 @@ export class DatetimePicker
   @Method()
   async discardPendingSelection(): Promise<void> {
     if (this.requireConfirmation) {
-      this.discardPending();
+      await this.discardPending();
       return;
     }
 
     this.selectedFromDate = this.from;
     this.resetActual();
+
+    if (!this.selection.committed.time) {
+      await this.timePickerElement?.discardPendingSelection();
+    }
   }
 
   private async onDone() {
@@ -623,7 +629,7 @@ export class DatetimePicker
     const date = await this.datePickerElement?.getCurrentDate();
     const time =
       this.pickerSelection.time ||
-      (await this.timePickerElement?.getCurrentTime());
+      (await this.timePickerElement?.getDisplayedTime());
 
     return {
       from: date?.from ?? '',
@@ -649,7 +655,7 @@ export class DatetimePicker
     // becomes part of the selection once a date is picked
     const fallbackTime =
       this.selection.committed.time ||
-      (await this.timePickerElement?.getCurrentTime());
+      (await this.timePickerElement?.getDisplayedTime());
 
     // The pending selection was discarded meanwhile
     if (discardGeneration !== this.discardGeneration) {
