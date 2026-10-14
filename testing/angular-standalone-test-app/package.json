@@ -13,14 +13,14 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@angular/animations": "^20.1.4",
-    "@angular/common": "^20.3.14",
-    "@angular/compiler": "^20.3.16",
-    "@angular/core": "^20.3.16",
-    "@angular/forms": "^20.1.4",
-    "@angular/platform-browser": "^20.1.4",
-    "@angular/platform-browser-dynamic": "^20.1.4",
-    "@angular/router": "^20.1.4",
+    "@angular/animations": "^21.2.25",
+    "@angular/common": "^21.2.25",
+    "@angular/compiler": "^21.2.25",
+    "@angular/core": "^21.2.25",
+    "@angular/forms": "^21.2.25",
+    "@angular/platform-browser": "^21.2.25",
+    "@angular/platform-browser-dynamic": "^21.2.25",
+    "@angular/router": "^21.2.25",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
@@ -31,15 +31,14 @@
     "echarts": "^6.0.0",
     "echarts-gl": "^2.0.9",
     "html-test-app": "workspace:*",
-    "ngx-echarts": "^20.0.1",
+    "ngx-echarts": "^21.0.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.6.3",
-    "zone.js": "~0.15.0"
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^20.1.4",
-    "@angular/cli": "^20.1.4",
-    "@angular/compiler-cli": "^20.1.4",
+    "@angular-devkit/build-angular": "^21.2.25",
+    "@angular/cli": "^21.2.25",
+    "@angular/compiler-cli": "^21.2.25",
     "@playwright/test": "catalog:",
     "@types/jasmine": "~5.1.4",
     "@types/node": "^20.16.0",
@@ -50,6 +49,6 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "karma-jasmine": "~5.1.0",
     "karma": "~6.4.3",
-    "typescript": "~5.8.2"
+    "typescript": "~5.9.3"
   }
 }

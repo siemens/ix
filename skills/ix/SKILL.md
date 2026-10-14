@@ -1,8 +1,8 @@
 ---
 name: ix
 description: 'Implement, review, migrate, or answer development questions about Siemens iX. Use version-matched registry documentation for component APIs, examples, patterns, and Figma mappings; use the official design-system documentation for usage guidance, accessibility, migrations, writing, charts, and icons.'
-license: 'MIT; see THIRD_PARTY_LICENSES.md for the bundled MiniSearch notice.'
-compatibility: 'Requires Node.js 22+ and network access to the Siemens iX registry and documentation. Local-index mode may work offline.'
+license: MIT
+compatibility: 'Requires only file reading or HTTP fetch access to the Siemens iX registry and documentation. No scripts or runtimes are needed. Installed package metadata can be used offline.'
 ---
 
 # Siemens iX Development
@@ -31,15 +31,17 @@ If iX is not installed or configured correctly, use the `ix-installation` skill 
 
 ## Documentation Sources and Precedence
 
-| Need                                                                         | Primary source                                                                   | Fallback or supporting source                                  |
-| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Component discovery, exact API, related examples, Figma IDs                  | `https://siemens.github.io/ix/llms.txt` and its matching versioned registry docs | Installed `@siemens/ix` metadata                               |
-| Practical framework examples                                                 | Matching version's registry `llms/examples.md` and linked materialized files     | Related examples in component details                          |
-| Complete reusable UI patterns                                                  | Matching version's registry `llms/patterns.md` and linked materialized files       | Existing application patterns built from documented components |
-| Component usage and design guidance                                          | Documentation links from the versioned component detail                          | `https://ix.siemens.io/llms.txt`                               |
-| Installation, migration, accessibility, UX writing, charts, general guidance | `https://ix.siemens.io/llms.txt` and the relevant linked page                    | Repository-local guidance for the target project               |
-| Icon discovery                                                               | `https://ix.siemens.io/docs/icons/icon-library.md`                               | Installed `@siemens/ix-icons/dist/sample.json`                 |
-| Icon usage semantics                                                         | Icon usage page linked from `https://ix.siemens.io/llms.txt`                     | Version-matched `add-icons` example                            |
+| Need                                                                         | Primary source                                                               | Fallback or supporting source                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Component discovery and selection                                            | Matching version's registry `llms/catalog.md`                                | `llms/components.md`, then installed `@siemens/ix` metadata    |
+| Exact component API, related examples, Figma IDs                             | Matching version's registry `llms/components/<tag>.md`                       | Installed `@siemens/ix` metadata                               |
+| Figma main component mapping                                                 | Matching version's registry `llms/figma.md`                                  | Installed `component-doc.json`                                 |
+| Practical framework examples                                                 | Matching version's registry `llms/examples/<framework>.md` and linked files  | Related examples in component details                          |
+| Complete reusable UI patterns                                                | Matching version's registry `llms/patterns.md` and linked materialized files | Existing application patterns built from documented components |
+| Component usage and design guidance                                          | Documentation links from the versioned component detail                      | `https://ix.siemens.io/llms.txt`                               |
+| Installation, migration, accessibility, UX writing, charts, general guidance | `https://ix.siemens.io/llms.txt` and the relevant linked page                | Repository-local guidance for the target project               |
+| Icon discovery                                                               | `https://ix.siemens.io/docs/icons/icon-library.md`                           | Installed `@siemens/ix-icons/dist/sample.json`                 |
+| Icon usage semantics                                                         | Icon usage page linked from `https://ix.siemens.io/llms.txt`                 | Version-matched `add-icons` example                            |
 
 When sources appear to conflict:
 
@@ -63,114 +65,116 @@ For implementation, API, example, pattern, Figma, or migration work:
 4. If `@siemens/ix` is absent and code should be implemented, stop and use the `ix-installation` skill. For planning or documentation-only work, use the user-requested version or clearly label the registry version used.
 5. If only a wrapper version is visible, use it as a provisional iX version and confirm compatibility with `@siemens/ix`.
 
-## Phase 2: Search the Version-Matched Registry
+## Phase 2: Read the Version-Matched Registry
 
-`scripts/search.mjs` is the bundled, self-contained Node 22 helper included in
-this skill. From the installed skill root, run:
+The registry is plain Markdown and JSON. Read it with any file-read or HTTP
+fetch tool; do not write or run a search script.
 
-```sh
-node scripts/search.mjs \
-  --query "<component or behavior>" \
-  --project-dir "<consumer project>" \
-  --framework "<html|react|angular|angular-standalone|vue>"
-```
+### Select the Registry Version
 
-At least one of `--query`, `--figma-id`, or `--component-name` is required.
-The default (and explicit `--kind component`) searches only components and
-returns enriched records containing the canonical detail path, documentation
-links, aliases, normalized Figma main IDs, and React example name/path
-references. Results are a stable JSON envelope:
+1. Open `https://siemens.github.io/ix/llms.txt`. It lists every deployed
+   registry version (for example `main`, `v5.2.1`) and its `latest` tag.
+2. Choose the version that matches the resolved iX version from Phase 1,
+   normally `v<major.minor.patch>`. An explicit user-requested version wins.
+3. Set `BASE` to that version root, for example
+   `https://siemens.github.io/ix/v5.2.1/`. All registry paths below are
+   relative to `BASE`.
+4. If `siemens.github.io` is unreachable, use the raw mirror with the same
+   paths: `https://raw.githubusercontent.com/siemens/ix/gh-pages/<version>/`.
+5. If the exact version is not deployed, see
+   [Version Unavailable](#version-unavailable). Never switch to `latest` or
+   `main` silently.
 
-```json
-{
-  "status": "ok",
-  "version": "v5.2.1",
-  "source": "registry",
-  "results": []
-}
-```
+### Read in This Order
 
-Use `--kind example` or `--kind pattern` for direct framework-specific discovery.
-`--limit`, `--registry-url`, and `--local-index <path>` remain available.
-Figma IDs and component names are repeatable:
+Open only what the task needs, in this order:
 
-```sh
-node scripts/search.mjs \
-  --figma-id 225:5535 --figma-id 308:1151 \
-  --component-name Button --component-name Avatar
-```
+| Step | File                            | Size    | Use it for                                                                                                 |
+| ---- | ------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| 1    | `BASE/llms/catalog.md`          | ~13 KB  | One line per component: `tag\|description\|react:Alias\|figma:ids`. Choose candidate components here.      |
+| 2    | `BASE/llms/figma.md`            | ~3 KB   | Only for Figma input: `figma-id\|tag` rows of main component IDs.                                          |
+| 3    | `BASE/llms/components/<tag>.md` | ~2–7 KB | Full contract for one component: names per framework, docs links, props, events, methods, slots, examples. |
+| 4    | `BASE/llms/examples/<fw>.md`    | ~20 KB  | One line per example for one framework: `name\|title\|used ix tags\|files`.                                |
+| 5    | `BASE/examples/<fw>/<file>`     | small   | One example source file at a time.                                                                         |
+| —    | `BASE/llms/patterns.md`         | ~5 KB   | Only for complete multi-file UI sections.                                                                  |
 
-Composed selections are merged, deduplicated by component ID, and retain the
-strongest match. Partial matches have `status: "ok"` and an `unmatched` array
-with one diagnostic per missed input. Operational statuses include
-`version_unavailable`, `no_match`, `figma_main_id_unregistered`, and
-`figma_mapping_unavailable`.
+`<fw>` is one of `html`, `react`, `angular`, `angular-standalone`, or `vue`.
 
-When `--version` is omitted, the helper resolves the installed IX version from
-`--project-dir`, preferring `@siemens/ix` and then an installed compatible
-framework wrapper. An explicit `--version` always wins. `--local-index` is
-fully portable and bypasses package and registry resolution.
+Search inside these files by reading them and matching component tags,
+descriptions, example names, titles, and used tags. Match on purpose and
+behavior, not only on exact words: for example, "toast", "snackbar", and
+"notification" can all point to `ix-toast`. Compare several plausible
+candidates before choosing.
 
-1. Open `https://siemens.github.io/ix/llms.txt` only to select or verify the
-   registry version matching the resolved iX version, normally
-   `v<major.minor.patch>`.
-2. Fetch the matched detail artifact at the `path` returned by the helper:
-   - `llms/components/<component-tag>.md` for the complete component contract
-   - `examples/<name>.json` for framework variants and their materialized files
-   - `patterns/<name>.json` for copyable multi-file UI patterns
-3. Do not substitute the `latest` registry version without saying so.
+Older registry versions may not have `llms/catalog.md`, `llms/figma.md`, or
+`llms/examples/<fw>.md` (HTTP 404). In that case:
 
-If the exact version is unavailable:
+- use `BASE/llms/components.md` instead of the catalog
+- use the `Figma IDs` sections of component details instead of `figma.md`
+- use `BASE/llms/examples.md` instead of the per-framework example index; it is
+  large, so read only the sections you need
+
+### Version Unavailable
+
+If the exact version is not deployed:
 
 1. Use installed package metadata from the consumer's target application or
    workspace, not from this installed skill directory, where possible:
-   - `node_modules/@siemens/ix/component-doc.json`
+   - `node_modules/@siemens/ix/component-doc.json` (tags, docs, props, events,
+     methods, slots, documentation links, and `figma-main-component-id` tags)
    - published declarations such as
      `node_modules/@siemens/ix/dist/types/components.d.ts` and
      `node_modules/@siemens/ix/components/*.d.ts`
    - installed `@siemens/ix-react` declarations/exports when React aliases
      need confirmation
 2. Use the broad documentation site only for version-independent guidance.
-3. Declaration-only fallback provides API text and implementation aliases, but
-   relationships and Figma mappings are explicitly unavailable. It returns no
-   documentation URLs.
+3. Declaration-only metadata provides API text and implementation aliases, but
+   relationships and Figma mappings are unavailable. Do not report a Figma ID as
+   unmapped in that case; report that the mapping could not be verified.
 4. If local metadata is also unavailable, state the limitation and ask before
-   using the nearest or latest registry version as an approximation.
+   using the nearest lower deployed version, or `latest`, as an approximation.
+   Disclose the version actually used.
 
 Documentation URLs are never inferred from package names, homepages, or
-declaration paths. Use only URLs present in component/search metadata or
-discovered through `llms.txt`.
+declaration paths. Use only URLs present in registry files, component metadata,
+or `llms.txt`.
 
 ## Example Workflow
 
-Use the central search helper when the task asks for practical code or names a
-behavior, pattern, source file, or iX component.
+Use the example index when the task asks for practical code or names a
+behavior, source file, or iX component.
 
-1. Search with `--kind example` and the target `--framework`.
-2. Open the matched example manifest from its canonical detail path.
-3. Inspect the available framework variants and their `files[].path` values.
-   Fetch each file path relative to the example manifest URL. For example,
-   `react/event-list.tsx` in `/v5.2.1/examples/event-list.json` is fetched from
-   `/v5.2.1/examples/react/event-list.tsx`. Never infer a route or look for a
-   repository source path.
-4. Open every materialized file needed by the target framework variant.
-5. Confirm the example's component APIs against the target project.
+1. Open `BASE/llms/examples/<fw>.md` for the target framework.
+2. Find candidate rows by example name, title, and used iX tags. For a
+   component, match its tag in the used-tags column and compare with the
+   component detail's related examples.
+3. Resolve the files of the chosen row relative to `BASE/examples/<fw>/`. A file
+   starting with `.` is the example name plus that suffix. For example, row
+   `add-icons|Add icons||.css,.html,.ts` in `angular.md` means
+   `BASE/examples/angular/add-icons.css`, `add-icons.html`, and `add-icons.ts`.
+   An empty used-tags column means the example uses no iX components directly
+   (for example native CSS, AG Grid, or ECharts theming).
+4. Open only the files needed by the target framework variant, one at a time.
+5. Confirm the example's component APIs against the component detail and the
+   target project.
 6. Adapt the example to existing application patterns; do not copy unrelated scaffolding.
 
-Use the relative path from the selected version. Do not construct or hard-code a registry version in the example URL.
+Never infer a route or look for a repository source path. Do not hard-code a
+registry version other than the one selected in Phase 2.
 
 ## Component Workflow
 
 ### Discover the Component
 
-1. Search the matching version with `--kind component` by component name, purpose, and description.
+1. Read `BASE/llms/catalog.md` and match by component name, purpose, and description.
 2. Prefer an existing component that matches the requested behavior over rebuilding it from generic HTML.
 3. For broad discovery, compare the descriptions of plausible components before choosing.
 
 ### Read the Complete Component Contract
 
-Open the selected component's detail markdown. Before writing code, inspect all available:
+Open the selected component's detail markdown at `BASE/llms/components/<tag>.md`. Before writing code, inspect all available:
 
+- web component tag and React, Vue, and Angular names
 - design/usage documentation links
 - properties and defaults
 - events and event payloads
@@ -186,7 +190,7 @@ Open the linked usage guide when the task involves component choice, composition
 
 ### Validate with an Example
 
-1. Search with `--kind example` and the component tag, then compare the component detail's related examples.
+1. Start from the component detail's related examples, which list the frameworks each example exists for, then find their rows in `BASE/llms/examples/<fw>.md`.
 2. Select an example that demonstrates the requested state or interaction.
 3. Open only the matching variant:
    - `react`
@@ -194,7 +198,7 @@ Open the linked usage guide when the task involves component choice, composition
    - `angular-standalone`
    - `vue`
    - `html`
-4. Read every linked file needed by that example, including styles and supporting code.
+4. Read every listed file needed by that example, including styles and supporting code.
 5. Confirm imports and dependencies against the target project.
 6. Adapt the example to existing application patterns; do not paste unrelated scaffolding or overwrite application code.
 
@@ -213,8 +217,8 @@ When no related example exists, use the component API and usage guide directly a
 
 Use patterns for complete page sections or reusable multi-file patterns, not for a single component lookup.
 
-1. Search the matching version with `--kind pattern` and the target framework.
-2. Inspect descriptions and keywords for the requested workflow.
+1. Read `BASE/llms/patterns.md` and keep only patterns with a variant for the target framework.
+2. Compare descriptions and keywords with the requested workflow.
 3. Inspect:
    - intended use
    - preview path
@@ -271,7 +275,7 @@ import { iconStar } from '@siemens/ix-icons/icons';
 
 Angular can also bind imported icon data directly through a class property. Standalone components must import `IxIcon` from `@siemens/ix-angular/standalone`.
 
-Use `addIcons` only as an alternative when the application intentionally references registered icons by string name or registers custom icon data. For that workflow, open `llms/examples.md#add-icons` relative to the selected registry version and follow the matching framework variant. Register only required icons in a stable location; do not register them during every render.
+Use `addIcons` only as an alternative when the application intentionally references registered icons by string name or registers custom icon data. For that workflow, find the `add-icons` row in `BASE/llms/examples/<fw>.md` and follow its files for the target framework. Register only required icons in a stable location; do not register them during every render.
 
 For web components, follow the version-matched HTML example and existing icon loader setup.
 
@@ -281,23 +285,26 @@ A standalone icon without visible text must have a tooltip and a screen-reader-a
 
 When the task includes a Figma resource:
 
-1. Extract the main component ID when available.
+1. Extract the main component ID when available, for example from the
+   `node-id` URL parameter.
 2. Normalize `123-456` to `123:456` for comparison.
-3. Search Figma IDs in the matching version with
-   `node scripts/search.mjs --kind component --figma-id <id> --project-dir <path>`.
+3. Look up the normalized ID in `BASE/llms/figma.md`. Each row is
+   `figma-id|tag`; multiple IDs can map to one tag. Instance or variant IDs are
+   not main component IDs.
 4. Treat the ID only as a design-system mapping, never as a runtime API.
 5. If one component matches, open its full component detail, usage guide, and a target-framework example before implementation.
 6. If multiple components match, compare their documentation and intended use instead of selecting arbitrarily.
-7. If no mapping exists, state that it is unmapped and use visual/functional requirements to search the central documentation index. Do not invent a mapping.
+7. If no row matches, state that the ID is unmapped and use visual/functional
+   requirements to choose components from `BASE/llms/catalog.md`. Do not invent
+   a mapping.
 
-Installed `node_modules/@siemens/ix/component-doc.json` in the consumer's
-target application or workspace is the fallback source for
-`figmaMainComponentIds` and documentation links when a matching registry version
-is not available. If it is missing, published declarations can provide API text
-and confirmed aliases, but cannot authoritatively verify Figma mappings or
-component relationships. A declarations-only search reports
-`figma_mapping_unavailable` rather than treating an ID as unmapped. Installed
-metadata is not expected to be present in this skill directory.
+When no matching registry version is available, installed
+`node_modules/@siemens/ix/component-doc.json` in the consumer's target
+application or workspace is the fallback: search its `docsTags` entries named
+`figma-main-component-id`. If it is missing, published declarations can provide
+API text and confirmed aliases, but cannot verify Figma mappings or component
+relationships; report the mapping as unverifiable rather than unmapped.
+Installed metadata is not expected to be present in this skill directory.
 
 ## General Guidance, Migration, and Review
 
@@ -345,7 +352,8 @@ Run the smallest existing type-check, build, lint, or targeted test command that
 ## Failure Handling
 
 - Exact registry version unavailable: use installed metadata and disclose the missing version; ask before approximating with newer docs.
-- Component not found: broaden the purpose-based search; do not fabricate a tag.
+- Component not found: re-read the catalog with broader purpose-based terms and synonyms; do not fabricate a tag.
+- Registry file returns 404: use the older-registry fallbacks from Phase 2 or the raw mirror; do not guess a different path.
 - API field or relationship unavailable: state that it is unavailable and avoid relying on it.
 - Matching framework example unavailable: use the API and usage guide, preserve framework conventions, and disclose the missing example.
 - Pattern framework variant unavailable: do not translate a different framework automatically; implement from documented components or ask the user.
