@@ -41,6 +41,14 @@
       &.secondary {
         padding: var(--ix-content-header-secondary--padding);
       }
+
+      &.truncate {
+        ix-typography {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
     }
 
     .headerTitleRow {
