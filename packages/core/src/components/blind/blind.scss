@@ -7,126 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'sass:list';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use './blind.vars' as blind-vars;
-@use 'tokens/system' as sys;
-
 @use './blind.vars' as *;
-@mixin blind($variant: 'filled') {
-  :host(.blind-#{$variant}) {
-    @include blind-vars.variant-vars($variant);
-
-    .blind-header {
-      @if $variant == 'outline' {
-        background-color: var(--ix-blind-outline-header--background);
-      } @else {
-        background-color: var(--ix-blind-#{$variant}--background);
-      }
-
-      @if $variant == 'filled' or $variant == 'outline' {
-        @include hover.ghost-hover-pressed;
-      } @else {
-        @include hover.hover {
-          background-color: var(--ix-blind-#{$variant}--background--hover);
-        }
-
-        @include hover.active {
-          background-color: var(--ix-blind-#{$variant}--background--active);
-        }
-      }
-    }
-
-    @if $variant == 'filled' or $variant == 'outline' {
-      .blind-header-title-label,
-      .blind-header-title-icon,
-      .collapse-icon {
-        color: var(--ix-blind-header--color);
-      }
-
-      .blind-header-title-sublabel {
-        color: var(--ix-blind-header-sublabel--color);
-      }
-
-      .header-actions {
-        --ix-icon-button-color: var(--ix-blind-header-actions--color);
-      }
-    } @else {
-      .blind-header-title-label,
-      .blind-header-title-sublabel,
-      .blind-header-title-icon,
-      .collapse-icon {
-        color: var(--ix-blind-#{$variant}--color);
-      }
-
-      .header-actions {
-        --ix-icon-button-color: var(--ix-blind-#{$variant}--color);
-      }
-    }
-
-    @if $variant == 'outline' {
-      .blind-header-wrapper {
-        border: solid
-          var(--ix-blind--border-width)
-          var(--ix-blind-outline--border-color);
-        border-bottom: none;
-        border-radius: var(--ix-blind--border-radius)
-          var(--ix-blind--border-radius)
-          0
-          0;
-
-        @include hover.hover {
-          border-color: var(--ix-blind-outline--border-color--hover);
-        }
-
-        @include hover.active {
-          border-color: var(--ix-blind-outline--border-color--active);
-        }
-      }
-
-      .blind-header {
-        border-radius: 0;
-      }
-    }
-
-    @if $variant != 'filled' {
-      .blind-content {
-        border-radius: 0
-          0
-          var(--ix-blind--border-radius)
-          var(--ix-blind--border-radius);
-
-        @if $variant == 'outline' {
-          border: solid
-            var(--ix-blind--border-width)
-            var(--ix-blind-outline--border-color);
-          border-top: none;
-        } @else {
-          border: solid
-            var(--ix-blind--border-width)
-            var(--ix-blind-#{$variant}--background);
-          border-top: none;
-        }
-      }
-    }
-
-    @if $variant != 'outline' {
-      background-color: var(--ix-blind--background);
-    }
-  }
-
-  @if not list.index(('filled', 'outline'), $variant) {
-    :host(.blind-#{$variant}[collapsed]) .blind-content {
-      border-width: 0;
-    }
-  }
-}
 
 :host {
   display: flex;
   flex-direction: column;
+  position: relative;
   border-radius: var(--ix-blind--border-radius);
   overflow: hidden;
 
@@ -187,11 +76,28 @@
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
       0 0;
     cursor: pointer;
+    background-color: transparent;
+
+    @include hover.ghost-hover-pressed;
 
     @include hover.focus-visible {
       border-color: var(--ix-blind-header--border-color--focus);
       outline: none;
     }
+  }
+
+  .blind-header-title-label,
+  .blind-header-title-icon,
+  .collapse-icon {
+    color: var(--ix-blind-header--color);
+  }
+
+  .blind-header-title-sublabel {
+    color: var(--ix-blind-header-sublabel--color);
+  }
+
+  .header-actions {
+    --ix-icon-button-color: var(--ix-blind-header-actions--color);
   }
 
   .blind-header-title-icon,
@@ -247,6 +153,7 @@
   .blind-content {
     display: block;
     padding: var(--ix-blind-content--padding);
+    padding-left: var(--ix-blind-content--padding-left);
     transition-property: padding;
     transition-duration: var(--ix-blind-content--transition-duration);
     transition-timing-function: ease-in;
@@ -265,39 +172,37 @@
   }
 }
 
-$blind-variants: (
-  alarm,
-  critical,
-  info,
-  neutral,
-  filled,
-  success,
-  warning,
-  primary,
-  outline
-);
-
-@each $variant in $blind-variants {
-  @include blind($variant);
+/* Filled surface (outline=false), including status. Outline stays transparent. */
+:host(:not(.outline)) {
+  background-color: var(--ix-blind--background);
 }
 
-:host(.blind-outline[collapsed]) {
-  .blind-header-wrapper {
-    box-sizing: border-box;
-    border-bottom: solid var(--ix-blind--border-width)
-      var(--ix-blind-outline--border-color);
-    border-radius: var(--ix-blind--border-radius);
+/* Outline: uniform 1px border/3 on the host (with or without status). */
+:host(.outline) {
+  box-sizing: border-box;
+  border: solid var(--ix-blind--border-width)
+    var(--ix-blind-outline--border-color);
 
-    @include hover.hover {
-      border-color: var(--ix-blind-outline--border-color--hover);
-    }
-
-    @include hover.active {
-      border-color: var(--ix-blind-outline--border-color--active);
-    }
+  .blind-header {
+    border-radius: 0;
   }
+}
 
-  .blind-content {
-    border-width: 0;
-  }
+/*
+ * Status strip: 4px on the left via ::before (inside the outline border).
+ * Absolute so it does not take layout space.
+ */
+:host(:not(.blind-default))::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: var(--ix-blind--indicator-width);
+  pointer-events: none;
+  background-color: var(--ix-blind-status-color);
+}
+
+:host(.outline) .blind-header {
+  background-clip: padding-box;
 }

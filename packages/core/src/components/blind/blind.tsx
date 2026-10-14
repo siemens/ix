@@ -21,7 +21,7 @@ import {
 import { animate, Easing } from '../utils/animate';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
-import type { BlindVariant } from './blind.types';
+import type { StatusVariant } from '../utils/status.types';
 import Animation from '../utils/animation';
 
 let sequentialInstanceId = 0;
@@ -63,9 +63,19 @@ export class Blind {
   @Prop() icon?: string;
 
   /**
-   * Blind variant
+   * Blind status variant
    */
-  @Prop() variant: BlindVariant = 'filled';
+  @Prop() variant: StatusVariant = 'default';
+
+  /**
+   * Show the blind with outline chrome.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses a filled surface.
+   * A non-default status shows a left color indicator on either surface.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   /**
    * Collapsed state changed
@@ -78,6 +88,10 @@ export class Blind {
   private blindId = ++sequentialInstanceId;
 
   constructor() {}
+
+  private get isOutline() {
+    return this.outline !== false;
+  }
 
   private onHeaderClick() {
     this.collapsed = !this.collapsed;
@@ -136,6 +150,7 @@ export class Blind {
     return (
       <Host
         class={{
+          outline: this.isOutline,
           [`blind-${this.variant}`]: true,
         }}
       >
@@ -143,7 +158,6 @@ export class Blind {
           <button
             class={{
               'blind-header': true,
-              [`blind-${this.variant}`]: true,
               closed: this.collapsed,
             }}
             type="button"
@@ -159,6 +173,7 @@ export class Blind {
             <ix-icon
               class="collapse-icon"
               name={iconChevronDownSmall}
+              aria-hidden="true"
               ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
@@ -171,6 +186,7 @@ export class Blind {
                     <ix-icon
                       class="blind-header-title-icon"
                       name={this.icon}
+                      aria-hidden="true"
                     ></ix-icon>
                   )}
                   <div class={'blind-header-title-row'}>

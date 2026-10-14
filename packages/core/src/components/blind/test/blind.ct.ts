@@ -16,6 +16,29 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(blindElement).toHaveAttribute('hydrated');
 });
 
+regressionTest(
+  'outline class follows the outline prop',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-blind label="Outline"></ix-blind>
+    <ix-blind outline="false" label="Filled"></ix-blind>
+    <ix-blind variant="danger" label="Danger"></ix-blind>
+    <ix-blind variant="danger" outline="false" label="Danger filled"></ix-blind>
+  `);
+
+    const blinds = page.locator('ix-blind');
+    await expect(blinds).toHaveCount(4);
+    await expect(blinds.nth(0)).toHaveClass(/\boutline\b/);
+    await expect(blinds.nth(0)).toHaveClass(/\bblind-default\b/);
+    await expect(blinds.nth(1)).not.toHaveClass(/\boutline\b/);
+    await expect(blinds.nth(1)).toHaveClass(/\bblind-default\b/);
+    await expect(blinds.nth(2)).toHaveClass(/\boutline\b/);
+    await expect(blinds.nth(2)).toHaveClass(/\bblind-danger\b/);
+    await expect(blinds.nth(3)).not.toHaveClass(/\boutline\b/);
+    await expect(blinds.nth(3)).toHaveClass(/\bblind-danger\b/);
+  }
+);
+
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`<ix-blind label="Example label">Some content</ix-blind>`);
 
@@ -27,29 +50,30 @@ regressionTest(
   'header icons match the primary header text color',
   async ({ mount, page }) => {
     const variants = [
-      'filled',
-      'outline',
-      'alarm',
-      'critical',
+      'default',
+      'danger',
       'warning',
-      'info',
+      'caution',
+      'information',
+      'accent',
+      'critical',
       'success',
       'neutral',
-      'primary',
     ];
 
     await mount(
-      variants
-        .map(
+      [
+        `<ix-blind outline="false" icon="bulb" label="filled"></ix-blind>`,
+        ...variants.map(
           (variant) =>
             `<ix-blind variant="${variant}" icon="bulb" label="${variant}"></ix-blind>`
-        )
-        .join(''),
+        ),
+      ].join(''),
       { icons: { iconBulb } }
     );
 
     const blinds = page.locator('ix-blind');
-    await expect(blinds).toHaveCount(variants.length);
+    await expect(blinds).toHaveCount(variants.length + 1);
 
     for (const blind of await blinds.all()) {
       const colors = await blind.evaluate((element) => {

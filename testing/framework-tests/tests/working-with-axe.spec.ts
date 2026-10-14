@@ -96,3 +96,8 @@ import './generated/group-header-suppressed-axe.spec';
 
 // Card family — action-card axe only.
 import './generated/action-card-axe.spec';
+
+// Blind tests
+import './generated/blind-axe.spec';
+import './generated/blind-header-actions-axe.spec';
+import './generated/blind-variants-axe.spec';
