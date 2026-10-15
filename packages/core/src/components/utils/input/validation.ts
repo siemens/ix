@@ -150,6 +150,79 @@ function syncAriaInvalid(
   }
 }
 
+function setAriaReference(
+  element: HTMLElement,
+  attribute: 'aria-describedby' | 'aria-errormessage',
+  id: string,
+  present: boolean
+) {
+  const ids =
+    element
+      .getAttribute(attribute)
+      ?.split(/\s+/)
+      .filter((existingId) => existingId.length > 0 && existingId !== id) ?? [];
+
+  if (present) {
+    ids.push(id);
+  }
+
+  if (ids.length > 0) {
+    element.setAttribute(attribute, ids.join(' '));
+  } else {
+    element.removeAttribute(attribute);
+  }
+}
+
+async function getFieldWrapperMessageElements(host: HTMLElement) {
+  const fieldWrapper = host.shadowRoot?.querySelector('ix-field-wrapper');
+  if (!fieldWrapper) {
+    return undefined;
+  }
+
+  const [errorMessageElement, helperMessageElement] = await Promise.all([
+    fieldWrapper.getAriaErrorMessageElement(),
+    fieldWrapper.getAriaHelperMessageElement(),
+  ]);
+  return { errorMessageElement, helperMessageElement };
+}
+
+/** Only touches the field-wrapper message IDs; other references stay untouched */
+function syncAriaMessageReferences(
+  validationElement: HTMLInputElement | HTMLTextAreaElement,
+  showError: boolean,
+  messageElements: {
+    errorMessageElement: HTMLElement | null;
+    helperMessageElement: HTMLElement | null;
+  }
+) {
+  const { errorMessageElement, helperMessageElement } = messageElements;
+  const linkError = showError && !!errorMessageElement;
+
+  if (errorMessageElement) {
+    setAriaReference(
+      validationElement,
+      'aria-errormessage',
+      errorMessageElement.id,
+      linkError
+    );
+    setAriaReference(
+      validationElement,
+      'aria-describedby',
+      errorMessageElement.id,
+      linkError
+    );
+  }
+
+  if (helperMessageElement) {
+    setAriaReference(
+      validationElement,
+      'aria-describedby',
+      helperMessageElement.id,
+      !linkError
+    );
+  }
+}
+
 type ValidationLifecycleState = {
   checkIfRequiredFunction: (() => Promise<void>) | null;
   classMutationObserver: ClassMutationObserver | null;
@@ -268,8 +341,17 @@ export function HookValidationLifecycle(options?: {
             typeof host.getValidityState === 'function'
           ) {
             const { valid } = await host.getValidityState();
+            const messageElements = await getFieldWrapperMessageElements(host);
             if (host.isConnected) {
               syncAriaInvalid(validationElement, valid);
+              // Error text is suppressed, so drop the generated error reference
+              if (messageElements) {
+                syncAriaMessageReferences(
+                  validationElement,
+                  false,
+                  messageElements
+                );
+              }
             }
           }
           return;
@@ -311,39 +393,21 @@ export function HookValidationLifecycle(options?: {
             !validityState.valid && touched
           );
 
-          const fieldWrapper =
-            host.shadowRoot?.querySelector('ix-field-wrapper');
+          const messageElements = validationElement
+            ? await getFieldWrapperMessageElements(host)
+            : undefined;
 
-          if (validationElement && fieldWrapper) {
-            const ariaErrorMessageElement =
-              await fieldWrapper.getAriaErrorMessageElement();
-
-            const ariaHelperMessageElement =
-              await fieldWrapper.getAriaHelperMessageElement();
-
+          if (validationElement && messageElements) {
             if (!host.isConnected) {
               return;
             }
 
-            if (ariaHelperMessageElement) {
-              validationElement.setAttribute(
-                'aria-describedby',
-                `${ariaHelperMessageElement.id}`
-              );
-            }
-
             syncAriaInvalid(validationElement, validityState.valid);
-
-            if (!validityState.valid && ariaErrorMessageElement) {
-              validationElement.setAttribute(
-                'aria-errormessage',
-                `${ariaErrorMessageElement.id}`
-              );
-              validationElement.setAttribute(
-                'aria-describedby',
-                `${ariaErrorMessageElement.id}`
-              );
-            }
+            syncAriaMessageReferences(
+              validationElement,
+              !validityState.valid,
+              messageElements
+            );
           }
         }
       };

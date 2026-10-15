@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { test, waitForRender } from '@utils/test';
 
 test.describe('validation', () => {
@@ -438,6 +438,77 @@ test.describe('novalidate form', () => {
 
     await expect(nativeInput).not.toHaveAttribute('aria-invalid', 'true');
     await expect(host).not.toHaveClass(/ix-invalid/);
+  });
+});
+
+test.describe('aria message references', () => {
+  const getMessageIds = async (host: Locator) => ({
+    errorId: await host
+      .locator('ix-field-wrapper .error-message-container')
+      .getAttribute('id')
+      .then((id) => id ?? ''),
+    helperId: await host
+      .locator('ix-field-wrapper .helper-message-container')
+      .getAttribute('id')
+      .then((id) => id ?? ''),
+  });
+
+  test('ix-input - should only swap generated message ids and keep other references', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-input required></ix-input>');
+    const host = page.locator('ix-input');
+    const nativeInput = host.locator('input');
+    const { errorId, helperId } = await getMessageIds(host);
+
+    await expect(nativeInput).toHaveAttribute('aria-errormessage', errorId);
+    await nativeInput.evaluate((el) =>
+      el.setAttribute(
+        'aria-describedby',
+        `${el.getAttribute('aria-describedby')} consumer-description`
+      )
+    );
+
+    await nativeInput.fill('valid');
+    await nativeInput.blur();
+
+    await expect(nativeInput).not.toHaveAttribute('aria-errormessage');
+    await expect(nativeInput).toHaveAttribute(
+      'aria-describedby',
+      `consumer-description ${helperId}`
+    );
+
+    await nativeInput.fill('');
+    await nativeInput.blur();
+
+    await expect(nativeInput).toHaveAttribute('aria-errormessage', errorId);
+    await expect(nativeInput).toHaveAttribute(
+      'aria-describedby',
+      `consumer-description ${errorId}`
+    );
+  });
+
+  test('ix-input - should drop the generated error reference once the form opts out', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<form><ix-input required></ix-input></form>');
+    const host = page.locator('ix-input');
+    const nativeInput = host.locator('input');
+    const { errorId, helperId } = await getMessageIds(host);
+
+    await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
+
+    await page
+      .locator('form')
+      .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+    await nativeInput.focus();
+    await nativeInput.blur();
+
+    await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
+    await expect(nativeInput).not.toHaveAttribute('aria-errormessage');
+    await expect(nativeInput).toHaveAttribute('aria-describedby', helperId);
   });
 });
 
