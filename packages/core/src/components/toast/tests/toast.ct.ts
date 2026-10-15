@@ -26,9 +26,64 @@ regressionTest('renders', async ({ mount, page }) => {
   });
 
   const toast = page.locator('ix-toast');
-  await expect(toast).toHaveClass(/hydrated/);
+  await expect(toast).toHaveAttribute('hydrated');
   await expect(toast).toBeVisible();
 });
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount('');
+
+  await page.evaluate(() => {
+    window.toast({
+      title: 'Info',
+      message: 'This is a toast message',
+      autoClose: false,
+    });
+  });
+
+  const toast = page.locator('ix-toast');
+  await expect(toast).toHaveAttribute('hydrated');
+  await expect(toast).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+regressionTest(
+  'removes the toast after the fade-out animation ended',
+  async ({ mount, page }) => {
+    await mount('');
+
+    const events = await page.evaluate(
+      () =>
+        new Promise<string[]>((resolve) => {
+          const events: string[] = [];
+
+          window
+            .toast({ message: 'Auto close', autoCloseDelay: 200 })
+            .then(() => {
+              const element = document.querySelector('ix-toast')!;
+
+              element.addEventListener('animationend', (event) => {
+                if (event.animationName === 'toast-fade-out') {
+                  events.push('animationend');
+                }
+              });
+
+              new MutationObserver((_, observer) => {
+                if (!element.isConnected) {
+                  events.push('removed');
+                  observer.disconnect();
+                  resolve(events);
+                }
+              }).observe(document.body, { childList: true, subtree: true });
+            });
+        })
+    );
+
+    expect(events).toEqual(['animationend', 'removed']);
+  }
+);
 
 regressionTest(
   'sets live-region attributes for screen reader announcements',
@@ -43,7 +98,7 @@ regressionTest(
     });
 
     const toast = page.locator('ix-toast');
-    await expect(toast).toHaveClass(/hydrated/);
+    await expect(toast).toHaveAttribute('hydrated');
     await expect(toast).toHaveAttribute('role', 'alert');
     await expect(toast).toHaveAttribute('aria-live', 'polite');
     await expect(toast).toHaveAttribute('aria-atomic', 'true');
@@ -79,7 +134,7 @@ regressionTest(
 
     const toast = page.locator('ix-toast');
     const closeToast = toast.locator('ix-icon-button');
-    await expect(toast).toHaveClass(/hydrated/);
+    await expect(toast).toHaveAttribute('hydrated');
 
     await closeToast.click();
     await expect(toast).not.toBeVisible();
@@ -156,14 +211,14 @@ regressionTest(
       window.toast({ message: 'Default type toast' });
     });
     const toastEl = page.locator('ix-toast').first();
-    await expect(toastEl).toHaveClass(/hydrated/);
+    await expect(toastEl).toHaveAttribute('hydrated');
     await expect(toastEl).toHaveAttribute('type', 'info');
     for (const type of ['info', 'success', 'error', 'warning'] as const) {
       await page.evaluate((t) => {
         window.toast({ message: `${t} toast`, type: t });
       }, type);
       const lastToast = page.locator('ix-toast').last();
-      await expect(lastToast).toHaveClass(/hydrated/);
+      await expect(lastToast).toHaveAttribute('hydrated');
       await expect(lastToast).toHaveAttribute('type', type);
     }
   }

@@ -11,7 +11,6 @@
 
 :host {
   --ix-flip-tile-footer-icon--color--hover: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile--border-radius: var(--theme-default-border-radius);
   --ix-flip-tile-alarm--background: #{sys.$si-sys-color-background-1};
   --ix-flip-tile-alarm--border-color: #{sys.$si-sys-color-border-danger};
   --ix-flip-tile-alarm--color: #{sys.$si-sys-color-text-primary};
@@ -51,9 +50,13 @@
 }
 
 :host {
+  --ix-flip-tile--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-flip-tile-header--height: #{sys.$si-sys-sizing-size-90};
   --ix-flip-tile-header--padding: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
   --ix-flip-tile-content-container--margin: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
   --ix-flip-tile-footer--height: #{sys.$si-sys-sizing-size-100};
   --ix-flip-tile-footer--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-flip-tile--perspective: 1000px;
+  --ix-flip-tile-variant--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-flip-tile-footer--border-width: #{sys.$si-sys-sizing-border-width-default};
 }

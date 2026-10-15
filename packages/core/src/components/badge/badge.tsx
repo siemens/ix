@@ -63,7 +63,12 @@ const BADGE_DESCRIPTION_SLOT = 'description';
  *
  * Override max-width with `--ix-badge-max-width`.
  *
+ * @documentation https://ix.siemens.io//docs/components/badge/guide.md
+ * @figma-main-component-id 138424:114072
  * @since 5.2.0
+ *
+ * @slot - Anchor element to which the badge is attached. Leave empty to render the badge standalone.
+ * @slot description - Screen-reader description associated with the attached anchor.
  */
 @Component({
   tag: 'ix-badge',

@@ -13,8 +13,12 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { resolveTabKey } from '../tabs/tab-key';
 
 /**
+ * Container that manages a set of tabs and their content.
+ *
  * @internal
  * @since 5.0.0
+ *
+ * @slot - Tab items and panels.
  * */
 @Component({
   tag: 'ix-tab-set',

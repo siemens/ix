@@ -11,9 +11,8 @@
 
 :host {
   --ix-application-child-header--z-index: var(--theme-z-index-sticky);
-}
-
-:host {
+  --ix-application--width: 100vw;
+  --ix-application--height: 100vh;
   --ix-application-breakpoint-md--application-menu-margin-left: calc(
     #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
       var(--ix-application-menu-safe-area-left, 0rem)

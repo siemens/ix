@@ -16,6 +16,25 @@ regressionTest.describe('menu-about-news', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('uses the system elevation shadow', async ({ page }) => {
+    await page.goto('menu-about-news/basic');
+    const news = page.locator('ix-menu-about-news');
+    await expect(news).toBeVisible();
+    await expect(news).not.toHaveCSS('box-shadow', 'none');
+
+    await news.evaluate((element) => {
+      element.style.setProperty(
+        '--si-sys-color-effects-shadow-4',
+        '1px 2px 3px rgb(12, 34, 56)'
+      );
+    });
+
+    await expect(news).toHaveCSS(
+      'box-shadow',
+      'rgb(12, 34, 56) 1px 2px 3px 0px'
+    );
+  });
+
   regressionTest('mobile', async ({ page }) => {
     await page.setViewportSize(viewPorts.sm);
     await page.goto('menu-about-news/basic');

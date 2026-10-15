@@ -14,4 +14,7 @@
   --ix-content-header-header-slot--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-content-header-secondary--padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
   --ix-content-header-back-button--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-content-header-subtitle--margin-top: calc(
+    #{sys.$si-sys-sizing-spacing-y-10} * -1
+  );
 }

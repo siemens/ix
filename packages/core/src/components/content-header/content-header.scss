@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'tokens/system' as sys;
-
 @use './content-header.vars' as *;
 :host {
   display: flex;
@@ -34,6 +32,25 @@
       }
     }
 
+    .header-title {
+      font: inherit;
+
+      margin: 0;
+      padding: 0;
+
+      &.secondary {
+        padding: var(--ix-content-header-secondary--padding);
+      }
+
+      &.truncate {
+        ix-typography {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+
     .headerTitleRow {
       display: flex;
 
@@ -48,14 +65,10 @@
         margin-left: var(--ix-content-header-header-slot--margin-left);
       }
     }
-
-    .secondary {
-      padding: var(--ix-content-header-secondary--padding);
-    }
   }
 
   .subtitle {
-    margin-top: -0.125rem;
+    margin-top: var(--ix-content-header-subtitle--margin-top);
   }
 
   .backButton {

@@ -10,9 +10,6 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-push-card--border-radius: var(--theme-default-border-radius);
-  --ix-push-card--border-width: var(--theme-border-width-default);
-  --ix-push-card--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-push-card-alarm--background: #{sys.$si-sys-color-background-danger};
   --ix-push-card-alarm--background--active: #{sys.$si-sys-color-background-danger-active};
   --ix-push-card-alarm--background--hover: #{sys.$si-sys-color-background-danger-hover};
@@ -28,9 +25,6 @@
   --ix-push-card-alarm-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-alarm-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-alarm-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-alarm-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-alarm-subtext--color: #{sys.$si-sys-color-text-on-danger};
   --ix-push-card-critical--background: #{sys.$si-sys-color-background-critical};
   --ix-push-card-critical--background--active: #{sys.$si-sys-color-background-critical-active};
@@ -47,9 +41,6 @@
   --ix-push-card-critical-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-critical-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-critical-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-critical-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-critical-subtext--color: #{sys.$si-sys-color-text-on-warning};
   --ix-push-card-filled--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-filled--background--active: #{sys.$si-sys-color-background-selected};
@@ -66,9 +57,6 @@
   --ix-push-card-filled-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-filled-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-filled-accordion-frame--border-color: rgba(0, 0, 0, 0);
-  --ix-push-card-filled-accordion-frame--border-width: var(
-    --theme-border-width-none
-  );
   --ix-push-card-filled-subtext--color: #{sys.$si-sys-color-text-secondary};
   --ix-push-card-info--background: #{sys.$si-sys-color-background-information};
   --ix-push-card-info--background--active: #{sys.$si-sys-color-background-information-active};
@@ -85,9 +73,6 @@
   --ix-push-card-info-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-info-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-info-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-info-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-info-subtext--color: #{sys.$si-sys-color-text-on-information};
   --ix-push-card-neutral--background: #{sys.$si-sys-color-background-neutral};
   --ix-push-card-neutral--background--active: #{sys.$si-sys-color-background-neutral-active};
@@ -104,9 +89,6 @@
   --ix-push-card-neutral-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-neutral-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-neutral-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-neutral-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-neutral-subtext--color: #{sys.$si-sys-color-text-on-neutral};
   --ix-push-card-outline--background: rgba(0, 0, 0, 0);
   --ix-push-card-outline--background--active: #{sys.$si-sys-color-background-selected};
@@ -123,9 +105,6 @@
   --ix-push-card-outline-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-outline-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-outline-accordion-frame--border-color: rgba(0, 0, 0, 0);
-  --ix-push-card-outline-accordion-frame--border-width: var(
-    --theme-border-width-none
-  );
   --ix-push-card-outline-subtext--color: #{sys.$si-sys-color-text-secondary};
   --ix-push-card-primary--background: #{sys.$si-sys-color-background-accent};
   --ix-push-card-primary--background--active: #{sys.$si-sys-color-background-accent-active};
@@ -142,9 +121,6 @@
   --ix-push-card-primary-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-primary-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-primary-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-primary-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-primary-subtext--color: #{sys.$si-sys-color-text-on-accent};
   --ix-push-card-success--background: #{sys.$si-sys-color-background-success};
   --ix-push-card-success--background--active: #{sys.$si-sys-color-background-success-active};
@@ -161,9 +137,6 @@
   --ix-push-card-success-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-success-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-success-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-success-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-success-subtext--color: #{sys.$si-sys-color-text-on-success};
   --ix-push-card-warning--background: #{sys.$si-sys-color-background-warning};
   --ix-push-card-warning--background--active: #{sys.$si-sys-color-background-warning-active};
@@ -180,17 +153,31 @@
   --ix-push-card-warning-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-warning-accordion-frame--background: #{sys.$si-sys-color-background-1};
   --ix-push-card-warning-accordion-frame--border-color: #{sys.$si-sys-color-border-3};
-  --ix-push-card-warning-accordion-frame--border-width: var(
-    --theme-border-width-default
-  );
   --ix-push-card-warning-subtext--color: #{sys.$si-sys-color-text-on-warning};
+  --ix-push-card-card-accordion--card-background: #{sys.$si-sys-color-background-1};
+  --ix-push-card-card-accordion--border-color: #{sys.$si-sys-color-border-3};
+  --ix-push-card-card--card-border-color: #{sys.$si-sys-color-border-3};
+  --ix-push-card-card--card-border-color--active: #{sys.$si-sys-color-border-3};
 }
 
 :host {
+  --ix-push-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-push-card--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-push-card-alarm-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card-critical-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card-filled-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+  --ix-push-card-info-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card-neutral-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card-outline-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+  --ix-push-card-primary-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card-success-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card-warning-accordion-frame--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-push-card-icon--icon-size: #{sys.$si-sys-sizing-size-90};
   --ix-push-card--height: #{sys.$si-sys-sizing-size-90};
   --ix-push-card-content--height: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-60}
   );
   --ix-push-card-content--padding-top: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-push-card-card-accordion--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
 }

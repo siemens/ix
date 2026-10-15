@@ -9,6 +9,18 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+      <ix-checkbox-group label="example">
+        <ix-checkbox label="Option 1" value="option1"></ix-checkbox>
+        <ix-checkbox label="Option 2" value="option2" checked></ix-checkbox>
+      </ix-checkbox-group>
+    `);
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
@@ -23,10 +35,10 @@ regressionTest('renders', async ({ mount, page }) => {
   const radioOption1 = page.locator('ix-checkbox').nth(0);
   const radioOption2 = page.locator('ix-checkbox').nth(1);
   const radioOption3 = page.locator('ix-checkbox').nth(2);
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
-  await expect(radioOption1).toHaveClass(/hydrated/);
-  await expect(radioOption2).toHaveClass(/hydrated/);
-  await expect(radioOption3).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveAttribute('hydrated');
+  await expect(radioOption1).toHaveAttribute('hydrated');
+  await expect(radioOption2).toHaveAttribute('hydrated');
+  await expect(radioOption3).toHaveAttribute('hydrated');
 });
 
 regressionTest('required', async ({ mount, page }) => {
@@ -40,7 +52,7 @@ regressionTest('required', async ({ mount, page }) => {
     `
   );
   const radioGroupElement = page.locator('ix-checkbox-group');
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveAttribute('hydrated');
   await expect(radioGroupElement).toHaveText(/example\*/);
 
   const radioOption2 = page.locator('ix-checkbox').nth(1);
