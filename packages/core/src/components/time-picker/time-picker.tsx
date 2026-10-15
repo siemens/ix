@@ -30,7 +30,11 @@ import { DefaultMixins } from '../utils/internal/component';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { OnListener } from '../utils/listener';
 import { closestPassShadow } from '../utils/shadow-dom';
-import { buildTimePickerColumnNumberArrays } from './time-picker-column-values';
+import {
+  buildTimePickerColumnNumberArrays,
+  isValidTimePickerInterval,
+  TimePickerIntervalUnit,
+} from './time-picker-column-values';
 import { computeTimeWithRawUnitValue } from './time-picker-compute-time';
 import {
   getTimePickerConstraintBounds,
@@ -124,12 +128,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     if (this._time) {
       this.setTimeRef();
       this.formattedTime = this.getFormattedTime();
+      this.validateIntervals();
       this.setTimePickerDescriptors();
       this.setInitialFocusedValueAndUnit();
-      this.watchHourIntervalPropHandler(this.hourInterval);
-      this.watchMinuteIntervalPropHandler(this.minuteInterval);
-      this.watchSecondIntervalPropHandler(this.secondInterval);
-      this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
       this.warnConstraintTimesIfInvalid({});
     } else {
       this.initPicker();
@@ -166,17 +167,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop({ mutable: true }) hourInterval: number = 1;
   @Watch('hourInterval')
   watchHourIntervalPropHandler(newValue: number) {
-    if (
-      Number.isInteger(newValue) &&
-      newValue >= 0 &&
-      newValue <= (this.timeRef ? 12 : 23)
-    ) {
+    if (this.validateInterval('hour', newValue)) {
       this.setTimePickerDescriptors();
-      return;
     }
-
-    this.printIntervalError('hour', newValue);
-    this.hourInterval = HOUR_INTERVAL_DEFAULT;
   }
 
   /**
@@ -187,13 +180,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop({ mutable: true }) minuteInterval: number = 1;
   @Watch('minuteInterval')
   watchMinuteIntervalPropHandler(newValue: number) {
-    if (newValue >= 0 && newValue <= 59) {
+    if (this.validateInterval('minute', newValue)) {
       this.setTimePickerDescriptors();
-      return;
     }
-
-    this.printIntervalError('minute', newValue);
-    this.minuteInterval = MINUTE_INTERVAL_DEFAULT;
   }
 
   /**
@@ -204,13 +193,9 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop({ mutable: true }) secondInterval: number = 1;
   @Watch('secondInterval')
   watchSecondIntervalPropHandler(newValue: number) {
-    if (newValue >= 0 && newValue <= 59) {
+    if (this.validateInterval('second', newValue)) {
       this.setTimePickerDescriptors();
-      return;
     }
-
-    this.printIntervalError('second', newValue);
-    this.secondInterval = SECOND_INTERVAL_DEFAULT;
   }
 
   /**
@@ -221,13 +206,39 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   @Prop({ mutable: true }) millisecondInterval: number = 100;
   @Watch('millisecondInterval')
   watchMillisecondIntervalPropHandler(newValue: number) {
-    if (newValue >= 0 && newValue <= 999) {
+    if (this.validateInterval('millisecond', newValue)) {
       this.setTimePickerDescriptors();
-      return;
+    }
+  }
+
+  private validateInterval(unit: TimePickerIntervalUnit, value: number) {
+    if (isValidTimePickerInterval(unit, value, !!this.timeRef)) {
+      return true;
     }
 
-    this.printIntervalError('millisecond', newValue);
-    this.millisecondInterval = MILLISECOND_INTERVAL_DEFAULT;
+    this.printIntervalError(unit, value);
+    switch (unit) {
+      case 'hour':
+        this.hourInterval = HOUR_INTERVAL_DEFAULT;
+        break;
+      case 'minute':
+        this.minuteInterval = MINUTE_INTERVAL_DEFAULT;
+        break;
+      case 'second':
+        this.secondInterval = SECOND_INTERVAL_DEFAULT;
+        break;
+      case 'millisecond':
+        this.millisecondInterval = MILLISECOND_INTERVAL_DEFAULT;
+        break;
+    }
+    return false;
+  }
+
+  private validateIntervals() {
+    this.validateInterval('hour', this.hourInterval);
+    this.validateInterval('minute', this.minuteInterval);
+    this.validateInterval('second', this.secondInterval);
+    this.validateInterval('millisecond', this.millisecondInterval);
   }
 
   private printIntervalError(intervalName: string, value: number) {
@@ -500,13 +511,10 @@ export class TimePicker extends Mixin(...DefaultMixins) {
     this.updateMeridiemLabels();
     this.setTimeRef();
     this.formattedTime = this.getFormattedTime();
+
+    this.validateIntervals();
     this.setTimePickerDescriptors();
     this.setInitialFocusedValueAndUnit();
-
-    this.watchHourIntervalPropHandler(this.hourInterval);
-    this.watchMinuteIntervalPropHandler(this.minuteInterval);
-    this.watchSecondIntervalPropHandler(this.secondInterval);
-    this.watchMillisecondIntervalPropHandler(this.millisecondInterval);
 
     this.warnConstraintTimesIfInvalid({
       omitUnparsableConstraintWarnings: timePropDoesNotMatchFormat,
