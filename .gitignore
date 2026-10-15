@@ -207,3 +207,12 @@ ix-icons/dist/collection/components/icon/icon.css
 
 component-usage.json
 component-usage-by-component.json
+
+
+###
+# Agent temporary files
+###
+
+agent_docs/
+docs/
+GLOSSARY.md
