@@ -23,6 +23,7 @@ import {
   EventEmitter,
   Method,
 } from '@stencil/core';
+import type { NavigationBoundaryHandler } from '../dropdown/dropdown-focus';
 import { AlignedPlacement } from '../dropdown/placement';
 import {
   A11yAttributes,
@@ -136,6 +137,14 @@ export class DropdownButton
    * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
+
+  /**
+   * Resolves the item to activate when arrow keys move past the first or last
+   * item, instead of wrapping around.
+   *
+   * @internal
+   */
+  @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
 
   /**
    * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
@@ -488,6 +497,7 @@ export class DropdownButton
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
           navigationMode={this.navigationMode}
+          navigationBoundaryHandler={this.navigationBoundaryHandler}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,

@@ -96,6 +96,17 @@ const rememberRovingTabindex = (host: HTMLElement, items: HTMLElement[]) => {
   });
 };
 
+export type NavigationBoundaryDirection = 'next' | 'previous';
+
+/**
+ * Called when arrow key navigation would move past the first or last item.
+ * Resolves to the item that should become active instead of wrapping around,
+ * or `undefined` to keep the default wrap-around behavior.
+ */
+export type NavigationBoundaryHandler = (
+  direction: NavigationBoundaryDirection
+) => Promise<HTMLElement | undefined>;
+
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
   item: HTMLElement | null,
@@ -269,6 +280,11 @@ export const configureKeyboardInteraction = (
      */
     onTabKey?: (event: KeyboardEvent) => void;
     /**
+     * Lets the owner extend the item list (e.g. an infinite year list)
+     * instead of wrapping when arrow keys move past the first or last item.
+     */
+    onNavigationBoundary?: NavigationBoundaryHandler;
+    /**
      * Register the keydown listener in the capture phase. Used by the
      * roving-tabindex strategy so activation keys can be intercepted before the
      * focused item handles them, preventing duplicate activation.
@@ -300,6 +316,29 @@ export const configureKeyboardInteraction = (
 
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => getItemsHost());
+
+  const resolveBoundaryItem = async (
+    direction: NavigationBoundaryDirection,
+    items: HTMLElement[],
+    activeElement: HTMLElement | null
+  ) => {
+    if (!options.onNavigationBoundary || items.length === 0) {
+      return undefined;
+    }
+
+    const boundaryIndex = direction === 'next' ? items.length - 1 : 0;
+    const currentIndex = getIndexOfDropdownItem(
+      items,
+      activeElement,
+      activeQuerySelector
+    );
+
+    if (currentIndex !== boundaryIndex) {
+      return undefined;
+    }
+
+    return options.onNavigationBoundary(direction);
+  };
 
   const callback = async (event: KeyboardEvent) => {
     const activeElement = getActiveElement();
@@ -365,11 +404,13 @@ export const configureKeyboardInteraction = (
 
         // Disable movement/scroll with keyboard
         event.preventDefault();
-        const nextItem = getNextFocusableDropdownItem(
-          items,
-          activeElement,
-          activeQuerySelector
-        );
+        const nextItem =
+          (await resolveBoundaryItem('next', items, activeElement)) ??
+          getNextFocusableDropdownItem(
+            items,
+            activeElement,
+            activeQuerySelector
+          );
 
         if (nextItem !== undefined) {
           setItemActive(nextItem);
@@ -384,11 +425,9 @@ export const configureKeyboardInteraction = (
         }
         // Disable movement/scroll with keyboard
         event.preventDefault();
-        const prevItem = getPreviousFocusableItem(
-          items,
-          activeElement,
-          activeQuerySelector
-        );
+        const prevItem =
+          (await resolveBoundaryItem('previous', items, activeElement)) ??
+          getPreviousFocusableItem(items, activeElement, activeQuerySelector);
         if (prevItem !== undefined) {
           setItemActive(prevItem);
         }
