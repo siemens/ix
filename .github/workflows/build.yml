@@ -139,5 +139,5 @@ jobs:
 
       - name: Test
         run: |
-          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
+          pnpm dlx puppeteer@22.15.0 browsers install chrome@127.0.6533.88
           pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo
