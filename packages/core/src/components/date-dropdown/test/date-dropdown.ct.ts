@@ -23,9 +23,9 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(
     `<ix-date-dropdown aria-label="Date range" from="2024/02/16" to="2024/02/18"></ix-date-dropdown>`
   );
-  await expect(page.locator(DATE_DROPDOWN_SELECTOR)).toHaveClass(
-    /\bhydrated\b/
-  );
+  await expect(
+    page.locator(DATE_DROPDOWN_SELECTOR).getByTestId('date-dropdown-trigger')
+  ).toBeVisible();
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
@@ -48,7 +48,9 @@ regressionTest.describe('custom range confirmation', () => {
       </div>
     `);
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropdown).toHaveClass(/\bhydrated\b/);
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toBeVisible();
     await dateDropdown.evaluate((el) => {
       el.dataset.rangeEvents = '[]';
       el.addEventListener('dateRangeChange', (event) => {

@@ -904,7 +904,8 @@ export declare interface IxDateDropdown extends Components.IxDateDropdown {
   /**
    * EventEmitter for date range change events.
 
-This event is emitted when the date range changes within the component.
+Emitted when Done confirms a range, a preset is selected, or the range
+properties change. Dismissing the dropdown discards pending edits.
 The event payload contains information about the selected date range.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
