@@ -9454,7 +9454,7 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
+          * EventEmitter for date range change events.  Emitted when Done confirms a range, a preset is selected, or the range properties change. Dismissing the dropdown discards pending edits. The event payload contains information about the selected date range.
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
