@@ -230,10 +230,15 @@ export function HookValidationLifecycle(options?: {
               );
             }
 
-            if (!validityState.valid) {
+            // A missing required value is shown only once the field is touched
+            // (`ix-invalid--required`), so it is not announced before either.
+            const isInvalid =
+              !validityState.valid && (touched || !validityState.valueMissing);
+
+            if (isInvalid) {
               validationElement?.setAttribute('aria-invalid', 'true');
 
-              if (ariaErrorMessageElement && !validityState.valid) {
+              if (ariaErrorMessageElement) {
                 validationElement.setAttribute(
                   'aria-errormessage',
                   `${ariaErrorMessageElement.id}`
