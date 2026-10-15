@@ -42,9 +42,14 @@ import {
   monthNameOf,
   monthsOfYear,
   WeekdayIndex,
+  weekdayLabelsFrom,
   weekdayNamesFrom,
   weekStartFrom,
 } from '../utils/calendar.util';
+import type {
+  NavigationBoundaryDirection,
+  NavigationBoundaryHandler,
+} from '../dropdown/dropdown-focus';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
@@ -53,6 +58,9 @@ import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DatePickerYearMonth } from './date-picker.types';
+
+/** Number of years added when the year list is scrolled or navigated past its end. */
+const YEAR_RANGE_EXTENSION = 5;
 
 /**
  * Calendar for selecting a single date or a date range.
@@ -346,6 +354,7 @@ export class DatePicker
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames: string[] = [];
+  @State() dayLabels: string[] = [];
   @State() focusedDay: number = 1;
 
   private isDayFocus = false;
@@ -519,6 +528,9 @@ export class DatePicker
   }
 
   override componentDidRender() {
+    this.resolveYearRangeRendered?.();
+    this.resolveYearRangeRendered = undefined;
+
     if (!this.monthChangedFromFocus && !this.isDayFocus) {
       return;
     }
@@ -575,6 +587,7 @@ export class DatePicker
 
   private setTranslations() {
     this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
+    this.dayLabels = weekdayLabelsFrom(this.weekStart, this.locale);
   }
 
   private async onDone() {
@@ -725,6 +738,7 @@ export class DatePicker
       rows.push(
         <ix-dropdown-item
           key={year}
+          data-year={year}
           checked={selected}
           class={{
             'month-dropdown-item': true,
@@ -792,7 +806,7 @@ export class DatePicker
       const target = entry.target as HTMLElement;
       if (entry.isIntersecting) {
         if (target.dataset.sentinel === 'top') {
-          this.startYear -= 5;
+          this.startYear -= YEAR_RANGE_EXTENSION;
 
           if (!this.skipFirstScrollOffset) {
             requestAnimationFrameNoNgZone(() => {
@@ -802,10 +816,53 @@ export class DatePicker
           }
           this.skipFirstScrollOffset = false;
         } else {
-          this.endYear += 5;
+          this.endYear += YEAR_RANGE_EXTENSION;
         }
       }
     });
+  }
+
+  private resolveYearRangeRendered?: () => void;
+  private pendingYearRangeExtension?: Promise<HTMLElement | undefined>;
+
+  /**
+   * Arrow keys past the first/last year extend the year list, like scrolling
+   * does, and move to the newly added adjacent year instead of wrapping.
+   * Key presses arriving while an extension renders share it, so a key repeat
+   * cannot extend the list twice and skip years.
+   */
+  private readonly extendYearRange: NavigationBoundaryHandler = (direction) => {
+    this.pendingYearRangeExtension ??= this.renderYearRangeExtension(
+      direction
+    ).finally(() => {
+      this.pendingYearRangeExtension = undefined;
+    });
+
+    return this.pendingYearRangeExtension;
+  };
+
+  private async renderYearRangeExtension(
+    direction: NavigationBoundaryDirection
+  ): Promise<HTMLElement | undefined> {
+    const targetYear =
+      direction === 'next' ? this.endYear + 1 : this.startYear - 1;
+    const rendered = new Promise<void>((resolve) => {
+      this.resolveYearRangeRendered = resolve;
+    });
+
+    if (direction === 'next') {
+      this.endYear += YEAR_RANGE_EXTENSION;
+    } else {
+      this.startYear -= YEAR_RANGE_EXTENSION;
+    }
+
+    await rendered;
+
+    return (
+      this.yearDropdownButtonRef.current?.querySelector<HTMLElement>(
+        `ix-dropdown-item[data-year="${targetYear}"]`
+      ) ?? undefined
+    );
   }
 
   private skipFirstScrollOffset = true;
@@ -868,6 +925,7 @@ export class DatePicker
                 class="year-selector"
                 focusCheckedItem={true}
                 aria-label={this.ariaLabelYearSelection}
+                navigationBoundaryHandler={this.extendYearRange}
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
                 label={null}
@@ -943,13 +1001,14 @@ export class DatePicker
               {this.showWeekNumbers && (
                 <div class="calendar-item week-day" role="columnheader"></div>
               )}
-              {this.dayNames.map((name) => (
+              {this.dayNames.map((name, column) => (
                 <div
                   key={name}
                   class="calendar-item week-day"
                   role="columnheader"
+                  aria-label={name}
                 >
-                  <div class="overflow">{name.slice(0, 3)}</div>
+                  <div class="overflow">{this.dayLabels[column]}</div>
                 </div>
               ))}
             </div>

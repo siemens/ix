@@ -933,10 +933,10 @@ regressionTest.describe('week start index', () => {
       );
 
       const headers = await getColumnHeaders(page);
-      expect(headers[0]).toBe('Die');
+      expect(headers[0]).toBe('Di');
 
       // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
-      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mi');
     }
   );
 
@@ -1075,6 +1075,103 @@ regressionTest.describe('week start index', () => {
 
       // 1 December 2023 is a Friday, six columns along from Sunday.
       expect(headers[await getColumnOfFirstDay(page)]).toBe('Fri');
+    }
+  );
+});
+
+regressionTest.describe('weekday column headers', () => {
+  regressionTest(
+    'shows abbreviated names labelled with the full name',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
+      );
+
+      const monday = page.getByRole('columnheader', { name: 'Monday' });
+      await expect(monday).toHaveText('Mon');
+    }
+  );
+
+  regressionTest(
+    'falls back to narrow names when abbreviations are too long',
+    async ({ mount, page }) => {
+      // Arabic abbreviated weekday names equal the full names.
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="ar"></ix-date-picker>`
+      );
+
+      const monday = page.getByRole('columnheader', { name: 'الاثنين' });
+      await expect(monday).toHaveText('ن');
+    }
+  );
+
+  for (const locale of [
+    'en',
+    'de',
+    'fr',
+    'lv',
+    'he',
+    'ar',
+    'el',
+    'ta',
+    'km',
+    'my',
+  ]) {
+    regressionTest(
+      `does not truncate weekday labels for locale "${locale}"`,
+      async ({ mount, page }) => {
+        await mount(
+          `<ix-date-picker from="2023/12/01" locale="${locale}"></ix-date-picker>`
+        );
+
+        const labels = page.locator('.week-day .overflow');
+        await expect(labels).toHaveCount(7);
+
+        const overflowing = await labels.evaluateAll((elements) =>
+          elements
+            .filter((element) => element.scrollWidth > element.clientWidth)
+            .map((element) => element.textContent)
+        );
+        expect(overflowing).toEqual([]);
+      }
+    );
+  }
+});
+
+regressionTest.describe('year dropdown keyboard navigation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-date-picker from="2023/12/01"></ix-date-picker>`);
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+
+    await page.getByRole('button', { name: 'Select year' }).focus();
+    await page.keyboard.press('Enter');
+  });
+
+  const activeYear = (page: Page) =>
+    page.locator('.year-selector ix-dropdown-item.ix-focused');
+
+  regressionTest(
+    'ArrowDown on the last year extends the list instead of wrapping',
+    async ({ page }) => {
+      await page.keyboard.press('End');
+      await expect(activeYear(page)).toHaveText('2124');
+
+      await page.keyboard.press('ArrowDown');
+      await expect(activeYear(page)).toHaveText('2125');
+
+      await page.keyboard.press('ArrowDown');
+      await expect(activeYear(page)).toHaveText('2126');
+    }
+  );
+
+  regressionTest(
+    'ArrowUp on the first year extends the list instead of wrapping',
+    async ({ page }) => {
+      await page.keyboard.press('Home');
+      await expect(activeYear(page)).toHaveText('1922');
+
+      await page.keyboard.press('ArrowUp');
+      await expect(activeYear(page)).toHaveText('1921');
     }
   );
 });

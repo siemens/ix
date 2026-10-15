@@ -70,6 +70,7 @@ import {
   configureKeyboardInteraction,
   createRovingTabindexInteraction,
   initRovingTabindex,
+  type NavigationBoundaryHandler,
 } from './dropdown-focus';
 import { AlignedPlacement } from './placement';
 
@@ -252,6 +253,13 @@ export class Dropdown
 
   /** @internal */
   @Prop() hostRole?: string;
+
+  /**
+   * @internal
+   * Resolves the item to activate when arrow keys move past the first or last
+   * item, instead of wrapping around.
+   */
+  @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
 
   /**
    * @internal
@@ -858,6 +866,9 @@ export class Dropdown
             activeElement?.click();
           },
           itemTriggerKeys: this.keyboardItemTriggerKeys,
+          // Read lazily so the handler can be set after the dropdown opened.
+          onNavigationBoundary: async (direction) =>
+            this.navigationBoundaryHandler?.(direction),
           ...(this.isRovingTabindex
             ? {
                 ...createRovingTabindexInteraction(getItemsHost),
