@@ -1386,15 +1386,6 @@ export class Dropdown
   }
 
   /**
-   * @internal
-   * Dismiss the dropdown including its submenus.
-   */
-  @Method()
-  async dismissDropdown() {
-    dropdownController.dismiss(this);
-  }
-
-  /**
    * Show the dropdown at the given absolute point in viewport coordinates
    * (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event.
    * Moves an already visible dropdown. The position takes precedence over

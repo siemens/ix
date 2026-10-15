@@ -760,46 +760,6 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelMenu', 'disabled', 'enableTopLayer', 'navigationMode', 'target'],
-  methods: ['showAt', 'hide']
-})
-@Component({
-  selector: 'ix-context-menu',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelMenu', 'disabled', 'enableTopLayer', 'navigationMode', 'target'],
-  outputs: ['contextMenuOpen', 'showChanged'],
-  standalone: false
-})
-export class IxContextMenu {
-  protected el: HTMLIxContextMenuElement;
-  @Output() contextMenuOpen = new EventEmitter<IxContextMenuCustomEvent<IIxContextMenuContextMenuOpenEventDetail>>();
-  @Output() showChanged = new EventEmitter<IxContextMenuCustomEvent<boolean>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-import type { IxContextMenuCustomEvent } from '@siemens/ix';
-import type { ContextMenuOpenEventDetail as IIxContextMenuContextMenuOpenEventDetail } from '@siemens/ix';
-
-export declare interface IxContextMenu extends Components.IxContextMenu {
-  /**
-   * Fired before the context menu opens.
-Preventing the event keeps the context menu closed and shows the native browser context menu.
-   */
-  contextMenuOpen: EventEmitter<IxContextMenuCustomEvent<IIxContextMenuContextMenuOpenEventDetail>>;
-  /**
-   * Fired after the visibility of the context menu has changed.
-   */
-  showChanged: EventEmitter<IxContextMenuCustomEvent<boolean>>;
-}
-
-
-@ProxyCmp({
   inputs: ['helperText', 'infoText', 'invalidText', 'label', 'required', 'showTextAsTooltip', 'validText', 'warningText']
 })
 @Component({

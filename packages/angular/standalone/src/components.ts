@@ -32,7 +32,6 @@ import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-c
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
-import { defineCustomElement as defineIxContextMenu } from '@siemens/ix/components/ix-context-menu.js';
 import { defineCustomElement as defineIxCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
@@ -868,46 +867,6 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
    * Triggered when back button is clicked
    */
   backButtonClick: EventEmitter<IxContentHeaderCustomEvent<void>>;
-}
-
-
-@ProxyCmp({
-  defineCustomElementFn: defineIxContextMenu,
-  inputs: ['ariaLabelMenu', 'disabled', 'enableTopLayer', 'navigationMode', 'target'],
-  methods: ['showAt', 'hide']
-})
-@Component({
-  selector: 'ix-context-menu',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelMenu', 'disabled', 'enableTopLayer', 'navigationMode', 'target'],
-  outputs: ['contextMenuOpen', 'showChanged'],
-})
-export class IxContextMenu {
-  protected el: HTMLIxContextMenuElement;
-  @Output() contextMenuOpen = new EventEmitter<IxContextMenuCustomEvent<IIxContextMenuContextMenuOpenEventDetail>>();
-  @Output() showChanged = new EventEmitter<IxContextMenuCustomEvent<boolean>>();
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-import type { IxContextMenuCustomEvent } from '@siemens/ix/components';
-import type { ContextMenuOpenEventDetail as IIxContextMenuContextMenuOpenEventDetail } from '@siemens/ix/components';
-
-export declare interface IxContextMenu extends Components.IxContextMenu {
-  /**
-   * Fired before the context menu opens.
-Preventing the event keeps the context menu closed and shows the native browser context menu.
-   */
-  contextMenuOpen: EventEmitter<IxContextMenuCustomEvent<IIxContextMenuContextMenuOpenEventDetail>>;
-  /**
-   * Fired after the visibility of the context menu has changed.
-   */
-  showChanged: EventEmitter<IxContextMenuCustomEvent<boolean>>;
 }
 
 
