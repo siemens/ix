@@ -16,6 +16,26 @@ const getDateObj = async (page: Page) => {
   });
 };
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest(
+  'accessibility with narrow weekday labels',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker from="2024/10/10" locale="ar"></ix-date-picker>`
+    );
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+  }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
@@ -1105,73 +1125,115 @@ regressionTest.describe('weekday column headers', () => {
     }
   );
 
-  for (const locale of [
-    'en',
-    'de',
-    'fr',
-    'lv',
-    'he',
-    'ar',
-    'el',
-    'ta',
-    'km',
-    'my',
-  ]) {
-    regressionTest(
-      `does not truncate weekday labels for locale "${locale}"`,
-      async ({ mount, page }) => {
-        await mount(
-          `<ix-date-picker from="2023/12/01" locale="${locale}"></ix-date-picker>`
-        );
+  regressionTest(
+    'does not truncate weekday labels in any locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
+      );
+      const datePicker = page.locator(DatePickerSelector);
+      const labels = page.locator('.week-day .overflow');
 
-        const labels = page.locator('.week-day .overflow');
-        await expect(labels).toHaveCount(7);
+      for (const locale of [
+        'zh',
+        'ja',
+        'de',
+        'fr',
+        'lv',
+        'he',
+        'ar',
+        'el',
+        'ta',
+        'km',
+        'my',
+      ]) {
+        await datePicker.evaluate(
+          (element: HTMLIxDatePickerElement, value) => (element.locale = value),
+          locale
+        );
+        await expect(
+          page.getByRole('columnheader').first()
+        ).toHaveAccessibleName(
+          await page.evaluate(
+            (value) =>
+              new Intl.DateTimeFormat(value, { weekday: 'long' }).format(
+                new Date(2024, 0, 1)
+              ),
+            locale
+          )
+        );
 
         const overflowing = await labels.evaluateAll((elements) =>
           elements
             .filter((element) => element.scrollWidth > element.clientWidth)
             .map((element) => element.textContent)
         );
-        expect(overflowing).toEqual([]);
+        expect(overflowing, `truncated labels for "${locale}"`).toEqual([]);
       }
-    );
-  }
+    }
+  );
 });
 
-regressionTest.describe('year dropdown keyboard navigation', () => {
+regressionTest.describe('month and year dropdowns', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-picker from="2023/12/01"></ix-date-picker>`);
     await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
-
-    await page.getByRole('button', { name: 'Select year' }).focus();
-    await page.keyboard.press('Enter');
   });
 
-  const activeYear = (page: Page) =>
-    page.locator('.year-selector ix-dropdown-item.ix-focused');
-
   regressionTest(
-    'ArrowDown on the last year extends the list instead of wrapping',
+    'scrolls the selected month into view when opened',
     async ({ page }) => {
-      await page.keyboard.press('End');
-      await expect(activeYear(page)).toHaveText('2124');
+      await page.getByRole('button', { name: 'Select month' }).click();
 
-      await page.keyboard.press('ArrowDown');
-      await expect(activeYear(page)).toHaveText('2125');
-
-      await page.keyboard.press('ArrowDown');
-      await expect(activeYear(page)).toHaveText('2126');
+      await expect(
+        page.locator('.month-selector ix-dropdown-item[checked]')
+      ).toBeInViewport({ ratio: 1 });
     }
   );
 
-  regressionTest(
-    'ArrowUp on the first year extends the list instead of wrapping',
-    async ({ page }) => {
-      await page.keyboard.press('Home');
-      await expect(activeYear(page)).toHaveText('1922');
+  regressionTest.describe('year keyboard navigation', () => {
+    regressionTest.beforeEach(async ({ page }) => {
+      await page.getByRole('button', { name: 'Select year' }).focus();
+      await page.keyboard.press('Enter');
+    });
 
-      await page.keyboard.press('ArrowUp');
-      await expect(activeYear(page)).toHaveText('1921');
-    }
-  );
+    /** Asserts the year exposed as active both visually and to assistive technology. */
+    const expectActiveYear = async (page: Page, year: string) => {
+      const activeYear = page.locator(
+        '.year-selector ix-dropdown-item.ix-focused'
+      );
+      await expect(activeYear).toHaveText(year);
+      await expect(
+        page.getByRole('button', { name: 'Select year' })
+      ).toHaveAttribute(
+        'aria-activedescendant',
+        (await activeYear.getAttribute('id')) ?? ''
+      );
+    };
+
+    regressionTest(
+      'ArrowDown on the last year extends the list instead of wrapping',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2126');
+      }
+    );
+
+    regressionTest(
+      'ArrowUp on the first year extends the list instead of wrapping',
+      async ({ page }) => {
+        await page.keyboard.press('Home');
+        await expectActiveYear(page, '1922');
+
+        await page.keyboard.press('ArrowUp');
+        await expectActiveYear(page, '1921');
+      }
+    );
+  });
 });

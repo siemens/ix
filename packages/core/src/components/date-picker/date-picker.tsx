@@ -347,6 +347,9 @@ export class DatePicker
   @State() startYear = 0;
   @State() endYear = 0;
 
+  private readonly monthDropdownButtonRef =
+    makeRef<HTMLIxDropdownButtonElement>();
+
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
 
@@ -514,6 +517,8 @@ export class DatePicker
   override disconnectedCallback() {
     this.keyboardNavigationYearSelection?.();
     this.keyboardNavigationMonthSelection?.();
+    // A detached picker no longer renders; release a pending year extension.
+    this.resolveYearRangeRendered?.();
   }
 
   override componentDidLoad() {
@@ -822,6 +827,21 @@ export class DatePicker
     });
   }
 
+  /** Scrolls the selected month/year of an opened dropdown into the middle. */
+  private centerCheckedItem(dropdownButton?: HTMLElement | null) {
+    const checkedItem = dropdownButton?.querySelector<HTMLElement>(
+      'ix-dropdown-item[checked]'
+    );
+
+    if (!checkedItem) {
+      return;
+    }
+
+    requestAnimationFrameNoNgZone(() => {
+      checkedItem.scrollIntoView({ block: 'center' });
+    });
+  }
+
   private resolveYearRangeRendered?: () => void;
   private pendingYearRangeExtension?: Promise<HTMLElement | undefined>;
 
@@ -904,11 +924,20 @@ export class DatePicker
                 class="month-selector"
                 focusCheckedItem={true}
                 aria-label={this.ariaLabelMonthSelection}
+                ref={this.monthDropdownButtonRef}
                 variant="tertiary"
                 label={null}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
+
+                  if (event.detail) {
+                    requestAnimationFrameNoNgZone(() =>
+                      this.centerCheckedItem(
+                        this.monthDropdownButtonRef.current
+                      )
+                    );
+                  }
                 }}
               >
                 <ix-typography
@@ -945,20 +974,9 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current?.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement | null;
-
-                      if (!selectedYearItem) {
-                        return;
-                      }
-
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
-                        });
-                      });
+                      this.centerCheckedItem(
+                        this.yearDropdownButtonRef.current
+                      );
                     });
                   } else {
                     this.intersectStart.disconnect();
