@@ -156,15 +156,12 @@ export function adjustPaddingForStartAndEnd(
 export function getAriaAttributesForInput(
   component: IxInputFieldComponent
 ): A11yAttributes {
-  const inputAria: A11yAttributes = {
+  // `aria-errormessage` must reference an element id, it is set by
+  // `HookValidationLifecycle` to the error message element of `ix-field-wrapper`.
+  return {
     'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
     'aria-required': `${a11yBoolean(component.required)}`,
   };
-
-  if (component.isInvalid && component.invalidText) {
-    inputAria['aria-errormessage'] = component.invalidText;
-  }
-  return inputAria;
 }
 
 export type DisposableChangesAndVisibilityObservers = () => void;

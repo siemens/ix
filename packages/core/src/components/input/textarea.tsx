@@ -319,6 +319,13 @@ export class Textarea implements IxInputFieldComponent<string> {
     return this.textAreaRef.waitForCurrent();
   }
 
+  /** @internal */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const textarea = await this.textAreaRef.waitForCurrent();
+    return textarea.validity;
+  }
+
   /**
    * Focuses the input field
    */

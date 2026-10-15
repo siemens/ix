@@ -41,6 +41,79 @@ test.describe('validation', () => {
     });
   });
 
+  test.describe('custom validation with ix-invalid class', () => {
+    ['ix-input', 'ix-textarea'].forEach((selector) => {
+      test(`${selector} - should expose the invalid state to assistive technology`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(
+          `<${selector} label="Phone" invalid-text="Enter a valid phone number." class="ix-invalid"></${selector}>`
+        );
+        const component = page.locator(selector);
+        const control = component.getByRole('textbox', { name: 'Phone' });
+
+        const expectInvalidAria = async () => {
+          await expect(control).toHaveAttribute('aria-invalid', 'true');
+          const errorMessageId = await control.getAttribute(
+            'aria-errormessage'
+          );
+          expect(errorMessageId).toMatch(/^ix-component-ix-field-wrapper-.*/);
+          await expect(component.locator(`#${errorMessageId}`)).toHaveText(
+            'Enter a valid phone number.'
+          );
+        };
+
+        await expectInvalidAria();
+
+        await control.fill('12');
+        await control.blur();
+
+        await expectInvalidAria();
+      });
+
+      test(`${selector} - should update the invalid state when ix-invalid is toggled without interaction`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(
+          `<${selector} label="Phone" invalid-text="Enter a valid phone number."></${selector}>`
+        );
+        const component = page.locator(selector);
+        const control = component.getByRole('textbox', { name: 'Phone' });
+
+        await expect(control).not.toHaveAttribute('aria-invalid', 'true');
+        await expect(control).not.toHaveAttribute('aria-errormessage');
+
+        await component.evaluate((element) =>
+          element.classList.add('ix-invalid')
+        );
+
+        await expect(control).toHaveAttribute('aria-invalid', 'true');
+        await expect(control).toHaveAttribute(
+          'aria-errormessage',
+          /^ix-component-ix-field-wrapper-.*/
+        );
+        const errorMessageId = await control.getAttribute('aria-errormessage');
+        await expect(control).toHaveAttribute(
+          'aria-describedby',
+          errorMessageId!
+        );
+
+        await component.evaluate((element) =>
+          element.classList.remove('ix-invalid')
+        );
+
+        await expect(control).not.toHaveAttribute('aria-invalid', 'true');
+        await expect(control).not.toHaveAttribute('aria-errormessage');
+        await expect(control).not.toHaveAttribute(
+          'aria-describedby',
+          new RegExp(`(^|\\s)${errorMessageId}(\\s|$)`)
+        );
+      });
+    });
+  });
+
   test.describe('ix-number-input', () => {
     test('number input should NOT be invalid if value is zero (zero is valid)', async ({
       mount,

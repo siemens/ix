@@ -125,6 +125,31 @@ function isMissingNativeInputError(error: unknown): boolean {
   );
 }
 
+function runValidationCheck(checkFunction: () => Promise<void>) {
+  void checkFunction().catch((error) => {
+    if (isMissingNativeInputError(error)) {
+      return;
+    }
+    console.error(error);
+  });
+}
+
+function removeIdReference(
+  element: Element,
+  attributeName: string,
+  id: string
+) {
+  const ids = (element.getAttribute(attributeName) ?? '')
+    .split(/\s+/)
+    .filter((reference) => reference && reference !== id);
+
+  if (ids.length > 0) {
+    element.setAttribute(attributeName, ids.join(' '));
+  } else {
+    element.removeAttribute(attributeName);
+  }
+}
+
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
@@ -132,6 +157,9 @@ export function HookValidationLifecycle(options?: {
     let checkIfRequiredFunction: (() => Promise<void>) | null;
     let classMutationObserver: ClassMutationObserver | null;
     let checkTimeoutId: ReturnType<typeof setTimeout> | null = null;
+    // `checkIfRequiredFunction` is shared by all instances of the component,
+    // the class observer needs the check function of its own host.
+    const checkFunctions = new WeakMap<HTMLElement, () => Promise<void>>();
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 
@@ -230,10 +258,15 @@ export function HookValidationLifecycle(options?: {
               );
             }
 
-            if (!validityState.valid) {
-              validationElement?.setAttribute('aria-invalid', 'true');
+            // `ix-invalid` is set by the application for custom validation,
+            // so the native validity state alone does not tell the whole story.
+            const isInvalid =
+              !validityState.valid || host.classList.contains('ix-invalid');
 
-              if (ariaErrorMessageElement && !validityState.valid) {
+            if (isInvalid) {
+              validationElement.setAttribute('aria-invalid', 'true');
+
+              if (ariaErrorMessageElement) {
                 validationElement.setAttribute(
                   'aria-errormessage',
                   `${ariaErrorMessageElement.id}`
@@ -244,24 +277,31 @@ export function HookValidationLifecycle(options?: {
                 );
               }
             } else {
-              validationElement?.removeAttribute('aria-invalid');
+              const errorMessageId =
+                validationElement.getAttribute('aria-errormessage') ??
+                ariaErrorMessageElement?.id;
+              validationElement.removeAttribute('aria-invalid');
+              validationElement.removeAttribute('aria-errormessage');
+              if (errorMessageId) {
+                removeIdReference(
+                  validationElement,
+                  'aria-describedby',
+                  errorMessageId
+                );
+              }
             }
           }
         }
       };
 
+      checkFunctions.set(host, checkIfRequiredFunction);
       host.addEventListener('checkedChange', checkIfRequiredFunction);
       host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
       checkTimeoutId = setTimeout(() => {
         checkTimeoutId = null;
         if (checkIfRequiredFunction) {
-          void checkIfRequiredFunction().catch((error) => {
-            if (isMissingNativeInputError(error)) {
-              return;
-            }
-            console.error(error);
-          });
+          runValidationCheck(checkIfRequiredFunction);
         }
       });
       return connectedCallback?.call(this);
@@ -271,11 +311,22 @@ export function HookValidationLifecycle(options?: {
       const host = getElement(
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
+      let hasInvalidClass = host.classList.contains('ix-invalid');
       classMutationObserver = createClassMutationObserver(
         host,
         () => {
           const result = checkFieldClasses(host, options?.includeChildren);
           proto[methodName].call(this, result);
+
+          // Applications toggle `ix-invalid` for custom validation without a
+          // value change or blur, so the native ARIA attributes are updated here.
+          // Other classes are ignored, the check itself toggles `ix-invalid--*`.
+          const previousHasInvalidClass = hasInvalidClass;
+          hasInvalidClass = host.classList.contains('ix-invalid');
+          const checkFunction = checkFunctions.get(host);
+          if (hasInvalidClass !== previousHasInvalidClass && checkFunction) {
+            runValidationCheck(checkFunction);
+          }
         },
         options
       );
@@ -302,6 +353,10 @@ export function HookValidationLifecycle(options?: {
         host.removeEventListener('valueChange', checkIfRequiredFunction);
         host.removeEventListener('ixBlur', checkIfRequiredFunction);
         checkIfRequiredFunction = null;
+      }
+
+      if (host) {
+        checkFunctions.delete(host);
       }
 
       return disconnectedCallback?.call(this);
