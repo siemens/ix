@@ -8,6 +8,7 @@
  */
 
 import { createContext } from '../context';
+import { Breakpoint } from '../breakpoints';
 import { type LiteralStringUnion } from '../type-helper';
 
 export const closestIxMenu = (element: Element) => {
@@ -33,11 +34,19 @@ export type AppSwitchConfiguration = {
   i18nLoadingApps?: string;
 };
 
-export const ApplicationLayoutContext = createContext<{
+export type ApplicationLayoutContextValue = {
   hideHeader: boolean;
   appSwitchConfig?: AppSwitchConfiguration;
   sidebar?: boolean;
-}>('application-layout-context', {
-  hideHeader: false,
-  sidebar: false,
-});
+  /**
+   * When set, nested layout consumers should follow this breakpoint
+   * instead of the viewport.
+   */
+  forceBreakpoint?: Breakpoint;
+};
+
+export const ApplicationLayoutContext =
+  createContext<ApplicationLayoutContextValue>('application-layout-context', {
+    hideHeader: false,
+    sidebar: false,
+  });
