@@ -1096,7 +1096,7 @@ export class Select
     const chip = this.chipElementRefs.get(value);
     const margin = chip
       ? this.getHorizontalMargin(chip)
-      : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2;
+      : this.getCssPixelValue('--ix-select-chip-margin-inline-end');
 
     return (this.chipWidths.get(value) ?? 0) + margin;
   }
@@ -1112,7 +1112,7 @@ export class Select
       overflowChipWidth +
       (overflowChip
         ? this.getHorizontalMargin(overflowChip)
-        : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2)
+        : this.getCssPixelValue('--ix-select-chip-margin-inline-end'))
     );
   }
 
