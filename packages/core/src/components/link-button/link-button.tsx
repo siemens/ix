@@ -8,7 +8,7 @@
  */
 
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Listen, Prop } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -41,6 +41,14 @@ export class LinkButton {
    * https://www.w3schools.com/html/html_links.asp
    */
   @Prop() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
+
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
 
   render() {
     return (
