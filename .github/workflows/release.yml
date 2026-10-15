@@ -31,7 +31,7 @@ jobs:
         run: pnpm build --cache-dir=.turbo --force
 
       - name: Upgrade npm for OIDC support
-        run: npm install -g npm@^11.8.0 --no-man
+        run: npm install -g npm@11.21.0 --no-man
 
       - name: Select npm publish command
         id: publish-command
