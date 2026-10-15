@@ -50,11 +50,7 @@ $blind-status-sys: (
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
-  /*
-   * Insets are from the outer left edge: header 8px, body 16px.
-   * Outline subtracts its 1px layout border. The status strip is absolute
-   * (::before) and does not change padding.
-   */
+  /* Left padding; layout border width is subtracted below when present. */
   --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-content--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
@@ -70,13 +66,23 @@ $blind-status-sys: (
   --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
 }
 
-/* Outline: 1px border is part of the outer inset. */
+/* Outline: subtract outline border from left padding. */
 :host(.outline) {
   --ix-blind-header-content--padding-left: calc(
     #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-blind-content--padding-left: calc(
     #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
+  );
+}
+
+/* Status: subtract indicator border; keep same outer inset. */
+:host(:not(.blind-default)) {
+  --ix-blind-header-content--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-emphasis}
+  );
+  --ix-blind-content--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-emphasis}
   );
 }
 

@@ -71,7 +71,7 @@ export class Blind {
    * Show the blind with outline chrome.
    * When omitted, outline chrome is used (`true`).
    * When `false`, uses a filled surface.
-   * A non-default status shows a left color indicator on either surface.
+   * A non-default status shows a left status indicator.
    *
    * @since 6.0.0
    */

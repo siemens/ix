@@ -177,7 +177,7 @@
   background-color: var(--ix-blind--background);
 }
 
-/* Outline: uniform 1px border/3 on the host (with or without status). */
+/* Outline and status chrome via host border (mixed-color mitre when both apply). */
 :host(.outline) {
   box-sizing: border-box;
   border: solid var(--ix-blind--border-width)
@@ -188,19 +188,15 @@
   }
 }
 
-/*
- * Status strip: 4px on the left via ::before (inside the outline border).
- * Absolute so it does not take layout space.
- */
-:host(:not(.blind-default))::before {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  inset-block: 0;
-  inset-inline-start: 0;
-  inline-size: var(--ix-blind--indicator-width);
-  pointer-events: none;
-  background-color: var(--ix-blind-status-color);
+:host(.outline:not(.blind-default)) {
+  border-left-width: var(--ix-blind--indicator-width);
+  border-left-color: var(--ix-blind-status-color);
+}
+
+:host(:not(.outline):not(.blind-default)) {
+  box-sizing: border-box;
+  border-left: var(--ix-blind--indicator-width) solid
+    var(--ix-blind-status-color);
 }
 
 :host(.outline) .blind-header {
