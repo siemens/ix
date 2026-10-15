@@ -837,3 +837,81 @@ regressionTest(
     expect(loggedText).not.toContain('HTMLDialogElement not existing');
   }
 );
+
+regressionTest.describe('config allowlist', () => {
+  regressionTest(
+    'showModal ignores non-modal properties from config',
+    async ({ mount, page }) => {
+      await mount(``);
+      await setupModalEnvironment(page);
+
+      await page.evaluate(() => {
+        const config = {
+          content: 'Plain text content',
+          ariaDescribedby: 'modal-description',
+          animation: false,
+          backdrop: false,
+          innerHTML: '<img id="injected" src="x">',
+        };
+        (globalThis as any).__modalConfig = config;
+        globalThis.showModal(config as any);
+      });
+
+      const modal = page.locator('ix-modal');
+      await expect(modalPanel(page)).toBeVisible();
+      await expect(modal).toHaveText('Plain text content');
+      await expect(page.locator('#injected')).toHaveCount(0);
+      await expect(modalPanel(page)).toHaveAttribute(
+        'aria-describedby',
+        'modal-description'
+      );
+
+      const state = await modal.evaluate((element: HTMLIxModalElement) => ({
+        disableAnimation: element.disableAnimation,
+        hideBackdrop: element.hideBackdrop,
+        configKeys: Object.keys((globalThis as any).__modalConfig),
+      }));
+
+      expect(state).toEqual({
+        disableAnimation: true,
+        hideBackdrop: true,
+        configKeys: [
+          'content',
+          'ariaDescribedby',
+          'animation',
+          'backdrop',
+          'innerHTML',
+        ],
+      });
+    }
+  );
+
+  regressionTest(
+    'showMessage ignores non-header properties from config',
+    async ({ mount, page }) => {
+      await mount(``);
+      await setupModalEnvironment(page);
+
+      await page.evaluate(() => {
+        globalThis.showMessage({
+          messageTitle: 'Message title',
+          message: 'Message body',
+          actions: [{ id: 'okay', type: 'okay', text: 'Okay' }],
+          innerHTML: '<img id="injected" src="x">',
+          outerHTML: '<img id="injected-outer" src="x">',
+        });
+      });
+
+      await expect(modalPanel(page)).toBeVisible();
+      await expect(page.locator('ix-modal-header')).toContainText(
+        'Message title'
+      );
+      await expect(page.locator('ix-modal-content')).toHaveText(
+        'Message body'
+      );
+      await expect(page.locator('#injected')).toHaveCount(0);
+      await expect(page.locator('#injected-outer')).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'Okay' })).toBeVisible();
+    }
+  );
+});

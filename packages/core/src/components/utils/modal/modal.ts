@@ -11,25 +11,14 @@ import type { IxModalSize } from '../../modal/modal.types';
 import { getCoreDelegate, resolveDelegate } from '../delegate';
 import { createDependencyFunction } from '../dependency-function';
 import { TypedEvent } from '../typed-event';
+import { applyModalA11yAttributes, decodeModalConfig } from './modal-config';
 
 export const IX_MODAL_AUTOFOCUS_SELECTOR = '[autofocus],[auto-focus]';
 /**
  * Set accessibility attributes on modal element
  */
 export function setA11yAttributes(element: HTMLElement, config: ModalConfig) {
-  const ariaDescribedby = config.ariaDescribedby;
-  const ariaLabelledby = config.ariaLabelledby;
-
-  delete config['ariaDescribedby'];
-  delete config['ariaLabelledby'];
-
-  if (ariaDescribedby) {
-    element.setAttribute('aria-describedby', ariaDescribedby);
-  }
-
-  if (ariaLabelledby) {
-    element.setAttribute('aria-labelledby', ariaLabelledby);
-  }
+  applyModalA11yAttributes(element, config);
 }
 
 export interface ModalConfig<TReason = any, CONTENT = any> {
@@ -149,7 +138,7 @@ export const showModal = createDependencyFunction(
     }
 
     setA11yAttributes(dialogRef, config);
-    Object.assign(dialogRef, config);
+    Object.assign(dialogRef, decodeModalConfig(config));
 
     await dialogRef.showModal();
     dialogRef.addEventListener(
