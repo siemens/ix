@@ -24,6 +24,8 @@ import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachme
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
+import { ElementReference } from "./components/utils/element-reference";
+import { ContextMenuOpenEventDetail } from "./components/context-menu/context-menu.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
@@ -33,7 +35,6 @@ import { DateChangeEvent } from "./components/date-picker/date-picker.events";
 import { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
-import { ElementReference } from "./components/utils/element-reference";
 import { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
@@ -83,6 +84,8 @@ export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachme
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
+export { ElementReference } from "./components/utils/element-reference";
+export { ContextMenuOpenEventDetail } from "./components/context-menu/context-menu.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown.types";
@@ -92,7 +95,6 @@ export { DateChangeEvent } from "./components/date-picker/date-picker.events";
 export { DatePickerYearMonth } from "./components/date-picker/date-picker.types";
 export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
-export { ElementReference } from "./components/utils/element-reference";
 export { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
@@ -1187,6 +1189,48 @@ export namespace Components {
         "variant": ContentHeaderVariant;
     }
     /**
+     * Menu that opens at the pointer position when right-clicking a target element,
+     * replacing the native browser context menu.
+     * Pressing <kbd>ContextMenu</kbd> or <kbd>Shift</kbd>+<kbd>F10</kbd> on a focused target
+     * opens the menu at the focused element.
+     * @since 6.0.0
+     */
+    interface IxContextMenu {
+        /**
+          * Accessible label of the menu.
+         */
+        "ariaLabelMenu"?: string;
+        /**
+          * Do not open the context menu, the native browser context menu is shown instead.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Enable Popover API rendering for top-layer positioning. Recommended if the context menu is placed inside a transformed or clipping container.
+          * @default false
+         */
+        "enableTopLayer": boolean;
+        /**
+          * Hide the context menu.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Controls how keyboard navigation moves focus between menu items. Defaults to `roving-tabindex`, which moves DOM focus onto the items. See `navigationMode` of `ix-dropdown`.
+          * @default 'roving-tabindex'
+         */
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
+        /**
+          * Show the context menu at the given absolute point in viewport coordinates. Moves an already visible context menu.
+          * @param x Absolute horizontal viewport coordinate in pixels
+          * @param y Absolute vertical viewport coordinate in pixels
+         */
+        "showAt": (x: number, y: number) => Promise<void>;
+        /**
+          * Element that opens the context menu on right-click. Can either be a string that will be interpreted as id attribute or a DOM element. Defaults to the parent element of the context menu.
+         */
+        "target"?: ElementReference;
+    }
+    /**
      * CSS grid container for arranging child items in a grid layout.
      */
     interface IxCssGrid {
@@ -1984,6 +2028,7 @@ export namespace Components {
          */
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
+        "dismissDropdown": () => Promise<void>;
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v5.x, will default to true in v6.0.0
@@ -5706,6 +5751,10 @@ export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxContentHeaderElement;
 }
+export interface IxContextMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxContextMenuElement;
+}
 export interface IxDateDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDateDropdownElement;
@@ -6372,6 +6421,31 @@ declare global {
     var HTMLIxContentHeaderElement: {
         prototype: HTMLIxContentHeaderElement;
         new (): HTMLIxContentHeaderElement;
+    };
+    interface HTMLIxContextMenuElementEventMap {
+        "contextMenuOpen": ContextMenuOpenEventDetail;
+        "showChanged": boolean;
+    }
+    /**
+     * Menu that opens at the pointer position when right-clicking a target element,
+     * replacing the native browser context menu.
+     * Pressing <kbd>ContextMenu</kbd> or <kbd>Shift</kbd>+<kbd>F10</kbd> on a focused target
+     * opens the menu at the focused element.
+     * @since 6.0.0
+     */
+    interface HTMLIxContextMenuElement extends Components.IxContextMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxContextMenuElementEventMap>(type: K, listener: (this: HTMLIxContextMenuElement, ev: IxContextMenuCustomEvent<HTMLIxContextMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxContextMenuElementEventMap>(type: K, listener: (this: HTMLIxContextMenuElement, ev: IxContextMenuCustomEvent<HTMLIxContextMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxContextMenuElement: {
+        prototype: HTMLIxContextMenuElement;
+        new (): HTMLIxContextMenuElement;
     };
     /**
      * CSS grid container for arranging child items in a grid layout.
@@ -8083,6 +8157,7 @@ declare global {
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
+        "ix-context-menu": HTMLIxContextMenuElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-custom-field": HTMLIxCustomFieldElement;
@@ -9340,6 +9415,46 @@ declare namespace LocalJSX {
           * @default 'primary'
          */
         "variant"?: ContentHeaderVariant;
+    }
+    /**
+     * Menu that opens at the pointer position when right-clicking a target element,
+     * replacing the native browser context menu.
+     * Pressing <kbd>ContextMenu</kbd> or <kbd>Shift</kbd>+<kbd>F10</kbd> on a focused target
+     * opens the menu at the focused element.
+     * @since 6.0.0
+     */
+    interface IxContextMenu {
+        /**
+          * Accessible label of the menu.
+         */
+        "ariaLabelMenu"?: string;
+        /**
+          * Do not open the context menu, the native browser context menu is shown instead.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Enable Popover API rendering for top-layer positioning. Recommended if the context menu is placed inside a transformed or clipping container.
+          * @default false
+         */
+        "enableTopLayer"?: boolean;
+        /**
+          * Controls how keyboard navigation moves focus between menu items. Defaults to `roving-tabindex`, which moves DOM focus onto the items. See `navigationMode` of `ix-dropdown`.
+          * @default 'roving-tabindex'
+         */
+        "navigationMode"?: 'active-descendant' | 'roving-tabindex';
+        /**
+          * Fired before the context menu opens. Preventing the event keeps the context menu closed and shows the native browser context menu.
+         */
+        "onContextMenuOpen"?: (event: IxContextMenuCustomEvent<ContextMenuOpenEventDetail>) => void;
+        /**
+          * Fired after the visibility of the context menu has changed.
+         */
+        "onShowChanged"?: (event: IxContextMenuCustomEvent<boolean>) => void;
+        /**
+          * Element that opens the context menu on right-click. Can either be a string that will be interpreted as id attribute or a DOM element. Defaults to the parent element of the context menu.
+         */
+        "target"?: ElementReference;
     }
     /**
      * CSS grid container for arranging child items in a grid layout.
@@ -14251,6 +14366,13 @@ declare namespace LocalJSX {
         "textOverflow": ContentHeaderTextOverflow;
         "hasBackButton": boolean;
     }
+    interface IxContextMenuAttributes {
+        "target": ElementReference;
+        "disabled": boolean;
+        "ariaLabelMenu": string;
+        "enableTopLayer": boolean;
+        "navigationMode": 'active-descendant' | 'roving-tabindex';
+    }
     interface IxCssGridItemAttributes {
         "itemName": string;
     }
@@ -15197,6 +15319,7 @@ declare namespace LocalJSX {
         "ix-col": Omit<IxCol, keyof IxColAttributes> & { [K in keyof IxCol & keyof IxColAttributes]?: IxCol[K] } & { [K in keyof IxCol & keyof IxColAttributes as `attr:${K}`]?: IxColAttributes[K] } & { [K in keyof IxCol & keyof IxColAttributes as `prop:${K}`]?: IxCol[K] };
         "ix-content": IxContent;
         "ix-content-header": Omit<IxContentHeader, keyof IxContentHeaderAttributes> & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes]?: IxContentHeader[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `attr:${K}`]?: IxContentHeaderAttributes[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `prop:${K}`]?: IxContentHeader[K] };
+        "ix-context-menu": Omit<IxContextMenu, keyof IxContextMenuAttributes> & { [K in keyof IxContextMenu & keyof IxContextMenuAttributes]?: IxContextMenu[K] } & { [K in keyof IxContextMenu & keyof IxContextMenuAttributes as `attr:${K}`]?: IxContextMenuAttributes[K] } & { [K in keyof IxContextMenu & keyof IxContextMenuAttributes as `prop:${K}`]?: IxContextMenu[K] };
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": Omit<IxCssGridItem, keyof IxCssGridItemAttributes> & { [K in keyof IxCssGridItem & keyof IxCssGridItemAttributes]?: IxCssGridItem[K] } & { [K in keyof IxCssGridItem & keyof IxCssGridItemAttributes as `attr:${K}`]?: IxCssGridItemAttributes[K] } & { [K in keyof IxCssGridItem & keyof IxCssGridItemAttributes as `prop:${K}`]?: IxCssGridItem[K] } & OneOf<"itemName", IxCssGridItem["itemName"], IxCssGridItemAttributes["itemName"]>;
         "ix-custom-field": Omit<IxCustomField, keyof IxCustomFieldAttributes> & { [K in keyof IxCustomField & keyof IxCustomFieldAttributes]?: IxCustomField[K] } & { [K in keyof IxCustomField & keyof IxCustomFieldAttributes as `attr:${K}`]?: IxCustomFieldAttributes[K] } & { [K in keyof IxCustomField & keyof IxCustomFieldAttributes as `prop:${K}`]?: IxCustomField[K] };
@@ -15465,6 +15588,14 @@ declare module "@stencil/core" {
              * @figma-main-component-id 4727:112521
              */
             "ix-content-header": LocalJSX.IntrinsicElements["ix-content-header"] & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
+            /**
+             * Menu that opens at the pointer position when right-clicking a target element,
+             * replacing the native browser context menu.
+             * Pressing <kbd>ContextMenu</kbd> or <kbd>Shift</kbd>+<kbd>F10</kbd> on a focused target
+             * opens the menu at the focused element.
+             * @since 6.0.0
+             */
+            "ix-context-menu": LocalJSX.IntrinsicElements["ix-context-menu"] & JSXBase.HTMLAttributes<HTMLIxContextMenuElement>;
             /**
              * CSS grid container for arranging child items in a grid layout.
              */

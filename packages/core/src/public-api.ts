@@ -19,6 +19,7 @@ export * from './components/tree/tree-model';
 export * from './components/tree/tree.types';
 export * from './components/breadcrumb/breadcrumb.types';
 export type { IxDropdownItemRole } from './components/dropdown-item/dropdown-item.types';
+export type { ContextMenuOpenEventDetail } from './components/context-menu/context-menu.types';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
 export { ElementReference } from './components/utils/element-reference';
