@@ -906,9 +906,7 @@ regressionTest.describe('config allowlist', () => {
       await expect(page.locator('ix-modal-header')).toContainText(
         'Message title'
       );
-      await expect(page.locator('ix-modal-content')).toHaveText(
-        'Message body'
-      );
+      await expect(page.locator('ix-modal-content')).toHaveText('Message body');
       await expect(page.locator('#injected')).toHaveCount(0);
       await expect(page.locator('#injected-outer')).toHaveCount(0);
       await expect(page.getByRole('button', { name: 'Okay' })).toBeVisible();

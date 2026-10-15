@@ -84,10 +84,9 @@ export function decodeModalConfig(
 export function decodeModalHeaderConfig(
   config: object
 ): Partial<Pick<HTMLIxModalHeaderElement, ModalHeaderConfigProperty>> {
-  return pickOwnProperties(
-    config,
-    MODAL_HEADER_CONFIG_PROPERTIES
-  ) as Partial<Pick<HTMLIxModalHeaderElement, ModalHeaderConfigProperty>>;
+  return pickOwnProperties(config, MODAL_HEADER_CONFIG_PROPERTIES) as Partial<
+    Pick<HTMLIxModalHeaderElement, ModalHeaderConfigProperty>
+  >;
 }
 
 /**

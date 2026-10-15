@@ -35,9 +35,7 @@ describe('getFallbackLabelFromIconName', () => {
   });
 
   it('returns Unknown when an SVG data URL has no description', () => {
-    expect(getFallbackLabelFromIconName(svgDataUrl('<g></g>'))).toBe(
-      'Unknown'
-    );
+    expect(getFallbackLabelFromIconName(svgDataUrl('<g></g>'))).toBe('Unknown');
     expect(getFallbackLabelFromIconName(svgDataUrl('<desc>open'))).toBe(
       'Unknown'
     );

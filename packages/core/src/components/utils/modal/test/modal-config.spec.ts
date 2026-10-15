@@ -89,6 +89,9 @@ describe('applyModalA11yAttributes', () => {
 
     expect(element.getAttribute('aria-describedby')).toBe('desc');
     expect(element.getAttribute('aria-labelledby')).toBe('label');
-    expect(config).toEqual({ ariaDescribedby: 'desc', ariaLabelledby: 'label' });
+    expect(config).toEqual({
+      ariaDescribedby: 'desc',
+      ariaLabelledby: 'label',
+    });
   });
 });
