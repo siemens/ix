@@ -131,6 +131,7 @@ export const testIds = [
   "icon-toggle-button-subtle-secondary",
   "icon-toggle-button-subtle-primary",
   "icon-toggle-button-secondary",
+  "http-error-pages",
   "html-table",
   "html-table-striped",
   "group",

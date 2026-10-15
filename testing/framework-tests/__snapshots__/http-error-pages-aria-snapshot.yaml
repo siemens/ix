@@ -1,0 +1,7 @@
+- main:
+  - combobox "HTTP error code"
+  - img "Not Found"
+  - heading /\d+ Not Found/ [level=1]
+  - text: We are not able to find that page. It may have been deleted or moved.
+  - button "Search app"
+  - button "Open homepage"
