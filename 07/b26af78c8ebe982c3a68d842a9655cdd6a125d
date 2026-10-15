@@ -1,0 +1,20 @@
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 953
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 19-20,177,179,183-184,190
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 34,54-60
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 19-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "07b26af78c8ebe982c3a68d842a9655cdd6a125d",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
