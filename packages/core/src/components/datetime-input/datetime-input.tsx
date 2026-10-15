@@ -33,8 +33,8 @@ import {
   onInputFocus,
 } from '../input/input.util';
 import {
-  getTimePickerConstraintBounds,
-  isWithinTimePickerConstraints,
+  getTimeConstraintsOnDay,
+  isTimeWithinConstraints,
 } from '../time-picker/time-picker-constraints';
 import {
   ClassMutationObserver,
@@ -406,8 +406,8 @@ export class DatetimeInput
     dateTime: DateTime,
     minDateTime: DateTime | null,
     maxDateTime: DateTime | null,
-    minTime: DateTime | null,
-    maxTime: DateTime | null
+    minTime: string | undefined,
+    maxTime: string | undefined
   ): { isInvalid: boolean; reason: string | undefined } {
     const isFormatInvalid = !dateTime.isValid;
     const isBeforeMin = !!(
@@ -422,7 +422,13 @@ export class DatetimeInput
     );
     const isOutsideTimeWindow =
       dateTime.isValid &&
-      !isWithinTimePickerConstraints(dateTime, minTime, maxTime);
+      !isTimeWithinConstraints(
+        dateTime,
+        minTime,
+        maxTime,
+        this.timeOnlyFormat,
+        this.locale
+      );
 
     const isInvalid =
       isFormatInvalid || isBeforeMin || isAfterMax || isOutsideTimeWindow;
@@ -441,46 +447,14 @@ export class DatetimeInput
     return { isInvalid, reason };
   }
 
-  private getTimeConstraintBoundsForDate(
-    dateTime: DateTime,
-    minDateTime: DateTime | null,
-    maxDateTime: DateTime | null
-  ): { min: DateTime | null; max: DateTime | null } {
-    if (!dateTime.isValid) {
-      return { min: null, max: null };
-    }
-
-    const bounds = getTimePickerConstraintBounds(
-      this.minTime,
-      this.maxTime,
-      this.timeOnlyFormat,
-      dateTime.startOf('day'),
-      this.locale
-    );
-
-    const hasDateBounds = !!(minDateTime?.isValid || maxDateTime?.isValid);
-    if (!hasDateBounds) {
-      return bounds;
-    }
-
-    const applyMinTime =
-      !!minDateTime?.isValid && dateTime.hasSame(minDateTime, 'day');
-    const applyMaxTime =
-      !!maxDateTime?.isValid && dateTime.hasSame(maxDateTime, 'day');
-
-    return {
-      min: applyMinTime ? bounds.min : null,
-      max: applyMaxTime ? bounds.max : null,
-    };
-  }
-
   private computeConstraintValidation(dateTime: DateTime): {
     isInvalid: boolean;
     reason: string | undefined;
   } {
     const minDateTime = this.parseConstraintDate(this.minDate, 'start');
     const maxDateTime = this.parseConstraintDate(this.maxDate, 'end');
-    const { min: minTime, max: maxTime } = this.getTimeConstraintBoundsForDate(
+    const { minTime, maxTime } = getTimeConstraintsOnDay(
+      { minTime: this.minTime, maxTime: this.maxTime },
       dateTime,
       minDateTime,
       maxDateTime

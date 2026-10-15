@@ -36,6 +36,7 @@ import { computeTimeWithRawUnitValue } from './time-picker-compute-time';
 import {
   getTimePickerConstraintBounds,
   hasActiveTimePickerConstraints,
+  isTimeWithinConstraints,
   isWithinTimePickerConstraints,
   timeOfDayRangeIntersectsInclusiveBounds,
 } from './time-picker-constraints';
@@ -1193,12 +1194,13 @@ export class TimePicker extends Mixin(...DefaultMixins) {
   }
 
   private isOutsideConstraints(): boolean {
-    const referenceClock = this.referenceOrNow();
-    const { min, max } = this.getConstraintBounds(referenceClock);
-    if (!hasActiveTimePickerConstraints(min, max)) {
-      return false;
-    }
-    return !isWithinTimePickerConstraints(referenceClock, min, max);
+    return !isTimeWithinConstraints(
+      this.referenceOrNow(),
+      this.minTime,
+      this.maxTime,
+      this.format,
+      this.locale
+    );
   }
 
   private setTimePickerDescriptors() {

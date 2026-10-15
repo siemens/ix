@@ -36,10 +36,7 @@ import {
   onEnterKeyChangeEmit,
   onInputBlurWithChange,
 } from '../input/input.util';
-import {
-  getTimePickerConstraintBounds,
-  isWithinTimePickerConstraints,
-} from '../time-picker/time-picker-constraints';
+import { isTimeWithinConstraints } from '../time-picker/time-picker-constraints';
 import {
   ClassMutationObserver,
   HookValidationLifecycle,
@@ -454,15 +451,13 @@ export class TimeInput
   }
 
   private isWithinConfiguredBounds(parsed: DateTime): boolean {
-    const baseDay = parsed.startOf('day');
-    const { min, max } = getTimePickerConstraintBounds(
+    return isTimeWithinConstraints(
+      parsed,
       this.minTime,
       this.maxTime,
       this.format,
-      baseDay,
       this.locale
     );
-    return isWithinTimePickerConstraints(parsed, min, max);
   }
 
   private syncPickerTimeFromValue(): void {

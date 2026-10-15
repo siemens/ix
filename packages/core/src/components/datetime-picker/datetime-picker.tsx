@@ -38,6 +38,10 @@ import type { DateRange } from '../utils/datetime/date-time.types';
 import { isSameStringOrUnset } from '../utils/condition-checks';
 import { PendingSelection } from '../utils/datetime/pending-selection';
 import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
+import {
+  getTimeConstraintsOnDay,
+  isTimeWithinConstraints,
+} from '../time-picker/time-picker-constraints';
 
 type DatetimePickerSelection = DateRange<string> & {
   time?: string;
@@ -448,41 +452,19 @@ export class DatetimePicker
   }
 
   private getEffectiveTimeConstraints(): {
-    minTime: string | undefined;
-    maxTime: string | undefined;
+    minTime?: string;
+    maxTime?: string;
   } {
     if (!this.singleSelection) {
-      return { minTime: undefined, maxTime: undefined };
+      return {};
     }
 
-    const hasDateBounds = !!(this.minDate || this.maxDate);
-    if (!hasDateBounds) {
-      return {
-        minTime: this.minTime,
-        maxTime: this.maxTime,
-      };
-    }
-
-    const selectedFromDate = this.getSelectedFromDateTime();
-    if (!selectedFromDate?.isValid) {
-      return { minTime: undefined, maxTime: undefined };
-    }
-
-    const minDate = this.parseDateConstraint(this.minDate, 'start');
-    const maxDate = this.parseDateConstraint(this.maxDate, 'end');
-
-    const applyMinTime =
-      !!minDate?.isValid &&
-      !!selectedFromDate?.isValid &&
-      selectedFromDate.hasSame(minDate, 'day');
-
-    const applyMaxTime =
-      !!maxDate?.isValid && selectedFromDate.hasSame(maxDate, 'day');
-
-    return {
-      minTime: applyMinTime ? this.minTime : undefined,
-      maxTime: applyMaxTime ? this.maxTime : undefined,
-    };
+    return getTimeConstraintsOnDay(
+      { minTime: this.minTime, maxTime: this.maxTime },
+      this.getSelectedFromDateTime(),
+      this.parseDateConstraint(this.minDate, 'start'),
+      this.parseDateConstraint(this.maxDate, 'end')
+    );
   }
 
   /** Picks `change` on top of the shown selection. */
@@ -501,12 +483,40 @@ export class DatetimePicker
   }
 
   /**
-   * Disabled for an incomplete selection, and when nothing changed since the
-   * committed selection. Without a complete committed selection, the shown
-   * selection can be applied as it is.
+   * Whether the shown time is outside the time constraints of the shown date.
+   * Picking another date can move a valid time out of the constraints.
+   */
+  private isTimeOutsideConstraints(): boolean {
+    const { time } = this.pickerSelection;
+    if (!time) {
+      return false;
+    }
+
+    const { minTime, maxTime } = this.getEffectiveTimeConstraints();
+    const parsed = parseWithLocale(time, this.timeFormat, this.locale);
+    return (
+      parsed.isValid &&
+      !isTimeWithinConstraints(
+        parsed,
+        minTime,
+        maxTime,
+        this.timeFormat,
+        this.locale
+      )
+    );
+  }
+
+  /**
+   * Disabled for an incomplete selection, for a time outside the time
+   * constraints, and when nothing changed since the committed selection.
+   * Without a complete committed selection, the shown selection can be
+   * applied as it is.
    */
   private isPrimaryActionDisabled(): boolean {
-    if (!this.hasCompleteDate(this.pickerSelection)) {
+    if (
+      !this.hasCompleteDate(this.pickerSelection) ||
+      this.isTimeOutsideConstraints()
+    ) {
       return true;
     }
 

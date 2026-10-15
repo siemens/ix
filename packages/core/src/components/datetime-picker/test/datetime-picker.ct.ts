@@ -783,6 +783,61 @@ regressionTest.describe('primary button disabled state', () => {
     }
   );
 
+  for (const { name, attributes } of [
+    { name: 'Confirm', attributes: 'require-confirmation' },
+    { name: 'Done', attributes: '' },
+  ]) {
+    regressionTest(
+      `${name.toLowerCase()} is disabled when picking minDate moves the time below minTime`,
+      async ({ mount, page }) => {
+        const minDate = committed.startOf('day');
+        await mountDatetimePicker(mount, page, {
+          from: committed.plus({ days: 1 }).set({ hour: 9, minute: 30 }),
+          attributes: `single-selection min-date="${formatDateTime(
+            minDate
+          )}" min-time="10:00:00" ${attributes}`,
+        });
+        const primary = datetimePickerLocator(page).getByRole('button', {
+          name,
+        });
+
+        // 09:30 is valid after minDate
+        await dayCell(page, minDate.plus({ days: 2 })).click();
+        await expect(primary).toBeEnabled();
+
+        await dayCell(page, minDate).click();
+        await expect(primary).toBeDisabled();
+
+        await hourCell(page, committed.set({ hour: 11 })).click();
+        await expect(primary).toBeEnabled();
+      }
+    );
+  }
+
+  regressionTest(
+    'done is disabled when the default time on minDate is below minTime',
+    async ({ mount, page }) => {
+      const minDate = committed.startOf('day');
+      // Without a time the time picker shows the current time
+      await page.clock.setFixedTime(minDate.set({ hour: 9 }).toJSDate());
+      await mount(
+        `<ix-datetime-picker single-selection from="${formatDateTime(
+          minDate
+        )}" min-date="${formatDateTime(
+          minDate
+        )}" min-time="10:00:00"></ix-datetime-picker>`
+      );
+      const datetimePicker = datetimePickerLocator(page);
+      await expect(datetimePicker).toHaveAttribute('hydrated');
+      const done = datetimePicker.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeDisabled();
+
+      await hourCell(page, committed.set({ hour: 11 })).click();
+      await expect(done).toBeEnabled();
+    }
+  );
+
   regressionTest(
     'done stays enabled when the host echoes changes back to the props',
     async ({ mount, page }) => {
