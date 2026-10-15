@@ -114,15 +114,16 @@ export function dismissModal(element: Element, dismissResult?: any) {
  */
 export const showModal = createDependencyFunction(
   async function <T>(config: ModalConfig<T>): Promise<ModalInstance<T>> {
-    const delegate = resolveDelegate();
     let dialogRef: HTMLIxModalElement | undefined;
+    let owningDelegate = resolveDelegate();
     const onClose = new TypedEvent<T>();
     const onDismiss = new TypedEvent<T>();
 
     if (typeof config.content === 'string') {
       const dialog = document.createElement('ix-modal');
       dialog.innerText = config.content;
-      dialogRef = await getCoreDelegate().attachView(dialog);
+      owningDelegate = getCoreDelegate();
+      dialogRef = await owningDelegate.attachView(dialog);
     }
 
     if (
@@ -131,10 +132,13 @@ export const showModal = createDependencyFunction(
     ) {
       const dialog = document.createElement('ix-modal');
       dialog.appendChild(config.content);
-      dialogRef = await getCoreDelegate().attachView(dialog);
+      owningDelegate = getCoreDelegate();
+      dialogRef = await owningDelegate.attachView(dialog);
     }
     if (!dialogRef) {
-      dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
+      dialogRef = await owningDelegate.attachView<HTMLIxModalElement>(
+        config.content
+      );
     }
 
     setA11yAttributes(dialogRef, config);
@@ -145,7 +149,7 @@ export const showModal = createDependencyFunction(
       'dialogClose',
       async ({ detail }: CustomEvent) => {
         onClose.emit(detail);
-        await delegate.removeView(dialogRef);
+        await owningDelegate.removeView(dialogRef);
       }
     );
 
@@ -153,7 +157,7 @@ export const showModal = createDependencyFunction(
       'dialogDismiss',
       async ({ detail }: CustomEvent) => {
         onDismiss.emit(detail);
-        await delegate.removeView(dialogRef);
+        await owningDelegate.removeView(dialogRef);
       }
     );
 

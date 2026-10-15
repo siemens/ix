@@ -915,3 +915,54 @@ regressionTest.describe('config allowlist', () => {
     }
   );
 });
+
+regressionTest(
+  'removes core-attached modals with the core delegate when a framework delegate is registered',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    await page.evaluate(() => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        globalThis.__ixDelegate = ix;
+      `;
+      document.getElementById('mount')?.appendChild(script);
+    });
+    await page.waitForFunction(() => (globalThis as any).__ixDelegate != null);
+
+    await page.evaluate(async () => {
+      const ix = (globalThis as any).__ixDelegate;
+      (globalThis as any).__frameworkRemoveCalls = 0;
+      ix.registerFrameworkDelegate({
+        attachView: async (view: HTMLElement) => {
+          document.body.appendChild(view);
+          return view;
+        },
+        removeView: async () => {
+          (globalThis as any).__frameworkRemoveCalls++;
+        },
+      });
+
+      try {
+        const instance = await globalThis.showModal({
+          content: 'Core attached modal',
+        });
+        (globalThis as any).__closed = new Promise<void>((resolve) =>
+          instance.onClose.on(() => setTimeout(resolve))
+        );
+        instance.htmlElement.closeModal('done');
+        await (globalThis as any).__closed;
+      } finally {
+        ix.registerFrameworkDelegate(ix.getCoreDelegate());
+      }
+    });
+
+    await expect(page.locator('ix-modal')).toHaveCount(0);
+    expect(
+      await page.evaluate(() => (globalThis as any).__frameworkRemoveCalls)
+    ).toBe(0);
+  }
+);
