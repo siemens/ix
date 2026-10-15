@@ -248,7 +248,7 @@ export class Tree {
           throw new TypeError(`Tree model has no item for child key "${id}"`);
         }
         const context = this.getContext(id);
-        itemList.push({ ...item, level });
+        itemList.push({ ...item, id, level });
         if (item.hasChildren && context.isExpanded) {
           itemList.push(...this.buildTreeList(item, newLevel));
         }

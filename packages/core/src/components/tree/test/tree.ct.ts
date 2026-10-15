@@ -793,3 +793,68 @@ regressionTest(
     );
   }
 );
+
+regressionTest(
+  'uses the model key as canonical item identity',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 20rem; width: 100%;">
+        <ix-tree root="root" toggle-on-item-click></ix-tree>
+      </div>
+    `);
+    const tree = page.locator('ix-tree');
+    await expect(tree).toHaveAttribute('hydrated');
+
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      const events: string[] = [];
+      (window as any).__treeEvents = events;
+      element.addEventListener('nodeClicked', (event) =>
+        events.push(`clicked:${(event as CustomEvent<string>).detail}`)
+      );
+      element.addEventListener('nodeToggled', (event) =>
+        events.push(
+          `toggled:${(event as CustomEvent<{ id: string }>).detail.id}`
+        )
+      );
+      element.model = {
+        root: {
+          id: 'root',
+          data: { name: '' },
+          hasChildren: true,
+          children: ['a'],
+        },
+        a: {
+          id: 'b',
+          data: { name: 'Displayed A' },
+          hasChildren: true,
+          children: ['a-child'],
+        },
+        b: {
+          id: 'b',
+          data: { name: 'Hidden B' },
+          hasChildren: false,
+          children: [],
+        },
+        'a-child': {
+          id: 'a-child',
+          data: { name: 'A Child' },
+          hasChildren: false,
+          children: [],
+        },
+      };
+    });
+
+    const displayedItem = tree.locator('ix-tree-item', {
+      hasText: 'Displayed A',
+    });
+    await expect(displayedItem).toHaveAttribute('data-tree-node-id', 'a');
+    await displayedItem.click();
+
+    await expect(
+      tree.locator('ix-tree-item', { hasText: 'A Child' })
+    ).toBeVisible();
+
+    const events = await page.evaluate(() => (window as any).__treeEvents);
+    expect(events).toEqual(['toggled:a', 'clicked:a']);
+  }
+);
