@@ -6,8 +6,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { expect, Page } from '@playwright/test';
+import { DateTime } from 'luxon';
+import {
+  analyzeWithOpenPicker,
+  createDropdownPickerAccessor,
+  formatDateTime,
+  mountHydrated,
+  PENDING_SELECTION_DISMISSALS,
+  recordEvents,
+  regressionTest,
+  tabUntilFocused,
+  timePickerHourCell,
+} from '@utils/test';
 
 type HTMLIxTimeInputElement = HTMLElement & {
   value: string;
@@ -99,7 +110,10 @@ regressionTest.describe('time input tests', () => {
         .locator('ix-time-picker [data-element-container-id="second-45"]')
         .click();
 
-      await page.locator('ix-time-picker ix-button').click();
+      await page
+        .locator('ix-time-picker')
+        .getByRole('button', { name: 'Confirm' })
+        .click();
 
       await expect(
         page.locator('ix-dropdown[data-testid="time-dropdown"]')
@@ -148,7 +162,10 @@ regressionTest.describe('time input tests', () => {
         .locator('ix-time-picker [data-element-container-id="second-30"]')
         .click();
 
-      await page.locator('ix-time-picker ix-button').click();
+      await page
+        .locator('ix-time-picker')
+        .getByRole('button', { name: 'Confirm' })
+        .click();
 
       await expect(input).not.toHaveClass(/is-invalid/);
       await expect(visibleInvalidText).toHaveCount(0);
@@ -271,7 +288,10 @@ regressionTest.describe('time input min/max tests', () => {
       await page
         .locator('ix-time-picker [data-element-container-id="second-0"]')
         .click();
-      await page.locator('ix-time-picker ix-button').click();
+      await page
+        .locator('ix-time-picker')
+        .getByRole('button', { name: 'Confirm' })
+        .click();
 
       await expect(page.locator('input')).toHaveValue('16:00:00');
       await expect(page.locator('input')).not.toHaveClass(/is-invalid/);
@@ -468,3 +488,209 @@ regressionTest.describe(
     );
   }
 );
+
+// Times used by the confirmation tests.
+const TIME_FORMAT = 'HH:mm';
+const committedTime = DateTime.fromISO('2024-05-10T10:30');
+const pickedTime = committedTime.plus({ hours: 1 });
+
+const formatTime = (time: DateTime) => formatDateTime(time, TIME_FORMAT);
+
+const timeInputAccessor = (page: Page) =>
+  createDropdownPickerAccessor(page, {
+    host: 'ix-time-input',
+    trigger: (host) => host.getByTestId('open-time-picker'),
+    dropdown: (host) => host.getByTestId('time-dropdown'),
+  });
+
+const hourCell = (page: Page, time: DateTime) =>
+  timePickerHourCell(page.locator('ix-time-input ix-time-picker'), time);
+
+regressionTest.describe('confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      value: formatTime(committedTime),
+      format: TIME_FORMAT,
+    });
+  });
+
+  regressionTest('confirm applies the picked time', async ({ page }) => {
+    const timeInput = timeInputAccessor(page);
+    const events = await recordEvents(timeInput.host, [
+      'valueChange',
+      'ixChange',
+    ]);
+
+    await timeInput.open();
+    await hourCell(page, pickedTime).click();
+
+    await expect(timeInput.host.locator('input')).toHaveValue(
+      formatTime(committedTime)
+    );
+    expect(await events()).toEqual([]);
+
+    await timeInput.host.getByTestId('confirm').click();
+
+    await timeInput.expectClosed();
+    await expect(timeInput.host.locator('input')).toHaveValue(
+      formatTime(pickedTime)
+    );
+    expect(await events()).toContainEqual({
+      type: 'valueChange',
+      detail: formatTime(pickedTime),
+    });
+    expect(await events()).toContainEqual({
+      type: 'ixChange',
+      detail: formatTime(pickedTime),
+    });
+  });
+
+  regressionTest(
+    'does not leak picker events to the host',
+    async ({ page }) => {
+      const timeInput = timeInputAccessor(page);
+      const events = await recordEvents(timeInput.host, [
+        'timeChange',
+        'timeSelect',
+        'timeCancel',
+        'ixChange',
+      ]);
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+      await timeInput.host.getByTestId('cancel').click();
+      await timeInput.expectClosed();
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+      await timeInput.host.getByTestId('confirm').click();
+
+      await expect
+        .poll(events)
+        .toEqual([{ type: 'ixChange', detail: formatTime(pickedTime) }]);
+    }
+  );
+
+  regressionTest('cancel is reachable by keyboard', async ({ page }) => {
+    const timeInput = timeInputAccessor(page);
+
+    await timeInput.open();
+    await hourCell(page, pickedTime).click();
+    await tabUntilFocused(page, 'Cancel');
+    await page.keyboard.press('Enter');
+
+    await timeInput.expectClosed();
+    await expect(timeInput.host.locator('input')).toHaveValue(
+      formatTime(committedTime)
+    );
+  });
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} discards the picked time`,
+      async ({ page }) => {
+        const timeInput = timeInputAccessor(page);
+        const events = await recordEvents(timeInput.host, [
+          'valueChange',
+          'ixChange',
+        ]);
+
+        await timeInput.open();
+        await hourCell(page, pickedTime).click();
+        await timeInput.dismiss(dismissal);
+
+        await timeInput.expectClosed();
+        await expect(timeInput.host.locator('input')).toHaveValue(
+          formatTime(committedTime)
+        );
+        expect(await events()).toEqual([]);
+
+        await timeInput.open();
+        await expect(hourCell(page, committedTime)).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
+        await expect(hourCell(page, pickedTime)).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+      }
+    );
+  }
+});
+
+regressionTest(
+  'accessibility with cancel and confirm',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      label: 'Time',
+      value: formatTime(committedTime),
+      format: TIME_FORMAT,
+    });
+    await timeInputAccessor(page).open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      'ix-time-input',
+      '[data-testid="open-time-picker"]'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
+regressionTest.describe('required while picking', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-time-input', {
+      required: true,
+      format: TIME_FORMAT,
+    });
+    await page.locator('ix-time-input input').fill('');
+  });
+
+  regressionTest(
+    'picking does not mark the field touched',
+    async ({ page }) => {
+      const timeInput = timeInputAccessor(page);
+      const events = await recordEvents(timeInput.host, ['ixBlur']);
+
+      await timeInput.open();
+      await hourCell(page, pickedTime).click();
+
+      expect(await events()).toEqual([]);
+      await expect(timeInput.host).not.toHaveClass(/ix-invalid--required/);
+
+      await timeInput.host.getByTestId('confirm').click();
+
+      await timeInput.expectClosed();
+      await expect(timeInput.host.locator('input')).toHaveValue(
+        new RegExp(`^${pickedTime.toFormat('HH')}:`)
+      );
+      await expect(timeInput.host).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} without a time marks the field touched`,
+      async ({ page }) => {
+        const timeInput = timeInputAccessor(page);
+        const events = await recordEvents(timeInput.host, ['ixBlur']);
+
+        await timeInput.open();
+        await hourCell(page, pickedTime).click();
+        await timeInput.dismiss(dismissal);
+        await timeInput.expectClosed();
+
+        if (dismissal === 'escape') {
+          // Escape returns focus to the field, it is left on the next Tab
+          await expect(timeInput.host.locator('input')).toBeFocused();
+          expect(await events()).toEqual([]);
+          await page.keyboard.press('Tab');
+        }
+
+        await expect(timeInput.host).toHaveClass(/ix-invalid--required/);
+        expect(await events()).toEqual([{ type: 'ixBlur', detail: null }]);
+      }
+    );
+  }
+});

@@ -88,6 +88,13 @@ import './generated/badge-label-axe.spec';
 import './generated/badge-dot-axe.spec';
 import './generated/badge-status-icon-axe.spec';
 
+// Require confirmation tests
+import './generated/date-dropdown-require-confirmation-axe.spec';
+import './generated/date-input-require-confirmation-axe.spec';
+import './generated/date-picker-require-confirmation-axe.spec';
+import './generated/datetime-input-require-confirmation-axe.spec';
+import './generated/datetime-picker-require-confirmation-axe.spec';
+
 // Group tests
 import './generated/group-axe.spec';
 import './generated/group-context-menu-axe.spec';

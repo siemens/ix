@@ -131,8 +131,9 @@ Preview example changes can affect accessibility tree snapshots in `testing/fram
 
 ### Date and Time Logic (core)
 
-- All calendar arithmetic for the date components belongs in `packages/core/src/components/utils/calendar.util.ts`. Add to that module instead of computing months, weekdays, grid rows, or date ranges inside a component.
-- Parsing and formatting stay in `packages/core/src/components/utils/date-time-locale.ts`. Keep the two concerns separate.
+- All calendar arithmetic for the date components belongs in `packages/core/src/components/utils/datetime/calendar.util.ts`. Add to that module instead of computing months, weekdays, grid rows, or date ranges inside a component.
+- Parsing and formatting stay in `packages/core/src/components/utils/datetime/date-time-locale.ts`. Keep the two concerns separate.
+- Pickers keep their committed and pending selection in a `PendingSelection` (`packages/core/src/components/utils/datetime/pending-selection.ts`), so picks, prop echoes from two-way bindings, confirm and discard behave the same in every component.
 - Carry a Luxon `DateTime` between components and helpers; do not pass bare month or weekday numbers around. Luxon counts months `1-12` and weekdays `1-7` (Monday = 1), while the `Info.months()` / `Info.weekdays()` name arrays are 0-based, and mixing the two bases silently shifts the calendar by one.
 - `weekStartIndex` is the one plain number that crosses the boundary. Narrow it with `weekStartFrom()` into a `WeekdayIndex` at the edge rather than passing the raw prop value inwards.
 - `calendar.util.ts` is the single module allowed to touch both bases. Move such logic into that module rather than mixing them inside a component.

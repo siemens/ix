@@ -6,11 +6,22 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Locator, expect } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
+import { DateTime } from 'luxon';
 import {
+  analyzeWithOpenPicker,
+  calendarDayCell,
+  createDropdownPickerAccessor,
+  DEFAULT_DATETIME_FORMAT,
+  formatDateTime,
   getFormValue,
+  mountHydrated,
+  PENDING_SELECTION_DISMISSALS,
   preventFormSubmission,
+  recordEvents,
   regressionTest,
+  tabUntilFocused,
+  timePickerHourCell,
 } from '@utils/test';
 
 interface DateTimeInputElementWithEventFlag extends HTMLIxDatetimeInputElement {
@@ -49,9 +60,9 @@ const createAccessor = async (dateTimeInput: Locator) => {
       }
     },
     confirm: async () => {
-      // Confirm button has text from i18nDone (default: "Confirm")
+      // Done button has text from i18nDone (default: "Done")
       const confirmButton = dateTimeInput.getByRole('button', {
-        name: 'Confirm',
+        name: 'Done',
       });
       await confirmButton.click();
     },
@@ -149,7 +160,7 @@ regressionTest(
       '2024/05/15 14:30:45'
     );
     await expect(
-      dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+      dateTimeInputElement.getByRole('button', { name: 'Done' })
     ).not.toBeVisible();
   }
 );
@@ -165,12 +176,12 @@ regressionTest('calendar button toggles picker', async ({ mount, page }) => {
 
   await calendarButton.click();
   await expect(
-    dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+    dateTimeInputElement.getByRole('button', { name: 'Done' })
   ).toBeVisible();
 
   await calendarButton.click();
   await expect(
-    dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+    dateTimeInputElement.getByRole('button', { name: 'Done' })
   ).not.toBeVisible();
 });
 
@@ -225,7 +236,7 @@ regressionTest('select date and time by input', async ({ mount, page }) => {
   await page.keyboard.press('ArrowDown');
 
   await expect(
-    dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+    dateTimeInputElement.getByRole('button', { name: 'Done' })
   ).toBeVisible();
 
   // Use getByLabel to find by aria-label (day cells are divs, not buttons)
@@ -254,12 +265,12 @@ regressionTest(
 
     await calendarButton.click();
     await expect(
-      dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+      dateTimeInputElement.getByRole('button', { name: 'Done' })
     ).toBeVisible();
 
     await input.fill('2025/10/10 14:30:45');
     await expect(
-      dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+      dateTimeInputElement.getByRole('button', { name: 'Done' })
     ).toBeVisible();
     await expect(dateTimeInputElement).toHaveAttribute(
       'value',
@@ -305,7 +316,7 @@ regressionTest('select date and time by focus', async ({ mount, page }) => {
     '2024/05/20 15:45:30'
   );
   await expect(
-    dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+    dateTimeInputElement.getByRole('button', { name: 'Done' })
   ).not.toBeVisible();
 });
 
@@ -327,9 +338,42 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
   await expect(dateTimeInput).toHaveAttribute('value', '2024/05/15 14:30:45');
 
   await expect(
-    dateTimeInput.getByRole('button', { name: 'Confirm' })
+    dateTimeInput.getByRole('button', { name: 'Done' })
   ).not.toBeVisible();
 });
+
+regressionTest(
+  'does not leak picker events to the host',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11" require-confirmation></ix-datetime-input>`
+    );
+
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const dateTimeAccessor = await createAccessor(dateTimeInput);
+    const events = await recordEvents(dateTimeInput, [
+      'dateChange',
+      'timeChange',
+      'dateSelect',
+      'dateCancel',
+      'ixChange',
+    ]);
+
+    await dateTimeAccessor.openByCalendar();
+    await dateTimeAccessor.selectDay(15);
+    await dateTimeInput.getByTestId('cancel').click();
+    await expect(dateTimeInput.getByTestId('cancel')).not.toBeVisible();
+
+    await dateTimeAccessor.openByCalendar();
+    await dateTimeAccessor.selectDay(15);
+    await dateTimeAccessor.selectTime(14, 30, 45);
+    await dateTimeInput.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect
+      .poll(events)
+      .toEqual([{ type: 'ixChange', detail: '2024/05/15 14:30:45' }]);
+  }
+);
 
 regressionTest(
   'emits ixChange on blur when value changed',
@@ -361,7 +405,7 @@ regressionTest(
 );
 
 regressionTest(
-  'emits ixChange when datetime is picked',
+  'applies every datetime picked and emits ixChange once the picker closes',
   async ({ mount, page }) => {
     await mount(
       `<ix-datetime-input format="yyyy/LL/dd HH:mm:ss" value="2024/05/05 09:10:11"></ix-datetime-input>`
@@ -369,24 +413,32 @@ regressionTest(
 
     const dateTimeInputElement = page.locator('ix-datetime-input');
     const dateTimeAccessor = await createAccessor(dateTimeInputElement);
-
-    const ixChangePromise = dateTimeInputElement.evaluate((el) => {
-      return new Promise<string | undefined>((resolve) => {
-        el.addEventListener(
-          'ixChange',
-          ((e: CustomEvent) => resolve(e.detail)) as EventListener,
-          { once: true }
-        );
-      });
-    });
+    const events = await recordEvents(dateTimeInputElement, [
+      'ixChange',
+      'valueChange',
+    ]);
 
     await dateTimeAccessor.openByCalendar();
     await dateTimeAccessor.selectDay(15);
+    await expect
+      .poll(async () => (await events()).at(-1))
+      .toEqual({ type: 'valueChange', detail: '2024/05/15 09:10:11' });
+
     await dateTimeAccessor.selectTime(14, 30, 45);
+    await expect
+      .poll(async () => (await events()).at(-1))
+      .toEqual({ type: 'valueChange', detail: '2024/05/15 14:30:45' });
+    expect((await events()).filter(({ type }) => type === 'ixChange')).toEqual(
+      []
+    );
+
     await dateTimeAccessor.confirm();
 
-    const emittedValue = await ixChangePromise;
-    expect(emittedValue).toBe('2024/05/15 14:30:45');
+    await expect
+      .poll(async () =>
+        (await events()).filter(({ type }) => type === 'ixChange')
+      )
+      .toEqual([{ type: 'ixChange', detail: '2024/05/15 14:30:45' }]);
   }
 );
 
@@ -410,13 +462,13 @@ regressionTest(
 
     await calendarButton.click();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'Confirm' })
+      dateTimeInput.getByRole('button', { name: 'Done' })
     ).toBeVisible();
 
     // Close picker without confirming (press Escape key)
     await page.keyboard.press('Escape');
     await expect(
-      dateTimeInput.getByRole('button', { name: 'Confirm' })
+      dateTimeInput.getByRole('button', { name: 'Done' })
     ).not.toBeVisible();
 
     // Wait a bit to ensure no event is fired
@@ -481,13 +533,13 @@ regressionTest(
     // Open picker
     await calendarButton.click();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'Confirm' })
+      dateTimeInput.getByRole('button', { name: 'Done' })
     ).toBeVisible();
 
     // Close picker by clicking calendar button again (toggle off)
     await calendarButton.click();
     await expect(
-      dateTimeInput.getByRole('button', { name: 'Confirm' })
+      dateTimeInput.getByRole('button', { name: 'Done' })
     ).not.toBeVisible();
 
     // Wait to ensure no event is fired
@@ -1548,7 +1600,7 @@ regressionTest('handles empty value', async ({ mount, page }) => {
   await calendarButton.click();
 
   await expect(
-    dateTimeInputElement.getByRole('button', { name: 'Confirm' })
+    dateTimeInputElement.getByRole('button', { name: 'Done' })
   ).toBeVisible();
 });
 
@@ -1566,4 +1618,283 @@ regressionTest('handles rapid value changes', async ({ mount, page }) => {
 
   await expect(input).toHaveValue('2024/12/31 23:59:59');
   await expect(input).not.toHaveClass(/is-invalid/);
+});
+
+// Dates and times used by the confirmation tests. The picked date stays in
+// the month of `committed`, which the picker shows on open.
+const committed = DateTime.fromISO('2024-05-10T10:30:00');
+const pickedDate = committed.plus({ days: 10 });
+const picked = pickedDate.plus({ hours: 1 });
+
+const formatValue = (value: DateTime) =>
+  formatDateTime(value, DEFAULT_DATETIME_FORMAT);
+
+const datetimeInputAccessor = (page: Page) =>
+  createDropdownPickerAccessor(page, {
+    host: 'ix-datetime-input',
+    trigger: (host) => host.locator('ix-icon-button').first(),
+    dropdown: (host) => host.getByTestId('datetime-dropdown'),
+  });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-datetime-input ix-date-picker'), date);
+
+const hourCell = (page: Page, time: DateTime) =>
+  timePickerHourCell(page.locator('ix-datetime-input ix-time-picker'), time);
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-datetime-input', {
+      value: formatValue(committed),
+      'require-confirmation': true,
+    });
+  });
+
+  regressionTest(
+    'confirm applies the picked date and time',
+    async ({ page }) => {
+      const datetimeInput = datetimeInputAccessor(page);
+      const events = await recordEvents(datetimeInput.host, [
+        'valueChange',
+        'ixChange',
+      ]);
+
+      await datetimeInput.open();
+      await dayCell(page, picked).click();
+      await hourCell(page, picked).click();
+
+      await expect(datetimeInput.host.locator('input')).toHaveValue(
+        formatValue(committed)
+      );
+      expect(await events()).toEqual([]);
+
+      await datetimeInput.host.getByTestId('confirm').click();
+
+      await datetimeInput.expectClosed();
+      await expect(datetimeInput.host.locator('input')).toHaveValue(
+        formatValue(picked)
+      );
+      expect(await events()).toContainEqual({
+        type: 'valueChange',
+        detail: formatValue(picked),
+      });
+      expect(await events()).toContainEqual({
+        type: 'ixChange',
+        detail: formatValue(picked),
+      });
+    }
+  );
+
+  regressionTest('confirm is reachable by keyboard', async ({ page }) => {
+    const datetimeInput = datetimeInputAccessor(page);
+
+    await datetimeInput.open();
+    await dayCell(page, pickedDate).click();
+    await tabUntilFocused(page, 'Confirm');
+    await page.keyboard.press('Enter');
+
+    await datetimeInput.expectClosed();
+    await expect(datetimeInput.host.locator('input')).toHaveValue(
+      formatValue(pickedDate)
+    );
+  });
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} discards the picked date and time`,
+      async ({ page }) => {
+        const datetimeInput = datetimeInputAccessor(page);
+        const events = await recordEvents(datetimeInput.host, [
+          'valueChange',
+          'ixChange',
+        ]);
+
+        await datetimeInput.open();
+        await dayCell(page, picked).click();
+        await hourCell(page, picked).click();
+        await datetimeInput.dismiss(dismissal);
+
+        await datetimeInput.expectClosed();
+        await expect(datetimeInput.host.locator('input')).toHaveValue(
+          formatValue(committed)
+        );
+        expect(await events()).toEqual([]);
+
+        await datetimeInput.open();
+        await expect(dayCell(page, committed)).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
+        await expect(dayCell(page, picked)).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+        await expect(hourCell(page, committed)).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
+      }
+    );
+  }
+});
+
+regressionTest(
+  'renders done and no cancel button without require confirmation',
+  async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-datetime-input', {
+      value: formatValue(committed),
+    });
+    const datetimeInput = datetimeInputAccessor(page);
+
+    await datetimeInput.open();
+    await expect(datetimeInput.host.getByTestId('cancel')).toHaveCount(0);
+    await expect(
+      datetimeInput.host.getByRole('button', { name: 'Done' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest.describe('without require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-datetime-input', {
+      value: formatValue(committed),
+    });
+  });
+
+  regressionTest(
+    'applies every pick and stays open until done',
+    async ({ page }) => {
+      const datetimeInput = datetimeInputAccessor(page);
+      const input = datetimeInput.host.locator('input');
+
+      await datetimeInput.open();
+      await dayCell(page, pickedDate).click();
+      await expect(input).toHaveValue(formatValue(pickedDate));
+
+      await hourCell(page, picked).click();
+      await expect(input).toHaveValue(formatValue(picked));
+      await datetimeInput.expectOpen();
+
+      await datetimeInput.host.getByRole('button', { name: 'Done' }).click();
+
+      await datetimeInput.expectClosed();
+      await expect(input).toHaveValue(formatValue(picked));
+    }
+  );
+
+  regressionTest(
+    'done is disabled until something is picked and after reopening',
+    async ({ page }) => {
+      const datetimeInput = datetimeInputAccessor(page);
+      const done = datetimeInput.host.getByRole('button', { name: 'Done' });
+
+      await datetimeInput.open();
+      await expect(done).toBeDisabled();
+
+      await dayCell(page, pickedDate).click();
+      await expect(done).toBeEnabled();
+
+      await datetimeInput.dismiss('escape');
+      await datetimeInput.expectClosed();
+
+      await datetimeInput.open();
+      await expect(done).toBeDisabled();
+    }
+  );
+});
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-datetime-input label="Date and time" require-confirmation value="2024/05/10 10:30:00"></ix-datetime-input>`
+    );
+    const datetimeInput = datetimeInputAccessor(page);
+    await expect(datetimeInput.host).toHaveAttribute('hydrated');
+    await datetimeInput.open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      'ix-datetime-input',
+      'ix-icon-button'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
+regressionTest.describe('required while picking', () => {
+  const nextMonthDay = DateTime.now().plus({ months: 1 }).set({ day: 15 });
+
+  const pickNextMonthDay = async (page: Page) => {
+    await page
+      .locator('ix-datetime-input ix-date-picker')
+      .getByRole('button', { name: 'Next month' })
+      .click();
+    await dayCell(page, nextMonthDay).click();
+  };
+
+  for (const requireConfirmation of [false, true]) {
+    regressionTest(
+      `picking does not mark the field touched (requireConfirmation: ${requireConfirmation})`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-datetime-input', {
+          required: true,
+          'require-confirmation': requireConfirmation,
+        });
+        const datetimeInput = datetimeInputAccessor(page);
+        const events = await recordEvents(datetimeInput.host, ['ixBlur']);
+
+        await datetimeInput.open();
+        await pickNextMonthDay(page);
+
+        expect(await events()).toEqual([]);
+        await expect(datetimeInput.host).not.toHaveClass(
+          /ix-invalid--required/
+        );
+
+        await datetimeInput.host
+          .getByRole('button', {
+            name: requireConfirmation ? 'Confirm' : 'Done',
+          })
+          .click();
+
+        await datetimeInput.expectClosed();
+        await expect(datetimeInput.host.locator('input')).toHaveValue(
+          new RegExp(`^${formatDateTime(nextMonthDay)} `)
+        );
+        await expect(datetimeInput.host).not.toHaveClass(
+          /ix-invalid--required/
+        );
+      }
+    );
+  }
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} without a date marks the field touched`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-datetime-input', {
+          required: true,
+          'require-confirmation': true,
+        });
+        const datetimeInput = datetimeInputAccessor(page);
+        const events = await recordEvents(datetimeInput.host, ['ixBlur']);
+
+        await datetimeInput.open();
+        await pickNextMonthDay(page);
+        await datetimeInput.dismiss(dismissal);
+        await datetimeInput.expectClosed();
+
+        if (dismissal === 'escape') {
+          // Escape returns focus to the field, it is left on the next Tab
+          await expect(datetimeInput.host.locator('input')).toBeFocused();
+          expect(await events()).toEqual([]);
+          await page.keyboard.press('Tab');
+        }
+
+        await expect(datetimeInput.host).toHaveClass(/ix-invalid--required/);
+        expect(await events()).toEqual([{ type: 'ixBlur', detail: null }]);
+      }
+    );
+  }
 });
