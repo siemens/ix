@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
 
 @use './datetime-picker.vars' as *;
 :host {
@@ -16,6 +17,7 @@
   width: min-content;
 
   @include component.ix-component;
+  @include confirmation-footer.confirmation-footer;
 
   ix-time-picker {
     width: 100%;

@@ -50,6 +50,7 @@ import type {
   TimePickerCorners,
   TimePickerDescriptorUnit,
 } from './time-picker.types';
+import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
 
 interface TimePickerDescriptor {
   unit: TimePickerDescriptorUnit;
@@ -1597,16 +1598,16 @@ export class TimePicker extends Mixin(...DefaultMixins) {
           </div>
 
           {!this.hideFooter && (
-            <ix-confirmation-footer
+            <ConfirmationFooter
               slot="footer"
               layout={this.timePickerDescriptors.length <= 2 ? 'center' : 'end'}
               requireConfirmation
               i18nConfirm={this.i18nConfirm}
               i18nCancel={this.i18nCancel}
               primaryActionDisabled={this.isConfirmDisabled()}
-              onConfirmClick={() => this.onConfirm()}
-              onCancelClick={() => this.onCancel()}
-            ></ix-confirmation-footer>
+              onConfirm={() => this.onConfirm()}
+              onCancel={() => this.onCancel()}
+            />
           )}
         </ix-date-time-card>
       </Host>

@@ -820,7 +820,7 @@ regressionTest(
       attributes: 'single-selection',
     });
     const footer = page.locator(
-      'ix-datetime-picker ix-confirmation-footer.layout-responsive'
+      'ix-datetime-picker .confirmation-footer.layout-responsive'
     );
     const done = footer.getByTestId('confirm');
 

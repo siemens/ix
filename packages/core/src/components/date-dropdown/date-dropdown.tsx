@@ -43,6 +43,7 @@ import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 import { isPartialRange } from '../utils/datetime/calendar.util';
 import type { DateRange } from '../utils/datetime/date-time.types';
+import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
 
 type DropdownRange = DateRange<string> & { id: string };
 
@@ -621,15 +622,15 @@ export class DateDropdown
                 showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
               {this.requireConfirmation && (
-                <ix-confirmation-footer
+                <ConfirmationFooter
                   class="pull-right"
                   requireConfirmation
                   i18nConfirm={this.i18nConfirm}
                   i18nCancel={this.i18nCancel}
                   primaryActionDisabled={this.isConfirmDisabled()}
-                  onConfirmClick={() => this.onConfirm()}
-                  onCancelClick={() => this.closeDropdown()}
-                ></ix-confirmation-footer>
+                  onConfirm={() => this.onConfirm()}
+                  onCancel={() => this.closeDropdown()}
+                />
               )}
             </div>
           </div>

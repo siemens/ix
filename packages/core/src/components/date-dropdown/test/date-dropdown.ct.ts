@@ -700,7 +700,7 @@ regressionTest.describe('events without require confirmation', () => {
   regressionTest('renders no footer buttons', async ({ page }) => {
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
     await dateDropdownAccessor(page).open();
-    await expect(dateDropdown.locator('ix-confirmation-footer')).toHaveCount(0);
+    await expect(dateDropdown.locator('.confirmation-footer')).toHaveCount(0);
   });
 
   regressionTest(

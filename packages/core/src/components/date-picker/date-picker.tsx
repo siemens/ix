@@ -58,6 +58,7 @@ import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DatePickerYearMonth } from './date-picker.types';
+import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
 
 /**
  * Calendar for selecting a single date or a date range.
@@ -1156,17 +1157,17 @@ export class DatePicker
           </div>
           {(this.requireConfirmation ||
             !(this.singleSelection || this.embedded)) && (
-            <ix-confirmation-footer
+            <ConfirmationFooter
               class="button"
               requireConfirmation={this.requireConfirmation}
               i18nDone={this.i18nDone}
               i18nConfirm={this.i18nConfirm}
               i18nCancel={this.i18nCancel}
               primaryActionDisabled={this.isPrimaryActionDisabled()}
-              onDoneClick={() => this.onDone()}
-              onConfirmClick={() => this.onConfirm()}
-              onCancelClick={() => this.onCancel()}
-            ></ix-confirmation-footer>
+              onDone={() => this.onDone()}
+              onConfirm={() => this.onConfirm()}
+              onCancel={() => this.onCancel()}
+            />
           )}
         </ix-date-time-card>
       </Host>

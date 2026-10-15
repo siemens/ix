@@ -151,11 +151,11 @@ export const RequireConfirmation: Story = {
       .click();
 
     await waitFor(() => {
-      const footer = datetimeInput
-        .shadowRoot!.querySelector('ix-datetime-picker')
-        ?.shadowRoot?.querySelector('ix-confirmation-footer');
+      const datetimePicker = datetimeInput.shadowRoot!.querySelector(
+        'ix-datetime-picker'
+      );
       expect(
-        footer?.shadowRoot?.querySelector('[data-testid="confirm"]')
+        datetimePicker?.shadowRoot?.querySelector('[data-testid="confirm"]')
       ).toBeVisible();
     });
   },

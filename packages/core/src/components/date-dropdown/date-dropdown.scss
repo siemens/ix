@@ -9,6 +9,7 @@
 
 @use './../button/button-mixin' as button-mixin;
 @use 'mixins/shadow-dom/component';
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
 @use 'mixins/scrollbar' as scrollbar;
 @use 'mixins/breakpoints';
 
@@ -18,6 +19,7 @@
   position: relative;
 
   @include component.ix-component;
+  @include confirmation-footer.confirmation-footer;
 
   .pull-right {
     position: relative;

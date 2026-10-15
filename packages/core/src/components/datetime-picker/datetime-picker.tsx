@@ -37,6 +37,7 @@ import { isPartialRange } from '../utils/datetime/calendar.util';
 import type { DateRange } from '../utils/datetime/date-time.types';
 import { isSameStringOrUnset } from '../utils/condition-checks';
 import { PendingSelection } from '../utils/datetime/pending-selection';
+import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
 
 type DatetimePickerSelection = DateRange<string> & {
   time?: string;
@@ -767,7 +768,7 @@ export class DatetimePicker
             </ix-row>
           </ix-layout-grid>
 
-          <ix-confirmation-footer
+          <ConfirmationFooter
             slot="footer"
             layout="responsive"
             requireConfirmation={this.requireConfirmation}
@@ -775,10 +776,10 @@ export class DatetimePicker
             i18nConfirm={this.i18nConfirm}
             i18nCancel={this.i18nCancel}
             primaryActionDisabled={this.isPrimaryActionDisabled()}
-            onDoneClick={() => this.onDone()}
-            onConfirmClick={() => this.onConfirm()}
-            onCancelClick={() => this.onCancel()}
-          ></ix-confirmation-footer>
+            onDone={() => this.onDone()}
+            onConfirm={() => this.onConfirm()}
+            onCancel={() => this.onCancel()}
+          />
         </ix-date-time-card>
       </Host>
     );

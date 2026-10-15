@@ -23,7 +23,6 @@ import { InputState } from "./components/category-filter/input-state";
 import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { ColumnSize } from "./components/col/col.types";
-import { ConfirmationFooterLayout } from "./components/confirmation-footer/confirmation-footer.types";
 import { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
@@ -83,7 +82,6 @@ export { InputState } from "./components/category-filter/input-state";
 export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { ColumnSize } from "./components/col/col.types";
-export { ConfirmationFooterLayout } from "./components/confirmation-footer/confirmation-footer.types";
 export { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
@@ -1149,42 +1147,6 @@ export namespace Components {
           * Size of the column for sm screens
          */
         "sizeSm"?: ColumnSize;
-    }
-    /**
-     * Footer of the date and time pickers. Shows a single done button, or cancel
-     * and confirm buttons when `requireConfirmation` is enabled.
-     */
-    interface IxConfirmationFooter {
-        /**
-          * Text of the cancel button shown when `requireConfirmation` is enabled.
-          * @default 'Cancel'
-         */
-        "i18nCancel": string;
-        /**
-          * Text of the confirm button shown when `requireConfirmation` is enabled.
-          * @default 'Confirm'
-         */
-        "i18nConfirm": string;
-        /**
-          * Text of the done button shown when `requireConfirmation` is disabled.
-          * @default 'Done'
-         */
-        "i18nDone": string;
-        /**
-          * Button layout: - `end`: buttons aligned to the end - `center`: buttons stacked and centered - `full-width`: buttons stretched across the full width - `responsive`: `end`, switching to `full-width` on small screens
-          * @default 'end'
-         */
-        "layout": ConfirmationFooterLayout;
-        /**
-          * Disable the done or confirm button.
-          * @default false
-         */
-        "primaryActionDisabled": boolean;
-        /**
-          * Show cancel and confirm buttons instead of the single done button.
-          * @default false
-         */
-        "requireConfirmation": boolean;
     }
     /**
      * Main content region of an application page.
@@ -5850,10 +5812,6 @@ export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
 }
-export interface IxConfirmationFooterCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxConfirmationFooterElement;
-}
 export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxContentHeaderElement;
@@ -6492,29 +6450,6 @@ declare global {
     var HTMLIxColElement: {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
-    };
-    interface HTMLIxConfirmationFooterElementEventMap {
-        "doneClick": void;
-        "confirmClick": void;
-        "cancelClick": void;
-    }
-    /**
-     * Footer of the date and time pickers. Shows a single done button, or cancel
-     * and confirm buttons when `requireConfirmation` is enabled.
-     */
-    interface HTMLIxConfirmationFooterElement extends Components.IxConfirmationFooter, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxConfirmationFooterElementEventMap>(type: K, listener: (this: HTMLIxConfirmationFooterElement, ev: IxConfirmationFooterCustomEvent<HTMLIxConfirmationFooterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxConfirmationFooterElementEventMap>(type: K, listener: (this: HTMLIxConfirmationFooterElement, ev: IxConfirmationFooterCustomEvent<HTMLIxConfirmationFooterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxConfirmationFooterElement: {
-        prototype: HTMLIxConfirmationFooterElement;
-        new (): HTMLIxConfirmationFooterElement;
     };
     /**
      * Main content region of an application page.
@@ -8260,7 +8195,6 @@ declare global {
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
-        "ix-confirmation-footer": HTMLIxConfirmationFooterElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
@@ -9478,54 +9412,6 @@ declare namespace LocalJSX {
           * Size of the column for sm screens
          */
         "sizeSm"?: ColumnSize;
-    }
-    /**
-     * Footer of the date and time pickers. Shows a single done button, or cancel
-     * and confirm buttons when `requireConfirmation` is enabled.
-     */
-    interface IxConfirmationFooter {
-        /**
-          * Text of the cancel button shown when `requireConfirmation` is enabled.
-          * @default 'Cancel'
-         */
-        "i18nCancel"?: string;
-        /**
-          * Text of the confirm button shown when `requireConfirmation` is enabled.
-          * @default 'Confirm'
-         */
-        "i18nConfirm"?: string;
-        /**
-          * Text of the done button shown when `requireConfirmation` is disabled.
-          * @default 'Done'
-         */
-        "i18nDone"?: string;
-        /**
-          * Button layout: - `end`: buttons aligned to the end - `center`: buttons stacked and centered - `full-width`: buttons stretched across the full width - `responsive`: `end`, switching to `full-width` on small screens
-          * @default 'end'
-         */
-        "layout"?: ConfirmationFooterLayout;
-        /**
-          * Emitted when the cancel button is clicked. Does not bubble.
-         */
-        "onCancelClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
-        /**
-          * Emitted when the confirm button is clicked (`requireConfirmation` enabled). Does not bubble.
-         */
-        "onConfirmClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
-        /**
-          * Emitted when the done button is clicked (`requireConfirmation` disabled). Does not bubble.
-         */
-        "onDoneClick"?: (event: IxConfirmationFooterCustomEvent<void>) => void;
-        /**
-          * Disable the done or confirm button.
-          * @default false
-         */
-        "primaryActionDisabled"?: boolean;
-        /**
-          * Show cancel and confirm buttons instead of the single done button.
-          * @default false
-         */
-        "requireConfirmation"?: boolean;
     }
     /**
      * Main content region of an application page.
@@ -14593,14 +14479,6 @@ declare namespace LocalJSX {
         "sizeMd": ColumnSize;
         "sizeLg": ColumnSize;
     }
-    interface IxConfirmationFooterAttributes {
-        "requireConfirmation": boolean;
-        "i18nDone": string;
-        "i18nConfirm": string;
-        "i18nCancel": string;
-        "primaryActionDisabled": boolean;
-        "layout": ConfirmationFooterLayout;
-    }
     interface IxContentHeaderAttributes {
         "variant": ContentHeaderVariant;
         "headerTitle": string;
@@ -15569,7 +15447,6 @@ declare namespace LocalJSX {
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
         "ix-col": Omit<IxCol, keyof IxColAttributes> & { [K in keyof IxCol & keyof IxColAttributes]?: IxCol[K] } & { [K in keyof IxCol & keyof IxColAttributes as `attr:${K}`]?: IxColAttributes[K] } & { [K in keyof IxCol & keyof IxColAttributes as `prop:${K}`]?: IxCol[K] };
-        "ix-confirmation-footer": Omit<IxConfirmationFooter, keyof IxConfirmationFooterAttributes> & { [K in keyof IxConfirmationFooter & keyof IxConfirmationFooterAttributes]?: IxConfirmationFooter[K] } & { [K in keyof IxConfirmationFooter & keyof IxConfirmationFooterAttributes as `attr:${K}`]?: IxConfirmationFooterAttributes[K] } & { [K in keyof IxConfirmationFooter & keyof IxConfirmationFooterAttributes as `prop:${K}`]?: IxConfirmationFooter[K] };
         "ix-content": IxContent;
         "ix-content-header": Omit<IxContentHeader, keyof IxContentHeaderAttributes> & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes]?: IxContentHeader[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `attr:${K}`]?: IxContentHeaderAttributes[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `prop:${K}`]?: IxContentHeader[K] };
         "ix-css-grid": IxCssGrid;
@@ -15829,11 +15706,6 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
              */
             "ix-col": LocalJSX.IntrinsicElements["ix-col"] & JSXBase.HTMLAttributes<HTMLIxColElement>;
-            /**
-             * Footer of the date and time pickers. Shows a single done button, or cancel
-             * and confirm buttons when `requireConfirmation` is enabled.
-             */
-            "ix-confirmation-footer": LocalJSX.IntrinsicElements["ix-confirmation-footer"] & JSXBase.HTMLAttributes<HTMLIxConfirmationFooterElement>;
             /**
              * Main content region of an application page.
              * @documentation https://ix.siemens.io//docs/components/content/guide.md

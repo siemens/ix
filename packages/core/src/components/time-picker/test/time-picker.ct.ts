@@ -1072,7 +1072,7 @@ regressionTest.describe('without a confirmed time', () => {
 regressionTest('hides the footer with hide-footer', async ({ mount, page }) => {
   await mountTimePicker(mount, page, committedTime, 'hide-footer');
 
-  await expect(page.locator('ix-confirmation-footer')).toHaveCount(0);
+  await expect(page.locator('.confirmation-footer')).toHaveCount(0);
 });
 
 regressionTest(
@@ -1171,7 +1171,7 @@ regressionTest.describe('footer layout', () => {
     'is centered with two columns or fewer',
     async ({ mount, page }) => {
       await mount(`<ix-time-picker format="HH:mm"></ix-time-picker>`);
-      await expect(page.locator('ix-confirmation-footer')).toHaveClass(
+      await expect(page.locator('.confirmation-footer')).toHaveClass(
         /layout-center/
       );
     }
@@ -1181,7 +1181,7 @@ regressionTest.describe('footer layout', () => {
     'is aligned to the end with more columns',
     async ({ mount, page }) => {
       await mount(`<ix-time-picker format="HH:mm:ss"></ix-time-picker>`);
-      await expect(page.locator('ix-confirmation-footer')).toHaveClass(
+      await expect(page.locator('.confirmation-footer')).toHaveClass(
         /layout-end/
       );
     }
