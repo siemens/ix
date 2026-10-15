@@ -1,0 +1,14 @@
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 432,8519
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "657fae1edeb898396b28b90773587e2fe9a3949f",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
