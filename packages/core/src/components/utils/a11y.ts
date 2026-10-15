@@ -60,7 +60,8 @@ export const getFallbackLabelFromIconName = (iconName?: string) => {
 
 export const a11yHostAttributes = (
   hostElement: HTMLElement,
-  ignoreAttributes: A11yAttributeName[] = []
+  ignoreAttributes: A11yAttributeName[] = [],
+  removeAttributes = true
 ): Record<A11yAttributeName, string> => {
   const attributeObject: Record<string, string> = {};
   a11yAttributes.forEach((attr) => {
@@ -68,7 +69,9 @@ export const a11yHostAttributes = (
       const value = hostElement.getAttribute(attr);
       if (value !== null && !ignoreAttributes.includes(attr)) {
         attributeObject[attr] = hostElement.getAttribute(attr) ?? '';
-        hostElement.removeAttribute(attr);
+        if (removeAttributes) {
+          hostElement.removeAttribute(attr);
+        }
       }
     }
   });
@@ -182,6 +185,14 @@ export const a11yAttributes: A11yAttributeName[] = [
   'aria-valuenow',
   'aria-valuetext',
 ];
+
+export const isA11yAttributeName = (
+  attributeName: string
+): attributeName is A11yAttributeName =>
+  a11yAttributes.includes(attributeName as A11yAttributeName);
+
+export const getA11yAttributeNames = (): readonly A11yAttributeName[] =>
+  a11yAttributes;
 
 type PartialRecord<K extends A11yAttributeName, T> = {
   [P in K]?: T;

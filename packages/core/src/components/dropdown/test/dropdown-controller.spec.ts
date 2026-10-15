@@ -154,6 +154,7 @@ describe('dropdown-controller', () => {
         discoverAllSubmenus: false,
         getAssignedSubmenuIds: () => childIds,
         getId: () => id,
+        matchesTrigger: () => false,
         getTriggerElement: () => undefined,
         discoverSubmenu: vi.fn(),
         isPresent: () => present,

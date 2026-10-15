@@ -700,6 +700,53 @@ regressionTest.describe('ix-badge', () => {
         });
       }
     );
+
+    regressionTest(
+      'updates and removes standalone host ARIA',
+      async ({ mount, page }) => {
+        await mount(
+          `<ix-badge type="dot" role="img" aria-label="Unread"></ix-badge>`
+        );
+        const badge = page.locator('ix-badge');
+        await expect(badge).toHaveClass(/\bhydrated\b/);
+
+        await badge.evaluate((element) => {
+          element.setAttribute('aria-label', 'Read');
+          element.setAttribute('role', 'status');
+        });
+        await expect(page.getByRole('status', { name: 'Read' })).toBeVisible();
+
+        await badge.evaluate((element) => {
+          element.removeAttribute('aria-label');
+          element.removeAttribute('role');
+        });
+        await expect(badge).not.toHaveAttribute('aria-label');
+        await expect(badge).not.toHaveAttribute('role');
+      }
+    );
+
+    regressionTest(
+      'preserves standalone host ARIA after reconnect',
+      async ({ mount, page }) => {
+        await mount(
+          `<ix-badge type="dot" role="img" aria-label="Unread"></ix-badge>`
+        );
+        const badge = page.locator('ix-badge');
+        await expect(badge).toHaveClass(/\bhydrated\b/);
+        await expect(page.getByRole('img', { name: 'Unread' })).toBeVisible();
+
+        await badge.evaluate((element) => {
+          const parent = element.parentElement;
+          if (!parent) {
+            throw new Error('Badge must have a parent before reconnecting');
+          }
+          element.remove();
+          parent.appendChild(element);
+        });
+
+        await expect(page.getByRole('img', { name: 'Unread' })).toBeVisible();
+      }
+    );
   });
 
   regressionTest.describe('tooltip', () => {

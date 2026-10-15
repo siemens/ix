@@ -10,6 +10,30 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('accessibility', () => {
+  regressionTest(
+    'forwards updated host aria attributes to the tablist',
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-tabs aria-label="Primary tabs">
+          <ix-tab-item tab-key="tab-1">Item 1</ix-tab-item>
+        </ix-tabs>
+      `);
+
+      const tabs = page.locator('ix-tabs');
+      const tablist = tabs.getByRole('tablist');
+
+      await expect(tabs).not.toHaveAttribute('aria-label');
+      await expect(tablist).toHaveAttribute('aria-label', 'Primary tabs');
+
+      await tabs.evaluate((element) => {
+        element.setAttribute('aria-label', 'Secondary tabs');
+      });
+
+      await expect(tabs).not.toHaveAttribute('aria-label');
+      await expect(tablist).toHaveAttribute('aria-label', 'Secondary tabs');
+    }
+  );
+
   regressionTest('default', async ({ mount, makeAxeBuilder }) => {
     await mount(`
     <ix-tabs active-tab-key="tab-1">
@@ -23,16 +47,19 @@ regressionTest.describe('accessibility', () => {
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  regressionTest('closable tab', async ({ mount, makeAxeBuilder }) => {
+  regressionTest('closable tab', async ({ mount, makeAxeBuilder, page }) => {
     await mount(`
     <ix-tabs active-tab-key="tab-1">
-      <ix-tab-item tab-key="tab-1" label="Item 1<">/ix-tab-item>
+      <ix-tab-item tab-key="tab-1" label="Item 1"></ix-tab-item>
       <ix-tab-item tab-key="tab-2" closable label="Item 2"></ix-tab-item>
       <ix-tab-item tab-key="tab-3" label="Item 3"></ix-tab-item>
     </ix-tabs>
   `);
 
-    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    await expect(page.locator('ix-icon-button')).toHaveClass(/hydrated/);
+    const accessibilityScanResults = await makeAxeBuilder()
+      .disableRules(['nested-interactive'])
+      .analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });

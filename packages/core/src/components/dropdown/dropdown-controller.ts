@@ -24,6 +24,7 @@ export interface DropdownInterface extends IxComponentInterface {
 
   getAssignedSubmenuIds(): string[];
   getId(): string;
+  matchesTrigger(eventTargets: EventTarget[]): boolean;
   getTriggerElement(): HTMLElement | undefined;
 
   discoverSubmenu(): void;
@@ -53,6 +54,28 @@ export interface DropdownItemWrapper {
 }
 
 export class DropdownController {
+  private readonly onWindowClick = (event: MouseEvent) => {
+    const eventTargets = event.composedPath();
+    if (this.pathIncludesTrigger(eventTargets) || event.defaultPrevented) {
+      return;
+    }
+
+    for (const id of this.registry.keys()) {
+      const dropdown = this.registry.get(id);
+      if (!dropdown?.matchesTrigger(eventTargets)) {
+        continue;
+      }
+
+      if (dropdown.isPresent()) {
+        this.dismiss(dropdown);
+      } else {
+        this.present(dropdown);
+      }
+      this.dismissOthers(dropdown.getId());
+      return;
+    }
+  };
+
   private readonly registry = new NestedOverlayRegistry<DropdownInterface>(
     {
       blocksOutsideDismiss: (dropdown) =>
@@ -66,6 +89,9 @@ export class DropdownController {
   ) {}
 
   connected(dropdown: DropdownInterface) {
+    if (this.registry.keys().length === 0) {
+      window.addEventListener('click', this.onWindowClick);
+    }
     this.registry.connect(dropdown);
     this.overlayCoordinator.connect({
       key: this.getOverlayKey(dropdown),
@@ -91,6 +117,9 @@ export class DropdownController {
   disconnected(dropdown: DropdownInterface) {
     this.registry.disconnect(dropdown);
     this.overlayCoordinator.disconnect(this.getOverlayKey(dropdown));
+    if (this.registry.keys().length === 0) {
+      window.removeEventListener('click', this.onWindowClick);
+    }
   }
 
   removeFromSubmenuIds(id: string) {
@@ -204,7 +233,6 @@ export class DropdownController {
       this.overlayCoordinator.pathIncludesDescendant(key, eventTargets)
     );
   }
-
   getParentFocusExitTarget(
     dropdown: DropdownInterface,
     current: HTMLElement,

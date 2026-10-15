@@ -20,6 +20,7 @@ import {
   Prop,
 } from '@stencil/core';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
+import { resolveTabKey } from '../tabs/tab-key';
 
 /**
  * Overlay that shows application information such as version and legal details.
@@ -90,7 +91,7 @@ export class MenuAbout {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['label'],
+      attributeFilter: ['label', 'tab-key'],
     });
     this.onItemsChange();
   }
@@ -104,7 +105,8 @@ export class MenuAbout {
       return;
     }
     if (this.activeTabKey === undefined && this.items.length > 0) {
-      this.activeTabKey = this.items[0].tabKey;
+      const firstItem = this.items[0];
+      this.activeTabKey = resolveTabKey(firstItem);
     }
   }
 
@@ -143,13 +145,16 @@ export class MenuAbout {
         {!this.suppressLegacyTabs ? (
           <ix-tab-set>
             <ix-tabs activeTabKey={this.activeTabKey}>
-              {this.items.map(({ label, tabKey }) => (
-                <ix-tab-item
-                  tabKey={tabKey}
-                  selected={tabKey === this.activeTabKey}
-                  label={label}
-                ></ix-tab-item>
-              ))}
+              {this.items.map((item) => {
+                const tabKey = resolveTabKey(item);
+                return (
+                  <ix-tab-item
+                    tabKey={tabKey}
+                    selected={tabKey === this.activeTabKey}
+                    label={item.label}
+                  ></ix-tab-item>
+                );
+              })}
             </ix-tabs>
             <slot></slot>
           </ix-tab-set>

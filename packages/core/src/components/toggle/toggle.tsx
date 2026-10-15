@@ -22,11 +22,8 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
-import {
-  InheritAriaAttributesMixin,
-  InheritAriaAttributesMixinContract,
-} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
  * Switch control for toggling a single setting on or off.
@@ -42,8 +39,8 @@ import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
   formAssociated: true,
 })
 export class Toggle
-  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
-  implements IxFormComponent<string>, InheritAriaAttributesMixinContract
+  extends Mixin(...DefaultMixins)
+  implements IxFormComponent<string>
 {
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -115,6 +112,9 @@ export class Toggle
   @Event() ixBlur!: EventEmitter<void>;
 
   private touched = false;
+  private readonly managedAriaObserver = createMutationObserver(() => {
+    this.restoreManagedAriaAttributes();
+  });
 
   onCheckedChange(newChecked: boolean) {
     if (this.disabled) {
@@ -139,8 +139,24 @@ export class Toggle
   }
 
   override componentWillLoad() {
-    super.componentWillLoad();
     this.updateFormInternalValue();
+  }
+
+  override componentDidLoad() {
+    this.managedAriaObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: [
+        'role',
+        'aria-checked',
+        'aria-disabled',
+        'aria-required',
+      ],
+    });
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    this.managedAriaObserver.disconnect();
   }
 
   updateFormInternalValue(): void {
@@ -155,6 +171,21 @@ export class Toggle
   watchCheckedChange() {
     this.touched = true;
     this.updateFormInternalValue();
+  }
+
+  private restoreManagedAriaAttributes() {
+    const managedAttributes = {
+      role: 'switch',
+      'aria-checked': this.indeterminate ? 'mixed' : a11yBoolean(this.checked),
+      'aria-disabled': a11yBoolean(this.disabled),
+      'aria-required': a11yBoolean(this.required),
+    };
+
+    Object.entries(managedAttributes).forEach(([attributeName, value]) => {
+      if (this.hostElement.getAttribute(attributeName) !== value) {
+        this.hostElement.setAttribute(attributeName, value);
+      }
+    });
   }
 
   /** @internal */
@@ -180,13 +211,6 @@ export class Toggle
     /** This function is intentionally empty */
   }
 
-  private resolveAriaLabel(): string | undefined {
-    if (this.inheritAriaAttributes['aria-labelledby']) {
-      return undefined;
-    }
-    return this.inheritAriaAttributes['aria-label'];
-  }
-
   override render() {
     let toggleText = this.textOff;
 
@@ -198,18 +222,14 @@ export class Toggle
       toggleText = this.textIndeterminate;
     }
 
-    const ariaLabel = this.resolveAriaLabel();
-
     const ariaChecked = this.indeterminate
       ? 'mixed'
       : a11yBoolean(this.checked);
 
     return (
       <Host
-        {...this.inheritAriaAttributes}
         role="switch"
         tabindex={this.disabled ? -1 : 0}
-        aria-label={ariaLabel}
         aria-checked={ariaChecked}
         aria-disabled={a11yBoolean(this.disabled)}
         aria-required={a11yBoolean(this.required)}

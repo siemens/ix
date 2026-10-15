@@ -374,7 +374,7 @@ regressionTest(
     });
 
     await expect(
-      pane.locator('ix-icon-button[aria-label="Close pane"]')
+      pane.getByRole('button', { name: 'Close pane', exact: true })
     ).toBeFocused();
   }
 );
