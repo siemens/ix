@@ -10,10 +10,15 @@
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 
 /**
- * @slot default - Event list items.
+ * List that displays a sequence of events or status entries.
+ *
+ * @documentation https://ix.siemens.io//docs/components/event-list/code.md
+ * @figma-main-component-id 1433:43161
+ *
+ * @slot - Event list items.
  */
 @Component({
   tag: 'ix-event-list',
@@ -120,14 +125,25 @@ export class EventList {
   private triggerFadeOut(): Promise<void> {
     return new Promise((resolve) => {
       if (!this.animated) {
-        resolve();
+        return resolve();
       }
 
-      const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+      const listElement =
+        this.hostElement.shadowRoot?.querySelector('div[role="list"]');
 
-      animate(listElement!, {
-        opacity: [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }],
+      if (!listElement) {
+        return resolve();
+      }
+
+      if (!listElement) {
+        resolve();
+        return;
+      }
+
+      animate(listElement as HTMLElement, [{ opacity: 1 }, { opacity: 0 }], {
         duration: EventList.fadeOutDuration,
+        easing: Easing.easeOutQuad,
+        persist: false,
         onComplete: () => {
           resolve();
         },
@@ -140,17 +156,15 @@ export class EventList {
       return;
     }
 
-    const listItems = this.hostElement.querySelectorAll('ix-event-list-item');
+    const listItems =
+      this.hostElement.querySelectorAll<HTMLElement>('ix-event-list-item');
     listItems.forEach((e, i) => {
       const delay = i * 80;
-      const offset = delay / (delay + EventList.fadeInDuration);
-      animate(e, {
-        offset: offset,
+      animate(e, [{ opacity: 0 }, { opacity: 1 }], {
         duration: EventList.fadeInDuration + delay,
-        opacity: [0, 1],
-        easing: 'easeInOutSine',
+        easing: Easing.easeOutQuad,
         delay: delay,
-        autoplay: true,
+        persist: false,
       });
     });
   }

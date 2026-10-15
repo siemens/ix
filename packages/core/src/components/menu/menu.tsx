@@ -26,7 +26,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
 import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
@@ -41,12 +41,17 @@ import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
 /**
- * @slot ix-menu-avatar - Avatar displayed at the top of the menu.
- * @slot home - Home menu item.
- * @slot default - Main menu items and categories.
- * @slot bottom - Menu items displayed below the main navigation.
- * @slot ix-menu-settings - Settings content displayed in the menu overlay.
- * @slot ix-menu-about - About content displayed in the menu overlay.
+ * Primary side navigation menu of the application shell.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 20977:55554
+ *
+ * @slot ix-menu-avatar - Avatar displayed in the menu header.
+ * @slot home - Menu item displayed in the home position.
+ * @slot - Menu items.
+ * @slot bottom - Menu items displayed at the bottom.
+ * @slot ix-menu-settings - Settings menu content.
+ * @slot ix-menu-about - About menu content.
  */
 @Component({
   tag: 'ix-menu',
@@ -220,17 +225,36 @@ export class Menu {
   }
 
   get menuItemsContainer(): HTMLDivElement {
-    return this.menu!.querySelector('.tabs')!;
+    const menuItemsContainer = this.menu?.querySelector('.tabs');
+
+    if (!menuItemsContainer) {
+      throw new Error('Menu items container not found');
+    }
+
+    return menuItemsContainer as HTMLDivElement;
   }
 
   get menuNavigationContainer(): HTMLDivElement {
-    return this.menu!.querySelector('.menu-navigation')!;
+    const menu = this.menu;
+
+    if (!menu) {
+      throw new Error('Menu element not found');
+    }
+
+    const menuNavigationContainer =
+      menu.querySelector<HTMLDivElement>('.menu-navigation');
+
+    if (!menuNavigationContainer) {
+      throw new Error('Menu navigation container not found');
+    }
+
+    return menuNavigationContainer;
   }
 
   get overlayContainer() {
     return this.hostElement.shadowRoot!.querySelector(
       '.menu-overlay'
-    ) as HTMLDivElement;
+    ) as HTMLDivElement | null;
   }
 
   get menuItems() {
@@ -643,33 +667,70 @@ export class Menu {
 
   private animateOverlayFadeIn() {
     requestAnimationFrame(() => {
-      animate(this.overlayContainer!, {
-        duration: Animation.mediumTime,
-        backdropFilter: [0, 'blur(1rem)'],
-        translateX: ['-4rem', 0],
-        opacity: [0, 1],
-        easing: 'easeInSine',
-        onBegin: () => {
-          if (this.showPinned) {
-            return;
-          }
+      const overlayContainer = this.overlayContainer;
 
-          this.toggleMenu(false);
-        },
-      });
+      if (!overlayContainer) {
+        return;
+      }
+
+      animate(
+        overlayContainer,
+        [
+          {
+            backdropFilter: 'blur(0)',
+            transform: 'translateX(-4rem)',
+            opacity: 0,
+          },
+          {
+            backdropFilter: 'blur(1rem)',
+            transform: 'translateX(0)',
+            opacity: 1,
+          },
+        ],
+        {
+          duration: Animation.mediumTime,
+          easing: Easing.easeOutQuad,
+          onBegin: () => {
+            if (this.showPinned) {
+              return;
+            }
+
+            this.toggleMenu(false);
+          },
+        }
+      );
     });
   }
 
   private animateOverlayFadeOut(onComplete: Function) {
     requestAnimationFrame(() => {
-      animate(this.overlayContainer!, {
-        duration: Animation.mediumTime,
-        backdropFilter: ['blur(1rem)', 0],
-        translateX: [0, '-4rem'],
-        opacity: [1, 0],
-        easing: 'easeInSine',
-        onComplete: () => onComplete(),
-      });
+      const overlayContainer = this.overlayContainer;
+
+      if (!overlayContainer) {
+        onComplete();
+        return;
+      }
+
+      animate(
+        overlayContainer,
+        [
+          {
+            backdropFilter: 'blur(1rem)',
+            transform: 'translateX(0)',
+            opacity: 1,
+          },
+          {
+            backdropFilter: 'blur(0)',
+            transform: 'translateX(-4rem)',
+            opacity: 0,
+          },
+        ],
+        {
+          duration: Animation.mediumTime,
+          easing: Easing.easeOutQuad,
+          onComplete: () => onComplete(),
+        }
+      );
     });
   }
 
@@ -833,7 +894,8 @@ export class Menu {
     event.preventDefault();
 
     if (isMenuNavigationFocused) {
-      let index = items.indexOf(this.lastFocusedMenuItem!);
+      const lastFocusedMenuItem = this.lastFocusedMenuItem;
+      let index = lastFocusedMenuItem ? items.indexOf(lastFocusedMenuItem) : -1;
 
       if (event.key === 'Home') {
         index = 0;
@@ -933,6 +995,7 @@ export class Menu {
                     this.showAppSwitch();
                   }}
                   icon={iconApps}
+                  size="24"
                   variant="subtle-tertiary"
                 ></ix-icon-button>
               )}

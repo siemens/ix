@@ -31,6 +31,12 @@ import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
+/**
+ * Input for building and refining searches using category-based filter criteria.
+ *
+ * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
+ * @figma-main-component-id 1221:30316
+ */
 @Component({
   tag: 'ix-category-filter',
   styleUrl: 'category-filter.scss',
@@ -47,6 +53,7 @@ export class CategoryFilter {
   private inputListener?: DisposableEventListener;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
+  private tokenListElement?: HTMLDivElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
   private a11yAttributes?: A11yAttributes;
@@ -310,6 +317,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = false;
     if (this.dropdown) {
       this.dropdown.show = false;
     }
@@ -320,6 +328,7 @@ export class CategoryFilter {
       return;
     }
 
+    this.showDropdown = true;
     if (this.dropdown) {
       this.dropdown.show = true;
     }
@@ -420,6 +429,13 @@ export class CategoryFilter {
   }
 
   private handleInputElementKeyDown(e: KeyboardEvent) {
+    // The host is the dropdown trigger, which would otherwise treat Home/End
+    // as dropdown navigation and cancel the native caret movement.
+    if (e.key === 'Home' || e.key === 'End') {
+      e.stopPropagation();
+      return;
+    }
+
     switch (e.code) {
       case 'ArrowDown': {
         this.onArrowDown(e);
@@ -789,10 +805,28 @@ export class CategoryFilter {
   }
 
   componentDidRender() {
-    if (this.isScrollStateDirty) {
-      this.textInput?.current?.scrollIntoView();
-      this.isScrollStateDirty = false;
+    if (!this.isScrollStateDirty || !this.tokenListElement) {
+      return;
     }
+
+    const chips = Array.from(
+      this.tokenListElement.querySelectorAll('ix-filter-chip')
+    );
+    // A token added during a pending render is only in the DOM after the next render
+    if (chips.length !== this.filterTokens.length) {
+      return;
+    }
+
+    this.isScrollStateDirty = false;
+    this.scrollTokenListToEnd(this.tokenListElement, chips);
+  }
+
+  private async scrollTokenListToEnd(
+    tokenList: HTMLElement,
+    chips: HTMLIxFilterChipElement[]
+  ) {
+    await Promise.all(chips.map((chip) => chip.componentOnReady()));
+    tokenList.scrollTop = tokenList.scrollHeight;
   }
 
   disconnectedCallback() {
@@ -826,9 +860,8 @@ export class CategoryFilter {
             !this.filterTokens.length && this.category === '',
         }}
         variant="tertiary"
-        oval
         icon={iconClear}
-        iconColor="color-soft-text"
+        iconColor="--si-sys-color-text-secondary"
         size="16"
         aria-label={this.ariaLabelResetButton}
       ></ix-icon-button>
@@ -837,19 +870,19 @@ export class CategoryFilter {
 
   private getIconColor() {
     if (this.disabled) {
-      return 'color-componentn-1';
+      return '--si-sys-color-text-disabled';
     }
 
     if (this.readonly) {
-      return 'color-std-txt';
+      return '--si-sys-color-text-primary';
     }
 
-    return 'color-primary';
+    return '--si-sys-color-text-accent';
   }
 
   render() {
     return (
-      <Host>
+      <Host class={{ active: this.showDropdown }}>
         <form ref={(el) => (this.formElement = el)}>
           <div
             read-only={this.readonly}
@@ -868,15 +901,12 @@ export class CategoryFilter {
               size="16"
             ></ix-icon>
             <div class="token-container">
-              <div class="list-unstyled">
+              <div
+                class="list-unstyled"
+                ref={(el) => (this.tokenListElement = el)}
+              >
                 {this.filterTokens.map((value, index) => (
-                  <span
-                    key={value.toString()}
-                    class={{
-                      animate__animated: true,
-                      animate__fadein: true,
-                    }}
-                  >
+                  <span key={value.toString()}>
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}
@@ -932,6 +962,9 @@ export class CategoryFilter {
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
+            onShowChanged={(event) => {
+              this.showDropdown = event.detail;
+            }}
           >
             {this.renderDropdownContent()}
           </ix-dropdown>

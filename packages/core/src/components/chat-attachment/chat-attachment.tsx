@@ -12,6 +12,8 @@ import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import type { ChatAttachmentStatus } from './chat-attachment.types';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/chat-attachment/guide.md
+ * @figma-main-component-id 133528:33258
  * @since 5.2.0
  */
 @Component({
@@ -101,7 +103,7 @@ export class ChatAttachment {
     if (this.status === 'loading') {
       return (
         <span class="status-content">
-          <ix-spinner size="xx-small" variant="primary"></ix-spinner>
+          <ix-spinner size="xxs" variant="primary"></ix-spinner>
           <span class="status-label">{this.fileName}</span>
         </span>
       );

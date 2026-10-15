@@ -7,16 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
+
+@use './tabs.vars' as *;
 
 @mixin tab-border($position) {
   &::before {
     content: '';
     position: absolute;
-    background-color: var(--theme-tab-indicator--background);
+    background-color: var(--ix-tabs-indicator--background);
     width: 100%;
-    height: var(--theme-tab-indicator--height);
+    height: var(--ix-tabs-indicator--height);
     left: 0;
     bottom: 0;
   }
@@ -24,9 +25,9 @@
   &::after {
     content: '';
     position: absolute;
-    background-color: var(--theme-tab-indicator--background--selected);
+    background-color: var(--ix-tabs-indicator--background--selected);
     width: var(--ix-tab-active-indicator-width);
-    height: var(--theme-tab-indicator--height);
+    height: var(--ix-tabs-indicator--height);
     left: 0;
     bottom: 0;
     transform: translateX(var(--ix-tab-active-indicator-offset));
@@ -82,7 +83,7 @@
     width: 100%;
     touch-action: pan-y;
 
-    padding-right: 2.75rem;
+    padding-right: var(--ix-tabs--padding-right);
 
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -95,12 +96,13 @@
   }
 
   .tabs:focus-visible {
-    outline-offset: -1px;
-    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--ix-tabs--outline-offset);
+    outline: var(--ix-tabs--outline-width--focus) solid
+      var(--ix-tabs--outline-color--focus);
   }
 
   .tabs-context-menu {
-    margin-right: 0.5rem;
+    margin-right: var(--ix-tabs-context-menu--margin-right);
   }
 
   .overflow-shadow-container {
@@ -115,7 +117,7 @@
   .overflow-shadow {
     mask-image: linear-gradient(
       90deg,
-      black calc(100% - 45px),
+      black calc(100% - var(--ix-tabs-overflow-shadow--fade-width)),
       transparent 100%
     );
   }

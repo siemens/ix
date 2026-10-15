@@ -101,14 +101,19 @@ function copyDistCssToDist() {
   }[] = [];
 
   cssFiles = [...cssFiles, ...compileThemes()];
-  cssFiles = [
-    ...cssFiles,
-    ...compileCore('ix-core.scss', 'siemens-ix-core.css'),
+  const coreEntries = [
+    ['ix-base.scss', 'siemens-ix-base.css'],
+    ['ix-foundation.scss', 'siemens-ix-foundation.css'],
+    ['ix-globals.scss', 'siemens-ix-globals.css'],
+    ['ix-legacy.scss', 'siemens-ix-legacy.css'],
+    ['ix-reset.scss', 'siemens-ix-reset.css'],
+    ['ix-scrollbar.scss', 'siemens-ix-scrollbar.css'],
+    ['ix-utilities.scss', 'siemens-ix-utilities.css'],
   ];
 
   cssFiles = [
     ...cssFiles,
-    ...compileCore('ix-standalone.scss', 'siemens-ix-standalone.css'),
+    ...coreEntries.flatMap(([input, output]) => compileCore(input, output)),
   ];
 
   const optimizedCss = await Promise.all(

@@ -13,7 +13,14 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('category-filter', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('category-filter/basic');
-    await page.locator('input').click();
+    const categoryFilter = page.locator('ix-category-filter');
+    const input = categoryFilter.locator('input');
+    // Open via keyboard so focus moves into the dropdown (Active without field focus).
+    await input.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(categoryFilter.locator('ix-dropdown')).toHaveClass(/show/);
+    await expect(input).not.toBeFocused();
+    await page.mouse.move(5, 5, { steps: 10 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
@@ -66,12 +73,18 @@ regressionTest.describe('category-filter', () => {
 
   regressionTest('dropdown opens on text input', async ({ page }) => {
     await page.goto('category-filter/categories');
-    const input = page.locator('input').first();
+    const categoryFilter = page.locator('ix-category-filter').first();
+    const input = categoryFilter.locator('input');
 
-    await input.click();
-    // close dropdown
-    await input.click();
+    await input.focus();
     await input.fill('p');
+    await expect
+      .poll(async () =>
+        categoryFilter.locator('ix-dropdown').evaluate((el) => el.show)
+      )
+      .toBe(true);
+    await expect(page.getByRole('button', { name: 'Product' })).toBeVisible();
+    await page.mouse.move(5, 5, { steps: 10 });
 
     await expect(page).toHaveScreenshot();
   });

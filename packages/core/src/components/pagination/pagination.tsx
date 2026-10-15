@@ -17,12 +17,17 @@ import {
   Prop,
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
-import { a11yBoolean } from '../utils/a11y';
 import {
   iconChevronLeftSmall,
   iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
+/**
+ * Control for navigating between pages of content.
+ *
+ * @documentation https://ix.siemens.io//docs/components/pagination/code.md
+ * @figma-main-component-id 2302:67995, 2554:79100
+ */
 @Component({
   tag: 'ix-pagination',
   styleUrl: 'pagination.scss',
@@ -84,6 +89,13 @@ export class Pagination {
   @Prop({ attribute: 'i18n-page' }) i18nPage = 'Page';
 
   /**
+   * i18n label for the pagination navigation landmark
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-pagination' }) i18nPagination = 'Pagination';
+
+  /**
    * i18n label for 'of'
    */
   @Prop({ attribute: 'i18n-of' }) i18nOf = 'of';
@@ -116,6 +128,27 @@ export class Pagination {
    * @since 4.1.0
    */
   @Prop() ariaLabelPageSelection = 'Page selection input';
+
+  /**
+   * ARIA label for the jump backward button. The `{page}` placeholder is
+   * replaced with the translated `i18nPage` label and destination page number
+   * (e.g. "Jump backward to Page 3"). Custom labels without `{page}` are used
+   * unchanged.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelJumpBackward = 'Jump backward to {page}';
+
+  /**
+   * ARIA label for the jump forward button. The `{page}` placeholder is
+   * replaced with the translated `i18nPage` label and destination page number
+   * (e.g. "Jump forward to Page 9"). Custom labels without `{page}` are used
+   * unchanged.
+   *
+   * @since 6.0.0
+   */
+  @Prop() ariaLabelJumpForward = 'Jump forward to {page}';
+
   /**
    * Page selection event
    */
@@ -166,7 +199,8 @@ export class Pagination {
       onClick: () => this.selectPage(index),
       selected: this.selectedPage === index,
       ariaAttributes: {
-        'aria-pressed': a11yBoolean(this.selectedPage === index),
+        'aria-label': `${this.i18nPage} ${index + 1}`,
+        ...(this.selectedPage === index ? { 'aria-current': 'page' } : {}),
       },
     };
 
@@ -185,20 +219,45 @@ export class Pagination {
     let start = 0;
     let end = Math.min(this.count, this.maxCountPages);
     let pageCount = Math.floor((this.maxCountPages - 4) / 2);
+    const jump = Math.max(0, 2 * pageCount + 1);
+    const jumpBackwardsLabel = this.ariaLabelJumpBackward.replace(
+      '{page}',
+      `${this.i18nPage} ${
+        (hasOverflowEnd
+          ? this.selectedPage - jump
+          : this.count - this.maxCountPages) + 1
+      }`
+    );
+    const jumpForwardsLabel = this.ariaLabelJumpForward.replace(
+      '{page}',
+      `${this.i18nPage} ${
+        (hasOverflowStart ? this.selectedPage + jump : this.maxCountPages - 1) +
+        1
+      }`
+    );
 
     if (hasOverflowStart) {
       const baseButtonProps = {
         ...this.baseButtonConfig,
         onClick: () => {
           if (hasOverflowEnd) {
-            this.selectPage(this.selectedPage - Math.max(0, 2 * pageCount + 1));
+            this.selectPage(this.selectedPage - jump);
           } else {
             this.selectPage(this.count - this.maxCountPages);
           }
         },
       };
       pageButtons.push(this.getPageButton(0));
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <BaseButton
+          {...baseButtonProps}
+          ariaAttributes={{
+            'aria-label': jumpBackwardsLabel,
+          }}
+        >
+          ...
+        </BaseButton>
+      );
 
       if (hasOverflowEnd) {
         start = this.count - this.maxCountPages + 2;
@@ -226,13 +285,22 @@ export class Pagination {
         ...this.baseButtonConfig,
         onClick: () => {
           if (hasOverflowStart) {
-            this.selectPage(this.selectedPage + Math.max(0, 2 * pageCount + 1));
+            this.selectPage(this.selectedPage + jump);
           } else {
             this.selectPage(this.maxCountPages - 1);
           }
         },
       };
-      pageButtons.push(<BaseButton {...baseButtonProps}>...</BaseButton>);
+      pageButtons.push(
+        <BaseButton
+          {...baseButtonProps}
+          ariaAttributes={{
+            'aria-label': jumpForwardsLabel,
+          }}
+        >
+          ...
+        </BaseButton>
+      );
       pageButtons.push(this.getPageButton(this.count - 1));
     }
 
@@ -249,9 +317,10 @@ export class Pagination {
 
   render() {
     return (
-      <Host>
+      <Host role="navigation" aria-label={this.i18nPagination}>
         <ix-icon-button
           disabled={!this.count || this.selectedPage === 0}
+          tabIndex={!this.count || this.selectedPage === 0 ? -1 : 0}
           variant="subtle-tertiary"
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
@@ -263,7 +332,7 @@ export class Pagination {
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
               aria-label={this.ariaLabelPageSelection}
-              class="ix-form-control page-selection"
+              class="page-selection"
               type="number"
               min="1"
               max={this.count}
@@ -298,6 +367,9 @@ export class Pagination {
 
         <ix-icon-button
           disabled={!this.count || this.selectedPage === this.count - 1}
+          tabIndex={
+            !this.count || this.selectedPage === this.count - 1 ? -1 : 0
+          }
           variant="subtle-tertiary"
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}

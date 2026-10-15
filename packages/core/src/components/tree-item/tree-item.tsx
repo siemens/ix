@@ -12,7 +12,10 @@ import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
 /**
- * @slot default - Tree item content and nested items.
+ * A single node within a tree.
+ *
+ * @documentation https://ix.siemens.io//docs/components/tree/code.md
+ * @slot - Tree item content.
  */
 @Component({
   tag: 'ix-tree-item',
@@ -71,11 +74,10 @@ export class TreeItem {
           {this.hasChildren ? (
             <ix-icon
               name={iconChevronRightSmall}
-              size="24"
               class={{
                 ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
-              color="color-std-text"
+              color="--si-sys-color-text-primary"
               onClick={(e: Event) => {
                 if (isDisabled) {
                   return;

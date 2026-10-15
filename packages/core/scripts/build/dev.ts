@@ -9,7 +9,6 @@
 import { CopyTask, JsonDocs } from '@stencil/core/internal';
 import fs from 'fs';
 import path from 'path';
-
 const isObject = (val: unknown): val is Record<string, unknown> =>
   typeof val === 'object' && val !== null && !Array.isArray(val);
 
@@ -18,6 +17,103 @@ interface TraverseOptions {
   deleteKeys: Set<string>;
   baseDir: string;
 }
+
+const compareBy =
+  <T>(selector: (value: T) => string) =>
+  (a: T, b: T) => {
+    const valueA = selector(a);
+    const valueB = selector(b);
+
+    return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
+  };
+
+type JsonDocsSlot = JsonDocs['components'][number]['slots'][number];
+
+const AUTO_DETECTED_DEFAULT_SLOT_DOCS = 'The default slot';
+
+/**
+ * Stencil reports the unnamed slot as `''` and auto-adds it from `render()`.
+ * A JSDoc `@slot default` entry describes the same slot, so merge both into
+ * a single `''` entry and prefer the JSDoc description.
+ */
+export const normalizeDefaultSlot = (slots: JsonDocsSlot[]): JsonDocsSlot[] => {
+  const defaultSlots = slots.filter(
+    (slot) => slot.name === '' || slot.name === 'default'
+  );
+
+  if (defaultSlots.length <= 1) {
+    return slots;
+  }
+
+  const documented =
+    defaultSlots.find(
+      (slot) => slot.docs && slot.docs !== AUTO_DETECTED_DEFAULT_SLOT_DOCS
+    ) ?? defaultSlots[0];
+
+  return [
+    { ...documented, name: '' },
+    ...slots.filter((slot) => !defaultSlots.includes(slot)),
+  ];
+};
+
+export const createComponentApi = (docs: JsonDocs) => ({
+  components: [...docs.components]
+    .sort(compareBy((component) => component.tag))
+    .map((component) => ({
+      tag: component.tag,
+      deprecated: component.deprecation !== undefined,
+      properties: [...component.props]
+        .sort(compareBy((prop) => prop.name))
+        .map((prop) => ({
+          name: prop.name,
+          attribute: prop.attr,
+          type: prop.type,
+          mutable: prop.mutable,
+          reflectToAttribute: prop.reflectToAttr,
+          default: prop.default,
+          optional: prop.optional,
+          required: prop.required,
+          deprecated: prop.deprecation !== undefined,
+        })),
+      methods: [...component.methods]
+        .sort(compareBy((method) => method.name))
+        .map((method) => ({
+          name: method.name,
+          signature: method.signature,
+          deprecated: method.deprecation !== undefined,
+        })),
+      events: [...component.events]
+        .sort(compareBy((event) => event.event))
+        .map((event) => ({
+          name: event.event,
+          detail: event.detail,
+          bubbles: event.bubbles,
+          cancelable: event.cancelable,
+          composed: event.composed,
+          deprecated: event.deprecation !== undefined,
+        })),
+      cssProperties: [...component.styles]
+        .sort(compareBy((style) => style.name))
+        .map((style) => ({
+          name: style.name,
+          annotation: style.annotation,
+          mode: style.mode,
+        })),
+      slots: component.slots
+        .map((slot) => slot.name || 'default')
+        .sort(compareBy((slot) => slot)),
+      cssParts: component.parts
+        .map((part) => part.name)
+        .sort(compareBy((part) => part)),
+      cssStates: [...component.customStates]
+        .sort(compareBy((state) => state.name))
+        .map((state) => ({
+          name: state.name,
+          initialValue: state.initialValue,
+        })),
+    })),
+});
+
 function traverse(value: unknown, opts: TraverseOptions): void {
   if (Array.isArray(value)) {
     for (const item of value) {
@@ -55,6 +151,9 @@ function traverse(value: unknown, opts: TraverseOptions): void {
 
 export const customComponentDocGenerator = (docs: JsonDocs): void => {
   docs.timestamp = '';
+  docs.components.forEach((component) => {
+    component.slots = normalizeDefaultSlot(component.slots);
+  });
   const docsJson = JSON.stringify(docs, null, 2);
 
   const parsed: JsonDocs = JSON.parse(docsJson);
@@ -65,6 +164,11 @@ export const customComponentDocGenerator = (docs: JsonDocs): void => {
   });
 
   fs.writeFileSync('component-doc.json', JSON.stringify(parsed, null, 2));
+
+  fs.writeFileSync(
+    'component-api.json',
+    `${JSON.stringify(createComponentApi(docs), null, 2)}\n`
+  );
 };
 
 export const getDevAssets = () => {

@@ -29,6 +29,16 @@ test.describe('Pill', () => {
 });
 
 test.describe('accessibility', () => {
+  test('critical variant has sufficient color contrast', async ({
+    mount,
+    makeAxeBuilder,
+  }) => {
+    await mount('<ix-pill variant="critical">P0</ix-pill>');
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
   test('should keep aria-label on host when set by author', async ({
     mount,
     page,

@@ -46,7 +46,7 @@ function DefaultAvatar(
   if (initials) {
     return (
       <div class={'avatar-initials'}>
-        <ix-typography format="label-lg">{initials}</ix-typography>
+        <ix-typography format="body-lg">{initials}</ix-typography>
       </div>
     );
   }
@@ -131,7 +131,12 @@ function UserInfo(
 }
 
 /**
- * @slot default - Custom content displayed inside the avatar dropdown when placed inside header.
+ * Displays a user's profile image, initials, or a placeholder icon.
+ *
+ * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
+ * @figma-main-component-id 308:1151
+ *
+ * @slot - Dropdown content displayed below the avatar.
  */
 @Component({
   tag: 'ix-avatar',
@@ -314,7 +319,10 @@ export class Avatar
 
     if (this.isClosestApplicationHeader) {
       return (
-        <Host slot="ix-application-header-avatar" class={'avatar-button'}>
+        <Host
+          slot="ix-application-header-avatar"
+          class={{ 'avatar-button': true, active: this.dropdownShow }}
+        >
           <BaseButton
             disabled={false}
             iconOval={false}
@@ -323,7 +331,8 @@ export class Avatar
             loading={false}
             selected={false}
             type="button"
-            variant="tertiary"
+            variant="subtle-tertiary"
+            extraClasses={{ active: this.dropdownShow }}
             ariaAttributes={{
               role: 'menu',
               'aria-controls': `${this.getHostElementId()}-proxy-listbox`,

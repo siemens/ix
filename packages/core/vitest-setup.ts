@@ -7,9 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '@testing-library/jest-dom/vitest';
-import { defineCustomElements } from './loader';
+import * as matchers from '@testing-library/jest-dom/matchers';
+import { expect } from 'vitest';
 
+expect.extend(matchers);
+
+const { defineCustomElements } = await import('./loader');
 defineCustomElements(window);
 
 Object.defineProperty(HTMLFormElement.prototype, 'requestSubmit', {

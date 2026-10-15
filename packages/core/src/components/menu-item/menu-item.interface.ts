@@ -10,4 +10,5 @@ import { AnchorInterface } from '../button/button.interface';
 export interface IxMenuItemBase extends AnchorInterface {
   // Annotate with @Prop to provide a tooltip
   tooltipText?: string;
+  disableTooltip?: boolean;
 }

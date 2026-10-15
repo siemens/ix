@@ -15,7 +15,7 @@ regressionTest.describe('split-button', () => {
     await page.goto('split-button/basic');
 
     const button = page.locator('ix-split-button').first();
-    const dropdownButton = button.locator('ix-icon-button');
+    const dropdownButton = button.locator('ix-dropdown-button');
     await expect(dropdownButton).toBeVisible();
     await dropdownButton.click();
     await expect(button.locator('.dropdown-menu.show')).toBeVisible();

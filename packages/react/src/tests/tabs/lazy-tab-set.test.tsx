@@ -7,9 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { render, waitFor } from '@testing-library/react';
-import { expect, test, vi } from 'vitest';
+import { cleanup, render, waitFor } from '@testing-library/react';
+import { afterEach, expect, test, vi } from 'vitest';
 import { LazyTabSetExample } from './lazy-tab-set';
+
+afterEach(cleanup);
 
 test('should only mount the active tab panel content', async () => {
   const onMount = vi.fn();

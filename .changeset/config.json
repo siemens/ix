@@ -8,10 +8,10 @@
       "@siemens/ix",
       "@siemens/ix-angular",
       "@siemens/ix-react",
-      "@siemens/ix-vue",
-      "@siemens/ix-docs"
+      "@siemens/ix-vue"
     ]
   ],
+  "ignore": ["@siemens/ix-cli"],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

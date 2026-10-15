@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { EventEmitter } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
@@ -112,15 +113,15 @@ export function applyPaddingEnd(
     return;
   }
 
-  const remInPixels = 16;
-  const padding = convertToRemString(width + remInPixels / 2);
+  const padding = convertToRemString(width);
+  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 0.5rem)';
 
   if (options.slotEnd) {
-    inputElement.style.paddingRight = `calc(${padding} + ${
+    inputElement.style.paddingRight = `calc(${padding} + ${basePadding} + ${
       options.additionalPaddingRight ?? '0rem'
     })`;
   } else {
-    inputElement.style.paddingLeft = padding;
+    inputElement.style.paddingLeft = `calc(${padding} + ${basePadding})`;
   }
 }
 
@@ -231,7 +232,7 @@ export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
 export function onInputBlurWithChange<T>(
   comp: IxFormComponent<T> & {
     initialValue?: T;
-    ixChange: { emit: (value: T) => void };
+    ixChange: EventEmitter<T>;
   },
   input?: HTMLInputElement | HTMLTextAreaElement | null,
   currentValue?: T
@@ -239,7 +240,11 @@ export function onInputBlurWithChange<T>(
   onInputBlur(comp, input);
 
   if (comp.initialValue !== currentValue) {
-    comp.ixChange.emit(currentValue!);
+    if (currentValue === undefined) {
+      comp.ixChange.emit();
+    } else {
+      comp.ixChange.emit(currentValue);
+    }
     comp.initialValue = currentValue;
   }
 }

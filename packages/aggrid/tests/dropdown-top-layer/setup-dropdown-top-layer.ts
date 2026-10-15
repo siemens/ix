@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getIxTheme } from '@siemens/ix-aggrid';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+import '@siemens/ix/css/default.css';
+import '@siemens/ix/css/legacy.css';
 import { defineCustomElements } from '@siemens/ix/loader';
 import * as agGridCommunity from 'ag-grid-community';
 import {

@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// Shared button variant names (button-mixin, dropdown-button, etc.)
+$btn-variants: (
+  primary,
+  secondary,
+  tertiary,
+  subtle-primary,
+  subtle-secondary,
+  subtle-tertiary,
+  danger-primary,
+  danger-secondary,
+  danger-tertiary
+);

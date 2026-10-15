@@ -28,8 +28,12 @@ import {
 } from '@siemens/ix-icons/icons';
 
 /**
- * @slot default - Toast message content.
- * @slot action - Action displayed next to the toast message.
+ * Transient notification message that appears temporarily.
+ *
+ * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+ *
+ * @slot - Toast message content.
+ * @slot action - Toast action content.
  */
 @Component({
   tag: 'ix-toast',
@@ -63,7 +67,8 @@ export class Toast {
   @Prop() icon?: string;
 
   /**
-   * Icon color of toast
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-color-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -96,6 +101,7 @@ export class Toast {
       return (
         <ix-icon
           data-testid="toast-icon"
+          aria-hidden="true"
           name={this.icon}
           color={this.iconColor}
           size="24"
@@ -108,9 +114,10 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
+            aria-hidden="true"
             name={iconInfo}
             size="24"
-            color="color-std-text"
+            color="--si-sys-color-text-primary"
           />
         );
 
@@ -118,9 +125,10 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
+            aria-hidden="true"
             name={iconError}
             size="24"
-            color="color-alarm"
+            color="--si-sys-color-text-danger"
           />
         );
 
@@ -128,20 +136,21 @@ export class Toast {
         return (
           <ix-icon
             data-testid="toast-icon"
+            aria-hidden="true"
             name={iconSuccess}
             size="24"
-            color="color-success"
+            color="--si-sys-color-text-success"
           />
         );
 
       case 'warning':
-        //TODO(IX-3400): Replace icon colors with proper CSS variables when available
         return (
           <ix-icon
             data-testid="toast-icon"
+            aria-hidden="true"
             name={iconWarning}
             size="24"
-            color="color-warning-text"
+            color="--si-sys-color-text-warning"
           />
         );
 
@@ -150,13 +159,49 @@ export class Toast {
     }
   }
 
+  private isClosing = false;
+
   private close() {
-    if (this.hostElement) {
-      this.hostElement.classList.add('animate__fadeOut');
+    if (this.isClosing) {
+      return;
     }
-    setTimeout(() => {
+    this.isClosing = true;
+
+    let closed = false;
+    const emitClose = () => {
+      if (closed) {
+        return;
+      }
+      closed = true;
+      this.hostElement.removeEventListener('animationend', onAnimationEnd);
       this.closeToast.emit();
-    }, 250);
+    };
+    const onAnimationEnd = (event: AnimationEvent) => {
+      if (
+        event.target === this.hostElement &&
+        event.animationName === 'toast-fade-out'
+      ) {
+        emitClose();
+      }
+    };
+
+    this.hostElement.addEventListener('animationend', onAnimationEnd);
+    this.hostElement.classList.add('toast-fade-out');
+
+    // Fallback in case `animationend` is not fired (e.g. no animation applied)
+    const fallbackMs = this.getAnimationDurationMs() + 50;
+    setTimeout(emitClose, fallbackMs);
+  }
+
+  private getAnimationDurationMs() {
+    const { animationDuration } = window.getComputedStyle(this.hostElement);
+    const value = parseFloat(animationDuration);
+
+    if (!Number.isFinite(value)) {
+      return 0;
+    }
+
+    return animationDuration.trim().endsWith('ms') ? value : value * 1000;
   }
 
   /**
@@ -196,12 +241,7 @@ export class Toast {
     progressBarClass.push('toast-progress-bar--animated');
 
     return (
-      <Host
-        role="alert"
-        aria-live="polite"
-        aria-atomic="true"
-        class="animate__animated animate__fadeIn"
-      >
+      <Host role="alert" aria-live="polite" aria-atomic="true">
         <div
           class="toast-body"
           onPointerLeave={() => {
@@ -230,8 +270,7 @@ export class Toast {
           <div class="toast-close">
             <ix-icon-button
               icon={iconClose}
-              iconColor="color-soft-text"
-              size="24"
+              iconColor="--si-sys-color-text-secondary"
               variant="tertiary"
               onClick={() => this.closeToast.emit()}
               aria-label={this.ariaLabelCloseIconButton}

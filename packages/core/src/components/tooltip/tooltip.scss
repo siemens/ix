@@ -7,11 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './tooltip.vars' as *;
 .dialog {
   margin: 0;
   padding: 0;
   border: none;
-  max-width: 18.25rem;
+  max-width: var(--ix-tooltip-dialog--max-width);
   width: max-content;
   background-color: transparent;
   overflow-wrap: break-word;
@@ -24,12 +25,12 @@
   position: relative;
   width: auto;
   height: fit-content;
-  background: var(--theme-tootlip--background);
-  color: var(--theme-color-std-text);
-  padding: 0.375rem 0.75rem;
+  background: var(--ix-tooltip--background);
+  color: var(--ix-tooltip--color);
+  padding: var(--ix-tooltip-container--padding);
 
-  box-shadow: var(--theme-shadow-4);
-  border-radius: 0.25rem;
+  box-shadow: var(--ix-tooltip--box-shadow);
+  border-radius: var(--ix-tooltip-container--border-radius);
 }
 
 .content-wrapper {
@@ -40,15 +41,15 @@
   display: flex;
 
   ::slotted(ix-icon) {
-    margin: 0.125rem 0.25rem 0.125rem 0;
+    margin: var(--ix-tooltip-icon--margin);
   }
 }
 
 .arrow,
 .arrow::before {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: var(--ix-tooltip-arrow--width);
+  height: var(--ix-tooltip-arrow--height);
   background: inherit;
 }
 
@@ -60,5 +61,5 @@
   visibility: visible;
   content: '';
   transform: rotate(45deg);
-  background-color: var(--theme-tootlip--background);
+  background-color: var(--ix-tooltip--background);
 }

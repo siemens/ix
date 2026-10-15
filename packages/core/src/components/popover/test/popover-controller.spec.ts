@@ -8,7 +8,8 @@
  */
 
 import { fireEvent } from '@testing-library/dom';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { OverlayCoordinator } from '../../utils/nested-overlay';
 import { PopoverController, PopoverInterface } from '../popover-controller';
 
 type MockPopoverOptions = {
@@ -48,6 +49,8 @@ function createMockPopover({
     closeOnClickOutside,
     getNestedPopoverIds: () => nestedPopoverIds,
     getId: () => id,
+    getTriggerElement: () => undefined,
+    getAdjacentFocusElement: () => undefined,
     isPresent: () => open,
     willPresent: () => willPresent,
     willDismiss: () => willDismiss,
@@ -63,9 +66,15 @@ function createMockPopover({
 
 describe('PopoverController', () => {
   let controller: PopoverController;
+  let overlayCoordinator: OverlayCoordinator;
 
   beforeEach(() => {
-    controller = new PopoverController();
+    overlayCoordinator = new OverlayCoordinator();
+    controller = new PopoverController(overlayCoordinator);
+  });
+
+  afterEach(() => {
+    overlayCoordinator.dispose();
   });
 
   describe('registration', () => {

@@ -45,6 +45,15 @@ let numberInputIds = 0;
 const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
 /**
+ * Text input for entering and validating a numeric value.
+ *
+ * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ *
+ * @figma-main-component-id 42365:39459
+ *
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
@@ -213,7 +222,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   @Watch('value')
   onValueChange(newValue: number | undefined) {
-    this.updateFormInternalValue(newValue!);
+    this.updateOptionalFormInternalValue(newValue);
   }
 
   @HookValidationLifecycle()
@@ -222,7 +231,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value!);
+    this.updateOptionalFormInternalValue(this.value);
   }
 
   connectedCallback() {
@@ -273,6 +282,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   updateFormInternalValue(value: number) {
+    this.updateOptionalFormInternalValue(value);
+  }
+
+  private updateOptionalFormInternalValue(value?: number) {
     const formValue =
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
@@ -300,12 +313,12 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
     const parsedValue = this.convertNumberStringToFloat(inputValue);
 
-    this.updateFormInternalValue(parsedValue!);
+    this.updateOptionalFormInternalValue(parsedValue);
     if (parsedValue !== undefined && this.inputRef.current) {
       this.inputRef.current.value = this.formatValue(parsedValue);
     }
 
-    this.updateFormInternalValue(parsedValue!);
+    this.updateOptionalFormInternalValue(parsedValue);
     onInputBlurWithChange(this, this.inputRef.current, parsedValue);
     this.touched = true;
   };
@@ -532,7 +545,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   this.formInternals.setFormValue(value);
                   this.value = parsedValue;
                 } else {
-                  this.updateFormInternalValue(parsedValue!);
+                  this.updateOptionalFormInternalValue(parsedValue);
                 }
               }}
               onBlur={this.handleBlur}

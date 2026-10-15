@@ -24,7 +24,8 @@ import { closestPassShadow } from '../utils/shadow-dom';
 /**
  * Header section with optional icon, title, additional items, and close button.
  *
- * @slot default - Popover title (rendered as heading text).
+ * @documentation https://ix.siemens.io//docs/components/popover/guide.md
+ * @slot - Popover title (rendered as heading text).
  * @slot additional-items - Optional content beside the title (for example `ix-pill`).
  *
  * @since 5.1.0
@@ -48,7 +49,8 @@ export class PopoverHeader {
   @Prop() icon?: string;
 
   /**
-   * Icon color
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-color-text-primary`.
    *
    * @since 5.1.0
    */
@@ -100,7 +102,6 @@ export class PopoverHeader {
           <ix-icon
             name={this.icon}
             color={this.iconColor}
-            size="24"
             aria-hidden={a11yBoolean(true)}
           ></ix-icon>
         ) : null}

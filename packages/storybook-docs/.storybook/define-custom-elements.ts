@@ -52,6 +52,7 @@ import { defineCustomElement as ixGroupItem } from '@siemens/ix/components/ix-gr
 import { defineCustomElement as ixHelperText } from '@siemens/ix/components/ix-helper-text.js';
 import { defineCustomElement as ixIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as ixIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
+import { defineCustomElement as ixInfoPage } from '@siemens/ix/components/ix-info-page.js';
 import { defineCustomElement as ixInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as ixKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as ixKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
@@ -164,6 +165,7 @@ ixGroupItem();
 ixHelperText();
 ixIconButton();
 ixIconToggleButton();
+ixInfoPage();
 ixInput();
 ixKeyValue();
 ixKeyValueList();

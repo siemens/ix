@@ -22,9 +22,15 @@ import type {
 } from './progress-indicator.types';
 
 /**
+ * Shows progress through a sequence of steps.
+ *
+ * @documentation https://ix.siemens.io//docs/components/progress-indicator/guide.md
+ * @figma-main-component-id 69677:5549
+ *
  * @since 3.2.0
- * @slot helper-text - Custom helper text content.
- * @slot default - Content displayed with the progress indicator.
+ *
+ * @slot helper-text - Helper text displayed below the progress indicator.
+ * @slot - Progress indicator label.
  */
 @Component({
   tag: 'ix-progress-indicator',
@@ -40,7 +46,14 @@ export class ProgressIndicator {
   @Prop() type: 'linear' | 'circular' = 'linear';
 
   /**
-   * The size of the progress indicator.
+   * Size of the progress indicator.
+   *
+   * For **circular**, diameters are:
+   * - **xs**: 16px.
+   * - **sm**: 20px.
+   * - **md**: 32px (default).
+   * - **lg**: 48px.
+   * - **xl**: 64px.
    */
   @Prop() size: ProgressIndicatorSize = 'md';
 
@@ -162,7 +175,7 @@ export class ProgressIndicator {
         >
           {this.label && (
             <ix-typography
-              format="label"
+              format="body"
               textColor={this.status === 'error' ? 'alarm' : 'soft'}
               class={'label'}
             >

@@ -28,7 +28,12 @@ import { makeRef } from '../utils/make-ref';
 import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
 /**
- * @slot default - Chip label.
+ * Compact element that represents an attribute, tag, or entity, optionally dismissible.
+ *
+ * @documentation https://ix.siemens.io//docs/components/chip/guide.md
+ * @figma-main-component-id 286:1758
+ *
+ * @slot - Chip content.
  */
 @Component({
   tag: 'ix-chip',
@@ -244,7 +249,6 @@ export class Chip
                     'with-icon': true,
                   }}
                   name={this.icon}
-                  size={'24'}
                   aria-label={this.ariaLabelIcon}
                   aria-hidden={a11yBoolean(iconIsDecorative)}
                   style={this.getIconStyle(variant)}

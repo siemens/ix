@@ -14,7 +14,7 @@ regressionTest('renders', async ({ mount, page }) => {
     <ix-action-card heading="Heading" subheading="Subheading"></ix-action-card>
   `);
   const actionCard = page.locator('ix-action-card');
-  await expect(actionCard).toHaveClass(/\bhydrated\b/);
+  await expect(actionCard).toHaveAttribute('hydrated');
   await expect(actionCard.locator('button')).toBeVisible();
 });
 
@@ -25,7 +25,7 @@ regressionTest(
       <ix-action-card heading="Heading" subheading="Subheading" passive></ix-action-card>
     `);
     const actionCard = page.locator('ix-action-card');
-    await expect(actionCard).toHaveClass(/\bhydrated\b/);
+    await expect(actionCard).toHaveAttribute('hydrated');
     await expect(actionCard.locator('button')).toBeDisabled();
   }
 );
@@ -43,6 +43,15 @@ regressionTest.describe('accessibility', () => {
   regressionTest('passive', async ({ mount, makeAxeBuilder }) => {
     await mount(`
       <ix-action-card heading="Heading" subheading="Subheading" passive></ix-action-card>
+    `);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('critical', async ({ mount, makeAxeBuilder }) => {
+    await mount(`
+      <ix-action-card heading="Heading" variant="critical"></ix-action-card>
     `);
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();

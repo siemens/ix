@@ -6,9 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@use './layout-grid.vars' as *;
 :host {
-  --ix-layout-grid-gutter: 24px;
-
   display: block;
   flex: 1 1 0%;
   width: 100%;

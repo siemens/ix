@@ -3,7 +3,8 @@ import { defineCustomElement } from '@siemens/ix-icons/components/ix-icon.js';
 import './define-custom-elements';
 import './define-internal-custom-elements';
 import { preloadIcons } from './preload-icons';
-import '@siemens/ix/scss/ix.scss';
+import '@siemens/ix/scss/default';
+import '@siemens/ix/scss/globals';
 import './preview.css';
 
 declare const window: Window & {
@@ -15,6 +16,7 @@ defineCustomElement();
 
 const additionalThemes: string[] = [];
 const colorSchemas = ['dark', 'light'] as const;
+const densities = ['default', 'compact'] as const;
 
 function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
@@ -56,12 +58,30 @@ const preview: Preview = {
         })),
       },
     },
+    ixDensity: {
+      name: 'Density',
+      description: 'IX density',
+      toolbar: {
+        icon: 'ruler',
+        dynamicTitle: true,
+        items: densities.map((density) => ({
+          title: density,
+          value: density,
+        })),
+      },
+    },
   },
   initialGlobals: {
     ixTheme: defaultTheme,
     ixColorSchema: 'dark',
+    ixDensity: 'default',
   },
   parameters: {
+    options: {
+      storySort: {
+        method: 'alphabetical',
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -94,6 +114,11 @@ const preview: Preview = {
         'data-ix-color-schema',
         colorSchema
       );
+      if (context.globals['ixDensity'] === 'compact') {
+        document.documentElement.setAttribute('data-ix-density', 'compact');
+      } else {
+        document.documentElement.removeAttribute('data-ix-density');
+      }
 
       return Story();
     },

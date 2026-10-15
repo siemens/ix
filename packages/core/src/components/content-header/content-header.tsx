@@ -9,11 +9,19 @@
 
 import { iconArrowLeft } from '@siemens/ix-icons/icons';
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
-import type { ContentHeaderVariant } from './content-header.types';
+import type {
+  ContentHeaderTextOverflow,
+  ContentHeaderVariant,
+} from './content-header.types';
 
 /**
+ * Header area of a content page showing the title and page-level actions.
+ *
+ * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
+ * @figma-main-component-id 4727:112521
+ *
  * @slot header - Content to be placed in the header area next to the title
- * @slot default - Default slot for action buttons or other content
+ * @slot - Default slot for action buttons or other content
  */
 @Component({
   tag: 'ix-content-header',
@@ -37,6 +45,14 @@ export class ContentHeader {
   @Prop() headerSubtitle: string | undefined = undefined;
 
   /**
+   * Controls how the title and subtitle handle limited horizontal space.
+   * Ellipsis visually truncates the text without adding a tooltip.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ reflect: true }) textOverflow: ContentHeaderTextOverflow = 'wrap';
+
+  /**
    * Display a back button
    */
   @Prop() hasBackButton: boolean = false;
@@ -54,21 +70,33 @@ export class ContentHeader {
             class={'backButton'}
             variant="tertiary"
             icon={iconArrowLeft}
+            size="24"
             onClick={() => this.backButtonClick.emit()}
           ></ix-icon-button>
         ) : null}
 
         <div class="titleGroup">
           <div class="headerTitleRow">
-            <ix-typography
-              format={this.variant === 'secondary' ? 'h4' : 'h3'}
-              class={{
-                secondary: this.variant === 'secondary',
-                titleOverflow: true,
-              }}
-            >
-              {this.headerTitle}
-            </ix-typography>
+            {this.headerTitle && (
+              <h2
+                class={{
+                  'header-title': true,
+                  secondary: this.variant === 'secondary',
+                  headerText: true,
+                  truncate: this.textOverflow === 'ellipsis',
+                }}
+              >
+                <ix-typography
+                  format={this.variant === 'secondary' ? 'h4' : 'h3'}
+                  class={{
+                    headerText: true,
+                    truncate: this.textOverflow === 'ellipsis',
+                  }}
+                >
+                  {this.headerTitle}
+                </ix-typography>
+              </h2>
+            )}
             <div class="headerSlot">
               <slot name="header" />
             </div>
@@ -79,9 +107,9 @@ export class ContentHeader {
               text-color={'soft'}
               class={{
                 subtitle: this.variant === 'secondary',
-                titleOverflow: true,
+                headerText: true,
+                truncate: this.textOverflow === 'ellipsis',
               }}
-              title={this.headerSubtitle}
             >
               {this.headerSubtitle}
             </ix-typography>

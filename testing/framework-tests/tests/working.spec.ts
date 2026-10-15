@@ -68,6 +68,13 @@ import './generated/popover.spec';
 // Chip tests
 import './generated/chip.spec';
 
+// Content header tests
+import './generated/content-header.spec';
+import './generated/content-header-text-overflow.spec';
+
+// Info page tests
+import './generated/info-page.spec';
+
 // Chat tests
 import './generated/chat.spec';
 import './generated/chat-ai-message.spec';
@@ -80,3 +87,9 @@ import './generated/badge-counter.spec';
 import './generated/badge-label.spec';
 import './generated/badge-dot.spec';
 import './generated/badge-status-icon.spec';
+
+// Group tests
+import './generated/group.spec';
+import './generated/group-context-menu.spec';
+import './generated/group-custom-entry.spec';
+import './generated/group-header-suppressed.spec';

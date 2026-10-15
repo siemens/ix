@@ -6,7 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
+import '@siemens/ix/css/foundation.css';
+import '@siemens/ix/css/utilities.css';
+import '@siemens/ix/css/reset.css';
+import '@siemens/ix/css/base.css';
 
 import { showMessage } from '@siemens/ix';
 import { defineCustomElements } from '@siemens/ix/loader';

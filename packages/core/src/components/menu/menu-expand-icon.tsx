@@ -16,6 +16,8 @@ import { getButtonClasses } from '../button/base-button';
 import { Breakpoint } from '../utils/breakpoints';
 import { a11yBoolean } from '../utils/a11y';
 /**
+ * Icon that toggles the expanded state of the side menu.
+ *
  * @internal
  */
 @Component({
@@ -69,6 +71,7 @@ export class MenuExpandIcon {
         aria-label={this.expanded ? this.i18nCollapse : this.i18nExpand}
         aria-expanded={a11yBoolean(this.expanded)}
         icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
+        size="24"
         variant="subtle-tertiary"
       ></ix-icon-button>
     );

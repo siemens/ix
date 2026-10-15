@@ -22,7 +22,11 @@ import {
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 /**
- * @slot default - Settings overlay content.
+ * Settings overlay opened from the application menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+ *
+ * @slot - Settings menu content.
  */
 @Component({
   tag: 'ix-menu-settings',
@@ -124,12 +128,11 @@ export class MenuSettings {
         }}
       >
         <div class={'settings-header'}>
-          <h2 class="text-h2">{this.label}</h2>
+          <h2 class="typography-h2">{this.label}</h2>
           <ix-icon-button
             variant="tertiary"
-            size="24"
             icon={iconClose}
-            iconColor="color-soft-text"
+            iconColor="--si-sys-color-text-secondary"
             aria-label={this.ariaLabelCloseButton}
             onClick={(e) =>
               this.close.emit({

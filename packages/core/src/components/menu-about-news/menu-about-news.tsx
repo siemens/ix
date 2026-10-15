@@ -21,7 +21,11 @@ import {
 import { DefaultMixins } from '../utils/internal/component';
 
 /**
- * @slot default - News content.
+ * News panel shown within the application menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/popover-news/guide.md
+ *
+ * @slot - About news content.
  */
 @Component({
   tag: 'ix-menu-about-news',
@@ -80,9 +84,12 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
       >
         <div class="banner-container">
           <ix-icon
-            color="color-inv-contrast-text"
+            color="--si-sys-color-text-inverse"
             name={iconShout}
             size="32"
+            ref={(element?: HTMLIxIconElement) =>
+              element?.setAttribute('size', '32')
+            }
           ></ix-icon>
           <svg viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg">
             <polygon points="0 0 48 0 48 56 24 48 0 56" />
@@ -90,15 +97,12 @@ export class MenuAboutNews extends Mixin(...DefaultMixins) {
         </div>
 
         <div class="cui-popover-news-header">
-          <ix-typography format="label" bold>
-            {this.label}
-          </ix-typography>
+          <ix-typography format="h5">{this.label}</ix-typography>
         </div>
 
         <ix-icon-button
-          size="24"
           icon={iconClose}
-          iconColor="color-soft-text"
+          iconColor="--si-sys-color-text-secondary"
           variant="tertiary"
           onClick={() => {
             this.show = false;

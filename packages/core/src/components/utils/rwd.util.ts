@@ -32,7 +32,7 @@ export const convertToAbbreviationString = (num: number) => {
     let formattedNum = Math.abs(num);
     if (formattedNum >= pow.value) {
       formattedNum /= pow.value;
-      num = Math.round(formattedNum * 10) / 10;
+      num = (Math.sign(num) * Math.round(formattedNum * 10)) / 10;
       unit = pow.unit;
       return true;
     }

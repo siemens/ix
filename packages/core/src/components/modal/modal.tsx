@@ -17,16 +17,20 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
-import { tryFocusElement } from '../utils/focus/focus-utilities';
+import { focusElementInContext } from '../utils/focus/focus-utilities';
 import { IX_MODAL_AUTOFOCUS_SELECTOR } from '../utils/modal/modal';
 import { waitForElement } from '../utils/waitForElement';
 import { IxModalSize } from './modal.types';
 
 /**
- * @slot default - Modal sections and content.
+ * Dialog overlay that presents content or requires user interaction on top of the page.
+ *
+ * @documentation https://ix.siemens.io//docs/components/modal/guide.md
+ *
+ * @slot - Modal content.
  */
 @Component({
   tag: 'ix-modal',
@@ -94,23 +98,37 @@ export class Modal {
     return this.hostElement.shadowRoot!.querySelector('dialog');
   }
 
+  private getDialogElement() {
+    const dialog = this.dialog;
+
+    if (!dialog) {
+      throw new Error('Modal dialog element not found');
+    }
+
+    return dialog;
+  }
+
   private slideInModal() {
-    const dialog = this.dialog!;
+    const dialog = this.getDialogElement();
     dialog.classList.remove('modal-open-settled');
     const duration = this.disableAnimation ? 0 : Animation.mediumTime;
-    const translateY = this.centered ? ['-90%', '-50%'] : [0, 40];
+    const [fromY, toY] = this.centered ? ['-90%', '-50%'] : ['0px', '40px'];
 
     const markEntranceSettled = () =>
       dialog.classList.add('modal-open-settled');
 
-    animate(dialog, {
-      duration,
-      opacity: [0, 1],
-      translateY,
-      translateX: ['-50%', '-50%'],
-      easing: 'easeOutSine',
-      complete: markEntranceSettled,
-    });
+    animate(
+      dialog,
+      [
+        { opacity: 0, transform: `translateX(-50%) translateY(${fromY})` },
+        { opacity: 1, transform: `translateX(-50%) translateY(${toY})` },
+      ],
+      {
+        duration,
+        easing: Easing.easeOutQuad,
+        onComplete: markEntranceSettled,
+      }
+    );
 
     if (duration === 0) {
       markEntranceSettled();
@@ -118,23 +136,27 @@ export class Modal {
   }
 
   private slideOutModal(completeCallback: Function) {
-    const dialog = this.dialog!;
+    const dialog = this.getDialogElement();
     dialog.classList.remove('modal-open-settled');
     const duration = this.disableAnimation ? 0 : Animation.mediumTime;
-    const translateY = this.centered ? ['-50%', '-90%'] : [40, 0];
+    const [fromY, toY] = this.centered ? ['-50%', '-90%'] : ['40px', '0px'];
 
-    animate(dialog, {
-      duration,
-      opacity: [1, 0],
-      translateY,
-      translateX: ['-50%', '-50%'],
-      easing: 'easeInSine',
-      complete: () => {
-        if (completeCallback) {
-          completeCallback();
-        }
-      },
-    });
+    animate(
+      dialog,
+      [
+        { opacity: 1, transform: `translateX(-50%) translateY(${fromY})` },
+        { opacity: 0, transform: `translateX(-50%) translateY(${toY})` },
+      ],
+      {
+        duration,
+        easing: Easing.easeOutQuad,
+        onComplete: () => {
+          if (completeCallback) {
+            completeCallback();
+          }
+        },
+      }
+    );
   }
 
   private closeDialog<T = unknown>(
@@ -144,7 +166,7 @@ export class Modal {
   ) {
     this.slideOutModal(() => {
       this.modalVisible = false;
-      this.dialog!.close(JSON.stringify({ type, reason }, null, 2));
+      this.getDialogElement().close(JSON.stringify({ type, reason }, null, 2));
       emitter.emit(reason);
     });
   }
@@ -200,7 +222,7 @@ export class Modal {
             IX_MODAL_AUTOFOCUS_SELECTOR
           );
           if (direct) {
-            tryFocusElement(direct, { focusVisible: true });
+            focusElementInContext(direct, direct, { focusVisible: true });
           }
           resolve();
         });
@@ -229,8 +251,8 @@ export class Modal {
       this.slideInModal();
 
       await this.scheduleInitialAutofocus();
-    } catch {
-      console.error('HTMLDialogElement not existing');
+    } catch (error) {
+      console.error('Failed to show modal dialog', error);
     }
   }
 
