@@ -97,3 +97,7 @@
   opacity: var(--ix-tree-item--opacity);
   pointer-events: none;
 }
+
+:host(:focus-visible) .tree-node-container {
+  outline: 1px solid var(--ix-tree-item--outline-color--focus);
+}

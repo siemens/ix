@@ -117,7 +117,9 @@ regressionTest('renders', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
   const item = tree.locator('ix-tree-item').nth(0);
   await expect(tree).toHaveAttribute('hydrated');
+  await expect(tree).toHaveAttribute('role', 'tree');
   await expect(item).toBeVisible();
+  await expect(item).toHaveAttribute('role', 'treeitem');
   await expect(item.locator('.icon-toggle')).toHaveCSS('width', '24px');
   await expect(item.locator('.icon-toggle')).toHaveCSS('height', '24px');
 });
@@ -847,6 +849,188 @@ for (const key of ['Enter', 'Space']) {
 }
 
 regressionTest(
+  'navigates visible tree items without changing selection',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    const sample = tree.locator('[data-tree-node-id="sample"]');
+    const child1 = tree.locator('[data-tree-node-id="sample-child-1"]');
+    const child2 = tree.locator('[data-tree-node-id="sample-child-2"]');
+    const child3 = tree.locator('[data-tree-node-id="sample-child-3"]');
+    const child4 = tree.locator('[data-tree-node-id="sample-child-4"]');
+    const row = (item: Locator) => item.locator('.tree-node-container');
+
+    await expect(sample).toHaveAttribute('tabindex', '0');
+    await row(sample).focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(sample).toHaveAttribute('aria-expanded', 'true');
+    await expect(row(sample)).toBeFocused();
+    await expect(child1).toHaveAttribute('aria-level', '2');
+    await expect(child1).toHaveAttribute('aria-posinset', '1');
+    await expect(child1).toHaveAttribute('aria-setsize', '3');
+
+    await page.keyboard.press('ArrowRight');
+    await expect(child1).toBeFocused();
+    await expect(sample).toHaveAttribute('tabindex', '-1');
+    await page.keyboard.press('ArrowDown');
+    await expect(child2).toBeFocused();
+    await page.keyboard.press('ArrowRight');
+    await expect(child2).toHaveAttribute('aria-expanded', 'true');
+    await page.keyboard.press('ArrowDown');
+    await expect(child4).toBeFocused();
+    await page.keyboard.press('ArrowLeft');
+    await expect(child2).toBeFocused();
+    await page.keyboard.press('ArrowLeft');
+    await expect(child2).toHaveAttribute('aria-expanded', 'false');
+    await page.keyboard.press('ArrowUp');
+    await expect(child1).toBeFocused();
+    await page.keyboard.press('End');
+    await expect(child3).toBeFocused();
+    await page.keyboard.press('Home');
+    await expect(sample).toBeFocused();
+    await expect(sample).toHaveAttribute('aria-selected', 'false');
+    await page.keyboard.press('Enter');
+    await expect(sample).toHaveAttribute('aria-selected', 'true');
+  }
+);
+
+regressionTest(
+  'does not navigate the tree when a slotted control receives arrow keys',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    const sample = tree.locator('[data-tree-node-id="sample"]');
+    await sample.evaluate((element) => {
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.setAttribute('aria-label', 'Option');
+      element.appendChild(input);
+    });
+
+    const checkbox = sample.getByRole('checkbox', { name: 'Option' });
+    await checkbox.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(checkbox).toBeFocused();
+    await page.keyboard.press('Space');
+    await expect(checkbox).toBeChecked();
+  }
+);
+
+regressionTest(
+  'skips disabled children when navigating into an expanded branch',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      element.model = {
+        ...element.model,
+        'sample-child-1': {
+          ...element.model['sample-child-1'],
+          disabled: true,
+        },
+      };
+    });
+
+    const sample = tree.locator('[data-tree-node-id="sample"]');
+    await sample.locator('.tree-node-container').focus();
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
+    await expect(
+      tree.locator('[data-tree-node-id="sample-child-2"]')
+    ).toBeFocused();
+  }
+);
+
+regressionTest(
+  'makes the selected visible item the tree entry point',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      element.context = {
+        sample: { isExpanded: true, isSelected: false },
+        'sample-child-1': { isExpanded: false, isSelected: true },
+      };
+    });
+
+    const sample = tree.locator('[data-tree-node-id="sample"]');
+    const selected = tree.locator('[data-tree-node-id="sample-child-1"]');
+    await expect(selected).toHaveAttribute('tabindex', '0');
+    await expect(sample).toHaveAttribute('tabindex', '-1');
+    await expect(selected).toHaveAttribute('aria-selected', 'true');
+
+    await selected.focus();
+    await page.keyboard.press('Space');
+    await expect(selected).toBeFocused();
+    await expect(selected).toHaveAttribute('aria-selected', 'true');
+  }
+);
+
+regressionTest(
+  'navigates to tree items outside the virtualized viewport',
+  async ({ mount, page }) => {
+    await mount(
+      '<div style="height: 10rem"><ix-tree root="root"></ix-tree></div>'
+    );
+    const tree = page.locator('ix-tree');
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      const children = Array.from(
+        { length: 40 },
+        (_, index) => `item-${index}`
+      );
+      element.model = {
+        root: {
+          id: 'root',
+          data: { name: '' },
+          hasChildren: true,
+          children,
+        },
+        ...Object.fromEntries(
+          children.map((id) => [
+            id,
+            { id, data: { name: id }, hasChildren: false, children: [] },
+          ])
+        ),
+      } as TreeModel<{ name: string }>;
+    });
+
+    const first = tree.locator('[data-tree-node-id="item-0"]');
+    const last = tree.locator('[data-tree-node-id="item-39"]');
+    await first.locator('.tree-node-container').focus();
+    await page.keyboard.press('End');
+    await expect(last).toBeFocused();
+    await page.keyboard.press('Home');
+    await expect(first).toBeFocused();
+  }
+);
+
+regressionTest(
+  'slotted controls retain their Enter and Space keyboard behavior',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tree-item text="Sample">
+        <button type="button">Action</button>
+        <input type="checkbox" aria-label="Option" />
+      </ix-tree-item>
+    `);
+
+    const item = page.locator('ix-tree-item');
+    await expect(item).toHaveAttribute('hydrated');
+
+    const button = page.getByRole('button', { name: 'Action', exact: true });
+    await button.evaluate((element) => {
+      element.addEventListener('click', () => {
+        element.setAttribute('data-clicked', 'true');
+      });
+    });
+    await button.focus();
+    await page.keyboard.press('Enter');
+    await expect(button).toHaveAttribute('data-clicked', 'true');
+
+    const checkbox = page.getByRole('checkbox', { name: 'Option' });
+    await checkbox.focus();
+    await page.keyboard.press('Space');
+    await expect(checkbox).toBeChecked();
+  }
+);
+
+regressionTest(
   'disabled item should not respond to keyboard activation',
   async ({ mount, page }) => {
     await mount(`
@@ -936,3 +1120,18 @@ for (const selector of ['.icon-toggle', '.tree-node-container']) {
     );
   }
 }
+
+regressionTest(
+  'preserves focus on the tree item when refreshing the tree',
+  async ({ mount, page }) => {
+    const tree = await initializeTree(mount, page);
+    const sample = tree.locator('[data-tree-node-id="sample"]');
+    await sample.focus();
+
+    await tree.evaluate((element: HTMLIxTreeElement) =>
+      element.refreshTree({ force: true })
+    );
+
+    await expect(sample).toBeFocused();
+  }
+);

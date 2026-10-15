@@ -7,7 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+} from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 import { a11yBoolean } from '../utils/a11y';
@@ -24,6 +34,8 @@ import { a11yBoolean } from '../utils/a11y';
   shadow: true,
 })
 export class TreeItem {
+  @Element() hostElement!: HTMLIxTreeItemElement;
+
   /**
    * Text
    */
@@ -65,6 +77,18 @@ export class TreeItem {
    */
   @Prop() ariaLabelTreeExpanded = 'Collapse tree item';
 
+  @State() private navigationTabIndex = 0;
+
+  componentWillLoad() {
+    this.navigationTabIndex =
+      this.hostElement.dataset.treeNavigationTabIndex === '-1' ? -1 : 0;
+  }
+
+  @Listen('treeNavigationIndex')
+  onNavigationIndex(event: CustomEvent<number>) {
+    this.navigationTabIndex = event.detail;
+  }
+
   /**
    * Expand/Collapsed toggled
    */
@@ -86,12 +110,33 @@ export class TreeItem {
 
   render() {
     const isDisabled = this.disabled || this.context?.isDisabled;
+    const isManagedTree = !!this.hostElement.closest('ix-tree');
 
     return (
       <Host
+        role="treeitem"
+        tabIndex={isDisabled ? -1 : this.navigationTabIndex}
+        aria-selected={a11yBoolean(!!this.context?.isSelected)}
+        aria-expanded={
+          this.hasChildren ? a11yBoolean(!!this.context?.isExpanded) : undefined
+        }
         class={{
           selected: !!this.context?.isSelected,
           disabled: !!isDisabled,
+        }}
+        onKeyDown={(event: KeyboardEvent) => {
+          if (
+            isDisabled ||
+            event.composedPath()[0] !== this.hostElement ||
+            (event.key !== ' ' && event.key !== 'Enter')
+          ) {
+            return;
+          }
+          event.preventDefault();
+          event.stopPropagation();
+          this.hostElement.shadowRoot
+            ?.querySelector<HTMLElement>('.tree-node-container')
+            ?.click();
         }}
       >
         <div class="icon-toggle-container">
@@ -99,7 +144,11 @@ export class TreeItem {
             <span
               class="icon-toggle"
               role="button"
-              tabIndex={isDisabled ? -1 : 0}
+              tabIndex={
+                isDisabled || isManagedTree || this.navigationTabIndex < 0
+                  ? -1
+                  : 0
+              }
               aria-disabled={a11yBoolean(!!isDisabled)}
               aria-expanded={a11yBoolean(!!this.context?.isExpanded)}
               aria-label={
@@ -130,10 +179,12 @@ export class TreeItem {
         <div
           class="tree-node-container"
           role="button"
-          tabIndex={isDisabled ? -1 : 0}
+          tabIndex={
+            isDisabled ? -1 : isManagedTree ? -1 : this.navigationTabIndex
+          }
           aria-disabled={a11yBoolean(!!isDisabled)}
           onKeyDown={(e: KeyboardEvent) => {
-            if (isDisabled) {
+            if (isDisabled || e.target !== e.currentTarget) {
               return;
             }
             if (e.key === ' ' || e.key === 'Enter') {
