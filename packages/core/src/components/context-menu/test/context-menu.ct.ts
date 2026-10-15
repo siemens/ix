@@ -244,6 +244,70 @@ regressionTest.describe('open', () => {
       ).toBeHidden();
     }
   );
+
+  regressionTest(
+    'preventing contextMenuOpen of a nested menu does not open the outer menu',
+    async ({ mount, page }) => {
+      await mount(html`
+        <div id="outer" style="width: 400px; height: 300px">
+          <div id="inner" style="width: 200px; height: 100px">Inner</div>
+          <ix-context-menu id="outer-menu">
+            <ix-dropdown-item label="Outer action"></ix-dropdown-item>
+          </ix-context-menu>
+          <ix-context-menu id="inner-menu" target="inner">
+            <ix-dropdown-item label="Inner action"></ix-dropdown-item>
+          </ix-context-menu>
+        </div>
+      `);
+      await expect(page.locator('#outer-menu')).toHaveAttribute('hydrated');
+      await expect(page.locator('#inner-menu')).toHaveAttribute('hydrated');
+
+      await page
+        .locator('#inner-menu')
+        .evaluate((element) =>
+          element.addEventListener('contextMenuOpen', (event) =>
+            event.preventDefault()
+          )
+        );
+      await recordNativeContextMenuPrevented(page);
+
+      await page.getByText('Inner', { exact: true }).click({ button: 'right' });
+
+      await expect(page.locator('body')).toHaveAttribute(
+        'data-native-prevented',
+        'false'
+      );
+      await expect(page.getByRole('menu')).toHaveCount(0);
+    }
+  );
+
+  regressionTest(
+    'right-click after an unanswered keyboard shortcut opens at the pointer',
+    async ({ mount, page }) => {
+      await mount(html`
+        <button id="file" style="width: 300px; height: 200px">File</button>
+        <ix-context-menu target="file">
+          <ix-dropdown-item label="Open"></ix-dropdown-item>
+        </ix-context-menu>
+      `);
+      await expect(page.locator('ix-context-menu')).toHaveAttribute('hydrated');
+
+      const file = page.getByRole('button', { name: 'File' });
+      await file.focus();
+      // Headless browsers do not create a contextmenu event for the shortcut
+      await page.keyboard.press('Shift+F10');
+
+      const fileBox = await file.boundingBox();
+      if (!fileBox) {
+        throw new Error('Expected bounding box');
+      }
+      const x = Math.round(fileBox.x + 150);
+      const y = Math.round(fileBox.y + 100);
+      await page.mouse.click(x, y, { button: 'right' });
+
+      await expectTopLeftAt(getMenu(page), x, y);
+    }
+  );
 });
 
 regressionTest.describe('close', () => {
@@ -265,6 +329,53 @@ regressionTest.describe('close', () => {
     await itemClick;
     await expect(getMenu(page)).toBeHidden();
   });
+
+  regressionTest(
+    'restores focus to the previously focused element after item click',
+    async ({ mount, page }) => {
+      await mount(html`
+        <input aria-label="Name" />
+        <ix-context-menu>
+          <ix-dropdown-item label="Paste"></ix-dropdown-item>
+        </ix-context-menu>
+      `);
+      await expect(page.locator('ix-context-menu')).toHaveAttribute('hydrated');
+
+      const input = page.getByLabel('Name');
+      await input.click();
+      await input.click({ button: 'right' });
+      await expect(getMenu(page)).toBeVisible();
+      await expect(input).not.toBeFocused();
+
+      await page.getByRole('menuitem', { name: 'Paste' }).click();
+      await expect(getMenu(page)).toBeHidden();
+      await expect(input).toBeFocused();
+    }
+  );
+
+  regressionTest(
+    'keeps focus on a focusable element clicked outside',
+    async ({ mount, page }) => {
+      await mount(html`
+        <input aria-label="Name" />
+        <input aria-label="Other" />
+        <ix-context-menu>
+          <ix-dropdown-item label="Paste"></ix-dropdown-item>
+        </ix-context-menu>
+      `);
+      await expect(page.locator('ix-context-menu')).toHaveAttribute('hydrated');
+
+      const input = page.getByLabel('Name');
+      await input.click();
+      await input.click({ button: 'right' });
+      await expect(getMenu(page)).toBeVisible();
+
+      const other = page.getByLabel('Other');
+      await other.click();
+      await expect(getMenu(page)).toBeHidden();
+      await expect(other).toBeFocused();
+    }
+  );
 
   regressionTest('on outside click', async ({ mount, page }) => {
     await mountFixture(mount, page);
@@ -465,9 +576,9 @@ regressionTest.describe('keyboard', () => {
       );
 
       const items = page.getByRole('menuitem');
-      await expect(items.nth(0)).toHaveClass(/ix-focused/);
+      await expect(items.nth(0)).toBeFocused();
       await page.keyboard.press('ArrowDown');
-      await expect(items.nth(1)).toHaveClass(/ix-focused/);
+      await expect(items.nth(1)).toBeFocused();
 
       await page.keyboard.press('Escape');
       await expect(getMenu(page)).toBeHidden();
@@ -476,9 +587,9 @@ regressionTest.describe('keyboard', () => {
   );
 
   regressionTest(
-    'roving-tabindex moves focus to the items',
+    'moves focus to the items by default (roving-tabindex)',
     async ({ mount, page }) => {
-      await mountFixture(mount, page, 'navigation-mode="roving-tabindex"');
+      await mountFixture(mount, page);
 
       await page.mouse.click(100, 100, { button: 'right' });
 
@@ -486,6 +597,38 @@ regressionTest.describe('keyboard', () => {
       await expect(items.nth(0)).toBeFocused();
       await page.keyboard.press('ArrowDown');
       await expect(items.nth(1)).toBeFocused();
+    }
+  );
+
+  regressionTest(
+    'active-descendant exposes the active item on the menu',
+    async ({ mount, page }) => {
+      await mountFixture(mount, page, 'navigation-mode="active-descendant"');
+
+      await page.mouse.click(100, 100, { button: 'right' });
+      const menu = getMenu(page);
+      await expect(menu).toBeFocused();
+
+      // Role locators exclude the hidden menu after closing
+      const activeDescendantLabel = () =>
+        page.locator('ix-context-menu ix-dropdown').evaluate(
+          (element) =>
+            (
+              element as HTMLElement & {
+                ariaActiveDescendantElement: Element | null;
+              }
+            ).ariaActiveDescendantElement?.getAttribute('label') ?? null
+        );
+
+      await page.keyboard.press('ArrowDown');
+      await expect.poll(activeDescendantLabel).toBe('Copy');
+
+      await page.keyboard.press('ArrowDown');
+      await expect.poll(activeDescendantLabel).toBe('Paste');
+
+      await page.keyboard.press('Escape');
+      await expect(menu).toBeHidden();
+      await expect.poll(activeDescendantLabel).toBeNull();
     }
   );
 });

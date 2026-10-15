@@ -26,7 +26,8 @@ import { makeRef } from '../utils/make-ref';
 import { ContextMenuOpenEventDetail } from './context-menu.types';
 
 /**
- * Context menu events which already opened a context menu.
+ * Context menu events which were already handled by a context menu,
+ * either by opening it or by preventing `contextMenuOpen`.
  * Prevents outer context menus from opening for nested targets.
  */
 const handledContextMenuEvents = new WeakSet<Event>();
@@ -77,10 +78,11 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
 
   /**
    * Controls how keyboard navigation moves focus between menu items.
+   * Defaults to `roving-tabindex`, which moves DOM focus onto the items.
    * See `navigationMode` of `ix-dropdown`.
    */
   @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
-    'active-descendant';
+    'roving-tabindex';
 
   /**
    * Fired before the context menu opens.
@@ -113,6 +115,7 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
     this.targetResolveId++;
     this.unregisterTarget();
     this.removeOpenListeners();
+    this.isOpen = false;
   }
 
   @Watch('target')
@@ -162,16 +165,32 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
     this.targetElement = (element as HTMLElement | null) ?? undefined;
     this.targetElement?.addEventListener('contextmenu', this.onContextMenu);
     this.targetElement?.addEventListener('keydown', this.onTargetKeydown);
+    this.targetElement?.addEventListener(
+      'pointerdown',
+      this.onTargetPointerDown
+    );
   }
 
   private unregisterTarget() {
     this.targetElement?.removeEventListener('contextmenu', this.onContextMenu);
     this.targetElement?.removeEventListener('keydown', this.onTargetKeydown);
+    this.targetElement?.removeEventListener(
+      'pointerdown',
+      this.onTargetPointerDown
+    );
     this.targetElement = undefined;
   }
 
   private readonly onTargetKeydown = (event: KeyboardEvent) => {
     this.keyboardRequested = isKeyboardContextMenuKey(event);
+  };
+
+  /**
+   * The keyboard shortcut does not always create a `contextmenu` event,
+   * a following pointer interaction opens the menu at the pointer.
+   */
+  private readonly onTargetPointerDown = () => {
+    this.keyboardRequested = false;
   };
 
   private readonly onContextMenu = (event: MouseEvent) => {
@@ -186,6 +205,8 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
       return;
     }
 
+    handledContextMenuEvents.add(event);
+
     const { defaultPrevented } = this.contextMenuOpen.emit({
       originalEvent: event,
       target: this.targetElement as HTMLElement,
@@ -196,7 +217,6 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
     }
 
     event.preventDefault();
-    handledContextMenuEvents.add(event);
 
     const { x, y } = fromKeyboard
       ? this.getKeyboardPosition(event)
@@ -307,7 +327,6 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
           ref={this.dropdownRef}
           role="menu"
           aria-label={this.ariaLabelMenu}
-          suppressAriaModal
           enableTopLayer={this.enableTopLayer}
           navigationMode={this.navigationMode}
           onShowChange={(event) => this.onDropdownShowChange(event)}

@@ -1215,8 +1215,8 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Controls how keyboard navigation moves focus between menu items. See `navigationMode` of `ix-dropdown`.
-          * @default 'active-descendant'
+          * Controls how keyboard navigation moves focus between menu items. Defaults to `roving-tabindex`, which moves DOM focus onto the items. See `navigationMode` of `ix-dropdown`.
+          * @default 'roving-tabindex'
          */
         "navigationMode": 'active-descendant' | 'roving-tabindex';
         /**
@@ -1999,7 +1999,7 @@ export namespace Components {
          */
         "anchor"?: ElementReference;
         /**
-          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning.
+          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
           * @since 6.0.0
          */
         "anchorPosition"?: DropdownAnchorPosition;
@@ -2097,16 +2097,12 @@ export namespace Components {
          */
         "show": boolean;
         /**
-          * Show the dropdown at the given absolute point in viewport coordinates (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event. Sets `anchorPosition` and moves an already visible dropdown.
+          * Show the dropdown at the given absolute point in viewport coordinates (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event. Moves an already visible dropdown. The position takes precedence over `anchorPosition`, `anchor` and `trigger` until the dropdown is hidden.
           * @param x Absolute horizontal viewport coordinate in pixels
           * @param y Absolute vertical viewport coordinate in pixels
           * @since 6.0.0
          */
         "showAt": (x: number, y: number) => Promise<void>;
-        /**
-          * @default false
-         */
-        "suppressAriaModal": boolean;
         /**
           * Suppress the automatic placement of the dropdown.
           * @default false
@@ -9443,8 +9439,8 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
-          * Controls how keyboard navigation moves focus between menu items. See `navigationMode` of `ix-dropdown`.
-          * @default 'active-descendant'
+          * Controls how keyboard navigation moves focus between menu items. Defaults to `roving-tabindex`, which moves DOM focus onto the items. See `navigationMode` of `ix-dropdown`.
+          * @default 'roving-tabindex'
          */
         "navigationMode"?: 'active-descendant' | 'roving-tabindex';
         /**
@@ -10243,7 +10239,7 @@ declare namespace LocalJSX {
          */
         "anchor"?: ElementReference;
         /**
-          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning.
+          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
           * @since 6.0.0
          */
         "anchorPosition"?: DropdownAnchorPosition;
@@ -10352,10 +10348,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "show"?: boolean;
-        /**
-          * @default false
-         */
-        "suppressAriaModal"?: boolean;
         /**
           * Suppress the automatic placement of the dropdown.
           * @default false
@@ -14548,7 +14540,6 @@ declare namespace LocalJSX {
         "ignoreRelatedSubmenu": boolean;
         "suppressOverflowBehavior": boolean;
         "hostRole": string;
-        "suppressAriaModal": boolean;
     }
     interface IxDropdownButtonAttributes {
         "variant": DropdownButtonVariant;

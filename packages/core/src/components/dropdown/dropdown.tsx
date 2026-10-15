@@ -55,6 +55,10 @@ import {
 } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import {
+  AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
   hasKeyboardMode,
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
@@ -107,8 +111,8 @@ const createPointReference = ({
   shadow: true,
 })
 export class Dropdown
-  extends Mixin(...DefaultMixins)
-  implements DropdownInterface
+  extends Mixin(...DefaultMixins, AriaActiveDescendantMixin)
+  implements DropdownInterface, AriaActiveDescendantMixinContract
 {
   @Element() override hostElement!: HTMLIxDropdownElement;
 
@@ -138,10 +142,11 @@ export class Dropdown
    * (e.g. `clientX`/`clientY` of a `contextmenu` event).
    * The coordinates are not relative to the parent, an anchor or a trigger element.
    * While set, it takes precedence over `anchor` and `trigger` for positioning.
+   * Use `showAt` to open the dropdown at a position only once.
    *
    * @since 6.0.0
    */
-  @Prop({ mutable: true }) anchorPosition?: DropdownAnchorPosition;
+  @Prop() anchorPosition?: DropdownAnchorPosition;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -283,12 +288,6 @@ export class Dropdown
 
   /**
    * @internal
-   * `aria-modal` is only valid for dialog roles, e.g. not for `role="menu"`.
-   */
-  @Prop() suppressAriaModal = false;
-
-  /**
-   * @internal
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
    */
@@ -336,6 +335,8 @@ export class Dropdown
   private rovingTabindexHosts = new Set<HTMLElement>();
   private suppressTriggerFocusOnHide = false;
   private focusReturnElement?: HTMLElement;
+  /** Position passed to `showAt`, only valid until the dropdown is hidden */
+  private showAtPosition?: DropdownAnchorPosition;
 
   override connectedCallback(): void {
     dropdownController.connected(this);
@@ -675,7 +676,7 @@ export class Dropdown
       this.intersectObserverTrigger.disconnect();
     }
 
-    if (this.suppressTriggerVisibilityCheck || this.anchorPosition) {
+    if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
 
@@ -782,6 +783,7 @@ export class Dropdown
         this.triggerElement.ariaExpanded = 'false';
       }
       this.cleanupOnHide();
+      this.showAtPosition = undefined;
 
       if (this.enableTopLayer) {
         await this.hideDialog();
@@ -792,7 +794,7 @@ export class Dropdown
 
     const activeElement = getDeepActiveElement();
     this.focusReturnElement =
-      this.isPositionedAtPoint() && activeElement instanceof HTMLElement
+      this.movesFocusOnOpen() && activeElement instanceof HTMLElement
         ? activeElement
         : undefined;
 
@@ -822,7 +824,7 @@ export class Dropdown
     this.addObserverForTriggerVisibility();
     this.applyDropdownPosition();
 
-    if (this.isPositionedAtPoint()) {
+    if (this.movesFocusOnOpen()) {
       this.focusFirstItemOnOpen();
     }
   }
@@ -831,11 +833,15 @@ export class Dropdown
    * Without a trigger element there is nothing that keeps focus while the
    * dropdown is open, so focus is moved into the dropdown.
    */
-  private focusFirstItemOnOpen() {
-    if (this.disableFocusHandling || this.callbackFocusElement) {
-      return;
-    }
+  private movesFocusOnOpen() {
+    return (
+      this.isPositionedAtPoint() &&
+      !this.disableFocusHandling &&
+      !this.callbackFocusElement
+    );
+  }
 
+  private focusFirstItemOnOpen() {
     requestAnimationFrameNoNgZone(() => {
       if (!this.show) {
         return;
@@ -857,8 +863,27 @@ export class Dropdown
     });
   }
 
+  override isAriaActiveDescendantActive(): boolean {
+    // Only applies while the dropdown itself holds DOM focus, otherwise the
+    // trigger (e.g. `ix-dropdown-button`) exposes the active item
+    return (
+      this.show &&
+      this.isPositionedAtPoint() &&
+      !this.isRovingTabindex &&
+      getDeepActiveElement() === this.hostElement
+    );
+  }
+
+  override getControllingAriaElement(): HTMLElement {
+    return this.hostElement;
+  }
+
+  private get pointPosition() {
+    return this.showAtPosition ?? this.anchorPosition;
+  }
+
   private isPositionedAtPoint() {
-    return !!this.anchorPosition && !this.triggerElement;
+    return !!this.pointPosition && !this.triggerElement;
   }
 
   @Watch('anchorPosition')
@@ -1135,19 +1160,39 @@ export class Dropdown
     this.resetForwardQueryElement();
 
     removeVisibleFocus();
+    this.clearActiveDescendant();
 
     if (this.suppressTriggerFocusOnHide) {
       this.suppressTriggerFocusOnHide = false;
+    } else if (this.focusReturnElement) {
+      // Focus was moved into the dropdown on open, return it regardless of
+      // the input modality unless the user moved it somewhere else meanwhile
+      const focusReturnElement = this.focusReturnElement;
+      requestAnimationFrameNoNgZone(() => {
+        if (this.isFocusLostOrInside()) {
+          focusReturnElement.focus({ preventScroll: true });
+        }
+      });
     } else if (!this.disableFocusTrap && hasKeyboardMode()) {
       // Restore focus to trigger element
-      const focusTarget =
-        (this.triggerElement as HTMLElement) ?? this.focusReturnElement;
       requestAnimationFrameNoNgZone(() => {
-        focusTarget?.focus();
+        (this.triggerElement as HTMLElement)?.focus();
       });
     }
 
     this.focusReturnElement = undefined;
+  }
+
+  private isFocusLostOrInside() {
+    const activeElement = getDeepActiveElement();
+    return (
+      !activeElement ||
+      activeElement === document.body ||
+      closestPassShadow(
+        activeElement,
+        `[data-ix-dropdown="${this.dropdownElementId}"]`
+      ) !== null
+    );
   }
 
   private destroyAutoUpdate() {
@@ -1180,8 +1225,9 @@ export class Dropdown
       return;
     }
 
-    const referenceElement: ReferenceElement | undefined = this.anchorPosition
-      ? createPointReference(this.anchorPosition)
+    const pointPosition = this.pointPosition;
+    const referenceElement: ReferenceElement | undefined = pointPosition
+      ? createPointReference(pointPosition)
       : this.anchorElement;
 
     if (!referenceElement) {
@@ -1189,7 +1235,7 @@ export class Dropdown
       return;
     }
 
-    const isSubmenu = !this.anchorPosition && this.isAnchorSubmenu();
+    const isSubmenu = !pointPosition && this.isAnchorSubmenu();
 
     let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
 
@@ -1223,7 +1269,7 @@ export class Dropdown
     positionConfig.middleware = [
       ...(positionConfig.middleware?.filter(Boolean) || []),
       // A point reference has no client rects to pick from
-      ...(this.anchorPosition ? [] : [inline()]),
+      ...(pointPosition ? [] : [inline()]),
       shift(),
     ];
 
@@ -1351,7 +1397,8 @@ export class Dropdown
   /**
    * Show the dropdown at the given absolute point in viewport coordinates
    * (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event.
-   * Sets `anchorPosition` and moves an already visible dropdown.
+   * Moves an already visible dropdown. The position takes precedence over
+   * `anchorPosition`, `anchor` and `trigger` until the dropdown is hidden.
    *
    * @param x Absolute horizontal viewport coordinate in pixels
    * @param y Absolute vertical viewport coordinate in pixels
@@ -1360,13 +1407,21 @@ export class Dropdown
    */
   @Method()
   async showAt(x: number, y: number) {
-    this.anchorPosition = { x, y };
+    this.showAtPosition = { x, y };
 
     if (this.isPresent()) {
+      this.changedAnchorPosition();
       return;
     }
 
     dropdownController.present(this);
+
+    if (!this.isPresent()) {
+      // Opening was prevented via `showChange`
+      this.showAtPosition = undefined;
+      return;
+    }
+
     dropdownController.dismissOthers(this.getId());
   }
 
@@ -1459,16 +1514,17 @@ export class Dropdown
       ariaAttributes['role'] = this.hostRole;
     }
 
-    const hostFocusable =
-      this.isPositionedAtPoint() &&
-      !this.isRovingTabindex &&
-      !this.disableFocusHandling;
+    const hostFocusable = this.movesFocusOnOpen() && !this.isRovingTabindex;
+    const role =
+      ariaAttributes['role'] ?? this.hostElement.getAttribute('role');
+    // `aria-modal` is only valid for dialog roles, e.g. not for `role="menu"`
+    const isDialogRole = !role || role === 'dialog' || role === 'alertdialog';
 
     return (
       <Host
         {...ariaAttributes}
         tabindex={hostFocusable ? -1 : undefined}
-        aria-modal={this.suppressAriaModal ? undefined : 'true'}
+        aria-modal={isDialogRole ? 'true' : undefined}
         data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap
         class={{

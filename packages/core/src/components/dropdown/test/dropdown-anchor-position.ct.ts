@@ -100,6 +100,67 @@ regressionTest.describe('anchor position', () => {
   );
 
   regressionTest(
+    'showAt position does not persist after hiding',
+    async ({ mount, page }) => {
+      await mount(html`
+        <ix-button id="trigger">Trigger</ix-button>
+        <ix-dropdown id="dropdown" trigger="trigger">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await dropdown.evaluate((element: HTMLIxDropdownElement) =>
+        element.showAt(300, 200)
+      );
+      await expectTopLeftAt(dropdown, 300, 200);
+
+      await page.keyboard.press('Escape');
+      await expect(dropdown).not.toBeVisible();
+      expect(
+        await dropdown.evaluate(
+          (element: HTMLIxDropdownElement) => element.anchorPosition
+        )
+      ).toBeUndefined();
+
+      const trigger = page.getByRole('button', { name: 'Trigger' });
+      await trigger.click();
+      await expect(dropdown).toBeVisible();
+
+      const triggerBox = await trigger.boundingBox();
+      if (!triggerBox) {
+        throw new Error('Expected bounding box');
+      }
+      await expectTopLeftAt(
+        dropdown,
+        Math.round(triggerBox.x),
+        Math.round(triggerBox.y + triggerBox.height)
+      );
+    }
+  );
+
+  regressionTest(
+    'prevented showChange keeps showAt closed',
+    async ({ mount, page }) => {
+      await mount(contextMenuFixture());
+
+      const dropdown = page.locator('#context-menu');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await dropdown.evaluate((element: HTMLIxDropdownElement) => {
+        element.addEventListener('showChange', (event) =>
+          event.preventDefault()
+        );
+        return element.showAt(100, 100);
+      });
+
+      await expect(dropdown).not.toBeVisible();
+    }
+  );
+
+  regressionTest(
     'stays within the viewport near the edge',
     async ({ mount, page }) => {
       await mount(contextMenuFixture());
@@ -217,6 +278,62 @@ regressionTest.describe('anchor position', () => {
     );
 
     regressionTest(
+      'exposes the active item via aria-activedescendant',
+      async ({ mount, page }) => {
+        await mount(contextMenuFixture());
+        await openContextMenuOnRightClick(page);
+
+        const dropdown = page.locator('#context-menu');
+        await expect(dropdown).toHaveAttribute('hydrated');
+
+        await page.mouse.click(100, 100, { button: 'right' });
+        await expect(dropdown).toBeFocused();
+
+        const activeDescendantLabel = () =>
+          dropdown.evaluate((element) => {
+            const id = element.getAttribute('aria-activedescendant');
+            return id
+              ? (document.getElementById(id)?.getAttribute('label') ?? null)
+              : null;
+          });
+
+        await page.keyboard.press('ArrowDown');
+        await expect.poll(activeDescendantLabel).toBe('Copy');
+
+        await page.keyboard.press('ArrowDown');
+        await expect.poll(activeDescendantLabel).toBe('Paste');
+
+        await page.keyboard.press('Escape');
+        await expect(dropdown).not.toHaveAttribute('aria-activedescendant');
+      }
+    );
+
+    regressionTest(
+      'restores focus to the previously focused element after item click',
+      async ({ mount, page }) => {
+        await mount(html`
+          <input id="target" aria-label="Name" />
+          <ix-dropdown id="context-menu" role="menu">
+            <ix-dropdown-item label="Paste"></ix-dropdown-item>
+          </ix-dropdown>
+        `);
+        await openContextMenuOnRightClick(page, '#target');
+
+        const dropdown = page.locator('#context-menu');
+        await expect(dropdown).toHaveAttribute('hydrated');
+
+        const input = page.getByLabel('Name');
+        await input.click();
+        await input.click({ button: 'right' });
+        await expect(dropdown).toBeFocused();
+
+        await page.getByRole('menuitem', { name: 'Paste' }).click();
+        await expect(dropdown).not.toBeVisible();
+        await expect(input).toBeFocused();
+      }
+    );
+
+    regressionTest(
       'restores focus to the previously focused element when closed via keyboard',
       async ({ mount, page }) => {
         await mount(html`
@@ -290,10 +407,9 @@ regressionTest.describe('anchor position', () => {
 
       await page.mouse.click(100, 100, { button: 'right' });
       await expect(dropdown).toBeVisible();
+      await expect(dropdown).not.toHaveAttribute('aria-modal');
 
-      const accessibilityScanResults = await makeAxeBuilder()
-        .include('ix-dropdown-item')
-        .analyze();
+      const accessibilityScanResults = await makeAxeBuilder().analyze();
       expect(accessibilityScanResults.violations).toEqual([]);
     });
   });

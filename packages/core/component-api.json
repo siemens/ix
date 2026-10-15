@@ -2354,7 +2354,7 @@
           "type": "\"active-descendant\" | \"roving-tabindex\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'active-descendant'",
+          "default": "'roving-tabindex'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -3960,7 +3960,7 @@
         {
           "name": "anchorPosition",
           "type": "undefined | { x: number; y: number; }",
-          "mutable": true,
+          "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
           "required": false,
