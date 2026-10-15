@@ -31,6 +31,7 @@ $blind-status-sys: (
   --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
   --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
   --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
+  --ix-blind--border-color: #{sys.$si-sys-color-border-3};
   --ix-blind-header--border-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind--background: #{sys.$si-sys-color-background-1};
   --ix-blind-status-color: transparent;
@@ -50,9 +51,13 @@ $blind-status-sys: (
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
-  /* Left padding; layout border width is subtracted below when present. */
-  --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-content--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
+  /* Left padding minus layout border (always present; filled uses transparent). */
+  --ix-blind-header-content--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-blind-content--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
+  );
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
   --ix-blind-header--min-height: #{sys.$si-sys-sizing-size-100};
@@ -64,16 +69,6 @@ $blind-status-sys: (
   --ix-blind-header-title-label--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header-title-sublabel--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
-}
-
-/* Outline: subtract outline border from left padding. */
-:host(.outline) {
-  --ix-blind-header-content--padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
-  );
-  --ix-blind-content--padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
-  );
 }
 
 /* Status: subtract indicator border; keep same outer inset. */

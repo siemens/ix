@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  box-sizing: border-box;
+  border: solid var(--ix-blind--border-width) var(--ix-blind--border-color);
   border-radius: var(--ix-blind--border-radius);
   overflow: hidden;
 
@@ -172,33 +174,19 @@
   }
 }
 
-/* Filled surface (outline=false), including status. Outline stays transparent. */
+/* Layout border always present (card pattern); filled uses transparent color. */
 :host(:not(.outline)) {
+  --ix-blind--border-color: transparent;
   background-color: var(--ix-blind--background);
 }
 
-/* Outline and status chrome via host border (mixed-color mitre when both apply). */
-:host(.outline) {
-  box-sizing: border-box;
-  border: solid var(--ix-blind--border-width)
-    var(--ix-blind-outline--border-color);
-
-  .blind-header {
-    border-radius: 0;
-  }
-}
-
-:host(.outline:not(.blind-default)) {
+/* Status: thicker left indicator; other sides keep the 1px layout border. */
+:host(:not(.blind-default)) {
   border-left-width: var(--ix-blind--indicator-width);
   border-left-color: var(--ix-blind-status-color);
 }
 
-:host(:not(.outline):not(.blind-default)) {
-  box-sizing: border-box;
-  border-left: var(--ix-blind--indicator-width) solid
-    var(--ix-blind-status-color);
-}
-
 :host(.outline) .blind-header {
+  border-radius: 0;
   background-clip: padding-box;
 }

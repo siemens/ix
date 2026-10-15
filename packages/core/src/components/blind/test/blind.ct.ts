@@ -17,6 +17,28 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'collapsed outline and filled share the same host height',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-blind outline="false" collapsed label="Filled"></ix-blind>
+    <ix-blind collapsed label="Outline"></ix-blind>
+  `);
+
+    const filled = page.locator('ix-blind').nth(0);
+    const outline = page.locator('ix-blind').nth(1);
+    await expect(filled).toHaveAttribute('hydrated');
+    await expect(outline).toHaveAttribute('hydrated');
+
+    const [filledHeight, outlineHeight] = await Promise.all([
+      filled.evaluate((element) => element.getBoundingClientRect().height),
+      outline.evaluate((element) => element.getBoundingClientRect().height),
+    ]);
+
+    expect(outlineHeight).toBe(filledHeight);
+  }
+);
+
+regressionTest(
   'outline class follows the outline prop',
   async ({ mount, page }) => {
     await mount(`
