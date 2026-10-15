@@ -8,6 +8,7 @@
  */
 
 import { dropdownController } from '../../dropdown/dropdown-controller';
+import { isValidationSuppressedByForm } from './validation';
 
 export async function openDropdown(dropdownElementRef: any) {
   const dropdownElement = await dropdownElementRef.waitForCurrent();
@@ -55,6 +56,14 @@ export function handleIconClick(
   if (inputElementRef.current) {
     inputElementRef.current.focus();
   }
+}
+
+/** Parse errors stay reported, but show no feedback in `novalidate` forms */
+export function shouldShowInputInvalid(
+  isInputInvalid: boolean,
+  formInternals: ElementInternals
+): boolean {
+  return isInputInvalid && !isValidationSuppressedByForm(formInternals.form);
 }
 
 export function createValidityState(
