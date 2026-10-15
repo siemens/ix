@@ -113,7 +113,7 @@ export class Tree {
   private getVirtualizerOptions(
     refreshTreeOptions: RefreshTreeOptions
   ): VirtualListConfig {
-    const list = this.buildTreeList(this.model[this.root]);
+    const list = this.buildTreeList(this.getModelItem(this.root));
 
     return {
       width: '100%',
@@ -203,26 +203,39 @@ export class Tree {
     this.contextChange.emit(this.context);
   }
 
+  private getModelItem(id: string): TreeItem<any> | undefined {
+    if (!this.model || !Object.hasOwn(this.model, id)) {
+      return undefined;
+    }
+    return this.model[id];
+  }
+
   private getContext(id: string): TreeItemContext {
     if (!this.context) {
       return {
         isExpanded: false,
         isSelected: false,
-        isDisabled: this.model[id]?.disabled,
+        isDisabled: this.getModelItem(id)?.disabled,
       };
     }
-    if (!this.context[id]) {
-      this.context[id] = {
-        isExpanded: false,
-        isSelected: false,
-        isDisabled: this.model[id]?.disabled,
-      };
+    if (!Object.hasOwn(this.context, id) || !this.context[id]) {
+      // defineProperty avoids invoking inherited setters such as `__proto__`
+      Object.defineProperty(this.context, id, {
+        value: {
+          isExpanded: false,
+          isSelected: false,
+          isDisabled: this.getModelItem(id)?.disabled,
+        },
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      });
     }
     return this.context[id];
   }
 
   private buildTreeList(
-    root: TreeItem<any>,
+    root: TreeItem<any> | undefined,
     level: number = 0
   ): TreeItemVisual<any>[] {
     const itemList: TreeItemVisual<any>[] = [];
@@ -230,7 +243,10 @@ export class Tree {
     if (root?.hasChildren) {
       const newLevel = level + 1;
       root.children.forEach((id: string) => {
-        const item = this.model[id];
+        const item = this.getModelItem(id);
+        if (!item) {
+          throw new TypeError(`Tree model has no item for child key "${id}"`);
+        }
         const context = this.getContext(id);
         itemList.push({ ...item, level });
         if (item.hasChildren && context.isExpanded) {
@@ -369,8 +385,8 @@ export class Tree {
       return;
     }
 
-    const item = this.model[id];
-    if (!item.hasChildren) {
+    const item = this.getModelItem(id);
+    if (!item?.hasChildren) {
       return;
     }
 
@@ -401,7 +417,11 @@ export class Tree {
       return;
     }
 
-    const item = this.model[id];
+    const item = this.getModelItem(id);
+    if (!item) {
+      return;
+    }
+
     const context = this.getContext(id);
 
     if (item.disabled || context.isDisabled) {

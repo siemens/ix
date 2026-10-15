@@ -749,3 +749,47 @@ regressionTest(
     );
   }
 );
+
+regressionTest(
+  'does not pollute Object.prototype through reserved item ids',
+  async ({ mount, page }) => {
+    await mount(`
+      <div style="height: 20rem; width: 100%;">
+        <ix-tree root="root" toggle-on-item-click></ix-tree>
+      </div>
+    `);
+    const tree = page.locator('ix-tree');
+    await expect(tree).toHaveAttribute('hydrated');
+
+    await tree.evaluate((element: HTMLIxTreeElement) => {
+      element.model = JSON.parse(`{
+        "root": { "id": "root", "data": { "name": "" }, "hasChildren": true, "children": ["__proto__"] },
+        "__proto__": { "id": "__proto__", "data": { "name": "Reserved" }, "hasChildren": true, "children": ["child"] },
+        "child": { "id": "child", "data": { "name": "Child" }, "hasChildren": false, "children": [] }
+      }`);
+    });
+
+    const reservedItem = tree.locator('ix-tree-item', { hasText: 'Reserved' });
+    await expect(reservedItem).toBeVisible();
+    await reservedItem.click();
+
+    await expect(
+      tree.locator('ix-tree-item', { hasText: 'Child' })
+    ).toBeVisible();
+
+    const result = await tree.evaluate((element: HTMLIxTreeElement) => {
+      const probe = {} as Record<string, unknown>;
+      return {
+        polluted: 'isSelected' in probe || 'isExpanded' in probe,
+        ownContext: Object.hasOwn(element.context, '__proto__'),
+        reservedContext: element.context['__proto__'],
+      };
+    });
+
+    expect(result.polluted).toBe(false);
+    expect(result.ownContext).toBe(true);
+    expect(result.reservedContext).toEqual(
+      expect.objectContaining({ isSelected: true, isExpanded: true })
+    );
+  }
+);
