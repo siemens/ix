@@ -825,9 +825,9 @@ regressionTest.describe('interval validation', () => {
         await expect(
           timePickerUnitList(timePicker, unit).getByRole('option')
         ).toHaveCount(60);
-        expect(
-          errors.some((error) => error.includes('is not valid for'))
-        ).toBe(true);
+        expect(errors.some((error) => error.includes('is not valid for'))).toBe(
+          true
+        );
       }
     );
   }
