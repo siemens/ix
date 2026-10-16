@@ -514,7 +514,7 @@ regressionTest(
 );
 
 regressionTest(
-  'labeled leading icon is 20px and chevron stays 24px',
+  'labeled leading icon and chevron are 20px',
   async ({ mount, page }) => {
     await mount(
       `
@@ -534,12 +534,12 @@ regressionTest(
       button.locator(
         '.content > ix-icon[aria-hidden="true"]:not(.dropdown-icon)'
       )
-    ).toHaveClass(/size-24/);
+    ).toHaveClass(/size-20/);
   }
 );
 
 regressionTest(
-  'icon-only uses a 32px host and 24px glyph',
+  'icon-only uses a 32px host and 20px glyph',
   async ({ mount, page }) => {
     await mount(
       `
@@ -553,7 +553,7 @@ regressionTest(
     const iconButton = page.locator('ix-dropdown-button ix-icon-button');
     await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toHaveClass(/btn-icon-32/);
-    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-24/);
+    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-20/);
   }
 );
 
