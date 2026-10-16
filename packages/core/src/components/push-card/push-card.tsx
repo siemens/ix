@@ -55,7 +55,7 @@ export class PushCard {
   /**
    * Card status variant
    */
-  @Prop() variant: PushCardVariant = 'default';
+  @Prop() variant: PushCardVariant = 'base';
 
   /**
    * Show the card with outline chrome.

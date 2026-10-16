@@ -28,10 +28,10 @@
     var(--ix-card-border-color, var(--ix-card--border-color));
   border-radius: var(--ix-card--border-radius);
 
-  color: var(--ix-card-default--color);
+  color: var(--ix-card-base--color);
 
-  --ix-card-background: var(--ix-card-default--background);
-  --ix-card-border-color: var(--ix-card-default--border-color);
+  --ix-card-background: var(--ix-card-base--background);
+  --ix-card-border-color: var(--ix-card-base--border-color);
 
   @include component.ix-component;
 
@@ -84,22 +84,22 @@
   /* Outline + status: sides stay border-3; selected does not switch to accent */
   :host(.outline.card-#{$status}),
   :host(.outline.selected.card-#{$status}) {
-    --ix-card-border-color: var(--ix-card-default--border-color);
+    --ix-card-border-color: var(--ix-card-base--border-color);
   }
 }
 
-/* Selected accent border for default cards only */
+/* Selected accent border for base cards only */
 :host(.selected) {
-  --ix-card-border-color: var(--ix-card-default--border-color--selected);
+  --ix-card-border-color: var(--ix-card-base--border-color--selected);
 }
 
 /* Hover / active only when clickable */
 :host(.clickable.outline:hover) {
-  --ix-card-background: var(--ix-card-default--background--hover);
+  --ix-card-background: var(--ix-card-base--background--hover);
 }
 
 :host(.clickable.outline:active) {
-  --ix-card-background: var(--ix-card-default--background--active);
+  --ix-card-background: var(--ix-card-base--background--active);
 }
 
 :host(.clickable:not(.outline):hover) {
@@ -112,7 +112,7 @@
 
 :host(.selected:not(.clickable)),
 :host(.selected) {
-  --ix-card-background: var(--ix-card-default--background--selected);
+  --ix-card-background: var(--ix-card-base--background--selected);
 }
 
 :host(.selected:not(.outline)) {

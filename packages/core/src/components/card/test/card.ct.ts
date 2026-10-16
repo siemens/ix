@@ -10,14 +10,14 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest(
-  'renders with non-clickable default',
+  'renders with non-clickable base',
   async ({ mount, page }) => {
     await mount(`<ix-card></ix-card>`);
     const card = page.locator('ix-card');
     await expect(card).toHaveAttribute('hydrated', '');
     await expect(card).toHaveClass(/\boutline\b/);
     await expect(card).not.toHaveClass(/\bclickable\b/);
-    await expect(card).toHaveClass(/\bcard-default\b/);
+    await expect(card).toHaveClass(/\bcard-base\b/);
   }
 );
 
@@ -82,12 +82,12 @@ regressionTest(
   'outline status keeps border-3 sides; selected does not use accent',
   async ({ mount, page }) => {
     await mount(`
-      <ix-card id="default" variant="default" outline></ix-card>
+      <ix-card id="base" variant="base" outline></ix-card>
       <ix-card id="status" variant="danger" outline></ix-card>
       <ix-card id="selected" variant="danger" outline selected></ix-card>
-      <ix-card id="default-selected" variant="default" outline selected></ix-card>
+      <ix-card id="base-selected" variant="base" outline selected></ix-card>
     `);
-    const def = await page.locator('#default').evaluate((el) => ({
+    const base = await page.locator('#base').evaluate((el) => ({
       left: getComputedStyle(el).borderLeftColor,
       top: getComputedStyle(el).borderTopColor,
     }));
@@ -99,23 +99,23 @@ regressionTest(
       left: getComputedStyle(el).borderLeftColor,
       top: getComputedStyle(el).borderTopColor,
     }));
-    const defaultSelected = await page
-      .locator('#default-selected')
+    const baseSelected = await page
+      .locator('#base-selected')
       .evaluate((el) => getComputedStyle(el).borderLeftColor);
 
     // Outline status: sides stay border-3; top is status color
-    expect(status.left).toBe(def.left);
+    expect(status.left).toBe(base.left);
     expect(status.top).not.toBe(status.left);
     // Selected status outline: still border-3 sides, status top
-    expect(selected.left).toBe(def.left);
+    expect(selected.left).toBe(base.left);
     expect(selected.top).toBe(status.top);
-    // Default selected uses accent border
-    expect(defaultSelected).not.toBe(def.left);
+    // Base selected uses accent border
+    expect(baseSelected).not.toBe(base.left);
   }
 );
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`<ix-card variant="default"><span>Content</span></ix-card>`);
+  await mount(`<ix-card variant="base"><span>Content</span></ix-card>`);
   const accessibilityScanResults = await makeAxeBuilder().analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
 });

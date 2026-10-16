@@ -28,7 +28,7 @@ export class IxActionCard {
   /**
    * Card status variant
    */
-  @Prop() variant: ActionCardVariant = 'default';
+  @Prop() variant: ActionCardVariant = 'base';
 
   /**
    * Show the card with outline chrome.
@@ -91,7 +91,7 @@ export class IxActionCard {
   }
 
   private getSubheadingTextColor() {
-    return this.variant === 'default' ? 'soft' : undefined;
+    return this.variant === 'base' ? 'soft' : undefined;
   }
 
   render() {

@@ -13,7 +13,7 @@
  * @since 6.0.0
  */
 export type StatusVariant =
-  | 'default'
+  | 'base'
   | 'danger'
   | 'warning'
   | 'caution'
@@ -29,7 +29,7 @@ export type StatusVariant =
  * @since 6.0.0
  */
 export const STATUS_VARIANTS: readonly StatusVariant[] = [
-  'default',
+  'base',
   'danger',
   'warning',
   'caution',
@@ -41,7 +41,7 @@ export const STATUS_VARIANTS: readonly StatusVariant[] = [
 ] as const;
 
 /**
- * Status values that show a strip or status border (excludes `default`).
+ * Status values that show a strip or status border (excludes `base`).
  *
  * @since 6.0.0
  */
@@ -54,4 +54,4 @@ export const STATUS_EMPHASIS_VARIANTS = [
   'critical',
   'success',
   'neutral',
-] as const satisfies ReadonlyArray<Exclude<StatusVariant, 'default'>>;
+] as const satisfies ReadonlyArray<Exclude<StatusVariant, 'base'>>;

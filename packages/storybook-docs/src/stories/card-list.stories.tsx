@@ -12,10 +12,10 @@ import { makeArgTypes } from './utils/generic-render';
 type Element = Components.IxCardList;
 
 const variants: Array<{
-  variant: 'default' | 'warning' | 'success' | 'danger' | 'information';
+  variant: 'base' | 'warning' | 'success' | 'danger' | 'information';
   outline?: boolean;
 }> = [
-  { variant: 'default', outline: false },
+  { variant: 'base', outline: false },
   { variant: 'warning' },
   { variant: 'success' },
   { variant: 'danger' },

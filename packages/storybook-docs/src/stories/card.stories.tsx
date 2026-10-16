@@ -34,7 +34,7 @@ type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
-    variant: 'default',
+    variant: 'base',
     outline: true,
     clickable: false,
   },
@@ -42,7 +42,7 @@ export const Default: Story = {
 
 export const Filled: Story = {
   args: {
-    variant: 'default',
+    variant: 'base',
     outline: false,
   },
 };
@@ -63,7 +63,7 @@ export const DangerFilled: Story = {
 
 export const Clickable: Story = {
   args: {
-    variant: 'default',
+    variant: 'base',
     clickable: true,
   },
 };

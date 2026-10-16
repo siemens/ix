@@ -17,7 +17,7 @@ export default () => {
       notification="99"
       heading="Heading content"
       subheading="Subheading"
-      variant="default"
+      variant="base"
     >
       <table className="table">
         <thead>

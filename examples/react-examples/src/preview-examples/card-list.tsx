@@ -19,7 +19,7 @@ export default () => {
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="default"
+          variant="base"
           outline={false}
         ></IxPushCard>
         <IxPushCard
@@ -44,7 +44,7 @@ export default () => {
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="default" outline={false}
+          variant="base" outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconBulb}
@@ -58,21 +58,21 @@ export default () => {
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="default" outline={false}
+          variant="base" outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="default" outline={false}
+          variant="base" outline={false}
         ></IxPushCard>
         <IxPushCard
           icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
-          variant="default" outline={false}
+          variant="base" outline={false}
         ></IxPushCard>
       </IxCardList>
     </>

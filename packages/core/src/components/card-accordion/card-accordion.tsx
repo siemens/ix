@@ -52,7 +52,7 @@ export class CardAccordion {
    *
    * @since 4.0.0
    */
-  @Prop() variant: CardAccordionVariant = 'default';
+  @Prop() variant: CardAccordionVariant = 'base';
 
   /**
    * Show the accordion with outline chrome.

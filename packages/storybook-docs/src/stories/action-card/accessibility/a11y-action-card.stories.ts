@@ -118,7 +118,7 @@ export const VariantDefaultOutlineSelected: Story = {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'default',
+    variant: 'base',
     outline: true,
     selected: true,
   },

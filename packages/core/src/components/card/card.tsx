@@ -29,7 +29,7 @@ export class Card {
   /**
    * Card status variant
    */
-  @Prop() variant: StatusVariant = 'default';
+  @Prop() variant: StatusVariant = 'base';
 
   /**
    * Show the card with outline chrome.

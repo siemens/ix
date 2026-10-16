@@ -9,12 +9,12 @@
 
 @use 'tokens/system' as sys;
 
-/// Status variants that use strip / status border (excludes `default`).
+/// Status variants that use strip / status border (excludes `base`).
 $card-status-variants: danger warning caution information accent critical
   success neutral;
 
-/// All card `variant` values including `default`.
-$card-variants: default #{$card-status-variants};
+/// All card `variant` values including `base`.
+$card-variants: base #{$card-status-variants};
 
 /// SDL status chrome: top strip uses border/* tokens.
 $card-status-sys: (
@@ -37,18 +37,18 @@ $card-status-sys: (
   --ix-card--strip-height: #{sys.$si-sys-sizing-border-width-emphasis};
   --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 
-  /* Default / outline chrome */
-  --ix-card-default--background: transparent;
-  --ix-card-default--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-default--background--active: #{sys.$si-sys-color-background-active};
-  --ix-card-default--background--selected: #{sys.$si-sys-color-background-active};
-  --ix-card-default--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-default--border-color--hover: #{sys.$si-sys-color-border-3};
-  --ix-card-default--border-color--active: #{sys.$si-sys-color-border-3};
-  --ix-card-default--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-card-default--color: #{sys.$si-sys-color-text-primary};
+  /* Base / outline chrome */
+  --ix-card-base--background: transparent;
+  --ix-card-base--background--hover: #{sys.$si-sys-color-background-hover};
+  --ix-card-base--background--active: #{sys.$si-sys-color-background-active};
+  --ix-card-base--background--selected: #{sys.$si-sys-color-background-active};
+  --ix-card-base--border-color: #{sys.$si-sys-color-border-3};
+  --ix-card-base--border-color--hover: #{sys.$si-sys-color-border-3};
+  --ix-card-base--border-color--active: #{sys.$si-sys-color-border-3};
+  --ix-card-base--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
+  --ix-card-base--color: #{sys.$si-sys-color-text-primary};
 
-  /* Filled (outline=false) body — shared for default and status */
+  /* Filled (outline=false) body — shared for base and status */
   --ix-card-filled--background: #{sys.$si-sys-color-background-1};
   --ix-card-filled--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-card-filled--background--active: #{sys.$si-sys-color-background-active};

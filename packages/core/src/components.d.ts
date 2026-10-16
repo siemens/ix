@@ -170,7 +170,7 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant": ActionCardVariant;
     }
@@ -631,7 +631,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Card status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant": StatusVariant;
     }
@@ -659,7 +659,7 @@ export namespace Components {
         /**
           * Accordion status variant
           * @since 4.0.0
-          * @default 'default'
+          * @default 'base'
          */
         "variant": CardAccordionVariant;
     }
@@ -4186,7 +4186,7 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant": PushCardVariant;
     }
@@ -8239,7 +8239,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant"?: ActionCardVariant;
     }
@@ -8727,7 +8727,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Card status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant"?: StatusVariant;
     }
@@ -8756,7 +8756,7 @@ declare namespace LocalJSX {
         /**
           * Accordion status variant
           * @since 4.0.0
-          * @default 'default'
+          * @default 'base'
          */
         "variant"?: CardAccordionVariant;
     }
@@ -12504,7 +12504,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant"?: PushCardVariant;
     }

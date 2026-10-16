@@ -147,7 +147,7 @@ export const OutlineFalse: Story = {
     defaultSlot: 'Some content',
     heading: 'I am a heading',
     icon: 'add-circle-filled',
-    variant: 'default',
+    variant: 'base',
     outline: false,
   },
 };
