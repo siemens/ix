@@ -8,7 +8,7 @@
  */
 import { expect, Locator, Page } from '@playwright/test';
 import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { expectCollectedAfterRemoval, regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -561,3 +561,11 @@ regressionTest.describe('menu-avatar tooltip', () => {
     }
   );
 });
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const menu = await mount(`<ix-menu></ix-menu>`);
+    await expectCollectedAfterRemoval(page, menu);
+  }
+);
