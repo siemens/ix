@@ -1,0 +1,14 @@
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 15,26,861,863-865,869-870,873,882-883,888,902,909,913-914,919,926,930,932-935
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1073e5525857e004bedcadd052c8b81161b9e459",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}

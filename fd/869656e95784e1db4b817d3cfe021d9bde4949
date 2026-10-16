@@ -1,0 +1,104 @@
+.changeset/eix-410-card-status-variants.md
+  h_c5a773bf2fda8b 5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 867,871-873,881,896-897,901,929-930
+examples/angular-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 5
+examples/angular-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+examples/angular-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+examples/angular-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+examples/angular-standalone-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 14
+examples/angular-standalone-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+examples/angular-standalone-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+examples/angular-standalone-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+examples/html-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 29
+examples/html-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 32,56,70,77,84
+examples/html-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 28
+examples/html-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 30
+examples/react-examples/src/preview-examples/action-card.tsx
+  h_c5a773bf2fda8b 19
+examples/react-examples/src/preview-examples/card-list.tsx
+  h_c5a773bf2fda8b 22,47,61,68,75
+examples/react-examples/src/preview-examples/card.tsx
+  h_c5a773bf2fda8b 17
+examples/react-examples/src/preview-examples/push-card.tsx
+  h_c5a773bf2fda8b 20
+examples/vue-examples/src/preview-examples/action-card.vue
+  h_c5a773bf2fda8b 24
+examples/vue-examples/src/preview-examples/card-list.vue
+  h_c5a773bf2fda8b 22,46,60,67,74
+examples/vue-examples/src/preview-examples/card.vue
+  h_c5a773bf2fda8b 22
+examples/vue-examples/src/preview-examples/push-card.vue
+  h_c5a773bf2fda8b 21
+packages/core/component-api.json
+  h_c5a773bf2fda8b 92,95,992,995,1049,1052,8498,8501
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 173,634,662,4189,8242,8730,8759,12507
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 31,94
+packages/core/src/components/card-accordion/card-accordion.tsx
+  h_c5a773bf2fda8b 55
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 31,33-34,87,91,93,98,102,115
+packages/core/src/components/card/card.tsx
+  h_c5a773bf2fda8b 32
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 12,16-17,40-49,51
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 13,20,85,88,90,102-103,107,110,112-113,118
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 58
+packages/core/src/components/utils/status.types.ts
+  h_c5a773bf2fda8b 16,32,44,57
+packages/storybook-docs/src/stories/action-card/accessibility/a11y-action-card.stories.ts
+  h_c5a773bf2fda8b 121
+packages/storybook-docs/src/stories/action-card/action-card.stories.ts
+  h_c5a773bf2fda8b 150
+packages/storybook-docs/src/stories/card-list.stories.tsx
+  h_c5a773bf2fda8b 15,18
+packages/storybook-docs/src/stories/card.stories.tsx
+  h_c5a773bf2fda8b 37,45,66
+packages/storybook-docs/src/stories/push-card.stories.ts
+  h_c5a773bf2fda8b 37
+testing/visual-testing/tests/action-card/basic/index.html
+  h_c5a773bf2fda8b 83,89
+testing/visual-testing/tests/action-card/selected/index.html
+  h_c5a773bf2fda8b 90,97
+testing/visual-testing/tests/card-list/basic/index.html
+  h_c5a773bf2fda8b 43,50
+testing/visual-testing/tests/card-list/layout-scroll/index.html
+  h_c5a773bf2fda8b 43,50
+testing/visual-testing/tests/card-list/long-label/index.html
+  h_c5a773bf2fda8b 46,53
+testing/visual-testing/tests/card/basic/index.html
+  h_c5a773bf2fda8b 29,34
+testing/visual-testing/tests/card/selected/index.html
+  h_c5a773bf2fda8b 29,34
+testing/visual-testing/tests/push-card/basic/index.html
+  h_c5a773bf2fda8b 49,58,130,139
+testing/visual-testing/tests/push-card/push-card.e2e.ts
+  h_c5a773bf2fda8b 52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fd869656e95784e1db4b817d3cfe021d9bde4949",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}

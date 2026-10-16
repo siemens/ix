@@ -1,0 +1,22 @@
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 144,158,617,623,655,660,4179,8213,8227,8713,8719,8752,8757,12497
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 34,36,77-79
+packages/core/src/components/card-accordion/card-accordion.tsx
+  h_c5a773bf2fda8b 51,58
+packages/core/src/components/card/card.tsx
+  h_c5a773bf2fda8b 35,37,50
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 61,63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ead217807b0ca612bd7c4a5adcae9a3517f6642a",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
