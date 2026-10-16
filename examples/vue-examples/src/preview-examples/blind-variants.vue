@@ -9,12 +9,16 @@
 
 <script setup lang="ts">
 import { iconBulb } from '@siemens/ix-icons/icons';
-import { IxBlind } from '@siemens/ix-vue';
+import { IxBlind, IxPill } from '@siemens/ix-vue';
 </script>
 
 <style scoped src="./blind-variants.css"></style>
 
 <template>
+  <IxBlind>
+    <IxPill slot="custom-header">Custom header</IxPill>
+    <div>Custom header content</div>
+  </IxBlind>
   <IxBlind :outline="false" :icon="iconBulb" label="Filled" sublabel="sublabel">
     <div>Filled content</div>
   </IxBlind>

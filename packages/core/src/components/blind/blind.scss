@@ -16,8 +16,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  box-sizing: border-box;
-  border: solid var(--ix-blind--border-width) var(--ix-blind--border-color);
+  box-sizing: content-box;
+  border: none;
   border-radius: var(--ix-blind--border-radius);
   overflow: hidden;
 
@@ -64,6 +64,7 @@
 
     display: block;
     position: absolute;
+    box-sizing: border-box;
 
     top: 0px;
     left: 0px;
@@ -71,10 +72,9 @@
     pointer-events: all;
 
     padding-left: var(--ix-blind-header--padding-left);
-    min-height: var(--ix-blind-header--min-height);
-    height: var(--ix-blind-header--height);
-    width: calc(100% - 2 * var(--ix-blind--border-width));
-    border: solid var(--ix-blind--border-width) transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
       0 0;
     cursor: pointer;
@@ -82,9 +82,11 @@
 
     @include hover.ghost-hover-pressed;
 
+    /* Focus Visual: outside ring (not an in-layout header border). */
     @include hover.focus-visible {
-      border-color: var(--ix-blind-header--border-color--focus);
-      outline: none;
+      outline: var(--ix-blind--outline-width--focus) solid
+        var(--ix-blind--outline-color--focus);
+      outline-offset: var(--ix-blind--focus--outline-offset);
     }
   }
 
@@ -174,19 +176,32 @@
   }
 }
 
-/* Layout border always present (card pattern); filled uses transparent color. */
+/* Filled: no host border; content-box so hover wash is edge-to-edge. */
 :host(:not(.outline)) {
-  --ix-blind--border-color: transparent;
   background-color: var(--ix-blind--background);
 }
 
-/* Status: thicker left indicator; other sides keep the 1px layout border. */
-:host(:not(.blind-default)) {
-  border-left-width: var(--ix-blind--indicator-width);
-  border-left-color: var(--ix-blind-status-color);
+/*
+ * Outline: visible border is included in the box (border-box).
+ * Header height is reduced in vars so outer size matches filled.
+ */
+:host(.outline) {
+  box-sizing: border-box;
+  border: solid var(--ix-blind--border-width)
+    var(--ix-blind-outline--border-color);
 }
 
 :host(.outline) .blind-header {
   border-radius: 0;
-  background-clip: padding-box;
+}
+
+/* Status: left indicator (filled = left only; outline keeps other sides). */
+:host(:not(.outline):not(.blind-default)) {
+  border-left: var(--ix-blind--indicator-width) solid
+    var(--ix-blind-status-color);
+}
+
+:host(.outline:not(.blind-default)) {
+  border-left-width: var(--ix-blind--indicator-width);
+  border-left-color: var(--ix-blind-status-color);
 }

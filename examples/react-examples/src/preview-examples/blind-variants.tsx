@@ -10,11 +10,15 @@
 import { iconBulb } from '@siemens/ix-icons/icons';
 import './blind-variants.scoped.css';
 
-import { IxBlind } from '@siemens/ix-react';
+import { IxBlind, IxPill } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
+      <IxBlind>
+        <IxPill slot="custom-header">Custom header</IxPill>
+        <div>Custom header content</div>
+      </IxBlind>
       <IxBlind
         outline={false}
         icon={iconBulb}
