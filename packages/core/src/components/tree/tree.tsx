@@ -304,9 +304,14 @@ export class Tree {
       );
     }
     if (element) {
-      await element.componentOnReady();
+      await this.whenTreeItemReady(element);
       element.focus();
     }
+  }
+
+  private async whenTreeItemReady(item: HTMLIxTreeItemElement) {
+    await customElements.whenDefined('ix-tree-item');
+    await item.componentOnReady?.();
   }
 
   private onTreeKeyDown(event: KeyboardEvent) {
@@ -518,7 +523,7 @@ export class Tree {
           `[data-tree-node-id="${CSS.escape(focusedId)}"]`
         );
         if (treeItem) {
-          await treeItem.componentOnReady();
+          await this.whenTreeItemReady(treeItem);
           treeItem.focus();
         }
         return;
@@ -533,7 +538,7 @@ export class Tree {
           `[data-tree-node-id="${CSS.escape(focusedId)}"]`
         );
         if (treeItem && treeItem !== focusedItem) {
-          await treeItem.componentOnReady();
+          await this.whenTreeItemReady(treeItem);
         }
         const selector = focusedControl.matches('.icon-toggle')
           ? '.icon-toggle'
