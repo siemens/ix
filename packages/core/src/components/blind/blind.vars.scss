@@ -33,7 +33,10 @@ $blind-status-sys: (
   --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
   --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-blind--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  /* Inward: host/header-wrapper use overflow:hidden and would clip an outside ring. */
+  --ix-blind--focus--outline-offset: calc(
+    -1 * #{sys.$si-sys-sizing-focus-ring-offset}
+  );
   --ix-blind--background: #{sys.$si-sys-color-background-1};
   --ix-blind-status-color: transparent;
   --ix-blind--indicator-width: #{sys.$si-sys-sizing-border-width-emphasis};
@@ -59,9 +62,7 @@ $blind-status-sys: (
   --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   /* custom-header: clear chevron column; align with title/icon. */
   --ix-blind-header--padding-left: calc(
-    var(--ix-blind-header-content--padding-left) +
-      var(--ix-blind-icon--icon-size) +
-      var(--ix-blind-collapse-icon--margin-right)
+    var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--icon-size) + var(--ix-blind-collapse-icon--margin-right)
   );
   --ix-blind-header-title-col--width: calc(
     100% - #{sys.$si-sys-sizing-spacing-x-60}

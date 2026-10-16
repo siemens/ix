@@ -62,7 +62,12 @@ regressionTest(
 );
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`<ix-blind label="Example label">Some content</ix-blind>`);
+  await mount(`
+    <ix-blind label="Example label">Some content</ix-blind>
+    <ix-blind outline="false" label="Filled"></ix-blind>
+    <ix-blind variant="danger" label="Danger"></ix-blind>
+    <ix-blind variant="danger" outline="false" label="Danger filled"></ix-blind>
+  `);
 
   const accessibilityScanResults = await makeAxeBuilder().analyze();
   expect(accessibilityScanResults.violations).toEqual([]);

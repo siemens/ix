@@ -82,7 +82,7 @@
 
     @include hover.ghost-hover-pressed;
 
-    /* Focus Visual: outside ring (not an in-layout header border). */
+    /* Focus ring (not an in-layout header border); inward so overflow:hidden does not clip. */
     @include hover.focus-visible {
       outline: var(--ix-blind--outline-width--focus) solid
         var(--ix-blind--outline-color--focus);
