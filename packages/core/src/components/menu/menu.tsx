@@ -207,6 +207,7 @@ export class Menu {
     | HTMLIxMenuItemElement
     | HTMLIxMenuCategoryElement;
   private themeNameDisposer?: Disposable;
+  private breakpointChangeDisposable?: Disposable;
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -381,9 +382,6 @@ export class Menu {
       true
     );
 
-    applicationLayoutService.onChange.on((breakpoint) =>
-      this.onBreakpointChange(breakpoint)
-    );
     this.onBreakpointChange(applicationLayoutService.breakpoint, true);
 
     this.updateThemeState();
@@ -402,9 +400,15 @@ export class Menu {
 
   connectedCallback() {
     menuController.register(this.hostElement);
+    this.breakpointChangeDisposable?.dispose();
+    this.breakpointChangeDisposable = applicationLayoutService.onChange.on(
+      (breakpoint) => this.onBreakpointChange(breakpoint)
+    );
   }
 
   disconnectedCallback() {
+    this.breakpointChangeDisposable?.dispose();
+    this.breakpointChangeDisposable = undefined;
     this.themeNameDisposer?.dispose();
     menuController.unregister(this.hostElement);
   }

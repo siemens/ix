@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { expectCollectedAfterRemoval, regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane-layout></ix-pane-layout>`);
@@ -121,3 +121,16 @@ regressionTest.describe('pane-layout with floating pane', () => {
     }
   );
 });
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const layout = await mount(`
+      <ix-pane-layout>
+        <ix-pane slot="left" heading="Left"></ix-pane>
+        <ix-pane slot="bottom" heading="Bottom"></ix-pane>
+      </ix-pane-layout>
+    `);
+    await expectCollectedAfterRemoval(page, layout);
+  }
+);
