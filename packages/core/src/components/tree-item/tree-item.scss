@@ -98,6 +98,6 @@
   pointer-events: none;
 }
 
-:host(:focus-visible) .tree-node-container {
+:host(:focus-visible) {
   outline: 1px solid var(--ix-tree-item--outline-color--focus);
 }
