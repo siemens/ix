@@ -22,21 +22,18 @@
     width: 100%;
     padding: var(--ix-link-button--padding);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: transparent;
     color: var(--ix-link-button--color);
     cursor: pointer;
-    text-decoration: none;
 
     .link {
       display: block;
       position: relative;
-      width: 100%;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      text-decoration: underline;
-      text-underline-offset: var(--ix-link-button-link--text-underline-offset);
+      text-decoration: underline var(--ix-link-button-link--text-underline-thickness) solid;
     }
 
     @include hover.hover {
