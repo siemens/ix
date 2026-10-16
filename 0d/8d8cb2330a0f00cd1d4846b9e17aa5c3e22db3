@@ -1,0 +1,124 @@
+.changeset/eix-410-blind-status-variants.md
+  h_c5a773bf2fda8b 5
+.changeset/eix-410-card-status-variants.md
+  h_c5a773bf2fda8b 5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 861,867,871-873,881,883,896-897,901,929-930,939,941,945-946,954,963,970-971
+examples/angular-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 5
+examples/angular-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+examples/angular-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+examples/angular-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+examples/angular-standalone-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 14
+examples/angular-standalone-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+examples/angular-standalone-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+examples/angular-standalone-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+examples/html-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 29
+examples/html-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 32,56,70,77,84
+examples/html-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 28
+examples/html-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 30
+examples/react-examples/src/preview-examples/action-card.tsx
+  h_c5a773bf2fda8b 19
+examples/react-examples/src/preview-examples/card-list.tsx
+  h_c5a773bf2fda8b 22,47,61,68,75
+examples/react-examples/src/preview-examples/card.tsx
+  h_c5a773bf2fda8b 17
+examples/react-examples/src/preview-examples/push-card.tsx
+  h_c5a773bf2fda8b 20
+examples/vue-examples/src/preview-examples/action-card.vue
+  h_c5a773bf2fda8b 24
+examples/vue-examples/src/preview-examples/card-list.vue
+  h_c5a773bf2fda8b 22,46,60,67,74
+examples/vue-examples/src/preview-examples/card.vue
+  h_c5a773bf2fda8b 22
+examples/vue-examples/src/preview-examples/push-card.vue
+  h_c5a773bf2fda8b 21
+packages/core/component-api.json
+  h_c5a773bf2fda8b 92,95,644,647,1002,1005,1059,1062,8508,8511
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 171,432,442,637,665,4192,8245,8519,8529,8738,8767,12515
+packages/core/src/components/action-card/action-card.scss
+  h_c5a773bf2fda8b 64-65
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 31,94
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 199,204
+packages/core/src/components/blind/blind.tsx
+  h_c5a773bf2fda8b 68,74
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 12,100
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 54,56,75
+packages/core/src/components/card-accordion/card-accordion.tsx
+  h_c5a773bf2fda8b 55
+packages/core/src/components/card-accordion/card-accordion.types.ts
+  h_c5a773bf2fda8b 2
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 31,33-34,75,81-87,91,93,98,102,115
+packages/core/src/components/card/card.tsx
+  h_c5a773bf2fda8b 2,32
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 12,16-17,19,21-28,36-37,40-49,51,60,62,67
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 13,20,32-41,61,67,72,82,85,88,90-93,102-103,106-113,118
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 58
+packages/core/src/components/push-card/push-card.types.ts
+  h_c5a773bf2fda8b 2
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 31,40-41,53-57,60-61
+packages/core/src/components/utils/status.types.ts
+  h_c5a773bf2fda8b 16,32,44,57
+packages/core/src/public-api.ts
+  h_c5a773bf2fda8b 29-32
+packages/storybook-docs/src/stories/action-card/accessibility/a11y-action-card.stories.ts
+  h_c5a773bf2fda8b 121
+packages/storybook-docs/src/stories/action-card/action-card.stories.ts
+  h_c5a773bf2fda8b 150
+packages/storybook-docs/src/stories/card-list.stories.tsx
+  h_c5a773bf2fda8b 15,18
+packages/storybook-docs/src/stories/card.stories.tsx
+  h_c5a773bf2fda8b 37,45,66
+packages/storybook-docs/src/stories/push-card.stories.ts
+  h_c5a773bf2fda8b 37
+testing/visual-testing/tests/action-card/basic/index.html
+  h_c5a773bf2fda8b 83,89
+testing/visual-testing/tests/action-card/selected/index.html
+  h_c5a773bf2fda8b 90,97
+testing/visual-testing/tests/card-list/basic/index.html
+  h_c5a773bf2fda8b 43,50
+testing/visual-testing/tests/card-list/layout-scroll/index.html
+  h_c5a773bf2fda8b 43,50
+testing/visual-testing/tests/card-list/long-label/index.html
+  h_c5a773bf2fda8b 46,53
+testing/visual-testing/tests/card/basic/index.html
+  h_c5a773bf2fda8b 29,34
+testing/visual-testing/tests/card/selected/index.html
+  h_c5a773bf2fda8b 29,34
+testing/visual-testing/tests/push-card/basic/index.html
+  h_c5a773bf2fda8b 49,58,130,139
+testing/visual-testing/tests/push-card/push-card.e2e.ts
+  h_c5a773bf2fda8b 52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0d8d8cb2330a0f00cd1d4846b9e17aa5c3e22db3",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
