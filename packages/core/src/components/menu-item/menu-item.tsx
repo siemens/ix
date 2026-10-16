@@ -13,6 +13,7 @@ import {
   Element,
   h,
   Host,
+  Listen,
   Method,
   Mixin,
   Prop,
@@ -225,6 +226,14 @@ export class MenuItem
     }
   }
 
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   private handleCategoryKeyDown(e: KeyboardEvent) {
     if ((e.key === 'Enter' || e.key === ' ') && this.isHostedInsideCategory) {
       this.returnFocusToParentCategoryMenuItem();
@@ -351,12 +360,6 @@ export class MenuItem
             }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
-            onClick={(e: Event) => {
-              if (this.disabled) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            }}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
             aria-current={this.active ? 'page' : undefined}
