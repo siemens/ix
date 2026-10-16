@@ -105,6 +105,37 @@ export class Tree {
   private hasFirstRender = false;
 
   private readonly dirtyItems = new Set<string>();
+  private focusedItemId?: string;
+
+  private getNavigationId(items: TreeItemVisual<unknown>[]) {
+    const focusableItems = items.filter(
+      (item) => !item.disabled && !this.getContext(item.id).isDisabled
+    );
+    return (
+      (this.focusedItemId &&
+        focusableItems.some((item) => item.id === this.focusedItemId) &&
+        this.focusedItemId) ||
+      focusableItems.find((item) => this.getContext(item.id).isSelected)?.id ||
+      focusableItems[0]?.id
+    );
+  }
+
+  private updateNavigationTabIndex(id: string) {
+    this.focusedItemId = id;
+    this.hostElement
+      .querySelectorAll<HTMLIxTreeItemElement>('[data-tree-node-id]')
+      .forEach((item) => {
+        this.setNavigationTabIndex(item, item.dataset.treeNodeId === id);
+      });
+  }
+
+  private setNavigationTabIndex(item: HTMLIxTreeItemElement, active: boolean) {
+    const index = active ? 0 : -1;
+    item.dataset.treeNavigationTabIndex = String(index);
+    item.dispatchEvent(
+      new CustomEvent('treeNavigationIndex', { detail: index })
+    );
+  }
 
   private updatePadding(element: HTMLElement, item: TreeItemVisual<unknown>) {
     element.style.paddingLeft = item.level + 'rem';
@@ -114,6 +145,7 @@ export class Tree {
     refreshTreeOptions: RefreshTreeOptions
   ): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
+    const navigationId = this.getNavigationId(list);
 
     return {
       width: '100%',
@@ -139,6 +171,13 @@ export class Tree {
           renderedTreeItem.disabled = Boolean(
             item.disabled || context.isDisabled
           );
+          this.setNavigationTabIndex(
+            renderedTreeItem,
+            item.id === navigationId
+          );
+          renderedTreeItem.setAttribute('aria-level', String(item.level + 1));
+          renderedTreeItem.setAttribute('aria-setsize', String(item.setsize));
+          renderedTreeItem.setAttribute('aria-posinset', String(item.posinset));
 
           let forceRerender = this.dirtyItems.has(item.id);
 
@@ -182,8 +221,13 @@ export class Tree {
           innerElement = renderDefaultItem(item, context, update);
         }
 
-        const el = innerElement;
+        const el = innerElement as HTMLIxTreeItemElement;
         el.setAttribute('data-tree-node-id', item.id);
+        el.dataset.treeNavigationTabIndex =
+          item.id === navigationId ? '0' : '-1';
+        el.setAttribute('aria-level', String(item.level + 1));
+        el.setAttribute('aria-setsize', String(item.setsize));
+        el.setAttribute('aria-posinset', String(item.posinset));
         el.style.paddingRight = 'var(--si-sys-sizing-spacing-x-60)';
         this.updatePadding(el, item);
 
@@ -229,10 +273,15 @@ export class Tree {
 
     if (root?.hasChildren) {
       const newLevel = level + 1;
-      root.children.forEach((id: string) => {
+      root.children.forEach((id: string, index: number) => {
         const item = this.model[id];
         const context = this.getContext(id);
-        itemList.push({ ...item, level });
+        itemList.push({
+          ...item,
+          level,
+          posinset: index + 1,
+          setsize: root.children.length,
+        });
         if (item.hasChildren && context.isExpanded) {
           itemList.push(...this.buildTreeList(item, newLevel));
         }
@@ -240,6 +289,139 @@ export class Tree {
     }
 
     return itemList;
+  }
+
+  private async focusItem(item: TreeItemVisual<unknown>, index: number) {
+    this.updateNavigationTabIndex(item.id);
+    let element = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+      `[data-tree-node-id="${CSS.escape(item.id)}"]`
+    );
+    if (!element) {
+      this.hostElement.scrollTop = index * 32;
+      await this.refreshTree();
+      element = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+        `[data-tree-node-id="${CSS.escape(item.id)}"]`
+      );
+    }
+    if (element) {
+      await this.whenTreeItemReady(element);
+      element.focus();
+    }
+  }
+
+  private async whenTreeItemReady(item: HTMLIxTreeItemElement) {
+    await customElements.whenDefined('ix-tree-item');
+    await item.componentOnReady?.();
+  }
+
+  private onTreeKeyDown(event: KeyboardEvent) {
+    const path = event.composedPath();
+    const focusedItem = path[0];
+    const isItemFocused =
+      focusedItem instanceof HTMLElement &&
+      focusedItem.tagName === 'IX-TREE-ITEM';
+    const row = path.find(
+      (node): node is HTMLElement =>
+        node instanceof HTMLElement &&
+        node.classList.contains('tree-node-container')
+    );
+    let itemElement: HTMLIxTreeItemElement;
+    if (isItemFocused) {
+      itemElement = focusedItem as HTMLIxTreeItemElement;
+    } else if (row && focusedItem === row) {
+      itemElement = (row.getRootNode() as ShadowRoot)
+        .host as HTMLIxTreeItemElement;
+    } else {
+      return;
+    }
+    const id = itemElement.dataset.treeNodeId;
+    if (!id || !this.hostElement.contains(itemElement)) {
+      return;
+    }
+
+    const list = this.buildTreeList(this.model[this.root]);
+    const index = list.findIndex((item) => item.id === id);
+    if (index < 0 || list[index].disabled || this.getContext(id).isDisabled) {
+      return;
+    }
+
+    const focusable = (item: TreeItemVisual<unknown>) =>
+      !item.disabled && !this.getContext(item.id).isDisabled;
+    let targetIndex = -1;
+
+    switch (event.key) {
+      case 'ArrowDown':
+        targetIndex = list.findIndex((item, i) => i > index && focusable(item));
+        break;
+      case 'ArrowUp':
+        for (let i = index - 1; i >= 0; i--) {
+          if (focusable(list[i])) {
+            targetIndex = i;
+            break;
+          }
+        }
+        break;
+      case 'Home':
+        targetIndex = list.findIndex(focusable);
+        break;
+      case 'End':
+        for (let i = list.length - 1; i >= 0; i--) {
+          if (focusable(list[i])) {
+            targetIndex = i;
+            break;
+          }
+        }
+        break;
+      case 'ArrowRight':
+        if (list[index].hasChildren) {
+          if (!this.getContext(id).isExpanded) {
+            this.toggleNode(id);
+          } else {
+            for (let i = index + 1; i < list.length; i++) {
+              if (list[i].level <= list[index].level) {
+                break;
+              }
+              if (
+                list[i].level === list[index].level + 1 &&
+                focusable(list[i])
+              ) {
+                targetIndex = i;
+                break;
+              }
+            }
+          }
+        }
+        break;
+      case 'ArrowLeft':
+        if (list[index].hasChildren && this.getContext(id).isExpanded) {
+          this.toggleNode(id);
+        } else {
+          for (let i = index - 1; i >= 0; i--) {
+            if (list[i].level < list[index].level) {
+              if (focusable(list[i])) {
+                targetIndex = i;
+              }
+              break;
+            }
+          }
+        }
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    if (targetIndex >= 0) {
+      void this.focusItem(list[targetIndex], targetIndex);
+    }
+  }
+
+  private toggleNode(id: string) {
+    const context = this.getContext(id);
+    context.isExpanded = !context.isExpanded;
+    this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
+    this.setContext(id, context);
   }
 
   componentDidLoad() {
@@ -324,10 +506,52 @@ export class Tree {
   @Method()
   async refreshTree(options: RefreshTreeOptions = defaultRefreshTreeOptions) {
     if (this.hyperlist) {
+      const focusedItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+        'ix-tree-item:focus-within'
+      );
+      const focusedControl = focusedItem?.shadowRoot?.activeElement;
+      const focusedHost = focusedItem?.matches(':focus') && !focusedControl;
+      const focusedId = focusedItem?.dataset.treeNodeId;
+
       this.hyperlist.refresh(
         this.hostElement,
         this.getVirtualizerOptions(options)
       );
+
+      if (focusedHost && focusedId) {
+        const treeItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+          `[data-tree-node-id="${CSS.escape(focusedId)}"]`
+        );
+        if (treeItem) {
+          await this.whenTreeItemReady(treeItem);
+          treeItem.focus();
+        }
+        return;
+      }
+
+      if (
+        focusedId &&
+        focusedControl instanceof HTMLElement &&
+        focusedControl.matches('.icon-toggle, .tree-node-container')
+      ) {
+        const treeItem = this.hostElement.querySelector<HTMLIxTreeItemElement>(
+          `[data-tree-node-id="${CSS.escape(focusedId)}"]`
+        );
+        if (treeItem && treeItem !== focusedItem) {
+          await this.whenTreeItemReady(treeItem);
+        }
+        const selector = focusedControl.matches('.icon-toggle')
+          ? '.icon-toggle'
+          : '.tree-node-container';
+        const control =
+          treeItem?.shadowRoot?.querySelector<HTMLElement>(selector);
+        (
+          control ??
+          treeItem?.shadowRoot?.querySelector<HTMLElement>(
+            '.tree-node-container'
+          )
+        )?.focus();
+      }
     }
   }
 
@@ -384,9 +608,7 @@ export class Tree {
       return;
     }
 
-    context.isExpanded = !context.isExpanded;
-    this.nodeToggled.emit({ id, isExpanded: context.isExpanded });
-    this.setContext(id, context);
+    this.toggleNode(id);
   }
 
   onTreeItemClick(event: Event) {
@@ -439,7 +661,35 @@ export class Tree {
 
   render() {
     return (
-      <Host onClick={(event: Event) => this.onTreeItemClick(event)}>
+      <Host
+        role="tree"
+        aria-label={this.hostElement.getAttribute('aria-label') ?? 'Tree'}
+        onClick={(event: Event) => this.onTreeItemClick(event)}
+        onKeyDown={(event: KeyboardEvent) => this.onTreeKeyDown(event)}
+        onFocusin={(event: FocusEvent) => {
+          const path = event.composedPath();
+          const focusedItem = path[0];
+          if (
+            focusedItem instanceof HTMLElement &&
+            focusedItem.tagName === 'IX-TREE-ITEM' &&
+            focusedItem.dataset.treeNodeId
+          ) {
+            this.updateNavigationTabIndex(focusedItem.dataset.treeNodeId);
+            return;
+          }
+          const row = path.find(
+            (node): node is HTMLElement =>
+              node instanceof HTMLElement &&
+              node.classList.contains('tree-node-container')
+          );
+          const item = row?.getRootNode() as ShadowRoot | undefined;
+          const id = (item?.host as HTMLIxTreeItemElement | undefined)?.dataset
+            .treeNodeId;
+          if (id && focusedItem === row) {
+            this.updateNavigationTabIndex(id);
+          }
+        }}
+      >
         <slot></slot>
       </Host>
     );
