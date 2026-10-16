@@ -1,0 +1,28 @@
+.changeset/eix-410-card-status-variants.md
+  h_c5a773bf2fda8b 5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 939,941,945-946,954,963,970-971
+packages/core/component-api.json
+  h_c5a773bf2fda8b 644,647
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 432,442,8519,8529
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 199,204
+packages/core/src/components/blind/blind.tsx
+  h_c5a773bf2fda8b 68,74
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 12,101
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 54,56,80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dc24e67c6afa4618536bb91b1c98a5dc1d7e8d3c",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
