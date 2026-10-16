@@ -61,7 +61,8 @@
   @each $status in card-vars.$card-status-variants {
     ix-card.card-#{$status} {
       --ix-card-content--padding: calc(
-          #{sys.$si-sys-sizing-spacing-y-60} - #{sys.$si-sys-sizing-size-30}
+          #{sys.$si-sys-sizing-spacing-y-60} -
+            #{sys.$si-sys-sizing-border-width-emphasis}
         )
         #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
     }

@@ -29,10 +29,16 @@ regressionTest(
     await expect(card).toHaveClass(/\bcard-danger\b/);
     await expect(card).toHaveClass(/\boutline\b/);
 
-    const borderTopWidth = await card.evaluate((el) =>
-      parseFloat(getComputedStyle(el).borderTopWidth)
-    );
-    expect(borderTopWidth).toBe(8);
+    const chrome = await card.evaluate((el) => {
+      const style = getComputedStyle(el);
+      return {
+        borderTopWidth: parseFloat(style.borderTopWidth),
+        borderTopColor: style.borderTopColor,
+        borderLeftColor: style.borderLeftColor,
+      };
+    });
+    expect(chrome.borderTopWidth).toBe(4);
+    expect(chrome.borderTopColor).not.toBe(chrome.borderLeftColor);
   }
 );
 
@@ -52,7 +58,7 @@ regressionTest(
         borderSideWidth: parseFloat(style.borderLeftWidth),
       };
     });
-    expect(chrome.borderTopWidth).toBe(8);
+    expect(chrome.borderTopWidth).toBe(4);
     expect(chrome.borderSideWidth).toBe(1);
     expect(chrome.borderTopColor).not.toBe('rgba(0, 0, 0, 0)');
   }
@@ -73,13 +79,18 @@ regressionTest('clickable enables host class', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'selected status outline keeps status border matching strip',
+  'outline status keeps border-3 sides; selected does not use accent',
   async ({ mount, page }) => {
     await mount(`
+      <ix-card id="default" variant="default" outline></ix-card>
       <ix-card id="status" variant="danger" outline></ix-card>
       <ix-card id="selected" variant="danger" outline selected></ix-card>
       <ix-card id="default-selected" variant="default" outline selected></ix-card>
     `);
+    const def = await page.locator('#default').evaluate((el) => ({
+      left: getComputedStyle(el).borderLeftColor,
+      top: getComputedStyle(el).borderTopColor,
+    }));
     const status = await page.locator('#status').evaluate((el) => ({
       left: getComputedStyle(el).borderLeftColor,
       top: getComputedStyle(el).borderTopColor,
@@ -92,11 +103,14 @@ regressionTest(
       .locator('#default-selected')
       .evaluate((el) => getComputedStyle(el).borderLeftColor);
 
-    // Status selected: sides match top strip (status-strong), not accent
-    expect(selected.left).toBe(status.left);
-    expect(selected.left).toBe(selected.top);
-    // Default selected still uses accent border
-    expect(defaultSelected).not.toBe(status.left);
+    // Outline status: sides stay border-3; top is status color
+    expect(status.left).toBe(def.left);
+    expect(status.top).not.toBe(status.left);
+    // Selected status outline: still border-3 sides, status top
+    expect(selected.left).toBe(def.left);
+    expect(selected.top).toBe(status.top);
+    // Default selected uses accent border
+    expect(defaultSelected).not.toBe(def.left);
   }
 );
 
