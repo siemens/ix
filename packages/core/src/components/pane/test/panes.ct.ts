@@ -9,7 +9,11 @@
 
 import { expect } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import {
+  expectCollectedAfterRemoval,
+  regressionTest,
+  viewPorts,
+} from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
@@ -376,5 +380,33 @@ regressionTest(
     await expect(
       pane.locator('ix-icon-button[aria-label="Close pane"]')
     ).toBeFocused();
+  }
+);
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
+    await expectCollectedAfterRemoval(page, pane);
+  }
+);
+
+regressionTest(
+  'follows breakpoint changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
+    await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+
+    await pane.evaluate((el) => {
+      const parent = el.parentElement!;
+      el.remove();
+      parent.append(el);
+    });
+    await page.setViewportSize(viewPorts.sm);
+
+    await expect
+      .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.isMobile))
+      .toBe(true);
   }
 );

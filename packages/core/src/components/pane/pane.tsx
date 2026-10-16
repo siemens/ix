@@ -34,6 +34,7 @@ import {
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import type { Disposable } from '../utils/typed-event';
 import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
 import type {
   BorderlessChangedEvent,
@@ -191,6 +192,7 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
+  private layoutChangeDisposable?: Disposable;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -208,7 +210,17 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  connectedCallback() {
+    this.isMobile = matchBreakpoint('sm');
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = matchBreakpoint('sm');
+    });
+  }
+
   disconnectedCallback() {
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = undefined;
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
@@ -268,11 +280,6 @@ export class Pane {
     if (this.expanded) {
       this.onParentSizeChange();
     }
-
-    this.isMobile = matchBreakpoint('sm');
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
 
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
