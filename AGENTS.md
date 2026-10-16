@@ -154,17 +154,3 @@ Targeted commands:
 5. Run the smallest meaningful build/test/lint commands; run visual regression for relevant UI/theme changes.
 6. Add/update a changeset if the change is user-facing.
 7. Ensure PR summary includes impact, linked requirement, validation, affected packages, and migration notes if breaking.
-
-## Agent skills
-
-### Issue tracker
-
-Issues and specs live as local markdown files under `.scratch/<feature>/`. See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-Default five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), recorded as a `Status:` line. See `docs/agents/triage-labels.md`.
-
-### Domain docs
-
-Single-context: one root `GLOSSARY.md` + `docs/adr/`. See `docs/agents/domain.md`.
