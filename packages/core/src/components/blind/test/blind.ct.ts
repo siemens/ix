@@ -51,9 +51,9 @@ regressionTest(
     const blinds = page.locator('ix-blind');
     await expect(blinds).toHaveCount(4);
     await expect(blinds.nth(0)).toHaveClass(/\boutline\b/);
-    await expect(blinds.nth(0)).toHaveClass(/\bblind-default\b/);
+    await expect(blinds.nth(0)).toHaveClass(/\bblind-base\b/);
     await expect(blinds.nth(1)).not.toHaveClass(/\boutline\b/);
-    await expect(blinds.nth(1)).toHaveClass(/\bblind-default\b/);
+    await expect(blinds.nth(1)).toHaveClass(/\bblind-base\b/);
     await expect(blinds.nth(2)).toHaveClass(/\boutline\b/);
     await expect(blinds.nth(2)).toHaveClass(/\bblind-danger\b/);
     await expect(blinds.nth(3)).not.toHaveClass(/\boutline\b/);
@@ -77,7 +77,7 @@ regressionTest(
   'header icons match the primary header text color',
   async ({ mount, page }) => {
     const variants = [
-      'default',
+      'base',
       'danger',
       'warning',
       'caution',

@@ -9,7 +9,7 @@
 
 @use 'tokens/system' as sys;
 
-/// Status variants that show a left indicator (excludes `default`).
+/// Status variants that show a left indicator (excludes `base`).
 $blind-status-variants: danger warning caution information accent critical
   success neutral;
 
@@ -98,7 +98,7 @@ $blind-status-sys: (
 }
 
 /* Status: subtract indicator border; keep same outer inset. */
-:host(:not(.blind-default)) {
+:host(:not(.blind-base)) {
   --ix-blind-header-content--padding-left: calc(
     #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-emphasis}
   );

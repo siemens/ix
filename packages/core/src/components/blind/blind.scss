@@ -196,12 +196,12 @@
 }
 
 /* Status: left indicator (filled = left only; outline keeps other sides). */
-:host(:not(.outline):not(.blind-default)) {
+:host(:not(.outline):not(.blind-base)) {
   border-left: var(--ix-blind--indicator-width) solid
     var(--ix-blind-status-color);
 }
 
-:host(.outline:not(.blind-default)) {
+:host(.outline:not(.blind-base)) {
   border-left-width: var(--ix-blind--indicator-width);
   border-left-color: var(--ix-blind-status-color);
 }

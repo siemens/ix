@@ -425,7 +425,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-default status shows a left status indicator.
+          * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status indicator.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -435,7 +435,7 @@ export namespace Components {
         "sublabel"?: string;
         /**
           * Blind status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant": StatusVariant;
     }
@@ -8513,7 +8513,7 @@ declare namespace LocalJSX {
          */
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
         /**
-          * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-default status shows a left status indicator.
+          * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status indicator.
           * @since 6.0.0
          */
         "outline"?: boolean;
@@ -8523,7 +8523,7 @@ declare namespace LocalJSX {
         "sublabel"?: string;
         /**
           * Blind status variant
-          * @default 'default'
+          * @default 'base'
          */
         "variant"?: StatusVariant;
     }

@@ -65,13 +65,13 @@ export class Blind {
   /**
    * Blind status variant
    */
-  @Prop() variant: StatusVariant = 'default';
+  @Prop() variant: StatusVariant = 'base';
 
   /**
    * Show the blind with outline chrome.
    * When omitted, outline chrome is used (`true`).
    * When `false`, uses a filled surface.
-   * A non-default status shows a left status indicator.
+   * A non-base status shows a left status indicator.
    *
    * @since 6.0.0
    */
