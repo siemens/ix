@@ -9,17 +9,14 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest(
-  'renders with non-clickable base',
-  async ({ mount, page }) => {
-    await mount(`<ix-card></ix-card>`);
-    const card = page.locator('ix-card');
-    await expect(card).toHaveAttribute('hydrated', '');
-    await expect(card).toHaveClass(/\boutline\b/);
-    await expect(card).not.toHaveClass(/\bclickable\b/);
-    await expect(card).toHaveClass(/\bcard-base\b/);
-  }
-);
+regressionTest('renders with non-clickable base', async ({ mount, page }) => {
+  await mount(`<ix-card></ix-card>`);
+  const card = page.locator('ix-card');
+  await expect(card).toHaveAttribute('hydrated', '');
+  await expect(card).toHaveClass(/\boutline\b/);
+  await expect(card).not.toHaveClass(/\bclickable\b/);
+  await expect(card).toHaveClass(/\bcard-base\b/);
+});
 
 regressionTest(
   'outline status uses status border class',
