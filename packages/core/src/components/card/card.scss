@@ -69,7 +69,6 @@
   --ix-card-border-color: transparent;
 }
 
-/* Status chrome: size-30 top border (background/*); content pad from card.vars */
 @each $status in card-vars.$card-status-variants {
   :host(.card-#{$status}) {
     border-top-width: var(--ix-card--strip-height);

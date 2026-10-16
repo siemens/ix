@@ -26,6 +26,10 @@ export {
   STATUS_VARIANTS,
   STATUS_EMPHASIS_VARIANTS,
 } from './components/utils/status.types';
+export type { CardVariant } from './components/card/card.types';
+export type { ActionCardVariant } from './components/action-card/action-card.types';
+export type { PushCardVariant } from './components/push-card/push-card.types';
+export type { CardAccordionVariant } from './components/card-accordion/card-accordion.types';
 export { ElementReference } from './components/utils/element-reference';
 export * from './components/utils/modal';
 export * from './components/utils/typed-event';

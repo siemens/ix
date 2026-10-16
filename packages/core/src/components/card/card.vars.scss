@@ -90,10 +90,6 @@ $card-status-sys: (
 }
 
 :host {
-  /* Same width calc as action-card */
-  --ix-card--width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} +
-      #{sys.$si-sys-sizing-spacing-x-30}
-  );
+  --ix-card--width: #{sys.$si-sys-sizing-size-170};
   --ix-card-content--height: calc(100% - #{sys.$si-sys-sizing-size-80});
 }
