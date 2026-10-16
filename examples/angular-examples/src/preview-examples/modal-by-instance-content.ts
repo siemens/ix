@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IxActiveModal } from '@siemens/ix-angular';
 
 @Component({
@@ -33,7 +33,7 @@ import { IxActiveModal } from '@siemens/ix-angular';
   `,
 })
 export default class ModalByInstanceContent {
-  constructor(readonly activeModal: IxActiveModal) {}
+  readonly activeModal: IxActiveModal = inject(IxActiveModal);
 
   close() {
     this.activeModal.close('My close response');
