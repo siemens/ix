@@ -1,0 +1,30 @@
+examples/react-examples/src/preview-examples/card.tsx
+  h_c5a773bf2fda8b 10-71,73-100,104-110,112,114-196
+packages/core/src/components/action-card/action-card.scss
+  h_c5a773bf2fda8b 53
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 137
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 33-46,77,82-96,119,124,134
+packages/core/src/components/card/card.tsx
+  h_c5a773bf2fda8b 70-76
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 64-67
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 64,69
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 114-116
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 26,28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0cab3611ff50df1078530443a40a77794cc5faec",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
