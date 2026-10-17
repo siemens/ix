@@ -1,0 +1,14 @@
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 22,30-32,34-40,43-48,53,61-63,65-69,72,74-76,103-114,117,119,121-123,126,128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c3e72cb6f500413f77024797c4964d3b0c39c6a4",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
