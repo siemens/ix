@@ -13,7 +13,6 @@
 $blind-status-variants: danger warning caution information accent critical
   success neutral;
 
-/// Left status strip. Same SDL border tokens as card chrome.
 $blind-status-sys: (
   danger: sys.$si-sys-color-border-danger,
   warning: sys.$si-sys-color-border-warning,
@@ -33,7 +32,6 @@ $blind-status-sys: (
   --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
   --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  /* Inward: host/header-wrapper use overflow:hidden and would clip an outside ring. */
   --ix-blind--focus--outline-offset: calc(
     -1 * #{sys.$si-sys-sizing-focus-ring-offset}
   );
@@ -55,18 +53,12 @@ $blind-status-sys: (
   --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
-  /*
-   * Outline chrome uses a 1px border; filled has none (Figma).
-   * Shrink header so outer collapsed height stays size-100 (48px) for outline.
-   * Filled overrides these to the full size (see :host(:not(.outline))).
-   */
   --ix-blind-header-wrapper--min-height: calc(
     #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-blind-header-wrapper--height: calc(
     #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
   );
-  /* Subtract chrome border so outline content stays 8px / 16px from the outer edge. */
   --ix-blind-header-content--padding-left: calc(
     #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
   );
@@ -75,7 +67,6 @@ $blind-status-sys: (
   );
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  /* custom-header: clear chevron column; align with title/icon. */
   --ix-blind-header--padding-left: calc(
     var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--icon-size) + var(--ix-blind-collapse-icon--margin-right)
   );
@@ -87,7 +78,6 @@ $blind-status-sys: (
   --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
 }
 
-/* Expanded outline: only top border above the header; bottom border is below the body. */
 :host(:not([collapsed])) {
   --ix-blind-header-wrapper--min-height: calc(
     #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
@@ -97,7 +87,6 @@ $blind-status-sys: (
   );
 }
 
-/* Filled: no chrome stroke; header/content use full size-100 insets. */
 :host(:not(.outline)) {
   --ix-blind--border-width: 0px;
   --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
