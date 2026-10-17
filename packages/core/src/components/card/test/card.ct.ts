@@ -19,7 +19,7 @@ regressionTest('renders with non-clickable base', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'outline status uses status border class',
+  'outline status uses ::before strip over uniform chrome border',
   async ({ mount, page }) => {
     await mount(`<ix-card variant="danger" outline></ix-card>`);
     const card = page.locator('ix-card');
@@ -27,20 +27,30 @@ regressionTest(
     await expect(card).toHaveClass(/\boutline\b/);
 
     const chrome = await card.evaluate((el) => {
-      const style = getComputedStyle(el);
+      const frame = el.shadowRoot!.querySelector('.card-chrome') as HTMLElement;
+      const frameStyle = getComputedStyle(frame);
+      const strip = getComputedStyle(el, '::before');
       return {
-        borderTopWidth: parseFloat(style.borderTopWidth),
-        borderTopColor: style.borderTopColor,
-        borderLeftColor: style.borderLeftColor,
+        borderTopWidth: parseFloat(frameStyle.borderTopWidth),
+        borderLeftWidth: parseFloat(frameStyle.borderLeftWidth),
+        borderTopColor: frameStyle.borderTopColor,
+        borderLeftColor: frameStyle.borderLeftColor,
+        stripContent: strip.content,
+        stripHeight: parseFloat(strip.height),
+        stripColor: strip.backgroundColor,
       };
     });
-    expect(chrome.borderTopWidth).toBe(4);
-    expect(chrome.borderTopColor).not.toBe(chrome.borderLeftColor);
+    expect(chrome.borderTopWidth).toBe(1);
+    expect(chrome.borderLeftWidth).toBe(1);
+    expect(chrome.borderTopColor).toBe(chrome.borderLeftColor);
+    expect(chrome.stripContent).not.toBe('none');
+    expect(chrome.stripHeight).toBe(4);
+    expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');
   }
 );
 
 regressionTest(
-  'filled status uses thick top border as strip',
+  'filled status uses ::before strip with uniform chrome border',
   async ({ mount, page }) => {
     await mount(`<ix-card variant="danger" outline="false"></ix-card>`);
     const card = page.locator('ix-card');
@@ -48,16 +58,22 @@ regressionTest(
     await expect(card).not.toHaveClass(/\boutline\b/);
 
     const chrome = await card.evaluate((el) => {
-      const style = getComputedStyle(el);
+      const frame = el.shadowRoot!.querySelector('.card-chrome') as HTMLElement;
+      const frameStyle = getComputedStyle(frame);
+      const strip = getComputedStyle(el, '::before');
       return {
-        borderTopWidth: parseFloat(style.borderTopWidth),
-        borderTopColor: style.borderTopColor,
-        borderSideWidth: parseFloat(style.borderLeftWidth),
+        borderTopWidth: parseFloat(frameStyle.borderTopWidth),
+        borderSideWidth: parseFloat(frameStyle.borderLeftWidth),
+        stripContent: strip.content,
+        stripHeight: parseFloat(strip.height),
+        stripColor: strip.backgroundColor,
       };
     });
-    expect(chrome.borderTopWidth).toBe(4);
+    expect(chrome.borderTopWidth).toBe(1);
     expect(chrome.borderSideWidth).toBe(1);
-    expect(chrome.borderTopColor).not.toBe('rgba(0, 0, 0, 0)');
+    expect(chrome.stripContent).not.toBe('none');
+    expect(chrome.stripHeight).toBe(4);
+    expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');
   }
 );
 
@@ -84,30 +100,32 @@ regressionTest(
       <ix-card id="selected" variant="danger" outline selected></ix-card>
       <ix-card id="base-selected" variant="base" outline selected></ix-card>
     `);
-    const base = await page.locator('#base').evaluate((el) => ({
-      left: getComputedStyle(el).borderLeftColor,
-      top: getComputedStyle(el).borderTopColor,
-    }));
-    const status = await page.locator('#status').evaluate((el) => ({
-      left: getComputedStyle(el).borderLeftColor,
-      top: getComputedStyle(el).borderTopColor,
-    }));
-    const selected = await page.locator('#selected').evaluate((el) => ({
-      left: getComputedStyle(el).borderLeftColor,
-      top: getComputedStyle(el).borderTopColor,
-    }));
+    const readChrome = (el: Element) => {
+      const frame = el.shadowRoot!.querySelector('.card-chrome') as HTMLElement;
+      const style = getComputedStyle(frame);
+      return {
+        left: style.borderLeftColor,
+        top: style.borderTopColor,
+        strip: getComputedStyle(el, '::before').backgroundColor,
+      };
+    };
+    const base = await page.locator('#base').evaluate(readChrome);
+    const status = await page.locator('#status').evaluate(readChrome);
+    const selected = await page.locator('#selected').evaluate(readChrome);
     const baseSelected = await page
       .locator('#base-selected')
-      .evaluate((el) => getComputedStyle(el).borderLeftColor);
+      .evaluate(readChrome);
 
-    // Outline status: sides stay border-3; top is status color
+    // Outline status: uniform border-3; status color is the ::before strip
     expect(status.left).toBe(base.left);
-    expect(status.top).not.toBe(status.left);
-    // Selected status outline: still border-3 sides, status top
+    expect(status.top).toBe(status.left);
+    expect(status.strip).not.toBe(status.left);
+    // Selected status outline: still border-3; same strip
     expect(selected.left).toBe(base.left);
     expect(selected.top).toBe(status.top);
+    expect(selected.strip).toBe(status.strip);
     // Base selected uses accent border
-    expect(baseSelected).not.toBe(base.left);
+    expect(baseSelected.left).not.toBe(base.left);
   }
 );
 
