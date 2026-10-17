@@ -174,9 +174,9 @@ for (const alignment of ['flex-start', 'flex-end']) {
             const hostBounds = await getBounds(element);
             const inputBounds = await getBounds(input);
             expect(Math.abs(inputBounds.x - hostBounds.x)).toBeLessThan(1);
-            expect(
-              Math.abs(inputBounds.width - hostBounds.width)
-            ).toBeLessThan(1);
+            expect(Math.abs(inputBounds.width - hostBounds.width)).toBeLessThan(
+              1
+            );
 
             const anchoredEdge = alignment === 'flex-end' ? 'right' : 'left';
             const initialEdge =
