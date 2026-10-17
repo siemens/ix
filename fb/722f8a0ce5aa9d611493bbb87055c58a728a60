@@ -1,0 +1,28 @@
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 956
+examples/angular-examples/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 10-13
+examples/angular-standalone-examples/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 10-13
+examples/html-examples/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 26-29
+examples/react-examples/src/preview-examples/blind-variants.tsx
+  h_c5a773bf2fda8b 13,18-21
+examples/vue-examples/src/preview-examples/blind-variants.vue
+  h_c5a773bf2fda8b 12,18-21
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 19-20,67,75-77,85,87-89,179,184-191,196-206
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 34-36,55-57,60-65,74-98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fb722f8a0ce5aa9d611493bbb87055c58a728a60",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}

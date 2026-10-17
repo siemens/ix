@@ -1,0 +1,18 @@
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 85
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 36-39,65
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 65-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c3ed01110aa3d7a4699bfe9f390f7bb2c88c2479",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
