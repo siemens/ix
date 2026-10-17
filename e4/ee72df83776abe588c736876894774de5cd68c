@@ -1,0 +1,44 @@
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 863-865,931,934
+examples/react-examples/src/preview-examples/card.tsx
+  h_c5a773bf2fda8b 10,12-13,17-20,22-30,32-34
+packages/core/component-api.json
+  h_c5a773bf2fda8b 1055
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 8,18,65,75,171,656-657,661,4188,8241,8754-8755,8759,12507,14071,14176,14900
+packages/core/src/components/action-card/action-card.scss
+  h_c5a773bf2fda8b 52
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 12,31
+packages/core/src/components/action-card/action-card.types.ts
+  h_c5a773bf2fda8b 12
+packages/core/src/components/action-card/action-card.vars.scss
+  h_c5a773bf2fda8b 29-30
+packages/core/src/components/card-accordion/card-accordion.scss
+  h_c5a773bf2fda8b 67-72
+packages/core/src/components/card-accordion/card-accordion.tsx
+  h_c5a773bf2fda8b 13-14,49,51,54
+packages/core/src/components/card-accordion/card-accordion.types.ts
+  h_c5a773bf2fda8b 16
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 55
+packages/core/src/components/push-card/push-card.scss
+  h_c5a773bf2fda8b 51-53
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 11,58,88,109,113
+packages/core/src/components/push-card/push-card.types.ts
+  h_c5a773bf2fda8b 11
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e4ee72df83776abe588c736876894774de5cd68c",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
