@@ -61,6 +61,108 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'outline status uses ::before strip over uniform chrome border',
+  async ({ mount, page }) => {
+    await mount(`<ix-blind variant="danger" label="Danger"></ix-blind>`);
+    const blind = page.locator('ix-blind');
+    await expect(blind).toHaveClass(/\bblind-danger\b/);
+    await expect(blind).toHaveClass(/\boutline\b/);
+
+    const chrome = await blind.evaluate((el) => {
+      const frame = el.shadowRoot!.querySelector(
+        '.blind-chrome'
+      ) as HTMLElement;
+      const frameStyle = getComputedStyle(frame);
+      const strip = getComputedStyle(el, '::before');
+      const hostRect = el.getBoundingClientRect();
+      return {
+        hostBorderLeftWidth: parseFloat(getComputedStyle(el).borderLeftWidth),
+        borderTopWidth: parseFloat(frameStyle.borderTopWidth),
+        borderLeftWidth: parseFloat(frameStyle.borderLeftWidth),
+        borderTopColor: frameStyle.borderTopColor,
+        borderLeftColor: frameStyle.borderLeftColor,
+        stripContent: strip.content,
+        stripWidth: parseFloat(strip.width),
+        stripColor: strip.backgroundColor,
+        stripLeft: parseFloat(strip.left),
+        hostLeft: hostRect.left,
+        frameLeft: frame.getBoundingClientRect().left,
+      };
+    });
+
+    expect(chrome.hostBorderLeftWidth).toBe(0);
+    expect(chrome.borderTopWidth).toBe(1);
+    expect(chrome.borderLeftWidth).toBe(1);
+    expect(chrome.borderTopColor).toBe(chrome.borderLeftColor);
+    expect(chrome.stripContent).not.toBe('none');
+    expect(chrome.stripWidth).toBe(4);
+    expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');
+    expect(chrome.stripColor).not.toBe(chrome.borderLeftColor);
+    // Strip starts at the host outer edge (covers chrome left border).
+    expect(chrome.frameLeft).toBe(chrome.hostLeft);
+    expect(chrome.stripLeft).toBe(0);
+  }
+);
+
+regressionTest(
+  'filled status uses ::before strip without chrome border',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-blind variant="danger" outline="false" label="Danger"></ix-blind>`
+    );
+    const blind = page.locator('ix-blind');
+    await expect(blind).toHaveClass(/\bblind-danger\b/);
+    await expect(blind).not.toHaveClass(/\boutline\b/);
+
+    const chrome = await blind.evaluate((el) => {
+      const frame = el.shadowRoot!.querySelector(
+        '.blind-chrome'
+      ) as HTMLElement;
+      const frameStyle = getComputedStyle(frame);
+      const strip = getComputedStyle(el, '::before');
+      return {
+        hostBorderLeftWidth: parseFloat(getComputedStyle(el).borderLeftWidth),
+        borderLeftWidth: parseFloat(frameStyle.borderLeftWidth),
+        backgroundColor: frameStyle.backgroundColor,
+        stripContent: strip.content,
+        stripWidth: parseFloat(strip.width),
+        stripColor: strip.backgroundColor,
+      };
+    });
+
+    expect(chrome.hostBorderLeftWidth).toBe(0);
+    expect(chrome.borderLeftWidth).toBe(0);
+    expect(chrome.backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
+    expect(chrome.stripContent).not.toBe('none');
+    expect(chrome.stripWidth).toBe(4);
+    expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');
+  }
+);
+
+regressionTest(
+  'status and base blinds share the same header content inset',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-blind id="base" label="Base"></ix-blind>
+      <ix-blind id="status" variant="danger" label="Danger"></ix-blind>
+    `);
+
+    const readChevronLeft = (el: Element) => {
+      const icon = el.shadowRoot!.querySelector(
+        '.collapse-icon'
+      ) as HTMLElement;
+      return (
+        icon.getBoundingClientRect().left - el.getBoundingClientRect().left
+      );
+    };
+
+    const baseInset = await page.locator('#base').evaluate(readChevronLeft);
+    const statusInset = await page.locator('#status').evaluate(readChevronLeft);
+    expect(statusInset).toBe(baseInset);
+  }
+);
+
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
     <ix-blind label="Example label">Some content</ix-blind>

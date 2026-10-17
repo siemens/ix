@@ -16,10 +16,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  box-sizing: content-box;
+  align-self: flex-start;
+  box-sizing: border-box;
   border: none;
   border-radius: var(--ix-blind--border-radius);
-  overflow: hidden;
 
   ix-icon:not([size]) {
     block-size: var(--ix-blind-icon--icon-size);
@@ -29,6 +29,17 @@
   }
 
   @include component.ix-component;
+
+  .blind-chrome {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    border: var(--ix-blind--border-width) solid var(--ix-blind--border-color);
+    border-radius: inherit;
+    overflow: hidden;
+    background-color: var(--ix-blind--surface);
+  }
 
   .blind-header-wrapper {
     position: relative;
@@ -82,7 +93,6 @@
 
     @include hover.ghost-hover-pressed;
 
-    /* Focus ring (not an in-layout header border); inward so overflow:hidden does not clip. */
     @include hover.focus-visible {
       outline: var(--ix-blind--outline-width--focus) solid
         var(--ix-blind--outline-color--focus);
@@ -176,32 +186,35 @@
   }
 }
 
-/* Filled: no host border; content-box so hover wash is edge-to-edge. */
 :host(:not(.outline)) {
-  background-color: var(--ix-blind--background);
+  --ix-blind--surface: var(--ix-blind--background);
 }
 
-/*
- * Outline: visible border is included in the box (border-box).
- * Header height is reduced in vars so outer size matches filled.
- */
 :host(.outline) {
-  box-sizing: border-box;
-  border: solid var(--ix-blind--border-width)
-    var(--ix-blind-outline--border-color);
+  --ix-blind--surface: transparent;
+  --ix-blind--border-color: var(--ix-blind-outline--border-color);
 }
 
 :host(.outline) .blind-header {
   border-radius: 0;
 }
 
-/* Status: left indicator (filled = left only; outline keeps other sides). */
-:host(:not(.outline):not(.blind-base)) {
-  border-left: var(--ix-blind--indicator-width) solid
-    var(--ix-blind-status-color);
-}
-
-:host(.outline:not(.blind-base)) {
-  border-left-width: var(--ix-blind--indicator-width);
-  border-left-color: var(--ix-blind-status-color);
+@each $status in $blind-status-variants {
+  :host(.blind-#{$status}) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: var(--ix-blind--strip-width);
+      border-radius: var(--ix-blind--border-radius)
+        0
+        0
+        var(--ix-blind--border-radius);
+      z-index: 1;
+      pointer-events: none;
+      background-color: var(--ix-blind-status-color);
+    }
+  }
 }

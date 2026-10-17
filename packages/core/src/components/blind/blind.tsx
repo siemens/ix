@@ -71,7 +71,7 @@ export class Blind {
    * Show the blind with outline chrome.
    * When omitted, outline chrome is used (`true`).
    * When `false`, uses a filled surface.
-   * A non-base status shows a left status indicator.
+   * A non-base status shows a left status strip.
    *
    * @since 6.0.0
    */
@@ -154,84 +154,86 @@ export class Blind {
           [`blind-${this.variant}`]: true,
         }}
       >
-        <div class={'blind-header-wrapper'}>
-          <button
-            class={{
-              'blind-header': true,
-              closed: this.collapsed,
-            }}
-            type="button"
-            aria-labelledby={`ix-blind-header-title-${this.blindId}`}
-            aria-controls={`ix-blind-content-section-${this.blindId}`}
-            aria-expanded={a11yBoolean(!this.collapsed)}
-            onClick={() => this.onHeaderClick()}
-          >
-            <slot name="custom-header"></slot>
-          </button>
-
-          <div class={'blind-header-content'}>
-            <ix-icon
-              class="collapse-icon"
-              name={iconChevronDownSmall}
-              aria-hidden="true"
-              ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
-            ></ix-icon>
-            <div
-              class="blind-header-title"
-              id={`ix-blind-header-title-${this.blindId}`}
+        <div class="blind-chrome">
+          <div class={'blind-header-wrapper'}>
+            <button
+              class={{
+                'blind-header': true,
+                closed: this.collapsed,
+              }}
+              type="button"
+              aria-labelledby={`ix-blind-header-title-${this.blindId}`}
+              aria-controls={`ix-blind-content-section-${this.blindId}`}
+              aria-expanded={a11yBoolean(!this.collapsed)}
+              onClick={() => this.onHeaderClick()}
             >
-              {this.label !== undefined ? (
-                <Fragment>
-                  {this.icon && (
-                    <ix-icon
-                      class="blind-header-title-icon"
-                      name={this.icon}
-                      aria-hidden="true"
-                    ></ix-icon>
-                  )}
-                  <div class={'blind-header-title-row'}>
-                    <div class="blind-header-title-col">
-                      <ix-typography title={this.label} format="body-lg" bold>
-                        <div
-                          class="blind-header-title-label"
-                          title={this.label}
-                        >
-                          {this.label}
-                        </div>
-                      </ix-typography>
-                    </div>
+              <slot name="custom-header"></slot>
+            </button>
 
-                    {this.sublabel && (
+            <div class={'blind-header-content'}>
+              <ix-icon
+                class="collapse-icon"
+                name={iconChevronDownSmall}
+                aria-hidden="true"
+                ref={(ref: HTMLElement | undefined) => (this.chevronRef = ref)}
+              ></ix-icon>
+              <div
+                class="blind-header-title"
+                id={`ix-blind-header-title-${this.blindId}`}
+              >
+                {this.label !== undefined ? (
+                  <Fragment>
+                    {this.icon && (
+                      <ix-icon
+                        class="blind-header-title-icon"
+                        name={this.icon}
+                        aria-hidden="true"
+                      ></ix-icon>
+                    )}
+                    <div class={'blind-header-title-row'}>
                       <div class="blind-header-title-col">
-                        <ix-typography title={this.sublabel}>
-                          <div class="blind-header-title-sublabel">
-                            {this.sublabel}
+                        <ix-typography title={this.label} format="body-lg" bold>
+                          <div
+                            class="blind-header-title-label"
+                            title={this.label}
+                          >
+                            {this.label}
                           </div>
                         </ix-typography>
                       </div>
-                    )}
-                  </div>
-                  <div class="header-actions">
-                    <slot name="header-actions"></slot>
-                  </div>
-                </Fragment>
-              ) : null}
+
+                      {this.sublabel && (
+                        <div class="blind-header-title-col">
+                          <ix-typography title={this.sublabel}>
+                            <div class="blind-header-title-sublabel">
+                              {this.sublabel}
+                            </div>
+                          </ix-typography>
+                        </div>
+                      )}
+                    </div>
+                    <div class="header-actions">
+                      <slot name="header-actions"></slot>
+                    </div>
+                  </Fragment>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
-        <section
-          id={`ix-blind-content-section-${this.blindId}`}
-          aria-labelledby={`ix-blind-header-title-${this.blindId}`}
-        >
-          <div
-            class={{
-              'blind-content': true,
-              hide: this.collapsed,
-            }}
+          <section
+            id={`ix-blind-content-section-${this.blindId}`}
+            aria-labelledby={`ix-blind-header-title-${this.blindId}`}
           >
-            {!this.collapsed ? <slot></slot> : null}
-          </div>
-        </section>
+            <div
+              class={{
+                'blind-content': true,
+                hide: this.collapsed,
+              }}
+            >
+              {!this.collapsed ? <slot></slot> : null}
+            </div>
+          </section>
+        </div>
       </Host>
     );
   }
