@@ -1,0 +1,14 @@
+packages/core/src/components/expanding-search/test/expanding-search.ct.ts
+  h_c5a773bf2fda8b 114-116,119-125,128,132-147,150-164,166,168-192,194-195,197-198,202-203
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "19e214f2f6349795f8b22b6df635a621221ce5f0",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
