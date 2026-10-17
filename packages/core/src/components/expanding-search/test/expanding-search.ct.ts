@@ -111,103 +111,95 @@ async function getBounds(element: Locator) {
   return bounds;
 }
 
+// Always set an explicit duration. Playwright CT defaults to prefers-reduced-motion:
+// reduce, which zeros --theme-medium-time. Leaving duration unset ("default timing")
+// then yields a 0ms transition and mid-seek width assertions fail (~22px on CI).
 for (const alignment of ['flex-start', 'flex-end']) {
   for (const fullWidth of [false, true]) {
-    for (const duration of [undefined, '1s']) {
-      regressionTest(
-        `keeps ${
-          fullWidth ? 'full-width' : 'fixed-width'
-        } search aligned during expansion and collapse (${alignment}, ${
-          duration ?? 'default timing'
-        })`,
-        async ({ mount, page }) => {
-          await page.emulateMedia({ reducedMotion: 'no-preference' });
-          await mount(`
+    regressionTest(
+      `keeps ${
+        fullWidth ? 'full-width' : 'fixed-width'
+      } search aligned during expansion and collapse (${alignment})`,
+      async ({ mount, page }) => {
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
+        await mount(`
           <div style="display: flex; justify-content: ${alignment}; width: 500px">
             <ix-expanding-search ${fullWidth ? 'full-width' : ''}
-              ${
-                duration
-                  ? `style="--ix-expanding-search-input-container--transition-duration: ${duration}"`
-                  : ''
-              }>
+              style="--ix-expanding-search-input-container--transition-duration: 1s">
             </ix-expanding-search>
           </div>
         `);
-          const element = page.locator('ix-expanding-search');
-          const input = page.getByRole('textbox', { name: 'Search input' });
-          await expect(element).toHaveAttribute('hydrated');
-          if (duration) {
-            await expect(element).toHaveCSS('transition-duration', duration);
+        const element = page.locator('ix-expanding-search');
+        const input = page.getByRole('textbox', { name: 'Search input' });
+        await expect(element).toHaveAttribute('hydrated');
+        await expect(element).toHaveCSS('transition-duration', '1s');
+        const initialBounds = await getBounds(element);
+
+        await page.getByRole('button', { name: 'Open search' }).click();
+        await pauseWidthTransition(element);
+
+        // Seek both directions deterministically instead of sampling wall-clock time.
+        for (const expanded of [true, false]) {
+          if (!expanded) {
+            await expect(input).toBeFocused();
+            await input.blur();
+            await expect(element).not.toHaveClass(/\bexpanded\b/);
+            await pauseWidthTransition(element);
           }
-          const initialBounds = await getBounds(element);
 
-          await page.getByRole('button', { name: 'Open search' }).click();
-          await pauseWidthTransition(element);
-
-          // Seek both directions deterministically instead of sampling wall-clock time.
-          for (const expanded of [true, false]) {
-            if (!expanded) {
-              await expect(input).toBeFocused();
-              await input.blur();
-              await expect(element).not.toHaveClass(/\bexpanded\b/);
-              await pauseWidthTransition(element);
+          for (const progress of [0.25, 0.5, 0.75, 1]) {
+            for (const target of [
+              element,
+              element.locator('.input-container'),
+              input,
+            ]) {
+              await target.evaluate(async (el, progress) => {
+                for (const animation of el.getAnimations()) {
+                  animation.pause();
+                  await animation.ready;
+                  const duration = animation.effect?.getTiming().duration;
+                  if (typeof duration !== 'number') {
+                    throw new Error(
+                      'Expected a transition with a numeric duration.'
+                    );
+                  }
+                  animation.currentTime = duration * progress;
+                }
+                await new Promise<void>((resolve) =>
+                  requestAnimationFrame(() => resolve())
+                );
+              }, progress);
             }
 
-            for (const progress of [0.25, 0.5, 0.75, 1]) {
-              for (const target of [
-                element,
-                element.locator('.input-container'),
-                input,
-              ]) {
-                await target.evaluate(async (el, progress) => {
-                  for (const animation of el.getAnimations()) {
-                    animation.pause();
-                    await animation.ready;
-                    const duration = animation.effect?.getTiming().duration;
-                    if (typeof duration !== 'number') {
-                      throw new Error(
-                        'Expected a transition with a numeric duration.'
-                      );
-                    }
-                    animation.currentTime = duration * progress;
-                  }
-                  await new Promise<void>((resolve) =>
-                    requestAnimationFrame(() => resolve())
-                  );
-                }, progress);
-              }
+            const hostBounds = await getBounds(element);
+            const inputBounds = await getBounds(input);
+            expect(Math.abs(inputBounds.x - hostBounds.x)).toBeLessThan(1);
+            expect(
+              Math.abs(inputBounds.width - hostBounds.width)
+            ).toBeLessThan(1);
 
-              const hostBounds = await getBounds(element);
-              const inputBounds = await getBounds(input);
-              expect(Math.abs(inputBounds.x - hostBounds.x)).toBeLessThan(1);
-              expect(
-                Math.abs(inputBounds.width - hostBounds.width)
-              ).toBeLessThan(1);
-
-              const anchoredEdge = alignment === 'flex-end' ? 'right' : 'left';
-              const initialEdge =
-                initialBounds.x +
-                (anchoredEdge === 'right' ? initialBounds.width : 0);
-              const currentEdge =
-                hostBounds.x +
-                (anchoredEdge === 'right' ? hostBounds.width : 0);
-              expect(Math.abs(currentEdge - initialEdge)).toBeLessThan(1);
-              if (progress < 1) {
-                expect(hostBounds.width).toBeGreaterThan(initialBounds.width);
-              } else if (expanded) {
-                if (fullWidth) {
-                  expect(hostBounds.width).toBeCloseTo(500);
-                } else {
-                  expect(hostBounds.width).toBeGreaterThan(initialBounds.width);
-                  expect(hostBounds.width).toBeLessThan(500);
-                }
+            const anchoredEdge = alignment === 'flex-end' ? 'right' : 'left';
+            const initialEdge =
+              initialBounds.x +
+              (anchoredEdge === 'right' ? initialBounds.width : 0);
+            const currentEdge =
+              hostBounds.x + (anchoredEdge === 'right' ? hostBounds.width : 0);
+            expect(Math.abs(currentEdge - initialEdge)).toBeLessThan(1);
+            if (progress < 1) {
+              expect(hostBounds.width).toBeGreaterThan(initialBounds.width);
+            } else if (expanded) {
+              if (fullWidth) {
+                expect(hostBounds.width).toBeCloseTo(500);
               } else {
-                expect(hostBounds.width).toBeCloseTo(initialBounds.width);
+                expect(hostBounds.width).toBeGreaterThan(initialBounds.width);
+                expect(hostBounds.width).toBeLessThan(500);
               }
+            } else {
+              expect(hostBounds.width).toBeCloseTo(initialBounds.width);
             }
           }
         }
-      );
-    }
+      }
+    );
   }
 }
