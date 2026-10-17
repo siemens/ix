@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './action-card.vars';
 
 :host {
@@ -50,7 +49,6 @@
   ix-card {
     width: 100%;
     height: 100%;
-    --ix-card-content--padding: #{sys.$si-sys-sizing-spacing-y-60}
-      #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
+    --ix-card-content--padding: var(--ix-action-card-content--padding);
   }
 }

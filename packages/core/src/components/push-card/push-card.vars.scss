@@ -27,4 +27,5 @@
   );
   --ix-card-content--padding: #{sys.$si-sys-sizing-spacing-y-60}
     #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-push-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
 }

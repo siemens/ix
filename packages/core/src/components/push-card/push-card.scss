@@ -6,8 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'tokens/system' as sys;
-
 @use './push-card.vars' as *;
 
 :host {
@@ -50,7 +48,9 @@
       var(--ix-push-card--border-radius) var(--ix-push-card--border-radius);
     /* No inner border around expanded content */
     --ix-card-accordion-chrome-frame--border-color: transparent;
-    --ix-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+    --ix-card-accordion-chrome-frame--border-width: var(
+      --ix-push-card-accordion-chrome-frame--border-width
+    );
     /* Separator on accordion top (not content bottom) */
     --ix-card-accordion-expand-action--border-top-width: var(
       --ix-push-card--border-width

@@ -8,7 +8,6 @@
  */
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './card-accordion.vars' as *;
 
@@ -65,8 +64,12 @@
 
     /* Expanded: content owns the bottom corners */
     &.show {
-      border-bottom-left-radius: #{sys.$si-sys-sizing-border-radius-none};
-      border-bottom-right-radius: #{sys.$si-sys-sizing-border-radius-none};
+      border-bottom-left-radius: var(
+        --ix-card-accordion-expand-action--border-radius--expanded
+      );
+      border-bottom-right-radius: var(
+        --ix-card-accordion-expand-action--border-radius--expanded
+      );
     }
   }
 

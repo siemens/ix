@@ -52,6 +52,7 @@
   /* Separator above the expand bar (push-card sets these) */
   --ix-card-accordion-expand-action--border-top-width: #{sys.$si-sys-sizing-border-width-none};
   --ix-card-accordion-expand-action--border-top-color: transparent;
+  --ix-card-accordion-expand-action--border-radius--expanded: #{sys.$si-sys-sizing-border-radius-none};
   --ix-card-accordion-expand-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-card-accordion-expand-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-accordion-expand-content-body--height: calc(

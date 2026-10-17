@@ -10,10 +10,8 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type {
-  CardAccordionExpandChangeEvent,
-  CardAccordionVariant,
-} from './card-accordion.types';
+import type { StatusVariant } from '../utils/status.types';
+import type { CardAccordionExpandChangeEvent } from './card-accordion.types';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -48,11 +46,12 @@ export class CardAccordion {
   @Prop() collapse = false;
 
   /**
-   * Accordion status variant
+   * Accordion status variant.
    *
+   * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
    * @since 4.0.0
    */
-  @Prop() variant: CardAccordionVariant = 'base';
+  @Prop() variant: StatusVariant = 'base';
 
   /**
    * Show the accordion with outline chrome.

@@ -1052,7 +1052,7 @@
           "default": "'base'",
           "optional": false,
           "required": false,
-          "deprecated": false
+          "deprecated": true
         }
       ],
       "methods": [],

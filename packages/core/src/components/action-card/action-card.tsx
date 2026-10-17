@@ -9,7 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
-import type { ActionCardVariant } from './action-card.types';
+import type { StatusVariant } from '../utils/status.types';
 
 /**
  * Card that represents a selectable action or option to start a task or workflow.
@@ -28,7 +28,7 @@ export class IxActionCard {
   /**
    * Card status variant
    */
-  @Prop() variant: ActionCardVariant = 'base';
+  @Prop() variant: StatusVariant = 'base';
 
   /**
    * Show the card with outline chrome.

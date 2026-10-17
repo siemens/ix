@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ActionCardVariant } from "./components/action-card/action-card.types";
+import { StatusVariant } from "./components/utils/status.types";
 import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
@@ -15,8 +15,7 @@ import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { ButtonIconSize } from "./components/button/base-button.types";
-import { StatusVariant } from "./components/utils/status.types";
-import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
+import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
@@ -48,7 +47,6 @@ import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SpinnerSize } from "./components/spinner/spinner.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -64,7 +62,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { RefreshTreeOptions } from "./components/tree/tree.types";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { ActionCardVariant } from "./components/action-card/action-card.types";
+export { StatusVariant } from "./components/utils/status.types";
 export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
@@ -74,8 +72,7 @@ export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { ButtonIconSize } from "./components/button/base-button.types";
-export { StatusVariant } from "./components/utils/status.types";
-export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
+export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
@@ -107,7 +104,6 @@ export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SpinnerSize } from "./components/spinner/spinner.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -172,7 +168,7 @@ export namespace Components {
           * Card status variant
           * @default 'base'
          */
-        "variant": ActionCardVariant;
+        "variant": StatusVariant;
     }
     /**
      * Root container that sets up the overall application shell and layout.
@@ -657,11 +653,12 @@ export namespace Components {
          */
         "outline"?: boolean;
         /**
-          * Accordion status variant
+          * Accordion status variant.
+          * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
           * @since 4.0.0
           * @default 'base'
          */
-        "variant": CardAccordionVariant;
+        "variant": StatusVariant;
     }
     /**
      * Content region of a card.
@@ -4188,7 +4185,7 @@ export namespace Components {
           * Card status variant
           * @default 'base'
          */
-        "variant": PushCardVariant;
+        "variant": StatusVariant;
     }
     /**
      * Lets users select a single option from a set.
@@ -8241,7 +8238,7 @@ declare namespace LocalJSX {
           * Card status variant
           * @default 'base'
          */
-        "variant"?: ActionCardVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Root container that sets up the overall application shell and layout.
@@ -8754,11 +8751,12 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Accordion status variant
+          * Accordion status variant.
+          * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
           * @since 4.0.0
           * @default 'base'
          */
-        "variant"?: CardAccordionVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Content region of a card.
@@ -12506,7 +12504,7 @@ declare namespace LocalJSX {
           * Card status variant
           * @default 'base'
          */
-        "variant"?: PushCardVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Lets users select a single option from a set.
@@ -14070,7 +14068,7 @@ declare namespace LocalJSX {
     }
 
     interface IxActionCardAttributes {
-        "variant": ActionCardVariant;
+        "variant": StatusVariant;
         "outline": boolean;
         "icon": string | undefined;
         "ariaLabelIcon": string;
@@ -14175,7 +14173,7 @@ declare namespace LocalJSX {
     interface IxCardAccordionAttributes {
         "ariaLabelExpandButton": string;
         "collapse": boolean;
-        "variant": CardAccordionVariant;
+        "variant": StatusVariant;
         "outline": boolean;
     }
     interface IxCardListAttributes {
@@ -14899,7 +14897,7 @@ declare namespace LocalJSX {
         "notification": string;
         "heading": string;
         "subheading": string;
-        "variant": PushCardVariant;
+        "variant": StatusVariant;
         "outline": boolean;
         "expanded": boolean;
         "clickable": boolean;

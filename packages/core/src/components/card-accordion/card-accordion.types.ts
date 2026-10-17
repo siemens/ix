@@ -13,4 +13,5 @@ export type CardAccordionExpandChangeEvent = {
   nativeEvent: Event;
 };
 
+/** @deprecated Use {@link StatusVariant} */
 export type CardAccordionVariant = StatusVariant;

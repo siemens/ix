@@ -8,4 +8,5 @@
  */
 import type { StatusVariant } from '../utils/status.types';
 
+/** @deprecated Use {@link StatusVariant} */
 export type PushCardVariant = StatusVariant;
