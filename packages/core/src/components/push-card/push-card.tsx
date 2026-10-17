@@ -111,7 +111,9 @@ export class PushCard {
               <slot name="title-action"></slot>
             </ix-card-title>
             <ix-typography format="h4">{this.heading}</ix-typography>
-            <ix-typography>{this.subheading}</ix-typography>
+            <ix-typography format="h5" text-color="soft">
+              {this.subheading}
+            </ix-typography>
           </ix-card-content>
           <ix-card-accordion
             collapse={!this.expanded}

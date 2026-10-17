@@ -67,11 +67,13 @@ export class Card {
           [`card-${this.variant}`]: true,
         }}
       >
-        <div class="card-content">
-          <slot></slot>
-        </div>
-        <div class="card-footer">
-          <slot name="card-accordion"></slot>
+        <div class="card-chrome">
+          <div class="card-content">
+            <slot></slot>
+          </div>
+          <div class="card-footer">
+            <slot name="card-accordion"></slot>
+          </div>
         </div>
       </Host>
     );

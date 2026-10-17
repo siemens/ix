@@ -90,10 +90,6 @@ export class IxActionCard {
     return this.clickable !== false;
   }
 
-  private getSubheadingTextColor() {
-    return this.variant === 'base' ? 'soft' : undefined;
-  }
-
   render() {
     const ariaLabelledBy =
       !this.ariaLabelCard && this.heading
@@ -138,10 +134,7 @@ export class IxActionCard {
                   </ix-typography>
                 ) : null}
                 {this.subheading ? (
-                  <ix-typography
-                    format="h5"
-                    text-color={this.getSubheadingTextColor()}
-                  >
+                  <ix-typography format="h5" text-color="soft">
                     {this.subheading}
                   </ix-typography>
                 ) : null}

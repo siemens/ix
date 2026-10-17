@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 @use './card.vars' as card-vars;
 
 @use './card.vars' as *;
@@ -18,14 +17,10 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: flex-start;
-  overflow: hidden;
   cursor: default;
   box-sizing: border-box;
 
   width: var(--ix-card--width);
-
-  border: var(--ix-card--border-width) solid
-    var(--ix-card-border-color, var(--ix-card--border-color));
   border-radius: var(--ix-card--border-radius);
 
   color: var(--ix-card-base--color);
@@ -34,6 +29,20 @@
   --ix-card-border-color: var(--ix-card-base--border-color);
 
   @include component.ix-component;
+
+  .card-chrome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    border: var(--ix-card--border-width) solid
+      var(--ix-card-border-color, var(--ix-card--border-color));
+    border-radius: inherit;
+    overflow: hidden;
+  }
 
   .card-content {
     display: block;
@@ -63,37 +72,40 @@
   cursor: pointer;
 }
 
-/* outline=false → filled surface */
 :host(:not(.outline)) {
   --ix-card-background: var(--ix-card-filled--background);
-  --ix-card-border-color: transparent;
+  --ix-card-border-color: var(--ix-card-filled--background);
 }
 
 @each $status in card-vars.$card-status-variants {
   :host(.card-#{$status}) {
-    border-top-width: var(--ix-card--strip-height);
-    border-top-color: var(--ix-card-status-color);
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--ix-card--strip-height);
+      border-radius: var(--ix-card--border-radius)
+        var(--ix-card--border-radius)
+        0
+        0;
+      z-index: 1;
+      pointer-events: none;
+      background-color: var(--ix-card-status-color);
+    }
   }
 
-  :host(:not(.outline).card-#{$status}) {
-    --ix-card-background: var(--ix-card-filled--background);
-    --ix-card-border-color: transparent;
-    border-top-color: var(--ix-card-status-color);
-  }
-
-  /* Outline + status: sides stay border-3; selected does not switch to accent */
   :host(.outline.card-#{$status}),
   :host(.outline.selected.card-#{$status}) {
     --ix-card-border-color: var(--ix-card-base--border-color);
   }
 }
 
-/* Selected accent border for base cards only */
 :host(.selected) {
   --ix-card-border-color: var(--ix-card-base--border-color--selected);
 }
 
-/* Hover / active only when clickable */
 :host(.clickable.outline:hover) {
   --ix-card-background: var(--ix-card-base--background--hover);
 }
@@ -104,10 +116,12 @@
 
 :host(.clickable:not(.outline):hover) {
   --ix-card-background: var(--ix-card-filled--background--hover);
+  --ix-card-border-color: var(--ix-card-filled--background--hover);
 }
 
 :host(.clickable:not(.outline):active) {
   --ix-card-background: var(--ix-card-filled--background--active);
+  --ix-card-border-color: var(--ix-card-filled--background--active);
 }
 
 :host(.selected:not(.clickable)),
@@ -117,6 +131,7 @@
 
 :host(.selected:not(.outline)) {
   --ix-card-background: var(--ix-card-filled--background--selected);
+  --ix-card-border-color: var(--ix-card-filled--background--selected);
 }
 
 @mixin accordionChevronColorPrimary {
