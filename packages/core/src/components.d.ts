@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ActionCardVariant } from "./components/action-card/action-card.types";
+import { StatusVariant } from "./components/utils/status.types";
 import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
@@ -15,8 +15,7 @@ import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
 import { ButtonIconSize } from "./components/button/base-button.types";
-import { CardVariant } from "./components/card/card.types";
-import { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
+import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
 import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
@@ -48,7 +47,6 @@ import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-import { PushCardVariant } from "./components/push-card/push-card.types";
 import { SliderMarker } from "./components/slider/slider.types";
 import { SpinnerSize } from "./components/spinner/spinner.types";
 import { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -64,7 +62,7 @@ import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 import { RefreshTreeOptions } from "./components/tree/tree.types";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography.types";
 import { UploadFileState } from "./components/upload/upload-file-state";
-export { ActionCardVariant } from "./components/action-card/action-card.types";
+export { StatusVariant } from "./components/utils/status.types";
 export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
@@ -74,8 +72,7 @@ export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
 export { ButtonIconSize } from "./components/button/base-button.types";
-export { CardVariant } from "./components/card/card.types";
-export { CardAccordionExpandChangeEvent, CardAccordionVariant } from "./components/card-accordion/card-accordion.types";
+export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion.types";
 export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
@@ -107,7 +104,6 @@ export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/men
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
-export { PushCardVariant } from "./components/push-card/push-card.types";
 export { SliderMarker } from "./components/slider/slider.types";
 export { SpinnerSize } from "./components/spinner/spinner.types";
 export { SplitButtonVariant } from "./components/split-button/split-button.types";
@@ -141,6 +137,11 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
+          * @since 6.0.0
+         */
+        "clickable"?: boolean;
+        /**
           * Card heading
          */
         "heading"?: string;
@@ -150,10 +151,10 @@ export namespace Components {
          */
         "icon": string | undefined;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
          */
-        "passive": boolean;
+        "outline"?: boolean;
         /**
           * Card selection
           * @default false
@@ -164,10 +165,10 @@ export namespace Components {
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'base'
          */
-        "variant": ActionCardVariant;
+        "variant": StatusVariant;
     }
     /**
      * Root container that sets up the overall application shell and layout.
@@ -609,20 +610,26 @@ export namespace Components {
      */
     interface IxCard {
         /**
-          * If true, disables hover and active styles and changes cursor to default
+          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
+          * @since 6.0.0
           * @default false
          */
-        "passive": boolean;
+        "clickable": boolean;
+        /**
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
+         */
+        "outline"?: boolean;
         /**
           * Show card in selected state
           * @default false
          */
         "selected": boolean;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'base'
          */
-        "variant": CardVariant;
+        "variant": StatusVariant;
     }
     /**
      * Expandable card section that shows or hides content within a card list.
@@ -641,11 +648,17 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * Show accordion with different color variants
-          * @since 4.0.0
-          * @default 'outline'
+          * Show the accordion with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
+          * @since 6.0.0
          */
-        "variant": CardAccordionVariant;
+        "outline"?: boolean;
+        /**
+          * Accordion status variant.
+          * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
+          * @since 4.0.0
+          * @default 'base'
+         */
+        "variant": StatusVariant;
     }
     /**
      * Content region of a card.
@@ -4137,6 +4150,12 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
+          * @since 6.0.0
+          * @default false
+         */
+        "clickable": boolean;
+        /**
           * Expand the card
           * @default false
          */
@@ -4154,19 +4173,19 @@ export namespace Components {
          */
         "notification"?: string;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
          */
-        "passive": boolean;
+        "outline"?: boolean;
         /**
           * Card subheading
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'base'
          */
-        "variant": PushCardVariant;
+        "variant": StatusVariant;
     }
     /**
      * Lets users select a single option from a set.
@@ -8188,6 +8207,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
+          * @since 6.0.0
+         */
+        "clickable"?: boolean;
+        /**
           * Card heading
          */
         "heading"?: string;
@@ -8197,10 +8221,10 @@ declare namespace LocalJSX {
          */
         "icon"?: string | undefined;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
          */
-        "passive"?: boolean;
+        "outline"?: boolean;
         /**
           * Card selection
           * @default false
@@ -8211,10 +8235,10 @@ declare namespace LocalJSX {
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'base'
          */
-        "variant"?: ActionCardVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Root container that sets up the overall application shell and layout.
@@ -8683,20 +8707,26 @@ declare namespace LocalJSX {
      */
     interface IxCard {
         /**
-          * If true, disables hover and active styles and changes cursor to default
+          * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
+          * @since 6.0.0
           * @default false
          */
-        "passive"?: boolean;
+        "clickable"?: boolean;
+        /**
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
+         */
+        "outline"?: boolean;
         /**
           * Show card in selected state
           * @default false
          */
         "selected"?: boolean;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'base'
          */
-        "variant"?: CardVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Expandable card section that shows or hides content within a card list.
@@ -8716,11 +8746,17 @@ declare namespace LocalJSX {
         "collapse"?: boolean;
         "onAccordionExpand"?: (event: IxCardAccordionCustomEvent<CardAccordionExpandChangeEvent>) => void;
         /**
-          * Show accordion with different color variants
-          * @since 4.0.0
-          * @default 'outline'
+          * Show the accordion with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
+          * @since 6.0.0
          */
-        "variant"?: CardAccordionVariant;
+        "outline"?: boolean;
+        /**
+          * Accordion status variant.
+          * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
+          * @since 4.0.0
+          * @default 'base'
+         */
+        "variant"?: StatusVariant;
     }
     /**
      * Content region of a card.
@@ -12433,6 +12469,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
+          * @since 6.0.0
+          * @default false
+         */
+        "clickable"?: boolean;
+        /**
           * Expand the card
           * @default false
          */
@@ -12450,19 +12492,19 @@ declare namespace LocalJSX {
          */
         "notification"?: string;
         /**
-          * If true, disables hover and active styles and changes cursor to default
-          * @default false
+          * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
+          * @since 6.0.0
          */
-        "passive"?: boolean;
+        "outline"?: boolean;
         /**
           * Card subheading
          */
         "subheading"?: string;
         /**
-          * Card variant
-          * @default 'outline'
+          * Card status variant
+          * @default 'base'
          */
-        "variant"?: PushCardVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Lets users select a single option from a set.
@@ -14026,14 +14068,15 @@ declare namespace LocalJSX {
     }
 
     interface IxActionCardAttributes {
-        "variant": ActionCardVariant;
+        "variant": StatusVariant;
+        "outline": boolean;
         "icon": string | undefined;
         "ariaLabelIcon": string;
         "heading": string;
         "subheading": string;
         "selected": boolean;
         "ariaLabelCard": string;
-        "passive": boolean;
+        "clickable": boolean;
     }
     interface IxApplicationAttributes {
         "theme": string;
@@ -14122,14 +14165,16 @@ declare namespace LocalJSX {
         "rel": string;
     }
     interface IxCardAttributes {
-        "variant": CardVariant;
+        "variant": StatusVariant;
+        "outline": boolean;
         "selected": boolean;
-        "passive": boolean;
+        "clickable": boolean;
     }
     interface IxCardAccordionAttributes {
         "ariaLabelExpandButton": string;
         "collapse": boolean;
-        "variant": CardAccordionVariant;
+        "variant": StatusVariant;
+        "outline": boolean;
     }
     interface IxCardListAttributes {
         "ariaLabelExpandButton": string;
@@ -14852,9 +14897,10 @@ declare namespace LocalJSX {
         "notification": string;
         "heading": string;
         "subheading": string;
-        "variant": PushCardVariant;
+        "variant": StatusVariant;
+        "outline": boolean;
         "expanded": boolean;
-        "passive": boolean;
+        "clickable": boolean;
     }
     interface IxRadioAttributes {
         "name": string;
