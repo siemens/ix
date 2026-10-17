@@ -1,0 +1,14 @@
+packages/storybook-docs/src/stories/blind.stories.tsx
+  h_c5a773bf2fda8b 7-10,17-22,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7d6e745adcb8fe78e53c92365c5d24343f58615f",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
