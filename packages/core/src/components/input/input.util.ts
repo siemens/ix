@@ -54,8 +54,8 @@ export function checkAllowedKeys<T>(
   }
 }
 
-// Last emitted validity in `novalidate` forms, where no class tracks it
-const suppressedValidityStates = new WeakMap<HTMLElement, boolean>();
+// Last tracked validity, kept across `novalidate` toggles since the class is cleared there
+const lastValidityStates = new WeakMap<HTMLElement, boolean>();
 
 export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
@@ -63,15 +63,15 @@ export async function checkInternalValidity<T>(
 ) {
   const skipValidation = await shouldSuppressInternalValidation(comp);
   const validityState = input.validity;
-  const currentValidityState = skipValidation
-    ? (suppressedValidityStates.get(comp.hostElement) ?? true)
-    : !comp.hostElement.classList.contains('ix-invalid--validity-invalid');
+  const currentValidityState =
+    lastValidityStates.get(comp.hostElement) ??
+    !comp.hostElement.classList.contains('ix-invalid--validity-invalid');
   const newValidityState = validityState.valid;
   const validityChanged = currentValidityState !== newValidityState;
 
-  // Track before emitting so a prevented event isn't re-emitted next check
+  // `novalidate`: track before emitting so a prevented event isn't re-emitted next check
   if (skipValidation) {
-    suppressedValidityStates.set(comp.hostElement, newValidityState);
+    lastValidityStates.set(comp.hostElement, newValidityState);
   }
 
   if (validityChanged) {
@@ -80,6 +80,8 @@ export async function checkInternalValidity<T>(
       return;
     }
   }
+
+  lastValidityStates.set(comp.hostElement, newValidityState);
 
   // `novalidate`: still emit the event, but skip visual feedback
   if (skipValidation) {

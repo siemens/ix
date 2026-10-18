@@ -418,6 +418,68 @@ test.describe('novalidate form', () => {
 
       await expect(host).not.toHaveClass(/ix-invalid/);
     });
+
+    test(`${selector} - should emit validityStateChange when recovering after the form opts out`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.emitted = '';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          const { valid } = (event as CustomEvent<ValidityState>).detail;
+          el.dataset.emitted += valid ? 'valid,' : 'invalid,';
+        });
+      });
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,');
+
+      await page
+        .locator('form')
+        .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+      await nativeInput.fill('2');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,valid,');
+    });
+
+    test(`${selector} - should emit validityStateChange when recovering after the form opts back in`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form novalidate><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.emitted = '';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          const { valid } = (event as CustomEvent<ValidityState>).detail;
+          el.dataset.emitted += valid ? 'valid,' : 'invalid,';
+        });
+      });
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,');
+
+      await page
+        .locator('form')
+        .evaluate((form: HTMLFormElement) => (form.noValidate = false));
+      await nativeInput.fill('2');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,valid,');
+    });
   });
 
   // Only fields with `getValidityState` get `aria-invalid` from the validation hook
@@ -438,6 +500,34 @@ test.describe('novalidate form', () => {
 
     await expect(nativeInput).not.toHaveAttribute('aria-invalid', 'true');
     await expect(host).not.toHaveClass(/ix-invalid/);
+  });
+
+  ['<form novalidate>', '<form>'].forEach((formTag) => {
+    test(`ix-input - should keep consumer-set invalid state for assistive technology in ${formTag}`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `${formTag}<ix-input class="ix-invalid" invalid-text="Consumer error"></ix-input></form>`
+      );
+      const host = page.locator('ix-input');
+      const nativeInput = host.locator('input');
+      const errorId = await host
+        .locator('ix-field-wrapper .error-message-container')
+        .getAttribute('id')
+        .then((id) => id ?? '');
+
+      await nativeInput.fill('valid');
+      await nativeInput.blur();
+
+      await expect(host).toHaveClass(/ix-invalid/);
+      await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
+      await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
+      await expect(nativeInput).toHaveAttribute(
+        'aria-errormessage',
+        new RegExp(`(^|\\s)${errorId}(\\s|$)`)
+      );
+    });
   });
 });
 

@@ -139,6 +139,11 @@ export function clearInternalValidationClasses(host: HTMLElement) {
   }
 }
 
+/** Returns `false` if the consumer marked the field invalid via `ix-invalid` */
+function consumerValidityCheck(host: HTMLElement) {
+  return !host.classList.contains('ix-invalid');
+}
+
 function syncAriaInvalid(
   validationElement: HTMLInputElement | HTMLTextAreaElement,
   valid: boolean
@@ -334,7 +339,8 @@ export function HookValidationLifecycle(options?: {
         }
 
         if (skipValidation) {
-          // Suppress visual feedback only, screen readers still follow validity
+          // Suppress built-in visual feedback only, screen readers still follow
+          // validity and consumer-set `ix-invalid`
           if (
             validationElement &&
             host.getValidityState &&
@@ -343,12 +349,13 @@ export function HookValidationLifecycle(options?: {
             const { valid } = await host.getValidityState();
             const messageElements = await getFieldWrapperMessageElements(host);
             if (host.isConnected) {
-              syncAriaInvalid(validationElement, valid);
-              // Error text is suppressed, so drop the generated error reference
+              const consumerValid = consumerValidityCheck(host);
+              syncAriaInvalid(validationElement, valid && consumerValid);
+              // Built-in error text is suppressed, only a consumer error stays linked
               if (messageElements) {
                 syncAriaMessageReferences(
                   validationElement,
-                  false,
+                  !consumerValid,
                   messageElements
                 );
               }
@@ -402,10 +409,14 @@ export function HookValidationLifecycle(options?: {
               return;
             }
 
-            syncAriaInvalid(validationElement, validityState.valid);
+            const consumerValid = consumerValidityCheck(host);
+            syncAriaInvalid(
+              validationElement,
+              validityState.valid && consumerValid
+            );
             syncAriaMessageReferences(
               validationElement,
-              !validityState.valid,
+              !validityState.valid || !consumerValid,
               messageElements
             );
           }
