@@ -901,11 +901,11 @@ import type { ContextMenuOpenEventDetail as IIxContextMenuContextMenuOpenEventDe
 export declare interface IxContextMenu extends Components.IxContextMenu {
   /**
    * Fired before the context menu opens.
-Preventing the event keeps the context menu closed and shows the native browser context menu.
+Preventing the event keeps the context menu closed and shows the native browser context menu. @since 6.0.0
    */
   contextMenuOpen: EventEmitter<IxContextMenuCustomEvent<IIxContextMenuContextMenuOpenEventDetail>>;
   /**
-   * Fired after the visibility of the context menu has changed.
+   * Fired after the visibility of the context menu has changed. @since 6.0.0
    */
   showChanged: EventEmitter<IxContextMenuCustomEvent<boolean>>;
 }

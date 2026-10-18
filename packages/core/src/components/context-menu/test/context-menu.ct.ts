@@ -161,6 +161,45 @@ regressionTest.describe('open', () => {
   });
 
   regressionTest(
+    'previous target is detached while the new target is pending',
+    async ({ mount, page }) => {
+      await mount(html`
+        <div id="first" style="width: 200px; height: 100px">First</div>
+        <ix-context-menu target="first">
+          <ix-dropdown-item label="Open"></ix-dropdown-item>
+        </ix-context-menu>
+      `);
+      const contextMenu = page.locator('ix-context-menu');
+      await expect(contextMenu).toHaveAttribute('hydrated');
+
+      await contextMenu.evaluate((element: HTMLIxContextMenuElement) => {
+        element.target = 'late';
+      });
+      await recordNativeContextMenuPrevented(page);
+
+      await page.getByText('First').click({ button: 'right' });
+      await expect(page.locator('body')).toHaveAttribute(
+        'data-native-prevented',
+        'false'
+      );
+      await expect(getMenu(page)).toBeHidden();
+
+      await page.evaluate(() => {
+        const late = document.createElement('div');
+        late.id = 'late';
+        late.textContent = 'Late';
+        late.style.height = '100px';
+        document.body.prepend(late);
+      });
+
+      await expect(async () => {
+        await page.getByText('Late').click({ button: 'right' });
+        await expect(getMenu(page)).toBeVisible({ timeout: 500 });
+      }).toPass({ timeout: 3000 });
+    }
+  );
+
+  regressionTest(
     'disabled shows the native context menu',
     async ({ mount, page }) => {
       await mountFixture(mount, page, 'disabled');

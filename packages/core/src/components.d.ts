@@ -1198,24 +1198,29 @@ export namespace Components {
     interface IxContextMenu {
         /**
           * Accessible label of the menu.
+          * @since 6.0.0
          */
         "ariaLabelMenu"?: string;
         /**
           * Do not open the context menu, the native browser context menu is shown instead.
+          * @since 6.0.0
           * @default false
          */
         "disabled": boolean;
         /**
           * Enable Popover API rendering for top-layer positioning. Recommended if the context menu is placed inside a transformed or clipping container.
+          * @since 6.0.0
           * @default false
          */
         "enableTopLayer": boolean;
         /**
           * Hide the context menu.
+          * @since 6.0.0
          */
         "hide": () => Promise<void>;
         /**
           * Controls how keyboard navigation moves focus between menu items. Defaults to `roving-tabindex`, which moves DOM focus onto the items. See `navigationMode` of `ix-dropdown`.
+          * @since 6.0.0
           * @default 'roving-tabindex'
          */
         "navigationMode": 'active-descendant' | 'roving-tabindex';
@@ -1223,10 +1228,12 @@ export namespace Components {
           * Show the context menu at the given absolute point in viewport coordinates. Moves an already visible context menu.
           * @param x Absolute horizontal viewport coordinate in pixels
           * @param y Absolute vertical viewport coordinate in pixels
+          * @since 6.0.0
          */
         "showAt": (x: number, y: number) => Promise<void>;
         /**
           * Element that opens the context menu on right-click. Can either be a string that will be interpreted as id attribute or a DOM element. Defaults to the parent element of the context menu.
+          * @since 6.0.0
          */
         "target"?: ElementReference;
     }
@@ -9426,33 +9433,40 @@ declare namespace LocalJSX {
     interface IxContextMenu {
         /**
           * Accessible label of the menu.
+          * @since 6.0.0
          */
         "ariaLabelMenu"?: string;
         /**
           * Do not open the context menu, the native browser context menu is shown instead.
+          * @since 6.0.0
           * @default false
          */
         "disabled"?: boolean;
         /**
           * Enable Popover API rendering for top-layer positioning. Recommended if the context menu is placed inside a transformed or clipping container.
+          * @since 6.0.0
           * @default false
          */
         "enableTopLayer"?: boolean;
         /**
           * Controls how keyboard navigation moves focus between menu items. Defaults to `roving-tabindex`, which moves DOM focus onto the items. See `navigationMode` of `ix-dropdown`.
+          * @since 6.0.0
           * @default 'roving-tabindex'
          */
         "navigationMode"?: 'active-descendant' | 'roving-tabindex';
         /**
           * Fired before the context menu opens. Preventing the event keeps the context menu closed and shows the native browser context menu.
+          * @since 6.0.0
          */
         "onContextMenuOpen"?: (event: IxContextMenuCustomEvent<ContextMenuOpenEventDetail>) => void;
         /**
           * Fired after the visibility of the context menu has changed.
+          * @since 6.0.0
          */
         "onShowChanged"?: (event: IxContextMenuCustomEvent<boolean>) => void;
         /**
           * Element that opens the context menu on right-click. Can either be a string that will be interpreted as id attribute or a DOM element. Defaults to the parent element of the context menu.
+          * @since 6.0.0
          */
         "target"?: ElementReference;
     }

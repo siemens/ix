@@ -57,22 +57,30 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
    * Element that opens the context menu on right-click.
    * Can either be a string that will be interpreted as id attribute or a DOM element.
    * Defaults to the parent element of the context menu.
+   *
+   * @since 6.0.0
    */
   @Prop() target?: ElementReference;
 
   /**
    * Do not open the context menu, the native browser context menu is shown instead.
+   *
+   * @since 6.0.0
    */
   @Prop() disabled = false;
 
   /**
    * Accessible label of the menu.
+   *
+   * @since 6.0.0
    */
   @Prop() ariaLabelMenu?: string;
 
   /**
    * Enable Popover API rendering for top-layer positioning.
    * Recommended if the context menu is placed inside a transformed or clipping container.
+   *
+   * @since 6.0.0
    */
   @Prop() enableTopLayer = false;
 
@@ -80,6 +88,8 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
    * Controls how keyboard navigation moves focus between menu items.
    * Defaults to `roving-tabindex`, which moves DOM focus onto the items.
    * See `navigationMode` of `ix-dropdown`.
+   *
+   * @since 6.0.0
    */
   @Prop() navigationMode: 'active-descendant' | 'roving-tabindex' =
     'roving-tabindex';
@@ -87,11 +97,15 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
   /**
    * Fired before the context menu opens.
    * Preventing the event keeps the context menu closed and shows the native browser context menu.
+   *
+   * @since 6.0.0
    */
   @Event() contextMenuOpen!: EventEmitter<ContextMenuOpenEventDetail>;
 
   /**
    * Fired after the visibility of the context menu has changed.
+   *
+   * @since 6.0.0
    */
   @Event() showChanged!: EventEmitter<boolean>;
 
@@ -136,6 +150,8 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
    *
    * @param x Absolute horizontal viewport coordinate in pixels
    * @param y Absolute vertical viewport coordinate in pixels
+   *
+   * @since 6.0.0
    */
   @Method()
   async showAt(x: number, y: number) {
@@ -145,6 +161,8 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
 
   /**
    * Hide the context menu.
+   *
+   * @since 6.0.0
    */
   @Method()
   async hide() {
@@ -153,6 +171,9 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
 
   private async registerTarget() {
     const resolveId = ++this.targetResolveId;
+    // Detach right away, the old target must not open the menu while the
+    // new one is being resolved
+    this.unregisterTarget();
     const element = this.target
       ? await findElement(this.target, this.hostElement)
       : this.hostElement.parentElement;
@@ -161,7 +182,6 @@ export class ContextMenu extends Mixin(...DefaultMixins) {
       return;
     }
 
-    this.unregisterTarget();
     this.targetElement = (element as HTMLElement | null) ?? undefined;
     this.targetElement?.addEventListener('contextmenu', this.onContextMenu);
     this.targetElement?.addEventListener('keydown', this.onTargetKeydown);
