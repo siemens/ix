@@ -412,9 +412,11 @@ export class ApplicationHeader {
             ></slot>
           </div>
           <div class="name">
-            <ix-typography format="body-lg" class="application-name">
-              {this.name}
-            </ix-typography>
+            {this.name && (
+              <h1 class="application-name">
+                <ix-typography format="body-lg">{this.name}</ix-typography>
+              </h1>
+            )}
             {this.nameSuffix && this.breakpoint !== 'sm' && (
               <ix-typography format="body-sm" class="application-name-suffix">
                 {this.nameSuffix}

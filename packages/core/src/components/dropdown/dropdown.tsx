@@ -818,7 +818,11 @@ export class Dropdown
         return;
       }
 
+      // showPopover() moves the focus into a dialog unless it is inert, which
+      // takes it from the trigger (e.g. the input of ix-select) while typing
+      popover.inert = true;
       popover.showPopover();
+      popover.inert = false;
     }
 
     this.addObserverForTriggerVisibility();
