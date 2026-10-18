@@ -187,6 +187,120 @@ regressionTest.describe('anchor position', () => {
     }
   );
 
+  regressionTest(
+    'fallback placement of a clipped trigger does not apply to showAt',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #trigger {
+            position: fixed;
+            left: 20px;
+            bottom: -16px;
+          }
+        </style>
+        <ix-button id="trigger">Trigger</ix-button>
+        <ix-dropdown id="dropdown" trigger="trigger" placement="bottom-start">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        /^top/
+      );
+
+      await dropdown.evaluate((element: HTMLIxDropdownElement) =>
+        element.showAt(300, 200)
+      );
+      await expectTopLeftAt(dropdown, 300, 200);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+    }
+  );
+
+  regressionTest(
+    'showAt moves focus into a dropdown with a trigger',
+    async ({ mount, page }) => {
+      await mount(html`
+        <ix-button id="trigger">Trigger</ix-button>
+        <input id="target" aria-label="Name" />
+        <ix-dropdown id="context-menu" trigger="trigger">
+          <ix-dropdown-item label="Copy"></ix-dropdown-item>
+          <ix-dropdown-item label="Paste"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+      await openContextMenuOnRightClick(page, '#target');
+
+      const dropdown = page.locator('#context-menu');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      const input = page.getByLabel('Name');
+      await input.click();
+      await input.click({ button: 'right' });
+      await expect(dropdown).toBeFocused();
+
+      const items = dropdown.locator('ix-dropdown-item');
+      await page.keyboard.press('ArrowDown');
+      await expect(items.nth(0)).toHaveClass(/ix-focused/);
+      await page.keyboard.press('ArrowDown');
+      await expect(items.nth(1)).toHaveClass(/ix-focused/);
+
+      await page.keyboard.press('Escape');
+      await expect(dropdown).not.toBeVisible();
+      await expect(input).toBeFocused();
+    }
+  );
+
+  regressionTest(
+    'closes with a containing popover without trigger',
+    async ({ mount, page }) => {
+      await mount(html`
+        <ix-button id="popover-trigger">Open popover</ix-button>
+        <ix-popover id="popover" trigger="popover-trigger">
+          <ix-popover-content>
+            Content
+            <ix-dropdown id="context-menu">
+              <ix-dropdown-item label="Copy"></ix-dropdown-item>
+            </ix-dropdown>
+          </ix-popover-content>
+        </ix-popover>
+      `);
+
+      const popover = page.locator('#popover');
+      const dropdown = page.locator('#context-menu');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await popover.evaluate((element: HTMLIxPopoverElement) =>
+        element.showPopover()
+      );
+      await dropdown.evaluate((element: HTMLIxDropdownElement) =>
+        element.showAt(100, 100)
+      );
+      await expect(dropdown).toBeVisible();
+
+      await popover.evaluate((element: HTMLIxPopoverElement) =>
+        element.hidePopover()
+      );
+      await expect
+        .poll(() =>
+          dropdown.evaluate((element: HTMLIxDropdownElement) => element.show)
+        )
+        .toBe(false);
+
+      await popover.evaluate((element: HTMLIxPopoverElement) =>
+        element.showPopover()
+      );
+      await expect(page.getByText('Content')).toBeVisible();
+      await expect(dropdown).not.toBeVisible();
+    }
+  );
+
   regressionTest.describe('context menu', () => {
     regressionTest(
       'opens at the pointer and moves on another right-click',
@@ -395,6 +509,142 @@ regressionTest.describe('anchor position', () => {
 
         await page.keyboard.press('ArrowDown');
         await expect(items.nth(1)).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'supports keyboard navigation with an anchor',
+      async ({ mount, page }) => {
+        await mount(html`
+          <div id="anchor">Anchor</div>
+          <ix-dropdown id="context-menu" role="menu" anchor="anchor">
+            <ix-dropdown-item label="Copy"></ix-dropdown-item>
+            <ix-dropdown-item label="Paste"></ix-dropdown-item>
+          </ix-dropdown>
+        `);
+        await openContextMenuOnRightClick(page, '#anchor');
+
+        const dropdown = page.locator('#context-menu');
+        await expect(dropdown).toHaveAttribute('hydrated');
+
+        await page.getByText('Anchor').click({ button: 'right' });
+        await expect(dropdown).toBeFocused();
+
+        const items = dropdown.locator('ix-dropdown-item');
+        await page.keyboard.press('ArrowDown');
+        await expect(items.nth(0)).toHaveClass(/ix-focused/);
+        await page.keyboard.press('End');
+        await expect(items.nth(1)).toHaveClass(/ix-focused/);
+
+        await page.keyboard.press('Enter');
+        await expect(dropdown).not.toBeVisible();
+      }
+    );
+
+    regressionTest.describe('Tab with disabled focus trap', () => {
+      const tabFixture = html`
+        <button>Before</button>
+        <button id="target">Target</button>
+        <button>After</button>
+        <ix-dropdown id="context-menu" role="menu" disable-focus-trap>
+          <ix-dropdown-item label="Copy"></ix-dropdown-item>
+        </ix-dropdown>
+      `;
+
+      regressionTest(
+        'Tab closes and moves focus after the opener',
+        async ({ mount, page }) => {
+          await mount(tabFixture);
+          await openContextMenuOnRightClick(page, '#target');
+
+          const dropdown = page.locator('#context-menu');
+          await expect(dropdown).toHaveAttribute('hydrated');
+
+          await page.getByRole('button', { name: 'Target' }).focus();
+          await page
+            .getByRole('button', { name: 'Target' })
+            .dispatchEvent('contextmenu');
+          await expect(dropdown).toBeFocused();
+
+          await page.keyboard.press('Tab');
+          await expect(dropdown).not.toBeVisible();
+          await expect(
+            page.getByRole('button', { name: 'After' })
+          ).toBeFocused();
+        }
+      );
+
+      regressionTest(
+        'Shift+Tab closes and returns focus to the opener',
+        async ({ mount, page }) => {
+          await mount(tabFixture);
+          await openContextMenuOnRightClick(page, '#target');
+
+          const dropdown = page.locator('#context-menu');
+          await expect(dropdown).toHaveAttribute('hydrated');
+
+          const target = page.getByRole('button', { name: 'Target' });
+          await target.focus();
+          await target.dispatchEvent('contextmenu');
+          await expect(dropdown).toBeFocused();
+
+          await page.keyboard.press('Shift+Tab');
+          await expect(dropdown).not.toBeVisible();
+          await expect(target).toBeFocused();
+        }
+      );
+    });
+
+    regressionTest(
+      'roving-tabindex Tab continues after an ix-button opener',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="opener">Opener</ix-button>
+          <button>Next</button>
+          <ix-dropdown
+            id="context-menu"
+            role="menu"
+            navigation-mode="roving-tabindex"
+          >
+            <ix-dropdown-item label="Copy"></ix-dropdown-item>
+          </ix-dropdown>
+        `);
+        await openContextMenuOnRightClick(page, '#opener');
+
+        const dropdown = page.locator('#context-menu');
+        await expect(dropdown).toHaveAttribute('hydrated');
+
+        const opener = page.getByRole('button', { name: 'Opener' });
+        await opener.focus();
+        await opener.dispatchEvent('contextmenu');
+        await expect(dropdown.locator('ix-dropdown-item')).toBeFocused();
+
+        await page.keyboard.press('Tab');
+        await expect(dropdown).not.toBeVisible();
+        await expect(page.getByRole('button', { name: 'Next' })).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'keeps keyboard focus when switching to active-descendant',
+      async ({ mount, page }) => {
+        await mount(contextMenuFixture('navigation-mode="roving-tabindex"'));
+        await openContextMenuOnRightClick(page);
+
+        const dropdown = page.locator('#context-menu');
+        await expect(dropdown).toHaveAttribute('hydrated');
+
+        await page.mouse.click(100, 100, { button: 'right' });
+        const items = dropdown.locator('ix-dropdown-item');
+        await expect(items.nth(0)).toBeFocused();
+
+        await dropdown.evaluate((element: HTMLIxDropdownElement) => {
+          element.navigationMode = 'active-descendant';
+        });
+        await expect(dropdown).toBeFocused();
+
+        await page.keyboard.press('End');
+        await expect(items.nth(2)).toHaveClass(/ix-focused/);
       }
     );
 

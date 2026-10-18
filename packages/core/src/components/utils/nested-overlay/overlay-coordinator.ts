@@ -15,6 +15,8 @@ export interface CoordinatedOverlay {
   kind: OverlayKind;
   hostElement: HTMLElement;
   getTriggerElement(): HTMLElement | undefined;
+  /** Reference used to find the parent overlay, defaults to the trigger */
+  getParentReferenceElement?(): HTMLElement | undefined;
   isPresent(): boolean;
   dismissOnOutside(): boolean;
   dismiss(reason: OverlayDismissReason): void;
@@ -256,8 +258,9 @@ export class OverlayCoordinator {
 
   private getParentKey(childKey: string): string | undefined {
     const child = this.entries.get(childKey);
-    const trigger = child?.getTriggerElement();
-    if (!child || !trigger) {
+    const reference =
+      child?.getParentReferenceElement?.() ?? child?.getTriggerElement();
+    if (!child || !reference) {
       return undefined;
     }
 
@@ -269,7 +272,7 @@ export class OverlayCoordinator {
         continue;
       }
 
-      const distance = getComposedDistance(candidate.hostElement, trigger);
+      const distance = getComposedDistance(candidate.hostElement, reference);
       if (distance !== undefined && distance <= parentDistance) {
         parentKey = candidate.key;
         parentDistance = distance;
