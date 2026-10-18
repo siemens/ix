@@ -337,7 +337,14 @@ export const configureKeyboardInteraction = (
       return undefined;
     }
 
-    return options.onNavigationBoundary(direction);
+    try {
+      return await options.onNavigationBoundary(direction);
+    } catch (e) {
+      if (Build.isDev) {
+        console.error('Error during dropdown navigation boundary:', e);
+      }
+      return undefined;
+    }
   };
 
   const callback = async (event: KeyboardEvent) => {
