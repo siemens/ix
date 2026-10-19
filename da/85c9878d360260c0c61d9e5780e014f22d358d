@@ -1,0 +1,194 @@
+.changeset/eix-396-icon-size-20-followup.md
+  h_c5a773bf2fda8b 1-14
+.changeset/fix-stencil-type-references.md
+  h_c5a773bf2fda8b 1-5
+.changeset/form-validation-aria-references.md
+  h_c5a773bf2fda8b 1-5
+.changeset/form-validation-novalidate.md
+  h_c5a773bf2fda8b 1-8
+.changeset/form-validation-reconnect.md
+  h_c5a773bf2fda8b 1-5
+.changeset/form-validation-required-toggle.md
+  h_c5a773bf2fda8b 1-5
+.changeset/link-button-icon-variants.md
+  h_c5a773bf2fda8b 1-5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 27,937-977
+examples/angular-examples/src/app/app-routing.module.ts
+  h_c5a773bf2fda8b 173-176,834-849
+examples/angular-examples/src/app/app.module.ts
+  h_c5a773bf2fda8b 182-185,442-445
+examples/angular-examples/src/preview-examples/link-button-action.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/link-button-external.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/link-button-file.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/link-button-internal.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-standalone-examples/src/app/app.routes.ts
+  h_c5a773bf2fda8b 398-405
+examples/angular-standalone-examples/src/preview-examples/link-button-action.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/link-button-external.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/link-button-file.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/link-button-internal.ts
+  h_c5a773bf2fda8b 1-22
+examples/html-examples/src/preview-examples/link-button-action.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/link-button-external.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/link-button-file.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/link-button-internal.html
+  h_c5a773bf2fda8b 1-23
+examples/react-examples/src/main.tsx
+  h_c5a773bf2fda8b 178-181,425-428
+examples/react-examples/src/preview-examples/link-button-action.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/link-button-external.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/link-button-file.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/link-button-internal.tsx
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/Root.vue
+  h_c5a773bf2fda8b 177-180,519-522
+examples/vue-examples/src/preview-examples/link-button-action.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/link-button-external.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/link-button-file.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/link-button-internal.vue
+  h_c5a773bf2fda8b 1-18
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 1777,1784
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 1889,1896
+packages/core/component-api.json
+  h_c5a773bf2fda8b 5998-6019
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 3038-3049,11287-11298,14680-14681
+packages/core/src/components/date-input/date-input.tsx
+  h_c5a773bf2fda8b 44,51,145-149,444,503-506,515
+packages/core/src/components/date-input/tests/date-input.ct.ts
+  h_c5a773bf2fda8b 14,142-147,167-362
+packages/core/src/components/datetime-input/datetime-input.tsx
+  h_c5a773bf2fda8b 44,47,54,119-123,600-603,627-630,639,742
+packages/core/src/components/datetime-input/test/datetime-input.ct.ts
+  h_c5a773bf2fda8b 14,286-367
+packages/core/src/components/dropdown-button/dropdown-button.ct.ts
+  h_c5a773bf2fda8b 517,537,542,556
+packages/core/src/components/dropdown-button/dropdown-button.scss
+  h_c5a773bf2fda8b 90-93
+packages/core/src/components/dropdown-button/dropdown-button.tsx
+  h_c5a773bf2fda8b 453
+packages/core/src/components/dropdown-button/dropdown-button.vars.scss
+  h_c5a773bf2fda8b 22
+packages/core/src/components/input/input.tsx
+  h_c5a773bf2fda8b 42,98-105,253-259
+packages/core/src/components/input/input.util.ts
+  h_c5a773bf2fda8b 16-17,57-59,64,66-68,70-75,77,82-90,92,98,100-108,110
+packages/core/src/components/input/number-input.tsx
+  h_c5a773bf2fda8b 40,92-99,254-260
+packages/core/src/components/input/tests/validation.ct.ts
+  h_c5a773bf2fda8b 9-10,282-629
+packages/core/src/components/input/textarea.tsx
+  h_c5a773bf2fda8b 35,79-86,237-247
+packages/core/src/components/link-button/link-button.scss
+  h_c5a773bf2fda8b 25,29-36,49-54,59-64
+packages/core/src/components/link-button/link-button.tsx
+  h_c5a773bf2fda8b 10-15,19-25,57-68,70-78,92,101
+packages/core/src/components/link-button/link-button.vars.scss
+  h_c5a773bf2fda8b 24,26
+packages/core/src/components/link-button/test/link-button.ct.ts
+  h_c5a773bf2fda8b 10-15,18-34,40-47,49-55,74,77-173
+packages/core/src/components/menu-category/menu-category.vars.scss
+  h_c5a773bf2fda8b 20-23
+packages/core/src/components/menu-item/menu-item.scss
+  h_c5a773bf2fda8b 46
+packages/core/src/components/menu-item/menu-item.vars.scss
+  h_c5a773bf2fda8b 30-33
+packages/core/src/components/menu/menu-expand-icon.tsx
+  h_c5a773bf2fda8b 56-58,60-62
+packages/core/src/components/menu/menu-expand-icon.vars.scss
+  h_c5a773bf2fda8b 26-28
+packages/core/src/components/range-field/range-field.vars.scss
+  h_c5a773bf2fda8b 14-23
+packages/core/src/components/range-field/tests/range-field.ct.ts
+  h_c5a773bf2fda8b 177,204,231,258
+packages/core/src/components/select/select.tsx
+  h_c5a773bf2fda8b 49,103-107
+packages/core/src/components/time-input/test/time-input.ct.ts
+  h_c5a773bf2fda8b 200-247
+packages/core/src/components/time-input/time-input.tsx
+  h_c5a773bf2fda8b 50,57,149-153,578,637-640,649
+packages/core/src/components/toast/toast.tsx
+  h_c5a773bf2fda8b 118
+packages/core/src/components/utils/input/picker-input.util.ts
+  h_c5a773bf2fda8b 11,61-68
+packages/core/src/components/utils/input/validation.ts
+  h_c5a773bf2fda8b 27-33,41,78,89,129-275,283-296,301,303-305,308,310,314-318,341-366,403-405,407,412-421,426,430-432,434-441,448-449,455,457-459,462-464,467-474
+packages/core/src/components/utils/internal/component.ts
+  h_c5a773bf2fda8b 12-32,34,94
+packages/core/src/components/utils/internal/mixins/setup.mixin.ts
+  h_c5a773bf2fda8b 10-11
+packages/core/src/tests/utils/test/index.ts
+  h_c5a773bf2fda8b 47-55
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 1287-1289
+packages/storybook-docs/src/stories/link-button.stories.ts
+  h_c5a773bf2fda8b 44-87
+packages/vue/src/components/ix-link-button.ts
+  h_c5a773bf2fda8b 12-14
+testing/framework-tests/__snapshots__/link-button-action-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/link-button-external-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/link-button-file-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/link-button-internal-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/tests/generated/axe.ts
+  h_c5a773bf2fda8b 144,147-149
+testing/framework-tests/tests/generated/index.ts
+  h_c5a773bf2fda8b 287-288,292-297
+testing/framework-tests/tests/generated/link-button-action-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-action.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-external-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-external.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-file-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-file.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-internal-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-internal.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/test-ids.autogenerated.ts
+  h_c5a773bf2fda8b 105-107,109
+testing/visual-testing/tests/link-button/link-button.e2e.ts
+  h_c5a773bf2fda8b 17,27-52,58-88
+testing/visual-testing/tests/link-button/truncate/index.html
+  h_c5a773bf2fda8b 32-44
+testing/visual-testing/tests/link-button/variants/index.html
+  h_c5a773bf2fda8b 1-75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "da85c9878d360260c0c61d9e5780e014f22d358d",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
