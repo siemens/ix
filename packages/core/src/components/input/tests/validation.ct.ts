@@ -55,9 +55,8 @@ test.describe('validation', () => {
 
         const expectInvalidAria = async () => {
           await expect(control).toHaveAttribute('aria-invalid', 'true');
-          const errorMessageId = await control.getAttribute(
-            'aria-errormessage'
-          );
+          const errorMessageId =
+            await control.getAttribute('aria-errormessage');
           expect(errorMessageId).toMatch(/^ix-component-ix-field-wrapper-.*/);
           await expect(component.locator(`#${errorMessageId}`)).toHaveText(
             'Enter a valid phone number.'
@@ -95,9 +94,10 @@ test.describe('validation', () => {
           /^ix-component-ix-field-wrapper-.*/
         );
         const errorMessageId = await control.getAttribute('aria-errormessage');
+        expect(errorMessageId).toBeTruthy();
         await expect(control).toHaveAttribute(
           'aria-describedby',
-          errorMessageId!
+          `${errorMessageId}`
         );
 
         await component.evaluate((element) =>
@@ -110,6 +110,37 @@ test.describe('validation', () => {
           'aria-describedby',
           new RegExp(`(^|\\s)${errorMessageId}(\\s|$)`)
         );
+      });
+
+      test(`${selector} - should expose the invalid state of every control on the page`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(`
+          <${selector} label="Phone" invalid-text="Enter a valid phone number." class="ix-invalid"></${selector}>
+          <${selector} label="Fax" invalid-text="Enter a valid fax number." class="ix-invalid"></${selector}>
+        `);
+
+        for (const [name, invalidText] of [
+          ['Phone', 'Enter a valid phone number.'],
+          ['Fax', 'Enter a valid fax number.'],
+        ]) {
+          const component = page.locator(selector, {
+            has: page.getByRole('textbox', { name }),
+          });
+          const control = component.getByRole('textbox', { name });
+
+          await expect(control).toHaveAttribute('aria-invalid', 'true');
+          await expect(control).toHaveAttribute(
+            'aria-errormessage',
+            /^ix-component-ix-field-wrapper-.*/
+          );
+          const errorMessageId =
+            await control.getAttribute('aria-errormessage');
+          await expect(component.locator(`#${errorMessageId}`)).toHaveText(
+            invalidText
+          );
+        }
       });
     });
   });

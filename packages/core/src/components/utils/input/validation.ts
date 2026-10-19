@@ -154,12 +154,24 @@ export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
   return (proto: IxComponentInterface, methodName: string) => {
-    let checkIfRequiredFunction: (() => Promise<void>) | null;
-    let classMutationObserver: ClassMutationObserver | null;
-    let checkTimeoutId: ReturnType<typeof setTimeout> | null = null;
-    // `checkIfRequiredFunction` is shared by all instances of the component,
-    // the class observer needs the check function of its own host.
-    const checkFunctions = new WeakMap<HTMLElement, () => Promise<void>>();
+    // The decorator runs once per component class, so the state of each
+    // instance is kept per host instead of in variables shared by all instances.
+    const hostStates = new WeakMap<
+      HTMLElement,
+      {
+        checkFunction?: () => Promise<void>;
+        checkTimeoutId?: ReturnType<typeof setTimeout>;
+        classMutationObserver?: ClassMutationObserver;
+      }
+    >();
+    const getHostState = (host: HTMLElement) => {
+      let state = hostStates.get(host);
+      if (!state) {
+        state = {};
+        hostStates.set(host, state);
+      }
+      return state;
+    };
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 
@@ -167,13 +179,14 @@ export function HookValidationLifecycle(options?: {
       const host = getElement(
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
+      const state = getHostState(host);
 
-      if (checkTimeoutId != null) {
-        clearTimeout(checkTimeoutId);
-        checkTimeoutId = null;
+      if (state.checkTimeoutId !== undefined) {
+        clearTimeout(state.checkTimeoutId);
+        state.checkTimeoutId = undefined;
       }
 
-      checkIfRequiredFunction = async () => {
+      const checkIfRequiredFunction = async () => {
         const skipValidation = await shouldSuppressInternalValidation(host);
         if (skipValidation || !host.isConnected) {
           return;
@@ -294,15 +307,13 @@ export function HookValidationLifecycle(options?: {
         }
       };
 
-      checkFunctions.set(host, checkIfRequiredFunction);
+      state.checkFunction = checkIfRequiredFunction;
       host.addEventListener('checkedChange', checkIfRequiredFunction);
       host.addEventListener('valueChange', checkIfRequiredFunction);
       host.addEventListener('ixBlur', checkIfRequiredFunction);
-      checkTimeoutId = setTimeout(() => {
-        checkTimeoutId = null;
-        if (checkIfRequiredFunction) {
-          runValidationCheck(checkIfRequiredFunction);
-        }
+      state.checkTimeoutId = setTimeout(() => {
+        state.checkTimeoutId = undefined;
+        runValidationCheck(checkIfRequiredFunction);
       });
       return connectedCallback?.call(this);
     };
@@ -311,8 +322,9 @@ export function HookValidationLifecycle(options?: {
       const host = getElement(
         this
       ) as unknown as HTMLIxFormComponentElement<unknown>;
+      const state = getHostState(host);
       let hasInvalidClass = host.classList.contains('ix-invalid');
-      classMutationObserver = createClassMutationObserver(
+      state.classMutationObserver = createClassMutationObserver(
         host,
         () => {
           const result = checkFieldClasses(host, options?.includeChildren);
@@ -323,9 +335,11 @@ export function HookValidationLifecycle(options?: {
           // Other classes are ignored, the check itself toggles `ix-invalid--*`.
           const previousHasInvalidClass = hasInvalidClass;
           hasInvalidClass = host.classList.contains('ix-invalid');
-          const checkFunction = checkFunctions.get(host);
-          if (hasInvalidClass !== previousHasInvalidClass && checkFunction) {
-            runValidationCheck(checkFunction);
+          if (
+            hasInvalidClass !== previousHasInvalidClass &&
+            state.checkFunction
+          ) {
+            runValidationCheck(state.checkFunction);
           }
         },
         options
@@ -337,26 +351,23 @@ export function HookValidationLifecycle(options?: {
 
     proto.disconnectedCallback = function () {
       const host = getElement(this);
+      const state = host ? hostStates.get(host) : undefined;
 
-      if (checkTimeoutId != null) {
-        clearTimeout(checkTimeoutId);
-        checkTimeoutId = null;
+      if (state?.checkTimeoutId !== undefined) {
+        clearTimeout(state.checkTimeoutId);
+        state.checkTimeoutId = undefined;
       }
 
-      if (host && classMutationObserver) {
-        classMutationObserver.destroy();
-        classMutationObserver = null;
+      if (state?.classMutationObserver) {
+        state.classMutationObserver.destroy();
+        state.classMutationObserver = undefined;
       }
 
-      if (host && checkIfRequiredFunction) {
-        host.removeEventListener('checkedChange', checkIfRequiredFunction);
-        host.removeEventListener('valueChange', checkIfRequiredFunction);
-        host.removeEventListener('ixBlur', checkIfRequiredFunction);
-        checkIfRequiredFunction = null;
-      }
-
-      if (host) {
-        checkFunctions.delete(host);
+      if (state?.checkFunction) {
+        host.removeEventListener('checkedChange', state.checkFunction);
+        host.removeEventListener('valueChange', state.checkFunction);
+        host.removeEventListener('ixBlur', state.checkFunction);
+        state.checkFunction = undefined;
       }
 
       return disconnectedCallback?.call(this);
