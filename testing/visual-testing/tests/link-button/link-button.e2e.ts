@@ -24,7 +24,32 @@ regressionTest.describe('link-button', () => {
   regressionTest('truncate', async ({ page }) => {
     await page.goto('link-button/truncate');
 
-    await expect(page.locator('ix-link-button ix-icon')).toHaveCount(0);
+    const trailingIconLink = page.locator(
+      'ix-link-button[icon="external"][icon-position="end"]'
+    );
+    const icon = trailingIconLink.locator('ix-icon');
+    await expect(page.locator('ix-link-button ix-icon')).toHaveCount(1);
+    await expect(icon.locator('svg')).toHaveCount(1);
+    await expect(icon).toHaveCSS('width', '16px');
+    await expect
+      .poll(() =>
+        trailingIconLink
+          .locator('.link')
+          .evaluate((label) => label.scrollWidth > label.clientWidth)
+      )
+      .toBe(true);
+    await expect
+      .poll(() =>
+        trailingIconLink.locator('a').evaluate((link) => {
+          const icon = link.querySelector('ix-icon');
+          return (
+            icon !== null &&
+            icon.getBoundingClientRect().right <=
+              link.getBoundingClientRect().right
+          );
+        })
+      )
+      .toBe(true);
     const selectItem = await page.waitForSelector("[link-button-id='1']");
     await selectItem.hover();
 
