@@ -1,4 +1,4 @@
-[Siemens iX html examples]|266 examples|format: name|title|used ix tags|files
+[Siemens iX html examples]|270 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/html/ (registry version root: examples/html/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/html/button.ts
 |Used tags are iX components found in the html source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html
@@ -164,7 +164,11 @@ kpi|Kpi|ix-kpi|.css,.html
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.css,.html
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.html
 link-button|Link button|ix-link-button|.html
+link-button-action|Link button action|ix-link-button|.html
 link-button-disabled|Link button disabled|ix-link-button|.html
+link-button-external|Link button external|ix-link-button|.html
+link-button-file|Link button file|ix-link-button|.html
+link-button-internal|Link button internal|ix-link-button|.html
 loading|Loading|ix-button|.html
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.html
 menu-with-bottom-tabs|Menu with bottom tabs|ix-menu,ix-menu-item|.html

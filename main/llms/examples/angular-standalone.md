@@ -1,4 +1,4 @@
-[Siemens iX angular-standalone examples]|273 examples|format: name|title|used ix tags|files
+[Siemens iX angular-standalone examples]|277 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular-standalone/ (registry version root: examples/angular-standalone/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular-standalone/button.ts
 |Used tags are iX components found in the angular-standalone source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -165,7 +165,11 @@ kpi|Kpi|ix-kpi|.css,.ts
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.css,.html,.ts
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.html,.ts
 link-button|Link button|ix-link-button|.ts
+link-button-action|Link button action|ix-link-button|.ts
 link-button-disabled|Link button disabled|ix-link-button|.ts
+link-button-external|Link button external|ix-link-button|.ts
+link-button-file|Link button file|ix-link-button|.ts
+link-button-internal|Link button internal|ix-link-button|.ts
 loading|Loading|ix-button|.ts
 map-navigation-migration|Map navigation migration||.css
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.html,.ts

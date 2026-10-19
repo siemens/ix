@@ -694,8 +694,24 @@
           "path": "main/examples/link-button.json"
         },
         {
+          "name": "link-button-action",
+          "path": "main/examples/link-button-action.json"
+        },
+        {
           "name": "link-button-disabled",
           "path": "main/examples/link-button-disabled.json"
+        },
+        {
+          "name": "link-button-external",
+          "path": "main/examples/link-button-external.json"
+        },
+        {
+          "name": "link-button-file",
+          "path": "main/examples/link-button-file.json"
+        },
+        {
+          "name": "link-button-internal",
+          "path": "main/examples/link-button-internal.json"
         },
         {
           "name": "loading",

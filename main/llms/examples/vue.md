@@ -1,4 +1,4 @@
-[Siemens iX vue examples]|267 examples|format: name|title|used ix tags|files
+[Siemens iX vue examples]|271 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/vue/ (registry version root: examples/vue/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/vue/button.ts
 |Used tags are iX components found in the vue source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.vue
@@ -165,7 +165,11 @@ kpi|Kpi|ix-kpi|.css,.vue
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.css,.vue
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.vue
 link-button|Link button|ix-link-button|.vue
+link-button-action|Link button action|ix-link-button|.vue
 link-button-disabled|Link button disabled|ix-link-button|.vue
+link-button-external|Link button external|ix-link-button|.vue
+link-button-file|Link button file|ix-link-button|.vue
+link-button-internal|Link button internal|ix-link-button|.vue
 loading|Loading|ix-button|.vue
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.vue
 menu-with-bottom-tabs|Menu with bottom tabs|ix-menu,ix-menu-item|.vue

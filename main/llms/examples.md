@@ -5245,6 +5245,35 @@ Files:
 Files:
   - `vue/link-button.vue`: [file](../examples/vue/link-button.vue)
 
+## link-button-action
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-action.ts`: [file](../examples/angular/link-button-action.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-action.ts`: [file](../examples/angular-standalone/link-button-action.ts)
+
+### html
+
+Files:
+  - `html/link-button-action.html`: [file](../examples/html/link-button-action.html)
+
+### react
+
+Files:
+  - `react/link-button-action.tsx`: [file](../examples/react/link-button-action.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-action.vue`: [file](../examples/vue/link-button-action.vue)
+
 ## link-button-disabled
 
 - Used iX components: [`ix-link-button`](components/ix-link-button.md)
@@ -5273,6 +5302,93 @@ Files:
 
 Files:
   - `vue/link-button-disabled.vue`: [file](../examples/vue/link-button-disabled.vue)
+
+## link-button-external
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-external.ts`: [file](../examples/angular/link-button-external.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-external.ts`: [file](../examples/angular-standalone/link-button-external.ts)
+
+### html
+
+Files:
+  - `html/link-button-external.html`: [file](../examples/html/link-button-external.html)
+
+### react
+
+Files:
+  - `react/link-button-external.tsx`: [file](../examples/react/link-button-external.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-external.vue`: [file](../examples/vue/link-button-external.vue)
+
+## link-button-file
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-file.ts`: [file](../examples/angular/link-button-file.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-file.ts`: [file](../examples/angular-standalone/link-button-file.ts)
+
+### html
+
+Files:
+  - `html/link-button-file.html`: [file](../examples/html/link-button-file.html)
+
+### react
+
+Files:
+  - `react/link-button-file.tsx`: [file](../examples/react/link-button-file.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-file.vue`: [file](../examples/vue/link-button-file.vue)
+
+## link-button-internal
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-internal.ts`: [file](../examples/angular/link-button-internal.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-internal.ts`: [file](../examples/angular-standalone/link-button-internal.ts)
+
+### html
+
+Files:
+  - `html/link-button-internal.html`: [file](../examples/html/link-button-internal.html)
+
+### react
+
+Files:
+  - `react/link-button-internal.tsx`: [file](../examples/react/link-button-internal.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-internal.vue`: [file](../examples/vue/link-button-internal.vue)
 
 ## loading
 
