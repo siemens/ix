@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ModalLoadingContext } from '@siemens/ix';
 import { LoadingService } from '@siemens/ix-angular';
 
@@ -17,7 +17,7 @@ import { LoadingService } from '@siemens/ix-angular';
   template: ` <ix-button (click)="startLoading()">Start loading</ix-button> `,
 })
 export default class Loading {
-  constructor(private readonly loadingService: LoadingService) {}
+  private readonly loadingService = inject(LoadingService);
 
   startLoading = async () => {
     let count = 0;

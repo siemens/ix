@@ -492,6 +492,45 @@ test('keeps first typed character when focused via keyboard with a selected valu
   ).not.toBeVisible();
 });
 
+test('keeps keys typed while the top-layer list opens', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <button>Start</button>
+    <ix-select enable-top-layer hide-list-header>
+      <ix-select-item value="DE" label="Germany"></ix-select-item>
+      <ix-select-item value="FR" label="France"></ix-select-item>
+      <ix-select-item value="AT" label="Austria"></ix-select-item>
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  const input = select.getByRole('combobox');
+  await expect(select).toHaveAttribute('hydrated');
+
+  await page.getByRole('button', { name: 'Start' }).focus();
+  await page.keyboard.press('Tab');
+  await expect(input).toBeFocused();
+
+  // Keys typed while the input has no focus are lost
+  const ixBlur = await select.evaluateHandle((element) => {
+    const events: string[] = [];
+    element.addEventListener('ixBlur', () => events.push('ixBlur'));
+    return events;
+  });
+
+  await page.keyboard.type('France', { delay: 15 });
+
+  await expect(input).toHaveValue('France');
+  await expect(input).toBeFocused();
+  expect(await ixBlur.jsonValue()).toEqual([]);
+  await expect(select.getByRole('option', { name: 'France' })).toBeVisible();
+  await expect(
+    select.getByRole('option', { name: 'Germany' })
+  ).not.toBeVisible();
+});
+
 test('remove text from input and reselect the element', async ({
   mount,
   page,
