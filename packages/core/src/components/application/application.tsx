@@ -158,12 +158,6 @@ export class Application {
     this.menu?.toggleMenu(false);
   }
 
-  private onContentKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.onContentClick();
-    }
-  }
-
   private setBreakpoints(breakpoints: Breakpoint[]) {
     if (this.forceBreakpoint) {
       applicationLayoutService.setBreakpoints([this.forceBreakpoint]);
@@ -338,7 +332,6 @@ export class Application {
               tabIndex={-1}
               ref={(element) => (this.mainElement = element)}
               onClick={() => this.onContentClick()}
-              onKeyDown={(event) => this.onContentKeyDown(event)}
             >
               <slot></slot>
             </main>

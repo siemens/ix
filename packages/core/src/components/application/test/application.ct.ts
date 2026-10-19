@@ -127,33 +127,6 @@ regressionTest(
 );
 
 regressionTest(
-  'closes an unpinned menu with Escape from the main content',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-application force-breakpoint="md">
-        <ix-menu>
-          <ix-menu-item>Home</ix-menu-item>
-        </ix-menu>
-        Page content
-      </ix-application>
-    `);
-
-    const menu = page.locator('ix-menu');
-    await menu.evaluate((element: HTMLIxMenuElement) =>
-      element.toggleMenu(true)
-    );
-    await expect(menu).toHaveClass(/\bexpanded\b/);
-
-    const main = page.locator('ix-application').locator('main');
-    await main.press('Enter');
-    await expect(menu).toHaveClass(/\bexpanded\b/);
-
-    await main.press('Escape');
-    await expect(menu).not.toHaveClass(/\bexpanded\b/);
-  }
-);
-
-regressionTest(
   'shows the skip link at logical top-start only while focused',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 800, height: 600 });
