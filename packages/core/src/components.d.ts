@@ -3036,6 +3036,18 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Icon displayed alongside the link label. Defaults to `none`.
+          * @since 6.0.0
+          * @default 'none'
+         */
+        "icon": 'none' | 'internal' | 'external' | 'file' | 'action';
+        /**
+          * Position of the icon relative to the link label.
+          * @since 6.0.0
+          * @default 'start'
+         */
+        "iconPosition": 'start' | 'end';
+        /**
           * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
           * @default '_self'
          */
@@ -11273,6 +11285,18 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Icon displayed alongside the link label. Defaults to `none`.
+          * @since 6.0.0
+          * @default 'none'
+         */
+        "icon"?: 'none' | 'internal' | 'external' | 'file' | 'action';
+        /**
+          * Position of the icon relative to the link label.
+          * @since 6.0.0
+          * @default 'start'
+         */
+        "iconPosition"?: 'start' | 'end';
+        /**
           * Specifies where to open the link  https://www.w3schools.com/html/html_links.asp
           * @default '_self'
          */
@@ -14653,6 +14677,8 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "url": string;
         "target": '_self' | '_blank' | '_parent' | '_top';
+        "icon": 'none' | 'internal' | 'external' | 'file' | 'action';
+        "iconPosition": 'start' | 'end';
     }
     interface IxMenuAttributes {
         "showSettings": boolean;
