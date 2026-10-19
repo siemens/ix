@@ -77,9 +77,14 @@ export class Panes {
     return this.hostElement.querySelectorAll('ix-pane');
   }
 
-  componentWillLoad() {
+  componentDidLoad() {
+    this.setPanes(this.currentPanes);
+  }
+
+  connectedCallback() {
     this.paneElements = this.currentPanes.length;
 
+    this.observer?.disconnect();
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements += 1;
@@ -90,13 +95,7 @@ export class Panes {
     this.observer.observe(this.hostElement, {
       childList: true,
     });
-  }
 
-  componentDidLoad() {
-    this.setPanes(this.currentPanes);
-  }
-
-  connectedCallback() {
     this.isMobile = matchBreakpoint('sm');
     this.layoutChangeDisposable?.dispose();
     this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {

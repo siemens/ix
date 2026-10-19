@@ -598,3 +598,24 @@ regressionTest(
     await expect(menu).toHaveClass(/breakpoint-md/);
   }
 );
+
+regressionTest(
+  'follows theme changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.evaluate(() => {
+      document.documentElement.dataset.ixColorSchema = 'light';
+    });
+    const menu = await mount(`<ix-menu enable-toggle-theme></ix-menu>`);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
+
+    await menu.evaluate((el) => el.parentElement?.append(el));
+    await page.evaluate(() => {
+      document.documentElement.dataset.ixColorSchema = 'dark';
+    });
+
+    await expect(page.locator('ix-menu #toggleTheme')).toHaveAttribute(
+      'aria-checked',
+      'true'
+    );
+  }
+);

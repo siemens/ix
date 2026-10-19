@@ -383,12 +383,6 @@ export class Menu {
     );
 
     this.onBreakpointChange(applicationLayoutService.breakpoint, true);
-
-    this.updateThemeState();
-
-    this.themeNameDisposer = themeSwitcher.themeChanged.on(() => {
-      this.updateThemeState();
-    });
   }
 
   componentDidRender() {
@@ -405,12 +399,19 @@ export class Menu {
       (breakpoint) => this.onBreakpointChange(breakpoint)
     );
     this.onBreakpointChange(applicationLayoutService.breakpoint);
+
+    this.updateThemeState();
+    this.themeNameDisposer?.dispose();
+    this.themeNameDisposer = themeSwitcher.themeChanged.on(() => {
+      this.updateThemeState();
+    });
   }
 
   disconnectedCallback() {
     this.breakpointChangeDisposable?.dispose();
     this.breakpointChangeDisposable = undefined;
     this.themeNameDisposer?.dispose();
+    this.themeNameDisposer = undefined;
     menuController.unregister(this.hostElement);
   }
 

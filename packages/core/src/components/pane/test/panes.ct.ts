@@ -398,15 +398,47 @@ regressionTest(
     const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
     await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
 
-    await pane.evaluate((el) => {
-      const parent = el.parentElement!;
-      el.remove();
-      parent.append(el);
-    });
+    await pane.evaluate((el) => el.parentElement?.append(el));
     await page.setViewportSize(viewPorts.sm);
 
     await expect
       .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.isMobile))
       .toBe(true);
+  }
+);
+
+regressionTest(
+  'follows slot changes after it was reattached',
+  async ({ mount, page }) => {
+    const pane = await mount(`<ix-pane slot="left" heading="Pane"></ix-pane>`);
+    await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await pane.evaluate((el) => el.setAttribute('slot', 'bottom'));
+
+    await expect
+      .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.composition))
+      .toBe('bottom');
+  }
+);
+
+regressionTest(
+  'follows the size of its parent after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="width: 600px; height: 400px">
+        <ix-pane heading="Pane" composition="left" size="50%" expanded></ix-pane>
+      </div>
+    `);
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveCSS('width', '300px');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await pane.evaluate((el) => {
+      if (el.parentElement) el.parentElement.style.width = '400px';
+    });
+
+    await expect(pane).toHaveCSS('width', '200px');
   }
 );

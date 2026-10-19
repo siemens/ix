@@ -216,6 +216,42 @@ export class Pane {
     this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
     });
+
+    this.mutationObserver?.disconnect();
+    this.mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'slot'
+        ) {
+          const newSlot = this.currentSlot;
+          const oldSlot = mutation.oldValue;
+
+          if (newSlot !== oldSlot) {
+            this.slotChanged.emit({
+              slot: oldSlot ?? '',
+              newSlot: newSlot ?? '',
+            });
+
+            if (newSlot) {
+              this.setPosition(newSlot);
+            }
+          }
+        }
+      });
+    });
+    this.mutationObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeOldValue: true,
+    });
+
+    const parentElement = this.hostElement.parentElement;
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
+      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
+    });
+    if (parentElement) this.resizeObserver.observe(parentElement);
   }
 
   disconnectedCallback() {
@@ -285,40 +321,6 @@ export class Pane {
       this.setPosition(this.currentSlot);
     }
     this.setIcons();
-
-    this.mutationObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'slot'
-        ) {
-          const newSlot = this.currentSlot;
-          const oldSlot = mutation.oldValue;
-
-          if (newSlot !== oldSlot) {
-            this.slotChanged.emit({
-              slot: oldSlot ?? '',
-              newSlot: newSlot ?? '',
-            });
-
-            if (newSlot) {
-              this.setPosition(newSlot);
-            }
-          }
-        }
-      });
-    });
-    this.mutationObserver.observe(this.hostElement, {
-      attributes: true,
-      attributeOldValue: true,
-    });
-
-    const parentElement = this.hostElement.parentElement;
-    this.resizeObserver = new ResizeObserver((entries) => {
-      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
-      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
-    });
-    if (parentElement) this.resizeObserver.observe(parentElement);
   }
 
   private setPosition(value: string) {
