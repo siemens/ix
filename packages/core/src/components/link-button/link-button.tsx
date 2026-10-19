@@ -32,6 +32,10 @@ export class LinkButton {
 
   /**
    * Url for the link button
+   *
+   * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
+   * against an allowlist (for example `https:` and relative URLs).
    */
   @Prop() url?: string;
 

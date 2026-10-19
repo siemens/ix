@@ -53,6 +53,10 @@ export class Tree {
 
   /**
    * Tree model
+   *
+   * The model is processed recursively and must be acyclic. Bound the size of untrusted or
+   * user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use
+   * simple, application-controlled IDs (letters, digits, `-`, `_`).
    */
   @Prop() model: TreeModel<any> = {};
 

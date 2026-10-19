@@ -175,7 +175,7 @@ export namespace Components {
      */
     interface IxApplication {
         /**
-          * Define application switch configuration
+          * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -491,7 +491,7 @@ export namespace Components {
          */
         "hideChevron": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -763,7 +763,7 @@ export namespace Components {
          */
         "enableTopLayer": boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of search criteria to populate the component with.  Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
          */
         "filterState"?: FilterState;
         /**
@@ -2062,7 +2062,7 @@ export namespace Components {
          */
         "suppressTriggerVisibilityCheck": boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
         /**
@@ -3028,7 +3028,7 @@ export namespace Components {
          */
         "target": '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
     }
@@ -3372,7 +3372,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -3985,7 +3985,7 @@ export namespace Components {
          */
         "showPopover": () => Promise<void>;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -5436,7 +5436,7 @@ export namespace Components {
          */
         "markItemsAsDirty": (ids: string[]) => Promise<void>;
         /**
-          * Tree model
+          * Tree model  The model is processed recursively and must be acyclic. Bound the size of untrusted or user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use simple, application-controlled IDs (letters, digits, `-`, `_`).
           * @default {}
          */
         "model": TreeModel<any>;
@@ -8222,7 +8222,7 @@ declare namespace LocalJSX {
      */
     interface IxApplication {
         /**
-          * Define application switch configuration
+          * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -8564,7 +8564,7 @@ declare namespace LocalJSX {
          */
         "hideChevron"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -8854,7 +8854,7 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of search criteria to populate the component with.  Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
          */
         "filterState"?: FilterState;
         /**
@@ -10232,7 +10232,7 @@ declare namespace LocalJSX {
          */
         "suppressTriggerVisibilityCheck"?: boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
     }
@@ -11242,7 +11242,7 @@ declare namespace LocalJSX {
          */
         "target"?: '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
     }
@@ -11617,7 +11617,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -12276,7 +12276,7 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -13791,7 +13791,7 @@ declare namespace LocalJSX {
          */
         "context"?: TreeContext;
         /**
-          * Tree model
+          * Tree model  The model is processed recursively and must be acyclic. Bound the size of untrusted or user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use simple, application-controlled IDs (letters, digits, `-`, `_`).
           * @default {}
          */
         "model"?: TreeModel<any>;

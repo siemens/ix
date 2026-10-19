@@ -101,8 +101,12 @@ export class Popover
 
   /**
    * Element that toggles the popover.
-   * String values are resolved as the trigger element `id`, not as CSS selectors.
-   * Also accepts a DOM element reference.
+   * String values are resolved as the trigger element `id`. Also accepts a DOM element reference.
+   *
+   * String values are inserted into an ID selector (`#<value>`) without escaping. Use simple,
+   * application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input.
+   * If no element with the ID exists, the popover observes the document until it appears; make sure
+   * the trigger element exists.
    *
    * @since 5.1.0
    */
