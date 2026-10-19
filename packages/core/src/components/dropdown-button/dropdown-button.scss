@@ -87,6 +87,10 @@
     margin-right: var(--ix-dropdown-button-dropdown-icon--margin-right);
   }
 
+  .dropdown-button .dropdown-chevron {
+    margin-left: var(--ix-dropdown-button-dropdown-chevron--margin-left);
+  }
+
   .triangle {
     position: absolute;
     margin-inline-start: var(

@@ -37,6 +37,7 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   onEnterKeyChangeEmit,
 } from './input.util';
 
@@ -87,6 +88,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * Indicates if the field is required. When required, empty values (undefined) are not accepted.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Disables the input field
@@ -240,6 +249,13 @@ export class NumberInput implements IxInputFieldComponent<number> {
         this.hostElement,
         this.updatePaddings.bind(this)
       );
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    }
   }
 
   disconnectedCallback() {
