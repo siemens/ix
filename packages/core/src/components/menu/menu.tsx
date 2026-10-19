@@ -404,6 +404,7 @@ export class Menu {
     this.breakpointChangeDisposable = applicationLayoutService.onChange.on(
       (breakpoint) => this.onBreakpointChange(breakpoint)
     );
+    this.onBreakpointChange(applicationLayoutService.breakpoint);
   }
 
   disconnectedCallback() {

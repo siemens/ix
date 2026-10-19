@@ -8,7 +8,11 @@
  */
 import { expect, Locator, Page } from '@playwright/test';
 import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
-import { expectCollectedAfterRemoval, regressionTest } from '@utils/test';
+import {
+  expectCollectedAfterRemoval,
+  regressionTest,
+  viewPorts,
+} from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -567,5 +571,30 @@ regressionTest(
   async ({ mount, page }) => {
     const menu = await mount(`<ix-menu></ix-menu>`);
     await expectCollectedAfterRemoval(page, menu);
+  }
+);
+
+regressionTest(
+  'follows breakpoint changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <ix-application>
+        <ix-menu></ix-menu>
+      </ix-application>
+    `);
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    await expect(menu).toHaveClass(/breakpoint-lg/);
+
+    const menuHandle = await menu.evaluateHandle((el) => {
+      el.remove();
+      return el;
+    });
+    await page.setViewportSize(viewPorts.md);
+    await expect(application).toHaveClass(/breakpoint-md/);
+    await application.evaluate((app, el) => app.append(el), menuHandle);
+
+    await expect(menu).toHaveClass(/breakpoint-md/);
   }
 );
