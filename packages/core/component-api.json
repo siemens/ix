@@ -4289,7 +4289,8 @@
       "events": [],
       "cssProperties": [],
       "slots": [
-        "default"
+        "default",
+        "end"
       ],
       "cssParts": [],
       "cssStates": []
@@ -7534,6 +7535,28 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelJumpBackward",
+          "attribute": "aria-label-jump-backward",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Jump backward to {page}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelJumpForward",
+          "attribute": "aria-label-jump-forward",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Jump forward to {page}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelPageSelection",
           "attribute": "aria-label-page-selection",
           "type": "string",
@@ -7595,6 +7618,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'Page'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nPagination",
+          "attribute": "i18n-pagination",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Pagination'",
           "optional": false,
           "required": false,
           "deprecated": false

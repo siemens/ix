@@ -85,7 +85,6 @@ export class ExpandingSearch
 
   @State() isFieldChanged = false;
   @State() expanded = false;
-  @State() hasFocus = false;
 
   /**
    * Value changed
@@ -140,7 +139,6 @@ export class ExpandingSearch
       <Host
         class={{
           expanded: this.expanded,
-          'right-position': this.expanded,
           fullWidth: this.fullWidth,
         }}
       >
@@ -151,7 +149,7 @@ export class ExpandingSearch
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-          iconColor={this.hasFocus ? '--si-sys-color-text-accent' : undefined}
+          iconColor={this.expanded ? '--si-sys-color-text-primary' : undefined}
           class={{
             'btn-search': true,
             'btn-search--expanded': this.expanded,
@@ -184,11 +182,7 @@ export class ExpandingSearch
             placeholder={this.placeholder}
             type="text"
             value={this.value}
-            onBlur={() => {
-              this.collapseInput();
-              this.hasFocus = false;
-            }}
-            onFocus={() => (this.hasFocus = true)}
+            onBlur={() => this.collapseInput()}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
             aria-label={this.ariaLabelSearchInput}

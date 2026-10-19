@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { NgModule } from '@angular/core';
+import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -566,7 +566,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
       echarts,
     }),
   ],
-  providers: [],
+  providers: [provideZonelessChangeDetection()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { ModalService } from '@siemens/ix-angular';
 import { NgForm } from '@angular/forms';
 
@@ -11,7 +11,7 @@ export default class ModalFormIxButtonSubmit {
   @ViewChild('customModal', { read: TemplateRef })
   customModalRef!: TemplateRef<any>;
 
-  constructor(private readonly modalService: ModalService) {}
+  private readonly modalService = inject(ModalService);
 
   async openModal() {
     await this.modalService.open({
