@@ -479,7 +479,7 @@ importers:
         specifier: workspace:*
         version: link:../html-examples
       vue:
-        specifier: ^3.4.34
+        specifier: ^3.5.0
         version: 3.5.17(typescript@5.8.3)
       vue-echarts:
         specifier: ~6.6.10
@@ -1167,7 +1167,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@25.2.0)(@vitest/browser@3.2.4)(happy-dom@20.4.0)(jiti@2.6.1)(jsdom@27.4.0(@noble/hashes@1.8.0))(less@4.9.0)(lightningcss@1.33.0)(msw@2.10.2(@types/node@25.2.0)(typescript@5.8.3))(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
       vue:
-        specifier: ^3.4.34
+        specifier: ^3.5.0
         version: 3.5.17(typescript@5.8.3)
       vue-tsc:
         specifier: ^2.2.10
@@ -1856,7 +1856,7 @@ importers:
         specifier: workspace:*
         version: link:../html-test-app
       vue:
-        specifier: ^3.4.34
+        specifier: ^3.5.0
         version: 3.5.17(typescript@5.8.3)
       vue-echarts:
         specifier: ~6.6.10

@@ -59,7 +59,7 @@ export class ModalNonBlockingContent {
   `,
 })
 export default class ModalNonBlocking {
-  constructor(private readonly modalService: ModalService) {}
+  private readonly modalService = inject(ModalService);
 
   async openModal() {
     await this.modalService.open({
