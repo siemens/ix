@@ -27,6 +27,14 @@
     color: var(--ix-link-button--color);
     cursor: pointer;
 
+    .icon:first-child {
+      margin-right: var(--ix-link-button-icon--margin);
+    }
+
+    .icon:last-child {
+      margin-left: var(--ix-link-button-icon--margin);
+    }
+
     .link {
       display: block;
       position: relative;

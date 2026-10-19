@@ -92,6 +92,14 @@ regressionTest(
         await expect(glyph).toHaveJSProperty('name', name);
         await expect(glyph).toHaveClass(/size-16/);
         await expect(glyph).toHaveAttribute('aria-hidden', 'true');
+        await expect(glyph).toHaveCSS(
+          position === 'start' ? 'margin-right' : 'margin-left',
+          '4px'
+        );
+        await expect(glyph).toHaveCSS(
+          position === 'start' ? 'margin-left' : 'margin-right',
+          '0px'
+        );
         await expect(
           link.locator(
             position === 'start' ? 'ix-icon + .link' : '.link + ix-icon'
@@ -108,6 +116,20 @@ regressionTest(
         })
         .locator('ix-icon')
     ).toHaveCount(0);
+
+    await page.locator('body').evaluate((body) => {
+      body.setAttribute('data-ix-density', 'compact');
+    });
+    await expect(
+      page.locator(
+        'ix-link-button[icon="external"][icon-position="start"] ix-icon'
+      )
+    ).toHaveCSS('margin-right', '2px');
+    await expect(
+      page.locator(
+        'ix-link-button[icon="external"][icon-position="end"] ix-icon'
+      )
+    ).toHaveCSS('margin-left', '2px');
   }
 );
 
