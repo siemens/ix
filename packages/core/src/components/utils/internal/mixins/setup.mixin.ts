@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Build, type MixedInCtor } from '@stencil/core';
-import { StencilLifecycle } from '../component';
+import { Build } from '@stencil/core';
+import { MixedInCtor, StencilLifecycle } from '../component';
 import {
   detectKeyboardMode,
   KeyboardModeDetector,
