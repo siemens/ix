@@ -1,8 +1,0 @@
-import "./global-DPf-m4l1.js";
-/* empty css                          */
-import { a as addIcons } from "./ix-icon.entry-1rPzGIFm.js";
-import { c as iconInfo } from "./index-lQqpelqO.js";
-import "./init-C5A0cxxu.js";
-addIcons({
-  iconInfo
-});

@@ -1,4 +1,0 @@
-const DEFAULT_BUTTON_ICON_SIZE = "20";
-export {
-  DEFAULT_BUTTON_ICON_SIZE as D
-};
