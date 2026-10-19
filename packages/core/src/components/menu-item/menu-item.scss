@@ -43,6 +43,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     inline-size: var(--ix-menu-item-tab-icon--icon-size);
     min-block-size: var(--ix-menu-item-tab-icon--icon-size);
     min-inline-size: var(--ix-menu-item-tab-icon--icon-size);
+    margin-inline: var(--ix-menu-item-tab-icon--margin-inline);
     position: relative;
     pointer-events: none;
   }
