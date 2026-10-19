@@ -15,15 +15,44 @@ import {
 } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`
+const variants = [
+  { icon: 'internal', name: iconChevronRightSmall },
+  { icon: 'external', name: iconOpenExternal },
+  { icon: 'file', name: iconDocument },
+  { icon: 'action', name: iconArrowRight },
+];
+const positions = ['start', 'end'];
+const icons = {
+  iconArrowRight,
+  iconChevronRightSmall,
+  iconDocument,
+  iconOpenExternal,
+};
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `
     <div>
       <ix-link-button url="https://ix.siemens.io/">IX home</ix-link-button>
       <ix-link-button disabled url="https://ix.siemens.io/">
         IX home disabled
       </ix-link-button>
+      ${variants
+        .flatMap(({ icon }) =>
+          positions.map(
+            (position) =>
+              `<ix-link-button icon="${icon}" icon-position="${position}" url="/">${icon} ${position}</ix-link-button>`
+          )
+        )
+        .join('')}
     </div>
-  `);
+  `,
+    { icons }
+  );
+
+  await expect(page.locator('ix-link-button[icon] ix-icon svg')).toHaveCount(
+    variants.length * positions.length
+  );
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
@@ -48,14 +77,6 @@ regressionTest('renders', async ({ mount, page }) => {
 regressionTest(
   'renders icon variants at both positions',
   async ({ mount, page }) => {
-    const variants = [
-      { icon: 'internal', name: iconChevronRightSmall },
-      { icon: 'external', name: iconOpenExternal },
-      { icon: 'file', name: iconDocument },
-      { icon: 'action', name: iconArrowRight },
-    ];
-    const positions = ['start', 'end'];
-
     await mount(
       `${variants
         .flatMap(({ icon }) =>
@@ -66,14 +87,7 @@ regressionTest(
         )
         .join('')}
      <ix-link-button icon="none" url="/">No icon</ix-link-button>`,
-      {
-        icons: {
-          iconArrowRight,
-          iconChevronRightSmall,
-          iconDocument,
-          iconOpenExternal,
-        },
-      }
+      { icons }
     );
 
     for (const { icon, name } of variants) {
