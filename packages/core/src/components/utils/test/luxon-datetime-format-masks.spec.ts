@@ -34,6 +34,18 @@ describe('getLuxonDateOnlyFormatMask', () => {
     );
   });
 
+  it('ignores time token letters inside quoted literals', () => {
+    expect(getLuxonDateOnlyFormatMask("dd.MM.yyyy 'um' HH:mm")).toBe(
+      'dd.MM.yyyy'
+    );
+    expect(getLuxonDateOnlyFormatMask("LL/dd/yyyy 'at' hh:mm a")).toBe(
+      'LL/dd/yyyy'
+    );
+    expect(getLuxonDateOnlyFormatMask("'Date:' yyyy/LL/dd HH:mm")).toBe(
+      "'Date:' yyyy/LL/dd"
+    );
+  });
+
   it('uses fallback when prefix is empty', () => {
     expect(getLuxonDateOnlyFormatMask('HH:mm:ss')).toBe(
       LUXON_DEFAULT_DATE_ONLY_FORMAT
@@ -54,5 +66,13 @@ describe('getLuxonTimeFormatMask', () => {
     expect(getLuxonTimeFormatMask('yyyy/LL/dd HH:mm:ss')).toBe('HH:mm:ss');
     expect(getLuxonTimeFormatMask("yyyy-MM-dd'T'HH:mm:ss")).toBe('HH:mm:ss');
     expect(getLuxonTimeFormatMask('yyyy-MM-dd HH:mm')).toBe('HH:mm');
+  });
+
+  it('ignores time token letters inside quoted literals', () => {
+    expect(getLuxonTimeFormatMask("dd.MM.yyyy 'um' HH:mm")).toBe('HH:mm');
+    expect(getLuxonTimeFormatMask("LL/dd/yyyy 'at' hh:mm a")).toBe('hh:mm a');
+    expect(getLuxonTimeFormatMask("'Date:' yyyy/LL/dd")).toBe(
+      LUXON_DEFAULT_TIME_ONLY_FORMAT
+    );
   });
 });

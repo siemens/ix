@@ -10,8 +10,24 @@ export const LUXON_DEFAULT_DATE_ONLY_FORMAT = 'yyyy/LL/dd';
 /** Used when a format string has no time tokens. */
 export const LUXON_DEFAULT_TIME_ONLY_FORMAT = 'HH:mm:ss';
 
+/**
+ * Index of the first time token in `format`, ignoring text inside single
+ * quotes, which Luxon treats as literal (e.g. `'at'`, `'um'`).
+ */
 function firstLuxonTimeTokenIndex(format: string): number {
-  return format.search(/[HhmsaSZ]/);
+  let inQuote = false;
+
+  for (let i = 0; i < format.length; i++) {
+    const char = format[i];
+
+    if (char === "'") {
+      inQuote = !inQuote;
+    } else if (!inQuote && /[HhmsaSZ]/.test(char)) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 /**
@@ -29,8 +45,18 @@ export function getLuxonDateOnlyFormatMask(
   }
 
   let end = timeTokenIndex;
-  while (end > 0 && " \t'T".includes(format[end - 1])) {
-    end--;
+  while (end > 0) {
+    const char = format[end - 1];
+
+    if (char === "'") {
+      // Drop the whole quoted literal that joins date and time, e.g. 'T' or 'at'
+      const openingQuote = format.lastIndexOf("'", end - 2);
+      end = openingQuote === -1 ? end - 1 : openingQuote;
+    } else if (' \tT'.includes(char)) {
+      end--;
+    } else {
+      break;
+    }
   }
 
   const prefix = format.slice(0, end).trimEnd();
