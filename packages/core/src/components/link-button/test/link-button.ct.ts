@@ -74,6 +74,30 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(link.locator('ix-icon')).toHaveCount(0);
 });
 
+regressionTest('thickens the underline only on hover or active', async ({
+  mount,
+  page,
+}) => {
+  await mount(
+    '<ix-link-button url="https://ix.siemens.io/">IX home</ix-link-button>'
+  );
+
+  const link = page.getByRole('link', { name: 'IX home' });
+  const label = link.locator('.link');
+
+  await expect(label).toHaveCSS('text-decoration-line', 'underline');
+  await expect(label).toHaveCSS('text-decoration-thickness', 'auto');
+
+  await link.hover();
+  await expect(label).toHaveCSS('text-decoration-thickness', '2px');
+
+  await page.mouse.move(1000, 1000);
+  await expect(label).toHaveCSS('text-decoration-thickness', 'auto');
+
+  await link.evaluate((element) => element.classList.add('active'));
+  await expect(label).toHaveCSS('text-decoration-thickness', '2px');
+});
+
 regressionTest(
   'renders icon variants at both positions',
   async ({ mount, page }) => {

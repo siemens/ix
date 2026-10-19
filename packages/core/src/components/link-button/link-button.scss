@@ -41,15 +41,27 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      text-decoration: underline var(--ix-link-button-link--text-underline-thickness) solid;
+      text-decoration: underline;
     }
 
     @include hover.hover {
       color: var(--ix-link-button--color--hover);
+
+      .link {
+        text-decoration-thickness: var(
+          --ix-link-button-link--text-underline-thickness
+        );
+      }
     }
 
     @include hover.active {
       color: var(--ix-link-button--color--active);
+
+      .link {
+        text-decoration-thickness: var(
+          --ix-link-button-link--text-underline-thickness
+        );
+      }
     }
 
     &.disabled {
