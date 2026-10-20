@@ -142,7 +142,6 @@ export class Tree {
     refreshTreeOptions: RefreshTreeOptions
   ): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
-    const navigationId = this.getNavigationId(list);
 
     return {
       width: '100%',
@@ -150,8 +149,32 @@ export class Tree {
       itemHeight: 32,
       scrollerTagName: 'div',
       total: list.length,
+      useFragment: false,
+      applyPatch: (element, fragment) => {
+        const rows =
+          fragment instanceof DocumentFragment
+            ? Array.from(fragment.children)
+            : fragment;
+        const retainedNodes = new Set<Node>(rows);
+        for (const child of Array.from(element.childNodes)) {
+          if (!retainedNodes.has(child)) {
+            child.remove();
+          }
+        }
+
+        // Keep retained rows connected so scrolling does not discard focus.
+        let next = element.firstChild;
+        for (const row of rows) {
+          if (row === next) {
+            next = next.nextSibling;
+          } else {
+            element.insertBefore(row, next);
+          }
+        }
+      },
       generate: (index: number) => {
         const item = list[index];
+        const navigationId = this.getNavigationId(list);
 
         const renderedTreeItem = this.hostElement.querySelector(
           `[data-tree-node-id="${item.id}"]`

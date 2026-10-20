@@ -1124,6 +1124,120 @@ regressionTest(
   }
 );
 
+async function initializeVirtualizedTree(
+  mount: Mount,
+  page: Page,
+  inModal: boolean,
+  selectedId?: string
+) {
+  const content = `
+    <button type="button">Before virtualized tree</button>
+    <div style="height: 8rem"><ix-tree root="root"></ix-tree></div>
+    <button type="button">After virtualized tree</button>
+  `;
+  await mount(
+    inModal
+      ? `<ix-modal><ix-modal-header>Tree</ix-modal-header><ix-modal-content>${content}</ix-modal-content></ix-modal>`
+      : `<div>${content}</div>`
+  );
+  const tree = page.getByRole('tree', { includeHidden: true });
+  await tree.evaluate((element: HTMLIxTreeElement, selectedId) => {
+    const children = Array.from({ length: 200 }, (_, i) => `item-${i}`);
+    element.model = {
+      root: { id: 'root', data: { name: '' }, hasChildren: true, children },
+      ...Object.fromEntries(
+        children.map((id) => [
+          id,
+          { id, data: { name: id }, hasChildren: false, children: [] },
+        ])
+      ),
+    };
+    if (selectedId) {
+      element.context = {
+        [selectedId]: { isSelected: true, isExpanded: false },
+      };
+    }
+  }, selectedId);
+  if (inModal) {
+    await page
+      .locator('ix-modal')
+      .evaluate((element: HTMLIxModalElement) => element.showModal());
+    await expect(page.getByRole('dialog')).toHaveClass(/modal-open-settled/);
+    await tree.evaluate((element: HTMLIxTreeElement) => element.refreshTree());
+  }
+  await expect(tree.locator('ix-tree-item').first()).toHaveAttribute(
+    'hydrated'
+  );
+  return tree;
+}
+
+async function flushVirtualizedScroll(page: Page) {
+  // Scroll dispatch and the virtualizer's scheduled repaint span two frames.
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+      })
+  );
+}
+
+for (const inModal of [false, true]) {
+  regressionTest(
+    `preserves focus across virtualized chunks (modal: ${inModal})`,
+    async ({ mount, page }) => {
+      const tree = await initializeVirtualizedTree(mount, page, inModal);
+      const first = tree.locator('[data-tree-node-id="item-0"]');
+      await expect(first).toHaveAttribute('hydrated');
+      await first.focus();
+
+      for (let index = 0; index < 30; index++) {
+        const item = tree.locator(`[data-tree-node-id="item-${index}"]`);
+        await flushVirtualizedScroll(page);
+        await expect(item).toBeFocused();
+        await expect(item).toHaveAttribute('tabindex', '0');
+        await expect(tree.locator('ix-tree-item[tabindex="0"]')).toHaveCount(1);
+        await page.keyboard.press('ArrowDown');
+      }
+      await page.keyboard.press('End');
+      await flushVirtualizedScroll(page);
+      await expect(
+        tree.locator('[data-tree-node-id="item-199"]')
+      ).toBeFocused();
+      await page.keyboard.press('ArrowUp');
+      await expect(
+        tree.locator('[data-tree-node-id="item-198"]')
+      ).toBeFocused();
+    }
+  );
+
+  regressionTest(
+    `preserves Tab focus on a rendered off-screen virtualized treeitem (modal: ${inModal})`,
+    async ({ mount, page }) => {
+      const tree = await initializeVirtualizedTree(
+        mount,
+        page,
+        inModal,
+        'item-8'
+      );
+      const item = tree.locator('[data-tree-node-id="item-8"]');
+      await expect(item).toHaveAttribute('tabindex', '0');
+      await page
+        .getByRole('button', { name: 'Before virtualized tree' })
+        .focus();
+      await page.keyboard.press('Tab');
+      if (await tree.evaluate((element) => element.matches(':focus'))) {
+        await page.keyboard.press('Tab');
+      }
+      await flushVirtualizedScroll(page);
+      await expect(tree.locator('[data-tree-node-id="item-0"]')).toHaveCount(0);
+      await expect(item).toBeFocused();
+      await expect(item).toHaveAttribute('tabindex', '0');
+      await page.keyboard.press('ArrowDown');
+      await expect(tree.locator('[data-tree-node-id="item-9"]')).toBeFocused();
+    }
+  );
+}
+
 for (const disabled of [false, true]) {
   regressionTest(
     `slotted controls retain their Enter and Space keyboard behavior (disabled: ${disabled})`,
