@@ -108,15 +108,12 @@ export class Tree {
   private focusedItemId?: string;
 
   private getNavigationId(items: TreeItemVisual<unknown>[]) {
-    const focusableItems = items.filter(
-      (item) => !item.disabled && !this.getContext(item.id).isDisabled
-    );
     return (
       (this.focusedItemId &&
-        focusableItems.some((item) => item.id === this.focusedItemId) &&
+        items.some((item) => item.id === this.focusedItemId) &&
         this.focusedItemId) ||
-      focusableItems.find((item) => this.getContext(item.id).isSelected)?.id ||
-      focusableItems[0]?.id
+      items.find((item) => this.getContext(item.id).isSelected)?.id ||
+      items[0]?.id
     );
   }
 
@@ -341,50 +338,38 @@ export class Tree {
 
     const list = this.buildTreeList(this.model[this.root]);
     const index = list.findIndex((item) => item.id === id);
-    if (index < 0 || list[index].disabled || this.getContext(id).isDisabled) {
+    if (index < 0) {
       return;
     }
 
-    const focusable = (item: TreeItemVisual<unknown>) =>
-      !item.disabled && !this.getContext(item.id).isDisabled;
+    const isDisabled = list[index].disabled || this.getContext(id).isDisabled;
     let targetIndex = -1;
 
     switch (event.key) {
       case 'ArrowDown':
-        targetIndex = list.findIndex((item, i) => i > index && focusable(item));
+        targetIndex = index + 1 < list.length ? index + 1 : -1;
         break;
       case 'ArrowUp':
-        for (let i = index - 1; i >= 0; i--) {
-          if (focusable(list[i])) {
-            targetIndex = i;
-            break;
-          }
-        }
+        targetIndex = index - 1;
         break;
       case 'Home':
-        targetIndex = list.findIndex(focusable);
+        targetIndex = 0;
         break;
       case 'End':
-        for (let i = list.length - 1; i >= 0; i--) {
-          if (focusable(list[i])) {
-            targetIndex = i;
-            break;
-          }
-        }
+        targetIndex = list.length - 1;
         break;
       case 'ArrowRight':
         if (list[index].hasChildren) {
           if (!this.getContext(id).isExpanded) {
-            this.toggleNode(id);
+            if (!isDisabled) {
+              this.toggleNode(id);
+            }
           } else {
             for (let i = index + 1; i < list.length; i++) {
               if (list[i].level <= list[index].level) {
                 break;
               }
-              if (
-                list[i].level === list[index].level + 1 &&
-                focusable(list[i])
-              ) {
+              if (list[i].level === list[index].level + 1) {
                 targetIndex = i;
                 break;
               }
@@ -394,13 +379,13 @@ export class Tree {
         break;
       case 'ArrowLeft':
         if (list[index].hasChildren && this.getContext(id).isExpanded) {
-          this.toggleNode(id);
+          if (!isDisabled) {
+            this.toggleNode(id);
+          }
         } else {
           for (let i = index - 1; i >= 0; i--) {
             if (list[i].level < list[index].level) {
-              if (focusable(list[i])) {
-                targetIndex = i;
-              }
+              targetIndex = i;
               break;
             }
           }

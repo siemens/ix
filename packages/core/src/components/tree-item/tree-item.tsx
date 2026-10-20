@@ -52,7 +52,7 @@ export class TreeItem {
   @Prop() context?: TreeItemContext;
 
   /**
-   * Disable tree item
+   * Disable selection and expansion while keeping the tree item focusable.
    *
    * @since 5.0.0
    */
@@ -115,7 +115,8 @@ export class TreeItem {
     return (
       <Host
         role="treeitem"
-        tabIndex={isDisabled ? -1 : this.navigationTabIndex}
+        aria-disabled={a11yBoolean(!!isDisabled)}
+        tabIndex={this.navigationTabIndex}
         aria-selected={a11yBoolean(!!this.context?.isSelected)}
         aria-expanded={
           this.hasChildren ? a11yBoolean(!!this.context?.isExpanded) : undefined
@@ -126,7 +127,6 @@ export class TreeItem {
         }}
         onKeyDown={(event: KeyboardEvent) => {
           if (
-            isDisabled ||
             event.composedPath()[0] !== this.hostElement ||
             (event.key !== ' ' && event.key !== 'Enter')
           ) {
@@ -134,6 +134,9 @@ export class TreeItem {
           }
           event.preventDefault();
           event.stopPropagation();
+          if (isDisabled) {
+            return;
+          }
           this.hostElement.shadowRoot
             ?.querySelector<HTMLElement>('.tree-node-container')
             ?.click();
@@ -184,12 +187,15 @@ export class TreeItem {
           }
           aria-disabled={a11yBoolean(!!isDisabled)}
           onKeyDown={(e: KeyboardEvent) => {
-            if (isDisabled || e.target !== e.currentTarget) {
+            if (e.target !== e.currentTarget) {
               return;
             }
             if (e.key === ' ' || e.key === 'Enter') {
               e.preventDefault();
               e.stopPropagation();
+              if (isDisabled) {
+                return;
+              }
               (e.currentTarget as HTMLElement).click();
             }
           }}

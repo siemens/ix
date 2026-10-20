@@ -5503,7 +5503,7 @@ export namespace Components {
          */
         "context"?: TreeItemContext;
         /**
-          * Disable tree item
+          * Disable selection and expansion while keeping the tree item focusable.
           * @since 5.0.0
           * @default false
          */
@@ -13894,7 +13894,7 @@ declare namespace LocalJSX {
          */
         "context"?: TreeItemContext;
         /**
-          * Disable tree item
+          * Disable selection and expansion while keeping the tree item focusable.
           * @since 5.0.0
           * @default false
          */
