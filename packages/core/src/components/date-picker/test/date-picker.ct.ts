@@ -1125,14 +1125,16 @@ regressionTest.describe('weekday column headers', () => {
     }
   );
 
+  // Whether a label fits its column depends on the installed fonts, so the
+  // label choice is covered by the weekdayLabelsFrom unit tests and the
+  // rendering by the "weekday labels" visual regression test.
   regressionTest(
-    'does not truncate weekday labels in any locale',
+    'exposes the full weekday name in any locale',
     async ({ mount, page }) => {
       await mount(
         `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
       );
       const datePicker = page.locator(DatePickerSelector);
-      const labels = page.locator('.week-day .overflow');
 
       for (const locale of [
         'zh',
@@ -1162,13 +1164,6 @@ regressionTest.describe('weekday column headers', () => {
             locale
           )
         );
-
-        const overflowing = await labels.evaluateAll((elements) =>
-          elements
-            .filter((element) => element.scrollWidth > element.clientWidth)
-            .map((element) => element.textContent)
-        );
-        expect(overflowing, `truncated labels for "${locale}"`).toEqual([]);
       }
     }
   );
@@ -1233,6 +1228,85 @@ regressionTest.describe('month and year dropdowns', () => {
 
         await page.keyboard.press('ArrowUp');
         await expectActiveYear(page, '1921');
+      }
+    );
+
+    /**
+     * Dispatches keydowns back to back in a single task, so every key after the
+     * first arrives while the year list extension is still rendering.
+     */
+    const pressKeysInSameTask = (page: Page, keys: string[]) =>
+      page.evaluate((keys) => {
+        let target = document.activeElement;
+        while (target?.shadowRoot?.activeElement) {
+          target = target.shadowRoot.activeElement;
+        }
+        keys.forEach((key) =>
+          target?.dispatchEvent(
+            new KeyboardEvent('keydown', {
+              key,
+              bubbles: true,
+              composed: true,
+              cancelable: true,
+            })
+          )
+        );
+      }, keys);
+
+    regressionTest(
+      'discards Enter pressed while the year list is extending',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await pressKeysInSameTask(page, ['ArrowDown', 'Enter']);
+
+        await expectActiveYear(page, '2125');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2023');
+      }
+    );
+
+    regressionTest(
+      'discards ArrowUp pressed while the year list is extending',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await pressKeysInSameTask(page, ['ArrowDown', 'ArrowUp']);
+
+        await expectActiveYear(page, '2125');
+      }
+    );
+
+    regressionTest(
+      'marks the year list busy while it is extending',
+      async ({ page }) => {
+        const yearList = page.locator('.year-selector ix-dropdown');
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await yearList.evaluate((dropdown) => {
+          const states: (string | null)[] = [];
+          (window as unknown as { busyStates: typeof states }).busyStates =
+            states;
+          new MutationObserver(() =>
+            states.push(dropdown.getAttribute('aria-busy'))
+          ).observe(dropdown, { attributeFilter: ['aria-busy'] });
+        });
+        await page.keyboard.press('ArrowDown');
+
+        await expect
+          .poll(() =>
+            page.evaluate(
+              () =>
+                (window as unknown as { busyStates: (string | null)[] })
+                  .busyStates
+            )
+          )
+          .toEqual(['true', null]);
+        await expectActiveYear(page, '2125');
       }
     );
   });

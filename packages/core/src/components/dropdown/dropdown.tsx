@@ -282,6 +282,9 @@ export class Dropdown
 
   @State() fallbackPlacement?: AlignedPlacement;
 
+  /** Set while the navigation boundary handler renders more items. */
+  @State() navigationBoundaryPending = false;
+
   /**
    * Will be fired only after dropdown changed visibility to "true"
    *
@@ -871,8 +874,11 @@ export class Dropdown
           },
           itemTriggerKeys: this.keyboardItemTriggerKeys,
           // Read lazily so the handler can be set after the dropdown opened.
-          onNavigationBoundary: async (direction) =>
+          onNavigationBoundary: (direction) =>
             this.navigationBoundaryHandler?.(direction),
+          onNavigationBoundaryPendingChange: (pending) => {
+            this.navigationBoundaryPending = pending;
+          },
           ...(this.isRovingTabindex
             ? {
                 ...createRovingTabindexInteraction(getItemsHost),
@@ -1207,6 +1213,20 @@ export class Dropdown
     return trigger;
   }
 
+  /**
+   * While keyboard navigation waits for more items to render, clicks are
+   * discarded like keys are: they must neither activate an item nor close the
+   * dropdown as an inside click.
+   */
+  private onDropdownClickCapture(event: PointerEvent) {
+    if (!this.navigationBoundaryPending) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   private onDropdownClick(event: PointerEvent) {
     if (
       dropdownController.pathIncludesChildOverlay(this, event.composedPath())
@@ -1348,6 +1368,7 @@ export class Dropdown
       <Host
         {...ariaAttributes}
         aria-modal="true"
+        aria-busy={this.navigationBoundaryPending ? 'true' : undefined}
         data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap
         class={{
@@ -1364,6 +1385,9 @@ export class Dropdown
                 minWidth: '0px',
                 position: this.positioningStrategy,
               }
+        }
+        onClickCapture={(event: PointerEvent) =>
+          this.onDropdownClickCapture(event)
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >

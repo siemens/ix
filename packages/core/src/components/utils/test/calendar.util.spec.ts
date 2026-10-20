@@ -350,6 +350,26 @@ describe('weekdayLabelsFrom', () => {
 
     expect(labels).toEqual(weekdayNamesFrom(weekStartFrom(0), 'km', 'short'));
   });
+
+  // Whether a label fits its column depends on installed fonts, so the label
+  // choice is pinned here and the rendering is covered by visual regression.
+  it.each([
+    ['zh', 'short'],
+    ['ja', 'short'],
+    ['de', 'short'],
+    ['fr', 'short'],
+    ['lv', 'narrow'],
+    ['he', 'short'],
+    ['ar', 'narrow'],
+    ['el', 'short'],
+    ['ta', 'short'],
+    ['km', 'short'],
+    ['my', 'short'],
+  ] as const)('uses the %s %s names', (locale, format) => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), locale)).toEqual(
+      weekdayNamesFrom(weekStartFrom(0), locale, format)
+    );
+  });
 });
 
 describe('weekdayColumnOf', () => {
