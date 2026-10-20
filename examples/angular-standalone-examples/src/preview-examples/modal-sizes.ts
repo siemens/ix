@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { IxButton, ModalService } from '@siemens/ix-angular/standalone';
 
 import { IxModalSize } from '@siemens/ix-angular';
@@ -22,7 +22,7 @@ export default class ModalSizes {
   @ViewChild('customModal', { read: TemplateRef })
   customModalRef!: TemplateRef<any>;
 
-  constructor(private readonly modalService: ModalService) {}
+  private readonly modalService = inject(ModalService);
 
   async open(size: IxModalSize) {
     await this.modalService.open({

@@ -11,6 +11,7 @@ import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
+  waitForRender,
 } from '@utils/test';
 
 interface DateTimeInputElementWithEventFlag extends HTMLIxDatetimeInputElement {
@@ -281,6 +282,88 @@ regressionTest('invalid input shows error', async ({ mount, page }) => {
   await expect(input).toHaveClass(/is-invalid/);
   await dateTimeAccessor.expectToHaveErrorMessage('Date time is not valid');
 });
+
+regressionTest(
+  'novalidate form leaves parse error feedback to the consumer',
+  async ({ mount, page }) => {
+    await mount(
+      `<form novalidate><ix-datetime-input info-text="Info text"></ix-datetime-input></form>`
+    );
+    const host = page.locator('ix-datetime-input');
+    const input = host.locator('input').first();
+    const fieldWrapperText = (text: string) =>
+      host
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: text });
+
+    await host.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        const { detail } = event as CustomEvent<Partial<ValidityState>>;
+        if (detail?.patternMismatch || detail?.typeMismatch) {
+          el.dataset.parseErrorEmitted = 'true';
+        }
+      });
+    });
+
+    await input.fill('abc');
+    await input.blur();
+
+    // The parse error is still reported so consumers can validate themselves
+    await expect(host).toHaveAttribute('data-parse-error-emitted', 'true');
+
+    await host.evaluate((el) => el.classList.add('ix-info'));
+    await expect(fieldWrapperText('Info text')).toBeVisible();
+    await expect(fieldWrapperText('Date time is not valid')).toBeHidden();
+
+    // Without `invalid-text` the built-in message is the fallback
+    await host.evaluate((el) => el.classList.replace('ix-info', 'ix-invalid'));
+    await expect(fieldWrapperText('Date time is not valid')).toBeVisible();
+
+    // An empty `invalid-text` opts out of the fallback
+    await host.evaluate((el) => el.setAttribute('invalid-text', ''));
+    await expect(fieldWrapperText('Date time is not valid')).toBeHidden();
+
+    await host.evaluate((el) =>
+      el.setAttribute('invalid-text', 'Consumer error')
+    );
+    await expect(fieldWrapperText('Consumer error')).toBeVisible();
+  }
+);
+
+regressionTest(
+  'keeps consumer invalid state when a parse error is resolved',
+  async ({ mount, page }) => {
+    // `novalidate` keeps built-in validation from restoring the state on its own
+    await mount(
+      `<form novalidate><ix-datetime-input class="ix-invalid" invalid-text="Consumer error"></ix-datetime-input></form>`
+    );
+    const host = page.locator('ix-datetime-input');
+    const input = host.locator('input').first();
+    const consumerError = host
+      .locator('ix-field-wrapper')
+      .locator('ix-typography')
+      .filter({ hasText: 'Consumer error' });
+
+    await input.fill('abc');
+    await input.blur();
+    await expect(consumerError).toBeVisible();
+
+    await host.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        if (!(event as CustomEvent).detail.typeMismatch) {
+          el.dataset.resolved = 'true';
+        }
+      });
+    });
+    await input.fill('2024/05/05 09:10:11');
+    await input.blur();
+    await expect(host).toHaveAttribute('data-resolved', 'true');
+    await waitForRender(page);
+
+    await expect(consumerError).toBeVisible();
+  }
+);
 
 regressionTest('select date and time by focus', async ({ mount, page }) => {
   await mount(

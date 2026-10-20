@@ -23,6 +23,15 @@ export * from './components/list/list.types';
 export * from './components/list-item/list-item.types';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
+export type { StatusVariant } from './components/utils/status.types';
+export {
+  STATUS_VARIANTS,
+  STATUS_EMPHASIS_VARIANTS,
+} from './components/utils/status.types';
+export type { CardVariant } from './components/card/card.types';
+export type { ActionCardVariant } from './components/action-card/action-card.types';
+export type { PushCardVariant } from './components/push-card/push-card.types';
+export type { CardAccordionVariant } from './components/card-accordion/card-accordion.types';
 export { ElementReference } from './components/utils/element-reference';
 export * from './components/utils/modal';
 export * from './components/utils/typed-event';

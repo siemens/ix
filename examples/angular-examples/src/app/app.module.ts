@@ -187,6 +187,10 @@ import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import LinkButtonInternal from '../preview-examples/link-button-internal';
+import LinkButtonExternal from '../preview-examples/link-button-external';
+import LinkButtonFile from '../preview-examples/link-button-file';
+import LinkButtonAction from '../preview-examples/link-button-action';
 import Loading from '../preview-examples/loading';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -451,6 +455,10 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Kpi,
     LinkButtonDisabled,
     LinkButton,
+    LinkButtonInternal,
+    LinkButtonExternal,
+    LinkButtonFile,
+    LinkButtonAction,
     Loading,
     MenuCategory,
     MenuWithBottomTabs,

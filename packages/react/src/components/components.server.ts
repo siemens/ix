@@ -137,13 +137,14 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
     tagName: 'ix-action-card',
     properties: {
         variant: 'variant',
+        outline: 'outline',
         icon: 'icon',
         ariaLabelIcon: 'aria-label-icon',
         heading: 'heading',
         subheading: 'subheading',
         selected: 'selected',
         ariaLabelCard: 'aria-label-card',
-        passive: 'passive'
+        clickable: 'clickable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxActionCard as StencilReactComponent<IxActionCardElement, IxActionCardEvents, Components.IxActionCard>,
@@ -242,7 +243,8 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Compo
         label: 'label',
         sublabel: 'sublabel',
         icon: 'icon',
-        variant: 'variant'
+        variant: 'variant',
+        outline: 'outline'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxBlind as StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>,
@@ -320,8 +322,9 @@ export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents, Componen
     tagName: 'ix-card',
     properties: {
         variant: 'variant',
+        outline: 'outline',
         selected: 'selected',
-        passive: 'passive'
+        clickable: 'clickable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxCard as StencilReactComponent<IxCardElement, IxCardEvents, Components.IxCard>,
@@ -335,7 +338,8 @@ export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCa
     properties: {
         ariaLabelExpandButton: 'aria-label-expand-button',
         collapse: 'collapse',
-        variant: 'variant'
+        variant: 'variant',
+        outline: 'outline'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxCardAccordion as StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents, Components.IxCardAccordion>,
@@ -1284,7 +1288,9 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     properties: {
         disabled: 'disabled',
         url: 'url',
-        target: 'target'
+        target: 'target',
+        icon: 'icon',
+        iconPosition: 'icon-position'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxLinkButton as StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents, Components.IxLinkButton>,
@@ -1845,8 +1851,9 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
         heading: 'heading',
         subheading: 'subheading',
         variant: 'variant',
+        outline: 'outline',
         expanded: 'expanded',
-        passive: 'passive'
+        clickable: 'clickable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxPushCard as StencilReactComponent<IxPushCardElement, IxPushCardEvents, Components.IxPushCard>,

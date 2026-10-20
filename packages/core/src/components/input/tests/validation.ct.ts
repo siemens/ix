@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { expect, Locator } from '@playwright/test';
+import { test, waitForRender } from '@utils/test';
 
 test.describe('validation', () => {
   test.describe('ix-input', () => {
@@ -278,6 +278,354 @@ function createValidityOrValueChangePromiseSimple(
 function setElementValue(el: Element, value: string): void {
   (el as any).value = value;
 }
+
+test.describe('toggling required', () => {
+  [
+    'ix-input',
+    'ix-number-input',
+    'ix-textarea',
+    'ix-select',
+    'ix-time-input',
+    'ix-datetime-input',
+  ].forEach((selector) => {
+    test(`${selector} - updates validation state immediately`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<${selector} invalid-text="Field is required"></${selector}>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector)).first();
+      const invalidText = host
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Field is required' });
+
+      await expect(host).toHaveAttribute('hydrated');
+      if (selector === 'ix-select') {
+        await nativeInput.focus();
+      } else {
+        await nativeInput.fill('');
+      }
+      await nativeInput.blur();
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = true;
+      });
+      await expect(host).toHaveClass(/ix-invalid--required/);
+      await expect(invalidText).toBeVisible();
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = false;
+      });
+      await expect(host).not.toHaveClass(/ix-invalid/);
+      await expect(invalidText).toBeHidden();
+    });
+  });
+});
+
+test.describe('toggling required emits validityStateChange', () => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    test(selector, async ({ mount, page }) => {
+      await mount(`<${selector}></${selector}>`);
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.emitted = '';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          const { valueMissing } = (event as CustomEvent<ValidityState>).detail;
+          el.dataset.emitted += valueMissing ? 'missing,' : 'valid,';
+        });
+      });
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = true;
+      });
+      await expect(host).toHaveAttribute('data-emitted', 'missing,');
+
+      await host.evaluate((el: HTMLElement & { required: boolean }) => {
+        el.required = false;
+      });
+      await expect(host).toHaveAttribute('data-emitted', 'missing,valid,');
+    });
+  });
+});
+
+test.describe('novalidate form', () => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    test(`${selector} - should not show validity feedback but still emit validityStateChange`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form novalidate><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.invalidCount = '0';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          if ((event as CustomEvent<ValidityState>).detail?.valid) {
+            el.dataset.validEmitted = 'true';
+          } else {
+            el.dataset.invalidCount = `${Number(el.dataset.invalidCount) + 1}`;
+          }
+        });
+      });
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-invalid-count', '1');
+      await waitForRender(page);
+      await expect(host).not.toHaveClass(/ix-invalid/);
+
+      // Staying invalid must not re-emit the event
+      await nativeInput.focus();
+      await nativeInput.blur();
+      await nativeInput.fill('2');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-valid-emitted', 'true');
+      await expect(host).toHaveAttribute('data-invalid-count', '1');
+    });
+
+    test(`${selector} - should clear built-in feedback once the form opts out`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+      await expect(host).toHaveClass(/ix-invalid--required/);
+
+      await page
+        .locator('form')
+        .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+      await nativeInput.focus();
+      await nativeInput.blur();
+
+      await expect(host).not.toHaveClass(/ix-invalid/);
+    });
+
+    test(`${selector} - should emit validityStateChange when recovering after the form opts out`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.emitted = '';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          const { valid } = (event as CustomEvent<ValidityState>).detail;
+          el.dataset.emitted += valid ? 'valid,' : 'invalid,';
+        });
+      });
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,');
+
+      await page
+        .locator('form')
+        .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+      await nativeInput.fill('2');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,valid,');
+    });
+
+    test(`${selector} - should emit validityStateChange when recovering after the form opts back in`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `<form novalidate><${selector} required value="1"></${selector}></form>`
+      );
+      const host = page.locator(selector);
+      const nativeInput = host.locator(getInputSelector(selector));
+
+      await host.evaluate((el: HTMLElement) => {
+        el.dataset.emitted = '';
+        el.addEventListener('validityStateChange', (event: Event) => {
+          const { valid } = (event as CustomEvent<ValidityState>).detail;
+          el.dataset.emitted += valid ? 'valid,' : 'invalid,';
+        });
+      });
+
+      await nativeInput.fill('');
+      await nativeInput.blur();
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,');
+
+      await page
+        .locator('form')
+        .evaluate((form: HTMLFormElement) => (form.noValidate = false));
+      await nativeInput.fill('2');
+      await nativeInput.blur();
+
+      await expect(host).toHaveAttribute('data-emitted', 'invalid,valid,');
+    });
+  });
+
+  // Only fields with `getValidityState` get `aria-invalid` from the validation hook
+  test('ix-input - should sync aria-invalid on the native input once the form opts out', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<form><ix-input required></ix-input></form>');
+    const host = page.locator('ix-input');
+    const nativeInput = host.locator('input');
+
+    await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
+
+    await page
+      .locator('form')
+      .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+    await nativeInput.fill('2');
+
+    await expect(nativeInput).not.toHaveAttribute('aria-invalid', 'true');
+    await expect(host).not.toHaveClass(/ix-invalid/);
+  });
+
+  ['<form novalidate>', '<form>'].forEach((formTag) => {
+    test(`ix-input - should keep consumer-set invalid state for assistive technology in ${formTag}`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        `${formTag}<ix-input class="ix-invalid" invalid-text="Consumer error"></ix-input></form>`
+      );
+      const host = page.locator('ix-input');
+      const nativeInput = host.locator('input');
+      const errorId = await host
+        .locator('ix-field-wrapper .error-message-container')
+        .getAttribute('id')
+        .then((id) => id ?? '');
+
+      await nativeInput.fill('valid');
+      await nativeInput.blur();
+
+      await expect(host).toHaveClass(/ix-invalid/);
+      await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
+      await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
+      await expect(nativeInput).toHaveAttribute(
+        'aria-errormessage',
+        new RegExp(`(^|\\s)${errorId}(\\s|$)`)
+      );
+    });
+  });
+});
+
+test.describe('aria message references', () => {
+  const getMessageIds = async (host: Locator) => ({
+    errorId: await host
+      .locator('ix-field-wrapper .error-message-container')
+      .getAttribute('id')
+      .then((id) => id ?? ''),
+    helperId: await host
+      .locator('ix-field-wrapper .helper-message-container')
+      .getAttribute('id')
+      .then((id) => id ?? ''),
+  });
+
+  test('ix-input - should only swap generated message ids and keep other references', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-input required></ix-input>');
+    const host = page.locator('ix-input');
+    const nativeInput = host.locator('input');
+    const { errorId, helperId } = await getMessageIds(host);
+
+    await expect(nativeInput).toHaveAttribute('aria-errormessage', errorId);
+    await nativeInput.evaluate((el) =>
+      el.setAttribute(
+        'aria-describedby',
+        `${el.getAttribute('aria-describedby')} consumer-description`
+      )
+    );
+
+    await nativeInput.fill('valid');
+    await nativeInput.blur();
+
+    await expect(nativeInput).not.toHaveAttribute('aria-errormessage');
+    await expect(nativeInput).toHaveAttribute(
+      'aria-describedby',
+      `consumer-description ${helperId}`
+    );
+
+    await nativeInput.fill('');
+    await nativeInput.blur();
+
+    await expect(nativeInput).toHaveAttribute('aria-errormessage', errorId);
+    await expect(nativeInput).toHaveAttribute(
+      'aria-describedby',
+      `consumer-description ${errorId}`
+    );
+  });
+
+  test('ix-input - should drop the generated error reference once the form opts out', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<form><ix-input required></ix-input></form>');
+    const host = page.locator('ix-input');
+    const nativeInput = host.locator('input');
+    const { errorId, helperId } = await getMessageIds(host);
+
+    await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
+
+    await page
+      .locator('form')
+      .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+    await nativeInput.focus();
+    await nativeInput.blur();
+
+    await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
+    await expect(nativeInput).not.toHaveAttribute('aria-errormessage');
+    await expect(nativeInput).toHaveAttribute('aria-describedby', helperId);
+  });
+});
+
+test('validation classes are applied after the field was moved in the DOM', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <div id="source"><ix-input invalid-text="Consumer error"></ix-input></div>
+    <div id="target"></div>
+  `);
+  const host = page.locator('ix-input');
+  await expect(host).toHaveAttribute('hydrated');
+
+  await host.evaluate((el) => {
+    el.ownerDocument.getElementById('target')?.appendChild(el);
+  });
+  await expect(page.locator('#target ix-input')).toBeAttached();
+  await host.evaluate((el) => el.classList.add('ix-invalid'));
+
+  await expect(
+    host
+      .locator('ix-field-wrapper')
+      .locator('ix-typography')
+      .filter({ hasText: 'Consumer error' })
+  ).toBeVisible();
+});
 
 test.describe('ixChange event', () => {
   test.describe('on blur', () => {

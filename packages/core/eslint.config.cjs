@@ -66,6 +66,12 @@ module.exports = [
           message:
             'Avoid definite assignment assertion (!). Initialize the field or use an allowed decorator field.',
         },
+        {
+          selector:
+            ':matches(PropertyDefinition, MethodDefinition)[static=true] > PrivateIdentifier.key',
+          message:
+            'Avoid static #private members; they break es2016 lowering with oxc/rolldown (see #2874).',
+        },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',

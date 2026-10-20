@@ -104,7 +104,6 @@ export class Toast {
           aria-hidden="true"
           name={this.icon}
           color={this.iconColor}
-          size="24"
         />
       );
     }
@@ -116,8 +115,7 @@ export class Toast {
             data-testid="toast-icon"
             aria-hidden="true"
             name={iconInfo}
-            size="24"
-            color="--si-sys-color-text-primary"
+            color="--si-sys-color-background-information"
           />
         );
 
@@ -127,7 +125,6 @@ export class Toast {
             data-testid="toast-icon"
             aria-hidden="true"
             name={iconError}
-            size="24"
             color="--si-sys-color-text-danger"
           />
         );
@@ -138,7 +135,6 @@ export class Toast {
             data-testid="toast-icon"
             aria-hidden="true"
             name={iconSuccess}
-            size="24"
             color="--si-sys-color-text-success"
           />
         );
@@ -149,7 +145,6 @@ export class Toast {
             data-testid="toast-icon"
             aria-hidden="true"
             name={iconWarning}
-            size="24"
             color="--si-sys-color-text-warning"
           />
         );

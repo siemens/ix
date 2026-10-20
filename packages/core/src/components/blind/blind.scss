@@ -7,128 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'sass:list';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use './blind.vars' as blind-vars;
-@use 'tokens/system' as sys;
-
 @use './blind.vars' as *;
-@mixin blind($variant: 'filled') {
-  :host(.blind-#{$variant}) {
-    @include blind-vars.variant-vars($variant);
-
-    .blind-header {
-      @if $variant == 'outline' {
-        background-color: var(--ix-blind-outline-header--background);
-      } @else {
-        background-color: var(--ix-blind-#{$variant}--background);
-      }
-
-      @if $variant == 'filled' or $variant == 'outline' {
-        @include hover.ghost-hover-pressed;
-      } @else {
-        @include hover.hover {
-          background-color: var(--ix-blind-#{$variant}--background--hover);
-        }
-
-        @include hover.active {
-          background-color: var(--ix-blind-#{$variant}--background--active);
-        }
-      }
-    }
-
-    @if $variant == 'filled' or $variant == 'outline' {
-      .blind-header-title-label,
-      .blind-header-title-icon,
-      .collapse-icon {
-        color: var(--ix-blind-header--color);
-      }
-
-      .blind-header-title-sublabel {
-        color: var(--ix-blind-header-sublabel--color);
-      }
-
-      .header-actions {
-        --ix-icon-button-color: var(--ix-blind-header-actions--color);
-      }
-    } @else {
-      .blind-header-title-label,
-      .blind-header-title-sublabel,
-      .blind-header-title-icon,
-      .collapse-icon {
-        color: var(--ix-blind-#{$variant}--color);
-      }
-
-      .header-actions {
-        --ix-icon-button-color: var(--ix-blind-#{$variant}--color);
-      }
-    }
-
-    @if $variant == 'outline' {
-      .blind-header-wrapper {
-        border: solid
-          var(--ix-blind--border-width)
-          var(--ix-blind-outline--border-color);
-        border-bottom: none;
-        border-radius: var(--ix-blind--border-radius)
-          var(--ix-blind--border-radius)
-          0
-          0;
-
-        @include hover.hover {
-          border-color: var(--ix-blind-outline--border-color--hover);
-        }
-
-        @include hover.active {
-          border-color: var(--ix-blind-outline--border-color--active);
-        }
-      }
-
-      .blind-header {
-        border-radius: 0;
-      }
-    }
-
-    @if $variant != 'filled' {
-      .blind-content {
-        border-radius: 0
-          0
-          var(--ix-blind--border-radius)
-          var(--ix-blind--border-radius);
-
-        @if $variant == 'outline' {
-          border: solid
-            var(--ix-blind--border-width)
-            var(--ix-blind-outline--border-color);
-          border-top: none;
-        } @else {
-          border: solid
-            var(--ix-blind--border-width)
-            var(--ix-blind-#{$variant}--background);
-          border-top: none;
-        }
-      }
-    }
-
-    @if $variant != 'outline' {
-      background-color: var(--ix-blind--background);
-    }
-  }
-
-  @if not list.index(('filled', 'outline'), $variant) {
-    :host(.blind-#{$variant}[collapsed]) .blind-content {
-      border-width: 0;
-    }
-  }
-}
 
 :host {
   display: flex;
   flex-direction: column;
+  position: relative;
+  align-self: flex-start;
+  box-sizing: border-box;
+  border: none;
   border-radius: var(--ix-blind--border-radius);
-  overflow: hidden;
 
   ix-icon:not([size]) {
     block-size: var(--ix-blind-icon--icon-size);
@@ -138,6 +29,17 @@
   }
 
   @include component.ix-component;
+
+  .blind-chrome {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    border: var(--ix-blind--border-width) solid var(--ix-blind--border-color);
+    border-radius: inherit;
+    overflow: hidden;
+    background-color: var(--ix-blind--surface);
+  }
 
   .blind-header-wrapper {
     position: relative;
@@ -173,6 +75,7 @@
 
     display: block;
     position: absolute;
+    box-sizing: border-box;
 
     top: 0px;
     left: 0px;
@@ -180,18 +83,35 @@
     pointer-events: all;
 
     padding-left: var(--ix-blind-header--padding-left);
-    min-height: var(--ix-blind-header--min-height);
-    height: var(--ix-blind-header--height);
-    width: calc(100% - 2 * var(--ix-blind--border-width));
-    border: solid var(--ix-blind--border-width) transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
     border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
       0 0;
     cursor: pointer;
+    background-color: transparent;
+
+    @include hover.ghost-hover-pressed;
 
     @include hover.focus-visible {
-      border-color: var(--ix-blind-header--border-color--focus);
-      outline: none;
+      outline: var(--ix-blind--outline-width--focus) solid
+        var(--ix-blind--outline-color--focus);
+      outline-offset: var(--ix-blind--focus--outline-offset);
     }
+  }
+
+  .blind-header-title-label,
+  .blind-header-title-icon,
+  .collapse-icon {
+    color: var(--ix-blind-header--color);
+  }
+
+  .blind-header-title-sublabel {
+    color: var(--ix-blind-header-sublabel--color);
+  }
+
+  .header-actions {
+    --ix-icon-button-color: var(--ix-blind-header-actions--color);
   }
 
   .blind-header-title-icon,
@@ -247,6 +167,7 @@
   .blind-content {
     display: block;
     padding: var(--ix-blind-content--padding);
+    padding-left: var(--ix-blind-content--padding-left);
     transition-property: padding;
     transition-duration: var(--ix-blind-content--transition-duration);
     transition-timing-function: ease-in;
@@ -265,39 +186,30 @@
   }
 }
 
-$blind-variants: (
-  alarm,
-  critical,
-  info,
-  neutral,
-  filled,
-  success,
-  warning,
-  primary,
-  outline
-);
-
-@each $variant in $blind-variants {
-  @include blind($variant);
+:host(:not(.outline)) {
+  --ix-blind--surface: var(--ix-blind--background);
+  --ix-blind--border-width: 0;
 }
 
-:host(.blind-outline[collapsed]) {
-  .blind-header-wrapper {
-    box-sizing: border-box;
-    border-bottom: solid var(--ix-blind--border-width)
-      var(--ix-blind-outline--border-color);
-    border-radius: var(--ix-blind--border-radius);
+:host(.outline) {
+  --ix-blind--surface: transparent;
+  --ix-blind--border-color: var(--ix-blind-outline--border-color);
+}
 
-    @include hover.hover {
-      border-color: var(--ix-blind-outline--border-color--hover);
-    }
+:host(.outline) .blind-header {
+  border-radius: 0;
+}
 
-    @include hover.active {
-      border-color: var(--ix-blind-outline--border-color--active);
-    }
-  }
-
-  .blind-content {
-    border-width: 0;
-  }
+:host(:not(.blind-base))::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--ix-blind--strip-width);
+  border-radius: var(--ix-blind--border-radius) 0 0
+    var(--ix-blind--border-radius);
+  z-index: 1;
+  pointer-events: none;
+  background-color: var(--ix-blind-status-color);
 }
