@@ -52,6 +52,13 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   expect(results.violations).toEqual([]);
 });
 
+regressionTest('renders', async ({ mount, page }) => {
+  const markdown = await mountMarkdown(mount, page, '- [x] Done\n\n---');
+
+  await expect(markdown.locator('ix-checkbox')).toHaveCount(1);
+  await expect(markdown.locator('ix-divider')).toHaveCount(1);
+});
+
 regressionTest(
   'renders task list items as checkboxes',
   async ({ mount, page }) => {

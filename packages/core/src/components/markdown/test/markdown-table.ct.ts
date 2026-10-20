@@ -48,6 +48,23 @@ const mockClipboard = (page: Page) =>
     });
   });
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mountMarkdown(mount, page, `${TABLE}\n| Bolt | 3 | ok |`);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  const markdown = await mountMarkdown(
+    mount,
+    page,
+    `${TABLE}\n| Bolt | 3 | ok |`
+  );
+
+  await expect(markdown.getByRole('table')).toBeVisible();
+});
+
 regressionTest(
   'renders a table in a scroll container',
   async ({ mount, page }) => {
@@ -230,13 +247,3 @@ regressionTest('labels are localizable', async ({ mount, page }) => {
     markdown.getByRole('button', { name: 'Tabelle herunterladen' })
   ).toBeVisible();
 });
-
-regressionTest(
-  'table accessibility',
-  async ({ mount, page, makeAxeBuilder }) => {
-    await mountMarkdown(mount, page, `${TABLE}\n| Bolt | 3 | ok |`);
-
-    const accessibilityScanResults = await makeAxeBuilder().analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-  }
-);

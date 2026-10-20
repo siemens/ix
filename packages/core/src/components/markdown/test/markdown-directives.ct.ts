@@ -53,6 +53,12 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   expect(results.violations).toEqual([]);
 });
 
+regressionTest('renders', async ({ mount, page }) => {
+  const markdown = await mountMarkdown(mount, page, ':pill[Active]');
+
+  await expect(markdown.locator('ix-pill')).toHaveText('Active');
+});
+
 regressionTest(
   'button renders and emits actionClick',
   async ({ mount, page }) => {

@@ -69,6 +69,26 @@ const set = (element: Locator, props: string) =>
 const log = (page: Page) =>
   page.evaluate(() => (window as unknown as TestWindow).__log);
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  const markdown = await mountMarkdown(mount, page);
+  await set(
+    markdown,
+    `el.options = { components: { widget: w.factory } };
+     el.markdown = '# Title\\n\\n::widget[Some label]';`
+  );
+  await expect(page.getByTestId('custom')).toHaveText('Some label');
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  const markdown = await mountMarkdown(mount, page);
+  await set(markdown, `el.markdown = 'Hello';`);
+
+  await expect(markdown.locator('p')).toHaveText('Hello');
+});
+
 regressionTest('remark plugin is installed', async ({ mount, page }) => {
   const markdown = await mountMarkdown(mount, page);
   await set(

@@ -33,6 +33,21 @@ const update = (element: Locator, markdown: string, streaming: boolean) =>
     [markdown, streaming]
   );
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  const markdown = await mountMarkdown(mount, page);
+  await update(markdown, '# Title\n\nSome *text* and', true);
+  await expect(markdown.getByRole('heading', { level: 1 })).toBeVisible();
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  const markdown = await mountMarkdown(mount, page, 'Hello');
+
+  await expect(markdown.locator('p')).toHaveText('Hello');
+});
+
 regressionTest('streaming toggles aria-busy', async ({ mount, page }) => {
   const markdown = await mountMarkdown(mount, page, 'Hello');
   await expect(markdown).not.toHaveAttribute('aria-busy');
