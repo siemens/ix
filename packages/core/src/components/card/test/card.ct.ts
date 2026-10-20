@@ -50,7 +50,7 @@ regressionTest(
 );
 
 regressionTest(
-  'filled status uses ::before strip with uniform chrome border',
+  'filled status uses ::before strip with zero chrome border width',
   async ({ mount, page }) => {
     await mount(`<ix-card variant="danger" outline="false"></ix-card>`);
     const card = page.locator('ix-card');
@@ -69,8 +69,8 @@ regressionTest(
         stripColor: strip.backgroundColor,
       };
     });
-    expect(chrome.borderTopWidth).toBe(1);
-    expect(chrome.borderSideWidth).toBe(1);
+    expect(chrome.borderTopWidth).toBe(0);
+    expect(chrome.borderSideWidth).toBe(0);
     expect(chrome.stripContent).not.toBe('none');
     expect(chrome.stripHeight).toBe(4);
     expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');

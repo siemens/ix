@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use './card.vars' as card-vars;
-
 @use './card.vars' as *;
 
 :host {
@@ -75,35 +73,32 @@
 :host(:not(.outline)) {
   --ix-card-background: var(--ix-card-filled--background);
   --ix-card-border-color: var(--ix-card-filled--background);
+  /* No chrome inset so accordion/content flush to outer edges (filled) */
+  --ix-card--border-width: 0;
 }
 
-@each $status in card-vars.$card-status-variants {
-  :host(.card-#{$status}) {
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--ix-card--strip-height);
-      border-radius: var(--ix-card--border-radius)
-        var(--ix-card--border-radius)
-        0
-        0;
-      z-index: 1;
-      pointer-events: none;
-      background-color: var(--ix-card-status-color);
-    }
-  }
-
-  :host(.outline.card-#{$status}),
-  :host(.outline.selected.card-#{$status}) {
-    --ix-card-border-color: var(--ix-card-base--border-color);
-  }
+/* Status strip + outline border: shared rules for any non-base variant.
+ * Per-status colors stay on `--ix-card-status-color` in card.vars.scss. */
+:host(:not(.card-base))::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--ix-card--strip-height);
+  border-radius: var(--ix-card--border-radius) var(--ix-card--border-radius) 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: var(--ix-card-status-color);
 }
 
 :host(.selected) {
   --ix-card-border-color: var(--ix-card-base--border-color--selected);
+}
+
+:host(.outline:not(.card-base)),
+:host(.outline.selected:not(.card-base)) {
+  --ix-card-border-color: var(--ix-card-base--border-color);
 }
 
 :host(.clickable.outline:hover) {

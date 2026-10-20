@@ -11,7 +11,9 @@
 :host {
   display: block;
   position: relative;
+  box-sizing: border-box;
   width: var(--ix-push-card--width);
+  min-width: var(--ix-push-card--width);
 
   ix-card {
     width: 100%;
