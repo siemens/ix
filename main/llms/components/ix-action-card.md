@@ -18,12 +18,13 @@
 
 - `ariaLabelCard`; attr: `aria-label-card`; type: `string | undefined` - ARIA label for the card
 - `ariaLabelIcon`; attr: `aria-label-icon`; type: `string | undefined` - ARIA label for the icon
+- `clickable`; attr: `clickable`; type: `boolean | undefined` - Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
 - `heading`; attr: `heading`; type: `string | undefined` - Card heading
 - `icon`; attr: `icon`; type: `string | undefined`; default: `undefined` - Card icon
-- `passive`; attr: `passive`; type: `boolean`; default: `false` - If true, disables hover and active styles and changes cursor to default
+- `outline`; attr: `outline`; type: `boolean | undefined` - Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
 - `selected`; attr: `selected`; type: `boolean`; default: `false` - Card selection
 - `subheading`; attr: `subheading`; type: `string | undefined` - Card subheading
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "filled" | "info" | "neutral" | "outline" | "primary" | "success" | "warning"`; default: `'outline'` - Card variant
+- `variant`; attr: `variant`; type: `"accent" | "base" | "caution" | "critical" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'base'` - Card status variant
 
 ## Events
 

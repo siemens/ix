@@ -16,9 +16,10 @@
 
 ## Properties
 
-- `passive`; attr: `passive`; type: `boolean`; default: `false` - If true, disables hover and active styles and changes cursor to default
+- `clickable`; attr: `clickable`; type: `boolean`; default: `false` - Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
+- `outline`; attr: `outline`; type: `boolean | undefined` - Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
 - `selected`; attr: `selected`; type: `boolean`; default: `false` - Show card in selected state
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "filled" | "info" | "neutral" | "outline" | "primary" | "success" | "warning"`; default: `'outline'` - Card variant
+- `variant`; attr: `variant`; type: `"accent" | "base" | "caution" | "critical" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'base'` - Card status variant
 
 ## Events
 

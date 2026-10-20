@@ -18,7 +18,8 @@
 
 - `ariaLabelExpandButton`; attr: `aria-label-expand-button`; type: `string | undefined` - ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
 - `collapse`; attr: `collapse`; type: `boolean`; default: `false` - Collapse the card
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "filled" | "info" | "neutral" | "outline" | "primary" | "success" | "warning"`; default: `'outline'` - Show accordion with different color variants
+- `outline`; attr: `outline`; type: `boolean | undefined` - Show the accordion with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses filled accordion chrome.
+- `variant`; attr: `variant`; type: `"accent" | "base" | "caution" | "critical" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'base'` - Accordion status variant.
 
 ## Events
 

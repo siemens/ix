@@ -17,13 +17,14 @@
 ## Properties
 
 - `ariaLabelIcon`; attr: `aria-label-icon`; type: `string | undefined` - ARIA label for the icon
+- `clickable`; attr: `clickable`; type: `boolean`; default: `false` - Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
 - `expanded`; attr: `expanded`; type: `boolean`; default: `false` - Expand the card
 - `heading`; attr: `heading`; type: `string | undefined` - Card heading
 - `icon`; attr: `icon`; type: `string | undefined` - Card icon
 - `notification`; attr: `notification`; type: `string | undefined` - Card KPI value
-- `passive`; attr: `passive`; type: `boolean`; default: `false` - If true, disables hover and active styles and changes cursor to default
+- `outline`; attr: `outline`; type: `boolean | undefined` - Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
 - `subheading`; attr: `subheading`; type: `string | undefined` - Card subheading
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "filled" | "info" | "neutral" | "outline" | "primary" | "success" | "warning"`; default: `'outline'` - Card variant
+- `variant`; attr: `variant`; type: `"accent" | "base" | "caution" | "critical" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'base'` - Card status variant
 
 ## Events
 
