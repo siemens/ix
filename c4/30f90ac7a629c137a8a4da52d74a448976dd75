@@ -1,0 +1,21 @@
+packages/core/src/components.d.ts
+  s_5cfac4e1ac64b2::t_6441ce66808b09 402,8491
+packages/core/src/components/badge/badge.tsx
+  s_5cfac4e1ac64b2::t_82ec921f8b8c83 102-103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c430f90ac7a629c137a8a4da52d74a448976dd75",
+  "prompts": {},
+  "sessions": {
+    "s_5cfac4e1ac64b2": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "a88ef3c6-8fb4-4005-8b7a-2a538ba9c517",
+        "model": "unknown"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
