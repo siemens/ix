@@ -16,31 +16,31 @@ export default () => {
     <div className="container">
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="danger"
         role="img"
-        aria-label="Alarm"
+        aria-label="Danger"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="danger"
         outline
         role="img"
-        aria-label="Alarm outline"
+        aria-label="Danger outline"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="danger"
         enableAnimation
         role="img"
-        aria-label="Alarm pulse"
+        aria-label="Danger pulse"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="danger"
         outline
         enableAnimation
         role="img"
-        aria-label="Alarm pulse outline"
+        aria-label="Danger pulse outline"
       ></IxBadge>
 
       <IxBadge
@@ -161,31 +161,31 @@ export default () => {
 
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         role="img"
-        aria-label="Info"
+        aria-label="Information"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         outline
         role="img"
-        aria-label="Info outline"
+        aria-label="Information outline"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         enableAnimation
         role="img"
-        aria-label="Info pulse"
+        aria-label="Information pulse"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         outline
         enableAnimation
         role="img"
-        aria-label="Info pulse outline"
+        aria-label="Information pulse outline"
       ></IxBadge>
     </div>
   );

@@ -57,12 +57,12 @@ async function expectVisibleTooltipText(tooltip: Locator, text: string) {
 regressionTest.describe('ix-badge', () => {
   regressionTest.describe('rendering', () => {
     regressionTest('hydrates standalone badge', async ({ mount, page }) => {
-      await mount(`<ix-badge label="12" variant="info"></ix-badge>`);
+      await mount(`<ix-badge label="12" variant="information"></ix-badge>`);
       const badge = new BadgePage(page);
 
       await badge.expectHydrated();
       await badge.expectStandalone();
-      await expect(badge.host).toHaveAttribute('variant', 'info');
+      await expect(badge.host).toHaveAttribute('variant', 'information');
       await badge.expectVisibleLabel('12');
     });
 
@@ -70,7 +70,7 @@ regressionTest.describe('ix-badge', () => {
       'hydrates attached badge with anchor class',
       async ({ mount, page }) => {
         await mount(html`
-          <ix-badge label="3" variant="alarm">
+          <ix-badge label="3" variant="danger">
             <ix-button>Review changes</ix-button>
           </ix-badge>
         `);
@@ -82,7 +82,7 @@ regressionTest.describe('ix-badge', () => {
     );
 
     regressionTest('formats overflow label as 99+', async ({ mount, page }) => {
-      await mount(`<ix-badge label="142" variant="primary"></ix-badge>`);
+      await mount(`<ix-badge label="142" variant="accent"></ix-badge>`);
       const badge = new BadgePage(page);
       await badge.expectVisibleLabel('99+');
     });
@@ -90,7 +90,7 @@ regressionTest.describe('ix-badge', () => {
     regressionTest(
       'accepts preformatted overflow label 99+',
       async ({ mount, page }) => {
-        await mount(`<ix-badge label="99+" variant="primary"></ix-badge>`);
+        await mount(`<ix-badge label="99+" variant="accent"></ix-badge>`);
         const badge = new BadgePage(page);
         await badge.expectVisibleLabel('99+');
       }
@@ -99,7 +99,7 @@ regressionTest.describe('ix-badge', () => {
     regressionTest(
       'renders no indicator when counter label is missing',
       async ({ mount, page }) => {
-        await mount(`<ix-badge variant="primary"></ix-badge>`);
+        await mount(`<ix-badge variant="accent"></ix-badge>`);
         const badge = new BadgePage(page);
 
         await badge.expectHydrated();
@@ -110,7 +110,7 @@ regressionTest.describe('ix-badge', () => {
     regressionTest(
       'renders no indicator for non-numeric counter label',
       async ({ mount, page }) => {
-        await mount(`<ix-badge label="new" variant="primary"></ix-badge>`);
+        await mount(`<ix-badge label="new" variant="accent"></ix-badge>`);
         const badge = new BadgePage(page);
 
         await badge.expectHydrated();
@@ -121,7 +121,7 @@ regressionTest.describe('ix-badge', () => {
     regressionTest(
       'renders standalone dot indicator without label text',
       async ({ mount, page }) => {
-        await mount(`<ix-badge type="dot" variant="primary"></ix-badge>`);
+        await mount(`<ix-badge type="dot" variant="accent"></ix-badge>`);
         const badge = new BadgePage(page);
 
         await badge.expectHydrated();
@@ -131,14 +131,14 @@ regressionTest.describe('ix-badge', () => {
     );
 
     regressionTest(
-      'status-icon falls back to info for unsupported variants',
+      'status-icon falls back to information for unsupported variants',
       async ({ mount, page }) => {
         await mount(
-          `<ix-badge type="status-icon" variant="primary" aria-label="Status"></ix-badge>`,
+          `<ix-badge type="status-icon" variant="accent" aria-label="Status"></ix-badge>`,
           { icons: { iconInfoFilled, iconCircleFilled } }
         );
         const badge = new BadgePage(page);
-        await badge.expectHostClass(/\binfo\b/);
+        await badge.expectHostClass(/\binformation\b/);
         await badge.expectIndicatorVisible();
         await expect(badge.statusIconGlyph).toBeVisible();
         await expect(badge.statusIconPlate).toBeVisible();
@@ -152,26 +152,26 @@ regressionTest.describe('ix-badge', () => {
           html`
             <ix-badge
               type="status-icon"
-              variant="info"
+              variant="information"
               role="img"
-              aria-label="Info filled"
+              aria-label="Information filled"
             ></ix-badge>
             <ix-badge
               type="status-icon"
-              variant="info"
+              variant="information"
               outline
               role="img"
-              aria-label="Info outline"
+              aria-label="Information outline"
             ></ix-badge>
           `,
           { icons: { iconInfo, iconInfoFilled, iconCircleFilled } }
         );
 
         const badge = new BadgePage(page);
-        const filled = badge.getByRole('img', 'Info filled');
-        const outline = badge.getByRole('img', 'Info outline');
+        const filled = badge.getByRole('img', 'Information filled');
+        const outline = badge.getByRole('img', 'Information outline');
 
-        await expect(filled).toHaveClass(/\binfo\b/);
+        await expect(filled).toHaveClass(/\binformation\b/);
         await expect(outline).toHaveClass(/\boutline\b/);
         await expect(
           badge.indicatorOf(filled).locator('ix-icon.status-icon-glyph')
@@ -206,9 +206,9 @@ regressionTest.describe('ix-badge', () => {
     regressionTest(
       'applies filled variant class on host',
       async ({ mount, page }) => {
-        await mount(`<ix-badge label="1" variant="alarm"></ix-badge>`);
+        await mount(`<ix-badge label="1" variant="danger"></ix-badge>`);
         const badge = new BadgePage(page);
-        await badge.expectHostClass(/\balarm\b/);
+        await badge.expectHostClass(/\bdanger\b/);
       }
     );
 
@@ -232,7 +232,7 @@ regressionTest.describe('ix-badge', () => {
     );
 
     regressionTest('applies outline class on host', async ({ mount, page }) => {
-      await mount(`<ix-badge label="1" variant="primary" outline></ix-badge>`);
+      await mount(`<ix-badge label="1" variant="accent" outline></ix-badge>`);
       const badge = new BadgePage(page);
       await badge.expectHostClass(/\boutline\b/);
     });
@@ -243,11 +243,11 @@ regressionTest.describe('ix-badge', () => {
         await mount(html`
           <ix-badge
             label="1"
-            variant="primary"
+            variant="accent"
             outline
             style="
               --ix-badge-default-color: rgb(1, 2, 3);
-              --ix-badge-primary-color: rgb(4, 5, 6);
+              --ix-badge-accent-color: rgb(4, 5, 6);
             "
           ></ix-badge>
         `);
@@ -258,7 +258,7 @@ regressionTest.describe('ix-badge', () => {
     );
 
     regressionTest('applies border class on host', async ({ mount, page }) => {
-      await mount(`<ix-badge label="1" variant="primary" border></ix-badge>`);
+      await mount(`<ix-badge label="1" variant="accent" border></ix-badge>`);
       const badge = new BadgePage(page);
       await badge.expectHostClass(/\bborder\b/);
     });
@@ -267,7 +267,7 @@ regressionTest.describe('ix-badge', () => {
       'does not apply border class for status-icon',
       async ({ mount, page }) => {
         await mount(
-          `<ix-badge type="status-icon" variant="info" border aria-label="Status"></ix-badge>`,
+          `<ix-badge type="status-icon" variant="information" border aria-label="Status"></ix-badge>`,
           { icons: { iconInfoFilled, iconCircleFilled } }
         );
         const badge = new BadgePage(page);
@@ -276,11 +276,11 @@ regressionTest.describe('ix-badge', () => {
     );
 
     regressionTest(
-      'falls back to primary for unknown variant',
+      'falls back to accent for unknown variant',
       async ({ mount, page }) => {
         await mount(`<ix-badge label="1" variant="not-a-variant"></ix-badge>`);
         const badge = new BadgePage(page);
-        await badge.expectHostClass(/\bprimary\b/);
+        await badge.expectHostClass(/\baccent\b/);
       }
     );
 
@@ -356,7 +356,7 @@ regressionTest.describe('ix-badge', () => {
       'applies dot anatomy default offsets when attached',
       async ({ mount, page }) => {
         await mount(html`
-          <ix-badge type="dot" variant="primary">
+          <ix-badge type="dot" variant="accent">
             <button type="button">Action</button>
           </ix-badge>
         `);
@@ -383,7 +383,7 @@ regressionTest.describe('ix-badge', () => {
         await mount(html`
           <ix-badge
             label="3"
-            variant="alarm"
+            variant="danger"
             role="status"
             aria-label="Should not stay on host"
           >
@@ -403,7 +403,7 @@ regressionTest.describe('ix-badge', () => {
       'sets aria-describedby for text label on anchor',
       async ({ mount, page }) => {
         await mount(html`
-          <ix-badge label="3" variant="alarm">
+          <ix-badge label="3" variant="danger">
             <ix-button>Review changes</ix-button>
           </ix-badge>
         `);
@@ -418,7 +418,7 @@ regressionTest.describe('ix-badge', () => {
       async ({ mount, page }) => {
         await mount(
           html`
-            <ix-badge type="dot" variant="primary">
+            <ix-badge type="dot" variant="accent">
               <ix-icon-button
                 icon="info"
                 aria-label="Notifications"
@@ -452,7 +452,7 @@ regressionTest.describe('ix-badge', () => {
       'updates accessible description when label changes',
       async ({ mount, page }) => {
         await mount(html`
-          <ix-badge label="3" variant="alarm">
+          <ix-badge label="3" variant="danger">
             <button>Messages</button>
           </ix-badge>
         `);
@@ -516,7 +516,7 @@ regressionTest.describe('ix-badge', () => {
   regressionTest.describe('label type', () => {
     regressionTest('renders standalone label text', async ({ mount, page }) => {
       await mount(
-        `<ix-badge type="label" label="NEW" variant="primary"></ix-badge>`
+        `<ix-badge type="label" label="NEW" variant="accent"></ix-badge>`
       );
       const badge = new BadgePage(page);
 
@@ -528,7 +528,7 @@ regressionTest.describe('ix-badge', () => {
       'allows selecting standalone label text',
       async ({ mount, page }) => {
         await mount(
-          `<ix-badge type="label" label="Selectable text" variant="info"></ix-badge>`
+          `<ix-badge type="label" label="Selectable text" variant="information"></ix-badge>`
         );
         const badge = new BadgePage(page);
         await badge.expectHydrated();
@@ -556,7 +556,7 @@ regressionTest.describe('ix-badge', () => {
       'renders no indicator for empty label text',
       async ({ mount, page }) => {
         await mount(
-          `<ix-badge type="label" label="   " variant="primary"></ix-badge>`
+          `<ix-badge type="label" label="   " variant="accent"></ix-badge>`
         );
         const badge = new BadgePage(page);
 
@@ -589,7 +589,7 @@ regressionTest.describe('ix-badge', () => {
             label="NEW"
             icon="star"
             aria-label-icon="Featured"
-            variant="primary"
+            variant="accent"
           ></ix-badge>`,
           { icons: { iconStar } }
         );
@@ -604,7 +604,7 @@ regressionTest.describe('ix-badge', () => {
       'sets aria-describedby for attached label on anchor',
       async ({ mount, page }) => {
         await mount(html`
-          <ix-badge type="label" label="NEW" variant="primary">
+          <ix-badge type="label" label="NEW" variant="accent">
             <ix-button>What's new</ix-button>
           </ix-badge>
         `);
@@ -619,7 +619,7 @@ regressionTest.describe('ix-badge', () => {
     regressionTest(
       'standalone dot host matches 12×12 indicator size',
       async ({ mount, page }) => {
-        await mount(`<ix-badge type="dot" variant="primary"></ix-badge>`);
+        await mount(`<ix-badge type="dot" variant="accent"></ix-badge>`);
         const badge = new BadgePage(page);
         await badge.expectHydrated();
         await badge.expectStandalone();
@@ -640,7 +640,7 @@ regressionTest.describe('ix-badge', () => {
       'standalone label host matches indicator size',
       async ({ mount, page }) => {
         await mount(
-          `<ix-badge type="label" label="What's new" icon="star" align-left variant="primary"></ix-badge>`,
+          `<ix-badge type="label" label="What's new" icon="star" align-left variant="accent"></ix-badge>`,
           { icons: { iconStar } }
         );
         const badge = new BadgePage(page);
@@ -748,7 +748,7 @@ regressionTest.describe('ix-badge', () => {
       'uses aria-label as tooltip text for standalone dot',
       async ({ mount, page }) => {
         await mount(
-          `<ix-badge type="dot" variant="alarm" role="img" aria-label="Unread" tooltip-text></ix-badge>`
+          `<ix-badge type="dot" variant="danger" role="img" aria-label="Unread" tooltip-text></ix-badge>`
         );
         const badge = new BadgePage(page);
         const named = badge.getByRole('img', 'Unread');
@@ -780,20 +780,20 @@ regressionTest.describe('ix-badge', () => {
   regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
     await mount(html`
       <div style="display:flex;gap:1rem;align-items:center;">
-        <ix-badge label="3" variant="alarm">
+        <ix-badge label="3" variant="danger">
           <ix-button>Review changes</ix-button>
         </ix-badge>
-        <ix-badge label="12" variant="info" outline></ix-badge>
+        <ix-badge label="12" variant="information" outline></ix-badge>
         <ix-badge type="label" label="NEW" variant="success"></ix-badge>
         <ix-badge
           type="dot"
-          variant="alarm"
+          variant="danger"
           role="img"
           aria-label="New items"
         ></ix-badge>
         <ix-badge
           type="dot"
-          variant="alarm"
+          variant="danger"
           role="img"
           aria-label="Unread"
           tooltip-text

@@ -72,7 +72,7 @@ function badgeLabelPreview(): VNode {
         <div class="demo-grid">
           {cell(
             'icon={star} · decorative (default)',
-            labelBadge({ variant: 'primary' })
+            labelBadge({ variant: 'accent' })
           )}
           {cell(
             'icon={star} · decorative · warning',
@@ -94,12 +94,12 @@ function badgeLabelPreview(): VNode {
         <div class="demo-grid">
           {cell(
             'default · icon + text',
-            labelBadge({ variant: 'info', label: "What's new" })
+            labelBadge({ variant: 'information', label: "What's new" })
           )}
           {cell(
             'alignLeft · icon + text',
             labelBadge({
-              variant: 'primary',
+              variant: 'accent',
               label: "What's new",
               alignLeft: true,
             })
@@ -107,7 +107,7 @@ function badgeLabelPreview(): VNode {
           {cell(
             'alignLeft · --ix-badge-max-width: 2.5rem',
             labelBadge({
-              variant: 'alarm',
+              variant: 'danger',
               label: "What's new",
               alignLeft: true,
               hostStyle: { '--ix-badge-max-width': '2.5rem' },
@@ -122,7 +122,7 @@ function badgeLabelPreview(): VNode {
           {cell(
             'IxIconButton · alarm',
             labelBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor("What's new"),
             }),
             true
@@ -152,7 +152,7 @@ function badgeLabelPreview(): VNode {
           {cell(
             'position="top-after" (default)',
             labelBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor('Notifications'),
             }),
             true
@@ -160,7 +160,7 @@ function badgeLabelPreview(): VNode {
           {cell(
             'position="bottom-after"',
             labelBadge({
-              variant: 'info',
+              variant: 'information',
               position: 'bottom-after',
               children: iconButtonAnchor('Notifications'),
             }),
@@ -191,7 +191,7 @@ function badgeLabelPreview(): VNode {
           {cell(
             'aria-label="New content available"',
             labelBadge({
-              variant: 'primary',
+              variant: 'accent',
               label: 'NEW',
               ariaLabel: 'New content available',
             })

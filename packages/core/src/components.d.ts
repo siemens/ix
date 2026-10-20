@@ -399,9 +399,9 @@ export namespace Components {
          */
         "type": BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, unsupported values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant": BadgeVariant;
     }
@@ -1137,8 +1137,8 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant": ChipVariant;
     }
@@ -3959,17 +3959,10 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -8495,9 +8488,9 @@ declare namespace LocalJSX {
          */
         "type"?: BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, unsupported values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant"?: BadgeVariant;
     }
@@ -9316,8 +9309,8 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant"?: ChipVariant;
     }
@@ -12290,17 +12283,10 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant"?: ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -14874,14 +14860,7 @@ declare namespace LocalJSX {
         "borderless": boolean;
     }
     interface IxPillAttributes {
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
         "outline": boolean;
         "icon": string;
         "ariaLabelIcon": string;

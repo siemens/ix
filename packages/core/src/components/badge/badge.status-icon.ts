@@ -26,13 +26,13 @@ import {
 } from '@siemens/ix-icons/icons';
 import type { BadgeVariant } from './badge.types';
 
-/** Variants valid for **type** `status-icon`. */
+/** Variants valid for **type** `status-icon` (glyphs available). */
 export type BadgeStatusIconVariant =
-  | 'alarm'
+  | 'danger'
   | 'error'
   | 'critical'
   | 'warning'
-  | 'info'
+  | 'information'
   | 'success';
 
 type BadgeStatusIconPair = {
@@ -44,14 +44,14 @@ type BadgeStatusIconPair = {
 
 /** Fallback when the variant has no status glyph. */
 export const BADGE_STATUS_ICON_FALLBACK_VARIANT: BadgeStatusIconVariant =
-  'info';
+  'information';
 
 /** Status icons by variant (`outline` / `filled` / `plate`). */
 export const BADGE_STATUS_ICON_BY_VARIANT: Record<
   BadgeStatusIconVariant,
   BadgeStatusIconPair
 > = {
-  alarm: {
+  danger: {
     filled: iconAlarmFilled,
     outline: iconAlarm,
     plate: iconCircleFilled,
@@ -71,7 +71,7 @@ export const BADGE_STATUS_ICON_BY_VARIANT: Record<
     outline: iconWarning,
     plate: iconTriangleFilled,
   },
-  info: {
+  information: {
     filled: iconInfoFilled,
     outline: iconInfo,
     plate: iconCircleFilled,
@@ -97,7 +97,7 @@ function resolveStatusIconVariant(
     : BADGE_STATUS_ICON_FALLBACK_VARIANT;
 }
 
-/** Status glyph for a variant (falls back to **info**). */
+/** Status glyph for a variant (falls back to **information**). */
 export function getBadgeStatusIcon(
   variant: BadgeVariant,
   outline = false
@@ -111,7 +111,7 @@ export function getBadgeStatusIconPlate(variant: BadgeVariant): string {
   return BADGE_STATUS_ICON_BY_VARIANT[resolveStatusIconVariant(variant)].plate;
 }
 
-/** Resolved status-icon variant for host classes (falls back to **info**). */
+/** Resolved status-icon variant for host classes (falls back to **information**). */
 export function getResolvedStatusIconVariant(
   variant: BadgeVariant
 ): BadgeStatusIconVariant {

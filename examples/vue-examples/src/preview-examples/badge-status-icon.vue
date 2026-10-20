@@ -15,10 +15,10 @@ import { IxBadge } from '@siemens/ix-vue';
 
 <template>
   <div class="container">
-    <IxBadge type="status-icon" variant="alarm" role="img" aria-label="Alarm"></IxBadge>
-    <IxBadge type="status-icon" variant="alarm" outline role="img" aria-label="Alarm outline"></IxBadge>
-    <IxBadge type="status-icon" variant="alarm" enable-animation role="img" aria-label="Alarm pulse"></IxBadge>
-    <IxBadge type="status-icon" variant="alarm" outline enable-animation role="img" aria-label="Alarm pulse outline"></IxBadge>
+    <IxBadge type="status-icon" variant="danger" role="img" aria-label="Danger"></IxBadge>
+    <IxBadge type="status-icon" variant="danger" outline role="img" aria-label="Danger outline"></IxBadge>
+    <IxBadge type="status-icon" variant="danger" enable-animation role="img" aria-label="Danger pulse"></IxBadge>
+    <IxBadge type="status-icon" variant="danger" outline enable-animation role="img" aria-label="Danger pulse outline"></IxBadge>
 
     <IxBadge type="status-icon" variant="error" role="img" aria-label="Error"></IxBadge>
     <IxBadge type="status-icon" variant="error" outline role="img" aria-label="Error outline"></IxBadge>
@@ -40,10 +40,10 @@ import { IxBadge } from '@siemens/ix-vue';
     <IxBadge type="status-icon" variant="success" enable-animation role="img" aria-label="Success pulse"></IxBadge>
     <IxBadge type="status-icon" variant="success" outline enable-animation role="img" aria-label="Success pulse outline"></IxBadge>
 
-    <IxBadge type="status-icon" variant="info" role="img" aria-label="Info"></IxBadge>
-    <IxBadge type="status-icon" variant="info" outline role="img" aria-label="Info outline"></IxBadge>
-    <IxBadge type="status-icon" variant="info" enable-animation role="img" aria-label="Info pulse"></IxBadge>
-    <IxBadge type="status-icon" variant="info" outline enable-animation role="img" aria-label="Info pulse outline"></IxBadge>
+    <IxBadge type="status-icon" variant="information" role="img" aria-label="Information"></IxBadge>
+    <IxBadge type="status-icon" variant="information" outline role="img" aria-label="Information outline"></IxBadge>
+    <IxBadge type="status-icon" variant="information" enable-animation role="img" aria-label="Information pulse"></IxBadge>
+    <IxBadge type="status-icon" variant="information" outline enable-animation role="img" aria-label="Information pulse outline"></IxBadge>
 
   </div>
 </template>

@@ -10,8 +10,9 @@
 @use 'mixins/shadow-dom/component';
 @use './badge.vars' as *;
 
-$predefined-variants: primary, alarm, critical, warning, info, neutral, success;
-$status-icon-variants: alarm, critical, warning, info, success;
+$predefined-variants: danger, warning, caution, information, accent, critical,
+  success, neutral;
+$status-icon-variants: danger, critical, warning, information, success;
 
 :host {
   display: inline-block;
@@ -216,12 +217,12 @@ $status-icon-variants: alarm, critical, warning, info, success;
   }
 }
 
-/* Error uses alarm color tokens. */
+/* Error uses danger color tokens. */
 :host([type='status-icon'].error) {
-  --ix-badge-pulse-color: var(--ix-badge-alarm-color);
+  --ix-badge-pulse-color: var(--ix-badge-danger-color);
 
   .status-icon:not(.status-icon-plate) {
-    color: var(--ix-badge-alarm-color);
+    color: var(--ix-badge-danger-color);
   }
 }
 
@@ -239,16 +240,16 @@ $status-icon-variants: alarm, critical, warning, info, success;
   }
 }
 
-/* Filled error status icons use the alarm/danger color tokens. */
+/* Filled error status icons use the danger color tokens. */
 :host([type='status-icon'].error:not(.outline)) {
-  --ix-badge-pulse-color: var(--ix-badge-alarm-background);
+  --ix-badge-pulse-color: var(--ix-badge-danger-background);
 
   .status-icon-glyph {
-    color: var(--ix-badge-alarm-background);
+    color: var(--ix-badge-danger-background);
   }
 
   .status-icon-plate {
-    color: var(--ix-badge-alarm-contrast-color);
+    color: var(--ix-badge-danger-contrast-color);
   }
 }
 

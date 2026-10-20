@@ -79,14 +79,14 @@ describe('formatBadgeLabel', () => {
 });
 
 describe('badge.status-icon', () => {
-  const unsupportedVariants = ['primary', 'neutral', 'custom'] as const;
+  const unsupportedVariants = ['accent', 'caution', 'neutral', 'custom'] as const;
 
   it.each([
-    ['alarm', iconAlarmFilled, iconAlarm, iconCircleFilled],
+    ['danger', iconAlarmFilled, iconAlarm, iconCircleFilled],
     ['error', iconErrorFilled, iconError, iconCircleFilled],
     ['critical', iconWarningRhombFilled, iconWarningRhomb, iconRhombFilled],
     ['warning', iconWarningFilled, iconWarning, iconTriangleFilled],
-    ['info', iconInfoFilled, iconInfo, iconCircleFilled],
+    ['information', iconInfoFilled, iconInfo, iconCircleFilled],
     ['success', iconSuccessFilled, iconSuccess, iconCircleFilled],
   ] as const)(
     'maps %s to filled, outline, and plate glyphs',
@@ -104,13 +104,14 @@ describe('badge.status-icon', () => {
   );
 
   it.each([
-    ['alarm', true],
+    ['danger', true],
     ['error', true],
     ['critical', true],
     ['warning', true],
-    ['info', true],
+    ['information', true],
     ['success', true],
-    ['primary', false],
+    ['accent', false],
+    ['caution', false],
     ['neutral', false],
     ['custom', false],
   ] as const)('isBadgeStatusIconVariant(%s) → %s', (variant, expected) => {
@@ -118,29 +119,30 @@ describe('badge.status-icon', () => {
   });
 
   it.each([
-    ['alarm', 'alarm'],
+    ['danger', 'danger'],
     ['error', 'error'],
     ['critical', 'critical'],
     ['warning', 'warning'],
-    ['info', 'info'],
+    ['information', 'information'],
     ['success', 'success'],
-    ['primary', 'info'],
-    ['neutral', 'info'],
-    ['custom', 'info'],
+    ['accent', 'information'],
+    ['caution', 'information'],
+    ['neutral', 'information'],
+    ['custom', 'information'],
   ] as const)('getResolvedStatusIconVariant(%s) → %s', (variant, expected) => {
     expect(getResolvedStatusIconVariant(variant)).toBe(expected);
   });
 
-  it('uses info as the unsupported-variant fallback constant', () => {
-    expect(BADGE_STATUS_ICON_FALLBACK_VARIANT).toBe('info');
+  it('uses information as the unsupported-variant fallback constant', () => {
+    expect(BADGE_STATUS_ICON_FALLBACK_VARIANT).toBe('information');
   });
 
   it('defaults to the filled glyph when outline is omitted', () => {
-    expect(getBadgeStatusIcon('info')).toBe(iconInfoFilled);
+    expect(getBadgeStatusIcon('information')).toBe(iconInfoFilled);
   });
 
   it.each(unsupportedVariants)(
-    'falls back to info glyphs for unsupported variant %s',
+    'falls back to information glyphs for unsupported variant %s',
     (variant) => {
       expect(getBadgeStatusIcon(variant)).toBe(iconInfoFilled);
       expect(getBadgeStatusIcon(variant, true)).toBe(iconInfo);
@@ -152,7 +154,7 @@ describe('badge.status-icon', () => {
     const unknown = 'not-a-variant' as BadgeVariant;
 
     expect(isBadgeStatusIconVariant(unknown)).toBe(false);
-    expect(getResolvedStatusIconVariant(unknown)).toBe('info');
+    expect(getResolvedStatusIconVariant(unknown)).toBe('information');
     expect(getBadgeStatusIcon(unknown)).toBe(iconInfoFilled);
     expect(getBadgeStatusIcon(unknown, true)).toBe(iconInfo);
     expect(getBadgeStatusIconPlate(unknown)).toBe(iconCircleFilled);

@@ -73,7 +73,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'IxIconButton · alarm',
             statusIconBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor('Error state'),
             }),
             true
@@ -103,7 +103,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'position="top-after" (default)',
             statusIconBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor('Notifications'),
             }),
             true
@@ -111,7 +111,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'position="bottom-after"',
             statusIconBadge({
-              variant: 'info',
+              variant: 'information',
               position: 'bottom-after',
               children: iconButtonAnchor('Notifications'),
             }),
@@ -142,7 +142,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'aria-label="Action required"',
             statusIconBadge({
-              variant: 'alarm',
+              variant: 'danger',
               ariaLabel: 'Action required',
             })
           )}

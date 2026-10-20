@@ -99,12 +99,12 @@ export class Badge
 
   /**
    * Color variant.
-   * For `status-icon`, unsupported values fall back to `info`.
-   * Use `error` only with `status-icon` (other types map it to `alarm`).
+   * For `status-icon`, unsupported values fall back to `information`.
+   * Use `error` only with `status-icon` (other types map it to `danger`).
    *
    * @since 5.2.0
    */
-  @Prop({ reflect: true }) variant: BadgeVariant = 'primary';
+  @Prop({ reflect: true }) variant: BadgeVariant = 'accent';
 
   /**
    * Show the badge in outline style.
@@ -328,12 +328,12 @@ export class Badge
 
   private getResolvedVariant(): BadgeVariant {
     if (this.variant === 'error') {
-      return this.getResolvedType() === 'status-icon' ? 'error' : 'alarm';
+      return this.getResolvedType() === 'status-icon' ? 'error' : 'danger';
     }
 
     return (BADGE_VARIANTS as readonly string[]).includes(this.variant)
       ? this.variant
-      : 'primary';
+      : 'accent';
   }
 
   private getResolvedType(): BadgeAnatomyType {

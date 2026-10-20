@@ -16,23 +16,24 @@ export const CUSTOM_BADGE_COLOR = 'var(--si-sys-color-text-inverse)';
 export const CUSTOM_BADGE_OUTLINE_COLOR = 'var(--si-sys-color-text-primary)';
 
 export const VARIANT_ROWS = [
-  { label: 'Primary', variant: 'primary' },
-  { label: 'Alarm', variant: 'alarm' },
-  { label: 'Critical', variant: 'critical' },
+  { label: 'Danger', variant: 'danger' },
   { label: 'Warning', variant: 'warning' },
-  { label: 'Info', variant: 'info' },
+  { label: 'Caution', variant: 'caution' },
+  { label: 'Information', variant: 'information' },
+  { label: 'Accent', variant: 'accent' },
+  { label: 'Critical', variant: 'critical' },
   { label: 'Success', variant: 'success' },
   { label: 'Neutral', variant: 'neutral' },
   { label: 'Custom', variant: 'custom' },
 ] as const;
 
 export const STATUS_ICON_VARIANT_ROWS = [
-  { label: 'Alarm', variant: 'alarm' },
+  { label: 'Danger', variant: 'danger' },
   { label: 'Error', variant: 'error' },
   { label: 'Critical', variant: 'critical' },
   { label: 'Warning', variant: 'warning' },
+  { label: 'Information', variant: 'information' },
   { label: 'Success', variant: 'success' },
-  { label: 'Info', variant: 'info' },
 ] as const;
 
 export type BadgeVariant = (typeof VARIANT_ROWS)[number]['variant'];

@@ -71,7 +71,7 @@ function badgeDotPreview(): VNode {
           {cell(
             'IxIconButton · alarm',
             dotBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor("What's new"),
             }),
             true
@@ -79,7 +79,7 @@ function badgeDotPreview(): VNode {
           {cell(
             'IxButton · primary',
             dotBadge({
-              variant: 'primary',
+              variant: 'accent',
               children: <ix-button>Messages</ix-button>,
             }),
             true
@@ -101,7 +101,7 @@ function badgeDotPreview(): VNode {
           {cell(
             'position="top-after" (default)',
             dotBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor('Notifications'),
             }),
             true
@@ -109,7 +109,7 @@ function badgeDotPreview(): VNode {
           {cell(
             'position="bottom-after"',
             dotBadge({
-              variant: 'info',
+              variant: 'information',
               position: 'bottom-after',
               children: iconButtonAnchor('Notifications'),
             }),
@@ -140,7 +140,7 @@ function badgeDotPreview(): VNode {
           {cell(
             'aria-label="Unread messages"',
             dotBadge({
-              variant: 'alarm',
+              variant: 'danger',
               ariaLabel: 'Unread messages',
             })
           )}
