@@ -255,9 +255,11 @@ export class Dropdown
   @Prop() hostRole?: string;
 
   /**
-   * @internal
    * Resolves the item to activate when arrow keys move past the first or last
    * item, instead of wrapping around.
+   *
+   * @internal
+   * @since 6.0.0
    */
   @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
 
