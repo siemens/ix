@@ -681,6 +681,49 @@ regressionTest.describe('anchor position', () => {
       }
     );
 
+    for (const navigationMode of ['active-descendant', 'roving-tabindex']) {
+      for (const topLayer of [false, true]) {
+        regressionTest(
+          `keeps keyboard interaction when moved within a non-focusable target (${navigationMode}${topLayer ? ', top layer' : ''})`,
+          async ({ mount, page }) => {
+            await mount(
+              contextMenuFixture(
+                `navigation-mode="${navigationMode}"${topLayer ? ' enable-top-layer' : ''}`
+              )
+            );
+            await openContextMenuOnRightClick(page);
+
+            const dropdown = page.locator('#context-menu');
+            await expect(dropdown).toHaveAttribute('hydrated');
+
+            const items = dropdown.locator('ix-dropdown-item');
+            const expectFocusInside = () =>
+              navigationMode === 'roving-tabindex'
+                ? expect(items.nth(0)).toBeFocused()
+                : expect(dropdown).toBeFocused();
+            const expectActive = (index: number) =>
+              navigationMode === 'roving-tabindex'
+                ? expect(items.nth(index)).toBeFocused()
+                : expect(items.nth(index)).toHaveClass(/ix-focused/);
+
+            await page.mouse.click(100, 100, { button: 'right' });
+            await expectFocusInside();
+            await page.keyboard.press('End');
+            await expectActive(2);
+
+            await page.mouse.click(600, 400, { button: 'right' });
+            await expect(items.nth(0)).toBeVisible();
+            await expectFocusInside();
+
+            await page.keyboard.press('End');
+            await expectActive(2);
+            await page.keyboard.press('Home');
+            await expectActive(0);
+          }
+        );
+      }
+    }
+
     regressionTest(
       'closes with its containing dropdown',
       async ({ mount, page }) => {

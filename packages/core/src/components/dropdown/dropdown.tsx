@@ -854,19 +854,23 @@ export class Dropdown
    * focus back to the element outside of the dropdown, so take it over again.
    */
   private refocusAfterMove() {
-    const activeElement = getDeepActiveElement();
-    if (
-      !this.movesFocusOnOpen() ||
-      !(activeElement instanceof HTMLElement) ||
-      this.isFocusLostOrInside()
-    ) {
+    if (!this.movesFocusOnOpen() || this.isFocusInside()) {
       return;
+    }
+
+    // A non-focusable target (e.g. a <div>) drops focus to the body, keep
+    // returning it to the original element in that case
+    if (!this.isFocusLost()) {
+      const activeElement = getDeepActiveElement();
+      if (!(activeElement instanceof HTMLElement)) {
+        return;
+      }
+      this.focusReturnElement = activeElement;
     }
 
     removeVisibleFocus();
     void this.clearActiveDescendant();
     this.clearRovingTabindexState();
-    this.focusReturnElement = activeElement;
     this.focusFirstItemOnOpen();
   }
 
@@ -1303,10 +1307,18 @@ export class Dropdown
   }
 
   private isFocusLostOrInside() {
+    return this.isFocusLost() || this.isFocusInside();
+  }
+
+  private isFocusLost() {
+    const activeElement = getDeepActiveElement();
+    return !activeElement || activeElement === document.body;
+  }
+
+  private isFocusInside() {
     const activeElement = getDeepActiveElement();
     return (
-      !activeElement ||
-      activeElement === document.body ||
+      !!activeElement &&
       closestPassShadow(
         activeElement,
         `[data-ix-dropdown="${this.dropdownElementId}"]`
@@ -1624,9 +1636,7 @@ export class Dropdown
 
   override render() {
     const ariaAttributes: A11yAttributes = {};
-    if (
-      this.triggerElement?.tagName === 'IX-DROPDOWN-ITEM'
-    ) {
+    if (this.triggerElement?.tagName === 'IX-DROPDOWN-ITEM') {
       ariaAttributes['aria-labelledby'] = this.triggerElement.id;
       ariaAttributes['aria-owns'] = this.triggerElement.id;
       ariaAttributes['role'] = 'menu';
