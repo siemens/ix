@@ -203,6 +203,34 @@ regressionTest(
 );
 
 regressionTest(
+  'keeps whitespace and line breaks of highlighted text nodes',
+  async ({ mount, page }) => {
+    const code = 'if (ready) {\n  start();\n}';
+    await mount(`<ix-code-block></ix-code-block>`);
+    await page.evaluate((code) => {
+      const codeBlock = document.querySelector('ix-code-block');
+      if (!codeBlock) {
+        throw new Error('ix-code-block not found');
+      }
+      codeBlock.highlight = (code: string) => {
+        const fragment = document.createDocumentFragment();
+        const keyword = document.createElement('span');
+        keyword.className = 'keyword';
+        keyword.textContent = 'if';
+        fragment.append(keyword, code.slice(2));
+        return fragment;
+      };
+      codeBlock.code = code;
+    }, code);
+
+    const codeBlock = page.locator('ix-code-block');
+    const body = codeBlock.locator('.body');
+    await expect(body.locator('.keyword')).toHaveText('if');
+    expect(await body.evaluate((element) => element.innerText)).toBe(code);
+  }
+);
+
+regressionTest(
   'ignores an HTML string returned by the highlight hook',
   async ({ mount, page }) => {
     await mount(`<ix-code-block></ix-code-block>`);

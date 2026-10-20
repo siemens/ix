@@ -67,6 +67,10 @@
     font: var(--ix-code-block-body--font);
   }
 
+  .highlighted {
+    white-space: pre;
+  }
+
   .body:focus-visible {
     outline: var(--ix-code-block-body--outline-width--focus) solid
       var(--ix-code-block-body--outline-color--focus);
