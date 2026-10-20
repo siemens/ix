@@ -203,7 +203,6 @@ export class RangeField extends Mixin(...DefaultMixins) {
               'has-label': this.hasLabel,
             }}
             name={iconArrowRight}
-            size="24"
           ></ix-icon>
         )}
         <slot></slot>
