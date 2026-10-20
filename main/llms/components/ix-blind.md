@@ -19,8 +19,9 @@
 - `collapsed`; attr: `collapsed`; type: `boolean`; default: `false` - Collapsed state
 - `icon`; attr: `icon`; type: `string | undefined` - Optional icon to be displayed next to the header label
 - `label`; attr: `label`; type: `string | undefined` - Label of blind
+- `outline`; attr: `outline`; type: `boolean | undefined` - Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
 - `sublabel`; attr: `sublabel`; type: `string | undefined` - Secondary label inside blind header
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "filled" | "info" | "neutral" | "outline" | "primary" | "success" | "warning"`; default: `'filled'` - Blind variant
+- `variant`; attr: `variant`; type: `"accent" | "base" | "caution" | "critical" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'base'` - Blind status variant
 
 ## Events
 
