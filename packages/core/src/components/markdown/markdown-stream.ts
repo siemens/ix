@@ -8,6 +8,7 @@
  */
 
 import type { Nodes, Root } from 'mdast';
+/*! remend (https://github.com/vercel/streamdown/tree/main/packages/remend), Apache-2.0. Licensed under the Apache License, Version 2.0; http://www.apache.org/licenses/LICENSE-2.0 */
 import remend from 'remend';
 import { MarkdownRenderer, parseMarkdown } from './markdown-renderer';
 
@@ -76,16 +77,23 @@ export class MarkdownStreamReconciler {
 
   constructor(
     private readonly host: HTMLElement,
-    private readonly renderer: MarkdownRenderer
+    private renderer: MarkdownRenderer
   ) {}
 
-  update(markdown: string, streaming: boolean) {
-    const next = this.renderBlocks(markdown ?? '', streaming);
+  setRenderer(renderer: MarkdownRenderer) {
+    this.renderer = renderer;
+  }
+
+  /**
+   * @param force Re-renders settled blocks too, e.g. after options changed.
+   */
+  update(markdown: string, streaming: boolean, force = false) {
+    const next = this.renderBlocks(markdown ?? '', streaming, force);
     this.patch(next, streaming);
     this.blocks = next;
   }
 
-  private renderBlocks(markdown: string, streaming: boolean) {
+  private renderBlocks(markdown: string, streaming: boolean, force: boolean) {
     let source = markdown;
     let root = parseMarkdown(source);
     if (streaming) {
@@ -109,10 +117,14 @@ export class MarkdownStreamReconciler {
       const text = source.slice(start, child.position!.end.offset!);
       const old = previous.get(start);
 
-      if (streaming && index < settledCount && old?.text === text) {
+      if (!force && streaming && index < settledCount && old?.text === text) {
         return old;
       }
-      return { start, text, nodes: this.renderer.renderBlock(child, root) };
+      const nodes = this.renderer.renderBlock(child, root);
+      if (old) {
+        reuseCodeBlocks(old.nodes, nodes);
+      }
+      return { start, text, nodes };
     });
   }
 
@@ -153,3 +165,35 @@ export class MarkdownStreamReconciler {
 
 const sameNodes = (a: Node[], b: Node[]) =>
   a.length === b.length && a.every((node, i) => node.isEqualNode(b[i]));
+
+const collectCodeBlocks = (nodes: Node[]) =>
+  nodes.flatMap((node) =>
+    node instanceof Element
+      ? node.localName === 'ix-code-block'
+        ? [node as HTMLIxCodeBlockElement]
+        : Array.from(node.querySelectorAll('ix-code-block'))
+      : []
+  );
+
+/**
+ * Moves the new code block state onto already mounted code blocks and puts
+ * them into the new nodes, so they update in place instead of being remounted.
+ */
+const reuseCodeBlocks = (current: Node[], next: Node[]) => {
+  const mounted = collectCodeBlocks(current);
+  collectCodeBlocks(next).forEach((fresh, index) => {
+    const existing = mounted[index];
+    if (!existing) {
+      return;
+    }
+    existing.code = fresh.code;
+    existing.language = fresh.language;
+    existing.filename = fresh.filename;
+    existing.highlight = fresh.highlight;
+    if (fresh.parentNode) {
+      fresh.replaceWith(existing);
+    } else {
+      next[next.indexOf(fresh)] = existing;
+    }
+  });
+};

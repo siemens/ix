@@ -1316,7 +1316,10 @@ export type IxMarkdownEvents = NonNullable<unknown>;
 
 export const IxMarkdown: StencilReactComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown> = /*@__PURE__*/ createComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown>({
     tagName: 'ix-markdown',
-    properties: { markdown: 'markdown' },
+    properties: {
+        markdown: 'markdown',
+        streaming: 'streaming'
+    },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMarkdown as StencilReactComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown>,
     serializeShadowRoot

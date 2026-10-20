@@ -3112,6 +3112,11 @@ export namespace Components {
           * Options for rendering, e.g. a `highlight` hook for fenced code.
          */
         "options"?: MarkdownOptions;
+        /**
+          * Set while the Markdown source is still growing, e.g. while an LLM answer is streamed. The unfinished last block is repaired for display, completed blocks keep their DOM. When it turns `false`, the final result is reconciled.
+          * @default false
+         */
+        "streaming": boolean;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -11438,6 +11443,11 @@ declare namespace LocalJSX {
           * Options for rendering, e.g. a `highlight` hook for fenced code.
          */
         "options"?: MarkdownOptions;
+        /**
+          * Set while the Markdown source is still growing, e.g. while an LLM answer is streamed. The unfinished last block is repaired for display, completed blocks keep their DOM. When it turns `false`, the final result is reconciled.
+          * @default false
+         */
+        "streaming"?: boolean;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -14823,6 +14833,7 @@ declare namespace LocalJSX {
     }
     interface IxMarkdownAttributes {
         "markdown": string;
+        "streaming": boolean;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;

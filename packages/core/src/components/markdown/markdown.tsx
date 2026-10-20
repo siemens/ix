@@ -10,6 +10,7 @@
 import { Build, Component, Element, Host, Prop, h } from '@stencil/core';
 import type { CodeBlockHighlight } from '../code-block/code-block.types';
 import { MarkdownRenderer } from './markdown-renderer';
+import { MarkdownStreamReconciler } from './markdown-stream';
 
 export type MarkdownOptions = {
   /**
@@ -50,52 +51,81 @@ export class Markdown {
    */
   @Prop() options?: MarkdownOptions;
 
+  /**
+   * Set while the Markdown source is still growing, e.g. while an LLM
+   * answer is streamed. The unfinished last block is repaired for display,
+   * completed blocks keep their DOM. When it turns `false`, the final
+   * result is reconciled.
+   */
+  @Prop() streaming: boolean = false;
+
+  private reconciler?: MarkdownStreamReconciler;
   private renderedMarkdown?: string;
   private renderedOptions?: MarkdownOptions;
+  private renderedStreaming?: boolean;
+  private frame?: number;
 
   componentDidRender() {
-    this.renderMarkdown();
+    this.scheduleRender();
+  }
+
+  disconnectedCallback() {
+    if (this.frame !== undefined) {
+      cancelAnimationFrame(this.frame);
+      this.frame = undefined;
+    }
+  }
+
+  /**
+   * Coalesces updates to at most one render per animation frame.
+   */
+  private scheduleRender() {
+    if (!Build.isBrowser || this.frame !== undefined) {
+      return;
+    }
+    if (!this.isDirty()) {
+      return;
+    }
+    this.frame = requestAnimationFrame(() => {
+      this.frame = undefined;
+      this.renderMarkdown();
+    });
+  }
+
+  private isDirty() {
+    return (
+      this.renderedMarkdown !== this.markdown ||
+      this.renderedOptions !== this.options ||
+      this.renderedStreaming !== this.streaming
+    );
   }
 
   private renderMarkdown() {
-    if (
-      !Build.isBrowser ||
-      (this.renderedMarkdown === this.markdown &&
-        this.renderedOptions === this.options)
-    ) {
+    if (!this.isDirty()) {
       return;
     }
 
     const renderer = new MarkdownRenderer(document, SCOPE_CLASS, {
       highlight: this.options?.highlight,
     });
-    const fragment = renderer.render(this.markdown ?? '');
-    reuseCodeBlocks(this.hostElement, fragment);
-    this.hostElement.replaceChildren(fragment);
+    if (!this.reconciler) {
+      this.reconciler = new MarkdownStreamReconciler(
+        this.hostElement,
+        renderer
+      );
+    }
+    this.reconciler.setRenderer(renderer);
+    this.reconciler.update(
+      this.markdown ?? '',
+      this.streaming,
+      this.renderedOptions !== this.options
+    );
     this.renderedMarkdown = this.markdown;
     this.renderedOptions = this.options;
+    this.renderedStreaming = this.streaming;
   }
 
   render() {
-    return <Host></Host>;
+    return <Host aria-busy={this.streaming ? 'true' : undefined}></Host>;
   }
 }
-
-/**
- * Moves the new code block state onto already mounted code blocks so they
- * update in place instead of being remounted.
- */
-const reuseCodeBlocks = (host: HTMLElement, fragment: DocumentFragment) => {
-  const mounted = Array.from(host.querySelectorAll('ix-code-block'));
-  fragment.querySelectorAll('ix-code-block').forEach((next, index) => {
-    const current = mounted[index];
-    if (!current) {
-      return;
-    }
-    current.code = next.code;
-    current.language = next.language;
-    current.filename = next.filename;
-    current.highlight = next.highlight;
-    next.replaceWith(current);
-  });
-};

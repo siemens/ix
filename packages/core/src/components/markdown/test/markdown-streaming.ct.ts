@@ -64,9 +64,12 @@ regressionTest(
     await update(markdown, 'First paragraph\n\nSec', true);
     await expect(markdown.locator('p')).toHaveCount(2);
 
-    await markdown.locator('p').first().evaluate((el) => {
-      (window as any).__first = el;
-    });
+    await markdown
+      .locator('p')
+      .first()
+      .evaluate((el) => {
+        (window as any).__first = el;
+      });
 
     for (const source of [
       'First paragraph\n\nSecond',
@@ -92,12 +95,15 @@ regressionTest(
     await update(markdown, 'First paragraph\n\nSec', true);
     await expect(markdown.locator('p')).toHaveCount(2);
 
-    await markdown.locator('p').first().evaluate((el) => {
-      const button = document.createElement('button');
-      button.textContent = 'Retry';
-      el.append(button);
-      button.focus();
-    });
+    await markdown
+      .locator('p')
+      .first()
+      .evaluate((el) => {
+        const button = document.createElement('button');
+        button.textContent = 'Retry';
+        el.append(button);
+        button.focus();
+      });
     const button = markdown.getByRole('button', { name: 'Retry' });
     await expect(button).toBeFocused();
 
@@ -160,9 +166,12 @@ regressionTest(
     await update(markdown, 'First\n\nSee [the docs](https://exam', true);
     await expect(markdown.locator('a')).toHaveCount(0);
 
-    await markdown.locator('p').first().evaluate((el) => {
-      (window as any).__first = el;
-    });
+    await markdown
+      .locator('p')
+      .first()
+      .evaluate((el) => {
+        (window as any).__first = el;
+      });
 
     await update(
       markdown,
@@ -190,8 +199,15 @@ regressionTest(
     await update(markdown, 'Read [docs][d]\n\nMore', true);
     await expect(markdown.locator('a')).toHaveCount(0);
 
-    await update(markdown, 'Read [docs][d]\n\nMore\n\n[d]: https://a.com', false);
-    await expect(markdown.locator('a')).toHaveAttribute('href', 'https://a.com');
+    await update(
+      markdown,
+      'Read [docs][d]\n\nMore\n\n[d]: https://a.com',
+      false
+    );
+    await expect(markdown.locator('a')).toHaveAttribute(
+      'href',
+      'https://a.com'
+    );
   }
 );
 
@@ -202,9 +218,12 @@ regressionTest(
     await update(markdown, 'Keep me\n\nOld second\n\nOld third', true);
     await expect(markdown.locator('p')).toHaveCount(3);
 
-    await markdown.locator('p').first().evaluate((el) => {
-      (window as any).__first = el;
-    });
+    await markdown
+      .locator('p')
+      .first()
+      .evaluate((el) => {
+        (window as any).__first = el;
+      });
 
     await update(markdown, 'Keep me\n\nNew second', true);
     await expect(markdown.locator('p')).toHaveCount(2);
@@ -242,5 +261,26 @@ regressionTest(
 
     await expect(markdown.locator('p')).toHaveText(/^(word ){19}word$/);
     expect(mutationBatches).toBeLessThanOrEqual(2);
+  }
+);
+
+regressionTest(
+  'updates an unclosed fence in place while streaming',
+  async ({ mount, page }) => {
+    const markdown = await mountMarkdown(mount, page);
+    await update(markdown, '```js\nlet x', true);
+    const block = markdown.locator('ix-code-block');
+    await expect(block).toHaveJSProperty('code', 'let x');
+    await block.evaluate((el) => {
+      (el as HTMLElement & { __marker?: boolean }).__marker = true;
+    });
+
+    await update(markdown, '```js\nlet x = 1;\nlet y', true);
+    await expect(block).toHaveJSProperty('code', 'let x = 1;\nlet y');
+    await expect(block).toHaveJSProperty('__marker', true);
+
+    await update(markdown, '```js\nlet x = 1;\nlet y = 2;\n```\n\nDone', false);
+    await expect(block).toHaveJSProperty('code', 'let x = 1;\nlet y = 2;');
+    await expect(block).toHaveJSProperty('__marker', true);
   }
 );
