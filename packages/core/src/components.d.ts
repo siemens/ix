@@ -399,7 +399,7 @@ export namespace Components {
          */
         "type": BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
           * @default 'accent'
          */
@@ -8488,7 +8488,7 @@ declare namespace LocalJSX {
          */
         "type"?: BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
           * @default 'accent'
          */

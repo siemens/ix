@@ -12,7 +12,7 @@
 
 $predefined-variants: danger, warning, caution, information, accent, critical,
   success, neutral;
-$status-icon-variants: danger, critical, warning, information, success;
+$status-icon-variants: danger, critical, warning, caution, information, success;
 
 :host {
   display: inline-block;

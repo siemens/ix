@@ -21,6 +21,8 @@ import {
   iconTriangleFilled,
   iconWarning,
   iconWarningFilled,
+  iconWarningOctagon,
+  iconWarningOctagonFilled,
   iconWarningRhomb,
   iconWarningRhombFilled,
 } from '@siemens/ix-icons/icons';
@@ -31,6 +33,7 @@ import {
   getBadgeStatusIcon,
   getBadgeStatusIconPlate,
   getResolvedStatusIconVariant,
+  iconOctagonFilled,
   isBadgeStatusIconVariant,
 } from '../badge.status-icon';
 import type { BadgeVariant } from '../badge.types';
@@ -79,18 +82,19 @@ describe('formatBadgeLabel', () => {
 });
 
 describe('badge.status-icon', () => {
-  const unsupportedVariants = [
-    'accent',
-    'caution',
-    'neutral',
-    'custom',
-  ] as const;
+  const unsupportedVariants = ['accent', 'neutral', 'custom'] as const;
 
   it.each([
     ['danger', iconAlarmFilled, iconAlarm, iconCircleFilled],
     ['error', iconErrorFilled, iconError, iconCircleFilled],
-    ['critical', iconWarningRhombFilled, iconWarningRhomb, iconRhombFilled],
+    [
+      'critical',
+      iconWarningOctagonFilled,
+      iconWarningOctagon,
+      iconOctagonFilled,
+    ],
     ['warning', iconWarningFilled, iconWarning, iconTriangleFilled],
+    ['caution', iconWarningRhombFilled, iconWarningRhomb, iconRhombFilled],
     ['information', iconInfoFilled, iconInfo, iconCircleFilled],
     ['success', iconSuccessFilled, iconSuccess, iconCircleFilled],
   ] as const)(
@@ -113,10 +117,10 @@ describe('badge.status-icon', () => {
     ['error', true],
     ['critical', true],
     ['warning', true],
+    ['caution', true],
     ['information', true],
     ['success', true],
     ['accent', false],
-    ['caution', false],
     ['neutral', false],
     ['custom', false],
   ] as const)('isBadgeStatusIconVariant(%s) → %s', (variant, expected) => {
@@ -128,10 +132,10 @@ describe('badge.status-icon', () => {
     ['error', 'error'],
     ['critical', 'critical'],
     ['warning', 'warning'],
+    ['caution', 'caution'],
     ['information', 'information'],
     ['success', 'success'],
     ['accent', 'information'],
-    ['caution', 'information'],
     ['neutral', 'information'],
     ['custom', 'information'],
   ] as const)('getResolvedStatusIconVariant(%s) → %s', (variant, expected) => {

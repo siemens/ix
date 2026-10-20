@@ -28,12 +28,13 @@ export const VARIANT_ROWS = [
 ] as const;
 
 export const STATUS_ICON_VARIANT_ROWS = [
+  { label: 'Critical', variant: 'critical' },
   { label: 'Danger', variant: 'danger' },
   { label: 'Error', variant: 'error' },
-  { label: 'Critical', variant: 'critical' },
   { label: 'Warning', variant: 'warning' },
-  { label: 'Information', variant: 'information' },
+  { label: 'Caution', variant: 'caution' },
   { label: 'Success', variant: 'success' },
+  { label: 'Information', variant: 'information' },
 ] as const;
 
 export type BadgeVariant = (typeof VARIANT_ROWS)[number]['variant'];

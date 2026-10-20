@@ -72,6 +72,8 @@ LICENSE file in the root directory of this source tree.
         iconTriangleFilled,
         iconWarning,
         iconWarningFilled,
+        iconWarningOctagon,
+        iconWarningOctagonFilled,
         iconWarningRhomb,
         iconWarningRhombFilled,
       } from '@siemens/ix-icons/icons';
@@ -90,6 +92,8 @@ LICENSE file in the root directory of this source tree.
         iconTriangleFilled,
         iconWarning,
         iconWarningFilled,
+        iconWarningOctagon,
+        iconWarningOctagonFilled,
         iconWarningRhomb,
         iconWarningRhombFilled,
       });
@@ -102,6 +106,21 @@ LICENSE file in the root directory of this source tree.
         <span class="header"></span>
         <span class="header">Filled</span>
         <span class="header">Outline</span>
+
+        <span class="row-label">Critical</span>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="critical"
+          aria-label="Critical"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="critical"
+          outline
+          aria-label="Critical outline"
+        ></ix-badge>
 
         <span class="row-label">Danger</span>
         <ix-badge
@@ -133,21 +152,6 @@ LICENSE file in the root directory of this source tree.
           aria-label="Error outline"
         ></ix-badge>
 
-        <span class="row-label">Critical</span>
-        <ix-badge
-          class="align-host"
-          type="status-icon"
-          variant="critical"
-          aria-label="Critical"
-        ></ix-badge>
-        <ix-badge
-          class="align-host"
-          type="status-icon"
-          variant="critical"
-          outline
-          aria-label="Critical outline"
-        ></ix-badge>
-
         <span class="row-label">Warning</span>
         <ix-badge
           class="align-host"
@@ -161,6 +165,21 @@ LICENSE file in the root directory of this source tree.
           variant="warning"
           outline
           aria-label="Warning outline"
+        ></ix-badge>
+
+        <span class="row-label">Caution</span>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="caution"
+          aria-label="Caution"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="caution"
+          outline
+          aria-label="Caution outline"
         ></ix-badge>
 
         <span class="row-label">Success</span>
