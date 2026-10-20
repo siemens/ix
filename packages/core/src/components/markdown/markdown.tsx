@@ -26,6 +26,8 @@ export type MarkdownOptions = {
  */
 const SCOPE_CLASS = 'sc-ix-markdown';
 
+let instanceCounter = 0;
+
 /**
  * Renders Markdown with iX look and feel. Raw HTML is shown as text,
  * only `<br>` becomes a line break. Links are limited to http(s), mailto and
@@ -70,6 +72,7 @@ export class Markdown {
   @Prop({ attribute: 'i18n-download-table' }) i18nDownloadTable =
     'Download table as CSV';
 
+  private readonly idPrefix = `ix-markdown-${instanceCounter++}-`;
   private reconciler?: MarkdownStreamReconciler;
   private renderedMarkdown?: string;
   private renderedOptions?: MarkdownOptions;
@@ -126,6 +129,7 @@ export class Markdown {
       highlight: this.options?.highlight,
       i18nCopyTable: this.i18nCopyTable,
       i18nDownloadTable: this.i18nDownloadTable,
+      idPrefix: this.idPrefix,
     });
     if (!this.reconciler) {
       this.reconciler = new MarkdownStreamReconciler(

@@ -22,6 +22,9 @@ interface RenderedBlock {
 
 type BlockNode = Root['children'][number];
 
+/** Key of the footnotes section, which follows all source blocks. */
+const FOOTNOTES_KEY = -1;
+
 const DIRECTIVE_START = /^:{1,3}[A-Za-z]/;
 
 const hasOffsets = (node: Nodes) =>
@@ -113,7 +116,7 @@ export class MarkdownStreamReconciler {
     const settledCount = streaming ? children.length - 1 : children.length;
     const previous = new Map(this.blocks.map((block) => [block.start, block]));
 
-    return children.map((child, index): RenderedBlock => {
+    const blocks = children.map((child, index): RenderedBlock => {
       const start = child.position!.start.offset!;
       const text = source.slice(start, child.position!.end.offset!);
       const old = previous.get(start);
@@ -134,6 +137,17 @@ export class MarkdownStreamReconciler {
       }
       return { start, text, nodes, settled };
     });
+
+    const footnotes = this.renderer.renderFootnotes();
+    if (footnotes.length > 0) {
+      blocks.push({
+      start: FOOTNOTES_KEY,
+      text: '',
+      nodes: footnotes,
+      settled: false,
+    });
+    }
+    return blocks;
   }
 
   private patch(next: RenderedBlock[], streaming: boolean) {
