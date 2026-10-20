@@ -1,0 +1,14 @@
+testing/visual-testing/tests/slider/slider.e2e.ts
+  h_c5a773bf2fda8b 379-382
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9508025be81527323335058ea577b2b7cbffccc8",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
