@@ -9,10 +9,6 @@
 
 @use 'tokens/system' as sys;
 
-/// Status variants that show a left strip (excludes `base`).
-$blind-status-variants: danger warning caution information accent critical
-  success neutral;
-
 $blind-status-sys: (
   danger: sys.$si-sys-color-border-danger,
   warning: sys.$si-sys-color-border-warning,
@@ -88,7 +84,6 @@ $blind-status-sys: (
 }
 
 :host(:not(.outline)) {
-  --ix-blind--border-width: 0px;
   --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};

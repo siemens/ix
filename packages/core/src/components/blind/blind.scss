@@ -188,6 +188,7 @@
 
 :host(:not(.outline)) {
   --ix-blind--surface: var(--ix-blind--background);
+  --ix-blind--border-width: 0;
 }
 
 :host(.outline) {
@@ -199,22 +200,16 @@
   border-radius: 0;
 }
 
-@each $status in $blind-status-variants {
-  :host(.blind-#{$status}) {
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: var(--ix-blind--strip-width);
-      border-radius: var(--ix-blind--border-radius)
-        0
-        0
-        var(--ix-blind--border-radius);
-      z-index: 1;
-      pointer-events: none;
-      background-color: var(--ix-blind-status-color);
-    }
-  }
+:host(:not(.blind-base))::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--ix-blind--strip-width);
+  border-radius: var(--ix-blind--border-radius) 0 0
+    var(--ix-blind--border-radius);
+  z-index: 1;
+  pointer-events: none;
+  background-color: var(--ix-blind-status-color);
 }
