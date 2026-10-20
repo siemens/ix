@@ -13,4 +13,5 @@ import { IxDateDropdown } from '@siemens/ix-vue';
 
 <template>
   <IxDateDropdown />
+  <IxDateDropdown from="2026/02/01" to="2026/02/08" display-format="dd.LL.yy" />
 </template>

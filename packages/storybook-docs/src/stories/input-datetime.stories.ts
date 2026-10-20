@@ -35,3 +35,12 @@ export const Required: Story = {
     required: true,
   },
 };
+
+export const DisplayFormat: Story = {
+  args: {
+    label: 'Display format',
+    value: '2099/03/04 09:10:11',
+    format: 'yyyy/LL/dd HH:mm:ss',
+    displayFormat: 'dd.LL.yy HH:mm',
+  },
+};

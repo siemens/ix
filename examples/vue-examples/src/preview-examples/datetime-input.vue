@@ -13,4 +13,9 @@ import { IxDatetimeInput } from '@siemens/ix-vue';
 
 <template>
   <IxDatetimeInput label="Date and time" value="2026/02/08 00:00:00"></IxDatetimeInput>
+  <IxDatetimeInput
+    label="Short date and time"
+    value="2026/02/08 00:00:00"
+    display-format="dd.LL.yy HH:mm"
+  ></IxDatetimeInput>
 </template>

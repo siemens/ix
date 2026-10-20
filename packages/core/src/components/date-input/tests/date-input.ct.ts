@@ -95,6 +95,139 @@ regressionTest('select date by input', async ({ mount, page }) => {
   );
 });
 
+regressionTest.describe('displayFormat', () => {
+  regressionTest(
+    'displays the value in displayFormat without changing it',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+
+      await expect(dateInputElement.getByRole('textbox')).toHaveValue(
+        '99/03/04'
+      );
+      await expect(dateInputElement).toHaveAttribute('value', '2099/03/04');
+    }
+  );
+
+  regressionTest(
+    'keeps the century when a date is selected in the calendar',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const dateInput = await createDateInputAccessor(dateInputElement);
+
+      await dateInput.openByCalender();
+      await dateInput.selectDay(10);
+
+      await expect(dateInputElement).toHaveAttribute('value', '2099/03/10');
+      await expect(dateInputElement.getByRole('textbox')).toHaveValue(
+        '99/03/10'
+      );
+    }
+  );
+
+  regressionTest(
+    'keeps the century when a two-digit year is typed',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await expect(dateInputElement).toHaveAttribute('hydrated');
+      await input.fill('99/03/1');
+      await input.fill('99/03/15');
+
+      await expect(dateInputElement).toHaveAttribute('value', '2099/03/15');
+      await expect(input).toHaveValue('99/03/15');
+    }
+  );
+
+  regressionTest(
+    'rejects typed text which does not match displayFormat',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await input.fill('2065/03/04');
+
+      await expect(input).toHaveValue('2065/03/04');
+      await expect(
+        getInvalidText(dateInputElement, 'Date is not valid')
+      ).toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'updates the text when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await expect(input).toHaveValue('99/03/04');
+      await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+        el.displayFormat = 'dd.LL.yyyy';
+      });
+
+      await expect(input).toHaveValue('04.03.2099');
+      await expect(dateInputElement).toHaveAttribute('value', '2099/03/04');
+    }
+  );
+
+  regressionTest('converts typed text into format', async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2024/05/05" display-format="dd.LL.yyyy"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    const input = dateInputElement.getByRole('textbox');
+
+    await expect(dateInputElement).toHaveAttribute('hydrated');
+    await dateInputElement.evaluate((el) => {
+      el.addEventListener('valueChange', (event) => {
+        el.dataset.lastValueChange = (event as CustomEvent<string>).detail;
+      });
+    });
+    await input.fill('10.10.2025');
+
+    await expect(dateInputElement).toHaveAttribute(
+      'data-last-value-change',
+      '2025/10/10'
+    );
+    await expect(dateInputElement).toHaveAttribute('value', '2025/10/10');
+    await expect(input).toHaveValue('10.10.2025');
+  });
+
+  regressionTest(
+    'keeps invalid typed text as value',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2024/05/05" display-format="dd.LL.yyyy"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await input.fill('10.10');
+
+      await expect(dateInputElement).toHaveAttribute('value', '10.10');
+      await expect(input).toHaveValue('10.10');
+      await expect(
+        getInvalidText(dateInputElement, 'Date is not valid')
+      ).toBeVisible();
+    }
+  );
+});
+
 regressionTest(
   'select date by input with invalid date',
   async ({ mount, page }) => {

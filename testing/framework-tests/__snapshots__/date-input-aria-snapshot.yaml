@@ -1,2 +1,4 @@
 - textbox: /\d+\/\d+\/\d+/
 - button "Open calendar"
+- textbox "Short date": /\d+\.\d+\.\d+/
+- button "Open calendar"

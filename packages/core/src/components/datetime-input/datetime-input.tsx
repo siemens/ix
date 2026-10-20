@@ -20,6 +20,7 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { formatWithLocale } from '../utils/date-time-locale';
+import { DateDisplayFormat } from '../utils/date-display-format';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -96,7 +97,7 @@ export class DatetimeInput
   /** Placeholder text when input is empty */
   @Prop({ reflect: true }) placeholder?: string;
 
-  /** Value in display format (e.g., "2026/01/21 13:07:04" for default format) */
+  /** Value in `format` (e.g., "2026/01/21 13:07:04" for default format) */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
@@ -106,11 +107,35 @@ export class DatetimeInput
    */
   @Prop() format: string = 'yyyy/LL/dd HH:mm:ss';
 
+  /**
+   * Luxon date and time format used to display and type the value in the input field.
+   * `value`, `minDate`, `maxDate` and emitted values keep using `format`,
+   * e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"`
+   * displays a two-digit year without losing the century of the value.
+   * Date and time parts missing in `displayFormat`, like seconds or the
+   * century of a two-digit year, are kept from the current value when the
+   * user types a date.
+   * Defaults to `format`.
+   *
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
+
+  @Watch('displayFormat')
+  watchDisplayFormatPropHandler() {
+    this.syncInputText();
+  }
+
   /** Locale for date/time formatting (e.g., 'en-US', 'de-DE') */
   @Prop() locale?: string;
 
-  @Watch('locale') watchLocalePropHandler() {
+  @Watch('locale')
+  @Watch('format')
+  watchLocaleFormatPropHandler() {
     this.onInput(this.value);
+    this.syncInputText();
   }
 
   /** Whether the field is required */
@@ -254,6 +279,9 @@ export class DatetimeInput
 
   @State() time?: string | null = null;
 
+  @State() inputText = '';
+
+  private readonly dateDisplayFormat = new DateDisplayFormat(this);
   private classObserver?: ClassMutationObserver;
 
   public initialValue?: string;
@@ -269,6 +297,12 @@ export class DatetimeInput
   @Watch('value')
   watchValuePropHandler(newValue: string) {
     this.onInput(newValue);
+
+    // Keep the text while the user is typing it, otherwise it would be
+    // reformatted on every keystroke
+    if (!this.dateDisplayFormat.isTypedValue(this.value)) {
+      this.syncInputText();
+    }
   }
 
   @Watch('minTime')
@@ -281,16 +315,21 @@ export class DatetimeInput
     this.revalidateCurrentValue();
   }
 
-  private get combinedFormat(): string {
-    return this.format;
-  }
-
   private get dateOnlyFormat(): string {
     return getLuxonDateOnlyFormatMask(this.format);
   }
 
   private get timeOnlyFormat(): string {
     return getLuxonTimeFormatMask(this.format);
+  }
+
+  private syncInputText() {
+    this.inputText = this.dateDisplayFormat.toText();
+  }
+
+  private onTextInput(text: string) {
+    this.inputText = text;
+    this.onInput(this.dateDisplayFormat.toValue(text));
   }
 
   private syncPickerState() {
@@ -300,9 +339,7 @@ export class DatetimeInput
       return;
     }
 
-    const dateTime = DateTime.fromFormat(this.value, this.combinedFormat, {
-      locale: this.locale,
-    });
+    const dateTime = this.dateDisplayFormat.parseValue(this.value);
 
     if (dateTime.isValid) {
       this.from = formatWithLocale(dateTime, this.dateOnlyFormat, this.locale);
@@ -330,9 +367,7 @@ export class DatetimeInput
       return;
     }
 
-    const dateTime = DateTime.fromFormat(value, this.combinedFormat, {
-      locale: this.locale,
-    });
+    const dateTime = this.dateDisplayFormat.parseValue(value);
 
     const validationResult = this.computeConstraintValidation(dateTime);
 
@@ -477,9 +512,7 @@ export class DatetimeInput
       return;
     }
 
-    const dateTime = DateTime.fromFormat(this.value, this.combinedFormat, {
-      locale: this.locale,
-    });
+    const dateTime = this.dateDisplayFormat.parseValue(this.value);
     if (!dateTime.isValid) {
       return;
     }
@@ -671,6 +704,7 @@ export class DatetimeInput
     this.checkClassList();
     this.updateFormInternalValue(this.value);
     this.initialValue = this.value;
+    this.syncInputText();
   }
 
   private updatePaddings() {
@@ -751,7 +785,7 @@ export class DatetimeInput
             textAlign: this.textAlignment,
           }}
           type="text"
-          value={this.value ?? ''}
+          value={this.inputText}
           onBlur={() => {
             onInputBlurWithChange(
               this,
@@ -773,7 +807,7 @@ export class DatetimeInput
           }}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
+            this.onTextInput(target.value);
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>

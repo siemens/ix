@@ -23,6 +23,7 @@ import {
   h,
 } from '@stencil/core';
 import { parseWithLocale } from '../utils/date-time-locale';
+import { DateDisplayFormat } from '../utils/date-display-format';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -131,10 +132,30 @@ export class DateInput
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
+  /**
+   * Date format used to display and type the date in the input field.
+   * `value`, `minDate`, `maxDate` and emitted values keep using `format`,
+   * e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a
+   * two-digit year without losing the century of the value.
+   * Date parts missing in `displayFormat`, like the century of a two-digit
+   * year, are kept from the current value when the user types a date.
+   * Defaults to `format`.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
+
   @Watch('locale')
   @Watch('format')
   watchLocaleFormatHandler() {
     this.onInput(this.value);
+    this.syncInputText();
+  }
+
+  @Watch('displayFormat')
+  watchDisplayFormatHandler() {
+    this.syncInputText();
   }
 
   /**
@@ -281,7 +302,9 @@ export class DateInput
   @State() isInfo = false;
   @State() isWarning = false;
   @State() focus = false;
+  @State() inputText = '';
 
+  private readonly dateDisplayFormat = new DateDisplayFormat(this);
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
@@ -332,6 +355,7 @@ export class DateInput
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.syncInputText();
   }
 
   private updatePaddings() {
@@ -349,7 +373,24 @@ export class DateInput
 
   @Watch('value')
   watchValue() {
-    this.from = this.value;
+    this.from = this.dateDisplayFormat.isUnparsableText(this.value)
+      ? undefined
+      : this.value;
+
+    // Keep the text while the user is typing it, otherwise it would be
+    // reformatted on every keystroke
+    if (!this.dateDisplayFormat.isTypedValue(this.value)) {
+      this.syncInputText();
+    }
+  }
+
+  private syncInputText() {
+    this.inputText = this.dateDisplayFormat.toText();
+  }
+
+  private onTextInput(text: string) {
+    this.inputText = text;
+    void this.onInput(this.dateDisplayFormat.toValue(text));
   }
 
   /** @internal */
@@ -369,7 +410,7 @@ export class DateInput
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitValidityStateChangeIfChanged();
+      void this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
       this.valueChange.emit(value);
       return;
@@ -379,7 +420,7 @@ export class DateInput
       return;
     }
 
-    const date = parseWithLocale(value, this.format, this.locale);
+    const date = this.dateDisplayFormat.parseValue(value);
     const minDate = parseWithLocale(this.minDate, this.format, this.locale);
     const maxDate = parseWithLocale(this.maxDate, this.format, this.locale);
 
@@ -397,7 +438,7 @@ export class DateInput
       }
     }
 
-    this.emitValidityStateChangeIfChanged();
+    void this.emitValidityStateChangeIfChanged();
     this.valueChange.emit(value);
   }
 
@@ -449,12 +490,12 @@ export class DateInput
           required={this.required}
           ref={this.inputElementRef}
           type="text"
-          value={this.value ?? ''}
+          value={this.inputText}
           placeholder={this.placeholder}
           name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
+            this.onTextInput(target.value);
           }}
           onClick={(event) => {
             if (this.show) {
@@ -472,7 +513,7 @@ export class DateInput
               this.inputElementRef.current,
               this.value
             );
-            this.emitValidityStateChangeIfChanged();
+            void this.emitValidityStateChangeIfChanged();
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{

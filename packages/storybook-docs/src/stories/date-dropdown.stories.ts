@@ -32,3 +32,12 @@ type Story = StoryObj<Element>;
 export const Default: Story = {
   args: {},
 };
+
+export const DisplayFormat: Story = {
+  args: {
+    from: '2099/03/04',
+    to: '2099/03/10',
+    format: 'yyyy/LL/dd',
+    displayFormat: 'dd.LL.yy',
+  },
+};

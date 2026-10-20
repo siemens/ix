@@ -2483,6 +2483,16 @@
           "deprecated": false
         },
         {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "enableTopLayer",
           "attribute": "enable-top-layer",
           "type": "boolean",
@@ -2703,6 +2713,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -3245,6 +3265,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },

@@ -22,7 +22,11 @@ import {
   Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { parseWithLocale, toISODate } from '../utils/date-time-locale';
+import {
+  convertDateFormat,
+  parseWithLocale,
+  toISODate,
+} from '../utils/date-time-locale';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
@@ -68,6 +72,16 @@ export class DateDropdown
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format = 'yyyy/LL/dd';
+
+  /**
+   * Date format used to display the selected dates in the dropdown button.
+   * `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`.
+   * Defaults to `format`.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
 
   /**
    * If true disables date range selection (from/to).
@@ -366,16 +380,25 @@ export class DateDropdown
     }
   }
 
+  private toDisplayDate(value: string): string {
+    return convertDateFormat(
+      value,
+      this.format,
+      this.displayFormat ?? this.format,
+      this.locale
+    );
+  }
+
   private getButtonLabel() {
     if (this.currentRangeValue?.from) {
-      let range = this.currentRangeValue.from;
+      let range = this.toDisplayDate(this.currentRangeValue.from);
 
       if (this.currentRangeValue.to === this.currentRangeValue.from) {
         return range;
       }
 
       if (this.currentRangeValue.to) {
-        range += ` - ${this.currentRangeValue.to}`;
+        range += ` - ${this.toDisplayDate(this.currentRangeValue.to)}`;
       }
 
       return range;
