@@ -12,3 +12,5 @@ Add the `ix-code-block` component to display code with a header showing an optio
 Add streaming support to `ix-markdown`: set `streaming` while the Markdown source grows to show partial content immediately (the host gets `aria-busy="true"`). Unfinished syntax in the last block is repaired for display, completed blocks keep their DOM nodes, updates are coalesced to one render per animation frame, and a final reconcile runs when `streaming` turns `false`.
 
 Both components include Angular, React and Vue framework wrappers.
+
+`ix-markdown` renders GFM task list items as read-only `ix-checkbox`, thematic breaks as `ix-divider`, and footnotes as superscript links to a footnotes section at the end of the view with back-references. Footnote definitions that arrive after their reference are resolved at the latest when `streaming` turns `false`.

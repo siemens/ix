@@ -26,6 +26,8 @@ export type MarkdownOptions = {
  */
 const SCOPE_CLASS = 'sc-ix-markdown';
 
+let instanceCounter = 0;
+
 /**
  * Renders Markdown with iX look and feel. Raw HTML is shown as text,
  * only `<br>` becomes a line break. Links are limited to http(s), mailto and
@@ -59,6 +61,7 @@ export class Markdown {
    */
   @Prop() streaming: boolean = false;
 
+  private readonly idPrefix = `ix-markdown-${instanceCounter++}-`;
   private reconciler?: MarkdownStreamReconciler;
   private renderedMarkdown?: string;
   private renderedOptions?: MarkdownOptions;
@@ -107,6 +110,7 @@ export class Markdown {
 
     const renderer = new MarkdownRenderer(document, SCOPE_CLASS, {
       highlight: this.options?.highlight,
+      idPrefix: this.idPrefix,
     });
     if (!this.reconciler) {
       this.reconciler = new MarkdownStreamReconciler(

@@ -136,4 +136,27 @@
     max-width: 100%;
     height: auto;
   }
+
+  li.task-list-item {
+    list-style: none;
+  }
+
+  ix-divider {
+    margin-block: var(--ix-markdown-block--gap);
+  }
+
+  sup {
+    line-height: 0;
+  }
+
+  .footnotes {
+    margin-top: var(--ix-markdown-block--gap);
+    padding-top: var(--ix-markdown-block--gap);
+    border-top: var(--ix-markdown-blockquote--border-width) solid
+      var(--ix-markdown-blockquote--border-color);
+
+    ol {
+      margin: 0;
+    }
+  }
 }
