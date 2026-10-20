@@ -995,7 +995,6 @@ export class Menu {
                     this.showAppSwitch();
                   }}
                   icon={iconApps}
-                  size="24"
                   variant="subtle-tertiary"
                 ></ix-icon-button>
               )}

@@ -2,25 +2,24 @@
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import type { Components } from '@siemens/ix/components';
-import {
-  genericRender,
-  getLoremIpsum,
-  makeArgTypes,
-} from './utils/generic-render';
+import { h } from '@stencil/core';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { stencil } from '@utils/stencil-render';
+import { getLoremIpsum, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxBlind;
 
 const meta = {
   title: 'Example/Blind',
   tags: [],
-  render: (args) => genericRender('ix-blind', args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-blind', {}),
+  render: stencil((args) => (
+    <ix-blind {...args}>
+      <div>{getLoremIpsum()}</div>
+    </ix-blind>
+  )),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-blind'),
   parameters: {
     design: {
       type: 'figma',
@@ -32,7 +31,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
     collapsed: false,
