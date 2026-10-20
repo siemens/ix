@@ -16,6 +16,14 @@ describe('convertToAbbreviationString', () => {
     expect(convertToAbbreviationString(2000000)).toBe('2M');
   });
 
+  it('moves to the next unit when rounding reaches 1000', () => {
+    expect(convertToAbbreviationString(999949)).toBe('999.9K');
+    expect(convertToAbbreviationString(999950)).toBe('1M');
+    expect(convertToAbbreviationString(999999)).toBe('1M');
+    expect(convertToAbbreviationString(-999999)).toBe('-1M');
+    expect(convertToAbbreviationString(999999999)).toBe('1B');
+  });
+
   it('keeps the sign of negative numbers', () => {
     expect(convertToAbbreviationString(-1500)).toBe('-1.5K');
     expect(convertToAbbreviationString(-2000000)).toBe('-2M');
