@@ -249,14 +249,14 @@ export declare interface IxBadge extends Components.IxBadge {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxBlind,
-  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant']
+  inputs: ['collapsed', 'icon', 'label', 'outline', 'sublabel', 'variant']
 })
 @Component({
   selector: 'ix-blind',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['collapsed', 'icon', 'label', 'sublabel', 'variant'],
+  inputs: ['collapsed', 'icon', 'label', 'outline', 'sublabel', 'variant'],
   outputs: ['collapsedChange'],
 })
 export class IxBlind {

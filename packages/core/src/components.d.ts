@@ -10,7 +10,6 @@ import { ThemeVariant } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
 import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BadgeAnatomyType, BadgePosition, BadgeVariant } from "./components/badge/badge.types";
-import { BlindVariant } from "./components/blind/blind.types";
 import { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 import { AnchorTarget } from "./components/button/button.interface";
 import { ButtonVariant } from "./components/button/button";
@@ -67,7 +66,6 @@ export { ThemeVariant } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
 export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BadgeAnatomyType, BadgePosition, BadgeVariant } from "./components/badge/badge.types";
-export { BlindVariant } from "./components/blind/blind.types";
 export { BreadcrumbClick } from "./components/breadcrumb/breadcrumb.types";
 export { AnchorTarget } from "./components/button/button.interface";
 export { ButtonVariant } from "./components/button/button";
@@ -427,14 +425,19 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
+          * @since 6.0.0
+         */
+        "outline"?: boolean;
+        /**
           * Secondary label inside blind header
          */
         "sublabel"?: string;
         /**
-          * Blind variant
-          * @default 'filled'
+          * Blind status variant
+          * @default 'base'
          */
-        "variant": BlindVariant;
+        "variant": StatusVariant;
     }
     /**
      * Navigation trail that shows the user's location within a hierarchy.
@@ -8522,14 +8525,19 @@ declare namespace LocalJSX {
          */
         "onCollapsedChange"?: (event: IxBlindCustomEvent<boolean>) => void;
         /**
+          * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
+          * @since 6.0.0
+         */
+        "outline"?: boolean;
+        /**
           * Secondary label inside blind header
          */
         "sublabel"?: string;
         /**
-          * Blind variant
-          * @default 'filled'
+          * Blind status variant
+          * @default 'base'
          */
-        "variant"?: BlindVariant;
+        "variant"?: StatusVariant;
     }
     /**
      * Navigation trail that shows the user's location within a hierarchy.
@@ -14151,7 +14159,8 @@ declare namespace LocalJSX {
         "label": string;
         "sublabel": string;
         "icon": string;
-        "variant": BlindVariant;
+        "variant": StatusVariant;
+        "outline": boolean;
     }
     interface IxBreadcrumbAttributes {
         "visibleItemCount": number;

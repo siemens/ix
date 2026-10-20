@@ -619,6 +619,16 @@
           "deprecated": false
         },
         {
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "sublabel",
           "attribute": "sublabel",
           "type": "string | undefined",
@@ -631,10 +641,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'filled'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false

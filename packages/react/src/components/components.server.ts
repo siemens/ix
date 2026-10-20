@@ -240,7 +240,8 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Compo
         label: 'label',
         sublabel: 'sublabel',
         icon: 'icon',
-        variant: 'variant'
+        variant: 'variant',
+        outline: 'outline'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxBlind as StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>,
