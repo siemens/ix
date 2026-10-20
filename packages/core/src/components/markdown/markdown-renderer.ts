@@ -120,6 +120,38 @@ const textOf = (node: Nodes): string => {
 };
 
 /** Never copy event handler attributes onto mapped custom elements. */
+const CALLOUT_TYPES: Record<string, string> = {
+  info: 'info',
+  note: 'info',
+  success: 'success',
+  tip: 'success',
+  warning: 'warning',
+  caution: 'warning',
+  danger: 'alarm',
+  critical: 'critical',
+};
+
+const directiveAttributes = (node: ComponentNode) => {
+  const attributes: Record<string, string> = {};
+  for (const [key, value] of Object.entries(node.attributes ?? {})) {
+    attributes[key] = value ?? '';
+  }
+  return attributes;
+};
+
+/** Built-in Directives only receive the attributes they list. */
+const applyAllowedAttributes = (
+  element: HTMLElement,
+  attributes: Record<string, string>,
+  allowed: string[]
+) => {
+  for (const name of allowed) {
+    if (Object.hasOwn(attributes, name)) {
+      element.setAttribute(name, attributes[name]);
+    }
+  }
+};
+
 const isAllowedTagAttribute = (name: string) => !/^on/i.test(name);
 
 const applyTagAttributes = (
@@ -739,6 +771,10 @@ export class MarkdownRenderer {
    * such as `a:b`, so they keep their source text.
    */
   private renderDirective(node: DirectiveNode): Node {
+    const builtIn = this.renderBuiltInDirective(node);
+    if (builtIn) {
+      return builtIn;
+    }
     if (node.children.length > 0) {
       return this.fragment(node);
     }
@@ -750,6 +786,78 @@ export class MarkdownRenderer {
     const paragraph = this.createElement('p');
     paragraph.appendChild(text);
     return paragraph;
+  }
+
+  private renderBuiltInDirective(node: DirectiveNode): Node | null {
+    const attributes = directiveAttributes(node);
+    switch (node.name) {
+      case 'button': {
+        if (node.type === 'containerDirective') {
+          return null;
+        }
+        const button = this.document.createElement('ix-button');
+        applyAllowedAttributes(button, attributes, ['variant', 'icon']);
+        button.appendChild(this.text(textOf(node)));
+        const action = attributes.action;
+        if (action) {
+          button.addEventListener('click', () =>
+            this.options.emitAction?.(action, { ...attributes })
+          );
+        }
+        return button;
+      }
+      case 'pill': {
+        if (node.type === 'containerDirective') {
+          return null;
+        }
+        const pill = this.document.createElement('ix-pill');
+        applyAllowedAttributes(pill, attributes, ['variant', 'icon']);
+        pill.appendChild(this.text(textOf(node)));
+        return pill;
+      }
+      case 'icon': {
+        if (node.type !== 'textDirective' || !attributes.name) {
+          return null;
+        }
+        const icon = this.document.createElement('ix-icon');
+        applyAllowedAttributes(icon, attributes, ['name', 'size']);
+        if (attributes.label) {
+          icon.setAttribute('aria-label', attributes.label);
+        } else {
+          icon.setAttribute('aria-hidden', 'true');
+        }
+        return icon;
+      }
+      case 'callout':
+        return node.type === 'containerDirective'
+          ? this.renderCallout(node, attributes)
+          : null;
+      default:
+        return null;
+    }
+  }
+
+  private renderCallout(
+    node: DirectiveNode,
+    attributes: Record<string, string>
+  ): HTMLElement {
+    const bar = this.document.createElement('ix-message-bar');
+    bar.setAttribute(
+      'type',
+      Object.hasOwn(CALLOUT_TYPES, attributes.type)
+        ? CALLOUT_TYPES[attributes.type]
+        : 'info'
+    );
+    bar.setAttribute('persistent', '');
+    if (attributes.heading) {
+      const heading = this.createElement('strong');
+      heading.textContent = attributes.heading;
+      bar.appendChild(heading);
+    }
+    const content = this.createElement('div');
+    this.appendChildren(content, node, false);
+    bar.appendChild(content);
+    return bar;
   }
 
   private sourceOf(node: DirectiveNode): string {

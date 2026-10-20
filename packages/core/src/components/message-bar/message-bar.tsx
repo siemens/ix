@@ -124,7 +124,11 @@ export class MessageBar {
           role="alert"
           ref={(el) => (this.divElement = el as HTMLElement)}
         >
-          <ix-icon color={this.color} name={this.icon}></ix-icon>
+          <ix-icon
+            color={this.color}
+            name={this.icon}
+            aria-hidden="true"
+          ></ix-icon>
           <div class="message-content">
             <slot></slot>
           </div>

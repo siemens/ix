@@ -33,6 +33,13 @@ const FOOTNOTES_KEY = -1;
 
 const DIRECTIVE_START = /^:{1,3}[A-Za-z]/;
 
+/**
+ * Trailing text directive whose label or attributes are not closed yet, e.g.
+ * `:button[Re` or `:button[Retry]{acti`.
+ */
+const UNFINISHED_TEXT_DIRECTIVE =
+  /(?<![A-Za-z0-9:]):[A-Za-z][\w-]*(?:\[[^\]]*|(?:\[[^\]]*\])?\{[^}]*)$/;
+
 const hasOffsets = (node: Nodes) =>
   node.position?.start.offset !== undefined &&
   node.position?.end.offset !== undefined;
@@ -49,16 +56,45 @@ const isUnfinishedTable = (source: string, node: BlockNode) =>
     .every((line) => line.trimStart().startsWith('|'));
 
 /**
- * A directive that is not yet recognisable still parses as a paragraph
- * starting with the directive marker.
+ * A directive that is not yet recognisable still parses as a paragraph whose
+ * text starts with the directive marker. Complete directives parse into
+ * directive nodes and are rendered right away.
  */
-const isUnfinishedDirective = (source: string, node: BlockNode) =>
-  node.type === 'paragraph' &&
-  DIRECTIVE_START.test(source.slice(node.position!.start.offset).trimStart());
+const isUnfinishedDirective = (source: string, node: BlockNode) => {
+  if (node.type !== 'paragraph') {
+    return false;
+  }
+  const first = node.children[0];
+  return (
+    first?.type === 'text' &&
+    DIRECTIVE_START.test(source.slice(node.position!.start.offset).trimStart())
+  );
+};
 
 const isHeldBack = (source: string, node: BlockNode) =>
   hasOffsets(node) &&
   (isUnfinishedTable(source, node) || isUnfinishedDirective(source, node));
+
+/**
+ * Cuts a trailing unfinished text directive from the open paragraph.
+ */
+const hideUnfinishedTextDirective = (
+  source: string,
+  root: Root,
+  parse: MarkdownParser
+) => {
+  const last = root.children.at(-1);
+  if (last?.type !== 'paragraph' || !hasOffsets(last)) {
+    return { source, root };
+  }
+  const start = last.position!.start.offset!;
+  const match = UNFINISHED_TEXT_DIRECTIVE.exec(source.slice(start));
+  if (!match) {
+    return { source, root };
+  }
+  const trimmed = source.slice(0, start + match.index).trimEnd();
+  return { source: trimmed, root: parse(trimmed) };
+};
 
 /**
  * Closes unfinished syntax in the trailing (open) block of `source`.
@@ -125,9 +161,9 @@ export class MarkdownStreamReconciler {
     let source = markdown;
     let root = this.renderer.parse(source);
     if (streaming) {
-      ({ source, root } = repairOpenBlock(source, root, (value) =>
-        this.renderer.parse(value)
-      ));
+      const parse = (value: string) => this.renderer.parse(value);
+      ({ source, root } = hideUnfinishedTextDirective(source, root, parse));
+      ({ source, root } = repairOpenBlock(source, root, parse));
     }
 
     const children = root.children;
