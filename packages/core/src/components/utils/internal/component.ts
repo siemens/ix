@@ -7,11 +7,31 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { ComponentInterface } from '@stencil/core';
-import { HTMLStencilElement } from '@stencil/core/internal';
 import { SetupMixin } from './mixins/setup.mixin';
 
+/**
+ * Host element contract used by IX component interfaces and mixins.
+ *
+ * Mirrors Stencil's internal `HTMLStencilElement` type but is declared
+ * locally on purpose: generated declarations must not reference `@stencil/core`
+ * modules because consuming projects do not install them.
+ * See https://github.com/siemens/ix/issues/2730
+ */
+export interface IxHostElement extends HTMLElement {
+  componentOnReady(): Promise<this>;
+}
+
+/**
+ * Constructor contract used by IX mixins.
+ *
+ * Mirrors Stencil's `MixedInCtor` for the same reason as {@link IxHostElement}:
+ * published declarations must stay free of `@stencil/core` module references.
+ * See https://github.com/siemens/ix/issues/2730
+ */
+export type MixedInCtor<T = {}> = new (...args: any[]) => T;
+
 export interface StencilLifecycle {
-  hostElement?: HTMLStencilElement;
+  hostElement?: IxHostElement;
   connectedCallback?(): void;
   disconnectedCallback?(): void;
   componentWillRender?(): Promise<void> | void;
@@ -71,7 +91,7 @@ export interface StencilLifecycle {
 }
 
 export interface IxComponentInterface extends ComponentInterface {
-  hostElement: HTMLStencilElement;
+  hostElement: IxHostElement;
 }
 
 export const DefaultMixins = [SetupMixin] as const;

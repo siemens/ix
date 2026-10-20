@@ -113,3 +113,12 @@ export const tabUntilFocused = async (
 
   throw new Error(`"${text}" was not focused after ${maxTabs} Tab presses`);
 };
+
+/** Waits for pending re-renders, e.g. before asserting that a state didn't change */
+export const waitForRender = (page: Page) =>
+  page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve))
+      )
+  );

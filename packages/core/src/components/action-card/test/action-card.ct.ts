@@ -16,13 +16,14 @@ regressionTest('renders', async ({ mount, page }) => {
   const actionCard = page.locator('ix-action-card');
   await expect(actionCard).toHaveAttribute('hydrated');
   await expect(actionCard.locator('button')).toBeVisible();
+  await expect(actionCard.locator('button')).toBeEnabled();
 });
 
 regressionTest(
-  'passive card renders a disabled button',
+  'non-clickable card renders a disabled button',
   async ({ mount, page }) => {
     await mount(`
-      <ix-action-card heading="Heading" subheading="Subheading" passive></ix-action-card>
+      <ix-action-card heading="Heading" subheading="Subheading" clickable="false"></ix-action-card>
     `);
     const actionCard = page.locator('ix-action-card');
     await expect(actionCard).toHaveAttribute('hydrated');
@@ -40,18 +41,9 @@ regressionTest.describe('accessibility', () => {
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  regressionTest('passive', async ({ mount, makeAxeBuilder }) => {
+  regressionTest('not clickable', async ({ mount, makeAxeBuilder }) => {
     await mount(`
-      <ix-action-card heading="Heading" subheading="Subheading" passive></ix-action-card>
-    `);
-
-    const accessibilityScanResults = await makeAxeBuilder().analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-  });
-
-  regressionTest('critical', async ({ mount, makeAxeBuilder }) => {
-    await mount(`
-      <ix-action-card heading="Heading" variant="critical"></ix-action-card>
+      <ix-action-card heading="Heading" subheading="Subheading" clickable="false"></ix-action-card>
     `);
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();

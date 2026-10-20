@@ -175,6 +175,10 @@ import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import LinkButtonInternal from '../preview-examples/link-button-internal';
+import LinkButtonExternal from '../preview-examples/link-button-external';
+import LinkButtonFile from '../preview-examples/link-button-file';
+import LinkButtonAction from '../preview-examples/link-button-action';
 import Loading from '../preview-examples/loading';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -851,6 +855,22 @@ const routes: Routes = [
       {
         path: 'link-button',
         component: LinkButton,
+      },
+      {
+        path: 'link-button-internal',
+        component: LinkButtonInternal,
+      },
+      {
+        path: 'link-button-external',
+        component: LinkButtonExternal,
+      },
+      {
+        path: 'link-button-file',
+        component: LinkButtonFile,
+      },
+      {
+        path: 'link-button-action',
+        component: LinkButtonAction,
       },
       {
         path: 'loading',

@@ -41,8 +41,10 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  checkFieldClasses,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
@@ -50,6 +52,7 @@ import {
   createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
@@ -113,6 +116,11 @@ export class DatetimeInput
 
   /** Whether the field is required */
   @Prop() required: boolean = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /** Whether the input is disabled */
   @Prop() disabled: boolean = false;
@@ -593,7 +601,10 @@ export class DatetimeInput
 
   @Watch('isInputInvalid')
   async onInputValidationChange() {
-    this.isInvalid = this.isInputInvalid;
+    const { isInvalid, isInvalidByRequired } = checkFieldClasses(
+      this.hostElement
+    );
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
 
     const state = await this.getValidityState();
     const validityState: DateTimeInputValidityState = {
@@ -617,6 +628,10 @@ export class DatetimeInput
     this.validityStateChange.emit(validityState);
   }
 
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
+  }
+
   @HookValidationLifecycle()
   hookValidationLifecycle({
     isInfo,
@@ -625,7 +640,7 @@ export class DatetimeInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
@@ -768,7 +783,7 @@ export class DatetimeInput
         <input
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           disabled={this.disabled}
           name={this.name}
