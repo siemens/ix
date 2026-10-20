@@ -38,4 +38,17 @@ regressionTest.describe('chat', () => {
       fullPage: true,
     });
   });
+
+  regressionTest('markdown in ai message', async ({ page }) => {
+    await page.setViewportSize({ width: 1000, height: 760 });
+    await page.goto('chat/markdown');
+
+    await page.locator('ix-markdown ix-message-bar').waitFor();
+    await page.locator('ix-markdown ix-button').waitFor();
+
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+      fullPage: true,
+    });
+  });
 });
