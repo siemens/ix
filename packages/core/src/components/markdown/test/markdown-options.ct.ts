@@ -268,3 +268,27 @@ regressionTest(
     ).toBeUndefined();
   }
 );
+
+regressionTest(
+  'tag name mapping keeps foreign attributes on update',
+  async ({ mount, page }) => {
+    const markdown = await mountMarkdown(mount, page);
+    await set(
+      markdown,
+      `el.options = { components: { widget: 'x-widget' } };
+       el.markdown = ':widget[A]{kind=a size=3}';`
+    );
+    const widget = markdown.locator('x-widget');
+    await expect(widget).toHaveAttribute('kind', 'a');
+    await widget.evaluate((el) => {
+      el.setAttribute('hydrated', '');
+      el.classList.add('mine');
+    });
+
+    await set(markdown, `el.markdown = ':widget[A]{kind=b}';`);
+    await expect(widget).toHaveAttribute('kind', 'b');
+    await expect(widget).not.toHaveAttribute('size');
+    await expect(widget).toHaveAttribute('hydrated');
+    await expect(widget).toHaveClass('mine');
+  }
+);

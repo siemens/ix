@@ -59,7 +59,7 @@ regressionTest(
     const markdown = await mountMarkdown(
       mount,
       page,
-      'Go :button[Retry now]{variant=secondary icon=rocket action=retry id=7}'
+      'Go :button[Retry now]{variant=secondary icon=rocket action=retry id=7 onclick=x style=y}'
     );
     const button = markdown.getByRole('button', { name: 'Retry now' });
     await expect(button).toBeVisible();
@@ -83,7 +83,6 @@ regressionTest(
         variant: 'secondary',
         icon: 'rocket',
         action: 'retry',
-        id: '7',
       },
     });
   }

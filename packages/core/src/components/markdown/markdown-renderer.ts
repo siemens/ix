@@ -154,19 +154,27 @@ const applyAllowedAttributes = (
 
 const isAllowedTagAttribute = (name: string) => !/^on/i.test(name);
 
+/**
+ * Applies Directive attributes to a mapped element. Only attributes applied
+ * by a previous call are removed, so attributes set by the element itself or
+ * its runtime (`hydrated`, classes, reflected properties) are kept.
+ */
 const applyTagAttributes = (
   element: HTMLElement,
-  attributes: Record<string, string>
+  attributes: Record<string, string>,
+  applied: Set<string>
 ) => {
-  for (const name of element.getAttributeNames()) {
+  for (const name of applied) {
     if (!(name in attributes)) {
       element.removeAttribute(name);
+      applied.delete(name);
     }
   }
   for (const [name, value] of Object.entries(attributes)) {
     if (isAllowedTagAttribute(name)) {
       try {
         element.setAttribute(name, value);
+        applied.add(name);
       } catch {
         // Invalid attribute names are ignored.
       }
@@ -588,10 +596,11 @@ export class MarkdownRenderer {
     } catch {
       return undefined;
     }
-    applyTagAttributes(element, ctx.attributes);
+    const applied = new Set<string>();
+    applyTagAttributes(element, ctx.attributes, applied);
     return {
       element,
-      update: (next) => applyTagAttributes(element, next.attributes),
+      update: (next) => applyTagAttributes(element, next.attributes, applied),
     };
   }
 
@@ -800,8 +809,14 @@ export class MarkdownRenderer {
         button.appendChild(this.text(textOf(node)));
         const action = attributes.action;
         if (action) {
+          const payload: Record<string, string> = {};
+          for (const name of ['variant', 'icon', 'action']) {
+            if (Object.hasOwn(attributes, name)) {
+              payload[name] = attributes[name];
+            }
+          }
           button.addEventListener('click', () =>
-            this.options.emitAction?.(action, { ...attributes })
+            this.options.emitAction?.(action, payload)
           );
         }
         return button;

@@ -263,8 +263,42 @@ export class MarkdownStreamReconciler {
   }
 }
 
+/** Added by the Stencil runtime or the component to mounted elements. */
+const RUNTIME_ATTRIBUTES = new Set(['hydrated', 'tabindex']);
+
+const ownAttributes = (element: Element) =>
+  element
+    .getAttributeNames()
+    .filter(
+      (name) =>
+        !RUNTIME_ATTRIBUTES.has(name) &&
+        !(name === 'class' && element.classList.length === 0)
+    );
+
+/**
+ * Like `isEqualNode`, but ignores attributes added by the component runtime
+ * to already mounted elements.
+ */
+const sameNode = (a: Node, b: Node): boolean => {
+  if (a.nodeType !== b.nodeType || a.nodeName !== b.nodeName) {
+    return false;
+  }
+  if (a instanceof Element && b instanceof Element) {
+    const names = ownAttributes(a);
+    if (
+      names.length !== ownAttributes(b).length ||
+      names.some((name) => a.getAttribute(name) !== b.getAttribute(name))
+    ) {
+      return false;
+    }
+  } else if (a.nodeValue !== b.nodeValue) {
+    return false;
+  }
+  return sameNodes(Array.from(a.childNodes), Array.from(b.childNodes));
+};
+
 const sameNodes = (a: Node[], b: Node[]) =>
-  a.length === b.length && a.every((node, i) => node.isEqualNode(b[i]));
+  a.length === b.length && a.every((node, i) => sameNode(node, b[i]));
 
 const collectCodeBlocks = (nodes: Node[]) =>
   nodes.flatMap((node) =>

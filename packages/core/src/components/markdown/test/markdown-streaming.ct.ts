@@ -284,3 +284,25 @@ regressionTest(
     await expect(block).toHaveJSProperty('__marker', true);
   }
 );
+
+regressionTest(
+  'final reconcile keeps focus and identity of Directive buttons',
+  async ({ mount, page }) => {
+    const markdown = await mountMarkdown(mount, page);
+    await update(markdown, ':button[Retry]{action=retry}\n\nMore', true);
+    const button = markdown.getByRole('button', { name: 'Retry' });
+    await expect(button).toBeVisible();
+    await button.focus();
+    await expect(button).toBeFocused();
+    await markdown.locator('ix-button').evaluate((el) => {
+      (el as HTMLElement & { __marker?: boolean }).__marker = true;
+    });
+
+    await update(markdown, ':button[Retry]{action=retry}\n\nMore', false);
+    await expect(button).toBeFocused();
+    await expect(markdown.locator('ix-button')).toHaveJSProperty(
+      '__marker',
+      true
+    );
+  }
+);
