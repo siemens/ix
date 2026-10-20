@@ -17,6 +17,7 @@ interface RenderedBlock {
   start: number;
   text: string;
   nodes: Node[];
+  settled: boolean;
 }
 
 type BlockNode = Root['children'][number];
@@ -117,14 +118,21 @@ export class MarkdownStreamReconciler {
       const text = source.slice(start, child.position!.end.offset!);
       const old = previous.get(start);
 
-      if (!force && streaming && index < settledCount && old?.text === text) {
+      if (
+        !force &&
+        streaming &&
+        index < settledCount &&
+        old?.settled &&
+        old.text === text
+      ) {
         return old;
       }
-      const nodes = this.renderer.renderBlock(child, root);
+      const settled = index < settledCount;
+      const nodes = this.renderer.renderBlock(child, root, settled);
       if (old) {
         reuseCodeBlocks(old.nodes, nodes);
       }
-      return { start, text, nodes };
+      return { start, text, nodes, settled };
     });
   }
 

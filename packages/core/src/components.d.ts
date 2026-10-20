@@ -3104,6 +3104,16 @@ export namespace Components {
      */
     interface IxMarkdown {
         /**
+          * Accessible name of the button that copies a table as CSV.
+          * @default 'Copy table as CSV'
+         */
+        "i18nCopyTable": string;
+        /**
+          * Accessible name of the button that downloads a table as CSV file.
+          * @default 'Download table as CSV'
+         */
+        "i18nDownloadTable": string;
+        /**
           * Markdown source to render.
           * @default ''
          */
@@ -11435,6 +11445,16 @@ declare namespace LocalJSX {
      */
     interface IxMarkdown {
         /**
+          * Accessible name of the button that copies a table as CSV.
+          * @default 'Copy table as CSV'
+         */
+        "i18nCopyTable"?: string;
+        /**
+          * Accessible name of the button that downloads a table as CSV file.
+          * @default 'Download table as CSV'
+         */
+        "i18nDownloadTable"?: string;
+        /**
           * Markdown source to render.
           * @default ''
          */
@@ -14834,6 +14854,8 @@ declare namespace LocalJSX {
     interface IxMarkdownAttributes {
         "markdown": string;
         "streaming": boolean;
+        "i18nCopyTable": string;
+        "i18nDownloadTable": string;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;

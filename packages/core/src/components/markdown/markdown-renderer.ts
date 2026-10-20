@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCopy, iconDownload } from '@siemens/ix-icons/icons';
 import type {
   Definition,
   Html,
@@ -17,6 +18,7 @@ import type {
   Nodes,
   Parent,
   Root,
+  Table,
 } from 'mdast';
 import remarkDirective from 'remark-directive';
 import remarkGfm from 'remark-gfm';
@@ -50,6 +52,10 @@ export const parseMarkdown = (markdown: string): Root =>
 export type MarkdownRendererOptions = {
   /** Syntax highlighter handed to rendered code blocks. */
   highlight?: CodeBlockHighlight;
+  /** Accessible name of the copy-CSV button of tables. */
+  i18nCopyTable?: string;
+  /** Accessible name of the download-CSV button of tables. */
+  i18nDownloadTable?: string;
 };
 
 const FILENAME_META = /\[([^\]]+)\]/;
@@ -61,6 +67,7 @@ const FILENAME_META = /\[([^\]]+)\]/;
 export class MarkdownRenderer {
   private definitions = new Map<string, Definition>();
   private source = '';
+  private showTableActions = true;
 
   constructor(
     private readonly document: Document,
@@ -75,6 +82,7 @@ export class MarkdownRenderer {
     }
 
     this.source = markdown;
+    this.showTableActions = true;
     const root = parseMarkdown(markdown);
     this.definitions = collectDefinitions(root);
     this.appendChildren(fragment, root, false);
@@ -92,8 +100,10 @@ export class MarkdownRenderer {
 
   /**
    * Renders one top-level block. Definitions render to no nodes.
+   * @param settled Open blocks do not offer table export actions yet.
    */
-  renderBlock(node: Nodes, parent: Root): Node[] {
+  renderBlock(node: Nodes, parent: Root, settled = true): Node[] {
+    this.showTableActions = settled;
     const rendered = this.renderNode(node, parent, false);
     if (!rendered) {
       return [];
@@ -159,6 +169,8 @@ export class MarkdownRenderer {
         return this.renderList(node);
       case 'listItem':
         return this.withChildren(this.createElement('li'), node, tight);
+      case 'table':
+        return this.renderTable(node);
       case 'code':
         return this.renderCode(node.value, node.lang, node.meta);
       case 'text':
@@ -204,6 +216,77 @@ export class MarkdownRenderer {
     }
     const tight = !node.spread && !node.children.some((item) => item.spread);
     return this.withChildren(list, node, tight);
+  }
+
+  private renderTable(node: Table): HTMLElement {
+    const container = this.createElement('div', 'table-block');
+    const rows = node.children.map((row) =>
+      row.children.map((cell) => cellText(cell))
+    );
+
+    if (this.showTableActions) {
+      container.appendChild(this.renderTableActions(rows));
+    }
+
+    const scroll = this.createElement('div', 'table-scroll');
+    const table = this.createElement('table');
+    const align = node.align ?? [];
+    const head = this.createElement('thead');
+    const body = this.createElement('tbody');
+    node.children.forEach((row, rowIndex) => {
+      const tr = this.createElement('tr');
+      row.children.forEach((cell, cellIndex) => {
+        const td = this.createElement(rowIndex === 0 ? 'th' : 'td');
+        if (rowIndex === 0) {
+          td.scope = 'col';
+        }
+        const alignment = align[cellIndex];
+        if (alignment) {
+          td.classList.add(`align-${alignment}`);
+        }
+        tr.appendChild(this.withChildren(td, cell));
+      });
+      (rowIndex === 0 ? head : body).appendChild(tr);
+    });
+    table.appendChild(head);
+    if (body.childNodes.length > 0) {
+      table.appendChild(body);
+    }
+    scroll.appendChild(table);
+    container.appendChild(scroll);
+    return container;
+  }
+
+  private renderTableActions(rows: string[][]): HTMLElement {
+    const actions = this.createElement('div', 'table-actions');
+    const csv = () => toCsv(rows);
+
+    const copy = this.createActionButton(
+      iconCopy,
+      this.options.i18nCopyTable ?? 'Copy table as CSV'
+    );
+    copy.addEventListener('click', () => {
+      navigator.clipboard?.writeText(csv()).catch(() => undefined);
+    });
+
+    const download = this.createActionButton(
+      iconDownload,
+      this.options.i18nDownloadTable ?? 'Download table as CSV'
+    );
+    download.addEventListener('click', () => downloadCsv(this.document, csv()));
+
+    actions.append(copy, download);
+    return actions;
+  }
+
+  private createActionButton(icon: string, label: string) {
+    const button = this.document.createElement('ix-icon-button');
+    button.classList.add(this.scopeClass);
+    button.variant = 'tertiary';
+    button.size = '16';
+    button.icon = icon;
+    button.setAttribute('aria-label', label);
+    return button;
   }
 
   private renderCode(
@@ -334,6 +417,37 @@ export class MarkdownRenderer {
     return null;
   }
 }
+
+const cellText = (node: Nodes): string => {
+  if (node.type === 'break') {
+    return '\n';
+  }
+  if (node.type === 'html') {
+    return LINE_BREAK_HTML.test(node.value.trim()) ? '\n' : node.value;
+  }
+  if ('children' in node) {
+    return (node.children as Nodes[]).map(cellText).join('');
+  }
+  return 'value' in node && typeof node.value === 'string' ? node.value : '';
+};
+
+const escapeCsv = (value: string) =>
+  /[",\r\n]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
+
+const toCsv = (rows: string[][]) =>
+  rows.map((row) => row.map(escapeCsv).join(',')).join('\r\n');
+
+const downloadCsv = (document: Document, csv: string) => {
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'table.csv';
+  link.hidden = true;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
 
 const normalizeIdentifier = (identifier: string) => identifier.toLowerCase();
 

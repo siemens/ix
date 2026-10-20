@@ -6137,6 +6137,28 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "i18nCopyTable",
+          "attribute": "i18n-copy-table",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Copy table as CSV'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nDownloadTable",
+          "attribute": "i18n-download-table",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Download table as CSV'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "markdown",
           "attribute": "markdown",
           "type": "string",

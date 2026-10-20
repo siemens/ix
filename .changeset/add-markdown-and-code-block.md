@@ -12,3 +12,5 @@ Add the `ix-code-block` component to display code with a header showing an optio
 Add streaming support to `ix-markdown`: set `streaming` while the Markdown source grows to show partial content immediately (the host gets `aria-busy="true"`). Unfinished syntax in the last block is repaired for display, completed blocks keep their DOM nodes, updates are coalesced to one render per animation frame, and a final reconcile runs when `streaming` turns `false`.
 
 Both components include Angular, React and Vue framework wrappers.
+
+Render GFM tables in `ix-markdown` with iX table styling inside a horizontal scroll container, honoring column alignment. Completed tables offer copy-as-CSV and download-as-`table.csv` buttons (hidden while a table is still streaming); labels can be localized with `i18nCopyTable` and `i18nDownloadTable`. Table styling is adjustable via `--ix-markdown-table-*` custom properties.

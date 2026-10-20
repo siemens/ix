@@ -59,10 +59,22 @@ export class Markdown {
    */
   @Prop() streaming: boolean = false;
 
+  /**
+   * Accessible name of the button that copies a table as CSV.
+   */
+  @Prop({ attribute: 'i18n-copy-table' }) i18nCopyTable = 'Copy table as CSV';
+
+  /**
+   * Accessible name of the button that downloads a table as CSV file.
+   */
+  @Prop({ attribute: 'i18n-download-table' }) i18nDownloadTable =
+    'Download table as CSV';
+
   private reconciler?: MarkdownStreamReconciler;
   private renderedMarkdown?: string;
   private renderedOptions?: MarkdownOptions;
   private renderedStreaming?: boolean;
+  private renderedLabels?: string;
   private frame?: number;
 
   componentDidRender() {
@@ -96,8 +108,13 @@ export class Markdown {
     return (
       this.renderedMarkdown !== this.markdown ||
       this.renderedOptions !== this.options ||
-      this.renderedStreaming !== this.streaming
+      this.renderedStreaming !== this.streaming ||
+      this.renderedLabels !== this.labelsKey()
     );
+  }
+
+  private labelsKey() {
+    return JSON.stringify([this.i18nCopyTable, this.i18nDownloadTable]);
   }
 
   private renderMarkdown() {
@@ -107,6 +124,8 @@ export class Markdown {
 
     const renderer = new MarkdownRenderer(document, SCOPE_CLASS, {
       highlight: this.options?.highlight,
+      i18nCopyTable: this.i18nCopyTable,
+      i18nDownloadTable: this.i18nDownloadTable,
     });
     if (!this.reconciler) {
       this.reconciler = new MarkdownStreamReconciler(
@@ -118,11 +137,13 @@ export class Markdown {
     this.reconciler.update(
       this.markdown ?? '',
       this.streaming,
-      this.renderedOptions !== this.options
+      this.renderedOptions !== this.options ||
+        this.renderedLabels !== this.labelsKey()
     );
     this.renderedMarkdown = this.markdown;
     this.renderedOptions = this.options;
     this.renderedStreaming = this.streaming;
+    this.renderedLabels = this.labelsKey();
   }
 
   render() {
