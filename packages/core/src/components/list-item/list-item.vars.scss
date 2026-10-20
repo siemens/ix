@@ -10,6 +10,18 @@
 @use 'tokens/system' as sys;
 
 :host {
+  --ix-list-item--min-height: #{sys.$si-sys-sizing-size-90};
+  --ix-list-item--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-list-item--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-list-item--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-list-item-primary-action--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-list-item-drag-gripper--width: #{sys.$si-sys-sizing-size-50};
+  --ix-list-item-drag-gripper--height: #{sys.$si-sys-sizing-size-80};
+  --ix-list-item-drag-gripper--focus-ring-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-list-item-drag-gripper--icon-size: #{sys.$si-sys-sizing-icon-sm};
+  --ix-list-item--padding-left--draggable: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-list-item-selection-checkbox--size: #{sys.$si-sys-sizing-size-60};
+  --ix-list-item-selection-checkbox--margin-right: #{sys.$si-sys-sizing-spacing-x-30};
   --ix-list-item-label--font: #{sys.$si-sys-typography-body-paragraph};
   --ix-list-item-description--font: #{sys.$si-sys-typography-body-sm};
   --ix-list-item--color: #{sys.$si-sys-color-text-primary};

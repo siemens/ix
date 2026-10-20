@@ -29,10 +29,10 @@ import type {
 } from '../list-item/list-item.types';
 
 const listItemGap: Record<ListItemGap, string> = {
-  none: '0rem',
-  sm: '0.25rem',
-  md: '0.5rem',
-  lg: '0.75rem',
+  none: '0',
+  sm: 'var(--ix-list--item-gap--sm)',
+  md: 'var(--ix-list--item-gap--md)',
+  lg: 'var(--ix-list--item-gap--lg)',
 };
 
 const actionFocusableSelector = [
