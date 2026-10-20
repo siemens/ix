@@ -7,9 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import {
+  iconArrowRight,
+  iconChevronRightSmall,
+  iconDocument,
+  iconOpenExternal,
+} from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
+
+const linkIcons = {
+  internal: iconChevronRightSmall,
+  external: iconOpenExternal,
+  file: iconDocument,
+  action: iconArrowRight,
+};
 
 /**
  * Button styled as a hyperlink that navigates to a target.
@@ -42,7 +54,28 @@ export class LinkButton {
    */
   @Prop() target: '_self' | '_blank' | '_parent' | '_top' = '_self';
 
+  /**
+   * Icon displayed alongside the link label. Defaults to `none`.
+   * @since 6.0.0
+   */
+  @Prop() icon: 'none' | 'internal' | 'external' | 'file' | 'action' = 'none';
+
+  /**
+   * Position of the icon relative to the link label.
+   * @since 6.0.0
+   */
+  @Prop() iconPosition: 'start' | 'end' = 'start';
+
   render() {
+    const icon = this.icon !== 'none' && (
+      <ix-icon
+        class="icon"
+        name={linkIcons[this.icon]}
+        size="16"
+        aria-hidden="true"
+      ></ix-icon>
+    );
+
     return (
       <Host>
         <a
@@ -56,12 +89,7 @@ export class LinkButton {
           target={this.target}
           role={this.disabled ? 'link' : undefined}
         >
-          <ix-icon
-            class="icon"
-            name={iconChevronRightSmall}
-            size="16"
-            aria-hidden="true"
-          ></ix-icon>
+          {this.iconPosition === 'start' && icon}
           <div
             class={{
               link: true,
@@ -70,6 +98,7 @@ export class LinkButton {
           >
             <slot></slot>
           </div>
+          {this.iconPosition === 'end' && icon}
         </a>
       </Host>
     );
