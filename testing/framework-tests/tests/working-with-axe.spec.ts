@@ -93,3 +93,6 @@ import './generated/group-axe.spec';
 import './generated/group-context-menu-axe.spec';
 import './generated/group-custom-entry-axe.spec';
 import './generated/group-header-suppressed-axe.spec';
+
+// Card family — action-card axe only.
+import './generated/action-card-axe.spec';

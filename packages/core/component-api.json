@@ -25,6 +25,16 @@
           "deprecated": false
         },
         {
+          "name": "clickable",
+          "attribute": "clickable",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "heading",
           "attribute": "heading",
           "type": "string | undefined",
@@ -46,13 +56,12 @@
           "deprecated": false
         },
         {
-          "name": "passive",
-          "attribute": "passive",
-          "type": "boolean",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -80,10 +89,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -946,13 +955,23 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "passive",
-          "attribute": "passive",
+          "name": "clickable",
+          "attribute": "clickable",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -970,10 +989,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -1015,15 +1034,25 @@
           "deprecated": false
         },
         {
-          "name": "variant",
-          "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'base'",
+          "optional": false,
+          "required": false,
+          "deprecated": true
         }
       ],
       "methods": [],
@@ -8414,6 +8443,17 @@
           "deprecated": false
         },
         {
+          "name": "clickable",
+          "attribute": "clickable",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "expanded",
           "attribute": "expanded",
           "type": "boolean",
@@ -8455,13 +8495,12 @@
           "deprecated": false
         },
         {
-          "name": "passive",
-          "attribute": "passive",
-          "type": "boolean",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -8478,10 +8517,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
