@@ -1,0 +1,23 @@
+packages/storybook-docs/src/stories/badge/dot.stories.tsx
+  s_5cfac4e1ac64b2::t_8d6b4d3bdf0acb 72
+packages/storybook-docs/src/stories/badge/label.stories.tsx
+  s_5cfac4e1ac64b2::t_b6f2b8ad1e4307 123
+packages/storybook-docs/src/stories/badge/status-icon.stories.tsx
+  s_5cfac4e1ac64b2::t_16fdb5ebaa53b0 74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9e90d553b06d05bd17475bd12637b0d44bb127b1",
+  "prompts": {},
+  "sessions": {
+    "s_5cfac4e1ac64b2": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "a88ef3c6-8fb4-4005-8b7a-2a538ba9c517",
+        "model": "unknown"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
