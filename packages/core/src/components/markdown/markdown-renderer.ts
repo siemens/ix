@@ -72,6 +72,28 @@ export class MarkdownRenderer {
     return fragment;
   }
 
+  /**
+   * Prepares a parsed document for rendering top-level blocks one by one.
+   * Block offsets refer to `markdown`.
+   */
+  begin(markdown: string, root: Root) {
+    this.source = markdown;
+    this.definitions = collectDefinitions(root);
+  }
+
+  /**
+   * Renders one top-level block. Definitions render to no nodes.
+   */
+  renderBlock(node: Nodes, parent: Root): Node[] {
+    const rendered = this.renderNode(node, parent, false);
+    if (!rendered) {
+      return [];
+    }
+    return rendered instanceof DocumentFragment
+      ? Array.from(rendered.childNodes)
+      : [rendered];
+  }
+
   private createElement<K extends keyof HTMLElementTagNameMap>(
     tagName: K,
     className?: string

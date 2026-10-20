@@ -142,6 +142,7 @@
       "remark-directive",
       "remark-gfm",
       "remark-parse",
+      "remend",
       "unified"
     ]
   },
@@ -186,6 +187,7 @@
     "remark-directive": "^4.0.0",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
+    "remend": "^1.4.0",
     "rimraf": "catalog:",
     "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
