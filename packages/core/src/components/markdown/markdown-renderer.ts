@@ -23,12 +23,33 @@ import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import type { CodeBlockHighlight } from '../code-block/code-block.types';
+import type {
+  MarkdownComponentContext,
+  MarkdownComponentInstance,
+  MarkdownComponentMapping,
+  MarkdownComponents,
+  MarkdownPlugin,
+} from './markdown.types';
 import { isSafeImageUrl, isSafeLinkUrl } from './markdown-url';
 
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkDirective);
+const createProcessor = (plugins: MarkdownPlugin[] = []) =>
+  unified().use(remarkParse).use(remarkGfm).use(remarkDirective).use(plugins);
+
+const defaultProcessor = createProcessor();
+
+export type MarkdownParser = (markdown: string) => Root;
+
+/**
+ * Creates a parser with the built-in setup, followed by the given plugins.
+ */
+export const createMarkdownParser = (
+  plugins: MarkdownPlugin[] = []
+): MarkdownParser => {
+  const processor = plugins.length
+    ? createProcessor(plugins)
+    : defaultProcessor;
+  return (markdown) => processor.runSync(processor.parse(markdown)) as Root;
+};
 
 const LINE_BREAK_HTML = /^<br\s*\/?>$/i;
 const BLOCK_PARENTS = new Set(['root', 'blockquote', 'listItem']);
@@ -44,12 +65,64 @@ const DIRECTIVE_MARKERS: Record<DirectiveNode['type'], string> = {
   containerDirective: ':::',
 };
 
-export const parseMarkdown = (markdown: string): Root =>
-  processor.runSync(processor.parse(markdown)) as Root;
+export const parseMarkdown: MarkdownParser = createMarkdownParser();
 
 export type MarkdownRendererOptions = {
   /** Syntax highlighter handed to rendered code blocks. */
   highlight?: CodeBlockHighlight;
+  /** Parser used for the Markdown source, includes plugins. */
+  parse?: MarkdownParser;
+  /** Mappings to Custom components. */
+  components?: MarkdownComponents;
+  /** Reports actions emitted by Custom components. */
+  emitAction?: (name: string, attributes: Record<string, string>) => void;
+};
+
+/**
+ * A mounted Custom component, kept across renders of the same block.
+ */
+export interface MountedComponent {
+  name: string;
+  mapping: MarkdownComponentMapping;
+  instance: MarkdownComponentInstance;
+}
+
+type ComponentNode = Nodes & {
+  name?: string;
+  attributes?: Record<string, string | null | undefined> | null;
+};
+
+const textOf = (node: Nodes): string => {
+  if ('children' in node) {
+    return (node.children as Nodes[]).map(textOf).join('');
+  }
+  if (node.type === 'image') {
+    return node.alt ?? '';
+  }
+  return 'value' in node && typeof node.value === 'string' ? node.value : '';
+};
+
+/** Never copy event handler attributes onto mapped custom elements. */
+const isAllowedTagAttribute = (name: string) => !/^on/i.test(name);
+
+const applyTagAttributes = (
+  element: HTMLElement,
+  attributes: Record<string, string>
+) => {
+  for (const name of element.getAttributeNames()) {
+    if (!(name in attributes)) {
+      element.removeAttribute(name);
+    }
+  }
+  for (const [name, value] of Object.entries(attributes)) {
+    if (isAllowedTagAttribute(name)) {
+      try {
+        element.setAttribute(name, value);
+      } catch {
+        // Invalid attribute names are ignored.
+      }
+    }
+  }
 };
 
 const FILENAME_META = /\[([^\]]+)\]/;
@@ -68,6 +141,32 @@ export class MarkdownRenderer {
     private readonly options: MarkdownRendererOptions = {}
   ) {}
 
+  private mounted: MountedComponent[] = [];
+  private previous: MountedComponent[] = [];
+
+  parse(markdown: string): Root {
+    return (this.options.parse ?? parseMarkdown)(markdown);
+  }
+
+  /**
+   * Starts rendering a block. Custom components of the previous render of the
+   * same block, in document order, are updated in place when possible.
+   */
+  startBlock(previous: MountedComponent[] = []) {
+    this.previous = previous;
+    this.mounted = [];
+  }
+
+  /**
+   * Ends the block and returns its Custom components.
+   */
+  finishBlock(): MountedComponent[] {
+    const mounted = this.mounted;
+    this.previous = [];
+    this.mounted = [];
+    return mounted;
+  }
+
   render(markdown: string): DocumentFragment {
     const fragment = this.document.createDocumentFragment();
     if (!markdown) {
@@ -75,7 +174,7 @@ export class MarkdownRenderer {
     }
 
     this.source = markdown;
-    const root = parseMarkdown(markdown);
+    const root = this.parse(markdown);
     this.definitions = collectDefinitions(root);
     this.appendChildren(fragment, root, false);
     return fragment;
@@ -142,6 +241,11 @@ export class MarkdownRenderer {
   }
 
   private renderNode(node: Nodes, parent: Parent, tight: boolean): Node | null {
+    const mapped = this.renderMapped(node);
+    if (mapped) {
+      return mapped;
+    }
+
     switch (node.type) {
       case 'paragraph':
         if (tight) {
@@ -195,6 +299,97 @@ export class MarkdownRenderer {
       default:
         return this.renderUnknown(node);
     }
+  }
+
+  private findMapping(node: ComponentNode) {
+    const components = this.options.components;
+    if (!components) {
+      return undefined;
+    }
+    const isDirective = node.type.endsWith('Directive');
+    const name = isDirective ? node.name! : node.type;
+    return Object.hasOwn(components, name)
+      ? { name, mapping: components[name] }
+      : undefined;
+  }
+
+  private createContext(
+    name: string,
+    node: ComponentNode
+  ): MarkdownComponentContext {
+    const attributes: Record<string, string> = {};
+    for (const [key, value] of Object.entries(node.attributes ?? {})) {
+      attributes[key] = value ?? '';
+    }
+    return {
+      name,
+      attributes,
+      text: textOf(node),
+      markdown: this.innerSource(node),
+      node,
+      emitAction: (action, actionAttributes = {}) =>
+        this.options.emitAction?.(action, { ...actionAttributes }),
+    };
+  }
+
+  private innerSource(node: Nodes): string {
+    const children = 'children' in node ? (node.children as Nodes[]) : [];
+    const start = children[0]?.position?.start.offset;
+    const end = children.at(-1)?.position?.end.offset;
+    if (start !== undefined && end !== undefined) {
+      return this.source.slice(start, end);
+    }
+    if (!('children' in node) && 'value' in node) {
+      return typeof node.value === 'string' ? node.value : '';
+    }
+    return '';
+  }
+
+  /**
+   * Renders a node through its Custom component mapping, if any. Components
+   * are matched by order with the previous render of the block.
+   */
+  private renderMapped(node: Nodes): Node | null {
+    const found = this.findMapping(node);
+    if (!found) {
+      return null;
+    }
+
+    const ctx = this.createContext(found.name, node);
+    const taken = this.previous[this.mounted.length];
+    if (taken && taken.name === found.name && taken.mapping === found.mapping) {
+      taken.instance.update?.(ctx);
+      this.mounted.push(taken);
+      return taken.instance.element;
+    }
+
+    const instance = this.mountComponent(found.mapping, ctx);
+    if (!instance) {
+      return null;
+    }
+    this.mounted.push({ name: found.name, mapping: found.mapping, instance });
+    return instance.element;
+  }
+
+  private mountComponent(
+    mapping: MarkdownComponentMapping,
+    ctx: MarkdownComponentContext
+  ): MarkdownComponentInstance | undefined {
+    if (typeof mapping === 'function') {
+      return mapping(ctx);
+    }
+
+    let element: HTMLElement;
+    try {
+      element = this.document.createElement(mapping);
+    } catch {
+      return undefined;
+    }
+    applyTagAttributes(element, ctx.attributes);
+    return {
+      element,
+      update: (next) => applyTagAttributes(element, next.attributes),
+    };
   }
 
   private renderList(node: List): HTMLElement {
@@ -354,3 +549,6 @@ const collectDefinitions = (root: Root): Map<string, Definition> => {
   visit(root);
   return definitions;
 };
+
+export const destroyComponents = (components: MountedComponent[]) =>
+  components.forEach((component) => component.instance.destroy?.());

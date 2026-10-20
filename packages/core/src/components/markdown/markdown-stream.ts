@@ -10,13 +10,19 @@
 import type { Nodes, Root } from 'mdast';
 /*! remend (https://github.com/vercel/streamdown/tree/main/packages/remend), Apache-2.0. Licensed under the Apache License, Version 2.0; http://www.apache.org/licenses/LICENSE-2.0 */
 import remend from 'remend';
-import { MarkdownRenderer, parseMarkdown } from './markdown-renderer';
+import {
+  destroyComponents,
+  MarkdownRenderer,
+  type MarkdownParser,
+  type MountedComponent,
+} from './markdown-renderer';
 
 interface RenderedBlock {
   /** Start offset of the block in the (repaired) source; acts as its key. */
   start: number;
   text: string;
   nodes: Node[];
+  components: MountedComponent[];
 }
 
 type BlockNode = Root['children'][number];
@@ -47,12 +53,13 @@ const isUnfinishedDirective = (source: string, node: BlockNode) =>
   DIRECTIVE_START.test(source.slice(node.position!.start.offset).trimStart());
 
 const isHeldBack = (source: string, node: BlockNode) =>
-  isUnfinishedTable(source, node) || isUnfinishedDirective(source, node);
+  hasOffsets(node) &&
+  (isUnfinishedTable(source, node) || isUnfinishedDirective(source, node));
 
 /**
  * Closes unfinished syntax in the trailing (open) block of `source`.
  */
-const repairOpenBlock = (source: string, root: Root) => {
+const repairOpenBlock = (source: string, root: Root, parse: MarkdownParser) => {
   const last = root.children.at(-1);
   if (!last || !hasOffsets(last)) {
     return { source, root };
@@ -63,7 +70,7 @@ const repairOpenBlock = (source: string, root: Root) => {
   if (repaired === source) {
     return { source, root };
   }
-  return { source: repaired, root: parseMarkdown(repaired) };
+  return { source: repaired, root: parse(repaired) };
 };
 
 /**
@@ -90,17 +97,36 @@ export class MarkdownStreamReconciler {
   update(markdown: string, streaming: boolean, force = false) {
     const next = this.renderBlocks(markdown ?? '', streaming, force);
     this.patch(next, streaming);
+    const kept = new Set(next.flatMap((block) => block.components));
+    destroyComponents(
+      this.blocks
+        .flatMap((block) => block.components)
+        .filter((component) => !kept.has(component))
+    );
     this.blocks = next;
+  }
+
+  /**
+   * Destroys all Custom components and removes the rendered nodes.
+   */
+  dispose() {
+    destroyComponents(this.blocks.flatMap((block) => block.components));
+    for (const node of this.blocks.flatMap((block) => block.nodes)) {
+      node.parentNode?.removeChild(node);
+    }
+    this.blocks = [];
   }
 
   private renderBlocks(markdown: string, streaming: boolean, force: boolean) {
     let source = markdown;
-    let root = parseMarkdown(source);
+    let root = this.renderer.parse(source);
     if (streaming) {
-      ({ source, root } = repairOpenBlock(source, root));
+      ({ source, root } = repairOpenBlock(source, root, (value) =>
+        this.renderer.parse(value)
+      ));
     }
 
-    const children = root.children.filter(hasOffsets);
+    const children = root.children;
     if (streaming) {
       const last = children.at(-1);
       if (last && isHeldBack(source, last)) {
@@ -112,19 +138,34 @@ export class MarkdownStreamReconciler {
     const settledCount = streaming ? children.length - 1 : children.length;
     const previous = new Map(this.blocks.map((block) => [block.start, block]));
 
+    let anchor = 0;
+    let synthetic = 0;
     return children.map((child, index): RenderedBlock => {
-      const start = child.position!.start.offset!;
-      const text = source.slice(start, child.position!.end.offset!);
+      // Plugin-produced nodes may have no position. They get a key after the
+      // previous block and are compared by their content.
+      let start: number;
+      let text: string;
+      if (hasOffsets(child)) {
+        start = child.position!.start.offset!;
+        anchor = child.position!.end.offset!;
+        synthetic = 0;
+        text = source.slice(start, anchor);
+      } else {
+        start = anchor + ++synthetic / 1024;
+        text = JSON.stringify(child);
+      }
       const old = previous.get(start);
 
       if (!force && streaming && index < settledCount && old?.text === text) {
         return old;
       }
+      this.renderer.startBlock(old?.components);
       const nodes = this.renderer.renderBlock(child, root);
+      const components = this.renderer.finishBlock();
       if (old) {
         reuseCodeBlocks(old.nodes, nodes);
       }
-      return { start, text, nodes };
+      return { start, text, nodes, components };
     });
   }
 

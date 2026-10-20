@@ -43,7 +43,8 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-import { MarkdownOptions } from "./components/markdown/markdown";
+import { MarkdownOptions } from "./components/markdown/markdown.types";
+import { MarkdownAction } from "./components/markdown/markdown";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -101,7 +102,8 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
-export { MarkdownOptions } from "./components/markdown/markdown";
+export { MarkdownOptions } from "./components/markdown/markdown.types";
+export { MarkdownAction } from "./components/markdown/markdown";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -3109,7 +3111,7 @@ export namespace Components {
          */
         "markdown": string;
         /**
-          * Options for rendering, e.g. a `highlight` hook for fenced code.
+          * Options for rendering: remark `plugins`, `components` that map node types or Directive names to Custom components, `extensions` and a `highlight` hook for fenced code. A plain object that can be shared between views. Replace the object to apply changes.
          */
         "options"?: MarkdownOptions;
         /**
@@ -5854,6 +5856,10 @@ export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
 }
+export interface IxMarkdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMarkdownElement;
+}
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuElement;
@@ -7084,6 +7090,9 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    interface HTMLIxMarkdownElementEventMap {
+        "actionClick": MarkdownAction;
+    }
     /**
      * Renders Markdown with iX look and feel. Raw HTML is shown as text,
      * only `<br>` becomes a line break. Links are limited to http(s), mailto and
@@ -7091,6 +7100,14 @@ declare global {
      * @since 6.1.0
      */
     interface HTMLIxMarkdownElement extends Components.IxMarkdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMarkdownElementEventMap>(type: K, listener: (this: HTMLIxMarkdownElement, ev: IxMarkdownCustomEvent<HTMLIxMarkdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMarkdownElementEventMap>(type: K, listener: (this: HTMLIxMarkdownElement, ev: IxMarkdownCustomEvent<HTMLIxMarkdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMarkdownElement: {
         prototype: HTMLIxMarkdownElement;
@@ -11440,7 +11457,11 @@ declare namespace LocalJSX {
          */
         "markdown"?: string;
         /**
-          * Options for rendering, e.g. a `highlight` hook for fenced code.
+          * Emitted when a Custom component calls `emitAction`.
+         */
+        "onActionClick"?: (event: IxMarkdownCustomEvent<MarkdownAction>) => void;
+        /**
+          * Options for rendering: remark `plugins`, `components` that map node types or Directive names to Custom components, `extensions` and a `highlight` hook for fenced code. A plain object that can be shared between views. Replace the object to apply changes.
          */
         "options"?: MarkdownOptions;
         /**

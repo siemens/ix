@@ -7,17 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Build, Component, Element, Host, Prop, h } from '@stencil/core';
-import type { CodeBlockHighlight } from '../code-block/code-block.types';
-import { MarkdownRenderer } from './markdown-renderer';
+import {
+  Build,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Prop,
+  h,
+} from '@stencil/core';
+import { createMarkdownParser, MarkdownRenderer } from './markdown-renderer';
 import { MarkdownStreamReconciler } from './markdown-stream';
+import { MarkdownOptions, resolveMarkdownOptions } from './markdown.types';
 
-export type MarkdownOptions = {
-  /**
-   * Syntax highlighter for fenced code blocks.
-   * Must return a DOM node, never an HTML string.
-   */
-  highlight?: CodeBlockHighlight;
+export type MarkdownAction = {
+  name: string;
+  attributes: Record<string, string>;
 };
 
 /**
@@ -47,7 +53,10 @@ export class Markdown {
   @Prop() markdown: string = '';
 
   /**
-   * Options for rendering, e.g. a `highlight` hook for fenced code.
+   * Options for rendering: remark `plugins`, `components` that map node
+   * types or Directive names to Custom components, `extensions` and a
+   * `highlight` hook for fenced code. A plain object that can be shared
+   * between views. Replace the object to apply changes.
    */
   @Prop() options?: MarkdownOptions;
 
@@ -59,17 +68,32 @@ export class Markdown {
    */
   @Prop() streaming: boolean = false;
 
+  /**
+   * Emitted when a Custom component calls `emitAction`.
+   */
+  @Event() actionClick!: EventEmitter<MarkdownAction>;
+
   private reconciler?: MarkdownStreamReconciler;
   private renderedMarkdown?: string;
   private renderedOptions?: MarkdownOptions;
   private renderedStreaming?: boolean;
   private frame?: number;
+  private resolved?: ReturnType<typeof resolveMarkdownOptions>;
+  private parser?: ReturnType<typeof createMarkdownParser>;
 
   componentDidRender() {
     this.scheduleRender();
   }
 
+  connectedCallback() {
+    this.scheduleRender();
+  }
+
   disconnectedCallback() {
+    this.reconciler?.dispose();
+    this.renderedMarkdown = undefined;
+    this.renderedOptions = undefined;
+    this.renderedStreaming = undefined;
     if (this.frame !== undefined) {
       cancelAnimationFrame(this.frame);
       this.frame = undefined;
@@ -105,8 +129,16 @@ export class Markdown {
       return;
     }
 
+    if (!this.parser || this.renderedOptions !== this.options) {
+      this.resolved = resolveMarkdownOptions(this.options);
+      this.parser = createMarkdownParser(this.resolved.plugins);
+    }
     const renderer = new MarkdownRenderer(document, SCOPE_CLASS, {
-      highlight: this.options?.highlight,
+      highlight: this.resolved?.highlight,
+      components: this.resolved?.components,
+      parse: this.parser,
+      emitAction: (name, attributes) =>
+        this.actionClick.emit({ name, attributes }),
     });
     if (!this.reconciler) {
       this.reconciler = new MarkdownStreamReconciler(

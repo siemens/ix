@@ -1828,10 +1828,12 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['markdown', 'options', 'streaming'],
+  outputs: ['actionClick'],
   standalone: false
 })
 export class IxMarkdown {
   protected el: HTMLIxMarkdownElement;
+  @Output() actionClick = new EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1839,7 +1841,15 @@ export class IxMarkdown {
 }
 
 
-export declare interface IxMarkdown extends Components.IxMarkdown {}
+import type { IxMarkdownCustomEvent } from '@siemens/ix';
+import type { MarkdownAction as IIxMarkdownMarkdownAction } from '@siemens/ix';
+
+export declare interface IxMarkdown extends Components.IxMarkdown {
+  /**
+   * Emitted when a Custom component calls `emitAction`.
+   */
+  actionClick: EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>;
+}
 
 
 @ProxyCmp({

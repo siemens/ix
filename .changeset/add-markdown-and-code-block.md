@@ -12,3 +12,5 @@ Add the `ix-code-block` component to display code with a header showing an optio
 Add streaming support to `ix-markdown`: set `streaming` while the Markdown source grows to show partial content immediately (the host gets `aria-busy="true"`). Unfinished syntax in the last block is repaired for display, completed blocks keep their DOM nodes, updates are coalesced to one render per animation frame, and a final reconcile runs when `streaming` turns `false`.
 
 Both components include Angular, React and Vue framework wrappers.
+
+Add `options` to `ix-markdown` to configure it with one plain, shareable object: remark `plugins`, `components` that map Markdown node types or Directive names to a custom-element tag name or a factory (`MarkdownComponentFactory`), `extensions` and `highlight`. Factory components are mounted once, updated in place while their block is open and destroyed when it disappears or the view disconnects. Custom components can report actions through `emitAction`, which fires the `actionClick` event. The security rules still apply to plugin output. The related types are exported from `@siemens/ix`.

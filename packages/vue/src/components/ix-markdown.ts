@@ -9,5 +9,8 @@ import { defineCustomElement as defineIxMarkdown } from '@siemens/ix/components/
 export const IxMarkdown: StencilVueComponent<JSX.IxMarkdown> = /*@__PURE__*/ defineContainer<JSX.IxMarkdown>('ix-markdown', defineIxMarkdown, [
   'markdown',
   'options',
-  'streaming'
+  'streaming',
+  'actionClick'
+], [
+  'actionClick'
 ]);
