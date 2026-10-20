@@ -17,10 +17,10 @@
   --ix-menu-category-chevron--transition-duration: var(--theme-default-time);
   --ix-menu-category-items--transition-duration: var(--theme-default-time);
   --ix-menu-category-category-text--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-menu-category-category-chevron--block-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-menu-category-category-chevron--inline-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-menu-category-category-chevron--min-block-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-menu-category-category-chevron--min-inline-size: #{sys.$si-sys-sizing-icon-lg};
+  --ix-menu-category-category-chevron--block-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-menu-category-category-chevron--inline-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-menu-category-category-chevron--min-block-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-menu-category-category-chevron--min-inline-size: #{sys.$si-sys-sizing-icon-md};
   --ix-menu-category-menu-items-expanded--padding: #{sys.$si-sys-sizing-spacing-y-20}
     0 #{sys.$si-sys-sizing-spacing-y-20}
     calc(
