@@ -71,7 +71,7 @@ function badgeStatusIconPreview(): VNode {
         <h2>Attached anchors</h2>
         <div class="demo-grid">
           {cell(
-            'IxIconButton · alarm',
+            'IxIconButton · danger',
             statusIconBadge({
               variant: 'danger',
               children: iconButtonAnchor('Error state'),

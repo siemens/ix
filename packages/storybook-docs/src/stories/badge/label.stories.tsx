@@ -120,7 +120,7 @@ function badgeLabelPreview(): VNode {
         <h2>Attached anchors</h2>
         <div class="demo-grid">
           {cell(
-            'IxIconButton · alarm',
+            'IxIconButton · danger',
             labelBadge({
               variant: 'danger',
               children: iconButtonAnchor("What's new"),
