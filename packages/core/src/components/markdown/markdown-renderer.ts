@@ -7,16 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCopy, iconDownload } from '@siemens/ix-icons/icons';
 import type {
   Definition,
+  FootnoteDefinition,
+  FootnoteReference,
   Html,
   ImageReference,
   Link,
   LinkReference,
   List,
+  ListItem,
   Nodes,
   Parent,
   Root,
+  Table,
 } from 'mdast';
 import remarkDirective from 'remark-directive';
 import remarkGfm from 'remark-gfm';
@@ -76,6 +81,18 @@ export type MarkdownRendererOptions = {
   components?: MarkdownComponents;
   /** Reports actions emitted by Custom components. */
   emitAction?: (name: string, attributes: Record<string, string>) => void;
+  /** Accessible name of the copy-CSV button of tables. */
+  i18nCopyTable?: string;
+  /** Accessible name of the download-CSV button of tables. */
+  i18nDownloadTable?: string;
+  /** Prefix for generated element ids, keeps footnote links unique per view. */
+  idPrefix?: string;
+};
+
+type FootnoteInfo = {
+  number: number;
+  definition: FootnoteDefinition;
+  references: number;
 };
 
 /**
@@ -134,6 +151,12 @@ const FILENAME_META = /\[([^\]]+)\]/;
 export class MarkdownRenderer {
   private definitions = new Map<string, Definition>();
   private source = '';
+  private showTableActions = true;
+  private footnotes = new Map<string, FootnoteInfo>();
+  private footnoteReferences = new WeakMap<
+    FootnoteReference,
+    { number: number; index: number }
+  >();
 
   constructor(
     private readonly document: Document,
@@ -173,10 +196,11 @@ export class MarkdownRenderer {
       return fragment;
     }
 
-    this.source = markdown;
+    this.showTableActions = true;
     const root = this.parse(markdown);
-    this.definitions = collectDefinitions(root);
+    this.begin(markdown, root);
     this.appendChildren(fragment, root, false);
+    this.renderFootnotes().forEach((node) => fragment.appendChild(node));
     return fragment;
   }
 
@@ -187,12 +211,149 @@ export class MarkdownRenderer {
   begin(markdown: string, root: Root) {
     this.source = markdown;
     this.definitions = collectDefinitions(root);
+    this.collectFootnotes(root);
+  }
+
+  /**
+   * Renders the footnotes section for the document passed to `begin`.
+   * Returns no nodes when no footnote is referenced.
+   */
+  renderFootnotes(): Node[] {
+    const used = [...this.footnotes.values()]
+      .filter((info) => info.references > 0)
+      .sort((a, b) => a.number - b.number);
+    if (used.length === 0) {
+      return [];
+    }
+
+    const section = this.createElement('section', 'footnotes');
+    section.setAttribute('aria-label', 'Footnotes');
+    const list = this.createElement('ol');
+    for (const info of used) {
+      const item = this.createElement('li');
+      item.id = this.footnoteId(info.number);
+      this.appendChildren(item, info.definition, false);
+
+      const target =
+        item.lastElementChild?.localName === 'p' ? item.lastElementChild : item;
+      for (let index = 0; index < info.references; index++) {
+        const back = this.createElement('a', 'footnote-backref');
+        back.href = `#${this.footnoteReferenceId(info.number, index)}`;
+        back.textContent = '\u21a9';
+        back.setAttribute(
+          'aria-label',
+          info.references > 1
+            ? `Back to reference ${info.number}-${index + 1}`
+            : `Back to reference ${info.number}`
+        );
+        target.append(' ', back);
+      }
+      list.appendChild(item);
+    }
+    section.appendChild(list);
+    return [section];
+  }
+
+  private collectFootnotes(root: Root) {
+    this.footnotes = new Map();
+    this.footnoteReferences = new WeakMap();
+    const definitions = new Map<string, FootnoteDefinition>();
+    const references: FootnoteReference[] = [];
+    const visit = (node: Nodes) => {
+      if (node.type === 'footnoteDefinition') {
+        const id = normalizeIdentifier(node.identifier);
+        if (!definitions.has(id)) {
+          definitions.set(id, node);
+        }
+      } else if (node.type === 'footnoteReference') {
+        references.push(node);
+      }
+      if ('children' in node) {
+        (node.children as Nodes[]).forEach(visit);
+      }
+    };
+    visit(root);
+
+    for (const reference of references) {
+      const id = normalizeIdentifier(reference.identifier);
+      const definition = definitions.get(id);
+      if (!definition) {
+        continue;
+      }
+      let info = this.footnotes.get(id);
+      if (!info) {
+        info = { number: this.footnotes.size + 1, definition, references: 0 };
+        this.footnotes.set(id, info);
+      }
+      this.footnoteReferences.set(reference, {
+        number: info.number,
+        index: info.references++,
+      });
+    }
+  }
+
+  private footnoteId(number: number) {
+    return `${this.options.idPrefix ?? ''}fn-${number}`;
+  }
+
+  private footnoteReferenceId(number: number, index: number) {
+    return `${this.options.idPrefix ?? ''}fnref-${number}${
+      index > 0 ? `-${index + 1}` : ''
+    }`;
+  }
+
+  private renderFootnoteReference(node: FootnoteReference): Node {
+    const info = this.footnoteReferences.get(node);
+    if (!info) {
+      return this.text(`[^${node.label ?? node.identifier}]`);
+    }
+    const sup = this.createElement('sup');
+    const anchor = this.createElement('a', 'footnote-ref');
+    anchor.id = this.footnoteReferenceId(info.number, info.index);
+    anchor.href = `#${this.footnoteId(info.number)}`;
+    anchor.textContent = String(info.number);
+    sup.appendChild(anchor);
+    return sup;
+  }
+
+  private renderTaskItem(node: ListItem, checked: boolean): HTMLElement {
+    const item = this.createElement('li', 'task-list-item');
+    const checkbox = this.document.createElement('ix-checkbox');
+    checkbox.checked = checked;
+    checkbox.disabled = true;
+
+    const [first, ...rest] = node.children;
+    if (first?.type === 'paragraph') {
+      this.appendChildren(checkbox, first, true);
+      item.appendChild(checkbox);
+      rest.forEach((child) => this.appendNode(item, child, node, true));
+    } else {
+      item.appendChild(checkbox);
+      node.children.forEach((child) =>
+        this.appendNode(item, child, node, true)
+      );
+    }
+    return item;
+  }
+
+  private appendNode(
+    target: Node,
+    child: Nodes,
+    parent: Parent,
+    tight: boolean
+  ) {
+    const rendered = this.renderNode(child, parent, tight);
+    if (rendered) {
+      target.appendChild(rendered);
+    }
   }
 
   /**
    * Renders one top-level block. Definitions render to no nodes.
+   * @param settled Open blocks do not offer table export actions yet.
    */
-  renderBlock(node: Nodes, parent: Root): Node[] {
+  renderBlock(node: Nodes, parent: Root, settled = true): Node[] {
+    this.showTableActions = settled;
     const rendered = this.renderNode(node, parent, false);
     if (!rendered) {
       return [];
@@ -262,7 +423,12 @@ export class MarkdownRenderer {
       case 'list':
         return this.renderList(node);
       case 'listItem':
+        if (typeof node.checked === 'boolean') {
+          return this.renderTaskItem(node, node.checked);
+        }
         return this.withChildren(this.createElement('li'), node, tight);
+      case 'table':
+        return this.renderTable(node);
       case 'code':
         return this.renderCode(node.value, node.lang, node.meta);
       case 'text':
@@ -290,7 +456,12 @@ export class MarkdownRenderer {
         return this.renderImageReference(node);
       case 'html':
         return this.renderHtml(node, parent);
+      case 'thematicBreak':
+        return this.document.createElement('ix-divider');
+      case 'footnoteReference':
+        return this.renderFootnoteReference(node);
       case 'definition':
+      case 'footnoteDefinition':
         return null;
       case 'textDirective':
       case 'leafDirective':
@@ -399,6 +570,77 @@ export class MarkdownRenderer {
     }
     const tight = !node.spread && !node.children.some((item) => item.spread);
     return this.withChildren(list, node, tight);
+  }
+
+  private renderTable(node: Table): HTMLElement {
+    const container = this.createElement('div', 'table-block');
+    const rows = node.children.map((row) =>
+      row.children.map((cell) => cellText(cell))
+    );
+
+    if (this.showTableActions) {
+      container.appendChild(this.renderTableActions(rows));
+    }
+
+    const scroll = this.createElement('div', 'table-scroll');
+    const table = this.createElement('table');
+    const align = node.align ?? [];
+    const head = this.createElement('thead');
+    const body = this.createElement('tbody');
+    node.children.forEach((row, rowIndex) => {
+      const tr = this.createElement('tr');
+      row.children.forEach((cell, cellIndex) => {
+        const td = this.createElement(rowIndex === 0 ? 'th' : 'td');
+        if (rowIndex === 0) {
+          td.scope = 'col';
+        }
+        const alignment = align[cellIndex];
+        if (alignment) {
+          td.classList.add(`align-${alignment}`);
+        }
+        tr.appendChild(this.withChildren(td, cell));
+      });
+      (rowIndex === 0 ? head : body).appendChild(tr);
+    });
+    table.appendChild(head);
+    if (body.childNodes.length > 0) {
+      table.appendChild(body);
+    }
+    scroll.appendChild(table);
+    container.appendChild(scroll);
+    return container;
+  }
+
+  private renderTableActions(rows: string[][]): HTMLElement {
+    const actions = this.createElement('div', 'table-actions');
+    const csv = () => toCsv(rows);
+
+    const copy = this.createActionButton(
+      iconCopy,
+      this.options.i18nCopyTable ?? 'Copy table as CSV'
+    );
+    copy.addEventListener('click', () => {
+      navigator.clipboard?.writeText(csv()).catch(() => undefined);
+    });
+
+    const download = this.createActionButton(
+      iconDownload,
+      this.options.i18nDownloadTable ?? 'Download table as CSV'
+    );
+    download.addEventListener('click', () => downloadCsv(this.document, csv()));
+
+    actions.append(copy, download);
+    return actions;
+  }
+
+  private createActionButton(icon: string, label: string) {
+    const button = this.document.createElement('ix-icon-button');
+    button.classList.add(this.scopeClass);
+    button.variant = 'tertiary';
+    button.size = '16';
+    button.icon = icon;
+    button.setAttribute('aria-label', label);
+    return button;
   }
 
   private renderCode(
@@ -529,6 +771,37 @@ export class MarkdownRenderer {
     return null;
   }
 }
+
+const cellText = (node: Nodes): string => {
+  if (node.type === 'break') {
+    return '\n';
+  }
+  if (node.type === 'html') {
+    return LINE_BREAK_HTML.test(node.value.trim()) ? '\n' : node.value;
+  }
+  if ('children' in node) {
+    return (node.children as Nodes[]).map(cellText).join('');
+  }
+  return 'value' in node && typeof node.value === 'string' ? node.value : '';
+};
+
+const escapeCsv = (value: string) =>
+  /[",\r\n]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
+
+const toCsv = (rows: string[][]) =>
+  rows.map((row) => row.map(escapeCsv).join(',')).join('\r\n');
+
+const downloadCsv = (document: Document, csv: string) => {
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'table.csv';
+  link.hidden = true;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+};
 
 const normalizeIdentifier = (identifier: string) => identifier.toLowerCase();
 

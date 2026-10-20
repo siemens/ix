@@ -10,6 +10,8 @@ export const IxMarkdown: StencilVueComponent<JSX.IxMarkdown> = /*@__PURE__*/ def
   'markdown',
   'options',
   'streaming',
+  'i18nCopyTable',
+  'i18nDownloadTable',
   'actionClick'
 ], [
   'actionClick'

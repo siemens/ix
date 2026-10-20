@@ -132,8 +132,79 @@
     background-color: var(--ix-markdown-code--background-color);
   }
 
+  .table-block {
+    margin-top: 0;
+    margin-bottom: var(--ix-markdown-block--gap);
+  }
+
+  .table-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--ix-markdown-table-actions--gap);
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  table {
+    border-collapse: collapse;
+    font: var(--ix-markdown-table--font);
+  }
+
+  th,
+  td {
+    padding: var(--ix-markdown-table-cell--padding);
+    border: var(--ix-markdown-table--border-width) solid
+      var(--ix-markdown-table--border-color);
+    text-align: start;
+    overflow-wrap: normal;
+  }
+
+  th {
+    font: var(--ix-markdown-table-header--font);
+    color: var(--ix-markdown-table-header--color);
+    background-color: var(--ix-markdown-table-header--background-color);
+  }
+
+  .align-left {
+    text-align: left;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .align-right {
+    text-align: right;
+  }
+
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  li.task-list-item {
+    list-style: none;
+  }
+
+  ix-divider {
+    margin-block: var(--ix-markdown-block--gap);
+  }
+
+  sup {
+    line-height: 0;
+  }
+
+  .footnotes {
+    margin-top: var(--ix-markdown-block--gap);
+    padding-top: var(--ix-markdown-block--gap);
+    border-top: var(--ix-markdown-blockquote--border-width) solid
+      var(--ix-markdown-blockquote--border-color);
+
+    ol {
+      margin: 0;
+    }
   }
 }

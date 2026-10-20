@@ -231,13 +231,15 @@ regressionTest('built-in types can be overridden', async ({ mount, page }) => {
   const markdown = await mountMarkdown(mount, page);
   await set(
     markdown,
-    `el.options = { components: { code: w.factory, link: 'x-link' } };
-     el.markdown = '\`\`\`ts\\nconst a = 1;\\n\`\`\`\\n\\n[a](https://siemens.com)';`
+    `el.options = { components: { code: w.factory, link: 'x-link', table: 'x-table' } };
+     el.markdown = '\`\`\`ts\\nconst a = 1;\\n\`\`\`\\n\\n[a](https://siemens.com)\\n\\n| A |\\n| - |\\n| 1 |';`
   );
   await expect(page.getByTestId('custom')).toHaveText('const a = 1;');
   await expect(markdown.locator('ix-code-block')).toHaveCount(0);
   await expect(markdown.locator('x-link')).toHaveCount(1);
   await expect(markdown.locator('a')).toHaveCount(0);
+  await expect(markdown.locator('x-table')).toHaveCount(1);
+  await expect(markdown.locator('table')).toHaveCount(0);
 });
 
 regressionTest(

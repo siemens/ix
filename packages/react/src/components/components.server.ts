@@ -1318,7 +1318,9 @@ export const IxMarkdown: StencilReactComponent<IxMarkdownElement, IxMarkdownEven
     tagName: 'ix-markdown',
     properties: {
         markdown: 'markdown',
-        streaming: 'streaming'
+        streaming: 'streaming',
+        i18nCopyTable: 'i18n-copy-table',
+        i18nDownloadTable: 'i18n-download-table'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxMarkdown as StencilReactComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown>,

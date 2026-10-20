@@ -13,4 +13,8 @@ Add streaming support to `ix-markdown`: set `streaming` while the Markdown sourc
 
 Both components include Angular, React and Vue framework wrappers.
 
+Render GFM tables in `ix-markdown` with iX table styling inside a horizontal scroll container, honoring column alignment. Completed tables offer copy-as-CSV and download-as-`table.csv` buttons (hidden while a table is still streaming); labels can be localized with `i18nCopyTable` and `i18nDownloadTable`. Table styling is adjustable via `--ix-markdown-table-*` custom properties.
+
+`ix-markdown` renders GFM task list items as read-only `ix-checkbox`, thematic breaks as `ix-divider`, and footnotes as superscript links to a footnotes section at the end of the view with back-references. Footnote definitions that arrive after their reference are resolved at the latest when `streaming` turns `false`.
+
 Add `options` to `ix-markdown` to configure it with one plain, shareable object: remark `plugins`, `components` that map Markdown node types or Directive names to a custom-element tag name or a factory (`MarkdownComponentFactory`), `extensions` and `highlight`. Factory components are mounted once, updated in place while their block is open and destroyed when it disappears or the view disconnects. Custom components can report actions through `emitAction`, which fires the `actionClick` event. The security rules still apply to plugin output. The related types are exported from `@siemens/ix`.

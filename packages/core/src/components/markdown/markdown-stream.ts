@@ -23,9 +23,13 @@ interface RenderedBlock {
   text: string;
   nodes: Node[];
   components: MountedComponent[];
+  settled: boolean;
 }
 
 type BlockNode = Root['children'][number];
+
+/** Key of the footnotes section, which follows all source blocks. */
+const FOOTNOTES_KEY = -1;
 
 const DIRECTIVE_START = /^:{1,3}[A-Za-z]/;
 
@@ -140,7 +144,7 @@ export class MarkdownStreamReconciler {
 
     let anchor = 0;
     let synthetic = 0;
-    return children.map((child, index): RenderedBlock => {
+    const blocks = children.map((child, index): RenderedBlock => {
       // Plugin-produced nodes may have no position. They get a key after the
       // previous block and are compared by their content.
       let start: number;
@@ -156,17 +160,36 @@ export class MarkdownStreamReconciler {
       }
       const old = previous.get(start);
 
-      if (!force && streaming && index < settledCount && old?.text === text) {
+      if (
+        !force &&
+        streaming &&
+        index < settledCount &&
+        old?.settled &&
+        old.text === text
+      ) {
         return old;
       }
+      const settled = index < settledCount;
       this.renderer.startBlock(old?.components);
-      const nodes = this.renderer.renderBlock(child, root);
+      const nodes = this.renderer.renderBlock(child, root, settled);
       const components = this.renderer.finishBlock();
       if (old) {
         reuseCodeBlocks(old.nodes, nodes);
       }
-      return { start, text, nodes, components };
+      return { start, text, nodes, components, settled };
     });
+
+    const footnotes = this.renderer.renderFootnotes();
+    if (footnotes.length > 0) {
+      blocks.push({
+        start: FOOTNOTES_KEY,
+        text: '',
+        nodes: footnotes,
+        components: [],
+        settled: false,
+      });
+    }
+    return blocks;
   }
 
   private patch(next: RenderedBlock[], streaming: boolean) {

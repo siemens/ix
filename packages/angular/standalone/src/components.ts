@@ -1934,14 +1934,14 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMarkdown,
-  inputs: ['markdown', 'options', 'streaming']
+  inputs: ['i18nCopyTable', 'i18nDownloadTable', 'markdown', 'options', 'streaming']
 })
 @Component({
   selector: 'ix-markdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['markdown', 'options', 'streaming'],
+  inputs: ['i18nCopyTable', 'i18nDownloadTable', 'markdown', 'options', 'streaming'],
   outputs: ['actionClick'],
 })
 export class IxMarkdown {

@@ -19,6 +19,9 @@
   --ix-markdown-blockquote--color: #{sys.$si-sys-color-text-secondary};
   --ix-markdown-code--background-color: #{sys.$si-sys-color-background-3};
   --ix-markdown-code--border-color: #{sys.$si-sys-color-border-3};
+  --ix-markdown-table--border-color: #{sys.$si-sys-color-border-3};
+  --ix-markdown-table-header--background-color: #{sys.$si-sys-color-background-3};
+  --ix-markdown-table-header--color: #{sys.$si-sys-color-text-primary};
 }
 
 :host {
@@ -41,5 +44,10 @@
   --ix-markdown-code--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-markdown-code--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-markdown-code-block--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-70};
+  --ix-markdown-table-header--font: #{sys.$si-sys-typography-body-sbold};
+  --ix-markdown-table--font: #{sys.$si-sys-typography-body-paragraph};
+  --ix-markdown-table--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-markdown-table-cell--padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-markdown-table-actions--gap: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-markdown-link--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }

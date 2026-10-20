@@ -32,6 +32,8 @@ export type MarkdownAction = {
  */
 const SCOPE_CLASS = 'sc-ix-markdown';
 
+let instanceCounter = 0;
+
 /**
  * Renders Markdown with iX look and feel. Raw HTML is shown as text,
  * only `<br>` becomes a line break. Links are limited to http(s), mailto and
@@ -73,10 +75,23 @@ export class Markdown {
    */
   @Event() actionClick!: EventEmitter<MarkdownAction>;
 
+  /**
+   * Accessible name of the button that copies a table as CSV.
+   */
+  @Prop({ attribute: 'i18n-copy-table' }) i18nCopyTable = 'Copy table as CSV';
+
+  /**
+   * Accessible name of the button that downloads a table as CSV file.
+   */
+  @Prop({ attribute: 'i18n-download-table' }) i18nDownloadTable =
+    'Download table as CSV';
+
+  private readonly idPrefix = `ix-markdown-${instanceCounter++}-`;
   private reconciler?: MarkdownStreamReconciler;
   private renderedMarkdown?: string;
   private renderedOptions?: MarkdownOptions;
   private renderedStreaming?: boolean;
+  private renderedLabels?: string;
   private frame?: number;
   private resolved?: ReturnType<typeof resolveMarkdownOptions>;
   private parser?: ReturnType<typeof createMarkdownParser>;
@@ -120,8 +135,13 @@ export class Markdown {
     return (
       this.renderedMarkdown !== this.markdown ||
       this.renderedOptions !== this.options ||
-      this.renderedStreaming !== this.streaming
+      this.renderedStreaming !== this.streaming ||
+      this.renderedLabels !== this.labelsKey()
     );
+  }
+
+  private labelsKey() {
+    return JSON.stringify([this.i18nCopyTable, this.i18nDownloadTable]);
   }
 
   private renderMarkdown() {
@@ -139,6 +159,9 @@ export class Markdown {
       parse: this.parser,
       emitAction: (name, attributes) =>
         this.actionClick.emit({ name, attributes }),
+      i18nCopyTable: this.i18nCopyTable,
+      i18nDownloadTable: this.i18nDownloadTable,
+      idPrefix: this.idPrefix,
     });
     if (!this.reconciler) {
       this.reconciler = new MarkdownStreamReconciler(
@@ -150,11 +173,13 @@ export class Markdown {
     this.reconciler.update(
       this.markdown ?? '',
       this.streaming,
-      this.renderedOptions !== this.options
+      this.renderedOptions !== this.options ||
+        this.renderedLabels !== this.labelsKey()
     );
     this.renderedMarkdown = this.markdown;
     this.renderedOptions = this.options;
     this.renderedStreaming = this.streaming;
+    this.renderedLabels = this.labelsKey();
   }
 
   render() {
