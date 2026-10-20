@@ -43,6 +43,7 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { MarkdownOptions } from "./components/markdown/markdown";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -100,6 +101,7 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { MarkdownOptions } from "./components/markdown/markdown";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
@@ -3106,6 +3108,10 @@ export namespace Components {
           * @default ''
          */
         "markdown": string;
+        /**
+          * Options for rendering, e.g. a `highlight` hook for fenced code.
+         */
+        "options"?: MarkdownOptions;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -11428,6 +11434,10 @@ declare namespace LocalJSX {
           * @default ''
          */
         "markdown"?: string;
+        /**
+          * Options for rendering, e.g. a `highlight` hook for fenced code.
+         */
+        "options"?: MarkdownOptions;
     }
     /**
      * Primary side navigation menu of the application shell.

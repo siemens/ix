@@ -22,6 +22,7 @@ import remarkDirective from 'remark-directive';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
+import type { CodeBlockHighlight } from '../code-block/code-block.types';
 import { isSafeImageUrl, isSafeLinkUrl } from './markdown-url';
 
 const processor = unified()
@@ -46,6 +47,13 @@ const DIRECTIVE_MARKERS: Record<DirectiveNode['type'], string> = {
 export const parseMarkdown = (markdown: string): Root =>
   processor.runSync(processor.parse(markdown)) as Root;
 
+export type MarkdownRendererOptions = {
+  /** Syntax highlighter handed to rendered code blocks. */
+  highlight?: CodeBlockHighlight;
+};
+
+const FILENAME_META = /\[([^\]]+)\]/;
+
 /**
  * Converts Markdown into DOM nodes without ever assigning HTML strings.
  * Every created element receives `scopeClass` so scoped component styles apply.
@@ -56,7 +64,8 @@ export class MarkdownRenderer {
 
   constructor(
     private readonly document: Document,
-    private readonly scopeClass: string
+    private readonly scopeClass: string,
+    private readonly options: MarkdownRendererOptions = {}
   ) {}
 
   render(markdown: string): DocumentFragment {
@@ -151,7 +160,7 @@ export class MarkdownRenderer {
       case 'listItem':
         return this.withChildren(this.createElement('li'), node, tight);
       case 'code':
-        return this.renderCode(node.value);
+        return this.renderCode(node.value, node.lang, node.meta);
       case 'text':
         return this.text(node.value);
       case 'emphasis':
@@ -197,12 +206,24 @@ export class MarkdownRenderer {
     return this.withChildren(list, node, tight);
   }
 
-  private renderCode(value: string): HTMLElement {
-    const pre = this.createElement('pre');
-    const code = this.createElement('code');
-    code.textContent = value;
-    pre.appendChild(code);
-    return pre;
+  private renderCode(
+    value: string,
+    language?: string | null,
+    meta?: string | null
+  ): HTMLElement {
+    const block = this.document.createElement('ix-code-block');
+    block.code = value;
+    if (language) {
+      block.language = language;
+    }
+    const filename = meta?.match(FILENAME_META)?.[1];
+    if (filename) {
+      block.filename = filename;
+    }
+    if (this.options.highlight) {
+      block.highlight = this.options.highlight;
+    }
+    return block;
   }
 
   private renderLink(

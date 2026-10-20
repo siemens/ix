@@ -6146,6 +6146,15 @@
           "optional": false,
           "required": false,
           "deprecated": false
+        },
+        {
+          "name": "options",
+          "type": "undefined | { highlight?: CodeBlockHighlight | undefined; }",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
         }
       ],
       "methods": [],
