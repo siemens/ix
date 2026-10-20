@@ -175,7 +175,7 @@ regressionTest('renders block quotes', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'renders fenced code as preformatted text',
+  'renders fenced code as ix-code-block with language and code',
   async ({ mount, page }) => {
     const markdown = await renderMarkdown(
       mount,
@@ -183,8 +183,66 @@ regressionTest(
       '```html\n<b>not bold</b>\n```'
     );
 
-    await expect(markdown.locator('pre > code')).toHaveText('<b>not bold</b>');
+    const block = markdown.locator('ix-code-block');
+    await expect(block).toHaveCount(1);
+    await expect(block).toHaveJSProperty('code', '<b>not bold</b>');
+    await expect(block).toHaveJSProperty('language', 'html');
     await expect(markdown.locator('b')).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'uses the filename from the fence meta',
+  async ({ mount, page }) => {
+    const markdown = await renderMarkdown(
+      mount,
+      page,
+      '```ts [app.ts]\nconst a = 1;\n```'
+    );
+
+    const block = markdown.locator('ix-code-block');
+    await expect(block).toHaveJSProperty('language', 'ts');
+    await expect(block).toHaveJSProperty('filename', 'app.ts');
+  }
+);
+
+regressionTest(
+  'passes options.highlight to the code block',
+  async ({ mount, page }) => {
+    await mount(`<ix-markdown></ix-markdown>`);
+    const markdown = page.locator('ix-markdown');
+    await expect(markdown).toHaveAttribute('hydrated');
+    await markdown.evaluate((el: HTMLIxMarkdownElement) => {
+      el.options = {
+        highlight: (code) => {
+          const mark = document.createElement('mark');
+          mark.textContent = code;
+          return mark;
+        },
+      };
+      el.markdown = '```js\nlet x\n```';
+    });
+
+    await expect(markdown.locator('ix-code-block mark')).toHaveText('let x');
+  }
+);
+
+regressionTest(
+  'updates an unclosed fence in place',
+  async ({ mount, page }) => {
+    const markdown = await renderMarkdown(mount, page, '```js\nlet x');
+    const block = markdown.locator('ix-code-block');
+    await expect(block).toHaveJSProperty('code', 'let x');
+    await block.evaluate((el) => {
+      (el as HTMLElement & { __marker?: boolean }).__marker = true;
+    });
+
+    await markdown.evaluate((el: HTMLIxMarkdownElement) => {
+      el.markdown = '```js\nlet x = 1;\nlet y';
+    });
+
+    await expect(block).toHaveJSProperty('code', 'let x = 1;\nlet y');
+    await expect(block).toHaveJSProperty('__marker', true);
   }
 );
 
