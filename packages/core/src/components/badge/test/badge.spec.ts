@@ -79,7 +79,12 @@ describe('formatBadgeLabel', () => {
 });
 
 describe('badge.status-icon', () => {
-  const unsupportedVariants = ['accent', 'caution', 'neutral', 'custom'] as const;
+  const unsupportedVariants = [
+    'accent',
+    'caution',
+    'neutral',
+    'custom',
+  ] as const;
 
   it.each([
     ['danger', iconAlarmFilled, iconAlarm, iconCircleFilled],
