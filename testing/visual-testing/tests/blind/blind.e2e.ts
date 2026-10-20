@@ -46,7 +46,7 @@ regressionTest.describe('blind', () => {
   regressionTest('should no hover on slot', async ({ mount, page }) => {
     await mount(
       `
-      <ix-blind outline="false" label="Example label" style="width: 25rem">
+      <ix-blind label="Example label" style="width: 25rem">
           <ix-button
             variant="tertiary"
             data-testid="slot"
