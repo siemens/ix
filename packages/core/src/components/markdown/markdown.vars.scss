@@ -1,0 +1,45 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-markdown--color: #{sys.$si-sys-color-text-primary};
+  --ix-markdown-link--color: #{sys.$si-sys-color-text-accent};
+  --ix-markdown-link--color--hover: #{sys.$si-sys-color-text-accent-hover};
+  --ix-markdown-link--color--active: #{sys.$si-sys-color-text-accent-active};
+  --ix-markdown-link--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-markdown-blockquote--border-color: #{sys.$si-sys-color-border-3};
+  --ix-markdown-blockquote--color: #{sys.$si-sys-color-text-secondary};
+  --ix-markdown-code--background-color: #{sys.$si-sys-color-background-3};
+  --ix-markdown-code--border-color: #{sys.$si-sys-color-border-3};
+}
+
+:host {
+  --ix-markdown--font: #{sys.$si-sys-typography-body-paragraph};
+  --ix-markdown-heading-1--font: #{sys.$si-sys-typography-h3};
+  --ix-markdown-heading-2--font: #{sys.$si-sys-typography-h4};
+  --ix-markdown-heading-3--font: #{sys.$si-sys-typography-h5};
+  --ix-markdown-heading-4--font: #{sys.$si-sys-typography-body-sbold};
+  --ix-markdown-heading-5--font: #{sys.$si-sys-typography-body-sbold};
+  --ix-markdown-heading-6--font: #{sys.$si-sys-typography-body-sbold};
+  --ix-markdown-code--font: #{sys.$si-sys-typography-code};
+
+  --ix-markdown-block--gap: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-markdown-heading--margin-top: #{sys.$si-sys-sizing-spacing-y-70};
+  --ix-markdown-list--padding-inline-start: #{sys.$si-sys-sizing-spacing-x-90};
+  --ix-markdown-list-item--gap: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-markdown-blockquote--border-width: #{sys.$si-sys-sizing-border-width-emphasis};
+  --ix-markdown-blockquote--padding-inline-start: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-markdown-inline-code--padding-x: #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-markdown-code--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-markdown-code--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-markdown-code-block--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-70};
+  --ix-markdown-link--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+}

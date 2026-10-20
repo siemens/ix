@@ -683,6 +683,29 @@ export declare interface IxChip extends Components.IxChip {
 
 
 @ProxyCmp({
+  inputs: ['code', 'filename', 'highlight', 'i18nCopied', 'i18nCopy', 'language']
+})
+@Component({
+  selector: 'ix-code-block',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['code', 'filename', 'highlight', 'i18nCopied', 'i18nCopy', 'language'],
+  standalone: false
+})
+export class IxCodeBlock {
+  protected el: HTMLIxCodeBlockElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCodeBlock extends Components.IxCodeBlock {}
+
+
+@ProxyCmp({
   inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm']
 })
 @Component({
@@ -1794,6 +1817,29 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
+  inputs: ['markdown']
+})
+@Component({
+  selector: 'ix-markdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['markdown'],
+  standalone: false
+})
+export class IxMarkdown {
+  protected el: HTMLIxMarkdownElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxMarkdown extends Components.IxMarkdown {}
 
 
 @ProxyCmp({

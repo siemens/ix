@@ -37,6 +37,7 @@ import { IxChat as IxChatElement } from "@siemens/ix/components/ix-chat.js";
 import { IxCheckboxGroup as IxCheckboxGroupElement } from "@siemens/ix/components/ix-checkbox-group.js";
 import { IxCheckbox as IxCheckboxElement } from "@siemens/ix/components/ix-checkbox.js";
 import { IxChip as IxChipElement } from "@siemens/ix/components/ix-chip.js";
+import { IxCodeBlock as IxCodeBlockElement } from "@siemens/ix/components/ix-code-block.js";
 import { IxCol as IxColElement } from "@siemens/ix/components/ix-col.js";
 import { IxContentHeader as IxContentHeaderElement } from "@siemens/ix/components/ix-content-header.js";
 import { IxContent as IxContentElement } from "@siemens/ix/components/ix-content.js";
@@ -74,6 +75,7 @@ import { IxKpi as IxKpiElement } from "@siemens/ix/components/ix-kpi.js";
 import { IxLayoutAuto as IxLayoutAutoElement } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement } from "@siemens/ix/components/ix-link-button.js";
+import { IxMarkdown as IxMarkdownElement } from "@siemens/ix/components/ix-markdown.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement } from "@siemens/ix/components/ix-menu-about-item.js";
 import { IxMenuAboutNews as IxMenuAboutNewsElement } from "@siemens/ix/components/ix-menu-about-news.js";
 import { IxMenuAbout as IxMenuAboutElement } from "@siemens/ix/components/ix-menu-about.js";
@@ -561,6 +563,22 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents, Componen
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChip as StencilReactComponent<IxChipElement, IxChipEvents, Components.IxChip>,
+    serializeShadowRoot
+});
+
+export type IxCodeBlockEvents = NonNullable<unknown>;
+
+export const IxCodeBlock: StencilReactComponent<IxCodeBlockElement, IxCodeBlockEvents, Components.IxCodeBlock> = /*@__PURE__*/ createComponent<IxCodeBlockElement, IxCodeBlockEvents, Components.IxCodeBlock>({
+    tagName: 'ix-code-block',
+    properties: {
+        code: 'code',
+        language: 'language',
+        filename: 'filename',
+        i18nCopy: 'i18n-copy',
+        i18nCopied: 'i18n-copied'
+    },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxCodeBlock as StencilReactComponent<IxCodeBlockElement, IxCodeBlockEvents, Components.IxCodeBlock>,
     serializeShadowRoot
 });
 
@@ -1291,6 +1309,16 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxLinkButton as StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents, Components.IxLinkButton>,
+    serializeShadowRoot
+});
+
+export type IxMarkdownEvents = NonNullable<unknown>;
+
+export const IxMarkdown: StencilReactComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown> = /*@__PURE__*/ createComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown>({
+    tagName: 'ix-markdown',
+    properties: { markdown: 'markdown' },
+    hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
+    clientModule: clientComponents.IxMarkdown as StencilReactComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown>,
     serializeShadowRoot
 });
 

@@ -20,6 +20,7 @@ import { LogicalFilterOperator } from "./components/category-filter/logical-filt
 import { InputState } from "./components/category-filter/input-state";
 import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
+import { CodeBlockHighlight } from "./components/code-block/code-block.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -76,6 +77,7 @@ export { LogicalFilterOperator } from "./components/category-filter/logical-filt
 export { InputState } from "./components/category-filter/input-state";
 export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
+export { CodeBlockHighlight } from "./components/code-block/code-block.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -1141,6 +1143,38 @@ export namespace Components {
           * @default 'primary'
          */
         "variant": ChipVariant;
+    }
+    /**
+     * @since 6.1.0
+     */
+    interface IxCodeBlock {
+        /**
+          * The code to display.
+          * @default ''
+         */
+        "code": string;
+        /**
+          * Optional filename, shown as a chip in the header.
+         */
+        "filename"?: string;
+        /**
+          * Optional syntax highlighter. Receives the code and language and returns a DOM node that replaces the plain code body. HTML strings are not supported.
+         */
+        "highlight"?: CodeBlockHighlight;
+        /**
+          * Label announced and shown after the code was copied.
+          * @default 'Copied'
+         */
+        "i18nCopied": string;
+        /**
+          * Accessible label of the copy button.
+          * @default 'Copy code'
+         */
+        "i18nCopy": string;
+        /**
+          * Language of the code, shown as a label in the header.
+         */
+        "language"?: string;
     }
     /**
      * Column within the responsive layout grid.
@@ -3059,6 +3093,19 @@ export namespace Components {
           * Url for the link button
          */
         "url"?: string;
+    }
+    /**
+     * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+     * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+     * relative URLs, images to http(s) URLs.
+     * @since 6.1.0
+     */
+    interface IxMarkdown {
+        /**
+          * Markdown source to render.
+          * @default ''
+         */
+        "markdown": string;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -6354,6 +6401,15 @@ declare global {
         new (): HTMLIxChipElement;
     };
     /**
+     * @since 6.1.0
+     */
+    interface HTMLIxCodeBlockElement extends Components.IxCodeBlock, HTMLStencilElement {
+    }
+    var HTMLIxCodeBlockElement: {
+        prototype: HTMLIxCodeBlockElement;
+        new (): HTMLIxCodeBlockElement;
+    };
+    /**
      * Column within the responsive layout grid.
      * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
      */
@@ -7016,6 +7072,18 @@ declare global {
     var HTMLIxLinkButtonElement: {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
+    };
+    /**
+     * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+     * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+     * relative URLs, images to http(s) URLs.
+     * @since 6.1.0
+     */
+    interface HTMLIxMarkdownElement extends Components.IxMarkdown, HTMLStencilElement {
+    }
+    var HTMLIxMarkdownElement: {
+        prototype: HTMLIxMarkdownElement;
+        new (): HTMLIxMarkdownElement;
     };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
@@ -8102,6 +8170,7 @@ declare global {
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
+        "ix-code-block": HTMLIxCodeBlockElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
@@ -8143,6 +8212,7 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
+        "ix-markdown": HTMLIxMarkdownElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -9320,6 +9390,38 @@ declare namespace LocalJSX {
           * @default 'primary'
          */
         "variant"?: ChipVariant;
+    }
+    /**
+     * @since 6.1.0
+     */
+    interface IxCodeBlock {
+        /**
+          * The code to display.
+          * @default ''
+         */
+        "code"?: string;
+        /**
+          * Optional filename, shown as a chip in the header.
+         */
+        "filename"?: string;
+        /**
+          * Optional syntax highlighter. Receives the code and language and returns a DOM node that replaces the plain code body. HTML strings are not supported.
+         */
+        "highlight"?: CodeBlockHighlight;
+        /**
+          * Label announced and shown after the code was copied.
+          * @default 'Copied'
+         */
+        "i18nCopied"?: string;
+        /**
+          * Accessible label of the copy button.
+          * @default 'Copy code'
+         */
+        "i18nCopy"?: string;
+        /**
+          * Language of the code, shown as a label in the header.
+         */
+        "language"?: string;
     }
     /**
      * Column within the responsive layout grid.
@@ -11313,6 +11415,19 @@ declare namespace LocalJSX {
           * Url for the link button
          */
         "url"?: string;
+    }
+    /**
+     * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+     * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+     * relative URLs, images to http(s) URLs.
+     * @since 6.1.0
+     */
+    interface IxMarkdown {
+        /**
+          * Markdown source to render.
+          * @default ''
+         */
+        "markdown"?: string;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -14299,6 +14414,13 @@ declare namespace LocalJSX {
         "centerContent": boolean;
         "ariaLabelCloseButton": string;
     }
+    interface IxCodeBlockAttributes {
+        "code": string;
+        "language": string;
+        "filename": string;
+        "i18nCopy": string;
+        "i18nCopied": string;
+    }
     interface IxColAttributes {
         "size": ColumnSize;
         "sizeSm": ColumnSize;
@@ -14688,6 +14810,9 @@ declare namespace LocalJSX {
         "target": '_self' | '_blank' | '_parent' | '_top';
         "icon": 'none' | 'internal' | 'external' | 'file' | 'action';
         "iconPosition": 'start' | 'end';
+    }
+    interface IxMarkdownAttributes {
+        "markdown": string;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;
@@ -15258,6 +15383,7 @@ declare namespace LocalJSX {
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
+        "ix-code-block": Omit<IxCodeBlock, keyof IxCodeBlockAttributes> & { [K in keyof IxCodeBlock & keyof IxCodeBlockAttributes]?: IxCodeBlock[K] } & { [K in keyof IxCodeBlock & keyof IxCodeBlockAttributes as `attr:${K}`]?: IxCodeBlockAttributes[K] } & { [K in keyof IxCodeBlock & keyof IxCodeBlockAttributes as `prop:${K}`]?: IxCodeBlock[K] };
         "ix-col": Omit<IxCol, keyof IxColAttributes> & { [K in keyof IxCol & keyof IxColAttributes]?: IxCol[K] } & { [K in keyof IxCol & keyof IxColAttributes as `attr:${K}`]?: IxColAttributes[K] } & { [K in keyof IxCol & keyof IxColAttributes as `prop:${K}`]?: IxCol[K] };
         "ix-content": IxContent;
         "ix-content-header": Omit<IxContentHeader, keyof IxContentHeaderAttributes> & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes]?: IxContentHeader[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `attr:${K}`]?: IxContentHeaderAttributes[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `prop:${K}`]?: IxContentHeader[K] };
@@ -15299,6 +15425,7 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": Omit<IxLayoutGrid, keyof IxLayoutGridAttributes> & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes]?: IxLayoutGrid[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `attr:${K}`]?: IxLayoutGridAttributes[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `prop:${K}`]?: IxLayoutGrid[K] };
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
+        "ix-markdown": Omit<IxMarkdown, keyof IxMarkdownAttributes> & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes]?: IxMarkdown[K] } & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes as `attr:${K}`]?: IxMarkdownAttributes[K] } & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes as `prop:${K}`]?: IxMarkdown[K] };
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -15513,6 +15640,10 @@ declare module "@stencil/core" {
              * @figma-main-component-id 286:1758
              */
             "ix-chip": LocalJSX.IntrinsicElements["ix-chip"] & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            /**
+             * @since 6.1.0
+             */
+            "ix-code-block": LocalJSX.IntrinsicElements["ix-code-block"] & JSXBase.HTMLAttributes<HTMLIxCodeBlockElement>;
             /**
              * Column within the responsive layout grid.
              * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
@@ -15751,6 +15882,13 @@ declare module "@stencil/core" {
              * @figma-main-component-id 107603:15976
              */
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+             * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+             * relative URLs, images to http(s) URLs.
+             * @since 6.1.0
+             */
+            "ix-markdown": LocalJSX.IntrinsicElements["ix-markdown"] & JSXBase.HTMLAttributes<HTMLIxMarkdownElement>;
             /**
              * Primary side navigation menu of the application shell.
              * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md

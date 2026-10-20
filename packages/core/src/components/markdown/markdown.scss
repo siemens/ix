@@ -1,0 +1,139 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use './markdown.vars';
+
+:host {
+  display: block;
+  min-width: 0;
+  color: var(--ix-markdown--color);
+  font: var(--ix-markdown--font);
+  overflow-wrap: anywhere;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: var(--ix-markdown-block--gap);
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  pre {
+    margin-top: 0;
+    margin-bottom: var(--ix-markdown-block--gap);
+  }
+
+  :is(p, blockquote, ul, ol, pre, li):last-child {
+    margin-bottom: 0;
+  }
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    margin: var(--ix-markdown-heading--margin-top) 0
+      var(--ix-markdown-block--gap);
+  }
+
+  > :is(h1, h2, h3, h4, h5, h6):first-child {
+    margin-top: 0;
+  }
+
+  .heading-1 {
+    font: var(--ix-markdown-heading-1--font);
+  }
+
+  .heading-2 {
+    font: var(--ix-markdown-heading-2--font);
+  }
+
+  .heading-3 {
+    font: var(--ix-markdown-heading-3--font);
+  }
+
+  .heading-4 {
+    font: var(--ix-markdown-heading-4--font);
+  }
+
+  .heading-5 {
+    font: var(--ix-markdown-heading-5--font);
+  }
+
+  .heading-6 {
+    font: var(--ix-markdown-heading-6--font);
+  }
+
+  ul,
+  ol {
+    padding-inline-start: var(--ix-markdown-list--padding-inline-start);
+  }
+
+  li + li {
+    margin-top: var(--ix-markdown-list-item--gap);
+  }
+
+  li > :is(ul, ol) {
+    margin-top: var(--ix-markdown-list-item--gap);
+    margin-bottom: 0;
+  }
+
+  blockquote {
+    margin-inline: 0;
+    padding-inline-start: var(--ix-markdown-blockquote--padding-inline-start);
+    border-inline-start: var(--ix-markdown-blockquote--border-width) solid
+      var(--ix-markdown-blockquote--border-color);
+    color: var(--ix-markdown-blockquote--color);
+  }
+
+  a {
+    color: var(--ix-markdown-link--color);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--ix-markdown-link--color--hover);
+    }
+
+    &:active {
+      color: var(--ix-markdown-link--color--active);
+    }
+
+    &:focus-visible {
+      outline: var(--ix-markdown-link--outline-width--focus) solid
+        var(--ix-markdown-link--outline-color--focus);
+    }
+  }
+
+  code {
+    font: var(--ix-markdown-code--font);
+  }
+
+  .inline-code {
+    padding: 0 var(--ix-markdown-inline-code--padding-x);
+    border: var(--ix-markdown-code--border-width) solid
+      var(--ix-markdown-code--border-color);
+    border-radius: var(--ix-markdown-code--border-radius);
+    background-color: var(--ix-markdown-code--background-color);
+  }
+
+  pre {
+    padding: var(--ix-markdown-code-block--padding);
+    overflow: auto;
+    border: var(--ix-markdown-code--border-width) solid
+      var(--ix-markdown-code--border-color);
+    border-radius: var(--ix-markdown-code--border-radius);
+    background-color: var(--ix-markdown-code--background-color);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

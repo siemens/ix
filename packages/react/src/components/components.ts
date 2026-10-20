@@ -36,6 +36,7 @@ import { IxChat as IxChatElement, defineCustomElement as defineIxChat } from "@s
 import { IxCheckboxGroup as IxCheckboxGroupElement, defineCustomElement as defineIxCheckboxGroup } from "@siemens/ix/components/ix-checkbox-group.js";
 import { IxCheckbox as IxCheckboxElement, defineCustomElement as defineIxCheckbox } from "@siemens/ix/components/ix-checkbox.js";
 import { IxChip as IxChipElement, defineCustomElement as defineIxChip } from "@siemens/ix/components/ix-chip.js";
+import { IxCodeBlock as IxCodeBlockElement, defineCustomElement as defineIxCodeBlock } from "@siemens/ix/components/ix-code-block.js";
 import { IxCol as IxColElement, defineCustomElement as defineIxCol } from "@siemens/ix/components/ix-col.js";
 import { IxContentHeader as IxContentHeaderElement, defineCustomElement as defineIxContentHeader } from "@siemens/ix/components/ix-content-header.js";
 import { IxContent as IxContentElement, defineCustomElement as defineIxContent } from "@siemens/ix/components/ix-content.js";
@@ -73,6 +74,7 @@ import { IxKpi as IxKpiElement, defineCustomElement as defineIxKpi } from "@siem
 import { IxLayoutAuto as IxLayoutAutoElement, defineCustomElement as defineIxLayoutAuto } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement, defineCustomElement as defineIxLayoutGrid } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement, defineCustomElement as defineIxLinkButton } from "@siemens/ix/components/ix-link-button.js";
+import { IxMarkdown as IxMarkdownElement, defineCustomElement as defineIxMarkdown } from "@siemens/ix/components/ix-markdown.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement, defineCustomElement as defineIxMenuAboutItem } from "@siemens/ix/components/ix-menu-about-item.js";
 import { IxMenuAboutNews as IxMenuAboutNewsElement, defineCustomElement as defineIxMenuAboutNews } from "@siemens/ix/components/ix-menu-about-news.js";
 import { IxMenuAbout as IxMenuAboutElement, defineCustomElement as defineIxMenuAbout } from "@siemens/ix/components/ix-menu-about.js";
@@ -430,6 +432,17 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents, Componen
     react: React,
     events: { onCloseChip: 'closeChip' } as IxChipEvents,
     defineCustomElement: defineIxChip
+});
+
+export type IxCodeBlockEvents = NonNullable<unknown>;
+
+export const IxCodeBlock: StencilReactComponent<IxCodeBlockElement, IxCodeBlockEvents, Components.IxCodeBlock> = /*@__PURE__*/ createComponent<IxCodeBlockElement, IxCodeBlockEvents, Components.IxCodeBlock>({
+    tagName: 'ix-code-block',
+    elementClass: IxCodeBlockElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxCodeBlockEvents,
+    defineCustomElement: defineIxCodeBlock
 });
 
 export type IxColEvents = NonNullable<unknown>;
@@ -903,6 +916,17 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     react: React,
     events: {} as IxLinkButtonEvents,
     defineCustomElement: defineIxLinkButton
+});
+
+export type IxMarkdownEvents = NonNullable<unknown>;
+
+export const IxMarkdown: StencilReactComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown> = /*@__PURE__*/ createComponent<IxMarkdownElement, IxMarkdownEvents, Components.IxMarkdown>({
+    tagName: 'ix-markdown',
+    elementClass: IxMarkdownElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxMarkdownEvents,
+    defineCustomElement: defineIxMarkdown
 });
 
 export type IxMenuEvents = {

@@ -2206,6 +2206,80 @@
       "cssStates": []
     },
     {
+      "tag": "ix-code-block",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "code",
+          "attribute": "code",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "''",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "filename",
+          "attribute": "filename",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "highlight",
+          "type": "((code: string, language?: string | undefined) => Node) | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nCopied",
+          "attribute": "i18n-copied",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Copied'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nCopy",
+          "attribute": "i18n-copy",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Copy code'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "language",
+          "attribute": "language",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
       "tag": "ix-col",
       "deprecated": false,
       "properties": [
@@ -6055,6 +6129,29 @@
       "slots": [
         "default"
       ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-markdown",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "markdown",
+          "attribute": "markdown",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "''",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [],
       "cssParts": [],
       "cssStates": []
     },
