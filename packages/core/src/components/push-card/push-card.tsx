@@ -8,7 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
-import type { PushCardVariant } from './push-card.types';
+import type { StatusVariant } from '../utils/status.types';
 
 /**
  * Card that highlights a notification or push message with an icon and value.
@@ -53,9 +53,18 @@ export class PushCard {
   @Prop() subheading?: string;
 
   /**
-   * Card variant
+   * Card status variant
    */
-  @Prop() variant: PushCardVariant = 'outline';
+  @Prop() variant: StatusVariant = 'base';
+
+  /**
+   * Show the card with outline chrome.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses a filled surface; status variants then show a top color strip.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   /**
    * Expand the card
@@ -63,21 +72,31 @@ export class PushCard {
   @Prop() expanded: boolean = false;
 
   /**
-   * If true, disables hover and active styles and changes cursor to default
+   * Enable pointer interaction on the upper card region.
+   * Default is `false`; only the accordion control is interactive.
+   *
+   * @since 6.0.0
    */
-  @Prop() passive: boolean = false;
+  @Prop() clickable: boolean = false;
+
+  private get isOutline() {
+    return this.outline !== false;
+  }
 
   render() {
     return (
-      <Host class={`card-${this.variant}`}>
-        <ix-card variant={this.variant} passive={this.passive}>
+      <Host>
+        <ix-card
+          variant={this.variant}
+          outline={this.isOutline}
+          clickable={this.clickable}
+        >
           <ix-card-content>
             <ix-card-title>
               {this.icon ? (
                 <ix-icon
                   class={'icon'}
                   name={this.icon}
-                  size="32"
                   aria-label={this.ariaLabelIcon}
                 ></ix-icon>
               ) : null}
@@ -87,9 +106,11 @@ export class PushCard {
               <slot name="title-action"></slot>
             </ix-card-title>
             <ix-typography format="h4">{this.heading}</ix-typography>
-            <ix-typography>{this.subheading}</ix-typography>
+            <ix-typography format="body-paragraph" text-color="soft">
+              {this.subheading}
+            </ix-typography>
           </ix-card-content>
-          <ix-card-accordion collapse={!this.expanded} variant={this.variant}>
+          <ix-card-accordion collapse={!this.expanded} outline={this.isOutline}>
             <slot></slot>
           </ix-card-accordion>
         </ix-card>
