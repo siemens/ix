@@ -145,6 +145,10 @@ export class DropdownController {
         'dropdown'
       );
       this.registry.dismissChildren(dropdown.getId());
+      this.overlayCoordinator.dismissSameTypeChildren(
+        this.getOverlayKey(dropdown),
+        'dropdown'
+      );
       dropdown.dismiss();
       this.registry.deleteChildIdsEntry(dropdown.getId());
     }

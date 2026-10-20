@@ -343,7 +343,7 @@ export class Dropdown
     dropdownController.connected(this);
 
     if (this.trigger != undefined) {
-      this.registerListener(this.trigger);
+      void this.registerListener(this.trigger);
     }
   }
 
@@ -354,7 +354,7 @@ export class Dropdown
 
     const { detail } = event;
 
-    if (this.assignedSubmenu.indexOf(detail) === -1) {
+    if (!this.assignedSubmenu.includes(detail)) {
       this.assignedSubmenu.push(detail);
     }
   }
@@ -604,7 +604,7 @@ export class Dropdown
     } else if (!this.disableFocusHandling) {
       // Dropdown is already open - handle focus navigation
       if (this.callbackFocusElement) {
-        this.callbackFocusElement(event);
+        void this.callbackFocusElement(event);
       } else if (event.key === 'ArrowUp' || event.key === 'End') {
         focusLast(this.hostElement);
       } else {
@@ -674,7 +674,7 @@ export class Dropdown
     }
 
     this.addEventListenersFor();
-    this.discoverSubmenu();
+    void this.discoverSubmenu();
   }
 
   private addObserverForTriggerVisibility() {
@@ -782,8 +782,7 @@ export class Dropdown
     if (!newShow) {
       dropdownController.didDismiss(this);
       if (
-        this.triggerElement &&
-        this.triggerElement.ariaHasPopup === 'menu' &&
+        this.triggerElement?.ariaHasPopup === 'menu' &&
         this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
       ) {
         this.triggerElement.ariaExpanded = 'false';
@@ -811,8 +810,7 @@ export class Dropdown
     this.configureFocusTrap();
 
     if (
-      this.triggerElement &&
-      this.triggerElement.ariaHasPopup === 'menu' &&
+      this.triggerElement?.ariaHasPopup === 'menu' &&
       this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
     ) {
       this.triggerElement.ariaExpanded = 'true';
@@ -832,7 +830,7 @@ export class Dropdown
     }
 
     this.addObserverForTriggerVisibility();
-    this.applyDropdownPosition();
+    void this.applyDropdownPosition();
 
     if (this.movesFocusOnOpen()) {
       this.focusFirstItemOnOpen();
@@ -849,6 +847,27 @@ export class Dropdown
       !this.disableFocusHandling &&
       !this.callbackFocusElement
     );
+  }
+
+  /**
+   * Moving a visible dropdown (e.g. by another right-click) may have moved
+   * focus back to the element outside of the dropdown, so take it over again.
+   */
+  private refocusAfterMove() {
+    const activeElement = getDeepActiveElement();
+    if (
+      !this.movesFocusOnOpen() ||
+      !(activeElement instanceof HTMLElement) ||
+      this.isFocusLostOrInside()
+    ) {
+      return;
+    }
+
+    removeVisibleFocus();
+    void this.clearActiveDescendant();
+    this.clearRovingTabindexState();
+    this.focusReturnElement = activeElement;
+    this.focusFirstItemOnOpen();
   }
 
   private focusFirstItemOnOpen() {
@@ -924,7 +943,7 @@ export class Dropdown
   changedAnchorPosition() {
     if (this.show) {
       this.addObserverForTriggerVisibility();
-      this.applyDropdownPosition();
+      void this.applyDropdownPosition();
     }
   }
 
@@ -1041,7 +1060,7 @@ export class Dropdown
     const setupId = ++this.focusTrapSetupId;
 
     if (!this.disableFocusTrap && !this.isRovingTabindex) {
-      addFocusTrap(
+      void addFocusTrap(
         this.focusHost ?? this.hostElement,
         this.focusTrapOptions
       ).then((focusTrap) => {
@@ -1077,7 +1096,7 @@ export class Dropdown
       this.disposeKeyListener = undefined;
     }
 
-    this.registerListener(newTriggerValue);
+    void this.registerListener(newTriggerValue);
   }
 
   private applyFallbackPosition(element: HTMLElement) {
@@ -1167,51 +1186,66 @@ export class Dropdown
       return parentFocusTarget;
     }
 
-    const focusableElements = queryElements(
-      document.body,
-      focusableQueryString
-    ).filter(
-      (element) =>
-        closestPassShadow(element, 'ix-dropdown') === null &&
-        element.getClientRects().length > 0
-    );
-    const tabOrder = sortByTabOrder(focusableElements);
-    const triggerIndex = tabOrder.indexOf(trigger);
-    if (triggerIndex !== -1) {
-      return tabOrder[triggerIndex + (event.shiftKey ? -1 : 1)];
-    }
-
-    return this.getAdjacentInDocumentOrder(tabOrder, trigger, event.shiftKey);
+    return this.getAdjacentInTabOrder(trigger, event.shiftKey);
   }
 
   /**
-   * The trigger is not part of the document tab order if it lives in a shadow
-   * root (e.g. the inner button of `ix-button`) or is a host that delegates
-   * focus. Continue from the position of its host in the document instead.
+   * Continue the tab order from the given element within its own focus scope
+   * (shadow root or document). Only step out to the host of the scope if the
+   * element is at the edge of it, e.g. for the inner button of `ix-button`.
    */
-  private getAdjacentInDocumentOrder(
-    tabOrder: HTMLElement[],
-    trigger: HTMLElement | undefined,
+  private getAdjacentInTabOrder(
+    element: HTMLElement | undefined,
     backwards: boolean
   ) {
-    let host: Element | undefined = trigger;
-    let root = host?.getRootNode();
-    while (root instanceof ShadowRoot) {
-      host = root.host;
-      root = host.getRootNode();
+    let reference: Element | undefined = element;
+
+    while (reference?.isConnected) {
+      const root = reference.getRootNode();
+      const isShadowScope = root instanceof ShadowRoot;
+      const tabOrder = sortByTabOrder(
+        queryElements(
+          isShadowScope ? root : document.body,
+          focusableQueryString
+        ).filter(
+          (candidate) =>
+            closestPassShadow(candidate, 'ix-dropdown') === null &&
+            candidate.getClientRects().length > 0
+        )
+      );
+
+      const target = this.getAdjacentInScope(tabOrder, reference, backwards);
+      if (target || !isShadowScope) {
+        return target;
+      }
+
+      reference = root.host;
     }
 
-    if (!host?.isConnected) {
-      return undefined;
+    return undefined;
+  }
+
+  private getAdjacentInScope(
+    tabOrder: HTMLElement[],
+    reference: Element,
+    backwards: boolean
+  ) {
+    const index = tabOrder.indexOf(reference as HTMLElement);
+    if (index !== -1) {
+      return tabOrder[index + (backwards ? -1 : 1)];
     }
 
+    // The reference itself is not focusable (e.g. a host that delegates
+    // focus), so continue from its position in the scope instead
+    const root = reference.getRootNode();
     const position = backwards
       ? Node.DOCUMENT_POSITION_PRECEDING
       : Node.DOCUMENT_POSITION_FOLLOWING;
     const candidates = tabOrder.filter(
-      (element) =>
-        !host.contains(element) &&
-        (host.compareDocumentPosition(element) & position) !== 0
+      (candidate) =>
+        candidate.getRootNode() === root &&
+        !reference.contains(candidate) &&
+        (reference.compareDocumentPosition(candidate) & position) !== 0
     );
 
     return backwards ? candidates[candidates.length - 1] : candidates[0];
@@ -1245,7 +1279,7 @@ export class Dropdown
     this.resetForwardQueryElement();
 
     removeVisibleFocus();
-    this.clearActiveDescendant();
+    void this.clearActiveDescendant();
 
     if (this.suppressTriggerFocusOnHide) {
       this.suppressTriggerFocusOnHide = false;
@@ -1497,6 +1531,7 @@ export class Dropdown
 
     if (this.isPresent()) {
       this.changedAnchorPosition();
+      this.refocusAfterMove();
       return;
     }
 
@@ -1570,7 +1605,7 @@ export class Dropdown
         const activeTrigger = activeTriggers[0];
         activeTrigger.classList.remove('ix-dropdown-submenu-trigger-active');
 
-        (
+        void (
           parentDropdown.hostElement as HTMLIxDropdownElement
         ).resetForwardQueryElement();
 
@@ -1583,15 +1618,14 @@ export class Dropdown
 
   /**@internal */
   @Method()
-  async resetForwardQueryElement() {
+  resetForwardQueryElement() {
     this.forwardQueryElement = null;
   }
 
   override render() {
     const ariaAttributes: A11yAttributes = {};
     if (
-      this.triggerElement &&
-      this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
+      this.triggerElement?.tagName === 'IX-DROPDOWN-ITEM'
     ) {
       ariaAttributes['aria-labelledby'] = this.triggerElement.id;
       ariaAttributes['aria-owns'] = this.triggerElement.id;

@@ -648,6 +648,87 @@ regressionTest.describe('anchor position', () => {
       }
     );
 
+    regressionTest(
+      'keeps keyboard interaction when moved within the same input',
+      async ({ mount, page }) => {
+        await mount(html`
+          <input id="target" aria-label="Name" style="width: 400px" />
+          <ix-dropdown id="context-menu" role="menu">
+            <ix-dropdown-item label="Copy"></ix-dropdown-item>
+            <ix-dropdown-item label="Paste"></ix-dropdown-item>
+          </ix-dropdown>
+        `);
+        await openContextMenuOnRightClick(page, '#target');
+
+        const dropdown = page.locator('#context-menu');
+        await expect(dropdown).toHaveAttribute('hydrated');
+
+        const input = page.getByLabel('Name');
+        await input.click({ button: 'right', position: { x: 200, y: 5 } });
+        await expect(dropdown).toBeFocused();
+
+        await input.click({ button: 'right', position: { x: 10, y: 5 } });
+        await expect(dropdown).toBeVisible();
+        await expect(dropdown).toBeFocused();
+
+        const items = dropdown.locator('ix-dropdown-item');
+        await page.keyboard.press('ArrowDown');
+        await expect(items.nth(0)).toHaveClass(/ix-focused/);
+
+        await page.keyboard.press('Escape');
+        await expect(dropdown).not.toBeVisible();
+        await expect(input).toBeFocused();
+      }
+    );
+
+    regressionTest(
+      'closes with its containing dropdown',
+      async ({ mount, page }) => {
+        await mount(html`
+          <ix-button id="trigger">Open</ix-button>
+          <ix-dropdown id="parent" trigger="trigger">
+            <ix-dropdown-item label="Item"></ix-dropdown-item>
+            <ix-dropdown id="context-menu" role="menu">
+              <ix-dropdown-item label="Copy"></ix-dropdown-item>
+            </ix-dropdown>
+          </ix-dropdown>
+        `);
+
+        const parent = page.locator('#parent');
+        const contextMenu = page.locator('#context-menu');
+        await expect(contextMenu).toHaveAttribute('hydrated');
+        await page.evaluate(() => {
+          document
+            .querySelectorAll<HTMLIxDropdownElement>('ix-dropdown')
+            .forEach((dropdown) => (dropdown.closeBehavior = false));
+        });
+
+        const trigger = page.getByRole('button', { name: 'Open' });
+        await trigger.click();
+        await expect(parent).toBeVisible();
+
+        await contextMenu.evaluate((element: HTMLIxDropdownElement) =>
+          element.showAt(300, 200)
+        );
+        await expect(contextMenu).toBeVisible();
+
+        await trigger.click();
+        await expect(parent).not.toBeVisible();
+        await expect(contextMenu).not.toBeVisible();
+        await expect
+          .poll(() =>
+            contextMenu.evaluate(
+              (element: HTMLIxDropdownElement) => element.show
+            )
+          )
+          .toBe(false);
+
+        await trigger.click();
+        await expect(parent).toBeVisible();
+        await expect(contextMenu).not.toBeVisible();
+      }
+    );
+
     regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
       await mount(contextMenuFixture());
       await openContextMenuOnRightClick(page);
