@@ -1,0 +1,32 @@
+testing/visual-testing/tests/action-card/basic/index.html
+  h_c5a773bf2fda8b 55-60
+testing/visual-testing/tests/action-card/selected/index.html
+  h_c5a773bf2fda8b 57-63
+testing/visual-testing/tests/badge/counter/index.html
+  h_c5a773bf2fda8b 163-184
+testing/visual-testing/tests/badge/dot/index.html
+  h_c5a773bf2fda8b 163-184
+testing/visual-testing/tests/badge/label/index.html
+  h_c5a773bf2fda8b 175-199
+testing/visual-testing/tests/card-list/basic/index.html
+  h_c5a773bf2fda8b 73-79
+testing/visual-testing/tests/card-list/long-label/index.html
+  h_c5a773bf2fda8b 76-82
+testing/visual-testing/tests/chip/basic/index.html
+  h_c5a773bf2fda8b 70-79,113-115,147
+testing/visual-testing/tests/pill/basic/index.html
+  h_c5a773bf2fda8b 59-64,118-124
+testing/visual-testing/tests/push-card/basic/index.html
+  h_c5a773bf2fda8b 89-97
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "29bcc01967c0950df0ef93a60730cc36b1168fa2",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
