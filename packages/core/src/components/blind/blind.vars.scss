@@ -21,7 +21,6 @@ $blind-status-sys: (
 );
 
 :host {
-  --ix-blind-outline-header--background: transparent;
   --ix-blind-header--color: #{sys.$si-sys-color-text-primary};
   --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
   --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
