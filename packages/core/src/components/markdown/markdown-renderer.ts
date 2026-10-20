@@ -10,7 +10,6 @@
 import { iconCopy, iconDownload } from '@siemens/ix-icons/icons';
 import type {
   Definition,
-  FootnoteDefinition,
   FootnoteReference,
   Html,
   ImageReference,
@@ -35,6 +34,19 @@ import type {
   MarkdownComponents,
   MarkdownPlugin,
 } from './markdown.types';
+import {
+  collectFootnotes,
+  type FootnoteInfo,
+  type FootnoteReferenceInfo,
+} from './markdown-footnotes';
+import { normalizeIdentifier } from './markdown-identifier';
+import {
+  renderBuiltInDirective,
+  type DirectiveNode,
+} from './markdown-directives';
+import { textOf } from './markdown-text';
+import { LINE_BREAK_HTML } from './markdown-html';
+import { cellText, downloadCsv, toCsv } from './markdown-table';
 import { isSafeImageUrl, isSafeLinkUrl } from './markdown-url';
 
 const createProcessor = (plugins: MarkdownPlugin[] = []) =>
@@ -56,13 +68,7 @@ export const createMarkdownParser = (
   return (markdown) => processor.runSync(processor.parse(markdown)) as Root;
 };
 
-const LINE_BREAK_HTML = /^<br\s*\/?>$/i;
 const BLOCK_PARENTS = new Set(['root', 'blockquote', 'listItem']);
-
-type DirectiveNode = Extract<
-  Nodes,
-  { type: 'textDirective' | 'leafDirective' | 'containerDirective' }
->;
 
 const DIRECTIVE_MARKERS: Record<DirectiveNode['type'], string> = {
   textDirective: ':',
@@ -89,12 +95,6 @@ export type MarkdownRendererOptions = {
   idPrefix?: string;
 };
 
-type FootnoteInfo = {
-  number: number;
-  definition: FootnoteDefinition;
-  references: number;
-};
-
 /**
  * A mounted Custom component, kept across renders of the same block.
  */
@@ -107,49 +107,6 @@ export interface MountedComponent {
 type ComponentNode = Nodes & {
   name?: string;
   attributes?: Record<string, string | null | undefined> | null;
-};
-
-const textOf = (node: Nodes): string => {
-  if ('children' in node) {
-    return (node.children as Nodes[]).map(textOf).join('');
-  }
-  if (node.type === 'image') {
-    return node.alt ?? '';
-  }
-  return 'value' in node && typeof node.value === 'string' ? node.value : '';
-};
-
-/** Never copy event handler attributes onto mapped custom elements. */
-const CALLOUT_TYPES: Record<string, string> = {
-  info: 'info',
-  note: 'info',
-  success: 'success',
-  tip: 'success',
-  warning: 'warning',
-  caution: 'warning',
-  danger: 'alarm',
-  critical: 'critical',
-};
-
-const directiveAttributes = (node: ComponentNode) => {
-  const attributes: Record<string, string> = {};
-  for (const [key, value] of Object.entries(node.attributes ?? {})) {
-    attributes[key] = value ?? '';
-  }
-  return attributes;
-};
-
-/** Built-in Directives only receive the attributes they list. */
-const applyAllowedAttributes = (
-  element: HTMLElement,
-  attributes: Record<string, string>,
-  allowed: string[]
-) => {
-  for (const name of allowed) {
-    if (Object.hasOwn(attributes, name)) {
-      element.setAttribute(name, attributes[name]);
-    }
-  }
 };
 
 const isAllowedTagAttribute = (name: string) => !/^on/i.test(name);
@@ -195,7 +152,7 @@ export class MarkdownRenderer {
   private footnotes = new Map<string, FootnoteInfo>();
   private footnoteReferences = new WeakMap<
     FootnoteReference,
-    { number: number; index: number }
+    FootnoteReferenceInfo
   >();
 
   constructor(
@@ -295,41 +252,8 @@ export class MarkdownRenderer {
   }
 
   private collectFootnotes(root: Root) {
-    this.footnotes = new Map();
-    this.footnoteReferences = new WeakMap();
-    const definitions = new Map<string, FootnoteDefinition>();
-    const references: FootnoteReference[] = [];
-    const visit = (node: Nodes) => {
-      if (node.type === 'footnoteDefinition') {
-        const id = normalizeIdentifier(node.identifier);
-        if (!definitions.has(id)) {
-          definitions.set(id, node);
-        }
-      } else if (node.type === 'footnoteReference') {
-        references.push(node);
-      }
-      if ('children' in node) {
-        (node.children as Nodes[]).forEach(visit);
-      }
-    };
-    visit(root);
-
-    for (const reference of references) {
-      const id = normalizeIdentifier(reference.identifier);
-      const definition = definitions.get(id);
-      if (!definition) {
-        continue;
-      }
-      let info = this.footnotes.get(id);
-      if (!info) {
-        info = { number: this.footnotes.size + 1, definition, references: 0 };
-        this.footnotes.set(id, info);
-      }
-      this.footnoteReferences.set(reference, {
-        number: info.number,
-        index: info.references++,
-      });
-    }
+    ({ footnotes: this.footnotes, references: this.footnoteReferences } =
+      collectFootnotes(root));
   }
 
   private footnoteId(number: number) {
@@ -780,7 +704,14 @@ export class MarkdownRenderer {
    * such as `a:b`, so they keep their source text.
    */
   private renderDirective(node: DirectiveNode): Node {
-    const builtIn = this.renderBuiltInDirective(node);
+    const builtIn = renderBuiltInDirective(node, {
+      document: this.document,
+      createElement: (tagName) => this.createElement(tagName),
+      text: (value) => this.text(value),
+      appendChildren: (target, parent) =>
+        this.appendChildren(target, parent, false),
+      emitAction: this.options.emitAction,
+    });
     if (builtIn) {
       return builtIn;
     }
@@ -795,84 +726,6 @@ export class MarkdownRenderer {
     const paragraph = this.createElement('p');
     paragraph.appendChild(text);
     return paragraph;
-  }
-
-  private renderBuiltInDirective(node: DirectiveNode): Node | null {
-    const attributes = directiveAttributes(node);
-    switch (node.name) {
-      case 'button': {
-        if (node.type === 'containerDirective') {
-          return null;
-        }
-        const button = this.document.createElement('ix-button');
-        applyAllowedAttributes(button, attributes, ['variant', 'icon']);
-        button.appendChild(this.text(textOf(node)));
-        const action = attributes.action;
-        if (action) {
-          const payload: Record<string, string> = {};
-          for (const name of ['variant', 'icon', 'action']) {
-            if (Object.hasOwn(attributes, name)) {
-              payload[name] = attributes[name];
-            }
-          }
-          button.addEventListener('click', () =>
-            this.options.emitAction?.(action, payload)
-          );
-        }
-        return button;
-      }
-      case 'pill': {
-        if (node.type === 'containerDirective') {
-          return null;
-        }
-        const pill = this.document.createElement('ix-pill');
-        applyAllowedAttributes(pill, attributes, ['variant', 'icon']);
-        pill.appendChild(this.text(textOf(node)));
-        return pill;
-      }
-      case 'icon': {
-        if (node.type !== 'textDirective' || !attributes.name) {
-          return null;
-        }
-        const icon = this.document.createElement('ix-icon');
-        applyAllowedAttributes(icon, attributes, ['name', 'size']);
-        if (attributes.label) {
-          icon.setAttribute('aria-label', attributes.label);
-        } else {
-          icon.setAttribute('aria-hidden', 'true');
-        }
-        return icon;
-      }
-      case 'callout':
-        return node.type === 'containerDirective'
-          ? this.renderCallout(node, attributes)
-          : null;
-      default:
-        return null;
-    }
-  }
-
-  private renderCallout(
-    node: DirectiveNode,
-    attributes: Record<string, string>
-  ): HTMLElement {
-    const bar = this.document.createElement('ix-message-bar');
-    bar.setAttribute(
-      'type',
-      Object.hasOwn(CALLOUT_TYPES, attributes.type)
-        ? CALLOUT_TYPES[attributes.type]
-        : 'info'
-    );
-    bar.setAttribute('persistent', '');
-    if (attributes.heading) {
-      const heading = this.createElement('strong');
-      heading.textContent = attributes.heading;
-      bar.appendChild(heading);
-    }
-    const content = this.createElement('div');
-    this.appendChildren(content, node, false);
-    bar.appendChild(content);
-    return bar;
   }
 
   private sourceOf(node: DirectiveNode): string {
@@ -894,39 +747,6 @@ export class MarkdownRenderer {
     return null;
   }
 }
-
-const cellText = (node: Nodes): string => {
-  if (node.type === 'break') {
-    return '\n';
-  }
-  if (node.type === 'html') {
-    return LINE_BREAK_HTML.test(node.value.trim()) ? '\n' : node.value;
-  }
-  if ('children' in node) {
-    return (node.children as Nodes[]).map(cellText).join('');
-  }
-  return 'value' in node && typeof node.value === 'string' ? node.value : '';
-};
-
-const escapeCsv = (value: string) =>
-  /[",\r\n]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
-
-const toCsv = (rows: string[][]) =>
-  rows.map((row) => row.map(escapeCsv).join(',')).join('\r\n');
-
-const downloadCsv = (document: Document, csv: string) => {
-  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'table.csv';
-  link.hidden = true;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-};
-
-const normalizeIdentifier = (identifier: string) => identifier.toLowerCase();
 
 const collectDefinitions = (root: Root): Map<string, Definition> => {
   const definitions = new Map<string, Definition>();
