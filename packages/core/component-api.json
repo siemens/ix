@@ -3902,6 +3902,15 @@
           "deprecated": false
         },
         {
+          "name": "anchorPosition",
+          "type": "undefined | { x: number; y: number; }",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "closeBehavior",
           "attribute": "close-behavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
@@ -4044,6 +4053,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "showAt",
+          "signature": "showAt(x: number, y: number) => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "updatePosition",
           "signature": "updatePosition() => Promise<void>",

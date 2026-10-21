@@ -32,8 +32,8 @@ import { DatePickerYearMonth } from "./components/date-picker/date-picker.types"
 import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
+import { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
-import { AlignedPlacement } from "./components/dropdown/placement";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
@@ -88,8 +88,8 @@ export { DatePickerYearMonth } from "./components/date-picker/date-picker.types"
 export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
+export { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
-export { AlignedPlacement } from "./components/dropdown/placement";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
@@ -1970,6 +1970,11 @@ export namespace Components {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        /**
+          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
+          * @since 6.0.0
+         */
+        "anchorPosition"?: DropdownAnchorPosition;
         "callbackFocusElement"?: (
     event: KeyboardEvent
   ) => Promise<boolean | undefined>;
@@ -2062,6 +2067,13 @@ export namespace Components {
           * @default false
          */
         "show": boolean;
+        /**
+          * Show the dropdown at the given absolute point in viewport coordinates (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event. Moves an already visible dropdown. The position takes precedence over `anchorPosition`, `anchor` and `trigger` until the dropdown is hidden.
+          * @param x Absolute horizontal viewport coordinate in pixels
+          * @param y Absolute vertical viewport coordinate in pixels
+          * @since 6.0.0
+         */
+        "showAt": (x: number, y: number) => Promise<void>;
         /**
           * Suppress the automatic placement of the dropdown.
           * @default false
@@ -10179,6 +10191,11 @@ declare namespace LocalJSX {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        /**
+          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
+          * @since 6.0.0
+         */
+        "anchorPosition"?: DropdownAnchorPosition;
         "callbackFocusElement"?: (
     event: KeyboardEvent
   ) => Promise<boolean | undefined>;
