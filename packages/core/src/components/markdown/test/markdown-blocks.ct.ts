@@ -197,3 +197,18 @@ regressionTest(
     expect(ids.length).toBeGreaterThan(0);
   }
 );
+
+regressionTest(
+  'decodes named character references',
+  async ({ mount, page }) => {
+    const markdown = await mountMarkdown(
+      mount,
+      page,
+      'Tom &amp; Jerry &copy; 2026 &notit; &bogus;'
+    );
+
+    await expect(markdown.getByRole('paragraph')).toHaveText(
+      'Tom & Jerry © 2026 &notit; &bogus;'
+    );
+  }
+);
