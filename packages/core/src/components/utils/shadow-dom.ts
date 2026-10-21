@@ -45,6 +45,32 @@ export function hasSlottedContent(slot?: HTMLSlotElement | null) {
     );
 }
 
+/**
+ * Whether the node is slottable content: an element or non-blank text.
+ * Comments (e.g. framework placeholders) and whitespace are ignored.
+ */
+export function isContentNode(node: Node) {
+  return (
+    node.nodeType === Node.ELEMENT_NODE ||
+    (node.nodeType === Node.TEXT_NODE && !!node.textContent?.trim())
+  );
+}
+
+/**
+ * Whether the host has light DOM content for its default slot.
+ * Use it before the first render, when no `slotchange` has fired yet.
+ */
+export function hasDefaultSlotContent(host: Element) {
+  return Array.from(host.childNodes).some(
+    (node) =>
+      isContentNode(node) &&
+      !(
+        node.nodeType === Node.ELEMENT_NODE &&
+        (node as Element).hasAttribute('slot')
+      )
+  );
+}
+
 export function containsElement(target: Element, element: Element) {
   const hasShadowDom = target.shadowRoot;
 

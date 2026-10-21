@@ -25,6 +25,7 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import type { ChatTraceItemState } from './chat-trace-item.types';
+import { hasDefaultSlotContent, isContentNode } from '../utils/shadow-dom';
 
 /**
  * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
@@ -121,23 +122,14 @@ export class ChatTraceItem {
   @State() hasDetail = false;
 
   componentWillLoad() {
-    this.hasDetail = Array.from(this.hostElement.childNodes).some((node) =>
-      this.isDetailNode(node)
-    );
-  }
-
-  private isDetailNode(node: Node) {
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      return !(node as Element).hasAttribute('slot');
-    }
-    return node.nodeType === Node.TEXT_NODE && !!node.textContent?.trim();
+    this.hasDetail = hasDefaultSlotContent(this.hostElement);
   }
 
   private handleSlotChange(event: Event) {
     const slot = event.target as HTMLSlotElement;
     this.hasDetail = slot
       .assignedNodes({ flatten: true })
-      .some((node) => this.isDetailNode(node));
+      .some((node) => isContentNode(node));
   }
 
   private toggle() {

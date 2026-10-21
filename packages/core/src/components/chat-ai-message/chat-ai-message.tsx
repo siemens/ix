@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, Host, State, h } from '@stencil/core';
+import { hasDefaultSlotContent, isContentNode } from '../utils/shadow-dom';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
@@ -32,27 +33,14 @@ export class ChatAiMessage {
   @State() hasContent = false;
 
   componentWillLoad() {
-    const children = Array.from(this.hostElement.childNodes);
-    this.hasContent = children.some(
-      (node) =>
-        this.isContentNode(node) &&
-        !(node.nodeType === 1 && (node as Element).hasAttribute('slot'))
-    );
-    this.hasTrace = children.some(
-      (node) =>
-        node.nodeType === 1 &&
-        (node as Element).getAttribute('slot') === 'trace'
-    );
-  }
-
-  private isContentNode(node: Node) {
-    return node.nodeType === 1 || !!node.textContent?.trim();
+    this.hasContent = hasDefaultSlotContent(this.hostElement);
+    this.hasTrace = !!this.hostElement.querySelector(':scope > [slot="trace"]');
   }
 
   private hasAssignedContent(slot: HTMLSlotElement) {
     return slot
       .assignedNodes({ flatten: true })
-      .some((node) => this.isContentNode(node));
+      .some((node) => isContentNode(node));
   }
 
   private handleContentSlotChange(event: Event) {

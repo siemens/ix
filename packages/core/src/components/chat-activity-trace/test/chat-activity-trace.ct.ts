@@ -161,3 +161,24 @@ regressionTest(
     ).toBe(true);
   }
 );
+
+regressionTest(
+  'moves focus to the summary toggle when a focused Trace item is hidden',
+  async ({ mount, page }) => {
+    await mount(`<ix-chat-activity-trace>${items}</ix-chat-activity-trace>`);
+
+    await page.getByRole('button', { name: /Read page\.tsx/ }).focus();
+
+    await page
+      .locator('ix-chat-activity-trace')
+      .evaluate((element: HTMLIxChatActivityTraceElement) => {
+        element.summary = 'Answer generated from 3 sources';
+      });
+
+    const summary = page.getByRole('button', {
+      name: 'Answer generated from 3 sources',
+    });
+    await expect(summary).toHaveAttribute('aria-expanded', 'false');
+    await expect(summary).toBeFocused();
+  }
+);

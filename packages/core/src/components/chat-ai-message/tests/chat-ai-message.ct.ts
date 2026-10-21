@@ -82,6 +82,25 @@ regressionTest(
 );
 
 regressionTest(
+  'ix-chat-ai-message ignores framework comment placeholders as content',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-ai-message>
+        <!--v-if-->
+        <ix-chat-activity-trace slot="trace">
+          <ix-chat-trace-item label="Thinking…" state="running"></ix-chat-trace-item>
+        </ix-chat-activity-trace>
+      </ix-chat-ai-message>
+    `);
+
+    await expect(page.getByRole('listitem')).toBeVisible();
+    await expect(
+      page.locator('ix-chat-ai-message').locator('.message')
+    ).toBeHidden();
+  }
+);
+
+regressionTest(
   'ix-chat-ai-message with trace is accessible',
   async ({ mount, page, makeAxeBuilder }) => {
     await mount(`

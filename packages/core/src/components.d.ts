@@ -874,7 +874,9 @@ export namespace Components {
      * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
      * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
      * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
-     * The Trace items keep their DOM identity and focus when the summary appears.
+     * The Trace items keep their DOM identity and focus when the summary appears. To keep them visible
+     * (e.g. a header from the start of the response), set `expanded` together with `summary`.
+     * If the Trace items are hidden while one of them has focus, focus moves to the summary toggle.
      * The component is controlled and has no orchestration logic: the application decides when to show the
      * summary, which items to expand and what to announce to screen readers.
      * Mapping from Element chat messages:
@@ -6453,7 +6455,9 @@ declare global {
      * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
      * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
      * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
-     * The Trace items keep their DOM identity and focus when the summary appears.
+     * The Trace items keep their DOM identity and focus when the summary appears. To keep them visible
+     * (e.g. a header from the start of the response), set `expanded` together with `summary`.
+     * If the Trace items are hidden while one of them has focus, focus moves to the summary toggle.
      * The component is controlled and has no orchestration logic: the application decides when to show the
      * summary, which items to expand and what to announce to screen readers.
      * Mapping from Element chat messages:
@@ -9345,7 +9349,9 @@ declare namespace LocalJSX {
      * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
      * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
      * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
-     * The Trace items keep their DOM identity and focus when the summary appears.
+     * The Trace items keep their DOM identity and focus when the summary appears. To keep them visible
+     * (e.g. a header from the start of the response), set `expanded` together with `summary`.
+     * If the Trace items are hidden while one of them has focus, focus moves to the summary toggle.
      * The component is controlled and has no orchestration logic: the application decides when to show the
      * summary, which items to expand and what to announce to screen readers.
      * Mapping from Element chat messages:
@@ -16067,7 +16073,9 @@ declare module "@stencil/core" {
              * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
              * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
              * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
-             * The Trace items keep their DOM identity and focus when the summary appears.
+             * The Trace items keep their DOM identity and focus when the summary appears. To keep them visible
+             * (e.g. a header from the start of the response), set `expanded` together with `summary`.
+             * If the Trace items are hidden while one of them has focus, focus moves to the summary toggle.
              * The component is controlled and has no orchestration logic: the application decides when to show the
              * summary, which items to expand and what to announce to screen readers.
              * Mapping from Element chat messages:

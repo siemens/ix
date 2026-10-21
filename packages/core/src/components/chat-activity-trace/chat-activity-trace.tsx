@@ -8,7 +8,15 @@
  */
 
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Prop,
+  h,
+} from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -18,7 +26,9 @@ import { a11yBoolean } from '../utils/a11y';
  * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
  * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
  * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
- * The Trace items keep their DOM identity and focus when the summary appears.
+ * The Trace items keep their DOM identity and focus when the summary appears. To keep them visible
+ * (e.g. a header from the start of the response), set `expanded` together with `summary`.
+ * If the Trace items are hidden while one of them has focus, focus moves to the summary toggle.
  *
  * The component is controlled and has no orchestration logic: the application decides when to show the
  * summary, which items to expand and what to announce to screen readers.
@@ -57,6 +67,35 @@ export class ChatActivityTrace {
    */
   @Event({ bubbles: false }) expandedChange!: EventEmitter<boolean>;
 
+  @Element() hostElement!: HTMLIxChatActivityTraceElement;
+
+  private toggleButton?: HTMLButtonElement;
+  private itemsContainer?: HTMLDivElement;
+  private moveFocusToToggle = false;
+
+  private isListVisible() {
+    return !this.summary || this.expanded;
+  }
+
+  componentWillRender() {
+    const isHiding =
+      !!this.itemsContainer &&
+      !this.itemsContainer.hidden &&
+      !this.isListVisible();
+    this.moveFocusToToggle =
+      isHiding &&
+      Array.from(this.hostElement.children).some(
+        (child) => !child.hasAttribute('slot') && child.matches(':focus-within')
+      );
+  }
+
+  componentDidRender() {
+    if (this.moveFocusToToggle) {
+      this.moveFocusToToggle = false;
+      this.toggleButton?.focus();
+    }
+  }
+
   private toggle() {
     const expanded = !this.expanded;
     const { defaultPrevented } = this.expandedChange.emit(expanded);
@@ -67,7 +106,7 @@ export class ChatActivityTrace {
 
   render() {
     const hasSummary = !!this.summary;
-    const isListVisible = !hasSummary || this.expanded;
+    const isListVisible = this.isListVisible();
 
     return (
       <Host class={{ 'has-summary': hasSummary }}>
@@ -76,6 +115,7 @@ export class ChatActivityTrace {
             <button
               type="button"
               class="toggle"
+              ref={(ref) => (this.toggleButton = ref)}
               aria-expanded={a11yBoolean(this.expanded)}
               aria-controls="items"
               onClick={() => this.toggle()}
@@ -93,7 +133,13 @@ export class ChatActivityTrace {
             </button>
           )}
         </div>
-        <div id="items" class="items" role="list" hidden={!isListVisible}>
+        <div
+          id="items"
+          class="items"
+          role="list"
+          hidden={!isListVisible}
+          ref={(ref) => (this.itemsContainer = ref)}
+        >
           <slot></slot>
         </div>
       </Host>
