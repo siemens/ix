@@ -17,11 +17,6 @@ const welcome = `
   </ix-chat-welcome>
 `;
 
-regressionTest('renders', async ({ mount, page }) => {
-  await mount(welcome);
-  await expect(page.locator('ix-chat-welcome')).toHaveAttribute('hydrated');
-});
-
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(welcome);
   await expect(
@@ -30,6 +25,11 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
 
   const results = await makeAxeBuilder().include('ix-chat-welcome').analyze();
   expect(results.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(welcome);
+  await expect(page.locator('ix-chat-welcome')).toHaveAttribute('hydrated');
 });
 
 regressionTest(

@@ -18,6 +18,31 @@ const welcome = `
 const welcomeHeading = { name: 'How can I help you today?' };
 
 regressionTest(
+  'accessibility with the welcome screen',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(`
+      <ix-chat style="height: 32rem">
+        ${welcome}
+        <ix-chat-input slot="prompt"></ix-chat-input>
+      </ix-chat>
+    `);
+    await expect(page.getByRole('heading', welcomeHeading)).toBeVisible();
+
+    const results = await makeAxeBuilder().include('ix-chat').analyze();
+    expect(results.violations).toEqual([]);
+  }
+);
+
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`
+    <ix-chat style="height: 32rem">
+      ${welcome}
+    </ix-chat>
+  `);
+  await expect(page.locator('ix-chat-welcome')).toHaveAttribute('hydrated');
+});
+
+regressionTest(
   'shows the welcome slot while the chat has no messages',
   async ({ mount, page }) => {
     await mount(`
@@ -111,21 +136,5 @@ regressionTest(
 
     await expect(page.locator('ix-chat-ai-message')).toBeVisible();
     await expect(page.getByRole('heading', welcomeHeading)).toBeHidden();
-  }
-);
-
-regressionTest(
-  'accessibility with the welcome screen',
-  async ({ mount, page, makeAxeBuilder }) => {
-    await mount(`
-      <ix-chat style="height: 32rem">
-        ${welcome}
-        <ix-chat-input slot="prompt"></ix-chat-input>
-      </ix-chat>
-    `);
-    await expect(page.getByRole('heading', welcomeHeading)).toBeVisible();
-
-    const results = await makeAxeBuilder().include('ix-chat').analyze();
-    expect(results.violations).toEqual([]);
   }
 );

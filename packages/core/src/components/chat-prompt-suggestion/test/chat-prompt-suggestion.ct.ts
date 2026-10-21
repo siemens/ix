@@ -19,15 +19,6 @@ function trackSuggestionSelect(element: Locator) {
   });
 }
 
-regressionTest('renders', async ({ mount, page }) => {
-  await mount(`
-    <ix-chat-prompt-suggestion>Summarize open alarms</ix-chat-prompt-suggestion>
-  `);
-  await expect(page.locator('ix-chat-prompt-suggestion')).toHaveAttribute(
-    'hydrated'
-  );
-});
-
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
     <ix-chat-prompt-suggestion>Summarize open alarms</ix-chat-prompt-suggestion>
@@ -40,6 +31,15 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
     .include('ix-chat-prompt-suggestion')
     .analyze();
   expect(results.violations).toEqual([]);
+});
+
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(`
+    <ix-chat-prompt-suggestion>Summarize open alarms</ix-chat-prompt-suggestion>
+  `);
+  await expect(page.locator('ix-chat-prompt-suggestion')).toHaveAttribute(
+    'hydrated'
+  );
 });
 
 regressionTest(
