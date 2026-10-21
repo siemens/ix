@@ -17,7 +17,17 @@ import {
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import type { IconButtonVariant } from './icon-button.types';
+import {
+  DEFAULT_BUTTON_ICON_SIZE,
+  type ButtonIconSize,
+} from '../button/base-button.types';
 
+/**
+ * Button that displays only an icon to trigger an action.
+ *
+ * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
+ * @figma-main-component-id 270:941
+ */
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
@@ -47,13 +57,17 @@ export class IconButton
   @Prop() icon?: string;
 
   /**
-   * Size of icon in button
+   * Size of icon in button.
+   * `12` and `16` shrink the control. `20` and `24` keep a 32×32 control.
+   * Defaults to `20`.
    *
+   * @since 6.0.0 Size `20` is available
    */
-  @Prop() size: '24' | '16' | '12' = '24';
+  @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
-   * Color of icon in  button
+   * Icon color as a CSS custom property name, for example
+   * `--si-sys-color-text-primary`.
    */
   @Prop() iconColor?: string;
 
@@ -73,9 +87,16 @@ export class IconButton
   @Prop() loading = false;
 
   /**
+   * @internal
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
+  @Prop({ reflect: true }) inert = false;
+
+  /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
-  submitButtonElement!: HTMLButtonElement;
+  submitButtonElement?: HTMLButtonElement;
 
   override componentDidLoad() {
     if (this.type === 'submit') {
@@ -99,7 +120,10 @@ export class IconButton
     return {
       'btn-icon-12': this.size === '12',
       'btn-icon-16': this.size === '16',
-      'btn-icon-32': this.size === '24' || !this.size,
+      'btn-icon-32':
+        this.size === '24' ||
+        this.size === DEFAULT_BUTTON_ICON_SIZE ||
+        !this.size,
     };
   }
 
@@ -125,6 +149,7 @@ export class IconButton
       iconColor: this.iconColor,
       iconSize: this.size,
       loading: this.loading,
+      inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),

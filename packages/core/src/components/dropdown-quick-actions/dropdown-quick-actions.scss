@@ -7,18 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 
+@use './dropdown-quick-actions.vars' as *;
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-inline-start: vars.$large-space;
-  margin-inline-end: vars.$large-space;
-  margin-block-end: vars.$tiny-space;
+  margin-inline-start: var(--ix-dropdown-quick-actions--margin-inline-start);
+  margin-inline-end: var(--ix-dropdown-quick-actions--margin-inline-end);
+  margin-block-end: var(--ix-dropdown-quick-actions--margin-block-end);
 
   slot::slotted(*) {
     display: flex;
-    margin-inline-end: 0.625rem;
+    margin-inline-end: var(--ix-dropdown-quick-actions-item--margin-inline-end);
   }
 }

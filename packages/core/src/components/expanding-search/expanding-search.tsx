@@ -20,6 +20,12 @@ import {
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 
+/**
+ * Search input that expands from an icon when activated.
+ *
+ * @documentation https://ix.siemens.io//docs/components/expanding-search/code.md
+ * @figma-main-component-id 680:9354
+ */
 @Component({
   tag: 'ix-expanding-search',
   styleUrl: 'expanding-search.scss',
@@ -79,7 +85,6 @@ export class ExpandingSearch
 
   @State() isFieldChanged = false;
   @State() expanded = false;
-  @State() hasFocus = false;
 
   /**
    * Value changed
@@ -134,7 +139,6 @@ export class ExpandingSearch
       <Host
         class={{
           expanded: this.expanded,
-          'right-position': this.expanded,
           fullWidth: this.fullWidth,
         }}
       >
@@ -145,7 +149,7 @@ export class ExpandingSearch
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-          color={this.hasFocus ? 'input-search-icon--color--focus' : undefined}
+          iconColor={this.expanded ? '--si-sys-color-text-primary' : undefined}
           class={{
             'btn-search': true,
             'btn-search--expanded': this.expanded,
@@ -168,7 +172,6 @@ export class ExpandingSearch
         >
           <input
             class={{
-              'ix-form-control': true,
               input: this.expanded,
               'disable-pointer': !this.expanded,
               'opacity-before': !this.expanded,
@@ -179,11 +182,7 @@ export class ExpandingSearch
             placeholder={this.placeholder}
             type="text"
             value={this.value}
-            onBlur={() => {
-              this.collapseInput();
-              this.hasFocus = false;
-            }}
-            onFocus={() => (this.hasFocus = true)}
+            onBlur={() => this.collapseInput()}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
             aria-label={this.ariaLabelSearchInput}

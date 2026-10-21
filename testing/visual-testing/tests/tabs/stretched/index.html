@@ -96,6 +96,15 @@ SPDX-License-Identifier: MIT
       </ix-tabs>
     </div>
 
+    <!-- Stretched with long label (ellipsis) -->
+    <div class="test">
+      <ix-tabs layout="stretched" active-tab-key="se-1">
+        <ix-tab-item tab-key="se-1" label="Example with a very long text that should be truncated with an ellipsis."></ix-tab-item>
+        <ix-tab-item tab-key="se-2" label="Example"></ix-tab-item>
+        <ix-tab-item tab-key="se-3" label="Example"></ix-tab-item>
+      </ix-tabs>
+    </div>
+
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>
 </html>

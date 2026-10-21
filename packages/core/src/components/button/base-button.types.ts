@@ -8,3 +8,14 @@
  */
 export type BaseButtonVariant = 'primary' | 'secondary' | 'tertiary';
 export type BaseButtonStyle = 'subtle' | 'danger';
+
+/**
+ * Glyph size for `ix-button` icons and `ix-icon-button` `size`.
+ * `20` and `24` both use a 32×32 icon-button host.
+ */
+export type ButtonIconSize = '12' | '16' | '20' | '24';
+
+/**
+ * Default glyph size for `ix-button` icons and omitted `ix-icon-button` `size`.
+ */
+export const DEFAULT_BUTTON_ICON_SIZE: ButtonIconSize = '20';

@@ -16,7 +16,7 @@ const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
-  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('date dropdown tests', () => {
@@ -121,6 +121,8 @@ regressionTest.describe('date dropdown tests', () => {
         to: endDate.toFormat('yyyy/LL/dd'),
         id: 'last-7-days',
         label: 'Last 7 days',
+        isoFrom: startDate.toISODate(),
+        isoTo: endDate.toISODate(),
       });
     }
   );
@@ -132,7 +134,7 @@ regressionTest.describe('date dropdown tests', () => {
       const format = 'yyyy/LL/dd';
 
       const dateDropdown = page.locator('ix-date-dropdown');
-      await expect(dateDropdown).toHaveClass(/hydrated/);
+      await expect(dateDropdown).toHaveAttribute('hydrated');
 
       const eventPromise = dateDropdown.evaluate((e) => {
         return new Promise<any>((resolve) => {
@@ -159,13 +161,15 @@ regressionTest.describe('date dropdown tests', () => {
         to: today.toFormat(format),
         id: 'last-7-days',
         label: 'Last 7 days',
+        isoFrom: today.minus({ day: 7 }).toISODate(),
+        isoTo: today.toISODate(),
       });
     }
   );
 
   regressionTest('check initial date', async ({ page }) => {
     const dateDropDownButton = page.locator(DATE_DROPDOWN_SELECTOR);
-    await expect(dateDropDownButton).toHaveClass(/hydrated/);
+    await expect(dateDropDownButton).toHaveAttribute('hydrated');
 
     const initialSetDate = await dateDropDownButton.evaluate(
       (el: HTMLIxDateDropdownElement) => el.getDateRange()
@@ -179,6 +183,8 @@ regressionTest.describe('date dropdown tests', () => {
       to: endDate.toFormat('yyyy/LL/dd'),
       id: 'today',
       label: 'Today',
+      isoFrom: startDate.toISODate(),
+      isoTo: endDate.toISODate(),
     });
   });
 });
@@ -189,7 +195,7 @@ regressionTest('set date from a button', async ({ mount, page }) => {
   );
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
   const setButton = page.locator('#set-tomorrow');
-  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toHaveAttribute('hydrated');
 
   await setButton.click();
 
@@ -206,7 +212,7 @@ regressionTest('select different year', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown from="2024/02/16"></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
 
-  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toHaveAttribute('hydrated');
   await expect(dateDropdown).toBeVisible();
 
   const dateDropdownTrigger = dateDropdown.getByTestId('date-dropdown-trigger');
@@ -242,6 +248,69 @@ regressionTest('select different year', async ({ mount, page }) => {
   await expect(monthContainer).toHaveText(/March/);
 });
 
+regressionTest(
+  're-selecting the same range moves the month dropdown back to the range year',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-dropdown locale="en"></ix-date-dropdown>`);
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
+
+    const rangeOptions: DateDropdownOption[] = [
+      {
+        id: 'fixed',
+        label: 'Fixed range',
+        from: '2024/02/16',
+        to: '2024/02/20',
+      },
+      {
+        id: 'other',
+        label: 'Other range',
+        from: '2024/05/01',
+        to: '2024/05/31',
+      },
+    ];
+
+    await dateDropdown.evaluate(
+      (el, [dateRangeOptions]) => {
+        const elementToTest = el as HTMLIxDateDropdownElement;
+
+        elementToTest.dateRangeId = 'fixed';
+        elementToTest.dateRangeOptions = dateRangeOptions;
+      },
+      [rangeOptions]
+    );
+
+    await dateDropdown.getByTestId('date-dropdown-trigger').click();
+
+    const datepicker = dateDropdown
+      .getByTestId('date-dropdown')
+      .locator('ix-date-picker');
+
+    // Navigate the calendar away from the year the range sits in.
+    const yearContainer = datepicker.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearContainer.click();
+    await yearContainer
+      .getByRole('menuitem', { name: '2020', exact: true })
+      .click();
+    await expect(yearContainer).toHaveText(/2020/);
+
+    // Re-selecting the already selected range only moves the calendar back.
+    await dateDropdown.getByRole('button', { name: /Fixed range/ }).click();
+
+    const monthContainer = datepicker.getByRole('button', {
+      name: 'Select month',
+    });
+    await monthContainer.click();
+
+    await expect(yearContainer).toHaveText(/2024/);
+    await expect(
+      monthContainer.getByRole('menuitem', { name: 'February' })
+    ).toHaveAttribute('checked', '');
+  }
+);
+
 regressionTest('disable', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown disabled></ix-date-dropdown>`);
   const dateDropdown = page.locator('ix-date-dropdown');
@@ -266,5 +335,90 @@ regressionTest(
     });
     const dropdown = dateDropdown.locator('[data-date-dropdown]');
     await expect(dropdown).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'locale-dependent format produces correct isoFrom/isoTo',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
+    );
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
+
+    await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+      el.from = '05 März 2023';
+      el.to = '10 März 2023';
+    });
+
+    const range = await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+      el.getDateRange()
+    );
+
+    expect(range.from).toBe('05 März 2023');
+    expect(range.to).toBe('10 März 2023');
+    expect(range.isoFrom).toBe('2023-03-05');
+    expect(range.isoTo).toBe('2023-03-10');
+  }
+);
+
+regressionTest(
+  'date range options with locale produce correct ISO dates',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-dropdown locale="de" format="dd MMMM yyyy"></ix-date-dropdown>`
+    );
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropdown).toHaveAttribute('hydrated');
+
+    const options: DateDropdownOption[] = [
+      {
+        id: 'march',
+        label: 'March 2023',
+        from: '01 März 2023',
+        to: '31 März 2023',
+      },
+    ];
+
+    await dateDropdown.evaluate(
+      (el, [opts]) => {
+        const dropdown = el as HTMLIxDateDropdownElement;
+        dropdown.dateRangeOptions = opts;
+        dropdown.dateRangeId = 'march';
+      },
+      [options]
+    );
+
+    const range = await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+      el.getDateRange()
+    );
+
+    expect(range.isoFrom).toBe('2023-03-01');
+    expect(range.isoTo).toBe('2023-03-31');
+  }
+);
+
+regressionTest(
+  'marks the trigger expanded while the dropdown is open',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    const trigger = dateDropdown.getByTestId('date-dropdown-trigger');
+    const dropdown = dateDropdown.locator('[data-date-dropdown]');
+
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
+
+    await trigger.click();
+    await expect(dropdown).toBeVisible();
+    await expect(trigger).toHaveClass(/\bactive\b/);
+    await expect(trigger.locator('button')).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(dropdown).not.toBeVisible();
+    await expect(trigger).not.toHaveClass(/\bactive\b/);
   }
 );

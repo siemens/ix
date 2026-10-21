@@ -11,6 +11,35 @@ import { test, viewPorts } from '@utils/test';
 import { ApplicationLayoutContext } from '../../utils/application-layout/context';
 import { ContextType } from '../../utils/context';
 
+test('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-application-header name="Test Application"></ix-application-header>`
+  );
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+test('renders application name as h1', async ({ mount, page }) => {
+  await mount(
+    `<ix-application-header name="Test Application"></ix-application-header>`
+  );
+
+  const heading = page.getByRole('heading', {
+    level: 1,
+    name: 'Test Application',
+  });
+  await expect(heading).toBeVisible();
+  await expect(heading.locator('ix-typography')).toHaveCount(1);
+});
+
+test('does not render h1 when name is omitted', async ({ mount, page }) => {
+  await mount(`<ix-application-header></ix-application-header>`);
+
+  const heading = page.locator('ix-application-header').locator('h1');
+  await expect(heading).toHaveCount(0);
+});
+
 test('renders', async ({ mount, page }) => {
   page.setViewportSize({
     height: 500,
@@ -52,11 +81,16 @@ test('use brand logo if provided', async ({ mount, page }) => {
   await page.evaluate(() => {
     const header = document.createElement('ix-application-header');
     header.name = 'Test';
-    document.querySelector('#mount')!.appendChild(header);
+
+    const element = document.querySelector('#mount');
+    if (!element) {
+      throw new Error('Expected `#mount` element');
+    }
+    element.appendChild(header);
   });
 
   const header = page.locator('ix-application-header');
-  await expect(header).toHaveClass(/hydrated/);
+  await expect(header).toHaveAttribute('hydrated');
   await expect(header).toBeVisible();
 
   const companyLogo = page.locator('ix-application-header ix-siemens-logo');
@@ -95,7 +129,7 @@ test('use custom logo over brand logo', async ({ mount, page }) => {
 
     const header = document.createElement(
       'ix-application-header'
-    ) as HTMLIxApplicationHeader;
+    ) as HTMLIxApplicationHeaderElement;
     header.name = 'Test';
 
     header.appendChild(alternativeLogo);
@@ -137,7 +171,11 @@ test('use company logo property over brand logo', async ({ mount, page }) => {
     const header = document.createElement('ix-application-header');
     header.companyLogo = 'MY CUSTOM IMAGE PATH';
     header.companyLogoAlt = 'MY CUSTOM IMAGE ALT TEXT';
-    document.querySelector('#mount')!.appendChild(header);
+    const element = document.querySelector('#mount');
+    if (!element) {
+      throw new Error('Expected `#mount` element');
+    }
+    element.appendChild(header);
   });
 
   const header = page.locator('ix-application-header');
@@ -208,7 +246,7 @@ test.describe('cross app navigation', () => {
         </ix-application-header>
       `
     );
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();
@@ -267,7 +305,7 @@ test.describe('cross app navigation', () => {
         </ix-application-header>
       `
     );
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();
@@ -313,7 +351,7 @@ test.describe('cross app navigation', () => {
     const header = page.locator('ix-application-header');
     const appSwitchButton = header.locator('ix-icon-button.app-switch');
 
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).not.toBeVisible();
 
     await application.evaluate((app) => {
@@ -380,7 +418,7 @@ test.describe('cross app navigation', () => {
     );
 
     const application = page.locator('ix-application');
-    await expect(application).toHaveClass(/hydrated/);
+    await expect(application).toHaveAttribute('hydrated');
     await application.evaluate((app) => {
       (app as any).appSwitchConfig = {
         i18nAppSwitch: 'some other language',
@@ -393,7 +431,7 @@ test.describe('cross app navigation', () => {
     const header = page.locator('ix-application-header');
     const appSwitchButton = header.locator('ix-icon-button.app-switch');
 
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();

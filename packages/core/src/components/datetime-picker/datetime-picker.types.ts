@@ -10,6 +10,9 @@ export type DateTimeSelectEvent = {
   from?: string;
   to?: string;
   time: string;
+  isoFrom?: string;
+  isoTo?: string;
+  isoTime?: string;
 };
 
 export type DateTimeDateChangeEvent =

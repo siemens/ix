@@ -28,7 +28,12 @@ import {
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 /**
- * @slot default - Tab label.
+ * A single selectable tab within a tab set.
+ *
+ * @documentation https://ix.siemens.io//docs/components/tabs/code.md
+ * @figma-main-component-id 426:4122
+ *
+ * @slot - Tab label.
  */
 @Component({
   tag: 'ix-tab-item',
@@ -177,12 +182,15 @@ export class TabItem
               circle: true,
             }}
           >
-            {this.icon && <ix-icon name={this.icon} size="24"></ix-icon>}
+            {this.icon && <ix-icon name={this.icon} size="32"></ix-icon>}
             <slot></slot>
           </div>
         )}
-        {this.icon && variant !== 'rounded' && (
-          <ix-icon name={this.icon} size="16" class={'tab-icon'}></ix-icon>
+        {this.icon && variant === 'icon-only' && (
+          <ix-icon name={this.icon} class={'tab-icon'}></ix-icon>
+        )}
+        {this.icon && variant === 'normal' && (
+          <ix-icon name={this.icon} class={'tab-icon'}></ix-icon>
         )}
         {variant === 'normal' && (
           <div

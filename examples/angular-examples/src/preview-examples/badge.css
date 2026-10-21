@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  /* Room for attached overlays and pulse rings above the content. */
+  padding-top: 1.5rem;
+}
+
+.styled {
+  width: 7rem;
+  --ix-badge-max-width: 7rem;
+}
+
+.styled-ellipsis-4 {
+  width: 4rem;
+  --ix-badge-max-width: 4rem;
+}

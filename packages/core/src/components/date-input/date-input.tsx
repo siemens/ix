@@ -22,7 +22,7 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { DateTime } from 'luxon';
+import { parseWithLocale } from '../utils/date-time-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -41,12 +41,14 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -56,11 +58,15 @@ import {
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
-import { forceTabIndex } from '../utils/a11y';
+import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 
 /**
- * @form-ready
+ * Text input for entering and validating a date value.
  *
+ * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
+ * @figma-main-component-id 442365:42749
+ *
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -112,10 +118,10 @@ export class DateInput
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
-   * The locale is used to translate the labels for weekdays and months.
-   * It also determines the default order of weekdays based on the locale's conventions.
-   * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
-   * It does not affect the values returned by methods and events.
+   * The locale is used to translate the labels for weekdays and months,
+   * determine the default order of weekdays, and parse user input.
+   * Values emitted via `valueChange` reflect the locale-formatted string
+   * as typed or selected by the user.
    */
   @Prop() locale?: string;
 
@@ -125,10 +131,21 @@ export class DateInput
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
+  @Watch('locale')
+  @Watch('format')
+  watchLocaleFormatHandler() {
+    this.onInput(this.value);
+  }
+
   /**
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Helper text below the input field.
@@ -197,8 +214,10 @@ export class DateInput
   @Prop() showWeekNumbers = false;
 
   /**
-   * The index of which day to start the week on, based on the Locale#weekdays array.
-   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on Monday.
+   * The index of the day the week starts on, as a 0-based index into Luxon's
+   * `Info.weekdays()` array. That array is always ordered Monday-first
+   * regardless of locale, so 0 is Monday, 1 is Tuesday and 6 is Sunday.
+   * E.g. weekStartIndex = 6 results in starting the week on Sunday.
    */
   @Prop() weekStartIndex = 0;
 
@@ -360,9 +379,9 @@ export class DateInput
       return;
     }
 
-    const date = DateTime.fromFormat(value, this.format);
-    const minDate = DateTime.fromFormat(this.minDate, this.format);
-    const maxDate = DateTime.fromFormat(this.maxDate, this.format);
+    const date = parseWithLocale(value, this.format, this.locale);
+    const minDate = parseWithLocale(this.minDate, this.format, this.locale);
+    const maxDate = parseWithLocale(this.maxDate, this.format, this.locale);
 
     this.isInputInvalid = !date.isValid || date < minDate || date > maxDate;
 
@@ -422,7 +441,7 @@ export class DateInput
           aria-haspopup="true"
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           disabled={this.disabled}
           readOnly={this.readonly}
@@ -473,11 +492,16 @@ export class DateInput
             variant="subtle-tertiary"
             size="16"
             icon={iconCalendar}
+            aria-expanded={a11yBoolean(this.show)}
             onClick={(event) => this.onCalenderClick(event)}
           ></ix-icon-button>
         </SlotEnd>
       </div>
     );
+  }
+
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
   }
 
   @HookValidationLifecycle()
@@ -488,7 +512,7 @@ export class DateInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
@@ -547,6 +571,7 @@ export class DateInput
         class={{
           disabled: this.disabled,
           readonly: this.readonly,
+          active: this.show,
         }}
         onFocusout={(e: FocusEvent) => {
           const relatedTarget = e.relatedTarget as Node;
@@ -614,6 +639,7 @@ export class DateInput
               }
             }}
             showWeekNumbers={this.showWeekNumbers}
+            weekStartIndex={this.weekStartIndex}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded

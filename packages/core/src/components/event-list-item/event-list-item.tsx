@@ -20,7 +20,12 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 
 /**
- * @slot default - Event list item content.
+ * A single entry within an event list.
+ *
+ * @documentation https://ix.siemens.io//docs/components/event-list/code.md
+ * @figma-main-component-id 1433:41688
+ *
+ * @slot - Event list item content.
  */
 @Component({
   tag: 'ix-event-list-item',
@@ -38,7 +43,7 @@ export class EventListItem {
   /**
    * Color of the status indicator.
    * You can find a list of all available colors in our documentation.
-   * Example values are `--theme-color-alarm` or `color-alarm`
+   * Example value: `--si-sys-color-background-danger`
    *
    * {@link https://ix.siemens.io/docs/styles/colors}
    */
@@ -70,9 +75,7 @@ export class EventListItem {
   }
 
   render() {
-    let color = this.itemColor?.startsWith('--theme')
-      ? `var(${this.itemColor})`
-      : `var(--theme-${this.itemColor})`;
+    const color = this.itemColor ? `var(${this.itemColor})` : 'inherit';
 
     return (
       <Host
@@ -93,7 +96,7 @@ export class EventListItem {
           <div
             class={`indicator ${!this.itemColor ? 'indicator-empty' : ''}`}
             style={{
-              'background-color': this.itemColor ? color : 'inherit',
+              'background-color': color,
               opacity: `${this.disabled ? 0.4 : 1}`,
             }}
           ></div>
@@ -105,7 +108,6 @@ export class EventListItem {
             {this.chevron && (
               <ix-icon
                 name={iconChevronRight}
-                size="16"
                 class="chevron-icon"
                 aria-hidden="true"
               ></ix-icon>

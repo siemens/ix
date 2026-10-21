@@ -1,0 +1,94 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/hover';
+
+@use './category-filter.vars' as *;
+@mixin dropdown-item {
+  & {
+    display: flex;
+    height: var(--ix-category-filter-dropdown-item--height);
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--ix-category-filter-dropdown-item--padding);
+    border: var(--ix-category-filter-dropdown-item--border-width) solid
+      transparent;
+    color: var(
+      --ix-menu-item--color,
+      var(--ix-category-filter-dropdown-item--color)
+    );
+    background-color: transparent;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--ix-menu-item--background, transparent);
+    border-color: var(--ix-category-filter-dropdown-item--border-color--focus);
+    color: var(
+      --ix-menu-item--color--focus,
+      var(--ix-category-filter-dropdown-item--color--focus)
+    );
+  }
+
+  @include hover.hover {
+    color: var(
+      --ix-menu-item--color--hover,
+      var(--ix-category-filter-dropdown-item--color--hover)
+    );
+    background-color: var(
+      --ix-menu-item--background--hover,
+      var(--ix-category-filter-dropdown-item--background-color--hover)
+    );
+  }
+
+  @include hover.active {
+    color: var(
+      --ix-menu-item--color--active,
+      var(--ix-category-filter-dropdown-item--color--active)
+    );
+    background-color: var(
+      --ix-menu-item--background--active,
+      var(--ix-category-filter-dropdown-item--background-color--active)
+    );
+  }
+
+  &.disabled,
+  &:disabled {
+    color: var(
+      --ix-menu-item--color--disabled,
+      var(--ix-category-filter-dropdown-item--color--disabled)
+    );
+    background-color: var(--ix-menu-item--background--disabled, transparent);
+  }
+
+  > a,
+  a:hover,
+  a:active {
+    color: var(--ix-category-filter-a--color--active);
+  }
+
+  > .glyph {
+    color: var(
+      --ix-menu-item-icon--color,
+      var(--ix-category-filter-glyph--color)
+    );
+    margin-inline-end: var(--ix-category-filter-glyph--margin-inline-end);
+
+    &.disabled {
+      color: var(--ix-category-filter-glyph--color--disabled);
+    }
+
+    &.glyph-single-check {
+      color: var(
+        --ix-menu-item-icon-check--color,
+        var(--ix-category-filter-glyph-single-check--color)
+      );
+    }
+  }
+}

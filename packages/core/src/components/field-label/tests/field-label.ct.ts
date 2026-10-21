@@ -12,10 +12,10 @@ import { regressionTest } from '@utils/test';
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-field-label>My Label</ix-field-label>`);
   const fieldLabelElement = page.locator('ix-field-label');
-  await expect(fieldLabelElement).toHaveClass(/hydrated/);
+  await expect(fieldLabelElement).toHaveAttribute('hydrated');
   await expect(
     fieldLabelElement.locator('label').locator('ix-typography')
-  ).toHaveClass(/typography-label/);
+  ).toHaveClass(/typography-body/);
   await expect(fieldLabelElement.filter({ hasText: 'My Label' })).toHaveText(
     'My Label'
   );
@@ -69,7 +69,7 @@ regressionTest.describe('click label', () => {
       `);
 
           const component = page.locator(selector);
-          await expect(component).toHaveClass(/hydrated/);
+          await expect(component).toHaveAttribute('hydrated');
 
           const labelElement = component
             .locator('ix-field-wrapper')
@@ -97,7 +97,7 @@ regressionTest('valid color', async ({ mount, page }) => {
   await expect(labelElement).not.toHaveAttribute('is-invalid');
   await expect(labelElement.locator('ix-typography')).toHaveAttribute(
     'style',
-    'color: var(--theme-color-soft-text);'
+    'color: var(--si-sys-color-text-secondary);'
   );
 });
 
@@ -109,7 +109,7 @@ regressionTest('invalid color', async ({ mount, page }) => {
   await expect(labelElement).toHaveAttribute('is-invalid');
   await expect(labelElement.locator('ix-typography')).toHaveAttribute(
     'style',
-    'color: var(--theme-color-alarm-text);'
+    'color: var(--si-sys-color-text-danger);'
   );
 });
 
@@ -125,7 +125,7 @@ regressionTest('valid color with valid text field', async ({ mount, page }) => {
 
   await expect(labelElement.locator('ix-typography')).toHaveAttribute(
     'style',
-    'color: var(--theme-color-soft-text);'
+    'color: var(--si-sys-color-text-secondary);'
   );
 });
 
@@ -148,7 +148,7 @@ regressionTest(
     await expect(fieldElement).toHaveClass(/ix-invalid--required/);
     await expect(labelElement.locator('ix-typography')).toHaveAttribute(
       'style',
-      'color: var(--theme-color-alarm-text);'
+      'color: var(--si-sys-color-text-danger);'
     );
   }
 );
@@ -167,7 +167,7 @@ regressionTest(
 
     await expect(labelElement.locator('ix-typography')).toHaveAttribute(
       'style',
-      'color: var(--theme-color-soft-text);'
+      'color: var(--si-sys-color-text-secondary);'
     );
   }
 );
@@ -192,7 +192,7 @@ regressionTest(
 
     await expect(labelElement.locator('ix-typography')).toHaveAttribute(
       'style',
-      'color: var(--theme-color-alarm-text);'
+      'color: var(--si-sys-color-text-danger);'
     );
   }
 );
@@ -224,7 +224,7 @@ regressionTest(
     await expect(selectElement).toHaveClass(/ix-invalid--required/);
     await expect(labelElement.locator('ix-typography')).toHaveAttribute(
       'style',
-      'color: var(--theme-color-alarm-text);'
+      'color: var(--si-sys-color-text-danger);'
     );
   }
 );

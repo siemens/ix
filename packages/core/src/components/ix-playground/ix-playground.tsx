@@ -6,8 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { Component, Host, h } from '@stencil/core';
 
+/**
+ * Internal development playground for previewing and testing components.
+ */
 @Component({
   tag: 'ix-playground',
   styleUrl: 'ix-playground.scss',
@@ -15,10 +19,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class IxPlayground {
   render() {
-    return (
-      <Host>
-        <ix-chat-input></ix-chat-input>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

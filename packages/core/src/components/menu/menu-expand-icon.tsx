@@ -16,6 +16,8 @@ import { getButtonClasses } from '../button/base-button';
 import { Breakpoint } from '../utils/breakpoints';
 import { a11yBoolean } from '../utils/a11y';
 /**
+ * Icon that toggles the expanded state of the side menu.
+ *
  * @internal
  */
 @Component({
@@ -51,13 +53,13 @@ export class MenuExpandIcon {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
+          viewBox="0 0 20 20"
+          width="20"
+          height="20"
         >
-          <rect class="line line-1" x="2" y="5" width="20" height="2"></rect>
-          <rect class="line line-2" x="2" y="11" width="13" height="2"></rect>
-          <rect class="line line-3" x="2" y="17" width="20" height="2"></rect>
+          <rect class="line line-1" x="2" y="4" width="16" height="2"></rect>
+          <rect class="line line-2" x="2" y="9" width="10" height="2"></rect>
+          <rect class="line line-3" x="2" y="14" width="16" height="2"></rect>
         </svg>
       </button>
     );

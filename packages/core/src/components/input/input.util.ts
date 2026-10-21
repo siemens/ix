@@ -7,11 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { EventEmitter } from '@stencil/core';
 import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
   ValidationResults,
+  clearInternalValidationClasses,
+  revalidate,
   shouldSuppressInternalValidation,
 } from '../utils/input';
 import { createMutationObserver } from '../utils/mutation-observer';
@@ -51,39 +54,60 @@ export function checkAllowedKeys<T>(
   }
 }
 
+// Last tracked validity, kept across `novalidate` toggles since the class is cleared there
+const lastValidityStates = new WeakMap<HTMLElement, boolean>();
+
 export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
   const validityState = input.validity;
-  const currentValidityState = !comp.hostElement.classList.contains(
-    'ix-invalid--validity-invalid'
-  );
+  const currentValidityState =
+    lastValidityStates.get(comp.hostElement) ??
+    !comp.hostElement.classList.contains('ix-invalid--validity-invalid');
   const newValidityState = validityState.valid;
+  const validityChanged = currentValidityState !== newValidityState;
 
-  if (currentValidityState !== newValidityState) {
+  // `novalidate`: track before emitting so a prevented event isn't re-emitted next check
+  if (skipValidation) {
+    lastValidityStates.set(comp.hostElement, newValidityState);
+  }
+
+  if (validityChanged) {
     const eventResult = comp.validityStateChange.emit(validityState);
     if (eventResult.defaultPrevented) {
       return;
     }
+  }
 
+  lastValidityStates.set(comp.hostElement, newValidityState);
+
+  // `novalidate`: still emit the event, but skip visual feedback
+  if (skipValidation) {
+    clearInternalValidationClasses(comp.hostElement);
+    return;
+  }
+
+  if (validityChanged || (comp.value !== null && comp.value !== undefined)) {
     comp.hostElement.classList.toggle(
       'ix-invalid--validity-invalid',
       !newValidityState
     );
   }
+}
 
-  if (comp.value === null || comp.value === undefined) {
-    return;
+// Revalidates after a prop like `required` changed; call after rendering
+export async function revalidateAfterPropChange<T>(
+  comp: IxFormComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement | null | undefined,
+  touched: boolean
+) {
+  // Must run first: it only emits if the class doesn't match yet
+  if (input && touched) {
+    await checkInternalValidity(comp, input);
   }
-
-  const skipValidation = await shouldSuppressInternalValidation(comp);
-  if (skipValidation) {
-    return;
-  }
-
-  const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
+  await revalidate(comp);
 }
 
 export function onInputBlur<T>(
@@ -112,15 +136,15 @@ export function applyPaddingEnd(
     return;
   }
 
-  const remInPixels = 16;
-  const padding = convertToRemString(width + remInPixels / 2);
+  const padding = convertToRemString(width);
+  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 0.5rem)';
 
   if (options.slotEnd) {
-    inputElement.style.paddingRight = `calc(${padding} + ${
+    inputElement.style.paddingRight = `calc(${padding} + ${basePadding} + ${
       options.additionalPaddingRight ?? '0rem'
     })`;
   } else {
-    inputElement.style.paddingLeft = padding;
+    inputElement.style.paddingLeft = `calc(${padding} + ${basePadding})`;
   }
 }
 
@@ -231,7 +255,7 @@ export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
 export function onInputBlurWithChange<T>(
   comp: IxFormComponent<T> & {
     initialValue?: T;
-    ixChange: { emit: (value: T) => void };
+    ixChange: EventEmitter<T>;
   },
   input?: HTMLInputElement | HTMLTextAreaElement | null,
   currentValue?: T
@@ -239,7 +263,11 @@ export function onInputBlurWithChange<T>(
   onInputBlur(comp, input);
 
   if (comp.initialValue !== currentValue) {
-    comp.ixChange.emit(currentValue!);
+    if (currentValue === undefined) {
+      comp.ixChange.emit();
+    } else {
+      comp.ixChange.emit(currentValue);
+    }
     comp.initialValue = currentValue;
   }
 }

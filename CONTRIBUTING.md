@@ -55,6 +55,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
     - [Visual regression testing](#visual-regression-testing)
     - [Modify and preview documentation](#modify-and-preview-documentation)
       - [Preview and example code](#preview-and-example-code)
+      - [Registry overview: patterns vs examples](#registry-overview-patterns-vs-examples)
     - [Submit Pull Request](#submit-pull-request)
   - [Attribution](#attribution)
 
@@ -268,6 +269,11 @@ Visual regression tests run across multiple themes: `theme-classic-light`, `them
 
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
+Fixtures in `testing/visual-testing` normally load `tests/utils/test/runtime/main.ts`,
+which includes foundation, utility, reset, and base styles. Fixtures that use native
+compatibility controls such as `.ix-form-control` or `.ix-form-label` should load
+`tests/utils/test/runtime/legacy.ts` instead to opt in to `legacy.css`.
+
 1. Build the library: `pnpm build --filter \!documentation`
 
 2. Start the playwright docker container mounting the current working directory into the container's _work_ directory:
@@ -313,6 +319,32 @@ These packages contain playground applications to explore and test the respectiv
 The preview source code for the documentation is also located inside the `x-test-app`'s. (`src/preview-examples`)
 These preview-examples will be translated to markdown files and get copied into `./packages/documentation/docs/auto-generated/previews`.
 
+#### Registry overview: unified catalog
+
+The registry content for `patterns`, `examples` and component API metadata is exposed through a single registry file and built from different sources:
+
+| Topic             | Unified registry                                                                                                                                           |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Registry file     | `tooling/registry/registry.json` (template)                                                                                                                |
+| Patterns source   | Manual JSON files in `./patterns/*.json`                                                                                                                   |
+| Examples source   | Generated JSON files in `tooling/registry/dist/examples/*.json`                                                                                            |
+| Components source | `packages/core/component-doc.json`                                                                                                                         |
+| LLM docs          | Generated `tooling/registry/dist/llms.txt` and split Markdown files in `tooling/registry/dist/llms/`                                                       |
+| Schemas           | `tooling/registry/registry.schema.json`, plus `pattern.schema.json`, `example.schema.json`, and repository-only `authored-pattern.schema.json`             |
+| Build steps       | `updatePatternsRegistry(...)`, `updateExamplesRegistry(...)`, `updateComponentsRegistry(...)`, and central search generation update the same version entry |
+| Template behavior | `dist-tags` and `versions` are overwritten during build/deploy                                                                                             |
+
+Contributor guidance:
+
+- For a **new pattern**, add or update a JSON definition in `./patterns` and ensure its
+  `variants` use one repository-only `sourcePath` per file (for example from
+  `react-patterns` / `angular-standalone-patterns`). The registry derives the
+  framework-prefixed public path from each source basename.
+- For a **new example**, add matching preview files in `./examples/<framework>-examples/src/preview-examples`; do not hand-write JSON in `dist/examples`.
+- `tooling/registry/registry.json` is a template; runtime entries are generated dynamically during registry build/deployment.
+- Generated LLM docs use existing registry JSON only; relationships not represented in JSON, such as pattern-to-component usage, are marked unavailable.
+- Rebuild the registry (`pnpm --filter registry build`) to refresh the generated `registry.json` in `tooling/registry/dist`.
+
 ### Submit Pull Request
 
 1. [Create a new pull request](https://github.com/siemens/ix/compare) with the `main` branch as the `base`. You may need to click on `compare across forks` to find your changes.
@@ -321,6 +353,73 @@ These preview-examples will be translated to markdown files and get copied into 
 4. Create a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) using `pnpm changeset` to help us prepare a release. If you are not sure what to do just skip this step, a maintainer will comment on the pull request.
 
 **Release Process**: This project uses changesets for version management. Snapshot releases are available for PR testing, and version bumps automatically regenerate framework wrappers.
+
+#### Title
+
+Follow the rule `<type>[optional <scope>]: <description>`
+
+Examples are:
+
+- `fix(core): correct button color in dark theme`
+- `feat(core/select): add feature X to component select`
+
+##### Commit message with ! to draw attention to breaking change
+
+- `feat!: correct button color in dark theme`
+- `feat(core/select)!: add feature X to component select`
+
+##### Allowed types without scope
+
+- `chore`
+- `docs`
+- `refactor`
+- `test`
+
+#### Description
+
+- Check that the pull request description explains the user-facing impact, motivation, and important implementation details.
+- If the description is insufficient for reviewers or future maintainers to understand the effect of the change, request that it be expanded.
+- Do use the provided template pull requests which changes the pull request template can be rejected
+- Do not link any github issues inside the description with `Fixes #<issue-number>` or `Closes #<issue-number>` this needs to be part of the changeset (see below)
+
+#### Changesets
+
+- Treat a missing changeset as a review issue when a pull request includes user-facing or consumer-relevant changes.
+- Consider a changeset required for public API updates, component behavior changes, styling or theming changes, accessibility changes, and bug fixes that materially affect users.
+- If a pull request does not include a changeset, verify whether the author clearly established that the change is internal-only. If not, call it out in the review.
+- Mention packages in the changeset only when they are relevant to the change. For example, if a pull request only changes `@siemens/ix`, do not require unrelated packages in the changeset summary.
+- If the change is major, ensure that the changeset summary clearly describes the breaking nature of the change and the migration steps consumers need.
+- If a GitHub issue is linked to the pull request, ensure the changeset summary includes `Fixes #<issue-number>` when that issue should close on release.
+
+#### Accessibility
+
+- For component changes, check that accessibility coverage exists with an axe-based component test. Prefer the existing pattern used in `packages/core/src/components/tabs/test/tabs.ct.ts`.
+- Ensure the relevant framework accessibility coverage is still present in `testing/framework-tests/tests/working-with-axe.spec.ts` and `testing/framework-tests/tests/working.spec.ts` when the change affects component behavior that those tests should cover.
+- If an accessibility-relevant change lacks appropriate automated coverage, raise it as a review finding.
+
+#### Storybook
+
+- Require a story for any new component or significant variation of an existing component, including new user-visible states, themes, or interactions.
+- Check that storybook accessibility coverage remains valid for the affected component. If a story or accessibility coverage is missing for a user-visible change, raise it in the review.
+
+#### Requirement Linking
+
+- Check that the pull request description or commit message includes a GitHub issue reference or Jira reference matching `EIX-<issue-number>` when the work is tied to a tracked requirement.
+
+#### Review Priorities
+
+- Focus first on correctness, regressions, accessibility, release impact, and missing validation.
+- Prefer review comments that are concrete and actionable.
+- When a rule does not apply because the change is internal-only, state that explicitly rather than assuming it.
+
+#### Component changes
+
+##### Adding new component, new property, new method or new event
+
+- Ensure that each new component, property, method, or event has a JSDocs which contains a `@since` tag with the version number of the release in which it was added. For example, if a new component is added in version 4.2.0, the JSDocs should include `@since 4.2.0`.
+- If the current version is `4.2.0` and a changeset exist with a `major` change then the `@since` tag should be `5.0.0` because the change will be released in next major release.
+- If the current version is `4.2.0` and a changeset exist with a `minor` change then the `@since` tag should be `4.3.0` because the change will be released in next minor release.
+- Suggest the correct version number for the `@since` tag based on the current version and the type of change (major, minor, patch) if it is missing or incorrect.
 
 ## Attribution
 

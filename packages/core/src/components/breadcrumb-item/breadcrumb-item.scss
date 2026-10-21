@@ -10,7 +10,9 @@
 @use 'mixins/shadow-dom/component';
 @use '../button/button-mixin';
 @use '../button/button';
+@use 'tokens/system' as sys;
 
+@use './breadcrumb-item.vars' as *;
 @include button-mixin.all-btn-variants;
 
 :host {
@@ -19,8 +21,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  margin-right: 0.25rem;
-  max-width: 15rem;
+  margin-right: var(--ix-breadcrumb-item--margin-right);
+  max-width: var(--ix-breadcrumb-item--max-width);
   min-width: 0;
 
   @include component.ix-component;
@@ -33,14 +35,14 @@
     pointer-events: all;
     width: fit-content;
     padding-right: 0;
-    padding-left: 0.25rem;
+    padding-left: var(--ix-breadcrumb-item-button--padding-left);
   }
 
   .chevron {
     pointer-events: none;
-    margin-left: 0.5rem;
+    margin-left: var(--ix-breadcrumb-item-chevron--margin-left);
     margin-right: 0rem;
-    color: var(--theme-color-soft-text);
+    color: var(--ix-breadcrumb-item-separator--color);
   }
 
   ::slotted(a[href]) {
@@ -54,7 +56,7 @@
 
 :host(:last-child) {
   .btn:not(.dropdown-trigger) {
-    color: var(--theme-color-soft-text);
+    color: var(--ix-breadcrumb-item-current--color);
   }
 }
 
@@ -62,7 +64,7 @@
   cursor: default;
 
   .btn {
-    padding-right: 0.5rem;
+    padding-right: var(--ix-breadcrumb-item-button--padding-right);
     pointer-events: none;
   }
 }

@@ -1,7 +1,23 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "BASE_URL"],
-  "globalDependencies": [".env"],
+  "globalEnv": [
+    "CI",
+    "FIGMA_API_TOKEN",
+    "GITHUB_TOKEN",
+    "CSC",
+    "BASE_URL",
+    "REGISTRY_VERSION",
+    "REGISTRY_PATH_PREFIX",
+    "REGISTRY_LATEST_TAG",
+    "CORPORATE_THEME_VERSION",
+    "CORPORATE_THEME_URL"
+  ],
+  "globalPassThroughEnv": [
+    "CORPORATE_THEME_TOKEN",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "CHROME_BIN"
+  ],
+  "globalDependencies": [".env*", "**/.env*"],
   "ui": "stream",
   "tasks": {
     "build": {
@@ -12,14 +28,21 @@
         "dist/**",
         "dist-css/**",
         "build/**",
+        "sboms/**",
         "storybook-static/**",
         "www/**",
         "loader/**",
         "api-docs/**",
+        "component-api.json",
         "component-doc.json",
         "component-usage-by-component.json",
         "component-usage.json"
       ],
+      "outputLogs": "new-only"
+    },
+    "registry#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
       "outputLogs": "new-only"
     },
     "start": {
@@ -31,13 +54,14 @@
       "cache": false
     },
     "visual-regression": {
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "^build"],
       "cache": false
     },
     "test.setup": {
       "cache": false
     },
     "test": {
+      "dependsOn": ["build", "^build"],
       "cache": false
     },
     "test.memlab": {

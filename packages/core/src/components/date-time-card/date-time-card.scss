@@ -7,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
+@use './date-time-card.vars' as *;
 :host {
   @include component.ix-component;
 
   .card {
-    background-color: var(--theme-menu--background);
+    background-color: var(--ix-date-time-card--background);
     width: 100%;
     box-shadow: none;
     border: none;
@@ -23,21 +23,25 @@
     flex-direction: column;
 
     &.standaloneAppearance {
-      box-shadow: var(--theme-shadow-4);
-      border-radius: 0.25rem;
+      box-shadow: var(--ix-date-time-card--box-shadow);
+      border-radius: var(
+        --ix-date-time-card-standalone-appearance--border-radius
+      );
     }
 
     &.rounded {
-      border-radius: 4px;
+      border-radius: var(--ix-date-time-card-rounded--border-radius);
     }
 
     &.left {
-      border-radius: 4px 0 0 4px;
+      border-radius: var(--ix-date-time-card-left--border-radius) 0 0
+        var(--ix-date-time-card-left--border-radius);
       height: 100%;
     }
 
     &.right {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 var(--ix-date-time-card-right--border-radius)
+        var(--ix-date-time-card-right--border-radius) 0;
       height: 100%;
     }
 
@@ -49,27 +53,27 @@
       width: 100%;
 
       .header {
-        padding: vars.$medium-space vars.$default-space;
+        padding: var(--ix-date-time-card-header--padding);
         flex: 0 1 auto;
       }
     }
 
     .separator {
-      height: 1px;
-      background-color: var(--theme-datepicker-separator--background);
+      height: var(--ix-date-time-card-separator--height);
+      background-color: var(--ix-date-time-card-separator--background);
       width: 100%;
       flex: 0 1 auto;
     }
 
     .content {
-      padding: 0 vars.$default-space vars.$default-space vars.$default-space;
+      padding: var(--ix-date-time-card-content--padding);
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       &--time-picker {
-        padding: 0 vars.$default-space;
+        padding: var(--ix-date-time-card-time-picker--padding);
       }
 
       &--no-padding {
@@ -81,7 +85,7 @@
       width: 100%;
 
       .footer {
-        padding: vars.$default-space;
+        padding: var(--ix-date-time-card-footer--padding);
       }
     }
   }

@@ -10,7 +10,7 @@
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
 
-$focus-bdr-width: 0.0625rem;
+@use './menu-expand-icon.vars' as *;
 
 @include button-mixin.btn;
 @include button-mixin.btn-variant(subtle-tertiary);
@@ -19,9 +19,9 @@ $focus-bdr-width: 0.0625rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 2rem;
-  width: 2rem;
-  border-radius: var(--theme-btn--border-radius);
+  height: var(--ix-menu-expand-icon--height);
+  width: var(--ix-menu-expand-icon--width);
+  border-radius: var(--ix-menu-expand-icon--border-radius);
   pointer-events: all;
 
   @include component.ix-component;
@@ -32,31 +32,35 @@ $focus-bdr-width: 0.0625rem;
   }
 
   .line {
-    fill: var(--theme-menu-btn--color);
+    fill: var(--ix-menu-expand-icon--color);
     opacity: 1;
-    x: 2px;
-    transition: x 0.075s ease-in var(--theme-default-time),
-      transform 0.075s ease-in-out 0.075s, y 0.075s ease-in-out,
-      opacity 0.075s linear 0.075s;
+    x: var(--ix-menu-expand-icon-line--x);
+    transition: x var(--ix-menu-expand-icon-line--transition-duration) ease-in
+        var(--ix-menu-expand-icon--transition-delay),
+      transform var(--ix-menu-expand-icon-line--transition-duration) ease-in-out
+        var(--ix-menu-expand-icon-line--transition-duration),
+      y var(--ix-menu-expand-icon-line--transition-duration) ease-in-out,
+      opacity var(--ix-menu-expand-icon-line--transition-duration) linear
+        var(--ix-menu-expand-icon-line--transition-duration);
     transform-origin: center;
   }
 }
 
 @include hover.host-hover {
   .menu-expand-button {
-    background-color: var(--theme-menu-btn--background--hover);
+    background-color: var(--ix-menu-expand-icon--background--hover);
   }
 }
 
 .menu-expand-button {
-  width: 2rem;
+  width: var(--ix-menu-expand-icon-menu-expand-button--width);
   padding: 0px !important;
   cursor: pointer;
 }
 
 @include hover.host-active {
   .menu-expand-button {
-    background-color: var(--theme-menu-btn--background--active);
+    background-color: var(--ix-menu-expand-icon--background--active);
   }
 }
 
@@ -64,17 +68,17 @@ $focus-bdr-width: 0.0625rem;
   svg .line-1 {
     opacity: 1;
     transform: rotate(-45deg);
-    y: 11px;
+    y: var(--ix-menu-expand-icon-line-1--y);
   }
 
   svg .line-2 {
     opacity: 0;
-    x: 9;
+    x: var(--ix-menu-expand-icon-line--x--expanded);
   }
 
   svg .line-3 {
     opacity: 1;
     transform: rotate(45deg);
-    y: 11px;
+    y: var(--ix-menu-expand-icon-line-3--y);
   }
 }

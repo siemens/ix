@@ -1,0 +1,31 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-push-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-push-card--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-push-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-push-card-accordion--border-color: #{sys.$si-sys-color-background-0};
+  --ix-push-card--width: #{sys.$si-sys-sizing-size-170};
+}
+
+:host {
+  --ix-push-card-icon--icon-size: #{sys.$si-sys-sizing-size-90};
+  --ix-push-card--height: #{sys.$si-sys-sizing-size-100};
+  --ix-push-card-content--height: calc(
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} +
+      #{sys.$si-sys-sizing-spacing-y-50} + #{sys.$si-sys-sizing-size-30} -
+      2 * #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-card-content--padding: #{sys.$si-sys-sizing-spacing-y-60}
+    #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-push-card-accordion-chrome-frame--border-width: #{sys.$si-sys-sizing-border-width-none};
+}

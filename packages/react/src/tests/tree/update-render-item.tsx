@@ -23,6 +23,17 @@ type TreeData = {
   icon: string;
 };
 
+function isTreeData(data: unknown): data is TreeData {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    'name' in data &&
+    typeof data.name === 'string' &&
+    'icon' in data &&
+    typeof data.icon === 'string'
+  );
+}
+
 function createModel(name: string, icon: string) {
   return {
     root: {
@@ -105,23 +116,25 @@ export const TreeExample = () => {
         onContextChange={({ detail }: CustomEvent<TreeContext>) => {
           setContext(detail);
         }}
-        renderItem={(data: TreeData) => (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <IxIcon
-              name={data.icon}
-              size="16"
+        renderItem={(data) =>
+          isTreeData(data) ? (
+            <div
               style={{
-                marginInlineEnd: '0.5rem',
+                display: 'flex',
+                alignItems: 'center',
               }}
-            />
-            {data.name}
-          </div>
-        )}
+            >
+              <IxIcon
+                name={data.icon}
+                size="16"
+                style={{
+                  marginInlineEnd: '0.5rem',
+                }}
+              />
+              {data.name}
+            </div>
+          ) : null
+        }
       ></IxTree>
     </div>
   );

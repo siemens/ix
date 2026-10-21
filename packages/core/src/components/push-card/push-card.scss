@@ -6,14 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './../card/card-vars' as card-vars;
+@use './push-card.vars' as *;
 
 :host {
   display: block;
   position: relative;
+  box-sizing: border-box;
+  width: var(--ix-push-card--width);
+  min-width: var(--ix-push-card--width);
 
   ix-card {
-    cursor: default;
+    width: 100%;
   }
 
   ix-card-accordion {
@@ -21,25 +24,41 @@
   }
 
   .icon {
-    height: 2.5rem;
-    width: 2.5rem;
+    /* Explicit size so CSS wins over ix-icon defaults */
+    height: var(--ix-push-card-icon--icon-size);
+    width: var(--ix-push-card-icon--icon-size);
+    min-height: var(--ix-push-card-icon--icon-size);
+    min-width: var(--ix-push-card-icon--icon-size);
   }
 
   ix-card-title {
-    height: 2.5rem;
+    height: var(--ix-push-card--height);
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   ix-card-content {
-    height: 11rem;
-  }
-}
+    height: var(--ix-push-card-content--height);
 
-@each $variant in card-vars.$ix-card-variants {
-  :host(.card-#{$variant}) {
-    ix-card-content {
-      border-bottom: var(--theme-push-card--border-width)
-        solid
-        var(--theme-push-card-#{$variant}-accordion--border-color);
+    &::part(content) {
+      overflow: visible;
     }
+  }
+
+  ix-card-accordion {
+    --ix-card-accordion-expand-content--border-radius: 0 0
+      var(--ix-push-card--border-radius) var(--ix-push-card--border-radius);
+    /* No inner border around expanded content */
+    --ix-card-accordion-chrome-frame--border-color: transparent;
+    --ix-card-accordion-chrome-frame--border-width: var(
+      --ix-push-card-accordion-chrome-frame--border-width
+    );
+    /* Separator on accordion top (not content bottom) */
+    --ix-card-accordion-expand-action--border-top-width: var(
+      --ix-push-card--border-width
+    );
+    --ix-card-accordion-expand-action--border-top-color: var(
+      --ix-push-card-accordion--border-color
+    );
   }
 }

@@ -9,6 +9,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronUp, iconMoreMenu } from '@siemens/ix-icons/icons';
@@ -25,8 +26,16 @@ function CardListTitle(props: {
   labelShowLess: string;
   showLess: boolean;
   hideShowAll: boolean;
+  collapseButtonRef: (element?: HTMLIxIconButtonElement) => void;
 }) {
-  if (!props.label) {
+  const defaultAriaLabel = props.isCollapsed
+    ? 'Expand card list'
+    : 'Collapse card list';
+  const ariaLabel = props.ariaLabelExpandButton?.trim()
+    ? props.ariaLabelExpandButton
+    : defaultAriaLabel;
+
+  if (!props.label && !props.ariaLabelExpandButton?.trim()) {
     return null;
   }
 
@@ -36,12 +45,13 @@ function CardListTitle(props: {
         variant="subtle-tertiary"
         icon={iconChevronUp}
         onClick={props.onClick}
-        iconColor="color-std-text"
+        iconColor="--si-sys-color-text-primary"
         class={{
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
-        aria-label={props.ariaLabelExpandButton}
+        aria-label={ariaLabel}
+        ref={props.collapseButtonRef}
       ></ix-icon-button>
       <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}
@@ -71,7 +81,12 @@ function CardListTitle(props: {
 }
 
 /**
- * @slot default - Cards displayed in the list.
+ * Container that arranges multiple cards in a list or grid layout.
+ *
+ * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
+ * @figma-main-component-id 104638:14632
+ *
+ * @slot - Cards displayed in the list.
  */
 @Component({
   tag: 'ix-card-list',
@@ -80,8 +95,9 @@ function CardListTitle(props: {
 })
 export class CardList {
   /**
-   * ARIA label for the card's expand button.
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the card list's expand and collapse button.
+   * Defaults to `Collapse card list` when expanded and `Expand card list` when
+   * collapsed. A non-empty custom value overrides the label in both states.
    *
    * @since 3.2.0
    */
@@ -164,7 +180,7 @@ export class CardList {
     cancelable: true,
   })
   showMoreCardClick!: EventEmitter<{
-    nativeEvent: MouseEvent;
+    nativeEvent: MouseEvent | KeyboardEvent;
   }>;
 
   @Element() hostElement!: HTMLIxCardListElement;
@@ -178,12 +194,86 @@ export class CardList {
 
   private observer?: MutationObserver;
 
+  private collapseButton?: HTMLIxIconButtonElement;
+
+  @Watch('collapse')
+  protected handleCollapseChange(isCollapsed: boolean) {
+    if (isCollapsed && this.hasFocusWithinListContent()) {
+      this.collapseButton?.focus();
+    }
+  }
+
+  private hasFocusWithinListContent() {
+    return this.listElement?.matches(':focus-within') ?? false;
+  }
+
   private onCardListVisibilityToggle() {
     this.collapse = !this.collapse;
     this.collapseChanged.emit(this.collapse);
   }
 
-  private handleClick(emitter: EventEmitter, event: MouseEvent) {
+  private findFirstFocusable(
+    root: HTMLElement | ShadowRoot
+  ): HTMLElement | null {
+    const focusableSelectors =
+      'button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    const direct = (root as Element).querySelector?.<HTMLElement>(
+      focusableSelectors
+    );
+    if (direct) return direct;
+
+    for (const child of Array.from(
+      (root as Element).querySelectorAll?.('*') ?? []
+    )) {
+      const el = child as HTMLElement;
+      if (el.shadowRoot) {
+        const found = this.findFirstFocusable(el.shadowRoot);
+        if (found) return found;
+      }
+    }
+
+    return null;
+  }
+
+  private focusFirstVisibleCard(startIndex: number = 0) {
+    requestAnimationFrameNoNgZone(() => {
+      requestAnimationFrameNoNgZone(() => {
+        const firstNewlyVisible = this.getListChildren()
+          .slice(startIndex)
+          .find(
+            (el): el is HTMLElement =>
+              el instanceof HTMLElement &&
+              !el.classList.contains('display-none')
+          );
+
+        if (!firstNewlyVisible) return;
+
+        const internalFocusable = firstNewlyVisible.shadowRoot
+          ? this.findFirstFocusable(firstNewlyVisible.shadowRoot)
+          : null;
+
+        if (internalFocusable) {
+          internalFocusable.focus({ preventScroll: false });
+          return;
+        }
+
+        if (firstNewlyVisible.hasAttribute('tabindex')) {
+          firstNewlyVisible.focus({ preventScroll: false });
+          return;
+        }
+
+        firstNewlyVisible.setAttribute('tabindex', '-1');
+        firstNewlyVisible.focus({ preventScroll: false });
+        firstNewlyVisible.removeAttribute('tabindex');
+      });
+    });
+  }
+
+  private handleClick(
+    emitter: EventEmitter,
+    event: MouseEvent | KeyboardEvent
+  ) {
     const { defaultPrevented } = emitter.emit({
       nativeEvent: event,
     });
@@ -192,12 +282,29 @@ export class CardList {
       return;
     }
 
+    const wasShowingAll = this.isShowingAll;
+    const firstNewCardIndex = this.maxVisibleCards;
+
     this.isShowingAll = !this.isShowingAll;
     this.changeVisibilityOfSlotChildren();
+
+    if (!wasShowingAll) {
+      this.focusFirstVisibleCard(firstNewCardIndex);
+    }
   }
 
   private onShowAllClick(event: MouseEvent) {
     this.handleClick(this.showAllClick, event);
+  }
+
+  private onShowMoreCardClick(event: MouseEvent | KeyboardEvent) {
+    if (event instanceof KeyboardEvent) {
+      if (event.key !== 'Enter' && event.key !== ' ') {
+        return;
+      }
+      event.preventDefault();
+    }
+    this.handleClick(this.showMoreCardClick, event);
   }
 
   private getListChildren() {
@@ -337,6 +444,7 @@ export class CardList {
         <CardListTitle
           isCollapsed={this.collapse}
           label={this.label}
+          ariaLabelExpandButton={this.ariaLabelExpandButton}
           showAllLabel={this.i18nShowAll}
           showAllCounter={
             this.showAllCount === undefined
@@ -348,6 +456,7 @@ export class CardList {
           onClick={() => this.onCardListVisibilityToggle()}
           onShowAllClick={(e) => this.onShowAllClick(e)}
           hideShowAll={this.hideShowAll}
+          collapseButtonRef={(element) => (this.collapseButton = element)}
         ></CardListTitle>
         <div
           class={{
@@ -363,6 +472,7 @@ export class CardList {
               CardList__Style__Infinite__Scroll: this.listStyle === 'scroll',
             }}
             onScroll={() => this.onCardListScroll()}
+            inert={this.collapse}
           >
             <slot
               onSlotchange={() => {
@@ -371,23 +481,30 @@ export class CardList {
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
+                clickable
+                role="button"
+                tabindex="0"
+                aria-label={`${this.i18nMoreCards} (${this.numberOfOverflowingElements})`}
                 class={{
                   Show__All__Card: true,
                 }}
-                onClick={(event) => {
-                  this.handleClick(this.showMoreCardClick, event);
-                }}
+                onClick={(event) => this.onShowMoreCardClick(event)}
+                onKeyDown={(event: KeyboardEvent) =>
+                  this.onShowMoreCardClick(event)
+                }
               >
                 <ix-card-content>
                   <div class="Show__All__Card__Content">
                     <ix-icon
                       name={iconMoreMenu}
-                      size={'32'}
                       class={'Show__All__Card__Icon'}
                     ></ix-icon>
-                    <span class="Show__All__Card__Text">
+                    <ix-typography
+                      class="Show__All__Card__Text"
+                      format="body-lg-sbold"
+                    >
                       {this.i18nMoreCards} ({this.numberOfOverflowingElements})
-                    </span>
+                    </ix-typography>
                   </div>
                 </ix-card-content>
               </ix-card>

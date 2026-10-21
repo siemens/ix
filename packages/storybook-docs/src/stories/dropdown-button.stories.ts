@@ -8,6 +8,7 @@
  */
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import type { Components } from '@siemens/ix/components';
+import { html } from 'lit';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxDropdownButton;
@@ -30,6 +31,37 @@ export const Primary: Story = {
     label: 'Button',
     variant: 'primary',
   },
+};
+
+export const RovingTabindex: Story = {
+  render: () => html`
+    <ix-dropdown-button
+      label="Roving tabindex"
+      navigation-mode="roving-tabindex"
+    >
+      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      <button data-ix-roving-item>Native button</button>
+    </ix-dropdown-button>
+  `,
+};
+
+export const WithDropdownItems: Story = {
+  args: {
+    label: 'Button',
+    variant: 'primary',
+  },
+  render: (args) =>
+    genericRender('ix-dropdown-button', args, [], (dropdownButton) => {
+      ['Dropdown Item 1', 'Dropdown Item 2', 'Dropdown Item 3'].forEach(
+        (label) => {
+          const dropdownItem = document.createElement('ix-dropdown-item');
+          dropdownItem.label = label;
+          dropdownButton.appendChild(dropdownItem);
+        }
+      );
+      return dropdownButton;
+    }),
 };
 
 export const Secondary: Story = {

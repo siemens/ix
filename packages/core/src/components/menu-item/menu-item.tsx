@@ -36,7 +36,11 @@ import { a11yBoolean } from '../utils/a11y';
 let sequenceId = 0;
 
 /**
- * @slot default - Custom menu item label.
+ * Navigation entry within the side menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 308:1293
+ * @slot - Menu item label.
  */
 @Component({
   tag: 'ix-menu-item',
@@ -92,6 +96,13 @@ export class MenuItem
    * @since 4.0.0
    */
   @Prop() tooltipText?: string;
+
+  /**
+   * Disable the tooltip for this menu item.
+   *
+   * @since 6.0.0
+   */
+  @Prop() disableTooltip = false;
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
@@ -186,6 +197,8 @@ export class MenuItem
   }
 
   override connectedCallback() {
+    super.connectedCallback();
+
     this.observer.observe(this.hostElement, {
       subtree: true,
       childList: true,
@@ -229,7 +242,12 @@ export class MenuItem
       this.tooltipText !== this.hostElement.textContent;
 
     if (hasDistinctTooltip) {
-      return `${this.label ?? this.menuCategoryLabel ?? this.hostElement.textContent ?? ''} ${this.tooltipText}`;
+      return `${
+        this.label ??
+        this.menuCategoryLabel ??
+        this.hostElement.textContent ??
+        ''
+      } ${this.tooltipText}`;
     }
 
     return undefined;
@@ -298,7 +316,7 @@ export class MenuItem
           <div class="pill">{this.notifications}</div>
         </div>
       ) : null,
-      <span id={this.internalItemId} class="tab-text text-default">
+      <span id={this.internalItemId} class="tab-text typography-body">
         {this.label}
         <slot></slot>
       </span>,
@@ -362,16 +380,18 @@ export class MenuItem
             {menuContent}
           </button>
         )}
-        <ix-tooltip
-          for={this.buttonRef.waitForCurrent()}
-          placement={'right'}
-          showDelay={1000}
-          interactive={false}
-          aria-hidden="true"
-          aria-labelledby={this.internalItemId}
-        >
-          {this.tooltip}
-        </ix-tooltip>
+        {!this.disableTooltip && (
+          <ix-tooltip
+            for={this.buttonRef.waitForCurrent()}
+            placement={'right'}
+            showDelay={1000}
+            interactive={false}
+            aria-hidden="true"
+            aria-labelledby={this.internalItemId}
+          >
+            {this.tooltip}
+          </ix-tooltip>
+        )}
       </Host>
     );
   }
