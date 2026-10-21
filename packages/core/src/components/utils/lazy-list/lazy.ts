@@ -15,7 +15,7 @@
 export type VirtualListConfig = {
   applyPatch?: (
     element: HTMLElement,
-    fragment: DocumentFragment | DocumentFragment[]
+    fragment: DocumentFragment | HTMLElement[]
   ) => void;
   overrideScrollPosition?: () => void;
   rowClassName?: string;
