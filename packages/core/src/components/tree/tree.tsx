@@ -119,6 +119,7 @@ export class Tree {
 
   private updateNavigationTabIndex(id: string) {
     this.focusedItemId = id;
+    this.hostElement.removeAttribute('tabindex');
     this.hostElement
       .querySelectorAll<HTMLIxTreeItemElement>('[data-tree-node-id]')
       .forEach((item) => {
@@ -126,8 +127,30 @@ export class Tree {
       });
   }
 
+  private updateNavigationTabStops(items: TreeItemVisual<unknown>[]) {
+    const navigationId = this.getNavigationId(items);
+    const rows = Array.from(
+      this.hostElement.querySelectorAll<HTMLIxTreeItemElement>(
+        '[data-tree-node-id]'
+      )
+    );
+    const isRendered = rows.some(
+      (row) => row.dataset.treeNodeId === navigationId
+    );
+    if (navigationId && !isRendered) {
+      this.hostElement.tabIndex = 0;
+    } else {
+      // A negative tabindex on the shadow host would also skip its rows.
+      this.hostElement.removeAttribute('tabindex');
+    }
+    rows.forEach((row) => {
+      this.setNavigationTabIndex(row, row.dataset.treeNodeId === navigationId);
+    });
+  }
+
   private setNavigationTabIndex(item: HTMLIxTreeItemElement, active: boolean) {
     const index = active ? 0 : -1;
+    item.tabIndex = index;
     item.dataset.treeNavigationTabIndex = String(index);
     item.dispatchEvent(
       new CustomEvent('treeNavigationIndex', { detail: index })
@@ -171,10 +194,10 @@ export class Tree {
             element.insertBefore(row, next);
           }
         }
+        this.updateNavigationTabStops(list);
       },
       generate: (index: number) => {
         const item = list[index];
-        const navigationId = this.getNavigationId(list);
 
         const renderedTreeItem = this.hostElement.querySelector(
           `[data-tree-node-id="${item.id}"]`
@@ -190,10 +213,6 @@ export class Tree {
           renderedTreeItem.context = { ...context };
           renderedTreeItem.disabled = Boolean(
             item.disabled || context.isDisabled
-          );
-          this.setNavigationTabIndex(
-            renderedTreeItem,
-            item.id === navigationId
           );
           renderedTreeItem.setAttribute('aria-level', String(item.level + 1));
           renderedTreeItem.setAttribute('aria-setsize', String(item.setsize));
@@ -243,8 +262,7 @@ export class Tree {
 
         const el = innerElement as HTMLIxTreeItemElement;
         el.setAttribute('data-tree-node-id', item.id);
-        el.dataset.treeNavigationTabIndex =
-          item.id === navigationId ? '0' : '-1';
+        el.dataset.treeNavigationTabIndex = '-1';
         el.setAttribute('aria-level', String(item.level + 1));
         el.setAttribute('aria-setsize', String(item.setsize));
         el.setAttribute('aria-posinset', String(item.posinset));
@@ -311,7 +329,11 @@ export class Tree {
     return itemList;
   }
 
-  private async focusItem(item: TreeItemVisual<unknown>, index: number) {
+  private async focusItem(
+    item: TreeItemVisual<unknown>,
+    index: number,
+    fromContainer = false
+  ) {
     this.updateNavigationTabIndex(item.id);
     let element = this.hostElement.querySelector<HTMLIxTreeItemElement>(
       `[data-tree-node-id="${CSS.escape(item.id)}"]`
@@ -325,7 +347,9 @@ export class Tree {
     }
     if (element) {
       await this.whenTreeItemReady(element);
-      element.focus();
+      if (!fromContainer || this.hostElement.matches(':focus')) {
+        element.focus();
+      }
     }
   }
 
@@ -674,9 +698,35 @@ export class Tree {
         aria-label={this.hostElement.getAttribute('aria-label') ?? 'Tree'}
         onClick={(event: Event) => this.onTreeItemClick(event)}
         onKeyDown={(event: KeyboardEvent) => this.onTreeKeyDown(event)}
+        onFocusout={(event: FocusEvent) => {
+          if (
+            event.relatedTarget instanceof Node &&
+            this.hostElement.contains(event.relatedTarget)
+          ) {
+            return;
+          }
+          // Update re-entry after the browser has finished moving Tab focus.
+          queueMicrotask(() => {
+            if (!this.hostElement.matches(':focus-within')) {
+              this.focusedItemId = undefined;
+              this.updateNavigationTabStops(
+                this.buildTreeList(this.model[this.root])
+              );
+            }
+          });
+        }}
         onFocusin={(event: FocusEvent) => {
           const path = event.composedPath();
           const focusedItem = path[0];
+          if (focusedItem === this.hostElement) {
+            const list = this.buildTreeList(this.model[this.root]);
+            const id = this.getNavigationId(list);
+            const index = list.findIndex((item) => item.id === id);
+            if (index >= 0) {
+              void this.focusItem(list[index], index, true);
+            }
+            return;
+          }
           if (
             focusedItem instanceof HTMLElement &&
             focusedItem.tagName === 'IX-TREE-ITEM' &&

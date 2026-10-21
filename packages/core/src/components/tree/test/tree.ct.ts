@@ -1225,18 +1225,213 @@ for (const inModal of [false, true]) {
         .getByRole('button', { name: 'Before virtualized tree' })
         .focus();
       await page.keyboard.press('Tab');
-      if (await tree.evaluate((element) => element.matches(':focus'))) {
-        await page.keyboard.press('Tab');
-      }
       await flushVirtualizedScroll(page);
-      await expect(tree.locator('[data-tree-node-id="item-0"]')).toHaveCount(0);
       await expect(item).toBeFocused();
+      await expect(item).toBeInViewport();
       await expect(item).toHaveAttribute('tabindex', '0');
       await page.keyboard.press('ArrowDown');
       await expect(tree.locator('[data-tree-node-id="item-9"]')).toBeFocused();
     }
   );
 }
+
+for (const inModal of [false, true]) {
+  regressionTest(
+    `focuses the first node on tree entry when nothing is selected (modal: ${inModal})`,
+    async ({ mount, page }) => {
+      const tree = await initializeVirtualizedTree(mount, page, inModal);
+      await tree.evaluate((element) => {
+        element.scrollTop = element.scrollHeight;
+      });
+      await flushVirtualizedScroll(page);
+      const first = tree.getByRole('treeitem', {
+        name: 'item-0',
+        exact: true,
+      });
+      await expect(first).toHaveCount(0);
+      await expect(tree).toHaveAttribute('tabindex', '0');
+      await page
+        .getByRole('button', { name: 'Before virtualized tree' })
+        .focus();
+      await page.keyboard.press('Tab');
+      await expect(first).toBeFocused();
+      await expect(first).toBeInViewport();
+      await page.keyboard.press('ArrowDown');
+      await expect(
+        tree.getByRole('treeitem', { name: 'item-1', exact: true })
+      ).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(
+        page.getByRole('button', { name: 'After virtualized tree' })
+      ).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(first).toBeFocused();
+      await expect(tree.getByRole('treeitem', { selected: true })).toHaveCount(
+        0
+      );
+      await page.keyboard.press('Shift+Tab');
+      await expect(
+        page.getByRole('button', { name: 'Before virtualized tree' })
+      ).toBeFocused();
+    }
+  );
+
+  for (const previouslyFocused of [false, true]) {
+    regressionTest(
+      `focuses the unrendered selected item on tree entry (modal: ${inModal}, previously focused: ${previouslyFocused})`,
+      async ({ mount, page }) => {
+        const tree = await initializeVirtualizedTree(
+          mount,
+          page,
+          inModal,
+          'item-199'
+        );
+        const first = tree.getByRole('treeitem', {
+          name: 'item-0',
+          exact: true,
+        });
+        if (previouslyFocused) {
+          await first.focus();
+          await page.keyboard.press('End');
+          await expect(
+            tree.getByRole('treeitem', { name: 'item-199', exact: true })
+          ).toBeFocused();
+          await page.keyboard.press('ArrowUp');
+          await expect(
+            tree.getByRole('treeitem', { name: 'item-198', exact: true })
+          ).toBeFocused();
+          await page.keyboard.press('Tab');
+          await expect(
+            page.getByRole('button', { name: 'After virtualized tree' })
+          ).toBeFocused();
+          await tree.evaluate((element) => {
+            element.scrollTop = 0;
+          });
+          await flushVirtualizedScroll(page);
+        }
+
+        await expect(
+          tree.getByRole('treeitem', { name: 'item-199', exact: true })
+        ).toHaveCount(0);
+        await expect(tree).toHaveAttribute('tabindex', '0');
+        await expect(tree.locator('ix-tree-item[tabindex="0"]')).toHaveCount(0);
+        for (const force of [false, true]) {
+          await tree.evaluate(
+            (element: HTMLIxTreeElement, force) =>
+              element.refreshTree({ force }),
+            force
+          );
+          await expect(tree).toHaveAttribute('tabindex', '0');
+          await expect(tree.locator('ix-tree-item[tabindex="0"]')).toHaveCount(
+            0
+          );
+        }
+
+        await page
+          .getByRole('button', { name: 'Before virtualized tree' })
+          .focus();
+        await page.keyboard.press('Tab');
+        const selected = tree.getByRole('treeitem', {
+          name: 'item-199',
+          exact: true,
+        });
+        await expect(selected).toBeFocused();
+        await expect(selected).toBeInViewport();
+        await expect(tree).not.toHaveAttribute('tabindex');
+        await expect(tree.locator('ix-tree-item[tabindex="0"]')).toHaveCount(1);
+        await page.keyboard.press('ArrowUp');
+        const next = tree.getByRole('treeitem', {
+          name: 'item-198',
+          exact: true,
+        });
+        await expect(next).toBeFocused();
+        expect(
+          await tree.evaluate(
+            (element: HTMLIxTreeElement) =>
+              element.context['item-199'].isSelected
+          )
+        ).toBe(true);
+
+        await page.keyboard.press('Tab');
+        await expect(
+          page.getByRole('button', { name: 'After virtualized tree' })
+        ).toBeFocused();
+        await page.keyboard.press('Shift+Tab');
+        await expect(selected).toBeFocused();
+        await page.keyboard.press('ArrowUp');
+        await expect(next).toBeFocused();
+        const activations = await tree.evaluateHandle(
+          (element: HTMLIxTreeElement) => {
+            const ids: string[] = [];
+            element.addEventListener('nodeClicked', (event) => {
+              ids.push(event.detail);
+            });
+            return ids;
+          }
+        );
+        await page.keyboard.press('Enter');
+        await expect(next).toHaveAttribute('aria-selected', 'true');
+        await page.keyboard.press('Space');
+        await expect
+          .poll(() => activations.evaluate((ids) => ids))
+          .toEqual(['item-198', 'item-198']);
+        await expect(next).toBeFocused();
+        await page.keyboard.press('Tab');
+        await expect(
+          page.getByRole('button', { name: 'After virtualized tree' })
+        ).toBeFocused();
+        await tree.evaluate((element) => {
+          element.scrollTop = 0;
+        });
+        await flushVirtualizedScroll(page);
+        await expect(next).toHaveCount(0);
+        await page.keyboard.press('Shift+Tab');
+        await expect(next).toBeFocused();
+        await expect(next).toBeInViewport();
+      }
+    );
+  }
+}
+
+regressionTest(
+  'updates the virtualized Tab entry point after replacing and scrolling the model',
+  async ({ mount, page }) => {
+    const tree = await initializeVirtualizedTree(
+      mount,
+      page,
+      false,
+      'item-199'
+    );
+    await tree.evaluate(async (element: HTMLIxTreeElement) => {
+      element.model = {
+        ...element.model,
+        root: {
+          ...element.model.root,
+          children: [...element.model.root.children].reverse(),
+        },
+      };
+      await element.refreshTree();
+    });
+    await expect(
+      tree.getByRole('treeitem', { name: 'item-199', exact: true })
+    ).toHaveAttribute('tabindex', '0');
+    await tree.evaluate((element) => {
+      element.scrollTop = element.scrollHeight;
+    });
+    await flushVirtualizedScroll(page);
+    await expect(
+      tree.getByRole('treeitem', { name: 'item-199', exact: true })
+    ).toHaveCount(0);
+    await expect(tree).toHaveAttribute('tabindex', '0');
+    await expect(tree.locator('ix-tree-item[tabindex="0"]')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Before virtualized tree' }).focus();
+    await page.keyboard.press('Tab');
+    await expect(
+      tree.getByRole('treeitem', { name: 'item-199', exact: true })
+    ).toBeFocused();
+    await expect(tree.locator('ix-tree-item[tabindex="0"]')).toHaveCount(1);
+  }
+);
 
 for (const disabled of [false, true]) {
   regressionTest(
