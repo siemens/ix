@@ -32,7 +32,6 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     height: var(--ix-menu-item-height, $menuItemHeight);
     width: calc(100%);
     z-index: var(--ix-menu-item-tab--z-index);
-    padding-left: $menuItemPadding;
 
     @include hover.ghost-hover-pressed;
   }
@@ -175,6 +174,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     }
 
     .tab-icon {
+      margin-inline: var(--ix-menu-item-tab-icon-nested--margin-inline);
       padding-left: var(--ix-menu-item-tab-icon--padding-left);
       padding-right: var(--ix-menu-item-tab-icon--padding-right);
     }
