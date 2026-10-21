@@ -16,9 +16,13 @@ module.exports = {
     '**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
   transform: {
-    '^.+\\.(ts|js|html)$': 'jest-preset-angular',
+    '^.+\\.(ts|js|html)$': [
+      'jest-preset-angular',
+      { tsconfig: '<rootDir>/tsconfig.spec.json' },
+    ],
   },
   moduleNameMapper: {
     '^@fs/(.*)$': '<rootDir>/src/lib/$1',
+    '^@siemens/ix/components/(.*)$': '<rootDir>/../core/components/$1',
   },
 };
