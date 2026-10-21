@@ -860,7 +860,7 @@ export namespace Components {
          */
         "scrollToTop": () => Promise<void>;
         /**
-          * If true, the chat does not keep the latest content in view (Auto-scroll) and does not show the scroll-to-latest button. Use `scrollToBottom()` and `scrollToTop()` to scroll programmatically.  By default, the chat follows added messages and growing message content while the user is at the bottom. Auto-scroll stops when the user scrolls away from the bottom and resumes when the user returns to the bottom, activates the scroll-to-latest button or a new `ix-chat-user-message` is added.
+          * If true, the chat does not keep the latest content in view (Auto-scroll) and does not show the scroll-to-latest button. Use `scrollToBottom()` and `scrollToTop()` to scroll programmatically.  By default, the chat follows added messages and growing message content while the user is at the bottom. Auto-scroll stops when the user scrolls away from the bottom and resumes when the user returns to the bottom, activates the scroll-to-latest button or a new `ix-chat-user-message` is added as the latest message (a direct child of `ix-chat`).
           * @since 6.1.0
           * @default false
          */
@@ -9134,7 +9134,7 @@ declare namespace LocalJSX {
          */
         "i18nScrollToLatest"?: string;
         /**
-          * If true, the chat does not keep the latest content in view (Auto-scroll) and does not show the scroll-to-latest button. Use `scrollToBottom()` and `scrollToTop()` to scroll programmatically.  By default, the chat follows added messages and growing message content while the user is at the bottom. Auto-scroll stops when the user scrolls away from the bottom and resumes when the user returns to the bottom, activates the scroll-to-latest button or a new `ix-chat-user-message` is added.
+          * If true, the chat does not keep the latest content in view (Auto-scroll) and does not show the scroll-to-latest button. Use `scrollToBottom()` and `scrollToTop()` to scroll programmatically.  By default, the chat follows added messages and growing message content while the user is at the bottom. Auto-scroll stops when the user scrolls away from the bottom and resumes when the user returns to the bottom, activates the scroll-to-latest button or a new `ix-chat-user-message` is added as the latest message (a direct child of `ix-chat`).
           * @since 6.1.0
           * @default false
          */

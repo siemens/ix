@@ -66,12 +66,27 @@ async function scrollUpAsUser(page: Page, chat: Locator) {
   await expect.poll(() => getDistanceFromBottom(chat)).toBeGreaterThan(100);
 }
 
-async function appendAiMessage(page: Page) {
-  await page.evaluate((text) => {
+async function appendAiMessage(chat: Locator) {
+  await chat.evaluate((element, text) => {
     const message = document.createElement('ix-chat-ai-message');
     message.innerHTML = `<p>${text}</p><p>${text}</p>`;
-    document.querySelector('ix-chat')!.append(message);
+    element.append(message);
   }, longParagraph);
+}
+
+async function addUserMessage(
+  chat: Locator,
+  text: string,
+  position: 'append' | 'prepend' = 'append'
+) {
+  await chat.evaluate(
+    (element, { text, position }) => {
+      const message = document.createElement('ix-chat-user-message');
+      message.setAttribute('message', text);
+      element[position](message);
+    },
+    { text, position }
+  );
 }
 
 async function growLastAiMessage(page: Page) {
@@ -87,36 +102,30 @@ function getScrollToLatestButton(page: Page, name = 'Scroll to latest') {
   return page.getByRole('button', { name });
 }
 
-regressionTest(
-  'renders scrolled to the latest content',
-  async ({ mount, page }) => {
-    const chat = await mountChat(mount, page);
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  const chat = await mountChat(mount, page);
+  await scrollUpAsUser(page, chat);
+  await expect(getScrollToLatestButton(page)).toBeVisible();
 
-    await expectAtBottom(chat);
-    await expect(getScrollToLatestButton(page)).toBeHidden();
-  }
-);
+  const accessibilityScanResults = await makeAxeBuilder()
+    .include('ix-chat')
+    .analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
 
-regressionTest(
-  'accessibility with scroll-to-latest button',
-  async ({ mount, page, makeAxeBuilder }) => {
-    const chat = await mountChat(mount, page);
-    await scrollUpAsUser(page, chat);
-    await expect(getScrollToLatestButton(page)).toBeVisible();
+regressionTest('renders', async ({ mount, page }) => {
+  const chat = await mountChat(mount, page);
 
-    const accessibilityScanResults = await makeAxeBuilder()
-      .include('ix-chat')
-      .analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-  }
-);
+  await expectAtBottom(chat);
+  await expect(getScrollToLatestButton(page)).toBeHidden();
+});
 
 regressionTest('follows appended messages', async ({ mount, page }) => {
   const chat = await mountChat(mount, page);
   await expectAtBottom(chat);
   const scrollTopBefore = await getScrollTop(chat);
 
-  await appendAiMessage(page);
+  await appendAiMessage(chat);
 
   await expect.poll(() => getScrollTop(chat)).toBeGreaterThan(scrollTopBefore);
   await expectAtBottom(chat);
@@ -149,7 +158,7 @@ regressionTest(
     const scrollTopBefore = await getScrollTop(chat);
 
     await growLastAiMessage(page);
-    await appendAiMessage(page);
+    await appendAiMessage(chat);
     await waitForRender(page);
 
     expect(await getScrollTop(chat)).toBe(scrollTopBefore);
@@ -246,11 +255,7 @@ regressionTest(
     const chat = await mountChat(mount, page);
     await scrollUpAsUser(page, chat);
 
-    await page.evaluate(() => {
-      const message = document.createElement('ix-chat-user-message');
-      message.setAttribute('message', 'A new question');
-      document.querySelector('ix-chat')!.append(message);
-    });
+    await addUserMessage(chat, 'A new question');
 
     await expectAtBottom(chat);
     await expect(getScrollToLatestButton(page)).toBeHidden();
@@ -265,7 +270,7 @@ regressionTest(
 
     expect(await getScrollTop(chat)).toBe(0);
 
-    await appendAiMessage(page);
+    await appendAiMessage(chat);
     await waitForRender(page);
     expect(await getScrollTop(chat)).toBe(0);
 
@@ -320,5 +325,84 @@ regressionTest(
     await expect(
       getScrollToLatestButton(page, 'Zur neuesten Nachricht')
     ).toBeVisible();
+  }
+);
+
+regressionTest(
+  'does not jump to the bottom when earlier messages are prepended',
+  async ({ mount, page }) => {
+    const chat = await mountChat(mount, page);
+    await scrollUpAsUser(page, chat);
+
+    await addUserMessage(chat, 'An earlier question', 'prepend');
+    await waitForRender(page);
+
+    expect(await getDistanceFromBottom(chat)).toBeGreaterThan(100);
+    await expect(getScrollToLatestButton(page)).toBeVisible();
+  }
+);
+
+regressionTest(
+  'keeps the latest content in view when the message area shrinks',
+  async ({ mount, page }) => {
+    const chat = await mountChat(mount, page);
+    await expectAtBottom(chat);
+
+    await chat.evaluate((element) => (element.style.height = '18rem'));
+
+    await expectAtBottom(chat);
+    await expect(getScrollToLatestButton(page)).toBeHidden();
+  }
+);
+
+regressionTest(
+  'does not follow when the message area shrinks while scrolled away',
+  async ({ mount, page }) => {
+    const chat = await mountChat(mount, page);
+    await scrollUpAsUser(page, chat);
+    const scrollTopBefore = await getScrollTop(chat);
+
+    await chat.evaluate((element) => (element.style.height = '18rem'));
+    await waitForRender(page);
+
+    expect(await getScrollTop(chat)).toBe(scrollTopBefore);
+    await expect(getScrollToLatestButton(page)).toBeVisible();
+  }
+);
+
+regressionTest(
+  'scrolls without animation when reduced motion is preferred',
+  async ({ mount, page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    const chat = await mountChat(mount, page);
+    await expectAtBottom(chat);
+
+    const scrollTopAfterCall = await chat.evaluate(
+      async (element: HTMLIxChatElement) => {
+        await element.scrollToTop();
+        return element.shadowRoot?.querySelector('.messages')?.scrollTop;
+      }
+    );
+
+    expect(scrollTopAfterCall).toBe(0);
+  }
+);
+
+regressionTest(
+  'scrolls smoothly when no reduced motion is preferred',
+  async ({ mount, page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const chat = await mountChat(mount, page);
+    await expectAtBottom(chat);
+
+    const scrollTopAfterCall = await chat.evaluate(
+      async (element: HTMLIxChatElement) => {
+        await element.scrollToTop();
+        return element.shadowRoot?.querySelector('.messages')?.scrollTop;
+      }
+    );
+
+    expect(scrollTopAfterCall).toBeGreaterThan(0);
+    await expect.poll(() => getScrollTop(chat)).toBe(0);
   }
 );

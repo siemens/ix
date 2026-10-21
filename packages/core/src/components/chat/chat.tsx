@@ -34,7 +34,8 @@ export class Chat {
    * By default, the chat follows added messages and growing message content
    * while the user is at the bottom. Auto-scroll stops when the user scrolls
    * away from the bottom and resumes when the user returns to the bottom,
-   * activates the scroll-to-latest button or a new `ix-chat-user-message` is added.
+   * activates the scroll-to-latest button or a new `ix-chat-user-message` is added
+   * as the latest message (a direct child of `ix-chat`).
    *
    * @since 6.1.0
    */
@@ -62,6 +63,7 @@ export class Chat {
   @Watch('suppressAutoScroll')
   onSuppressAutoScrollChange() {
     this.updateIsAtBottom();
+    this.followLatest = this.isAtBottom;
   }
 
   /**
@@ -103,6 +105,7 @@ export class Chat {
 
   private observeContent() {
     if (
+      !this.messagesRef ||
       !this.contentRef ||
       this.resizeObserver ||
       typeof ResizeObserver === 'undefined'
@@ -110,8 +113,10 @@ export class Chat {
       return;
     }
 
-    this.resizeObserver = new ResizeObserver(() => this.handleContentResize());
+    // Observe the content (new or growing messages) and the viewport (e.g. a growing prompt)
+    this.resizeObserver = new ResizeObserver(() => this.handleResize());
     this.resizeObserver.observe(this.contentRef);
+    this.resizeObserver.observe(this.messagesRef);
   }
 
   private getScrollBehavior(): ScrollBehavior {
@@ -142,11 +147,15 @@ export class Chat {
     return messages.scrollHeight - messages.clientHeight - messages.scrollTop;
   }
 
-  private updateIsAtBottom() {
-    this.isAtBottom = this.getDistanceFromBottom() <= BOTTOM_THRESHOLD;
+  private isScrolledToBottom() {
+    return this.getDistanceFromBottom() <= BOTTOM_THRESHOLD;
   }
 
-  private handleContentResize() {
+  private updateIsAtBottom() {
+    this.isAtBottom = this.isScrolledToBottom();
+  }
+
+  private handleResize() {
     if (!this.suppressAutoScroll && this.followLatest) {
       this.scrollMessagesTo('bottom', 'auto');
     }
@@ -162,7 +171,7 @@ export class Chat {
 
     const scrollTop = messages.scrollTop;
 
-    if (this.getDistanceFromBottom() <= BOTTOM_THRESHOLD) {
+    if (this.isScrolledToBottom()) {
       this.followLatest = true;
     } else if (scrollTop < this.lastScrollTop) {
       this.followLatest = false;
@@ -174,19 +183,17 @@ export class Chat {
 
   private handleMessagesSlotChange(event: Event) {
     const slot = event.target as HTMLSlotElement;
-    let hasNewUserMessage = false;
+    const userMessages = slot
+      .assignedElements({ flatten: true })
+      .filter((element) => element.tagName === 'IX-CHAT-USER-MESSAGE');
+    const latestUserMessage = userMessages[userMessages.length - 1];
+    // Only a new latest user message (a sent prompt) re-engages Auto-scroll, not prepended history
+    const hasNewLatestUserMessage =
+      !!latestUserMessage && !this.knownUserMessages.has(latestUserMessage);
 
-    slot.assignedElements({ flatten: true }).forEach((element) => {
-      if (
-        element.tagName === 'IX-CHAT-USER-MESSAGE' &&
-        !this.knownUserMessages.has(element)
-      ) {
-        this.knownUserMessages.add(element);
-        hasNewUserMessage = true;
-      }
-    });
+    userMessages.forEach((element) => this.knownUserMessages.add(element));
 
-    if (hasNewUserMessage && !this.suppressAutoScroll) {
+    if (hasNewLatestUserMessage && !this.suppressAutoScroll) {
       this.followLatest = true;
       this.scrollMessagesTo('bottom', 'auto');
     }
