@@ -8,9 +8,9 @@
  */
 
 import {
+  iconAbout,
   iconApps,
   iconCogwheel,
-  iconInfo,
   iconLightDark,
 } from '@siemens/ix-icons/icons';
 import {
@@ -1101,7 +1101,7 @@ export class Menu {
                     'bottom-tab': true,
                     active: this.showAbout,
                   }}
-                  icon={iconInfo}
+                  icon={iconAbout}
                   onClick={async () => this.toggleAbout(!this.showAbout)}
                   label={this.i18nLegal}
                   aria-haspopup="dialog"
