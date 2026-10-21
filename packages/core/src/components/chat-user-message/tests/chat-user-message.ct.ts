@@ -21,8 +21,98 @@ regressionTest(
     await expect(message.locator('.message-text')).toContainText(
       'Summarize the detailed discussion held with the customer'
     );
-    await expect(message.locator('.actions')).toHaveCount(1);
     await expect(message.locator('.actions')).not.toBeVisible();
+  }
+);
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-chat-user-message message="Analyze alarms">
+      <button slot="actions" aria-label="Copy">Copy</button>
+    </ix-chat-user-message>
+    <ix-chat-user-message message="Show trends"></ix-chat-user-message>
+  `);
+  const accessibilityScanResults = await makeAxeBuilder()
+    .include('ix-chat-user-message')
+    .analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
+async function getGapBelowMessage(
+  page: import('@playwright/test').Page,
+  selector: string
+) {
+  return page.locator(selector).evaluate((host) => {
+    const bubble = host.shadowRoot?.querySelector('.message');
+    if (!bubble) {
+      throw new Error('Message bubble not rendered');
+    }
+    return (
+      host.getBoundingClientRect().bottom -
+      bubble.getBoundingClientRect().bottom
+    );
+  });
+}
+
+regressionTest(
+  'ix-chat-user-message without actions has no gap below the message',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-user-message message="Analyze alarms"></ix-chat-user-message>'
+    );
+
+    await expect(page.locator('ix-chat-user-message')).toHaveAttribute(
+      'hydrated'
+    );
+    expect(await getGapBelowMessage(page, 'ix-chat-user-message')).toBe(0);
+  }
+);
+
+regressionTest(
+  'ix-chat-user-message with actions keeps the actions row below the message',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-user-message message="Analyze alarms">
+        <button slot="actions" aria-label="Copy">Copy</button>
+      </ix-chat-user-message>
+    `);
+
+    const message = page.locator('ix-chat-user-message');
+    await expect(message).toHaveClass(/has-actions/);
+    // Actions row margin-top (0.5rem) + min-height (2rem)
+    expect(await getGapBelowMessage(page, 'ix-chat-user-message')).toBe(40);
+  }
+);
+
+regressionTest(
+  'ix-chat-user-message shows and hides the actions row when actions are added or removed',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-user-message message="Analyze alarms"></ix-chat-user-message>'
+    );
+
+    const message = page.locator('ix-chat-user-message');
+    await expect(message).toHaveAttribute('hydrated');
+
+    await message.evaluate((host) => {
+      const button = document.createElement('button');
+      button.slot = 'actions';
+      button.textContent = 'Copy';
+      host.appendChild(button);
+    });
+    await message.hover();
+    await expect(page.getByRole('button', { name: 'Copy' })).toBeVisible();
+    await expect
+      .poll(() => getGapBelowMessage(page, 'ix-chat-user-message'))
+      .toBeGreaterThan(0);
+
+    await page.getByRole('button', { name: 'Copy' }).evaluate((button) => {
+      button.remove();
+    });
+    await expect(message).not.toHaveClass(/has-actions/);
+    await expect
+      .poll(() => getGapBelowMessage(page, 'ix-chat-user-message'))
+      .toBe(0);
   }
 );
 
