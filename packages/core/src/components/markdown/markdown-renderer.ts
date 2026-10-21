@@ -441,8 +441,10 @@ export class MarkdownRenderer {
     if (!components) {
       return undefined;
     }
-    const isDirective = node.type.endsWith('Directive');
-    const name = isDirective ? node.name! : node.type;
+    const name = node.type.endsWith('Directive') ? node.name : node.type;
+    if (name === undefined) {
+      return undefined;
+    }
     return Object.hasOwn(components, name)
       ? { name, mapping: components[name] }
       : undefined;

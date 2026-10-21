@@ -40,18 +40,26 @@ const DIRECTIVE_START = /^:{1,3}[A-Za-z]/;
 const UNFINISHED_TEXT_DIRECTIVE =
   /(?<![A-Za-z0-9:]):[A-Za-z][\w-]*(?:\[[^\]]*|(?:\[[^\]]*\])?\{[^}]*)$/;
 
-const hasOffsets = (node: Nodes) =>
-  node.position?.start.offset !== undefined &&
-  node.position?.end.offset !== undefined;
+type Offsets = { start: number; end: number };
+
+const offsetsOf = (node: Nodes): Offsets | undefined => {
+  const start = node.position?.start.offset;
+  const end = node.position?.end.offset;
+  return start === undefined || end === undefined ? undefined : { start, end };
+};
 
 /**
  * An unfinished table is a paragraph whose lines all look like table rows
  * but that is not yet followed by a delimiter row.
  */
-const isUnfinishedTable = (source: string, node: BlockNode) =>
+const isUnfinishedTable = (
+  source: string,
+  node: BlockNode,
+  { start, end }: Offsets
+) =>
   node.type === 'paragraph' &&
   source
-    .slice(node.position!.start.offset, node.position!.end.offset)
+    .slice(start, end)
     .split('\n')
     .every((line) => line.trimStart().startsWith('|'));
 
@@ -60,20 +68,29 @@ const isUnfinishedTable = (source: string, node: BlockNode) =>
  * text starts with the directive marker. Complete directives parse into
  * directive nodes and are rendered right away.
  */
-const isUnfinishedDirective = (source: string, node: BlockNode) => {
+const isUnfinishedDirective = (
+  source: string,
+  node: BlockNode,
+  { start }: Offsets
+) => {
   if (node.type !== 'paragraph') {
     return false;
   }
   const first = node.children[0];
   return (
     first?.type === 'text' &&
-    DIRECTIVE_START.test(source.slice(node.position!.start.offset).trimStart())
+    DIRECTIVE_START.test(source.slice(start).trimStart())
   );
 };
 
-const isHeldBack = (source: string, node: BlockNode) =>
-  hasOffsets(node) &&
-  (isUnfinishedTable(source, node) || isUnfinishedDirective(source, node));
+const isHeldBack = (source: string, node: BlockNode) => {
+  const offsets = offsetsOf(node);
+  return (
+    offsets !== undefined &&
+    (isUnfinishedTable(source, node, offsets) ||
+      isUnfinishedDirective(source, node, offsets))
+  );
+};
 
 /**
  * Cuts a trailing unfinished text directive from the open paragraph.
@@ -84,10 +101,11 @@ const hideUnfinishedTextDirective = (
   parse: MarkdownParser
 ) => {
   const last = root.children.at(-1);
-  if (last?.type !== 'paragraph' || !hasOffsets(last)) {
+  const offsets = last?.type === 'paragraph' ? offsetsOf(last) : undefined;
+  if (!offsets) {
     return { source, root };
   }
-  const start = last.position!.start.offset!;
+  const { start } = offsets;
   const match = UNFINISHED_TEXT_DIRECTIVE.exec(source.slice(start));
   if (!match) {
     return { source, root };
@@ -101,11 +119,12 @@ const hideUnfinishedTextDirective = (
  */
 const repairOpenBlock = (source: string, root: Root, parse: MarkdownParser) => {
   const last = root.children.at(-1);
-  if (!last || !hasOffsets(last)) {
+  const offsets = last && offsetsOf(last);
+  if (!offsets) {
     return { source, root };
   }
 
-  const start = last.position!.start.offset!;
+  const { start } = offsets;
   const repaired = source.slice(0, start) + remend(source.slice(start));
   if (repaired === source) {
     return { source, root };
@@ -185,9 +204,10 @@ export class MarkdownStreamReconciler {
       // previous block and are compared by their content.
       let start: number;
       let text: string;
-      if (hasOffsets(child)) {
-        start = child.position!.start.offset!;
-        anchor = child.position!.end.offset!;
+      const offsets = offsetsOf(child);
+      if (offsets) {
+        start = offsets.start;
+        anchor = offsets.end;
         synthetic = 0;
         text = source.slice(start, anchor);
       } else {

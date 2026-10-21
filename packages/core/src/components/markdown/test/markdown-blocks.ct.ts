@@ -124,7 +124,8 @@ regressionTest('renders footnotes', async ({ mount, page }) => {
   await expect(markdown.getByText('First note.')).toHaveCount(1);
 
   const target = await refs.first().getAttribute('href');
-  await expect(markdown.locator(`[id="${target!.slice(1)}"]`)).toBeVisible();
+  expect(target).not.toBeNull();
+  await expect(markdown.locator(`[id="${target?.slice(1)}"]`)).toBeVisible();
 });
 
 regressionTest(
@@ -142,7 +143,8 @@ regressionTest(
     await expect(back).toHaveCount(2);
     for (let i = 0; i < 2; i++) {
       const href = await back.nth(i).getAttribute('href');
-      const reference = markdown.locator(`[id="${href!.slice(1)}"]`);
+      expect(href).not.toBeNull();
+      const reference = markdown.locator(`[id="${href?.slice(1)}"]`);
       await expect(reference).toHaveCount(1);
       expect(await reference.evaluate((el) => el.closest('sup') !== null)).toBe(
         true
