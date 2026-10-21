@@ -54,6 +54,7 @@ import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
 import Chat from '../preview-examples/chat';
+import ChatActivityTrace from '../preview-examples/chat-activity-trace';
 import ChatAiMessage from '../preview-examples/chat-ai-message';
 import ChatInput from '../preview-examples/chat-input';
 import ChatUserMessage from '../preview-examples/chat-user-message';
@@ -466,6 +467,10 @@ const routes: Routes = [
       {
         path: 'chat',
         component: Chat,
+      },
+      {
+        path: 'chat-activity-trace',
+        component: ChatActivityTrace,
       },
       {
         path: 'chat-ai-message',

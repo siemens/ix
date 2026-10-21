@@ -226,6 +226,7 @@ export const testIds = [
   "chat-user-message",
   "chat-input",
   "chat-ai-message",
+  "chat-activity-trace",
   "category-filter",
   "category-filter-suggestions",
   "card",

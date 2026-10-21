@@ -84,6 +84,8 @@ import './category-filter-axe.spec.ts';
 import './category-filter-suggestions-axe.spec.ts';
 import './category-filter-suggestions.spec.ts';
 import './category-filter.spec.ts';
+import './chat-activity-trace-axe.spec.ts';
+import './chat-activity-trace.spec.ts';
 import './chat-ai-message-axe.spec.ts';
 import './chat-ai-message.spec.ts';
 import './chat-axe.spec.ts';

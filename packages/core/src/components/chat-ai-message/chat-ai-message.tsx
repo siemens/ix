@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Host, State, h } from '@stencil/core';
+import { Component, Element, Host, State, h } from '@stencil/core';
 
 /**
  * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
  * @figma-main-component-id 133528:33343
  * @since 5.2.0
  * @slot - AI-generated message content
+ * @slot trace - Optional Activity trace (`ix-chat-activity-trace`) displayed above the message content. While no content is slotted, only the trace is shown.
  * @slot actions - Optional actions displayed below the AI message
  * @slot sources - Optional sources displayed next to the AI message actions
  */
@@ -23,13 +24,43 @@ import { Component, Host, State, h } from '@stencil/core';
   shadow: true,
 })
 export class ChatAiMessage {
+  @Element() hostElement!: HTMLIxChatAiMessageElement;
+
   @State() hasActions = false;
   @State() hasSources = false;
+  @State() hasTrace = false;
+  @State() hasContent = false;
+
+  componentWillLoad() {
+    const children = Array.from(this.hostElement.childNodes);
+    this.hasContent = children.some(
+      (node) =>
+        this.isContentNode(node) &&
+        !(node.nodeType === 1 && (node as Element).hasAttribute('slot'))
+    );
+    this.hasTrace = children.some(
+      (node) =>
+        node.nodeType === 1 &&
+        (node as Element).getAttribute('slot') === 'trace'
+    );
+  }
+
+  private isContentNode(node: Node) {
+    return node.nodeType === 1 || !!node.textContent?.trim();
+  }
 
   private hasAssignedContent(slot: HTMLSlotElement) {
-    return slot.assignedNodes({ flatten: true }).some((node) => {
-      return node.nodeType === 1 || !!node.textContent?.trim();
-    });
+    return slot
+      .assignedNodes({ flatten: true })
+      .some((node) => this.isContentNode(node));
+  }
+
+  private handleContentSlotChange(event: Event) {
+    this.hasContent = this.hasAssignedContent(event.target as HTMLSlotElement);
+  }
+
+  private handleTraceSlotChange(event: Event) {
+    this.hasTrace = this.hasAssignedContent(event.target as HTMLSlotElement);
   }
 
   private handleActionsSlotChange(event: Event) {
@@ -49,10 +80,20 @@ export class ChatAiMessage {
           'has-actions': this.hasActions,
           'has-sources': this.hasSources,
           'has-meta': hasMeta,
+          'has-trace': this.hasTrace,
+          'has-content': this.hasContent,
         }}
       >
+        <div class="trace">
+          <slot
+            name="trace"
+            onSlotchange={(event) => this.handleTraceSlotChange(event)}
+          ></slot>
+        </div>
         <div class="message">
-          <slot></slot>
+          <slot
+            onSlotchange={(event) => this.handleContentSlotChange(event)}
+          ></slot>
         </div>
         <div class="meta" aria-hidden={!hasMeta ? 'true' : undefined}>
           <div class="actions">

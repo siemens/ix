@@ -1,0 +1,78 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use './chat-activity-trace.vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-chat-activity-trace--gap);
+  width: 100%;
+  min-width: 0;
+
+  @include component.ix-component;
+
+  .header[hidden],
+  .items[hidden] {
+    display: none;
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ix-chat-activity-trace-header--gap);
+    max-width: 100%;
+    min-height: var(--ix-chat-activity-trace-header--min-height);
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: var(--ix-chat-activity-trace-header--border-radius);
+    background: transparent;
+    color: var(--ix-chat-activity-trace-header--color);
+    font: var(--ix-chat-activity-trace-header--font);
+    text-align: start;
+    cursor: pointer;
+
+    @include hover.focus-visible {
+      outline: var(--ix-chat-activity-trace--outline-width--focus) solid
+        var(--ix-chat-activity-trace--outline-color--focus);
+      outline-offset: var(--ix-chat-activity-trace--outline-offset--focus);
+    }
+  }
+
+  .summary {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .meta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ix-chat-activity-trace-header--gap);
+    color: var(--ix-chat-activity-trace-meta--color);
+  }
+
+  .chevron {
+    flex: 0 0 auto;
+    transition: transform var(--theme-default-time) ease-in-out;
+  }
+
+  .chevron.expanded {
+    transform: rotate(90deg);
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ix-chat-activity-trace-items--gap);
+    min-width: 0;
+  }
+}

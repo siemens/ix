@@ -19,6 +19,7 @@ import { FilterState } from "./components/category-filter/filter-state";
 import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
 import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
+import { ChatTraceItemState } from "./components/chat-trace-item/chat-trace-item.types";
 import { ChipVariant } from "./components/chip/chip.types";
 import { CodeBlockHighlight } from "./components/code-block/code-block.types";
 import { ColumnSize } from "./components/col/col.types";
@@ -78,6 +79,7 @@ export { FilterState } from "./components/category-filter/filter-state";
 export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
 export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
+export { ChatTraceItemState } from "./components/chat-trace-item/chat-trace-item.types";
 export { ChipVariant } from "./components/chip/chip.types";
 export { CodeBlockHighlight } from "./components/code-block/code-block.types";
 export { ColumnSize } from "./components/col/col.types";
@@ -867,6 +869,32 @@ export namespace Components {
         "suppressAutoScroll": boolean;
     }
     /**
+     * Activity trace of an AI response: the ordered list of `ix-chat-trace-item` elements that shows how
+     * the AI produced the response. Place it in the `trace` slot of `ix-chat-ai-message`.
+     * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
+     * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
+     * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
+     * The Trace items keep their DOM identity and focus when the summary appears.
+     * The component is controlled and has no orchestration logic: the application decides when to show the
+     * summary, which items to expand and what to announce to screen readers.
+     * Mapping from Element chat messages:
+     * `activity-trace` maps to `ix-chat-activity-trace` in the `trace` slot of the AI message,
+     * `activity` maps to `ix-chat-trace-item`, each `input` entry and the `output` map to one
+     * `ix-chat-trace-item-section` each, and `loading` maps to `state="running"`.
+     * @since 6.1.0
+     */
+    interface IxChatActivityTrace {
+        /**
+          * Whether the Trace items are shown while a `summary` is set.
+          * @default false
+         */
+        "expanded": boolean;
+        /**
+          * Trace summary, e.g. "Answer generated from 3 sources". If set, a toggle header is shown that controls the visibility of the Trace items. If not set, the Trace items are always shown without a header.
+         */
+        "summary"?: string;
+    }
+    /**
      * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
      * @figma-main-component-id 133528:33343
      * @since 5.2.0
@@ -1017,6 +1045,79 @@ export namespace Components {
           * @default ''
          */
         "value": string;
+    }
+    /**
+     * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
+     * Place it inside `ix-chat-activity-trace`.
+     * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
+     * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
+     * Without detail content the item is rendered as static text. With detail content the label becomes a
+     * toggle button that shows and hides the detail.
+     * While the AI works and nothing specific is running, show a single running Trace item with a generic
+     * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
+     * explanatory label such as "Stopped".
+     * @since 6.1.0
+     */
+    interface IxChatTraceItem {
+        /**
+          * Whether the detail is shown. Has no effect while the item has no detail.
+          * @default false
+         */
+        "expanded": boolean;
+        /**
+          * i18n state text for `completed` used in the accessible name.
+          * @default 'completed'
+         */
+        "i18nStateCompleted": string;
+        /**
+          * i18n state text for `failed` used in the accessible name.
+          * @default 'failed'
+         */
+        "i18nStateFailed": string;
+        /**
+          * i18n state text for `running` used in the accessible name.
+          * @default 'running'
+         */
+        "i18nStateRunning": string;
+        /**
+          * i18n state text for `warning` used in the accessible name.
+          * @default 'warning'
+         */
+        "i18nStateWarning": string;
+        /**
+          * Icon that indicates the type of the step. Any iX icon can be used. Recommended icons for the base types:  - reasoning: `bulb` - retrieval: `search` - computation: `calculator` - generation: `ai` - system action: `cogwheel` - workflow: `chain-step` - read: `document` - summary: `list-text` - generic: `circle-dot` (used when no icon is set)
+         */
+        "icon"?: string;
+        /**
+          * Label of the step, e.g. "Reading page.tsx" while running and "Read page.tsx" once completed.
+         */
+        "label"?: string;
+        /**
+          * State of the step.  - `running`: The step is in progress. Shows a spinner and sets `aria-busy`. - `completed`: The step finished successfully. - `warning`: The step completed with warnings, e.g. partial results or an Interrupt. - `failed`: The step failed.
+          * @default 'completed'
+         */
+        "state": ChatTraceItemState;
+    }
+    /**
+     * One titled part of a Trace item's detail, such as its input, its output or its key findings.
+     * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+     * @since 6.1.0
+     */
+    interface IxChatTraceItemSection {
+        /**
+          * If true, the heading is rendered as a toggle button that shows and hides the content. Requires `heading`; without a heading the content is always shown.
+          * @default false
+         */
+        "collapsible": boolean;
+        /**
+          * Whether the content of a collapsible section is shown.
+          * @default false
+         */
+        "expanded": boolean;
+        /**
+          * Heading of the section, e.g. "Input", "Output" or "Findings".
+         */
+        "heading"?: string;
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/user-message/guide.md
@@ -5812,6 +5913,10 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxChatActivityTraceCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatActivityTraceElement;
+}
 export interface IxChatAttachmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatAttachmentElement;
@@ -5819,6 +5924,14 @@ export interface IxChatAttachmentCustomEvent<T> extends CustomEvent<T> {
 export interface IxChatInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatInputElement;
+}
+export interface IxChatTraceItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatTraceItemElement;
+}
+export interface IxChatTraceItemSectionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatTraceItemSectionElement;
 }
 export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -6331,6 +6444,38 @@ declare global {
         prototype: HTMLIxChatElement;
         new (): HTMLIxChatElement;
     };
+    interface HTMLIxChatActivityTraceElementEventMap {
+        "expandedChange": boolean;
+    }
+    /**
+     * Activity trace of an AI response: the ordered list of `ix-chat-trace-item` elements that shows how
+     * the AI produced the response. Place it in the `trace` slot of `ix-chat-ai-message`.
+     * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
+     * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
+     * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
+     * The Trace items keep their DOM identity and focus when the summary appears.
+     * The component is controlled and has no orchestration logic: the application decides when to show the
+     * summary, which items to expand and what to announce to screen readers.
+     * Mapping from Element chat messages:
+     * `activity-trace` maps to `ix-chat-activity-trace` in the `trace` slot of the AI message,
+     * `activity` maps to `ix-chat-trace-item`, each `input` entry and the `output` map to one
+     * `ix-chat-trace-item-section` each, and `loading` maps to `state="running"`.
+     * @since 6.1.0
+     */
+    interface HTMLIxChatActivityTraceElement extends Components.IxChatActivityTrace, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatActivityTraceElementEventMap>(type: K, listener: (this: HTMLIxChatActivityTraceElement, ev: IxChatActivityTraceCustomEvent<HTMLIxChatActivityTraceElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatActivityTraceElementEventMap>(type: K, listener: (this: HTMLIxChatActivityTraceElement, ev: IxChatActivityTraceCustomEvent<HTMLIxChatActivityTraceElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatActivityTraceElement: {
+        prototype: HTMLIxChatActivityTraceElement;
+        new (): HTMLIxChatActivityTraceElement;
+    };
     /**
      * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
      * @figma-main-component-id 133528:33343
@@ -6391,6 +6536,57 @@ declare global {
     var HTMLIxChatInputElement: {
         prototype: HTMLIxChatInputElement;
         new (): HTMLIxChatInputElement;
+    };
+    interface HTMLIxChatTraceItemElementEventMap {
+        "expandedChange": boolean;
+    }
+    /**
+     * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
+     * Place it inside `ix-chat-activity-trace`.
+     * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
+     * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
+     * Without detail content the item is rendered as static text. With detail content the label becomes a
+     * toggle button that shows and hides the detail.
+     * While the AI works and nothing specific is running, show a single running Trace item with a generic
+     * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
+     * explanatory label such as "Stopped".
+     * @since 6.1.0
+     */
+    interface HTMLIxChatTraceItemElement extends Components.IxChatTraceItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatTraceItemElementEventMap>(type: K, listener: (this: HTMLIxChatTraceItemElement, ev: IxChatTraceItemCustomEvent<HTMLIxChatTraceItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatTraceItemElementEventMap>(type: K, listener: (this: HTMLIxChatTraceItemElement, ev: IxChatTraceItemCustomEvent<HTMLIxChatTraceItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatTraceItemElement: {
+        prototype: HTMLIxChatTraceItemElement;
+        new (): HTMLIxChatTraceItemElement;
+    };
+    interface HTMLIxChatTraceItemSectionElementEventMap {
+        "expandedChange": boolean;
+    }
+    /**
+     * One titled part of a Trace item's detail, such as its input, its output or its key findings.
+     * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+     * @since 6.1.0
+     */
+    interface HTMLIxChatTraceItemSectionElement extends Components.IxChatTraceItemSection, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatTraceItemSectionElementEventMap>(type: K, listener: (this: HTMLIxChatTraceItemSectionElement, ev: IxChatTraceItemSectionCustomEvent<HTMLIxChatTraceItemSectionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatTraceItemSectionElementEventMap>(type: K, listener: (this: HTMLIxChatTraceItemSectionElement, ev: IxChatTraceItemSectionCustomEvent<HTMLIxChatTraceItemSectionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatTraceItemSectionElement: {
+        prototype: HTMLIxChatTraceItemSectionElement;
+        new (): HTMLIxChatTraceItemSectionElement;
     };
     /**
      * @documentation https://ix.siemens.io//docs/components/user-message/guide.md
@@ -8236,9 +8432,12 @@ declare global {
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-chat": HTMLIxChatElement;
+        "ix-chat-activity-trace": HTMLIxChatActivityTraceElement;
         "ix-chat-ai-message": HTMLIxChatAiMessageElement;
         "ix-chat-attachment": HTMLIxChatAttachmentElement;
         "ix-chat-input": HTMLIxChatInputElement;
+        "ix-chat-trace-item": HTMLIxChatTraceItemElement;
+        "ix-chat-trace-item-section": HTMLIxChatTraceItemSectionElement;
         "ix-chat-user-message": HTMLIxChatUserMessageElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
@@ -9141,6 +9340,36 @@ declare namespace LocalJSX {
         "suppressAutoScroll"?: boolean;
     }
     /**
+     * Activity trace of an AI response: the ordered list of `ix-chat-trace-item` elements that shows how
+     * the AI produced the response. Place it in the `trace` slot of `ix-chat-ai-message`.
+     * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
+     * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
+     * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
+     * The Trace items keep their DOM identity and focus when the summary appears.
+     * The component is controlled and has no orchestration logic: the application decides when to show the
+     * summary, which items to expand and what to announce to screen readers.
+     * Mapping from Element chat messages:
+     * `activity-trace` maps to `ix-chat-activity-trace` in the `trace` slot of the AI message,
+     * `activity` maps to `ix-chat-trace-item`, each `input` entry and the `output` map to one
+     * `ix-chat-trace-item-section` each, and `loading` maps to `state="running"`.
+     * @since 6.1.0
+     */
+    interface IxChatActivityTrace {
+        /**
+          * Whether the Trace items are shown while a `summary` is set.
+          * @default false
+         */
+        "expanded"?: boolean;
+        /**
+          * Emitted when the user toggles the summary, with the requested `expanded` value. Call `preventDefault()` to keep the current state. The event does not bubble.
+         */
+        "onExpandedChange"?: (event: IxChatActivityTraceCustomEvent<boolean>) => void;
+        /**
+          * Trace summary, e.g. "Answer generated from 3 sources". If set, a toggle header is shown that controls the visibility of the Trace items. If not set, the Trace items are always shown without a header.
+         */
+        "summary"?: string;
+    }
+    /**
      * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
      * @figma-main-component-id 133528:33343
      * @since 5.2.0
@@ -9313,6 +9542,87 @@ declare namespace LocalJSX {
           * @default ''
          */
         "value"?: string;
+    }
+    /**
+     * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
+     * Place it inside `ix-chat-activity-trace`.
+     * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
+     * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
+     * Without detail content the item is rendered as static text. With detail content the label becomes a
+     * toggle button that shows and hides the detail.
+     * While the AI works and nothing specific is running, show a single running Trace item with a generic
+     * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
+     * explanatory label such as "Stopped".
+     * @since 6.1.0
+     */
+    interface IxChatTraceItem {
+        /**
+          * Whether the detail is shown. Has no effect while the item has no detail.
+          * @default false
+         */
+        "expanded"?: boolean;
+        /**
+          * i18n state text for `completed` used in the accessible name.
+          * @default 'completed'
+         */
+        "i18nStateCompleted"?: string;
+        /**
+          * i18n state text for `failed` used in the accessible name.
+          * @default 'failed'
+         */
+        "i18nStateFailed"?: string;
+        /**
+          * i18n state text for `running` used in the accessible name.
+          * @default 'running'
+         */
+        "i18nStateRunning"?: string;
+        /**
+          * i18n state text for `warning` used in the accessible name.
+          * @default 'warning'
+         */
+        "i18nStateWarning"?: string;
+        /**
+          * Icon that indicates the type of the step. Any iX icon can be used. Recommended icons for the base types:  - reasoning: `bulb` - retrieval: `search` - computation: `calculator` - generation: `ai` - system action: `cogwheel` - workflow: `chain-step` - read: `document` - summary: `list-text` - generic: `circle-dot` (used when no icon is set)
+         */
+        "icon"?: string;
+        /**
+          * Label of the step, e.g. "Reading page.tsx" while running and "Read page.tsx" once completed.
+         */
+        "label"?: string;
+        /**
+          * Emitted when the user toggles the detail, with the requested `expanded` value. Call `preventDefault()` to keep the current state. The event does not bubble.
+         */
+        "onExpandedChange"?: (event: IxChatTraceItemCustomEvent<boolean>) => void;
+        /**
+          * State of the step.  - `running`: The step is in progress. Shows a spinner and sets `aria-busy`. - `completed`: The step finished successfully. - `warning`: The step completed with warnings, e.g. partial results or an Interrupt. - `failed`: The step failed.
+          * @default 'completed'
+         */
+        "state"?: ChatTraceItemState;
+    }
+    /**
+     * One titled part of a Trace item's detail, such as its input, its output or its key findings.
+     * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+     * @since 6.1.0
+     */
+    interface IxChatTraceItemSection {
+        /**
+          * If true, the heading is rendered as a toggle button that shows and hides the content. Requires `heading`; without a heading the content is always shown.
+          * @default false
+         */
+        "collapsible"?: boolean;
+        /**
+          * Whether the content of a collapsible section is shown.
+          * @default false
+         */
+        "expanded"?: boolean;
+        /**
+          * Heading of the section, e.g. "Input", "Output" or "Findings".
+         */
+        "heading"?: string;
+        /**
+          * Emitted when the user toggles a collapsible section, with the requested `expanded` value. Call `preventDefault()` to keep the current state. The event does not bubble.
+         */
+        "onExpandedChange"?: (event: IxChatTraceItemSectionCustomEvent<boolean>) => void;
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/user-message/guide.md
@@ -14481,6 +14791,10 @@ declare namespace LocalJSX {
         "suppressAutoScroll": boolean;
         "i18nScrollToLatest": string;
     }
+    interface IxChatActivityTraceAttributes {
+        "summary": string;
+        "expanded": boolean;
+    }
     interface IxChatAttachmentAttributes {
         "fileName": string;
         "status": ChatAttachmentStatus;
@@ -14508,6 +14822,21 @@ declare namespace LocalJSX {
         "maxRows": number;
         "insertLineBreakOnEnter": boolean;
         "disclaimer": string;
+    }
+    interface IxChatTraceItemAttributes {
+        "label": string;
+        "icon": string;
+        "state": ChatTraceItemState;
+        "expanded": boolean;
+        "i18nStateRunning": string;
+        "i18nStateCompleted": string;
+        "i18nStateWarning": string;
+        "i18nStateFailed": string;
+    }
+    interface IxChatTraceItemSectionAttributes {
+        "heading": string;
+        "collapsible": boolean;
+        "expanded": boolean;
     }
     interface IxChatUserMessageAttributes {
         "message": string;
@@ -15510,9 +15839,12 @@ declare namespace LocalJSX {
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
         "ix-chat": Omit<IxChat, keyof IxChatAttributes> & { [K in keyof IxChat & keyof IxChatAttributes]?: IxChat[K] } & { [K in keyof IxChat & keyof IxChatAttributes as `attr:${K}`]?: IxChatAttributes[K] } & { [K in keyof IxChat & keyof IxChatAttributes as `prop:${K}`]?: IxChat[K] };
+        "ix-chat-activity-trace": Omit<IxChatActivityTrace, keyof IxChatActivityTraceAttributes> & { [K in keyof IxChatActivityTrace & keyof IxChatActivityTraceAttributes]?: IxChatActivityTrace[K] } & { [K in keyof IxChatActivityTrace & keyof IxChatActivityTraceAttributes as `attr:${K}`]?: IxChatActivityTraceAttributes[K] } & { [K in keyof IxChatActivityTrace & keyof IxChatActivityTraceAttributes as `prop:${K}`]?: IxChatActivityTrace[K] };
         "ix-chat-ai-message": IxChatAiMessage;
         "ix-chat-attachment": Omit<IxChatAttachment, keyof IxChatAttachmentAttributes> & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes]?: IxChatAttachment[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `attr:${K}`]?: IxChatAttachmentAttributes[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `prop:${K}`]?: IxChatAttachment[K] };
         "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };
+        "ix-chat-trace-item": Omit<IxChatTraceItem, keyof IxChatTraceItemAttributes> & { [K in keyof IxChatTraceItem & keyof IxChatTraceItemAttributes]?: IxChatTraceItem[K] } & { [K in keyof IxChatTraceItem & keyof IxChatTraceItemAttributes as `attr:${K}`]?: IxChatTraceItemAttributes[K] } & { [K in keyof IxChatTraceItem & keyof IxChatTraceItemAttributes as `prop:${K}`]?: IxChatTraceItem[K] };
+        "ix-chat-trace-item-section": Omit<IxChatTraceItemSection, keyof IxChatTraceItemSectionAttributes> & { [K in keyof IxChatTraceItemSection & keyof IxChatTraceItemSectionAttributes]?: IxChatTraceItemSection[K] } & { [K in keyof IxChatTraceItemSection & keyof IxChatTraceItemSectionAttributes as `attr:${K}`]?: IxChatTraceItemSectionAttributes[K] } & { [K in keyof IxChatTraceItemSection & keyof IxChatTraceItemSectionAttributes as `prop:${K}`]?: IxChatTraceItemSection[K] };
         "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
@@ -15730,6 +16062,22 @@ declare module "@stencil/core" {
              */
             "ix-chat": LocalJSX.IntrinsicElements["ix-chat"] & JSXBase.HTMLAttributes<HTMLIxChatElement>;
             /**
+             * Activity trace of an AI response: the ordered list of `ix-chat-trace-item` elements that shows how
+             * the AI produced the response. Place it in the `trace` slot of `ix-chat-ai-message`.
+             * Without `summary` the Trace items are shown flat without a header (e.g. while the response is running).
+             * Once `summary` is set, a toggle header shows the Trace summary and controls the visibility of the
+             * Trace items, e.g. set `summary` and `expanded="false"` when the response is complete.
+             * The Trace items keep their DOM identity and focus when the summary appears.
+             * The component is controlled and has no orchestration logic: the application decides when to show the
+             * summary, which items to expand and what to announce to screen readers.
+             * Mapping from Element chat messages:
+             * `activity-trace` maps to `ix-chat-activity-trace` in the `trace` slot of the AI message,
+             * `activity` maps to `ix-chat-trace-item`, each `input` entry and the `output` map to one
+             * `ix-chat-trace-item-section` each, and `loading` maps to `state="running"`.
+             * @since 6.1.0
+             */
+            "ix-chat-activity-trace": LocalJSX.IntrinsicElements["ix-chat-activity-trace"] & JSXBase.HTMLAttributes<HTMLIxChatActivityTraceElement>;
+            /**
              * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
              * @figma-main-component-id 133528:33343
              * @since 5.2.0
@@ -15748,6 +16096,25 @@ declare module "@stencil/core" {
              * @form-ready 
              */
             "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
+            /**
+             * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
+             * Place it inside `ix-chat-activity-trace`.
+             * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
+             * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
+             * Without detail content the item is rendered as static text. With detail content the label becomes a
+             * toggle button that shows and hides the detail.
+             * While the AI works and nothing specific is running, show a single running Trace item with a generic
+             * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
+             * explanatory label such as "Stopped".
+             * @since 6.1.0
+             */
+            "ix-chat-trace-item": LocalJSX.IntrinsicElements["ix-chat-trace-item"] & JSXBase.HTMLAttributes<HTMLIxChatTraceItemElement>;
+            /**
+             * One titled part of a Trace item's detail, such as its input, its output or its key findings.
+             * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+             * @since 6.1.0
+             */
+            "ix-chat-trace-item-section": LocalJSX.IntrinsicElements["ix-chat-trace-item-section"] & JSXBase.HTMLAttributes<HTMLIxChatTraceItemSectionElement>;
             /**
              * @documentation https://ix.siemens.io//docs/components/user-message/guide.md
              * @figma-main-component-id 133528:33294

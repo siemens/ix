@@ -1,0 +1,71 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use './chat-trace-item-section.vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-chat-trace-item-section--gap);
+  min-width: 0;
+  color: var(--ix-chat-trace-item-section--color);
+  font: var(--ix-chat-trace-item-section--font);
+
+  @include component.ix-component;
+
+  .heading {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--ix-chat-trace-item-section-heading--gap);
+    margin: 0;
+    padding: 0;
+    color: var(--ix-chat-trace-item-section-heading--color);
+    font: var(--ix-chat-trace-item-section-heading--font);
+  }
+
+  .heading-toggle {
+    border: none;
+    border-radius: var(--ix-chat-trace-item-section-heading--border-radius);
+    background: transparent;
+    cursor: pointer;
+    text-align: start;
+
+    @include hover.hover {
+      color: var(--ix-chat-trace-item-section--color);
+    }
+
+    @include hover.focus-visible {
+      outline: var(--ix-chat-trace-item-section--outline-width--focus) solid
+        var(--ix-chat-trace-item-section--outline-color--focus);
+      outline-offset: var(--ix-chat-trace-item-section--outline-offset--focus);
+    }
+  }
+
+  .chevron {
+    flex: 0 0 auto;
+    transition: transform var(--theme-default-time) ease-in-out;
+  }
+
+  .chevron.expanded {
+    transform: rotate(90deg);
+  }
+
+  .content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .content[hidden] {
+    display: none;
+  }
+}
+

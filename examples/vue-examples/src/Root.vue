@@ -57,6 +57,7 @@ import Card from './preview-examples/card.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
 import Chat from './preview-examples/chat.vue';
+import ChatActivityTrace from './preview-examples/chat-activity-trace.vue';
 import ChatAiMessage from './preview-examples/chat-ai-message.vue';
 import ChatInput from './preview-examples/chat-input.vue';
 import ChatUserMessage from './preview-examples/chat-user-message.vue';
@@ -336,6 +337,7 @@ const routes: IxPreviewRoutes = {
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
   '/preview/chat': Chat,
+  '/preview/chat-activity-trace': ChatActivityTrace,
   '/preview/chat-ai-message': ChatAiMessage,
   '/preview/chat-input': ChatInput,
   '/preview/chat-user-message': ChatUserMessage,
