@@ -1,9 +1,0 @@
-import "./global-43rhC1fd.js";
-/* empty css                          */
-import { a as addIcons } from "./ix-icon.entry-M3WXBi9P.js";
-import { d as iconHome, e as iconOpenExternal } from "./index-lQqpelqO.js";
-import "./init-DTq97SR9.js";
-addIcons({
-  iconOpenExternal,
-  iconHome
-});
