@@ -71,7 +71,7 @@ export class Markdown {
   @Prop() streaming: boolean = false;
 
   /**
-   * Emitted when a Custom component calls `emitAction`.
+   * Emitted when a button Directive with an `action` attribute is clicked or a Custom component calls `emitAction`.
    */
   @Event() actionClick!: EventEmitter<MarkdownAction>;
 

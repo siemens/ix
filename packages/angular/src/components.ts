@@ -1846,7 +1846,7 @@ import type { MarkdownAction as IIxMarkdownMarkdownAction } from '@siemens/ix';
 
 export declare interface IxMarkdown extends Components.IxMarkdown {
   /**
-   * Emitted when a Custom component calls `emitAction`.
+   * Emitted when a button Directive with an `action` attribute is clicked or a Custom component calls `emitAction`.
    */
   actionClick: EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>;
 }

@@ -11477,7 +11477,7 @@ declare namespace LocalJSX {
          */
         "markdown"?: string;
         /**
-          * Emitted when a Custom component calls `emitAction`.
+          * Emitted when a button Directive with an `action` attribute is clicked or a Custom component calls `emitAction`.
          */
         "onActionClick"?: (event: IxMarkdownCustomEvent<MarkdownAction>) => void;
         /**
