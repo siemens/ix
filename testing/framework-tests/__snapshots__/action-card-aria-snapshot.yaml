@@ -1,3 +1,4 @@
-- group "Scan for new devices":
-  - img "Refresh"
-  - text: Scan for new devices Secondary text
+- main:
+  - button "Scan for new devices":
+    - img "Refresh"
+    - text: Scan for new devices Secondary text
