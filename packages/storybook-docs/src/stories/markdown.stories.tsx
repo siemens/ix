@@ -436,6 +436,7 @@ type StreamingArgs = Partial<Element> & {
 /**
  * Simulates an LLM response: the full accumulated text is reassigned on every
  * chunk while `streaming` is set, as an app would do with a real stream.
+ * Returns a function that cancels the simulated stream.
  */
 function streamInto(
   markdown: MarkdownElement,
@@ -443,6 +444,7 @@ function streamInto(
   { charactersPerChunk, chunkInterval }: StreamingArgs
 ) {
   let length = 0;
+  let timer: ReturnType<typeof setTimeout>;
   markdown.streaming = true;
   markdown.markdown = '';
 
@@ -453,12 +455,13 @@ function streamInto(
     length = Math.min(source.length, length + Math.max(1, charactersPerChunk));
     markdown.markdown = source.slice(0, length);
     if (length < source.length) {
-      setTimeout(next, chunkInterval);
+      timer = setTimeout(next, chunkInterval);
     } else {
       markdown.streaming = false;
     }
   };
-  setTimeout(next, chunkInterval);
+  timer = setTimeout(next, chunkInterval);
+  return () => clearTimeout(timer);
 }
 
 export const Streaming: StoryObj<StreamingArgs> = {
@@ -481,12 +484,13 @@ export const Streaming: StoryObj<StreamingArgs> = {
     const log = createActionLog();
     logActions(markdown, log);
 
-    replay.addEventListener('click', () =>
-      streamInto(markdown, args.markdown ?? '', args)
-    );
+    let cancelStream = streamInto(markdown, args.markdown ?? '', args);
+    replay.addEventListener('click', () => {
+      cancelStream();
+      cancelStream = streamInto(markdown, args.markdown ?? '', args);
+    });
 
     container.append(replay, message, log);
-    streamInto(markdown, args.markdown ?? '', args);
     return container;
   },
   argTypes: {
@@ -513,6 +517,7 @@ export const Streaming: StoryObj<StreamingArgs> = {
       expect(markdown.querySelector('h3 + p')).not.toBeNull()
     );
     const heading = markdown.querySelector('h3');
+    expect(markdown).toHaveAttribute('aria-busy', 'true');
 
     await waitFor(() => expect(markdown).not.toHaveAttribute('aria-busy'), {
       timeout: 20000,
