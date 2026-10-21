@@ -21,9 +21,7 @@
   --ix-toast--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-toast--border-width: #{sys.$si-sys-sizing-border-width-none};
   --ix-toast--min-width: #{sys.$si-sys-sizing-size-170};
-  --ix-toast--max-width: calc(
-    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100}
-  );
+  --ix-toast--max-width: #{sys.$si-sys-sizing-size-170};
   --ix-toast--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-toast-body--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-toast-body--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
