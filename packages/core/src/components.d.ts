@@ -843,6 +843,28 @@ export namespace Components {
      * @since 5.2.0
      */
     interface IxChat {
+        /**
+          * i18n accessible label for the scroll-to-latest button.
+          * @since 6.1.0
+          * @default 'Scroll to latest'
+         */
+        "i18nScrollToLatest": string;
+        /**
+          * Scrolls to the latest content and resumes Auto-scroll. Scrolling is animated unless the user prefers reduced motion.
+          * @since 6.1.0
+         */
+        "scrollToBottom": () => Promise<void>;
+        /**
+          * Scrolls to the first message. Auto-scroll stops until the user returns to the bottom. Scrolling is animated unless the user prefers reduced motion.
+          * @since 6.1.0
+         */
+        "scrollToTop": () => Promise<void>;
+        /**
+          * If true, the chat does not keep the latest content in view (Auto-scroll) and does not show the scroll-to-latest button. Use `scrollToBottom()` and `scrollToTop()` to scroll programmatically.  By default, the chat follows added messages and growing message content while the user is at the bottom. Auto-scroll stops when the user scrolls away from the bottom and resumes when the user returns to the bottom, activates the scroll-to-latest button or a new `ix-chat-user-message` is added.
+          * @since 6.1.0
+          * @default false
+         */
+        "suppressAutoScroll": boolean;
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
@@ -9105,6 +9127,18 @@ declare namespace LocalJSX {
      * @since 5.2.0
      */
     interface IxChat {
+        /**
+          * i18n accessible label for the scroll-to-latest button.
+          * @since 6.1.0
+          * @default 'Scroll to latest'
+         */
+        "i18nScrollToLatest"?: string;
+        /**
+          * If true, the chat does not keep the latest content in view (Auto-scroll) and does not show the scroll-to-latest button. Use `scrollToBottom()` and `scrollToTop()` to scroll programmatically.  By default, the chat follows added messages and growing message content while the user is at the bottom. Auto-scroll stops when the user scrolls away from the bottom and resumes when the user returns to the bottom, activates the scroll-to-latest button or a new `ix-chat-user-message` is added.
+          * @since 6.1.0
+          * @default false
+         */
+        "suppressAutoScroll"?: boolean;
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
@@ -14443,6 +14477,10 @@ declare namespace LocalJSX {
         "ariaLabelFilterInput": string;
         "enableTopLayer": boolean;
     }
+    interface IxChatAttributes {
+        "suppressAutoScroll": boolean;
+        "i18nScrollToLatest": string;
+    }
     interface IxChatAttachmentAttributes {
         "fileName": string;
         "status": ChatAttachmentStatus;
@@ -15471,7 +15509,7 @@ declare namespace LocalJSX {
         "ix-card-list": Omit<IxCardList, keyof IxCardListAttributes> & { [K in keyof IxCardList & keyof IxCardListAttributes]?: IxCardList[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `attr:${K}`]?: IxCardListAttributes[K] } & { [K in keyof IxCardList & keyof IxCardListAttributes as `prop:${K}`]?: IxCardList[K] };
         "ix-card-title": IxCardTitle;
         "ix-category-filter": Omit<IxCategoryFilter, keyof IxCategoryFilterAttributes> & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes]?: IxCategoryFilter[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `attr:${K}`]?: IxCategoryFilterAttributes[K] } & { [K in keyof IxCategoryFilter & keyof IxCategoryFilterAttributes as `prop:${K}`]?: IxCategoryFilter[K] };
-        "ix-chat": IxChat;
+        "ix-chat": Omit<IxChat, keyof IxChatAttributes> & { [K in keyof IxChat & keyof IxChatAttributes]?: IxChat[K] } & { [K in keyof IxChat & keyof IxChatAttributes as `attr:${K}`]?: IxChatAttributes[K] } & { [K in keyof IxChat & keyof IxChatAttributes as `prop:${K}`]?: IxChat[K] };
         "ix-chat-ai-message": IxChatAiMessage;
         "ix-chat-attachment": Omit<IxChatAttachment, keyof IxChatAttachmentAttributes> & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes]?: IxChatAttachment[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `attr:${K}`]?: IxChatAttachmentAttributes[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `prop:${K}`]?: IxChatAttachment[K] };
         "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };

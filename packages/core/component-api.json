@@ -1471,8 +1471,42 @@
     {
       "tag": "ix-chat",
       "deprecated": false,
-      "properties": [],
-      "methods": [],
+      "properties": [
+        {
+          "name": "i18nScrollToLatest",
+          "attribute": "i18n-scroll-to-latest",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Scroll to latest'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "suppressAutoScroll",
+          "attribute": "suppress-auto-scroll",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "scrollToBottom",
+          "signature": "scrollToBottom() => Promise<void>",
+          "deprecated": false
+        },
+        {
+          "name": "scrollToTop",
+          "signature": "scrollToTop() => Promise<void>",
+          "deprecated": false
+        }
+      ],
       "events": [],
       "cssProperties": [],
       "slots": [

@@ -22,12 +22,17 @@
 
   @include component.ix-component;
 
-  .messages {
+  .conversation {
+    position: relative;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    align-items: center;
-    gap: var(--ix-chat-messages--gap);
+    min-height: 0;
+    width: 100%;
+  }
+
+  .messages {
+    flex: 1 1 auto;
     min-height: 0;
     width: 100%;
     padding: var(--ix-chat-messages--padding);
@@ -35,10 +40,35 @@
     overflow-y: auto;
   }
 
-  .messages ::slotted(*) {
+  .messages:focus-visible {
+    outline: var(--ix-chat-messages--outline-width--focus) solid
+      var(--ix-chat-messages--outline-color--focus);
+    outline-offset: calc(-1 * var(--ix-chat-messages--outline-width--focus));
+  }
+
+  .messages-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--ix-chat-messages--gap);
+    width: 100%;
+  }
+
+  .messages-content ::slotted(*) {
     width: 100%;
     max-width: var(--ix-chat-messages--max-width);
     flex: 0 0 auto;
+  }
+
+  .scroll-to-latest {
+    position: absolute;
+    inset-block-end: var(--ix-chat-scroll-to-latest--offset);
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    border-radius: 50%;
+    background-color: var(--ix-chat-scroll-to-latest--background);
+    box-shadow: var(--ix-chat-scroll-to-latest--box-shadow);
   }
 
   .prompt {

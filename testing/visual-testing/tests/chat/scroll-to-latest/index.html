@@ -1,0 +1,85 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Chat scroll to latest</title>
+    <style>
+      :root {
+        color: var(--si-sys-color-text-primary);
+        font-family: var(--si-ref-typography-font-family-sans);
+      }
+
+      .chat-visual-page {
+        min-height: 100vh;
+        box-sizing: border-box;
+        padding: 1.5rem;
+        background: var(--si-sys-color-background-0);
+      }
+
+      ix-chat {
+        width: 36rem;
+        height: 26rem;
+        min-width: 0;
+        border: 1px solid var(--si-sys-color-border-4);
+        border-radius: 0.25rem;
+        background: var(--si-sys-color-background-0);
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconArrowDown,
+        iconSendRightFilled,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconArrowDown,
+        iconSendRightFilled,
+      });
+    </script>
+  </head>
+  <body>
+    <main class="chat-visual-page">
+      <ix-chat>
+        <ix-chat-user-message
+          message="Summarize the detailed discussion held with the customer"
+        ></ix-chat-user-message>
+        <ix-chat-ai-message>
+          <p>
+            Effective asset performance management improves uptime, reduces
+            maintenance costs, and ensures long-term equipment health.
+          </p>
+          <p>
+            The customer asked for a prioritized maintenance plan for the
+            compressors on line 2 and a weekly status report.
+          </p>
+        </ix-chat-ai-message>
+        <ix-chat-user-message
+          message="Which assets need maintenance first?"
+        ></ix-chat-user-message>
+        <ix-chat-ai-message>
+          <p>
+            Compressor C-204 shows rising vibration levels and should be
+            inspected first, followed by pump P-117 and conveyor B-3.
+          </p>
+          <p>
+            All three assets exceeded their warning thresholds during the last
+            two weeks.
+          </p>
+        </ix-chat-ai-message>
+        <ix-chat-input slot="prompt"></ix-chat-input>
+      </ix-chat>
+    </main>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

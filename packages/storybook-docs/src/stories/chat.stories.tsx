@@ -358,3 +358,30 @@ export const FullFeaturedConversation: Story = {
     ])
   ),
 };
+
+function createLongConversation() {
+  return [
+    'Summarize the detailed discussion held with the customer',
+    'Which assets need maintenance first?',
+    'List the open service tickets for these assets',
+    'Draft a status update for the plant manager',
+  ].flatMap((question) => [
+    createUserMessage(question),
+    createAiMessage({ actions: true }),
+  ]);
+}
+
+export const LongConversation: Story = {
+  render: stencil((args) =>
+    createChat(args, [...createLongConversation(), createChatInput()])
+  ),
+};
+
+export const LongConversationWithoutAutoScroll: Story = {
+  args: {
+    suppressAutoScroll: true,
+  },
+  render: stencil((args) =>
+    createChat(args, [...createLongConversation(), createChatInput()])
+  ),
+};

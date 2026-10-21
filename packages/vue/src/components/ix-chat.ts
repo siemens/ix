@@ -6,4 +6,7 @@ import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-t
 import type { JSX } from '@siemens/ix';
 import { defineCustomElement as defineIxChat } from '@siemens/ix/components/ix-chat.js';
 
-export const IxChat: StencilVueComponent<JSX.IxChat> = /*@__PURE__*/ defineContainer<JSX.IxChat>('ix-chat', defineIxChat);
+export const IxChat: StencilVueComponent<JSX.IxChat> = /*@__PURE__*/ defineContainer<JSX.IxChat>('ix-chat', defineIxChat, [
+  'suppressAutoScroll',
+  'i18nScrollToLatest'
+]);
