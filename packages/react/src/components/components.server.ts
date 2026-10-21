@@ -464,13 +464,15 @@ export type IxChatInputEvents = {
     onValueChange: EventName<IxChatInputCustomEvent<string>>,
     onIxBlur: EventName<IxChatInputCustomEvent<void>>,
     onIxChange: EventName<IxChatInputCustomEvent<string>>,
-    onPromptSubmit: EventName<IxChatInputCustomEvent<string>>
+    onPromptSubmit: EventName<IxChatInputCustomEvent<string>>,
+    onPromptInterrupt: EventName<IxChatInputCustomEvent<void>>
 };
 
 export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput> = /*@__PURE__*/ createComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>({
     tagName: 'ix-chat-input',
     properties: {
         state: 'state',
+        interruptible: 'interruptible',
         name: 'name',
         placeholder: 'placeholder',
         value: 'value',
@@ -481,6 +483,7 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         characterLimit: 'character-limit',
         i18nCharacterLimitReached: 'i18n-character-limit-reached',
         i18nCharacterLimitWarning: 'i18n-character-limit-warning',
+        i18nStopGenerating: 'i18n-stop-generating',
         characterLimitWarningThreshold: 'character-limit-warning-threshold',
         minRows: 'min-rows',
         maxRows: 'max-rows',

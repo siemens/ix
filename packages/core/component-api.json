@@ -1665,8 +1665,30 @@
           "deprecated": false
         },
         {
+          "name": "i18nStopGenerating",
+          "attribute": "i18n-stop-generating",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Stop generating'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "insertLineBreakOnEnter",
           "attribute": "insert-line-break-on-enter",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "interruptible",
+          "attribute": "interruptible",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -1742,7 +1764,7 @@
         {
           "name": "state",
           "attribute": "state",
-          "type": "\"input\" | \"processing\" | undefined",
+          "type": "\"input\" | \"interrupting\" | \"processing\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'input'",
@@ -1797,6 +1819,14 @@
         {
           "name": "ixChange",
           "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
+          "name": "promptInterrupt",
+          "detail": "void",
           "bubbles": true,
           "cancelable": true,
           "composed": true,

@@ -936,10 +936,22 @@ export namespace Components {
          */
         "i18nCharacterLimitWarning": string;
         /**
+          * i18n accessible label for the stop button shown while processing or interrupting.
+          * @since 6.1.0
+          * @default 'Stop generating'
+         */
+        "i18nStopGenerating": string;
+        /**
           * If true, pressing Enter inserts a line break instead of submitting the prompt.
           * @default false
          */
         "insertLineBreakOnEnter": boolean;
+        /**
+          * If true, the stop button is enabled while `state` is `processing` and emits `promptInterrupt` when activated. If false, the stop button is shown disabled while processing.
+          * @since 6.1.0
+          * @default false
+         */
+        "interruptible": boolean;
         /**
           * The maximum length of the chat input.
          */
@@ -969,10 +981,10 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * The state of the chat input, which can be either 'input' or 'processing'.
+          * The state of the chat input.  - `input`: The user can enter and submit a prompt. - `processing`: A response is being generated. Submitting is blocked and the stop button is shown. - `interrupting`: An Interrupt was requested and is being processed. Submitting is blocked and the stop button is disabled and shows progress.
           * @default 'input'
          */
-        "state"?: 'input' | 'processing';
+        "state"?: 'input' | 'processing' | 'interrupting';
         /**
           * Accessible label for the native textarea.
           * @default 'Chat input'
@@ -6336,6 +6348,7 @@ declare global {
         "ixBlur": void;
         "ixChange": string;
         "promptSubmit": string;
+        "promptInterrupt": void;
     }
     /**
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
@@ -9186,10 +9199,22 @@ declare namespace LocalJSX {
          */
         "i18nCharacterLimitWarning"?: string;
         /**
+          * i18n accessible label for the stop button shown while processing or interrupting.
+          * @since 6.1.0
+          * @default 'Stop generating'
+         */
+        "i18nStopGenerating"?: string;
+        /**
           * If true, pressing Enter inserts a line break instead of submitting the prompt.
           * @default false
          */
         "insertLineBreakOnEnter"?: boolean;
+        /**
+          * If true, the stop button is enabled while `state` is `processing` and emits `promptInterrupt` when activated. If false, the stop button is shown disabled while processing.
+          * @since 6.1.0
+          * @default false
+         */
+        "interruptible"?: boolean;
         /**
           * The maximum length of the chat input.
          */
@@ -9217,6 +9242,11 @@ declare namespace LocalJSX {
          */
         "onIxChange"?: (event: IxChatInputCustomEvent<string>) => void;
         /**
+          * Event emitted when the user activates the stop button while `interruptible` is set and `state` is `processing`. Use it to cancel the running request and set `state` to `interrupting` until the Interrupt is confirmed.
+          * @since 6.1.0
+         */
+        "onPromptInterrupt"?: (event: IxChatInputCustomEvent<void>) => void;
+        /**
           * Event emitted when the prompt is submitted by the send button or Enter key.
          */
         "onPromptSubmit"?: (event: IxChatInputCustomEvent<string>) => void;
@@ -9235,10 +9265,10 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * The state of the chat input, which can be either 'input' or 'processing'.
+          * The state of the chat input.  - `input`: The user can enter and submit a prompt. - `processing`: A response is being generated. Submitting is blocked and the stop button is shown. - `interrupting`: An Interrupt was requested and is being processed. Submitting is blocked and the stop button is disabled and shows progress.
           * @default 'input'
          */
-        "state"?: 'input' | 'processing';
+        "state"?: 'input' | 'processing' | 'interrupting';
         /**
           * Accessible label for the native textarea.
           * @default 'Chat input'
@@ -14422,7 +14452,8 @@ declare namespace LocalJSX {
         "removeAriaLabel": string;
     }
     interface IxChatInputAttributes {
-        "state": 'input' | 'processing';
+        "state": 'input' | 'processing' | 'interrupting';
+        "interruptible": boolean;
         "name": string;
         "placeholder": string;
         "value": string;
@@ -14433,6 +14464,7 @@ declare namespace LocalJSX {
         "characterLimit": number;
         "i18nCharacterLimitReached": string;
         "i18nCharacterLimitWarning": string;
+        "i18nStopGenerating": string;
         "characterLimitWarningThreshold": number;
         "minRows": number;
         "maxRows": number;

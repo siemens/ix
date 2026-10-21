@@ -365,7 +365,8 @@ export type IxChatInputEvents = {
     onValueChange: EventName<IxChatInputCustomEvent<string>>,
     onIxBlur: EventName<IxChatInputCustomEvent<void>>,
     onIxChange: EventName<IxChatInputCustomEvent<string>>,
-    onPromptSubmit: EventName<IxChatInputCustomEvent<string>>
+    onPromptSubmit: EventName<IxChatInputCustomEvent<string>>,
+    onPromptInterrupt: EventName<IxChatInputCustomEvent<void>>
 };
 
 export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput> = /*@__PURE__*/ createComponent<IxChatInputElement, IxChatInputEvents, Components.IxChatInput>({
@@ -377,7 +378,8 @@ export const IxChatInput: StencilReactComponent<IxChatInputElement, IxChatInputE
         onValueChange: 'valueChange',
         onIxBlur: 'ixBlur',
         onIxChange: 'ixChange',
-        onPromptSubmit: 'promptSubmit'
+        onPromptSubmit: 'promptSubmit',
+        onPromptInterrupt: 'promptInterrupt'
     } as IxChatInputEvents,
     defineCustomElement: defineIxChatInput
 });
