@@ -1,0 +1,26 @@
+packages/core/src/components/badge/badge.status-icon.ts
+  h_c5a773bf2fda8b 18,20,89
+packages/core/src/components/badge/test/badge.ct.ts
+  h_c5a773bf2fda8b 14,138,167-173,277
+packages/core/src/components/badge/test/badge.spec.ts
+  h_c5a773bf2fda8b 18,20,99,159,170
+packages/storybook-docs/src/stories/badge/status-icon.stories.tsx
+  h_c5a773bf2fda8b 43
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 19-20,140,171,255,283,344,365,456,550,718,1065,1329,1438,1554,1593,1724,1812,1833,6044-6045,20241
+pnpm-workspace.yaml
+  h_c5a773bf2fda8b 12
+testing/visual-testing/tests/badge/status-icon/index.html
+  h_c5a773bf2fda8b 69,71,91,93
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cbb735e53be32dae5e91d15e57bda67b04c899d4",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
