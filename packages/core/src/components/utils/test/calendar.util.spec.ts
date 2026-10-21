@@ -17,6 +17,7 @@ import {
   monthNameOf,
   monthsOfYear,
   weekdayColumnOf,
+  weekdayLabelsFrom,
   weekdayNamesFrom,
   weekStartFrom,
 } from '../calendar.util';
@@ -316,6 +317,58 @@ describe('weekdayNamesFrom', () => {
         [...weekdayNamesFrom(weekStartFrom(weekStart), 'en')].sort()
       ).toEqual([...mondayFirst].sort());
     }
+  });
+});
+
+describe('weekdayLabelsFrom', () => {
+  it('uses the abbreviated names when they fit', () => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), 'en')).toEqual([
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun',
+    ]);
+  });
+
+  it('rotates the labels with the week start', () => {
+    expect(weekdayLabelsFrom(weekStartFrom(6), 'en')[0]).toBe('Sun');
+  });
+
+  it('falls back to narrow names for all days if one is too long', () => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), 'ar')).toEqual(
+      weekdayNamesFrom(weekStartFrom(0), 'ar', 'narrow')
+    );
+  });
+
+  it('counts graphemes rather than code points', () => {
+    // Khmer abbreviations stack combining marks, e.g. Sunday is 7 code points
+    // but only 4 user-perceived characters.
+    const labels = weekdayLabelsFrom(weekStartFrom(0), 'km');
+
+    expect(labels).toEqual(weekdayNamesFrom(weekStartFrom(0), 'km', 'short'));
+  });
+
+  // Whether a label fits its column depends on installed fonts, so the label
+  // choice is pinned here and the rendering is covered by visual regression.
+  it.each([
+    ['zh', 'short'],
+    ['ja', 'short'],
+    ['de', 'short'],
+    ['fr', 'short'],
+    ['lv', 'narrow'],
+    ['he', 'short'],
+    ['ar', 'narrow'],
+    ['el', 'short'],
+    ['ta', 'short'],
+    ['km', 'short'],
+    ['my', 'short'],
+  ] as const)('uses the %s %s names', (locale, format) => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), locale)).toEqual(
+      weekdayNamesFrom(weekStartFrom(0), locale, format)
+    );
   });
 });
 
