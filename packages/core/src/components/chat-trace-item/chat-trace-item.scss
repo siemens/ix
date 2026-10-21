@@ -12,6 +12,15 @@
 @use './chat-trace-item.vars';
 
 :host {
+  // Vertical distance from the item top to the marker top (marker centered in the summary row)
+  --ix-chat-trace-item-marker--offset: calc(
+    (
+        var(--ix-chat-trace-item-summary--min-height) -
+          var(--ix-chat-trace-item-marker--size)
+      ) / 2
+  );
+
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--ix-chat-trace-item--gap);
@@ -90,8 +99,7 @@
   .chevron {
     flex: 0 0 auto;
     opacity: 0;
-    transition:
-      opacity var(--theme-default-time) ease-in-out,
+    transition: opacity var(--theme-default-time) ease-in-out,
       transform var(--theme-default-time) ease-in-out;
   }
 
@@ -113,6 +121,32 @@
   .detail[hidden] {
     display: none;
   }
+}
+
+// Decorative line that connects the marker with the marker of the next Trace item.
+// It runs along the detail of an expanded item and is not drawn after the last item.
+:host(:not(:last-of-type))::after {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(
+    var(--ix-chat-trace-item-marker--offset) +
+      var(--ix-chat-trace-item-marker--size) +
+      var(--ix-chat-trace-item-connector--spacing)
+  );
+  inset-block-end: calc(
+    var(--ix-chat-trace-item-connector--spacing) -
+      var(--ix-chat-activity-trace-items--gap, 0px) -
+      var(--ix-chat-trace-item-marker--offset)
+  );
+  inset-inline-start: calc(
+    (
+        var(--ix-chat-trace-item-marker--size) -
+          var(--ix-chat-trace-item-connector--width)
+      ) / 2
+  );
+  border-inline-start: var(--ix-chat-trace-item-connector--width) solid
+    var(--ix-chat-trace-item-connector--color);
+  pointer-events: none;
 }
 
 :host(.state-running) {

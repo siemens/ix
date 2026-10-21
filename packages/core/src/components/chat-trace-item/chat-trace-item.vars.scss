@@ -17,6 +17,7 @@
   --ix-chat-trace-item-marker--color--warning: #{sys.$si-sys-color-text-warning};
   --ix-chat-trace-item-marker--color--failed: #{sys.$si-sys-color-text-danger};
   --ix-chat-trace-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-chat-trace-item-connector--color: #{sys.$si-sys-color-border-3};
 }
 
 :host {
@@ -27,6 +28,8 @@
   --ix-chat-trace-item-summary--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-chat-trace-item-marker--size: #{sys.$si-sys-sizing-size-50};
   --ix-chat-trace-item-detail--gap: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-chat-trace-item-connector--width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-chat-trace-item-connector--spacing: #{sys.$si-sys-sizing-spacing-y-10};
   --ix-chat-trace-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-chat-trace-item--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
 }

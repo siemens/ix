@@ -182,3 +182,28 @@ regressionTest(
     await expect(summary).toBeFocused();
   }
 );
+
+regressionTest(
+  'connects Trace items with a decorative line except after the last item',
+  async ({ mount, page }) => {
+    await mount(`<ix-chat-activity-trace>${items}</ix-chat-activity-trace>`);
+    await expect(page.getByRole('listitem')).toHaveCount(3);
+
+    const connectors = await page
+      .locator('ix-chat-trace-item')
+      .evaluateAll((elements) =>
+        elements.map(
+          (element) => getComputedStyle(element, '::after').content !== 'none'
+        )
+      );
+    expect(connectors).toEqual([true, true, false]);
+
+    await expect(page.getByRole('list')).toMatchAriaSnapshot(`
+      - list:
+        - listitem: Search sources, completed
+        - listitem:
+          - button "Read page.tsx, completed"
+        - listitem: Generate answer, running
+    `);
+  }
+);
