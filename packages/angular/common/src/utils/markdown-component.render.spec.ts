@@ -73,7 +73,7 @@ const waitFor = async (condition: () => boolean, timeout = 2000) => {
   }
 };
 
-const setup = async () => {
+const setup = () => {
   TestBed.configureTestingModule({
     imports: [HostComponent],
     providers: [Greeter],
@@ -95,8 +95,12 @@ describe('createMarkdownComponent in ix-markdown', () => {
     defineCustomElement();
   });
 
+  beforeEach(() => {
+    destroyed.length = 0;
+  });
+
   test('mounts the mapped component with an app-provided service', async () => {
-    const { greeting, render } = await setup();
+    const { greeting, render } = setup();
     render(':greeting[World]{tone=warm}');
 
     await waitFor(() => greeting() !== null);
@@ -104,7 +108,7 @@ describe('createMarkdownComponent in ix-markdown', () => {
   });
 
   test('updates inputs of the open block in place', async () => {
-    const { greeting, render } = await setup();
+    const { greeting, render } = setup();
     render(':greeting[Wor]{tone=warm}', true);
     await waitFor(() => greeting()?.textContent === 'Hello Wor (warm)');
     const mounted = greeting();
@@ -116,8 +120,7 @@ describe('createMarkdownComponent in ix-markdown', () => {
   });
 
   test('destroys the component when its block disappears', async () => {
-    const { greeting, render } = await setup();
-    destroyed.length = 0;
+    const { greeting, render } = setup();
     render(':greeting[Gone]{tone=warm}');
     await waitFor(() => greeting() !== null);
 
@@ -128,8 +131,7 @@ describe('createMarkdownComponent in ix-markdown', () => {
   });
 
   test('destroys the component when the view is removed', async () => {
-    const { fixture, greeting, render } = await setup();
-    destroyed.length = 0;
+    const { fixture, greeting, render } = setup();
     render(':greeting[Bye]{tone=warm}');
     await waitFor(() => greeting() !== null);
 
