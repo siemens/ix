@@ -5627,15 +5627,27 @@ export namespace Components {
      */
     interface IxTreeItem {
         /**
-          * ARIA label for the chevron icon
+          * ARIA label for the expand/collapse button
          */
         "ariaLabelChevronIcon"?: string;
+        /**
+          * ARIA label for the expand control when the tree item is collapsed.
+          * @since 6.0.0
+          * @default 'Expand tree item'
+         */
+        "ariaLabelTreeCollapsed": string;
+        /**
+          * ARIA label for the collapse control when the tree item is expanded.
+          * @since 6.0.0
+          * @default 'Collapse tree item'
+         */
+        "ariaLabelTreeExpanded": string;
         /**
           * Context
          */
         "context"?: TreeItemContext;
         /**
-          * Disable tree item
+          * Disable selection and expansion while keeping the tree item focusable.
           * @since 5.0.0
           * @default false
          */
@@ -14164,15 +14176,27 @@ declare namespace LocalJSX {
      */
     interface IxTreeItem {
         /**
-          * ARIA label for the chevron icon
+          * ARIA label for the expand/collapse button
          */
         "ariaLabelChevronIcon"?: string;
+        /**
+          * ARIA label for the expand control when the tree item is collapsed.
+          * @since 6.0.0
+          * @default 'Expand tree item'
+         */
+        "ariaLabelTreeCollapsed"?: string;
+        /**
+          * ARIA label for the collapse control when the tree item is expanded.
+          * @since 6.0.0
+          * @default 'Collapse tree item'
+         */
+        "ariaLabelTreeExpanded"?: string;
         /**
           * Context
          */
         "context"?: TreeItemContext;
         /**
-          * Disable tree item
+          * Disable selection and expansion while keeping the tree item focusable.
           * @since 5.0.0
           * @default false
          */
@@ -15467,6 +15491,8 @@ declare namespace LocalJSX {
         "hasChildren": boolean;
         "disabled": boolean;
         "ariaLabelChevronIcon": string;
+        "ariaLabelTreeCollapsed": string;
+        "ariaLabelTreeExpanded": string;
     }
     interface IxTypographyAttributes {
         "format": TypographyFormat;
