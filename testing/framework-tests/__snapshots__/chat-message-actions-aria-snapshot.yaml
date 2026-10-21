@@ -1,0 +1,15 @@
+- main:
+  - text: Which assets need maintenance first?
+  - button "Copy"
+  - paragraph: Compressor C-12 should be serviced first. Its vibration increased over the last week, and the next service window is on Friday.
+  - button "Copy"
+  - button "Regenerate"
+  - button "Good response"
+  - button "Bad response"
+  - button "More actions"
+  - button "Show the vibration trend of C-12"
+  - button "Create a work order for Friday"
+  - textbox "Chat input":
+    - /placeholder: Enter a command, question or topic...
+  - button "Submit prompt" [disabled]
+  - text: This content is AI-generated. Always verify the information for accuracy.

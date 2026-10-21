@@ -96,4 +96,18 @@ regressionTest.describe('chat', () => {
       fullPage: true,
     });
   });
+
+  regressionTest('welcome screen with suggestions', async ({ page }) => {
+    await page.setViewportSize({ width: 720, height: 520 });
+    await page.goto('chat/welcome');
+
+    await page
+      .getByRole('button', { name: 'Create a weekly status report' })
+      .waitFor();
+
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+      fullPage: true,
+    });
+  });
 });

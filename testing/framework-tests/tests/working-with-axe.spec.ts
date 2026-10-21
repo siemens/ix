@@ -80,7 +80,9 @@ import './generated/chat-axe.spec';
 import './generated/chat-activity-trace-axe.spec';
 import './generated/chat-ai-message-axe.spec';
 import './generated/chat-input-axe.spec';
+import './generated/chat-message-actions-axe.spec';
 import './generated/chat-user-message-axe.spec';
+import './generated/chat-welcome-axe.spec';
 
 // Markdown tests
 import './generated/markdown-axe.spec';

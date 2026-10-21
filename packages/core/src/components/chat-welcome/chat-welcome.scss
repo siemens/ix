@@ -1,0 +1,50 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use './chat-welcome.vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ix-chat-welcome--gap);
+  min-width: 0;
+  color: var(--ix-chat-welcome--color);
+  text-align: center;
+
+  @include component.ix-component;
+
+  .heading {
+    margin: 0;
+    font: var(--ix-chat-welcome-heading--font);
+  }
+
+  .content {
+    color: var(--ix-chat-welcome-content--color);
+    font: var(--ix-chat-welcome-content--font);
+  }
+
+  .content ::slotted(*) {
+    margin: 0;
+  }
+
+  .suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--ix-chat-welcome-suggestions--gap);
+    max-width: 100%;
+    margin-top: var(--ix-chat-welcome-suggestions--margin-top);
+  }
+
+  [hidden] {
+    display: none;
+  }
+}
