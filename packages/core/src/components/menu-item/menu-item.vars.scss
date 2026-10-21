@@ -27,12 +27,15 @@
   --ix-menu-item--padding-inline: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-menu-item-tab-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-menu-item-tab-icon--margin-inline: calc(
+    (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-icon-md}) / 2
+  );
+  --ix-menu-item-tab-icon-nested--margin-inline: calc(
     (#{sys.$si-sys-sizing-icon-lg} - #{sys.$si-sys-sizing-icon-md}) / 2
   );
   --ix-menu-item-pill--padding: #{sys.$si-sys-sizing-spacing-y-20}
     #{sys.$si-sys-sizing-spacing-x-20};
   --ix-menu-item-tab-text--margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0
-    #{sys.$si-sys-sizing-spacing-x-70};
+    #{sys.$si-sys-sizing-spacing-x-50};
   --ix-menu-item-bottom-tab-bottom--bottom-height: #{sys.$si-sys-sizing-size-90};
   --ix-menu-item-tab--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-menu-item-tab-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
