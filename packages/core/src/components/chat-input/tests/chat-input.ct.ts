@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, type Locator } from '@playwright/test';
 import { iconCircleStop, iconSendRightFilled } from '@siemens/ix-icons/icons';
 import {
   getFormValue,
@@ -38,6 +38,19 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
     .analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
 });
+
+regressionTest(
+  'accessibility while interruptible and processing',
+  async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      '<ix-chat-input interruptible state="processing"></ix-chat-input>'
+    );
+    const accessibilityScanResults = await makeAxeBuilder()
+      .include('ix-chat-input')
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
 
 regressionTest(
   'ix-chat-input emits valueChange when text is entered',
@@ -182,39 +195,33 @@ regressionTest(
   }
 );
 
+function trackPromptEvents(chatInput: Locator) {
+  return chatInput.evaluateHandle((element) => {
+    const events = { submit: 0, interrupt: [] as unknown[] };
+    element.addEventListener('promptSubmit', () => events.submit++);
+    element.addEventListener('promptInterrupt', (event) =>
+      events.interrupt.push((event as CustomEvent).detail)
+    );
+    return events;
+  });
+}
+
 regressionTest(
   'ix-chat-input emits promptInterrupt when the stop button is clicked while interruptible and processing',
   async ({ mount, page }) => {
     await mount(
       '<ix-chat-input interruptible state="processing" value="Analyze alarms"></ix-chat-input>'
     );
-
-    const chatInput = page.locator('ix-chat-input');
-    const interrupt = chatInput.evaluate(
-      (element) =>
-        new Promise<unknown>((resolve) =>
-          element.addEventListener('promptInterrupt', (event) =>
-            resolve((event as CustomEvent).detail)
-          )
-        )
-    );
-    await page.evaluate(() => {
-      globalThis.__promptSubmitValue = undefined;
-      document
-        .querySelector('ix-chat-input')
-        ?.addEventListener('promptSubmit', ((event: CustomEvent<string>) => {
-          globalThis.__promptSubmitValue = event.detail;
-        }) as EventListener);
-    });
+    const events = await trackPromptEvents(page.locator('ix-chat-input'));
 
     const stopButton = page.getByRole('button', { name: 'Stop generating' });
     await expect(stopButton).toBeEnabled();
     await stopButton.click();
 
-    expect(await interrupt).toBeNull();
-    expect(await page.evaluate(() => globalThis.__promptSubmitValue)).toBe(
-      undefined
-    );
+    expect(await events.evaluate((value) => value)).toEqual({
+      submit: 0,
+      interrupt: [null],
+    });
   }
 );
 
@@ -224,24 +231,7 @@ regressionTest(
     await mount(
       '<ix-chat-input interruptible state="processing"></ix-chat-input>'
     );
-
-    await page.evaluate(() => {
-      const element = document.querySelector('ix-chat-input') as HTMLElement & {
-        __interruptCount?: number;
-      };
-      element.__interruptCount = 0;
-      element.addEventListener('promptInterrupt', () => {
-        element.__interruptCount = (element.__interruptCount ?? 0) + 1;
-      });
-    });
-    const getInterruptCount = () =>
-      page
-        .locator('ix-chat-input')
-        .evaluate(
-          (element) =>
-            (element as HTMLElement & { __interruptCount?: number })
-              .__interruptCount
-        );
+    const events = await trackPromptEvents(page.locator('ix-chat-input'));
 
     await page.getByRole('textbox', { name: 'Chat input' }).focus();
     await page.keyboard.press('Tab');
@@ -249,10 +239,14 @@ regressionTest(
     await expect(stopButton).toBeFocused();
 
     await page.keyboard.press('Enter');
-    await expect.poll(getInterruptCount).toBe(1);
+    await expect
+      .poll(() => events.evaluate((value) => value.interrupt.length))
+      .toBe(1);
 
     await page.keyboard.press('Space');
-    await expect.poll(getInterruptCount).toBe(2);
+    await expect
+      .poll(() => events.evaluate((value) => value.interrupt.length))
+      .toBe(2);
   }
 );
 
@@ -291,37 +285,14 @@ for (const state of ['processing', 'interrupting'] as const) {
       await mount(
         `<ix-chat-input interruptible state="${state}" value="Analyze alarms"></ix-chat-input>`
       );
-
-      await page.evaluate(() => {
-        globalThis.__promptSubmitValue = undefined;
-        document
-          .querySelector('ix-chat-input')
-          ?.addEventListener('promptSubmit', ((event: CustomEvent<string>) => {
-            globalThis.__promptSubmitValue = event.detail;
-          }) as EventListener);
-      });
+      const events = await trackPromptEvents(page.locator('ix-chat-input'));
 
       await page.getByRole('textbox', { name: 'Chat input' }).press('Enter');
 
-      expect(await page.evaluate(() => globalThis.__promptSubmitValue)).toBe(
-        undefined
-      );
+      expect(await events.evaluate((value) => value.submit)).toBe(0);
     }
   );
 }
-
-regressionTest(
-  'ix-chat-input accessibility while interruptible and processing',
-  async ({ mount, makeAxeBuilder }) => {
-    await mount(
-      '<ix-chat-input interruptible state="processing"></ix-chat-input>'
-    );
-    const accessibilityScanResults = await makeAxeBuilder()
-      .include('ix-chat-input')
-      .analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-  }
-);
 
 regressionTest(
   'ix-chat-input shows a soft character limit warning from the threshold',
