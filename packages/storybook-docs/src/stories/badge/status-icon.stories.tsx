@@ -40,7 +40,7 @@ function badgeStatusIconPreview(): VNode {
         <h2>Status-icon badge</h2>
         <p class="edge-intro">
           <code>type="status-icon"</code>
-          {' · 20×20px circle · icon from '}
+          {' · 20×20px · icon from '}
           <code>variant</code>
           {' · no '}
           <code>label</code>

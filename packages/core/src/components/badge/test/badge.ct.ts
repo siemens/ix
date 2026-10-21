@@ -9,9 +9,9 @@
 
 import { expect, Locator } from '@playwright/test';
 import {
-  iconCircleFilled,
   iconInfo,
   iconInfoFilled,
+  iconSquareFilled,
   iconStar,
 } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
@@ -135,7 +135,7 @@ regressionTest.describe('ix-badge', () => {
       async ({ mount, page }) => {
         await mount(
           `<ix-badge type="status-icon" variant="accent" aria-label="Status"></ix-badge>`,
-          { icons: { iconInfoFilled, iconCircleFilled } }
+          { icons: { iconInfoFilled, iconSquareFilled } }
         );
         const badge = new BadgePage(page);
         await badge.expectHostClass(/\binformation\b/);
@@ -164,7 +164,13 @@ regressionTest.describe('ix-badge', () => {
               aria-label="Information outline"
             ></ix-badge>
           `,
-          { icons: { iconInfo, iconInfoFilled, iconCircleFilled } }
+          {
+            icons: {
+              iconInfo,
+              iconInfoFilled,
+              iconSquareFilled,
+            },
+          }
         );
 
         const badge = new BadgePage(page);
@@ -268,7 +274,7 @@ regressionTest.describe('ix-badge', () => {
       async ({ mount, page }) => {
         await mount(
           `<ix-badge type="status-icon" variant="information" border aria-label="Status"></ix-badge>`,
-          { icons: { iconInfoFilled, iconCircleFilled } }
+          { icons: { iconInfoFilled, iconSquareFilled } }
         );
         const badge = new BadgePage(page);
         await badge.expectNoHostClass(/\bborder\b/);

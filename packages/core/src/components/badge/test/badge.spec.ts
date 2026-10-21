@@ -15,7 +15,9 @@ import {
   iconErrorFilled,
   iconInfo,
   iconInfoFilled,
+  iconOctagonFilled,
   iconRhombFilled,
+  iconSquareFilled,
   iconSuccess,
   iconSuccessFilled,
   iconTriangleFilled,
@@ -33,7 +35,6 @@ import {
   getBadgeStatusIcon,
   getBadgeStatusIconPlate,
   getResolvedStatusIconVariant,
-  iconOctagonFilled,
   isBadgeStatusIconVariant,
 } from '../badge.status-icon';
 import type { BadgeVariant } from '../badge.types';
@@ -95,7 +96,7 @@ describe('badge.status-icon', () => {
     ],
     ['warning', iconWarningFilled, iconWarning, iconTriangleFilled],
     ['caution', iconWarningRhombFilled, iconWarningRhomb, iconRhombFilled],
-    ['information', iconInfoFilled, iconInfo, iconCircleFilled],
+    ['information', iconInfoFilled, iconInfo, iconSquareFilled],
     ['success', iconSuccessFilled, iconSuccess, iconCircleFilled],
   ] as const)(
     'maps %s to filled, outline, and plate glyphs',
@@ -155,7 +156,7 @@ describe('badge.status-icon', () => {
     (variant) => {
       expect(getBadgeStatusIcon(variant)).toBe(iconInfoFilled);
       expect(getBadgeStatusIcon(variant, true)).toBe(iconInfo);
-      expect(getBadgeStatusIconPlate(variant)).toBe(iconCircleFilled);
+      expect(getBadgeStatusIconPlate(variant)).toBe(iconSquareFilled);
     }
   );
 
@@ -166,6 +167,6 @@ describe('badge.status-icon', () => {
     expect(getResolvedStatusIconVariant(unknown)).toBe('information');
     expect(getBadgeStatusIcon(unknown)).toBe(iconInfoFilled);
     expect(getBadgeStatusIcon(unknown, true)).toBe(iconInfo);
-    expect(getBadgeStatusIconPlate(unknown)).toBe(iconCircleFilled);
+    expect(getBadgeStatusIconPlate(unknown)).toBe(iconSquareFilled);
   });
 });

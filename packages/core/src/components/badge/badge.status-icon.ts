@@ -15,7 +15,9 @@ import {
   iconErrorFilled,
   iconInfo,
   iconInfoFilled,
+  iconOctagonFilled,
   iconRhombFilled,
+  iconSquareFilled,
   iconSuccess,
   iconSuccessFilled,
   iconTriangleFilled,
@@ -27,14 +29,6 @@ import {
   iconWarningRhombFilled,
 } from '@siemens/ix-icons/icons';
 import type { BadgeVariant } from './badge.types';
-
-/**
- * Solid octagon plate for filled **critical** status-icon.
- * Matches the outer path of `iconWarningOctagonFilled` (no bang cut-out).
- * Not exported from `@siemens/ix-icons` yet.
- */
-export const iconOctagonFilled =
-  "data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><desc>octagon-filled</desc><path d='M22 8V16L16 22H8L2 16V8L8 2H16L22 8Z'/></svg>";
 
 /**
  * Variants valid for **type** `status-icon` (glyphs available)
@@ -92,7 +86,7 @@ export const BADGE_STATUS_ICON_BY_VARIANT: Record<
   information: {
     filled: iconInfoFilled,
     outline: iconInfo,
-    plate: iconCircleFilled,
+    plate: iconSquareFilled,
   },
   success: {
     filled: iconSuccessFilled,
