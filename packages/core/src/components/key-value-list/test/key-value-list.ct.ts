@@ -28,6 +28,20 @@ const keyValues = (count: number, attributes = '') =>
       `<ix-key-value label="Label ${index}" label-position="left" value="Value" ${attributes}></ix-key-value>`
   ).join('');
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <div>
+      <ix-key-value-list>${keyValues(2)}</ix-key-value-list>
+      <ix-key-value-list striped divider="false">${keyValues(
+        2
+      )}</ix-key-value-list>
+    </div>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-key-value-list>${keyValues(2)}</ix-key-value-list>`);
   const list = page.locator('ix-key-value-list');
@@ -111,6 +125,7 @@ regressionTest(
       const item = document.createElement('ix-key-value');
       item.id = 'added';
       item.label = 'Added';
+      item.labelPosition = 'left';
       item.value = 'Value';
       element.appendChild(item);
     });
@@ -202,7 +217,7 @@ regressionTest(
           id="override"
           label="Label"
           value="Value"
-          style="--ix-key-value--border-color: rgb(0, 0, 255)"
+          style="--ix-key-value-list-item--border-color: rgb(0, 0, 255)"
         ></ix-key-value>
       </ix-key-value-list>
     `);
@@ -217,16 +232,32 @@ regressionTest(
   }
 );
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
-  await mount(`
-    <div>
-      <ix-key-value-list>${keyValues(2)}</ix-key-value-list>
-      <ix-key-value-list striped divider="false">${keyValues(
-        2
-      )}</ix-key-value-list>
-    </div>
-  `);
+regressionTest(
+  'item line custom properties only style standalone items',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <div>
+        <ix-key-value id="standalone" label="Label" value="Value"></ix-key-value>
+        <ix-key-value-list style="--ix-key-value-list-item--border-color: rgb(255, 0, 0)">
+          <ix-key-value id="listed" label="Label" value="Value"></ix-key-value>
+        </ix-key-value-list>
+      </div>
+    `,
+      {
+        headTags: [
+          '<style>ix-key-value { --ix-key-value--border-color: rgb(0, 0, 255); }</style>',
+        ],
+      }
+    );
 
-  const accessibilityScanResults = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults.violations).toEqual([]);
-});
+    await expect(page.locator('#standalone')).toHaveCSS(
+      'border-bottom-color',
+      'rgb(0, 0, 255)'
+    );
+    await expect(page.locator('#listed')).toHaveCSS(
+      'border-bottom-color',
+      'rgb(255, 0, 0)'
+    );
+  }
+);

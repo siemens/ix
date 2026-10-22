@@ -2935,7 +2935,8 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Show a divider line below the key value. Defaults to `true`. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * Show a divider line below the key value. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * @default true
           * @since 6.0.0
          */
         "divider"?: boolean;
@@ -11200,7 +11201,8 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Show a divider line below the key value. Defaults to `true`. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * Show a divider line below the key value. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * @default true
           * @since 6.0.0
          */
         "divider"?: boolean;

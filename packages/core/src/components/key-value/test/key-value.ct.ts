@@ -25,6 +25,27 @@ const expectDividerHidden = async (keyValue: Locator) => {
 const getHeight = (keyValue: Locator) =>
   keyValue.evaluate((element) => element.getBoundingClientRect().height);
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `
+    <div>
+      <ix-key-value label="Label" value="Value"></ix-key-value>
+      <ix-key-value label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+      <ix-key-value id="with-icon" icon="location" label="Label" value="Value"></ix-key-value>
+    </div>
+  `,
+    { icons: { iconLocation } }
+  );
+  const withIcon = page.locator('#with-icon');
+  await withIcon.evaluate((element: HTMLIxKeyValueElement) => {
+    element.ariaLabelIcon = 'Location';
+  });
+  await expect(withIcon.getByRole('img', { name: 'Location' })).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-key-value label="Label" value="Value"></ix-key-value>`);
   const keyValue = page.locator('ix-key-value');
@@ -99,24 +120,3 @@ regressionTest(
     await expectDividerVisible(page.locator('ix-key-value'));
   }
 );
-
-regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
-  await mount(
-    `
-    <div>
-      <ix-key-value label="Label" value="Value"></ix-key-value>
-      <ix-key-value label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
-      <ix-key-value id="with-icon" icon="location" label="Label" value="Value"></ix-key-value>
-    </div>
-  `,
-    { icons: { iconLocation } }
-  );
-  const withIcon = page.locator('#with-icon');
-  await withIcon.evaluate((element: HTMLIxKeyValueElement) => {
-    element.ariaLabelIcon = 'Location';
-  });
-  await expect(withIcon.getByRole('img', { name: 'Location' })).toBeVisible();
-
-  const accessibilityScanResults = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults.violations).toEqual([]);
-});

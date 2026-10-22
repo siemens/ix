@@ -1,9 +1,12 @@
 @use './key-value-list.vars' as *;
 :host(.keyValueList) {
-  // Items draw their own divider, the list only provides its line styling
+  // Items draw their own divider, the list only applies its line styling
   ::slotted(ix-key-value) {
-    --ix-key-value--border-color: var(--ix-key-value-list-item--border-color);
-    --ix-key-value--border-width: var(--ix-key-value-list--border-width);
+    border-bottom-width: var(--ix-key-value-list--border-width);
+  }
+
+  ::slotted(ix-key-value:not(.keyValue--no-divider)) {
+    border-bottom-color: var(--ix-key-value-list-item--border-color);
   }
 }
 

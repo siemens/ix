@@ -27,3 +27,12 @@ export const Default: Story = {
     value: 'Munich',
   },
 };
+
+export const WithoutDivider: Story = {
+  args: {
+    label: 'Location',
+    labelPosition: 'left',
+    value: 'Munich',
+    divider: false,
+  },
+};
