@@ -69,14 +69,17 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownPresets from '../preview-examples/date-dropdown-presets';
+import DateDropdownRequireConfirmation from '../preview-examples/date-dropdown-require-confirmation';
 import DateRange from '../preview-examples/date-range';
 import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputRequireConfirmation from '../preview-examples/date-input-require-confirmation';
 import DateInputValidation from '../preview-examples/date-input-validation';
 import DateInputWithSlots from '../preview-examples/date-input-with-slots';
+import DatePickerRequireConfirmation from '../preview-examples/date-picker-require-confirmation';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -87,8 +90,10 @@ import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
 import DatetimeInputMinMaxDate from '../preview-examples/datetime-input-min-max-date';
 import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
+import DatetimeInputRequireConfirmation from '../preview-examples/datetime-input-require-confirmation';
 import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
+import DatetimePickerRequireConfirmation from '../preview-examples/datetime-picker-require-confirmation';
 import Divider from '../preview-examples/divider';
 import Dropdown from '../preview-examples/dropdown';
 import DropdownButton from '../preview-examples/dropdown-button';
@@ -170,6 +175,10 @@ import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import LinkButtonInternal from '../preview-examples/link-button-internal';
+import LinkButtonExternal from '../preview-examples/link-button-external';
+import LinkButtonFile from '../preview-examples/link-button-file';
+import LinkButtonAction from '../preview-examples/link-button-action';
 import Loading from '../preview-examples/loading';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -513,6 +522,10 @@ const routes: Routes = [
         component: DateDropdownPresets,
       },
       {
+        path: 'date-dropdown-require-confirmation',
+        component: DateDropdownRequireConfirmation,
+      },
+      {
         path: 'date-range',
         component: DateRange,
       },
@@ -537,12 +550,20 @@ const routes: Routes = [
         component: DateInputReadonly,
       },
       {
+        path: 'date-input-require-confirmation',
+        component: DateInputRequireConfirmation,
+      },
+      {
         path: 'date-input-validation',
         component: DateInputValidation,
       },
       {
         path: 'date-input-with-slots',
         component: DateInputWithSlots,
+      },
+      {
+        path: 'date-picker-require-confirmation',
+        component: DatePickerRequireConfirmation,
       },
       {
         path: 'datepicker',
@@ -605,12 +626,20 @@ const routes: Routes = [
         component: DatetimeInputReadonly,
       },
       {
+        path: 'datetime-input-require-confirmation',
+        component: DatetimeInputRequireConfirmation,
+      },
+      {
         path: 'datetime-input-validation',
         component: DatetimeInputValidation,
       },
       {
         path: 'datetime-input-with-slots',
         component: DatetimeInputWithSlots,
+      },
+      {
+        path: 'datetime-picker-require-confirmation',
+        component: DatetimePickerRequireConfirmation,
       },
       {
         path: 'divider',
@@ -826,6 +855,22 @@ const routes: Routes = [
       {
         path: 'link-button',
         component: LinkButton,
+      },
+      {
+        path: 'link-button-internal',
+        component: LinkButtonInternal,
+      },
+      {
+        path: 'link-button-external',
+        component: LinkButtonExternal,
+      },
+      {
+        path: 'link-button-file',
+        component: LinkButtonFile,
+      },
+      {
+        path: 'link-button-action',
+        component: LinkButtonAction,
       },
       {
         path: 'loading',

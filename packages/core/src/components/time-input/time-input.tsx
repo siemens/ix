@@ -36,10 +36,7 @@ import {
   onEnterKeyChangeEmit,
   onInputBlurWithChange,
 } from '../input/input.util';
-import {
-  getTimePickerConstraintBounds,
-  isWithinTimePickerConstraints,
-} from '../time-picker/time-picker-constraints';
+import { isTimeWithinConstraints } from '../time-picker/time-picker-constraints';
 import {
   ClassMutationObserver,
   HookValidationLifecycle,
@@ -47,19 +44,22 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   InputPickerMixin,
   InputPickerMixinContract,
 } from '../utils/internal/mixins/input/input-picker.mixin';
-import { parseWithLocale } from '../utils/date-time-locale';
+import { parseWithLocale } from '../utils/datetime/date-time-locale';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { TimeInputValidityState } from './time-input.types';
@@ -143,6 +143,11 @@ export class TimeInput
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Helper text below the input field.
@@ -312,6 +317,14 @@ export class TimeInput
   @Prop() ariaLabelTimeToggleButton?: string = 'Toggle time picker';
 
   /**
+   * Text of the time picker cancel button. Cancel, pressing Escape or
+   * clicking outside the dropdown discards the time picked in the dropdown.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
+
+  /**
    * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
@@ -357,6 +370,11 @@ export class TimeInput
   public invalidReason?: string;
 
   public touched = false;
+
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
 
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
@@ -440,15 +458,13 @@ export class TimeInput
   }
 
   private isWithinConfiguredBounds(parsed: DateTime): boolean {
-    const baseDay = parsed.startOf('day');
-    const { min, max } = getTimePickerConstraintBounds(
+    return isTimeWithinConstraints(
+      parsed,
       this.minTime,
       this.maxTime,
       this.format,
-      baseDay,
       this.locale
     );
-    return isWithinTimePickerConstraints(parsed, min, max);
   }
 
   private syncPickerTimeFromValue(): void {
@@ -568,7 +584,7 @@ export class TimeInput
           aria-haspopup="true"
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           style={{
             textAlign: this.textAlignment,
@@ -592,18 +608,11 @@ export class TimeInput
             }
           }}
           onFocus={async () => {
+            this.inputBlur.onFocus();
             this.initialValue = this.value;
             this.ixFocus.emit();
           }}
-          onBlur={() => {
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.touched = true;
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={() => this.inputBlur.onBlur()}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
         <SlotEnd
@@ -618,6 +627,8 @@ export class TimeInput
             variant="subtle-tertiary"
             size="16"
             icon={iconClock}
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onTimeIconClick(event)}
             aria-label={this.ariaLabelTimeToggleButton}
             aria-expanded={a11yBoolean(this.show)}
@@ -625,6 +636,10 @@ export class TimeInput
         </SlotEnd>
       </div>
     );
+  }
+
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
   }
 
   @HookValidationLifecycle()
@@ -635,10 +650,16 @@ export class TimeInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
+  }
+
+  private onInputBlur() {
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.touched = true;
+    this.emitValidityStateChangeIfChanged();
   }
 
   private emitValidityStateChangeIfChanged() {
@@ -727,6 +748,11 @@ export class TimeInput
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show) {
+              this.timePickerRef.current?.discardPendingSelection();
+              this.inputBlur.onPickerClosed();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.timePickerRef,
@@ -746,7 +772,13 @@ export class TimeInput
             millisecondInterval={this.millisecondInterval}
             embedded
             hideHeader={this.hideHeader}
-            i18nConfirmTime={this.i18nSelectTime}
+            i18nConfirm={this.i18nSelectTime}
+            i18nCancel={this.i18nCancel}
+            onTimeChange={(event) => event.stopPropagation()}
+            onTimeCancel={(event: CustomEvent<void>) => {
+              event.stopPropagation();
+              this.closeDropdown();
+            }}
             i18nHeader={this.i18nTime}
             i18nHourColumnHeader={this.i18nHourColumnHeader}
             i18nSecondColumnHeader={this.i18nSecondColumnHeader}
@@ -755,12 +787,13 @@ export class TimeInput
             i18nAm={this.i18nAm}
             i18nPm={this.i18nPm}
             onTimeSelect={(event: IxTimePickerCustomEvent<string>) => {
+              event.stopPropagation();
               this.onInput(event.detail);
               if (this.initialValue !== event.detail) {
                 this.ixChange.emit(event.detail);
                 this.initialValue = event.detail;
               }
-              this.show = false;
+              this.closeDropdown();
             }}
           ></ix-time-picker>
         </ix-dropdown>

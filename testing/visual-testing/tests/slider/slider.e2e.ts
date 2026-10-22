@@ -373,8 +373,14 @@ regressionTest('should render with error', async ({ page, mount }) => {
   const slider1 = page.locator('ix-slider').nth(0);
   const slider2 = page.locator('ix-slider').nth(1);
 
+  await expect(slider1).toHaveAttribute('hydrated');
+  await expect(slider2).toHaveAttribute('hydrated');
   await expect(slider1).toHaveClass('ix-invalid invalid');
   await expect(slider2).toHaveClass('ix-invalid invalid');
+
+  // Prefer `.bottom-text` over getByText — aria error/helper nodes also carry the copy.
+  await expect(slider1.locator('.bottom-text')).toBeVisible();
+  await expect(slider2.locator('.bottom-text')).toBeVisible();
 
   expect(
     await page.locator('#slider-container').screenshot()

@@ -46,6 +46,7 @@ import {
   IxInputFieldComponent,
   NativeInputNotFoundError,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { DefaultMixins } from '../utils/internal/component';
 import {
@@ -98,6 +99,11 @@ export class Select
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Label for the select component
@@ -1097,7 +1103,7 @@ export class Select
     const chip = this.chipElementRefs.get(value);
     const margin = chip
       ? this.getHorizontalMargin(chip)
-      : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2;
+      : this.getCssPixelValue('--ix-select-chip-margin-inline-end');
 
     return (this.chipWidths.get(value) ?? 0) + margin;
   }
@@ -1113,7 +1119,7 @@ export class Select
       overflowChipWidth +
       (overflowChip
         ? this.getHorizontalMargin(overflowChip)
-        : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2)
+        : this.getCssPixelValue('--ix-select-chip-margin-inline-end'))
     );
   }
 

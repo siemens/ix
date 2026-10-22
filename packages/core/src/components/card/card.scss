@@ -7,26 +7,40 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
-@use './card.vars' as card-vars;
-
 @use './card.vars' as *;
+
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
   align-self: flex-start;
-  overflow: hidden;
-  cursor: pointer;
+  cursor: default;
+  box-sizing: border-box;
 
   width: var(--ix-card--width);
-
-  border: var(--ix-card--border-width) solid
-    var(--ix-card-border-color, var(--ix-card--border-color));
   border-radius: var(--ix-card--border-radius);
 
+  color: var(--ix-card-base--color);
+
+  --ix-card-background: var(--ix-card-base--background);
+  --ix-card-border-color: var(--ix-card-base--border-color);
+
   @include component.ix-component;
+
+  .card-chrome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    border: var(--ix-card--border-width) solid
+      var(--ix-card-border-color, var(--ix-card--border-color));
+    border-radius: inherit;
+    overflow: hidden;
+  }
 
   .card-content {
     display: block;
@@ -36,8 +50,6 @@
     width: 100%;
     height: var(--ix-card-content--height);
     background-color: var(--ix-card-background, transparent);
-    border-top-left-radius: var(--ix-card--border-radius);
-    border-top-right-radius: var(--ix-card--border-radius);
     overflow: hidden;
   }
 
@@ -54,71 +66,76 @@
   }
 }
 
+:host(.clickable) {
+  cursor: pointer;
+}
+
+:host(:not(.outline)) {
+  --ix-card-background: var(--ix-card-filled--background);
+  --ix-card-border-color: var(--ix-card-filled--background);
+  /* No chrome inset so accordion/content flush to outer edges (filled) */
+  --ix-card--border-width: 0;
+}
+
+/* Status strip + outline border: shared rules for any non-base variant.
+ * Per-status colors stay on `--ix-card-status-color` in card.vars.scss. */
+:host(:not(.card-base))::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--ix-card--strip-height);
+  border-radius: var(--ix-card--border-radius) var(--ix-card--border-radius) 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: var(--ix-card-status-color);
+}
+
+:host(.selected) {
+  --ix-card-border-color: var(--ix-card-base--border-color--selected);
+}
+
+:host(.outline:not(.card-base)),
+:host(.outline.selected:not(.card-base)) {
+  --ix-card-border-color: var(--ix-card-base--border-color);
+}
+
+:host(.clickable.outline:hover) {
+  --ix-card-background: var(--ix-card-base--background--hover);
+}
+
+:host(.clickable.outline:active) {
+  --ix-card-background: var(--ix-card-base--background--active);
+}
+
+:host(.clickable:not(.outline):hover) {
+  --ix-card-background: var(--ix-card-filled--background--hover);
+  --ix-card-border-color: var(--ix-card-filled--background--hover);
+}
+
+:host(.clickable:not(.outline):active) {
+  --ix-card-background: var(--ix-card-filled--background--active);
+  --ix-card-border-color: var(--ix-card-filled--background--active);
+}
+
+:host(.selected:not(.clickable)),
+:host(.selected) {
+  --ix-card-background: var(--ix-card-base--background--selected);
+}
+
+:host(.selected:not(.outline)) {
+  --ix-card-background: var(--ix-card-filled--background--selected);
+  --ix-card-border-color: var(--ix-card-filled--background--selected);
+}
+
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
     color: var(--ix-card-accordion--color);
   }
 }
 
-@mixin card-variants($variant) {
-  :host(.card-#{$variant}) {
-    --ix-card-background: var(--ix-card-#{$variant}--background);
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
-
-    color: var(--ix-card-#{$variant}--color);
-
-    @if $variant == outline {
-      @include accordionChevronColorPrimary;
-    }
-
-    @if $variant == filled {
-      @include accordionChevronColorPrimary;
-    }
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  @include card-variants($variant);
-}
-
-:host(:not(.card-insight, .card-outline)) {
-  --ix-card-border-color: transparent;
-}
-
-@mixin card-variants-active($variant) {
-  :host(.card-#{$variant}:active) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--active);
-    --ix-card-background: var(--ix-card-#{$variant}--background--active);
-  }
-}
-
-@mixin card-variants-hover($variant) {
-  :host(.card-#{$variant}:hover) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--hover);
-    --ix-card-background: var(--ix-card-#{$variant}--background--hover);
-  }
-}
-
-@mixin card-variants-selected($variant) {
-  :host(.selected.card-#{$variant}) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--selected);
-    --ix-card-background: var(--ix-card-#{$variant}--background--selected);
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  @include card-variants-hover($variant);
-  @include card-variants-active($variant);
-  @include card-variants-selected($variant);
-}
-
-:host(.passive) {
-  cursor: default;
-}
-
-@each $variant in card-vars.$card-variants {
-  :host(.passive.card-#{$variant}) {
-    --ix-card-background: var(--ix-card-#{$variant}--background);
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
-  }
+:host(.outline),
+:host(:not(.outline)) {
+  @include accordionChevronColorPrimary;
 }

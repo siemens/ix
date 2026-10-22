@@ -71,24 +71,29 @@ import Content from './preview-examples/content.vue';
 import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import CustomField from './preview-examples/custom-field.vue';
 import DateDropdownPresets from './preview-examples/date-dropdown-presets.vue';
+import DateDropdownRequireConfirmation from './preview-examples/date-dropdown-require-confirmation.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
 import DateRange from './preview-examples/date-range.vue';
 import DatetimeRange from './preview-examples/datetime-range.vue';
 import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
+import DatePickerRequireConfirmation from './preview-examples/date-picker-require-confirmation.vue';
 import DateInputMinMaxDate from './preview-examples/date-input-min-max-date.vue';
 import DateInputDisabled from './preview-examples/date-input-disabled.vue';
 import DateInputLabel from './preview-examples/date-input-label.vue';
 import DateInputReadonly from './preview-examples/date-input-readonly.vue';
 import DateInputValidation from './preview-examples/date-input-validation.vue';
 import DateInput from './preview-examples/date-input.vue';
+import DateInputRequireConfirmation from './preview-examples/date-input-require-confirmation.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatetimeInput from './preview-examples/datetime-input.vue';
 import DatetimeInputDisabled from './preview-examples/datetime-input-disabled.vue';
 import DatetimeInputLabel from './preview-examples/datetime-input-label.vue';
 import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date.vue';
 import DatetimeInputReadonly from './preview-examples/datetime-input-readonly.vue';
+import DatetimeInputRequireConfirmation from './preview-examples/datetime-input-require-confirmation.vue';
 import DatetimeInputValidation from './preview-examples/datetime-input-validation.vue';
 import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots.vue';
+import DatetimePickerRequireConfirmation from './preview-examples/datetime-picker-require-confirmation.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -174,6 +179,10 @@ import LayoutAutoCustom from './preview-examples/layout-auto-custom.vue';
 import LayoutAuto from './preview-examples/layout-auto.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
+import LinkButtonInternal from './preview-examples/link-button-internal.vue';
+import LinkButtonExternal from './preview-examples/link-button-external.vue';
+import LinkButtonFile from './preview-examples/link-button-file.vue';
+import LinkButtonAction from './preview-examples/link-button-action.vue';
 import Loading from './preview-examples/loading.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
@@ -340,6 +349,8 @@ const routes: IxPreviewRoutes = {
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-presets': DateDropdownPresets,
+  '/preview/date-dropdown-require-confirmation':
+    DateDropdownRequireConfirmation,
   '/preview/date-range': DateRange,
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
@@ -481,7 +492,9 @@ const routes: IxPreviewRoutes = {
   '/preview/number-input-with-slots': NumberInputWithSlots,
   '/preview/number-input-validation': NumberInputValidation,
   '/preview/date-input': DateInput,
+  '/preview/date-input-require-confirmation': DateInputRequireConfirmation,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/date-picker-require-confirmation': DatePickerRequireConfirmation,
   '/preview/date-input-min-max-date': DateInputMinMaxDate,
   '/preview/date-input-disabled': DateInputDisabled,
   '/preview/date-input-label': DateInputLabel,
@@ -492,8 +505,12 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-input-label': DatetimeInputLabel,
   '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
   '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-require-confirmation':
+    DatetimeInputRequireConfirmation,
   '/preview/datetime-input-validation': DatetimeInputValidation,
   '/preview/datetime-input-with-slots': DatetimeInputWithSlots,
+  '/preview/datetime-picker-require-confirmation':
+    DatetimePickerRequireConfirmation,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/tooltip': Tooltip,
@@ -512,6 +529,10 @@ const routes: IxPreviewRoutes = {
   '/preview/key-value-with-label-left': KeyValueWithLabelLeft,
   '/preview/link-button-disabled': LinkButtonDisabled,
   '/preview/link-button': LinkButton,
+  '/preview/link-button-internal': LinkButtonInternal,
+  '/preview/link-button-external': LinkButtonExternal,
+  '/preview/link-button-file': LinkButtonFile,
+  '/preview/link-button-action': LinkButtonAction,
   '/preview/loading': Loading,
   '/preview/menu-category': MenuCategory,
   '/preview/menu-with-bottom-tabs': MenuWithBottomTabs,
