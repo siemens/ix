@@ -11,5 +11,6 @@ export const IxKeyValue: StencilVueComponent<JSX.IxKeyValue> = /*@__PURE__*/ def
   'ariaLabelIcon',
   'label',
   'labelPosition',
-  'value'
+  'value',
+  'divider'
 ]);

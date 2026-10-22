@@ -115,6 +115,7 @@ export const testIds = [
   "key-value-with-icon",
   "key-value-with-custom-value",
   "key-value-list",
+  "key-value-list-without-divider",
   "key-value-list-with-icon",
   "key-value-list-with-custom-value",
   "key-value-list-striped",

@@ -5760,6 +5760,16 @@
           "deprecated": false
         },
         {
+          "name": "divider",
+          "attribute": "divider",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -5814,6 +5824,17 @@
       "tag": "ix-key-value-list",
       "deprecated": false,
       "properties": [
+        {
+          "name": "divider",
+          "attribute": "divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "true",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "striped",
           "attribute": "striped",

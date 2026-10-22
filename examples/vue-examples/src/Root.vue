@@ -164,6 +164,7 @@ import Input from './preview-examples/input.vue';
 import KeyValueListStriped from './preview-examples/key-value-list-striped.vue';
 import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value.vue';
 import KeyValueListWithIcon from './preview-examples/key-value-list-with-icon.vue';
+import KeyValueListWithoutDivider from './preview-examples/key-value-list-without-divider.vue';
 import KeyValueList from './preview-examples/key-value-list.vue';
 import KeyValueWithCustomValue from './preview-examples/key-value-with-custom-value.vue';
 import KeyValueWithIcon from './preview-examples/key-value-with-icon.vue';
@@ -510,6 +511,7 @@ const routes: IxPreviewRoutes = {
   '/preview/key-value-list-striped': KeyValueListStriped,
   '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
   '/preview/key-value-list-with-icon': KeyValueListWithIcon,
+  '/preview/key-value-list-without-divider': KeyValueListWithoutDivider,
   '/preview/key-value-list': KeyValueList,
   '/preview/key-value-with-custom-value': KeyValueWithCustomValue,
   '/preview/key-value-with-icon': KeyValueWithIcon,

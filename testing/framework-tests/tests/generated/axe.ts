@@ -135,6 +135,7 @@ import './key-value-list-axe.spec.ts';
 import './key-value-list-striped-axe.spec.ts';
 import './key-value-list-with-custom-value-axe.spec.ts';
 import './key-value-list-with-icon-axe.spec.ts';
+import './key-value-list-without-divider-axe.spec.ts';
 import './key-value-with-custom-value-axe.spec.ts';
 import './key-value-with-icon-axe.spec.ts';
 import './key-value-with-label-left-axe.spec.ts';

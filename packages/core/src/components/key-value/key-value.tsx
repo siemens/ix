@@ -51,12 +51,24 @@ export class KeyValue {
    */
   @Prop() value?: string;
 
+  /**
+   * Show a divider line below the key value.
+   * Defaults to `true`. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+   *
+   * @since 6.0.0
+   */
+  @Prop() divider?: boolean;
+
   render() {
     return (
       <Host
-        class={`keyValue keyValue--${
-          this.labelPosition === 'top' ? 'column' : 'row'
-        }`}
+        class={{
+          keyValue: true,
+          [`keyValue--${this.labelPosition === 'top' ? 'column' : 'row'}`]:
+            true,
+          'keyValue--divider': this.divider === true,
+          'keyValue--no-divider': this.divider === false,
+        }}
       >
         {this.icon && (
           <ix-icon

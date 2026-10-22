@@ -162,6 +162,7 @@ import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
 import KeyValueListWithCustomValue from '../preview-examples/key-value-list-with-custom-value';
 import KeyValueListWithIcon from '../preview-examples/key-value-list-with-icon';
+import KeyValueListWithoutDivider from '../preview-examples/key-value-list-without-divider';
 import KeyValueWithCustomValue from '../preview-examples/key-value-with-custom-value';
 import KeyValueWithIcon from '../preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left';
@@ -798,6 +799,10 @@ const routes: Routes = [
       {
         path: 'key-value-list-with-icon',
         component: KeyValueListWithIcon,
+      },
+      {
+        path: 'key-value-list-without-divider',
+        component: KeyValueListWithoutDivider,
       },
       {
         path: 'key-value-list',
