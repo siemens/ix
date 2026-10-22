@@ -634,8 +634,10 @@ export class DateInput
             maxDate={this.maxDate}
             onDateChange={(event) => {
               const { from } = event.detail;
+              // onInput can refocus the input and reset initialValue.
+              const hasValueChanged = this.initialValue !== from;
               this.onInput(from);
-              if (this.initialValue !== from) {
+              if (hasValueChanged) {
                 this.ixChange.emit(from);
                 this.initialValue = from;
               }

@@ -45,10 +45,14 @@ interface RangeDateInputTraceWindow extends Window {
   __rangeDateInputTrace?: RangeDateInputTrace;
 }
 
-regressionTest('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+regressionTest('renders', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `<ix-date-input label="Inspection date" value="2024/05/05"></ix-date-input>`
+  );
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveAttribute('hydrated');
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
 });
 
 regressionTest(
@@ -76,7 +80,7 @@ regressionTest(
     );
 
     await page.evaluate(() => {
-      const inputs = [...document.querySelectorAll('ix-date-input')];
+      const inputs = Array.from(document.querySelectorAll('ix-date-input'));
       const trace: RangeDateInputTrace = { changes: [] };
       (window as RangeDateInputTraceWindow).__rangeDateInputTrace = trace;
 
@@ -165,6 +169,94 @@ regressionTest(
     ]);
   }
 );
+
+for (const interaction of ['keyboard', 'pointer'] as const) {
+  for (const day of [5, 6]) {
+    regressionTest(
+      `${interaction} calendar selection emits ${
+        day === 5
+          ? 'no ixChange for an unchanged date'
+          : 'exactly one ixChange for a changed date'
+      }`,
+      async ({ mount, page }) => {
+        await mount(`
+          <ix-date-input label="Inspection date" value="2023/09/05"></ix-date-input>
+          <button>Next field</button>
+        `);
+
+        const dateInput = page.locator('ix-date-input');
+        await expect(dateInput).toHaveAttribute('hydrated');
+        const input = dateInput.getByRole('textbox');
+        const calendar = dateInput.getByTestId('date-dropdown');
+        const nextField = page.getByRole('button', { name: 'Next field' });
+        const changes = await dateInput.evaluateHandle(
+          (element: HTMLIxDateInputElement) => {
+            const values: Array<string | undefined> = [];
+            element.addEventListener('ixChange', (event) => {
+              values.push(event.detail);
+            });
+            return values;
+          }
+        );
+        const getChanges = () => changes.evaluate((values) => values);
+        const expectedChanges = day === 5 ? [] : ['2023/09/06'];
+
+        if (interaction === 'keyboard') {
+          await nextField.focus();
+          await page.keyboard.press('Shift+Tab');
+          await expect(input).toBeFocused();
+          await page.keyboard.press('ArrowDown');
+          const selectedDay = dateInput.getByRole('gridcell', {
+            name: '5 September 2023',
+            exact: true,
+          });
+          await expect(selectedDay).toBeFocused();
+          await expect(selectedDay).toHaveAttribute('tabindex', '0');
+          await waitForRender(page);
+          await expect.poll(getChanges).toEqual([]);
+
+          if (day === 6) {
+            await page.keyboard.press('ArrowRight');
+            await expect(
+              dateInput.getByRole('gridcell', {
+                name: '6 September 2023',
+                exact: true,
+              })
+            ).toBeFocused();
+          }
+          await page.keyboard.press('Enter');
+          await expect(input).toBeFocused();
+        } else {
+          await dateInput
+            .getByRole('button', { name: 'Open calendar' })
+            .click();
+          await expect(calendar).toHaveClass(/show/);
+          await expect.poll(getChanges).toEqual([]);
+          await dateInput
+            .getByRole('gridcell', {
+              name: `${day} September 2023`,
+              exact: true,
+            })
+            .click();
+        }
+
+        await expect(input).toHaveValue(`2023/09/0${day}`);
+        await expect(dateInput).toHaveAttribute('value', `2023/09/0${day}`);
+        await expect(calendar).not.toHaveClass(/show/);
+        await expect.poll(getChanges).toEqual(expectedChanges);
+
+        if (interaction === 'keyboard') {
+          await page.keyboard.press('Tab');
+        } else {
+          await nextField.click();
+        }
+        await expect(nextField).toBeFocused();
+        await waitForRender(page);
+        await expect.poll(getChanges).toEqual(expectedChanges);
+      }
+    );
+  }
+}
 
 regressionTest(
   'select date by open calendar trigger',
