@@ -16,8 +16,8 @@ catalogs:
       specifier: ^1.58.1
       version: 1.58.1
     '@siemens/ix-icons':
-      specifier: 0.0.0-20260924154901
-      version: 0.0.0-20260924154901
+      specifier: 0.0.0-beta-20261021072559
+      version: 0.0.0-beta-20261021072559
     eslint:
       specifier: ^9.39.3
       version: 9.39.3
@@ -137,7 +137,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -252,7 +252,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -341,7 +341,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       vite:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.9.0)(lightningcss@1.33.0)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
@@ -362,7 +362,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -453,7 +453,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -547,7 +547,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@types/node':
         specifier: ^24.0.3
         version: 24.12.2
@@ -715,7 +715,7 @@ importers:
         version: 1.58.1
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@stencil-community/eslint-plugin':
         specifier: ^0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))(typescript@5.4.5)
@@ -1062,7 +1062,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@stencil/core':
         specifier: 4.45.2
         version: 4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193)
@@ -1326,7 +1326,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1435,7 +1435,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1551,7 +1551,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       vite:
         specifier: 'catalog:'
         version: 7.3.5(@types/node@25.2.0)(jiti@2.6.1)(less@4.9.0)(lightningcss@1.33.0)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
@@ -1590,7 +1590,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -1721,7 +1721,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -1809,7 +1809,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@types/node':
         specifier: ^24.0.14
         version: 24.12.2
@@ -1830,7 +1830,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-20260924154901
+        version: 0.0.0-beta-20261021072559
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -6041,8 +6041,8 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@0.0.0-20260924154901':
-    resolution: {integrity: sha512-C2cSZqsIAwiAC37QX8yh7NCqeYCZaOSZPLTh5M3I+AcMXm8mihYGmFH619SmcPGDC/f69fVWsSxsJZKQ5eTY9g==}
+  '@siemens/ix-icons@0.0.0-beta-20261021072559':
+    resolution: {integrity: sha512-LJIbmViqzjLDHFb9Pjqqw7Go7cHfs1EYWJLHpGM2ITEPXpp/uy+uSoa5ieLmITKQyde9KEfzyQ9Faq7nJZ4Xnw==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@siemens/ix-icons@3.5.0':
@@ -20238,7 +20238,7 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@0.0.0-20260924154901': {}
+  '@siemens/ix-icons@0.0.0-beta-20261021072559': {}
 
   '@siemens/ix-icons@3.5.0': {}
 

@@ -43,6 +43,7 @@ import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+import { MessageBarType } from "./components/message-bar/message-bar";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -99,6 +100,7 @@ export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+export { MessageBarType } from "./components/message-bar/message-bar";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -3512,15 +3514,9 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -11831,15 +11827,9 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type"?: | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type"?: MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -14823,13 +14813,7 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface IxMessageBarAttributes {
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
         "persistent": boolean;
     }
     interface IxModalAttributes {
