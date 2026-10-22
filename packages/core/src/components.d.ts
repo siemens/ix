@@ -1049,6 +1049,16 @@ export namespace Components {
         "value": string;
     }
     /**
+     * A Prompt suggestion the user can pick instead of typing a prompt.
+     * Rendered as a button whose text is its accessible name.
+     * Place it in the `suggestions` slot of `ix-chat-welcome` or, as a Follow-up prompt,
+     * in the `follow-up` slot of `ix-chat-input`.
+     * Listen to `suggestionSelect` to fill the input or submit the prompt directly.
+     * @since 6.1.0
+     */
+    interface IxChatPromptSuggestion {
+    }
+    /**
      * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
      * Place it inside `ix-chat-activity-trace`.
      * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
@@ -1131,6 +1141,17 @@ export namespace Components {
           * Text displayed in the user message bubble.
          */
         "message"?: string;
+    }
+    /**
+     * Welcome screen of a chat: a greeting, free content and Prompt suggestions.
+     * Place it in the `welcome` slot of `ix-chat`, which shows it only while the chat has no messages.
+     * @since 6.1.0
+     */
+    interface IxChatWelcome {
+        /**
+          * Greeting displayed as heading, e.g. "How can I help you today?"
+         */
+        "heading"?: string;
     }
     /**
      * Lets users select an option or toggle a single value on or off.
@@ -6073,6 +6094,10 @@ export interface IxChatInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatInputElement;
 }
+export interface IxChatPromptSuggestionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxChatPromptSuggestionElement;
+}
 export interface IxChatTraceItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChatTraceItemElement;
@@ -6687,6 +6712,31 @@ declare global {
         prototype: HTMLIxChatInputElement;
         new (): HTMLIxChatInputElement;
     };
+    interface HTMLIxChatPromptSuggestionElementEventMap {
+        "suggestionSelect": string;
+    }
+    /**
+     * A Prompt suggestion the user can pick instead of typing a prompt.
+     * Rendered as a button whose text is its accessible name.
+     * Place it in the `suggestions` slot of `ix-chat-welcome` or, as a Follow-up prompt,
+     * in the `follow-up` slot of `ix-chat-input`.
+     * Listen to `suggestionSelect` to fill the input or submit the prompt directly.
+     * @since 6.1.0
+     */
+    interface HTMLIxChatPromptSuggestionElement extends Components.IxChatPromptSuggestion, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChatPromptSuggestionElementEventMap>(type: K, listener: (this: HTMLIxChatPromptSuggestionElement, ev: IxChatPromptSuggestionCustomEvent<HTMLIxChatPromptSuggestionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChatPromptSuggestionElementEventMap>(type: K, listener: (this: HTMLIxChatPromptSuggestionElement, ev: IxChatPromptSuggestionCustomEvent<HTMLIxChatPromptSuggestionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxChatPromptSuggestionElement: {
+        prototype: HTMLIxChatPromptSuggestionElement;
+        new (): HTMLIxChatPromptSuggestionElement;
+    };
     interface HTMLIxChatTraceItemElementEventMap {
         "expandedChange": boolean;
     }
@@ -6748,6 +6798,17 @@ declare global {
     var HTMLIxChatUserMessageElement: {
         prototype: HTMLIxChatUserMessageElement;
         new (): HTMLIxChatUserMessageElement;
+    };
+    /**
+     * Welcome screen of a chat: a greeting, free content and Prompt suggestions.
+     * Place it in the `welcome` slot of `ix-chat`, which shows it only while the chat has no messages.
+     * @since 6.1.0
+     */
+    interface HTMLIxChatWelcomeElement extends Components.IxChatWelcome, HTMLStencilElement {
+    }
+    var HTMLIxChatWelcomeElement: {
+        prototype: HTMLIxChatWelcomeElement;
+        new (): HTMLIxChatWelcomeElement;
     };
     interface HTMLIxCheckboxElementEventMap {
         "checkedChange": boolean;
@@ -8590,9 +8651,11 @@ declare global {
         "ix-chat-ai-message": HTMLIxChatAiMessageElement;
         "ix-chat-attachment": HTMLIxChatAttachmentElement;
         "ix-chat-input": HTMLIxChatInputElement;
+        "ix-chat-prompt-suggestion": HTMLIxChatPromptSuggestionElement;
         "ix-chat-trace-item": HTMLIxChatTraceItemElement;
         "ix-chat-trace-item-section": HTMLIxChatTraceItemSectionElement;
         "ix-chat-user-message": HTMLIxChatUserMessageElement;
+        "ix-chat-welcome": HTMLIxChatWelcomeElement;
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
@@ -9700,6 +9763,20 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
+     * A Prompt suggestion the user can pick instead of typing a prompt.
+     * Rendered as a button whose text is its accessible name.
+     * Place it in the `suggestions` slot of `ix-chat-welcome` or, as a Follow-up prompt,
+     * in the `follow-up` slot of `ix-chat-input`.
+     * Listen to `suggestionSelect` to fill the input or submit the prompt directly.
+     * @since 6.1.0
+     */
+    interface IxChatPromptSuggestion {
+        /**
+          * Emitted when the user selects the suggestion, with the suggestion text as detail.
+         */
+        "onSuggestionSelect"?: (event: IxChatPromptSuggestionCustomEvent<string>) => void;
+    }
+    /**
      * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
      * Place it inside `ix-chat-activity-trace`.
      * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
@@ -9790,6 +9867,17 @@ declare namespace LocalJSX {
           * Text displayed in the user message bubble.
          */
         "message"?: string;
+    }
+    /**
+     * Welcome screen of a chat: a greeting, free content and Prompt suggestions.
+     * Place it in the `welcome` slot of `ix-chat`, which shows it only while the chat has no messages.
+     * @since 6.1.0
+     */
+    interface IxChatWelcome {
+        /**
+          * Greeting displayed as heading, e.g. "How can I help you today?"
+         */
+        "heading"?: string;
     }
     /**
      * Lets users select an option or toggle a single value on or off.
@@ -15140,6 +15228,9 @@ declare namespace LocalJSX {
     interface IxChatUserMessageAttributes {
         "message": string;
     }
+    interface IxChatWelcomeAttributes {
+        "heading": string;
+    }
     interface IxCheckboxAttributes {
         "name": string;
         "value": string;
@@ -16161,9 +16252,11 @@ declare namespace LocalJSX {
         "ix-chat-ai-message": IxChatAiMessage;
         "ix-chat-attachment": Omit<IxChatAttachment, keyof IxChatAttachmentAttributes> & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes]?: IxChatAttachment[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `attr:${K}`]?: IxChatAttachmentAttributes[K] } & { [K in keyof IxChatAttachment & keyof IxChatAttachmentAttributes as `prop:${K}`]?: IxChatAttachment[K] };
         "ix-chat-input": Omit<IxChatInput, keyof IxChatInputAttributes> & { [K in keyof IxChatInput & keyof IxChatInputAttributes]?: IxChatInput[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `attr:${K}`]?: IxChatInputAttributes[K] } & { [K in keyof IxChatInput & keyof IxChatInputAttributes as `prop:${K}`]?: IxChatInput[K] };
+        "ix-chat-prompt-suggestion": IxChatPromptSuggestion;
         "ix-chat-trace-item": Omit<IxChatTraceItem, keyof IxChatTraceItemAttributes> & { [K in keyof IxChatTraceItem & keyof IxChatTraceItemAttributes]?: IxChatTraceItem[K] } & { [K in keyof IxChatTraceItem & keyof IxChatTraceItemAttributes as `attr:${K}`]?: IxChatTraceItemAttributes[K] } & { [K in keyof IxChatTraceItem & keyof IxChatTraceItemAttributes as `prop:${K}`]?: IxChatTraceItem[K] };
         "ix-chat-trace-item-section": Omit<IxChatTraceItemSection, keyof IxChatTraceItemSectionAttributes> & { [K in keyof IxChatTraceItemSection & keyof IxChatTraceItemSectionAttributes]?: IxChatTraceItemSection[K] } & { [K in keyof IxChatTraceItemSection & keyof IxChatTraceItemSectionAttributes as `attr:${K}`]?: IxChatTraceItemSectionAttributes[K] } & { [K in keyof IxChatTraceItemSection & keyof IxChatTraceItemSectionAttributes as `prop:${K}`]?: IxChatTraceItemSection[K] };
         "ix-chat-user-message": Omit<IxChatUserMessage, keyof IxChatUserMessageAttributes> & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes]?: IxChatUserMessage[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `attr:${K}`]?: IxChatUserMessageAttributes[K] } & { [K in keyof IxChatUserMessage & keyof IxChatUserMessageAttributes as `prop:${K}`]?: IxChatUserMessage[K] };
+        "ix-chat-welcome": Omit<IxChatWelcome, keyof IxChatWelcomeAttributes> & { [K in keyof IxChatWelcome & keyof IxChatWelcomeAttributes]?: IxChatWelcome[K] } & { [K in keyof IxChatWelcome & keyof IxChatWelcomeAttributes as `attr:${K}`]?: IxChatWelcomeAttributes[K] } & { [K in keyof IxChatWelcome & keyof IxChatWelcomeAttributes as `prop:${K}`]?: IxChatWelcome[K] };
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
@@ -16417,6 +16510,15 @@ declare module "@stencil/core" {
              */
             "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
+             * A Prompt suggestion the user can pick instead of typing a prompt.
+             * Rendered as a button whose text is its accessible name.
+             * Place it in the `suggestions` slot of `ix-chat-welcome` or, as a Follow-up prompt,
+             * in the `follow-up` slot of `ix-chat-input`.
+             * Listen to `suggestionSelect` to fill the input or submit the prompt directly.
+             * @since 6.1.0
+             */
+            "ix-chat-prompt-suggestion": LocalJSX.IntrinsicElements["ix-chat-prompt-suggestion"] & JSXBase.HTMLAttributes<HTMLIxChatPromptSuggestionElement>;
+            /**
              * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
              * Place it inside `ix-chat-activity-trace`.
              * The marker shows a spinner while `running`, a warning or error icon for `warning` and `failed`,
@@ -16441,6 +16543,12 @@ declare module "@stencil/core" {
              * @since 5.2.0
              */
             "ix-chat-user-message": LocalJSX.IntrinsicElements["ix-chat-user-message"] & JSXBase.HTMLAttributes<HTMLIxChatUserMessageElement>;
+            /**
+             * Welcome screen of a chat: a greeting, free content and Prompt suggestions.
+             * Place it in the `welcome` slot of `ix-chat`, which shows it only while the chat has no messages.
+             * @since 6.1.0
+             */
+            "ix-chat-welcome": LocalJSX.IntrinsicElements["ix-chat-welcome"] & JSXBase.HTMLAttributes<HTMLIxChatWelcomeElement>;
             /**
              * Lets users select an option or toggle a single value on or off.
              * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md

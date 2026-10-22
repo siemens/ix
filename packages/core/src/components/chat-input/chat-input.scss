@@ -44,7 +44,8 @@
     flex: 0 1 auto;
   }
 
-  .follow-up-prompts ::slotted(ix-button) {
+  .follow-up-prompts ::slotted(ix-button),
+  .follow-up-prompts ::slotted(ix-chat-prompt-suggestion) {
     max-width: var(--ix-chat-input-follow-up-prompts--max-width);
     min-width: var(--ix-chat-input-follow-up-prompts--min-width);
   }

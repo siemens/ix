@@ -46,6 +46,24 @@
     outline-offset: calc(-1 * var(--ix-chat-messages--outline-width--focus));
   }
 
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  .welcome[hidden] {
+    display: none;
+  }
+
+  .welcome ::slotted(*) {
+    width: 100%;
+    max-width: var(--ix-chat-messages--max-width);
+  }
+
   .messages-content {
     display: flex;
     flex-direction: column;

@@ -62,7 +62,9 @@ import Chat from './preview-examples/chat';
 import ChatActivityTrace from './preview-examples/chat-activity-trace';
 import ChatAiMessage from './preview-examples/chat-ai-message';
 import ChatInput from './preview-examples/chat-input';
+import ChatMessageActions from './preview-examples/chat-message-actions';
 import ChatUserMessage from './preview-examples/chat-user-message';
+import ChatWelcome from './preview-examples/chat-welcome';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
@@ -348,7 +350,9 @@ const routes: IxPreviewRoutes = {
   '/preview/chat-activity-trace': ChatActivityTrace,
   '/preview/chat-ai-message': ChatAiMessage,
   '/preview/chat-input': ChatInput,
+  '/preview/chat-message-actions': ChatMessageActions,
   '/preview/chat-user-message': ChatUserMessage,
+  '/preview/chat-welcome': ChatWelcome,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/checkbox': Checkbox,
   '/preview/custom-field': CustomField,

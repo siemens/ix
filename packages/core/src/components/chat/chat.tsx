@@ -8,7 +8,16 @@
  */
 
 import { iconArrowDown } from '@siemens/ix-icons/icons';
-import { Component, Host, Method, Prop, State, Watch, h } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+  h,
+} from '@stencil/core';
 import Animation from '../utils/animation';
 
 const BOTTOM_THRESHOLD = 8;
@@ -19,6 +28,7 @@ const BOTTOM_THRESHOLD = 8;
  * @since 5.2.0
  * @slot - Chat messages, for example ix-chat-user-message and ix-chat-ai-message
  * @slot prompt - Chat input displayed below the chat messages
+ * @slot welcome - Welcome screen (e.g. `ix-chat-welcome`) displayed only while the chat has no messages. It is hidden as soon as an element is slotted into the default slot.
  */
 @Component({
   tag: 'ix-chat',
@@ -26,6 +36,8 @@ const BOTTOM_THRESHOLD = 8;
   shadow: true,
 })
 export class Chat {
+  @Element() hostElement!: HTMLIxChatElement;
+
   /**
    * If true, the chat does not keep the latest content in view (Auto-scroll)
    * and does not show the scroll-to-latest button.
@@ -51,6 +63,7 @@ export class Chat {
   i18nScrollToLatest = 'Scroll to latest';
 
   @State() hasPrompt = false;
+  @State() hasMessages = false;
   @State() isAtBottom = true;
 
   private messagesRef?: HTMLDivElement;
@@ -92,6 +105,12 @@ export class Chat {
 
   connectedCallback() {
     this.observeContent();
+  }
+
+  componentWillLoad() {
+    this.hasMessages = Array.from(this.hostElement.children).some(
+      (element) => !element.hasAttribute('slot')
+    );
   }
 
   componentDidLoad() {
@@ -183,9 +202,11 @@ export class Chat {
 
   private handleMessagesSlotChange(event: Event) {
     const slot = event.target as HTMLSlotElement;
-    const userMessages = slot
-      .assignedElements({ flatten: true })
-      .filter((element) => element.tagName === 'IX-CHAT-USER-MESSAGE');
+    const messages = slot.assignedElements({ flatten: true });
+    this.hasMessages = messages.length > 0;
+    const userMessages = messages.filter(
+      (element) => element.tagName === 'IX-CHAT-USER-MESSAGE'
+    );
     const latestUserMessage = userMessages[userMessages.length - 1];
     // Only a new latest user message (a sent prompt) re-engages Auto-scroll, not prepended history
     const hasNewLatestUserMessage =
@@ -232,6 +253,9 @@ export class Chat {
             ref={(ref) => (this.messagesRef = ref)}
             onScroll={() => this.handleScroll()}
           >
+            <div class="welcome" hidden={this.hasMessages}>
+              <slot name="welcome"></slot>
+            </div>
             <div
               class="messages-content"
               ref={(ref) => (this.contentRef = ref)}
