@@ -29,9 +29,7 @@
   --ix-kpi--padding: #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-20};
   --ix-kpi-icon--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-kpi-unit--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-kpi-stacked--height: calc(
-    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
-  );
+  --ix-kpi-stacked--height: #{sys.$si-sys-sizing-size-110};
   --ix-kpi-container--border-width: #{sys.$si-sys-sizing-border-width-selected};
   --ix-kpi-label--margin-block-start: #{sys.$si-sys-sizing-spacing-y-10};
   --ix-kpi--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};

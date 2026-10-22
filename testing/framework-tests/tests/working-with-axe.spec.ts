@@ -89,8 +89,23 @@ import './generated/badge-label-axe.spec';
 import './generated/badge-dot-axe.spec';
 import './generated/badge-status-icon-axe.spec';
 
+// Require confirmation tests
+import './generated/date-dropdown-require-confirmation-axe.spec';
+import './generated/date-input-require-confirmation-axe.spec';
+import './generated/date-picker-require-confirmation-axe.spec';
+import './generated/datetime-input-require-confirmation-axe.spec';
+import './generated/datetime-picker-require-confirmation-axe.spec';
+
 // Group tests
 import './generated/group-axe.spec';
 import './generated/group-context-menu-axe.spec';
 import './generated/group-custom-entry-axe.spec';
 import './generated/group-header-suppressed-axe.spec';
+
+// Card family — action-card axe only.
+import './generated/action-card-axe.spec';
+
+// Blind tests
+import './generated/blind-axe.spec';
+import './generated/blind-header-actions-axe.spec';
+import './generated/blind-variants-axe.spec';

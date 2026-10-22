@@ -134,13 +134,14 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
     tagName: 'ix-action-card',
     properties: {
         variant: 'variant',
+        outline: 'outline',
         icon: 'icon',
         ariaLabelIcon: 'aria-label-icon',
         heading: 'heading',
         subheading: 'subheading',
         selected: 'selected',
         ariaLabelCard: 'aria-label-card',
-        passive: 'passive'
+        clickable: 'clickable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxActionCard as StencilReactComponent<IxActionCardElement, IxActionCardEvents, Components.IxActionCard>,
@@ -243,7 +244,8 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents, Compo
         label: 'label',
         sublabel: 'sublabel',
         icon: 'icon',
-        variant: 'variant'
+        variant: 'variant',
+        outline: 'outline'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxBlind as StencilReactComponent<IxBlindElement, IxBlindEvents, Components.IxBlind>,
@@ -321,8 +323,9 @@ export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents, Componen
     tagName: 'ix-card',
     properties: {
         variant: 'variant',
+        outline: 'outline',
         selected: 'selected',
-        passive: 'passive'
+        clickable: 'clickable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxCard as StencilReactComponent<IxCardElement, IxCardEvents, Components.IxCard>,
@@ -336,7 +339,8 @@ export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCa
     properties: {
         ariaLabelExpandButton: 'aria-label-expand-button',
         collapse: 'collapse',
-        variant: 'variant'
+        variant: 'variant',
+        outline: 'outline'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxCardAccordion as StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents, Components.IxCardAccordion>,
@@ -624,7 +628,10 @@ export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustom
     serializeShadowRoot
 });
 
-export type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>> };
+export type IxDateDropdownEvents = {
+    onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>>,
+    onDateSelect: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>>
+};
 
 export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown>({
     tagName: 'ix-date-dropdown',
@@ -644,6 +651,9 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
         weekStartIndex: 'week-start-index',
         i18nDone: 'i18n-done',
         i18nNoRange: 'i18n-no-range',
+        requireConfirmation: 'require-confirmation',
+        i18nConfirm: 'i18n-confirm',
+        i18nCancel: 'i18n-cancel',
         today: 'today',
         enableTopLayer: 'enable-top-layer'
     },
@@ -686,7 +696,10 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
         textAlignment: 'text-alignment',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        requireConfirmation: 'require-confirmation',
+        i18nConfirm: 'i18n-confirm',
+        i18nCancel: 'i18n-cancel'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxDateInput as StencilReactComponent<IxDateInputElement, IxDateInputEvents, Components.IxDateInput>,
@@ -696,7 +709,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
 export type IxDatePickerEvents = {
     onDateChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
     onDateRangeChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
-    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>
+    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
+    onDateCancel: EventName<IxDatePickerCustomEvent<void>>
 };
 
 export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker>({
@@ -710,6 +724,9 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
         minDate: 'min-date',
         maxDate: 'max-date',
         i18nDone: 'i18n-done',
+        requireConfirmation: 'require-confirmation',
+        i18nConfirm: 'i18n-confirm',
+        i18nCancel: 'i18n-cancel',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
         ariaLabelMonthSelection: 'aria-label-month-selection',
@@ -758,6 +775,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         showTextAsTooltip: 'show-text-as-tooltip',
         i18nErrorDateTimeUnparsable: 'i-1-8n-error-date-time-unparsable',
         i18nDone: 'i-1-8n-done',
+        i18nConfirm: 'i18n-confirm',
+        i18nCancel: 'i18n-cancel',
         i18nTime: 'i-1-8n-time',
         ariaLabelPreviousMonthButton: 'aria-label-previous-month-button',
         ariaLabelNextMonthButton: 'aria-label-next-month-button',
@@ -766,7 +785,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         weekStartIndex: 'week-start-index',
         suppressSubmitOnEnter: 'suppress-submit-on-enter',
         textAlignment: 'text-alignment',
-        enableTopLayer: 'enable-top-layer'
+        enableTopLayer: 'enable-top-layer',
+        requireConfirmation: 'require-confirmation'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxDatetimeInput as StencilReactComponent<IxDatetimeInputElement, IxDatetimeInputEvents, Components.IxDatetimeInput>,
@@ -776,7 +796,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
 export type IxDatetimePickerEvents = {
     onTimeChange: EventName<IxDatetimePickerCustomEvent<string>>,
     onDateChange: EventName<IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>>,
-    onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>
+    onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>,
+    onDateCancel: EventName<IxDatetimePickerCustomEvent<void>>
 };
 
 export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker> = /*@__PURE__*/ createComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker>({
@@ -795,6 +816,9 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
         showTimeReference: 'show-time-reference',
         timeReference: 'time-reference',
         i18nDone: 'i18n-done',
+        requireConfirmation: 'require-confirmation',
+        i18nConfirm: 'i18n-confirm',
+        i18nCancel: 'i18n-cancel',
         i18nTime: 'i18n-time',
         i18nAm: 'i18n-am',
         i18nPm: 'i18n-pm',
@@ -1784,8 +1808,9 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
         heading: 'heading',
         subheading: 'subheading',
         variant: 'variant',
+        outline: 'outline',
         expanded: 'expanded',
-        passive: 'passive'
+        clickable: 'clickable'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxPushCard as StencilReactComponent<IxPushCardElement, IxPushCardEvents, Components.IxPushCard>,
@@ -2118,7 +2143,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
         hideHeader: 'hide-header',
         textAlignment: 'text-alignment',
         enableTopLayer: 'enable-top-layer',
-        ariaLabelTimeToggleButton: 'aria-label-time-toggle-button'
+        ariaLabelTimeToggleButton: 'aria-label-time-toggle-button',
+        i18nCancel: 'i18n-cancel'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxTimeInput as StencilReactComponent<IxTimeInputElement, IxTimeInputEvents, Components.IxTimeInput>,
@@ -2127,7 +2153,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
 
 export type IxTimePickerEvents = {
     onTimeSelect: EventName<IxTimePickerCustomEvent<string>>,
-    onTimeChange: EventName<IxTimePickerCustomEvent<string>>
+    onTimeChange: EventName<IxTimePickerCustomEvent<string>>,
+    onTimeCancel: EventName<IxTimePickerCustomEvent<void>>
 };
 
 export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker> = /*@__PURE__*/ createComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker>({
@@ -2137,7 +2164,7 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         locale: 'locale',
         corners: 'corners',
         embedded: 'embedded',
-        dateTimePickerAppearance: 'date-time-picker-appearance',
+        hideFooter: 'hide-footer',
         hideHeader: 'hide-header',
         hourInterval: 'hour-interval',
         minuteInterval: 'minute-interval',
@@ -2146,7 +2173,8 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
         time: 'time',
         minTime: 'min-time',
         maxTime: 'max-time',
-        i18nConfirmTime: 'i18n-confirm-time',
+        i18nConfirm: 'i18n-confirm',
+        i18nCancel: 'i18n-cancel',
         i18nHeader: 'i18n-header',
         i18nHourColumnHeader: 'i18n-hour-column-header',
         i18nMinuteColumnHeader: 'i18n-minute-column-header',

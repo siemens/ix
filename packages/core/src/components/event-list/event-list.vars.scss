@@ -10,7 +10,5 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-event-list-large-item--height: calc(
-    #{sys.$si-sys-sizing-size-130} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
+  --ix-event-list-large-item--height: #{sys.$si-sys-sizing-size-130};
 }

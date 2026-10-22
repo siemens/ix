@@ -9,7 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { a11yBoolean, getFallbackLabelFromIconName } from '../utils/a11y';
-import type { ActionCardVariant } from './action-card.types';
+import type { StatusVariant } from '../utils/status.types';
 
 /**
  * Card that represents a selectable action or option to start a task or workflow.
@@ -26,9 +26,18 @@ import type { ActionCardVariant } from './action-card.types';
 })
 export class IxActionCard {
   /**
-   * Card variant
+   * Card status variant
    */
-  @Prop() variant: ActionCardVariant = 'outline';
+  @Prop() variant: StatusVariant = 'base';
+
+  /**
+   * Show the card with outline chrome.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses a filled surface; status variants then show a top color strip.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   /**
    * Card icon
@@ -65,14 +74,20 @@ export class IxActionCard {
   @Prop() ariaLabelCard?: string;
 
   /**
-   * If true, disables hover and active styles and changes cursor to default
+   * Enable pointer interaction on the action card.
+   * When omitted, the card is clickable (`true`).
+   * When `false`, the wrapping button is disabled.
+   *
+   * @since 6.0.0
    */
-  @Prop() passive: boolean = false;
+  @Prop() clickable?: boolean;
 
-  private getSubheadingTextColor() {
-    return this.variant === 'outline' || this.variant === 'filled'
-      ? 'soft'
-      : undefined;
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
+  private get isClickable() {
+    return this.clickable !== false;
   }
 
   render() {
@@ -85,15 +100,16 @@ export class IxActionCard {
       <Host>
         <button
           type="button"
-          disabled={this.passive}
+          disabled={!this.isClickable}
           aria-label={this.ariaLabelCard}
           aria-labelledby={ariaLabelledBy}
         >
           <ix-card
             selected={this.selected}
             variant={this.variant}
-            passive={this.passive}
-            class={this.passive ? undefined : 'pointer'}
+            outline={this.isOutline}
+            clickable={this.isClickable}
+            class={this.isClickable ? 'pointer' : undefined}
           >
             <ix-card-content>
               {this.icon ? (
@@ -118,10 +134,7 @@ export class IxActionCard {
                   </ix-typography>
                 ) : null}
                 {this.subheading ? (
-                  <ix-typography
-                    format="h5"
-                    text-color={this.getSubheadingTextColor()}
-                  >
+                  <ix-typography format="h5" text-color="soft">
                     {this.subheading}
                   </ix-typography>
                 ) : null}
