@@ -22,7 +22,7 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { parseWithLocale } from '../utils/date-time-locale';
+import { parseWithLocale } from '../utils/datetime/date-time-locale';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -47,6 +47,7 @@ import {
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
   shouldShowInputInvalid,
@@ -254,6 +255,30 @@ export class DateInput
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * If true, changes require clicking confirm.
+   * Cancel, Escape or clicking outside all discard pending selections.
+   *
+   * If false, changes are applied immediately without requiring confirmation.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation: boolean = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm: string = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
+
+  /**
    * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -297,6 +322,11 @@ export class DateInput
 
   public touched = false;
 
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
 
@@ -333,6 +363,7 @@ export class DateInput
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.initialValue = this.value;
   }
 
   private updatePaddings() {
@@ -346,6 +377,26 @@ export class DateInput
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
+  }
+
+  private applyPickedDate(from?: string) {
+    // onInput can refocus the input and reset initialValue.
+    const hasValueChanged = this.initialValue !== from;
+    this.onInput(from);
+    if (hasValueChanged) {
+      this.ixChange.emit(from);
+      this.initialValue = from;
+    }
+  }
+
+  private onInputBlur() {
+    this.touched = true;
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.emitValidityStateChangeIfChanged();
+  }
+
+  private discardPendingSelection() {
+    this.datepickerRef.current?.discardPendingSelection();
   }
 
   @Watch('value')
@@ -464,18 +515,11 @@ export class DateInput
             }
           }}
           onFocus={() => {
+            this.inputBlur.onFocus();
             onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
-          onBlur={() => {
-            this.touched = true;
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={() => this.inputBlur.onBlur()}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
             textAlign: this.textAlignment,
@@ -495,6 +539,8 @@ export class DateInput
             size="16"
             icon={iconCalendar}
             aria-expanded={a11yBoolean(this.show)}
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onCalenderClick(event)}
           ></ix-icon-button>
         </SlotEnd>
@@ -613,6 +659,13 @@ export class DateInput
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show) {
+              if (this.requireConfirmation) {
+                this.discardPendingSelection();
+              }
+              this.inputBlur.onPickerClosed();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.datepickerRef,
@@ -633,14 +686,26 @@ export class DateInput
             minDate={this.minDate}
             maxDate={this.maxDate}
             onDateChange={(event) => {
-              const { from } = event.detail;
-              // onInput can refocus the input and reset initialValue.
-              const hasValueChanged = this.initialValue !== from;
-              this.onInput(from);
-              if (hasValueChanged) {
-                this.ixChange.emit(from);
-                this.initialValue = from;
+              event.stopPropagation();
+              // With requireConfirmation the value is applied on dateSelect
+              if (!this.requireConfirmation) {
+                this.applyPickedDate(event.detail.from);
               }
+            }}
+            onDateRangeChange={(event) => event.stopPropagation()}
+            requireConfirmation={this.requireConfirmation}
+            i18nConfirm={this.i18nConfirm}
+            i18nCancel={this.i18nCancel}
+            onDateSelect={(event) => {
+              event.stopPropagation();
+              if (this.requireConfirmation) {
+                this.applyPickedDate(event.detail.from);
+              }
+              this.closeDropdown();
+            }}
+            onDateCancel={(event) => {
+              event.stopPropagation();
+              this.closeDropdown();
             }}
             showWeekNumbers={this.showWeekNumbers}
             weekStartIndex={this.weekStartIndex}

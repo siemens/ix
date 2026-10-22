@@ -40,12 +40,9 @@
   --ix-select--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-select--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-select--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-select-chip--horizontal-margin: calc(
-    #{sys.$si-sys-sizing-spacing-x-10} * 0.8
-  );
-  --ix-select-trigger--min-width: calc(
-    #{sys.$si-sys-sizing-size-120} - #{sys.$si-sys-sizing-spacing-x-10}
-  );
+  --ix-select-chip--margin-block: #{sys.$si-sys-sizing-spacing-y-10};
+  --ix-select-chip--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-select-trigger--min-width: #{sys.$si-sys-sizing-size-120};
   --ix-select-overflow-chip--fallback-width: calc(
     #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
   );
