@@ -8,6 +8,7 @@ import { defineCustomElement as defineIxChatInput } from '@siemens/ix/components
 
 export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["value"]> = /*@__PURE__*/ defineContainer<JSX.IxChatInput, JSX.IxChatInput["value"]>('ix-chat-input', defineIxChatInput, [
   'state',
+  'interruptible',
   'name',
   'placeholder',
   'value',
@@ -18,6 +19,7 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
   'characterLimit',
   'i18nCharacterLimitReached',
   'i18nCharacterLimitWarning',
+  'i18nStopGenerating',
   'characterLimitWarningThreshold',
   'minRows',
   'maxRows',
@@ -26,11 +28,13 @@ export const IxChatInput: StencilVueComponent<JSX.IxChatInput, JSX.IxChatInput["
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit'
+  'promptSubmit',
+  'promptInterrupt'
 ], [
   'valueChange',
   'ixBlur',
   'ixChange',
-  'promptSubmit'
+  'promptSubmit',
+  'promptInterrupt'
 ],
 'value', 'valueChange', undefined);

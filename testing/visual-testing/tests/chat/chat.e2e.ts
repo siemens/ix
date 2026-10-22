@@ -39,6 +39,20 @@ regressionTest.describe('chat', () => {
     });
   });
 
+  regressionTest('input interrupt states', async ({ page }) => {
+    await page.setViewportSize({ width: 640, height: 400 });
+    await page.goto('chat/interrupt');
+
+    await page
+      .locator('ix-chat-input[state="interrupting"] ix-spinner')
+      .waitFor();
+
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+      fullPage: true,
+    });
+  });
+
   regressionTest('markdown in ai message', async ({ page }) => {
     await page.setViewportSize({ width: 1000, height: 760 });
     await page.goto('chat/markdown');
