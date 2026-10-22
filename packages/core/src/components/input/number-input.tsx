@@ -25,6 +25,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -33,7 +34,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
-  clearInputValue,
+  resetInputValidation,
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputFocus,
@@ -225,7 +226,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
   private touched = false;
-  private readonly isClearing = false;
   /** @internal */
   public initialValue?: number;
 
@@ -236,7 +236,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateOptionalFormInternalValue(newValue);
   }
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
@@ -257,6 +257,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -308,8 +310,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
       value !== undefined && value !== null ? value.toString() : '';
     this.formInternals.setFormValue(formValue);
     this.value = value;
-    if (this.inputRef.current && this.touched && !this.isClearing) {
-      if (this.inputRef.current.value !== formValue) {
+    if (this.inputRef.current && this.touched) {
+      if (
+        this.convertNumberStringToFloat(this.inputRef.current.value) !== value
+      ) {
         this.inputRef.current.value = formValue;
       }
       checkInternalValidity(this, this.inputRef.current);
@@ -498,16 +502,22 @@ export class NumberInput implements IxInputFieldComponent<number> {
   /**
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
-   * @since 5.1.0
+   * Emits 0 unless allowEmptyValueChange is enabled, in which case it emits undefined.
+   * @since 5.3.0
    */
   @Method()
   async clear(): Promise<void> {
-    return clearInputValue(this, { defaultValue: undefined });
+    const input = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = undefined;
+    resetInputValidation(this, input);
+    this.updateOptionalFormInternalValue(undefined);
+    this.handleValueChangeEvent(undefined);
   }
 
   /**
    * Returns the validity state of the number input field.
-   * @since 5.1.0
+   * @since 5.3.0
    */
   @Method()
   async getValidityState(): Promise<ValidityState> {

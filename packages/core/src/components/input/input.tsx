@@ -26,6 +26,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -34,7 +35,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
-  clearInputValue,
+  resetInputValidation,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -217,11 +218,10 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly passwordToggleRef = () => this.updatePaddings();
   private readonly inputId = `input-${inputIds++}`;
   private touched = false;
-  private readonly isClearing = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
@@ -261,6 +261,8 @@ export class Input implements IxInputFieldComponent<string> {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -272,7 +274,7 @@ export class Input implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
 
-    if (this.inputRef.current && this.touched && !this.isClearing) {
+    if (this.inputRef.current && this.touched) {
       if (this.inputRef.current.value !== value) {
         this.inputRef.current.value = value;
       }
@@ -329,11 +331,16 @@ export class Input implements IxInputFieldComponent<string> {
   /**
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
-   * @since 5.1.0
+   * @since 5.3.0
    */
   @Method()
   async clear(): Promise<void> {
-    return clearInputValue(this);
+    const input = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, input);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   render() {

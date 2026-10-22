@@ -24,12 +24,13 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
   getAriaAttributesForInput,
-  clearInputValue,
+  resetInputValidation,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -202,7 +203,6 @@ export class Textarea implements IxInputFieldComponent<string> {
   });
   private readonly inputId = `ix-textarea-${sequentialInstanceId++}`;
   private touched = false;
-  private readonly isClearing = false;
   /** @internal */
   public initialValue?: string;
   private resizeObserver?: ResizeObserver;
@@ -218,7 +218,7 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.updateFormInternalValue(newValue);
   }
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
@@ -249,6 +249,8 @@ export class Textarea implements IxInputFieldComponent<string> {
         this.textAreaRef.current,
         this.touched
       );
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -321,7 +323,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
-    if (this.textAreaRef.current && this.touched && !this.isClearing) {
+    if (this.textAreaRef.current && this.touched) {
       if (this.textAreaRef.current.value !== value) {
         this.textAreaRef.current.value = value;
       }
@@ -351,7 +353,7 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * Returns the validity state of the textarea field.
-   * @since 5.1.0
+   * @since 5.3.0
    */
   @Method()
   async getValidityState(): Promise<ValidityState> {
@@ -379,11 +381,16 @@ export class Textarea implements IxInputFieldComponent<string> {
   /**
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
-   * @since 5.1.0
+   * @since 5.3.0
    */
   @Method()
   async clear(): Promise<void> {
-    return clearInputValue(this);
+    const textarea = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, textarea);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   private getTextareaHeight(): string | undefined {

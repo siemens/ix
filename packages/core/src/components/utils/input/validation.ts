@@ -275,6 +275,8 @@ export async function revalidate(instance: object) {
 
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
+  /** Text controls defer error feedback until touched; pickers can validate eagerly. */
+  useTouchedForAria?: boolean;
 }) {
   return (proto: IxComponentInterface, methodName: string) => {
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
@@ -410,13 +412,16 @@ export function HookValidationLifecycle(options?: {
             }
 
             const consumerValid = consumerValidityCheck(host);
+            const showInternalError =
+              !validityState.valid &&
+              (!options?.useTouchedForAria || !!touched);
             syncAriaInvalid(
               validationElement,
-              validityState.valid && consumerValid
+              !showInternalError && consumerValid
             );
             syncAriaMessageReferences(
               validationElement,
-              !validityState.valid || !consumerValid,
+              showInternalError || !consumerValid,
               messageElements
             );
           }

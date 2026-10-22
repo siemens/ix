@@ -9,6 +9,11 @@
 import { expect, Locator } from '@playwright/test';
 import { test, waitForRender } from '@utils/test';
 
+type ClearableInput =
+  | HTMLIxInputElement
+  | HTMLIxNumberInputElement
+  | HTMLIxTextareaElement;
+
 test.describe('validation', () => {
   test.describe('ix-input', () => {
     test('validation class should persist if provided by user', async ({
@@ -491,6 +496,9 @@ test.describe('novalidate form', () => {
     const host = page.locator('ix-input');
     const nativeInput = host.locator('input');
 
+    await expect(host).toHaveAttribute('hydrated', '');
+    await nativeInput.focus();
+    await nativeInput.blur();
     await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
 
     await page
@@ -552,6 +560,8 @@ test.describe('aria message references', () => {
     const nativeInput = host.locator('input');
     const { errorId, helperId } = await getMessageIds(host);
 
+    await nativeInput.focus();
+    await nativeInput.blur();
     await expect(nativeInput).toHaveAttribute('aria-errormessage', errorId);
     await nativeInput.evaluate((el) =>
       el.setAttribute(
@@ -588,6 +598,8 @@ test.describe('aria message references', () => {
     const nativeInput = host.locator('input');
     const { errorId, helperId } = await getMessageIds(host);
 
+    await nativeInput.focus();
+    await nativeInput.blur();
     await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
 
     await page
@@ -1278,7 +1290,7 @@ test.describe('clear() method', () => {
       initialValue: '42',
       validValue: '100',
       valueWithInitial: '100',
-      expectedClearedValue: undefined,
+      expectedClearedValue: 0,
     },
     {
       selector: 'ix-textarea',
@@ -1301,13 +1313,14 @@ test.describe('clear() method', () => {
         test('should clear value and reset validation state', async ({
           mount,
           page,
+          makeAxeBuilder,
         }) => {
           await mount(
-            `<${selector} required value="${initialValue}"></${selector}>`
+            `<${selector} label="Required value" required value="${initialValue}"></${selector}>`
           );
 
           const component = page.locator(selector);
-          await expect(component).toHaveClass(/hydrated/);
+          await expect(component).toHaveAttribute('hydrated', '');
           const input = component.locator(getInputSelector(selector));
 
           await input.fill('');
@@ -1318,10 +1331,15 @@ test.describe('clear() method', () => {
           await input.blur();
           await expect(component).not.toHaveClass(/ix-invalid/);
 
-          await component.evaluate((el: any) => el.clear());
+          await component.evaluate((el: ClearableInput) => el.clear());
 
           await expect(input).toHaveValue('');
           await expect(component).not.toHaveClass(/ix-invalid/);
+          await expect(input).not.toHaveAttribute('data-ix-touched');
+          expect(
+            await component.evaluate((el: ClearableInput) => el.isTouched())
+          ).toBe(false);
+          expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
         });
 
         test('should emit valueChange event when cleared', async ({
@@ -1333,35 +1351,34 @@ test.describe('clear() method', () => {
           );
 
           const component = page.locator(selector);
-          await expect(component).toHaveClass(/hydrated/);
+          await expect(component).toHaveAttribute('hydrated', '');
 
-          const valueChangePromise = component.evaluate(
-            (el) =>
-              new Promise<string | number | undefined>((resolve) => {
-                el.addEventListener('valueChange', ((e: CustomEvent) => {
-                  resolve(e.detail);
-                }) as EventListener);
-              })
+          const emittedValues = await component.evaluate(
+            async (el: ClearableInput) => {
+              const values: Array<string | number | undefined> = [];
+              el.addEventListener('valueChange', (event: Event) =>
+                values.push(
+                  (event as CustomEvent<string | number | undefined>).detail
+                )
+              );
+              await el.clear();
+              return values;
+            }
           );
-
-          await component.evaluate((el: any) => el.clear());
-
-          const emittedValue = await valueChangePromise;
-          if (expectedClearedValue === undefined) {
-            expect(emittedValue == null).toBe(true);
-          } else {
-            expect(emittedValue).toBe(expectedClearedValue);
-          }
+          expect(emittedValues).toEqual([expectedClearedValue]);
         });
 
         test('should remove invalid class when clearing invalid field', async ({
           mount,
           page,
+          makeAxeBuilder,
         }) => {
-          await mount(`<${selector} required></${selector}>`);
+          await mount(
+            `<${selector} label="Required value" required></${selector}>`
+          );
 
           const component = page.locator(selector);
-          await expect(component).toHaveClass(/hydrated/);
+          await expect(component).toHaveAttribute('hydrated', '');
           const input = component.locator(getInputSelector(selector));
 
           await input.focus();
@@ -1369,30 +1386,127 @@ test.describe('clear() method', () => {
           await input.blur();
           await expect(component).toHaveClass(/ix-invalid--required/);
 
-          await component.evaluate((el: any) => el.clear());
+          await component.evaluate((el: ClearableInput) => el.clear());
           await expect(component).not.toHaveClass(/ix-invalid/);
+          expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
         });
+
+        test('clears native and form values before resolving, including repeated clears', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<form><${selector} name="field" required value="${initialValue}"></${selector}></form>`
+          );
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+          const input = component.locator(getInputSelector(selector));
+          await input.fill('');
+          await input.blur();
+          await input.fill(validValue);
+          await input.fill('');
+
+          for (let i = 0; i < 2; i++) {
+            const result = await component.evaluate(
+              async (el: ClearableInput) => {
+                (await el.getNativeInputElement()).value = '123';
+                await el.clear();
+                const form = el.closest('form');
+                if (!form) {
+                  throw new Error('Expected the input to be inside a form');
+                }
+                return {
+                  value: (await el.getNativeInputElement()).value,
+                  formValue: new FormData(form).get('field'),
+                  touched: await el.isTouched(),
+                };
+              }
+            );
+            expect(result).toEqual({
+              value: '',
+              formValue: '',
+              touched: false,
+            });
+            await expect(component).not.toHaveClass(/ix-invalid/);
+          }
+          await input.focus();
+          await input.blur();
+          await expect(component).toHaveClass(/ix-invalid--required/);
+        });
+
+        test('preserves consumer validation classes when cleared', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<${selector} class="ix-invalid" value="${initialValue}"></${selector}>`
+          );
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+          await component.evaluate((el: ClearableInput) => el.clear());
+          await expect(component).toHaveClass(/\bix-invalid\b/);
+        });
+
+        for (const required of [true, false]) {
+          test(`programmatic empty values preserve touched validation (required=${required})`, async ({
+            mount,
+            page,
+          }) => {
+            await mount(
+              `<form><${selector} name="field" ${
+                required ? 'required' : ''
+              } value="${initialValue}"></${selector}></form>`
+            );
+            const component = page.locator(selector);
+            const input = component.locator(getInputSelector(selector));
+            await expect(component).toHaveAttribute('hydrated', '');
+            await input.focus();
+            await input.blur();
+            await component.evaluate((el: ClearableInput) => {
+              if (el.tagName === 'IX-NUMBER-INPUT') {
+                (el as HTMLIxNumberInputElement).value = undefined;
+              } else {
+                (el as HTMLIxInputElement | HTMLIxTextareaElement).value = '';
+              }
+            });
+            await expect(input).toHaveValue('');
+            if (required) {
+              await expect(component).toHaveClass(/ix-invalid/);
+            } else {
+              await expect(component).not.toHaveClass(/ix-invalid/);
+            }
+            expect(
+              await page
+                .locator('form')
+                .evaluate((form: HTMLFormElement) =>
+                  new FormData(form).get('field')
+                )
+            ).toBe('');
+          });
+        }
       });
     }
   );
 });
 
 test.describe('getValidityState() method', () => {
-  ['ix-input', 'ix-textarea'].forEach((selector) => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
     test.describe(selector, () => {
       test('should return valid state when field is valid', async ({
         mount,
         page,
       }) => {
-        await mount(`<${selector} value="valid content"></${selector}>`);
+        await mount(`<${selector} value="100"></${selector}>`);
 
         const component = page.locator(selector);
-        await expect(component).toHaveClass(/hydrated/);
+        await expect(component).toHaveAttribute('hydrated', '');
 
-        const validityState = await component.evaluate(async (el: any) => {
-          const state = await el.getValidityState();
-          return { valid: state.valid, valueMissing: state.valueMissing };
-        });
+        const validityState = await component.evaluate(
+          async (el: ClearableInput) => {
+            const state = await el.getValidityState();
+            return { valid: state.valid, valueMissing: state.valueMissing };
+          }
+        );
 
         expect(validityState.valid).toBe(true);
         expect(validityState.valueMissing).toBe(false);
@@ -1402,15 +1516,18 @@ test.describe('getValidityState() method', () => {
         mount,
         page,
       }) => {
-        await mount(`<${selector} required value=""></${selector}>`);
+        await mount(`<${selector} required></${selector}>`);
 
         const component = page.locator(selector);
-        await expect(component).toHaveClass(/hydrated/);
+        await expect(component).toHaveAttribute('hydrated', '');
 
-        const validityState = await component.evaluate(async (el: any) => {
-          const state = await el.getValidityState();
-          return { valid: state.valid, valueMissing: state.valueMissing };
-        });
+        await component.locator(getInputSelector(selector)).fill('');
+        const validityState = await component.evaluate(
+          async (el: ClearableInput) => {
+            const state = await el.getValidityState();
+            return { valid: state.valid, valueMissing: state.valueMissing };
+          }
+        );
 
         expect(validityState.valid).toBe(false);
         expect(validityState.valueMissing).toBe(true);
@@ -1418,3 +1535,50 @@ test.describe('getValidityState() method', () => {
     });
   });
 });
+
+test('number input preserves decimal typing after being touched', async ({
+  mount,
+  page,
+}) => {
+  await mount('<ix-number-input value="1" step="0.01"></ix-number-input>');
+  const component = page.locator('ix-number-input');
+  await expect(component).toHaveAttribute('hydrated', '');
+  const input = component.getByRole('spinbutton');
+  await input.focus();
+  await input.blur();
+  await input.focus();
+  await input.press('End');
+  await input.press('.');
+  await input.press('0');
+  await input.press('5');
+  await expect(input).toHaveValue('1.05');
+  await expect(component).toHaveJSProperty('value', 1.05);
+});
+
+for (const allowEmptyValueChange of [true, false]) {
+  test(`number clear() respects allowEmptyValueChange=${allowEmptyValueChange}`, async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      `<ix-number-input value="42" ${
+        allowEmptyValueChange ? 'allow-empty-value-change' : ''
+      }></ix-number-input>`
+    );
+    const component = page.locator('ix-number-input');
+    await expect(component).toHaveAttribute('hydrated', '');
+    const values = await component.evaluate(
+      async (el: HTMLIxNumberInputElement) => {
+        const events: Array<number | undefined> = [];
+        el.addEventListener('valueChange', (event) =>
+          events.push(event.detail)
+        );
+        await el.clear();
+        return events;
+      }
+    );
+    expect(values).toEqual([allowEmptyValueChange ? null : 0]);
+    await expect(component.locator('input')).toHaveValue('');
+    await expect(component).toHaveJSProperty('value', undefined);
+  });
+}
