@@ -1,0 +1,62 @@
+.changeset/eix-259-message-bar-status-variants.md
+  h_c5a773bf2fda8b 1-5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 967-1003
+examples/angular-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/angular-examples/src/preview-examples/message-bar.html
+  h_c5a773bf2fda8b 11-21
+examples/angular-standalone-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/angular-standalone-examples/src/preview-examples/message-bar.ts
+  h_c5a773bf2fda8b 18-30
+examples/html-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/html-examples/src/preview-examples/message-bar.html
+  h_c5a773bf2fda8b 21-22,24-31
+examples/react-examples/src/preview-examples/message-bar.scoped.css
+  h_c5a773bf2fda8b 23
+examples/react-examples/src/preview-examples/message-bar.tsx
+  h_c5a773bf2fda8b 18-46
+examples/vue-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/vue-examples/src/preview-examples/message-bar.vue
+  h_c5a773bf2fda8b 18-28,30
+packages/core/component-api.json
+  h_c5a773bf2fda8b 7008,7011
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 46,103,3517,3519,11830,11832,14816
+packages/core/src/components/message-bar/message-bar.scss
+  h_c5a773bf2fda8b 33-34,36,38,40-41
+packages/core/src/components/message-bar/message-bar.tsx
+  h_c5a773bf2fda8b 21,23,30,34-41,64,86,89-92,94-106
+packages/core/src/components/message-bar/message-bar.vars.scss
+  h_c5a773bf2fda8b 13-14,16,18,20-21
+packages/core/src/components/message-bar/test/message-bar.ct.ts
+  h_c5a773bf2fda8b 11-21,23-66,68,70-76,78-82,84-91,93-96,98-103,105-115
+packages/core/src/components/utils/notification-color.ts
+  h_c5a773bf2fda8b 11,18
+packages/storybook-docs/src/stories/message-bar.stories.ts
+  h_c5a773bf2fda8b 12-22,24,28-39,55,64-67,77,82,84,96-109,117,119,131,133,138,140
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 19-20,140,255,344,365,456,550,718,1065,1329,1438,1554,1593,1724,1812,1833,6044-6045,20241
+pnpm-workspace.yaml
+  h_c5a773bf2fda8b 12
+testing/framework-tests/__snapshots__/message-bar-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-21
+testing/visual-testing/tests/message-bar/basic/index.html
+  h_c5a773bf2fda8b 26-33,43,51-55,63-68,71
+testing/visual-testing/tests/message-bar/overflow/index.html
+  h_c5a773bf2fda8b 19-31,43-51,53-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d7d89299b9c3e7cccf1fbaa4ecd35439992750de",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
