@@ -1,0 +1,48 @@
+.changeset/eix-259-flip-tile-status-variants.md
+  h_c5a773bf2fda8b 1-5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 28-29,1008-1063
+examples/angular-examples/src/preview-examples/flip-tile.ts
+  h_c5a773bf2fda8b 17-28,31-39,41-42,49-51,53-72,77,89,113-125
+examples/angular-standalone-examples/src/preview-examples/flip-tile.ts
+  h_c5a773bf2fda8b 22-33,36-44,46-47,54-56,58-77,82,94,118-130
+examples/html-examples/src/preview-examples/flip-tile.html
+  h_c5a773bf2fda8b 28-39,42-50,52-53,60-62,64-83,88,100,124-136
+examples/react-examples/src/preview-examples/flip-tile.tsx
+  h_c5a773bf2fda8b 18-29,32-40,42-43,50-52,54-73,78,90,114-126
+examples/vue-examples/src/preview-examples/flip-tile.vue
+  h_c5a773bf2fda8b 19-30,33-41,43-44,51-53,55-74,79,91,115-127
+packages/core/component-api.json
+  h_c5a773bf2fda8b 4827
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 2530,10772
+packages/core/src/components/flip-tile/flip-tile-vars.scss
+  h_c5a773bf2fda8b 10-21
+packages/core/src/components/flip-tile/flip-tile.tsx
+  h_c5a773bf2fda8b 49-50
+packages/core/src/components/flip-tile/flip-tile.types.ts
+  h_c5a773bf2fda8b 10-16,20
+packages/core/src/components/flip-tile/flip-tile.vars.scss
+  h_c5a773bf2fda8b 14-37,44-55,62-67
+packages/core/src/components/flip-tile/test/flip-tile.ct.ts
+  h_c5a773bf2fda8b 11-25,29,41-62,65,89,151-181
+packages/storybook-docs/src/stories/flip-tile.stories.ts
+  h_c5a773bf2fda8b 87-158
+testing/framework-tests/__snapshots__/flip-tile-aria-snapshot.yaml
+  h_c5a773bf2fda8b 21-40
+testing/visual-testing/tests/flip-tile/basic/index.html
+  h_c5a773bf2fda8b 32,35,37,43-49,51-64,69,73,82,87,91,96,105,109,114-123
+testing/visual-testing/tests/flip-tile/custom-sizes/index.html
+  h_c5a773bf2fda8b 50,59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "b8943aa5b3dc795fbe96e6f9d8fe38b389ddb603",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
