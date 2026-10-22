@@ -43,6 +43,118 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(dateInputElement).toHaveAttribute('hydrated');
 });
 
+for (const value of ['2026/02/08', 'invalid-date', '']) {
+  regressionTest(
+    `clear resets required date input with value "${value}"`,
+    async ({ mount, page, makeAxeBuilder }) => {
+      await mount(`
+        <form>
+          <ix-date-input name="date" required label="Date"
+            helper-text="Choose a date" invalid-text="A valid date is required">
+          </ix-date-input>
+          <button type="button">Clear</button>
+        </form>
+      `);
+      const host = page.locator('ix-date-input');
+      const input = host.getByRole('textbox');
+      await expect(host).toHaveAttribute('hydrated');
+      await input.fill(value);
+      await input.focus();
+      await input.blur();
+      await expect
+        .poll(() =>
+          host.evaluate((el: HTMLIxDateInputElement) => el.isTouched())
+        )
+        .toBe(true);
+
+      const events = await host.evaluateHandle((el) => {
+        const values: string[] = [];
+        el.addEventListener('valueChange', (event) => {
+          values.push((event as CustomEvent<string>).detail);
+        });
+        document.querySelector('button')!.addEventListener('click', () => {
+          (el as HTMLIxDateInputElement).clear();
+        });
+        return values;
+      });
+
+      await page.getByRole('button', { name: 'Clear', exact: true }).click();
+      await expect(input).toHaveValue('');
+      await expect(host).toHaveJSProperty('value', '');
+      await expect
+        .poll(() =>
+          host.evaluate((el: HTMLIxDateInputElement) => el.isTouched())
+        )
+        .toBe(false);
+      await expect(host).not.toHaveClass(/ix-invalid/);
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(input).not.toHaveAttribute('data-ix-touched');
+      await expect(input).not.toHaveAttribute('aria-invalid', 'true');
+      await expect(input).not.toHaveAttribute('aria-errormessage');
+      await expect(
+        getInvalidText(host, 'A valid date is required')
+      ).toBeHidden();
+      await expect(getInvalidText(host, 'Choose a date')).toBeVisible();
+      expect(
+        await input.evaluate((el: HTMLInputElement) => el.validity.valueMissing)
+      ).toBe(true);
+      expect(await getFormValue(page.locator('form'), 'date', page)).toBeNull();
+      await expect
+        .poll(() => events.evaluate((values) => values))
+        .toEqual(['']);
+      expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+
+      await page.getByRole('button', { name: 'Clear', exact: true }).click();
+      await expect
+        .poll(() => events.evaluate((values) => values))
+        .toEqual(['', '']);
+      await expect(host).not.toHaveClass(/ix-invalid/);
+
+      await input.focus();
+      await input.blur();
+      await expect(host).toHaveClass(/ix-invalid--required/);
+      await expect(
+        getInvalidText(host, 'A valid date is required')
+      ).toBeVisible();
+
+      await host.evaluate((el: HTMLIxDateInputElement) => el.clear());
+      await input.fill('invalid-date');
+      await expect(input).toHaveClass(/is-invalid/);
+      await expect(input).toHaveAttribute('aria-invalid', 'true');
+      await input.fill('2026/02/09');
+      await expect(input).not.toHaveClass(/is-invalid/);
+      await expect(
+        getInvalidText(host, 'A valid date is required')
+      ).toBeHidden();
+    }
+  );
+}
+
+regressionTest(
+  'clear preserves consumer validation and closes the calendar',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-date-input class="ix-invalid" label="Date"
+        invalid-text="Consumer error" value="2026/02/08"></ix-date-input>
+    `);
+    const host = page.locator('ix-date-input');
+    await expect(host).toHaveAttribute('hydrated');
+    const dateInput = await createDateInputAccessor(host);
+    await dateInput.openByCalender();
+    await host.evaluate((el: HTMLIxDateInputElement) => el.clear());
+    await expect(host.getByTestId('date-dropdown')).not.toHaveClass(/show/);
+    await expect(host).toHaveClass(/\bix-invalid\b/);
+    await expect(getInvalidText(host, 'Consumer error')).toBeVisible();
+    await expect(host.getByRole('textbox')).toHaveAttribute(
+      'aria-invalid',
+      'true'
+    );
+    await dateInput.openByCalender();
+    await dateInput.selectDay(10);
+    await expect(host.getByRole('textbox')).not.toHaveValue('');
+  }
+);
+
 regressionTest(
   'select date by open calendar trigger',
   async ({ mount, page }) => {
