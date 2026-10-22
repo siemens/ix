@@ -6,49 +6,40 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use 'misc/common-variables' as vars;
-@use 'mixins/internal/input-control';
+@use '../input/input-control.mixins' as input-control;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 
-@use './expanding-search.vars' as *;
-$container-width: 11.5625rem;
+@use './expanding-search.vars';
+$container-width: var(--ix-expanding-search--container-width);
 
 :host {
   display: inline-flex;
-  width: auto;
-  height: vars.$x-large-space;
+  width: var(--ix-expanding-search-collapsed--width);
+  height: var(--ix-expanding-search--height);
   align-items: center;
   justify-content: space-between;
   position: relative;
+  transition: width
+    var(--ix-expanding-search-input-container--transition-duration) ease-in-out;
 
   @include component.ix-component;
-
-  .input-container {
-    transition: all
-      var(--ix-expanding-search-input-container--transition-duration)
-      ease-in-out;
-  }
 
   input {
     @include input-control.input-control;
 
-    box-shadow: var(--ix-expanding-search--box-shadow);
     cursor: auto !important;
     width: 100%;
-  }
+    transition-property: padding, opacity;
+    transition-duration: var(
+        --ix-expanding-search-input-container--transition-duration
+      ),
+      var(--theme-default-time);
+    transition-timing-function: ease-in-out;
 
-  .expanded {
-    width: $container-width;
-
-    &.fullWidth {
-      width: 100%;
+    &::placeholder {
+      transition: opacity var(--theme-default-time) ease-in-out;
     }
-  }
-
-  .collapsed {
-    width: vars.$large-space;
-    border: none;
   }
 
   /*collapsed view*/
@@ -60,8 +51,8 @@ $container-width: 11.5625rem;
 
   .btn-search {
     display: flex;
-    max-width: vars.$x-large-space;
-    max-height: vars.$x-large-space;
+    max-width: var(--ix-expanding-search-button-search--max-width);
+    max-height: var(--ix-expanding-search-button-search--max-height);
     border-radius: var(--ix-expanding-search--border-radius);
     transition: all var(--ix-expanding-search-button--transition-duration)
       ease-in-out;
@@ -83,20 +74,20 @@ $container-width: 11.5625rem;
     }
 
     @include hover.focus-visible {
-      outline: var(--focus--border-color);
-      outline-width: 1px;
+      outline: var(--ix-expanding-search-button-search--outline-color--focus);
+      outline-width: var(--ix-expanding-search--outline-width--focus);
       outline-style: solid;
     }
   }
 
   .btn-search.btn-search--expanded {
-    margin-left: 0.25rem;
+    margin-left: var(--ix-expanding-search-button-search-expanded--margin-left);
     pointer-events: none;
   }
 
   .btn-search:active {
-    width: vars.$x-large-space;
-    height: vars.$x-large-space;
+    width: var(--ix-expanding-search-button-search-active--width);
+    height: var(--ix-expanding-search-button-search-active--height);
     border-radius: var(--ix-expanding-search--border-radius);
     border: var(--ix-expanding-search-button--border--active) !important;
   }
@@ -105,6 +96,8 @@ $container-width: 11.5625rem;
   .input-container {
     display: flex;
     position: absolute;
+    inset-inline-start: 0;
+    width: 100%;
     align-items: center;
     flex-wrap: nowrap;
   }
@@ -113,31 +106,35 @@ $container-width: 11.5625rem;
     position: absolute;
     border-radius: var(--ix-expanding-search--border-radius);
     right: 0px;
-    margin-right: 0.25rem;
+    margin-right: var(--ix-expanding-search-button-clear--margin-right);
   }
 
   .input {
-    padding-left: vars.$x-large-space !important;
-    padding-right: 2.5rem !important;
+    padding-left: var(--ix-expanding-search-input--padding-left) !important;
+    padding-right: var(--ix-expanding-search-input--padding-right) !important;
   }
 
   .opacity-before {
     opacity: 0;
+
+    &::placeholder {
+      opacity: 0;
+    }
   }
 
   .opacity-after {
     opacity: 1;
+    &::placeholder {
+      opacity: 1;
+      transition-delay: var(--ix-expanding-search-button--transition-duration);
+    }
   }
 }
 
-:host(.right-position) {
-  width: $container-width !important;
+:host(.expanded) {
+  width: $container-width;
 }
 
-:host(.right-position.fullWidth) {
-  width: 100% !important;
-
-  .fullWidth {
-    width: 100% !important;
-  }
+:host(.expanded.fullWidth) {
+  width: 100%;
 }

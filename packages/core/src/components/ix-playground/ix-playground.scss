@@ -1,3 +1,43 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use './ix-playground.vars';
+
 :host {
   display: block;
+}
+
+.playground {
+  display: grid;
+  gap: var(--ix-playground--gap);
+  max-width: var(--ix-playground--max-width);
+  padding: var(--ix-playground--padding);
+}
+
+.playground header,
+.scenario {
+  display: grid;
+  gap: var(--ix-playground-scenario--gap);
+}
+
+.playground h1,
+.playground h2,
+.playground p,
+.playground ol {
+  margin: 0;
+}
+
+.playground ol {
+  padding-inline-start: var(--ix-playground--padding-inline-start);
+}
+
+.scenario {
+  align-items: start;
+  justify-items: start;
 }

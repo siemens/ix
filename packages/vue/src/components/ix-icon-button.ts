@@ -14,5 +14,6 @@ export const IxIconButton: StencilVueComponent<JSX.IxIconButton> = /*@__PURE__*/
   'iconColor',
   'disabled',
   'type',
-  'loading'
+  'loading',
+  'inert'
 ]);

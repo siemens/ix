@@ -47,12 +47,14 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { DefaultMixins } from '../utils/internal/component';
 import {
@@ -66,6 +68,10 @@ import type { TimeInputValidityState } from './time-input.types';
 import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 
 /**
+ * Text input for entering and validating a time value.
+ *
+ * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
+ * @figma-main-component-id 68801:5742
  * @since 3.2.0
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
@@ -139,6 +145,11 @@ export class TimeInput
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Helper text below the input field.
@@ -564,7 +575,7 @@ export class TimeInput
           aria-haspopup="true"
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           style={{
             textAlign: this.textAlignment,
@@ -623,6 +634,10 @@ export class TimeInput
     );
   }
 
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
+  }
+
   @HookValidationLifecycle()
   hookValidationLifecycle({
     isInfo,
@@ -631,7 +646,7 @@ export class TimeInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;

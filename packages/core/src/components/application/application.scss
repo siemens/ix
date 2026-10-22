@@ -13,8 +13,8 @@
 :host {
   display: flex;
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: var(--ix-application--width);
+  height: var(--ix-application--height);
 
   flex-direction: column;
 
@@ -66,8 +66,8 @@
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu-margin-left: calc(
-    3.25rem + var(--ix-application-menu-safe-area-left, 0rem)
+  --ix-application-menu-margin-left: var(
+    --ix-application-breakpoint-md--application-menu-margin-left
   );
 
   aside.slotted {

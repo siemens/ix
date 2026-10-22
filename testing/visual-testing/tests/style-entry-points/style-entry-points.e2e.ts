@@ -29,6 +29,33 @@ async function getComputedProperty(
 }
 
 regressionTest.describe('style entry points', () => {
+  regressionTest('shared runtime makes legacy CSS opt-in', async ({ page }) => {
+    const legacyStylesheetRequests: string[] = [];
+    page.on('request', (request) => {
+      if (new URL(request.url()).pathname.endsWith('/siemens-ix-legacy.css')) {
+        legacyStylesheetRequests.push(request.url());
+      }
+    });
+
+    await page.goto('html-table/basic', {
+      skipIxHydrationCheck: true,
+    });
+    await expect(page.getByRole('table')).toHaveCSS(
+      '--ix-table--background',
+      'transparent'
+    );
+    expect(legacyStylesheetRequests).toHaveLength(0);
+
+    await page.goto('textarea/basic', {
+      skipIxHydrationCheck: true,
+    });
+    await expect(page.getByRole('textbox').first()).toHaveCSS(
+      'min-height',
+      '32px'
+    );
+    expect(legacyStylesheetRequests).toHaveLength(1);
+  });
+
   regressionTest('composite entry-point matrix', async ({ page }) => {
     await page.goto('style-entry-points/comparison', {
       skipIxHydrationCheck: true,

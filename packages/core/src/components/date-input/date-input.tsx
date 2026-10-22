@@ -42,12 +42,14 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -60,8 +62,12 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 
 /**
- * @form-ready
+ * Text input for entering and validating a date value.
  *
+ * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
+ * @figma-main-component-id 442365:42749
+ *
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -136,6 +142,11 @@ export class DateInput
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Helper text below the input field.
@@ -431,7 +442,7 @@ export class DateInput
           aria-haspopup="true"
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           disabled={this.disabled}
           readOnly={this.readonly}
@@ -491,6 +502,10 @@ export class DateInput
     );
   }
 
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
+  }
+
   @HookValidationLifecycle()
   hookValidationLifecycle({
     isInfo,
@@ -499,7 +514,7 @@ export class DateInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
@@ -626,6 +641,7 @@ export class DateInput
               }
             }}
             showWeekNumbers={this.showWeekNumbers}
+            weekStartIndex={this.weekStartIndex}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded

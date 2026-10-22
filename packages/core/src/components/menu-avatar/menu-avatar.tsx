@@ -22,7 +22,10 @@ import { makeRef } from '../utils/make-ref';
 import { getSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @slot default - Avatar dropdown items.
+ * Menu entry that displays the current user's avatar and account actions.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @slot - Avatar dropdown content.
  */
 @Component({
   tag: 'ix-menu-avatar',
@@ -120,8 +123,8 @@ export class MenuAvatar {
           <ix-avatar image={this.image} initials={this.initials}></ix-avatar>
 
           <div class="avatar-name">
-            <span class="text-default-single">{this.top}</span>
-            <span class="text-default-single">{this.bottom}</span>
+            <span class="typography-body">{this.top}</span>
+            <span class="typography-body">{this.bottom}</span>
           </div>
         </button>
         {!!tooltipText && (

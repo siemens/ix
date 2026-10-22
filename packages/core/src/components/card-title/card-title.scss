@@ -1,13 +1,14 @@
-@use 'misc/common-variables' as vars;
+@use 'tokens/system' as sys;
 
+@use './card-title.vars' as *;
 :host {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-  gap: vars.$default-space;
+  margin-top: var(--ix-card-title--margin-top);
+  margin-bottom: var(--ix-card-title--margin-bottom);
+  gap: var(--ix-card-title--gap);
 
   width: 100%;
 
@@ -15,7 +16,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    gap: 0.25rem;
+    gap: var(--ix-card-title-title-actions--gap);
     margin-left: auto;
     margin-right: 0;
   }

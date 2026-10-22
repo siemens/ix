@@ -33,7 +33,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const header = page.locator('ix-content-header');
-  await expect(header).toHaveClass(/\bhydrated\b/);
+  await expect(header).toHaveAttribute('hydrated');
   await expect(header).toHaveAttribute('text-overflow', 'wrap');
   await expect(header).toHaveJSProperty('textOverflow', 'wrap');
   await expect(page.getByText('Content title', { exact: true })).toBeVisible();
@@ -53,7 +53,7 @@ regressionTest(
     `);
 
     const header = page.locator('ix-content-header');
-    await expect(header).toHaveClass(/\bhydrated\b/);
+    await expect(header).toHaveAttribute('hydrated');
     const titleText = header.getByText(title, { exact: true });
     const getHeight = () =>
       titleText.evaluate((element) => element.getBoundingClientRect().height);
@@ -75,5 +75,52 @@ regressionTest(
     await expect(header).toHaveAttribute('text-overflow', 'wrap');
     await expect(titleText).not.toHaveAttribute('title');
     await expect.poll(getHeight).toBe(wrappedHeight);
+  }
+);
+
+const variants = [
+  { variant: '', expected: 'primary', hasSecondaryClass: false },
+  {
+    variant: 'variant="secondary"',
+    expected: 'secondary',
+    hasSecondaryClass: true,
+  },
+];
+
+for (const { variant, expected, hasSecondaryClass } of variants) {
+  regressionTest(
+    `renders header title as h2 for ${expected} variant`,
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-content-header ${variant} header-title="My Content Page"></ix-content-header>`
+      );
+
+      const heading = page.getByRole('heading', {
+        level: 2,
+        name: 'My Content Page',
+      });
+      await expect(heading).toBeVisible();
+
+      const titleElement = page
+        .locator('ix-content-header')
+        .locator('h2.header-title');
+      await expect(titleElement.locator('ix-typography')).toHaveCount(1);
+
+      if (hasSecondaryClass) {
+        await expect(titleElement).toHaveClass(/\bsecondary\b/);
+      } else {
+        await expect(titleElement).not.toHaveClass(/\bsecondary\b/);
+      }
+    }
+  );
+}
+
+regressionTest(
+  'does not render h2 when headerTitle is omitted',
+  async ({ mount, page }) => {
+    await mount(`<ix-content-header></ix-content-header>`);
+
+    const heading = page.locator('ix-content-header').locator('h2');
+    await expect(heading).toHaveCount(0);
   }
 );

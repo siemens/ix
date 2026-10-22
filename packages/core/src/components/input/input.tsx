@@ -39,12 +39,23 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   onEnterKeyChangeEmit,
 } from './input.util';
 
 let inputIds = 0;
 
 /**
+ * Text input for entering and validating a single-line value.
+ *
+ *
+ * @documentation https://ix.siemens.io//docs/components/input/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ *
+ * @figma-main-component-id 42365:39459
+ *
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
@@ -83,6 +94,14 @@ export class Input implements IxInputFieldComponent<string> {
    * Specifies whether the text field is required.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Specifies whether the text field is disabled.
@@ -229,6 +248,13 @@ export class Input implements IxInputFieldComponent<string> {
       this.slotEndRef.current,
       this.inputRef.current
     );
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    }
   }
 
   disconnectedCallback(): void {

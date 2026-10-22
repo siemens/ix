@@ -42,6 +42,10 @@ function between(min: number, value: number, max: number) {
 }
 
 /**
+ * Lets users choose a numeric value by dragging along a track.
+ *
+ * @documentation https://ix.siemens.io//docs/components/slider/code.md
+ * @figma-main-component-id 50042:20986
  * @form-ready
  * @slot label-start - Element will be displayed at the start of the slider
  * @slot label-end - Element will be displayed at the end of the slider
@@ -345,7 +349,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                   ref={this.thumbRef}
                   class="thumb"
                   style={{
-                    left: `calc(${valueInPercentage} * (100% - 1rem))`,
+                    left: `calc(${valueInPercentage} * (100% - var(--thumb-size)))`,
                   }}
                 ></div>
                 <svg class="ticks" xmlns="http://www.w3.org/2000/svg">

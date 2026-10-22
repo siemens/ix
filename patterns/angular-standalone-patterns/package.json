@@ -1,0 +1,46 @@
+{
+  "name": "angular-standalone-patterns",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "pnpm@10.17.0",
+  "dependencies": {
+    "@angular/common": "^21.2.25",
+    "@angular/compiler": "^21.2.25",
+    "@angular/core": "^21.2.25",
+    "@angular/forms": "^21.2.25",
+    "@angular/platform-browser": "^21.2.25",
+    "@angular/router": "^21.2.25",
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-angular": "workspace:*",
+    "@siemens/ix-icons": "^3.3.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.25",
+    "@angular/cli": "^21.2.25",
+    "@angular/compiler-cli": "^21.2.25",
+    "jsdom": "^27.1.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.8"
+  }
+}

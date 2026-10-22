@@ -1,7 +1,7 @@
-@use 'misc/common-variables' as vars;
 @use 'mixins/break-points';
 @use 'mixins/shadow-dom/component';
 @use './info-page.vars' as *;
+@use 'tokens/system' as sys;
 
 :host {
   @include component.ix-component;
@@ -10,7 +10,7 @@
   display: flex;
   width: 100%;
   min-height: 100%;
-  padding: vars.$x-large-space vars.$default-space;
+  padding: var(--ix-info-page--padding);
 }
 
 .infoPage__content {
@@ -18,7 +18,7 @@
   flex: 1;
   flex-direction: column;
   align-items: center;
-  max-width: 50rem;
+  max-width: var(--ix-info-page-content--max-width);
   margin: auto;
   text-align: center;
 }
@@ -30,7 +30,7 @@
   width: var(--ix-info-page-image-width);
   height: var(--ix-info-page-image-height);
   max-width: 100%;
-  margin-block-end: calc(vars.$x-large-space + vars.$small-space);
+  margin-block-end: var(--ix-info-page-content-image--margin-block-end);
 
   ix-icon {
     transform: scale(2);
@@ -47,7 +47,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 40rem;
+  max-width: var(--ix-info-page-content-message--max-width);
 }
 
 h1 {
@@ -55,22 +55,24 @@ h1 {
 }
 
 :host(:not(.infoPage--hasActions)) .content__message h1:last-child {
-  margin-block-end: vars.$default-space;
+  margin-block-end: var(--ix-info-page-content-message--margin-block-end);
 }
 
 .message__copy {
-  margin-block-start: vars.$default-space;
+  margin-block-start: var(--ix-info-page-message-copy--margin-block-start);
 }
 
 .message__instructions {
-  margin-block-start: vars.$default-space;
+  margin-block-start: var(
+    --ix-info-page-message-instructions--margin-block-start
+  );
 }
 
 .content__action {
   display: none;
   justify-content: center;
   width: 100%;
-  margin-block-start: vars.$x-large-space;
+  margin-block-start: var(--ix-info-page-content-action--margin-block-start);
 }
 
 :host(.infoPage--hasActions) .content__action {
@@ -81,11 +83,11 @@ slot[name='actions'] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: vars.$small-space;
+  gap: var(--ix-info-page--gap);
 }
 
 @include break-points.media-breakpoint-match('sm') {
   :host {
-    padding: vars.$large-space vars.$default-space;
+    padding: var(--ix-info-page--padding--mobile);
   }
 }

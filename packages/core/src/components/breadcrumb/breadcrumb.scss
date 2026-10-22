@@ -7,14 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 
 @use './breadcrumb.vars' as *;
 :host {
   display: flex;
   justify-content: flex-start;
-  height: 2.5rem;
+  height: var(--ix-breadcrumb--height);
   align-items: center;
   background-color: transparent;
 
@@ -23,7 +22,7 @@
   .previous-button {
     width: auto;
     min-width: 0px;
-    margin-right: 0.25rem;
+    margin-right: var(--ix-breadcrumb-previous-button--margin-right);
   }
 
   .crumb-dropdown {
@@ -38,15 +37,15 @@
     display: flex;
 
     .more-text-ellipsis {
-      width: 1rem;
+      width: var(--ix-breadcrumb-more-text-ellipsis--width);
       display: inline-block;
-      font-weight: vars.$font-weight-bold;
+      font: var(--ix-breadcrumb-ellipsis--font);
     }
 
     ix-icon {
       // line-height: unset; --> Note: 'line-height' can't be applied due to shadow DOM encapsulation at ix-icon
       // using padding-top to achieve same position as before
-      padding-top: 2px;
+      padding-top: var(--ix-breadcrumb-more-text-icon--padding-top);
     }
   }
 
@@ -57,7 +56,7 @@
   }
 
   .chevron {
-    margin-left: 0.5rem;
+    margin-left: var(--ix-breadcrumb-chevron--margin-left);
     margin-right: 0rem;
     color: var(--ix-breadcrumb-separator--color);
   }

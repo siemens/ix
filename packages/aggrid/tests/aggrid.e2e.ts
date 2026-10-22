@@ -31,6 +31,13 @@ regressionTest.describe('aggrid', () => {
       await page.getByRole('columnheader').nth(0).hover();
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
+
+    regressionTest('v36', async ({ page }) => {
+      await page.goto('versions/v36/basic.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
   });
 
   regressionTest('filter', async ({ page }) => {
@@ -134,6 +141,26 @@ regressionTest.describe('aggrid', () => {
         animations: 'disabled',
       })
     ).toMatchSnapshot();
+  });
+
+  regressionTest('uses the system elevation shadow', async ({ page }) => {
+    await page.goto('basic/basic.html');
+    await page.locator('.ag-cell[col-id="make"]').first().hover();
+    const tooltip = page.locator('.ag-tooltip');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).not.toHaveCSS('box-shadow', 'none');
+
+    await tooltip.evaluate((element) => {
+      element.style.setProperty(
+        '--si-sys-color-effects-shadow-4',
+        '1px 2px 3px rgb(12, 34, 56)'
+      );
+    });
+
+    await expect(tooltip).toHaveCSS(
+      'box-shadow',
+      'rgb(12, 34, 56) 1px 2px 3px 0px'
+    );
   });
 
   regressionTest.describe('dropdown top layer (enableTopLayer=true)', () => {

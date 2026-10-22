@@ -25,6 +25,16 @@
           "deprecated": false
         },
         {
+          "name": "clickable",
+          "attribute": "clickable",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "heading",
           "attribute": "heading",
           "type": "string | undefined",
@@ -46,13 +56,12 @@
           "deprecated": false
         },
         {
-          "name": "passive",
-          "attribute": "passive",
-          "type": "boolean",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -80,10 +89,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -567,7 +576,10 @@
       "methods": [],
       "events": [],
       "cssProperties": [],
-      "slots": [],
+      "slots": [
+        "default",
+        "description"
+      ],
       "cssParts": [],
       "cssStates": []
     },
@@ -607,6 +619,16 @@
           "deprecated": false
         },
         {
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "sublabel",
           "attribute": "sublabel",
           "type": "string | undefined",
@@ -619,10 +641,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'filled'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -652,6 +674,17 @@
       "tag": "ix-breadcrumb",
       "deprecated": false,
       "properties": [
+        {
+          "name": "ariaLabelNextButton",
+          "attribute": "aria-label-next-button",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Show next breadcrumb items'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "ariaLabelPreviousButton",
           "attribute": "aria-label-previous-button",
@@ -932,13 +965,23 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "passive",
-          "attribute": "passive",
+          "name": "clickable",
+          "attribute": "clickable",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -956,10 +999,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -1001,15 +1044,25 @@
           "deprecated": false
         },
         {
-          "name": "variant",
-          "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'base'",
+          "optional": false,
+          "required": false,
+          "deprecated": true
         }
       ],
       "methods": [],
@@ -1031,7 +1084,9 @@
       "slots": [
         "default"
       ],
-      "cssParts": [],
+      "cssParts": [
+        "content"
+      ],
       "cssStates": []
     },
     {
@@ -3847,6 +3902,15 @@
           "deprecated": false
         },
         {
+          "name": "anchorPosition",
+          "type": "undefined | { x: number; y: number; }",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "closeBehavior",
           "attribute": "close-behavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
@@ -3908,6 +3972,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "navigationMode",
+          "attribute": "navigation-mode",
+          "type": "\"active-descendant\" | \"roving-tabindex\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'active-descendant'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
@@ -3978,6 +4053,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "showAt",
+          "signature": "showAt(x: number, y: number) => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "updatePosition",
           "signature": "updatePosition() => Promise<void>",
@@ -4084,6 +4164,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "navigationMode",
+          "attribute": "navigation-mode",
+          "type": "\"active-descendant\" | \"roving-tabindex\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'active-descendant'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
@@ -4251,7 +4342,8 @@
       "events": [],
       "cssProperties": [],
       "slots": [
-        "default"
+        "default",
+        "end"
       ],
       "cssParts": [],
       "cssStates": []
@@ -4789,6 +4881,26 @@
       "tag": "ix-group",
       "deprecated": false,
       "properties": [
+        {
+          "name": "ariaLabelExpand",
+          "attribute": "aria-label-expand",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelSelect",
+          "attribute": "aria-label-select",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "expandOnHeaderClick",
           "attribute": "expand-on-header-click",
@@ -5908,6 +6020,28 @@
           "deprecated": false
         },
         {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "\"action\" | \"external\" | \"file\" | \"internal\" | \"none\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'none'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconPosition",
+          "attribute": "icon-position",
+          "type": "\"end\" | \"start\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'start'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "target",
           "attribute": "target",
           "type": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\"",
@@ -6545,6 +6679,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6612,6 +6757,17 @@
         {
           "name": "bottom",
           "attribute": "bottom",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disableTooltip",
+          "attribute": "disable-tooltip",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -7432,6 +7588,28 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelJumpBackward",
+          "attribute": "aria-label-jump-backward",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Jump backward to {page}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelJumpForward",
+          "attribute": "aria-label-jump-forward",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Jump forward to {page}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelPageSelection",
           "attribute": "aria-label-page-selection",
           "type": "string",
@@ -7493,6 +7671,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'Page'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nPagination",
+          "attribute": "i18n-pagination",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Pagination'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -8278,6 +8467,17 @@
           "deprecated": false
         },
         {
+          "name": "clickable",
+          "attribute": "clickable",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "expanded",
           "attribute": "expanded",
           "type": "boolean",
@@ -8319,13 +8519,12 @@
           "deprecated": false
         },
         {
-          "name": "passive",
-          "attribute": "passive",
-          "type": "boolean",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -8342,10 +8541,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -11159,6 +11358,28 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelTreeCollapsed",
+          "attribute": "aria-label-tree-collapsed",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Expand tree item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelTreeExpanded",
+          "attribute": "aria-label-tree-expanded",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Collapse tree item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "context",
           "type": "TreeItemContext | undefined",
           "mutable": false,
@@ -11244,7 +11465,7 @@
         {
           "name": "format",
           "attribute": "format",
-          "type": "\"body\" | \"body-lg\" | \"body-sm\" | \"body-xs\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-sm\" | \"display-xl\" | \"display-xs\" | \"display-xxl\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"label\" | \"label-lg\" | \"label-sm\" | \"label-xs\" | undefined",
+          "type": "\"body\" | \"body-lg\" | \"body-lg-sbold\" | \"body-paragraph\" | \"body-paragraph-sbold\" | \"body-sbold\" | \"body-sm\" | \"body-sm-sbold\" | \"code\" | \"code-lg\" | \"code-sm\" | \"display\" | \"display-lg\" | \"display-lg-sbold\" | \"display-sbold\" | \"display-xl\" | \"display-xl-sbold\" | \"display-xxl\" | \"display-xxl-sbold\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h5-bold\" | \"h6\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,

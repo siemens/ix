@@ -8,7 +8,9 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'tokens/system' as sys;
 
+@use './event-list.vars' as *;
 :host {
   display: block;
   position: relative;
@@ -17,7 +19,7 @@
 }
 
 :host(.item-size-l) {
-  --event-list-item-height: 6.5rem;
+  --event-list-item-height: var(--ix-event-list-large-item--height);
   --event-list-item-content-white-space: normal;
 }
 

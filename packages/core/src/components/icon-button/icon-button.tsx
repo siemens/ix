@@ -22,6 +22,12 @@ import {
   type ButtonIconSize,
 } from '../button/base-button.types';
 
+/**
+ * Button that displays only an icon to trigger an action.
+ *
+ * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
+ * @figma-main-component-id 270:941
+ */
 @Component({
   tag: 'ix-icon-button',
   styleUrl: 'icon-button.scss',
@@ -81,6 +87,13 @@ export class IconButton
   @Prop() loading = false;
 
   /**
+   * @internal
+   * @since 6.0.0
+   */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
+  @Prop({ reflect: true }) inert = false;
+
+  /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
   submitButtonElement?: HTMLButtonElement;
@@ -136,6 +149,7 @@ export class IconButton
       iconColor: this.iconColor,
       iconSize: this.size,
       loading: this.loading,
+      inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       extraClasses: this.getIconSizeClass(),

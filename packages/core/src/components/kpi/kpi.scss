@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'misc/common-variables' as vars;
-@use 'legacy/mixins/fonts';
+@use 'mixins/fonts';
 @use 'mixins/hover';
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
@@ -17,9 +16,9 @@
 :host {
   display: flex;
   flex-grow: 1;
-  height: vars.$large-control-height;
+  height: var(--ix-kpi--height);
   border-radius: var(--ix-kpi--border-radius);
-  padding: 0.375rem vars.$tiny-space;
+  padding: var(--ix-kpi--padding);
   min-width: 0;
 
   @include component.ix-component;
@@ -32,7 +31,8 @@
     display: flex;
     height: 100%;
     width: 100%;
-    border-block-end: 2px solid grey;
+    border-block-end: var(--ix-kpi-container--border-width) solid
+      var(--ix-kpi-container--border-block-end-color);
 
     &.alarm {
       border-block-end-color: var(--ix-kpi-display--border-color--alarm);
@@ -50,7 +50,7 @@
       flex-shrink: 9999;
 
       ix-icon {
-        margin-inline-end: vars.$tiny-space;
+        margin-inline-end: var(--ix-kpi-icon--margin-inline-end);
       }
     }
 
@@ -62,17 +62,17 @@
     .kpi-value {
       color: var(--ix-kpi-display-value--color);
 
-      @include fonts.text-xl;
+      @include fonts.typography-h3;
     }
 
     .kpi-unit {
-      margin-inline-start: vars.$small-space;
+      margin-inline-start: var(--ix-kpi-unit--margin-inline-start);
       color: var(--ix-kpi-display-units--color);
     }
 
     .kpi-label,
     .kpi-unit {
-      margin-block-start: 0.125rem;
+      margin-block-start: var(--ix-kpi-label--margin-block-start);
     }
   }
 
@@ -85,12 +85,13 @@
   }
 
   @include hover.focus-visible {
-    outline: 1px solid var(--focus--border-color);
+    outline: var(--ix-kpi--outline-width--focus) solid
+      var(--ix-kpi--outline-color--focus);
   }
 }
 
 :host(.stacked) {
-  height: 3.75rem;
+  height: var(--ix-kpi-stacked--height);
 
   .kpi-container {
     justify-content: center;
