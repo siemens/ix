@@ -49,6 +49,27 @@ SPDX-License-Identifier: MIT
     </style>
   </head>
   <body>
+    <script>
+      (function () {
+        const searchParams = new URLSearchParams(location.search);
+
+        if (searchParams.has('theme')) {
+          document.body.classList.add(searchParams.get('theme'));
+        } else if (searchParams.has('data-ix-theme')) {
+          document.body.setAttribute(
+            'data-ix-theme',
+            searchParams.get('data-ix-theme')
+          );
+        }
+
+        if (searchParams.has('data-ix-color-schema')) {
+          document.body.setAttribute(
+            'data-ix-color-schema',
+            searchParams.get('data-ix-color-schema')
+          );
+        }
+      })();
+    </script>
     <div id="mount"></div>
   </body>
 </html>

@@ -91,16 +91,7 @@ async function mountComponent(
         addIcons(config.icons);
       }
 
-      const loadScript = document.createElement('script');
-      loadScript.src = '/scripts/e2e/load-e2e-runtime.js';
-      document.body.appendChild(loadScript);
-
-      await new Promise<void>((resolve) => {
-        loadScript.onload = async () => {
-          resolve();
-        };
-      });
-
+      // ct/index.html loads the IX runtime, styles, icons and applies the theme
       await window.customElements.whenDefined('ix-button');
       const mount = document.querySelector('#mount');
 
