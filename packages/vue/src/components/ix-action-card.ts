@@ -8,11 +8,12 @@ import { defineCustomElement as defineIxActionCard } from '@siemens/ix/component
 
 export const IxActionCard: StencilVueComponent<JSX.IxActionCard> = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-action-card', defineIxActionCard, [
   'variant',
+  'outline',
   'icon',
   'ariaLabelIcon',
   'heading',
   'subheading',
   'selected',
   'ariaLabelCard',
-  'passive'
+  'clickable'
 ]);

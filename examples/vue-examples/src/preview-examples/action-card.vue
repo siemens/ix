@@ -21,7 +21,7 @@ const onClick = (event: Event) => {
     :icon="iconRefresh"
     heading="Scan for new devices"
     subheading="Secondary text"
-    variant="outline"
+    variant="base"
     @click="onClick"
   ></IxActionCard>
 </template>

@@ -30,16 +30,13 @@
       0.8
   );
   --ix-menu-about-news--margin: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-about-news--width: calc(#{sys.$si-sys-sizing-size-90} * 8);
+  --ix-menu-about-news--width: #{sys.$si-sys-sizing-size-170};
   --ix-menu-about-news--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-menu-about-news--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
   --ix-menu-about-news-banner-container--left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-menu-about-news-icon--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-menu-about-news-cui-popover-news-header--margin-bottom: #{sys.$si-sys-sizing-spacing-y-100};
   --ix-menu-about-news-cui-popover-news-header--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-120};
-  --ix-menu-about-news-cui-popover-news-header--margin-block-start: calc(
-    -1 * #{sys.$si-sys-sizing-spacing-y-20}
-  );
   --ix-menu-about-news-cui-popover-news-footer--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
   --ix-menu-about-news-icon--top: #{sys.$si-sys-sizing-spacing-y-40};
   --ix-menu-about-news-icon--right: #{sys.$si-sys-sizing-spacing-x-40};

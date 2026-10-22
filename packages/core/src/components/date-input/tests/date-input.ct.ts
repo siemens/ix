@@ -6,11 +6,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Locator, expect } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
+import { DateTime } from 'luxon';
 import {
+  analyzeWithOpenPicker,
+  calendarDayCell,
+  createDropdownPickerAccessor,
+  formatDateTime,
   getFormValue,
+  mountHydrated,
+  PENDING_SELECTION_DISMISSALS,
   preventFormSubmission,
+  recordEvents,
   regressionTest,
+  tabUntilFocused,
+  waitForRender,
 } from '@utils/test';
 
 const createDateInputAccessor = async (dateInput: Locator) => {
@@ -138,6 +148,40 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'emits ixChange on blur only when the value changed',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveAttribute('hydrated');
+    const input = dateInputElement.locator('input');
+    const events = await recordEvents(dateInputElement, ['ixChange']);
+
+    await input.focus();
+    await input.blur();
+
+    await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+      el.value = '2024/06/06';
+    });
+    await expect(input).toHaveValue('2024/06/06');
+    await input.focus();
+    await input.blur();
+    expect(await events()).toEqual([]);
+
+    await input.fill('2024/07/07');
+    await input.blur();
+    await expect
+      .poll(events)
+      .toEqual([{ type: 'ixChange', detail: '2024/07/07' }]);
+  }
+);
+
+const getInvalidText = (dateInput: Locator, text: string) =>
+  dateInput
+    .locator('ix-field-wrapper')
+    .locator('ix-typography')
+    .filter({ hasText: text });
+
 regressionTest('required', async ({ mount, page }) => {
   await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
@@ -156,6 +200,202 @@ regressionTest('required', async ({ mount, page }) => {
     timeout: 5000,
   });
 });
+
+regressionTest(
+  'novalidate form does not show validation feedback for a cleared required field',
+  async ({ mount, page }) => {
+    await mount(
+      `<form novalidate><ix-date-input required invalid-text="Date is required"></ix-date-input></form>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    const input = dateInputElement.getByRole('textbox');
+
+    await dateInputElement.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        if ((event as CustomEvent<ValidityState>).detail?.valueMissing) {
+          el.dataset.valueMissingEmitted = 'true';
+        }
+      });
+    });
+
+    await input.fill('2024/05/05');
+    await input.blur();
+    await input.fill('');
+    await input.blur();
+
+    // The event is still emitted so consumers can run their own validation
+    await expect(dateInputElement).toHaveAttribute(
+      'data-value-missing-emitted',
+      'true'
+    );
+    await waitForRender(page);
+
+    await expect(dateInputElement).not.toHaveClass(/ix-invalid/);
+    await expect(
+      getInvalidText(dateInputElement, 'Date is required')
+    ).toBeHidden();
+  }
+);
+
+regressionTest(
+  'novalidate form leaves parse error feedback to the consumer',
+  async ({ mount, page }) => {
+    await mount(
+      `<form novalidate><ix-date-input info-text="Info text"></ix-date-input></form>`
+    );
+    const host = page.locator('ix-date-input');
+    const input = host.locator('input').first();
+    const fieldWrapperText = (text: string) =>
+      host
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: text });
+
+    await host.evaluate((el: HTMLElement) => {
+      el.addEventListener('validityStateChange', (event: Event) => {
+        const { detail } = event as CustomEvent<Partial<ValidityState>>;
+        if (detail?.patternMismatch || detail?.typeMismatch) {
+          el.dataset.parseErrorEmitted = 'true';
+        }
+      });
+    });
+
+    await input.fill('abc');
+    await input.blur();
+
+    // The parse error is still reported so consumers can validate themselves
+    await expect(host).toHaveAttribute('data-parse-error-emitted', 'true');
+
+    await host.evaluate((el) => el.classList.add('ix-info'));
+    await expect(fieldWrapperText('Info text')).toBeVisible();
+    await expect(fieldWrapperText('Date is not valid')).toBeHidden();
+
+    // Without `invalid-text` the built-in message is the fallback
+    await host.evaluate((el) => el.classList.replace('ix-info', 'ix-invalid'));
+    await expect(fieldWrapperText('Date is not valid')).toBeVisible();
+
+    // An empty `invalid-text` opts out of the fallback
+    await host.evaluate((el) => el.setAttribute('invalid-text', ''));
+    await expect(fieldWrapperText('Date is not valid')).toBeHidden();
+
+    await host.evaluate((el) =>
+      el.setAttribute('invalid-text', 'Consumer error')
+    );
+    await expect(fieldWrapperText('Consumer error')).toBeVisible();
+  }
+);
+
+regressionTest(
+  'toggling required updates validation state immediately',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input invalid-text="Date is required"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    const input = dateInputElement.getByRole('textbox');
+
+    await input.focus();
+    await input.blur();
+    await expect(dateInputElement).not.toHaveClass(/ix-invalid--required/);
+
+    await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = true;
+    });
+    await expect(dateInputElement).toHaveClass(/ix-invalid--required/);
+    await expect(
+      getInvalidText(dateInputElement, 'Date is required')
+    ).toBeVisible();
+
+    await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = false;
+    });
+    await expect(dateInputElement).not.toHaveClass(/ix-invalid--required/);
+    await expect(
+      getInvalidText(dateInputElement, 'Date is required')
+    ).toBeHidden();
+  }
+);
+
+regressionTest(
+  'toggling required only affects the changed instance',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-date-input id="first" invalid-text="First is required"></ix-date-input>
+      <ix-date-input id="second"></ix-date-input>
+    `);
+    const first = page.locator('#first');
+    const second = page.locator('#second');
+
+    for (const dateInput of [first, second]) {
+      await dateInput.getByRole('textbox').focus();
+      await dateInput.getByRole('textbox').blur();
+    }
+
+    await first.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = true;
+    });
+    await expect(first).toHaveClass(/ix-invalid--required/);
+    await expect(second).not.toHaveClass(/ix-invalid--required/);
+
+    // Removing another instance must keep this one's validation
+    await second.evaluate((el) => el.remove());
+    await first.evaluate((el: HTMLIxDateInputElement) => {
+      el.required = false;
+    });
+    await expect(first).not.toHaveClass(/ix-invalid--required/);
+    await expect(getInvalidText(first, 'First is required')).toBeHidden();
+  }
+);
+
+regressionTest(
+  'clears built-in feedback once the form opts out',
+  async ({ mount, page }) => {
+    await mount(`<form><ix-date-input></ix-date-input></form>`);
+    const host = page.locator('ix-date-input');
+    const input = host.getByRole('textbox');
+
+    await input.fill('abc');
+    await input.blur();
+    await expect(getInvalidText(host, 'Date is not valid')).toBeVisible();
+
+    await page
+      .locator('form')
+      .evaluate((form: HTMLFormElement) => (form.noValidate = true));
+    await input.focus();
+    await input.blur();
+
+    await expect(host).not.toHaveClass(/ix-invalid/);
+    await expect(getInvalidText(host, 'Date is not valid')).toBeHidden();
+  }
+);
+
+regressionTest(
+  'keeps required feedback after being moved in the DOM',
+  async ({ mount, page }) => {
+    await mount(`
+      <div id="source">
+        <ix-date-input required invalid-text="Date is required"></ix-date-input>
+      </div>
+      <div id="target"></div>
+    `);
+    const host = page.locator('ix-date-input');
+    const input = host.getByRole('textbox');
+
+    await input.focus();
+    await input.blur();
+    await expect(getInvalidText(host, 'Date is required')).toBeVisible();
+
+    await host.evaluate((el) => {
+      el.ownerDocument.getElementById('target')?.appendChild(el);
+    });
+    await expect(page.locator('#target ix-date-input')).toBeAttached();
+
+    // Any class change re-evaluates the validation state
+    await host.evaluate((el) => el.classList.add('ix-info'));
+    await waitForRender(page);
+    await expect(getInvalidText(host, 'Date is required')).toBeVisible();
+  }
+);
 
 regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await mount(
@@ -404,4 +644,278 @@ regressionTest.describe('keyboard navigation', () => {
     await page.keyboard.press('Enter');
     await expect(dateInputElement).toHaveAttribute('value', '2024/09/05');
   });
+});
+
+const committed = DateTime.fromISO('2024-05-10');
+const picked = committed.plus({ days: 10 });
+
+const dateInputAccessor = (page: Page) =>
+  createDropdownPickerAccessor(page, {
+    host: 'ix-date-input',
+    trigger: (host) => host.getByTestId('open-calendar'),
+    dropdown: (host) => host.getByTestId('date-dropdown'),
+  });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-date-input ix-date-picker'), date);
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-date-input', {
+      value: formatDateTime(committed),
+      'require-confirmation': true,
+    });
+  });
+
+  regressionTest('confirm applies the picked date', async ({ page }) => {
+    const dateInput = dateInputAccessor(page);
+    const events = await recordEvents(dateInput.host, [
+      'valueChange',
+      'ixChange',
+    ]);
+
+    await dateInput.open();
+    await dayCell(page, picked).click();
+
+    await expect(dateInput.host.locator('input')).toHaveValue(
+      formatDateTime(committed)
+    );
+    expect(await events()).not.toContainEqual(
+      expect.objectContaining({ detail: formatDateTime(picked) })
+    );
+
+    await dateInput.host.getByTestId('confirm').click();
+
+    await dateInput.expectClosed();
+    await expect(dateInput.host.locator('input')).toHaveValue(
+      formatDateTime(picked)
+    );
+    expect(await events()).toContainEqual({
+      type: 'valueChange',
+      detail: formatDateTime(picked),
+    });
+    expect(await events()).toContainEqual({
+      type: 'ixChange',
+      detail: formatDateTime(picked),
+    });
+  });
+
+  regressionTest(
+    'does not leak picker events to the host',
+    async ({ page }) => {
+      const dateInput = dateInputAccessor(page);
+      const events = await recordEvents(dateInput.host, [
+        'dateChange',
+        'dateRangeChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dateInput.open();
+      await dayCell(page, picked).click();
+      await dateInput.host.getByTestId('cancel').click();
+      await dateInput.expectClosed();
+
+      await dateInput.open();
+      await dayCell(page, picked).click();
+      await dateInput.host.getByTestId('confirm').click();
+      await dateInput.expectClosed();
+
+      await expect(dateInput.host.locator('input')).toHaveValue(
+        formatDateTime(picked)
+      );
+      expect(await events()).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'footer is reachable and trapped by keyboard',
+    async ({ page }) => {
+      const dateInput = dateInputAccessor(page);
+
+      await dateInput.open();
+      await dayCell(page, picked).click();
+      await tabUntilFocused(page, 'Confirm');
+
+      // Focus stays trapped in the dropdown when tabbing past the footer
+      await page.keyboard.press('Tab');
+      await dateInput.expectOpen();
+      await tabUntilFocused(page, 'Confirm');
+      await page.keyboard.press('Enter');
+
+      await dateInput.expectClosed();
+      await expect(dateInput.host.locator('input')).toHaveValue(
+        formatDateTime(picked)
+      );
+    }
+  );
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} discards the picked date`,
+      async ({ page }) => {
+        const dateInput = dateInputAccessor(page);
+        const events = await recordEvents(dateInput.host, [
+          'valueChange',
+          'ixChange',
+        ]);
+
+        await dateInput.open();
+        await dayCell(page, picked).click();
+        await dateInput.dismiss(dismissal);
+
+        await dateInput.expectClosed();
+        await expect(dateInput.host.locator('input')).toHaveValue(
+          formatDateTime(committed)
+        );
+        expect(await events()).toEqual([]);
+
+        await dateInput.open();
+        await expect(dayCell(page, committed)).toHaveAttribute(
+          'aria-selected',
+          'true'
+        );
+        await expect(dayCell(page, picked)).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+      }
+    );
+  }
+});
+
+regressionTest(
+  'renders no cancel button without require confirmation',
+  async ({ mount, page }) => {
+    await mountHydrated(mount, page, 'ix-date-input', {
+      value: formatDateTime(committed),
+    });
+    const dateInput = dateInputAccessor(page);
+
+    await dateInput.open();
+    await expect(dateInput.host.getByTestId('cancel')).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-input label="Date" require-confirmation value="2024/05/10"></ix-date-input>`
+    );
+    const dateInput = dateInputAccessor(page);
+    await expect(dateInput.host).toHaveAttribute('hydrated');
+    await dateInput.open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      'ix-date-input',
+      '[data-testid="open-calendar"]'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
+
+regressionTest.describe('required while picking', () => {
+  const nextMonthDay = DateTime.now().plus({ months: 1 }).set({ day: 15 });
+
+  const pickNextMonthDay = async (page: Page) => {
+    await page
+      .locator('ix-date-input ix-date-picker')
+      .getByRole('button', { name: 'Next month' })
+      .click();
+    await dayCell(page, nextMonthDay).click();
+  };
+
+  for (const requireConfirmation of [false, true]) {
+    regressionTest(
+      `picking does not mark the field touched (requireConfirmation: ${requireConfirmation})`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-date-input', {
+          required: true,
+          'require-confirmation': requireConfirmation,
+        });
+        const dateInput = dateInputAccessor(page);
+        const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+        await dateInput.open();
+        await pickNextMonthDay(page);
+        if (requireConfirmation) {
+          expect(await events()).toEqual([]);
+          await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+          await dateInput.host.getByTestId('confirm').click();
+        }
+
+        await dateInput.expectClosed();
+        await expect(dateInput.host.locator('input')).toHaveValue(
+          formatDateTime(nextMonthDay)
+        );
+        await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+      }
+    );
+  }
+
+  regressionTest(
+    'month navigation does not mark the field touched',
+    async ({ mount, page }) => {
+      await mountHydrated(mount, page, 'ix-date-input', { required: true });
+      const dateInput = dateInputAccessor(page);
+      const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+      await dateInput.open();
+      await page
+        .locator('ix-date-input ix-date-picker')
+        .getByRole('button', { name: 'Next month' })
+        .click();
+
+      await dateInput.expectOpen();
+      expect(await events()).toEqual([]);
+      await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  regressionTest(
+    'opening from the focused field does not mark it touched',
+    async ({ mount, page }) => {
+      await mountHydrated(mount, page, 'ix-date-input', { required: true });
+      const dateInput = dateInputAccessor(page);
+      await dateInput.host.locator('input').focus();
+      const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+      await dateInput.open();
+
+      await expect(dateInput.host.locator('input')).toBeFocused();
+      expect(await events()).toEqual([]);
+      await expect(dateInput.host).not.toHaveClass(/ix-invalid--required/);
+    }
+  );
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} without a date marks the field touched`,
+      async ({ mount, page }) => {
+        await mountHydrated(mount, page, 'ix-date-input', {
+          required: true,
+          'require-confirmation': true,
+        });
+        const dateInput = dateInputAccessor(page);
+        const events = await recordEvents(dateInput.host, ['ixBlur']);
+
+        await dateInput.open();
+        await pickNextMonthDay(page);
+        await dateInput.dismiss(dismissal);
+        await dateInput.expectClosed();
+
+        if (dismissal === 'escape') {
+          // Escape returns focus to the field, it is left on the next Tab
+          await expect(dateInput.host.locator('input')).toBeFocused();
+          expect(await events()).toEqual([]);
+          await page.keyboard.press('Tab');
+        }
+
+        await expect(dateInput.host).toHaveClass(/ix-invalid--required/);
+        expect(await events()).toEqual([{ type: 'ixBlur', detail: null }]);
+      }
+    );
+  }
 });
