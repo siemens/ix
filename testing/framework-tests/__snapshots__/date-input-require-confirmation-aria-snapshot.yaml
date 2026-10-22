@@ -1,0 +1,3 @@
+- main:
+  - textbox "Date": /\d+\/\d+\/\d+/
+  - button "Open calendar"

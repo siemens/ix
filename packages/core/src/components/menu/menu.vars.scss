@@ -26,9 +26,7 @@
   --ix-menu-tabs-shadow--transition-duration: var(--theme-default-time);
   --ix-menu-panel--transition-duration: var(--theme-default-time);
   --ix-menu-overlay--transition-duration: var(--theme-default-time);
-  --ix-menu--expanded-width: calc(
-    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
-  );
+  --ix-menu--expanded-width: #{sys.$si-sys-sizing-size-160};
   --ix-menu--width: calc(
     #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
       var(--ix-application-menu-safe-area-left, 0rem)
