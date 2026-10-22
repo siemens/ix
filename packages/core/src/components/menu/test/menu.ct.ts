@@ -613,6 +613,40 @@ regressionTest(
 );
 
 regressionTest(
+  'follows application context changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.sm);
+    await mount(`
+      <ix-application>
+        <ix-menu></ix-menu>
+      </ix-application>
+    `);
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    await expect(menu).toHaveClass(/breakpoint-sm/);
+
+    await menu.evaluate((el) => el.parentElement?.append(el));
+    await application.evaluate((app: HTMLIxApplicationElement) => {
+      app.appSwitchConfig = {
+        currentAppId: 'app',
+        apps: [
+          {
+            id: 'app',
+            name: 'App',
+            description: '',
+            url: '',
+            target: '_self',
+            iconSrc: '',
+          },
+        ],
+      };
+    });
+
+    await expect(menu.locator('.menu-buttons ix-icon-button')).toBeAttached();
+  }
+);
+
+regressionTest(
   'follows theme changes after it was reattached',
   async ({ mount, page }) => {
     await page.evaluate(() => {
