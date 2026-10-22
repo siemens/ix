@@ -201,6 +201,20 @@ export const expect = baseExpect.extend({
     let pass = true;
     const errors: string[] = [];
 
+    if (this.isNot) {
+      // Assert the negated condition directly, otherwise the positive
+      // assertion has to time out before `.not` can pass
+      try {
+        await baseExpect(locator).not.toHaveClass(/ix-focused/);
+        return {
+          pass: false,
+          message: () => 'Expected element not to have visible focus',
+        };
+      } catch (e: any) {
+        return { pass: true, message: () => e.message };
+      }
+    }
+
     try {
       await baseExpect(locator).toHaveClass(/ix-focused/);
     } catch (e: any) {
