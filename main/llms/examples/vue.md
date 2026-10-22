@@ -1,4 +1,4 @@
-[Siemens iX vue examples]|271 examples|format: name|title|used ix tags|files
+[Siemens iX vue examples]|276 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/vue/ (registry version root: examples/vue/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/vue/button.ts
 |Used tags are iX components found in the vue source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.vue
@@ -61,14 +61,17 @@ custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.vue
 custom-field-validation|Custom field validation|ix-custom-field|.vue
 date-dropdown|Date dropdown|ix-date-dropdown|.vue
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.vue
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.vue
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.vue
 date-input|Date input|ix-date-input|.vue
 date-input-disabled|Date input disabled|ix-date-input|.vue
 date-input-label|Date input label|ix-date-input|.vue
 date-input-min-max-date|Date input min max date|ix-date-input|.vue
 date-input-readonly|Date input readonly|ix-date-input|.vue
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.vue
 date-input-validation|Date input validation|ix-date-input|.vue
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.vue
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.vue
 date-range|Date range|ix-date-input,ix-range-field|.vue
 datepicker|Datepicker|ix-date-picker|.vue
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.vue
@@ -78,8 +81,10 @@ datetime-input-disabled|Datetime input disabled|ix-datetime-input|.vue
 datetime-input-label|Datetime input label|ix-datetime-input|.vue
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.vue
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.vue
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.vue
 datetime-input-validation|Datetime input validation|ix-datetime-input|.vue
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.vue
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.vue
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.vue
 datetimepicker|Datetimepicker|ix-datetime-picker|.vue
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.vue

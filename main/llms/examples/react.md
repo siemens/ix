@@ -1,4 +1,4 @@
-[Siemens iX react examples]|273 examples|format: name|title|used ix tags|files
+[Siemens iX react examples]|278 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/react/ (registry version root: examples/react/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/react/button.ts
 |Used tags are iX components found in the react source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.tsx
@@ -61,14 +61,17 @@ custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.tsx
 custom-field-validation|Custom field validation|ix-custom-field|.tsx
 date-dropdown|Date dropdown|ix-date-dropdown|.tsx
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.tsx
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.tsx
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.tsx
 date-input|Date input|ix-date-input|.tsx
 date-input-disabled|Date input disabled|ix-date-input|.tsx
 date-input-label|Date input label|ix-date-input|.tsx
 date-input-min-max-date|Date input min max date|ix-date-input|.tsx
 date-input-readonly|Date input readonly|ix-date-input|.tsx
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.tsx
 date-input-validation|Date input validation|ix-date-input|.tsx
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.tsx
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.tsx
 date-range|Date range|ix-date-input,ix-range-field|.tsx
 datepicker|Datepicker|ix-date-picker|.tsx
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.tsx
@@ -78,8 +81,10 @@ datetime-input-disabled|Datetime input disabled|ix-datetime-input|.tsx
 datetime-input-label|Datetime input label|ix-datetime-input|.tsx
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.tsx
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.tsx
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.tsx
 datetime-input-validation|Datetime input validation|ix-datetime-input|.tsx
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.tsx
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.tsx
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.tsx
 datetimepicker|Datetimepicker|ix-datetime-picker|.tsx
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.tsx

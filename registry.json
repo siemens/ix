@@ -274,6 +274,10 @@
           "path": "main/examples/date-dropdown-presets.json"
         },
         {
+          "name": "date-dropdown-require-confirmation",
+          "path": "main/examples/date-dropdown-require-confirmation.json"
+        },
+        {
           "name": "date-dropdown-user-range",
           "path": "main/examples/date-dropdown-user-range.json"
         },
@@ -298,12 +302,20 @@
           "path": "main/examples/date-input-readonly.json"
         },
         {
+          "name": "date-input-require-confirmation",
+          "path": "main/examples/date-input-require-confirmation.json"
+        },
+        {
           "name": "date-input-validation",
           "path": "main/examples/date-input-validation.json"
         },
         {
           "name": "date-input-with-slots",
           "path": "main/examples/date-input-with-slots.json"
+        },
+        {
+          "name": "date-picker-require-confirmation",
+          "path": "main/examples/date-picker-require-confirmation.json"
         },
         {
           "name": "date-range",
@@ -342,12 +354,20 @@
           "path": "main/examples/datetime-input-readonly.json"
         },
         {
+          "name": "datetime-input-require-confirmation",
+          "path": "main/examples/datetime-input-require-confirmation.json"
+        },
+        {
           "name": "datetime-input-validation",
           "path": "main/examples/datetime-input-validation.json"
         },
         {
           "name": "datetime-input-with-slots",
           "path": "main/examples/datetime-input-with-slots.json"
+        },
+        {
+          "name": "datetime-picker-require-confirmation",
+          "path": "main/examples/datetime-picker-require-confirmation.json"
         },
         {
           "name": "datetime-range",

@@ -1,4 +1,4 @@
-[Siemens iX angular examples]|278 examples|format: name|title|used ix tags|files
+[Siemens iX angular examples]|283 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular/ (registry version root: examples/angular/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular/button.ts
 |Used tags are iX components found in the angular source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -61,14 +61,17 @@ custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.html,.ts
 custom-field-validation|Custom field validation|ix-custom-field|.html,.ts
 date-dropdown|Date dropdown|ix-date-dropdown|.html,.ts
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.html,.ts
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.html,.ts
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.html,.ts
 date-input|Date input|ix-date-input|.html,.ts
 date-input-disabled|Date input disabled|ix-date-input|.html,.ts
 date-input-label|Date input label|ix-date-input|.html,.ts
 date-input-min-max-date|Date input min max date|ix-date-input|.html,.ts
 date-input-readonly|Date input readonly|ix-date-input|.html,.ts
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.html,.ts
 date-input-validation|Date input validation|ix-date-input|.html,.ts
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.html,.ts
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.html,.ts
 date-range|Date range|ix-date-input,ix-range-field|.ts
 datepicker|Datepicker|ix-date-picker|.ts
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.html,.ts
@@ -78,8 +81,10 @@ datetime-input-disabled|Datetime input disabled|ix-datetime-input|.html,.ts
 datetime-input-label|Datetime input label|ix-datetime-input|.html,.ts
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.html,.ts
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.html,.ts
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.html,.ts
 datetime-input-validation|Datetime input validation|ix-datetime-input|.html,.ts
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.html,.ts
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.html,.ts
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.ts
 datetimepicker|Datetimepicker|ix-datetime-picker|.ts
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.html,.ts

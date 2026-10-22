@@ -94,7 +94,6 @@ export default () => {
               locale={locale}
               format={format}
               onDateChange={handleDateChange}
-              onDateRangeChange={handleDateChange}
             />
             <div
               style={{

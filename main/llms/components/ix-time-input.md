@@ -24,6 +24,7 @@
 - `hideHeader`; attr: `hide-header`; type: `boolean`; default: `false` - Hides the header of the picker.
 - `hourInterval`; attr: `hour-interval`; type: `number`; default: `1` - Interval for hour selection.
 - `i18nAm`; attr: `i18n-am`; type: `string`; default: `'AM'` - Label for the AM button in 12-hour mode.
+- `i18nCancel`; attr: `i18n-cancel`; type: `string`; default: `'Cancel'` - Text of the time picker cancel button. Cancel, pressing Escape or clicking outside the dropdown discards the time picked in the dropdown.
 - `i18nErrorTimeUnparsable`; attr: `i18n-error-time-unparsable`; type: `string`; default: `'Time is not valid'` - I18n string for the error message when the time is not parsable.
 - `i18nHourColumnHeader`; attr: `i18n-hour-column-header`; type: `string`; default: `'hr'` - Text for the time picker hour column header.
 - `i18nMillisecondColumnHeader`; attr: `i18n-millisecond-column-header`; type: `string`; default: `'ms'` - Text for the time picker millisecond column header.

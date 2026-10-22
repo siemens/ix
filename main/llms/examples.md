@@ -1947,6 +1947,37 @@ Files:
 Files:
   - `vue/date-dropdown-presets.vue`: [file](../examples/vue/date-dropdown-presets.vue)
 
+## date-dropdown-require-confirmation
+
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
+
+### angular
+
+Files:
+  - `angular/date-dropdown-require-confirmation.html`: [file](../examples/angular/date-dropdown-require-confirmation.html)
+  - `angular/date-dropdown-require-confirmation.ts`: [file](../examples/angular/date-dropdown-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-dropdown-require-confirmation.html`: [file](../examples/angular-standalone/date-dropdown-require-confirmation.html)
+  - `angular-standalone/date-dropdown-require-confirmation.ts`: [file](../examples/angular-standalone/date-dropdown-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/date-dropdown-require-confirmation.html`: [file](../examples/html/date-dropdown-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/date-dropdown-require-confirmation.tsx`: [file](../examples/react/date-dropdown-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/date-dropdown-require-confirmation.vue`: [file](../examples/vue/date-dropdown-require-confirmation.vue)
+
 ## date-dropdown-user-range
 
 - Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
@@ -2133,6 +2164,37 @@ Files:
 Files:
   - `vue/date-input-readonly.vue`: [file](../examples/vue/date-input-readonly.vue)
 
+## date-input-require-confirmation
+
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
+
+### angular
+
+Files:
+  - `angular/date-input-require-confirmation.html`: [file](../examples/angular/date-input-require-confirmation.html)
+  - `angular/date-input-require-confirmation.ts`: [file](../examples/angular/date-input-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-input-require-confirmation.html`: [file](../examples/angular-standalone/date-input-require-confirmation.html)
+  - `angular-standalone/date-input-require-confirmation.ts`: [file](../examples/angular-standalone/date-input-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/date-input-require-confirmation.html`: [file](../examples/html/date-input-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/date-input-require-confirmation.tsx`: [file](../examples/react/date-input-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/date-input-require-confirmation.vue`: [file](../examples/vue/date-input-require-confirmation.vue)
+
 ## date-input-validation
 
 - Used iX components: [`ix-date-input`](components/ix-date-input.md)
@@ -2194,6 +2256,37 @@ Files:
 
 Files:
   - `vue/date-input-with-slots.vue`: [file](../examples/vue/date-input-with-slots.vue)
+
+## date-picker-require-confirmation
+
+- Used iX components: [`ix-date-picker`](components/ix-date-picker.md)
+
+### angular
+
+Files:
+  - `angular/date-picker-require-confirmation.html`: [file](../examples/angular/date-picker-require-confirmation.html)
+  - `angular/date-picker-require-confirmation.ts`: [file](../examples/angular/date-picker-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-picker-require-confirmation.html`: [file](../examples/angular-standalone/date-picker-require-confirmation.html)
+  - `angular-standalone/date-picker-require-confirmation.ts`: [file](../examples/angular-standalone/date-picker-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/date-picker-require-confirmation.html`: [file](../examples/html/date-picker-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/date-picker-require-confirmation.tsx`: [file](../examples/react/date-picker-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/date-picker-require-confirmation.vue`: [file](../examples/vue/date-picker-require-confirmation.vue)
 
 ## date-range
 
@@ -2468,6 +2561,37 @@ Files:
 Files:
   - `vue/datetime-input-readonly.vue`: [file](../examples/vue/datetime-input-readonly.vue)
 
+## datetime-input-require-confirmation
+
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
+
+### angular
+
+Files:
+  - `angular/datetime-input-require-confirmation.html`: [file](../examples/angular/datetime-input-require-confirmation.html)
+  - `angular/datetime-input-require-confirmation.ts`: [file](../examples/angular/datetime-input-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/datetime-input-require-confirmation.html`: [file](../examples/angular-standalone/datetime-input-require-confirmation.html)
+  - `angular-standalone/datetime-input-require-confirmation.ts`: [file](../examples/angular-standalone/datetime-input-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/datetime-input-require-confirmation.html`: [file](../examples/html/datetime-input-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/datetime-input-require-confirmation.tsx`: [file](../examples/react/datetime-input-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/datetime-input-require-confirmation.vue`: [file](../examples/vue/datetime-input-require-confirmation.vue)
+
 ## datetime-input-validation
 
 - Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
@@ -2529,6 +2653,37 @@ Files:
 
 Files:
   - `vue/datetime-input-with-slots.vue`: [file](../examples/vue/datetime-input-with-slots.vue)
+
+## datetime-picker-require-confirmation
+
+- Used iX components: [`ix-datetime-picker`](components/ix-datetime-picker.md)
+
+### angular
+
+Files:
+  - `angular/datetime-picker-require-confirmation.html`: [file](../examples/angular/datetime-picker-require-confirmation.html)
+  - `angular/datetime-picker-require-confirmation.ts`: [file](../examples/angular/datetime-picker-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/datetime-picker-require-confirmation.html`: [file](../examples/angular-standalone/datetime-picker-require-confirmation.html)
+  - `angular-standalone/datetime-picker-require-confirmation.ts`: [file](../examples/angular-standalone/datetime-picker-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/datetime-picker-require-confirmation.html`: [file](../examples/html/datetime-picker-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/datetime-picker-require-confirmation.tsx`: [file](../examples/react/datetime-picker-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/datetime-picker-require-confirmation.vue`: [file](../examples/vue/datetime-picker-require-confirmation.vue)
 
 ## datetime-range
 

@@ -23,6 +23,8 @@
 - `enableTopLayer`; attr: `enable-top-layer`; type: `boolean`; default: `false` - Enable Popover API rendering for dropdown.
 - `format`; attr: `format`; type: `string`; default: `'yyyy/LL/dd'` - Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `helperText`; attr: `helper-text`; type: `string | undefined` - Helper text below the input field.
+- `i18nCancel`; attr: `i18n-cancel`; type: `string`; default: `'Cancel'` - Text of the cancel button shown when `requireConfirmation` is enabled.
+- `i18nConfirm`; attr: `i18n-confirm`; type: `string`; default: `'Confirm'` - Text of the confirm button shown when `requireConfirmation` is enabled.
 - `i18nErrorDateUnparsable`; attr: `i18n-error-date-unparsable`; type: `string`; default: `'Date is not valid'` - I18n string for the error message when the date is not parsable.
 - `infoText`; attr: `info-text`; type: `string | undefined` - Info text below the input field.
 - `invalidText`; attr: `invalid-text`; type: `string | undefined` - Error text below the input field.
@@ -33,6 +35,7 @@
 - `name`; attr: `name`; type: `string | undefined` - Name of the input element.
 - `placeholder`; attr: `placeholder`; type: `string | undefined` - Placeholder of the input element.
 - `readonly`; attr: `readonly`; type: `boolean`; default: `false` - Readonly attribute.
+- `requireConfirmation`; attr: `require-confirmation`; type: `boolean`; default: `false` - If true, changes require clicking confirm. Cancel, Escape or clicking outside all discard pending selections. If false, changes are applied immediately without requiring confirmation.
 - `required`; attr: `required`; type: `boolean | undefined` - Required attribute.
 - `showTextAsTooltip`; attr: `show-text-as-tooltip`; type: `boolean | undefined` - Show text as tooltip.
 - `showWeekNumbers`; attr: `show-week-numbers`; type: `boolean`; default: `false` - Shows week numbers displayed on the left side of the date picker.
@@ -73,6 +76,7 @@ Examples that use this component, with available frameworks. Look up source file
 - date-input-label (angular, angular-standalone, html, react, vue)
 - date-input-min-max-date (angular, angular-standalone, html, react, vue)
 - date-input-readonly (angular, angular-standalone, html, react, vue)
+- date-input-require-confirmation (angular, angular-standalone, html, react, vue)
 - date-input-validation (angular, angular-standalone, html, react, vue)
 - date-input-with-slots (angular, angular-standalone, html, react, vue)
 - date-range (angular, angular-standalone, html, react, vue)

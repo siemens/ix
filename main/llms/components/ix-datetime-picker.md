@@ -21,6 +21,8 @@
 - `dateFormat`; attr: `date-format`; type: `string`; default: `'yyyy/LL/dd'` - Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `from`; attr: `from`; type: `string | undefined` - The selected starting date. If the picker is not in range mode, this is the selected date. Format has to match the `dateFormat` property.
 - `i18nAm`; attr: `i18n-am`; type: `string`; default: `'AM'` - Label for the AM button in 12-hour mode.
+- `i18nCancel`; attr: `i18n-cancel`; type: `string`; default: `'Cancel'` - Text of the cancel button shown when `requireConfirmation` is enabled.
+- `i18nConfirm`; attr: `i18n-confirm`; type: `string`; default: `'Confirm'` - Text of the confirm button shown when `requireConfirmation` is enabled.
 - `i18nDone`; attr: `i18n-done`; type: `string`; default: `'Done'` - Text of the date select button.
 - `i18nHourColumnHeader`; attr: `i18n-hour-column-header`; type: `string`; default: `'hr'` - Text for the time picker hour column header.
 - `i18nMillisecondColumnHeader`; attr: `i18n-millisecond-column-header`; type: `string`; default: `'ms'` - Text for the time picker millisecond column header.
@@ -33,6 +35,7 @@
 - `maxTime`; attr: `max-time`; type: `string | undefined` - Latest selectable time (`timeFormat` tokens). Invalid non-empty values are ignored.
 - `minDate`; attr: `min-date`; type: `string | undefined` - The earliest date that can be selected. If not set there will be no restriction.
 - `minTime`; attr: `min-time`; type: `string | undefined` - Earliest selectable time (`timeFormat` tokens). Invalid non-empty values are ignored.
+- `requireConfirmation`; attr: `require-confirmation`; type: `boolean`; default: `false` - If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The cancel button discards the pending selection. If false, the done button emits `dateSelect`. In both modes `dateChange` and `timeChange` are emitted for every selection.
 - `showTimeReference`; attr: `show-time-reference`; type: `boolean`; default: `false` - Show AM/PM time reference control.
 - `showWeekNumbers`; attr: `show-week-numbers`; type: `boolean`; default: `false` - Shows week numbers displayed on the left side of the date picker.
 - `singleSelection`; attr: `single-selection`; type: `boolean`; default: `false` - If true, disables date range selection (from/to).
@@ -44,9 +47,10 @@
 
 ## Events
 
-- `dateChange` - Date change event. Emitted when the date changes in the embedded date picker.
-- `dateSelect` - Datetime selection event. Emitted when the user confirms the selection.
-- `timeChange` - Time change event. Emitted when the time changes in the embedded time picker.
+- `dateCancel` - Emitted when the pending selection is discarded via the cancel button, after `dateChange`/`timeChange` reported the restored selection. Only emitted when `requireConfirmation` is enabled.
+- `dateChange` - Date change event. Emitted when the date changes in the embedded date picker. Emitted for every pick, also for a range with only a start date and for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed date again. Use `dateSelect` for the applied selection.
+- `dateSelect` - Datetime selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`.
+- `timeChange` - Time change event. Emitted when the time changes in the embedded time picker. Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `dateSelect` for the applied selection.
 
 ## Methods
 
@@ -65,6 +69,7 @@
 
 Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
 
+- datetime-picker-require-confirmation (angular, angular-standalone, html, react, vue)
 - datetimepicker (angular, angular-standalone, html, react, vue)
 - datetimepicker-locale (angular, angular-standalone, html, react, vue)
 

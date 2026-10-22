@@ -22,7 +22,8 @@
 - `hideHeader`; attr: `hide-header`; type: `boolean`; default: `false` - Hides the header of the picker.
 - `hourInterval`; attr: `hour-interval`; type: `number`; default: `1` - Interval for hour selection.
 - `i18nAm`; attr: `i18n-am`; type: `string | undefined` - Label for the AM button in 12-hour mode. If not set, falls back to the first value of `Info.meridiems()` from Luxon.
-- `i18nConfirmTime`; attr: `i18n-confirm-time`; type: `string`; default: `'Confirm'` - Text of the time confirm button.
+- `i18nCancel`; attr: `i18n-cancel`; type: `string`; default: `'Cancel'` - Text of the cancel button.
+- `i18nConfirm`; attr: `i18n-confirm`; type: `string`; default: `'Confirm'` - Text of the time confirm button.
 - `i18nHeader`; attr: `i18n-header`; type: `string`; default: `'Time'` - Text for the top header.
 - `i18nHourColumnHeader`; attr: `i18n-hour-column-header`; type: `string`; default: `'hr'` - Text for the hour column header.
 - `i18nMillisecondColumnHeader`; attr: `i18n-millisecond-column-header`; type: `string`; default: `'ms'` - Text for the millisecond column header.
@@ -39,13 +40,14 @@
 
 ## Events
 
-- `timeChange` - Time change event. Emitted when the selected time changes while interacting with the picker.
-- `timeSelect` - Time event. Emitted when the user confirms the selected time.
+- `timeCancel` - Emitted when the pending selection is discarded via the cancel button, after `timeChange` reported the restored time.
+- `timeChange` - Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `timeSelect` for the applied time.
+- `timeSelect` - Time event. Emitted only when the user confirms the selected time. Use it for the applied time.
 
 ## Methods
 
-- `getCurrentIsoTime() => Promise<string | undefined>` - Get the current time in ISO format
-- `getCurrentTime() => Promise<string | undefined>` - Get the current time based on the wanted format
+- `getCurrentIsoTime() => Promise<string | undefined>` - Get the current confirmed time in ISO format
+- `getCurrentTime() => Promise<string | undefined>` - Get the current confirmed time based on the wanted format
 
 ## Slots
 
