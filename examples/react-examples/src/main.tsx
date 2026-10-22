@@ -65,6 +65,7 @@ import ChatUserMessage from './preview-examples/chat-user-message';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
+import CodeBlock from './preview-examples/code-block';
 import Content from './preview-examples/content';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
@@ -185,6 +186,8 @@ import LinkButtonExternal from './preview-examples/link-button-external';
 import LinkButtonFile from './preview-examples/link-button-file';
 import LinkButtonAction from './preview-examples/link-button-action';
 import Loading from './preview-examples/loading';
+import Markdown from './preview-examples/markdown';
+import MarkdownCustomComponent from './preview-examples/markdown-custom-component';
 import MenuCategory from './preview-examples/menu-category';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs';
 import Message from './preview-examples/message';
@@ -349,6 +352,7 @@ const routes: IxPreviewRoutes = {
   '/preview/custom-field': CustomField,
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/chip': Chip,
+  '/preview/code-block': CodeBlock,
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-presets': DateDropdownPresets,
@@ -434,6 +438,8 @@ const routes: IxPreviewRoutes = {
   '/preview/link-button-file': LinkButtonFile,
   '/preview/link-button-action': LinkButtonAction,
   '/preview/loading': Loading,
+  '/preview/markdown': Markdown,
+  '/preview/markdown-custom-component': MarkdownCustomComponent,
   '/preview/menu-category': MenuCategory,
   '/preview/menu-with-bottom-tabs': MenuWithBottomTabs,
   '/preview/message': Message,

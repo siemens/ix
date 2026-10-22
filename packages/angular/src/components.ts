@@ -683,6 +683,29 @@ export declare interface IxChip extends Components.IxChip {
 
 
 @ProxyCmp({
+  inputs: ['code', 'filename', 'highlight', 'i18nCopied', 'i18nCopy', 'language']
+})
+@Component({
+  selector: 'ix-code-block',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['code', 'filename', 'highlight', 'i18nCopied', 'i18nCopy', 'language'],
+  standalone: false
+})
+export class IxCodeBlock {
+  protected el: HTMLIxCodeBlockElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCodeBlock extends Components.IxCodeBlock {}
+
+
+@ProxyCmp({
   inputs: ['size', 'sizeLg', 'sizeMd', 'sizeSm']
 })
 @Component({
@@ -1839,6 +1862,39 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
+  inputs: ['i18nCopyTable', 'i18nDownloadTable', 'markdown', 'options', 'streaming']
+})
+@Component({
+  selector: 'ix-markdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['i18nCopyTable', 'i18nDownloadTable', 'markdown', 'options', 'streaming'],
+  outputs: ['actionClick'],
+  standalone: false
+})
+export class IxMarkdown {
+  protected el: HTMLIxMarkdownElement;
+  @Output() actionClick = new EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxMarkdownCustomEvent } from '@siemens/ix';
+import type { MarkdownAction as IIxMarkdownMarkdownAction } from '@siemens/ix';
+
+export declare interface IxMarkdown extends Components.IxMarkdown {
+  /**
+   * Emitted when a button Directive with an `action` attribute is clicked or a Custom component calls `emitAction`.
+   */
+  actionClick: EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>;
+}
 
 
 @ProxyCmp({

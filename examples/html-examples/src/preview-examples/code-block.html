@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code block example</title>
+  </head>
+  <body>
+    <ix-code-block language="ts" filename="check.ts"></ix-code-block>
+
+    <script type="module" src="./init.js"></script>
+    <script type="module">
+      await window.ixInitPromise;
+      await window.customElements.whenDefined('ix-code-block');
+
+      document.querySelector('ix-code-block').code = [
+        'const limit = 6.5;',
+        'export const isCritical = (value: number) => value > limit;',
+      ].join('\n');
+    </script>
+  </body>
+</html>

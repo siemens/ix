@@ -126,6 +126,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/checkbox-indeterminate').then((m) => m.default),
   'preview/chip': () =>
     import('../preview-examples/chip').then((m) => m.default),
+  'preview/code-block': () =>
+    import('../preview-examples/code-block').then((m) => m.default),
   'preview/content': () =>
     import('../preview-examples/content').then((m) => m.default),
   'preview/content-header': () =>
@@ -425,6 +427,12 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/link-button-action').then((m) => m.default),
   'preview/loading': () =>
     import('../preview-examples/loading').then((m) => m.default),
+  'preview/markdown': () =>
+    import('../preview-examples/markdown').then((m) => m.default),
+  'preview/markdown-custom-component': () =>
+    import('../preview-examples/markdown-custom-component').then(
+      (m) => m.default
+    ),
   'preview/menu-category': () =>
     import('../preview-examples/menu-category').then((m) => m.default),
   'preview/menu-with-bottom-tabs': () =>
