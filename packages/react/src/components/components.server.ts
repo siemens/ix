@@ -424,7 +424,10 @@ export type IxChatEvents = NonNullable<unknown>;
 
 export const IxChat: StencilReactComponent<IxChatElement, IxChatEvents, Components.IxChat> = /*@__PURE__*/ createComponent<IxChatElement, IxChatEvents, Components.IxChat>({
     tagName: 'ix-chat',
-    properties: {},
+    properties: {
+        suppressAutoScroll: 'suppress-auto-scroll',
+        i18nScrollToLatest: 'i18n-scroll-to-latest'
+    },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxChat as StencilReactComponent<IxChatElement, IxChatEvents, Components.IxChat>,
     serializeShadowRoot

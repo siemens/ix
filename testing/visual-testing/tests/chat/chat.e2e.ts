@@ -53,6 +53,22 @@ regressionTest.describe('chat', () => {
     });
   });
 
+  regressionTest('scroll to latest button', async ({ page }) => {
+    await page.setViewportSize({ width: 640, height: 500 });
+    await page.goto('chat/scroll-to-latest');
+
+    const chat = page.locator('ix-chat');
+    await chat.evaluate((element: HTMLIxChatElement) => element.scrollToTop());
+    await expect(
+      page.getByRole('button', { name: 'Scroll to latest' })
+    ).toBeVisible();
+
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+      fullPage: true,
+    });
+  });
+
   regressionTest('markdown in ai message', async ({ page }) => {
     await page.setViewportSize({ width: 1000, height: 760 });
     await page.goto('chat/markdown');
