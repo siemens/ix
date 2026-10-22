@@ -1,0 +1,54 @@
+.changeset/eix-259-kpi-status-states.md
+  h_c5a773bf2fda8b 1-5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 30,1065-1118
+examples/angular-examples/src/preview-examples/kpi.ts
+  h_c5a773bf2fda8b 20-25,36
+examples/angular-standalone-examples/src/preview-examples/kpi.ts
+  h_c5a773bf2fda8b 21-26,37
+examples/html-examples/src/preview-examples/kpi.html
+  h_c5a773bf2fda8b 23-28,39
+examples/react-examples/src/preview-examples/kpi.tsx
+  h_c5a773bf2fda8b 20-25,32
+examples/vue-examples/src/preview-examples/kpi.vue
+  h_c5a773bf2fda8b 21-26,33
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 1708,1715
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 1820,1827
+packages/core/component-api.json
+  h_c5a773bf2fda8b 5866-5875,5910
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 2988,2993-2998,3008,3011,11259,11264-11269,11279,11282,14718,14721
+packages/core/src/components/kpi/kpi.scss
+  h_c5a773bf2fda8b 16-18,40-43
+packages/core/src/components/kpi/kpi.tsx
+  h_c5a773bf2fda8b 10-17,19-32,52-53,60-61,67-74,86-87,89,96,98-99,101,103,107-123,143
+packages/core/src/components/kpi/kpi.vars.scss
+  h_c5a773bf2fda8b 14-19,27
+packages/core/src/components/kpi/test/kpi.ct.ts
+  h_c5a773bf2fda8b 1-141
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 1247
+packages/storybook-docs/src/stories/kpi.stories.tsx
+  h_c5a773bf2fda8b 31-93
+packages/vue/src/components/ix-kpi.ts
+  h_c5a773bf2fda8b 13
+testing/framework-tests/__snapshots__/kpi-aria-snapshot.yaml
+  h_c5a773bf2fda8b 5-12
+testing/ionic-test-app/src/pages/Other.tsx
+  h_c5a773bf2fda8b 30-35,55-56,63
+testing/visual-testing/tests/kpi/basic/index.html
+  h_c5a773bf2fda8b 19-20,26,30-35,46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "ca2fcce55167ec689cebddb119a675a0640a0191",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
