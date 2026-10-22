@@ -281,12 +281,22 @@ export function HookValidationLifecycle(options?: {
       proto;
 
     const observeFieldClasses = function (this: object, host: HTMLElement) {
+      let hasConsumerInvalidClass = host.classList.contains('ix-invalid');
       getValidationLifecycleState(this).classMutationObserver =
         createClassMutationObserver(
           host,
           () => {
             const result = checkFieldClasses(host, options?.includeChildren);
             proto[methodName].call(this, result);
+
+            // Consumers toggle `ix-invalid` without a value change or blur, so
+            // the ARIA attributes are synced here. Other classes are ignored,
+            // the validation itself toggles `ix-invalid--*`.
+            const hadConsumerInvalidClass = hasConsumerInvalidClass;
+            hasConsumerInvalidClass = host.classList.contains('ix-invalid');
+            if (hasConsumerInvalidClass !== hadConsumerInvalidClass) {
+              void revalidate(this);
+            }
           },
           options
         );
