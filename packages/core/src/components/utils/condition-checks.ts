@@ -33,3 +33,8 @@ export const isSvgDataUrl = (url: string) => {
 
   return url.startsWith('data:image/svg+xml');
 };
+
+/** Whether both strings are equal, treating `''` and `undefined` as unset. */
+export function isSameStringOrUnset(a?: string, b?: string): boolean {
+  return (a || undefined) === (b || undefined);
+}
