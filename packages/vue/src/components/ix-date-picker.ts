@@ -15,6 +15,9 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'minDate',
   'maxDate',
   'i18nDone',
+  'requireConfirmation',
+  'i18nConfirm',
+  'i18nCancel',
   'ariaLabelPreviousMonthButton',
   'ariaLabelNextMonthButton',
   'ariaLabelMonthSelection',
@@ -27,9 +30,11 @@ export const IxDatePicker: StencilVueComponent<JSX.IxDatePicker> = /*@__PURE__*/
   'enableTopLayer',
   'dateChange',
   'dateRangeChange',
-  'dateSelect'
+  'dateSelect',
+  'dateCancel'
 ], [
   'dateChange',
   'dateRangeChange',
-  'dateSelect'
+  'dateSelect',
+  'dateCancel'
 ]);

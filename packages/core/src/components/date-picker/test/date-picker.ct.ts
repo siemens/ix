@@ -7,7 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { DateTime } from 'luxon';
+import {
+  calendarDayCell,
+  dateChangeDetail,
+  formatDateTime,
+  recordEvents,
+  regressionTest,
+} from '@utils/test';
 
 const DatePickerSelector = 'ix-date-picker';
 const getDateObj = async (page: Page) => {
@@ -104,6 +111,30 @@ regressionTest.describe('date picker tests single', () => {
       isoTo: undefined,
     });
   });
+
+  regressionTest(
+    'picking a date emits dateChange and dateSelect',
+    async ({ page }) => {
+      const datePicker = page.locator(DatePickerSelector);
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+      ]);
+
+      await page.getByText(/^19$/).click();
+
+      const expected = {
+        from: '2023/09/19',
+        to: undefined,
+        isoFrom: '2023-09-19',
+        isoTo: undefined,
+      };
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+    }
+  );
 
   regressionTest('select different date in next month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
@@ -278,29 +309,13 @@ regressionTest.describe('date picker tests range', () => {
 
   regressionTest.describe('date picker range undefined values test', () => {
     regressionTest(
-      'dateSelect event with undefined from and to values',
+      'done is disabled without a selection',
       async ({ mount, page }) => {
         await mount(`<ix-date-picker></ix-date-picker>`);
 
         await page.waitForSelector('ix-date-time-card');
 
-        const dateSelectEventPromise = page.evaluate(() => {
-          return new Promise((resolve) => {
-            document.addEventListener('dateSelect', (event) => {
-              resolve((event as CustomEvent).detail);
-            });
-          });
-        });
-
-        await page.getByText('Done').click();
-
-        const eventDetail = await dateSelectEventPromise;
-        expect(eventDetail).toEqual({
-          from: undefined,
-          to: undefined,
-          isoFrom: undefined,
-          isoTo: undefined,
-        });
+        await expect(page.getByRole('button', { name: 'Done' })).toBeDisabled();
       }
     );
   });
@@ -353,10 +368,30 @@ regressionTest.describe('date picker tests range', () => {
       });
     });
 
+    await page.getByText(/^12$/).click();
+    await page.getByText(/^17$/).click();
     await page.getByText('Done').click();
 
     expect(await dateSelectEventPromise).toBeTruthy();
   });
+
+  regressionTest(
+    'done is disabled while the range is incomplete or unchanged',
+    async ({ page }) => {
+      const done = page.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^12$/).click();
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^17$/).click();
+      await expect(done).toBeEnabled();
+
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
 });
 
 regressionTest.describe('locale support', () => {
@@ -654,14 +689,17 @@ regressionTest.describe('keyboard navigation', () => {
 });
 
 regressionTest.describe('month dropdown min/max range', () => {
+  // The dropdown button and its menu share the label, so query them by role.
+  // The menu items are slotted into the button, so they are queried from it.
   const openMonthDropdown = async (page: Page) => {
     await page.waitForSelector('ix-date-time-card');
-    const monthSelection = page.getByRole('button', {
-      name: 'Select month',
-    });
+    const monthSelection = page.getByRole('button', { name: 'Select month' });
 
     await expect(monthSelection).toBeVisible();
     await monthSelection.click();
+    await expect(
+      page.getByRole('menu', { name: 'Select month' })
+    ).toBeVisible();
 
     return monthSelection;
   };
@@ -801,9 +839,8 @@ regressionTest.describe('year dropdown sync', () => {
         .locator(DatePickerSelector)
         .evaluate((element) => element.setAttribute('to', '2028/03/12'));
 
-      const yearSelection = page.getByRole('button', {
-        name: 'Select year',
-      });
+      // The menu items are slotted into the button, so they are queried from it
+      const yearSelection = page.getByRole('button', { name: 'Select year' });
       await yearSelection.click();
 
       await expect(
@@ -1078,3 +1115,329 @@ regressionTest.describe('week start index', () => {
     }
   );
 });
+
+// Dates used by the confirmation tests. Picked dates stay in the month of
+// `committedFrom`, which the picker shows on load.
+const committedFrom = DateTime.fromISO('2024-05-10');
+const committedTo = committedFrom.plus({ days: 2 });
+const pickedFrom = committedFrom.plus({ days: 10 });
+const pickedTo = pickedFrom.plus({ days: 2 });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-date-picker'), date);
+
+const mountDatePicker = async (
+  mount: (html: string) => Promise<unknown>,
+  page: Page,
+  attributes: string
+) => {
+  await mount(`<ix-date-picker ${attributes}></ix-date-picker>`);
+  await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+};
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(
+        committedFrom
+      )}" single-selection require-confirmation`
+    );
+  });
+
+  regressionTest(
+    'picking shows the pending date and emits only dateChange',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(pickedFrom)),
+        },
+      ]);
+      expect(
+        await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+          el.getCurrentDate()
+        )
+      ).toMatchObject(dateChangeDetail(committedFrom));
+    }
+  );
+
+  regressionTest(
+    'confirm emits only dateSelect after the pick emitted dateChange',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await datePicker.getByTestId('confirm').click();
+
+      const expected = expect.objectContaining(dateChangeDetail(pickedFrom));
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+      expect(
+        await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+          el.getCurrentDate()
+        )
+      ).toMatchObject(dateChangeDetail(pickedFrom));
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    }
+  );
+
+  regressionTest(
+    'cancel restores the confirmed date with dateChange and emits dateCancel',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await datePicker.getByTestId('cancel').click();
+
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(pickedFrom)),
+        },
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(committedFrom)),
+        },
+        { type: 'dateCancel', detail: null },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'cancel without a pending date emits only dateCancel',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateCancel',
+      ]);
+
+      // Re-picking the confirmed date leaves nothing pending
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, committedFrom).click();
+      await datePicker.getByTestId('cancel').click();
+
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateChange',
+        'dateCancel',
+      ]);
+    }
+  );
+
+  regressionTest(
+    'discarding without a pending date keeps the browsed month',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const monthLabel = datePicker.locator(
+        '.month-selector [slot="button-label"]'
+      );
+      await expect(monthLabel).toHaveText('May');
+
+      await datePicker.locator('ix-icon-button').nth(1).click();
+      await expect(monthLabel).toHaveText('June');
+
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+        el.discardPendingSelection()
+      );
+
+      await expect(monthLabel).toHaveText('June');
+    }
+  );
+
+  regressionTest(
+    'binding from to dateChange keeps the pick pending',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) => {
+        el.addEventListener('dateChange', (event) => {
+          el.from = (event as CustomEvent<{ from?: string }>).detail.from;
+        });
+      });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(datePicker).toHaveJSProperty(
+        'from',
+        formatDateTime(pickedFrom)
+      );
+      await expect(datePicker.getByTestId('confirm')).toBeEnabled();
+
+      await datePicker.getByTestId('cancel').click();
+
+      await expect(datePicker).toHaveJSProperty(
+        'from',
+        formatDateTime(committedFrom)
+      );
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    }
+  );
+});
+
+regressionTest.describe('require confirmation option', () => {
+  regressionTest(
+    'range mode emits dateRangeChange for every pick and dateSelect on confirm',
+    async ({ mount, page }) => {
+      await mountDatePicker(
+        mount,
+        page,
+        `from="${formatDateTime(committedFrom)}" to="${formatDateTime(
+          committedTo
+        )}" require-confirmation`
+      );
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateRangeChange',
+        'dateChange',
+        'dateRangeChange',
+      ]);
+      expect((await events())[1].detail).toMatchObject({
+        from: formatDateTime(pickedFrom),
+        to: undefined,
+      });
+
+      await datePicker.getByTestId('confirm').click();
+
+      const recorded = await events();
+      expect(recorded.map((event) => event.type).slice(4)).toEqual([
+        'dateSelect',
+      ]);
+      expect(recorded[4].detail).toMatchObject(
+        dateChangeDetail(pickedFrom, pickedTo)
+      );
+    }
+  );
+
+  regressionTest(
+    'renders no cancel button without require confirmation',
+    async ({ mount, page }) => {
+      await mountDatePicker(
+        mount,
+        page,
+        `from="${formatDateTime(committedFrom)}"`
+      );
+      const datePicker = page.locator('ix-date-picker');
+
+      await expect(datePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        datePicker.getByRole('button', { name: 'Done' })
+      ).toBeVisible();
+    }
+  );
+});
+
+regressionTest.describe('confirm button disabled state', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(committedFrom)}" to="${formatDateTime(
+        committedTo
+      )}" require-confirmation`
+    );
+  });
+
+  regressionTest('is disabled without a pending range', async ({ page }) => {
+    await expect(
+      page.locator('ix-date-picker').getByRole('button', { name: 'Confirm' })
+    ).toBeDisabled();
+  });
+
+  regressionTest(
+    'is disabled while the pending range is incomplete',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+    }
+  );
+
+  regressionTest(
+    'is disabled again after re-selecting the committed range',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+
+      await dayCell(page, committedFrom).click();
+      await dayCell(page, committedTo).click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+});
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker require-confirmation from="2024/05/10"></ix-date-picker>`
+    );
+    await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

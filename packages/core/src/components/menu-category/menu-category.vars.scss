@@ -28,9 +28,7 @@
     );
   --ix-menu-category-category-dropdown--menu-item-height: #{sys.$si-sys-sizing-size-90};
   --ix-menu-category-category-dropdown-header--padding-left: #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-menu-category-category-dropdown-header--min-width: calc(
-    #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-60}
-  );
+  --ix-menu-category-category-dropdown-header--min-width: #{sys.$si-sys-sizing-size-160};
   --ix-menu-category--menu-item-height: #{sys.$si-sys-sizing-size-90};
   --ix-menu-category-category-dropdown--max-height: calc(
     50vh - var(--ix-menu-category-category-dropdown--viewport-offset)

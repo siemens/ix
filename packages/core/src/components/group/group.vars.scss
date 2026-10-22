@@ -30,19 +30,11 @@
   --ix-group-subheader--font: #{sys.$si-sys-typography-body-paragraph};
   --ix-group-context-menu--height: #{sys.$si-sys-sizing-size-80};
   --ix-group-context-menu--width: #{sys.$si-sys-sizing-size-80};
-  --ix-group-context-menu--margin-block-start: calc(
-    #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-border-width-default}
-  );
-  --ix-group-context-menu--margin-inline-end: calc(
-    #{sys.$si-sys-sizing-spacing-x-20} + #{sys.$si-sys-sizing-border-width-default}
-  );
+  --ix-group-context-menu--margin-block-start: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-group-context-menu--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-group--header-height: #{sys.$si-sys-sizing-size-110};
-  --ix-group--width: calc(
-    #{sys.$si-sys-sizing-size-170} - #{sys.$si-sys-sizing-spacing-x-20}
-  );
-  --ix-group--min-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
-  );
+  --ix-group--width: #{sys.$si-sys-sizing-size-170};
+  --ix-group--min-width: #{sys.$si-sys-sizing-size-150};
   --ix-group-header-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-group-header-content--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-group-header-title--height: #{sys.$si-sys-sizing-size-70};
