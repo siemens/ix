@@ -1231,6 +1231,22 @@ regressionTest.describe('month and year dropdowns', () => {
       }
     );
 
+    regressionTest(
+      'Enter selects the year added by extending the list',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('Enter');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2125');
+      }
+    );
+
     /**
      * Dispatches keydowns back to back in a single task, so every key after the
      * first arrives while the year list extension is still rendering.
@@ -1311,3 +1327,26 @@ regressionTest.describe('month and year dropdowns', () => {
     );
   });
 });
+
+regressionTest(
+  'centering the selected month does not scroll the surrounding container',
+  async ({ mount, page }) => {
+    await mount(`
+      <div id="panel" style="height: 360px; overflow: auto; transform: translateZ(0)">
+        <ix-date-picker from="2023/12/01"></ix-date-picker>
+        <div style="height: 1000px"></div>
+      </div>
+    `);
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+    const panel = page.locator('#panel');
+
+    await page.getByRole('button', { name: 'Select month' }).click();
+
+    const selectedMonth = page.locator(
+      '.month-selector ix-dropdown-item[checked]'
+    );
+    await expect(selectedMonth).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('.month-selector ix-dropdown')).toBeVisible();
+    expect(await panel.evaluate((element) => element.scrollTop)).toBe(0);
+  }
+);

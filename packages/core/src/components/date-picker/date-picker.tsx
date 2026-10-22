@@ -827,19 +827,31 @@ export class DatePicker
     });
   }
 
-  /** Scrolls the selected month/year of an opened dropdown into the middle. */
-  private centerCheckedItem(dropdownButton?: HTMLElement | null) {
+  /**
+   * Scrolls the selected month/year of an opened dropdown into the middle.
+   * Only the dropdown is scrolled: `scrollIntoView` would also scroll the
+   * surrounding containers, which can move the trigger out of view and
+   * close the dropdown.
+   */
+  private async centerCheckedItem(
+    dropdownButton?: HTMLIxDropdownButtonElement | null
+  ) {
     const checkedItem = dropdownButton?.querySelector<HTMLElement>(
       'ix-dropdown-item[checked]'
     );
 
-    if (!checkedItem) {
+    if (!dropdownButton || !checkedItem) {
       return;
     }
 
-    requestAnimationFrameNoNgZone(() => {
-      checkedItem.scrollIntoView({ block: 'center' });
-    });
+    const container = await dropdownButton.getDropdownReference();
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = checkedItem.getBoundingClientRect();
+
+    container.scrollTop +=
+      itemRect.top -
+      containerRect.top -
+      (container.clientHeight - itemRect.height) / 2;
   }
 
   private resolveYearRangeRendered?: () => void;
@@ -878,11 +890,21 @@ export class DatePicker
 
     await rendered;
 
-    return (
-      this.yearDropdownButtonRef.current?.querySelector<HTMLElement>(
+    const targetItem =
+      this.yearDropdownButtonRef.current?.querySelector<HTMLIxDropdownItemElement>(
         `ix-dropdown-item[data-year="${targetYear}"]`
-      ) ?? undefined
-    );
+      );
+
+    if (!targetItem) {
+      return undefined;
+    }
+
+    // The new items are children of the year dropdown button, so the date
+    // picker's render does not wait for them. Until an item has rendered, it
+    // lacks its focus-visible class and focusing it would leave no year active.
+    await targetItem.componentOnReady();
+
+    return targetItem;
   }
 
   private skipFirstScrollOffset = true;
