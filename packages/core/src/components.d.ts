@@ -2193,7 +2193,7 @@ export namespace Components {
          */
         "suppressTriggerVisibilityCheck": boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
         /**
@@ -4128,7 +4128,7 @@ export namespace Components {
          */
         "showPopover": () => Promise<void>;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -10550,7 +10550,7 @@ declare namespace LocalJSX {
          */
         "suppressTriggerVisibilityCheck"?: boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
     }
@@ -12606,7 +12606,7 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use simple, application-controlled IDs (letters, digits, `-`, `_`) and do not derive them from untrusted input. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
