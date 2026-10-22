@@ -17,15 +17,20 @@ import { IxKpi } from '@siemens/ix-vue';
   <div class="kpi">
     <IxKpi label="Motor speed" value="Nominal"></IxKpi>
     <IxKpi label="Motor speed" value="122.6" unit="rpm"></IxKpi>
-    <IxKpi label="Motor speed" value="122.6" state="alarm"></IxKpi>
     <IxKpi label="Motor speed" value="122.6" state="warning"></IxKpi>
+    <IxKpi label="Motor speed" value="122.6" state="danger"></IxKpi>
+    <IxKpi label="Motor speed" value="122.6" state="caution"></IxKpi>
+    <IxKpi label="Motor speed" value="122.6" state="success"></IxKpi>
+    <IxKpi label="Motor speed" value="122.6" state="information"></IxKpi>
+    <IxKpi label="Motor speed" value="122.6" state="accent"></IxKpi>
+    <IxKpi label="Motor speed" value="122.6" state="critical"></IxKpi>
 
     <IxKpi label="Motor speed" value="Nominal" orientation="vertical"></IxKpi>
     <IxKpi
       label="Motor speed"
       value="122.6"
       unit="rpm"
-      state="alarm"
+      state="danger"
       orientation="vertical"
     ></IxKpi>
   </div>

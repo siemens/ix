@@ -2985,12 +2985,17 @@ export namespace Components {
      */
     interface IxKpi {
         /**
-          * ARIA label for the alarm icon
+          * ARIA label for the `danger` status icon. Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
           * @since 3.2.0
          */
         "ariaLabelAlarmIcon"?: string;
         /**
-          * ARIA label for the warning icon
+          * ARIA label for the status icon of every state that shows an icon. Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
+          * @since 6.0.0
+         */
+        "ariaLabelStatusIcon"?: string;
+        /**
+          * ARIA label for the `warning` status icon. Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
           * @since 3.2.0
          */
         "ariaLabelWarningIcon"?: string;
@@ -3000,9 +3005,10 @@ export namespace Components {
          */
         "orientation": 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon.
           * @default 'neutral'
          */
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": Exclude<StatusVariant, 'base'>;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -11250,12 +11256,17 @@ declare namespace LocalJSX {
      */
     interface IxKpi {
         /**
-          * ARIA label for the alarm icon
+          * ARIA label for the `danger` status icon. Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
           * @since 3.2.0
          */
         "ariaLabelAlarmIcon"?: string;
         /**
-          * ARIA label for the warning icon
+          * ARIA label for the status icon of every state that shows an icon. Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
+          * @since 6.0.0
+         */
+        "ariaLabelStatusIcon"?: string;
+        /**
+          * ARIA label for the `warning` status icon. Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
           * @since 3.2.0
          */
         "ariaLabelWarningIcon"?: string;
@@ -11265,9 +11276,10 @@ declare namespace LocalJSX {
          */
         "orientation"?: 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon.
           * @default 'neutral'
          */
-        "state"?: 'neutral' | 'warning' | 'alarm';
+        "state"?: Exclude<StatusVariant, 'base'>;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -14703,9 +14715,10 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelAlarmIcon": string;
         "ariaLabelWarningIcon": string;
+        "ariaLabelStatusIcon": string;
         "value": string;
         "unit": string;
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": Exclude<StatusVariant, 'base'>;
         "orientation": 'horizontal' | 'vertical';
     }
     interface IxLayoutGridAttributes {

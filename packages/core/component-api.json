@@ -5864,6 +5864,16 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelStatusIcon",
+          "attribute": "aria-label-status-icon",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelWarningIcon",
           "attribute": "aria-label-warning-icon",
           "type": "string | undefined",
@@ -5897,7 +5907,7 @@
         {
           "name": "state",
           "attribute": "state",
-          "type": "\"alarm\" | \"neutral\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'neutral'",

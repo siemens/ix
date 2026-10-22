@@ -10,6 +10,7 @@ export const IxKpi: StencilVueComponent<JSX.IxKpi> = /*@__PURE__*/ defineContain
   'label',
   'ariaLabelAlarmIcon',
   'ariaLabelWarningIcon',
+  'ariaLabelStatusIcon',
   'value',
   'unit',
   'state',
