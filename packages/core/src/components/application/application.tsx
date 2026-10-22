@@ -60,6 +60,7 @@ export class Application {
   onForceBreakpointChange(forceBreakpoint: Breakpoint | undefined) {
     this.setBreakpoints(this.breakpoints);
     this.forceLayoutChange(forceBreakpoint);
+    this.emitLayoutContext();
   }
 
   forceLayoutChange(newMode: Breakpoint | undefined) {
@@ -125,11 +126,7 @@ export class Application {
     this.contextProvider = useContextProvider(
       this.hostElement,
       ApplicationLayoutContext,
-      {
-        hideHeader: false,
-        sidebar: this.applicationSidebarSlotted,
-        appSwitchConfig: this.appSwitchConfig,
-      }
+      this.createLayoutContext()
     );
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
@@ -164,15 +161,24 @@ export class Application {
   @Watch('appSwitchConfig')
   @Watch('applicationSidebarSlotted')
   onApplicationSidebarChange() {
+    this.emitLayoutContext();
+  }
+
+  private createLayoutContext() {
+    return {
+      hideHeader: false,
+      sidebar: this.applicationSidebarSlotted,
+      appSwitchConfig: this.appSwitchConfig,
+      forceBreakpoint: this.forceBreakpoint,
+    };
+  }
+
+  private emitLayoutContext() {
     if (!this.contextProvider) {
       console.error('Context provider not available');
       return;
     }
-    this.contextProvider.emit({
-      hideHeader: false,
-      sidebar: this.applicationSidebarSlotted,
-      appSwitchConfig: this.appSwitchConfig,
-    });
+    this.contextProvider.emit(this.createLayoutContext());
   }
 
   render() {
