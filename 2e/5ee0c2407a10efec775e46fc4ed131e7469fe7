@@ -1,0 +1,372 @@
+.changeset/date-time-require-confirmation.md
+  h_c5a773bf2fda8b 1-14
+.changeset/fix-dropdown-item-forced-layout.md
+  h_c5a773bf2fda8b 1-5
+.changeset/fix-picker-input-required-while-picking.md
+  h_c5a773bf2fda8b 1-5
+ARCHITECTURE.md
+  h_c5a773bf2fda8b 134-136
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 22,748-751,869-965
+examples/angular-examples/src/app/app-routing.module.ts
+  h_c5a773bf2fda8b 72,79,82,93,96,524-527,552-555,564-567,628-631,640-643
+examples/angular-examples/src/app/app.module.ts
+  h_c5a773bf2fda8b 81,88,91,102,105,355,362,365,381,384
+examples/angular-examples/src/preview-examples/date-dropdown-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/date-dropdown-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/date-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/date-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/date-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/date-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/datetime-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/datetime-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/datetime-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-15
+examples/angular-examples/src/preview-examples/datetime-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-standalone-examples/src/app/app.routes.ts
+  h_c5a773bf2fda8b 153-156,169-172,177-180,207-210,219-222
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/date-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/date-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/datetime-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/datetime-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/datetime-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-15
+examples/angular-standalone-examples/src/preview-examples/datetime-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/html-examples/src/preview-examples/date-dropdown-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/date-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/date-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/datetime-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/datetime-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-27
+examples/react-examples/src/main.tsx
+  h_c5a773bf2fda8b 77,79,86,97,100,355-356,525,531-532,535-536,565
+examples/react-examples/src/preview-examples/date-dropdown-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-16
+examples/react-examples/src/preview-examples/date-input-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-14
+examples/react-examples/src/preview-examples/date-picker-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-14
+examples/react-examples/src/preview-examples/datetime-input-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-20
+examples/react-examples/src/preview-examples/datetime-picker-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-21
+examples/vue-examples/src/Root.vue
+  h_c5a773bf2fda8b 74,79,86,93,96,352-353,495,497,508-509,512-513
+examples/vue-examples/src/preview-examples/date-dropdown-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/date-input-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/date-picker-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/datetime-input-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/datetime-picker-require-confirmation.vue
+  h_c5a773bf2fda8b 1-21
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 786,794-795,801,818-821,824-830,835,843,879,887-888,896,909,913-914,921-923,927-930,935-938,943,950,993-994,997,1006,1013-1014,1022,1037-1042,1047-1051,1055-1056,1059-1064,3123,3131,3167,3175-3176,3183,3195-3196,3200-3203,3206-3210
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 898,906-907,912,929-932,935-941,947,955,991,999-1000,1007,1020,1024-1025,1032-1034,1038-1041,1046-1049,1055,1062,1104-1105,1108,1118,1125-1126,1133,1148-1153,1158-1162,1166-1167,1170-1175,3235,3243,3279,3287-3288,3294,3306-3307,3311-3314,3317-3321
+packages/core/component-api.json
+  h_c5a773bf2fda8b 2518-2539,2549,2605-2615,2682-2690,2782-2803,2908-2918,3152-3173,3217-3227,3280-3287,3290,3298,3302,3306,3398-3419,3426,3564-3574,3782-3803,3931-3941,4030-4037,4040,4048,10412-10422,10825-10837,10998-11005
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 1303,1306-1317,1320,1348-1353,1439-1450,1500-1505,1582-1585,1609,1612-1623,1645-1650,1770-1777,1780-1784,1848-1853,1919-1922,1931-1934,1943-1954,2018-2023,5111-5116,5262,5264,5276,5281,5284-5289,5307-5312,5315,5318,6577,6629,6690,8001,9635-9646,9649,9678,9681-9691,9770-9781,9841-9846,9942-9953,9974-9979,9983-9984,9988,9991-9996,10099-10106,10109-10113,10168,10192-10197,10277-10288,10353-10358,10362,10366,10369-10374,13649-13654,13819-13823,13841-13846,13849,13852,13911-13916,13920,14639-14641,14672-14674,14685-14687,14729-14730,14740,14756-14758,15431,15438,15447-15448
+packages/core/src/components/action-card/action-card.vars.scss
+  h_c5a773bf2fda8b 21,24
+packages/core/src/components/avatar/avatar.vars.scss
+  h_c5a773bf2fda8b 36,39
+packages/core/src/components/badge/badge.vars.scss
+  h_c5a773bf2fda8b 72,74-78,80,82,84
+packages/core/src/components/badge/test/badge.ct.ts
+  h_c5a773bf2fda8b 379-420
+packages/core/src/components/badge/test/badge.page.ts
+  h_c5a773bf2fda8b 288-398
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 46
+packages/core/src/components/card-list/card-list.vars.scss
+  h_c5a773bf2fda8b 36-38,42
+packages/core/src/components/chat-input/chat-input.vars.scss
+  h_c5a773bf2fda8b 32
+packages/core/src/components/chat/chat.vars.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/chat/tests/density.ct.ts
+  h_c5a773bf2fda8b 30
+packages/core/src/components/date-dropdown/date-dropdown.scss
+  h_c5a773bf2fda8b 12,22,65-72,85-86
+packages/core/src/components/date-dropdown/date-dropdown.tsx
+  h_c5a773bf2fda8b 16,26,30,34-35,44-48,137-145,147-154,156-159,163-179,199-200,218-220,229-253,270-273,278-299,302-304,319-320,324-330,332-336,340,343-375,377-380,382-384,388-399,401-402,405-407,410-415,418-433,437-439,442-444,447-453,455-457,460-462,464-472,475-480,492-495,497-500,504-511,570,572-577,582,594,611,616-617,624-634
+packages/core/src/components/date-dropdown/date-dropdown.types.ts
+  h_c5a773bf2fda8b 9-14,19
+packages/core/src/components/date-dropdown/date-dropdown.vars.scss
+  h_c5a773bf2fda8b 24
+packages/core/src/components/date-dropdown/test/date-dropdown.ct.ts
+  h_c5a773bf2fda8b 9-24,26-29,271-274,445-1288
+packages/core/src/components/date-input/date-input.tsx
+  h_c5a773bf2fda8b 25,49,256-279,324-328,365,381-398,515-516,519,539-540,659-665,686-699,701-705
+packages/core/src/components/date-input/tests/date-input.ct.ts
+  h_c5a773bf2fda8b 9-10,12-15,17-18,20,22,151-178,648-921
+packages/core/src/components/date-picker/date-picker-component.ts
+  h_c5a773bf2fda8b 53-67
+packages/core/src/components/date-picker/date-picker.events.ts
+  h_c5a773bf2fda8b 9-11
+packages/core/src/components/date-picker/date-picker.scss
+  h_c5a773bf2fda8b 13,25,81
+packages/core/src/components/date-picker/date-picker.tsx
+  h_c5a773bf2fda8b 33,41-43,50,54-55,61,105-106,116-128,130-132,136-142,173-196,282-289,314,318-319,327-331,336-339,346-353,356-358,362-369,371-372,379-380,387,392-439,576-578,605-607,689-710,716,721-732,754-755,757-760,763-765,768-774,776-777,779-782,784-788,791-797,808-809,813-816,1158-1171
+packages/core/src/components/date-picker/date-picker.vars.scss
+  h_c5a773bf2fda8b 64
+packages/core/src/components/date-picker/test/date-picker.ct.ts
+  h_c5a773bf2fda8b 10-17,115-138,312,318,371-372,377-394,692-693,696,700-702,842-843,1118-1443
+packages/core/src/components/datetime-input/datetime-input.tsx
+  h_c5a773bf2fda8b 22,36-37,52,62,175-190,224-232,250-251,254,290-294,417-418,433-439,464-465,649-654,704,707-721,725-740,749,765-770,799,807,829-830,881-886,910-912,926-931
+packages/core/src/components/datetime-input/test/datetime-input.ct.ts
+  h_c5a773bf2fda8b 9-10,12-16,18-19,21,23-24,64,66,164,180,185,240,269,274,402,424,428-460,491,499-502,506-509,511-517,520-524,548,554,619,625,1686,1705-1983
+packages/core/src/components/datetime-picker/datetime-picker.scss
+  h_c5a773bf2fda8b 11,20
+packages/core/src/components/datetime-picker/datetime-picker.tsx
+  h_c5a773bf2fda8b 30-48,142-167,262-267,273-277,282-283,287-295,300-316,333-362,382,386-406,455-456,459,462-492,495-520,523-525,527-528,530-537,539-590,592-618,622-639,641-643,645,651-654,662-673,675-682,691-692,710,729-734,758,762,781-792
+packages/core/src/components/datetime-picker/datetime-picker.types.ts
+  h_c5a773bf2fda8b 9-11
+packages/core/src/components/datetime-picker/test/datetime-picker.ct.ts
+  h_c5a773bf2fda8b 10-18,209-210,214-217,265,271,334-508,510-909
+packages/core/src/components/dropdown-item/dropdown-item.tsx
+  h_c5a773bf2fda8b 129,132-133
+packages/core/src/components/dropdown-quick-actions/dropdown-quick-actions.vars.scss
+  h_c5a773bf2fda8b 16
+packages/core/src/components/event-list/event-list.vars.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/expanding-search/expanding-search.vars.scss
+  h_c5a773bf2fda8b 26
+packages/core/src/components/group-item/group-item.vars.scss
+  h_c5a773bf2fda8b 28-29
+packages/core/src/components/group/group.vars.scss
+  h_c5a773bf2fda8b 33-34,36-37
+packages/core/src/components/info-page/info-page.scss
+  h_c5a773bf2fda8b 34-37
+packages/core/src/components/info-page/info-page.vars.scss
+  h_c5a773bf2fda8b 12,17
+packages/core/src/components/info-page/test/info-page.ct.ts
+  h_c5a773bf2fda8b 93,97,101,107-114
+packages/core/src/components/input/input.vars.scss
+  h_c5a773bf2fda8b 77
+packages/core/src/components/input/tests/density.ct.ts
+  h_c5a773bf2fda8b 44,62
+packages/core/src/components/input/tests/validation.ct.ts
+  h_c5a773bf2fda8b 876,914
+packages/core/src/components/key-value/key-value.vars.scss
+  h_c5a773bf2fda8b 16
+packages/core/src/components/kpi/kpi.vars.scss
+  h_c5a773bf2fda8b 36
+packages/core/src/components/menu-about-news/menu-about-news.vars.scss
+  h_c5a773bf2fda8b 33
+packages/core/src/components/menu-avatar/menu-avatar.vars.scss
+  h_c5a773bf2fda8b 28-29
+packages/core/src/components/menu-category/menu-category.vars.scss
+  h_c5a773bf2fda8b 31
+packages/core/src/components/menu-item/menu-item.vars.scss
+  h_c5a773bf2fda8b 27,32-36
+packages/core/src/components/menu/menu.vars.scss
+  h_c5a773bf2fda8b 29
+packages/core/src/components/message-bar/message-bar.vars.scss
+  h_c5a773bf2fda8b 30
+packages/core/src/components/pagination/pagination.vars.scss
+  h_c5a773bf2fda8b 15,18
+packages/core/src/components/pill/pill.vars.scss
+  h_c5a773bf2fda8b 20-21
+packages/core/src/components/progress-indicator/progress-indicator.vars.scss
+  h_c5a773bf2fda8b 47,60
+packages/core/src/components/radio/radio.vars.scss
+  h_c5a773bf2fda8b 100-101
+packages/core/src/components/range-field/tests/range-field.ct.ts
+  h_c5a773bf2fda8b 378,393
+packages/core/src/components/select/select.scss
+  h_c5a773bf2fda8b 22,112-113
+packages/core/src/components/select/select.tsx
+  h_c5a773bf2fda8b 1105,1121
+packages/core/src/components/select/select.vars.scss
+  h_c5a773bf2fda8b 43-45
+packages/core/src/components/tab-item/tab-item.vars.scss
+  h_c5a773bf2fda8b 49,53-54
+packages/core/src/components/tile/tile.vars.scss
+  h_c5a773bf2fda8b 28
+packages/core/src/components/time-input/test/time-input-locale.spec.ts
+  h_c5a773bf2fda8b 21
+packages/core/src/components/time-input/test/time-input.ct.ts
+  h_c5a773bf2fda8b 9-21,113-116,165-168,339-342,539-744
+packages/core/src/components/time-input/time-input.tsx
+  h_c5a773bf2fda8b 39,52,62,319-326,374-378,461-462,611,615,630-631,659-664,751-755,775-781,790,796
+packages/core/src/components/time-picker/test/time-picker-constraints.spec.ts
+  h_c5a773bf2fda8b 13,16,151-238
+packages/core/src/components/time-picker/test/time-picker-locale.spec.ts
+  h_c5a773bf2fda8b 27
+packages/core/src/components/time-picker/test/time-picker.ct.ts
+  h_c5a773bf2fda8b 10-17,21-22,254,275,361-363,492-494,573,631-633,700-704,709,744,813-1208
+packages/core/src/components/time-picker/time-picker-constraints.ts
+  h_c5a773bf2fda8b 70-122
+packages/core/src/components/time-picker/time-picker.scss
+  h_c5a773bf2fda8b 13,22
+packages/core/src/components/time-picker/time-picker.tsx
+  h_c5a773bf2fda8b 28,32,39,54,127,153-155,157,314,320,324-326,355,361-362,364-371,430-431,436-439,444-452,456-458,462,468-476,479-541,590,594,616-619,840,871-872,878-881,890,894-895,898,900,903,908,911,913,950,965-966,1052,1193-1203,1345-1348,1352,1354-1361,1365-1369,1467,1602-1613
+packages/core/src/components/toast/toast.vars.scss
+  h_c5a773bf2fda8b 23-26
+packages/core/src/components/toggle/toggle.scss
+  h_c5a773bf2fda8b 69-71
+packages/core/src/components/toggle/toggle.vars.scss
+  h_c5a773bf2fda8b 228-229
+packages/core/src/components/utils/condition-checks.ts
+  h_c5a773bf2fda8b 36-40
+packages/core/src/components/utils/confirmation-footer/confirmation-footer.fc.tsx
+  h_c5a773bf2fda8b 1-120
+packages/core/src/components/utils/confirmation-footer/confirmation-footer.mixins.scss
+  h_c5a773bf2fda8b 1-45
+packages/core/src/components/utils/confirmation-footer/confirmation-footer.types.ts
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/utils/datetime/calendar.util.ts
+  h_c5a773bf2fda8b 8,224-245
+packages/core/src/components/utils/datetime/date-time.types.ts
+  h_c5a773bf2fda8b 1-23
+packages/core/src/components/utils/datetime/pending-selection.ts
+  h_c5a773bf2fda8b 1-103
+packages/core/src/components/utils/input/picker-input.util.ts
+  h_c5a773bf2fda8b 88-128
+packages/core/src/components/utils/test/calendar.util.spec.ts
+  h_c5a773bf2fda8b 16-18,25,485-538
+packages/core/src/components/utils/test/condition-checks.spec.ts
+  h_c5a773bf2fda8b 1-21
+packages/core/src/components/utils/test/date-locale.spec.ts
+  h_c5a773bf2fda8b 14
+packages/core/src/components/utils/test/luxon-datetime-format-masks.spec.ts
+  h_c5a773bf2fda8b 13
+packages/core/src/components/utils/test/pending-selection.spec.ts
+  h_c5a773bf2fda8b 1-155
+packages/core/src/components/utils/test/picker-input.util.spec.ts
+  h_c5a773bf2fda8b 1-59
+packages/core/src/public-api.ts
+  h_c5a773bf2fda8b 14-17
+packages/core/src/tests/utils/test/date-time.ts
+  h_c5a773bf2fda8b 1-169
+packages/core/src/tests/utils/test/index.ts
+  h_c5a773bf2fda8b 12,49-116
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 627-630,650-652,695-698,708-709,723-725,774-775,784-785,795-796,815-817,2143-2144,2153-2154,2164,2173-2174
+packages/react/src/components/components.ts
+  h_c5a773bf2fda8b 479-482,489-492,518-519,530-531,562-563,574-575,1491-1492,1502-1503
+packages/storybook-docs/src/stories/date-dropdown.stories.ts
+  h_c5a773bf2fda8b 35-42
+packages/storybook-docs/src/stories/date-picker.stories.tsx
+  h_c5a773bf2fda8b 25-40
+packages/storybook-docs/src/stories/datetime-input/accessibility/a11y-datetime-input.stories.ts
+  h_c5a773bf2fda8b 13,124-162
+packages/storybook-docs/src/stories/datetime-picker.stories.tsx
+  h_c5a773bf2fda8b 27-35
+packages/storybook-docs/src/stories/input-date.stories.ts
+  h_c5a773bf2fda8b 38-45
+packages/storybook-docs/src/stories/input-datetime.stories.ts
+  h_c5a773bf2fda8b 38-45
+packages/vue/src/components/ix-date-dropdown.ts
+  h_c5a773bf2fda8b 26-28,31-32,34-35
+packages/vue/src/components/ix-date-input.ts
+  h_c5a773bf2fda8b 36-38
+packages/vue/src/components/ix-date-picker.ts
+  h_c5a773bf2fda8b 18-20,33-34,38-39
+packages/vue/src/components/ix-datetime-input.ts
+  h_c5a773bf2fda8b 31-32,42
+packages/vue/src/components/ix-datetime-picker.ts
+  h_c5a773bf2fda8b 23-25,41-42,46-47
+packages/vue/src/components/ix-time-input.ts
+  h_c5a773bf2fda8b 45
+packages/vue/src/components/ix-time-picker.ts
+  h_c5a773bf2fda8b 14,23-24,33-34,37-38
+testing/framework-tests/__snapshots__/date-dropdown-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/date-input-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/date-picker-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-56
+testing/framework-tests/__snapshots__/datetime-input-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/datetime-picker-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-206
+testing/framework-tests/tests/generated/axe.ts
+  h_c5a773bf2fda8b 61,67,70,80,83,256
+testing/framework-tests/tests/generated/date-dropdown-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-dropdown-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-input-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-input-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-picker-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-picker-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-input-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-input-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-picker-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-picker-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/index.ts
+  h_c5a773bf2fda8b 118-119,132-133,139-140,158-159,165-166,512
+testing/framework-tests/tests/generated/test-ids.autogenerated.ts
+  h_c5a773bf2fda8b 191,195,204,208,214,275
+testing/framework-tests/tests/working-with-axe.spec.ts
+  h_c5a773bf2fda8b 91-97
+testing/framework-tests/tests/working.spec.ts
+  h_c5a773bf2fda8b 91-97
+testing/visual-testing/tests/date-dropdown/date-dropdown.e2e.ts
+  h_c5a773bf2fda8b 63-72
+testing/visual-testing/tests/date-dropdown/require-confirmation/index.html
+  h_c5a773bf2fda8b 1-35
+testing/visual-testing/tests/date-picker/date-picker.e2e.ts
+  h_c5a773bf2fda8b 53-65
+testing/visual-testing/tests/date-picker/require-confirmation/index.html
+  h_c5a773bf2fda8b 1-34
+testing/visual-testing/tests/datetime-picker/datetime-picker.e2e.ts
+  h_c5a773bf2fda8b 29-33
+testing/visual-testing/tests/datetime-picker/require-confirmation/index.html
+  h_c5a773bf2fda8b 1-36
+testing/visual-testing/tests/pagination/advanced/index.html
+  h_c5a773bf2fda8b 32
+testing/visual-testing/tests/slider/slider.e2e.ts
+  h_c5a773bf2fda8b 376-377
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "2e5ee0c2407a10efec775e46fc4ed131e7469fe7",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
