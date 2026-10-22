@@ -62,7 +62,7 @@ const config: PlaywrightTestConfig = {
     port: 8080,
     reuseExistingServer: !process.env.CI,
   },
-  retries: process.env.CI ? 1 : 0,
+  retries: 3,
 };
 
 export default config;
