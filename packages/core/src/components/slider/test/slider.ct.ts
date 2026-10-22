@@ -110,6 +110,7 @@ regressionTest(`form-readiness`, async ({ mount, page }) => {
   });
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'ix-slider', page);
-  expect(formData).toBe('50');
+  await expect
+    .poll(() => getFormValue(formElement, 'ix-slider', page))
+    .toBe('50');
 });

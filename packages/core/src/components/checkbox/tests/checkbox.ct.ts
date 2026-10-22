@@ -21,8 +21,9 @@ regressionTest(`form-ready`, async ({ mount, page }) => {
   preventFormSubmission(formElement);
   await page.locator('ix-checkbox').click();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('on');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-field-name', page))
+    .toBe('on');
 });
 
 regressionTest(`form-ready with value`, async ({ mount, page }) => {
@@ -34,8 +35,9 @@ regressionTest(`form-ready with value`, async ({ mount, page }) => {
   preventFormSubmission(formElement);
   await page.locator('ix-checkbox').click();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('custom-value');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-field-name', page))
+    .toBe('custom-value');
 });
 
 regressionTest(`form-ready default active`, async ({ mount, page }) => {
@@ -45,8 +47,9 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('on');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-field-name', page))
+    .toBe('on');
 });
 
 regressionTest(`disabled`, async ({ mount, page }) => {

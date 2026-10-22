@@ -726,8 +726,9 @@ test('form-ready', async ({ mount, page }) => {
   const inputValue = await select.locator('input').inputValue();
   expect(inputValue).toEqual('Item 2');
 
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('2');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-custom-entry', page))
+    .toEqual('2');
 });
 
 test('form-ready - with initial value', async ({ mount, page }) => {
@@ -743,8 +744,9 @@ test('form-ready - with initial value', async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   await preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('some other');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-custom-entry', page))
+    .toEqual('some other');
 });
 
 test.describe('Events', () => {

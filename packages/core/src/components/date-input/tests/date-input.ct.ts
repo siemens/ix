@@ -408,8 +408,9 @@ regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await input.fill('2024/05/05');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('2024/05/05');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-field-name', page))
+    .toBe('2024/05/05');
 });
 
 regressionTest(
@@ -424,8 +425,9 @@ regressionTest(
     const componentValue = await page
       .locator('ix-date-input')
       .evaluate((el: HTMLIxDateInputElement) => el.value);
-    const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe(componentValue);
+    await expect
+      .poll(() => getFormValue(formElement, 'my-field-name', page))
+      .toBe(componentValue);
   }
 );
 
