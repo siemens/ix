@@ -32,6 +32,7 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   checkInternalValidity,
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
@@ -74,6 +75,14 @@ export class Textarea implements IxInputFieldComponent<string> {
    * Determines if the textarea field is required.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Determines if the textarea field is disabled.
@@ -223,6 +232,17 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(
+        this,
+        this.textAreaRef.current,
+        this.touched
+      );
+    }
   }
 
   disconnectedCallback() {

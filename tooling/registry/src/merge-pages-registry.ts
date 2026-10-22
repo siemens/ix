@@ -26,6 +26,9 @@ type RegistryLlms = {
   components: string;
   examples?: string;
   patterns: string;
+  catalog?: string;
+  figma?: string;
+  exampleIndexes?: Record<string, string>;
 };
 
 type RegistryVersionEntryWithLlms = RegistryVersionEntryCommon & {
@@ -156,6 +159,20 @@ function prefixLlms(
       ? prefixVersionPath(version, llms.examples)
       : undefined,
     patterns: prefixVersionPath(version, llms.patterns),
+    ...(llms.catalog
+      ? { catalog: prefixVersionPath(version, llms.catalog) }
+      : {}),
+    ...(llms.figma ? { figma: prefixVersionPath(version, llms.figma) } : {}),
+    ...(llms.exampleIndexes
+      ? {
+          exampleIndexes: Object.fromEntries(
+            Object.entries(llms.exampleIndexes).map(([framework, value]) => [
+              framework,
+              prefixVersionPath(version, value),
+            ])
+          ),
+        }
+      : {}),
   };
 }
 
@@ -320,6 +337,19 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
     })
     .join('\n');
 
+  const catalogLinks = versions
+    .map((version) => {
+      const entry = registry.versions[version];
+      const catalogPath = entry.llms?.catalog;
+
+      if (!catalogPath) {
+        return `- ${version}: Component catalog unavailable; use component docs.`;
+      }
+
+      return `- [${version} catalog](${catalogPath}): Compact one-line-per-component list with React/Vue names and Figma IDs for ${version}.`;
+    })
+    .join('\n');
+
   const componentLinks = versions
     .map((version) => {
       const entry = registry.versions[version];
@@ -365,7 +395,7 @@ function renderRootLlmsTxt(registry: RegistryIndex): string {
 
 Check the version of "iX" you are using in your project and select the corresponding registry version below for the most compatible LLM context e.g if @siemens/ix-react version 5.0.0 is installed, the 5.0.0 registry version will likely have the most relevant and accurate LLM context.
 
-Recommended flow: choose a version, open its versioned llms.txt, then open component docs for exact API usage, example docs for practical framework code, or pattern docs for complete copyable UI patterns.
+Recommended flow: choose a version, open its versioned llms.txt, then open the component catalog to choose components, component detail docs for exact API usage, per-framework example indexes for practical framework code, or pattern docs for complete copyable UI patterns. Everything is plain Markdown that can be read or fetched without tooling.
 
 Component docs contain properties, events, slots, documentation links, related examples, Figma main component IDs, and relationship availability. Figma IDs identify design-system counterparts and should be used for mapping design resources to iX components, not as runtime APIs.
 
@@ -380,6 +410,10 @@ Latest registry tag: ${latest ?? 'unavailable'}.
 ## Registry versions
 
 ${versionLinks || '- No registry versions available.'}
+
+## Component catalogs
+
+${catalogLinks || '- No component catalogs available.'}
 
 ## Component docs
 

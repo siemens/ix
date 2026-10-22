@@ -558,31 +558,18 @@ regressionTest.describe('nested dropdown 2/3', () => {
     const nestedDropdown = page.locator('ix-dropdown').nth(1);
     const nestedDropdownItem = nestedDropdown.locator('ix-dropdown-item');
 
+    await expect(trigger1).toHaveAttribute(
+      'data-ix-dropdown-trigger',
+      /dropdown-/
+    );
     await trigger1.click();
-    await expect(trigger2).toBeAttached();
-    try {
-      await expect
-        .poll(
-          () => parentDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show),
-          {
-            timeout: 5000,
-          }
-        )
-        .toBe(true);
-    } catch {
-      await parentDropdown.evaluate((dd: HTMLIxDropdownElement) => {
-        dd.show = true;
-      });
-    }
-    await page.evaluate(() => {
-      const trigger = document.getElementById('trigger2') as HTMLButtonElement;
-      trigger.click();
-    });
-    await expect
-      .poll(() =>
-        nestedDropdown.evaluate((dd: HTMLIxDropdownElement) => dd.show)
-      )
-      .toBe(true);
+    await expect(parentDropdown).toHaveAttribute('show');
+    await expect(trigger2).toHaveAttribute(
+      'data-ix-dropdown-trigger',
+      /dropdown-/
+    );
+    await trigger2.click();
+    await expect(nestedDropdown).toHaveAttribute('show');
 
     await expect(nestedDropdownItem).toHaveAttribute('hydrated');
   });
@@ -1068,6 +1055,45 @@ regressionTest.describe('A11y', () => {
       }
     );
   });
+
+  regressionTest(
+    'Tab continues within the shadow root of the trigger',
+    async ({ mount, page }) => {
+      await mount(html`
+        <test-shadow-host></test-shadow-host>
+        <button>Outside</button>
+      `);
+      await page.evaluate(() => {
+        const host = document.querySelector('test-shadow-host')!;
+        const shadowRoot = host.attachShadow({ mode: 'open' });
+        shadowRoot.innerHTML = `
+          <button id="trigger">Open</button>
+          <ix-dropdown navigation-mode="roving-tabindex">
+            <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          </ix-dropdown>
+          <button>Inside next</button>
+        `;
+        shadowRoot.querySelector<HTMLIxDropdownElement>(
+          'ix-dropdown'
+        )!.trigger = shadowRoot.querySelector<HTMLElement>('#trigger')!;
+      });
+
+      const dropdown = page.locator('ix-dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Open' }).focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(
+        page.getByRole('menuitem', { name: 'Item 1' })
+      ).toBeFocused();
+
+      await page.keyboard.press('Tab');
+      await expect(dropdown).not.toHaveClass(/show/);
+      await expect(
+        page.getByRole('button', { name: 'Inside next' })
+      ).toBeFocused();
+    }
+  );
 
   regressionTest(
     'moves focus to the first enabled item in a roving submenu',

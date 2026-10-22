@@ -95,7 +95,17 @@
                 "entrypoint": { "type": "string", "pattern": "\\.txt$" },
                 "components": { "type": "string", "pattern": "\\.md$" },
                 "examples": { "type": "string", "pattern": "\\.md$" },
-                "patterns": { "type": "string", "pattern": "\\.md$" }
+                "patterns": { "type": "string", "pattern": "\\.md$" },
+                "catalog": { "type": "string", "pattern": "\\.md$" },
+                "figma": { "type": "string", "pattern": "\\.md$" },
+                "exampleIndexes": {
+                  "type": "object",
+                  "description": "Per-framework compact example index files",
+                  "additionalProperties": {
+                    "type": "string",
+                    "pattern": "\\.md$"
+                  }
+                }
               },
               "additionalProperties": false
             }
@@ -161,7 +171,17 @@
             "entrypoint": { "type": "string", "pattern": "\\.txt$" },
             "components": { "type": "string", "pattern": "\\.md$" },
             "examples": { "type": "string", "pattern": "\\.md$" },
-            "patterns": { "type": "string", "pattern": "\\.md$" }
+            "patterns": { "type": "string", "pattern": "\\.md$" },
+            "catalog": { "type": "string", "pattern": "\\.md$" },
+            "figma": { "type": "string", "pattern": "\\.md$" },
+            "exampleIndexes": {
+              "type": "object",
+              "description": "Per-framework compact example index files",
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "\\.md$"
+              }
+            }
           },
           "additionalProperties": false
         },

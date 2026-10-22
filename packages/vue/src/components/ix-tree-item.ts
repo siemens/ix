@@ -12,6 +12,8 @@ export const IxTreeItem: StencilVueComponent<JSX.IxTreeItem> = /*@__PURE__*/ def
   'context',
   'disabled',
   'ariaLabelChevronIcon',
+  'ariaLabelTreeCollapsed',
+  'ariaLabelTreeExpanded',
   'toggle',
   'itemClick'
 ], [

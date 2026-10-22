@@ -2,6 +2,6 @@
 '@siemens/ix': patch
 ---
 
-Expose custom validation (`ix-invalid` class) of `ix-input` and `ix-textarea` to assistive technology: the native control keeps `aria-invalid="true"`, and `aria-errormessage` now references the id of the error message element instead of containing the error text. The ARIA attributes also follow when `ix-invalid` is added or removed without user interaction, and the error message is no longer referenced by `aria-describedby` once the control is valid. With several controls on one page, each control now gets its own ARIA attributes on load.
+Expose custom validation (`ix-invalid` class) of `ix-input` and `ix-textarea` to assistive technology: `aria-errormessage` now only references the id of the error message element instead of containing the error text, `ix-textarea` links its error message like `ix-input`, and the ARIA attributes follow when `ix-invalid` is added or removed without user interaction.
 
 Fixes #2863
