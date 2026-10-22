@@ -32,8 +32,7 @@ const config: PlaywrightTestConfig = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   // eslint-disable-next-line turbo/no-undeclared-env-vars
   forbidOnly: !!process.env.CI,
-  /* Opt out of parallel tests on CI. */
-  workers: 10,
+  workers: process.env.CI ? '100%' : '50%',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -49,7 +48,7 @@ const config: PlaywrightTestConfig = {
     },
   },
   testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),
-  reporter: 'list',
+  reporter: process.env.CI ? [['blob'], ['list']] : 'list',
   projects: [
     {
       name: `chromium`,
@@ -63,7 +62,7 @@ const config: PlaywrightTestConfig = {
     port: 8080,
     reuseExistingServer: !process.env.CI,
   },
-  retries: 3,
+  retries: process.env.CI ? 1 : 0,
 };
 
 export default config;
