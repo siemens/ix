@@ -2527,7 +2527,7 @@ export namespace Components {
          */
         "index": number;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -10769,7 +10769,7 @@ declare namespace LocalJSX {
          */
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */

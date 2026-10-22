@@ -4824,7 +4824,7 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"filled\" | \"information\" | \"neutral\" | \"outline\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'filled'",
