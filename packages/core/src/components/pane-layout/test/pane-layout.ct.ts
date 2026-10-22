@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForRender } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane-layout></ix-pane-layout>`);
@@ -54,7 +54,7 @@ regressionTest.describe('pane-layout with floating pane', () => {
     await page.waitForSelector('h1');
     const title = page.locator('h1');
     // timeout to make sure it is currently not closing
-    await page.waitForTimeout(1000);
+    await waitForRender(page);
     await expect(title).toBeVisible();
   });
 
@@ -82,7 +82,7 @@ regressionTest.describe('pane-layout with floating pane', () => {
 
       await page.setViewportSize({ width: 375, height: 667 });
 
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       const mobileLayout = page.locator('.col');
       await expect(mobileLayout).toBeVisible();
@@ -104,13 +104,13 @@ regressionTest.describe('pane-layout with floating pane', () => {
     `);
 
       await page.setViewportSize({ width: 1024, height: 768 });
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       await page.setViewportSize({ width: 375, height: 667 });
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       await page.setViewportSize({ width: 1024, height: 768 });
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       const leftPane = page.locator('ix-pane[slot="left"]');
       const topPane = page.locator('ix-pane[slot="top"]');

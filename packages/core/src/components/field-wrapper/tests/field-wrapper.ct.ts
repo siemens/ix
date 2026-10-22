@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForRender } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(
@@ -65,7 +65,7 @@ regressionTest(
       (e.helperText as any) = null;
     });
 
-    await page.waitForTimeout(100);
+    await waitForRender(page);
     const helperTextElement = fieldWrapperElement
       .locator('.field-bottom')
       .locator('ix-typography.bottom-text')
@@ -145,7 +145,7 @@ regressionTest(
     const tooltip = fieldWrapperElement.locator('ix-tooltip');
     await expect(tooltip).toHaveCount(0);
     await page.mouse.move(10, 10);
-    await page.waitForTimeout(100);
+    await waitForRender(page);
     await expect(tooltip).toHaveCount(0);
   }
 );
@@ -166,11 +166,11 @@ regressionTest(
     await fieldWrapperElement.evaluate((e: HTMLIxFieldWrapperElement) => {
       (e.helperText as any) = null;
     });
-    await page.waitForTimeout(100);
+    await waitForRender(page);
     const tooltip = fieldWrapperElement.locator('ix-tooltip');
     await expect(tooltip).not.toBeVisible();
     await page.mouse.move(10, 10);
-    await page.waitForTimeout(100);
+    await waitForRender(page);
     await expect(tooltip).not.toBeVisible();
   }
 );
@@ -224,7 +224,7 @@ regressionTest(
     await expect(bottomTextElement).toHaveCount(0);
 
     await page.mouse.move(10, 10);
-    await page.waitForTimeout(500);
+    await waitForRender(page);
 
     const tooltip = fieldWrapperElement.locator('ix-tooltip');
     await expect(tooltip).toHaveCount(0);
@@ -254,7 +254,7 @@ regressionTest(
     await expect(bottomTextElement).toHaveCount(0);
 
     await page.mouse.move(10, 10);
-    await page.waitForTimeout(500);
+    await waitForRender(page);
 
     const tooltip = fieldWrapperElement.locator('ix-tooltip');
 

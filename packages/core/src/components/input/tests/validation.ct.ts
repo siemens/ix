@@ -935,7 +935,7 @@ test.describe('ixChange event', () => {
 
         await component.evaluate(setElementValue, 'programmatic');
 
-        await page.waitForTimeout(100);
+        await waitForRender(page);
 
         const emitted = await page.evaluate(getIxChangeEmitted);
         expect(emitted).toBe(false);
@@ -958,7 +958,7 @@ test.describe('ixChange event', () => {
         el.value = '2024/12/31';
       });
 
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       const emitted = await page.evaluate(getIxChangeEmitted);
       expect(emitted).toBe(false);
@@ -978,7 +978,7 @@ test.describe('ixChange event', () => {
         el.value = '23:59:59';
       });
 
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       const emitted = await page.evaluate(getIxChangeEmitted);
       expect(emitted).toBe(false);
@@ -1000,7 +1000,7 @@ test.describe('ixChange event', () => {
         el.value = '2024/12/31 23:59:59';
       });
 
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       const emitted = await page.evaluate(getIxChangeEmitted);
       expect(emitted).toBe(false);

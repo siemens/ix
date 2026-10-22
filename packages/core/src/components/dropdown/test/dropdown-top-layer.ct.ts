@@ -186,8 +186,6 @@ regressionTest.describe('enableTopLayer feature', () => {
         const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
 
-        await page.waitForTimeout(100);
-
         await expect(async () => {
           const triggerBox = await trigger.boundingBox();
           const dialogBox = await dialog.boundingBox();
@@ -257,8 +255,6 @@ regressionTest.describe('enableTopLayer feature', () => {
 
         const dialog = page.getByRole('dialog');
         await expect(dialog).toBeVisible();
-
-        await page.waitForTimeout(100);
 
         await expect(async () => {
           const dialogBox = await dialog.boundingBox();

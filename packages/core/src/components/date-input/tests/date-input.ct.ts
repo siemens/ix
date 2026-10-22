@@ -193,7 +193,7 @@ regressionTest('required', async ({ mount, page }) => {
   );
 
   await input.focus();
-  await page.waitForTimeout(50);
+  await waitForRender(page);
   await input.blur();
 
   await expect(dateInputElement).toHaveClass(/ix-invalid--required/, {

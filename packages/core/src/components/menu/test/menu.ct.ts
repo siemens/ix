@@ -8,7 +8,7 @@
  */
 import { expect, Locator, Page } from '@playwright/test';
 import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForRender } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -400,13 +400,13 @@ regressionTest(
 async function clickAboutButton(element: Locator, page: Page) {
   const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
   await aboutButton.click();
-  await page.waitForTimeout(1000);
+  await waitForRender(page);
 }
 
 async function clickSettingsButton(element: Locator, page: Page) {
   const settingsButton = element.locator('ix-menu-item#settings');
   await settingsButton.click();
-  await page.waitForTimeout(1000);
+  await waitForRender(page);
 }
 
 regressionTest(

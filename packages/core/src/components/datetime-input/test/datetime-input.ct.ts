@@ -555,7 +555,7 @@ regressionTest(
     ).not.toBeVisible();
 
     // Wait a bit to ensure no event is fired
-    await page.waitForTimeout(100);
+    await waitForRender(page);
 
     const eventFired = await dateTimeInput.evaluate(
       (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
@@ -584,9 +584,9 @@ regressionTest(
 
     // Focus and blur without changing value
     await input.focus();
-    await page.waitForTimeout(50);
+    await waitForRender(page);
     await input.blur();
-    await page.waitForTimeout(100);
+    await waitForRender(page);
 
     const eventFired = await dateTimeInput.evaluate(
       (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
@@ -626,7 +626,7 @@ regressionTest(
     ).not.toBeVisible();
 
     // Wait to ensure no event is fired
-    await page.waitForTimeout(100);
+    await waitForRender(page);
 
     const eventFired = await dateTimeInput.evaluate(
       (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
@@ -1526,7 +1526,7 @@ regressionTest('required field validation', async ({ mount, page }) => {
 
   await input.focus();
   // Small delay between focus and blur
-  await page.waitForTimeout(50);
+  await waitForRender(page);
   await input.blur();
 
   await expect(dateTimeInput).toHaveClass(/ix-invalid--required/, {
