@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Locator, Page } from '@playwright/test';
+import { ElementHandle, expect, Locator, Page } from '@playwright/test';
 import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
 import {
   expectCollectedAfterRemoval,
@@ -570,6 +570,19 @@ regressionTest(
   'is garbage collected after it was removed',
   async ({ mount, page }) => {
     const menu = await mount(`<ix-menu></ix-menu>`);
+    await expectCollectedAfterRemoval(page, menu);
+  }
+);
+
+regressionTest(
+  'is garbage collected after it was removed from the application',
+  async ({ mount, page }) => {
+    const application = await mount(`
+      <ix-application>
+        <ix-menu></ix-menu>
+      </ix-application>
+    `);
+    const menu = (await application.$('ix-menu')) as ElementHandle<HTMLElement>;
     await expectCollectedAfterRemoval(page, menu);
   }
 );

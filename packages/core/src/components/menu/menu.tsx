@@ -32,7 +32,11 @@ import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
-import { ContextType, useContextConsumer } from '../utils/context';
+import {
+  ContextConsumerSubscription,
+  ContextType,
+  useContextConsumer,
+} from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
@@ -208,6 +212,7 @@ export class Menu {
     | HTMLIxMenuCategoryElement;
   private themeNameDisposer?: Disposable;
   private breakpointChangeDisposable?: Disposable;
+  private applicationLayoutContextSubscription?: ContextConsumerSubscription;
 
   // FBC IAM workaround #488
   private readonly isVisible = (elm: HTMLElement) => {
@@ -366,8 +371,12 @@ export class Menu {
 
   componentWillLoad() {
     this.updateBottomSlotState();
+    this.consumeApplicationLayoutContext();
+    this.onBreakpointChange(applicationLayoutService.breakpoint, true);
+  }
 
-    useContextConsumer(
+  private consumeApplicationLayoutContext() {
+    this.applicationLayoutContextSubscription = useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
       (ctx) => {
@@ -381,8 +390,6 @@ export class Menu {
       },
       true
     );
-
-    this.onBreakpointChange(applicationLayoutService.breakpoint, true);
   }
 
   componentDidRender() {
@@ -398,6 +405,10 @@ export class Menu {
     this.breakpointChangeDisposable = applicationLayoutService.onChange.on(
       (breakpoint) => this.onBreakpointChange(breakpoint)
     );
+    // A reattached menu does not run componentWillLoad again
+    if (this.applicationLayoutContextSubscription) {
+      this.consumeApplicationLayoutContext();
+    }
     this.onBreakpointChange(applicationLayoutService.breakpoint);
 
     this.updateThemeState();
@@ -412,6 +423,7 @@ export class Menu {
     this.breakpointChangeDisposable = undefined;
     this.themeNameDisposer?.dispose();
     this.themeNameDisposer = undefined;
+    this.applicationLayoutContextSubscription?.unsubscribe();
     menuController.unregister(this.hostElement);
   }
 
