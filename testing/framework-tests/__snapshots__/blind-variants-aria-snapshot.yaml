@@ -1,40 +1,31 @@
-- button "Example sublabel" [expanded]
-- img
-- img
-- text: Example sublabel
-- region "Example sublabel"
-- button "Outline sublabel" [expanded]
-- img
-- img
-- text: Outline sublabel
-- region "Outline sublabel"
-- button "Alarm sublabel" [expanded]
-- img
-- img
-- text: Alarm sublabel
-- region "Alarm sublabel"
-- button "Critical sublabel" [expanded]
-- img
-- img
-- text: Critical sublabel
-- region "Critical sublabel"
-- button "Warning sublabel" [expanded]
-- img
-- img
-- text: Warning sublabel
-- region "Warning sublabel"
-- button "Info sublabel" [expanded]
-- img
-- img
-- text: Info sublabel
-- region "Info sublabel"
-- button "Success sublabel" [expanded]
-- img
-- img
-- text: Success sublabel
-- region "Success sublabel"
-- button "Neutral sublabel" [expanded]
-- img
-- img
-- text: Neutral sublabel
-- region "Neutral sublabel"
+- main:
+  - button "Filled sublabel" [expanded]
+  - text: Filled sublabel
+  - region "Filled sublabel"
+  - button "Outline sublabel" [expanded]
+  - text: Outline sublabel
+  - region "Outline sublabel"
+  - button "Danger sublabel" [expanded]
+  - text: Danger sublabel
+  - region "Danger sublabel"
+  - button "Warning sublabel" [expanded]
+  - text: Warning sublabel
+  - region "Warning sublabel"
+  - button "Caution sublabel" [expanded]
+  - text: Caution sublabel
+  - region "Caution sublabel"
+  - button "Information sublabel" [expanded]
+  - text: Information sublabel
+  - region "Information sublabel"
+  - button "Accent sublabel" [expanded]
+  - text: Accent sublabel
+  - region "Accent sublabel"
+  - button "Critical sublabel" [expanded]
+  - text: Critical sublabel
+  - region "Critical sublabel"
+  - button "Success sublabel" [expanded]
+  - text: Success sublabel
+  - region "Success sublabel"
+  - button "Neutral sublabel" [expanded]
+  - text: Neutral sublabel
+  - region "Neutral sublabel"

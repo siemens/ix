@@ -41,6 +41,12 @@ $dropdown-offset: var(--ix-dropdown--offset);
   display: none !important;
 }
 
+// Holds DOM focus for keyboard navigation when there is no trigger element,
+// the visual focus is shown on the dropdown items
+:host(:focus) {
+  outline: none;
+}
+
 .dialog {
   margin: 0;
   border: none;
