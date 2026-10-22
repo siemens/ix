@@ -81,4 +81,19 @@ regressionTest.describe('chat', () => {
       fullPage: true,
     });
   });
+
+  regressionTest('activity trace', async ({ page }) => {
+    await page.setViewportSize({ width: 680, height: 520 });
+    await page.goto('chat/activity-trace');
+
+    await page
+      .locator('ix-chat-trace-item[state="running"] ix-spinner')
+      .waitFor();
+    await page.getByText('Compressor C-12').waitFor();
+
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+      fullPage: true,
+    });
+  });
 });

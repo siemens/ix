@@ -30,6 +30,99 @@ regressionTest(
 );
 
 regressionTest(
+  'ix-chat-ai-message renders the trace slot above the content',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-ai-message>
+        <p>Three alarms need attention.</p>
+        <ix-chat-activity-trace slot="trace">
+          <ix-chat-trace-item label="Read alarms" state="completed"></ix-chat-trace-item>
+        </ix-chat-activity-trace>
+      </ix-chat-ai-message>
+    `);
+
+    const trace = page.getByRole('listitem');
+    const content = page.getByText('Three alarms need attention.');
+    await expect(trace).toBeVisible();
+    await expect(content).toBeVisible();
+
+    const traceBox = await trace.boundingBox();
+    const contentBox = await content.boundingBox();
+    if (!traceBox || !contentBox) {
+      throw new Error('Expected trace and content to have a bounding box');
+    }
+    expect(traceBox.y + traceBox.height).toBeLessThanOrEqual(contentBox.y);
+  }
+);
+
+regressionTest(
+  'ix-chat-ai-message shows only the trace while there is no content',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-ai-message>
+        <ix-chat-activity-trace slot="trace">
+          <ix-chat-trace-item label="Thinking…" state="running"></ix-chat-trace-item>
+        </ix-chat-activity-trace>
+      </ix-chat-ai-message>
+    `);
+
+    const message = page.locator('ix-chat-ai-message');
+    await expect(page.getByRole('listitem')).toBeVisible();
+    await expect(message.locator('.message')).toBeHidden();
+
+    await message.evaluate((element) => {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = 'First answer token';
+      element.appendChild(paragraph);
+    });
+
+    await expect(message.locator('.message')).toBeVisible();
+    await expect(page.getByText('First answer token')).toBeVisible();
+  }
+);
+
+regressionTest(
+  'ix-chat-ai-message ignores framework comment placeholders as content',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-ai-message>
+        <!--v-if-->
+        <ix-chat-activity-trace slot="trace">
+          <ix-chat-trace-item label="Thinking…" state="running"></ix-chat-trace-item>
+        </ix-chat-activity-trace>
+      </ix-chat-ai-message>
+    `);
+
+    await expect(page.getByRole('listitem')).toBeVisible();
+    await expect(
+      page.locator('ix-chat-ai-message').locator('.message')
+    ).toBeHidden();
+  }
+);
+
+regressionTest(
+  'ix-chat-ai-message with trace is accessible',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(`
+      <ix-chat-ai-message>
+        <ix-chat-activity-trace slot="trace" summary="Answer generated from 1 source">
+          <ix-chat-trace-item label="Read alarms" state="completed"></ix-chat-trace-item>
+        </ix-chat-activity-trace>
+        <p>Three alarms need attention.</p>
+      </ix-chat-ai-message>
+    `);
+    await expect(page.locator('ix-chat-activity-trace')).toHaveAttribute(
+      'hydrated'
+    );
+
+    const results = await makeAxeBuilder()
+      .include('ix-chat-ai-message')
+      .analyze();
+    expect(results.violations).toEqual([]);
+  }
+);
+
+regressionTest(
   'ix-chat-ai-message renders optional actions',
   async ({ mount, page }) => {
     await mount(`

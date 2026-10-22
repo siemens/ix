@@ -1520,6 +1520,51 @@
       "cssStates": []
     },
     {
+      "tag": "ix-chat-activity-trace",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "expanded",
+          "attribute": "expanded",
+          "type": "boolean",
+          "mutable": true,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "summary",
+          "attribute": "summary",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "expandedChange",
+          "detail": "boolean",
+          "bubbles": false,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "default",
+        "summary-meta"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
       "tag": "ix-chat-ai-message",
       "deprecated": false,
       "properties": [],
@@ -1529,7 +1574,8 @@
       "slots": [
         "actions",
         "default",
-        "sources"
+        "sources",
+        "trace"
       ],
       "cssParts": [],
       "cssStates": []
@@ -1889,6 +1935,170 @@
         "end",
         "follow-up",
         "start"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-chat-trace-item",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "expanded",
+          "attribute": "expanded",
+          "type": "boolean",
+          "mutable": true,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nStateCompleted",
+          "attribute": "i18n-state-completed",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'completed'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nStateFailed",
+          "attribute": "i18n-state-failed",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'failed'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nStateRunning",
+          "attribute": "i18n-state-running",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'running'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nStateWarning",
+          "attribute": "i18n-state-warning",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'warning'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "state",
+          "attribute": "state",
+          "type": "\"completed\" | \"failed\" | \"running\" | \"warning\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'completed'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "expandedChange",
+          "detail": "boolean",
+          "bubbles": false,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "default"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-chat-trace-item-section",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "collapsible",
+          "attribute": "collapsible",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "expanded",
+          "attribute": "expanded",
+          "type": "boolean",
+          "mutable": true,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "heading",
+          "attribute": "heading",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "expandedChange",
+          "detail": "boolean",
+          "bubbles": false,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "default"
       ],
       "cssParts": [],
       "cssStates": []

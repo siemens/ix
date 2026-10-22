@@ -22,8 +22,14 @@
 
   @include component.ix-component;
 
+  .trace {
+    display: none;
+    width: 100%;
+    min-width: 0;
+  }
+
   .message {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
@@ -71,6 +77,19 @@
   .actions ::slotted(ix-icon-button),
   .sources ::slotted(*) {
     flex: 0 0 auto;
+  }
+}
+
+:host(.has-trace) {
+  .trace {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+:host(.has-content) {
+  .message {
+    display: flex;
   }
 }
 

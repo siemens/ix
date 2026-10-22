@@ -22,9 +22,12 @@ import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxChat } from '@siemens/ix/components/ix-chat.js';
+import { defineCustomElement as defineIxChatActivityTrace } from '@siemens/ix/components/ix-chat-activity-trace.js';
 import { defineCustomElement as defineIxChatAiMessage } from '@siemens/ix/components/ix-chat-ai-message.js';
 import { defineCustomElement as defineIxChatAttachment } from '@siemens/ix/components/ix-chat-attachment.js';
 import { defineCustomElement as defineIxChatInput } from '@siemens/ix/components/ix-chat-input.js';
+import { defineCustomElement as defineIxChatTraceItem } from '@siemens/ix/components/ix-chat-trace-item.js';
+import { defineCustomElement as defineIxChatTraceItemSection } from '@siemens/ix/components/ix-chat-trace-item-section.js';
 import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/components/ix-chat-user-message.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
@@ -571,6 +574,40 @@ export declare interface IxChat extends Components.IxChat {}
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineIxChatActivityTrace,
+  inputs: ['expanded', 'summary']
+})
+@Component({
+  selector: 'ix-chat-activity-trace',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['expanded', 'summary'],
+  outputs: ['expandedChange'],
+})
+export class IxChatActivityTrace {
+  protected el: HTMLIxChatActivityTraceElement;
+  @Output() expandedChange = new EventEmitter<IxChatActivityTraceCustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxChatActivityTraceCustomEvent } from '@siemens/ix/components';
+
+export declare interface IxChatActivityTrace extends Components.IxChatActivityTrace {
+  /**
+   * Emitted when the user toggles the summary, with the requested `expanded` value.
+Call `preventDefault()` to keep the current state.
+The event does not bubble.
+   */
+  expandedChange: EventEmitter<IxChatActivityTraceCustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineIxChatAiMessage
 })
 @Component({
@@ -680,6 +717,74 @@ export declare interface IxChatInput extends Components.IxChatInput {
 Use it to cancel the running request and set `state` to `interrupting` until the Interrupt is confirmed. @since 6.1.0
    */
   promptInterrupt: EventEmitter<IxChatInputCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxChatTraceItem,
+  inputs: ['expanded', 'i18nStateCompleted', 'i18nStateFailed', 'i18nStateRunning', 'i18nStateWarning', 'icon', 'label', 'state']
+})
+@Component({
+  selector: 'ix-chat-trace-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['expanded', 'i18nStateCompleted', 'i18nStateFailed', 'i18nStateRunning', 'i18nStateWarning', 'icon', 'label', 'state'],
+  outputs: ['expandedChange'],
+})
+export class IxChatTraceItem {
+  protected el: HTMLIxChatTraceItemElement;
+  @Output() expandedChange = new EventEmitter<IxChatTraceItemCustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxChatTraceItemCustomEvent } from '@siemens/ix/components';
+
+export declare interface IxChatTraceItem extends Components.IxChatTraceItem {
+  /**
+   * Emitted when the user toggles the detail, with the requested `expanded` value.
+Call `preventDefault()` to keep the current state.
+The event does not bubble.
+   */
+  expandedChange: EventEmitter<IxChatTraceItemCustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxChatTraceItemSection,
+  inputs: ['collapsible', 'expanded', 'heading']
+})
+@Component({
+  selector: 'ix-chat-trace-item-section',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['collapsible', 'expanded', 'heading'],
+  outputs: ['expandedChange'],
+})
+export class IxChatTraceItemSection {
+  protected el: HTMLIxChatTraceItemSectionElement;
+  @Output() expandedChange = new EventEmitter<IxChatTraceItemSectionCustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxChatTraceItemSectionCustomEvent } from '@siemens/ix/components';
+
+export declare interface IxChatTraceItemSection extends Components.IxChatTraceItemSection {
+  /**
+   * Emitted when the user toggles a collapsible section, with the requested `expanded` value.
+Call `preventDefault()` to keep the current state.
+The event does not bubble.
+   */
+  expandedChange: EventEmitter<IxChatTraceItemSectionCustomEvent<boolean>>;
 }
 
 

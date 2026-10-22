@@ -63,6 +63,7 @@ import CardList from '../preview-examples/card-list';
 import CategoryFilter from '../preview-examples/category-filter';
 import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
 import Chat from '../preview-examples/chat';
+import ChatActivityTrace from '../preview-examples/chat-activity-trace';
 import ChatAiMessage from '../preview-examples/chat-ai-message';
 import ChatInput from '../preview-examples/chat-input';
 import ChatUserMessage from '../preview-examples/chat-user-message';
@@ -347,6 +348,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CategoryFilterSuggestions,
     CategoryFilter,
     Chat,
+    ChatActivityTrace,
     ChatAiMessage,
     ChatInput,
     ChatUserMessage,

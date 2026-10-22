@@ -77,6 +77,7 @@ import './generated/info-page.spec';
 
 // Chat tests
 import './generated/chat.spec';
+import './generated/chat-activity-trace.spec';
 import './generated/chat-ai-message.spec';
 import './generated/chat-input.spec';
 import './generated/chat-user-message.spec';

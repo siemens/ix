@@ -1,0 +1,168 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use 'mixins/hover';
+@use './chat-trace-item.vars';
+
+:host {
+  // Vertical distance from the item top to the marker top (marker centered in the summary row)
+  --ix-chat-trace-item-marker--offset: calc(
+    (
+        var(--ix-chat-trace-item-summary--min-height) -
+          var(--ix-chat-trace-item-marker--size)
+      ) / 2
+  );
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-chat-trace-item--gap);
+  min-width: 0;
+  color: var(--ix-chat-trace-item--color);
+  font: var(--ix-chat-trace-item--font);
+
+  @include component.ix-component;
+
+  .summary {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--ix-chat-trace-item-summary--gap);
+    max-width: 100%;
+    min-height: var(--ix-chat-trace-item-summary--min-height);
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: var(--ix-chat-trace-item-summary--border-radius);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+  }
+
+  .toggle {
+    cursor: pointer;
+
+    @include hover.hover {
+      color: var(--ix-chat-trace-item--color--hover);
+
+      .chevron {
+        opacity: 1;
+      }
+    }
+
+    @include hover.focus-visible {
+      outline: var(--ix-chat-trace-item--outline-width--focus) solid
+        var(--ix-chat-trace-item--outline-color--focus);
+      outline-offset: var(--ix-chat-trace-item--outline-offset--focus);
+
+      .chevron {
+        opacity: 1;
+      }
+    }
+  }
+
+  .marker {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: var(--ix-chat-trace-item-marker--size);
+    height: var(--ix-chat-trace-item-marker--size);
+    color: var(--ix-chat-trace-item-marker--color);
+  }
+
+  .label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .chevron {
+    flex: 0 0 auto;
+    opacity: 0;
+    transition: opacity var(--theme-default-time) ease-in-out,
+      transform var(--theme-default-time) ease-in-out;
+  }
+
+  .chevron.expanded {
+    transform: rotate(90deg);
+  }
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ix-chat-trace-item-detail--gap);
+    min-width: 0;
+    padding-inline-start: calc(
+      var(--ix-chat-trace-item-marker--size) +
+        var(--ix-chat-trace-item-summary--gap)
+    );
+  }
+
+  .detail[hidden] {
+    display: none;
+  }
+}
+
+// Decorative line that connects the marker with the marker of the next Trace item.
+// It runs along the detail of an expanded item and is not drawn after the last item.
+:host(:not(:last-of-type))::after {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(
+    var(--ix-chat-trace-item-marker--offset) +
+      var(--ix-chat-trace-item-marker--size) +
+      var(--ix-chat-trace-item-connector--spacing)
+  );
+  inset-block-end: calc(
+    var(--ix-chat-trace-item-connector--spacing) -
+      var(--ix-chat-activity-trace-items--gap, 0px) -
+      var(--ix-chat-trace-item-marker--offset)
+  );
+  inset-inline-start: calc(
+    (
+        var(--ix-chat-trace-item-marker--size) -
+          var(--ix-chat-trace-item-connector--width)
+      ) / 2
+  );
+  border-inline-start: var(--ix-chat-trace-item-connector--width) solid
+    var(--ix-chat-trace-item-connector--color);
+  pointer-events: none;
+}
+
+:host(.state-running) {
+  color: var(--ix-chat-trace-item--color--running);
+}
+
+:host(.state-warning) .marker {
+  color: var(--ix-chat-trace-item-marker--color--warning);
+}
+
+:host(.state-failed) .marker {
+  color: var(--ix-chat-trace-item-marker--color--failed);
+}
+
+@media (hover: none) {
+  :host .chevron {
+    opacity: 1;
+  }
+}

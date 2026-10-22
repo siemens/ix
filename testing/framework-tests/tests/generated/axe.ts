@@ -41,6 +41,7 @@ import './card-axe.spec.ts';
 import './card-list-axe.spec.ts';
 import './category-filter-axe.spec.ts';
 import './category-filter-suggestions-axe.spec.ts';
+import './chat-activity-trace-axe.spec.ts';
 import './chat-ai-message-axe.spec.ts';
 import './chat-axe.spec.ts';
 import './chat-input-axe.spec.ts';

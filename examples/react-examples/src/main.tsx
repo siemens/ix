@@ -59,6 +59,7 @@ import CardList from './preview-examples/card-list';
 import CategoryFilter from './preview-examples/category-filter';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions';
 import Chat from './preview-examples/chat';
+import ChatActivityTrace from './preview-examples/chat-activity-trace';
 import ChatAiMessage from './preview-examples/chat-ai-message';
 import ChatInput from './preview-examples/chat-input';
 import ChatUserMessage from './preview-examples/chat-user-message';
@@ -344,6 +345,7 @@ const routes: IxPreviewRoutes = {
   '/preview/category-filter-suggestions': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
   '/preview/chat': Chat,
+  '/preview/chat-activity-trace': ChatActivityTrace,
   '/preview/chat-ai-message': ChatAiMessage,
   '/preview/chat-input': ChatInput,
   '/preview/chat-user-message': ChatUserMessage,

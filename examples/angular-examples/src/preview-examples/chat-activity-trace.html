@@ -1,0 +1,47 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-chat class="chat-example__chat">
+  <ix-chat-ai-message>
+    <ix-chat-activity-trace
+      slot="trace"
+      summary="Analyzed compressor data"
+      [expanded]="expanded"
+      (expandedChange)="expanded = $event.detail"
+    >
+      <span slot="summary-meta">4 steps, 12 s</span>
+      <ix-chat-trace-item label="Searched maintenance logs" icon="search">
+        <ix-chat-trace-item-section heading="Asset">
+          <ix-pill variant="neutral" outline>Compressor C-12</ix-pill>
+        </ix-chat-trace-item-section>
+        <ix-chat-trace-item-section heading="Output" collapsible>
+          <p>Found 3 vibration alarms in the last 7 days.</p>
+        </ix-chat-trace-item-section>
+      </ix-chat-trace-item>
+      <ix-chat-trace-item
+        label="Read vibration-trend.csv"
+        icon="document"
+      ></ix-chat-trace-item>
+      <ix-chat-trace-item
+        label="Read service-schedule.xlsx"
+        icon="document"
+        state="failed"
+      ></ix-chat-trace-item>
+      <ix-chat-trace-item
+        label="Stopped checking spare parts"
+        icon="cogwheel"
+        state="warning"
+      ></ix-chat-trace-item>
+    </ix-chat-activity-trace>
+    <p>
+      The compressor vibration is within the expected range. Schedule the next
+      inspection during the Friday service window.
+    </p>
+  </ix-chat-ai-message>
+</ix-chat>

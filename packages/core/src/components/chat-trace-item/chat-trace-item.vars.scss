@@ -1,0 +1,35 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-chat-trace-item--color: #{sys.$si-sys-color-text-secondary};
+  --ix-chat-trace-item--color--hover: #{sys.$si-sys-color-text-primary};
+  --ix-chat-trace-item--color--running: #{sys.$si-sys-color-text-primary};
+  --ix-chat-trace-item-marker--color: #{sys.$si-sys-color-text-secondary};
+  --ix-chat-trace-item-marker--color--warning: #{sys.$si-sys-color-text-warning};
+  --ix-chat-trace-item-marker--color--failed: #{sys.$si-sys-color-text-danger};
+  --ix-chat-trace-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-chat-trace-item-connector--color: #{sys.$si-sys-color-border-3};
+}
+
+:host {
+  --ix-chat-trace-item--font: #{sys.$si-sys-typography-body};
+  --ix-chat-trace-item--gap: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-chat-trace-item-summary--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-chat-trace-item-summary--min-height: #{sys.$si-sys-sizing-size-70};
+  --ix-chat-trace-item-summary--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-chat-trace-item-marker--size: #{sys.$si-sys-sizing-size-50};
+  --ix-chat-trace-item-detail--gap: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-chat-trace-item-connector--width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-chat-trace-item-connector--spacing: #{sys.$si-sys-sizing-spacing-y-10};
+  --ix-chat-trace-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
+  --ix-chat-trace-item--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
+}
