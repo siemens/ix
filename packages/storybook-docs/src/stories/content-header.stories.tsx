@@ -23,7 +23,7 @@ const meta = {
     docs: {
       description: {
         component:
-          '`textOverflow="wrap"` is the default. Use `textOverflow="ellipsis"` to opt into visual single-line truncation. Ellipsis does not add a tooltip; use wrapping when the complete text must remain visible.',
+          '`textOverflow="wrap"` is the default. Use `textOverflow="ellipsis"` to opt into visual single-line truncation. Ellipsis does not add a tooltip; use wrapping when the complete text must remain visible. Place `ix-button` or `ix-icon-button` in `slot="secondary-actions"` to collapse them into a vertical menu on small screens or when the actions exceed the header width. Default-slot actions remain visible and wrap if necessary. Use `ariaLabelMoreActions` to localize the menu trigger, and give icon-only actions an accessible name.',
       },
     },
   },
@@ -65,6 +65,44 @@ export const TextOverflow: Story = {
           text-overflow="ellipsis"
         ></ix-content-header>
       </section>
+    </div>
+  `,
+};
+
+export const ResponsiveActions: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Resize the browser or drag the container edge. Secondary actions collapse based on available space, including on large viewports; the primary action stays visible. Long titles retain the selected text-overflow behavior, and the following content stays below the header.',
+      },
+    },
+  },
+  render: () => html`
+    <div style="resize: horizontal; overflow: auto; max-width: 100%;">
+      <ix-content-header
+        has-back-button
+        header-title="Production line overview"
+        header-subtitle="Review the current configuration and production reports"
+      >
+        ${[
+          'Discard changes',
+          'Refresh data',
+          'Export production report',
+          'Import configuration',
+          'Manage permissions',
+          'View change history',
+          'Open settings',
+        ].map(
+          (label) => html`
+            <ix-button slot="secondary-actions" variant="tertiary">
+              ${label}
+            </ix-button>
+          `
+        )}
+        <ix-button variant="primary">Save changes</ix-button>
+      </ix-content-header>
+      <p>Page content follows the header without overlap.</p>
     </div>
   `,
 };
