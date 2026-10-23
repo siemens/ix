@@ -1,0 +1,18 @@
+.changeset/eix-259-message-bar-status-variants.md
+  h_c5a773bf2fda8b 5
+packages/core/src/components/message-bar/message-bar.tsx
+  h_c5a773bf2fda8b 19,143-147
+packages/core/src/components/message-bar/test/message-bar.ct.ts
+  h_c5a773bf2fda8b 70-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "3e245f8ea82d52f8f2e49199a5dfe066b2d445be",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
