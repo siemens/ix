@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
 
 @use './time-picker.vars' as *;
 :host {
@@ -18,6 +19,7 @@
   width: fit-content;
 
   @include component.ix-component;
+  @include confirmation-footer.confirmation-footer;
 
   .standaloneAppearance {
     box-shadow: none;
@@ -163,26 +165,6 @@
 
       &::-webkit-scrollbar {
         display: none;
-      }
-    }
-  }
-
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--ix-time-picker-footer--gap);
-    flex-wrap: wrap;
-
-    .confirm-button {
-      margin-left: auto;
-    }
-
-    &--compact {
-      flex-direction: column;
-      align-items: center;
-
-      .confirm-button {
-        margin-left: initial;
       }
     }
   }

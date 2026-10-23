@@ -5,6 +5,7 @@
  */
 
 import { DateTime, Info } from 'luxon';
+import type { DateRange } from './date-time.types';
 
 /**
  * Shared date-time and calendar logic for the date components.
@@ -219,4 +220,26 @@ export function isYearWithinRange(
   const isAfter = max ? year > max.year : false;
 
   return !isBefore && !isAfter;
+}
+
+/** Whether `a` and `b` are both unset or fall on the same day. */
+export function isSameDayOrUnset(a?: DateTime, b?: DateTime): boolean {
+  if (!a || !b) {
+    return !a && !b;
+  }
+
+  return a.hasSame(b, 'day');
+}
+
+/** Whether both ranges select the same days. */
+export function isSameRange(
+  a: DateRange<DateTime>,
+  b: DateRange<DateTime>
+): boolean {
+  return isSameDayOrUnset(a.from, b.from) && isSameDayOrUnset(a.to, b.to);
+}
+
+/** Whether a range has a start but no end yet. */
+export function isPartialRange<T>(range: DateRange<T>): boolean {
+  return !!range.from && !range.to;
 }

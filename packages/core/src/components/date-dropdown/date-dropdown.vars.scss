@@ -21,9 +21,7 @@
   --ix-date-dropdown-quick-selection--gap: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-date-dropdown-quick-selection--padding: #{sys.$si-sys-sizing-spacing-y-40}
     #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-date-dropdown-button--min-width: calc(
-    #{sys.$si-sys-sizing-size-140} + #{sys.$si-sys-sizing-spacing-x-40}
-  );
+  --ix-date-dropdown-button--min-width: #{sys.$si-sys-sizing-size-140};
   --ix-date-dropdown-button--min-height: #{sys.$si-sys-sizing-size-80};
   --ix-date-dropdown-button--max-height: #{sys.$si-sys-sizing-size-80};
   --ix-date-dropdown-container--height: calc(
