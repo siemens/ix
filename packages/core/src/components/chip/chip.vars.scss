@@ -14,7 +14,7 @@
 // Naming isn't uniform across variants, so each needs an explicit mapping
 // rather than string interpolation.
 $chip-color-sys-values: (
-  alarm: (
+  danger: (
     background: sys.$si-sys-color-background-danger,
     hover: sys.$si-sys-color-background-danger-hover,
     active: sys.$si-sys-color-background-danger-active,
@@ -26,7 +26,13 @@ $chip-color-sys-values: (
     active: sys.$si-sys-color-background-critical-active,
     contrast: sys.$si-sys-color-text-on-critical,
   ),
-  info: (
+  caution: (
+    background: sys.$si-sys-color-background-caution,
+    hover: sys.$si-sys-color-background-caution-hover,
+    active: sys.$si-sys-color-background-caution-active,
+    contrast: sys.$si-sys-color-text-on-caution,
+  ),
+  information: (
     background: sys.$si-sys-color-background-information,
     hover: sys.$si-sys-color-background-information-hover,
     active: sys.$si-sys-color-background-information-active,
@@ -52,10 +58,6 @@ $chip-color-sys-values: (
   ),
 );
 
-@function chip-color-fallback($color, $key) {
-  @return map.get(map.get($chip-color-fallbacks, $color), $key);
-}
-
 @function chip-color-sys-value($color, $key) {
   @return map.get(map.get($chip-color-sys-values, $color), $key);
 }
@@ -64,8 +66,9 @@ $chip-color-sys-values: (
   --ix-chip--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-chip-close--color: #{sys.$si-sys-color-text-primary};
   --ix-chip-warning-icon--color: #{sys.$si-sys-color-text-warning};
-  --ix-chip-primary-icon--color: #{sys.$si-sys-color-text-accent};
-  @each $color in (alarm, critical, warning, info, neutral, success) {
+  --ix-chip-caution-icon--color: #{sys.$si-sys-color-text-caution};
+  --ix-chip-accent-icon--color: #{sys.$si-sys-color-text-accent};
+  @each $color in (danger, critical, caution, warning, information, neutral, success) {
     --ix-chip-#{$color}--background: #{chip-color-sys-value(
         $color,
         background
@@ -95,29 +98,28 @@ $chip-color-sys-values: (
   --ix-chip-close-button--background: rgba(0, 0, 0, 0);
   --ix-chip-close-button--background--active: #{sys.$si-sys-color-background-selected};
   --ix-chip-close-button--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-chip-close-button--color: #{sys.$si-sys-color-text-secondary};
   --ix-chip-outline--background: #{sys.$si-sys-color-background-accent-secondary};
   --ix-chip-outline--background--active: #{sys.$si-sys-color-background-selected};
   --ix-chip-outline--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-chip-outline--color: #{sys.$si-sys-color-text-primary};
-  --ix-chip-primary--background: #{sys.$si-sys-color-background-accent};
-  --ix-chip-primary--background--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-chip-primary--background--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-chip-primary--color: #{sys.$si-sys-color-text-on-accent};
-  --ix-chip-primary--color--active: #{sys.$si-sys-color-text-on-accent};
-  --ix-chip-primary--color--hover: #{sys.$si-sys-color-text-on-accent};
-  --ix-chip-primary-outline--background: #{sys.$si-sys-color-background-accent-secondary};
-  --ix-chip-primary-outline--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-chip-primary-outline--background--display: #{sys.$si-sys-color-background-accent-secondary};
-  --ix-chip-primary-outline--background--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-chip-primary-outline--border-color: #{sys.$si-sys-color-border-accent};
-  --ix-chip-primary-outline--border-color--active: #{sys.$si-sys-color-border-accent-active};
-  --ix-chip-primary-outline--border-color--display: #{sys.$si-sys-color-border-accent};
-  --ix-chip-primary-outline--border-color--hover: #{sys.$si-sys-color-border-accent-hover};
-  --ix-chip-primary-outline--color: #{sys.$si-sys-color-border-accent};
-  --ix-chip-primary-outline--color--active: #{sys.$si-sys-color-border-accent-active};
-  --ix-chip-primary-outline--color--display: #{sys.$si-sys-color-text-primary};
-  --ix-chip-primary-outline--color--hover: #{sys.$si-sys-color-border-accent-hover};
+  --ix-chip-accent--background: #{sys.$si-sys-color-background-accent};
+  --ix-chip-accent--background--active: #{sys.$si-sys-color-background-accent-active};
+  --ix-chip-accent--background--hover: #{sys.$si-sys-color-background-accent-hover};
+  --ix-chip-accent--color: #{sys.$si-sys-color-text-on-accent};
+  --ix-chip-accent--color--active: #{sys.$si-sys-color-text-on-accent};
+  --ix-chip-accent--color--hover: #{sys.$si-sys-color-text-on-accent};
+  --ix-chip-accent-outline--background: #{sys.$si-sys-color-background-accent-secondary};
+  --ix-chip-accent-outline--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
+  --ix-chip-accent-outline--background--display: #{sys.$si-sys-color-background-accent-secondary};
+  --ix-chip-accent-outline--background--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
+  --ix-chip-accent-outline--border-color: #{sys.$si-sys-color-border-accent};
+  --ix-chip-accent-outline--border-color--active: #{sys.$si-sys-color-border-accent-active};
+  --ix-chip-accent-outline--border-color--display: #{sys.$si-sys-color-border-accent};
+  --ix-chip-accent-outline--border-color--hover: #{sys.$si-sys-color-border-accent-hover};
+  --ix-chip-accent-outline--color: #{sys.$si-sys-color-border-accent};
+  --ix-chip-accent-outline--color--active: #{sys.$si-sys-color-border-accent-active};
+  --ix-chip-accent-outline--color--display: #{sys.$si-sys-color-text-primary};
+  --ix-chip-accent-outline--color--hover: #{sys.$si-sys-color-border-accent-hover};
   --ix-chip-container--outline-color--focus: #199fff;
   --ix-chip-container--background-color--hover: rgba(0, 0, 0, 0.1);
   --ix-chip-container--background-color--active: rgba(0, 0, 0, 0.2);
