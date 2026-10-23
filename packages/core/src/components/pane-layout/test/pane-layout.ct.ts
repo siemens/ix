@@ -103,21 +103,26 @@ regressionTest.describe('pane-layout with floating pane', () => {
       </ix-pane-layout>
     `);
 
-      await page.setViewportSize({ width: 1024, height: 768 });
-      await waitForRender(page);
-
-      await page.setViewportSize({ width: 375, height: 667 });
-      await waitForRender(page);
-
-      await page.setViewportSize({ width: 1024, height: 768 });
-      await waitForRender(page);
-
+      const layout = page.locator('ix-pane-layout');
+      const desktopWrapper = layout.locator('.side-panes-wrapper');
       const leftPane = page.locator('ix-pane[slot="left"]');
       const topPane = page.locator('ix-pane[slot="top"]');
 
+      await page.setViewportSize({ width: 1024, height: 768 });
+      await expect(desktopWrapper).toBeVisible();
       await expect(leftPane).toHaveCSS('z-index', '3');
       await expect(topPane).toHaveCSS('z-index', '1');
-      await expect(page.locator('.side-panes-wrapper')).toBeVisible();
+
+      await page.setViewportSize({ width: 375, height: 667 });
+      await expect(desktopWrapper).toHaveCount(0);
+      await expect(layout.locator('.col')).toBeVisible();
+      await expect(leftPane).toHaveCSS('z-index', '1');
+      await expect(topPane).toHaveCSS('z-index', '3');
+
+      await page.setViewportSize({ width: 1024, height: 768 });
+      await expect(desktopWrapper).toBeVisible();
+      await expect(leftPane).toHaveCSS('z-index', '3');
+      await expect(topPane).toHaveCSS('z-index', '1');
     }
   );
 });
