@@ -1,0 +1,14 @@
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 27-29,32,1120,1127,1129-1132,1154,1166,1169-1170,1221,1239
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "7d59a784983982bee16c5fed7ae7a10101c8d0ab",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
