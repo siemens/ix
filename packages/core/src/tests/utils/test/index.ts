@@ -34,12 +34,15 @@ export const preventFormSubmission = async (formLocator: Locator) => {
   );
 };
 
+/**
+ * Reads the current form value for `key`. Form values update asynchronously,
+ * so assert with `expect.poll(() => getFormValue(...))`.
+ */
 export const getFormValue = async (
   formLocator: Locator,
   key: string,
-  page: Page
+  _page?: Page
 ) => {
-  await page.waitForTimeout(100);
   return formLocator.evaluate((form: HTMLFormElement, key: string) => {
     const formData = new FormData(form);
     return formData.get(key);

@@ -15,7 +15,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Locator } from '@playwright/test';
-import { regressionTest, expect } from '@utils/test';
+import { regressionTest, expect, waitForRender } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
@@ -131,7 +131,7 @@ regressionTest('should show next items', async ({ mount, page }) => {
     ];
   });
 
-  await page.waitForTimeout(1000);
+  await waitForRender(page);
 
   const lastItem = breadcrumb.locator('ix-dropdown-button', {
     hasText: /Item 3/,
@@ -217,7 +217,7 @@ regressionTest.describe('keyboard navigation', () => {
       ];
     });
 
-    await page.waitForTimeout(500);
+    await waitForRender(page);
 
     const nextButton = breadcrumb.locator('ix-dropdown-button', {
       hasText: /Item 6/,
