@@ -3014,6 +3014,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -5891,6 +5896,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -7687,6 +7697,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -7694,6 +7709,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],
@@ -10231,6 +10251,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -10238,6 +10263,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],

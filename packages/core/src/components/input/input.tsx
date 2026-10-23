@@ -26,6 +26,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -34,6 +35,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  resetInputValidation,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -219,9 +221,14 @@ export class Input implements IxInputFieldComponent<string> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
+  }
+
+  @Watch('value')
+  onValueChange(newValue: string) {
+    this.updateFormInternalValue(newValue);
   }
 
   @Watch('type')
@@ -254,6 +261,8 @@ export class Input implements IxInputFieldComponent<string> {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -266,6 +275,9 @@ export class Input implements IxInputFieldComponent<string> {
     this.value = value;
 
     if (this.inputRef.current && this.touched) {
+      if (this.inputRef.current.value !== value) {
+        this.inputRef.current.value = value;
+      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -314,6 +326,21 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 5.3.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const input = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, input);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   render() {
