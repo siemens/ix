@@ -382,6 +382,48 @@ regressionTest.describe('ix-badge', () => {
     );
   });
 
+  regressionTest.describe('pulse centering', () => {
+    const deviceScaleFactor = 2;
+    regressionTest.use({ deviceScaleFactor });
+
+    const cases = [
+      { density: 'default', attrs: 'type="status-icon" variant="info"' },
+      {
+        density: 'default',
+        attrs: 'type="status-icon" variant="warning" outline',
+      },
+      { density: 'compact', attrs: 'type="status-icon" variant="alarm"' },
+      { density: 'default', attrs: 'type="dot" variant="primary"' },
+      { density: 'compact', attrs: 'type="counter" label="5"' },
+    ];
+
+    for (const { density, attrs } of cases) {
+      regressionTest(
+        `centers pulse on indicator (${density}, ${attrs})`,
+        async ({ mount, page }) => {
+          await page.emulateMedia({ reducedMotion: 'no-preference' });
+          await page.evaluate((value) => {
+            document.documentElement.setAttribute('data-ix-theme', 'classic');
+            document.documentElement.setAttribute('data-ix-density', value);
+          }, density);
+          await mount(
+            `<div style="padding: 2rem; display: inline-block"><ix-badge ${attrs} enable-animation></ix-badge></div>`
+          );
+          const badge = new BadgePage(page);
+
+          for (const progress of [0.45, 0.8]) {
+            const offset = await badge.measurePulseCenterOffset(
+              progress,
+              deviceScaleFactor
+            );
+            expect(Math.abs(offset.x)).toBeLessThanOrEqual(0.25);
+            expect(Math.abs(offset.y)).toBeLessThanOrEqual(0.25);
+          }
+        }
+      );
+    }
+  });
+
   regressionTest.describe('attached accessibility', () => {
     regressionTest(
       'discards host ARIA when attached (anchor owns naming)',

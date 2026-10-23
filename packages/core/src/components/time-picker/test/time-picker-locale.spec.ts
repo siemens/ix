@@ -24,7 +24,7 @@ import { describe, expect, it } from 'vitest';
 import {
   formatWithLocale,
   parseWithLocale,
-} from '../../utils/date-time-locale';
+} from '../../utils/datetime/date-time-locale';
 
 // ---------------------------------------------------------------------------
 // Helpers

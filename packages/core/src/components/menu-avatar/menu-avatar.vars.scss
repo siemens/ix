@@ -25,12 +25,8 @@
   --ix-menu-avatar-avatar--height: #{sys.$si-sys-sizing-size-90};
   --ix-menu-avatar-avatar--max-height: #{sys.$si-sys-sizing-size-90};
   --ix-menu-avatar-avatar--padding-left: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-menu-avatar-avatar--margin-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} * 0.41
-  );
-  --ix-menu-avatar-avatar--margin-right: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} * 0.35
-  );
+  --ix-menu-avatar-avatar--margin-left: #{sys.$si-sys-sizing-spacing-x-30};
+  --ix-menu-avatar-avatar--margin-right: #{sys.$si-sys-sizing-spacing-x-30};
   --ix-menu-avatar-avatar-name--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-menu-avatar-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
   --ix-menu-avatar--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};

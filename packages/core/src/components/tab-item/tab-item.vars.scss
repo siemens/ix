@@ -46,16 +46,12 @@
   --ix-tab-item--size-size: #{sys.$si-sys-sizing-size-90};
   --ix-tab-item--min-height: #{sys.$si-sys-sizing-size-90};
   --ix-tab-item--max-height: #{sys.$si-sys-sizing-size-90};
-  --ix-tab-item--padding: calc(#{sys.$si-sys-sizing-spacing-y-10} / 2) #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-tab-item--padding: #{sys.$si-sys-sizing-border-width-default} #{sys.$si-sys-sizing-spacing-x-80};
   --ix-tab-item--gap: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-tab-item-circle--height: #{sys.$si-sys-sizing-size-100};
   --ix-tab-item-circle--width: #{sys.$si-sys-sizing-size-100};
-  --ix-tab-item-circle--height--circle: calc(
-    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
-  --ix-tab-item-circle--min-height: calc(
-    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
-  );
+  --ix-tab-item-circle--height--circle: #{sys.$si-sys-sizing-size-110};
+  --ix-tab-item-circle--min-height: #{sys.$si-sys-sizing-size-110};
   --ix-tab-item-circle--max-height: calc(
     #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
   );
