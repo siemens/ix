@@ -16,6 +16,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { animate, Easing } from '../utils/animate';
 import { NotificationColor } from '../utils/notification-color';
 import type { StatusVariant } from '../utils/status.types';
@@ -139,7 +140,11 @@ export class MessageBar {
           role="alert"
           ref={(el) => (this.divElement = el as HTMLElement)}
         >
-          <ix-icon color={this.color} name={this.icon}></ix-icon>
+          <ix-icon
+            color={this.color}
+            name={this.icon}
+            aria-hidden={a11yBoolean(true)}
+          ></ix-icon>
           <div class="message-content">
             <slot></slot>
           </div>

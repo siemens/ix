@@ -68,6 +68,16 @@ regressionTest.describe('ix-message-bar', () => {
   }
 
   regressionTest(
+    'hides the decorative status icon',
+    async ({ mount, page }) => {
+      await mount(`<ix-message-bar persistent>Content</ix-message-bar>`);
+      await expect(
+        page.locator('ix-message-bar .message-container > ix-icon')
+      ).toHaveAttribute('aria-hidden', 'true');
+    }
+  );
+
+  regressionTest(
     'uses paragraph typography for slotted content',
     async ({ mount, page }) => {
       await mount(
