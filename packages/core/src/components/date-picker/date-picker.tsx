@@ -448,6 +448,7 @@ export class DatePicker
 
   @State() startYear = 0;
   @State() endYear = 0;
+  @State() private yearDropdownInitialized = false;
 
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -1025,6 +1026,11 @@ export class DatePicker
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
                 label={null}
+                onShowChange={(event) => {
+                  if (event.detail) {
+                    this.yearDropdownInitialized = true;
+                  }
+                }}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
@@ -1072,7 +1078,7 @@ export class DatePicker
                 >
                   {yearLabel}
                 </ix-typography>
-                {this.renderYears()}
+                {this.yearDropdownInitialized ? this.renderYears() : null}
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="bottom"></div>
                 </div>
