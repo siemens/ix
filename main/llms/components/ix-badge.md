@@ -30,7 +30,7 @@
 - `position`; attr: `position`; type: `"bottom-after" | "top-after"`; default: `'top-after'` - Position relative to the slotted anchor. Only has an effect when attached.
 - `tooltipText`; attr: `tooltip-text`; type: `boolean | string`; default: `false` - Display a tooltip when the badge is standalone. By default, no tooltip is displayed. Add the attribute to use the badge label (or host `aria-label`) as the tooltip, or pass a string for custom text. Ignored when the badge is attached to an anchor.
 - `type`; attr: `type`; type: `"counter" | "dot" | "label" | "status-icon"`; default: `'counter'` - Badge type (`counter`, `label`, `dot`, or `status-icon`).
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "custom" | "error" | "info" | "neutral" | "primary" | "success" | "warning"`; default: `'primary'` - Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+- `variant`; attr: `variant`; type: `"accent" | "caution" | "critical" | "custom" | "danger" | "error" | "information" | "neutral" | "success" | "warning"`; default: `'accent'` - Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
 
 ## Events
 

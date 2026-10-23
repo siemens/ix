@@ -23,7 +23,7 @@
 - `outline`; attr: `outline`; type: `boolean`; default: `false` - Show pill as outline
 - `pillColor`; attr: `pill-color`; type: `string | undefined` - Custom font color for pill. Only working for `variant='custom'`
 - `tooltipText`; attr: `tooltip-text`; type: `boolean | string`; default: `false` - Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "custom" | "info" | "neutral" | "primary" | "success" | "warning"`; default: `'primary'` - Pill variant
+- `variant`; attr: `variant`; type: `"accent" | "caution" | "critical" | "custom" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'accent'` - Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
 
 ## Events
 

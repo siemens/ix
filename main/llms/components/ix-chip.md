@@ -26,7 +26,7 @@
 - `inactive`; attr: `inactive`; type: `boolean`; default: `false` - Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation) will be possible on the main chip content.
 - `outline`; attr: `outline`; type: `boolean`; default: `false` - Show chip with outline style
 - `tooltipText`; attr: `tooltip-text`; type: `boolean | string`; default: `false` - Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-- `variant`; attr: `variant`; type: `"alarm" | "critical" | "custom" | "info" | "neutral" | "primary" | "success" | "warning"`; default: `'primary'` - Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
+- `variant`; attr: `variant`; type: `"accent" | "caution" | "critical" | "custom" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'accent'` - Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
 
 ## Events
 
