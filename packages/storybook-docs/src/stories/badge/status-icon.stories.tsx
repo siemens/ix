@@ -40,7 +40,7 @@ function badgeStatusIconPreview(): VNode {
         <h2>Status-icon badge</h2>
         <p class="edge-intro">
           <code>type="status-icon"</code>
-          {' · 20×20px circle · icon from '}
+          {' · 20×20px · icon from '}
           <code>variant</code>
           {' · no '}
           <code>label</code>
@@ -71,9 +71,9 @@ function badgeStatusIconPreview(): VNode {
         <h2>Attached anchors</h2>
         <div class="demo-grid">
           {cell(
-            'IxIconButton · alarm',
+            'IxIconButton · danger',
             statusIconBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor('Error state'),
             }),
             true
@@ -103,7 +103,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'position="top-after" (default)',
             statusIconBadge({
-              variant: 'alarm',
+              variant: 'danger',
               children: iconButtonAnchor('Notifications'),
             }),
             true
@@ -111,7 +111,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'position="bottom-after"',
             statusIconBadge({
-              variant: 'info',
+              variant: 'information',
               position: 'bottom-after',
               children: iconButtonAnchor('Notifications'),
             }),
@@ -142,7 +142,7 @@ function badgeStatusIconPreview(): VNode {
           {cell(
             'aria-label="Action required"',
             statusIconBadge({
-              variant: 'alarm',
+              variant: 'danger',
               ariaLabel: 'Action required',
             })
           )}

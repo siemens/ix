@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Locator, Page } from '@playwright/test';
+import { ElementHandle, expect, Locator, Page } from '@playwright/test';
 export * from './page';
 export * from './date-time';
 
@@ -125,3 +125,31 @@ export const waitForRender = (page: Page) =>
         requestAnimationFrame(() => requestAnimationFrame(resolve))
       )
   );
+
+/**
+ * Removes the element from the DOM, releases the handle and expects a full
+ * garbage collection to free it. Chromium only, it forces the collection
+ * through the DevTools protocol.
+ */
+export const expectCollectedAfterRemoval = async (
+  page: Page,
+  element: ElementHandle<HTMLElement>
+) => {
+  await element.evaluate(async (el) => {
+    await (el as any).componentOnReady?.();
+    (window as any).__removedElement = new WeakRef(el);
+    el.remove();
+  });
+  await element.dispose();
+
+  const cdp = await page.context().newCDPSession(page);
+  await expect
+    .poll(async () => {
+      await cdp.send('HeapProfiler.collectGarbage');
+      return page.evaluate(
+        () => (window as any).__removedElement.deref() === undefined
+      );
+    })
+    .toBe(true);
+  await cdp.detach();
+};

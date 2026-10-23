@@ -93,7 +93,7 @@ export class ChatAttachment {
 
   private getChipVariant() {
     if (this.status === 'failed') {
-      return 'alarm';
+      return 'danger';
     }
 
     return 'neutral';
