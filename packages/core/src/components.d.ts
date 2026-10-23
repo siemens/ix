@@ -3050,6 +3050,12 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Show a divider line below the key value. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * @default true
+          * @since 6.0.0
+         */
+        "divider"?: boolean;
+        /**
           * Optional key value icon
          */
         "icon"?: string;
@@ -3073,6 +3079,12 @@ export namespace Components {
      * @figma-main-component-id 4784:118515
      */
     interface IxKeyValueList {
+        /**
+          * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
+          * @default true
+          * @since 6.0.0
+         */
+        "divider"?: boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -11451,6 +11463,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Show a divider line below the key value. Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * @default true
+          * @since 6.0.0
+         */
+        "divider"?: boolean;
+        /**
           * Optional key value icon
          */
         "icon"?: string;
@@ -11474,6 +11492,12 @@ declare namespace LocalJSX {
      * @figma-main-component-id 4784:118515
      */
     interface IxKeyValueList {
+        /**
+          * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
+          * @default true
+          * @since 6.0.0
+         */
+        "divider"?: boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -14972,9 +14996,11 @@ declare namespace LocalJSX {
         "label": string;
         "labelPosition": KeyValueLabelPosition;
         "value": string;
+        "divider": boolean;
     }
     interface IxKeyValueListAttributes {
         "striped": boolean;
+        "divider": boolean;
     }
     interface IxKpiAttributes {
         "label": string;
