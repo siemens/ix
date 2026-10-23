@@ -2,6 +2,14 @@
 - img
 - text: "/Motor speed \\{\\d+\\.\\d+\\}/"
 - img
+- text: "/Motor speed \\{\\d+\\.\\d+\\}/"
+- img
+- text: "/Motor speed \\{\\d+\\.\\d+\\}/"
+- img
+- text: "/Motor speed \\{\\d+\\.\\d+\\}/"
+- img
+- text: "/Motor speed \\{\\d+\\.\\d+\\} Motor speed \\{\\d+\\.\\d+\\}/"
+- img
 - text: "/Motor speed \\{\\d+\\.\\d+\\} Motor speed Nominal/"
 - img
 - text: "/Motor speed \\{\\d+\\.\\d+\\} rpm/"

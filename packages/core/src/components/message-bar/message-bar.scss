@@ -30,14 +30,15 @@
   }
 
   $message-types: (
-    'alarm': var(--ix-message-bar--border-color--alarm),
-    'danger': var(--ix-message-bar--border-color--alarm),
-    'critical': var(--ix-message-bar--border-color--critical),
+    'error': var(--ix-message-bar--border-color--error),
+    'danger': var(--ix-message-bar--border-color--danger),
     'warning': var(--ix-message-bar--border-color--warning),
+    'caution': var(--ix-message-bar--border-color--caution),
     'success': var(--ix-message-bar--border-color--success),
-    'info': var(--ix-message-bar--border-color--info),
+    'information': var(--ix-message-bar--border-color--information),
     'neutral': var(--ix-message-bar--border-color--neutral),
-    'primary': var(--ix-message-bar--border-color--primary),
+    'accent': var(--ix-message-bar--border-color--accent),
+    'critical': var(--ix-message-bar--border-color--critical),
   );
 
   @each $type, $color in $message-types {

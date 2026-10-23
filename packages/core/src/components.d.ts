@@ -43,6 +43,7 @@ import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+import { MessageBarType } from "./components/message-bar/message-bar";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -99,6 +100,7 @@ export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+export { MessageBarType } from "./components/message-bar/message-bar";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -2628,7 +2630,7 @@ export namespace Components {
          */
         "index": number;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -3086,12 +3088,17 @@ export namespace Components {
      */
     interface IxKpi {
         /**
-          * ARIA label for the alarm icon
+          * ARIA label for the `danger` status icon. Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
           * @since 3.2.0
          */
         "ariaLabelAlarmIcon"?: string;
         /**
-          * ARIA label for the warning icon
+          * ARIA label for the status icon of every state that shows an icon. Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
+          * @since 6.0.0
+         */
+        "ariaLabelStatusIcon"?: string;
+        /**
+          * ARIA label for the `warning` status icon. Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
           * @since 3.2.0
          */
         "ariaLabelWarningIcon"?: string;
@@ -3101,9 +3108,10 @@ export namespace Components {
          */
         "orientation": 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon.
           * @default 'neutral'
          */
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": Exclude<StatusVariant, 'base'>;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -3615,15 +3623,9 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -10999,7 +11001,7 @@ declare namespace LocalJSX {
          */
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -11480,12 +11482,17 @@ declare namespace LocalJSX {
      */
     interface IxKpi {
         /**
-          * ARIA label for the alarm icon
+          * ARIA label for the `danger` status icon. Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
           * @since 3.2.0
          */
         "ariaLabelAlarmIcon"?: string;
         /**
-          * ARIA label for the warning icon
+          * ARIA label for the status icon of every state that shows an icon. Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
+          * @since 6.0.0
+         */
+        "ariaLabelStatusIcon"?: string;
+        /**
+          * ARIA label for the `warning` status icon. Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
           * @since 3.2.0
          */
         "ariaLabelWarningIcon"?: string;
@@ -11495,9 +11502,10 @@ declare namespace LocalJSX {
          */
         "orientation"?: 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon.
           * @default 'neutral'
          */
-        "state"?: 'neutral' | 'warning' | 'alarm';
+        "state"?: Exclude<StatusVariant, 'base'>;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -12057,15 +12065,9 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type"?: | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type"?: MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -14966,9 +14968,10 @@ declare namespace LocalJSX {
         "label": string;
         "ariaLabelAlarmIcon": string;
         "ariaLabelWarningIcon": string;
+        "ariaLabelStatusIcon": string;
         "value": string;
         "unit": string;
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": Exclude<StatusVariant, 'base'>;
         "orientation": 'horizontal' | 'vertical';
     }
     interface IxLayoutGridAttributes {
@@ -15076,13 +15079,7 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface IxMessageBarAttributes {
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
         "persistent": boolean;
     }
     interface IxModalAttributes {
