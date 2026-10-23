@@ -168,7 +168,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^21.2.25
-        version: 21.2.26(ffc8db14845338f90b1cc493b0557106)
+        version: 21.2.26(df7b77dca2563f6b0a7435cdeb209d9f)
       '@angular/cli':
         specifier: ^21.2.25
         version: 21.2.25(@types/node@20.16.5)(chokidar@5.0.0)
@@ -280,7 +280,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^21.2.25
-        version: 21.2.26(df7b77dca2563f6b0a7435cdeb209d9f)
+        version: 21.2.26(ffc8db14845338f90b1cc493b0557106)
       '@angular/cli':
         specifier: ^21.2.25
         version: 21.2.25(@types/node@20.16.5)(chokidar@5.0.0)
