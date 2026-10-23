@@ -6030,11 +6030,10 @@
         {
           "name": "divider",
           "attribute": "divider",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "true",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },

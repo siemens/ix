@@ -3080,11 +3080,11 @@ export namespace Components {
      */
     interface IxKeyValueList {
         /**
-          * Show divider lines below the key value items. Items that set their own `divider` keep their value.
-          * @since 6.0.0
+          * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
           * @default true
+          * @since 6.0.0
          */
-        "divider": boolean;
+        "divider"?: boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -11493,9 +11493,9 @@ declare namespace LocalJSX {
      */
     interface IxKeyValueList {
         /**
-          * Show divider lines below the key value items. Items that set their own `divider` keep their value.
-          * @since 6.0.0
+          * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
           * @default true
+          * @since 6.0.0
          */
         "divider"?: boolean;
         /**
