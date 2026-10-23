@@ -2278,6 +2278,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "ariaLabelMoreActions",
+          "attribute": "aria-label-more-actions",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'More actions'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "hasBackButton",
           "attribute": "has-back-button",
           "type": "boolean",
@@ -2346,7 +2357,8 @@
       "cssProperties": [],
       "slots": [
         "default",
-        "header"
+        "header",
+        "secondary-actions"
       ],
       "cssParts": [],
       "cssStates": []

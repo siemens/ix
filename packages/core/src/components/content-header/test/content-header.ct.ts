@@ -8,6 +8,7 @@
  */
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+import { iconPen } from '@siemens/ix-icons/icons';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
@@ -122,5 +123,304 @@ regressionTest(
 
     const heading = page.locator('ix-content-header').locator('h2');
     await expect(heading).toHaveCount(0);
+  }
+);
+
+const responsiveHeader = `
+  <ix-content-header header-title="Production line" header-subtitle="Plant 1">
+    <ix-button slot="secondary-actions" variant="tertiary">Export report</ix-button>
+    <ix-button slot="secondary-actions" variant="tertiary">Manage permissions</ix-button>
+    <ix-button variant="primary">Save changes</ix-button>
+  </ix-content-header>
+`;
+
+regressionTest(
+  'secondary actions overflow is accessible and keyboard operable',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(responsiveHeader);
+
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Save changes' })
+    ).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Export report' })
+    ).toBeHidden();
+    expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+
+    await trigger.focus();
+    await page.keyboard.press('ArrowDown');
+    const firstItem = page.getByRole('menuitem', { name: 'Export report' });
+    await expect(firstItem).toBeVisible();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+
+    const clicks = await page
+      .locator('ix-button[slot="secondary-actions"]')
+      .first()
+      .evaluateHandle((element) => {
+        const result = { count: 0 };
+        element.addEventListener('click', () => result.count++);
+        return result;
+      });
+    await page.keyboard.press('Enter');
+    await expect.poll(() => clicks.evaluate((result) => result.count)).toBe(1);
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  }
+);
+
+regressionTest(
+  'collapses at large viewports based on container width and expands without stale measurements',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await mount(`<div style="width: 20rem">${responsiveHeader}</div>`);
+    const header = page.locator('ix-content-header');
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toBeVisible();
+    await expect(header.locator('.overflowButton')).toHaveCSS(
+      'margin-left',
+      '8px'
+    );
+
+    for (const width of ['70rem', '20rem', '70rem']) {
+      await header.evaluate((element, width) => {
+        const parent = element.parentElement;
+        if (!parent) {
+          throw new Error('Expected a resizable header container');
+        }
+        parent.style.width = width;
+      }, width);
+      if (width === '20rem') {
+        await expect(trigger).toBeVisible();
+      } else {
+        await expect(trigger).toHaveCount(0);
+        await expect(
+          page.getByRole('button', { name: 'Export report' })
+        ).toBeVisible();
+      }
+    }
+  }
+);
+
+regressionTest(
+  'reacts to viewport changes using the layout service',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await mount(responsiveHeader);
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toHaveCount(0);
+    await page.setViewportSize({ width: 375, height: 800 });
+    await expect(trigger).toBeVisible();
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await expect(trigger).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'preserves keyboard focus when actions collapse and expand',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await mount(`<div style="width: 70rem">${responsiveHeader}</div>`);
+    const container = page.locator('ix-content-header').locator('..');
+    const action = page.getByRole('button', { name: 'Export report' });
+    await action.focus();
+    await container.evaluate((element) => (element.style.width = '20rem'));
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toBeFocused();
+    await page.keyboard.press('ArrowDown');
+    await expect(
+      page.getByRole('menuitem', { name: 'Export report' })
+    ).toBeFocused();
+    await container.evaluate((element) => (element.style.width = '70rem'));
+    await expect(action).toBeFocused();
+  }
+);
+
+regressionTest(
+  'updates collapsed labels, disabled state and dynamically added actions',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(responsiveHeader);
+    const header = page.locator('ix-content-header');
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await trigger.click();
+    await header.evaluate((element) => {
+      const action = element.querySelector('ix-button')!;
+      action.textContent = 'Download report';
+      action.disabled = true;
+      const added = document.createElement('ix-button');
+      added.slot = 'secondary-actions';
+      added.textContent = 'New action';
+      element.appendChild(added);
+    });
+    await expect(
+      page.getByRole('menuitem', { name: 'Download report' })
+    ).toHaveAttribute('aria-disabled', 'true');
+    await expect(
+      page.getByRole('menuitem', { name: 'New action' })
+    ).toBeVisible();
+    await header.evaluate((element) => {
+      element
+        .querySelectorAll('[slot="secondary-actions"]')
+        .forEach((action) => action.remove());
+    });
+    await expect(trigger).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'remeasures actions changed while collapsed and reconnects observers',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await mount(`<div style="width: 20rem">${responsiveHeader}</div>`);
+    const header = page.locator('ix-content-header');
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toBeVisible();
+    await header.evaluate((element) => {
+      const parent = element.parentElement;
+      if (!parent) {
+        throw new Error('Expected a header container for reconnection');
+      }
+      element.remove();
+      parent.appendChild(element);
+      element
+        .querySelectorAll('[slot="secondary-actions"]')
+        .forEach((action) => {
+          action.textContent = 'Go';
+        });
+    });
+    await expect(trigger).toHaveCount(0);
+    await header.evaluate((element) => {
+      element.querySelector('ix-button')!.textContent =
+        'An action label that is too long for this container';
+    });
+    await expect(trigger).toBeVisible();
+  }
+);
+
+regressionTest(
+  'supports localized overflow labels and named icon actions',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(
+      `<ix-content-header header-title="Assets" aria-label-more-actions="Weitere Aktionen">
+        <ix-icon-button slot="secondary-actions" icon="pen" aria-label="Edit asset"></ix-icon-button>
+      </ix-content-header>`,
+      { icons: { iconPen } }
+    );
+    await page.getByRole('button', { name: 'Weitere Aktionen' }).click();
+    await expect(
+      page.getByRole('menuitem', { name: 'Edit asset' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest(
+  'preserves form submission and link activation from overflow actions',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(`
+      <form>
+        <ix-content-header header-title="Assets">
+          <ix-button slot="secondary-actions" type="submit">Submit changes</ix-button>
+          <ix-button slot="secondary-actions" href="#history">View history</ix-button>
+        </ix-content-header>
+      </form>
+    `);
+    const submissions = await page.locator('form').evaluateHandle((form) => {
+      const result = { count: 0 };
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        result.count++;
+      });
+      return result;
+    });
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await trigger.click();
+    await page.getByRole('menuitem', { name: 'Submit changes' }).click();
+    await expect
+      .poll(() => submissions.evaluate((result) => result.count))
+      .toBe(1);
+    await trigger.click();
+    await page.getByRole('menuitem', { name: 'View history' }).click();
+    await expect(page).toHaveURL(/#history$/);
+  }
+);
+
+regressionTest(
+  'does not add horizontal scrolling for measured collapsed actions',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(`
+      <ix-content-header header-title="Assets">
+        ${Array.from(
+          { length: 8 },
+          (_, index) =>
+            `<ix-button slot="secondary-actions">Secondary action ${
+              index + 1
+            }</ix-button>`
+        ).join('')}
+        <ix-button>Save</ix-button>
+      </ix-content-header>
+    `);
+    await expect(
+      page.getByRole('button', { name: 'More actions' })
+    ).toBeVisible();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth
+      )
+    ).toBe(true);
+  }
+);
+
+regressionTest(
+  'legacy actions wrap within the header without overlapping following content',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(`
+      <div>
+        <ix-content-header has-back-button header-title="A long title that wraps to multiple lines">
+          ${Array.from(
+            { length: 8 },
+            (_, index) => `<ix-button>Action ${index + 1}</ix-button>`
+          ).join('')}
+        </ix-content-header>
+        <p>Following content</p>
+      </div>
+    `);
+    const header = page.locator('ix-content-header');
+    await expect(header).toHaveAttribute('hydrated');
+    await expect(
+      page.getByRole('button', { name: 'More actions' })
+    ).toHaveCount(0);
+    const headerBox = await header.boundingBox();
+    const followingBox = await page
+      .getByText('Following content')
+      .boundingBox();
+    if (!headerBox || !followingBox) {
+      throw new Error(
+        'Expected the header and following content to be visible'
+      );
+    }
+    expect(followingBox.y).toBeGreaterThanOrEqual(
+      headerBox.y + headerBox.height
+    );
+    for (const button of await header.locator('ix-button').all()) {
+      const box = await button.boundingBox();
+      if (!box) {
+        throw new Error('Expected every action to be visible');
+      }
+      expect(box.x).toBeGreaterThanOrEqual(headerBox.x);
+      expect(box.x + box.width).toBeLessThanOrEqual(
+        headerBox.x + headerBox.width + 1
+      );
+      expect(box.y + box.height).toBeLessThanOrEqual(
+        headerBox.y + headerBox.height + 1
+      );
+      await expect(button).toHaveCSS('height', '32px');
+    }
   }
 );

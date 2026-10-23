@@ -19,4 +19,13 @@ regressionTest.describe('content-header', () => {
     await page.goto('content-header/secondary');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+  regressionTest('responsive actions', async ({ page }) => {
+    await page.setViewportSize({ width: 900, height: 450 });
+    await page.goto('content-header/responsive');
+    await page.getByRole('button', { name: 'More actions' }).click();
+    await expect(
+      page.getByRole('menuitem', { name: 'Export production report' })
+    ).toBeVisible();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

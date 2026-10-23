@@ -598,7 +598,8 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
         headerTitle: 'header-title',
         headerSubtitle: 'header-subtitle',
         textOverflow: 'text-overflow',
-        hasBackButton: 'has-back-button'
+        hasBackButton: 'has-back-button',
+        ariaLabelMoreActions: 'aria-label-more-actions'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxContentHeader as StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents, Components.IxContentHeader>,
