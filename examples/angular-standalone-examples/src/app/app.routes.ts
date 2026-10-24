@@ -282,6 +282,8 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/empty-state-compact-break').then(
       (m) => m.default
     ),
+  'preview/http-error-pages': () =>
+    import('../preview-examples/http-error-pages').then((m) => m.default),
   'preview/info-page': () =>
     import('../preview-examples/info-page').then((m) => m.default),
   'preview/event-list': () =>

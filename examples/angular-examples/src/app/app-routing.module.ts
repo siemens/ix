@@ -120,6 +120,7 @@ import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import HttpErrorPages from '../preview-examples/http-error-pages';
 import InfoPage from '../preview-examples/info-page';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
@@ -713,6 +714,10 @@ const routes: Routes = [
         component: EmptyState,
       },
       {
+        path: 'http-error-pages',
+        component: HttpErrorPages,
+      },
+      {
         path: 'info-page',
         component: InfoPage,
       },
@@ -1126,6 +1131,7 @@ const routes: Routes = [
       { path: 'empty-state', component: EmptyState },
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'http-error-pages', component: HttpErrorPages },
       { path: 'info-page', component: InfoPage },
       { path: 'key-value', component: KeyValue },
       {

@@ -238,6 +238,8 @@ import './html-table-axe.spec.ts';
 import './html-table-striped-axe.spec.ts';
 import './html-table-striped.spec.ts';
 import './html-table.spec.ts';
+import './http-error-pages-axe.spec.ts';
+import './http-error-pages.spec.ts';
 import './icon-toggle-button-secondary-axe.spec.ts';
 import './icon-toggle-button-secondary.spec.ts';
 import './icon-toggle-button-subtle-primary-axe.spec.ts';
