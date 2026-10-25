@@ -1414,7 +1414,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat`, like the century of a two-digit year, are kept from the current value when the user types a date. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @since 6.0.0
          */
         "displayFormat"?: string;
@@ -1741,7 +1741,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds or the century of a two-digit year, are kept from the current value when the user types a date. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @since 6.0.0
          */
         "displayFormat"?: string;
@@ -9760,7 +9760,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat`, like the century of a two-digit year, are kept from the current value when the user types a date. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @since 6.0.0
          */
         "displayFormat"?: string;
@@ -10094,7 +10094,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds or the century of a two-digit year, are kept from the current value when the user types a date. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @since 6.0.0
          */
         "displayFormat"?: string;

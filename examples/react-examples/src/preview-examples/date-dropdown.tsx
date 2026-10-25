@@ -9,14 +9,5 @@
 import { IxDateDropdown } from '@siemens/ix-react';
 
 export default () => {
-  return (
-    <>
-      <IxDateDropdown />
-      <IxDateDropdown
-        from="2026/02/01"
-        to="2026/02/08"
-        displayFormat="dd.LL.yy"
-      />
-    </>
-  );
+  return <IxDateDropdown />;
 };

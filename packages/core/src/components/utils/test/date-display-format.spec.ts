@@ -84,6 +84,24 @@ describe('DateDisplayFormat', () => {
       expect(dateDisplayFormat.toValue('98/03/10')).toBe('2098/03/10');
     });
 
+    it.each([
+      ['1999/12/31', '00/01/01', '2000/01/01'],
+      ['2000/01/01', '99/12/31', '1999/12/31'],
+      ['2049/06/15', '99/06/15', '2099/06/15'],
+      ['2050/06/15', '00/06/15', '2000/06/15'],
+    ])(
+      'resolves a two-digit year to the year closest to %s (%s)',
+      (value, text, expected) => {
+        const dateDisplayFormat = createDisplayFormat({
+          value,
+          format: 'yyyy/LL/dd',
+          displayFormat: 'yy/LL/dd',
+        });
+
+        expect(dateDisplayFormat.toValue(text)).toBe(expected);
+      }
+    );
+
     it('keeps units which are missing in displayFormat', () => {
       const dateDisplayFormat = createDisplayFormat({
         value: '2099/03/04 09:10:11',
@@ -234,7 +252,7 @@ describe('DateDisplayFormat', () => {
 
     it('accepts a typed two-digit year on a leap day', () => {
       const dateDisplayFormat = createDisplayFormat({
-        value: '2099/03/04',
+        value: '2025/03/04',
         format: 'yyyy/LL/dd',
         displayFormat: "yy/LL/dd 'yy'",
       });

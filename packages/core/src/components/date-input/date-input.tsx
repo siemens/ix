@@ -138,8 +138,9 @@ export class DateInput
    * `value`, `minDate`, `maxDate` and emitted values keep using `format`,
    * e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a
    * two-digit year without losing the century of the value.
-   * Date parts missing in `displayFormat`, like the century of a two-digit
-   * year, are kept from the current value when the user types a date.
+   * Date parts missing in `displayFormat` are kept from the current value
+   * when the user types a date. A typed two-digit year resolves to the year
+   * closest to the current value.
    * Defaults to `format`.
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    *
@@ -149,14 +150,11 @@ export class DateInput
 
   @Watch('locale')
   @Watch('format')
-  watchLocaleFormatHandler() {
-    this.onInput(this.value);
-    this.syncInputText();
-  }
-
   @Watch('displayFormat')
-  watchDisplayFormatHandler() {
+  watchLocaleFormatHandler() {
+    // Sync first, so typed text rejected for the previous format is revalidated
     this.syncInputText();
+    this.onInput(this.value);
   }
 
   /**

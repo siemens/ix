@@ -158,6 +158,23 @@ regressionTest.describe('displayFormat', () => {
   );
 
   regressionTest(
+    'resolves a typed two-digit year to the closest century',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="1999/12/31" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await expect(dateInputElement).toHaveAttribute('hydrated');
+      await input.fill('00/01/01');
+
+      await expect(dateInputElement).toHaveAttribute('value', '2000/01/01');
+      await expect(input).toHaveValue('00/01/01');
+    }
+  );
+
+  regressionTest(
     'rejects typed text which does not match displayFormat',
     async ({ mount, page }) => {
       await mount(
@@ -172,6 +189,31 @@ regressionTest.describe('displayFormat', () => {
       await expect(
         getInvalidText(dateInputElement, 'Date is not valid')
       ).toBeVisible();
+    }
+  );
+
+  regressionTest(
+    'revalidates rejected text when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await input.fill('2065/03/04');
+      await expect(
+        getInvalidText(dateInputElement, 'Date is not valid')
+      ).toBeVisible();
+
+      await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+        el.displayFormat = 'dd.LL.yyyy';
+      });
+
+      await expect(input).toHaveValue('04.03.2065');
+      await expect(
+        getInvalidText(dateInputElement, 'Date is not valid')
+      ).toBeHidden();
     }
   );
 

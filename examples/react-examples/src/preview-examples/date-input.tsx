@@ -10,14 +10,5 @@
 import { IxDateInput } from '@siemens/ix-react';
 
 export default () => {
-  return (
-    <>
-      <IxDateInput value="2026/02/08"></IxDateInput>
-      <IxDateInput
-        label="Short date"
-        value="2026/02/08"
-        displayFormat="dd.LL.yy"
-      ></IxDateInput>
-    </>
-  );
+  return <IxDateInput value="2026/02/08"></IxDateInput>;
 };

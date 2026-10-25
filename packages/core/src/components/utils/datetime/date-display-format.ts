@@ -5,7 +5,11 @@
  */
 
 import { DateTime } from 'luxon';
-import { formatWithLocale, parseWithLocale } from './date-time-locale';
+import {
+  convertDateFormat,
+  formatWithLocale,
+  parseWithLocale,
+} from './date-time-locale';
 
 export type DateDisplayFormatHost = {
   value?: string;
@@ -72,12 +76,31 @@ function getDisplayFormatParts(
 }
 
 /**
+ * Year ending in `twoDigitYear` which is closest to `referenceYear`, e.g.
+ * `00` resolves to 2000 for 1999 instead of 1900.
+ */
+function getClosestYear(twoDigitYear: number, referenceYear: number): number {
+  const year = referenceYear - (referenceYear % 100) + twoDigitYear;
+
+  if (year - referenceYear > 50) {
+    return year - 100;
+  }
+
+  if (referenceYear - year > 50) {
+    return year + 100;
+  }
+
+  return year;
+}
+
+/**
  * Converts between the `value` of a date input (in `format`) and the text
  * shown in its input field (in `displayFormat`).
  *
- * Units that `displayFormat` does not contain, e.g. seconds or the century of
- * a two-digit year, are taken from the last valid value, so they are not lost
- * when the user types a date in a less precise `displayFormat`.
+ * Units that `displayFormat` does not contain, e.g. seconds, are taken from
+ * the last valid value, so they are not lost when the user types a date in a
+ * less precise `displayFormat`. A two-digit year resolves to the year closest
+ * to the last valid value.
  */
 export class DateDisplayFormat {
   private reference?: DateTime;
@@ -107,11 +130,7 @@ export class DateDisplayFormat {
     this.typedValue = undefined;
     this.unparsableText = undefined;
 
-    if (!date.isValid || this.format === format) {
-      return value;
-    }
-
-    return formatWithLocale(date, this.format, locale);
+    return convertDateFormat(value, format, this.format, locale);
   }
 
   /**
@@ -204,8 +223,7 @@ export class DateDisplayFormat {
     parts.units.forEach((unit) => (units[unit] = date[unit]));
 
     if (parts.twoDigitYearTokens) {
-      const century = this.reference.year - (this.reference.year % 100);
-      units.year = century + (date.year % 100);
+      units.year = getClosestYear(date.year % 100, this.reference.year);
     }
 
     return this.reference.set(units);
