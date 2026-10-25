@@ -564,10 +564,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"error\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"error\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -2178,10 +2178,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -8232,10 +8232,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
