@@ -16,11 +16,11 @@ export default () => {
   return (
     <>
       <div className="row">
-        <IxBadge type="counter" label="3" variant="alarm">
+        <IxBadge type="counter" label="3" variant="danger">
           <IxButton aria-label="Review, 3 unread">Review</IxButton>
         </IxBadge>
 
-        <IxBadge type="counter" label="1" variant="alarm" enableAnimation>
+        <IxBadge type="counter" label="1" variant="danger" enableAnimation>
           <IxIconButton
             icon={iconInfo}
             aria-label="What's new, 1 notification"
@@ -36,7 +36,7 @@ export default () => {
           <IxButton aria-label="Bottom after, 9 items">Bottom after</IxButton>
         </IxBadge>
 
-        <IxBadge type="dot" variant="alarm">
+        <IxBadge type="dot" variant="danger">
           <IxButton aria-label="Messages, unread">Messages</IxButton>
         </IxBadge>
 
@@ -46,16 +46,16 @@ export default () => {
       </div>
 
       <div className="row">
-        <IxBadge type="counter" label="12" variant="info"></IxBadge>
+        <IxBadge type="counter" label="12" variant="information"></IxBadge>
         <IxBadge type="counter" label="99" variant="warning"></IxBadge>
-        <IxBadge type="counter" label="142" variant="primary"></IxBadge>
-        <IxBadge type="counter" label="100" variant="alarm"></IxBadge>
-        <IxBadge type="counter" label="8" variant="primary" outline></IxBadge>
-        <IxBadge type="counter" label="8" variant="primary" border></IxBadge>
+        <IxBadge type="counter" label="142" variant="accent"></IxBadge>
+        <IxBadge type="counter" label="100" variant="danger"></IxBadge>
+        <IxBadge type="counter" label="8" variant="accent" outline></IxBadge>
+        <IxBadge type="counter" label="8" variant="accent" border></IxBadge>
 
         <IxBadge
           type="dot"
-          variant="alarm"
+          variant="danger"
           role="img"
           aria-label="Unread"
         ></IxBadge>
@@ -69,9 +69,9 @@ export default () => {
 
         <IxBadge
           type="status-icon"
-          variant="alarm"
+          variant="danger"
           role="img"
-          aria-label="Alarm"
+          aria-label="Danger"
         ></IxBadge>
         <IxBadge
           type="status-icon"
@@ -86,7 +86,7 @@ export default () => {
         <IxBadge
           type="label"
           label="Label"
-          variant="alarm"
+          variant="danger"
           alignLeft
           icon={iconStar}
           className="styled"
@@ -99,23 +99,23 @@ export default () => {
           className="styled-ellipsis-4"
           tooltipText
         ></IxBadge>
-        <IxBadge type="counter" label="12" variant="info" tooltipText></IxBadge>
+        <IxBadge type="counter" label="12" variant="information" tooltipText></IxBadge>
         <IxBadge
           type="counter"
           label="12"
-          variant="info"
+          variant="information"
           tooltipText="Twelve notifications"
         ></IxBadge>
         <IxBadge
           type="dot"
-          variant="alarm"
+          variant="danger"
           role="img"
           aria-label="Unread"
           tooltipText
         ></IxBadge>
         <IxBadge
           type="dot"
-          variant="alarm"
+          variant="danger"
           role="img"
           aria-label="Unread"
           tooltipText="Custom tooltip text"

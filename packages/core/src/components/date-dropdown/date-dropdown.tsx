@@ -13,6 +13,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  forceUpdate,
   h,
   Host,
   Method,
@@ -26,14 +27,16 @@ import {
   convertDateFormat,
   parseWithLocale,
   toISODate,
-} from '../utils/date-time-locale';
+} from '../utils/datetime/date-time-locale';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
+import type { DateChangeEvent } from '../date-picker/date-picker.events';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import { type LiteralStringUnion } from '../utils/type-helper';
+import { isSameStringOrUnset } from '../utils/condition-checks';
+import { PendingSelection } from '../utils/datetime/pending-selection';
 import type {
   DateDropdownOption,
   DateRangeChangeEvent,
@@ -42,6 +45,11 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { BaseButton } from '../button/base-button';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { TRAP_FOCUS_EXCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
+import { isPartialRange } from '../utils/datetime/calendar.util';
+import type { DateRange } from '../utils/datetime/date-time.types';
+import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
+
+type DropdownRange = DateRange<string> & { id: string };
 
 /**
  * Dropdown for selecting a date or a relative date range.
@@ -140,22 +148,49 @@ export class DateDropdown
   @Prop() showWeekNumbers = false;
 
   @Watch('dateRangeId')
-  @Watch('to')
-  @Watch('from')
-  onDateRangeIdChange() {
-    this.onRangeListSelect(this.dateRangeId);
-    this.updateCurrentDate();
-    this.setDateRangeSelection(this.dateRangeId);
-
-    if (!this.currentRangeValue) {
+  onDateRangeIdChange(id: string) {
+    if (this.selection.isEcho('id', id)) {
       return;
     }
 
-    this.onDateSelect({
-      from: this.currentRangeValue.from,
-      to: this.currentRangeValue.to,
-      id: this.currentRangeValue.id,
-    });
+    // An id without a predefined range selects `from` and `to`
+    this.applyPropChange(this.selection.reset(this.rangeFromProps()));
+  }
+
+  @Watch('from')
+  onFromChange(from: string) {
+    this.onDatePropChange('from', from);
+  }
+
+  @Watch('to')
+  onToChange(to: string) {
+    this.onDatePropChange('to', to);
+  }
+
+  /** Dates set by props no longer match a predefined range. */
+  private onDatePropChange(key: 'from' | 'to', value: string) {
+    const selection = this.selection.withPropChange(key, value);
+    if (selection === this.selection) {
+      return;
+    }
+
+    this.applyPropChange(
+      selection.reset({ ...selection.committed, id: 'custom' })
+    );
+  }
+
+  /**
+   * Applies a prop change unless it echoes the displayed range back (e.g.
+   * two-way binding to `dateRangeChange`), so a pending range stays pending.
+   */
+  private applyPropChange(selection: PendingSelection<DropdownRange>) {
+    if (selection === this.selection) {
+      return;
+    }
+
+    this.selection = selection;
+    this.showMonthOf(selection.committed);
+    this.emitRangeChange(selection.committed);
   }
 
   /**
@@ -175,20 +210,14 @@ export class DateDropdown
 
   @Watch('dateRangeOptions')
   onDateRangeOptionsChange() {
-    this.initialize();
-    this.onDateRangeIdChange();
+    this.warnOnInvalidConfiguration();
+    this.applyPropChange(this.selection.reset(this.rangeFromProps()));
   }
 
   /**
    * Locale identifier (e.g. 'en' or 'de').
    */
   @Prop() locale?: string;
-
-  @Watch('locale')
-  @Watch('format')
-  watchLocalePropHandler() {
-    this.refreshIsoValues();
-  }
 
   /**
    * The index of the day the week starts on, as a 0-based index into Luxon's
@@ -200,6 +229,9 @@ export class DateDropdown
 
   /**
    * Text for the done button. Will be used for translation.
+   *
+   * @deprecated The done button was removed. Without `requireConfirmation`
+   * the dropdown closes once a complete date or range is selected.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
@@ -207,6 +239,31 @@ export class DateDropdown
    * Text for the done button. Will be used for translation.
    */
   @Prop({ attribute: 'i18n-no-range' }) i18nNoRange = 'No range set';
+
+  /**
+   * If true, a date range picked in the dropdown is only applied after the
+   * user confirms it with the confirm button, which emits `dateSelect`. The
+   * trigger label keeps the applied range until then, while `dateRangeChange`
+   * still reports every pick. The cancel button, pressing Escape or clicking
+   * outside the dropdown discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel = 'Cancel';
 
   /** @internal */
   @Prop() today = DateTime.now().toISO();
@@ -224,19 +281,40 @@ export class DateDropdown
    *
    * This event is emitted when the date range changes within the component.
    * The event payload contains information about the selected date range.
+   * When a pending selection is discarded, it is emitted with the applied
+   * range again.
+   *
+   * Use `dateSelect` to only receive applied ranges.
    */
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: LiteralStringUnion<'custom'> = '';
-  @State() private currentRangeValue?: {
-    from?: string;
-    to?: string;
-    id: string;
-    isoFrom?: string;
-    isoTo?: string;
-  };
+  /**
+   * Emitted when the user applies a changed range: on confirm with
+   * `requireConfirmation`, otherwise when a complete range or a predefined
+   * range is picked.
+   * It is not emitted for programmatic prop input changes.
+   *
+   * @since 6.0.0
+   */
+  @Event() dateSelect!: EventEmitter<DateRangeChangeEvent>;
+
+  /**
+   * The applied range and a range that is not applied yet: any unconfirmed
+   * range with `requireConfirmation`, otherwise a range with only a start
+   * date.
+   */
+  @State() private selection = PendingSelection.create<DropdownRange>(
+    { id: 'custom' },
+    (a, b) =>
+      a.id === b.id &&
+      isSameStringOrUnset(a.from, b.from) &&
+      isSameStringOrUnset(a.to, b.to)
+  );
   @State() private show = false;
+
+  /** Month the date picker is moved to after the next render. */
+  private monthToShow?: DateTime;
 
   private readonly triggerRef = makeRef<HTMLElement>();
 
@@ -252,124 +330,168 @@ export class DateDropdown
   private inheritAriaAttributes: A11yAttributes = {};
 
   override componentWillLoad() {
-    this.initialize();
-    this.setDateRangeSelection(this.dateRangeId);
+    this.warnOnInvalidConfiguration();
+    this.selection = this.selection.reset(this.rangeFromProps());
     this.inheritAriaAttributes = a11yHostAttributes(this.hostElement);
   }
 
+  override componentDidRender() {
+    if (this.monthToShow) {
+      this.datePickerRef.current?.updateSelectedYearMonth(this.monthToShow);
+      this.monthToShow = undefined;
+    }
+  }
+
   /**
-   * Retrieves the currently selected date range from the component.
-   * This method returns the selected date range as a `DateChangeEvent` object.
+   * Retrieves the applied date range from the component.
+   * This method returns the applied date range as a `DateChangeEvent` object.
+   *
+   * With `requireConfirmation`, a pending selection is not returned until it is
+   * confirmed. Listen to `dateRangeChange` to get every pick.
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {
-    return { ...(this.currentRangeValue ?? { id: '', from: '', to: '' }) };
+    return this.toEvent(this.selection.committed);
   }
 
-  private initialize() {
-    const isCustomRange =
-      this.dateRangeId === 'custom' ||
-      (!this.dateRangeId && !!this.from && !!this.to);
-
-    if (isCustomRange) {
-      this.selectedDateRangeId = 'custom';
-      this.updateCurrentDate();
-
-      return;
-    }
-    const isValidConfiguration = !isCustomRange && !this.from;
-    if (!isValidConfiguration) {
+  private warnOnInvalidConfiguration() {
+    if (this.from && this.dateRangeId && this.dateRangeId !== 'custom') {
       console.warn(
         '"from" and "range-date-id" is provided this is an invalid combination. Using "custom".'
       );
-
-      this.selectedDateRangeId = 'custom';
-      this.updateCurrentDate();
-
-      return;
     }
   }
 
-  private updateCurrentDate() {
-    this.currentRangeValue = {
-      id: this.selectedDateRangeId,
-      from: this.from,
-      to: this.to,
-      isoFrom: toISODate(parseWithLocale(this.from, this.format, this.locale)),
-      isoTo: toISODate(parseWithLocale(this.to, this.format, this.locale)),
-    };
-  }
-
-  private refreshIsoValues() {
-    if (!this.currentRangeValue) {
-      return;
-    }
-
-    this.currentRangeValue = {
-      ...this.currentRangeValue,
-      isoFrom: toISODate(
-        parseWithLocale(
-          this.currentRangeValue.from ?? '',
-          this.format,
-          this.locale
-        )
-      ),
-      isoTo: toISODate(
-        parseWithLocale(
-          this.currentRangeValue.to ?? '',
-          this.format,
-          this.locale
-        )
-      ),
-    };
-  }
-
-  private onDateSelect(rangeValue: { from?: string; to?: string; id: string }) {
-    const isoFrom = toISODate(
-      parseWithLocale(rangeValue.from ?? '', this.format, this.locale)
-    );
-    const isoTo = toISODate(
-      parseWithLocale(rangeValue.to ?? '', this.format, this.locale)
-    );
-    if (this.currentRangeValue) {
-      this.currentRangeValue = { ...this.currentRangeValue, isoFrom, isoTo };
-    }
-    this.dateRangeChange.emit({ ...rangeValue, isoFrom, isoTo });
-  }
-
-  private onRangeListSelect(id: string) {
-    if (this.setDateRangeSelection(id) && this.currentRangeValue) {
-      this.onDateSelect(this.currentRangeValue);
-    }
-  }
-
-  private setDateRangeSelection(id: string) {
-    this.selectedDateRangeId = id;
-    const option = this.dateRangeOptions.find((range) => range.id === id);
-
+  /** The range set by props: a predefined range, else `from` and `to`. */
+  private rangeFromProps(): DropdownRange {
+    const option = this.findRangeOption(this.dateRangeId);
     if (option) {
-      if (option.from && option?.from === this.currentRangeValue?.from) {
-        // Show the correct month in the date picker if the same range is selected again
-        const formattedDate = parseWithLocale(
-          option.from,
-          this.format,
-          this.locale
-        );
-        this.datePickerRef.current?.updateSelectedYearMonth(formattedDate);
-      } else {
-        this.currentRangeValue = {
-          ...option,
-          isoFrom: toISODate(
-            parseWithLocale(option.from ?? '', this.format, this.locale)
-          ),
-          isoTo: toISODate(
-            parseWithLocale(option.to ?? '', this.format, this.locale)
-          ),
-        };
-      }
+      return this.toRange(option);
     }
 
-    return option;
+    return { id: 'custom', from: this.from, to: this.to };
+  }
+
+  /**
+   * The event payload for `range`, with `isoFrom` and `isoTo` derived from
+   * its `from` and `to`, and the label of a predefined range.
+   */
+  private toEvent(range: DropdownRange): DateRangeChangeEvent {
+    const toIso = (value?: string) =>
+      toISODate(parseWithLocale(value ?? '', this.format, this.locale));
+
+    return {
+      ...this.findRangeOption(range.id),
+      ...range,
+      isoFrom: toIso(range.from),
+      isoTo: toIso(range.to),
+    };
+  }
+
+  /** Reports a picked or restored range that is not necessarily applied. */
+  private emitRangeChange(range: DropdownRange) {
+    this.dateRangeChange.emit(this.toEvent(range));
+  }
+
+  private onRangeOptionClick(id: string) {
+    const option = this.findRangeOption(id);
+    if (!option) {
+      return;
+    }
+
+    this.showMonthOf(option);
+    this.pick(this.toRange(option));
+  }
+
+  /**
+   * Picks `range` and reports it. Without `requireConfirmation`, a complete
+   * range is applied and the dropdown closes.
+   */
+  private pick(range: DropdownRange) {
+    // Picked before emitting, so a prop echo of the pick is recognized
+    this.selection = this.selection.select(range);
+    this.emitRangeChange(range);
+
+    // A range with only a start date stays pending until the end date is picked
+    if (this.requireConfirmation || this.isIncomplete(range)) {
+      return;
+    }
+
+    this.commitSelection();
+    this.closeDropdown();
+  }
+
+  private findRangeOption(id: string) {
+    return this.dateRangeOptions.find((range) => range.id === id);
+  }
+
+  private toRange({ id, from, to }: DateDropdownOption): DropdownRange {
+    return { id, from, to };
+  }
+
+  private isIncomplete(range: DropdownRange): boolean {
+    return !this.singleSelection && isPartialRange(range);
+  }
+
+  private isConfirmDisabled(): boolean {
+    const { pending } = this.selection;
+
+    return pending === undefined || this.isIncomplete(pending);
+  }
+
+  /**
+   * Shows the month `range` starts in once the date picker has applied the
+   * new `from`/`to`, which would otherwise show the month of `to`.
+   */
+  private showMonthOf(range: DateRange<string>) {
+    if (!range.from) {
+      return;
+    }
+
+    this.monthToShow = parseWithLocale(range.from, this.format, this.locale);
+    // Re-selecting the shown range changes no state, but the month must still move
+    forceUpdate(this);
+  }
+
+  private onConfirm() {
+    this.commitSelection();
+    this.closeDropdown();
+  }
+
+  /**
+   * Applies the pending range and emits `dateSelect`. The range was already
+   * reported with `dateRangeChange` when it was picked.
+   */
+  private commitSelection() {
+    if (!this.selection.hasPending) {
+      return;
+    }
+
+    this.selection = this.selection.commit();
+    this.dateSelect.emit(this.toEvent(this.selection.committed));
+  }
+
+  private onPickerDateChange({ from, to }: DateChangeEvent) {
+    this.pick({ id: 'custom', from, to });
+  }
+
+  private onDropdownShowChanged(show: boolean) {
+    this.show = show;
+
+    const hadPendingSelection = this.selection.hasPending;
+    this.selection = this.selection.discard();
+
+    // The pending selection was emitted, so report the restored range
+    if (!show && hadPendingSelection) {
+      this.emitRangeChange(this.selection.committed);
+    }
+
+    if (show && hasKeyboardMode()) {
+      requestAnimationFrameNoNgZone(() => {
+        const datePicker = this.datePickerRef.current;
+        datePicker?.focus();
+      });
+    }
   }
 
   private closeDropdown() {
@@ -390,15 +512,26 @@ export class DateDropdown
   }
 
   private getButtonLabel() {
-    if (this.currentRangeValue?.from) {
-      let range = this.toDisplayDate(this.currentRangeValue.from);
+    // Without requireConfirmation the label also shows a pending start date
+    const rangeValue = this.requireConfirmation
+      ? this.selection.committed
+      : this.selection.displayed;
 
-      if (this.currentRangeValue.to === this.currentRangeValue.from) {
+    if (rangeValue?.from) {
+      let range = this.toDisplayDate(rangeValue.from);
+
+      if (rangeValue.to === rangeValue.from) {
         return range;
       }
 
-      if (this.currentRangeValue.to) {
-        range += ` - ${this.toDisplayDate(this.currentRangeValue.to)}`;
+      if (rangeValue.to) {
+        range += ` - ${this.toDisplayDate(rangeValue.to)}`;
+      } else if (
+        rangeValue === this.selection.pending &&
+        this.isIncomplete(rangeValue)
+      ) {
+        // A trailing separator tells the user to pick the end date
+        range += ' - ';
       }
 
       return range;
@@ -457,26 +590,19 @@ export class DateDropdown
           placement="bottom-start"
           enableTopLayer={this.enableTopLayer}
           suppressOverflowBehavior
-          onShowChanged={async ({ detail: show }) => {
-            this.show = show;
-            if (!show && this.currentRangeValue) {
-              this.onDateSelect(this.currentRangeValue);
-            }
-
-            if (show && hasKeyboardMode()) {
-              requestAnimationFrameNoNgZone(() => {
-                const datePicker = this.datePickerRef.current;
-                datePicker?.focus();
-              });
-            }
-          }}
+          onShowChanged={({ detail: show }) => this.onDropdownShowChanged(show)}
         >
-          <div class="container">
+          <div
+            class={{
+              container: true,
+              'has-footer': this.requireConfirmation,
+            }}
+          >
             {this.dateRangeOptions?.length > 1 && (
               <div
                 class={{
                   'quick-selection': true,
-                  'border-right': this.selectedDateRangeId === 'custom',
+                  'border-right': this.selection.displayed.id === 'custom',
                 }}
               >
                 {this.dateRangeOptions.map((dateRangeOption) => (
@@ -488,7 +614,7 @@ export class DateDropdown
                     loading={false}
                     type="button"
                     variant="subtle-tertiary"
-                    onClick={() => this.onRangeListSelect(dateRangeOption.id)}
+                    onClick={() => this.onRangeOptionClick(dateRangeOption.id)}
                     ariaAttributes={{
                       'aria-label': `${dateRangeOption.label}: ${dateRangeOption.from} to ${dateRangeOption.to}`,
                     }}
@@ -505,34 +631,30 @@ export class DateDropdown
                 locale={this.locale}
                 onDateChange={(e) => {
                   e.stopPropagation();
-                  this.currentRangeValue = {
-                    ...e.detail,
-                    id: 'custom',
-                  };
+                  this.onPickerDateChange(e.detail);
                 }}
                 onDateRangeChange={(e) => e.stopPropagation()}
                 format={this.format}
                 singleSelection={this.singleSelection}
-                from={this.from || this.currentRangeValue?.from}
-                to={this.to || this.currentRangeValue?.to}
+                from={this.selection.displayed.from}
+                to={this.selection.displayed.to}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
                 today={this.today}
                 weekStartIndex={this.weekStartIndex}
                 showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
-              <div class="pull-right">
-                <ix-button
-                  onClick={() => {
-                    if (this.currentRangeValue) {
-                      this.onDateSelect(this.currentRangeValue);
-                      this.closeDropdown();
-                    }
-                  }}
-                >
-                  {this.i18nDone}
-                </ix-button>
-              </div>
+              {this.requireConfirmation && (
+                <ConfirmationFooter
+                  class="pull-right"
+                  requireConfirmation
+                  i18nConfirm={this.i18nConfirm}
+                  i18nCancel={this.i18nCancel}
+                  primaryActionDisabled={this.isConfirmDisabled()}
+                  onConfirm={() => this.onConfirm()}
+                  onCancel={() => this.closeDropdown()}
+                />
+              )}
             </div>
           </div>
         </ix-dropdown>

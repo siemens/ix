@@ -36,6 +36,14 @@ export const Required: Story = {
   },
 };
 
+export const RequireConfirmation: Story = {
+  args: {
+    label: 'Require confirmation',
+    value: '2026/02/08',
+    requireConfirmation: true,
+  },
+};
+
 export const DisplayFormat: Story = {
   args: {
     label: 'Display format',

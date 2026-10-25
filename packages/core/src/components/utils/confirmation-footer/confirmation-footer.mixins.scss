@@ -1,0 +1,45 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+@mixin full-width {
+  width: 100%;
+
+  ix-button {
+    flex: 1 1 0;
+  }
+}
+
+/// Styles of the `ConfirmationFooter` functional component.
+@mixin confirmation-footer {
+  .confirmation-footer {
+    --ix-confirmation-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
+
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--ix-confirmation-footer--gap);
+  }
+
+  .confirmation-footer.layout-center {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .confirmation-footer.layout-full-width {
+    @include full-width;
+  }
+
+  @media (max-width: 576px) {
+    .confirmation-footer.layout-responsive {
+      @include full-width;
+    }
+  }
+}

@@ -27,13 +27,14 @@
   display: flex;
   align-items: end;
   justify-content: center;
-  width: var(--ix-info-page-image-width);
-  height: var(--ix-info-page-image-height);
   max-width: 100%;
   margin-block-end: var(--ix-info-page-content-image--margin-block-end);
 
   ix-icon {
-    transform: scale(2);
+    width: var(--ix-info-page-icon--size);
+    height: var(--ix-info-page-icon--size);
+    min-width: var(--ix-info-page-icon--size);
+    min-height: var(--ix-info-page-icon--size);
   }
 }
 
