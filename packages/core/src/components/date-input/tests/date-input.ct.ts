@@ -218,6 +218,48 @@ regressionTest.describe('displayFormat', () => {
   );
 
   regressionTest(
+    'shows typed text in displayFormat on blur',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="d.L.yy"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await expect(dateInputElement).toHaveAttribute('hydrated');
+      await input.fill('03.04.99');
+
+      await expect(dateInputElement).toHaveAttribute('value', '2099/04/03');
+      await expect(input).toHaveValue('03.04.99');
+
+      await input.blur();
+
+      await expect(input).toHaveValue('3.4.99');
+      await expect(dateInputElement).toHaveAttribute('value', '2099/04/03');
+    }
+  );
+
+  regressionTest(
+    'keeps invalid typed text on blur',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="d.L.yy"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await expect(dateInputElement).toHaveAttribute('hydrated');
+      await input.fill('3.4.999');
+      await input.blur();
+
+      await expect(input).toHaveValue('3.4.999');
+      await expect(
+        getInvalidText(dateInputElement, 'Date is not valid')
+      ).toBeVisible();
+    }
+  );
+
+  regressionTest(
     'updates the text when displayFormat changes',
     async ({ mount, page }) => {
       await mount(

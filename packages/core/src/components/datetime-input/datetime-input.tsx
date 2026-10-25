@@ -680,6 +680,10 @@ export class DatetimeInput
     onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     this.touched = true;
     this.emitValidityStateChangeIfChanged();
+
+    if (!this.isInputInvalid) {
+      this.syncInputText();
+    }
   }
 
   private emitValidityStateChangeIfChanged() {

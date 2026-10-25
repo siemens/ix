@@ -560,6 +560,52 @@ regressionTest.describe('displayFormat', () => {
   );
 
   regressionTest(
+    'shows typed text in displayFormat on blur',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="d.L.yy H:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await input.fill('03.04.99 09:05');
+
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/04/03 09:05:11'
+      );
+      await expect(input).toHaveValue('03.04.99 09:05');
+
+      await input.blur();
+
+      await expect(input).toHaveValue('3.4.99 9:05');
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/04/03 09:05:11'
+      );
+    }
+  );
+
+  regressionTest(
+    'keeps invalid typed text on blur',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="d.L.yy H:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await input.fill('3.4.999 9:05');
+      await input.blur();
+
+      await expect(input).toHaveValue('3.4.999 9:05');
+      await expect(input).toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
     'updates the text when displayFormat changes',
     async ({ mount, page }) => {
       await mount(

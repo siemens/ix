@@ -412,6 +412,10 @@ export class DateInput
     this.touched = true;
     onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     this.emitValidityStateChangeIfChanged();
+
+    if (!this.isInputInvalid) {
+      this.syncInputText();
+    }
   }
 
   private discardPendingSelection() {
