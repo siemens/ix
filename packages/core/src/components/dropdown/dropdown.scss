@@ -41,10 +41,14 @@ $dropdown-offset: var(--ix-dropdown--offset);
   display: none !important;
 }
 
-// Items are being added after keyboard navigation reached the end of the list.
-// Clicks are discarded until they render (see onDropdownClickCapture).
+// Set while keyboard navigation waits for more items to render
 :host([aria-busy='true']) {
   cursor: progress;
+}
+
+// Focus is shown on the items, not on the host
+:host(:focus) {
+  outline: none;
 }
 
 .dialog {

@@ -8,85 +8,39 @@
  */
 
 @use 'tokens/system' as sys;
-@use 'sass:map';
 
-// si/sys token values per variant (background/hover/active/contrast), per the
-// SI Theme Token Migration Guide. Naming isn't uniform across variants, so
-// each variant needs an explicit mapping rather than string interpolation.
-$blind-variant-sys-values: (
-  alarm: (
-    background: sys.$si-sys-color-background-danger,
-    hover: sys.$si-sys-color-background-danger-hover,
-    active: sys.$si-sys-color-background-danger-active,
-    contrast: sys.$si-sys-color-text-on-danger,
-  ),
-  critical: (
-    background: sys.$si-sys-color-background-critical,
-    hover: sys.$si-sys-color-background-critical-hover,
-    active: sys.$si-sys-color-background-critical-active,
-    contrast: sys.$si-sys-color-text-on-critical,
-  ),
-  info: (
-    background: sys.$si-sys-color-background-information,
-    hover: sys.$si-sys-color-background-information-hover,
-    active: sys.$si-sys-color-background-information-active,
-    contrast: sys.$si-sys-color-text-on-information,
-  ),
-  neutral: (
-    background: sys.$si-sys-color-background-neutral,
-    hover: sys.$si-sys-color-background-neutral-hover,
-    active: sys.$si-sys-color-background-neutral-active,
-    contrast: sys.$si-sys-color-text-on-neutral,
-  ),
-  primary: (
-    background: sys.$si-sys-color-background-accent,
-    hover: sys.$si-sys-color-background-accent-hover,
-    active: sys.$si-sys-color-background-accent-active,
-    contrast: sys.$si-sys-color-text-on-accent,
-  ),
-  success: (
-    background: sys.$si-sys-color-background-success,
-    hover: sys.$si-sys-color-background-success-hover,
-    active: sys.$si-sys-color-background-success-active,
-    contrast: sys.$si-sys-color-text-on-success,
-  ),
-  warning: (
-    background: sys.$si-sys-color-background-warning,
-    hover: sys.$si-sys-color-background-warning-hover,
-    active: sys.$si-sys-color-background-warning-active,
-    contrast: sys.$si-sys-color-text-on-warning,
-  ),
+$blind-status-sys: (
+  danger: sys.$si-sys-color-border-danger,
+  warning: sys.$si-sys-color-border-warning,
+  caution: sys.$si-sys-color-border-caution,
+  information: sys.$si-sys-color-border-information,
+  accent: sys.$si-sys-color-border-accent,
+  critical: sys.$si-sys-color-border-critical,
+  success: sys.$si-sys-color-border-success,
+  neutral: sys.$si-sys-color-border-neutral,
 );
 
-@mixin variant-vars($variant) {
-  $sys-values: map.get($blind-variant-sys-values, $variant);
-
-  @if $sys-values {
-    --ix-blind-#{$variant}--background: #{map.get($sys-values, background)};
-    --ix-blind-#{$variant}--background--hover: #{map.get($sys-values, hover)};
-    --ix-blind-#{$variant}--background--active: #{map.get($sys-values, active)};
-    --ix-blind-#{$variant}--color: #{map.get($sys-values, contrast)};
-  } @else if $variant == 'filled' {
-    --ix-blind-filled--background: transparent;
-    --ix-blind-filled--background--hover: transparent;
-    --ix-blind-filled--background--active: transparent;
-    --ix-blind-filled--color: light-dark(
-      rgba(0, 10, 20, 0.9),
-      rgba(245, 252, 255, 0.9)
-    );
-  }
-}
-
 :host {
-  --ix-blind-outline-header--background: transparent;
   --ix-blind-header--color: #{sys.$si-sys-color-text-primary};
   --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
   --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
   --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
-  --ix-blind-outline--border-color--hover: #{sys.$si-sys-color-background-hover};
-  --ix-blind-outline--border-color--active: #{sys.$si-sys-color-background-selected};
-  --ix-blind-header--border-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-blind--focus--outline-offset: calc(
+    -1 * #{sys.$si-sys-sizing-focus-ring-offset}
+  );
   --ix-blind--background: #{sys.$si-sys-color-background-1};
+  --ix-blind--surface: transparent;
+  --ix-blind--border-color: #{sys.$si-sys-color-border-3};
+  --ix-blind-status-color: transparent;
+  --ix-blind--strip-width: #{sys.$si-sys-sizing-border-width-emphasis};
+}
+
+@each $status, $color in $blind-status-sys {
+  :host(.blind-#{$status}) {
+    --ix-blind-status-color: #{$color};
+  }
 }
 
 :host {
@@ -94,18 +48,43 @@ $blind-variant-sys-values: (
   --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
-  --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-header-wrapper--min-height: calc(
+    #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-blind-header-wrapper--height: calc(
+    #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-blind-header-content--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-blind-content--padding-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
+  );
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-header--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
-  --ix-blind-header--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-blind-header--height: #{sys.$si-sys-sizing-size-100};
   --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-header--padding-left: calc(
+    var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--icon-size) + var(--ix-blind-collapse-icon--margin-right)
+  );
   --ix-blind-header-title-col--width: calc(
     100% - #{sys.$si-sys-sizing-spacing-x-60}
   );
   --ix-blind-header-title-label--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header-title-sublabel--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+}
+
+:host(:not([collapsed])) {
+  --ix-blind-header-wrapper--min-height: calc(
+    #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-blind-header-wrapper--height: calc(
+    #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
+  );
+}
+
+:host(:not(.outline)) {
+  --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
+  --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-blind-content--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
 }

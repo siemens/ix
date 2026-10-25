@@ -2,4 +2,4 @@
 '@siemens/ix': major
 ---
 
-Migrate card, action card, push card, and card accordion to the shared `StatusVariant` API (`base` replaces former neutral/layout `default`): boolean `outline` (replacing layout variants), filled status top color strip via SDL `si-sys-*` tokens, and `clickable` instead of `passive`. Basic and push cards default to non-clickable; action cards remain clickable when `clickable` is omitted. Blind is unchanged. See `BREAKING_CHANGES/v6.md` for migration.
+Migrate **ix-card**, **ix-action-card**, **ix-push-card**, **ix-card-accordion**, and **ix-blind** to shared `StatusVariant` with boolean `outline`. Cards replace `passive` with `clickable`. Status chrome uses a uniform frame plus a status strip (**ix-card**: top; **ix-blind**: left). See `BREAKING_CHANGES/v6.md`.

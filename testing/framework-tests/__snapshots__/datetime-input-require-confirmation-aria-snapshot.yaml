@@ -1,0 +1,3 @@
+- main:
+  - textbox "Date and time": /\d+\/\d+\/\d+ \d+:\d+:\d+/
+  - button "Toggle calendar"
