@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 import {
   DateDisplayFormat,
   DateDisplayFormatHost,
-} from '../date-display-format';
+} from '../datetime/date-display-format';
 
 const createDisplayFormat = (host: DateDisplayFormatHost) => {
   const dateDisplayFormat = new DateDisplayFormat(host);
