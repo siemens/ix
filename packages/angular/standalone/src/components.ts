@@ -29,6 +29,7 @@ import { defineCustomElement as defineIxChatUserMessage } from '@siemens/ix/comp
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
 import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
+import { defineCustomElement as defineIxCodeBlock } from '@siemens/ix/components/ix-code-block.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
@@ -66,6 +67,7 @@ import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kp
 import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
+import { defineCustomElement as defineIxMarkdown } from '@siemens/ix/components/ix-markdown.js';
 import { defineCustomElement as defineIxMenu } from '@siemens/ix/components/ix-menu.js';
 import { defineCustomElement as defineIxMenuAbout } from '@siemens/ix/components/ix-menu-about.js';
 import { defineCustomElement as defineIxMenuAboutItem } from '@siemens/ix/components/ix-menu-about-item.js';
@@ -791,6 +793,29 @@ export declare interface IxChip extends Components.IxChip {
    */
   closeChip: EventEmitter<IxChipCustomEvent<any>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxCodeBlock,
+  inputs: ['code', 'filename', 'highlight', 'i18nCopied', 'i18nCopy', 'language']
+})
+@Component({
+  selector: 'ix-code-block',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['code', 'filename', 'highlight', 'i18nCopied', 'i18nCopy', 'language'],
+})
+export class IxCodeBlock {
+  protected el: HTMLIxCodeBlockElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCodeBlock extends Components.IxCodeBlock {}
 
 
 @ProxyCmp({
@@ -1950,6 +1975,39 @@ export class IxLinkButton {
 
 
 export declare interface IxLinkButton extends Components.IxLinkButton {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineIxMarkdown,
+  inputs: ['i18nCopyTable', 'i18nDownloadTable', 'markdown', 'options', 'streaming']
+})
+@Component({
+  selector: 'ix-markdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['i18nCopyTable', 'i18nDownloadTable', 'markdown', 'options', 'streaming'],
+  outputs: ['actionClick'],
+})
+export class IxMarkdown {
+  protected el: HTMLIxMarkdownElement;
+  @Output() actionClick = new EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxMarkdownCustomEvent } from '@siemens/ix/components';
+import type { MarkdownAction as IIxMarkdownMarkdownAction } from '@siemens/ix/components';
+
+export declare interface IxMarkdown extends Components.IxMarkdown {
+  /**
+   * Emitted when a button Directive with an `action` attribute is clicked or a Custom component calls `emitAction`.
+   */
+  actionClick: EventEmitter<IxMarkdownCustomEvent<IIxMarkdownMarkdownAction>>;
+}
 
 
 @ProxyCmp({

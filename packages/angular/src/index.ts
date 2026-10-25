@@ -23,3 +23,4 @@ export { LoadingService } from './providers/loading';
 export * from './directives/control-value-accessors';
 export { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 export * from './module';
+export { createMarkdownComponent } from '@siemens/ix-angular/common';

@@ -1,0 +1,37 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+:host {
+  --ix-code-block--color: #{sys.$si-sys-color-text-primary};
+  --ix-code-block--background-color: #{sys.$si-sys-color-background-1};
+  --ix-code-block--border-color: #{sys.$si-sys-color-border-3};
+  --ix-code-block-filename--border-color: #{sys.$si-sys-color-border-3};
+  --ix-code-block-language--color: #{sys.$si-sys-color-text-primary};
+  --ix-code-block-language-with-filename--color: #{sys.$si-sys-color-text-secondary};
+  --ix-code-block-copied--color: #{sys.$si-sys-color-text-secondary};
+  --ix-code-block-body--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+}
+
+:host {
+  --ix-code-block--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-code-block--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-code-block--padding-x: #{sys.$si-sys-sizing-spacing-x-70};
+  --ix-code-block--padding-y: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-code-block-header--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-code-block-header--margin-bottom: #{sys.$si-sys-sizing-spacing-y-70};
+  --ix-code-block-header--font: #{sys.$si-sys-typography-body};
+  --ix-code-block-filename--gap: #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-code-block-filename--padding-x: #{sys.$si-sys-sizing-spacing-x-10};
+  --ix-code-block-filename--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-code-block-body--font: #{sys.$si-sys-typography-code};
+  --ix-code-block-body--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-code-block-body--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
+}

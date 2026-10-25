@@ -81,6 +81,11 @@ import './generated/chat-ai-message-axe.spec';
 import './generated/chat-input-axe.spec';
 import './generated/chat-user-message-axe.spec';
 
+// Markdown tests
+import './generated/markdown-axe.spec';
+import './generated/markdown-custom-component-axe.spec';
+import './generated/code-block-axe.spec';
+
 // Badge tests
 import './generated/badge-axe.spec';
 import './generated/badge-counter-axe.spec';

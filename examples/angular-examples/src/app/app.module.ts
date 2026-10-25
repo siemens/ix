@@ -69,6 +69,7 @@ import ChatUserMessage from '../preview-examples/chat-user-message';
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
+import CodeBlock from '../preview-examples/code-block';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
@@ -189,6 +190,10 @@ import LinkButtonExternal from '../preview-examples/link-button-external';
 import LinkButtonFile from '../preview-examples/link-button-file';
 import LinkButtonAction from '../preview-examples/link-button-action';
 import Loading from '../preview-examples/loading';
+import Markdown from '../preview-examples/markdown';
+import MarkdownCustomComponent, {
+  MarkdownCustomComponentAsset,
+} from '../preview-examples/markdown-custom-component';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
@@ -348,6 +353,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CheckboxIndeterminate,
     Checkbox,
     Chip,
+    CodeBlock,
     CustomField,
     CustomFieldValidation,
     DateDropdown,
@@ -454,6 +460,9 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     LinkButtonFile,
     LinkButtonAction,
     Loading,
+    Markdown,
+    MarkdownCustomComponent,
+    MarkdownCustomComponentAsset,
     MenuCategory,
     MenuWithBottomTabs,
     Message,

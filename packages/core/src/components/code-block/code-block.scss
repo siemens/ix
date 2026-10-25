@@ -1,0 +1,85 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'mixins/shadow-dom/component';
+@use './code-block.vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--ix-code-block--padding-y) var(--ix-code-block--padding-x);
+  border: var(--ix-code-block--border-width) solid
+    var(--ix-code-block--border-color);
+  border-radius: var(--ix-code-block--border-radius);
+  background-color: var(--ix-code-block--background-color);
+  color: var(--ix-code-block--color);
+
+  @include component.ix-component;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: var(--ix-code-block-header--gap);
+    margin-bottom: var(--ix-code-block-header--margin-bottom);
+    font: var(--ix-code-block-header--font);
+  }
+
+  .filename {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ix-code-block-filename--gap);
+    min-width: 0;
+    padding: 0 var(--ix-code-block-filename--padding-x);
+    border: var(--ix-code-block--border-width) solid
+      var(--ix-code-block-filename--border-color);
+    border-radius: var(--ix-code-block-filename--border-radius);
+  }
+
+  .filename-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .language {
+    color: var(--ix-code-block-language--color);
+  }
+
+  .filename + .language {
+    color: var(--ix-code-block-language-with-filename--color);
+  }
+
+  .copied {
+    margin-inline-start: auto;
+    color: var(--ix-code-block-copied--color);
+  }
+
+  .body {
+    margin: 0;
+    overflow: auto;
+    font: var(--ix-code-block-body--font);
+  }
+
+  .highlighted {
+    white-space: pre;
+  }
+
+  .body:focus-visible {
+    outline: var(--ix-code-block-body--outline-width--focus) solid
+      var(--ix-code-block-body--outline-color--focus);
+    outline-offset: var(--ix-code-block-body--outline-offset--focus);
+  }
+
+  pre,
+  code {
+    margin: 0;
+    font: inherit;
+  }
+}

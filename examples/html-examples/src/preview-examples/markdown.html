@@ -1,0 +1,60 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown example</title>
+  </head>
+  <body>
+    <ix-chat class="chat-example__chat">
+      <ix-chat-ai-message>
+        <ix-markdown></ix-markdown>
+      </ix-chat-ai-message>
+    </ix-chat>
+
+    <script type="module" src="./init.js"></script>
+    <script type="module">
+      await window.ixInitPromise;
+      await window.customElements.whenDefined('ix-markdown');
+
+      const markdown = document.querySelector('ix-markdown');
+      markdown.markdown = [
+        '## Maintenance summary',
+        '',
+        'Pump P-102 shows **elevated vibration** since the last service.',
+        '',
+        '- [x] Collect sensor data',
+        '- [ ] Schedule the maintenance window',
+        '',
+        '| Asset | Status | Vibration (mm/s) |',
+        '| :---- | :----- | ---------------: |',
+        '| P-102 | Warning | 7.4 |',
+        '| P-103 | Normal | 2.1 |',
+        '',
+        '```ts [check.ts]',
+        'const limit = 6.5;',
+        'export const isCritical = (value: number) => value > limit;',
+        '```',
+        '',
+        ':::callout{type=warning heading="Heads up"}',
+        'Vibration above 6.5 mm/s requires an inspection within 24 hours.',
+        ':::',
+        '',
+        ':button[Create work order]{action=create-order}',
+      ].join('\n');
+
+      markdown.addEventListener('actionClick', (event) => {
+        console.log('Markdown action', event.detail);
+      });
+    </script>
+  </body>
+</html>

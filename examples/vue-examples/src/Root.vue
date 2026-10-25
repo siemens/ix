@@ -63,6 +63,7 @@ import ChatUserMessage from './preview-examples/chat-user-message.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
+import CodeBlock from './preview-examples/code-block.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import ContentHeaderTextOverflow from './preview-examples/content-header-text-overflow.vue';
@@ -184,6 +185,8 @@ import LinkButtonExternal from './preview-examples/link-button-external.vue';
 import LinkButtonFile from './preview-examples/link-button-file.vue';
 import LinkButtonAction from './preview-examples/link-button-action.vue';
 import Loading from './preview-examples/loading.vue';
+import Markdown from './preview-examples/markdown.vue';
+import MarkdownCustomComponent from './preview-examples/markdown-custom-component.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import MessageBar from './preview-examples/message-bar.vue';
@@ -345,6 +348,7 @@ const routes: IxPreviewRoutes = {
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,
   '/preview/chip': Chip,
+  '/preview/code-block': CodeBlock,
   '/preview/custom-field': CustomField,
   '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
@@ -534,6 +538,8 @@ const routes: IxPreviewRoutes = {
   '/preview/link-button-file': LinkButtonFile,
   '/preview/link-button-action': LinkButtonAction,
   '/preview/loading': Loading,
+  '/preview/markdown': Markdown,
+  '/preview/markdown-custom-component': MarkdownCustomComponent,
   '/preview/menu-category': MenuCategory,
   '/preview/menu-with-bottom-tabs': MenuWithBottomTabs,
   '/preview/message': Message,

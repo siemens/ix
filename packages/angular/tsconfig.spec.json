@@ -11,6 +11,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "module": "CommonJs",
+    "target": "es2022",
     "types": ["jest"]
   },
   "include": [
