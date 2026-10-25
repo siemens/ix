@@ -6,8 +6,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-chat-user-message message="Analyze alarms">
+      <button slot="actions" aria-label="Copy">Copy</button>
+    </ix-chat-user-message>
+    <ix-chat-user-message message="Show trends"></ix-chat-user-message>
+  `);
+  const accessibilityScanResults = await makeAxeBuilder()
+    .include('ix-chat-user-message')
+    .analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
 
 regressionTest(
   'ix-chat-user-message renders a user message from property',
@@ -21,8 +34,82 @@ regressionTest(
     await expect(message.locator('.message-text')).toContainText(
       'Summarize the detailed discussion held with the customer'
     );
-    await expect(message.locator('.actions')).toHaveCount(1);
     await expect(message.locator('.actions')).not.toBeVisible();
+  }
+);
+
+async function getGapBelowMessage(page: Page, selector: string) {
+  return page.locator(selector).evaluate((host) => {
+    const bubble = host.shadowRoot?.querySelector('.message');
+    if (!bubble) {
+      throw new Error('Message bubble not rendered');
+    }
+    return (
+      host.getBoundingClientRect().bottom -
+      bubble.getBoundingClientRect().bottom
+    );
+  });
+}
+
+regressionTest(
+  'ix-chat-user-message without actions has no gap below the message',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-user-message message="Analyze alarms"></ix-chat-user-message>'
+    );
+
+    const message = page.locator('ix-chat-user-message');
+    await expect(message).toHaveAttribute('hydrated');
+    await expect(message.locator('.actions')).toBeHidden();
+    expect(await getGapBelowMessage(page, 'ix-chat-user-message')).toBe(0);
+  }
+);
+
+regressionTest(
+  'ix-chat-user-message with actions keeps the actions row below the message',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-user-message message="Analyze alarms">
+        <button slot="actions" aria-label="Copy">Copy</button>
+      </ix-chat-user-message>
+    `);
+
+    const message = page.locator('ix-chat-user-message');
+    await expect(message).toHaveClass(/\bhas-actions\b/);
+    // Actions row margin-top (0.5rem) + min-height (2rem)
+    expect(await getGapBelowMessage(page, 'ix-chat-user-message')).toBe(40);
+  }
+);
+
+regressionTest(
+  'ix-chat-user-message shows and hides the actions row when actions are added or removed',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-user-message message="Analyze alarms"></ix-chat-user-message>'
+    );
+
+    const message = page.locator('ix-chat-user-message');
+    await expect(message).toHaveAttribute('hydrated');
+
+    await message.evaluate((host) => {
+      const button = document.createElement('button');
+      button.slot = 'actions';
+      button.textContent = 'Copy';
+      host.appendChild(button);
+    });
+    await message.hover();
+    await expect(page.getByRole('button', { name: 'Copy' })).toBeVisible();
+    await expect
+      .poll(() => getGapBelowMessage(page, 'ix-chat-user-message'))
+      .toBeGreaterThan(0);
+
+    await page.getByRole('button', { name: 'Copy' }).evaluate((button) => {
+      button.remove();
+    });
+    await expect(message).not.toHaveClass(/\bhas-actions\b/);
+    await expect
+      .poll(() => getGapBelowMessage(page, 'ix-chat-user-message'))
+      .toBe(0);
   }
 );
 
@@ -72,7 +159,7 @@ regressionTest(
     await expect(message.locator('.message-text')).toContainText(
       'Analyze alarms'
     );
-    await expect(message).toHaveClass(/has-actions/);
+    await expect(message).toHaveClass(/\bhas-actions\b/);
     await expect(message.locator('.actions')).toBeVisible();
     await expect(page.locator('button[slot="actions"]')).toHaveCount(2);
   }
@@ -140,7 +227,7 @@ regressionTest(
     const message = page.locator('ix-chat-user-message');
     const attachment = page.locator('ix-chat-attachment[slot="attachments"]');
 
-    await expect(message).toHaveClass(/has-attachments/);
+    await expect(message).toHaveClass(/\bhas-attachments\b/);
     await expect(message.locator('.attachments')).toBeVisible();
     await expect(attachment).toHaveCount(1);
     await expect(attachment).toHaveAttribute('variant', 'sent');
