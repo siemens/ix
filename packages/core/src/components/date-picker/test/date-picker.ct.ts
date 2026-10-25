@@ -1486,6 +1486,41 @@ regressionTest.describe('month and year dropdowns', () => {
       }
     );
 
+    regressionTest(
+      'extends the list in the standalone build without componentOnReady',
+      async ({ page }) => {
+        // Standalone custom elements (dist-custom-elements) don't provide
+        // componentOnReady, unlike the lazy-loaded build these tests run on.
+        await page.evaluate(() => {
+          const itemPrototype = customElements.get('ix-dropdown-item')
+            ?.prototype as Partial<HTMLIxDropdownItemElement> | undefined;
+          delete itemPrototype?.componentOnReady;
+        });
+        expect(
+          await page
+            .locator('.year-selector ix-dropdown-item')
+            .first()
+            .evaluate(
+              (item: HTMLIxDropdownItemElement) => typeof item.componentOnReady
+            )
+        ).toBe('undefined');
+
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2126');
+
+        await page.keyboard.press('Enter');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2126');
+      }
+    );
+
     /**
      * Dispatches keydowns back to back in a single task, so every key after the
      * first arrives while the year list extension is still rendering.

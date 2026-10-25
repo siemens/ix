@@ -55,6 +55,7 @@ import type {
 } from '../dropdown/dropdown-focus';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
+import { waitForComponentReady } from '../utils/component-ready';
 import { makeRef } from '../utils/make-ref';
 import type { DateRange } from '../utils/datetime/date-time.types';
 import { PendingSelection } from '../utils/datetime/pending-selection';
@@ -1056,7 +1057,7 @@ export class DatePicker
     // The new items are children of the year dropdown button, so the date
     // picker's render does not wait for them. Until an item has rendered, it
     // lacks its focus-visible class and focusing it would leave no year active.
-    await targetItem.componentOnReady();
+    await waitForComponentReady(targetItem);
 
     return targetItem;
   }
