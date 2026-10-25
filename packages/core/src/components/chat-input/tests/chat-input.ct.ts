@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, type Locator } from '@playwright/test';
 import { iconCircleStop, iconSendRightFilled } from '@siemens/ix-icons/icons';
 import {
   getFormValue,
@@ -38,6 +38,19 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
     .analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
 });
+
+regressionTest(
+  'accessibility while interruptible and processing',
+  async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      '<ix-chat-input interruptible state="processing"></ix-chat-input>'
+    );
+    const accessibilityScanResults = await makeAxeBuilder()
+      .include('ix-chat-input')
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);
 
 regressionTest(
   'ix-chat-input emits valueChange when text is entered',
@@ -170,6 +183,116 @@ regressionTest(
       .toBe(iconCircleStop);
   }
 );
+
+regressionTest(
+  'ix-chat-input keeps the stop button disabled while processing when not interruptible',
+  async ({ mount, page }) => {
+    await mount('<ix-chat-input state="processing"></ix-chat-input>');
+
+    const stopButton = page.getByRole('button', { name: 'Stop generating' });
+
+    await expect(stopButton).toBeDisabled();
+  }
+);
+
+function trackPromptEvents(chatInput: Locator) {
+  return chatInput.evaluateHandle((element) => {
+    const events = { submit: 0, interrupt: [] as unknown[] };
+    element.addEventListener('promptSubmit', () => events.submit++);
+    element.addEventListener('promptInterrupt', (event) =>
+      events.interrupt.push((event as CustomEvent).detail)
+    );
+    return events;
+  });
+}
+
+regressionTest(
+  'ix-chat-input emits promptInterrupt when the stop button is clicked while interruptible and processing',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-input interruptible state="processing" value="Analyze alarms"></ix-chat-input>'
+    );
+    const events = await trackPromptEvents(page.locator('ix-chat-input'));
+
+    const stopButton = page.getByRole('button', { name: 'Stop generating' });
+    await expect(stopButton).toBeEnabled();
+    await stopButton.click();
+
+    expect(await events.evaluate((value) => value)).toEqual({
+      submit: 0,
+      interrupt: [null],
+    });
+  }
+);
+
+regressionTest(
+  'ix-chat-input stop button is reachable and activatable by keyboard',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-input interruptible state="processing"></ix-chat-input>'
+    );
+    const events = await trackPromptEvents(page.locator('ix-chat-input'));
+
+    await page.getByRole('textbox', { name: 'Chat input' }).focus();
+    await page.keyboard.press('Tab');
+    const stopButton = page.getByRole('button', { name: 'Stop generating' });
+    await expect(stopButton).toBeFocused();
+
+    await page.keyboard.press('Enter');
+    await expect
+      .poll(() => events.evaluate((value) => value.interrupt.length))
+      .toBe(1);
+
+    await page.keyboard.press('Space');
+    await expect
+      .poll(() => events.evaluate((value) => value.interrupt.length))
+      .toBe(2);
+  }
+);
+
+regressionTest(
+  'ix-chat-input supports a translated stop button label',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-input interruptible state="processing" i18n-stop-generating="Generierung stoppen"></ix-chat-input>'
+    );
+
+    await expect(
+      page.getByRole('button', { name: 'Generierung stoppen' })
+    ).toBeEnabled();
+  }
+);
+
+regressionTest(
+  'ix-chat-input disables the stop button and shows progress while interrupting',
+  async ({ mount, page }) => {
+    await mount(
+      '<ix-chat-input interruptible state="interrupting"></ix-chat-input>'
+    );
+
+    const stopButton = page.getByRole('button', { name: 'Stop generating' });
+    await expect(stopButton).toBeDisabled();
+    await expect(
+      page.locator('ix-chat-input ix-icon-button.submit-button ix-spinner')
+    ).toBeVisible();
+  }
+);
+
+for (const state of ['processing', 'interrupting'] as const) {
+  regressionTest(
+    `ix-chat-input does not submit on Enter while ${state}`,
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-chat-input interruptible state="${state}" value="Analyze alarms"></ix-chat-input>`
+      );
+      const events = await trackPromptEvents(page.locator('ix-chat-input'));
+
+      await page.getByRole('textbox', { name: 'Chat input' }).press('Enter');
+
+      expect(await events.evaluate((value) => value.submit)).toBe(0);
+    }
+  );
+}
 
 regressionTest(
   'ix-chat-input shows a soft character limit warning from the threshold',

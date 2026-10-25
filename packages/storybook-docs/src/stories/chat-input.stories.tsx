@@ -27,6 +27,7 @@ function renderChatInput(args: Partial<Element>, children: VNode[] = []) {
       onPromptSubmit={(event: CustomEvent<string>) =>
         action('promptSubmit')(event.detail)
       }
+      onPromptInterrupt={() => action('promptInterrupt')()}
     >
       {children}
     </ix-chat-input>
@@ -57,6 +58,20 @@ export const WithProcessing: Story = {
   args: {
     state: 'processing',
     value: 'Summarize the current alarm list',
+  },
+};
+
+export const Interruptible: Story = {
+  args: {
+    interruptible: true,
+    state: 'processing',
+  },
+};
+
+export const Interrupting: Story = {
+  args: {
+    interruptible: true,
+    state: 'interrupting',
   },
 };
 

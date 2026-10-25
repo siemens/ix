@@ -629,7 +629,7 @@ export declare interface IxChatAttachment extends Components.IxChatAttachment {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxChatInput,
-  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'i18nStopGenerating', 'insertLineBreakOnEnter', 'interruptible', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -637,8 +637,8 @@ export declare interface IxChatAttachment extends Components.IxChatAttachment {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'insertLineBreakOnEnter', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
-  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit'],
+  inputs: ['characterLimit', 'characterLimitWarningThreshold', 'disabled', 'disclaimer', 'i18nCharacterLimitReached', 'i18nCharacterLimitWarning', 'i18nStopGenerating', 'insertLineBreakOnEnter', 'interruptible', 'maxLength', 'maxRows', 'minRows', 'name', 'placeholder', 'readonly', 'state', 'textareaLabel', 'value'],
+  outputs: ['valueChange', 'ixBlur', 'ixChange', 'promptSubmit', 'promptInterrupt'],
 })
 export class IxChatInput {
   protected el: HTMLIxChatInputElement;
@@ -646,6 +646,7 @@ export class IxChatInput {
   @Output() ixBlur = new EventEmitter<IxChatInputCustomEvent<void>>();
   @Output() ixChange = new EventEmitter<IxChatInputCustomEvent<string>>();
   @Output() promptSubmit = new EventEmitter<IxChatInputCustomEvent<string>>();
+  @Output() promptInterrupt = new EventEmitter<IxChatInputCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -672,6 +673,11 @@ export declare interface IxChatInput extends Components.IxChatInput {
    * Event emitted when the prompt is submitted by the send button or Enter key.
    */
   promptSubmit: EventEmitter<IxChatInputCustomEvent<string>>;
+  /**
+   * Event emitted when the user activates the stop button while `interruptible` is set and `state` is `processing`.
+Use it to cancel the running request and set `state` to `interrupting` until the Interrupt is confirmed. @since 6.1.0
+   */
+  promptInterrupt: EventEmitter<IxChatInputCustomEvent<void>>;
 }
 
 
