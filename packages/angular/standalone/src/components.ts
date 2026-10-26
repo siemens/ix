@@ -1862,14 +1862,14 @@ export declare interface IxKeyValueList extends Components.IxKeyValueList {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxKpi,
-  inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value']
+  inputs: ['label', 'orientation', 'state', 'unit', 'value']
 })
 @Component({
   selector: 'ix-kpi',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value'],
+  inputs: ['label', 'orientation', 'state', 'unit', 'value'],
 })
 export class IxKpi {
   protected el: HTMLIxKpiElement;
