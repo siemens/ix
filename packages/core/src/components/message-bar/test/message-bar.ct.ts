@@ -26,8 +26,8 @@ import { regressionTest } from '@utils/test';
 const messageBarTypes = [
   { type: 'error', icon: iconError },
   { type: 'danger', icon: iconAlarm },
-  { type: 'warning', icon: iconWarningRhomb },
-  { type: 'caution', icon: iconWarning },
+  { type: 'warning', icon: iconWarning },
+  { type: 'caution', icon: iconWarningRhomb },
   { type: 'success', icon: iconSuccess },
   { type: 'information', icon: iconInfo },
   { type: 'neutral', icon: iconNotification },

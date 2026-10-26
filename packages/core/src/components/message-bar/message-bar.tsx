@@ -89,8 +89,8 @@ export class MessageBar {
   > = {
     error: { icon: iconError, color: '--si-sys-color-text-danger' },
     danger: { icon: iconAlarm, color: '--si-sys-color-text-danger' },
-    warning: { icon: iconWarningRhomb, color: '--si-sys-color-text-warning' },
-    caution: { icon: iconWarning, color: '--si-sys-color-text-caution' },
+    warning: { icon: iconWarning, color: '--si-sys-color-text-warning' },
+    caution: { icon: iconWarningRhomb, color: '--si-sys-color-text-caution' },
     success: { icon: iconSuccess, color: '--si-sys-color-text-success' },
     information: {
       icon: iconInfo,
