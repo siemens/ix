@@ -16,17 +16,21 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 import { animate, Easing } from '../utils/animate';
 import { NotificationColor } from '../utils/notification-color';
 import {
+  iconAlarm,
   iconClose,
   iconError,
   iconInfo,
   iconNotification,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
   iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
+import type { MessageBarType } from './message-bar.types';
 
 interface MessageTypeConfig {
   icon?: string;
@@ -50,14 +54,7 @@ export class MessageBar {
   /**
    * Specifies the type of the alert.
    */
-  @Prop() type:
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary' = 'info';
+  @Prop() type: MessageBarType = 'information';
 
   /**
    * If true, close button is disabled and alert cannot be dismissed by the user
@@ -79,16 +76,27 @@ export class MessageBar {
 
   private static readonly duration = 300;
   private static readonly messageTypeConfigs: Record<
-    string,
+    MessageBarType,
     MessageTypeConfig
   > = {
-    alarm: { icon: iconError, color: '--si-sys-color-text-danger' },
-    critical: { icon: iconWarningRhomb, color: '--si-sys-color-text-critical' },
+    error: { icon: iconError, color: '--si-sys-color-text-danger' },
+    danger: { icon: iconAlarm, color: '--si-sys-color-text-danger' },
     warning: { icon: iconWarning, color: '--si-sys-color-text-warning' },
+    caution: { icon: iconWarningRhomb, color: '--si-sys-color-text-caution' },
     success: { icon: iconSuccess, color: '--si-sys-color-text-success' },
-    info: { icon: iconInfo, color: '--si-sys-color-text-information' },
-    neutral: { icon: iconNotification, color: '--si-sys-color-text-secondary' },
-    primary: { icon: iconNotification, color: '--si-sys-color-text-accent' },
+    information: {
+      icon: iconInfo,
+      color: '--si-sys-color-text-information',
+    },
+    neutral: {
+      icon: iconNotification,
+      color: '--si-sys-color-text-secondary',
+    },
+    accent: { icon: iconNotification, color: '--si-sys-color-text-accent' },
+    critical: {
+      icon: iconWarningOctagon,
+      color: '--si-sys-color-text-critical',
+    },
   };
 
   private divElement?: HTMLElement;
@@ -124,7 +132,11 @@ export class MessageBar {
           role="alert"
           ref={(el) => (this.divElement = el as HTMLElement)}
         >
-          <ix-icon color={this.color} name={this.icon}></ix-icon>
+          <ix-icon
+            color={this.color}
+            name={this.icon}
+            aria-hidden={a11yBoolean(true)}
+          ></ix-icon>
           <div class="message-content">
             <slot></slot>
           </div>
