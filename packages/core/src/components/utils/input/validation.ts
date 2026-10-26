@@ -414,7 +414,10 @@ export function HookValidationLifecycle(options?: {
             const validByValidity =
               validityState.valid || (!touched && validityState.valueMissing);
             const consumerValid = consumerValidityCheck(host);
-            syncAriaInvalid(validationElement, validByValidity && consumerValid);
+            syncAriaInvalid(
+              validationElement,
+              validByValidity && consumerValid
+            );
             syncAriaMessageReferences(
               validationElement,
               !validByValidity || !consumerValid,
