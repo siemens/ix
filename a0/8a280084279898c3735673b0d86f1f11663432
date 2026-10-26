@@ -1,0 +1,34 @@
+.changeset/eix-259-kpi-status-states.md
+  h_c5a773bf2fda8b 5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 1244-1246,1265,1267
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 1753,1760
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 1865,1872
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 45,47,103,105,3098,3101,11477,11480,14943
+packages/core/src/components/kpi/kpi.tsx
+  h_c5a773bf2fda8b 11-12,44,46,62,65
+packages/core/src/components/kpi/kpi.types.ts
+  h_c5a773bf2fda8b 1-37
+packages/core/src/components/kpi/test/kpi.ct.ts
+  h_c5a773bf2fda8b 81-83,86-88
+packages/core/src/components/message-bar/message-bar.tsx
+  h_c5a773bf2fda8b 33
+packages/core/src/components/message-bar/message-bar.types.ts
+  h_c5a773bf2fda8b 1-18
+testing/framework-tests/__snapshots__/kpi-aria-snapshot.yaml
+  h_c5a773bf2fda8b 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a08a280084279898c3735673b0d86f1f11663432",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
