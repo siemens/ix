@@ -88,6 +88,28 @@ regressionTest(
 );
 
 regressionTest(
+  'scrolls the selected year into view on first open',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2023' })
+    ).toBeInViewport();
+  }
+);
+
+regressionTest(
   'supports keyboard navigation and accessible year options',
   async ({ mount, page, makeAxeBuilder }) => {
     await mount(

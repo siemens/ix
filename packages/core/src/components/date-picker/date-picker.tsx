@@ -1047,18 +1047,24 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current?.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement | null;
+                      // On first open the year items were just rendered and are not
+                      // hydrated yet, so the `checked` attribute is not reflected.
+                      // Match on the property and wait for hydration instead.
+                      const selectedYearItem = Array.from(
+                        this.yearDropdownButtonRef.current?.querySelectorAll(
+                          'ix-dropdown-item'
+                        ) ?? []
+                      ).find((item) => item.checked);
 
                       if (!selectedYearItem) {
                         return;
                       }
 
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
+                      selectedYearItem.componentOnReady().then(() => {
+                        requestAnimationFrameNoNgZone(() => {
+                          selectedYearItem.scrollIntoView({
+                            block: 'center',
+                          });
                         });
                       });
                     });
