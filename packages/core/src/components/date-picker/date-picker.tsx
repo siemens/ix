@@ -457,6 +457,7 @@ export class DatePicker
 
   @State() startYear = 0;
   @State() endYear = 0;
+  @State() private yearDropdownInitialized = false;
 
   private readonly monthDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -991,13 +992,17 @@ export class DatePicker
   private async centerCheckedItem(
     dropdownButton?: HTMLIxDropdownButtonElement | null
   ) {
-    const checkedItem = dropdownButton?.querySelector<HTMLElement>(
-      'ix-dropdown-item[checked]'
-    );
+    // Year items render lazily on first open and may not be hydrated yet, so
+    // the `checked` attribute is not reflected. Match on the property instead.
+    const checkedItem = Array.from(
+      dropdownButton?.querySelectorAll('ix-dropdown-item') ?? []
+    ).find((item) => item.checked);
 
     if (!dropdownButton || !checkedItem) {
       return;
     }
+
+    await waitForComponentReady(checkedItem);
 
     const container = await dropdownButton.getDropdownReference();
     const containerRect = container.getBoundingClientRect();
@@ -1135,6 +1140,11 @@ export class DatePicker
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
                 label={null}
+                onShowChange={(event) => {
+                  if (event.detail) {
+                    this.yearDropdownInitialized = true;
+                  }
+                }}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
@@ -1171,7 +1181,7 @@ export class DatePicker
                 >
                   {yearLabel}
                 </ix-typography>
-                {this.renderYears()}
+                {this.yearDropdownInitialized ? this.renderYears() : null}
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="bottom"></div>
                 </div>
