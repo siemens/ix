@@ -13,18 +13,25 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Message bar example</title>
-    <script type="module" crossorigin src="../assets/global-D8caMIU9.js"></script>
-    <script type="module" crossorigin src="../assets/init-C7WLpj5V.js"></script>
+    <script type="module" crossorigin src="../assets/global-CqiPKlnE.js"></script>
+    <script type="module" crossorigin src="../assets/init-Bm1z0zqs.js"></script>
     <link rel="stylesheet" crossorigin href="../assets/global-D8t5uNhS.css">
-    <link rel="stylesheet" crossorigin href="../assets/message-bar-CRzZ84TE.css">
+    <link rel="stylesheet" crossorigin href="../assets/message-bar-D7r7ZfuR.css">
   </head>
 
   <body>
     <div class="message-bar">
-      <ix-message-bar persistent>Message text</ix-message-bar>
+      <ix-message-bar persistent type="error">Message text</ix-message-bar>
+      <ix-message-bar persistent type="danger">Message text</ix-message-bar>
       <ix-message-bar persistent type="warning">Message text</ix-message-bar>
-      <ix-message-bar persistent type="alarm">
-        <div class="message-bar-alarm">
+      <ix-message-bar persistent type="caution">Message text</ix-message-bar>
+      <ix-message-bar persistent type="success">Message text</ix-message-bar>
+      <ix-message-bar persistent type="information">Message text</ix-message-bar>
+      <ix-message-bar persistent type="neutral">Message text</ix-message-bar>
+      <ix-message-bar persistent type="accent">Message text</ix-message-bar>
+      <ix-message-bar persistent type="critical">Message text</ix-message-bar>
+      <ix-message-bar persistent type="danger">
+        <div class="message-bar-with-action">
           Message text
           <ix-button>Action</ix-button>
         </div>

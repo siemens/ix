@@ -19,7 +19,7 @@
 - `ariaLabelEyeIconButton`; attr: `aria-label-eye-icon-button`; type: `string | undefined` - ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
 - `height`; attr: `height`; type: `"auto" | number`; default: `15.125` - Height interpreted as REM
 - `index`; attr: `index`; type: `number`; default: `0` - Index of the currently visible content
-- `variant`; attr: `variant`; type: `"alarm" | "filled" | "info" | "outline" | "primary" | "warning"`; default: `'filled'` - Variation of the Flip
+- `variant`; attr: `variant`; type: `"accent" | "caution" | "critical" | "danger" | "filled" | "information" | "neutral" | "outline" | "success" | "warning"`; default: `'filled'` - Variation of the Flip Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
 - `width`; attr: `width`; type: `"auto" | number`; default: `16` - Width interpreted as REM
 
 ## Events

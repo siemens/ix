@@ -17,7 +17,7 @@
 ## Properties
 
 - `persistent`; attr: `persistent`; type: `boolean`; default: `false` - If true, close button is disabled and alert cannot be dismissed by the user
-- `type`; attr: `type`; type: `"alarm" | "critical" | "info" | "neutral" | "primary" | "success" | "warning"`; default: `'info'` - Specifies the type of the alert.
+- `type`; attr: `type`; type: `"accent" | "caution" | "critical" | "danger" | "error" | "information" | "neutral" | "success" | "warning"`; default: `'information'` - Specifies the type of the alert.
 
 ## Events
 

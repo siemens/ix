@@ -16,11 +16,9 @@
 
 ## Properties
 
-- `ariaLabelAlarmIcon`; attr: `aria-label-alarm-icon`; type: `string | undefined` - ARIA label for the alarm icon
-- `ariaLabelWarningIcon`; attr: `aria-label-warning-icon`; type: `string | undefined` - ARIA label for the warning icon
 - `label`; attr: `label`; type: `string | undefined`
 - `orientation`; attr: `orientation`; type: `"horizontal" | "vertical"`; default: `'horizontal'`
-- `state`; attr: `state`; type: `"alarm" | "neutral" | "warning"`; default: `'neutral'`
+- `state`; attr: `state`; type: `"accent" | "caution" | "critical" | "danger" | "information" | "neutral" | "success" | "warning"`; default: `'neutral'` - Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
 - `unit`; attr: `unit`; type: `string | undefined`
 - `value`; attr: `value`; type: `number | string | undefined`
 
