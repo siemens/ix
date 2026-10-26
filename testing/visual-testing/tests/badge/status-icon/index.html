@@ -66,12 +66,16 @@ LICENSE file in the root directory of this source tree.
         iconErrorFilled,
         iconInfo,
         iconInfoFilled,
+        iconOctagonFilled,
         iconRhombFilled,
+        iconSquareFilled,
         iconSuccess,
         iconSuccessFilled,
         iconTriangleFilled,
         iconWarning,
         iconWarningFilled,
+        iconWarningOctagon,
+        iconWarningOctagonFilled,
         iconWarningRhomb,
         iconWarningRhombFilled,
       } from '@siemens/ix-icons/icons';
@@ -84,12 +88,16 @@ LICENSE file in the root directory of this source tree.
         iconErrorFilled,
         iconInfo,
         iconInfoFilled,
+        iconOctagonFilled,
         iconRhombFilled,
+        iconSquareFilled,
         iconSuccess,
         iconSuccessFilled,
         iconTriangleFilled,
         iconWarning,
         iconWarningFilled,
+        iconWarningOctagon,
+        iconWarningOctagonFilled,
         iconWarningRhomb,
         iconWarningRhombFilled,
       });
@@ -103,19 +111,34 @@ LICENSE file in the root directory of this source tree.
         <span class="header">Filled</span>
         <span class="header">Outline</span>
 
-        <span class="row-label">Alarm</span>
+        <span class="row-label">Critical</span>
         <ix-badge
           class="align-host"
           type="status-icon"
-          variant="alarm"
-          aria-label="Alarm"
+          variant="critical"
+          aria-label="Critical"
         ></ix-badge>
         <ix-badge
           class="align-host"
           type="status-icon"
-          variant="alarm"
+          variant="critical"
           outline
-          aria-label="Alarm outline"
+          aria-label="Critical outline"
+        ></ix-badge>
+
+        <span class="row-label">Danger</span>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="danger"
+          aria-label="Danger"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="danger"
+          outline
+          aria-label="Danger outline"
         ></ix-badge>
 
         <span class="row-label">Error</span>
@@ -133,21 +156,6 @@ LICENSE file in the root directory of this source tree.
           aria-label="Error outline"
         ></ix-badge>
 
-        <span class="row-label">Critical</span>
-        <ix-badge
-          class="align-host"
-          type="status-icon"
-          variant="critical"
-          aria-label="Critical"
-        ></ix-badge>
-        <ix-badge
-          class="align-host"
-          type="status-icon"
-          variant="critical"
-          outline
-          aria-label="Critical outline"
-        ></ix-badge>
-
         <span class="row-label">Warning</span>
         <ix-badge
           class="align-host"
@@ -161,6 +169,21 @@ LICENSE file in the root directory of this source tree.
           variant="warning"
           outline
           aria-label="Warning outline"
+        ></ix-badge>
+
+        <span class="row-label">Caution</span>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="caution"
+          aria-label="Caution"
+        ></ix-badge>
+        <ix-badge
+          class="align-host"
+          type="status-icon"
+          variant="caution"
+          outline
+          aria-label="Caution outline"
         ></ix-badge>
 
         <span class="row-label">Success</span>
@@ -178,19 +201,19 @@ LICENSE file in the root directory of this source tree.
           aria-label="Success outline"
         ></ix-badge>
 
-        <span class="row-label">Info</span>
+        <span class="row-label">Information</span>
         <ix-badge
           class="align-host"
           type="status-icon"
-          variant="info"
-          aria-label="Info"
+          variant="information"
+          aria-label="Information"
         ></ix-badge>
         <ix-badge
           class="align-host"
           type="status-icon"
-          variant="info"
+          variant="information"
           outline
-          aria-label="Info outline"
+          aria-label="Information outline"
         ></ix-badge>
       </div>
     </section>
@@ -198,13 +221,13 @@ LICENSE file in the root directory of this source tree.
     <section>
       <h2>Attached · anchors · position · offset</h2>
       <div class="row">
-        <ix-badge type="status-icon" variant="alarm">
-          <ix-button>Alarm</ix-button>
+        <ix-badge type="status-icon" variant="danger">
+          <ix-button>Danger</ix-button>
         </ix-badge>
         <ix-badge type="status-icon" variant="warning" outline>
           <ix-icon-button icon="info" aria-label="Warning"></ix-icon-button>
         </ix-badge>
-        <ix-badge type="status-icon" variant="info">
+        <ix-badge type="status-icon" variant="information">
           <ix-avatar username="User"></ix-avatar>
         </ix-badge>
         <ix-badge type="status-icon" variant="success" position="bottom-after">
