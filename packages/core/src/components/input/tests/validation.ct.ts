@@ -491,6 +491,7 @@ test.describe('novalidate form', () => {
     const host = page.locator('ix-input');
     const nativeInput = host.locator('input');
 
+    await expect(host).toBeVisible();
     await nativeInput.focus();
     await nativeInput.blur();
 
@@ -555,6 +556,7 @@ test.describe('aria message references', () => {
     const nativeInput = host.locator('input');
     const { errorId, helperId } = await getMessageIds(host);
 
+    await expect(host).toBeVisible();
     await nativeInput.focus();
     await nativeInput.blur();
 
@@ -589,13 +591,13 @@ test.describe('aria message references', () => {
     mount,
     page,
   }) => {
-    await mount('<form><ix-input required></ix-input></form>');
+    // Announced before it is touched, unlike a missing required value
+    await mount(
+      '<form><ix-input pattern="[0-9]+" value="abc"></ix-input></form>'
+    );
     const host = page.locator('ix-input');
     const nativeInput = host.locator('input');
     const { errorId, helperId } = await getMessageIds(host);
-
-    await nativeInput.focus();
-    await nativeInput.blur();
 
     await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
 
@@ -1296,6 +1298,7 @@ test.describe('prevent initial require validation', async () => {
     const inputComponent = page.locator('ix-input');
     const input = inputComponent.locator('input');
 
+    await expect(inputComponent).toBeVisible();
     await input.focus();
     await input.blur();
 
