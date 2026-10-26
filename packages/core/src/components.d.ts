@@ -42,7 +42,9 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { KpiState } from "./components/kpi/kpi.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+import { MessageBarType } from "./components/message-bar/message-bar.types";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -98,7 +100,9 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { KpiState } from "./components/kpi/kpi.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+export { MessageBarType } from "./components/message-bar/message-bar.types";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -399,9 +403,9 @@ export namespace Components {
          */
         "type": BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant": BadgeVariant;
     }
@@ -1137,8 +1141,8 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant": ChipVariant;
     }
@@ -2628,7 +2632,7 @@ export namespace Components {
          */
         "index": number;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -3085,25 +3089,16 @@ export namespace Components {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the alarm icon
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the warning icon
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation": 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -3615,15 +3610,9 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -4074,17 +4063,10 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -8645,9 +8627,9 @@ declare namespace LocalJSX {
          */
         "type"?: BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant"?: BadgeVariant;
     }
@@ -9466,8 +9448,8 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant"?: ChipVariant;
     }
@@ -11006,7 +10988,7 @@ declare namespace LocalJSX {
          */
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -11486,25 +11468,16 @@ declare namespace LocalJSX {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the alarm icon
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the warning icon
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation"?: 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state"?: 'neutral' | 'warning' | 'alarm';
+        "state"?: KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -12064,15 +12037,9 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type"?: | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type"?: MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -12552,17 +12519,10 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant"?: ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -14978,11 +14938,9 @@ declare namespace LocalJSX {
     }
     interface IxKpiAttributes {
         "label": string;
-        "ariaLabelAlarmIcon": string;
-        "ariaLabelWarningIcon": string;
         "value": string;
         "unit": string;
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": KpiState;
         "orientation": 'horizontal' | 'vertical';
     }
     interface IxLayoutGridAttributes {
@@ -15090,13 +15048,7 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface IxMessageBarAttributes {
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
         "persistent": boolean;
     }
     interface IxModalAttributes {
@@ -15182,14 +15134,7 @@ declare namespace LocalJSX {
         "borderless": boolean;
     }
     interface IxPillAttributes {
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
         "outline": boolean;
         "icon": string;
         "ariaLabelIcon": string;
