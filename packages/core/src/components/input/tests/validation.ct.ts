@@ -279,6 +279,17 @@ function setElementValue(el: Element, value: string): void {
   (el as any).value = value;
 }
 
+const getMessageIds = async (host: Locator) => ({
+  errorId: await host
+    .locator('ix-field-wrapper .error-message-container')
+    .getAttribute('id')
+    .then((id) => id ?? ''),
+  helperId: await host
+    .locator('ix-field-wrapper .helper-message-container')
+    .getAttribute('id')
+    .then((id) => id ?? ''),
+});
+
 test.describe('toggling required', () => {
   [
     'ix-input',
@@ -536,17 +547,6 @@ test.describe('novalidate form', () => {
 });
 
 test.describe('aria message references', () => {
-  const getMessageIds = async (host: Locator) => ({
-    errorId: await host
-      .locator('ix-field-wrapper .error-message-container')
-      .getAttribute('id')
-      .then((id) => id ?? ''),
-    helperId: await host
-      .locator('ix-field-wrapper .helper-message-container')
-      .getAttribute('id')
-      .then((id) => id ?? ''),
-  });
-
   test('ix-input - should only swap generated message ids and keep other references', async ({
     mount,
     page,
@@ -1271,7 +1271,10 @@ test.describe('prevent initial require validation', async () => {
 
       await expect(inputComponent).toHaveClass(/ix-invalid/);
     });
+  });
 
+  // Only fields with `getValidityState` get `aria-invalid` from the validation hook
+  ['ix-input', 'ix-date-input'].forEach((selector) => {
     test(`${selector} - should not mark the native control invalid on initial load`, async ({
       mount,
       page,
@@ -1279,14 +1282,34 @@ test.describe('prevent initial require validation', async () => {
       await mount(`<${selector} required></${selector}>`);
 
       const inputComponent = page.locator(selector);
-      const input = inputComponent.locator(getInputSelector(selector));
+      const input = inputComponent.locator('input');
+      const { helperId } = await getMessageIds(inputComponent);
 
-      await expect(inputComponent).toBeVisible();
-      // The validation hook runs in a timeout after connecting.
-      await page.waitForTimeout(100);
+      // The helper message is referenced at the end of the validation run
+      await expect(input).toHaveAttribute('aria-describedby', helperId);
       await expect(input).not.toHaveAttribute('aria-invalid', 'true');
       await expect(input).not.toHaveAttribute('aria-errormessage');
     });
+  });
+
+  test('ix-input - should keep a consumer-set invalid state before it is touched', async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      '<ix-input required class="ix-invalid" invalid-text="Server error"></ix-input>'
+    );
+
+    const inputComponent = page.locator('ix-input');
+    const input = inputComponent.locator('input');
+    const { errorId } = await getMessageIds(inputComponent);
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    await expect(input).toHaveAttribute(
+      'aria-errormessage',
+      new RegExp(String.raw`(^|\s)${errorId}(\s|$)`)
+    );
+    await expect(input).toHaveAttribute('aria-describedby', errorId);
   });
 
   test('ix-input - should mark the native control invalid once touched', async ({
