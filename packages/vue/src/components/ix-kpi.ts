@@ -8,9 +8,6 @@ import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kp
 
 export const IxKpi: StencilVueComponent<JSX.IxKpi> = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', defineIxKpi, [
   'label',
-  'ariaLabelAlarmIcon',
-  'ariaLabelWarningIcon',
-  'ariaLabelStatusIcon',
   'value',
   'unit',
   'state',

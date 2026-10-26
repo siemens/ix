@@ -1262,9 +1262,6 @@ export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents, Components.
     tagName: 'ix-kpi',
     properties: {
         label: 'label',
-        ariaLabelAlarmIcon: 'aria-label-alarm-icon',
-        ariaLabelWarningIcon: 'aria-label-warning-icon',
-        ariaLabelStatusIcon: 'aria-label-status-icon',
         value: 'value',
         unit: 'unit',
         state: 'state',

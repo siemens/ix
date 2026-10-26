@@ -78,43 +78,14 @@ regressionTest.describe('ix-kpi', () => {
     await expect(kpi).toHaveClass(/\bstacked\b/);
   });
 
-  regressionTest.describe('status icon aria label', () => {
-    regressionTest(
-      'uses ariaLabelStatusIcon for states without a specific label',
-      async ({ mount, page }) => {
-        await mount(
-          `<ix-kpi label="Motor speed" value="122.6" state="caution" aria-label-status-icon="Caution status"></ix-kpi>`
-        );
-
-        const kpi = page.locator('ix-kpi');
-        await expect(kpi).toHaveAttribute('hydrated');
-        await expect(kpi.locator('ix-icon')).toHaveAttribute(
-          'aria-label',
-          'Caution status'
-        );
-      }
+  regressionTest('status icon is decorative', async ({ mount, page }) => {
+    await mount(
+      `<ix-kpi label="Motor speed" value="122.6" state="caution"></ix-kpi>`
     );
 
-    regressionTest(
-      'prefers the specific label for danger and warning',
-      async ({ mount, page }) => {
-        await mount(`
-          <ix-kpi id="danger" label="Motor speed" value="1" state="danger" aria-label-alarm-icon="Danger" aria-label-status-icon="Status"></ix-kpi>
-          <ix-kpi id="warning" label="Motor speed" value="2" state="warning" aria-label-warning-icon="Warning" aria-label-status-icon="Status"></ix-kpi>
-        `);
-
-        await expect(page.locator('#danger')).toHaveAttribute('hydrated');
-        await expect(page.locator('#warning')).toHaveAttribute('hydrated');
-        await expect(page.locator('#danger ix-icon')).toHaveAttribute(
-          'aria-label',
-          'Danger'
-        );
-        await expect(page.locator('#warning ix-icon')).toHaveAttribute(
-          'aria-label',
-          'Warning'
-        );
-      }
-    );
+    const kpi = page.locator('ix-kpi');
+    await expect(kpi).toHaveAttribute('hydrated');
+    await expect(kpi.locator('ix-icon')).toHaveAttribute('aria-hidden', 'true');
   });
 
   regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
@@ -126,14 +97,6 @@ regressionTest.describe('ix-kpi', () => {
         )
         .join('')
     );
-
-    // Set as property: an `aria-*` named HTML attribute is reported as invalid by axe.
-    const kpis = page.locator('ix-kpi');
-    await kpis.evaluateAll((elements: HTMLIxKpiElement[]) => {
-      for (const element of elements) {
-        element.ariaLabelStatusIcon = `${element.state} status`;
-      }
-    });
 
     const { violations } = await makeAxeBuilder().analyze();
     expect(violations).toEqual([]);

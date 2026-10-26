@@ -6043,36 +6043,6 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "ariaLabelAlarmIcon",
-          "attribute": "aria-label-alarm-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "ariaLabelStatusIcon",
-          "attribute": "aria-label-status-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "ariaLabelWarningIcon",
-          "attribute": "aria-label-warning-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "label",
           "attribute": "label",
           "type": "string | undefined",

@@ -7,29 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  iconAlarm,
-  iconInfo,
-  iconSuccess,
-  iconWarning,
-  iconWarningOctagon,
-  iconWarningRhomb,
-} from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
-import type { StatusVariant } from '../utils/status.types';
-
-/**
- * Status icons by state. States without an entry (`neutral`, `accent`) show no icon.
- */
-const KPI_STATE_ICONS: Partial<Record<Exclude<StatusVariant, 'base'>, string>> =
-  {
-    warning: iconWarning,
-    danger: iconAlarm,
-    caution: iconWarningRhomb,
-    success: iconSuccess,
-    information: iconInfo,
-    critical: iconWarningOctagon,
-  };
+import { a11yBoolean } from '../utils/a11y';
+import { KPI_STATE_ICONS, type KpiState } from './kpi.types';
 
 /**
  * Displays a key performance indicator with a label, value, and status.
@@ -49,30 +29,6 @@ export class Kpi {
   @Prop() label?: string;
 
   /**
-   * ARIA label for the `danger` status icon.
-   * Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelAlarmIcon?: string;
-
-  /**
-   * ARIA label for the `warning` status icon.
-   * Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelWarningIcon?: string;
-
-  /**
-   * ARIA label for the status icon of every state that shows an icon.
-   * Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
-   *
-   * @since 6.0.0
-   */
-  @Prop() ariaLabelStatusIcon?: string;
-
-  /**
    *
    */
   @Prop() value?: string | number;
@@ -85,24 +41,14 @@ export class Kpi {
   /**
    * Status of the KPI.
    * `neutral` and `accent` show no status icon.
+   * Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
    */
-  @Prop() state: Exclude<StatusVariant, 'base'> = 'neutral';
+  @Prop() state: KpiState = 'neutral';
 
   /**
    *
    */
   @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal';
-
-  private getStateIconLabel() {
-    switch (this.state) {
-      case 'danger':
-        return this.ariaLabelAlarmIcon ?? this.ariaLabelStatusIcon;
-      case 'warning':
-        return this.ariaLabelWarningIcon ?? this.ariaLabelStatusIcon;
-      default:
-        return this.ariaLabelStatusIcon;
-    }
-  }
 
   private getStateIcon() {
     const icon = KPI_STATE_ICONS[this.state];
@@ -113,10 +59,10 @@ export class Kpi {
 
     return (
       <ix-icon
-        style={{ color: 'var(--ix-kpi-display-icon--color)' }}
+        color="--ix-kpi-display-icon--color"
         name={icon}
         size="16"
-        aria-label={this.getStateIconLabel()}
+        aria-hidden={a11yBoolean(true)}
       ></ix-icon>
     );
   }

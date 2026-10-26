@@ -19,7 +19,6 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 import { animate, Easing } from '../utils/animate';
 import { NotificationColor } from '../utils/notification-color';
-import type { StatusVariant } from '../utils/status.types';
 import {
   iconAlarm,
   iconClose,
@@ -31,14 +30,7 @@ import {
   iconWarningOctagon,
   iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
-
-/**
- * Message bar status values (emphasis set plus Figma `error`; no `base`).
- * Order in demos follows Figma: error, danger, warning, caution, success, information, neutral, accent, critical.
- *
- * @since 6.0.0
- */
-export type MessageBarType = Exclude<StatusVariant, 'base'> | 'error';
+import type { MessageBarType } from './message-bar.types';
 
 interface MessageTypeConfig {
   icon?: string;

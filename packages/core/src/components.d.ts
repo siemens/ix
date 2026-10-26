@@ -42,8 +42,9 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { KpiState } from "./components/kpi/kpi.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
-import { MessageBarType } from "./components/message-bar/message-bar";
+import { MessageBarType } from "./components/message-bar/message-bar.types";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -99,8 +100,9 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { KpiState } from "./components/kpi/kpi.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
-export { MessageBarType } from "./components/message-bar/message-bar";
+export { MessageBarType } from "./components/message-bar/message-bar.types";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -3087,31 +3089,16 @@ export namespace Components {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the `danger` status icon. Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the status icon of every state that shows an icon. Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
-          * @since 6.0.0
-         */
-        "ariaLabelStatusIcon"?: string;
-        /**
-          * ARIA label for the `warning` status icon. Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation": 'horizontal' | 'vertical';
         /**
-          * Status of the KPI. `neutral` and `accent` show no status icon.
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state": Exclude<StatusVariant, 'base'>;
+        "state": KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -11481,31 +11468,16 @@ declare namespace LocalJSX {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the `danger` status icon. Takes precedence over **ariaLabelStatusIcon** for the `danger` state.
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the status icon of every state that shows an icon. Used for `caution`, `success`, `information` and `critical`, and as a fallback for `danger` and `warning`.
-          * @since 6.0.0
-         */
-        "ariaLabelStatusIcon"?: string;
-        /**
-          * ARIA label for the `warning` status icon. Takes precedence over **ariaLabelStatusIcon** for the `warning` state.
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation"?: 'horizontal' | 'vertical';
         /**
-          * Status of the KPI. `neutral` and `accent` show no status icon.
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state"?: Exclude<StatusVariant, 'base'>;
+        "state"?: KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -14966,12 +14938,9 @@ declare namespace LocalJSX {
     }
     interface IxKpiAttributes {
         "label": string;
-        "ariaLabelAlarmIcon": string;
-        "ariaLabelWarningIcon": string;
-        "ariaLabelStatusIcon": string;
         "value": string;
         "unit": string;
-        "state": Exclude<StatusVariant, 'base'>;
+        "state": KpiState;
         "orientation": 'horizontal' | 'vertical';
     }
     interface IxLayoutGridAttributes {
