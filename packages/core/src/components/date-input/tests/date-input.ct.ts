@@ -278,6 +278,30 @@ regressionTest.describe('displayFormat', () => {
     }
   );
 
+  regressionTest(
+    'does not emit valueChange when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-input value="2099/03/04" display-format="yy/LL/dd"></ix-date-input>`
+      );
+      const dateInputElement = page.locator('ix-date-input');
+      const input = dateInputElement.getByRole('textbox');
+
+      await expect(dateInputElement).toHaveAttribute('hydrated');
+      await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+        el.addEventListener('valueChange', () => {
+          el.dataset.valueChangeCount = `${Number(el.dataset.valueChangeCount ?? 0) + 1}`;
+        });
+        el.displayFormat = 'dd.LL.yyyy';
+      });
+
+      await expect(input).toHaveValue('04.03.2099');
+      await expect(dateInputElement).not.toHaveAttribute(
+        'data-value-change-count'
+      );
+    }
+  );
+
   regressionTest('converts typed text into format', async ({ mount, page }) => {
     await mount(
       `<ix-date-input value="2024/05/05" display-format="dd.LL.yyyy"></ix-date-input>`

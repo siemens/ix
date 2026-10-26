@@ -626,6 +626,30 @@ regressionTest.describe('displayFormat', () => {
       );
     }
   );
+
+  regressionTest(
+    'does not emit valueChange when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await dateTimeInput.evaluate((el: HTMLIxDatetimeInputElement) => {
+        el.addEventListener('valueChange', () => {
+          el.dataset.valueChangeCount = `${Number(el.dataset.valueChangeCount ?? 0) + 1}`;
+        });
+        el.displayFormat = 'dd.LL.yyyy HH:mm:ss';
+      });
+
+      await expect(input).toHaveValue('04.03.2099 09:10:11');
+      await expect(dateTimeInput).not.toHaveAttribute(
+        'data-value-change-count'
+      );
+    }
+  );
 });
 
 regressionTest(

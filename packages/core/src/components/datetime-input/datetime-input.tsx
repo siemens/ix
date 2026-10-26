@@ -102,7 +102,8 @@ export class DatetimeInput
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
-   * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").
+   * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values
+   * (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").
    *
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
@@ -129,11 +130,17 @@ export class DatetimeInput
 
   @Watch('locale')
   @Watch('format')
-  @Watch('displayFormat')
   watchLocaleFormatPropHandler() {
     // Sync first, so typed text rejected for the previous format is revalidated
     this.syncInputText();
     this.onInput(this.value);
+  }
+
+  @Watch('displayFormat')
+  watchDisplayFormatPropHandler() {
+    // Only the text changes, so revalidate without emitting `valueChange`
+    this.syncInputText();
+    this.validateValue(this.value);
   }
 
   /** Whether the field is required */
@@ -252,7 +259,7 @@ export class DatetimeInput
    */
   @Prop() requireConfirmation: boolean = false;
 
-  /** Emitted when the datetime value changes. Payload is display format or undefined */
+  /** Emitted when the datetime value changes. Payload is in `format` or undefined */
   @Event() valueChange!: EventEmitter<string | undefined>;
 
   /** Emitted when validation state changes */
@@ -379,6 +386,16 @@ export class DatetimeInput
 
   async onInput(value: string | undefined) {
     this.value = value;
+    if (this.validateValue(value)) {
+      this.valueChange.emit(value);
+    }
+  }
+
+  /**
+   * Updates the validation state, picker state and form value for `value`.
+   * Returns `false` if `value` cannot be validated without `format`.
+   */
+  private validateValue(value: string | undefined): boolean {
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
@@ -386,12 +403,11 @@ export class DatetimeInput
       this.time = null;
       this.emitValidityStateChangeIfChanged();
       this.formInternals.setFormValue(null);
-      this.valueChange.emit(value);
-      return;
+      return true;
     }
 
     if (!this.format) {
-      return;
+      return false;
     }
 
     const dateTime = this.dateDisplayFormat.parseValue(value);
@@ -416,7 +432,7 @@ export class DatetimeInput
     }
 
     this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    return true;
   }
 
   private parseConstraintDate(

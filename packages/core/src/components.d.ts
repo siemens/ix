@@ -1478,7 +1478,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -1755,7 +1755,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format": string;
@@ -9813,7 +9813,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -10108,7 +10108,7 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format"?: string;
@@ -10198,7 +10198,7 @@ declare namespace LocalJSX {
          */
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
-          * Emitted when the datetime value changes. Payload is display format or undefined
+          * Emitted when the datetime value changes. Payload is in `format` or undefined
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**

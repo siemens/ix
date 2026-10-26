@@ -122,8 +122,7 @@ export class DateInput
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months,
    * determine the default order of weekdays, and parse user input.
-   * Values emitted via `valueChange` reflect the locale-formatted string
-   * as typed or selected by the user.
+   * Values emitted via `valueChange` are in `format`.
    */
   @Prop() locale?: string;
 
@@ -150,11 +149,17 @@ export class DateInput
 
   @Watch('locale')
   @Watch('format')
-  @Watch('displayFormat')
   watchLocaleFormatHandler() {
     // Sync first, so typed text rejected for the previous format is revalidated
     this.syncInputText();
     this.onInput(this.value);
+  }
+
+  @Watch('displayFormat')
+  watchDisplayFormatHandler() {
+    // Only the text changes, so revalidate without emitting `valueChange`
+    this.syncInputText();
+    this.validateValue(this.value);
   }
 
   /**
@@ -458,17 +463,36 @@ export class DateInput
 
   async onInput(value: string | undefined) {
     this.value = value;
+    if (!this.validateValue(value)) {
+      return;
+    }
+
+    if (value && !this.isInputInvalid) {
+      this.closeDropdown();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
+    }
+
+    this.valueChange.emit(value);
+  }
+
+  /**
+   * Updates the validation state and form value for `value`.
+   * Returns `false` if `value` cannot be validated without `format`.
+   */
+  private validateValue(value: string | undefined): boolean {
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
       void this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
-      return;
+      return true;
     }
 
     if (!this.format) {
-      return;
+      return false;
     }
 
     const date = this.dateDisplayFormat.parseValue(value);
@@ -482,15 +506,10 @@ export class DateInput
       this.from = undefined;
     } else {
       this.updateFormInternalValue(value);
-      this.closeDropdown();
-
-      if (hasKeyboardMode()) {
-        this.inputElementRef.current?.focus();
-      }
     }
 
     void this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    return true;
   }
 
   onCalenderClick(event: Event) {
