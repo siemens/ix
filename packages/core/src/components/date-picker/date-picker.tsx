@@ -448,6 +448,7 @@ export class DatePicker
 
   @State() startYear = 0;
   @State() endYear = 0;
+  @State() private yearDropdownInitialized = false;
 
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -1025,6 +1026,11 @@ export class DatePicker
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
                 label={null}
+                onShowChange={(event) => {
+                  if (event.detail) {
+                    this.yearDropdownInitialized = true;
+                  }
+                }}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
@@ -1041,18 +1047,24 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current?.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement | null;
+                      // On first open the year items were just rendered and are not
+                      // hydrated yet, so the `checked` attribute is not reflected.
+                      // Match on the property and wait for hydration instead.
+                      const selectedYearItem = Array.from(
+                        this.yearDropdownButtonRef.current?.querySelectorAll(
+                          'ix-dropdown-item'
+                        ) ?? []
+                      ).find((item) => item.checked);
 
                       if (!selectedYearItem) {
                         return;
                       }
 
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
+                      selectedYearItem.componentOnReady().then(() => {
+                        requestAnimationFrameNoNgZone(() => {
+                          selectedYearItem.scrollIntoView({
+                            block: 'center',
+                          });
                         });
                       });
                     });
@@ -1072,7 +1084,7 @@ export class DatePicker
                 >
                   {yearLabel}
                 </ix-typography>
-                {this.renderYears()}
+                {this.yearDropdownInitialized ? this.renderYears() : null}
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="bottom"></div>
                 </div>
