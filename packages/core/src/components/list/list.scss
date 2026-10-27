@@ -50,7 +50,8 @@
 :host(.divider) {
   ::slotted(.ix-list-drag-placeholder) {
     height: var(--ix-list-drag-placeholder--height--divider) !important;
-    border-top: 1px solid var(--ix-list-drag-placeholder--border-color--divider);
+    border-top: var(--ix-list-drag-placeholder--border-width) solid
+      var(--ix-list-drag-placeholder--border-color--divider);
     border-radius: 0;
   }
 }
@@ -64,7 +65,7 @@
     left: 0;
     height: 0 !important;
     margin: 0;
-    border-top: 1px solid
+    border-top: var(--ix-list-drag-placeholder--border-width) solid
       var(--ix-list-drag-placeholder--border-color--separator);
     border-radius: 0;
   }

@@ -27,7 +27,7 @@
     padding: var(--ix-list-item--padding);
     gap: var(--ix-list-item--gap);
     box-sizing: border-box;
-    border: var(--si-sys-sizing-border-width-default) solid transparent;
+    border: var(--ix-list-item--border-width) solid transparent;
     border-radius: var(--ix-list-item--border-radius);
     background-color: var(--ix-list-item--background);
   }
@@ -49,7 +49,8 @@
     &:focus-visible::after {
       position: absolute;
       inset: 0;
-      border: 1px solid var(--ix-list-item--outline-color--focus);
+      border: var(--ix-list-item--outline-width--focus) solid
+        var(--ix-list-item--outline-color--focus);
       border-radius: var(--ix-list-item--border-radius);
       content: '';
       pointer-events: none;
@@ -74,7 +75,8 @@
     &:focus-visible::after {
       position: absolute;
       inset: calc(-1 * var(--ix-list-item-drag-gripper--focus-ring-offset));
-      border: 1px solid var(--ix-list-item--outline-color--focus);
+      border: var(--ix-list-item--outline-width--focus) solid
+        var(--ix-list-item--outline-color--focus);
       border-radius: var(--ix-list-item--border-radius);
       content: '';
       pointer-events: none;

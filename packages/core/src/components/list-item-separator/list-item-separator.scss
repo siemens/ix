@@ -12,7 +12,7 @@
 :host {
   display: block;
   width: 100%;
-  border-bottom: var(--si-sys-sizing-border-width-default) solid
+  border-bottom: var(--ix-list-item-separator--border-width) solid
     var(--ix-list-item-separator--border-color);
 
   @include component.ix-component;
