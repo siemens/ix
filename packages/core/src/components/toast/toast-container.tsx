@@ -46,7 +46,7 @@ export class ToastContainer {
     }
 
     toast.toastTitle = config.title;
-    toast.type = config.type ?? 'info';
+    toast.type = config.type ?? 'information';
     toast.preventAutoClose = config.autoClose === false;
     toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;
