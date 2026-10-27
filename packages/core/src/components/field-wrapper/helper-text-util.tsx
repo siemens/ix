@@ -114,7 +114,7 @@ export function HelperText(
   if (props.isWarning && props.warningText && props.warningText.trim() !== '') {
     return (
       <ix-typography
-        textColor="std"
+        textColor="primary"
         class="bottom-text"
         format="body-paragraph"
       >
@@ -132,7 +132,7 @@ export function HelperText(
   if (props.isInfo && props.infoText && props.infoText.trim() !== '') {
     return (
       <ix-typography
-        textColor="std"
+        textColor="primary"
         class="bottom-text"
         format="body-paragraph"
       >
@@ -150,7 +150,7 @@ export function HelperText(
   if (props.isValid && props.validText && props.validText.trim() !== '') {
     return (
       <ix-typography
-        textColor="std"
+        textColor="primary"
         class="bottom-text"
         format="body-paragraph"
       >
@@ -171,7 +171,7 @@ export function HelperText(
       <ix-typography
         class="bottom-text"
         format="body-paragraph"
-        textColor="soft"
+        textColor="secondary"
       >
         {props.helperText}
       </ix-typography>

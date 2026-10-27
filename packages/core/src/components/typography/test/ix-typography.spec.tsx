@@ -24,11 +24,11 @@ describe('ix-typography', () => {
 
   it('should accept text color', async () => {
     const { root } = await render(
-      <ix-typography text-color="soft">Example content</ix-typography>
+      <ix-typography text-color="secondary">Example content</ix-typography>
     );
 
     expect(root).toHaveClass('typography-body');
-    expect(root.getAttribute('text-color')).toBe('soft');
+    expect(root.getAttribute('text-color')).toBe('secondary');
   });
 
   it('should accept status text color', async () => {

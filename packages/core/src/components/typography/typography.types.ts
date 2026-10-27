@@ -52,27 +52,23 @@ export type TypographyVariants =
 
 export type TypographyColors =
   | 'caution'
-  | 'caution-contrast'
-  | 'contrast'
   | 'critical'
-  | 'critical-contrast'
   | 'danger'
-  | 'danger-contrast'
+  | 'disabled'
   | 'information'
-  | 'information-contrast'
-  | 'inv-contrast'
-  | 'inv-soft'
-  | 'inv-std'
-  | 'inv-weak'
-  | 'neutral-contrast'
-  | 'primary-contrast'
-  | 'soft'
-  | 'std'
+  | 'inverse'
+  | 'on-accent'
+  | 'on-caution'
+  | 'on-critical'
+  | 'on-danger'
+  | 'on-information'
+  | 'on-neutral'
+  | 'on-success'
+  | 'on-warning'
+  | 'primary'
+  | 'secondary'
   | 'success'
-  | 'success-contrast'
-  | 'warning'
-  | 'warning-contrast'
-  | 'weak';
+  | 'warning';
 
 export type TypographyFormat =
   | TypographyFormatBody
