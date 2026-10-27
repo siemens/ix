@@ -84,4 +84,12 @@ export const TooltipPlacement: Story = {
     showTextAsTooltip: true,
     defaultSlot: '100%',
   },
+  parameters: {
+    a11y: {
+      config: {
+        // ix-tooltip host has role="tooltip"; content is inert/hidden until shown.
+        rules: [{ id: 'aria-tooltip-name', enabled: false }],
+      },
+    },
+  },
 };
