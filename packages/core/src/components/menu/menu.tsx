@@ -447,6 +447,9 @@ export class Menu {
   }
 
   disconnectedCallback() {
+    if (this.isOverlayClosing) {
+      this.resetOverlay();
+    }
     if (this.overlayFadeOutRaf) {
       cancelAnimationFrame(this.overlayFadeOutRaf);
       this.overlayFadeOutRaf = undefined;
