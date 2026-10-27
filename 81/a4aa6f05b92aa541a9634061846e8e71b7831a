@@ -1,0 +1,38 @@
+.changeset/eix-259-message-modal-status-variants.md
+  h_c5a773bf2fda8b 1-8
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 36,223-224,229,267-271,273-277,297-306,441-445,628-632,767,841-847,880-886,939-944,973,1009-1018,1046-1050,1109-1114,1116,1152-1162,1190-1201,1223-1229,1246-1255,1277-1282,1296-1331,1360
+examples/react-examples/src/preview-examples/message.tsx
+  h_c5a773bf2fda8b 12-23,25,27-29,37,39-45
+packages/angular/common/src/providers/message/message.service.ts
+  h_c5a773bf2fda8b 1-9,27,29,37,68-130
+packages/angular/package.json
+  h_c5a773bf2fda8b 25
+packages/angular/standalone/src/providers/message.ts
+  h_c5a773bf2fda8b 1-9
+packages/core/package.json
+  h_c5a773bf2fda8b 190
+packages/core/src/components/modal/test/modal.ct.ts
+  h_c5a773bf2fda8b 17,23-24,691-693,695,697,700-702
+packages/core/src/components/utils/modal/message.ts
+  h_c5a773bf2fda8b 11,17-18,110,112-114,116,120-147,241,243-247,252-256,259-277,279-283,288-301,306-310
+packages/documentation/scripts/typedoc-generator.ts
+  h_c5a773bf2fda8b 285
+packages/react/package.json
+  h_c5a773bf2fda8b 73
+packages/vue/package.json
+  h_c5a773bf2fda8b 54
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 591-592,960-961,1124-1125,1204,1238,6048-6049,20243
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "81a4aa6f05b92aa541a9634061846e8e71b7831a",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
