@@ -1,0 +1,72 @@
+.changeset/eix-259-typography-text-colors.md
+  h_c5a773bf2fda8b 5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 39,1425-1449,1457-1458,1462-1466,1471-1475
+examples/angular-examples/src/preview-examples/modal-non-blocking.ts
+  h_c5a773bf2fda8b 44
+examples/angular-standalone-examples/src/preview-examples/modal-non-blocking.ts
+  h_c5a773bf2fda8b 52
+examples/html-examples/src/preview-examples/modal-non-blocking.html
+  h_c5a773bf2fda8b 20
+examples/react-examples/src/preview-examples/modal-non-blocking.tsx
+  h_c5a773bf2fda8b 60
+packages/core/component-api.json
+  h_c5a773bf2fda8b 11677
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 137
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.tsx
+  h_c5a773bf2fda8b 73
+packages/core/src/components/avatar/avatar.tsx
+  h_c5a773bf2fda8b 123
+packages/core/src/components/chat-input/chat-input.tsx
+  h_c5a773bf2fda8b 424,594
+packages/core/src/components/chat-user-message/chat-user-message.tsx
+  h_c5a773bf2fda8b 97
+packages/core/src/components/checkbox/checkbox.tsx
+  h_c5a773bf2fda8b 246
+packages/core/src/components/content-header/content-header.tsx
+  h_c5a773bf2fda8b 106
+packages/core/src/components/field-label/field-label.tsx
+  h_c5a773bf2fda8b 222
+packages/core/src/components/field-wrapper/helper-text-util.tsx
+  h_c5a773bf2fda8b 117,135,153,174
+packages/core/src/components/info-page/info-page.tsx
+  h_c5a773bf2fda8b 100
+packages/core/src/components/input/input.tsx
+  h_c5a773bf2fda8b 409
+packages/core/src/components/input/textarea.tsx
+  h_c5a773bf2fda8b 402
+packages/core/src/components/menu-category/menu-category.tsx
+  h_c5a773bf2fda8b 660
+packages/core/src/components/progress-indicator/progress-indicator.tsx
+  h_c5a773bf2fda8b 186
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 109
+packages/core/src/components/radio/radio.tsx
+  h_c5a773bf2fda8b 238
+packages/core/src/components/typography/test/ix-typography.spec.tsx
+  h_c5a773bf2fda8b 27,31
+packages/core/src/components/typography/typography.tsx
+  h_c5a773bf2fda8b 35,37-47
+packages/core/src/components/typography/typography.types.ts
+  h_c5a773bf2fda8b 57,59-69,71
+testing/visual-testing/tests/input/with-slots/index.html
+  h_c5a773bf2fda8b 35,38
+testing/visual-testing/tests/modal/non-blocking/index.html
+  h_c5a773bf2fda8b 26
+testing/visual-testing/tests/number-input/basic/index.html
+  h_c5a773bf2fda8b 29,37
+testing/visual-testing/tests/typography/text-color/index.html
+  h_c5a773bf2fda8b 29-31,34,37,40,46,50,56,60-61,63-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "341f7f7fa0e29184b557cb76923199f75ece783d",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
