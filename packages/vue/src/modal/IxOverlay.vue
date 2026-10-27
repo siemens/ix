@@ -6,7 +6,7 @@ import IxView from './ix-view';
 import { PORTAL_ID, DATA_PORTAL_ID_ATTRIBUTE } from './constants';
 
 
-const resolveElementRef = ref<Record<string, (value: Element | PromiseLike<Element>) => void>>({});
+const pendingResolvers = new Map<string, (value: Element | PromiseLike<Element>) => void>();
 const viewMap = ref<Record<string, VNode>>({})
 
 const views = computed(() => {
@@ -45,13 +45,12 @@ watch(() => props.delegate, (delegate) => {
     delegate.attachViewToPortal = async (id: string, view: VNode) => {
         addOverlay(id, view);
         return new Promise<Element>((resolve) => {
-            const r = { ...resolveElementRef.value };
-            r[id] = resolve;
-            resolveElementRef.value = r;
+            pendingResolvers.set(id, resolve);
         });
     }
 
     delegate.removeViewFromPortal = async (id: string) => {
+        pendingResolvers.delete(id);
         removeOverlay(id);
     }
 
@@ -61,14 +60,16 @@ watch(() => props.delegate, (delegate) => {
 
 watch(() => views.value, (newViews) => {
     newViews.forEach((view) => {
-        const resolveQueue = { ...resolveElementRef.value };
+        const resolve = pendingResolvers.get(view.id);
+        if (!resolve) {
+            return;
+        }
+
         const el = document.querySelector(`[${DATA_PORTAL_ID_ATTRIBUTE}="${view.id}"]`);
 
-        const resolve = resolveQueue[view.id]
-
-        if (el && el.children.length === 1 && resolve && typeof resolve === 'function') {
-            const view = el.children[0];
-            resolve(view);
+        if (el && el.children.length === 1) {
+            pendingResolvers.delete(view.id);
+            resolve(el.children[0]);
         }
 
     })

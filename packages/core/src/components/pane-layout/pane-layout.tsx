@@ -21,6 +21,7 @@ import {
 import type { Composition } from '../pane/pane.types';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
+import type { Disposable } from '../utils/typed-event';
 
 /**
  * Layout container that arranges collapsible panes around a content area.
@@ -70,14 +71,20 @@ export class Panes {
   }> = [];
 
   private observer?: MutationObserver;
+  private layoutChangeDisposable?: Disposable;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
   }
 
-  componentWillLoad() {
+  componentDidLoad() {
+    this.setPanes(this.currentPanes);
+  }
+
+  connectedCallback() {
     this.paneElements = this.currentPanes.length;
 
+    this.observer?.disconnect();
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements += 1;
@@ -90,17 +97,16 @@ export class Panes {
     });
 
     this.isMobile = matchBreakpoint('sm');
-    applicationLayoutService.onChange.on(() => {
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
       this.configurePanes();
     });
   }
 
-  componentDidLoad() {
-    this.setPanes(this.currentPanes);
-  }
-
   disconnectedCallback() {
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = undefined;
     this.observer?.disconnect();
   }
 

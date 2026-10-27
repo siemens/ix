@@ -46,10 +46,22 @@ const createDateInputAccessor = async (dateInput: Locator) => {
   return handle;
 };
 
-regressionTest('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+interface RangeDateInputTrace {
+  changes: Array<{ inputIndex: number; value?: string }>;
+}
+
+interface RangeDateInputTraceWindow extends Window {
+  __rangeDateInputTrace?: RangeDateInputTrace;
+}
+
+regressionTest('renders', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(
+    `<ix-date-input label="Inspection date" value="2024/05/05"></ix-date-input>`
+  );
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveAttribute('hydrated');
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
 });
 
 for (const value of ['2026/02/08', 'invalid-date', '']) {
@@ -163,6 +175,209 @@ regressionTest(
     await expect(host.getByRole('textbox')).not.toHaveValue('');
   }
 );
+
+regressionTest(
+  'preserves range-field focus while selecting a date from the first calendar',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-range-field type="date-range" style="width: 32rem">
+        <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
+        <ix-date-input label="End date" value="2022/10/31"></ix-date-input>
+      </ix-range-field>
+    `);
+
+    const dateInputs = page.locator('ix-date-input');
+    const firstInput = dateInputs.nth(0);
+    const secondInput = dateInputs.nth(1);
+    const firstNativeInput = firstInput.locator('input');
+    const secondNativeInput = secondInput.locator('input');
+    const firstCalendar = firstInput.getByTestId('date-dropdown');
+    const secondCalendar = secondInput.getByTestId('date-dropdown');
+
+    await expect(firstInput).toHaveAttribute('hydrated');
+    await expect(secondInput).toHaveAttribute('hydrated');
+    await expect(firstInput.locator('ix-date-picker')).toHaveAttribute(
+      'hydrated'
+    );
+
+    await page.evaluate(() => {
+      const inputs = Array.from(document.querySelectorAll('ix-date-input'));
+      const trace: RangeDateInputTrace = { changes: [] };
+      (window as RangeDateInputTraceWindow).__rangeDateInputTrace = trace;
+
+      inputs.forEach((input, inputIndex) => {
+        input.addEventListener('ixChange', (event) => {
+          trace.changes.push({
+            inputIndex,
+            value: (event as CustomEvent<string | undefined>).detail,
+          });
+        });
+      });
+    });
+    const getChanges = () =>
+      page.evaluate(() => {
+        const trace = (window as RangeDateInputTraceWindow)
+          .__rangeDateInputTrace;
+        if (!trace) {
+          throw new Error('Range date-input event trace was not initialized');
+        }
+        return trace.changes;
+      });
+
+    await firstNativeInput.focus();
+    await expect(firstNativeInput).toBeFocused();
+    await firstInput.getByTestId('open-calendar').click();
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    const yearSelection = firstInput.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    const year2024 = yearSelection.getByRole('menuitem', { name: '2024' });
+    await expect(year2024).toBeVisible();
+    await year2024.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(yearSelection.locator('[slot="button-label"]')).toHaveText(
+      '2024'
+    );
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+    await expect(secondNativeInput).not.toBeFocused();
+    await expect.poll(getChanges).toEqual([]);
+
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+    await page.keyboard.press('Escape');
+    await expect(firstCalendar).not.toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    await firstInput.getByTestId('open-calendar').click();
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+    await page.keyboard.press('Enter');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(firstCalendar).toHaveClass(/show/);
+    await expect(secondCalendar).not.toHaveClass(/show/);
+
+    await firstInput.locator('ix-date-picker [data-calendar-day="2"]').click();
+    await expect(firstInput).toHaveAttribute('value', '2024/10/02');
+    await expect(secondNativeInput).toBeFocused();
+    await expect(secondCalendar).toHaveClass(/show/);
+    await expect
+      .poll(getChanges)
+      .toEqual([{ inputIndex: 0, value: '2024/10/02' }]);
+
+    await secondNativeInput.fill('2022/11/01');
+    await secondNativeInput.blur();
+    await expect.poll(getChanges).toEqual([
+      { inputIndex: 0, value: '2024/10/02' },
+      { inputIndex: 1, value: '2022/11/01' },
+    ]);
+  }
+);
+
+for (const interaction of ['keyboard', 'pointer'] as const) {
+  for (const day of [5, 6]) {
+    regressionTest(
+      `${interaction} calendar selection emits ${
+        day === 5
+          ? 'no ixChange for an unchanged date'
+          : 'exactly one ixChange for a changed date'
+      }`,
+      async ({ mount, page }) => {
+        await mount(`
+          <ix-date-input label="Inspection date" value="2023/09/05"></ix-date-input>
+          <button>Next field</button>
+        `);
+
+        const dateInput = page.locator('ix-date-input');
+        await expect(dateInput).toHaveAttribute('hydrated');
+        const input = dateInput.getByRole('textbox');
+        const calendar = dateInput.getByTestId('date-dropdown');
+        const nextField = page.getByRole('button', { name: 'Next field' });
+        const changes = await dateInput.evaluateHandle(
+          (element: HTMLIxDateInputElement) => {
+            const values: Array<string | undefined> = [];
+            element.addEventListener('ixChange', (event) => {
+              values.push(event.detail);
+            });
+            return values;
+          }
+        );
+        const getChanges = () => changes.evaluate((values) => values);
+        const expectedChanges = day === 5 ? [] : ['2023/09/06'];
+
+        if (interaction === 'keyboard') {
+          await nextField.focus();
+          await page.keyboard.press('Shift+Tab');
+          await expect(input).toBeFocused();
+          await page.keyboard.press('ArrowDown');
+          const selectedDay = dateInput.getByRole('gridcell', {
+            name: '5 September 2023',
+            exact: true,
+          });
+          await expect(selectedDay).toBeFocused();
+          await expect(selectedDay).toHaveAttribute('tabindex', '0');
+          await waitForRender(page);
+          await expect.poll(getChanges).toEqual([]);
+
+          if (day === 6) {
+            await page.keyboard.press('ArrowRight');
+            await expect(
+              dateInput.getByRole('gridcell', {
+                name: '6 September 2023',
+                exact: true,
+              })
+            ).toBeFocused();
+          }
+          await page.keyboard.press('Enter');
+          await expect(input).toBeFocused();
+        } else {
+          await dateInput
+            .getByRole('button', { name: 'Open calendar' })
+            .click();
+          await expect(calendar).toHaveClass(/show/);
+          await expect.poll(getChanges).toEqual([]);
+          await dateInput
+            .getByRole('gridcell', {
+              name: `${day} September 2023`,
+              exact: true,
+            })
+            .click();
+        }
+
+        await expect(input).toHaveValue(`2023/09/0${day}`);
+        await expect(dateInput).toHaveAttribute('value', `2023/09/0${day}`);
+        await expect(calendar).not.toHaveClass(/show/);
+        await expect.poll(getChanges).toEqual(expectedChanges);
+
+        if (interaction === 'keyboard') {
+          await page.keyboard.press('Tab');
+        } else {
+          await nextField.click();
+        }
+        await expect(nextField).toBeFocused();
+        await waitForRender(page);
+        await expect.poll(getChanges).toEqual(expectedChanges);
+      }
+    );
+  }
+}
 
 regressionTest(
   'select date by open calendar trigger',

@@ -33,7 +33,7 @@ import {
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
-  resetInputValidation,
+  onInputFocus,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -374,18 +374,16 @@ export class DateInput
     );
   }
 
-  override componentDidRender(): void {
-    void revalidate(this);
-  }
-
   override disconnectedCallback(): void {
     this.classObserver?.destroy();
     this.disposableChangesAndVisibilityObservers?.();
   }
 
   private applyPickedDate(from?: string) {
+    // onInput can refocus the input and reset initialValue.
+    const hasValueChanged = this.initialValue !== from;
     this.onInput(from);
-    if (this.initialValue !== from) {
+    if (hasValueChanged) {
       this.ixChange.emit(from);
       this.initialValue = from;
     }
@@ -516,9 +514,9 @@ export class DateInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
             this.inputBlur.onFocus();
-            this.initialValue = this.value;
+            onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
           onBlur={() => this.inputBlur.onBlur()}
@@ -594,33 +592,6 @@ export class DateInput
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
-  }
-
-  /**
-   * Clears the date and resets touched validation feedback.
-   * Required validation applies again after the field is touched.
-   *
-   * @since 6.0.0
-   */
-  @Method()
-  async clear(): Promise<void> {
-    const input = await this.getNativeInputElement();
-    await this.closeDropdown();
-    this.touched = false;
-    this.initialValue = '';
-    this.isInputInvalid = false;
-    this.invalidReason = undefined;
-    this.validityTracker = createPickerValidityStateTracker();
-    resetInputValidation(this, input);
-
-    const wasEmpty = this.value === '';
-    this.updateFormInternalValue('');
-    this.from = '';
-    // The value watcher emits when the value changes.
-    if (wasEmpty) {
-      this.valueChange.emit('');
-    }
-    await revalidate(this);
   }
 
   /**
