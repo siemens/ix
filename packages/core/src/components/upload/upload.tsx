@@ -146,10 +146,17 @@ export class Upload {
 
     if (this.state !== UploadFileState.LOADING) {
       event.preventDefault();
-      event.dataTransfer.dropEffect = 'copy';
+      const allowsMoveOnly = ['move', 'linkMove'].includes(
+        event.dataTransfer.effectAllowed
+      );
+      event.dataTransfer.dropEffect = allowsMoveOnly ? 'move' : 'copy';
     }
 
-    if (!this.multiple && event.dataTransfer.items.length > 1) {
+    const fileCount = Array.from(event.dataTransfer.items).filter(
+      (item) => item.kind === 'file'
+    ).length;
+
+    if (!this.multiple && fileCount > 1) {
       event.preventDefault();
       event.stopPropagation();
       event.dataTransfer.effectAllowed = 'none';
