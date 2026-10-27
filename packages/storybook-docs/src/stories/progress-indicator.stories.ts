@@ -8,6 +8,7 @@
  */
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { html } from 'lit';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxProgressIndicator & { defaultSlot: string };
@@ -23,7 +24,10 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'REPLACE ME',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components?node-id=69677-5548&m=dev',
+    },
+    a11y: {
+      test: 'error',
     },
   },
 } satisfies Meta<Element>;
@@ -51,6 +55,25 @@ export const Circular: Story = {
   },
 };
 
+export const Status: Story = {
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 20rem;">
+      ${(['base', 'success', 'error', 'information', 'warning', 'paused'] as const).map(
+        (status) => html`
+          <ix-progress-indicator
+            label=${status}
+            value="75"
+            status=${status}
+            helper-text="Helper text"
+          >
+            75%
+          </ix-progress-indicator>
+        `
+      )}
+    </div>
+  `,
+};
+
 export const TooltipPlacement: Story = {
   args: {
     label: 'Progress Indicator',
@@ -60,5 +83,13 @@ export const TooltipPlacement: Story = {
     size: 'md',
     showTextAsTooltip: true,
     defaultSlot: '100%',
+  },
+  parameters: {
+    a11y: {
+      config: {
+        // ix-tooltip host has role="tooltip"; content is inert/hidden until shown.
+        rules: [{ id: 'aria-tooltip-name', enabled: false }],
+      },
+    },
   },
 };
