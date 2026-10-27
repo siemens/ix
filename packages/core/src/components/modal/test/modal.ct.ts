@@ -837,3 +837,130 @@ regressionTest(
     expect(loggedText).not.toContain('HTMLDialogElement not existing');
   }
 );
+
+regressionTest.describe('config allowlist', () => {
+  regressionTest(
+    'showModal ignores non-modal properties from config',
+    async ({ mount, page }) => {
+      await mount(``);
+      await setupModalEnvironment(page);
+
+      await page.evaluate(() => {
+        const config = {
+          content: 'Plain text content',
+          ariaDescribedby: 'modal-description',
+          animation: false,
+          backdrop: false,
+          innerHTML: '<img id="injected" src="x">',
+        };
+        (globalThis as any).__modalConfig = config;
+        globalThis.showModal(config as any);
+      });
+
+      const modal = page.locator('ix-modal');
+      await expect(modalPanel(page)).toBeVisible();
+      await expect(modal).toHaveText('Plain text content');
+      await expect(page.locator('#injected')).toHaveCount(0);
+      await expect(modalPanel(page)).toHaveAttribute(
+        'aria-describedby',
+        'modal-description'
+      );
+
+      const state = await modal.evaluate((element: HTMLIxModalElement) => ({
+        disableAnimation: element.disableAnimation,
+        hideBackdrop: element.hideBackdrop,
+        configKeys: Object.keys((globalThis as any).__modalConfig),
+      }));
+
+      expect(state).toEqual({
+        disableAnimation: true,
+        hideBackdrop: true,
+        configKeys: [
+          'content',
+          'ariaDescribedby',
+          'animation',
+          'backdrop',
+          'innerHTML',
+        ],
+      });
+    }
+  );
+
+  regressionTest(
+    'showMessage ignores non-header properties from config',
+    async ({ mount, page }) => {
+      await mount(``);
+      await setupModalEnvironment(page);
+
+      await page.evaluate(() => {
+        globalThis.showMessage({
+          messageTitle: 'Message title',
+          message: 'Message body',
+          actions: [{ id: 'okay', type: 'okay', text: 'Okay' }],
+          innerHTML: '<img id="injected" src="x">',
+          outerHTML: '<img id="injected-outer" src="x">',
+        });
+      });
+
+      await expect(modalPanel(page)).toBeVisible();
+      await expect(page.locator('ix-modal-header')).toContainText(
+        'Message title'
+      );
+      await expect(page.locator('ix-modal-content')).toHaveText('Message body');
+      await expect(page.locator('#injected')).toHaveCount(0);
+      await expect(page.locator('#injected-outer')).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'Okay' })).toBeVisible();
+    }
+  );
+});
+
+regressionTest(
+  'removes core-attached modals with the core delegate when a framework delegate is registered',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    await page.evaluate(() => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        globalThis.__ixDelegate = ix;
+      `;
+      document.getElementById('mount')?.appendChild(script);
+    });
+    await page.waitForFunction(() => (globalThis as any).__ixDelegate != null);
+
+    await page.evaluate(async () => {
+      const ix = (globalThis as any).__ixDelegate;
+      (globalThis as any).__frameworkRemoveCalls = 0;
+      ix.registerFrameworkDelegate({
+        attachView: async (view: HTMLElement) => {
+          document.body.appendChild(view);
+          return view;
+        },
+        removeView: async () => {
+          (globalThis as any).__frameworkRemoveCalls++;
+        },
+      });
+
+      try {
+        const instance = await globalThis.showModal({
+          content: 'Core attached modal',
+        });
+        (globalThis as any).__closed = new Promise<void>((resolve) =>
+          instance.onClose.on(() => setTimeout(resolve))
+        );
+        instance.htmlElement.closeModal('done');
+        await (globalThis as any).__closed;
+      } finally {
+        ix.registerFrameworkDelegate(ix.getCoreDelegate());
+      }
+    });
+
+    await expect(page.locator('ix-modal')).toHaveCount(0);
+    expect(
+      await page.evaluate(() => (globalThis as any).__frameworkRemoveCalls)
+    ).toBe(0);
+  }
+);

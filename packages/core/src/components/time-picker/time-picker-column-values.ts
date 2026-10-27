@@ -14,6 +14,58 @@ export type TimePickerColumnIntervals = {
   millisecondInterval: number;
 };
 
+export type TimePickerIntervalUnit =
+  | 'hour'
+  | 'minute'
+  | 'second'
+  | 'millisecond';
+
+/**
+ * Upper bound of entries a single time-picker column may render.
+ */
+export const TIME_PICKER_MAX_COLUMN_ENTRIES = 1000;
+
+/**
+ * Checks whether an interval is usable for the given time-picker column.
+ *
+ * Rejects non-finite, zero and negative values as well as values that would
+ * render more than {@link TIME_PICKER_MAX_COLUMN_ENTRIES} entries.
+ */
+export function isValidTimePickerInterval(
+  unit: TimePickerIntervalUnit,
+  value: number,
+  twelveHourFormat: boolean
+): boolean {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
+    return false;
+  }
+
+  let range: number;
+  let max: number;
+  switch (unit) {
+    case 'hour':
+      if (!Number.isInteger(value)) {
+        return false;
+      }
+      range = twelveHourFormat ? 12 : 24;
+      max = twelveHourFormat ? 12 : 23;
+      break;
+    case 'minute':
+    case 'second':
+      range = 60;
+      max = 59;
+      break;
+    case 'millisecond':
+      range = 1000;
+      max = 999;
+      break;
+  }
+
+  return (
+    value <= max && Math.ceil(range / value) <= TIME_PICKER_MAX_COLUMN_ENTRIES
+  );
+}
+
 /**
  * Builds the discrete values shown in each time-picker column.
  */

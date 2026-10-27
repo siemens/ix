@@ -564,10 +564,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"error\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"error\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -2178,10 +2178,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5025,7 +5025,7 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"filled\" | \"information\" | \"neutral\" | \"outline\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'filled'",
@@ -6055,26 +6055,6 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "ariaLabelAlarmIcon",
-          "attribute": "aria-label-alarm-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "ariaLabelWarningIcon",
-          "attribute": "aria-label-warning-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "label",
           "attribute": "label",
           "type": "string | undefined",
@@ -6098,7 +6078,7 @@
         {
           "name": "state",
           "attribute": "state",
-          "type": "\"alarm\" | \"neutral\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'neutral'",
@@ -7206,10 +7186,10 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'info'",
+          "default": "'information'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -8244,10 +8224,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false

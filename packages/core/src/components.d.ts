@@ -42,7 +42,9 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { KpiState } from "./components/kpi/kpi.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+import { MessageBarType } from "./components/message-bar/message-bar.types";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -98,7 +100,9 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { KpiState } from "./components/kpi/kpi.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+export { MessageBarType } from "./components/message-bar/message-bar.types";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -174,7 +178,7 @@ export namespace Components {
      */
     interface IxApplication {
         /**
-          * Define application switch configuration
+          * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -399,9 +403,9 @@ export namespace Components {
          */
         "type": BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant": BadgeVariant;
     }
@@ -495,7 +499,7 @@ export namespace Components {
          */
         "hideChevron": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -779,7 +783,7 @@ export namespace Components {
          */
         "enableTopLayer": boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of search criteria to populate the component with.  Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
          */
         "filterState"?: FilterState;
         /**
@@ -1137,8 +1141,8 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant": ChipVariant;
     }
@@ -2200,7 +2204,7 @@ export namespace Components {
          */
         "suppressTriggerVisibilityCheck": boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
         /**
@@ -2635,7 +2639,7 @@ export namespace Components {
          */
         "index": number;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -3092,25 +3096,16 @@ export namespace Components {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the alarm icon
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the warning icon
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation": 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -3178,7 +3173,7 @@ export namespace Components {
          */
         "target": '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
     }
@@ -3522,7 +3517,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -3622,15 +3617,9 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -4081,17 +4070,10 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -4135,7 +4117,7 @@ export namespace Components {
          */
         "showPopover": () => Promise<void>;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -5611,7 +5593,7 @@ export namespace Components {
          */
         "markItemsAsDirty": (ids: string[]) => Promise<void>;
         /**
-          * Tree model
+          * Tree model  The model is processed recursively and must be acyclic. Bound the size of untrusted or user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use simple, application-controlled IDs (letters, digits, `-`, `_`).
           * @default {}
          */
         "model": TreeModel<any>;
@@ -8419,7 +8401,7 @@ declare namespace LocalJSX {
      */
     interface IxApplication {
         /**
-          * Define application switch configuration
+          * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -8653,9 +8635,9 @@ declare namespace LocalJSX {
          */
         "type"?: BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant"?: BadgeVariant;
     }
@@ -8766,7 +8748,7 @@ declare namespace LocalJSX {
          */
         "hideChevron"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -9068,7 +9050,7 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of search criteria to populate the component with.  Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
          */
         "filterState"?: FilterState;
         /**
@@ -9474,8 +9456,8 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant"?: ChipVariant;
     }
@@ -10565,7 +10547,7 @@ declare namespace LocalJSX {
          */
         "suppressTriggerVisibilityCheck"?: boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
     }
@@ -11021,7 +11003,7 @@ declare namespace LocalJSX {
          */
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -11501,25 +11483,16 @@ declare namespace LocalJSX {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the alarm icon
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the warning icon
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation"?: 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state"?: 'neutral' | 'warning' | 'alarm';
+        "state"?: KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -11587,7 +11560,7 @@ declare namespace LocalJSX {
          */
         "target"?: '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
     }
@@ -11962,7 +11935,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -12079,15 +12052,9 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type"?: | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type"?: MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -12567,17 +12534,10 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant"?: ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -12621,7 +12581,7 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -14161,7 +14121,7 @@ declare namespace LocalJSX {
          */
         "context"?: TreeContext;
         /**
-          * Tree model
+          * Tree model  The model is processed recursively and must be acyclic. Bound the size of untrusted or user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use simple, application-controlled IDs (letters, digits, `-`, `_`).
           * @default {}
          */
         "model"?: TreeModel<any>;
@@ -14994,11 +14954,9 @@ declare namespace LocalJSX {
     }
     interface IxKpiAttributes {
         "label": string;
-        "ariaLabelAlarmIcon": string;
-        "ariaLabelWarningIcon": string;
         "value": string;
         "unit": string;
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": KpiState;
         "orientation": 'horizontal' | 'vertical';
     }
     interface IxLayoutGridAttributes {
@@ -15106,13 +15064,7 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface IxMessageBarAttributes {
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
         "persistent": boolean;
     }
     interface IxModalAttributes {
@@ -15198,14 +15150,7 @@ declare namespace LocalJSX {
         "borderless": boolean;
     }
     interface IxPillAttributes {
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
         "outline": boolean;
         "icon": string;
         "ariaLabelIcon": string;

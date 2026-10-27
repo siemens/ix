@@ -386,3 +386,39 @@ regressionTest(
     await expect(fieldWrapperElement).toHaveAttribute('aria-live', 'polite');
   }
 );
+
+regressionTest(
+  'should resolve message elements when the host ID is not a valid CSS selector',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-field-wrapper invalid-text="Invalid text" is-invalid id="1-field">
+      <input id="test-input" />
+    </ix-field-wrapper>
+    `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
+
+    const errorMessageElement = fieldWrapperElement.locator(
+      '.error-message-container'
+    );
+    await expect(errorMessageElement).toHaveAttribute(
+      'id',
+      '1-field-errormessage'
+    );
+    await expect(errorMessageElement).toHaveText('Invalid text');
+
+    const resolvedIds = await fieldWrapperElement.evaluate(
+      async (el: HTMLIxFieldWrapperElement) => [
+        (await el.getAriaErrorMessageElement())?.id,
+        (await el.getAriaHelperMessageElement())?.id,
+      ]
+    );
+    expect(resolvedIds).toEqual([
+      '1-field-errormessage',
+      '1-field-helpermessage',
+    ]);
+  }
+);
