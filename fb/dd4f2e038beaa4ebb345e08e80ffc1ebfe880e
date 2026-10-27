@@ -1,0 +1,18 @@
+packages/core/src/components/toast/tests/toast.ct.ts
+  h_c5a773bf2fda8b 276,281-287,289-295,298-301,303-309
+packages/core/src/components/toast/toast-utils.ts
+  h_c5a773bf2fda8b 96-97,118-119,130-131,142-143
+packages/storybook-docs/src/stories/toast.stories.ts
+  h_c5a773bf2fda8b 15-24,40-45,61,66-101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "fbdd4f2e038beaa4ebb345e08e80ffc1ebfe880e",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
