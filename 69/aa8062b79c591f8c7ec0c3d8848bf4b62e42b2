@@ -1,0 +1,108 @@
+.changeset/eix-259-message-modal-status-variants.md
+  h_c5a773bf2fda8b 1-8
+.changeset/eix-259-progress-indicator-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-259-toast-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/upload-drop-copy-effect.md
+  h_c5a773bf2fda8b 1-7
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 36-38,225-226,231,269-273,275-279,299-308,443-447,630-634,769,843-849,882-888,941-946,975,1011-1020,1048-1052,1111-1116,1118,1154-1164,1192-1203,1225-1231,1248-1257,1279-1284,1298-1423,1492
+examples/angular-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/angular-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/html-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/html-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/react-examples/src/preview-examples/progress-indicator-circular-status.tsx
+  h_c5a773bf2fda8b 15,44,50
+examples/react-examples/src/preview-examples/progress-indicator-linear-status.tsx
+  h_c5a773bf2fda8b 15,44,50
+examples/vue-examples/src/preview-examples/progress-indicator-circular-status.vue
+  h_c5a773bf2fda8b 8,37,43
+examples/vue-examples/src/preview-examples/progress-indicator-linear-status.vue
+  h_c5a773bf2fda8b 8,37,43
+packages/angular/common/src/providers/message/message.service.ts
+  h_c5a773bf2fda8b 1-9,11-16,32,34-35,41-63,69-70,76-77,83-84
+packages/angular/package.json
+  h_c5a773bf2fda8b 25
+packages/angular/standalone/src/providers/message.ts
+  h_c5a773bf2fda8b 1-9,11,36-49,52-53,56-57,60-61,64-65
+packages/core/component-api.json
+  h_c5a773bf2fda8b 8572,8575,11079,11082
+packages/core/package.json
+  h_c5a773bf2fda8b 190
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 58,60,117,119,4235-4236,5375,5421,12696-12697,13900,13938
+packages/core/src/components/modal/test/modal.ct.ts
+  h_c5a773bf2fda8b 17,23-24,692,694,697-699
+packages/core/src/components/progress-indicator/linear.tsx
+  h_c5a773bf2fda8b 15,19,26
+packages/core/src/components/progress-indicator/progress-indicator-vars.scss
+  h_c5a773bf2fda8b 10
+packages/core/src/components/progress-indicator/progress-indicator.tsx
+  h_c5a773bf2fda8b 18,77-78,80,110,137-143,199
+packages/core/src/components/progress-indicator/progress-indicator.types.ts
+  h_c5a773bf2fda8b 9-10,12-18,20
+packages/core/src/components/progress-indicator/progress-indicator.vars.scss
+  h_c5a773bf2fda8b 15,22-23,25-27,33,39,41
+packages/core/src/components/progress-indicator/test/progress-indicator.ct.ts
+  h_c5a773bf2fda8b 1-111
+packages/core/src/components/toast/tests/toast.ct.ts
+  h_c5a773bf2fda8b 10-18,21,29-38,227,231,235-237,239,247-311
+packages/core/src/components/toast/toast-container.tsx
+  h_c5a773bf2fda8b 49
+packages/core/src/components/toast/toast-utils.ts
+  h_c5a773bf2fda8b 10-12,95-97,99,102,107,109,112-148,163,165,168
+packages/core/src/components/toast/toast.tsx
+  h_c5a773bf2fda8b 21,23,29-30,33-37,55,89-90,107-138,151-153,155-163
+packages/core/src/components/toast/toast.types.ts
+  h_c5a773bf2fda8b 1-20
+packages/core/src/components/upload/test/upload.ct.ts
+  h_c5a773bf2fda8b 9-11,61-184
+packages/core/src/components/upload/upload.tsx
+  h_c5a773bf2fda8b 149-152,155-160
+packages/core/src/components/utils/modal/message.ts
+  h_c5a773bf2fda8b 11,17-18,110,112-114,116,120-140,234,236-240,245-249,252-270,272-276,281-294,299-303
+packages/documentation/scripts/typedoc-generator.ts
+  h_c5a773bf2fda8b 285
+packages/react/package.json
+  h_c5a773bf2fda8b 73
+packages/storybook-docs/src/stories/progress-indicator.stories.ts
+  h_c5a773bf2fda8b 11,27-30,58-76,87-94
+packages/storybook-docs/src/stories/toast.stories.ts
+  h_c5a773bf2fda8b 15-24,40-45,61,66-101
+packages/vue/package.json
+  h_c5a773bf2fda8b 54
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 591-592,960-961,1124-1125,1204,1238,6048-6049,20243
+testing/framework-tests/__snapshots__/progress-indicator-circular-status-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1,6,9-10,12,15,18
+testing/framework-tests/__snapshots__/progress-indicator-linear-status-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1,3,7-8,11-13,15-16,19-20,23-24
+testing/visual-testing/tests/progress-indicator/basic/index.html
+  h_c5a773bf2fda8b 66-68,72-73,77-78
+testing/visual-testing/tests/toast/basic/index.html
+  h_c5a773bf2fda8b 32-41,43-46,49,51,54-55,57-60,62
+testing/visual-testing/tests/toast/custom/index.html
+  h_c5a773bf2fda8b 60
+testing/visual-testing/tests/toast/position/index.html
+  h_c5a773bf2fda8b 34-43,45-48,51,53,56-57,59-62,64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "69aa8062b79c591f8c7ec0c3d8848bf4b62e42b2",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
