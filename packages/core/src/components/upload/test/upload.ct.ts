@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname } from 'node:path';
 import { regressionTest } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
@@ -57,76 +59,97 @@ regressionTest(
   }
 );
 
-for (const effectAllowed of ['copyLink', 'move'] as const) {
+const DragOperation = { Copy: 1, Link: 2, Move: 16 };
+
+const dropOnUpload = async (
+  page: Page,
+  data: {
+    files?: string[];
+    items?: { mimeType: string; data: string }[];
+    dragOperationsMask: number;
+  }
+) => {
+  const box = await page.locator('ix-upload .file-upload-area').boundingBox();
+  if (!box) {
+    throw new Error('Drop area is not visible');
+  }
+
+  const devtools = await page.context().newCDPSession(page);
+  for (const type of ['dragEnter', 'dragOver', 'drop'] as const) {
+    await devtools.send('Input.dispatchDragEvent', {
+      type,
+      x: box.x + box.width / 2,
+      y: box.y + box.height / 2,
+      data: { items: [], ...data },
+    });
+  }
+  await devtools.detach();
+};
+
+const recordFilesChanged = async (page: Page) => {
+  const upload = page.locator('ix-upload');
+  await expect(upload).toHaveAttribute('hydrated');
+
+  return upload.evaluateHandle((elm) => {
+    const fileNames: string[][] = [];
+    elm.addEventListener('filesChanged', (event: Event) =>
+      fileNames.push(
+        (event as CustomEvent<File[]>).detail.map((file) => file.name)
+      )
+    );
+    return fileNames;
+  });
+};
+
+const createFile = (fileName: string) => {
+  const filePath = regressionTest.info().outputPath(fileName);
+  mkdirSync(dirname(filePath), { recursive: true });
+  writeFileSync(filePath, 'content');
+  return filePath;
+};
+
+const dragSources = [
+  {
+    name: 'only allows copy or link',
+    dragOperationsMask: DragOperation.Copy | DragOperation.Link,
+  },
+  { name: 'only allows move', dragOperationsMask: DragOperation.Move },
+];
+
+for (const { name, dragOperationsMask } of dragSources) {
   regressionTest(
-    `emits filesChanged when the drag source only allows ${effectAllowed}`,
+    `emits filesChanged when the drag source ${name}`,
     async ({ mount, page }) => {
-      await mount(`
-        <div draggable="true">report.xlsx</div>
-        <ix-upload></ix-upload>
-      `);
-      const upload = page.locator('ix-upload');
-      await expect(upload).toHaveAttribute('hydrated');
+      await mount(`<ix-upload></ix-upload>`);
+      const filesChanged = await recordFilesChanged(page);
 
-      const dragSource = page.getByText('report.xlsx');
-      await dragSource.evaluate((source, effectAllowed) => {
-        source.addEventListener('dragstart', (event) => {
-          if (event.dataTransfer) {
-            event.dataTransfer.effectAllowed = effectAllowed;
-          }
-        });
-      }, effectAllowed);
-
-      const filesChangedEvents = await upload.evaluateHandle((elm) => {
-        const events: Event[] = [];
-        elm.addEventListener('filesChanged', (event) => events.push(event));
-        return events;
+      await dropOnUpload(page, {
+        files: [createFile('report.xlsx')],
+        dragOperationsMask,
       });
 
-      await dragSource.dragTo(upload.locator('.file-upload-area'));
-
       await expect
-        .poll(() => filesChangedEvents.evaluate((events) => events.length))
-        .toBe(1);
+        .poll(() => filesChanged.evaluate((fileNames) => fileNames))
+        .toEqual([['report.xlsx']]);
     }
   );
 }
-
-const dragOverWithFiles = async (
-  page: Page,
-  fileCount: number,
-  withText: boolean
-) => {
-  const dataTransfer = await page.evaluateHandle(
-    ({ fileCount, withText }) => {
-      const dataTransfer = new DataTransfer();
-      for (let i = 0; i < fileCount; i++) {
-        dataTransfer.items.add(new File(['content'], `report-${i}.xlsx`));
-      }
-      if (withText) {
-        dataTransfer.items.add('report.xlsx', 'text/plain');
-      }
-      return dataTransfer;
-    },
-    { fileCount, withText }
-  );
-
-  await page
-    .locator('ix-upload .file-upload-area')
-    .dispatchEvent('dragover', { dataTransfer });
-};
 
 regressionTest(
   'accepts a single file dragged together with text data',
   async ({ mount, page }) => {
     await mount(`<ix-upload></ix-upload>`);
-    await expect(page.locator('ix-upload')).toHaveAttribute('hydrated');
+    const filesChanged = await recordFilesChanged(page);
 
-    await dragOverWithFiles(page, 1, true);
+    await dropOnUpload(page, {
+      files: [createFile('report.xlsx')],
+      items: [{ mimeType: 'text/plain', data: 'report.xlsx' }],
+      dragOperationsMask: DragOperation.Copy,
+    });
 
-    await expect(page.locator('ix-upload .file-upload-area')).toHaveClass(
-      /file-over/
-    );
+    await expect
+      .poll(() => filesChanged.evaluate((fileNames) => fileNames))
+      .toEqual([['report.xlsx']]);
   }
 );
 
@@ -134,12 +157,28 @@ regressionTest(
   'rejects multiple files when multiple is not set',
   async ({ mount, page }) => {
     await mount(`<ix-upload></ix-upload>`);
-    await expect(page.locator('ix-upload')).toHaveAttribute('hydrated');
+    const filesChanged = await recordFilesChanged(page);
 
-    await dragOverWithFiles(page, 2, false);
+    await dropOnUpload(page, {
+      files: [createFile('report-1.xlsx'), createFile('report-2.xlsx')],
+      dragOperationsMask: DragOperation.Copy,
+    });
 
-    await expect(page.locator('ix-upload .file-upload-area')).not.toHaveClass(
-      /file-over/
-    );
+    expect(await filesChanged.evaluate((fileNames) => fileNames)).toEqual([]);
   }
 );
+
+regressionTest('rejects drags without files', async ({ mount, page }) => {
+  await mount(`<ix-upload></ix-upload>`);
+  const filesChanged = await recordFilesChanged(page);
+
+  await dropOnUpload(page, {
+    items: [
+      { mimeType: 'text/plain', data: 'report.xlsx' },
+      { mimeType: 'text/html', data: '<b>report.xlsx</b>' },
+    ],
+    dragOperationsMask: DragOperation.Copy,
+  });
+
+  expect(await filesChanged.evaluate((fileNames) => fileNames)).toEqual([]);
+});

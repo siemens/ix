@@ -152,11 +152,12 @@ export class Upload {
       event.dataTransfer.dropEffect = allowsMoveOnly ? 'move' : 'copy';
     }
 
-    const fileCount = Array.from(event.dataTransfer.items).filter(
+    const { types, items } = event.dataTransfer;
+    const fileCount = Array.from(items).filter(
       (item) => item.kind === 'file'
     ).length;
 
-    if (!this.multiple && fileCount > 1) {
+    if (!types.includes('Files') || (!this.multiple && fileCount > 1)) {
       event.preventDefault();
       event.stopPropagation();
       event.dataTransfer.effectAllowed = 'none';
