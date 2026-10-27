@@ -96,7 +96,7 @@ export function HelperText(
   if (props.isInvalid && props.invalidText && props.invalidText.trim() !== '') {
     return (
       <ix-typography
-        textColor="alarm"
+        textColor="danger"
         class="bottom-text"
         format="body-paragraph"
       >

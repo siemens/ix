@@ -29,11 +29,15 @@ import type {
 })
 export class IxTypography {
   private static readonly textColors: Record<TypographyColors, string> = {
-    alarm: '--si-sys-color-text-danger',
-    'alarm-contrast': '--si-sys-color-text-on-danger',
+    caution: '--si-sys-color-text-caution',
+    'caution-contrast': '--si-sys-color-text-on-caution',
     contrast: '--si-sys-color-text-primary',
+    critical: '--si-sys-color-text-critical',
     'critical-contrast': '--si-sys-color-text-on-critical',
-    'info-contrast': '--si-sys-color-text-on-information',
+    danger: '--si-sys-color-text-danger',
+    'danger-contrast': '--si-sys-color-text-on-danger',
+    information: '--si-sys-color-text-information',
+    'information-contrast': '--si-sys-color-text-on-information',
     'inv-contrast': '--si-sys-color-text-inverse',
     'inv-soft': '--si-sys-color-text-inverse',
     'inv-std': '--si-sys-color-text-inverse',
@@ -42,7 +46,9 @@ export class IxTypography {
     'primary-contrast': '--si-sys-color-text-on-accent',
     soft: '--si-sys-color-text-secondary',
     std: '--si-sys-color-text-primary',
+    success: '--si-sys-color-text-success',
     'success-contrast': '--si-sys-color-text-on-success',
+    warning: '--si-sys-color-text-warning',
     'warning-contrast': '--si-sys-color-text-on-warning',
     weak: '--si-sys-color-text-disabled',
   };

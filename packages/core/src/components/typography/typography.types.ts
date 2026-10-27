@@ -51,11 +51,15 @@ export type TypographyVariants =
   | 'display-large';
 
 export type TypographyColors =
-  | 'alarm'
-  | 'alarm-contrast'
+  | 'caution'
+  | 'caution-contrast'
   | 'contrast'
+  | 'critical'
   | 'critical-contrast'
-  | 'info-contrast'
+  | 'danger'
+  | 'danger-contrast'
+  | 'information'
+  | 'information-contrast'
   | 'inv-contrast'
   | 'inv-soft'
   | 'inv-std'
@@ -64,7 +68,9 @@ export type TypographyColors =
   | 'primary-contrast'
   | 'soft'
   | 'std'
+  | 'success'
   | 'success-contrast'
+  | 'warning'
   | 'warning-contrast'
   | 'weak';
 

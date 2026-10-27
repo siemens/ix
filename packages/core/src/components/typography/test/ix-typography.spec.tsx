@@ -31,6 +31,17 @@ describe('ix-typography', () => {
     expect(root.getAttribute('text-color')).toBe('soft');
   });
 
+  it('should accept status text color', async () => {
+    const { root } = await render(
+      <ix-typography text-color="danger">Example content</ix-typography>
+    );
+
+    expect(root.getAttribute('text-color')).toBe('danger');
+    expect((root as HTMLElement).style.color).toBe(
+      'var(--si-sys-color-text-danger)'
+    );
+  });
+
   it('should show format', async () => {
     const { root } = await render(
       <ix-typography format="display-xl">Example content</ix-typography>
