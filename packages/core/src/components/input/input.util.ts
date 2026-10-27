@@ -360,4 +360,6 @@ export function resetInputValidation<T>(
   input.removeAttribute('data-ix-touched');
   lastValidityStates.delete(comp.hostElement);
   clearInternalValidationClasses(comp.hostElement);
+  // Notify form integrations even when the value was already empty.
+  comp.hostElement.dispatchEvent(new Event('ixClear'));
 }
