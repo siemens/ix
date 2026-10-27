@@ -331,7 +331,7 @@ export class Input implements IxInputFieldComponent<string> {
   /**
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
-   * @since 5.3.0
+   * @since 6.0.0
    */
   @Method()
   async clear(): Promise<void> {

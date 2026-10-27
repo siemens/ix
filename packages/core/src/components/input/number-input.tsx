@@ -503,7 +503,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * Clears the input field value and resets validation state.
    * Sets the value to empty and removes touched state to suppress validation.
    * Emits 0 unless allowEmptyValueChange is enabled, in which case it emits undefined.
-   * @since 5.3.0
+   * @since 6.0.0
    */
   @Method()
   async clear(): Promise<void> {
@@ -517,7 +517,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   /**
    * Returns the validity state of the number input field.
-   * @since 5.3.0
+   * @since 6.0.0
    */
   @Method()
   async getValidityState(): Promise<ValidityState> {

@@ -600,7 +600,7 @@ export class DateInput
    * Clears the date and resets touched validation feedback.
    * Required validation applies again after the field is touched.
    *
-   * @since 5.3.0
+   * @since 6.0.0
    */
   @Method()
   async clear(): Promise<void> {
