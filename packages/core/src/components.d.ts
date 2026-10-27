@@ -1410,6 +1410,11 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
+          * Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
+          * @since 6.0.0
+         */
+        "clear": () => Promise<void>;
+        /**
           * Disabled attribute.
           * @default false
          */
