@@ -1,0 +1,36 @@
+.changeset/eix-259-toast-status-variants.md
+  h_c5a773bf2fda8b 1-5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 37,1297-1337
+packages/core/component-api.json
+  h_c5a773bf2fda8b 11079,11082
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 58,60,117,119,5375,5421,13900,13938
+packages/core/src/components/toast/tests/toast.ct.ts
+  h_c5a773bf2fda8b 10-18,21,29-41,230,234,238-240,242,250-310
+packages/core/src/components/toast/toast-container.tsx
+  h_c5a773bf2fda8b 49
+packages/core/src/components/toast/toast-utils.ts
+  h_c5a773bf2fda8b 10-12,95,97,100,105,107,110-140,155,157,160
+packages/core/src/components/toast/toast.tsx
+  h_c5a773bf2fda8b 21,23,29-30,33-37,55,89-90,107-138,151-153,155-163
+packages/core/src/components/toast/toast.types.ts
+  h_c5a773bf2fda8b 1-20
+testing/visual-testing/tests/toast/basic/index.html
+  h_c5a773bf2fda8b 32-41,43-46,49,51,54-55,57-60,62
+testing/visual-testing/tests/toast/custom/index.html
+  h_c5a773bf2fda8b 60
+testing/visual-testing/tests/toast/position/index.html
+  h_c5a773bf2fda8b 34-43,45-48,51,53,56-57,59-62,64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "82c55c291907299561316d41128c256631bcda7a",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
