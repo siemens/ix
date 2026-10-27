@@ -22,7 +22,7 @@
 - `min`; attr: `min`; type: `number`; default: `0` - The minimum value of the progress indicator.
 - `showTextAsTooltip`; attr: `show-text-as-tooltip`; type: `boolean`; default: `false` - Show the helper text as a tooltip
 - `size`; attr: `size`; type: `"lg" | "md" | "sm" | "xl" | "xs"`; default: `'md'` - Size of the progress indicator. For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
-- `status`; attr: `status`; type: `"default" | "error" | "info" | "paused" | "success" | "warning"`; default: `'default'` - The state of the progress indicator. This is used to indicate the current state of the progress indicator.
+- `status`; attr: `status`; type: `"base" | "error" | "information" | "paused" | "success" | "warning"`; default: `'base'` - Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
 - `textAlignment`; attr: `text-alignment`; type: `"center" | "left" | "right"`; default: `'left'` - The text alignment for the helper text. Can be 'left', 'center', or 'right'.
 - `type`; attr: `type`; type: `"circular" | "linear"`; default: `'linear'` - The type of progress indicator to use.
 - `value`; attr: `value`; type: `number`; default: `0` - The value of the progress indicator.
