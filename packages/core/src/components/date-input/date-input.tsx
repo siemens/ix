@@ -34,7 +34,7 @@ import {
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
   onInputFocus,
-   resetInputValidation,
+  resetInputValidation,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
