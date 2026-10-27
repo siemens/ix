@@ -1,0 +1,16 @@
+testing/framework-tests/__snapshots__/progress-indicator-circular-status-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1,6,9-10,12,15,18
+testing/framework-tests/__snapshots__/progress-indicator-linear-status-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1,3,7-8,11-13,15-16,19-20,23-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1e560a33d27d3566ea5e2ed60f3ecbcdd37a09ad",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
