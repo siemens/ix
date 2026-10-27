@@ -49,14 +49,14 @@ runs:
           PLAYWRIGHT_ARGS=${{ steps.playwright-args.outputs.value }}
         run: pnpm --filter "$PROJECT_NAME" run visual-regression $PLAYWRIGHT_ARGS
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       if: always() && inputs.shardIndex != '' && inputs.projectPath != ''
       with:
         name: ${{ inputs.artifactName }}-blob-report-${{ inputs.shardIndex }}
         path: ${{ inputs.projectPath }}
         retention-days: 1
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       if: failure() && inputs.shardIndex == '' && inputs.projectPath != ''
       with:
         name: ${{ inputs.artifactName }}-html-report--attempt-${{ github.run_attempt }}
