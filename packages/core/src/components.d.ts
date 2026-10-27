@@ -1410,11 +1410,6 @@ export namespace Components {
          */
         "ariaLabelPreviousMonthButton"?: string;
         /**
-          * Clears the date and resets touched validation feedback. Required validation applies again after the field is touched.
-          * @since 6.0.0
-         */
-        "clear": () => Promise<void>;
-        /**
           * Disabled attribute.
           * @default false
          */

@@ -833,7 +833,7 @@ It is not emitted for programmatic prop input changes. @since 6.0.0
 
 @ProxyCmp({
   inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  methods: ['getNativeInputElement', 'focusInput', 'clear']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-date-input',
