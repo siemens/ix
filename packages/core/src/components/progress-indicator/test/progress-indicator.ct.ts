@@ -79,6 +79,7 @@ for (const { status, icon } of statuses) {
       const helperIcon = el.locator('.helper-text ix-icon');
       if (icon) {
         await expect(helperIcon).toBeVisible();
+        await expect(helperIcon).toHaveJSProperty('name', icon);
         await expect(helperIcon).toHaveAttribute('aria-hidden', 'true');
       } else {
         await expect(helperIcon).toHaveCount(0);
