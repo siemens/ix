@@ -18,14 +18,22 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { ToastType } from './toast-utils';
+import type { ToastType } from './toast.types';
 import {
+  iconAlarm,
   iconClose,
   iconError,
   iconInfo,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
+
+interface ToastTypeConfig {
+  icon: string;
+  color: string;
+}
 
 /**
  * Transient notification message that appears temporarily.
@@ -44,7 +52,7 @@ export class Toast {
   /**
    * Toast type
    */
-  @Prop({ reflect: true }) type: ToastType = 'info';
+  @Prop({ reflect: true }) type: ToastType = 'information';
 
   /**
    * Toast title
@@ -78,8 +86,8 @@ export class Toast {
   @Prop() hideIcon: boolean = false;
 
   /**
-   * ARIA label for the close icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the close icon button.
+   * Will be set as aria-label on the nested HTML button element.
    *
    * @since 3.2.0
    */
@@ -96,6 +104,38 @@ export class Toast {
 
   @Element() hostElement!: HTMLIxToastElement;
 
+  private static readonly toastTypeConfigs: Record<ToastType, ToastTypeConfig> =
+    {
+      danger: {
+        icon: iconAlarm,
+        color: '--si-sys-color-border-danger',
+      },
+      warning: {
+        icon: iconWarning,
+        color: '--si-sys-color-border-warning',
+      },
+      caution: {
+        icon: iconWarningRhomb,
+        color: '--si-sys-color-border-caution',
+      },
+      information: {
+        icon: iconInfo,
+        color: '--si-sys-color-border-information',
+      },
+      critical: {
+        icon: iconWarningOctagon,
+        color: '--si-sys-color-border-critical',
+      },
+      success: {
+        icon: iconSuccess,
+        color: '--si-sys-color-border-success',
+      },
+      error: {
+        icon: iconError,
+        color: '--si-sys-color-border-danger',
+      },
+    };
+
   private getIcon() {
     if (this.icon) {
       return (
@@ -108,50 +148,19 @@ export class Toast {
       );
     }
 
-    switch (this.type) {
-      case 'info':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconInfo}
-            color="--si-sys-color-background-information"
-          />
-        );
-
-      case 'error':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconError}
-            color="--si-sys-color-text-danger"
-          />
-        );
-
-      case 'success':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconSuccess}
-            color="--si-sys-color-text-success"
-          />
-        );
-
-      case 'warning':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconWarning}
-            color="--si-sys-color-text-warning"
-          />
-        );
-
-      default:
-        return '';
+    const config = Toast.toastTypeConfigs[this.type];
+    if (!config) {
+      return '';
     }
+
+    return (
+      <ix-icon
+        data-testid="toast-icon"
+        aria-hidden="true"
+        name={config.icon}
+        color={config.color}
+      />
+    );
   }
 
   private isClosing = false;

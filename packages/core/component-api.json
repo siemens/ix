@@ -8612,10 +8612,10 @@
         {
           "name": "status",
           "attribute": "status",
-          "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
+          "type": "\"base\" | \"error\" | \"information\" | \"paused\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'default'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -11119,10 +11119,10 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"error\" | \"info\" | \"success\" | \"warning\"",
+          "type": "\"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'info'",
+          "default": "'information'",
           "optional": false,
           "required": false,
           "deprecated": false
