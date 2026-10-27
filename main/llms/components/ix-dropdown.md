@@ -30,7 +30,7 @@
 - `show`; attr: `show`; type: `boolean`; default: `false` - Show dropdown
 - `suppressAutomaticPlacement`; attr: `suppress-automatic-placement`; type: `boolean`; default: `false` - Suppress the automatic placement of the dropdown.
 - `suppressTriggerVisibilityCheck`; attr: `suppress-trigger-visibility-check`; type: `boolean`; default: `false` - By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
-- `trigger`; attr: `trigger`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+- `trigger`; attr: `trigger`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element. String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
 
 ## Events
 

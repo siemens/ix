@@ -20,7 +20,7 @@
 - `icon`; attr: `icon`; type: `"action" | "external" | "file" | "internal" | "none"`; default: `'none'` - Icon displayed alongside the link label. Defaults to `none`.
 - `iconPosition`; attr: `icon-position`; type: `"end" | "start"`; default: `'start'` - Position of the icon relative to the link label.
 - `target`; attr: `target`; type: `"_blank" | "_parent" | "_self" | "_top"`; default: `'_self'` - Specifies where to open the link https://www.w3schools.com/html/html_links.asp
-- `url`; attr: `url`; type: `string | undefined` - Url for the link button
+- `url`; attr: `url`; type: `string | undefined` - Url for the link button The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
 
 ## Events
 

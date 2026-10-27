@@ -20,7 +20,7 @@
 - `hasSpike`; attr: `has-spike`; type: `boolean`; default: `false` - Show the spike pointing at the trigger
 - `placement`; attr: `placement`; type: `"bottom" | "left" | "right" | "top"`; default: `'bottom'` - Preferred placement relative to trigger
 - `show`; attr: `show`; type: `boolean`; default: `false` - Show/hide state
-- `trigger`; attr: `trigger`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+- `trigger`; attr: `trigger`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference. String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
 - `triggerMode`; attr: `trigger-mode`; type: `"click" | "hover"`; default: `'click'` - Interaction that opens the popover
 
 ## Events

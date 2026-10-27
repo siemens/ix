@@ -21,7 +21,7 @@
 - `disabled`; attr: `disabled`; type: `boolean`; default: `false` - Disable tab and remove event handlers
 - `disableTooltip`; attr: `disable-tooltip`; type: `boolean`; default: `false` - Disable the tooltip for this menu item.
 - `home`; attr: `home`; type: `boolean`; default: `false` - Move the Tab to a top position.
-- `href`; attr: `href`; type: `string | undefined` - URL for the button link. When provided, the button will render as an anchor tag.
+- `href`; attr: `href`; type: `string | undefined` - URL for the button link. When provided, the button will render as an anchor tag. The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
 - `icon`; attr: `icon`; type: `string | undefined` - Name of the icon you want to display. Icon names can be resolved from the documentation {@link https://ix.siemens.io/docs/icon-library/icons}
 - `label`; attr: `label`; type: `string | undefined` - Label of the menu item. Will also be used as tooltip text
 - `notifications`; attr: `notifications`; type: `number | undefined` - Show notification count on tab

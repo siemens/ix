@@ -17,7 +17,7 @@
 ## Properties
 
 - `breadcrumbKey`; attr: `breadcrumb-key`; type: `string` - Will be used as the key for the breadcrumb item, which will be emitted in the itemClick event when the breadcrumb item is clicked.
-- `href`; attr: `href`; type: `string | undefined` - URL for the button link. When provided, the button will render as an anchor tag.
+- `href`; attr: `href`; type: `string | undefined` - URL for the button link. When provided, the button will render as an anchor tag. The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
 - `icon`; attr: `icon`; type: `string | undefined` - Icon to be displayed next ot the label
 - `label`; attr: `label`; type: `string | undefined` - Breadcrumb label
 - `rel`; attr: `rel`; type: `string | undefined` - Specifies the relationship between the current document and the linked document when href is provided.
