@@ -1,0 +1,22 @@
+examples/angular-examples/src/preview-examples/form-validation.html
+  h_c5a773bf2fda8b 38
+examples/angular-standalone-examples/src/preview-examples/form-validation.html
+  h_c5a773bf2fda8b 47
+examples/react-examples/src/preview-examples/form-validation.tsx
+  h_c5a773bf2fda8b 153
+examples/vue-examples/src/preview-examples/form-validation.vue
+  h_c5a773bf2fda8b 167
+testing/visual-testing/tests/input/with-slots/index.html
+  h_c5a773bf2fda8b 87,96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "715c72e89bde877d4c3356a88040c0b8ad172c34",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
