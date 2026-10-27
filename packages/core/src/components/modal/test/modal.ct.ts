@@ -688,9 +688,6 @@ regressionTest(
 );
 
 regressionTest.describe('message utils', () => {
-  /**
-   * Figma order: Information, Warning, Error, Success, Question, Caution, Critical, Danger.
-   */
   [
     ['information', iconInfo],
     ['warning', iconWarning],
