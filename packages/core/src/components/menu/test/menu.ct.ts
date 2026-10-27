@@ -14,16 +14,19 @@ import {
   viewPorts,
 } from '@utils/test';
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
     <ix-application>
-      <ix-menu>
+      <ix-menu show-settings>
         <ix-menu-item>Home</ix-menu-item>
         <ix-menu-settings></ix-menu-settings>
       </ix-menu>
     </ix-application>
   `);
 
+  await expect(
+    page.getByRole('button', { name: 'Close Settings' })
+  ).toBeVisible();
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
 });
@@ -158,6 +161,49 @@ regressionTest(
     );
     await expect(closeButton).toBeVisible();
     await expect(menu).toHaveJSProperty('showSettings', true);
+  }
+);
+
+regressionTest(
+  'should open settings when showSettings becomes true while about is closing',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-about></ix-menu-about>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const settings = page.locator('ix-menu-settings');
+    const closeAboutButton = page.getByRole('button', {
+      name: 'Close About',
+    });
+    const closeSettingsButton = settings.getByRole('button', {
+      name: 'Close Settings',
+    });
+
+    await expect(menu).toHaveAttribute('hydrated');
+    await menu.evaluate((element: HTMLIxMenuElement) =>
+      element.toggleAbout(true)
+    );
+    await expect(about).toBeVisible();
+
+    await closeAboutButton.click();
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = true;
+    });
+
+    await expect(menu.getByRole('dialog', { name: 'Settings' })).toHaveCSS(
+      'opacity',
+      '1'
+    );
+    await expect(closeSettingsButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showSettings', true);
+    await expect(settings).toHaveJSProperty('show', true);
+    await expect(menu).toHaveJSProperty('showAbout', false);
+    await expect(about).toHaveJSProperty('show', false);
   }
 );
 
