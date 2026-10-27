@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { Injectable } from '@angular/core';
 import { MessageConfig, showMessage, TypedEvent } from '@siemens/ix';
 
@@ -15,9 +24,9 @@ export class MessageService {
   }
 
   /**
-   * Displays an info message modal with an info icon
+   * Displays a danger message modal with an alarm icon
    */
-  public info(
+  public danger(
     title: string,
     message: string,
     textOkay: string,
@@ -25,7 +34,7 @@ export class MessageService {
     payloadOkay?: any,
     payloadCancel?: any
   ) {
-    return showMessage.info(
+    return showMessage.danger(
       title,
       message,
       textOkay,
@@ -47,6 +56,69 @@ export class MessageService {
     payloadCancel?: any
   ) {
     return showMessage.warning(
+      title,
+      message,
+      textOkay,
+      textCancel,
+      payloadOkay,
+      payloadCancel
+    );
+  }
+
+  /**
+   * Displays a caution message modal with a warning-rhomb icon
+   */
+  public caution(
+    title: string,
+    message: string,
+    textOkay: string,
+    textCancel?: string,
+    payloadOkay?: any,
+    payloadCancel?: any
+  ) {
+    return showMessage.caution(
+      title,
+      message,
+      textOkay,
+      textCancel,
+      payloadOkay,
+      payloadCancel
+    );
+  }
+
+  /**
+   * Displays an information message modal with an info icon
+   */
+  public information(
+    title: string,
+    message: string,
+    textOkay: string,
+    textCancel?: string,
+    payloadOkay?: any,
+    payloadCancel?: any
+  ) {
+    return showMessage.information(
+      title,
+      message,
+      textOkay,
+      textCancel,
+      payloadOkay,
+      payloadCancel
+    );
+  }
+
+  /**
+   * Displays a critical message modal with a warning-octagon icon
+   */
+  public critical(
+    title: string,
+    message: string,
+    textOkay: string,
+    textCancel?: string,
+    payloadOkay?: any,
+    payloadCancel?: any
+  ) {
+    return showMessage.critical(
       title,
       message,
       textOkay,

@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { Injectable } from '@angular/core';
 import { MessageConfig, TypedEvent } from '@siemens/ix';
 import { MessageService as BaseMessageService } from '@siemens/ix-angular/common';
@@ -22,95 +31,5 @@ export class MessageService extends BaseMessageService {
     }>
   > {
     return super.showMessage(config);
-  }
-
-  public override info(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.info(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
-  }
-
-  public override warning(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.warning(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
-  }
-
-  public override error(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.error(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
-  }
-
-  public override success(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.success(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
-  }
-
-  public override question(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.question(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
   }
 }

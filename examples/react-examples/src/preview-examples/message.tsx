@@ -9,12 +9,24 @@
 
 import { IxButton, showMessage } from '@siemens/ix-react';
 
+/** TEMP: EIX-259 — buttons for every showMessage variant (revert before merge). */
+const variants = [
+  'information',
+  'warning',
+  'error',
+  'success',
+  'question',
+  'caution',
+  'critical',
+  'danger',
+] as const;
+
 export default () => {
-  const triggerMessage = async () => {
+  const triggerMessage = async (variant: (typeof variants)[number]) => {
     (
-      await showMessage.success(
-        'Example title',
-        'message',
+      await showMessage[variant](
+        `${variant} title`,
+        `Example ${variant} message`,
         'Save',
         'Cancel',
         'payload:save',
@@ -22,7 +34,14 @@ export default () => {
       )
     ).once(console.log);
   };
+
   return (
-    <IxButton onClick={() => triggerMessage()}>Show 'success' message</IxButton>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+      {variants.map((variant) => (
+        <IxButton key={variant} onClick={() => triggerMessage(variant)}>
+          Show '{variant}' message
+        </IxButton>
+      ))}
+    </div>
   );
 };
