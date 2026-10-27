@@ -56,3 +56,39 @@ regressionTest(
     await expect(button).toHaveText('Custom button');
   }
 );
+
+regressionTest(
+  'accepts files dropped from a source that only allows copy or link',
+  async ({ mount, page }) => {
+    // Mirrors a drag from Chrome's Downloads panel, which never allows "move"
+    await mount(`
+      <div id="drag-source" draggable="true">report.xlsx</div>
+      <ix-upload></ix-upload>
+    `);
+    const upload = page.locator('ix-upload');
+    await expect(upload).toHaveAttribute('hydrated');
+
+    await page.locator('#drag-source').evaluate((source) => {
+      source.addEventListener('dragstart', (event) => {
+        if (event.dataTransfer) {
+          event.dataTransfer.effectAllowed = 'copyLink';
+        }
+      });
+    });
+
+    const filesChangedEvents = await upload.evaluateHandle((elm) => {
+      const events: Event[] = [];
+      elm.addEventListener('filesChanged', (event) => events.push(event));
+      return events;
+    });
+
+    await page
+      .locator('#drag-source')
+      .dragTo(upload.locator('.file-upload-area'));
+
+    // The browser cancels the drop when the requested drop effect is not allowed
+    await expect
+      .poll(() => filesChangedEvents.evaluate((events) => events.length))
+      .toBe(1);
+  }
+);

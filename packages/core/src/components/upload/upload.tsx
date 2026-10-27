@@ -146,7 +146,9 @@ export class Upload {
 
     if (this.state !== UploadFileState.LOADING) {
       event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
+      // Some sources (e.g. Chrome's Downloads panel) only allow copy or link,
+      // and requesting "move" makes the browser cancel the drop
+      event.dataTransfer.dropEffect = 'copy';
     }
 
     if (!this.multiple && event.dataTransfer.items.length > 1) {
