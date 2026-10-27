@@ -144,6 +144,26 @@ function consumerValidityCheck(host: HTMLElement) {
   return !host.classList.contains('ix-invalid');
 }
 
+const validityErrorsBesideValueMissing: (keyof ValidityState)[] = [
+  'badInput',
+  'customError',
+  'patternMismatch',
+  'rangeOverflow',
+  'rangeUnderflow',
+  'stepMismatch',
+  'tooLong',
+  'tooShort',
+  'typeMismatch',
+];
+
+/** Returns `true` if a missing value is the only validity error */
+export function isOnlyValueMissing(validityState: ValidityState) {
+  return (
+    validityState.valueMissing &&
+    !validityErrorsBesideValueMissing.some((error) => validityState[error])
+  );
+}
+
 function syncAriaInvalid(
   validationElement: HTMLInputElement | HTMLTextAreaElement,
   valid: boolean
@@ -409,14 +429,19 @@ export function HookValidationLifecycle(options?: {
               return;
             }
 
+            // A missing required value is shown only once the field is touched
+            // (`ix-invalid--required`), so it is not announced before either
+            const validByValidity =
+              validityState.valid ||
+              (!touched && isOnlyValueMissing(validityState));
             const consumerValid = consumerValidityCheck(host);
             syncAriaInvalid(
               validationElement,
-              validityState.valid && consumerValid
+              validByValidity && consumerValid
             );
             syncAriaMessageReferences(
               validationElement,
-              !validityState.valid || !consumerValid,
+              !validByValidity || !consumerValid,
               messageElements
             );
           }
