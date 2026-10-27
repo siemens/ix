@@ -27,7 +27,7 @@
     padding: var(--ix-list-item--padding);
     gap: var(--ix-list-item--gap);
     box-sizing: border-box;
-    border: 1px solid transparent;
+    border: var(--si-sys-sizing-border-width-default) solid transparent;
     border-radius: var(--ix-list-item--border-radius);
     background-color: var(--ix-list-item--background);
   }
