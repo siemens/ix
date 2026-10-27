@@ -60,7 +60,6 @@ regressionTest(
 regressionTest(
   'accepts files dropped from a source that only allows copy or link',
   async ({ mount, page }) => {
-    // Mirrors a drag from Chrome's Downloads panel, which never allows "move"
     await mount(`
       <div id="drag-source" draggable="true">report.xlsx</div>
       <ix-upload></ix-upload>
@@ -86,7 +85,6 @@ regressionTest(
       .locator('#drag-source')
       .dragTo(upload.locator('.file-upload-area'));
 
-    // The browser cancels the drop when the requested drop effect is not allowed
     await expect
       .poll(() => filesChangedEvents.evaluate((events) => events.length))
       .toBe(1);
