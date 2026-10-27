@@ -26,9 +26,6 @@ declare global {
   }
 }
 
-/**
- * Figma order: Success, Information, Warning, Error, Custom icon, Danger, Caution, Critical.
- */
 const toastTypes: { type: ToastType; icon: string }[] = [
   { type: 'success', icon: iconSuccess },
   { type: 'information', icon: iconInfo },
@@ -276,35 +273,39 @@ regressionTest(
   async ({ mount, page }) => {
     await mount('');
 
-    const helpers = await page.evaluate(async () => {
-      const results: string[] = [];
+    await page.evaluate(async () => {
       await window.toast.information({
         message: 'information',
         autoClose: false,
       });
-      results.push(
-        document.querySelector('ix-toast:last-of-type')!.getAttribute('type')!
-      );
-      await window.toast.danger({ message: 'danger', autoClose: false });
-      results.push(
-        document.querySelector('ix-toast:last-of-type')!.getAttribute('type')!
-      );
-      await window.toast.caution({ message: 'caution', autoClose: false });
-      results.push(
-        document.querySelector('ix-toast:last-of-type')!.getAttribute('type')!
-      );
-      await window.toast.critical({ message: 'critical', autoClose: false });
-      results.push(
-        document.querySelector('ix-toast:last-of-type')!.getAttribute('type')!
-      );
-      return results;
     });
+    await expect(page.locator('ix-toast').last()).toHaveAttribute(
+      'type',
+      'information'
+    );
 
-    expect(helpers).toEqual([
-      'information',
-      'danger',
-      'caution',
-      'critical',
-    ]);
+    await page.evaluate(async () => {
+      await window.toast.danger({ message: 'danger', autoClose: false });
+    });
+    await expect(page.locator('ix-toast').last()).toHaveAttribute(
+      'type',
+      'danger'
+    );
+
+    await page.evaluate(async () => {
+      await window.toast.caution({ message: 'caution', autoClose: false });
+    });
+    await expect(page.locator('ix-toast').last()).toHaveAttribute(
+      'type',
+      'caution'
+    );
+
+    await page.evaluate(async () => {
+      await window.toast.critical({ message: 'critical', autoClose: false });
+    });
+    await expect(page.locator('ix-toast').last()).toHaveAttribute(
+      'type',
+      'critical'
+    );
   }
 );

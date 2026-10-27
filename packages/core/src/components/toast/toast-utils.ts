@@ -93,6 +93,8 @@ function toast(config: ToastConfig): Promise<ShowToastResult> {
 
 /**
  * Display a danger toast based on the provided configuration
+ *
+ * @since 6.0.0
  */
 toast.danger = (config: ToastConfig) => {
   return toast({
@@ -113,6 +115,8 @@ toast.warning = (config: ToastConfig) => {
 
 /**
  * Display a caution toast based on the provided configuration
+ *
+ * @since 6.0.0
  */
 toast.caution = (config: ToastConfig) => {
   return toast({
@@ -123,6 +127,8 @@ toast.caution = (config: ToastConfig) => {
 
 /**
  * Display an information toast based on the provided configuration
+ *
+ * @since 6.0.0
  */
 toast.information = (config: ToastConfig) => {
   return toast({
@@ -133,6 +139,8 @@ toast.information = (config: ToastConfig) => {
 
 /**
  * Display a critical toast based on the provided configuration
+ *
+ * @since 6.0.0
  */
 toast.critical = (config: ToastConfig) => {
   return toast({
