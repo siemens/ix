@@ -1,0 +1,56 @@
+.changeset/eix-259-progress-indicator-status-variants.md
+  h_c5a773bf2fda8b 1-5
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 37,1297-1341
+examples/angular-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/angular-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/html-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/html-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/react-examples/src/preview-examples/progress-indicator-circular-status.tsx
+  h_c5a773bf2fda8b 15,44,50
+examples/react-examples/src/preview-examples/progress-indicator-linear-status.tsx
+  h_c5a773bf2fda8b 15,44,50
+examples/vue-examples/src/preview-examples/progress-indicator-circular-status.vue
+  h_c5a773bf2fda8b 8,37,43
+examples/vue-examples/src/preview-examples/progress-indicator-linear-status.vue
+  h_c5a773bf2fda8b 8,37,43
+packages/core/component-api.json
+  h_c5a773bf2fda8b 8572,8575
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 4233-4234,12694-12695
+packages/core/src/components/progress-indicator/linear.tsx
+  h_c5a773bf2fda8b 15,19,26
+packages/core/src/components/progress-indicator/progress-indicator-vars.scss
+  h_c5a773bf2fda8b 10
+packages/core/src/components/progress-indicator/progress-indicator.tsx
+  h_c5a773bf2fda8b 18,77-78,80,110,137-143,199
+packages/core/src/components/progress-indicator/progress-indicator.types.ts
+  h_c5a773bf2fda8b 9-10,12-18,20
+packages/core/src/components/progress-indicator/progress-indicator.vars.scss
+  h_c5a773bf2fda8b 15,22-23,25-27,33,39,41
+packages/core/src/components/progress-indicator/test/progress-indicator.ct.ts
+  h_c5a773bf2fda8b 1-110
+packages/storybook-docs/src/stories/progress-indicator.stories.ts
+  h_c5a773bf2fda8b 11,27-30,58-76
+testing/visual-testing/tests/progress-indicator/basic/index.html
+  h_c5a773bf2fda8b 66-68,72-73,77-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "dc616bb4b9c065afe161a0b7a3c2817c57f18f04",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
