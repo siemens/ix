@@ -10,7 +10,8 @@
 @use 'mixins/text-truncation';
 
 @use './chip.vars' as *;
-$predefined-chips: alarm, critical, warning, info, neutral, success;
+$predefined-chips: danger, critical, caution, warning, information, neutral,
+  success;
 $border-radius: var(--ix-chip--border-radius);
 $outline-border-width: var(--ix-chip--border-width--focus);
 
@@ -74,9 +75,11 @@ $outline-border-width: var(--ix-chip--border-width--focus);
         @each $color in $predefined-chips {
           &.#{$color} {
             .with-icon {
-              //TODO(IX-3400): Replace warning check with proper CSS variable when available
+              //TODO(IX-3400): Replace warning/caution check with proper CSS variable when available
               @if $color == 'warning' {
                 color: var(--ix-chip-warning-icon--color);
+              } @else if $color == 'caution' {
+                color: var(--ix-chip-caution-icon--color);
               } @else {
                 color: var(--ix-chip-#{$color}--color);
               }
@@ -111,23 +114,23 @@ $outline-border-width: var(--ix-chip--border-width--focus);
     }
   }
 
-  .container.primary {
-    background-color: var(--ix-chip-primary--background);
-    color: var(--ix-chip-primary--color);
+  .container.accent {
+    background-color: var(--ix-chip-accent--background);
+    color: var(--ix-chip-accent--color);
 
     .close-button {
-      color: var(--ix-chip-primary--color);
-      --ix-icon-button-color: var(--ix-chip-primary--color);
+      color: var(--ix-chip-accent--color);
+      --ix-icon-button-color: var(--ix-chip-accent--color);
       pointer-events: auto;
     }
 
     @if $interaction {
       &:hover {
-        background-color: var(--ix-chip-primary--background--hover);
+        background-color: var(--ix-chip-accent--background--hover);
       }
 
       &:active {
-        background-color: var(--ix-chip-primary--background--active);
+        background-color: var(--ix-chip-accent--background--active);
       }
 
       &:focus-visible {
@@ -139,11 +142,11 @@ $outline-border-width: var(--ix-chip--border-width--focus);
     }
   }
 
-  .container.primary.outline {
+  .container.accent.outline {
     color: var(--ix-chip-outline--color);
-    background-color: var(--ix-chip-primary-outline--background);
+    background-color: var(--ix-chip-accent-outline--background);
     border: solid $outline-border-width
-      var(--ix-chip-primary-outline--border-color);
+      var(--ix-chip-accent-outline--border-color);
 
     .close-button {
       color: var(--ix-chip-outline--color);
@@ -151,16 +154,16 @@ $outline-border-width: var(--ix-chip--border-width--focus);
     }
 
     .with-icon {
-      color: var(--ix-chip-primary-icon--color);
+      color: var(--ix-chip-accent-icon--color);
     }
 
     @if $interaction {
       &:hover {
-        background-color: var(--ix-chip-primary-outline--background--hover);
+        background-color: var(--ix-chip-accent-outline--background--hover);
       }
 
       &:active {
-        background-color: var(--ix-chip-primary-outline--background--active);
+        background-color: var(--ix-chip-accent-outline--background--active);
       }
     }
   }

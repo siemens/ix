@@ -7,4 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-$flip-tile-variants: (outline, filled, info, warning, alarm, primary);
+$flip-tile-variants: (
+  outline,
+  filled,
+  accent,
+  neutral,
+  information,
+  success,
+  caution,
+  warning,
+  danger,
+  critical
+);

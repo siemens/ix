@@ -42,7 +42,6 @@
 
       .glyph {
         align-self: flex-start;
-        margin-block-start: var(--ix-upload-glyph--margin-block-start);
       }
 
       > div {
@@ -90,7 +89,6 @@
     }
 
     .loader {
-      margin: var(--ix-upload-loader--margin);
       font-size: var(--ix-upload-loader--font-size);
       width: var(--ix-upload-loader--width);
       height: var(--ix-upload-loader--height);

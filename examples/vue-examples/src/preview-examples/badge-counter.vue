@@ -15,34 +15,34 @@ import { IxBadge } from '@siemens/ix-vue';
 
 <template>
   <div class="container">
-    <IxBadge type="counter" label="8" variant="primary"></IxBadge>
-    <IxBadge type="counter" label="8" variant="primary" outline></IxBadge>
+    <IxBadge type="counter" label="8" variant="accent"></IxBadge>
+    <IxBadge type="counter" label="8" variant="accent" outline></IxBadge>
     <IxBadge
       type="counter"
       label="8"
-      variant="primary"
+      variant="accent"
       enable-animation
     ></IxBadge>
     <IxBadge
       type="counter"
       label="8"
-      variant="primary"
+      variant="accent"
       outline
       enable-animation
     ></IxBadge>
 
-    <IxBadge type="counter" label="8" variant="alarm"></IxBadge>
-    <IxBadge type="counter" label="8" variant="alarm" outline></IxBadge>
+    <IxBadge type="counter" label="8" variant="danger"></IxBadge>
+    <IxBadge type="counter" label="8" variant="danger" outline></IxBadge>
     <IxBadge
       type="counter"
       label="8"
-      variant="alarm"
+      variant="danger"
       enable-animation
     ></IxBadge>
     <IxBadge
       type="counter"
       label="8"
-      variant="alarm"
+      variant="danger"
       outline
       enable-animation
     ></IxBadge>
@@ -79,13 +79,13 @@ import { IxBadge } from '@siemens/ix-vue';
       enable-animation
     ></IxBadge>
 
-    <IxBadge type="counter" label="8" variant="info"></IxBadge>
-    <IxBadge type="counter" label="8" variant="info" outline></IxBadge>
-    <IxBadge type="counter" label="8" variant="info" enable-animation></IxBadge>
+    <IxBadge type="counter" label="8" variant="information"></IxBadge>
+    <IxBadge type="counter" label="8" variant="information" outline></IxBadge>
+    <IxBadge type="counter" label="8" variant="information" enable-animation></IxBadge>
     <IxBadge
       type="counter"
       label="8"
-      variant="info"
+      variant="information"
       outline
       enable-animation
     ></IxBadge>

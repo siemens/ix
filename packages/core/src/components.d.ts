@@ -32,8 +32,8 @@ import { DatePickerYearMonth } from "./components/date-picker/date-picker.types"
 import { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 import { ElementReference } from "./components/utils/element-reference";
+import { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
-import { AlignedPlacement } from "./components/dropdown/placement";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
@@ -42,9 +42,11 @@ import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+import { KpiState } from "./components/kpi/kpi.types";
 import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
 import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+import { MessageBarType } from "./components/message-bar/message-bar.types";
 import { IxModalSize } from "./components/modal/modal.types";
 import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 import { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -55,8 +57,9 @@ import { TabClickDetail } from "./components/tab-item/tab-item.types";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
 import { TimeInputValidityState } from "./components/time-input/time-input.types";
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
-import { ToastConfig, ToastType } from "./components/toast/toast-utils";
+import { ToastType } from "./components/toast/toast.types";
 import { ShowToastResult } from "./components/toast/toast-container.types";
+import { ToastConfig } from "./components/toast/toast-utils";
 import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -90,8 +93,8 @@ export { DatePickerYearMonth } from "./components/date-picker/date-picker.types"
 export { DateTimeInputValidityState } from "./components/datetime-input/datetime-input.types";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker.types";
 export { ElementReference } from "./components/utils/element-reference";
+export { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
-export { AlignedPlacement } from "./components/dropdown/placement";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
@@ -100,9 +103,11 @@ export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
+export { KpiState } from "./components/kpi/kpi.types";
 export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
 export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
+export { MessageBarType } from "./components/message-bar/message-bar.types";
 export { IxModalSize } from "./components/modal/modal.types";
 export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane.types";
 export { ProgressIndicatorSize, ProgressIndicatorStatus } from "./components/progress-indicator/progress-indicator.types";
@@ -113,8 +118,9 @@ export { TabClickDetail } from "./components/tab-item/tab-item.types";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
 export { TimeInputValidityState } from "./components/time-input/time-input.types";
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
-export { ToastConfig, ToastType } from "./components/toast/toast-utils";
+export { ToastType } from "./components/toast/toast.types";
 export { ShowToastResult } from "./components/toast/toast-container.types";
+export { ToastConfig } from "./components/toast/toast-utils";
 export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -178,7 +184,7 @@ export namespace Components {
      */
     interface IxApplication {
         /**
-          * Define application switch configuration
+          * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -403,9 +409,9 @@ export namespace Components {
          */
         "type": BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant": BadgeVariant;
     }
@@ -499,7 +505,7 @@ export namespace Components {
          */
         "hideChevron": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -783,7 +789,7 @@ export namespace Components {
          */
         "enableTopLayer": boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of search criteria to populate the component with.  Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
          */
         "filterState"?: FilterState;
         /**
@@ -1141,8 +1147,8 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant": ChipVariant;
     }
@@ -1302,11 +1308,24 @@ export namespace Components {
          */
         "from": string;
         /**
-          * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
+          * Retrieves the applied date range from the component. This method returns the applied date range as a `DateChangeEvent` object.  With `requireConfirmation`, a pending selection is not returned until it is confirmed. Listen to `dateRangeChange` to get every pick.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
           * Text for the done button. Will be used for translation.
+          * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
           * @default 'Done'
          */
         "i18nDone": string;
@@ -1334,6 +1353,12 @@ export namespace Components {
           * @default ''
          */
         "minDate": string;
+        /**
+          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The trigger label keeps the applied range until then, while `dateRangeChange` still reports every pick. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
@@ -1420,6 +1445,18 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
           * I18n string for the error message when the date is not parsable.
           * @default 'Date is not valid'
          */
@@ -1468,6 +1505,12 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * If true, changes require clicking confirm. Cancel, Escape or clicking outside all discard pending selections.  If false, changes are applied immediately without requiring confirmation.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Required attribute.
          */
@@ -1545,6 +1588,10 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
+          * Discards a pending selection made while `requireConfirmation` is enabled, reports the restored selection with `dateChange` and shows the month of the committed selection again. Without a pending selection the displayed month is kept.
+         */
+        "discardPendingSelection": () => Promise<void>;
+        /**
           * @default false
          */
         "embedded": boolean;
@@ -1567,9 +1614,21 @@ export namespace Components {
          */
         "from": string | undefined;
         /**
-          * Get the currently selected date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Get the confirmed date or range. The object returned contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.  With `requireConfirmation`, a pending selection is not returned until it is confirmed. Listen to `dateChange` to get every pick.
          */
         "getCurrentDate": () => Promise<DateChangeEvent>;
+        /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
         /**
           * Text of the date select button.
           * @default 'Done'
@@ -1591,6 +1650,12 @@ export namespace Components {
          */
         "minDate": string;
         "navigateCalendar": (direction: -1 | 1, byYear: boolean) => Promise<void>;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. `dateChange` still reports every pick. The cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
@@ -1710,8 +1775,20 @@ export namespace Components {
          */
         "helperText"?: string;
         /**
-          * Text for confirm button in picker (prop name matches datetime-picker)
+          * Text for cancel button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text for confirm button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
           * @default 'Confirm'
+         */
+        "i18nConfirm": string;
+        /**
+          * Text for done button in picker (prop name matches datetime-picker)
+          * @default 'Done'
          */
         "i18nDone": string;
         /**
@@ -1776,6 +1853,12 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * If true, a date and time picked in the dropdown are only applied after the user confirms them with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
         /**
           * Whether the field is required
           * @default false
@@ -1842,6 +1925,10 @@ export namespace Components {
          */
         "dateFormat": string;
         /**
+          * Discards a pending selection made while `requireConfirmation` is enabled. Without `requireConfirmation` the selection was already emitted, so the props are taken as the new committed selection instead.
+         */
+        "discardPendingSelection": () => Promise<void>;
+        /**
           * @default false
          */
         "embedded": boolean;
@@ -1849,6 +1936,10 @@ export namespace Components {
           * The selected starting date. If the picker is not in range mode, this is the selected date. Format has to match the `dateFormat` property.
          */
         "from"?: string;
+        /**
+          * The selection shown in the embedded pickers. The time comes from the tracked `timeChange` events, as the time picker only commits a time on its own confirm button. Without a picked time it falls back to the time the time picker shows.
+         */
+        "getCurrentSelection": () => Promise<DateTimeSelectEvent>;
         "getDatepickerElement": () => Promise<HTMLIxDatePickerElement | undefined>;
         "getTimepickerElement": () => Promise<HTMLIxTimePickerElement | undefined>;
         /**
@@ -1857,6 +1948,18 @@ export namespace Components {
           * @default 'AM'
          */
         "i18nAm": string;
+        /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm": string;
         /**
           * Text of the date select button.
           * @default 'Done'
@@ -1921,6 +2024,12 @@ export namespace Components {
          */
         "minTime"?: string;
         /**
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The cancel button discards the pending selection.  If false, the done button emits `dateSelect`. In both modes `dateChange` and `timeChange` are emitted for every selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation": boolean;
+        /**
           * Show AM/PM time reference control.
           * @default false
          */
@@ -1974,6 +2083,11 @@ export namespace Components {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        /**
+          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
+          * @since 6.0.0
+         */
+        "anchorPosition"?: DropdownAnchorPosition;
         "callbackFocusElement"?: (
     event: KeyboardEvent
   ) => Promise<boolean | undefined>;
@@ -2067,6 +2181,13 @@ export namespace Components {
          */
         "show": boolean;
         /**
+          * Show the dropdown at the given absolute point in viewport coordinates (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event. Moves an already visible dropdown. The position takes precedence over `anchorPosition`, `anchor` and `trigger` until the dropdown is hidden.
+          * @param x Absolute horizontal viewport coordinate in pixels
+          * @param y Absolute vertical viewport coordinate in pixels
+          * @since 6.0.0
+         */
+        "showAt": (x: number, y: number) => Promise<void>;
+        /**
           * Suppress the automatic placement of the dropdown.
           * @default false
          */
@@ -2082,7 +2203,7 @@ export namespace Components {
          */
         "suppressTriggerVisibilityCheck": boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
         /**
@@ -2517,7 +2638,7 @@ export namespace Components {
          */
         "index": number;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -2974,25 +3095,16 @@ export namespace Components {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the alarm icon
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the warning icon
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation": 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -3060,7 +3172,7 @@ export namespace Components {
          */
         "target": '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
     }
@@ -3584,7 +3696,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -3684,15 +3796,9 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -4143,17 +4249,10 @@ export namespace Components {
          */
         "tooltipText": string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -4197,7 +4296,7 @@ export namespace Components {
          */
         "showPopover": () => Promise<void>;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -5176,6 +5275,12 @@ export namespace Components {
          */
         "i18nAm": string;
         /**
+          * Text of the time picker cancel button. Cancel, pressing Escape or clicking outside the dropdown discards the time picked in the dropdown.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -5320,9 +5425,9 @@ export namespace Components {
          */
         "corners": TimePickerCorners;
         /**
-          * @default false
+          * Discards the selection that has not been confirmed yet and reports the restored time with `timeChange`.
          */
-        "dateTimePickerAppearance": boolean;
+        "discardPendingSelection": () => Promise<void>;
         /**
           * Embedded style (for use in other components).
           * @default false
@@ -5334,14 +5439,20 @@ export namespace Components {
          */
         "format": string;
         /**
-          * Get the current time in ISO format
+          * Get the current confirmed time in ISO format
           * @since 6.0.0
          */
         "getCurrentIsoTime": () => Promise<string | undefined>;
         /**
-          * Get the current time based on the wanted format
+          * Get the current confirmed time based on the wanted format
          */
         "getCurrentTime": () => Promise<string | undefined>;
+        "getDisplayedTime": () => Promise<string | undefined>;
+        /**
+          * Hides the footer with the cancel and confirm buttons, e.g. when a parent component confirms the selection itself.
+          * @default false
+         */
+        "hideFooter": boolean;
         /**
           * Hides the header of the picker.
           * @since 3.2.0
@@ -5360,10 +5471,17 @@ export namespace Components {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel": string;
+        /**
           * Text of the time confirm button.
+          * @since 6.0.0
           * @default 'Confirm'
          */
-        "i18nConfirmTime": string;
+        "i18nConfirm": string;
         /**
           * Text for the top header.
           * @default 'Time'
@@ -5438,7 +5556,7 @@ export namespace Components {
      */
     interface IxToast {
         /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Close toast'
          */
@@ -5484,7 +5602,7 @@ export namespace Components {
         "toastTitle"?: string;
         /**
           * Toast type
-          * @default 'info'
+          * @default 'information'
          */
         "type": ToastType;
     }
@@ -5654,7 +5772,7 @@ export namespace Components {
          */
         "markItemsAsDirty": (ids: string[]) => Promise<void>;
         /**
-          * Tree model
+          * Tree model  The model is processed recursively and must be acyclic. Bound the size of untrusted or user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use simple, application-controlled IDs (letters, digits, `-`, `_`).
           * @default {}
          */
         "model": TreeModel<any>;
@@ -5689,15 +5807,27 @@ export namespace Components {
      */
     interface IxTreeItem {
         /**
-          * ARIA label for the chevron icon
+          * ARIA label for the expand/collapse button
          */
         "ariaLabelChevronIcon"?: string;
+        /**
+          * ARIA label for the expand control when the tree item is collapsed.
+          * @since 6.0.0
+          * @default 'Expand tree item'
+         */
+        "ariaLabelTreeCollapsed": string;
+        /**
+          * ARIA label for the collapse control when the tree item is expanded.
+          * @since 6.0.0
+          * @default 'Collapse tree item'
+         */
+        "ariaLabelTreeExpanded": string;
         /**
           * Context
          */
         "context"?: TreeItemContext;
         /**
-          * Disable tree item
+          * Disable selection and expansion while keeping the tree item focusable.
           * @since 5.0.0
           * @default false
          */
@@ -6618,6 +6748,7 @@ declare global {
     };
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
+        "dateSelect": DateRangeChangeEvent;
     }
     /**
      * Dropdown for selecting a date or a relative date range.
@@ -6669,6 +6800,7 @@ declare global {
         "dateChange": DateChangeEvent;
         "dateRangeChange": DateChangeEvent;
         "dateSelect": DateChangeEvent;
+        "dateCancel": void;
     }
     /**
      * Calendar for selecting a single date or a date range.
@@ -6729,6 +6861,7 @@ declare global {
         "timeChange": string;
         "dateChange": DateTimeDateChangeEvent;
         "dateSelect": DateTimeSelectEvent;
+        "dateCancel": void;
     }
     /**
      * Combined calendar and time selector for picking a date and time.
@@ -8090,6 +8223,7 @@ declare global {
     interface HTMLIxTimePickerElementEventMap {
         "timeSelect": string;
         "timeChange": string;
+        "timeCancel": void;
     }
     /**
      * Selector for picking a time value.
@@ -8507,7 +8641,7 @@ declare namespace LocalJSX {
      */
     interface IxApplication {
         /**
-          * Define application switch configuration
+          * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -8741,9 +8875,9 @@ declare namespace LocalJSX {
          */
         "type"?: BadgeAnatomyType;
         /**
-          * Color variant. For `status-icon`, unsupported values fall back to `info`. Use `error` only with `status-icon` (other types map it to `alarm`).
+          * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
-          * @default 'primary'
+          * @default 'accent'
          */
         "variant"?: BadgeVariant;
     }
@@ -8854,7 +8988,7 @@ declare namespace LocalJSX {
          */
         "hideChevron"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -9156,7 +9290,7 @@ declare namespace LocalJSX {
          */
         "enableTopLayer"?: boolean;
         /**
-          * A set of search criteria to populate the component with.
+          * A set of search criteria to populate the component with.  Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
          */
         "filterState"?: FilterState;
         /**
@@ -9562,8 +9696,8 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Chip variant. Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
-          * @default 'primary'
+          * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @default 'accent'
          */
         "variant"?: ChipVariant;
     }
@@ -9727,7 +9861,20 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * Text for the done button. Will be used for translation.
+          * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -9756,9 +9903,20 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
+          * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range. When a pending selection is discarded, it is emitted with the applied range again.  Use `dateSelect` to only receive applied ranges.
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
+        /**
+          * Emitted when the user applies a changed range: on confirm with `requireConfirmation`, otherwise when a complete range or a predefined range is picked. It is not emitted for programmatic prop input changes.
+          * @since 6.0.0
+         */
+        "onDateSelect"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
+        /**
+          * If true, a date range picked in the dropdown is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The trigger label keeps the applied range until then, while `dateRangeChange` still reports every pick. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
           * @since 3.0.0
@@ -9838,6 +9996,18 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * I18n string for the error message when the date is not parsable.
           * @default 'Date is not valid'
          */
@@ -9896,6 +10066,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * If true, changes require clicking confirm. Cancel, Escape or clicking outside all discard pending selections.  If false, changes are applied immediately without requiring confirmation.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Required attribute.
          */
@@ -9992,6 +10168,18 @@ declare namespace LocalJSX {
          */
         "from"?: string | undefined;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
@@ -10011,17 +10199,29 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+          * Emitted when the pending selection is discarded via the cancel button.
+          * @since 6.0.0
+         */
+        "onDateCancel"?: (event: IxDatePickerCustomEvent<void>) => void;
+        /**
+          * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` When a pending selection is discarded, it is emitted with the confirmed selection again. Use `dateSelect` to receive only the applied selection.
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.  Emitted together with `dateChange`.
+          * @deprecated since 6.0.0, use `dateChange` instead, which carries the same `from`/`to` range. Will be removed in 7.0.0.
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection event. Emitted when the selection is confirmed via the date select button. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * Date selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`. With `singleSelection` and without `requireConfirmation` there is no button, so it is emitted together with `dateChange` when a date is picked. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. `dateChange` still reports every pick. The cancel button discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
           * @since 3.0.0
@@ -10124,8 +10324,20 @@ declare namespace LocalJSX {
          */
         "helperText"?: string;
         /**
-          * Text for confirm button in picker (prop name matches datetime-picker)
+          * Text for cancel button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text for confirm button in picker when `requireConfirmation` is enabled
+          * @since 6.0.0
           * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
+          * Text for done button in picker (prop name matches datetime-picker)
+          * @default 'Done'
          */
         "i18nDone"?: string;
         /**
@@ -10181,7 +10393,7 @@ declare namespace LocalJSX {
          */
         "onIxBlur"?: (event: IxDatetimeInputCustomEvent<void>) => void;
         /**
-          * Emitted when the date/time value changes via user interaction.  Fires in two scenarios: - When the input loses focus (blur) and the value has changed - When a new date/time is selected in the picker and confirmed  Does NOT fire when: - The picker is opened/closed without confirming a change - The input is blurred without modifying the value - The value is changed programmatically via the value property
+          * Emitted when the date/time value changes via user interaction.  Fires in two scenarios: - When the input loses focus (blur) and the value has changed - When the picker closes after the value was changed in it, or on   Confirm when `requireConfirmation` is enabled  Does NOT fire when: - The picker is opened/closed without changing the value - The input is blurred without modifying the value - The value is changed programmatically via the value property
          */
         "onIxChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10205,6 +10417,12 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * If true, a date and time picked in the dropdown are only applied after the user confirms them with the confirm button. The cancel button, pressing Escape or clicking outside the dropdown discards the pending selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Whether the field is required
           * @default false
@@ -10285,6 +10503,18 @@ declare namespace LocalJSX {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
+          * Text of the confirm button shown when `requireConfirmation` is enabled.
+          * @since 6.0.0
+          * @default 'Confirm'
+         */
+        "i18nConfirm"?: string;
+        /**
           * Text of the date select button.
           * @default 'Done'
          */
@@ -10348,17 +10578,28 @@ declare namespace LocalJSX {
          */
         "minTime"?: string;
         /**
-          * Date change event. Emitted when the date changes in the embedded date picker.
+          * Emitted when the pending selection is discarded via the cancel button, after `dateChange`/`timeChange` reported the restored selection. Only emitted when `requireConfirmation` is enabled.
+          * @since 6.0.0
+         */
+        "onDateCancel"?: (event: IxDatetimePickerCustomEvent<void>) => void;
+        /**
+          * Date change event. Emitted when the date changes in the embedded date picker.  Emitted for every pick, also for a range with only a start date and for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed date again. Use `dateSelect` for the applied selection.
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Datetime selection event. Emitted when the user confirms the selection.
+          * Datetime selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`.
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Time change event. Emitted when the time changes in the embedded time picker.
+          * Time change event. Emitted when the time changes in the embedded time picker.  Emitted for every pick, also for a selection that is not confirmed yet (`requireConfirmation`). When a pending selection is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `dateSelect` for the applied selection.
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
+        /**
+          * If true, a selection is only applied after the user confirms it with the confirm button, which emits `dateSelect`. The cancel button discards the pending selection.  If false, the done button emits `dateSelect`. In both modes `dateChange` and `timeChange` are emitted for every selection.
+          * @since 6.0.0
+          * @default false
+         */
+        "requireConfirmation"?: boolean;
         /**
           * Show AM/PM time reference control.
           * @default false
@@ -10413,6 +10654,11 @@ declare namespace LocalJSX {
           * Define an anchor element
          */
         "anchor"?: ElementReference;
+        /**
+          * Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
+          * @since 6.0.0
+         */
+        "anchorPosition"?: DropdownAnchorPosition;
         "callbackFocusElement"?: (
     event: KeyboardEvent
   ) => Promise<boolean | undefined>;
@@ -10534,7 +10780,7 @@ declare namespace LocalJSX {
          */
         "suppressTriggerVisibilityCheck"?: boolean;
         /**
-          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+          * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
          */
         "trigger"?: ElementReference;
     }
@@ -10990,7 +11236,7 @@ declare namespace LocalJSX {
          */
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
-          * Variation of the Flip
+          * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
           * @since 4.0.0
           * @default 'filled'
          */
@@ -11470,25 +11716,16 @@ declare namespace LocalJSX {
      * @figma-main-component-id 423:3986
      */
     interface IxKpi {
-        /**
-          * ARIA label for the alarm icon
-          * @since 3.2.0
-         */
-        "ariaLabelAlarmIcon"?: string;
-        /**
-          * ARIA label for the warning icon
-          * @since 3.2.0
-         */
-        "ariaLabelWarningIcon"?: string;
         "label"?: string;
         /**
           * @default 'horizontal'
          */
         "orientation"?: 'horizontal' | 'vertical';
         /**
+          * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
           * @default 'neutral'
          */
-        "state"?: 'neutral' | 'warning' | 'alarm';
+        "state"?: KpiState;
         "unit"?: string;
         "value"?: string | number;
     }
@@ -11556,7 +11793,7 @@ declare namespace LocalJSX {
          */
         "target"?: '_self' | '_blank' | '_parent' | '_top';
         /**
-          * Url for the link button
+          * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
     }
@@ -12126,7 +12363,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * URL for the button link. When provided, the button will render as an anchor tag.
+          * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
           * @since 4.0.0
          */
         "href"?: string;
@@ -12243,15 +12480,9 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
-          * @default 'info'
+          * @default 'information'
          */
-        "type"?: | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type"?: MessageBarType;
     }
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
@@ -12731,17 +12962,10 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string | boolean;
         /**
-          * Pill variant
-          * @default 'primary'
+          * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @default 'accent'
          */
-        "variant"?: | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant"?: ChipVariant;
     }
     /**
      * Floating panel anchored to a trigger element.
@@ -12785,7 +13009,7 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
         /**
-          * Element that toggles the popover. String values are resolved as the trigger element `id`, not as CSS selectors. Also accepts a DOM element reference.
+          * Element that toggles the popover. String values are resolved as the trigger element `id`. Also accepts a DOM element reference.  String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the popover observes the document until it appears; make sure the trigger element exists.
           * @since 5.1.0
          */
         "trigger"?: ElementReference;
@@ -13824,6 +14048,12 @@ declare namespace LocalJSX {
          */
         "i18nAm"?: string;
         /**
+          * Text of the time picker cancel button. Cancel, pressing Escape or clicking outside the dropdown discards the time picked in the dropdown.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
           * I18n string for the error message when the time is not parsable.
           * @default 'Time is not valid'
          */
@@ -13978,10 +14208,6 @@ declare namespace LocalJSX {
          */
         "corners"?: TimePickerCorners;
         /**
-          * @default false
-         */
-        "dateTimePickerAppearance"?: boolean;
-        /**
           * Embedded style (for use in other components).
           * @default false
          */
@@ -13991,6 +14217,11 @@ declare namespace LocalJSX {
           * @default 'TT'
          */
         "format"?: string;
+        /**
+          * Hides the footer with the cancel and confirm buttons, e.g. when a parent component confirms the selection itself.
+          * @default false
+         */
+        "hideFooter"?: boolean;
         /**
           * Hides the header of the picker.
           * @since 3.2.0
@@ -14009,10 +14240,17 @@ declare namespace LocalJSX {
          */
         "i18nAm"?: string;
         /**
+          * Text of the cancel button.
+          * @since 6.0.0
+          * @default 'Cancel'
+         */
+        "i18nCancel"?: string;
+        /**
           * Text of the time confirm button.
+          * @since 6.0.0
           * @default 'Confirm'
          */
-        "i18nConfirmTime"?: string;
+        "i18nConfirm"?: string;
         /**
           * Text for the top header.
           * @default 'Time'
@@ -14071,11 +14309,16 @@ declare namespace LocalJSX {
          */
         "minuteInterval"?: number;
         /**
-          * Time change event. Emitted when the selected time changes while interacting with the picker.
+          * Emitted when the pending selection is discarded via the cancel button, after `timeChange` reported the restored time.
+          * @since 6.0.0
+         */
+        "onTimeCancel"?: (event: IxTimePickerCustomEvent<void>) => void;
+        /**
+          * Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `timeSelect` for the applied time.
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
-          * Time event. Emitted when the user confirms the selected time.
+          * Time event. Emitted only when the user confirms the selected time. Use it for the applied time.
          */
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
@@ -14095,7 +14338,7 @@ declare namespace LocalJSX {
      */
     interface IxToast {
         /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Close toast'
          */
@@ -14133,7 +14376,7 @@ declare namespace LocalJSX {
         "toastTitle"?: string;
         /**
           * Toast type
-          * @default 'info'
+          * @default 'information'
          */
         "type"?: ToastType;
     }
@@ -14306,7 +14549,7 @@ declare namespace LocalJSX {
          */
         "context"?: TreeContext;
         /**
-          * Tree model
+          * Tree model  The model is processed recursively and must be acyclic. Bound the size of untrusted or user-controlled models to keep the page responsive. Item IDs are used in CSS selectors; use simple, application-controlled IDs (letters, digits, `-`, `_`).
           * @default {}
          */
         "model"?: TreeModel<any>;
@@ -14353,15 +14596,27 @@ declare namespace LocalJSX {
      */
     interface IxTreeItem {
         /**
-          * ARIA label for the chevron icon
+          * ARIA label for the expand/collapse button
          */
         "ariaLabelChevronIcon"?: string;
+        /**
+          * ARIA label for the expand control when the tree item is collapsed.
+          * @since 6.0.0
+          * @default 'Expand tree item'
+         */
+        "ariaLabelTreeCollapsed"?: string;
+        /**
+          * ARIA label for the collapse control when the tree item is expanded.
+          * @since 6.0.0
+          * @default 'Collapse tree item'
+         */
+        "ariaLabelTreeExpanded"?: string;
         /**
           * Context
          */
         "context"?: TreeItemContext;
         /**
-          * Disable tree item
+          * Disable selection and expansion while keeping the tree item focusable.
           * @since 5.0.0
           * @default false
          */
@@ -14782,6 +15037,9 @@ declare namespace LocalJSX {
         "weekStartIndex": number;
         "i18nDone": string;
         "i18nNoRange": string;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "today": string;
         "enableTopLayer": boolean;
     }
@@ -14812,6 +15070,9 @@ declare namespace LocalJSX {
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
     }
     interface IxDatePickerAttributes {
         "format": string;
@@ -14822,6 +15083,9 @@ declare namespace LocalJSX {
         "minDate": string;
         "maxDate": string;
         "i18nDone": string;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
         "ariaLabelMonthSelection": string;
@@ -14863,6 +15127,8 @@ declare namespace LocalJSX {
         "showTextAsTooltip": boolean;
         "i18nErrorDateTimeUnparsable": string;
         "i18nDone": string;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "i18nTime": string;
         "ariaLabelPreviousMonthButton": string;
         "ariaLabelNextMonthButton": string;
@@ -14872,6 +15138,7 @@ declare namespace LocalJSX {
         "suppressSubmitOnEnter": boolean;
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
+        "requireConfirmation": boolean;
     }
     interface IxDatetimePickerAttributes {
         "singleSelection": boolean;
@@ -14887,6 +15154,9 @@ declare namespace LocalJSX {
         "showTimeReference": boolean;
         "timeReference": 'AM' | 'PM';
         "i18nDone": string;
+        "requireConfirmation": boolean;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "i18nTime": string;
         "i18nAm": string;
         "i18nPm": string;
@@ -15111,11 +15381,9 @@ declare namespace LocalJSX {
     }
     interface IxKpiAttributes {
         "label": string;
-        "ariaLabelAlarmIcon": string;
-        "ariaLabelWarningIcon": string;
         "value": string;
         "unit": string;
-        "state": 'neutral' | 'warning' | 'alarm';
+        "state": KpiState;
         "orientation": 'horizontal' | 'vertical';
     }
     interface IxLayoutGridAttributes {
@@ -15256,13 +15524,7 @@ declare namespace LocalJSX {
         "label": string;
     }
     interface IxMessageBarAttributes {
-        "type": | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'success'
-    | 'info'
-    | 'neutral'
-    | 'primary';
+        "type": MessageBarType;
         "persistent": boolean;
     }
     interface IxModalAttributes {
@@ -15348,14 +15610,7 @@ declare namespace LocalJSX {
         "borderless": boolean;
     }
     interface IxPillAttributes {
-        "variant": | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom';
+        "variant": ChipVariant;
         "outline": boolean;
         "icon": string;
         "ariaLabelIcon": string;
@@ -15597,13 +15852,14 @@ declare namespace LocalJSX {
         "textAlignment": 'start' | 'end';
         "enableTopLayer": boolean;
         "ariaLabelTimeToggleButton": string;
+        "i18nCancel": string;
     }
     interface IxTimePickerAttributes {
         "format": string;
         "locale": string;
         "corners": TimePickerCorners;
         "embedded": boolean;
-        "dateTimePickerAppearance": boolean;
+        "hideFooter": boolean;
         "hideHeader": boolean;
         "hourInterval": number;
         "minuteInterval": number;
@@ -15612,7 +15868,8 @@ declare namespace LocalJSX {
         "time": string;
         "minTime": string;
         "maxTime": string;
-        "i18nConfirmTime": string;
+        "i18nConfirm": string;
+        "i18nCancel": string;
         "i18nHeader": string;
         "i18nHourColumnHeader": string;
         "i18nMinuteColumnHeader": string;
@@ -15672,6 +15929,8 @@ declare namespace LocalJSX {
         "hasChildren": boolean;
         "disabled": boolean;
         "ariaLabelChevronIcon": string;
+        "ariaLabelTreeCollapsed": string;
+        "ariaLabelTreeExpanded": string;
     }
     interface IxTypographyAttributes {
         "format": TypographyFormat;

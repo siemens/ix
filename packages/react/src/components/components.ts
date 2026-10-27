@@ -479,14 +479,20 @@ export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustom
     defineCustomElement: defineIxCustomField
 });
 
-export type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>> };
+export type IxDateDropdownEvents = {
+    onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>>,
+    onDateSelect: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>>
+};
 
 export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown>({
     tagName: 'ix-date-dropdown',
     elementClass: IxDateDropdownElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onDateRangeChange: 'dateRangeChange' } as IxDateDropdownEvents,
+    events: {
+        onDateRangeChange: 'dateRangeChange',
+        onDateSelect: 'dateSelect'
+    } as IxDateDropdownEvents,
     defineCustomElement: defineIxDateDropdown
 });
 
@@ -512,7 +518,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
 export type IxDatePickerEvents = {
     onDateChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
     onDateRangeChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
-    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>
+    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
+    onDateCancel: EventName<IxDatePickerCustomEvent<void>>
 };
 
 export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker>({
@@ -523,7 +530,8 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
     events: {
         onDateChange: 'dateChange',
         onDateRangeChange: 'dateRangeChange',
-        onDateSelect: 'dateSelect'
+        onDateSelect: 'dateSelect',
+        onDateCancel: 'dateCancel'
     } as IxDatePickerEvents,
     defineCustomElement: defineIxDatePicker
 });
@@ -554,7 +562,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
 export type IxDatetimePickerEvents = {
     onTimeChange: EventName<IxDatetimePickerCustomEvent<string>>,
     onDateChange: EventName<IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>>,
-    onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>
+    onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>,
+    onDateCancel: EventName<IxDatetimePickerCustomEvent<void>>
 };
 
 export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker> = /*@__PURE__*/ createComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker>({
@@ -565,7 +574,8 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
     events: {
         onTimeChange: 'timeChange',
         onDateChange: 'dateChange',
-        onDateSelect: 'dateSelect'
+        onDateSelect: 'dateSelect',
+        onDateCancel: 'dateCancel'
     } as IxDatetimePickerEvents,
     defineCustomElement: defineIxDatetimePicker
 });
@@ -1520,7 +1530,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
 
 export type IxTimePickerEvents = {
     onTimeSelect: EventName<IxTimePickerCustomEvent<string>>,
-    onTimeChange: EventName<IxTimePickerCustomEvent<string>>
+    onTimeChange: EventName<IxTimePickerCustomEvent<string>>,
+    onTimeCancel: EventName<IxTimePickerCustomEvent<void>>
 };
 
 export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker> = /*@__PURE__*/ createComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker>({
@@ -1530,7 +1541,8 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
     react: React,
     events: {
         onTimeSelect: 'timeSelect',
-        onTimeChange: 'timeChange'
+        onTimeChange: 'timeChange',
+        onTimeCancel: 'timeCancel'
     } as IxTimePickerEvents,
     defineCustomElement: defineIxTimePicker
 });
