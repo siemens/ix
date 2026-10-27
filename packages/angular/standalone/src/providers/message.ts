@@ -8,7 +8,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { MessageConfig, TypedEvent } from '@siemens/ix';
+import { MessageConfig, ShowMessageVariant, TypedEvent } from '@siemens/ix';
 import { MessageService as BaseMessageService } from '@siemens/ix-angular/common';
 
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
@@ -31,5 +31,37 @@ export class MessageService extends BaseMessageService {
     }>
   > {
     return super.showMessage(config);
+  }
+
+  public override danger(...args: Parameters<ShowMessageVariant>) {
+    return super.danger(...args);
+  }
+
+  public override warning(...args: Parameters<ShowMessageVariant>) {
+    return super.warning(...args);
+  }
+
+  public override caution(...args: Parameters<ShowMessageVariant>) {
+    return super.caution(...args);
+  }
+
+  public override information(...args: Parameters<ShowMessageVariant>) {
+    return super.information(...args);
+  }
+
+  public override critical(...args: Parameters<ShowMessageVariant>) {
+    return super.critical(...args);
+  }
+
+  public override error(...args: Parameters<ShowMessageVariant>) {
+    return super.error(...args);
+  }
+
+  public override success(...args: Parameters<ShowMessageVariant>) {
+    return super.success(...args);
+  }
+
+  public override question(...args: Parameters<ShowMessageVariant>) {
+    return super.question(...args);
   }
 }

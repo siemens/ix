@@ -122,14 +122,7 @@ function createVariant(
   icon: string,
   iconColor?: string
 ): ShowMessageVariant {
-  return (
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) => {
+  return (title, message, textOkay, textCancel, payloadOkay, payloadCancel) => {
     return showMessage({
       message,
       messageTitle: title,
