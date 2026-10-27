@@ -4230,8 +4230,8 @@ export namespace Components {
          */
         "size": ProgressIndicatorSize;
         /**
-          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
-          * @default 'default'
+          * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @default 'base'
          */
         "status": ProgressIndicatorStatus;
         /**
@@ -12691,8 +12691,8 @@ declare namespace LocalJSX {
          */
         "size"?: ProgressIndicatorSize;
         /**
-          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
-          * @default 'default'
+          * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @default 'base'
          */
         "status"?: ProgressIndicatorStatus;
         /**

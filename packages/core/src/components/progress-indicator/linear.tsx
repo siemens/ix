@@ -12,15 +12,18 @@ import { ProgressIndicatorStatus } from './progress-indicator.types';
 export function LinearBar({
   value,
   status,
+  label,
 }: Readonly<{
   value: number;
   status: ProgressIndicatorStatus;
+  label?: string;
 }>) {
   return (
     <div class={`linear-progress-container ${status}`}>
       <div
         class="progress"
         role="progressbar"
+        aria-label={label}
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={100}
