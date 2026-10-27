@@ -591,7 +591,11 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
           </div>
         </div>
         {this.disclaimer && (
-          <ix-typography class="disclaimer" format="body-sm" textColor="secondary">
+          <ix-typography
+            class="disclaimer"
+            format="body-sm"
+            textColor="secondary"
+          >
             {this.disclaimer}
           </ix-typography>
         )}
