@@ -58,16 +58,17 @@ regressionTest(
 );
 
 regressionTest(
-  'accepts files dropped from a source that only allows copy or link',
+  'emits filesChanged when the drag source only allows copy or link',
   async ({ mount, page }) => {
     await mount(`
-      <div id="drag-source" draggable="true">report.xlsx</div>
+      <div draggable="true">report.xlsx</div>
       <ix-upload></ix-upload>
     `);
     const upload = page.locator('ix-upload');
     await expect(upload).toHaveAttribute('hydrated');
 
-    await page.locator('#drag-source').evaluate((source) => {
+    const dragSource = page.getByText('report.xlsx');
+    await dragSource.evaluate((source) => {
       source.addEventListener('dragstart', (event) => {
         if (event.dataTransfer) {
           event.dataTransfer.effectAllowed = 'copyLink';
@@ -81,9 +82,7 @@ regressionTest(
       return events;
     });
 
-    await page
-      .locator('#drag-source')
-      .dragTo(upload.locator('.file-upload-area'));
+    await dragSource.dragTo(upload.locator('.file-upload-area'));
 
     await expect
       .poll(() => filesChangedEvents.evaluate((events) => events.length))
