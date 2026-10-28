@@ -11674,7 +11674,7 @@
         {
           "name": "textColor",
           "attribute": "text-color",
-          "type": "\"alarm\" | \"alarm-contrast\" | \"contrast\" | \"critical-contrast\" | \"info-contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"neutral-contrast\" | \"primary-contrast\" | \"soft\" | \"std\" | \"success-contrast\" | \"warning-contrast\" | \"weak\" | undefined",
+          "type": "\"caution\" | \"critical\" | \"danger\" | \"disabled\" | \"information\" | \"inverse\" | \"on-accent\" | \"on-caution\" | \"on-critical\" | \"on-danger\" | \"on-information\" | \"on-neutral\" | \"on-success\" | \"on-warning\" | \"primary\" | \"secondary\" | \"success\" | \"warning\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
