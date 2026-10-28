@@ -14,11 +14,14 @@ import {
   type ModalInstance,
 } from './../../utils/modal';
 import {
+  iconAlarm,
   iconError,
   iconInfo,
   iconQuestion,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 
 declare global {
@@ -41,10 +44,6 @@ async function setupModalEnvironment(page: Page) {
         globalThis.dismissModal = ix.dismissModal;
 
         globalThis.showMessage = ix.showMessage;
-        globalThis.showMessage.info = ix.showMessage.info;
-        globalThis.showMessage.error = ix.showMessage.error;
-        globalThis.showMessage.success = ix.showMessage.success;
-        globalThis.showMessage.question = ix.showMessage.question;
       `;
       document.getElementById('mount')?.appendChild(script);
       resolve();
@@ -690,11 +689,14 @@ regressionTest(
 
 regressionTest.describe('message utils', () => {
   [
-    ['info', iconInfo],
-    ['error', iconError],
+    ['information', iconInfo],
     ['warning', iconWarning],
+    ['error', iconError],
     ['success', iconSuccess],
     ['question', iconQuestion],
+    ['caution', iconWarningRhomb],
+    ['critical', iconWarningOctagon],
+    ['danger', iconAlarm],
   ].forEach(([name, svgData]) => {
     regressionTest(`${name} message`, async ({ mount, page }) => {
       await mount(``);
