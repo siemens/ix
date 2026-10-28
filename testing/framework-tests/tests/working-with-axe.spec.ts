@@ -108,3 +108,12 @@ import './generated/action-card-axe.spec';
 import './generated/blind-axe.spec';
 import './generated/blind-header-actions-axe.spec';
 import './generated/blind-variants-axe.spec';
+
+// Key value tests
+import './generated/key-value-axe.spec';
+import './generated/key-value-with-label-left-axe.spec';
+import './generated/key-value-with-custom-value-axe.spec';
+import './generated/key-value-list-axe.spec';
+import './generated/key-value-list-striped-axe.spec';
+import './generated/key-value-list-with-custom-value-axe.spec';
+import './generated/key-value-list-without-divider-axe.spec';
