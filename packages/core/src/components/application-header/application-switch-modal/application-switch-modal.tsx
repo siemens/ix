@@ -51,6 +51,10 @@ function ApplicationItem(props: {
       }}
       onClick={() => {
         dismissModal(props.host);
+        if (isExternal(props.target)) {
+          window.open(props.url, props.target, 'noopener,noreferrer');
+          return;
+        }
         window.open(props.url, props.target);
       }}
     >

@@ -8,11 +8,14 @@
  */
 
 import {
+  iconAlarm,
   iconError,
   iconInfo,
   iconQuestion,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 import {
   createDependencyFunction,
@@ -21,25 +24,14 @@ import {
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 import { ModalConfig } from './modal';
+import {
+  applyModalA11yAttributes,
+  decodeModalConfig,
+  decodeModalHeaderConfig,
+} from './modal-config';
 
 export type MessageConfig<T> = Omit<ModalConfig<T, unknown>, 'content'> &
   MessageContent;
-
-function setA11yAttributes(element: HTMLElement, config: MessageContent) {
-  const ariaDescribedby = config.ariaDescribedby;
-  const ariaLabelledby = config.ariaLabelledby;
-
-  delete config['ariaDescribedby'];
-  delete config['ariaLabelledby'];
-
-  if (ariaDescribedby) {
-    element.setAttribute('aria-describedby', ariaDescribedby);
-  }
-
-  if (ariaLabelledby) {
-    element.setAttribute('aria-labelledby', ariaLabelledby);
-  }
-}
 
 function createConfirmButtons(
   textOkay: string,
@@ -115,12 +107,36 @@ export type ShowMessageVariant = (
 export type ShowMessage = (<T>(
   config: MessageConfig<T>
 ) => ShowMessageResult<T>) & {
-  info: ShowMessageVariant;
+  danger: ShowMessageVariant;
   warning: ShowMessageVariant;
-  error: ShowMessageVariant;
+  caution: ShowMessageVariant;
+  information: ShowMessageVariant;
+  critical: ShowMessageVariant;
   success: ShowMessageVariant;
+  error: ShowMessageVariant;
   question: ShowMessageVariant;
 };
+
+function createVariant(
+  showMessage: <T>(config: MessageConfig<T>) => ShowMessageResult<T>,
+  icon: string,
+  iconColor?: string
+): ShowMessageVariant {
+  return (title, message, textOkay, textCancel, payloadOkay, payloadCancel) => {
+    return showMessage({
+      message,
+      messageTitle: title,
+      icon,
+      iconColor,
+      actions: createConfirmButtons(
+        textOkay,
+        textCancel,
+        payloadOkay,
+        payloadCancel
+      ),
+    });
+  };
+}
 
 /**
  * Create a message modal helper with custom element dependencies.
@@ -140,11 +156,9 @@ export function createShowMessage(
     const content = document.createElement('ix-modal-content');
     const footer = document.createElement('ix-modal-footer');
 
-    setA11yAttributes(dialog, config);
+    applyModalA11yAttributes(dialog, config);
 
-    Object.assign(header, config);
-    Object.assign(content, config);
-    Object.assign(footer, config);
+    Object.assign(header, decodeModalHeaderConfig(config));
 
     header.innerText = config.messageTitle;
     content.innerText = config.message;
@@ -208,8 +222,8 @@ export function createShowMessage(
       }
     );
 
-    setA11yAttributes(dialogRef, config);
-    Object.assign(dialogRef, config);
+    applyModalA11yAttributes(dialogRef, config);
+    Object.assign(dialogRef, decodeModalConfig(config));
 
     dialogRef.showModal();
     return onMessageAction;
@@ -217,127 +231,76 @@ export function createShowMessage(
 
   return Object.assign(showMessage, {
     /**
-     * Displays an info message modal with an info icon
+     * Displays a danger message modal with an alarm icon
      */
-    info: (
-      title: string,
-      message: string,
-      textOkay: string,
-      textCancel?: string,
-      payloadOkay?: any,
-      payloadCancel?: any
-    ) => {
-      return showMessage({
-        message,
-        messageTitle: title,
-        icon: iconInfo,
-        actions: createConfirmButtons(
-          textOkay,
-          textCancel,
-          payloadOkay,
-          payloadCancel
-        ),
-      });
-    },
+    danger: createVariant(
+      showMessage,
+      iconAlarm,
+      '--si-sys-color-border-danger'
+    ),
 
     /**
      * Displays a warning message modal with a warning icon
      */
-    warning: (
-      title: string,
-      message: string,
-      textOkay: string,
-      textCancel?: string,
-      payloadOkay?: any,
-      payloadCancel?: any
-    ) => {
-      return showMessage({
-        message,
-        messageTitle: title,
-        icon: iconWarning,
-        iconColor: '--si-sys-color-background-warning',
-        actions: createConfirmButtons(
-          textOkay,
-          textCancel,
-          payloadOkay,
-          payloadCancel
-        ),
-      });
-    },
+    warning: createVariant(
+      showMessage,
+      iconWarning,
+      '--si-sys-color-border-warning'
+    ),
 
     /**
-     * Displays an error message modal with an error icon
+     * Displays a caution message modal with a warning-rhomb icon
      */
-    error: (
-      title: string,
-      message: string,
-      textOkay: string,
-      textCancel?: string,
-      payloadOkay?: any,
-      payloadCancel?: any
-    ) => {
-      return showMessage({
-        message,
-        messageTitle: title,
-        icon: iconError,
-        iconColor: '--si-sys-color-background-danger',
-        actions: createConfirmButtons(
-          textOkay,
-          textCancel,
-          payloadOkay,
-          payloadCancel
-        ),
-      });
-    },
+    caution: createVariant(
+      showMessage,
+      iconWarningRhomb,
+      '--si-sys-color-border-caution'
+    ),
+
+    /**
+     * Displays an information message modal with an info icon
+     */
+    information: createVariant(
+      showMessage,
+      iconInfo,
+      '--si-sys-color-border-information'
+    ),
+
+    /**
+     * Displays a critical message modal with a warning-octagon icon
+     */
+    critical: createVariant(
+      showMessage,
+      iconWarningOctagon,
+      '--si-sys-color-border-critical'
+    ),
 
     /**
      * Displays a success message modal with a success icon
      */
-    success: (
-      title: string,
-      message: string,
-      textOkay: string,
-      textCancel?: string,
-      payloadOkay?: any,
-      payloadCancel?: any
-    ) => {
-      return showMessage({
-        message,
-        messageTitle: title,
-        icon: iconSuccess,
-        iconColor: '--si-sys-color-background-success',
-        actions: createConfirmButtons(
-          textOkay,
-          textCancel,
-          payloadOkay,
-          payloadCancel
-        ),
-      });
-    },
+    success: createVariant(
+      showMessage,
+      iconSuccess,
+      '--si-sys-color-border-success'
+    ),
+
+    /**
+     * Displays an error message modal with an error icon
+     */
+    error: createVariant(
+      showMessage,
+      iconError,
+      '--si-sys-color-border-danger'
+    ),
 
     /**
      * Displays a question message modal with a question icon
      */
-    question: (
-      title: string,
-      message: string,
-      textOkay: string,
-      textCancel?: string,
-      payloadOkay?: any,
-      payloadCancel?: any
-    ) => {
-      return showMessage({
-        message,
-        messageTitle: title,
-        icon: iconQuestion,
-        actions: createConfirmButtons(
-          textOkay,
-          textCancel,
-          payloadOkay,
-          payloadCancel
-        ),
-      });
-    },
+    question: createVariant(
+      showMessage,
+      iconQuestion,
+      '--si-sys-color-text-secondary'
+    ),
   });
 }
 
