@@ -120,7 +120,7 @@ function UserInfo(
         <div class="user">
           <div class="username">{props.userName}</div>
           {props.extra && (
-            <ix-typography class="extra" text-color={'soft'}>
+            <ix-typography class="extra" text-color={'secondary'}>
               {props.extra}
             </ix-typography>
           )}
