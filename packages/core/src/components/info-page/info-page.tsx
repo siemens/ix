@@ -97,7 +97,10 @@ export class InfoPage {
             )}
 
             {this.instructions && (
-              <ix-typography class="message__instructions" text-color="soft">
+              <ix-typography
+                class="message__instructions"
+                text-color="secondary"
+              >
                 {this.instructions}
               </ix-typography>
             )}

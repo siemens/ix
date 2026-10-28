@@ -106,7 +106,7 @@ export class PushCard {
               <slot name="title-action"></slot>
             </ix-card-title>
             <ix-typography format="h4">{this.heading}</ix-typography>
-            <ix-typography format="body-paragraph" text-color="soft">
+            <ix-typography format="body-paragraph" text-color="secondary">
               {this.subheading}
             </ix-typography>
           </ix-card-content>
