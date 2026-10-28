@@ -261,3 +261,53 @@ regressionTest(
     );
   }
 );
+
+regressionTest(
+  'keeps hidden dividers hidden in forced colors mode without shifting the layout',
+  async ({ mount, page }) => {
+    await page.emulateMedia({ forcedColors: 'active' });
+    await mount(`
+      <div>
+        <ix-key-value-list id="with-divider">${keyValues(2)}</ix-key-value-list>
+        <ix-key-value-list id="without-divider" divider="false">
+          ${keyValues(2)}
+          <ix-key-value id="explicit" label="Label" value="Value" divider></ix-key-value>
+        </ix-key-value-list>
+        <ix-key-value-list id="item-hidden">
+          <ix-key-value id="item-off" label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+          <ix-key-value label="Label" label-position="left" value="Value"></ix-key-value>
+        </ix-key-value-list>
+      </div>
+    `);
+    await expect(page.locator('#explicit')).toHaveAttribute('hydrated');
+
+    const withoutDivider = page.locator('#without-divider ix-key-value');
+    await expect(withoutDivider.nth(0)).toHaveCSS(
+      'border-bottom-style',
+      'none'
+    );
+    await expect(withoutDivider.nth(1)).toHaveCSS(
+      'border-bottom-style',
+      'none'
+    );
+    await expect(page.locator('#explicit')).toHaveCSS(
+      'border-bottom-style',
+      'solid'
+    );
+    await expect(page.locator('#item-off')).toHaveCSS(
+      'border-bottom-style',
+      'none'
+    );
+
+    const pitch = (listId: string) =>
+      page.evaluate((listId) => {
+        const [first, second] = Array.from(
+          document.querySelectorAll(`#${listId} ix-key-value`)
+        ).map((item) => item.getBoundingClientRect());
+        return second.top - first.top;
+      }, listId);
+    const shownPitch = await pitch('with-divider');
+    expect(await pitch('without-divider')).toBe(shownPitch);
+    expect(await pitch('item-hidden')).toBe(shownPitch);
+  }
+);

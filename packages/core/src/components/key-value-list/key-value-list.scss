@@ -17,6 +17,16 @@
   }
 }
 
+// Forced colors paint transparent borders, so remove hidden dividers and keep their space
+@media (forced-colors: active) {
+  :host(.keyValueList) ::slotted(ix-key-value.keyValue--no-divider),
+  :host(.keyValueList.keyValueList--no-divider)
+    ::slotted(ix-key-value:not(.keyValue--divider)) {
+    border-bottom-style: none;
+    margin-bottom: var(--ix-key-value-list--border-width);
+  }
+}
+
 :host(.keyValueList.keyValueList--striped) {
   ::slotted(ix-key-value:nth-child(odd)) {
     background: var(--ix-key-value-list-item--background--alternating);

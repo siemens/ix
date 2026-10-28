@@ -39,6 +39,12 @@
 // Keep the line width so toggling the divider does not shift the layout
 :host(.keyValue.keyValue--no-divider) {
   border-bottom-color: transparent;
+
+  // Forced colors paint transparent borders, so remove the border and keep its space
+  @media (forced-colors: active) {
+    border-bottom-style: none;
+    margin-bottom: var(--ix-key-value--border-width);
+  }
 }
 
 :host(.keyValue.keyValue--column) {

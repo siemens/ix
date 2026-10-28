@@ -120,3 +120,34 @@ regressionTest(
     await expectDividerVisible(page.locator('ix-key-value'));
   }
 );
+
+regressionTest(
+  'keeps a hidden divider hidden in forced colors mode without shifting the layout',
+  async ({ mount, page }) => {
+    await page.emulateMedia({ forcedColors: 'active' });
+    await mount(`
+      <div>
+        <ix-key-value id="shown" label="Label" label-position="left" value="Value"></ix-key-value>
+        <div id="after-shown"></div>
+        <ix-key-value id="hidden" label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+        <div id="after-hidden"></div>
+      </div>
+    `);
+    const hidden = page.locator('#hidden');
+    await expect(hidden).toHaveAttribute('hydrated');
+
+    await expect(page.locator('#shown')).toHaveCSS(
+      'border-bottom-style',
+      'solid'
+    );
+    await expect(hidden).toHaveCSS('border-bottom-style', 'none');
+
+    const top = (selector: string) =>
+      page
+        .locator(selector)
+        .evaluate((element) => element.getBoundingClientRect().top);
+    const pitch = async (id: string) =>
+      (await top(`#after-${id}`)) - (await top(`#${id}`));
+    expect(await pitch('hidden')).toBe(await pitch('shown'));
+  }
+);
