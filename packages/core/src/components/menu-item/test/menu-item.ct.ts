@@ -8,7 +8,78 @@
  */
 
 import { expect, Locator, Page } from '@playwright/test';
+import { iconDocument } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount('<ix-menu-item>Menu item</ix-menu-item>', {
+    icons: { iconDocument },
+  });
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+for (const { attributes = '', nested = false } of [
+  {},
+  { attributes: 'href="#target"' },
+  { attributes: 'slot="bottom"' },
+  { attributes: 'disabled' },
+  { attributes: 'icon="document"', nested: true },
+]) {
+  regressionTest(
+    `centers the unchanged icon in a square container (${
+      nested ? 'nested' : attributes || 'default'
+    })`,
+    async ({ mount, page }) => {
+      const item = `<ix-menu-item ${attributes} style="width: 100px">
+          A long menu item label
+        </ix-menu-item>`;
+      await mount(
+        nested
+          ? `<ix-application><ix-menu>
+              <ix-menu-category label="Category">${item}</ix-menu-category>
+            </ix-menu></ix-application>`
+          : item,
+        { icons: { iconDocument } }
+      );
+
+      if (nested) {
+        await page.getByRole('menuitem', { name: 'Category' }).click();
+      }
+
+      const menuItem = page.locator(
+        nested ? 'ix-menu-item.tab-nested' : 'ix-menu-item'
+      );
+      await expect(menuItem).toHaveAttribute('hydrated');
+      const container = menuItem.locator('.tab-icon');
+      const glyph = container.locator('svg');
+
+      await expect(container).toHaveCSS('width', '48px');
+      await expect(container).toHaveCSS('height', '48px');
+      await expect(glyph).toHaveCSS('width', '20px');
+      await expect(glyph).toHaveCSS('height', '20px');
+
+      const containerBox = await container.boundingBox();
+      const glyphBox = await glyph.boundingBox();
+      if (!containerBox || !glyphBox) {
+        throw new Error('Expected the icon container and glyph to be visible');
+      }
+      expect(glyphBox.x - containerBox.x).toBe(14);
+      expect(glyphBox.y - containerBox.y).toBe(14);
+
+      await page.locator('body').evaluate((body) => {
+        body.setAttribute('data-ix-density', 'compact');
+      });
+
+      await expect(container).toHaveCSS('width', '40px');
+      await expect(container).toHaveCSS('height', '40px');
+      await expect(glyph).toHaveCSS('width', '16px');
+      await expect(glyph).toHaveCSS('height', '16px');
+      await expect(container).toHaveCSS('padding', '12px');
+    }
+  );
+}
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
