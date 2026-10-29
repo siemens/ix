@@ -8,7 +8,7 @@
  */
 import { expect } from '@playwright/test';
 import { iconRocket } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForRender } from '@utils/test';
 
 declare global {
   interface Window {
@@ -184,7 +184,7 @@ regressionTest(
       await button.click();
       const submitCount = await page.evaluate(() => window.submitCount);
       expect(submitCount).toBe(i + 1);
-      await page.waitForTimeout(100);
+      await waitForRender(page);
     }
 
     await expect(button).not.toHaveAttribute('disabled');

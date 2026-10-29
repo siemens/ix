@@ -143,8 +143,7 @@ regressionTest(
     const settingsButton = page.getByRole('menuitem', { name: 'Settings' });
     await settingsButton.click();
 
-    // Wait for the menu to be visible
-    await page.waitForTimeout(500);
+    await expect(page.locator('ix-menu-settings')).toBeVisible();
 
     await page.evaluate(() => {
       window.toast({
@@ -168,7 +167,7 @@ regressionTest(
     const toastHandle = await page.evaluateHandle(() => {
       return window.toast({
         message: 'Pause/Resume test',
-        autoCloseDelay: 1000,
+        autoCloseDelay: 500,
       });
     });
 
@@ -179,16 +178,14 @@ regressionTest(
       handle.pause();
     }, toastHandle);
 
-    // Wait for the toast to be paused and check persistence
-    await page.waitForTimeout(1500);
+    // Wait longer than autoCloseDelay to verify the toast persists while paused
+    await page.waitForTimeout(750);
     await expect(toast).toBeVisible();
 
     await page.evaluate((handle) => {
       handle.resume();
     }, toastHandle);
 
-    // Wait for the toast to be resumed and check disappearance
-    await page.waitForTimeout(1500);
     await expect(toast).not.toBeVisible();
   }
 );

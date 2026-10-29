@@ -5,6 +5,22 @@ inputs:
     description: 'Space separated workspace packages to test. Empty runs every package.'
     required: false
     default: ''
+  shardIndex:
+    description: 'Shard index for the Playwright component tests. Requires a single package exposing test.spec and test.ct scripts.'
+    required: false
+    default: ''
+  shardTotal:
+    description: 'Total number of shards for the Playwright component tests'
+    required: false
+    default: ''
+  blobReportPath:
+    description: 'Path to the Playwright blob report uploaded for sharded runs'
+    required: false
+    default: ''
+  artifactName:
+    description: 'Name prefix of the uploaded blob report artifact for sharded runs'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
@@ -30,8 +46,28 @@ runs:
       run: pnpm run build --cache-dir=.turbo $BUILD_FILTERS
 
     - name: Test
+      if: inputs.shardIndex == ''
       uses: ./.github/workflows/actions/playwright-container
       with:
         env: |
           TEST_FILTERS=${{ steps.filters.outputs.test }}
         run: pnpm run test --cache-dir=.turbo --only $TEST_FILTERS
+
+    - name: Test (shard ${{ inputs.shardIndex }}/${{ inputs.shardTotal }})
+      if: inputs.shardIndex != ''
+      uses: ./.github/workflows/actions/playwright-container
+      with:
+        env: |
+          TEST_PACKAGE=${{ inputs.packages }}
+          SHARD_INDEX=${{ inputs.shardIndex }}
+          SHARD_TOTAL=${{ inputs.shardTotal }}
+        run: |
+          if [ "$SHARD_INDEX" = "1" ]; then pnpm --filter "$TEST_PACKAGE" run test.spec; fi
+          pnpm --filter "$TEST_PACKAGE" run test.ct --shard="$SHARD_INDEX/$SHARD_TOTAL"
+
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      if: always() && inputs.shardIndex != '' && inputs.blobReportPath != ''
+      with:
+        name: ${{ inputs.artifactName }}-blob-report-${{ inputs.shardIndex }}
+        path: ${{ inputs.blobReportPath }}
+        retention-days: 1

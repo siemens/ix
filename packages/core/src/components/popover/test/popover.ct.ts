@@ -292,12 +292,13 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
         const popoverEl = await popover.linkedPopover();
 
+        await page.clock.install();
         await popover.triggerButton.hover();
         await popover.expectOpen(popoverEl);
 
         await (await popover.dialog(popoverEl)).hover();
-        // Wait for hide delay to confirm popover STAYS open (testing negative case)
-        await page.waitForTimeout(HOVER_HIDE_MS);
+        // Run past the hide delay to confirm popover STAYS open (testing negative case)
+        await page.clock.fastForward(HOVER_HIDE_MS);
         await popover.expectOpen(popoverEl);
       }
     );
@@ -315,6 +316,7 @@ regressionTest.describe('ix-popover', () => {
         const popover = new PopoverPage(page);
         const popoverEl = await popover.linkedPopover();
 
+        await page.clock.install();
         await popover.trigger.hover();
         await popover.expectOpen(popoverEl);
 
@@ -322,7 +324,7 @@ regressionTest.describe('ix-popover', () => {
         await expect(async () => popover.expectClosed(popoverEl)).toPass({
           timeout: 3000,
         });
-        await page.waitForTimeout(HOVER_HIDE_MS);
+        await page.clock.fastForward(HOVER_HIDE_MS);
         await popover.expectClosed(popoverEl);
       }
     );

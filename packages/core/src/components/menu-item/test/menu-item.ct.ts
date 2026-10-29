@@ -255,9 +255,10 @@ async function expectMenuItemToHaveTooltip(
   menuItem: Locator,
   text: string
 ) {
+  await page.clock.install();
   await menuItem.hover();
-  // Default tooltip delay is 1000ms waiting another 500 ms
-  await page.waitForTimeout(1500);
+  // Default menu item tooltip delay is 1000ms
+  await page.clock.fastForward(1000);
 
   await expect(menuItem.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem.locator('ix-tooltip')).toHaveText(text);
@@ -314,9 +315,10 @@ regressionTest('update item text', async ({ mount, page }) => {
     (item: HTMLIxMenuItemElement) => (item.innerText = 'Test123')
   );
 
+  await page.clock.install();
   await menuItem1.hover();
-  // Default tooltip delay is 1000ms waiting another 500 ms
-  await page.waitForTimeout(1500);
+  // Default menu item tooltip delay is 1000ms
+  await page.clock.fastForward(1000);
 
   await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem1.locator('ix-tooltip')).toHaveText(/Test123/);
@@ -334,8 +336,9 @@ regressionTest('can disable tooltip', async ({ mount, page }) => {
   const menuItem = page.locator('ix-menu-item');
   await expect(menuItem).toHaveAttribute('hydrated');
 
+  await page.clock.install();
   await menuItem.hover();
-  await page.waitForTimeout(1500);
+  await page.clock.fastForward(1500);
 
   await expect(menuItem.locator('ix-tooltip')).toHaveCount(0);
 });

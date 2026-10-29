@@ -387,8 +387,9 @@ regressionTest('do not show tooltip', async ({ mount, page }) => {
   const categoryElement = page.locator('ix-menu-category');
   await expect(categoryElement).toHaveAttribute('hydrated');
 
+  await page.clock.install();
   await categoryElement.hover();
-  await page.waitForTimeout(1500);
+  await page.clock.fastForward(1500);
 
   const tooltip = categoryElement
     .locator('ix-menu-item.category-parent')
@@ -491,12 +492,9 @@ test('should adjust height when items are added dynamically', async ({
   await page.locator('ix-menu-expand-icon').click();
   await menuCategory.click();
 
-  // wait for dropdown items to be visible
-  await page.waitForTimeout(300);
+  const getHeight = () => menuCategory.boundingBox().then((box) => box?.height);
 
-  const initialHeight = await menuCategory
-    .boundingBox()
-    .then((box) => box?.height);
+  await expect.poll(getHeight).toBe(136);
 
   await page.evaluate(() => {
     const menuCategory = document.querySelector('ix-menu-category');
@@ -511,15 +509,7 @@ test('should adjust height when items are added dynamically', async ({
     menuCategory?.appendChild(newMenuItem2);
   });
 
-  // wait for new items to be visible
-  await page.waitForTimeout(300);
-
-  const newHeight = await menuCategory.boundingBox().then((box) => box?.height);
-
-  expect(initialHeight).toBeDefined();
-  expect(newHeight).toBeDefined();
-  expect(initialHeight).toBe(136);
-  expect(newHeight).toBe(216);
+  await expect.poll(getHeight).toBe(216);
 });
 
 regressionTest(
@@ -650,17 +640,14 @@ regressionTest(
 
     await menuCategory.click();
 
-    await page.waitForTimeout(300);
-
     const menuItems = menuCategory.locator('.menu-items');
     await expect(menuItems).toHaveClass(/menu-items--expanded/);
 
     // The inline max-height must be cleared after the animation so the CSS
     // class (max-height: 999999999px) takes over and nothing clips the items.
-    const inlineMaxHeight = await menuItems.evaluate(
-      (el) => el.style.maxHeight
-    );
-    expect(inlineMaxHeight).toBe('');
+    await expect
+      .poll(() => menuItems.evaluate((el) => el.style.maxHeight))
+      .toBe('');
 
     // The last item should be scrollable into view, not clipped by
     // overflow:hidden + an incorrect inline max-height.
@@ -720,6 +707,7 @@ regressionTest(
   'keeps collapsed category dropdown open when pointer slowly crosses the gap',
   async ({ mount, page }) => {
     await mount(collapsedMenuWithCategory);
+    await page.clock.install();
     const { category, dropdown } = await openCollapsedCategoryDropdown(page);
 
     const categoryBox = await requireBoundingBox(category);
@@ -729,7 +717,7 @@ regressionTest(
 
     await page.mouse.move(categoryBox.x + categoryBox.width - 1, y);
     await page.mouse.move(gapX, y, { steps: 10 });
-    await page.waitForTimeout(400);
+    await page.clock.fastForward(400);
     await expect(dropdown).toBeVisible();
     await page.mouse.move(dropdownBox.x + 8, y, { steps: 20 });
 
@@ -885,8 +873,9 @@ regressionTest(
       .locator('.category-parent');
     await expect(categoryParent).toHaveAttribute('hydrated');
 
+    await page.clock.install();
     await categoryParent.hover();
-    await page.waitForTimeout(1500);
+    await page.clock.fastForward(1500);
 
     await expect(categoryParent.locator('ix-tooltip')).toHaveCount(0);
   }

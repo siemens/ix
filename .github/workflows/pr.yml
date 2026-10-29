@@ -180,6 +180,20 @@ jobs:
         include:
           - group: core
             packages: '@siemens/ix'
+            shardIndex: 1
+            shardTotal: 4
+          - group: core
+            packages: '@siemens/ix'
+            shardIndex: 2
+            shardTotal: 4
+          - group: core
+            packages: '@siemens/ix'
+            shardIndex: 3
+            shardTotal: 4
+          - group: core
+            packages: '@siemens/ix'
+            shardIndex: 4
+            shardTotal: 4
           - group: angular
             packages: 'angular-test-app angular-standalone-test-app @siemens/ix-angular'
           - group: react-vue
@@ -190,6 +204,24 @@ jobs:
       - uses: ./.github/workflows/actions/unit
         with:
           packages: ${{ matrix.packages }}
+          shardIndex: ${{ matrix.shardIndex }}
+          shardTotal: ${{ matrix.shardTotal }}
+          blobReportPath: './packages/core/blob-report/'
+          artifactName: 'core-ct'
+
+  merge-core-ct-reports:
+    if: failure()
+    needs: [unit]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/workflows/actions/turbo
+      - uses: ./.github/workflows/actions/merge-reports
+        with:
+          projectName: '@siemens/ix'
+          artifactName: 'core-ct'
+          blobPattern: 'core-ct-blob-report-*'
+          outputPath: 'packages/core/playwright-report'
 
   accessibility:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.accessibility_any_changed == 'true' || needs.changes.outputs.ci_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
