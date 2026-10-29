@@ -939,7 +939,7 @@ ix-button {
 | `--theme-menu--border-color`               | no replacement                      |
 | `--theme-menu--border-radius`              | `--si-sys-sizing-border-radius-sm`  |
 | `--theme-menu--border-thickness`           | `--si-sys-sizing-border-width-none` |
-| `--theme-menu--box-shadow`                 | `--si-sys-color-effects-shadow-4`   |
+| `--theme-menu--box-shadow`                 | `--si-sys-color-effects-shadow-40`   |
 | `--theme-menu-btn--background`             | no replacement                      |
 | `--theme-menu-btn--background--active`     | `--si-sys-color-background-active`  |
 | `--theme-menu-btn--background--hover`      | `--si-sys-color-background-hover`   |
@@ -984,7 +984,7 @@ ix-button {
 | --------------------------------------- | -------------------------------------- |
 | `--theme-modal--background`             | `--si-sys-color-background-1`          |
 | `--theme-modal--border-color`           | no replacement                         |
-| `--theme-modal--box-shadow`             | `--si-sys-color-effects-shadow-4`      |
+| `--theme-modal--box-shadow`             | `--si-sys-color-effects-shadow-40`      |
 | `--theme-theme-modal--border-thickness` | `--si-sys-sizing-border-width-default` |
 
 ### navigation
@@ -1030,7 +1030,7 @@ ix-button {
 | `--theme-nav-item-secondary-icon--color--selected`   | `--si-sys-color-text-primary`        |
 | `--theme-nav-overlay--background`                    | no replacement                       |
 | `--theme-nav-overlay-header--color`                  | `--si-sys-color-text-primary`        |
-| `--theme-navigation--box-shadow`                     | `--si-sys-color-effects-shadow-2`    |
+| `--theme-navigation--box-shadow`                     | `--si-sys-color-effects-shadow-20`    |
 
 ### overlay
 
@@ -1062,7 +1062,7 @@ ix-button {
 | ------------------------------------- | --------------------------------- |
 | `--theme-pane-floating--background`   | `--si-sys-color-background-1`     |
 | `--theme-pane-floating--border-color` | `--si-sys-color-border-4`         |
-| `--theme-pane-floating--box-shadow`   | `--si-sys-color-effects-shadow-2` |
+| `--theme-pane-floating--box-shadow`   | `--si-sys-color-effects-shadow-20` |
 | `--theme-pane-floating--color`        | `--si-sys-color-text-primary`     |
 | `--theme-pane-inline--background`     | `--si-sys-color-background-0`     |
 | `--theme-pane-inline--border-color`   | `--si-sys-color-border-3`         |
@@ -1737,7 +1737,7 @@ ix-button {
 | `--theme-toast--border-radius`          | `--si-sys-sizing-border-radius-sm`  |
 | `--theme-toast--border-radus`           | `--si-sys-sizing-border-radius-sm`  |
 | `--theme-toast--border-thickness`       | `--si-sys-sizing-border-width-none` |
-| `--theme-toast--box-shadow`             | `--si-sys-color-effects-shadow-4`   |
+| `--theme-toast--box-shadow`             | `--si-sys-color-effects-shadow-40`   |
 | `--theme-toast--color`                  | `--si-sys-color-text-primary`       |
 | `--theme-toast-timer-track--background` | no replacement                      |
 | `--theme-toast-timer-value--background` | no replacement                      |

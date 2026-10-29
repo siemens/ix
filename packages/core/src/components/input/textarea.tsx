@@ -340,6 +340,16 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
+   * @internal
+   * @since 6.0.0
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const textarea = await this.textAreaRef.waitForCurrent();
+    return textarea.validity;
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -399,7 +409,7 @@ export class Textarea implements IxInputFieldComponent<string> {
             <ix-typography
               class="bottom-text"
               slot="bottom-right"
-              textColor="soft"
+              textColor="secondary"
             >
               {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>

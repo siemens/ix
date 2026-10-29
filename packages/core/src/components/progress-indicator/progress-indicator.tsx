@@ -183,7 +183,7 @@ export class ProgressIndicator {
           {this.label && (
             <ix-typography
               format="body"
-              textColor={this.status === 'error' ? 'alarm' : 'soft'}
+              textColor={this.status === 'error' ? 'danger' : 'secondary'}
               class={'label'}
             >
               {this.label}
