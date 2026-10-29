@@ -130,6 +130,7 @@ export const testIds = [
   "input-label",
   "input-disabled",
   "info-page",
+  "info-page-illustration",
   "icon-toggle-button-tertiary",
   "icon-toggle-button-subtle-tertiary",
   "icon-toggle-button-subtle-secondary",

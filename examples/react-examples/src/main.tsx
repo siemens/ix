@@ -126,6 +126,7 @@ import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
 import InfoPage from './preview-examples/info-page';
+import InfoPageIllustration from './preview-examples/info-page-illustration';
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
@@ -391,6 +392,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
   '/preview/info-page': InfoPage,
+  '/preview/info-page-illustration': InfoPageIllustration,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
   '/preview/event-list': EventList,

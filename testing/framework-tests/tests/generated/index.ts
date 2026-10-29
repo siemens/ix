@@ -249,6 +249,8 @@ import './icon-toggle-button-subtle-tertiary.spec.ts';
 import './icon-toggle-button-tertiary-axe.spec.ts';
 import './icon-toggle-button-tertiary.spec.ts';
 import './info-page-axe.spec.ts';
+import './info-page-illustration-axe.spec.ts';
+import './info-page-illustration.spec.ts';
 import './info-page.spec.ts';
 import './input-axe.spec.ts';
 import './input-disabled-axe.spec.ts';

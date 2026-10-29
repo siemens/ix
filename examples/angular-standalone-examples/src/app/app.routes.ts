@@ -284,6 +284,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/info-page': () =>
     import('../preview-examples/info-page').then((m) => m.default),
+  'preview/info-page-illustration': () =>
+    import('../preview-examples/info-page-illustration').then((m) => m.default),
   'preview/event-list': () =>
     import('../preview-examples/event-list').then((m) => m.default),
   'preview/event-list-compact': () =>

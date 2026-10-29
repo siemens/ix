@@ -74,6 +74,7 @@ import './generated/content-header-text-overflow.spec';
 
 // Info page tests
 import './generated/info-page.spec';
+import './generated/info-page-illustration.spec';
 
 // Chat tests
 import './generated/chat.spec';
