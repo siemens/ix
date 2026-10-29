@@ -28,7 +28,7 @@
     #{sys.$si-sys-sizing-spacing-y-20};
   --ix-toast-icon--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
   --ix-toast-content--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-toast-title--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-toast-title--margin: 0 0 0 #{sys.$si-sys-sizing-spacing-y-20};
   --ix-toast-action--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
   --ix-toast-close--opacity: 0.6;
   --ix-toast-progress-bar--height: #{sys.$si-sys-sizing-size-10};
