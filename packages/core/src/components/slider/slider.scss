@@ -8,7 +8,6 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/fonts';
-@use 'tokens/system' as sys;
 
 @use './slider.vars' as *;
 @mixin track {
@@ -28,7 +27,7 @@
   input[type='range' i]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    margin-top: -6px;
+    margin-top: var(--ix-slider-input--margin-top);
   }
 
   // Firefox
@@ -132,18 +131,30 @@
     z-index: -1;
     width: calc((var(--trace-end) - var(--trace-start)) * 100%);
     left: calc(var(--trace-start) * 100%);
-    height: 4px;
+    height: var(--ix-slider-trace--height);
     background-color: var(--trace-color);
     top: 50%;
     transform: translateY(-50%);
     border-radius: clamp(
         0rem,
         calc((0.01 - var(--trace-start)) * 999rem),
-        0.125rem
+        var(--ix-slider-trace--border-radius)
       )
-      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
-      clamp(0rem, calc((var(--trace-end) - 0.99) * 999rem), 0.125rem)
-      clamp(0rem, calc((0.01 - var(--trace-start)) * 999rem), 0.125rem);
+      clamp(
+        0rem,
+        calc((var(--trace-end) - 0.99) * 999rem),
+        var(--ix-slider-trace--border-radius)
+      )
+      clamp(
+        0rem,
+        calc((var(--trace-end) - 0.99) * 999rem),
+        var(--ix-slider-trace--border-radius)
+      )
+      clamp(
+        0rem,
+        calc((0.01 - var(--trace-start)) * 999rem),
+        var(--ix-slider-trace--border-radius)
+      );
   }
 
   .slider-container {
@@ -163,8 +174,8 @@
     content: '';
     position: absolute;
     display: block;
-    width: 2px;
-    height: 16px;
+    width: var(--ix-slider-reference--width);
+    height: var(--ix-slider-reference--height);
     background-color: var(--trace-reference-color);
     top: 50%;
     transform: translateY(-50%);
@@ -173,7 +184,7 @@
 
   @include track() {
     background: transparent;
-    height: 0.25rem;
+    height: var(--ix-slider-input--track-height);
   }
 
   @include clear-browser-thumb();
@@ -184,7 +195,7 @@
     height: var(--thumb-size);
     width: var(--thumb-size);
     transition: all var(--ix-slider-thumb--transition-duration) ease-in-out;
-    z-index: 10;
+    z-index: var(--ix-slider--z-index);
   }
 
   @include thumb-hover() {
@@ -196,8 +207,9 @@
   }
 
   @include thumb-focus() {
-    outline: 1px solid var(--ix-slider-thumb--outline-color--focus);
-    outline-offset: 0.125rem;
+    outline: var(--ix-slider--outline-width--focus) solid
+      var(--ix-slider-thumb--outline-color--focus);
+    outline-offset: var(--ix-slider--outline-offset);
   }
 
   /* style datalist */
@@ -212,7 +224,7 @@
   }
 
   .ticks circle.tick {
-    --tick-size: 6px;
+    --tick-size: var(--ix-slider-ticks--tick-size);
     --tick-radius: calc(var(--tick-size) / 2);
     r: var(--tick-radius);
     fill: var(--tick-color);
@@ -246,12 +258,12 @@
   .track {
     position: absolute;
     background-color: var(--track-color);
-    height: 4px;
+    height: var(--ix-slider-track--height);
     width: 100%;
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
-    border-radius: 2px;
+    border-radius: var(--ix-slider-track--border-radius);
   }
 
   .thumb {
@@ -260,7 +272,7 @@
     background-color: transparent;
     height: var(--thumb-size);
     width: var(--thumb-size);
-    border-radius: 100px;
+    border-radius: var(--ix-slider-thumb--border-radius);
     top: 50%;
     transform: translateY(-50%);
   }

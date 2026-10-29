@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type { ShowToastResult } from './toast-container.types';
-export type ToastType = 'info' | 'success' | 'error' | 'warning';
+import type { ToastType } from './toast.types';
+
+export type { ToastType } from './toast.types';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
 export interface ToastConfig {
@@ -90,22 +92,60 @@ function toast(config: ToastConfig): Promise<ShowToastResult> {
 }
 
 /**
- * Display an info toast based on the provided configuration
+ * Display a danger toast based on the provided configuration
+ *
+ * @since 6.0.0
  */
-toast.info = (config: ToastConfig) => {
+toast.danger = (config: ToastConfig) => {
   return toast({
     ...config,
-    type: 'info',
+    type: 'danger',
   });
 };
 
 /**
- * Display an error toast based on the provided configuration
+ * Display a warning toast based on the provided configuration
  */
-toast.error = (config: ToastConfig) => {
+toast.warning = (config: ToastConfig) => {
   return toast({
     ...config,
-    type: 'error',
+    type: 'warning',
+  });
+};
+
+/**
+ * Display a caution toast based on the provided configuration
+ *
+ * @since 6.0.0
+ */
+toast.caution = (config: ToastConfig) => {
+  return toast({
+    ...config,
+    type: 'caution',
+  });
+};
+
+/**
+ * Display an information toast based on the provided configuration
+ *
+ * @since 6.0.0
+ */
+toast.information = (config: ToastConfig) => {
+  return toast({
+    ...config,
+    type: 'information',
+  });
+};
+
+/**
+ * Display a critical toast based on the provided configuration
+ *
+ * @since 6.0.0
+ */
+toast.critical = (config: ToastConfig) => {
+  return toast({
+    ...config,
+    type: 'critical',
   });
 };
 
@@ -120,12 +160,12 @@ toast.success = (config: ToastConfig) => {
 };
 
 /**
- * Display a warning toast based on the provided configuration
+ * Display an error toast based on the provided configuration
  */
-toast.warning = (config: ToastConfig) => {
+toast.error = (config: ToastConfig) => {
   return toast({
     ...config,
-    type: 'warning',
+    type: 'error',
   });
 };
 

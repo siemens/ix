@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/fonts';
-@use 'tokens/system' as sys;
 
 @use './toast.vars' as *;
 :host {
@@ -27,7 +26,9 @@
   border-radius: var(--ix-toast--border-radius);
   box-shadow: var(--ix-toast--box-shadow);
 
-  --animate-duration: var(--ix-toast--animation-duration);
+  animation-name: toast-fade-in;
+  animation-duration: var(--ix-toast--animation-duration);
+  animation-fill-mode: both;
 
   @include component.ix-component;
 
@@ -78,7 +79,7 @@
     pointer-events: all;
     margin-left: auto;
     margin-right: 0px;
-    opacity: 0.6;
+    opacity: var(--ix-toast-close--opacity);
     &:hover {
       opacity: 1;
     }
@@ -87,7 +88,7 @@
   .toast-progress-bar {
     position: absolute;
     bottom: 0;
-    height: 0.125rem;
+    height: var(--ix-toast-progress-bar--height);
     width: 100%;
     background-color: var(--ix-toast-timer-value--background);
     transform-origin: left;
@@ -104,5 +105,27 @@
     100% {
       transform: scaleX(0);
     }
+  }
+}
+
+:host(.toast-fade-out) {
+  animation-name: toast-fade-out;
+}
+
+@keyframes toast-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toast-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

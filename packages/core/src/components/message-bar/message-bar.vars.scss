@@ -10,35 +10,32 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-message-bar--border-color--alarm: #{sys.$si-sys-color-border-danger};
-  --ix-message-bar--border-color--critical: #{sys.$si-sys-color-border-critical};
+  --ix-message-bar--border-color--error: #{sys.$si-sys-color-border-danger};
+  --ix-message-bar--border-color--danger: #{sys.$si-sys-color-border-danger};
   --ix-message-bar--border-color--warning: #{sys.$si-sys-color-border-warning};
+  --ix-message-bar--border-color--caution: #{sys.$si-sys-color-border-caution};
   --ix-message-bar--border-color--success: #{sys.$si-sys-color-border-success};
-  --ix-message-bar--border-color--info: #{sys.$si-sys-color-border-information};
+  --ix-message-bar--border-color--information: #{sys.$si-sys-color-border-information};
   --ix-message-bar--border-color--neutral: #{sys.$si-sys-color-border-neutral};
-  --ix-message-bar--border-color--primary: #{sys.$si-sys-color-border-accent};
-  --ix-message-bar--border-radius: var(--theme-default-border-radius);
-  --ix-message-bar--border-width: var(--theme-border-width-thick);
+  --ix-message-bar--border-color--accent: #{sys.$si-sys-color-border-accent};
+  --ix-message-bar--border-color--critical: #{sys.$si-sys-color-border-critical};
   --ix-message-bar--background: #{sys.$si-sys-color-background-accent-secondary};
 }
 
 :host {
-  --ix-message-bar--margin: #{sys.$si-sys-sizing-spacing-y-40}
-    #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-message-bar-message-container--min-height: calc(
-    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-30}
-  );
+  --ix-message-bar--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-message-bar--border-width: #{sys.$si-sys-sizing-border-width-selected};
+  --ix-message-bar--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
+    0 #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-message-bar-message-container--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-message-bar-message-container--padding: calc(
       #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
     )
-    #{sys.$si-sys-sizing-spacing-x-50}
-    calc(
+    #{sys.$si-sys-sizing-spacing-x-50} calc(
       #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
-    )
-    #{sys.$si-sys-sizing-spacing-x-60};
+    ) #{sys.$si-sys-sizing-spacing-x-60};
   --ix-message-bar-message-content--min-height: #{sys.$si-sys-sizing-size-60};
-  --ix-message-bar-message-content--padding: 0
-    #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-message-bar-message-content--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
   --ix-message-bar-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-message-bar-icon--margin-top: #{sys.$si-sys-sizing-spacing-y-30};
 }

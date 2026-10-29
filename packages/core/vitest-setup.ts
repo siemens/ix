@@ -7,7 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '@testing-library/jest-dom/vitest';
+import * as matchers from '@testing-library/jest-dom/matchers';
+import { afterEach, expect } from 'vitest';
+
+expect.extend(matchers);
 
 const { defineCustomElements } = await import('./loader');
 defineCustomElements(window);
@@ -23,4 +26,29 @@ Object.defineProperty(HTMLFormElement.prototype, 'requestSubmit', {
       new Event('submit', { bubbles: true, cancelable: true })
     );
   },
+});
+
+/**
+ * Stencil disconnect schedules a `nextTick` that does `instanceof Node`.
+ * If that runs after jsdom tears down globals, Vitest reports an unhandled
+ * `ReferenceError: Node is not defined` (seen in CI on pagination specs).
+ * Pin `Node` and flush disconnect while the document is still alive.
+ */
+const pinnedNode = globalThis.Node;
+
+Object.defineProperty(globalThis, 'Node', {
+  configurable: true,
+  enumerable: false,
+  get: () => pinnedNode,
+  set: () => {
+    /* ignore jsdom teardown clears */
+  },
+});
+
+afterEach(async () => {
+  document.body.replaceChildren();
+  await Promise.resolve();
+  await new Promise<void>((resolve) => {
+    setTimeout(resolve, 0);
+  });
 });

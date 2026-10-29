@@ -46,6 +46,7 @@ import {
   IxInputFieldComponent,
   NativeInputNotFoundError,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { DefaultMixins } from '../utils/internal/component';
 import {
@@ -62,8 +63,13 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 let selectId = 0;
 
 /**
+ * Dropdown control for selecting one or more options from a list.
+ *
+ * @documentation https://ix.siemens.io//docs/components/select/guide.md
+ * @figma-main-component-id 42365:49989
  * @form-ready
- * @slot default - Select items.
+ *
+ * @slot - Select items.
  */
 @Component({
   tag: 'ix-select',
@@ -93,6 +99,11 @@ export class Select
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Label for the select component
@@ -364,6 +375,7 @@ export class Select
   watchValue(value: string | string[]) {
     this.value = value;
     this.updateSelection();
+    this.updateFormInternalValue(value);
   }
 
   @Watch('disabled')
@@ -1091,7 +1103,7 @@ export class Select
     const chip = this.chipElementRefs.get(value);
     const margin = chip
       ? this.getHorizontalMargin(chip)
-      : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2;
+      : this.getCssPixelValue('--ix-select-chip-margin-inline-end');
 
     return (this.chipWidths.get(value) ?? 0) + margin;
   }
@@ -1107,7 +1119,7 @@ export class Select
       overflowChipWidth +
       (overflowChip
         ? this.getHorizontalMargin(overflowChip)
-        : this.getCssPixelValue('--ix-select-chip-horizontal-margin') * 2)
+        : this.getCssPixelValue('--ix-select-chip-margin-inline-end'))
     );
   }
 

@@ -9,7 +9,6 @@
 
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './tab-item.vars' as *;
 
@@ -92,7 +91,8 @@
     width: var(--ix-tab-item-circle--width);
     background-color: var(--ix-tab-item-animated-circle--background);
     border-radius: 50%;
-    border: 2px solid var(--ix-tab-item-animated-circle--border-color);
+    border: var(--ix-tab-item-circle--border-width) solid
+      var(--ix-tab-item-animated-circle--border-color);
     color: var(--ix-tab-item-animated-icon--color);
     cursor: pointer;
 
@@ -108,17 +108,18 @@
   .counter {
     position: absolute;
     z-index: 1;
-    height: 16px;
+    height: var(--ix-tab-item-counter--height);
     width: auto;
     background-color: var(--ix-tab-item-pill--background);
-    border: 1px solid var(--ix-tab-item-pill--border-color);
-    border-radius: 100px;
-    bottom: 6px;
+    border: var(--ix-tab-item-counter--border-width) solid
+      var(--ix-tab-item-pill--border-color);
+    border-radius: var(--ix-tab-item-counter--border-radius);
+    bottom: var(--ix-tab-item-counter--bottom);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    padding-left: var(--ix-tab-item-counter--padding-left);
+    padding-right: var(--ix-tab-item-counter--padding-right);
     font: var(--ix-tab-item-pill--font);
     color: var(--ix-tab-item-pill-outline--color);
     cursor: pointer;
@@ -168,7 +169,7 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: var(--ix-tab-item-indicator--height);
     background-color: var(--ix-tab-item-indicator--background--selected);
   }
 
@@ -246,16 +247,18 @@
 }
 
 :host(:not(.circle):focus-visible) {
-  outline-offset: -0.0625rem;
-  outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
+  outline-offset: var(--ix-tab-item-circle--outline-offset);
+  outline: var(--ix-tab-item--outline-width--focus) solid
+    var(--ix-tab-item--outline-color--focus);
 }
 
 :host(.circle:focus-visible) {
   outline: none;
 
   .circle {
-    outline-offset: 0.125rem;
-    outline: 0.0625rem solid var(--ix-tab-item--outline-color--focus);
+    outline-offset: var(--ix-tab-item-circle--outline-offset--focus);
+    outline: var(--ix-tab-item--outline-width--focus) solid
+      var(--ix-tab-item--outline-color--focus);
   }
 }
 

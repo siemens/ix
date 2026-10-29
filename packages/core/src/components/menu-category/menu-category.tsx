@@ -21,7 +21,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate, Easing } from '../utils/animate';
 import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
@@ -44,7 +44,12 @@ const HideDropdownGracePeriodMs = 250;
 let categorySequenceId = 0;
 
 /**
- * @slot default - Menu items in the category.
+ * Expandable category that groups related items in the side menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 4533:132499
+ *
+ * @slot - Menu category items.
  */
 @Component({
   tag: 'ix-menu-category',
@@ -150,23 +155,34 @@ export class MenuCategory
   }
 
   private animateFadeOut() {
-    const slotHideThresholdMs = 25;
     if (!this.menuItemsContainer) {
       return;
     }
 
-    animate(this.menuItemsContainer, {
-      duration: DefaultAnimationTimeout,
-      easing: 'easeInSine',
-      opacity: [1, 0],
-      maxHeight: [this.getNestedItemsHeight() + DefaultIxMenuItemHeight, 0],
-      onComplete: () => {
-        setTimeout(() => {
+    const expandedHeight = `${
+      this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+    }px`;
+    const expandedPadding = this.getMenuItemsExpandedPadding();
+
+    animate(
+      this.menuItemsContainer,
+      [
+        {
+          opacity: 1,
+          maxHeight: expandedHeight,
+          paddingBlock: expandedPadding,
+        },
+        { opacity: 0, maxHeight: '0px', paddingBlock: '0px' },
+      ],
+      {
+        duration: DefaultAnimationTimeout,
+        easing: Easing.easeOutQuad,
+        onComplete: () => {
           this.showItems = false;
           this.showDropdown = false;
-        }, DefaultAnimationTimeout + slotHideThresholdMs);
-      },
-    });
+        },
+      }
+    );
   }
 
   private animateFadeIn() {
@@ -177,15 +193,29 @@ export class MenuCategory
       return;
     }
 
-    animate(this.menuItemsContainer, {
-      duration: DefaultAnimationTimeout,
-      easing: 'easeInSine',
-      opacity: [0, 1],
-      maxHeight: [0, this.getNestedItemsHeight() + DefaultIxMenuItemHeight],
-      onComplete: () => {
-        this.clearMenuItemsContainerStyles();
-      },
-    });
+    const expandedHeight = `${
+      this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+    }px`;
+    const expandedPadding = this.getMenuItemsExpandedPadding();
+
+    animate(
+      this.menuItemsContainer,
+      [
+        { opacity: 0, maxHeight: '0px', paddingBlock: '0px' },
+        {
+          opacity: 1,
+          maxHeight: expandedHeight,
+          paddingBlock: expandedPadding,
+        },
+      ],
+      {
+        duration: DefaultAnimationTimeout,
+        easing: Easing.easeOutQuad,
+        onComplete: () => {
+          this.clearMenuItemsContainerStyles();
+        },
+      }
+    );
   }
 
   private isPointerMovingInsideCategory(relatedTarget: EventTarget | null) {
@@ -489,9 +519,18 @@ export class MenuCategory
     );
   }
 
+  private getMenuItemsExpandedPadding() {
+    return (
+      getComputedStyle(this.hostElement)
+        .getPropertyValue('--ix-menu-category-menu-items-expanded--padding')
+        .trim() || '0px'
+    );
+  }
+
   clearMenuItemsContainerStyles() {
     this.menuItemsContainer?.style.removeProperty('max-height');
     this.menuItemsContainer?.style.removeProperty('opacity');
+    this.menuItemsContainer?.style.removeProperty('padding-block');
   }
 
   @Watch('showDropdown')
@@ -561,7 +600,6 @@ export class MenuCategory
             <span class="category-text">{this.label}</span>
             <ix-icon
               name={iconChevronDownSmall}
-              size="24"
               class={{
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,
@@ -619,7 +657,7 @@ export class MenuCategory
             aria-hidden="true"
             suppressChecked
           >
-            <ix-typography format="body" bold textColor="std">
+            <ix-typography format="body" bold textColor="primary">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

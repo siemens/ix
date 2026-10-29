@@ -28,7 +28,7 @@ function getSubmitButtonIcon(element: Element) {
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount('<ix-chat-input></ix-chat-input>');
-  await expect(page.locator('ix-chat-input')).toHaveClass(/\bhydrated\b/);
+  await expect(page.locator('ix-chat-input')).toHaveAttribute('hydrated');
 });
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {

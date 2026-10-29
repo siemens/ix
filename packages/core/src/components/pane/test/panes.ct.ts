@@ -9,12 +9,16 @@
 
 import { expect } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import {
+  expectCollectedAfterRemoval,
+  regressionTest,
+  viewPorts,
+} from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
   const pane = page.locator('ix-pane');
-  await expect(pane).toHaveClass(/hydrated/);
+  await expect(pane).toHaveAttribute('hydrated');
 });
 
 regressionTest('expanded', async ({ mount, page }) => {
@@ -53,7 +57,7 @@ regressionTest(
   `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     const content = pane.locator('.side-pane-content');
     await expect(content).toHaveClass(/no-padding/);
@@ -122,7 +126,7 @@ regressionTest('close on click outside', async ({ page, mount }) => {
     <button>Element outside</button>`);
 
   const pane = page.locator('ix-pane');
-  await expect(pane).toHaveClass(/hydrated/);
+  await expect(pane).toHaveAttribute('hydrated');
 
   const exampleContent = page.getByLabel('test content');
   await expect(exampleContent).toBeVisible();
@@ -156,7 +160,7 @@ regressionTest(
     `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     await pane.getByLabel('myclose').click();
 
@@ -194,7 +198,7 @@ regressionTest(
       `);
 
       const pane = page.locator('ix-pane');
-      await expect(pane).toHaveClass(/hydrated/);
+      await expect(pane).toHaveAttribute('hydrated');
 
       const iconButton = pane.locator('ix-icon-button');
       await expect(iconButton).toBeVisible();
@@ -220,7 +224,7 @@ regressionTest(
   `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     const emittedValue = await page.evaluate(() => {
       return new Promise<boolean>((resolve) => {
@@ -263,7 +267,7 @@ regressionTest(
   `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     const iconButton = pane.locator('ix-icon-button');
 
@@ -302,8 +306,8 @@ regressionTest(
 
     const pane1 = page.locator('#pane1');
     const pane2 = page.locator('#pane2');
-    await expect(pane1).toHaveClass(/hydrated/);
-    await expect(pane2).toHaveClass(/hydrated/);
+    await expect(pane1).toHaveAttribute('hydrated');
+    await expect(pane2).toHaveAttribute('hydrated');
 
     await pane2.evaluate((el: HTMLIxPaneElement) => {
       el.expanded = true;
@@ -342,7 +346,7 @@ regressionTest(
     `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     await pane.evaluate((el: HTMLIxPaneElement) => {
       el.expanded = true;
@@ -367,7 +371,7 @@ regressionTest(
     `);
 
     const pane = page.locator('ix-pane');
-    await expect(pane).toHaveClass(/hydrated/);
+    await expect(pane).toHaveAttribute('hydrated');
 
     await pane.evaluate((el: HTMLIxPaneElement) => {
       el.expanded = true;
@@ -376,5 +380,65 @@ regressionTest(
     await expect(
       pane.locator('ix-icon-button[aria-label="Close pane"]')
     ).toBeFocused();
+  }
+);
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
+    await expectCollectedAfterRemoval(page, pane);
+  }
+);
+
+regressionTest(
+  'follows breakpoint changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
+    await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await page.setViewportSize(viewPorts.sm);
+
+    await expect
+      .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.isMobile))
+      .toBe(true);
+  }
+);
+
+regressionTest(
+  'follows slot changes after it was reattached',
+  async ({ mount, page }) => {
+    const pane = await mount(`<ix-pane slot="left" heading="Pane"></ix-pane>`);
+    await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await pane.evaluate((el) => el.setAttribute('slot', 'bottom'));
+
+    await expect
+      .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.composition))
+      .toBe('bottom');
+  }
+);
+
+regressionTest(
+  'follows the size of its parent after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="width: 600px; height: 400px">
+        <ix-pane heading="Pane" composition="left" size="50%" expanded></ix-pane>
+      </div>
+    `);
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveCSS('width', '300px');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await pane.evaluate((el) => {
+      if (el.parentElement) el.parentElement.style.width = '400px';
+    });
+
+    await expect(pane).toHaveCSS('width', '200px');
   }
 );

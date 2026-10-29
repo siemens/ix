@@ -1,5 +1,4 @@
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './key-value.vars' as *;
 :host(.keyValue) {
@@ -37,7 +36,8 @@
 
 :host(.keyValue.keyValue--column) {
   padding: var(--ix-key-value-column--padding);
-  border-bottom: 1px solid var(--ix-key-value--border-color);
+  border-bottom: var(--ix-key-value--border-width) solid
+    var(--ix-key-value--border-color);
 
   .keyValue__content {
     flex-direction: column;

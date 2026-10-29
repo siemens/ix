@@ -19,16 +19,21 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { animate } from 'animejs';
+import { animate } from '../utils/animate';
 import Animation from '../utils/animation';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileVariant } from './flip-tile.types';
 import { hasSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @slot header - Content displayed in the tile header.
- * @slot default - Flip tile pages.
- * @slot footer - Content displayed in the tile footer.
+ * Tile that flips between a front and back side to reveal additional content.
+ *
+ * @documentation https://ix.siemens.io//docs/components/flip/code.md
+ * @figma-main-component-id 407:3446
+ *
+ * @slot header - Header content.
+ * @slot - Front-side content.
+ * @slot footer - Back-side content.
  */
 @Component({
   tag: 'ix-flip-tile',
@@ -40,6 +45,8 @@ export class FlipTile {
 
   /**
    * Variation of the Flip
+   *
+   * Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
    *
    * @since 4.0.0
    */
@@ -156,24 +163,19 @@ export class FlipTile {
     this.isFlipAnimationActive = true;
 
     animate(
-      this.hostElement.shadowRoot!.querySelector('.flip-tile-container')!,
+      this.hostElement.shadowRoot!.querySelector<HTMLElement>(
+        '.flip-tile-container'
+      )!,
+      [
+        { transform: 'rotateY(0)', offset: 0 },
+        { transform: 'rotateY(90deg)', offset: 0.5 },
+        { transform: 'rotateY(270deg)', offset: 0.51 },
+        { transform: 'rotateY(360deg)', offset: 1 },
+      ],
       {
-        keyframes: {
-          '0%': {
-            transform: 'rotateY(0)',
-          },
-          '50%': {
-            transform: 'rotateY(90deg)',
-          },
-          '51%': {
-            transform: 'rotateY(270deg)',
-          },
-          '100%': {
-            transform: 'rotateY(360deg)',
-          },
-        },
         duration: Animation.defaultTime,
         easing: 'ease-in-out',
+        persist: false,
         onComplete: () => {
           this.index = index;
           this.updateContentVisibility(this.index);

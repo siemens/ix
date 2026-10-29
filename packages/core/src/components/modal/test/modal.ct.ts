@@ -14,11 +14,14 @@ import {
   type ModalInstance,
 } from './../../utils/modal';
 import {
+  iconAlarm,
   iconError,
   iconInfo,
   iconQuestion,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 
 declare global {
@@ -27,6 +30,7 @@ declare global {
   var showMessage: any;
   var __counter: number;
   var __nbBgClick: boolean | undefined;
+  var __loggedErrors: unknown[][];
 }
 
 async function setupModalEnvironment(page: Page) {
@@ -40,10 +44,6 @@ async function setupModalEnvironment(page: Page) {
         globalThis.dismissModal = ix.dismissModal;
 
         globalThis.showMessage = ix.showMessage;
-        globalThis.showMessage.info = ix.showMessage.info;
-        globalThis.showMessage.error = ix.showMessage.error;
-        globalThis.showMessage.success = ix.showMessage.success;
-        globalThis.showMessage.question = ix.showMessage.question;
       `;
       document.getElementById('mount')?.appendChild(script);
       resolve();
@@ -636,7 +636,34 @@ regressionTest('button receives focus on load', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'modal-header autofocus delegates focus to close button',
+  'ix-input autofocus receives focus on load',
+  async ({ mount, page }) => {
+    await mount('');
+    await setupModalEnvironment(page);
+
+    await page.evaluate(() => {
+      const elm = document.createElement('ix-modal');
+      elm.innerHTML = `
+      <ix-modal-header>Title</ix-modal-header>
+      <ix-modal-content>
+        <ix-input autofocus label="Name"></ix-input>
+      </ix-modal-content>
+    `;
+      globalThis.showModal({
+        content: elm,
+        animation: false,
+      });
+    });
+
+    await waitForModalDialogOpen(page);
+    await expect(page.locator('ix-input').locator('input')).toBeFocused({
+      timeout: 5000,
+    });
+  }
+);
+
+regressionTest(
+  'ix-modal-header autofocus receives focus on load',
   async ({ mount, page }) => {
     await mount('');
     await setupModalEnvironment(page);
@@ -662,11 +689,14 @@ regressionTest(
 
 regressionTest.describe('message utils', () => {
   [
-    ['info', iconInfo],
-    ['error', iconError],
+    ['information', iconInfo],
     ['warning', iconWarning],
+    ['error', iconError],
     ['success', iconSuccess],
     ['question', iconQuestion],
+    ['caution', iconWarningRhomb],
+    ['critical', iconWarningOctagon],
+    ['danger', iconAlarm],
   ].forEach(([name, svgData]) => {
     regressionTest(`${name} message`, async ({ mount, page }) => {
       await mount(``);
@@ -760,5 +790,179 @@ regressionTest(
     expect(Math.abs(reopenCenterX - initialCenterX)).toBeLessThanOrEqual(
       positionTolerance
     );
+  }
+);
+
+regressionTest(
+  'logs the original error when showing the dialog fails',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    await page.evaluate(async () => {
+      globalThis.__loggedErrors = [];
+
+      const originalConsoleError = console.error;
+      console.error = (...args: unknown[]) => {
+        globalThis.__loggedErrors.push(
+          args.map((arg) =>
+            arg instanceof Error
+              ? { name: arg.name, message: arg.message }
+              : arg
+          )
+        );
+        originalConsoleError.apply(console, args);
+      };
+
+      const originalShowModal = HTMLDialogElement.prototype.showModal;
+      HTMLDialogElement.prototype.showModal = () => {
+        throw new Error('underlying dialog failure');
+      };
+
+      const modal = document.createElement('ix-modal');
+      modal.innerHTML = '<div>content</div>';
+      document.body.appendChild(modal);
+
+      try {
+        await modal.componentOnReady();
+        await modal.showModal();
+      } finally {
+        HTMLDialogElement.prototype.showModal = originalShowModal;
+        console.error = originalConsoleError;
+      }
+    });
+
+    const logged = await page.evaluate(() => globalThis.__loggedErrors);
+    const loggedText = JSON.stringify(logged.flat());
+
+    expect(loggedText).toContain('underlying dialog failure');
+    expect(loggedText).not.toContain('HTMLDialogElement not existing');
+  }
+);
+
+regressionTest.describe('config allowlist', () => {
+  regressionTest(
+    'showModal ignores non-modal properties from config',
+    async ({ mount, page }) => {
+      await mount(``);
+      await setupModalEnvironment(page);
+
+      await page.evaluate(() => {
+        const config = {
+          content: 'Plain text content',
+          ariaDescribedby: 'modal-description',
+          animation: false,
+          backdrop: false,
+          innerHTML: '<img id="injected" src="x">',
+        };
+        (globalThis as any).__modalConfig = config;
+        globalThis.showModal(config as any);
+      });
+
+      const modal = page.locator('ix-modal');
+      await expect(modalPanel(page)).toBeVisible();
+      await expect(modal).toHaveText('Plain text content');
+      await expect(page.locator('#injected')).toHaveCount(0);
+      await expect(modalPanel(page)).toHaveAttribute(
+        'aria-describedby',
+        'modal-description'
+      );
+
+      const state = await modal.evaluate((element: HTMLIxModalElement) => ({
+        disableAnimation: element.disableAnimation,
+        hideBackdrop: element.hideBackdrop,
+        configKeys: Object.keys((globalThis as any).__modalConfig),
+      }));
+
+      expect(state).toEqual({
+        disableAnimation: true,
+        hideBackdrop: true,
+        configKeys: [
+          'content',
+          'ariaDescribedby',
+          'animation',
+          'backdrop',
+          'innerHTML',
+        ],
+      });
+    }
+  );
+
+  regressionTest(
+    'showMessage ignores non-header properties from config',
+    async ({ mount, page }) => {
+      await mount(``);
+      await setupModalEnvironment(page);
+
+      await page.evaluate(() => {
+        globalThis.showMessage({
+          messageTitle: 'Message title',
+          message: 'Message body',
+          actions: [{ id: 'okay', type: 'okay', text: 'Okay' }],
+          innerHTML: '<img id="injected" src="x">',
+          outerHTML: '<img id="injected-outer" src="x">',
+        });
+      });
+
+      await expect(modalPanel(page)).toBeVisible();
+      await expect(page.locator('ix-modal-header')).toContainText(
+        'Message title'
+      );
+      await expect(page.locator('ix-modal-content')).toHaveText('Message body');
+      await expect(page.locator('#injected')).toHaveCount(0);
+      await expect(page.locator('#injected-outer')).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'Okay' })).toBeVisible();
+    }
+  );
+});
+
+regressionTest(
+  'removes core-attached modals with the core delegate when a framework delegate is registered',
+  async ({ mount, page }) => {
+    await mount(``);
+    await setupModalEnvironment(page);
+
+    await page.evaluate(() => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        globalThis.__ixDelegate = ix;
+      `;
+      document.getElementById('mount')?.appendChild(script);
+    });
+    await page.waitForFunction(() => (globalThis as any).__ixDelegate != null);
+
+    await page.evaluate(async () => {
+      const ix = (globalThis as any).__ixDelegate;
+      (globalThis as any).__frameworkRemoveCalls = 0;
+      ix.registerFrameworkDelegate({
+        attachView: async (view: HTMLElement) => {
+          document.body.appendChild(view);
+          return view;
+        },
+        removeView: async () => {
+          (globalThis as any).__frameworkRemoveCalls++;
+        },
+      });
+
+      try {
+        const instance = await globalThis.showModal({
+          content: 'Core attached modal',
+        });
+        (globalThis as any).__closed = new Promise<void>((resolve) =>
+          instance.onClose.on(() => setTimeout(resolve))
+        );
+        instance.htmlElement.closeModal('done');
+        await (globalThis as any).__closed;
+      } finally {
+        ix.registerFrameworkDelegate(ix.getCoreDelegate());
+      }
+    });
+
+    await expect(page.locator('ix-modal')).toHaveCount(0);
+    expect(
+      await page.evaluate(() => (globalThis as any).__frameworkRemoveCalls)
+    ).toBe(0);
   }
 );

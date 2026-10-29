@@ -13,6 +13,7 @@ import {
   Element,
   h,
   Host,
+  Listen,
   Method,
   Mixin,
   Prop,
@@ -36,7 +37,11 @@ import { a11yBoolean } from '../utils/a11y';
 let sequenceId = 0;
 
 /**
- * @slot default - Custom menu item label.
+ * Navigation entry within the side menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @figma-main-component-id 308:1293
+ * @slot - Menu item label.
  */
 @Component({
   tag: 'ix-menu-item',
@@ -102,6 +107,10 @@ export class MenuItem
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
+   * against an allowlist (for example `https:` and relative URLs).
    *
    * @since 4.0.0
    */
@@ -221,6 +230,14 @@ export class MenuItem
     }
   }
 
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   private handleCategoryKeyDown(e: KeyboardEvent) {
     if ((e.key === 'Enter' || e.key === ' ') && this.isHostedInsideCategory) {
       this.returnFocusToParentCategoryMenuItem();
@@ -304,7 +321,6 @@ export class MenuItem
         <ix-icon
           class={'tab-icon'}
           name={this.icon}
-          size="24"
           aria-hidden="true"
         ></ix-icon>
       ),
@@ -347,12 +363,6 @@ export class MenuItem
             }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
-            onClick={(e: Event) => {
-              if (this.disabled) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            }}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
             aria-current={this.active ? 'page' : undefined}

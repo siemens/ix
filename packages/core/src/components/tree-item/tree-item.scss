@@ -9,7 +9,6 @@
 
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './tree-item.vars' as *;
 :host {
@@ -29,8 +28,14 @@
     height: var(--ix-tree-item-tree-node-container--height);
     flex-grow: 1;
     align-items: center;
+    outline: none;
 
     @include text-truncation.ellipsis;
+
+    &:focus-visible {
+      outline: 1px solid var(--ix-tree-item--outline-color--focus);
+      outline-offset: -1px;
+    }
 
     .tree-node-text {
       @include text-truncation.ellipsis;
@@ -45,12 +50,22 @@
     height: var(--ix-tree-item-icon-toggle-container--icon-size);
     min-width: var(--ix-tree-item-icon-toggle-container--icon-size);
 
-    ix-icon {
-      transition: transform var(--ix-tree-item-expand-icon--transition-duration)
-        ease-in-out;
+    .icon-toggle {
+      display: flex;
+      outline: none;
 
-      &.icon-toggle-down {
-        transform: rotate(90deg);
+      &:focus-visible {
+        outline: 1px solid var(--ix-tree-item--outline-color--focus);
+        outline-offset: -1px;
+      }
+
+      ix-icon {
+        transition: transform var(--ix-tree-item-expand-icon--transition-duration)
+          ease-in-out;
+
+        &.icon-toggle-down {
+          transform: rotate(90deg);
+        }
       }
     }
   }
@@ -81,6 +96,11 @@
 }
 
 :host(.disabled) {
-  opacity: 0.5;
+  opacity: var(--ix-tree-item--opacity);
   pointer-events: none;
+}
+
+:host(:focus-visible) {
+  outline: 1px solid var(--ix-tree-item--outline-color--focus);
+  outline-offset: -1px;
 }

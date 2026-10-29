@@ -32,6 +32,27 @@ const kebabCaseToUpperCaseSentence = (kebabCase: string) => {
   return sentence;
 };
 
+const SVG_DESC_OPEN = '<desc>';
+const SVG_DESC_CLOSE = '</desc>';
+
+/**
+ * Returns the text between the last `<desc>` and the last `</desc>` in linear
+ * time (avoids backtracking on untrusted icon data).
+ */
+const getSvgDescription = (svg: string) => {
+  const end = svg.lastIndexOf(SVG_DESC_CLOSE);
+  if (end < 0) {
+    return undefined;
+  }
+
+  const start = svg.lastIndexOf(SVG_DESC_OPEN, end - SVG_DESC_OPEN.length);
+  if (start < 0) {
+    return undefined;
+  }
+
+  return svg.slice(start + SVG_DESC_OPEN.length, end);
+};
+
 export const getFallbackLabelFromIconName = (iconName?: string) => {
   if (!iconName) {
     return 'Unknown';
@@ -42,9 +63,9 @@ export const getFallbackLabelFromIconName = (iconName?: string) => {
   }
 
   if (isSvgDataUrl(iconName)) {
-    const fallbackName = /.*\<desc\>(.*)\<\/desc\>.*/g.exec(iconName);
-    if (fallbackName && fallbackName.length > 1) {
-      return kebabCaseToUpperCaseSentence(fallbackName[1]);
+    const fallbackName = getSvgDescription(iconName);
+    if (fallbackName !== undefined) {
+      return kebabCaseToUpperCaseSentence(fallbackName);
     }
     return 'Unknown';
   }

@@ -32,7 +32,6 @@ import {
 } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
-import { DEFAULT_BUTTON_ICON_SIZE } from '../button/base-button.types';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   AriaActiveDescendantMixinContract,
@@ -45,8 +44,13 @@ import {
 import { closestPassShadow } from '../utils/shadow-dom';
 
 /**
- * @slot button-label - Custom content displayed next to the button label.
- * @slot default - Dropdown items.
+ * Button that opens an attached dropdown menu.
+ *
+ * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @figma-main-component-id 294:1198
+ *
+ * @slot button-label - Custom button label.
+ * @slot - Dropdown content.
  */
 @Component({
   tag: 'ix-dropdown-button',
@@ -446,7 +450,7 @@ export class DropdownButton
                         ? iconChevronUpSmall
                         : iconChevronDownSmall
                     }
-                    size="24"
+                    class={'dropdown-chevron'}
                   ></ix-icon>
                 )}
               </div>
@@ -457,11 +461,6 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
-                size={
-                  this.hostContext?.splitButton
-                    ? DEFAULT_BUTTON_ICON_SIZE
-                    : '24'
-                }
                 aria-hidden="true"
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}

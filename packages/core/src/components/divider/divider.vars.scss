@@ -15,4 +15,5 @@
 
 :host {
   --ix-divider--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-divider--border-width: #{sys.$si-sys-sizing-border-width-default};
 }

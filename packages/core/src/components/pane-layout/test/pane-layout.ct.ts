@@ -9,12 +9,24 @@
 
 import { expect } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { expectCollectedAfterRemoval, regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane-layout></ix-pane-layout>`);
   const pane = page.locator('ix-pane-layout');
-  await expect(pane).toHaveClass(/hydrated/);
+  await expect(pane).toHaveAttribute('hydrated');
+});
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-pane-layout>
+      <ix-pane slot="left" heading="Left"></ix-pane>
+      <div slot="content">Content</div>
+    </ix-pane-layout>
+  `);
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
 });
 
 regressionTest.describe('pane-layout with floating pane', () => {
@@ -121,3 +133,43 @@ regressionTest.describe('pane-layout with floating pane', () => {
     }
   );
 });
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const layout = await mount(`
+      <ix-pane-layout>
+        <ix-pane slot="left" heading="Left"></ix-pane>
+        <ix-pane slot="bottom" heading="Bottom"></ix-pane>
+      </ix-pane-layout>
+    `);
+    await expectCollectedAfterRemoval(page, layout);
+  }
+);
+
+regressionTest(
+  'configures added panes after it was reattached',
+  async ({ mount, page }) => {
+    const layout = await mount(`
+      <ix-pane-layout>
+        <ix-pane slot="left" heading="First"></ix-pane>
+      </ix-pane-layout>
+    `);
+    await expect(page.locator('ix-pane-layout')).toHaveAttribute('hydrated');
+
+    await layout.evaluate((el) => el.parentElement?.append(el));
+    await layout.evaluate((el) => {
+      const pane = document.createElement('ix-pane');
+      pane.setAttribute('slot', 'left');
+      pane.setAttribute('heading', 'Second');
+      el.append(pane);
+    });
+
+    // A layout allows one pane per slot and clears the slot of the second one
+    await expect
+      .poll(() =>
+        page.locator('ix-pane[heading="Second"]').evaluate((el) => el.slot)
+      )
+      .toBe('');
+  }
+);
