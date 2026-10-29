@@ -74,6 +74,7 @@ import './generated/content-header-text-overflow-axe.spec';
 
 // Info page tests
 import './generated/info-page-axe.spec';
+import './generated/info-page-illustration-axe.spec';
 
 // Chat tests
 import './generated/chat-axe.spec';
