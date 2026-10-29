@@ -15,6 +15,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
   State,
 } from '@stencil/core';
@@ -140,9 +141,21 @@ export class ContentHeader {
     }
   }
 
+  @Listen('resize', { target: 'window' })
+  onResize() {
+    this.updateActions();
+  }
+
   private observeActions() {
     this.resizeObserver = new ResizeObserver(this.scheduleLayout);
-    this.actionsObserver = new MutationObserver(() => this.updateActions());
+    this.resizeObserver.observe(this.hostElement);
+    if (this.primaryActionsElement) {
+      this.resizeObserver.observe(this.primaryActionsElement);
+    }
+    if (this.secondaryActionsElement) {
+      this.resizeObserver.observe(this.secondaryActionsElement);
+    }
+    this.actionsObserver = new MutationObserver(this.updateActions);
     this.breakpointSubscription = applicationLayoutService.onChange.on(
       this.scheduleLayout
     );
@@ -161,15 +174,12 @@ export class ContentHeader {
     );
 
     this.actionsObserver?.disconnect();
-    this.actionsObserver?.observe(this.hostElement, {
-      attributes: true,
-      characterData: true,
-      childList: true,
-      subtree: true,
-    });
-    for (const action of this.secondaryActions) {
-      if (action.shadowRoot) {
-        this.actionsObserver?.observe(action.shadowRoot, {
+    for (const target of [
+      this.hostElement,
+      ...this.secondaryActions.map((action) => action.shadowRoot),
+    ]) {
+      if (target) {
+        this.actionsObserver?.observe(target, {
           attributes: true,
           characterData: true,
           childList: true,
@@ -178,14 +188,6 @@ export class ContentHeader {
       }
     }
 
-    this.resizeObserver?.disconnect();
-    this.resizeObserver?.observe(this.hostElement);
-    if (this.primaryActionsElement) {
-      this.resizeObserver?.observe(this.primaryActionsElement);
-    }
-    if (this.secondaryActionsElement) {
-      this.resizeObserver?.observe(this.secondaryActionsElement);
-    }
     this.scheduleLayout();
   };
 

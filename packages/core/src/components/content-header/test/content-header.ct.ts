@@ -332,6 +332,63 @@ regressionTest(
   }
 );
 
+for (const forceBreakpoint of ['', 'force-breakpoint="lg"']) {
+  for (const keepVisibleAction of [true, false]) {
+    regressionTest(
+      `updates media-query-hidden actions (${
+        forceBreakpoint || 'responsive layout'
+      }, persistent action: ${keepVisibleAction})`,
+      async ({ mount, page }) => {
+        await page.setViewportSize({ width: 599, height: 800 });
+        await mount(
+          `<ix-application ${forceBreakpoint}>
+            <div style="width: 350px; max-width: 100%">
+              <ix-content-header header-title="Production line overview">
+                ${
+                  keepVisibleAction
+                    ? '<ix-button slot="secondary-actions">Export report</ix-button>'
+                    : ''
+                }
+                <ix-button slot="secondary-actions" class="desktop-only">Desktop action</ix-button>
+                <ix-button>Save</ix-button>
+              </ix-content-header>
+            </div>
+          </ix-application>`,
+          {
+            headTags: [
+              '<style>@media (max-width: 600px) { .desktop-only { display: none; } }</style>',
+            ],
+          }
+        );
+
+        await expect(page.locator('ix-content-header')).toHaveAttribute(
+          'hydrated'
+        );
+        const trigger = page.getByRole('button', { name: 'More actions' });
+        for (const width of [599, 650, 599, 650]) {
+          await page.setViewportSize({ width, height: 800 });
+          if (!keepVisibleAction && width < 600) {
+            await expect(trigger).toHaveCount(0);
+            continue;
+          }
+          await expect(trigger).toBeVisible();
+          if ((await trigger.getAttribute('aria-expanded')) !== 'true') {
+            await trigger.click();
+          }
+          await expect(
+            page.getByRole('menuitem', { name: 'Desktop action' })
+          ).toHaveCount(width > 600 ? 1 : 0);
+          if (keepVisibleAction) {
+            await expect(
+              page.getByRole('menuitem', { name: 'Export report' })
+            ).toBeVisible();
+          }
+        }
+      }
+    );
+  }
+}
+
 regressionTest(
   'reacts to viewport changes using the layout service',
   async ({ mount, page }) => {

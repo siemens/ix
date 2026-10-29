@@ -74,7 +74,7 @@ export const ResponsiveActions: Story = {
     docs: {
       description: {
         story:
-          'Resize the browser or drag the container edge. Secondary actions collapse based on available space, including on large viewports; the primary action stays visible. Long titles retain the selected text-overflow behavior, and the following content stays below the header.',
+          'Resize the browser or drag the container edge. Secondary actions collapse based on available space, including on large viewports; the primary action stays visible. Secondary actions hidden by CSS media queries are excluded from the overflow menu, and their visibility updates when the browser is resized. Long titles retain the selected text-overflow behavior, and the following content stays below the header.',
       },
     },
   },

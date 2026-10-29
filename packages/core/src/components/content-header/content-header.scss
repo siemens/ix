@@ -87,19 +87,20 @@
   .primaryActions,
   .secondaryActions {
     display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
     gap: var(--ix-content-header-actions--gap);
   }
 
-  .primaryActions ::slotted(*) {
+  .primaryActions {
+    flex-wrap: wrap;
     max-width: 100%;
+
+    ::slotted(*) {
+      max-width: 100%;
+    }
   }
 
   .secondaryActions {
-    flex-wrap: nowrap;
     width: max-content;
-    max-width: none;
 
     &.collapsed {
       position: fixed;
