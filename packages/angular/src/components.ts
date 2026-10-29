@@ -1231,14 +1231,14 @@ export declare interface IxDropdownQuickActions extends Components.IxDropdownQui
 
 
 @ProxyCmp({
-  inputs: ['action', 'ariaLabelEmptyStateIcon', 'header', 'icon', 'layout', 'subHeader']
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'description', 'header', 'icon', 'layout']
 })
 @Component({
   selector: 'ix-empty-state',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['action', 'ariaLabelEmptyStateIcon', { name: 'header', required: true }, 'icon', 'layout', 'subHeader'],
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'description', { name: 'header', required: true }, 'icon', 'layout'],
   outputs: ['actionClick'],
   standalone: false
 })

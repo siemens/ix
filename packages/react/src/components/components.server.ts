@@ -953,7 +953,7 @@ export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptySta
         layout: 'layout',
         icon: 'icon',
         header: 'header',
-        subHeader: 'sub-header',
+        description: 'description',
         action: 'action',
         ariaLabelEmptyStateIcon: 'aria-label-empty-state-icon'
     },

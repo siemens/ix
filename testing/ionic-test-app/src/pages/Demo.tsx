@@ -26,7 +26,7 @@ function EmptyExample() {
     <div className={styles.Example}>
       <IxEmptyState
         header="No elements available"
-        subHeader="Create an element first"
+        description="Create an element first"
         icon={iconAdd}
         action="Create element"
       ></IxEmptyState>

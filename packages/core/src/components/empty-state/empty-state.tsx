@@ -38,9 +38,11 @@ export class EmptyState {
   @Prop() header!: string;
 
   /**
-   * Optional empty state sub header
+   * Optional empty state description
+   *
+   * @since 6.0.0
    */
-  @Prop() subHeader?: string;
+  @Prop() description?: string;
 
   /**
    * Optional empty state action
@@ -80,8 +82,8 @@ export class EmptyState {
               {this.header}
             </ix-typography>
 
-            {this.subHeader && (
-              <div class="label__subHeader">{this.subHeader}</div>
+            {this.description && (
+              <div class="label__description">{this.description}</div>
             )}
           </div>
 

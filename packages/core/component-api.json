@@ -4575,6 +4575,16 @@
           "deprecated": false
         },
         {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "header",
           "attribute": "header",
           "type": "string",
@@ -4602,16 +4612,6 @@
           "reflectToAttribute": false,
           "default": "'large'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "subHeader",
-          "attribute": "sub-header",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         }
