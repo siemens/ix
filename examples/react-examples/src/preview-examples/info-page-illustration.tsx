@@ -12,9 +12,9 @@ import { IxButton, IxInfoPage } from '@siemens/ix-react';
 export default () => {
   return (
     <IxInfoPage
-      titleText="Internal server error"
-      copyText="This page is not available right now."
-      instructions="Try refreshing the page or try again later."
+      titleText="Request timeout"
+      copyText="The server took too long to respond."
+      instructions="Check your connection and try again."
     >
       <svg
         slot="image"
@@ -79,7 +79,7 @@ export default () => {
       <IxButton slot="actions" variant="secondary">
         Go back
       </IxButton>
-      <IxButton slot="actions">Reload</IxButton>
+      <IxButton slot="actions">Try again</IxButton>
     </IxInfoPage>
   );
 };

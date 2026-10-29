@@ -13,9 +13,9 @@ import { IxButton, IxInfoPage } from '@siemens/ix-vue';
 
 <template>
   <IxInfoPage
-    title-text="Internal server error"
-    copy-text="This page is not available right now."
-    instructions="Try refreshing the page or try again later."
+    title-text="Request timeout"
+    copy-text="The server took too long to respond."
+    instructions="Check your connection and try again."
   >
     <svg
       slot="image"
@@ -78,6 +78,6 @@ import { IxButton, IxInfoPage } from '@siemens/ix-vue';
       </defs>
     </svg>
     <IxButton slot="actions" variant="secondary">Go back</IxButton>
-    <IxButton slot="actions">Reload</IxButton>
+    <IxButton slot="actions">Try again</IxButton>
   </IxInfoPage>
 </template>

@@ -14,9 +14,9 @@ import { IxButton, IxInfoPage } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxButton, IxInfoPage],
   template: `<ix-info-page
-    titleText="Internal server error"
-    copyText="This page is not available right now."
-    instructions="Try refreshing the page or try again later."
+    titleText="Request timeout"
+    copyText="The server took too long to respond."
+    instructions="Check your connection and try again."
   >
     <svg
       slot="image"
@@ -79,7 +79,7 @@ import { IxButton, IxInfoPage } from '@siemens/ix-angular/standalone';
       </defs>
     </svg>
     <ix-button slot="actions" variant="secondary">Go back</ix-button>
-    <ix-button slot="actions">Reload</ix-button>
+    <ix-button slot="actions">Try again</ix-button>
   </ix-info-page>`,
 })
 export default class InfoPageIllustration {}
