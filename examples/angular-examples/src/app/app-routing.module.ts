@@ -121,6 +121,7 @@ import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
 import InfoPage from '../preview-examples/info-page';
+import InfoPageIllustration from '../preview-examples/info-page-illustration';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -717,6 +718,10 @@ const routes: Routes = [
         component: InfoPage,
       },
       {
+        path: 'info-page-illustration',
+        component: InfoPageIllustration,
+      },
+      {
         path: 'event-list',
         component: EventList,
       },
@@ -1127,6 +1132,7 @@ const routes: Routes = [
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
       { path: 'info-page', component: InfoPage },
+      { path: 'info-page-illustration', component: InfoPageIllustration },
       { path: 'key-value', component: KeyValue },
       {
         path: 'toggle-button-subtle-secondary',
