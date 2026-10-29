@@ -23,6 +23,7 @@ import {
   h,
 } from '@stencil/core';
 import { parseWithLocale } from '../utils/datetime/date-time-locale';
+import { DateDisplayFormat } from '../utils/datetime/date-display-format';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -122,8 +123,7 @@ export class DateInput
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months,
    * determine the default order of weekdays, and parse user input.
-   * Values emitted via `valueChange` reflect the locale-formatted string
-   * as typed or selected by the user.
+   * Values emitted via `valueChange` are in `format`.
    */
   @Prop() locale?: string;
 
@@ -133,10 +133,34 @@ export class DateInput
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
+  /**
+   * Date format used to display and type the date in the input field.
+   * `value`, `minDate`, `maxDate` and emitted values keep using `format`,
+   * e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a
+   * two-digit year without losing the century of the value.
+   * Date parts missing in `displayFormat` are kept from the current value
+   * when the user types a date. A typed two-digit year resolves to the year
+   * closest to the current value.
+   * Defaults to `format`.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
+
   @Watch('locale')
   @Watch('format')
   watchLocaleFormatHandler() {
+    // Sync first, so typed text rejected for the previous format is revalidated
+    this.syncInputText();
     this.onInput(this.value);
+  }
+
+  @Watch('displayFormat')
+  watchDisplayFormatHandler() {
+    // Only the text changes, so revalidate without emitting `valueChange`
+    this.syncInputText();
+    this.validateValue(this.value);
   }
 
   /**
@@ -307,7 +331,9 @@ export class DateInput
   @State() isInfo = false;
   @State() isWarning = false;
   @State() focus = false;
+  @State() inputText = '';
 
+  private readonly dateDisplayFormat = new DateDisplayFormat(this);
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
@@ -364,6 +390,7 @@ export class DateInput
     this.checkClassList();
     this.updateFormInternalValue(this.value);
     this.initialValue = this.value;
+    this.syncInputText();
   }
 
   private updatePaddings() {
@@ -393,6 +420,10 @@ export class DateInput
     this.touched = true;
     onInputBlurWithChange(this, this.inputElementRef.current, this.value);
     this.emitValidityStateChangeIfChanged();
+
+    if (!this.isInputInvalid) {
+      this.syncInputText();
+    }
   }
 
   private discardPendingSelection() {
@@ -401,7 +432,24 @@ export class DateInput
 
   @Watch('value')
   watchValue() {
-    this.from = this.value;
+    this.from = this.dateDisplayFormat.isUnparsableText(this.value)
+      ? undefined
+      : this.value;
+
+    // Keep the text while the user is typing it, otherwise it would be
+    // reformatted on every keystroke
+    if (!this.dateDisplayFormat.isTypedValue(this.value)) {
+      this.syncInputText();
+    }
+  }
+
+  private syncInputText() {
+    this.inputText = this.dateDisplayFormat.toText();
+  }
+
+  private onTextInput(text: string) {
+    this.inputText = text;
+    void this.onInput(this.dateDisplayFormat.toValue(text));
   }
 
   /** @internal */
@@ -418,20 +466,39 @@ export class DateInput
 
   async onInput(value: string | undefined) {
     this.value = value;
+    if (!this.validateValue(value)) {
+      return;
+    }
+
+    if (value && !this.isInputInvalid) {
+      this.closeDropdown();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
+    }
+
+    this.valueChange.emit(value);
+  }
+
+  /**
+   * Updates the validation state and form value for `value`.
+   * Returns `false` if `value` cannot be validated without `format`.
+   */
+  private validateValue(value: string | undefined): boolean {
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitValidityStateChangeIfChanged();
+      void this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
-      return;
+      return true;
     }
 
     if (!this.format) {
-      return;
+      return false;
     }
 
-    const date = parseWithLocale(value, this.format, this.locale);
+    const date = this.dateDisplayFormat.parseValue(value);
     const minDate = parseWithLocale(this.minDate, this.format, this.locale);
     const maxDate = parseWithLocale(this.maxDate, this.format, this.locale);
 
@@ -442,15 +509,10 @@ export class DateInput
       this.from = undefined;
     } else {
       this.updateFormInternalValue(value);
-      this.closeDropdown();
-
-      if (hasKeyboardMode()) {
-        this.inputElementRef.current?.focus();
-      }
     }
 
-    this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    void this.emitValidityStateChangeIfChanged();
+    return true;
   }
 
   onCalenderClick(event: Event) {
@@ -501,12 +563,12 @@ export class DateInput
           required={this.required}
           ref={this.inputElementRef}
           type="text"
-          value={this.value ?? ''}
+          value={this.inputText}
           placeholder={this.placeholder}
           name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
+            this.onTextInput(target.value);
           }}
           onClick={(event) => {
             if (this.show) {

@@ -47,6 +47,26 @@ export function tryParseWithLocale(
   return date;
 }
 
+/**
+ * Convert a date string from one format to another, e.g. from a value format
+ * to a display format. The value is returned unchanged if both formats are
+ * identical or if it does not match `sourceFormat`.
+ */
+export function convertDateFormat(
+  value: string,
+  sourceFormat: string,
+  targetFormat: string,
+  locale?: string
+): string {
+  if (!value || sourceFormat === targetFormat) {
+    return value;
+  }
+
+  const date = parseWithLocale(value, sourceFormat, locale);
+
+  return date.isValid ? formatWithLocale(date, targetFormat, locale) : value;
+}
+
 export function toISODate(dt: DateTime | undefined): string | undefined {
   return dt?.isValid ? (dt.toISODate() ?? undefined) : undefined;
 }

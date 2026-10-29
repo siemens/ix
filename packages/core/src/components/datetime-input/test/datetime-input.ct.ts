@@ -425,6 +425,253 @@ regressionTest('select date and time from picker', async ({ mount, page }) => {
   ).not.toBeVisible();
 });
 
+regressionTest.describe('displayFormat', () => {
+  regressionTest(
+    'displays the value in displayFormat without changing it',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+
+      await expect(dateTimeInput.getByRole('textbox')).toHaveValue(
+        '99/03/04 09:10'
+      );
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/03/04 09:10:11'
+      );
+    }
+  );
+
+  regressionTest(
+    'keeps the century when a date is selected in the picker',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/05/05 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const accessor = await createAccessor(dateTimeInput);
+
+      await accessor.openByCalendar();
+      await accessor.selectDay(15);
+      await accessor.selectTime(14, 30, 45);
+      await accessor.confirm();
+
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/05/15 14:30:45'
+      );
+      await expect(dateTimeInput.getByRole('textbox')).toHaveValue(
+        '99/05/15 14:30'
+      );
+    }
+  );
+
+  regressionTest('converts typed text into format', async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11" display-format="dd.LL.yyyy HH:mm:ss"></ix-datetime-input>`
+    );
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    await input.fill('15.05.2024 14:30:45');
+
+    await expect(dateTimeInput).toHaveAttribute('value', '2024/05/15 14:30:45');
+    await expect(input).toHaveValue('15.05.2024 14:30:45');
+  });
+
+  regressionTest(
+    'keeps units missing in displayFormat when typing',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await input.fill('99/03/04 09:1');
+      await input.fill('99/03/04 09:15');
+
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/03/04 09:15:11'
+      );
+      await expect(input).toHaveValue('99/03/04 09:15');
+    }
+  );
+
+  regressionTest(
+    'keeps invalid typed text as value',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2024/05/05 09:10:11" display-format="dd.LL.yyyy HH:mm:ss"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const dateTimeAccessor = await createAccessor(dateTimeInput);
+      const input = dateTimeInput.getByRole('textbox');
+
+      await input.fill('15.05.');
+
+      await expect(dateTimeInput).toHaveAttribute('value', '15.05.');
+      await expect(input).toHaveValue('15.05.');
+      await expect(input).toHaveClass(/is-invalid/);
+      await dateTimeAccessor.expectToHaveErrorMessage('Date time is not valid');
+    }
+  );
+
+  regressionTest(
+    'rejects typed text which does not match displayFormat',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const dateTimeAccessor = await createAccessor(dateTimeInput);
+      const input = dateTimeInput.getByRole('textbox');
+
+      await input.fill('2099/03/04 09:15:11');
+
+      await expect(input).toHaveClass(/is-invalid/);
+      await dateTimeAccessor.expectToHaveErrorMessage('Date time is not valid');
+    }
+  );
+
+  regressionTest(
+    'revalidates rejected text when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await input.fill('2099/03/04 09:15:11');
+      await expect(input).toHaveClass(/is-invalid/);
+
+      await dateTimeInput.evaluate((el: HTMLIxDatetimeInputElement) => {
+        el.displayFormat = 'dd.LL.yyyy HH:mm:ss';
+      });
+
+      await expect(input).toHaveValue('04.03.2099 09:15:11');
+      await expect(input).not.toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'shows typed text in displayFormat on blur',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="d.L.yy H:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await input.fill('03.04.99 09:05');
+
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/04/03 09:05:11'
+      );
+      await expect(input).toHaveValue('03.04.99 09:05');
+
+      await input.blur();
+
+      await expect(input).toHaveValue('3.4.99 9:05');
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/04/03 09:05:11'
+      );
+    }
+  );
+
+  regressionTest(
+    'keeps invalid typed text on blur',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="d.L.yy H:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await input.fill('3.4.999 9:05');
+      await input.blur();
+
+      await expect(input).toHaveValue('3.4.999 9:05');
+      await expect(input).toHaveClass(/is-invalid/);
+    }
+  );
+
+  regressionTest(
+    'updates the text when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(input).toHaveValue('99/03/04 09:10');
+      await dateTimeInput.evaluate((el: HTMLIxDatetimeInputElement) => {
+        el.displayFormat = 'dd.LL.yyyy HH:mm:ss';
+      });
+
+      await expect(input).toHaveValue('04.03.2099 09:10:11');
+      await expect(dateTimeInput).toHaveAttribute(
+        'value',
+        '2099/03/04 09:10:11'
+      );
+    }
+  );
+
+  regressionTest(
+    'does not emit valueChange when displayFormat changes',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-datetime-input value="2099/03/04 09:10:11" display-format="yy/LL/dd HH:mm"></ix-datetime-input>`
+      );
+      const dateTimeInput = page.locator('ix-datetime-input');
+      const input = dateTimeInput.getByRole('textbox');
+
+      await expect(dateTimeInput).toHaveAttribute('hydrated');
+      await dateTimeInput.evaluate((el: HTMLIxDatetimeInputElement) => {
+        el.addEventListener('valueChange', () => {
+          el.dataset.valueChangeCount = `${Number(el.dataset.valueChangeCount ?? 0) + 1}`;
+        });
+        el.displayFormat = 'dd.LL.yyyy HH:mm:ss';
+      });
+
+      await expect(input).toHaveValue('04.03.2099 09:10:11');
+      await expect(dateTimeInput).not.toHaveAttribute(
+        'data-value-change-count'
+      );
+    }
+  );
+});
+
+regressionTest(
+  'validates the value when format changes',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-datetime-input value="2024/05/05 09:10:11"></ix-datetime-input>`
+    );
+    const dateTimeInput = page.locator('ix-datetime-input');
+    const input = dateTimeInput.getByRole('textbox');
+
+    await expect(dateTimeInput).toHaveAttribute('hydrated');
+    await expect(input).not.toHaveClass(/is-invalid/);
+
+    await dateTimeInput.evaluate((el: HTMLIxDatetimeInputElement) => {
+      el.format = 'dd.LL.yyyy HH:mm:ss';
+    });
+
+    await expect(input).toHaveClass(/is-invalid/);
+  }
+);
+
 regressionTest(
   'does not leak picker events to the host',
   async ({ mount, page }) => {

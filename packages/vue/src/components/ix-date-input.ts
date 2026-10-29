@@ -14,6 +14,7 @@ export const IxDateInput: StencilVueComponent<JSX.IxDateInput, JSX.IxDateInput["
   'maxDate',
   'locale',
   'format',
+  'displayFormat',
   'required',
   'helperText',
   'label',

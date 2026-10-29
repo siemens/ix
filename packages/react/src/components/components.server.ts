@@ -634,6 +634,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
     properties: {
         disabled: 'disabled',
         format: 'format',
+        displayFormat: 'display-format',
         singleSelection: 'single-selection',
         from: 'from',
         to: 'to',
@@ -674,6 +675,7 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         maxDate: 'max-date',
         locale: 'locale',
         format: 'format',
+        displayFormat: 'display-format',
         required: 'required',
         helperText: 'helper-text',
         label: 'label',
@@ -754,6 +756,7 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         placeholder: 'placeholder',
         value: 'value',
         format: 'format',
+        displayFormat: 'display-format',
         locale: 'locale',
         required: 'required',
         disabled: 'disabled',

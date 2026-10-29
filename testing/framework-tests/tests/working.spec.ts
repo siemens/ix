@@ -95,6 +95,11 @@ import './generated/date-picker-require-confirmation.spec';
 import './generated/datetime-input-require-confirmation.spec';
 import './generated/datetime-picker-require-confirmation.spec';
 
+// Display format tests
+import './generated/date-dropdown-display-format.spec';
+import './generated/date-input-display-format.spec';
+import './generated/datetime-input-display-format.spec';
+
 // Group tests
 import './generated/group.spec';
 import './generated/group-context-menu.spec';

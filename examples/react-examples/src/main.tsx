@@ -74,8 +74,10 @@ import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownPresets from './preview-examples/date-dropdown-presets';
+import DateDropdownDisplayFormat from './preview-examples/date-dropdown-display-format';
 import DateDropdownRequireConfirmation from './preview-examples/date-dropdown-require-confirmation';
 import DateInput from './preview-examples/date-input';
+import DateInputDisplayFormat from './preview-examples/date-input-display-format';
 import DateInputRequireConfirmation from './preview-examples/date-input-require-confirmation';
 import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
 import dateInputLabel from './preview-examples/date-input-label.tsx';
@@ -94,6 +96,7 @@ import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from './preview-examples/datetime-input-label';
 import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date';
 import DatetimeInputReadonly from './preview-examples/datetime-input-readonly';
+import DatetimeInputDisplayFormat from './preview-examples/datetime-input-display-format';
 import DatetimeInputRequireConfirmation from './preview-examples/datetime-input-require-confirmation';
 import DatetimeInputValidation from './preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots';
@@ -352,6 +355,7 @@ const routes: IxPreviewRoutes = {
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-presets': DateDropdownPresets,
+  '/preview/date-dropdown-display-format': DateDropdownDisplayFormat,
   '/preview/date-dropdown-require-confirmation':
     DateDropdownRequireConfirmation,
   '/preview/date-range': DateRange,
@@ -528,6 +532,7 @@ const routes: IxPreviewRoutes = {
   '/preview/datetime-input-label': DatetimeInputLabel,
   '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
   '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-display-format': DatetimeInputDisplayFormat,
   '/preview/datetime-input-require-confirmation':
     DatetimeInputRequireConfirmation,
   '/preview/datetime-input-validation': DatetimeInputValidation,
@@ -562,6 +567,7 @@ const routes: IxPreviewRoutes = {
   '/preview/date-input-label': dateInputLabel,
   '/preview/date-input-min-max-date': dateInputMinMaxDate,
   '/preview/date-input-readonly': dateInputReadonly,
+  '/preview/date-input-display-format': DateInputDisplayFormat,
   '/preview/date-input-require-confirmation': DateInputRequireConfirmation,
   '/preview/date-input-validation': dateInputValidation,
   '/preview/event-list-custom-item-height-in-number':
