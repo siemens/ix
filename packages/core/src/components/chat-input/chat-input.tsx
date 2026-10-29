@@ -421,7 +421,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
           'character-limit--soft': state === 'soft',
           'character-limit--hard': state === 'hard',
         }}
-        textColor={'std'}
+        textColor={'primary'}
       >
         <ix-icon
           aria-hidden="true"
@@ -591,7 +591,11 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
           </div>
         </div>
         {this.disclaimer && (
-          <ix-typography class="disclaimer" format="body-sm" textColor="soft">
+          <ix-typography
+            class="disclaimer"
+            format="body-sm"
+            textColor="secondary"
+          >
             {this.disclaimer}
           </ix-typography>
         )}

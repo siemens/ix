@@ -55,8 +55,9 @@ import { TabClickDetail } from "./components/tab-item/tab-item.types";
 import { TextareaResizeBehavior } from "./components/input/textarea.types";
 import { TimeInputValidityState } from "./components/time-input/time-input.types";
 import { TimePickerCorners } from "./components/time-picker/time-picker.types";
-import { ToastConfig, ToastType } from "./components/toast/toast-utils";
+import { ToastType } from "./components/toast/toast.types";
 import { ShowToastResult } from "./components/toast/toast-container.types";
+import { ToastConfig } from "./components/toast/toast-utils";
 import { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -113,8 +114,9 @@ export { TabClickDetail } from "./components/tab-item/tab-item.types";
 export { TextareaResizeBehavior } from "./components/input/textarea.types";
 export { TimeInputValidityState } from "./components/time-input/time-input.types";
 export { TimePickerCorners } from "./components/time-picker/time-picker.types";
-export { ToastConfig, ToastType } from "./components/toast/toast-utils";
+export { ToastType } from "./components/toast/toast.types";
 export { ShowToastResult } from "./components/toast/toast-container.types";
+export { ToastConfig } from "./components/toast/toast-utils";
 export { ToggleButtonVariant } from "./components/toggle-button/toggle-button";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -4237,8 +4239,8 @@ export namespace Components {
          */
         "size": ProgressIndicatorSize;
         /**
-          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
-          * @default 'default'
+          * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @default 'base'
          */
         "status": ProgressIndicatorStatus;
         /**
@@ -5377,7 +5379,7 @@ export namespace Components {
      */
     interface IxToast {
         /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Close toast'
          */
@@ -5423,7 +5425,7 @@ export namespace Components {
         "toastTitle"?: string;
         /**
           * Toast type
-          * @default 'info'
+          * @default 'information'
          */
         "type": ToastType;
     }
@@ -12706,8 +12708,8 @@ declare namespace LocalJSX {
          */
         "size"?: ProgressIndicatorSize;
         /**
-          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
-          * @default 'default'
+          * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @default 'base'
          */
         "status"?: ProgressIndicatorStatus;
         /**
@@ -13910,7 +13912,7 @@ declare namespace LocalJSX {
      */
     interface IxToast {
         /**
-          * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
+          * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
           * @since 3.2.0
           * @default 'Close toast'
          */
@@ -13948,7 +13950,7 @@ declare namespace LocalJSX {
         "toastTitle"?: string;
         /**
           * Toast type
-          * @default 'info'
+          * @default 'information'
          */
         "type"?: ToastType;
     }

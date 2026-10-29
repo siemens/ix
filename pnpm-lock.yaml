@@ -588,8 +588,8 @@ importers:
         specifier: ~5.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^3.5.0
-        version: 3.5.0
+        specifier: 0.0.0-beta-20261021072559
+        version: 0.0.0-beta-20261021072559
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -957,8 +957,8 @@ importers:
         specifier: ~5.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^3.5.0
-        version: 3.5.0
+        specifier: 0.0.0-beta-20261021072559
+        version: 0.0.0-beta-20261021072559
       '@stencil/react-output-target':
         specifier: ^1.6.5
         version: 1.6.5(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1121,8 +1121,8 @@ importers:
         specifier: ~5.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^3.5.0
-        version: 3.5.0
+        specifier: 0.0.0-beta-20261021072559
+        version: 0.0.0-beta-20261021072559
       '@stencil/vue-output-target':
         specifier: ^0.14.6
         version: 0.14.6(@stencil/core@4.45.2(patch_hash=5b7b26f1b6644ca4134fe78af13f89b6653dffeffd2c09206b7c9402d0470193))(vue@3.5.17(typescript@5.8.3))
@@ -1201,7 +1201,7 @@ importers:
         version: link:../../packages/angular/dist
       '@siemens/ix-icons':
         specifier: ^3.3.0
-        version: 3.5.0
+        version: 3.7.0
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -1235,7 +1235,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: ^3.3.0
-        version: 3.5.0
+        version: 3.7.0
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -6045,8 +6045,8 @@ packages:
     resolution: {integrity: sha512-LJIbmViqzjLDHFb9Pjqqw7Go7cHfs1EYWJLHpGM2ITEPXpp/uy+uSoa5ieLmITKQyde9KEfzyQ9Faq7nJZ4Xnw==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
-  '@siemens/ix-icons@3.5.0':
-    resolution: {integrity: sha512-FP/7jnjoTfIvIah5OkJ7nLoXjyNy2rcUClGk29NLd4h/If/lz5liu7AMrCNKV9BTNCWQM8UI1wmoeF8xWz5d+A==}
+  '@siemens/ix-icons@3.7.0':
+    resolution: {integrity: sha512-1nk58wy/s+Snz0Fw1b80IM5fzz53wtDJ54yLmEfIX317LYQcp9Z0jU5V7MQvbiuJ0HLrPgwJe1kvTrn8z5S5Hg==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@sigstore/bundle@4.0.0':
@@ -20240,7 +20240,7 @@ snapshots:
 
   '@siemens/ix-icons@0.0.0-beta-20261021072559': {}
 
-  '@siemens/ix-icons@3.5.0': {}
+  '@siemens/ix-icons@3.7.0': {}
 
   '@sigstore/bundle@4.0.0':
     dependencies:
