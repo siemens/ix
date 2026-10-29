@@ -83,6 +83,9 @@ export class CategoryFilter {
 
   /**
    * A set of search criteria to populate the component with.
+   *
+   * Processing time grows quadratically with the number of tokens and categorical filters.
+   * Bound the size of untrusted or user-controlled filter states to keep the page responsive.
    */
   @Prop() filterState?: FilterState;
 

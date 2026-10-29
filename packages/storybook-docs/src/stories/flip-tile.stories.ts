@@ -84,3 +84,75 @@ export const Footer: Story = {
     footerSlot: 'Test',
   },
 };
+
+export const Outline: Story = {
+  args: {
+    index: 1,
+    variant: 'outline',
+    footerSlot: 'Test',
+  },
+};
+
+export const Accent: Story = {
+  args: {
+    index: 1,
+    variant: 'accent',
+    footerSlot: 'Test',
+  },
+};
+
+export const Neutral: Story = {
+  args: {
+    index: 1,
+    variant: 'neutral',
+    footerSlot: 'Test',
+  },
+};
+
+export const Information: Story = {
+  args: {
+    index: 1,
+    variant: 'information',
+    footerSlot: 'Test',
+  },
+};
+
+export const Success: Story = {
+  args: {
+    index: 1,
+    variant: 'success',
+    footerSlot: 'Test',
+  },
+};
+
+export const Caution: Story = {
+  args: {
+    index: 1,
+    variant: 'caution',
+    footerSlot: 'Test',
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    index: 1,
+    variant: 'warning',
+    footerSlot: 'Test',
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    index: 1,
+    variant: 'danger',
+    footerSlot: 'Test',
+  },
+};
+
+export const Critical: Story = {
+  args: {
+    index: 1,
+    variant: 'critical',
+    footerSlot: 'Test',
+  },
+};

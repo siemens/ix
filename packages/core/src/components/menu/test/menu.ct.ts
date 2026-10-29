@@ -6,9 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Locator, Page } from '@playwright/test';
+import { ElementHandle, expect, Locator, Page } from '@playwright/test';
 import { iconDocument, iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import {
+  expectCollectedAfterRemoval,
+  regressionTest,
+  viewPorts,
+} from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(
@@ -665,3 +669,104 @@ regressionTest.describe('menu-avatar tooltip', () => {
     }
   );
 });
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const menu = await mount(`<ix-menu></ix-menu>`);
+    await expectCollectedAfterRemoval(page, menu);
+  }
+);
+
+regressionTest(
+  'is garbage collected after it was removed from the application',
+  async ({ mount, page }) => {
+    const application = await mount(`
+      <ix-application>
+        <ix-menu></ix-menu>
+      </ix-application>
+    `);
+    const menu = (await application.$('ix-menu')) as ElementHandle<HTMLElement>;
+    await expectCollectedAfterRemoval(page, menu);
+  }
+);
+
+regressionTest(
+  'follows breakpoint changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <ix-application>
+        <ix-menu></ix-menu>
+      </ix-application>
+    `);
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    await expect(menu).toHaveClass(/breakpoint-lg/);
+
+    const menuHandle = await menu.evaluateHandle((el) => {
+      el.remove();
+      return el;
+    });
+    await page.setViewportSize(viewPorts.md);
+    await expect(application).toHaveClass(/breakpoint-md/);
+    await application.evaluate((app, el) => app.append(el), menuHandle);
+
+    await expect(menu).toHaveClass(/breakpoint-md/);
+  }
+);
+
+regressionTest(
+  'follows application context changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.sm);
+    await mount(`
+      <ix-application>
+        <ix-menu></ix-menu>
+      </ix-application>
+    `);
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    await expect(menu).toHaveClass(/breakpoint-sm/);
+
+    await menu.evaluate((el) => el.parentElement?.append(el));
+    await application.evaluate((app: HTMLIxApplicationElement) => {
+      app.appSwitchConfig = {
+        currentAppId: 'app',
+        apps: [
+          {
+            id: 'app',
+            name: 'App',
+            description: '',
+            url: '',
+            target: '_self',
+            iconSrc: '',
+          },
+        ],
+      };
+    });
+
+    await expect(menu.locator('.menu-buttons ix-icon-button')).toBeAttached();
+  }
+);
+
+regressionTest(
+  'follows theme changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.evaluate(() => {
+      document.documentElement.dataset.ixColorSchema = 'light';
+    });
+    const menu = await mount(`<ix-menu enable-toggle-theme></ix-menu>`);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
+
+    await menu.evaluate((el) => el.parentElement?.append(el));
+    await page.evaluate(() => {
+      document.documentElement.dataset.ixColorSchema = 'dark';
+    });
+
+    await expect(page.locator('ix-menu #toggleTheme')).toHaveAttribute(
+      'aria-checked',
+      'true'
+    );
+  }
+);

@@ -16,31 +16,60 @@ export default () => {
     <div className="container">
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="critical"
         role="img"
-        aria-label="Alarm"
+        aria-label="Critical"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="critical"
         outline
         role="img"
-        aria-label="Alarm outline"
+        aria-label="Critical outline"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="critical"
         enableAnimation
         role="img"
-        aria-label="Alarm pulse"
+        aria-label="Critical pulse"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="alarm"
+        variant="critical"
         outline
         enableAnimation
         role="img"
-        aria-label="Alarm pulse outline"
+        aria-label="Critical pulse outline"
+      ></IxBadge>
+
+      <IxBadge
+        type="status-icon"
+        variant="danger"
+        role="img"
+        aria-label="Danger"
+      ></IxBadge>
+      <IxBadge
+        type="status-icon"
+        variant="danger"
+        outline
+        role="img"
+        aria-label="Danger outline"
+      ></IxBadge>
+      <IxBadge
+        type="status-icon"
+        variant="danger"
+        enableAnimation
+        role="img"
+        aria-label="Danger pulse"
+      ></IxBadge>
+      <IxBadge
+        type="status-icon"
+        variant="danger"
+        outline
+        enableAnimation
+        role="img"
+        aria-label="Danger pulse outline"
       ></IxBadge>
 
       <IxBadge
@@ -74,35 +103,6 @@ export default () => {
 
       <IxBadge
         type="status-icon"
-        variant="critical"
-        role="img"
-        aria-label="Critical"
-      ></IxBadge>
-      <IxBadge
-        type="status-icon"
-        variant="critical"
-        outline
-        role="img"
-        aria-label="Critical outline"
-      ></IxBadge>
-      <IxBadge
-        type="status-icon"
-        variant="critical"
-        enableAnimation
-        role="img"
-        aria-label="Critical pulse"
-      ></IxBadge>
-      <IxBadge
-        type="status-icon"
-        variant="critical"
-        outline
-        enableAnimation
-        role="img"
-        aria-label="Critical pulse outline"
-      ></IxBadge>
-
-      <IxBadge
-        type="status-icon"
         variant="warning"
         role="img"
         aria-label="Warning"
@@ -128,6 +128,35 @@ export default () => {
         enableAnimation
         role="img"
         aria-label="Warning pulse outline"
+      ></IxBadge>
+
+      <IxBadge
+        type="status-icon"
+        variant="caution"
+        role="img"
+        aria-label="Caution"
+      ></IxBadge>
+      <IxBadge
+        type="status-icon"
+        variant="caution"
+        outline
+        role="img"
+        aria-label="Caution outline"
+      ></IxBadge>
+      <IxBadge
+        type="status-icon"
+        variant="caution"
+        enableAnimation
+        role="img"
+        aria-label="Caution pulse"
+      ></IxBadge>
+      <IxBadge
+        type="status-icon"
+        variant="caution"
+        outline
+        enableAnimation
+        role="img"
+        aria-label="Caution pulse outline"
       ></IxBadge>
 
       <IxBadge
@@ -161,31 +190,31 @@ export default () => {
 
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         role="img"
-        aria-label="Info"
+        aria-label="Information"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         outline
         role="img"
-        aria-label="Info outline"
+        aria-label="Information outline"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         enableAnimation
         role="img"
-        aria-label="Info pulse"
+        aria-label="Information pulse"
       ></IxBadge>
       <IxBadge
         type="status-icon"
-        variant="info"
+        variant="information"
         outline
         enableAnimation
         role="img"
-        aria-label="Info pulse outline"
+        aria-label="Information pulse outline"
       ></IxBadge>
     </div>
   );

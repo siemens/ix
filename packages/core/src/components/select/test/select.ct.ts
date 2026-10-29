@@ -747,6 +747,57 @@ test('form-ready - with initial value', async ({ mount, page }) => {
   expect(formData).toEqual('some other');
 });
 
+test('form-ready - programmatic value update', async ({ mount, page }) => {
+  await mount(`
+    <form>
+      <ix-select name="my-custom-entry" value="1">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    </form>
+  `);
+
+  const select = page.locator('ix-select');
+  const formElement = page.locator('form');
+  await preventFormSubmission(formElement);
+  await expect(select).toHaveAttribute('hydrated');
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.value = '2';
+  });
+
+  await expect(select.locator('input')).toHaveValue('Item 2');
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
+  expect(formData).toEqual('2');
+});
+
+test('form-ready - cancelled value change keeps form value', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-select name="my-custom-entry" value="1">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    </form>
+  `);
+
+  const select = page.locator('ix-select');
+  const formElement = page.locator('form');
+  await preventFormSubmission(formElement);
+  await select.evaluate((element) =>
+    element.addEventListener('valueChange', (event) => event.preventDefault())
+  );
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').nth(1).click();
+
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
+  expect(formData).toEqual('1');
+});
+
 test.describe('Events', () => {
   test('value change', async ({ mount, page }) => {
     await mount(`<ix-select>
