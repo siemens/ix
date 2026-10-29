@@ -12,5 +12,6 @@
 @use './../utilities/links';
 @use './../utilities/table';
 @use './../utilities/typography';
+@use './../utilities/visually-hidden';
 
 @include classic.theme;
