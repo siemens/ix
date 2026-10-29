@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "contract": "siemens-ix-system-token-manifest",
   "provenance": {
-    "tokenSourceVersion": "0.15.0",
-    "tokenBuildId": "e8ba0247a32d7cf6036628e1613149b5b464aafb5a2103c923417fbf9145b975"
+    "tokenSourceVersion": "0.16.0",
+    "tokenBuildId": "a592ea29a93e7faaafcdfd55cb1aab7ea62c8fd97fb5989f012161d56d96d911"
   },
   "coverage": {
     "modes": [
@@ -486,6 +486,25 @@
       "type": "color",
       "sourceType": "color",
       "description": "Background color for subtle danger states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-background-disabled",
+      "sourcePath": "si.sys.color.background.disabled",
+      "group": "color.background",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Background color for the disabled state for specific components, like buttons and other controls",
       "applicability": {
         "modes": [
           "dark",
@@ -1056,6 +1075,25 @@
       "type": "color",
       "sourceType": "color",
       "description": "Border color for danger secondary states.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-border-disabled",
+      "sourcePath": "si.sys.color.border.disabled",
+      "group": "color.border",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Border color for disabled interactive controls, such as buttons and inputs.",
       "applicability": {
         "modes": [
           "dark",
@@ -2833,6 +2871,25 @@
       }
     },
     {
+      "name": "--si-sys-color-effects-disable-opacity",
+      "sourcePath": "si.sys.color.effects.disable-opacity",
+      "group": "color.effects",
+      "type": "number",
+      "sourceType": "number",
+      "description": "Opacity value to disable non-interactive content (images, badges, etc.) that can't use disabled color tokens.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
       "name": "--si-sys-color-effects-focus",
       "sourcePath": "si.sys.color.effects.focus",
       "group": "color.effects",
@@ -2870,12 +2927,12 @@
       }
     },
     {
-      "name": "--si-sys-color-effects-shadow-1",
-      "sourcePath": "si.sys.color.effects.shadow.1",
+      "name": "--si-sys-color-effects-shadow-10",
+      "sourcePath": "si.sys.color.effects.shadow.10",
       "group": "color.effects.shadow",
       "type": "shadow",
       "sourceType": "shadow",
-      "description": "Use for minimal separation from the parent surface. Suitable for small controls, selected items, and subtle raised content.",
+      "description": "Subtle elevation. Minimal elevation for slightly raised surfaces.",
       "applicability": {
         "modes": [
           "dark",
@@ -2889,12 +2946,12 @@
       }
     },
     {
-      "name": "--si-sys-color-effects-shadow-2",
-      "sourcePath": "si.sys.color.effects.shadow.2",
+      "name": "--si-sys-color-effects-shadow-20",
+      "sourcePath": "si.sys.color.effects.shadow.20",
       "group": "color.effects.shadow",
       "type": "shadow",
       "sourceType": "shadow",
-      "description": "Use for standard raised UI that remains within the normal page flow, such as cards, tiles, and floating action controls.",
+      "description": "Raised surfaces. More noticeable elevation for raised surfaces.",
       "applicability": {
         "modes": [
           "dark",
@@ -2908,12 +2965,12 @@
       }
     },
     {
-      "name": "--si-sys-color-effects-shadow-3",
-      "sourcePath": "si.sys.color.effects.shadow.3",
+      "name": "--si-sys-color-effects-shadow-30",
+      "sourcePath": "si.sys.color.effects.shadow.30",
       "group": "color.effects.shadow",
       "type": "shadow",
       "sourceType": "shadow",
-      "description": "Use for temporary or interactive floating UI, such as menus, dropdowns, tooltips, and popovers.",
+      "description": "Floating surfaces such as menus, dropdowns, popovers, and toasts. Usually paired with background-3.",
       "applicability": {
         "modes": [
           "dark",
@@ -2927,12 +2984,12 @@
       }
     },
     {
-      "name": "--si-sys-color-effects-shadow-4",
-      "sourcePath": "si.sys.color.effects.shadow.4",
+      "name": "--si-sys-color-effects-shadow-40",
+      "sourcePath": "si.sys.color.effects.shadow.40",
       "group": "color.effects.shadow",
       "type": "shadow",
       "sourceType": "shadow",
-      "description": "Use for the highest visual elevation, where UI appears above the application content, such as dialogs, modal panels, notifications, and drag previews.",
+      "description": "Overlay surfaces. The highest elevation, typically used for surfaces displayed over a backdrop, such as modals, and for drag previews.",
       "applicability": {
         "modes": [
           "dark",
@@ -3256,6 +3313,25 @@
       "type": "color",
       "sourceType": "color",
       "description": "Text color for use on danger secondary backgrounds.",
+      "applicability": {
+        "modes": [
+          "dark",
+          "light"
+        ],
+        "densities": [
+          "default",
+          "compact"
+        ],
+        "densityOverrides": []
+      }
+    },
+    {
+      "name": "--si-sys-color-text-on-disabled",
+      "sourcePath": "si.sys.color.text.on-disabled",
+      "group": "color.text",
+      "type": "color",
+      "sourceType": "color",
+      "description": "Text color for text on disabled backgrounds.",
       "applicability": {
         "modes": [
           "dark",
