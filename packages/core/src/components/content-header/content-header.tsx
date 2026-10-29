@@ -24,6 +24,7 @@ import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import type { Disposable } from '../utils/typed-event';
 import { generateUUID } from '../utils/uuid';
+import { waitForElement } from '../utils/waitForElement';
 import type {
   ContentHeaderTextOverflow,
   ContentHeaderVariant,
@@ -155,7 +156,9 @@ export class ContentHeader {
       >(
         ':scope > ix-button[slot="secondary-actions"], :scope > ix-icon-button[slot="secondary-actions"]'
       )
-    ).filter((action) => !action.hidden);
+    ).filter(
+      (action) => !action.hidden && getComputedStyle(action).display !== 'none'
+    );
 
     this.actionsObserver?.disconnect();
     this.actionsObserver?.observe(this.hostElement, {
@@ -205,8 +208,12 @@ export class ContentHeader {
       this.hostElement.shadowRoot!.querySelector<HTMLElement>('.titleGroup')!;
     const backButton =
       this.hostElement.shadowRoot!.querySelector<HTMLElement>('.backButton');
-    const headerSlot =
-      this.hostElement.shadowRoot!.querySelector<HTMLElement>('.headerSlot')!;
+    // Measure the intrinsic title width in both layouts to avoid overflow oscillation.
+    titleGroup.style.flex = '0 0 auto';
+    titleGroup.style.width = 'max-content';
+    const titleWidth = titleGroup.getBoundingClientRect().width;
+    titleGroup.style.removeProperty('flex');
+    titleGroup.style.removeProperty('width');
     const requiredWidth =
       this.primaryActionsElement.scrollWidth +
       this.secondaryActionsElement.getBoundingClientRect().width +
@@ -215,7 +222,7 @@ export class ContentHeader {
         ? backButton.getBoundingClientRect().width +
           parseFloat(getComputedStyle(backButton).marginRight)
         : 0) +
-      headerSlot.getBoundingClientRect().width +
+      titleWidth +
       parseFloat(getComputedStyle(titleGroup).marginRight);
 
     const actionsOverflow =
@@ -280,8 +287,7 @@ export class ContentHeader {
 
   private async getOverflowTrigger() {
     const element = await this.overflowTrigger.waitForCurrent();
-    await element.componentOnReady();
-    return element.shadowRoot!.querySelector<HTMLButtonElement>('button')!;
+    return waitForElement<HTMLButtonElement>('button', element.shadowRoot!);
   }
 
   render() {

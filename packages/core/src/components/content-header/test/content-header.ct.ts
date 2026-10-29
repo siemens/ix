@@ -205,6 +205,134 @@ regressionTest(
 );
 
 regressionTest(
+  'opens the overflow menu in the custom-element build without componentOnReady',
+  async ({ mount, page }) => {
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.route('**/www/build/siemens-ix.esm.js', (route) =>
+      route.fulfill({
+        contentType: 'application/javascript',
+        body: `
+          import { defineCustomElement as defineHeader } from '/components/ix-content-header.js';
+          import { defineCustomElement as defineButton } from '/components/ix-button.js';
+          defineHeader();
+          defineButton();
+        `,
+      })
+    );
+    await page.reload();
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(responsiveHeader);
+
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toBeVisible();
+    expect(
+      await page
+        .locator('ix-content-header ix-icon-button')
+        .evaluate(
+          (element: HTMLIxIconButtonElement) => typeof element.componentOnReady
+        )
+    ).toBe('undefined');
+    await trigger.click();
+    await expect(
+      page.getByRole('menuitem', { name: 'Export report' })
+    ).toBeVisible();
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(errors).toEqual([]);
+  }
+);
+
+regressionTest(
+  'reserves title space when deciding whether secondary actions fit',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await mount(`
+      <div style="width: 600px; max-width: 100%">
+        <ix-content-header header-title="Production line overview">
+          <ix-button slot="secondary-actions" variant="tertiary" style="width: 250px">Export report</ix-button>
+          <ix-button slot="secondary-actions" variant="tertiary" style="width: 220px">Manage permissions</ix-button>
+          <ix-button style="width: 100px">Save changes</ix-button>
+        </ix-content-header>
+        <p>Following page content</p>
+      </div>
+    `);
+    const header = page.locator('ix-content-header');
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await expect(trigger).toBeVisible();
+    const title = page.getByRole('heading', {
+      name: 'Production line overview',
+    });
+    await expect(title).toBeVisible();
+    expect(
+      await title.evaluate((element) => element.clientWidth)
+    ).toBeGreaterThan(200);
+    expect(
+      await header.evaluate((element) => element.getBoundingClientRect().height)
+    ).toBeLessThan(100);
+
+    await header.evaluate((element) => {
+      const container = element.parentElement;
+      if (!container) {
+        throw new Error('Expected a resizable header container');
+      }
+      container.style.width = '1000px';
+    });
+    await expect(trigger).toHaveCount(0);
+    await expect(
+      page.getByRole('button', { name: 'Export report' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest(
+  'keeps CSS-hidden secondary actions out of the overflow menu',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await mount(
+      `
+      <ix-content-header header-title="Assets">
+        <ix-button slot="secondary-actions">Export report</ix-button>
+        <ix-button slot="secondary-actions" style="display: none">Hidden action</ix-button>
+        <ix-button slot="secondary-actions" class="hidden-action">Class-hidden action</ix-button>
+        <ix-icon-button slot="secondary-actions" style="display: none" icon="pen" aria-label="Hidden icon action"></ix-icon-button>
+      </ix-content-header>
+    `,
+      {
+        headTags: ['<style>.hidden-action { display: none; }</style>'],
+        icons: { iconPen },
+      }
+    );
+
+    const header = page.locator('ix-content-header');
+    const trigger = page.getByRole('button', { name: 'More actions' });
+    await trigger.click();
+    await expect(page.getByRole('menuitem')).toHaveCount(1);
+    await expect(
+      page.getByRole('menuitem', { name: 'Export report' })
+    ).toBeVisible();
+
+    const hiddenAction = header.locator('ix-button').nth(1);
+    await hiddenAction.evaluate((element) => {
+      element.style.display = '';
+    });
+    await expect(
+      page.getByRole('menuitem', { name: 'Hidden action', exact: true })
+    ).toBeVisible();
+    await hiddenAction.evaluate((element) => {
+      element.style.display = 'none';
+    });
+    await expect(page.getByRole('menuitem')).toHaveCount(1);
+    await header
+      .locator('ix-button')
+      .first()
+      .evaluate((element) => {
+        element.style.display = 'none';
+      });
+    await expect(trigger).toHaveCount(0);
+  }
+);
+
+regressionTest(
   'reacts to viewport changes using the layout service',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
@@ -285,6 +413,7 @@ regressionTest(
       }
       element.remove();
       parent.appendChild(element);
+      parent.style.width = '30rem';
       element
         .querySelectorAll('[slot="secondary-actions"]')
         .forEach((action) => {
