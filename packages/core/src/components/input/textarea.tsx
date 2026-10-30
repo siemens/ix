@@ -352,7 +352,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
-   * Returns the validity state of the textarea field.
+   * @internal
    * @since 6.0.0
    */
   @Method()
@@ -436,7 +436,7 @@ export class Textarea implements IxInputFieldComponent<string> {
             <ix-typography
               class="bottom-text"
               slot="bottom-right"
-              textColor="soft"
+              textColor="secondary"
             >
               {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>

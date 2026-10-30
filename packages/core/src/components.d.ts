@@ -892,7 +892,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
      * @figma-main-component-id 133528:32836
      * @since 5.2.0
-     * @form-ready 
+     * @form-ready
      */
     interface IxChatInput {
         /**
@@ -999,7 +999,7 @@ export namespace Components {
      * Lets users select an option or toggle a single value on or off.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
-     * @form-ready 
+     * @form-ready
      */
     interface IxCheckbox {
         /**
@@ -1043,7 +1043,7 @@ export namespace Components {
      * Groups related checkboxes together.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
-     * @form-ready 
+     * @form-ready
      */
     interface IxCheckboxGroup {
         /**
@@ -1390,7 +1390,7 @@ export namespace Components {
      * Text input for entering and validating a date value.
      * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
-     * @form-ready 
+     * @form-ready
      */
     interface IxDateInput {
         /**
@@ -1718,7 +1718,7 @@ export namespace Components {
      * Text input for entering and validating a combined date and time value.
      * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
      * @since 5.0.0
-     * @form-ready 
+     * @form-ready
      */
     interface IxDatetimeInput {
         /**
@@ -2940,7 +2940,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready 
+     * @form-ready
      */
     interface IxInput {
         /**
@@ -3731,7 +3731,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready 
+     * @form-ready
      */
     interface IxNumberInput {
         /**
@@ -4252,8 +4252,8 @@ export namespace Components {
          */
         "size": ProgressIndicatorSize;
         /**
-          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
-          * @default 'default'
+          * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @default 'base'
          */
         "status": ProgressIndicatorStatus;
         /**
@@ -4325,7 +4325,7 @@ export namespace Components {
      * Lets users select a single option from a set.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
-     * @form-ready 
+     * @form-ready
      */
     interface IxRadio {
         /**
@@ -4364,7 +4364,7 @@ export namespace Components {
      * Groups related radio buttons so only one can be selected.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
-     * @form-ready 
+     * @form-ready
      */
     interface IxRadioGroup {
         /**
@@ -4437,7 +4437,7 @@ export namespace Components {
      * Dropdown control for selecting one or more options from a list.
      * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
-     * @form-ready 
+     * @form-ready
      */
     interface IxSelect {
         /**
@@ -4638,7 +4638,7 @@ export namespace Components {
      * Lets users choose a numeric value by dragging along a track.
      * @documentation https://ix.siemens.io//docs/components/slider/code.md
      * @figma-main-component-id 50042:20986
-     * @form-ready 
+     * @form-ready
      */
     interface IxSlider {
         /**
@@ -4932,7 +4932,7 @@ export namespace Components {
     }
     /**
      * Multi-line text input for entering and validating longer text.
-     * @form-ready 
+     * @form-ready
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
@@ -5063,7 +5063,7 @@ export namespace Components {
      * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
-     * @form-ready 
+     * @form-ready
      */
     interface IxTimeInput {
         /**
@@ -5472,7 +5472,7 @@ export namespace Components {
      * Switch control for toggling a single setting on or off.
      * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
-     * @form-ready 
+     * @form-ready
      */
     interface IxToggle {
         /**
@@ -6427,7 +6427,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
      * @figma-main-component-id 133528:32836
      * @since 5.2.0
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxChatInputElement extends Components.IxChatInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxChatInputElementEventMap>(type: K, listener: (this: HTMLIxChatInputElement, ev: IxChatInputCustomEvent<HTMLIxChatInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6463,7 +6463,7 @@ declare global {
      * Lets users select an option or toggle a single value on or off.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6483,7 +6483,7 @@ declare global {
      * Groups related checkboxes together.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
     }
@@ -6618,7 +6618,7 @@ declare global {
      * Text input for entering and validating a date value.
      * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6679,7 +6679,7 @@ declare global {
      * Text input for entering and validating a combined date and time value.
      * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
      * @since 5.0.0
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatetimeInputElementEventMap>(type: K, listener: (this: HTMLIxDatetimeInputElement, ev: IxDatetimeInputCustomEvent<HTMLIxDatetimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7100,7 +7100,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxInputElementEventMap>(type: K, listener: (this: HTMLIxInputElement, ev: IxInputCustomEvent<HTMLIxInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7508,7 +7508,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7716,7 +7716,7 @@ declare global {
      * Lets users select a single option from a set.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7739,7 +7739,7 @@ declare global {
      * Groups related radio buttons so only one can be selected.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7784,7 +7784,7 @@ declare global {
      * Dropdown control for selecting one or more options from a list.
      * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7828,7 +7828,7 @@ declare global {
      * Lets users choose a numeric value by dragging along a track.
      * @documentation https://ix.siemens.io//docs/components/slider/code.md
      * @figma-main-component-id 50042:20986
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7951,7 +7951,7 @@ declare global {
     }
     /**
      * Multi-line text input for entering and validating longer text.
-     * @form-ready 
+     * @form-ready
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
@@ -7991,7 +7991,7 @@ declare global {
      * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTimeInputElementEventMap>(type: K, listener: (this: HTMLIxTimeInputElement, ev: IxTimeInputCustomEvent<HTMLIxTimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -8071,7 +8071,7 @@ declare global {
      * Switch control for toggling a single setting on or off.
      * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
-     * @form-ready 
+     * @form-ready
      */
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -9205,7 +9205,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
      * @figma-main-component-id 133528:32836
      * @since 5.2.0
-     * @form-ready 
+     * @form-ready
      */
     interface IxChatInput {
         /**
@@ -9321,7 +9321,7 @@ declare namespace LocalJSX {
      * Lets users select an option or toggle a single value on or off.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 42365:47165
-     * @form-ready 
+     * @form-ready
      */
     interface IxCheckbox {
         /**
@@ -9378,7 +9378,7 @@ declare namespace LocalJSX {
      * Groups related checkboxes together.
      * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
      * @figma-main-component-id 84992:87199
-     * @form-ready 
+     * @form-ready
      */
     interface IxCheckboxGroup {
         /**
@@ -9736,7 +9736,7 @@ declare namespace LocalJSX {
      * Text input for entering and validating a date value.
      * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
      * @figma-main-component-id 442365:42749
-     * @form-ready 
+     * @form-ready
      */
     interface IxDateInput {
         /**
@@ -10066,7 +10066,7 @@ declare namespace LocalJSX {
      * Text input for entering and validating a combined date and time value.
      * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
      * @since 5.0.0
-     * @form-ready 
+     * @form-ready
      */
     interface IxDatetimeInput {
         /**
@@ -11341,7 +11341,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready 
+     * @form-ready
      */
     interface IxInput {
         /**
@@ -12178,7 +12178,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
      * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
      * @figma-main-component-id 42365:39459
-     * @form-ready 
+     * @form-ready
      */
     interface IxNumberInput {
         /**
@@ -12723,8 +12723,8 @@ declare namespace LocalJSX {
          */
         "size"?: ProgressIndicatorSize;
         /**
-          * The state of the progress indicator. This is used to indicate the current state of the progress indicator.
-          * @default 'default'
+          * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @default 'base'
          */
         "status"?: ProgressIndicatorStatus;
         /**
@@ -12796,7 +12796,7 @@ declare namespace LocalJSX {
      * Lets users select a single option from a set.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44481
-     * @form-ready 
+     * @form-ready
      */
     interface IxRadio {
         /**
@@ -12848,7 +12848,7 @@ declare namespace LocalJSX {
      * Groups related radio buttons so only one can be selected.
      * @documentation https://ix.siemens.io//docs/components/radio/guide.md
      * @figma-main-component-id 42365:44973
-     * @form-ready 
+     * @form-ready
      */
     interface IxRadioGroup {
         /**
@@ -12922,7 +12922,7 @@ declare namespace LocalJSX {
      * Dropdown control for selecting one or more options from a list.
      * @documentation https://ix.siemens.io//docs/components/select/guide.md
      * @figma-main-component-id 42365:49989
-     * @form-ready 
+     * @form-ready
      */
     interface IxSelect {
         /**
@@ -13132,7 +13132,7 @@ declare namespace LocalJSX {
      * Lets users choose a numeric value by dragging along a track.
      * @documentation https://ix.siemens.io//docs/components/slider/code.md
      * @figma-main-component-id 50042:20986
-     * @form-ready 
+     * @form-ready
      */
     interface IxSlider {
         /**
@@ -13458,7 +13458,7 @@ declare namespace LocalJSX {
     }
     /**
      * Multi-line text input for entering and validating longer text.
-     * @form-ready 
+     * @form-ready
      * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
      */
     interface IxTextarea {
@@ -13586,7 +13586,7 @@ declare namespace LocalJSX {
      * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
      * @since 3.2.0
-     * @form-ready 
+     * @form-ready
      */
     interface IxTimeInput {
         /**
@@ -13984,7 +13984,7 @@ declare namespace LocalJSX {
      * Switch control for toggling a single setting on or off.
      * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
      * @figma-main-component-id 43875:36542
-     * @form-ready 
+     * @form-ready
      */
     interface IxToggle {
         /**
@@ -15773,7 +15773,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/chat-input/guide.md
              * @figma-main-component-id 133528:32836
              * @since 5.2.0
-             * @form-ready 
+             * @form-ready
              */
             "ix-chat-input": LocalJSX.IntrinsicElements["ix-chat-input"] & JSXBase.HTMLAttributes<HTMLIxChatInputElement>;
             /**
@@ -15786,14 +15786,14 @@ declare module "@stencil/core" {
              * Lets users select an option or toggle a single value on or off.
              * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
              * @figma-main-component-id 42365:47165
-             * @form-ready 
+             * @form-ready
              */
             "ix-checkbox": LocalJSX.IntrinsicElements["ix-checkbox"] & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
             /**
              * Groups related checkboxes together.
              * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
              * @figma-main-component-id 84992:87199
-             * @form-ready 
+             * @form-ready
              */
             "ix-checkbox-group": LocalJSX.IntrinsicElements["ix-checkbox-group"] & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             /**
@@ -15842,7 +15842,7 @@ declare module "@stencil/core" {
              * Text input for entering and validating a date value.
              * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
              * @figma-main-component-id 442365:42749
-             * @form-ready 
+             * @form-ready
              */
             "ix-date-input": LocalJSX.IntrinsicElements["ix-date-input"] & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             /**
@@ -15859,7 +15859,7 @@ declare module "@stencil/core" {
              * Text input for entering and validating a combined date and time value.
              * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
              * @since 5.0.0
-             * @form-ready 
+             * @form-ready
              */
             "ix-datetime-input": LocalJSX.IntrinsicElements["ix-datetime-input"] & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             /**
@@ -16003,7 +16003,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
              * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
              * @figma-main-component-id 42365:39459
-             * @form-ready 
+             * @form-ready
              */
             "ix-input": LocalJSX.IntrinsicElements["ix-input"] & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             /**
@@ -16136,7 +16136,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
              * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
              * @figma-main-component-id 42365:39459
-             * @form-ready 
+             * @form-ready
              */
             "ix-number-input": LocalJSX.IntrinsicElements["ix-number-input"] & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
             /**
@@ -16211,14 +16211,14 @@ declare module "@stencil/core" {
              * Lets users select a single option from a set.
              * @documentation https://ix.siemens.io//docs/components/radio/guide.md
              * @figma-main-component-id 42365:44481
-             * @form-ready 
+             * @form-ready
              */
             "ix-radio": LocalJSX.IntrinsicElements["ix-radio"] & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
             /**
              * Groups related radio buttons so only one can be selected.
              * @documentation https://ix.siemens.io//docs/components/radio/guide.md
              * @figma-main-component-id 42365:44973
-             * @form-ready 
+             * @form-ready
              */
             "ix-radio-group": LocalJSX.IntrinsicElements["ix-radio-group"] & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             /**
@@ -16234,7 +16234,7 @@ declare module "@stencil/core" {
              * Dropdown control for selecting one or more options from a list.
              * @documentation https://ix.siemens.io//docs/components/select/guide.md
              * @figma-main-component-id 42365:49989
-             * @form-ready 
+             * @form-ready
              */
             "ix-select": LocalJSX.IntrinsicElements["ix-select"] & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             /**
@@ -16246,7 +16246,7 @@ declare module "@stencil/core" {
              * Lets users choose a numeric value by dragging along a track.
              * @documentation https://ix.siemens.io//docs/components/slider/code.md
              * @figma-main-component-id 50042:20986
-             * @form-ready 
+             * @form-ready
              */
             "ix-slider": LocalJSX.IntrinsicElements["ix-slider"] & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             /**
@@ -16285,7 +16285,7 @@ declare module "@stencil/core" {
             "ix-tabs": LocalJSX.IntrinsicElements["ix-tabs"] & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
              * Multi-line text input for entering and validating longer text.
-             * @form-ready 
+             * @form-ready
              * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
              */
             "ix-textarea": LocalJSX.IntrinsicElements["ix-textarea"] & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
@@ -16300,7 +16300,7 @@ declare module "@stencil/core" {
              * @documentation https://ix.siemens.io//docs/components/input-time/guide.md
              * @figma-main-component-id 68801:5742
              * @since 3.2.0
-             * @form-ready 
+             * @form-ready
              */
             "ix-time-input": LocalJSX.IntrinsicElements["ix-time-input"] & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;
             /**
@@ -16323,7 +16323,7 @@ declare module "@stencil/core" {
              * Switch control for toggling a single setting on or off.
              * @documentation https://ix.siemens.io//docs/components/toggle/guide.md
              * @figma-main-component-id 43875:36542
-             * @form-ready 
+             * @form-ready
              */
             "ix-toggle": LocalJSX.IntrinsicElements["ix-toggle"] & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
             /**
