@@ -10,7 +10,7 @@ export const IxEmptyState: StencilVueComponent<JSX.IxEmptyState> = /*@__PURE__*/
   'layout',
   'icon',
   'header',
-  'subHeader',
+  'description',
   'action',
   'ariaLabelEmptyStateIcon',
   'actionClick'

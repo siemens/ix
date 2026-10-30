@@ -4,7 +4,7 @@
 :host {
   @include component.ix-component;
 
-  .label__subHeader {
+  .label__description {
     color: var(--ix-empty-state-label--color);
   }
 }
@@ -44,7 +44,7 @@
     }
   }
 
-  .label__subHeader,
+  .label__description,
   ix-typography {
     text-align: center;
   }
