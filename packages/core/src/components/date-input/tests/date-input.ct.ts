@@ -770,7 +770,7 @@ regressionTest.describe('runtime locale and format updates', () => {
 
     await patchAttribute(dateInput, 'locale', 'de');
 
-    await expect(tuesdayHeader).toHaveText('Die');
+    await expect(tuesdayHeader).toHaveText('Di');
     // The numeric value still parses, so the selection is kept
     await expect(dateInput.locator('.calendar-item.selected')).toHaveText('5');
   });

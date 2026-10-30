@@ -35,6 +35,7 @@ import { ElementReference } from "./components/utils/element-reference";
 import { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
+import { NavigationBoundaryHandler } from "./components/dropdown/dropdown-focus";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
@@ -94,6 +95,7 @@ export { ElementReference } from "./components/utils/element-reference";
 export { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
+export { NavigationBoundaryHandler } from "./components/dropdown/dropdown-focus";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
@@ -2143,6 +2145,11 @@ export namespace Components {
          */
         "keyboardItemTriggerKeys": string[];
         /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+          * @since 6.0.0
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
+        /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
           * @since 5.2.0
           * @default 'active-descendant'
@@ -2249,6 +2256,11 @@ export namespace Components {
           * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+          * @since 6.0.0
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
         /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
           * @since 5.2.0
@@ -10475,6 +10487,11 @@ declare namespace LocalJSX {
          */
         "keyboardItemTriggerKeys"?: string[];
         /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+          * @since 6.0.0
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
+        /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
           * @since 5.2.0
           * @default 'active-descendant'
@@ -10583,6 +10600,11 @@ declare namespace LocalJSX {
           * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+          * @since 6.0.0
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
         /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
           * @since 5.2.0
