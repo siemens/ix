@@ -20,6 +20,8 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: echarts@6.1.0
+  - echarts@6.1.0
 
 overrides:
   cheerio: '1.0.0-rc.12'
