@@ -133,6 +133,7 @@ export function useContextProvider<
   const updateContext = new TypedEvent<ContextType<C>>();
 
   const requests = new Set<ContextEvent<UnknownContext>>();
+  let currentPayload = contextPayload;
 
   hostElement.addEventListener('context-request', (event: Event) => {
     const requestContextEvent = event as ContextEvent<C>;
@@ -147,14 +148,15 @@ export function useContextProvider<
     }
     requestContext.emit(requestContextEvent);
 
-    if (contextPayload) {
-      requestContextEvent.callback(contextPayload, () => {
+    if (currentPayload !== undefined) {
+      requestContextEvent.callback(currentPayload, () => {
         requests.delete(requestContextEvent);
       });
     }
   });
 
   updateContext.on((context: ContextType<C>) => {
+    currentPayload = context;
     requests.forEach((r) =>
       r.callback(context, () => {
         requests.delete(r);

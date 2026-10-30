@@ -28,7 +28,12 @@ import {
 import { animate, AnimationControl, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import {
+  addBreakpointMediaListener,
+  matchBreakpoint,
+} from '../utils/breakpoints';
+import { ContextType, useContextConsumer } from '../utils/context';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -192,7 +197,12 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
-  private layoutChangeDisposable?: Disposable;
+  private applicationLayoutContext?: ContextType<
+    typeof ApplicationLayoutContext
+  >;
+  private layoutContextSubscription?: { unsubscribe: () => void };
+  private layoutServiceDisposable?: Disposable;
+  private removeBreakpointMediaListener?: () => void;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -211,11 +221,8 @@ export class Pane {
   }
 
   connectedCallback() {
-    this.isMobile = matchBreakpoint('sm');
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
 
     this.mutationObserver?.disconnect();
     this.mutationObserver = new MutationObserver((mutations) => {
@@ -255,13 +262,63 @@ export class Pane {
   }
 
   disconnectedCallback() {
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = undefined;
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
     this.disposableKeydown?.();
     this.focusTrap?.destroy();
+    this.layoutContextSubscription?.unsubscribe();
+    this.layoutContextSubscription = undefined;
+    this.layoutServiceDisposable?.dispose();
+    this.layoutServiceDisposable = undefined;
+    this.removeBreakpointMediaListener?.();
+    this.removeBreakpointMediaListener = undefined;
+    this.applicationLayoutContext = undefined;
+  }
+
+  private resolveIsMobile() {
+    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
+    if (forcedBreakpoint) {
+      return forcedBreakpoint === 'sm';
+    }
+    // Nested panes follow the shared layout bus so a pinned menu (frozen at lg)
+    // keeps them desktop instead of reading the raw viewport.
+    if (this.applicationLayoutContext) {
+      return applicationLayoutService.breakpoint === 'sm';
+    }
+    return matchBreakpoint('sm');
+  }
+
+  private subscribeViewportChanges() {
+    this.layoutServiceDisposable?.dispose();
+    this.removeBreakpointMediaListener?.();
+
+    this.layoutServiceDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = this.resolveIsMobile();
+    });
+    // Keep following the viewport when the shared bus has detection disabled
+    // (e.g. forceBreakpoint on a sibling application the pane left).
+    this.removeBreakpointMediaListener = addBreakpointMediaListener(
+      'sm',
+      () => {
+        this.isMobile = this.resolveIsMobile();
+      }
+    );
+  }
+
+  private subscribeLayoutContext() {
+    this.layoutContextSubscription?.unsubscribe();
+    this.applicationLayoutContext = undefined;
+    this.layoutContextSubscription = useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        this.applicationLayoutContext = ctx;
+        this.isMobile = this.resolveIsMobile();
+      },
+      true
+    );
+    this.isMobile = this.resolveIsMobile();
   }
 
   @Watch('expanded')
@@ -316,6 +373,10 @@ export class Pane {
     if (this.expanded) {
       this.onParentSizeChange();
     }
+
+    // Re-request after providers in the tree have finished willLoad.
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
 
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
