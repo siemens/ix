@@ -20,7 +20,7 @@ metadata:
 
 - Run visual-testing snapshot checks and updates only inside a Playwright Docker image.
 - Use the Docker image that matches the currently used `@playwright/test` or `playwright` version from `pnpm-workspace.yaml`.
-- For the current repository configuration, use `mcr.microsoft.com/playwright:v1.58.1-noble`.
+- For the current repository configuration, use `mcr.microsoft.com/playwright:v1.64.1-noble`.
 - Install `pnpm` inside the Docker command or shell with `npm i -g pnpm`.
 - Do not run a build inside Docker. If built package output is required, build outside Docker before starting the snapshot update flow.
 - Do not run `pnpm run test.setup` inside the Playwright Docker image unless a test explicitly fails because the browser installation is missing.
@@ -45,19 +45,19 @@ metadata:
 From the repository root, update snapshots for a specific test:
 
 ```sh
-docker run --rm -v "$(pwd):/work" -w /work mcr.microsoft.com/playwright:v1.58.1-noble /bin/bash -lc 'npm i -g pnpm && pnpm --filter visual-testing visual-regression mytest.e2e.ts -u'
+docker run --rm -v "$(pwd):/work" -w /work mcr.microsoft.com/playwright:v1.64.1-noble /bin/bash -lc 'npm i -g pnpm && pnpm --filter visual-testing visual-regression mytest.e2e.ts -u'
 ```
 
 From the repository root, verify a specific test without updating snapshots:
 
 ```sh
-docker run --rm -v "$(pwd):/work" -w /work mcr.microsoft.com/playwright:v1.58.1-noble /bin/bash -lc 'npm i -g pnpm && pnpm --filter visual-testing visual-regression mytest.e2e.ts'
+docker run --rm -v "$(pwd):/work" -w /work mcr.microsoft.com/playwright:v1.64.1-noble /bin/bash -lc 'npm i -g pnpm && pnpm --filter visual-testing visual-regression mytest.e2e.ts'
 ```
 
 Replace `mytest.e2e.ts` with the requested test file name or path, for example:
 
 ```sh
-docker run --rm -v "$(pwd):/work" -w /work mcr.microsoft.com/playwright:v1.58.1-noble /bin/bash -lc 'npm i -g pnpm && pnpm --filter visual-testing visual-regression testing/visual-testing/tests/button/button.e2e.ts -u'
+docker run --rm -v "$(pwd):/work" -w /work mcr.microsoft.com/playwright:v1.64.1-noble /bin/bash -lc 'npm i -g pnpm && pnpm --filter visual-testing visual-regression testing/visual-testing/tests/button/button.e2e.ts -u'
 ```
 
 ## Failure Handling

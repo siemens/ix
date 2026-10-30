@@ -27,6 +27,8 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
       `http://localhost:5173/tests/${url}?theme=${theme}&colorSchema=${colorSchema}`,
       options
     );
+    // Keep the pointer away from the page to avoid unintended hover states
+    await page.mouse.move(9999, 9999);
     // Initial timeout for webKit to render Web Components
     await page.waitForTimeout(1000);
     return response;

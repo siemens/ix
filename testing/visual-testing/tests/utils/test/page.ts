@@ -10,10 +10,22 @@ import {
   ElementHandle,
   Page,
   PageScreenshotOptions,
-  test as testBase,
+  PlaywrightTestArgs,
+  PlaywrightTestOptions,
+  PlaywrightWorkerArgs,
+  PlaywrightWorkerOptions,
+  test as playwrightTest,
   TestInfo as _TestInfo,
+  TestType,
   expect,
 } from '@playwright/test';
+
+// Playwright >= 1.64 ships a built-in story `mount` fixture with an incompatible
+// signature. Drop it from the base type so the IX `mount` fixture can replace it.
+const testBase = playwrightTest as unknown as TestType<
+  Omit<PlaywrightTestArgs, 'mount'> & PlaywrightTestOptions,
+  PlaywrightWorkerArgs & PlaywrightWorkerOptions
+>;
 
 declare global {
   interface Window {
@@ -101,6 +113,9 @@ async function extendPageFixture(
       `/tests/${url}/index.html?theme=${theme}&colorSchema=${colorSchema}`,
       options
     );
+
+    // Chromium resets the pointer on navigation; keep it away from the content to avoid hover styles.
+    await page.mouse.move(9999, 9999);
 
     if (!options?.skipIxHydrationCheck) {
       await waitForIxHydration(page);
