@@ -20,6 +20,8 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: @capacitor/ios@6.2.2
+  - "@capacitor/ios@6.2.2"
 
 overrides:
   cheerio: '1.0.0-rc.12'
