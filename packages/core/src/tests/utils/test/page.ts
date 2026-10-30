@@ -201,6 +201,8 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`
     );
+    // Keep the pointer away from mounted components to avoid unintended hover states
+    await page.mouse.move(9999, 9999);
     await use((selector, config) => mountComponent(page, selector, config));
   },
 });
