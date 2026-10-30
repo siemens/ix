@@ -36,7 +36,7 @@ async function remountRightPane(page: Page) {
     layout?.appendChild(next);
   });
 
-  await expect(page.locator('ix-pane').first()).toHaveClass(/hydrated/);
+  await expect(page.locator('ix-pane').first()).toHaveAttribute('hydrated');
 }
 
 const paneLayoutMarkup = `
@@ -429,7 +429,7 @@ regressionTest.describe('pane under forced application layout', () => {
       await page.setViewportSize(viewPorts.lg);
       await mount(forcedDesktopApp);
 
-      await expect(page.locator('ix-pane')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
       await expectPaneIsMobile(page, false);
 
       await page.setViewportSize(viewPorts.sm);
@@ -459,7 +459,7 @@ regressionTest.describe('pane under forced application layout', () => {
       await page.setViewportSize(viewPorts.sm);
       await mount(forcedDesktopApp);
 
-      await expect(page.locator('ix-pane')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
       await expectPaneIsMobile(page, false);
     }
   );
@@ -474,7 +474,7 @@ regressionTest.describe('pane under forced application layout', () => {
         </ix-application>
       `);
 
-      await expect(page.locator('ix-pane')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
       await expectPaneIsMobile(page, true);
     }
   );
@@ -519,7 +519,7 @@ regressionTest.describe('pane under forced application layout', () => {
 
       const pane = page.locator('ix-pane').first();
       const application = page.locator('ix-application');
-      await expect(pane).toHaveClass(/hydrated/);
+      await expect(pane).toHaveAttribute('hydrated');
       await expectPaneIsMobile(page, false);
 
       await application.evaluate((el: HTMLIxApplicationElement) => {
@@ -554,7 +554,7 @@ regressionTest.describe('pane under forced application layout', () => {
         host.appendChild(layout);
       });
 
-      await expect(page.locator('ix-pane').first()).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-pane').first()).toHaveAttribute('hydrated');
       // Stale forced context must not keep the pane in desktop mode.
       await expectPaneIsMobile(page, true);
 
@@ -629,7 +629,7 @@ regressionTest.describe('pane under pinned menu', () => {
       await page.setViewportSize(viewPorts.lg);
       await mount(pinnedMenuApp);
 
-      await expect(page.locator('ix-pane')).toHaveClass(/hydrated/);
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
       await expectPaneIsMobile(page, false);
 
       await page.setViewportSize(viewPorts.sm);
