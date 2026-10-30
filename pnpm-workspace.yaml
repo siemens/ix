@@ -20,6 +20,8 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: @vitest/browser@4.1.10
+  - "@vitest/browser@4.1.10"
 
 overrides:
   cheerio: '1.0.0-rc.12'
