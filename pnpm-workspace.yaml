@@ -20,6 +20,8 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: next@16.4.1
+  - next@16.4.1
 
 overrides:
   cheerio: '1.0.0-rc.12'
