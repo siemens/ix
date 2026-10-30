@@ -16,7 +16,7 @@
   "packageManager": "pnpm@10.17.0",
   "engines": {
     "pnpm": ">=9.x.x",
-    "node": ">=24.22.2"
+    "node": "^24.22.2"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",

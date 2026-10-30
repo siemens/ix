@@ -76,6 +76,7 @@
       "matchDepTypes": ["engines"],
       "matchPackageNames": ["node"],
       "versioning": "node",
+      "rangeStrategy": "replace",
       "groupName": "Node.js LTS runtime",
       "separateMajorMinor": false
     },
