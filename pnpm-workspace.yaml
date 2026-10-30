@@ -15,11 +15,13 @@ catalog:
   glob: ^13.0.0
   playwright: ^1.64.1
   rimraf: ^6.1.3
-  vite: 7.3.5
+  vite: 8.1.6
 
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: vite@8.1.6
+  - vite@8.1.6
 
 overrides:
   cheerio: '1.0.0-rc.12'
