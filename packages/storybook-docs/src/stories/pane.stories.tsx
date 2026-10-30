@@ -1,14 +1,18 @@
 /*
- * SPDX-FileCopyrightText: 2026 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 import type { Components } from '@siemens/ix/components';
 import { h } from '@stencil/core';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
 import { stencil } from '@utils/stencil-render';
-import { makeArgTypes } from './utils/generic-render';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 
+type Element = Components.IxPane;
 type PaneLayout = Components.IxPaneLayout;
 
 type LayoutDemoArgs = PaneLayout & {
@@ -55,9 +59,7 @@ const paneLayoutChildren = (
   </ix-pane>,
   <div slot="content">
     <div style={guidanceStyle}>
-      <p style={{ margin: '0 0 0.5rem', fontWeight: '600' }}>
-        How to check
-      </p>
+      <p style={{ margin: '0 0 0.5rem', fontWeight: '600' }}>How to check</p>
       <ol style={{ margin: '0 0 0.75rem', paddingLeft: '1.25rem' }}>
         <li>
           Open the <strong>Controls</strong> panel at the bottom of Storybook
@@ -71,9 +73,9 @@ const paneLayoutChildren = (
               ix-application, off = standalone pane layout).
             </li>
             <li>
-              <strong>forceBreakpoint</strong> — dropdown{' '}
-              <code>none</code> / <code>sm</code> / <code>md</code> /{' '}
-              <code>lg</code> (only applies when nested).
+              <strong>forceBreakpoint</strong> — dropdown <code>none</code> /{' '}
+              <code>sm</code> / <code>md</code> / <code>lg</code> (only applies
+              when nested).
             </li>
           </ul>
         </li>
@@ -101,16 +103,49 @@ const paneLayoutChildren = (
 const meta = {
   title: 'Example/Pane',
   tags: [],
-} satisfies Meta<LayoutDemoArgs>;
+  render: (args) => genericRender('ix-pane', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-pane', {}),
+} satisfies Meta<Element>;
 
 export default meta;
-type Story = StoryObj<LayoutDemoArgs>;
+type Story = StoryObj<Element>;
+type LayoutDemoStory = StoryObj<LayoutDemoArgs>;
+
+export const Default: Story = {
+  args: {
+    heading: 'Headline text',
+    icon: 'alarm-bell-cancelled',
+  },
+};
+
+export const HeaderSlot: Story = {
+  args: {},
+  render: (args) => {
+    const container = genericRender('ix-pane', args);
+    const pane = container.querySelector('ix-pane')!;
+
+    const button = document.createElement('ix-button');
+    button.setAttribute('slot', 'header');
+    button.textContent = 'Demo';
+    pane.appendChild(button);
+
+    return container;
+  },
+};
+
+export const Floating: Story = {
+  args: {
+    heading: 'Headline text',
+    icon: 'alarm-bell-cancelled',
+    variant: 'floating',
+  },
+};
 
 /**
  * Demonstrates how panes follow application layout vs the viewport.
  * Use Controls to set nesting and forceBreakpoint, then resize the viewport.
  */
-export const ApplicationLayout: Story = {
+export const ApplicationLayout: LayoutDemoStory = {
   parameters: {
     docs: {
       description: {
