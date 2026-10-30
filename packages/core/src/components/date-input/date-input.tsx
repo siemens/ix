@@ -33,6 +33,7 @@ import {
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
+  onInputFocus,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -379,8 +380,10 @@ export class DateInput
   }
 
   private applyPickedDate(from?: string) {
+    // onInput can refocus the input and reset initialValue.
+    const hasValueChanged = this.initialValue !== from;
     this.onInput(from);
-    if (this.initialValue !== from) {
+    if (hasValueChanged) {
       this.ixChange.emit(from);
       this.initialValue = from;
     }
@@ -511,9 +514,9 @@ export class DateInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
             this.inputBlur.onFocus();
-            this.initialValue = this.value;
+            onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
           onBlur={() => this.inputBlur.onBlur()}

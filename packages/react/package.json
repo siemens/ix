@@ -70,7 +70,7 @@
     "vitest-browser-react": "^1.0.0"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^3.5.0",
+    "@siemens/ix-icons": "0.0.0-beta-20261021072559",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
   },

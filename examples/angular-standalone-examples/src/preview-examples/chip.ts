@@ -16,17 +16,18 @@ import { IxChip } from '@siemens/ix-angular/standalone';
   template: `
     <div class="chip">
       <div class="chip-column">
-        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip>
-        <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
-        <ix-chip icon="print" variant="critical">Critical</ix-chip>
+        <ix-chip icon="print" variant="danger" closable>Danger</ix-chip>
         <ix-chip icon="print" variant="warning">Warning</ix-chip>
+        <ix-chip icon="print" variant="caution">Caution</ix-chip>
         <ix-chip
           icon="print"
-          variant="info"
+          variant="information"
           tooltipText="Open details for this status"
           aria-label="In review"
-          >Info</ix-chip
+          >Information</ix-chip
         >
+        <ix-chip icon="print" variant="accent" closable>Accent</ix-chip>
+        <ix-chip icon="print" variant="critical">Critical</ix-chip>
         <ix-chip icon="print" variant="success">Success</ix-chip>
         <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
         <ix-chip
@@ -37,25 +38,26 @@ import { IxChip } from '@siemens/ix-angular/standalone';
           closable
           >Custom</ix-chip
         >
-        <ix-chip icon="print" variant="primary" closable
+        <ix-chip icon="print" variant="accent" closable
           >Chip with icon
         </ix-chip>
       </div>
       <div class="chip-column">
-        <ix-chip icon="print" variant="primary" outline closable
-          >Primary</ix-chip
-        >
-        <ix-chip icon="print" variant="alarm" outline closable>Alarm</ix-chip>
-        <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
+        <ix-chip icon="print" variant="danger" outline closable>Danger</ix-chip>
         <ix-chip icon="print" variant="warning" outline>Warning</ix-chip>
+        <ix-chip icon="print" variant="caution" outline>Caution</ix-chip>
         <ix-chip
           icon="print"
-          variant="info"
+          variant="information"
           outline
           tooltipText="Open details for this status"
           aria-label="In review"
-          >Info</ix-chip
+          >Information</ix-chip
         >
+        <ix-chip icon="print" variant="accent" outline closable
+          >Accent</ix-chip
+        >
+        <ix-chip icon="print" variant="critical" outline>Critical</ix-chip>
         <ix-chip icon="print" variant="success" outline>Success</ix-chip>
         <ix-chip icon="print" variant="neutral" outline>Neutral</ix-chip>
         <ix-chip
@@ -67,7 +69,7 @@ import { IxChip } from '@siemens/ix-angular/standalone';
           closable
           >Custom</ix-chip
         >
-        <ix-chip variant="primary" outline closable>Chip without icon</ix-chip>
+        <ix-chip variant="accent" outline closable>Chip without icon</ix-chip>
       </div>
     </div>
   `,
