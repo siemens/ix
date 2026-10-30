@@ -10244,11 +10244,6 @@
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
           "deprecated": false
-        },
-        {
-          "name": "getValidityState",
-          "signature": "getValidityState() => Promise<ValidityState>",
-          "deprecated": false
         }
       ],
       "events": [
