@@ -85,6 +85,13 @@
       "matchFileNames": ["pnpm-workspace.yaml"],
       "groupName": "workspace catalog dependencies",
       "separateMajorMinor": false
+    },
+    {
+      "description": "Keep @types/node on the same Node.js LTS major as engines.node",
+      "matchPackageNames": ["@types/node"],
+      "versioning": "node",
+      "groupName": "Node.js LTS runtime",
+      "separateMajorMinor": false
     }
   ]
 }
