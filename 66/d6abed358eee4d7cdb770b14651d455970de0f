@@ -1,0 +1,2426 @@
+.agents/skills/changeset-decision/SKILL.md
+  h_c5a773bf2fda8b 6-7
+.agents/skills/create-changeset/SKILL.md
+  h_c5a773bf2fda8b 6-7
+.agents/skills/sdd/SKILL.md
+  h_c5a773bf2fda8b 10-11,76-78,90,96,111,116,120,125,161,163,210-214
+.changeset/accessibility-pagination-patch.md
+  h_c5a773bf2fda8b 2,5
+.changeset/angular-21-minimum.md
+  h_c5a773bf2fda8b 1-7
+.changeset/app-switch-noopener.md
+  h_c5a773bf2fda8b 1-5
+.changeset/breadcrumb-next-items-label.md
+  h_c5a773bf2fda8b 5
+.changeset/busy-kings-smoke.md
+  h_c5a773bf2fda8b 1-5
+.changeset/chip-pill-badge-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/component-metadata-exports.md
+  h_c5a773bf2fda8b 5
+.changeset/config.json
+  h_c5a773bf2fda8b 14
+.changeset/date-picker-hidden-year-menu.md
+  h_c5a773bf2fda8b 5
+.changeset/date-time-require-confirmation.md
+  h_c5a773bf2fda8b 5,7,9,11-14
+.changeset/disabled-link-menu-item-click.md
+  h_c5a773bf2fda8b 1-5
+.changeset/dropdown-anchor-position.md
+  h_c5a773bf2fda8b 1-15
+.changeset/dropdown-top-layer-keep-focus.md
+  h_c5a773bf2fda8b 1-7
+.changeset/eix-259-flip-tile-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-259-kpi-status-states.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-259-message-bar-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-259-message-modal-status-variants.md
+  h_c5a773bf2fda8b 1-8
+.changeset/eix-259-progress-indicator-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-259-toast-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-259-typography-text-colors.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-396-icon-size-20-followup.md
+  h_c5a773bf2fda8b 1-14
+.changeset/eix-410-card-status-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/eix-73-group-a11y.md
+  h_c5a773bf2fda8b 5
+.changeset/fix-date-input-week-start-index.md
+  h_c5a773bf2fda8b 1-7
+.changeset/fix-date-picker-month-dropdown-range.md
+  h_c5a773bf2fda8b 1-7
+.changeset/fix-dropdown-item-forced-layout.md
+  h_c5a773bf2fda8b 1-5
+.changeset/fix-input-invalid-class-aria.md
+  h_c5a773bf2fda8b 1-7
+.changeset/fix-input-required-aria-invalid-on-load.md
+  h_c5a773bf2fda8b 1-7
+.changeset/fix-picker-input-required-while-picking.md
+  h_c5a773bf2fda8b 1-5
+.changeset/fix-stencil-type-references.md
+  h_c5a773bf2fda8b 1-5
+.changeset/fix-week-start-index-grid-offset.md
+  h_c5a773bf2fda8b 5-8
+.changeset/form-validation-aria-references.md
+  h_c5a773bf2fda8b 1-5
+.changeset/form-validation-novalidate.md
+  h_c5a773bf2fda8b 1-8
+.changeset/form-validation-reconnect.md
+  h_c5a773bf2fda8b 5
+.changeset/form-validation-required-toggle.md
+  h_c5a773bf2fda8b 1-5
+.changeset/hydrated-flag-attribute.md
+  h_c5a773bf2fda8b 1-9
+.changeset/keyboard-tree-item-a11y.md
+  h_c5a773bf2fda8b 1-19
+.changeset/link-button-icon-variants.md
+  h_c5a773bf2fda8b 1-5
+.changeset/menu-about-icon.md
+  h_c5a773bf2fda8b 5
+.changeset/modal-config-allowlist.md
+  h_c5a773bf2fda8b 1-7
+.changeset/modal-es2016-animation-lowering.md
+  h_c5a773bf2fda8b 1-7
+.changeset/modal-owning-delegate-teardown.md
+  h_c5a773bf2fda8b 1-5
+.changeset/optional-collection-peers.md
+  h_c5a773bf2fda8b 5
+.changeset/pagination-jump-labels.md
+  h_c5a773bf2fda8b 1-8
+.changeset/pagination-navigation-label.md
+  h_c5a773bf2fda8b 1-8
+.changeset/pane-breakpoint-subscription-leak.md
+  h_c5a773bf2fda8b 1-7
+.changeset/react-toast-unmount-roots.md
+  h_c5a773bf2fda8b 1-5
+.changeset/remove-animation-dependencies.md
+  h_c5a773bf2fda8b 1-9
+.changeset/select-programmatic-form-value.md
+  h_c5a773bf2fda8b 5
+.changeset/semantic-header-headings.md
+  h_c5a773bf2fda8b 1-5
+.changeset/svg-fallback-label-linear.md
+  h_c5a773bf2fda8b 1-5
+.changeset/system-token-migration.md
+  h_c5a773bf2fda8b 1-29
+.changeset/time-picker-interval-bounds.md
+  h_c5a773bf2fda8b 1-5
+.changeset/tooltip-popover-detached-guard.md
+  h_c5a773bf2fda8b 5
+.changeset/tree-canonical-item-id.md
+  h_c5a773bf2fda8b 1-5
+.changeset/tree-reserved-item-ids.md
+  h_c5a773bf2fda8b 1-5
+.changeset/update-stencil-4-45-2.md
+  h_c5a773bf2fda8b 1-10
+.changeset/upload-drop-copy-effect.md
+  h_c5a773bf2fda8b 1-7
+.changeset/vue-35-peer-range.md
+  h_c5a773bf2fda8b 1-5
+.changeset/vue-overlay-resolver-cleanup.md
+  h_c5a773bf2fda8b 5
+.coderabbit.yaml
+  h_c5a773bf2fda8b 1,4,6-9,11,29,36,46,57
+.github/copilot-instructions.md
+  h_c5a773bf2fda8b 108-122
+.github/skills/visual-testing-snapshots/SKILL.md
+  h_c5a773bf2fda8b 6-7
+.github/workflows/actions/merge-reports/action.yml
+  h_c5a773bf2fda8b 21,34
+.github/workflows/actions/sbom/action.yml
+  h_c5a773bf2fda8b 10
+.github/workflows/actions/turbo/action.yml
+  h_c5a773bf2fda8b 40-44,46
+.github/workflows/actions/visual-regression/action.yml
+  h_c5a773bf2fda8b 52,59
+.github/workflows/build.yml
+  h_c5a773bf2fda8b 13-16,25,38,53,68,81,94,117,128,137,142
+.github/workflows/pr.yml
+  h_c5a773bf2fda8b 11-13,19-22,41,55,61-64,82,105,121,136,150,164,188,200,210,215
+.github/workflows/registry.yml
+  h_c5a773bf2fda8b 1-143
+.github/workflows/release.yml
+  h_c5a773bf2fda8b 12,15-54,58,66,68-71,73-85,88
+.github/workflows/stale.yml
+  h_c5a773bf2fda8b 16
+.gitignore
+  h_c5a773bf2fda8b 6,54,205,207-209
+ARCHITECTURE.md
+  h_c5a773bf2fda8b 17-27,37-40,50,55,57-68,73-77,89-91,93-94,99,113,130-140,146-150,177-209,215,219,226-230,234,245,264,268-269,272,277,283-284,290
+BREAKING_CHANGES/v6.md
+  h_c5a773bf2fda8b 5-41,62-88,106-131,144,189,196,199-319,396,399,418-425,441-454,587,589-591,631-635,688-689,726-727,767-786,845-851,884-890,903-1521
+BREAKING_CHANGES/v6_components_tokens.md
+  h_c5a773bf2fda8b 1-1812
+CONTRIBUTING.md
+  h_c5a773bf2fda8b 58,272-276,322-347,357-423
+SECURITY.md
+  h_c5a773bf2fda8b 22-143,145
+examples/angular-examples/angular.json
+  h_c5a773bf2fda8b 1-111
+examples/angular-examples/package.json
+  h_c5a773bf2fda8b 2,8,10-11,16-23,33-34,37,40-42,54
+examples/angular-examples/scripts/copy-preview.mjs
+  h_c5a773bf2fda8b 17,23
+examples/angular-examples/src/app/app-routing.module.ts
+  h_c5a773bf2fda8b 72,79,82,93,96,178-181,524-527,552-555,564-567,628-631,640-643,859-874
+examples/angular-examples/src/app/app.component.spec.ts
+  h_c5a773bf2fda8b 90
+examples/angular-examples/src/app/app.module.ts
+  h_c5a773bf2fda8b 10,81,88,91,102,105,187-190,355,362,365,381,384,452-455,579
+examples/angular-examples/src/main.ts
+  h_c5a773bf2fda8b 6
+examples/angular-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 5
+examples/angular-examples/src/preview-examples/badge-counter.html
+  h_c5a773bf2fda8b 2-3,7-8,13,15,18-19,23-24,29,31,40,47,56,63,66-68,72,74,83,90,99,106,114,122,128,130,137,139
+examples/angular-examples/src/preview-examples/badge-dot.html
+  h_c5a773bf2fda8b 4,6,10,13,17-18,20,24,26,28,31,34,37,41-42,44,48,50,52,71,79,100,108,113,116,119,123-124,126,130,132,134,153,161,182,190,201,210,215,219,225,229
+examples/angular-examples/src/preview-examples/badge-label.html
+  h_c5a773bf2fda8b 4-5,10-11,17-18,20,24-25,28,30,33-34,40-41,43,47-48,51,71,79,99,107,109,112-113,119-120,122,126-127,130,150,158,178,186,194,202,211-212,220,222
+examples/angular-examples/src/preview-examples/badge-status-icon.html
+  h_c5a773bf2fda8b 2-10,14-15,19-25,29-30,32-35
+examples/angular-examples/src/preview-examples/badge.html
+  h_c5a773bf2fda8b 2-3,5,10,12-16,18,23,25-28
+examples/angular-examples/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 10,13,16-17,22-37
+examples/angular-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+examples/angular-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+examples/angular-examples/src/preview-examples/chip.ts
+  h_c5a773bf2fda8b 18,20,23,26,28-29,40,45,47,50,54-57,59,71
+examples/angular-examples/src/preview-examples/date-dropdown-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/date-dropdown-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/date-dropdown-user-range.ts
+  h_c5a773bf2fda8b 1-47
+examples/angular-examples/src/preview-examples/date-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/date-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/date-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/date-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/datetime-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-examples/src/preview-examples/datetime-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/datetime-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-15
+examples/angular-examples/src/preview-examples/datetime-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-17
+examples/angular-examples/src/preview-examples/drawer-full-height.ts
+  h_c5a773bf2fda8b 1-25
+examples/angular-examples/src/preview-examples/drawer.ts
+  h_c5a773bf2fda8b 1-25
+examples/angular-examples/src/preview-examples/echarts-empty-state.html
+  h_c5a773bf2fda8b 19
+examples/angular-examples/src/preview-examples/flip-tile.ts
+  h_c5a773bf2fda8b 17-28,31-39,41-42,49-51,53-72,77,89,113-125
+examples/angular-examples/src/preview-examples/form-validation.html
+  h_c5a773bf2fda8b 38
+examples/angular-examples/src/preview-examples/kpi.ts
+  h_c5a773bf2fda8b 20-25,36
+examples/angular-examples/src/preview-examples/link-button-action.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/link-button-external.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/link-button-file.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/link-button-internal.ts
+  h_c5a773bf2fda8b 1-21
+examples/angular-examples/src/preview-examples/loading.ts
+  h_c5a773bf2fda8b 10,20
+examples/angular-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/angular-examples/src/preview-examples/message-bar.html
+  h_c5a773bf2fda8b 1-26
+examples/angular-examples/src/preview-examples/message.ts
+  h_c5a773bf2fda8b 10,21
+examples/angular-examples/src/preview-examples/modal-by-instance-content.ts
+  h_c5a773bf2fda8b 10,36
+examples/angular-examples/src/preview-examples/modal-by-instance.ts
+  h_c5a773bf2fda8b 10,20
+examples/angular-examples/src/preview-examples/modal-by-template.ts
+  h_c5a773bf2fda8b 10,41
+examples/angular-examples/src/preview-examples/modal-close.ts
+  h_c5a773bf2fda8b 10,20
+examples/angular-examples/src/preview-examples/modal-form-ix-button-submit.ts
+  h_c5a773bf2fda8b 1,14
+examples/angular-examples/src/preview-examples/modal-non-blocking.ts
+  h_c5a773bf2fda8b 10,35,44,54
+examples/angular-examples/src/preview-examples/modal-sizes.ts
+  h_c5a773bf2fda8b 10,23
+examples/angular-examples/src/preview-examples/pill-variants.ts
+  h_c5a773bf2fda8b 20,23,29,32,38,41,47,50-52,58,61,67,70,83-91,96,100-101,107,111-112,118
+examples/angular-examples/src/preview-examples/pill.html
+  h_c5a773bf2fda8b 11,16,22,26-27,29-31,33,37
+examples/angular-examples/src/preview-examples/popover.html
+  h_c5a773bf2fda8b 15-17,22,26,30
+examples/angular-examples/src/preview-examples/progress-indicator-circular-sizes.html
+  h_c5a773bf2fda8b 24,34,44,54,64
+examples/angular-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,24,33,43,48,53-54,63,73
+examples/angular-examples/src/preview-examples/progress-indicator-circular.html
+  h_c5a773bf2fda8b 23
+examples/angular-examples/src/preview-examples/progress-indicator-linear-sizes.html
+  h_c5a773bf2fda8b 24,34,44,54,64
+examples/angular-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,24,33,43,48,53-54,63,73
+examples/angular-examples/src/preview-examples/progress-indicator.html
+  h_c5a773bf2fda8b 13
+examples/angular-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+examples/angular-examples/src/preview-examples/toast-custom.ts
+  h_c5a773bf2fda8b 10,51
+examples/angular-examples/src/preview-examples/toast-position.ts
+  h_c5a773bf2fda8b 10,21
+examples/angular-examples/src/preview-examples/toast.ts
+  h_c5a773bf2fda8b 10,21
+examples/angular-standalone-examples/angular.json
+  h_c5a773bf2fda8b 1-92
+examples/angular-standalone-examples/package.json
+  h_c5a773bf2fda8b 2,11,16-23,33-34,36,39-41,53
+examples/angular-standalone-examples/scripts/copy-preview.mjs
+  h_c5a773bf2fda8b 18,24
+examples/angular-standalone-examples/src/app/app.config.ts
+  h_c5a773bf2fda8b 10-13,19
+examples/angular-standalone-examples/src/app/app.routes.ts
+  h_c5a773bf2fda8b 25-28,153-156,169-172,177-180,207-210,219-222,418-425
+examples/angular-standalone-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 14
+examples/angular-standalone-examples/src/preview-examples/badge-counter.html
+  h_c5a773bf2fda8b 2-3,7-8,13,15,18-19,23-24,29,31,40,47,56,63,66-68,72,74,83,90,99,106,114,122,128,130,137,139
+examples/angular-standalone-examples/src/preview-examples/badge-dot.html
+  h_c5a773bf2fda8b 4,6,10,13,17-18,20,24,26,28,31,34,37,41-42,44,48,50,52,71,79,100,108,113,116,119,123-124,126,130,132,134,153,161,182,190,201,210,215,219,225,229
+examples/angular-standalone-examples/src/preview-examples/badge-label.html
+  h_c5a773bf2fda8b 4-5,10-11,17-18,20,24-25,28,30,33-34,40-41,43,47-48,51,71,79,99,107,109,112-113,119-120,122,126-127,130,150,158,178,186,194,202,211-212,220,222
+examples/angular-standalone-examples/src/preview-examples/badge-status-icon.html
+  h_c5a773bf2fda8b 2-10,14-15,19-25,29-30,32-35
+examples/angular-standalone-examples/src/preview-examples/badge.html
+  h_c5a773bf2fda8b 2-3,5,10,12-16,18,23,25-28
+examples/angular-standalone-examples/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 10,13,16-17,22-37
+examples/angular-standalone-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 16,40,54,61,68
+examples/angular-standalone-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 10
+examples/angular-standalone-examples/src/preview-examples/chip.ts
+  h_c5a773bf2fda8b 19,21,24,27,29-30,41,46,48,51,55-58,60,72
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-presets.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-user-range.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-dropdown-user-range.ts
+  h_c5a773bf2fda8b 1-49
+examples/angular-standalone-examples/src/preview-examples/date-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/date-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/date-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/datetime-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-14
+examples/angular-standalone-examples/src/preview-examples/datetime-input-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/datetime-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-15
+examples/angular-standalone-examples/src/preview-examples/datetime-picker-require-confirmation.ts
+  h_c5a773bf2fda8b 1-18
+examples/angular-standalone-examples/src/preview-examples/drawer-full-height.ts
+  h_c5a773bf2fda8b 1-26
+examples/angular-standalone-examples/src/preview-examples/drawer.ts
+  h_c5a773bf2fda8b 1-26
+examples/angular-standalone-examples/src/preview-examples/echarts-empty-state.html
+  h_c5a773bf2fda8b 19
+examples/angular-standalone-examples/src/preview-examples/flip-tile.ts
+  h_c5a773bf2fda8b 22-33,36-44,46-47,54-56,58-77,82,94,118-130
+examples/angular-standalone-examples/src/preview-examples/form-validation.html
+  h_c5a773bf2fda8b 47
+examples/angular-standalone-examples/src/preview-examples/kpi.ts
+  h_c5a773bf2fda8b 21-26,37
+examples/angular-standalone-examples/src/preview-examples/link-button-action.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/link-button-external.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/link-button-file.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/link-button-internal.ts
+  h_c5a773bf2fda8b 1-22
+examples/angular-standalone-examples/src/preview-examples/loading.ts
+  h_c5a773bf2fda8b 10,20
+examples/angular-standalone-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/angular-standalone-examples/src/preview-examples/message-bar.ts
+  h_c5a773bf2fda8b 18-30
+examples/angular-standalone-examples/src/preview-examples/message.ts
+  h_c5a773bf2fda8b 10,21
+examples/angular-standalone-examples/src/preview-examples/modal-by-instance-content.ts
+  h_c5a773bf2fda8b 10,42
+examples/angular-standalone-examples/src/preview-examples/modal-by-instance.ts
+  h_c5a773bf2fda8b 10,21
+examples/angular-standalone-examples/src/preview-examples/modal-by-template.ts
+  h_c5a773bf2fda8b 10,52
+examples/angular-standalone-examples/src/preview-examples/modal-close.ts
+  h_c5a773bf2fda8b 22
+examples/angular-standalone-examples/src/preview-examples/modal-form-ix-button-submit.ts
+  h_c5a773bf2fda8b 10,39
+examples/angular-standalone-examples/src/preview-examples/modal-non-blocking.ts
+  h_c5a773bf2fda8b 52,62
+examples/angular-standalone-examples/src/preview-examples/modal-sizes.ts
+  h_c5a773bf2fda8b 10,25
+examples/angular-standalone-examples/src/preview-examples/pill-variants.ts
+  h_c5a773bf2fda8b 26,29,35,38,44,47,53,56-58,64,67,73,76,89-97,102,106-107,113,117-118,124
+examples/angular-standalone-examples/src/preview-examples/pill.ts
+  h_c5a773bf2fda8b 20,25,31,35-36,38-40,44,48
+examples/angular-standalone-examples/src/preview-examples/popover.html
+  h_c5a773bf2fda8b 15-17,22,26,30
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-circular-sizes.html
+  h_c5a773bf2fda8b 24,34,44,54,64
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,24,33,43,48,53-54,63,73
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-circular.html
+  h_c5a773bf2fda8b 23
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-linear-sizes.html
+  h_c5a773bf2fda8b 24,34,44,54,64
+examples/angular-standalone-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,24,33,43,48,53-54,63,73
+examples/angular-standalone-examples/src/preview-examples/progress-indicator.html
+  h_c5a773bf2fda8b 13
+examples/angular-standalone-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 15
+examples/angular-standalone-examples/src/preview-examples/toast-custom.ts
+  h_c5a773bf2fda8b 10,45
+examples/angular-standalone-examples/src/preview-examples/toast-position.ts
+  h_c5a773bf2fda8b 10,22
+examples/angular-standalone-examples/src/preview-examples/toast.ts
+  h_c5a773bf2fda8b 10,22
+examples/angular-standalone-examples/tsconfig.app.json
+  h_c5a773bf2fda8b 1-31
+examples/html-examples/.eslintrc.json
+  h_c5a773bf2fda8b 2-8
+examples/html-examples/package.json
+  h_c5a773bf2fda8b 1-25
+examples/html-examples/src/preview-examples/action-card.html
+  h_c5a773bf2fda8b 29
+examples/html-examples/src/preview-examples/badge-counter.html
+  h_c5a773bf2fda8b 20-21,25,31,36-37,41,47,84-85,89,95
+examples/html-examples/src/preview-examples/badge-dot.html
+  h_c5a773bf2fda8b 22,24,28,31,35,38,42,46,51,53,57,60,64,67,71,75,138,140,144,147,151,154,158,162
+examples/html-examples/src/preview-examples/badge-label.html
+  h_c5a773bf2fda8b 27-28,33-34,40-41,47-48,55-56,61-62,68-69,75-76,137,140-141,147-148,154-155
+examples/html-examples/src/preview-examples/badge-status-icon.html
+  h_c5a773bf2fda8b 20-28,40-44,50-53
+examples/html-examples/src/preview-examples/badge.html
+  h_c5a773bf2fda8b 25-26,28,33,35-39,41,46,48-51
+examples/html-examples/src/preview-examples/blind-variants.html
+  h_c5a773bf2fda8b 26,29,32-50
+examples/html-examples/src/preview-examples/card-list.html
+  h_c5a773bf2fda8b 32,56,70,77,84
+examples/html-examples/src/preview-examples/card.html
+  h_c5a773bf2fda8b 28
+examples/html-examples/src/preview-examples/chip.html
+  h_c5a773bf2fda8b 28,30,33,36,38-39,50,55,57,60,64-67,69,81
+examples/html-examples/src/preview-examples/date-dropdown-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/date-dropdown-user-range.html
+  h_c5a773bf2fda8b 1-55
+examples/html-examples/src/preview-examples/date-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/date-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/datetime-input-require-confirmation.html
+  h_c5a773bf2fda8b 1-26
+examples/html-examples/src/preview-examples/datetime-picker-require-confirmation.html
+  h_c5a773bf2fda8b 1-27
+examples/html-examples/src/preview-examples/echarts-bar-horizontal-stacked.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-bar-simple.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-circle.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-empty-state.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-gauge.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-line-advanced.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-line-multiple-y-axis.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-line-simple.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-pie.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-progress-arc.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-progress-circle.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-special-3d.html
+  h_c5a773bf2fda8b 18-27
+examples/html-examples/src/preview-examples/echarts-special-toolbox.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts-special-zoom.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/echarts.html
+  h_c5a773bf2fda8b 18-22
+examples/html-examples/src/preview-examples/flip-tile.html
+  h_c5a773bf2fda8b 28-39,42-50,52-53,60-62,64-83,88,100,124-136
+examples/html-examples/src/preview-examples/kpi.html
+  h_c5a773bf2fda8b 23-28,39
+examples/html-examples/src/preview-examples/link-button-action.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/link-button-external.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/link-button-file.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/link-button-internal.html
+  h_c5a773bf2fda8b 1-23
+examples/html-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/html-examples/src/preview-examples/message-bar.html
+  h_c5a773bf2fda8b 21-22,24-31
+examples/html-examples/src/preview-examples/modal-non-blocking.html
+  h_c5a773bf2fda8b 20
+examples/html-examples/src/preview-examples/pill-variants.html
+  h_c5a773bf2fda8b 29,32,38,41,47,50,56,59-61,67,70,76,79,92-100
+examples/html-examples/src/preview-examples/pill.html
+  h_c5a773bf2fda8b 39,43-44,46-48,52,56
+examples/html-examples/src/preview-examples/popover.html
+  h_c5a773bf2fda8b 40
+examples/html-examples/src/preview-examples/progress-indicator-circular-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/html-examples/src/preview-examples/progress-indicator-linear-status.html
+  h_c5a773bf2fda8b 19,48,54
+examples/html-examples/src/preview-examples/push-card.html
+  h_c5a773bf2fda8b 30
+examples/html-examples/vite.config.ts
+  h_c5a773bf2fda8b 13
+examples/react-examples/package.json
+  h_c5a773bf2fda8b 2,23,25-26
+examples/react-examples/src/main.tsx
+  h_c5a773bf2fda8b 77,79,86,97,100,183-186,355-356,432-435,525,531-532,535-536,565
+examples/react-examples/src/preview-examples/action-card.tsx
+  h_c5a773bf2fda8b 19
+examples/react-examples/src/preview-examples/badge-counter.tsx
+  h_c5a773bf2fda8b 21-22,26,32,37-38,42,48,85-86,90,96
+examples/react-examples/src/preview-examples/badge-dot.tsx
+  h_c5a773bf2fda8b 23,25,29,32,36,39,43,47,52,54,58,61,65,68,72,76,137,140,143,147,150,154,158
+examples/react-examples/src/preview-examples/badge-label.tsx
+  h_c5a773bf2fda8b 24-25,30-31,37-38,44-45,53-54,59-60,66-67,73-74,140-141,146-147,153-154,160-161
+examples/react-examples/src/preview-examples/badge-status-icon.tsx
+  h_c5a773bf2fda8b 19,21,25,28,32,35,39,43,48,50,54,57,61,64,68,72,77,79,83,86,90,93,97,101,133-161,193,195,199,202,206,209,213,217
+examples/react-examples/src/preview-examples/badge.tsx
+  h_c5a773bf2fda8b 19,23,39,49,51-54,58,72,74,89,102,106,111,118
+examples/react-examples/src/preview-examples/blind-variants.tsx
+  h_c5a773bf2fda8b 18-23,26-28,31-32,35,39-40,43,47-48,51,55-56,59-67,71-72,75,79,87
+examples/react-examples/src/preview-examples/card-list.tsx
+  h_c5a773bf2fda8b 18,22-23,47,61,68,75
+examples/react-examples/src/preview-examples/card.tsx
+  h_c5a773bf2fda8b 17
+examples/react-examples/src/preview-examples/chip.tsx
+  h_c5a773bf2fda8b 19-20,25-27,30,34-40,57,62-63,68-70,73,78-84,102
+examples/react-examples/src/preview-examples/date-dropdown-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-16
+examples/react-examples/src/preview-examples/date-dropdown-user-range.tsx
+  h_c5a773bf2fda8b 1-50
+examples/react-examples/src/preview-examples/date-input-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-14
+examples/react-examples/src/preview-examples/date-picker-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-14
+examples/react-examples/src/preview-examples/datetime-input-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-20
+examples/react-examples/src/preview-examples/datetime-picker-require-confirmation.tsx
+  h_c5a773bf2fda8b 1-21
+examples/react-examples/src/preview-examples/drawer-full-height.tsx
+  h_c5a773bf2fda8b 10-11,14-15,18-26
+examples/react-examples/src/preview-examples/drawer.tsx
+  h_c5a773bf2fda8b 1-28
+examples/react-examples/src/preview-examples/flip-tile.tsx
+  h_c5a773bf2fda8b 18-29,32-40,42-43,50-52,54-73,78,90,114-126
+examples/react-examples/src/preview-examples/form-validation.tsx
+  h_c5a773bf2fda8b 153
+examples/react-examples/src/preview-examples/kpi.tsx
+  h_c5a773bf2fda8b 20-25,32
+examples/react-examples/src/preview-examples/link-button-action.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/link-button-external.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/link-button-file.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/link-button-internal.tsx
+  h_c5a773bf2fda8b 1-18
+examples/react-examples/src/preview-examples/message-bar.scoped.css
+  h_c5a773bf2fda8b 23
+examples/react-examples/src/preview-examples/message-bar.tsx
+  h_c5a773bf2fda8b 1-53
+examples/react-examples/src/preview-examples/modal-non-blocking.tsx
+  h_c5a773bf2fda8b 60
+examples/react-examples/src/preview-examples/pill-variants.tsx
+  h_c5a773bf2fda8b 21-22,26-27,34-35,39-40,47-48,52-53,60-61,65-66,73-74,78-79,86-87,91-92,110-122
+examples/react-examples/src/preview-examples/pill.tsx
+  h_c5a773bf2fda8b 35,44-45,49,52,55,63,71
+examples/react-examples/src/preview-examples/popover.tsx
+  h_c5a773bf2fda8b 50
+examples/react-examples/src/preview-examples/progress-indicator-circular-sizes.tsx
+  h_c5a773bf2fda8b 13,23,33,43,53
+examples/react-examples/src/preview-examples/progress-indicator-circular-status.tsx
+  h_c5a773bf2fda8b 15,20,29,39,44,49-50,59,69
+examples/react-examples/src/preview-examples/progress-indicator-circular.tsx
+  h_c5a773bf2fda8b 18
+examples/react-examples/src/preview-examples/progress-indicator-linear-sizes.tsx
+  h_c5a773bf2fda8b 20,30,40,50,60
+examples/react-examples/src/preview-examples/progress-indicator-linear-status.tsx
+  h_c5a773bf2fda8b 15,20,29,39,44,49-50,59,69
+examples/react-examples/src/preview-examples/progress-indicator.tsx
+  h_c5a773bf2fda8b 17
+examples/react-examples/src/preview-examples/push-card.tsx
+  h_c5a773bf2fda8b 20
+examples/react-examples/vite.config.ts
+  h_c5a773bf2fda8b 19
+examples/vue-examples/package.json
+  h_c5a773bf2fda8b 2,28-29
+examples/vue-examples/src/Root.vue
+  h_c5a773bf2fda8b 74,79,86,93,96,182-185,352-353,495,497,508-509,512-513,532-535
+examples/vue-examples/src/preview-examples/action-card.vue
+  h_c5a773bf2fda8b 24
+examples/vue-examples/src/preview-examples/badge-counter.vue
+  h_c5a773bf2fda8b 18-19,23,29,34-35,39,45,82-84,88
+examples/vue-examples/src/preview-examples/badge-dot.vue
+  h_c5a773bf2fda8b 20,22,26,29,33,36,40,44,47,50,53,57,60,64,68,129,132,135,139,142,146,150
+examples/vue-examples/src/preview-examples/badge-label.vue
+  h_c5a773bf2fda8b 21-22,27-28,34-35,41-42,49-50,55-56,62-63,69-70,133-134,139-140,146-147,153-154
+examples/vue-examples/src/preview-examples/badge-status-icon.vue
+  h_c5a773bf2fda8b 18-26,38-42,48-51
+examples/vue-examples/src/preview-examples/badge.vue
+  h_c5a773bf2fda8b 19-20,22,27,29-33,35,40,42-45
+examples/vue-examples/src/preview-examples/blind-variants.vue
+  h_c5a773bf2fda8b 18,21-26,29-30,33,37-38,41,45-46,49,51-60
+examples/vue-examples/src/preview-examples/card-list.vue
+  h_c5a773bf2fda8b 22,46,53,60,67,74
+examples/vue-examples/src/preview-examples/card.vue
+  h_c5a773bf2fda8b 22
+examples/vue-examples/src/preview-examples/chip.vue
+  h_c5a773bf2fda8b 20-22,25,29,31-34,44,49-51,54,59,61-64,75
+examples/vue-examples/src/preview-examples/date-dropdown-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/date-dropdown-user-range.vue
+  h_c5a773bf2fda8b 1-49
+examples/vue-examples/src/preview-examples/date-input-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/date-picker-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/datetime-input-require-confirmation.vue
+  h_c5a773bf2fda8b 1-20
+examples/vue-examples/src/preview-examples/datetime-picker-require-confirmation.vue
+  h_c5a773bf2fda8b 1-21
+examples/vue-examples/src/preview-examples/drawer-full-height.vue
+  h_c5a773bf2fda8b 11-12,14-15,18-26
+examples/vue-examples/src/preview-examples/drawer.vue
+  h_c5a773bf2fda8b 1-22
+examples/vue-examples/src/preview-examples/empty-state-compact-break.vue
+  h_c5a773bf2fda8b 19
+examples/vue-examples/src/preview-examples/empty-state-compact.vue
+  h_c5a773bf2fda8b 19
+examples/vue-examples/src/preview-examples/empty-state.vue
+  h_c5a773bf2fda8b 18
+examples/vue-examples/src/preview-examples/flip-tile.vue
+  h_c5a773bf2fda8b 19-30,33-41,43-44,51-53,55-74,79,91,115-127
+examples/vue-examples/src/preview-examples/form-validation.vue
+  h_c5a773bf2fda8b 167
+examples/vue-examples/src/preview-examples/kpi.vue
+  h_c5a773bf2fda8b 21-26,33
+examples/vue-examples/src/preview-examples/link-button-action.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/link-button-external.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/link-button-file.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/link-button-internal.vue
+  h_c5a773bf2fda8b 1-18
+examples/vue-examples/src/preview-examples/message-bar.css
+  h_c5a773bf2fda8b 23
+examples/vue-examples/src/preview-examples/message-bar.vue
+  h_c5a773bf2fda8b 1-34
+examples/vue-examples/src/preview-examples/pill-variants.vue
+  h_c5a773bf2fda8b 21,24,30,33,39,42,48,51,57,60,66,69,82-90
+examples/vue-examples/src/preview-examples/pill.vue
+  h_c5a773bf2fda8b 31,35-36,38-40,44,48
+examples/vue-examples/src/preview-examples/popover.vue
+  h_c5a773bf2fda8b 50
+examples/vue-examples/src/preview-examples/progress-indicator-circular-status.vue
+  h_c5a773bf2fda8b 8,37,43
+examples/vue-examples/src/preview-examples/progress-indicator-linear-status.vue
+  h_c5a773bf2fda8b 8,37,43
+examples/vue-examples/src/preview-examples/push-card.vue
+  h_c5a773bf2fda8b 21
+examples/vue-examples/vite.config.ts
+  h_c5a773bf2fda8b 19
+ix.code-workspace
+  h_c5a773bf2fda8b 11-14,28-29,32-33,36-37,40-41,44-45,48-49,93
+packages/aggrid/src/aggrid-ix-theme-params.ts
+  h_c5a773bf2fda8b 9,12,23,32,44,48,52,59,61,72,74,77,79,85,91,93,98,101,110
+packages/aggrid/src/tooltip.style.css
+  h_c5a773bf2fda8b 11
+packages/aggrid/tests/aggrid.e2e.ts
+  h_c5a773bf2fda8b 146-165
+packages/angular/common/src/providers/message/message.service.ts
+  h_c5a773bf2fda8b 1-9,11-16,32,34-35,41-63,69-70,76-77,83-84
+packages/angular/package.json
+  h_c5a773bf2fda8b 23-25,28-36,39,41-44,47
+packages/angular/setup-jest.ts
+  h_c5a773bf2fda8b 9-11
+packages/angular/src/angular-component-lib/boolean-attribute.ts
+  h_c5a773bf2fda8b 1-43
+packages/angular/src/components.ts
+  h_c5a773bf2fda8b 11,18,70-71,79-80,85,89,140,147,153,161-162,167,172,179,185-186,194,201,205,256,263,279,286,337-339,347-348,353,357,361,401-404,412,420,424,428,432,494-495,503-504,509,513,532-535,543-544,549,553,557,561,602-604,612-613,618,622,626,667,675-676,681,744,752-753,758,786,794-795,800-801,809,818-828,830,835,843,849-851,859,866,870,874,879,887-888,893-896,904,909,913-914,916,921-923,925,927-930,934-938,943,950,956-960,968,975,979,983,987,993-994,997,1001,1006,1013-1014,1019-1022,1030,1037-1042,1044,1047-1056,1058,1060-1062,1064,1091-1092,1099,1105-1106,1114-1115,1120,1124,1142-1143,1151-1152,1157,1161,1247,1255-1256,1261,1302,1310-1311,1316,1334,1342-1343,1348,1389,1397-1398,1403,1421,1429-1430,1435,1462,1469,1475-1477,1485-1486,1491,1495,1499,1539,1547-1548,1553,1617,1625-1626,1631,1673-1676,1684-1685,1690,1694,1698,1702,1753,1760,1822,1829,1859-1863,1871-1872,1877,1881,1885,1889,1893,1911-1912,1920,1927,1931,1949,1957,1964,1982-1983,1991-1992,1997,2001,2019,2027-2028,2033,2051,2059-2060,2065,2129-2130,2138,2145,2149,2190-2191,2199-2200,2205,2209,2228-2229,2237-2238,2243,2247,2309,2317-2318,2324,2343-2346,2354-2355,2360,2364,2368,2372,2377,2384,2390-2391,2399-2400,2405,2409,2427-2429,2437,2446,2450,2454,2519-2520,2528-2529,2534,2538,2602,2610-2611,2617,2668,2675,2704-2706,2714-2715,2720,2724,2728,2746,2754-2755,2760,2824-2827,2835-2836,2841,2845,2849,2853,2871,2879-2880,2885,2903,2911-2912,2917,2958,2966-2967,2972,2990-2991,2999,3006,3010,3028-3029,3037-3038,3043,3047,3066-3069,3077-3078,3083,3087,3091,3095,3123,3131,3137-3139,3147,3154,3158,3162,3167,3175-3176,3181-3183,3191-3192,3195-3203,3205,3207-3208,3210,3229,3237-3238,3243,3285-3286,3294-3295,3300,3304,3322,3330-3331,3336,3364,3371,3377-3378,3386-3387,3392,3396,3438,3446-3447,3452,3493,3501-3502,3507
+packages/angular/standalone/src/angular-component-lib/boolean-attribute.ts
+  h_c5a773bf2fda8b 1-43
+packages/angular/standalone/src/components.ts
+  h_c5a773bf2fda8b 123,130,181-182,190-191,196,200,252,259,264,272-273,278,284,291,296-297,305,312,316,368,375,391,398,448-450,458-459,464,468,472,512-515,523,531,535,539,543,605-606,614-615,620,624,643-646,654-655,660,664,668,672,713-715,723-724,729,733,737,778,786-787,792,855,863-864,869,898,906-907,911-912,920,929-939,941,947,955,960-962,970,977,981,985,991,999-1000,1004-1007,1015,1020,1024-1025,1027,1032-1034,1036,1038-1041,1045-1049,1055,1062,1067-1071,1079,1086,1090,1094,1098,1104-1105,1108,1112,1118,1125-1126,1130-1133,1141,1148-1153,1155,1158-1167,1169,1171-1173,1175,1203-1204,1211,1216-1217,1225-1226,1231,1235,1253-1254,1262-1263,1268,1272,1358,1366-1367,1372,1413,1421-1422,1427,1445,1453-1454,1459,1500,1508-1509,1514,1532,1540-1541,1546,1574,1581,1586-1588,1596-1597,1602,1606,1610,1650,1658-1659,1664,1728,1736-1737,1742,1784-1787,1795-1796,1801,1805,1809,1813,1865,1872,1934,1941,1970-1974,1982-1983,1988,1992,1996,2000,2004,2022-2023,2031,2038,2042,2060,2068,2075,2093-2094,2102-2103,2108,2112,2130,2138-2139,2144,2162,2170-2171,2176,2240-2241,2249,2256,2260,2301-2302,2310-2311,2316,2320,2339-2340,2348-2349,2354,2358,2420,2428-2429,2435,2454-2457,2465-2466,2471,2475,2479,2483,2489,2496,2501-2502,2510-2511,2516,2520,2538-2540,2548,2557,2561,2565,2630-2631,2639-2640,2645,2649,2713,2721-2722,2728,2780,2787,2815-2817,2825-2826,2831,2835,2839,2857,2865-2866,2871,2935-2938,2946-2947,2952,2956,2960,2964,2982,2990-2991,2996,3014,3022-3023,3028,3069,3077-3078,3083,3101-3102,3110,3117,3121,3139-3140,3148-3149,3154,3158,3177-3180,3188-3189,3194,3198,3202,3206,3235,3243,3248-3250,3258,3265,3269,3273,3279,3287-3288,3292-3294,3302-3303,3306-3314,3316,3318-3319,3321,3340,3348-3349,3354,3396-3397,3405-3406,3411,3415,3433,3441-3442,3447,3476,3483,3488-3489,3497-3498,3503,3507,3549,3557-3558,3563,3604,3612-3613,3618
+packages/angular/standalone/src/providers/message.ts
+  h_c5a773bf2fda8b 1-9,11,36-49,52-53,56-57,60-61,64-65
+packages/cli/.gitignore
+  h_c5a773bf2fda8b 1-2
+packages/cli/README.md
+  h_c5a773bf2fda8b 1-97
+packages/cli/READMEOSS.html
+  h_c5a773bf2fda8b 1-470
+packages/cli/package.json
+  h_c5a773bf2fda8b 1-42
+packages/cli/src/cli.ts
+  h_c5a773bf2fda8b 1-22
+packages/cli/src/commands/add.ts
+  h_c5a773bf2fda8b 1-156
+packages/cli/src/commands/init.ts
+  h_c5a773bf2fda8b 1-36
+packages/cli/src/commands/mcp.ts
+  h_c5a773bf2fda8b 1-160
+packages/cli/src/component-search.ts
+  h_c5a773bf2fda8b 1-595
+packages/cli/src/config.ts
+  h_c5a773bf2fda8b 1-9,11-76,78-86,88,90-95,97,99-102,105-131,133-149,151,154-157,159-168,170-173,175-192,195,197-237,240,242,244-253,255,257-259,261-276,278-288,290-294,296-298,300-306,308-333
+packages/cli/src/detect.ts
+  h_c5a773bf2fda8b 1-19
+packages/cli/src/documentation-search.ts
+  h_c5a773bf2fda8b 1-437
+packages/cli/src/installer.ts
+  h_c5a773bf2fda8b 1-577
+packages/cli/src/ix-patterns.schema.json
+  h_c5a773bf2fda8b 1-64
+packages/cli/src/mcp/config.ts
+  h_c5a773bf2fda8b 2,9-16,18-68,70-193,195-228,230-232,234-242,244-258
+packages/cli/src/mcp/prompts/icons.ts
+  h_c5a773bf2fda8b 2,9,11-69
+packages/cli/src/mcp/server.ts
+  h_c5a773bf2fda8b 1-102
+packages/cli/src/mcp/tools/audit-tools.ts
+  h_c5a773bf2fda8b 1-31
+packages/cli/src/mcp/tools/component-tools.ts
+  h_c5a773bf2fda8b 1-305
+packages/cli/src/mcp/tools/example-tools.ts
+  h_c5a773bf2fda8b 1-214
+packages/cli/src/mcp/tools/figma-tools.ts
+  h_c5a773bf2fda8b 1-229
+packages/cli/src/mcp/tools/icon-tools.ts
+  h_c5a773bf2fda8b 1-38
+packages/cli/src/mcp/tools/pattern-tools.ts
+  h_c5a773bf2fda8b 1-197
+packages/cli/src/mcp/tools/setup-tools.ts
+  h_c5a773bf2fda8b 1-67
+packages/cli/src/mcp/tools/types.ts
+  h_c5a773bf2fda8b 1-28
+packages/cli/src/registry.ts
+  h_c5a773bf2fda8b 1-638
+packages/cli/src/search.ts
+  h_c5a773bf2fda8b 1-84
+packages/cli/src/validation.ts
+  h_c5a773bf2fda8b 1-75
+packages/cli/src/version.ts
+  h_c5a773bf2fda8b 1-29
+packages/cli/test/add.test.ts
+  h_c5a773bf2fda8b 1-282
+packages/cli/test/cli.test.ts
+  h_c5a773bf2fda8b 1-35
+packages/cli/test/component-search.test.ts
+  h_c5a773bf2fda8b 1-382
+packages/cli/test/config.test.ts
+  h_c5a773bf2fda8b 1-120
+packages/cli/test/detect.test.ts
+  h_c5a773bf2fda8b 1-65
+packages/cli/test/documentation-search.test.ts
+  h_c5a773bf2fda8b 1-579
+packages/cli/test/installer.test.ts
+  h_c5a773bf2fda8b 2,6-17,19-119,121-197,199-248,250-251,253-254,256-258,260-271,273-287,289-304,306-326,328-330,332-335,337-362,364-385,387-406,408
+packages/cli/test/mcp-config.test.ts
+  h_c5a773bf2fda8b 1-252
+packages/cli/test/mcp.test.ts
+  h_c5a773bf2fda8b 1-634
+packages/cli/test/registry.test.ts
+  h_c5a773bf2fda8b 1-402
+packages/cli/tsconfig.json
+  h_c5a773bf2fda8b 1-12
+packages/cli/tsdown.config.ts
+  h_c5a773bf2fda8b 1-8
+packages/core/component-api.json
+  h_c5a773bf2fda8b 27-36,59-61,64,92,95,567,570,579-582,621-630,644,647,677-687,968-969,978-987,1002,1005,1046-1055,1059,1062,1065,2181,2184,2518-2539,2549,2605-2615,2682-2690,2782-2803,2908-2918,3152-3173,3217-3227,3280-3287,3290,3298,3302,3306,3398-3419,3426,3564-3574,3782-3803,3931-3941,4030-4037,4040,4048,4093-4101,4245-4249,4534-4535,5016,5073-5092,6069,6191-6212,7177,7180,7759-7780,7847-7857,8215,8218,8572,8575,8638-8648,8691-8693,8696,8713,8716,10382-10392,10795-10807,10968-10975,11079,11082,11559-11580,11677
+packages/core/eslint.config.cjs
+  h_c5a773bf2fda8b 69-74
+packages/core/package.json
+  h_c5a773bf2fda8b 31-34,116-119,151-156,176,190
+packages/core/scripts/build/dev.ts
+  h_c5a773bf2fda8b 30-58,154-156
+packages/core/scss/globals/_reset.scss
+  h_c5a773bf2fda8b 108,142
+packages/core/scss/legacy/components/_checkboxes.scss
+  h_c5a773bf2fda8b 18-20,68,75,82,87,92,97,104,125,130,135,156,164,169,174,179
+packages/core/scss/legacy/components/_forms.scss
+  h_c5a773bf2fda8b 23,49
+packages/core/scss/legacy/components/_input.scss
+  h_c5a773bf2fda8b 26-27,68,75,86,112-113
+packages/core/scss/legacy/components/_radiobuttons.scss
+  h_c5a773bf2fda8b 70,77,84,89,94,99,106,123,128,133
+packages/core/scss/mixins/_input.scss
+  h_c5a773bf2fda8b 9-10
+packages/core/scss/mixins/internal/_native-input.scss
+  h_c5a773bf2fda8b 1-280
+packages/core/scss/theme/classic/_composition.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/_si-reference.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/dark/_index.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/dark/_legacy.scss
+  h_c5a773bf2fda8b 12,17
+packages/core/scss/theme/classic/dark/_system.scss
+  h_c5a773bf2fda8b 12,63-64,117-118,219-221,226,228,230,232,267-268
+packages/core/scss/theme/classic/density/_compact.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/density/_default.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/density/sizing/_compact.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/density/sizing/_default.scss
+  h_c5a773bf2fda8b 12,60
+packages/core/scss/theme/classic/density/typography/_compact.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/density/typography/_default.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/light/_index.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/classic/light/_legacy.scss
+  h_c5a773bf2fda8b 12,17
+packages/core/scss/theme/classic/light/_system.scss
+  h_c5a773bf2fda8b 12,36,63-64,100,102,104,117-118,128,134,137-138,219-221,226,228,230,232,267-268
+packages/core/scss/theme/classic/theme.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/theme/core/_common.scss
+  h_c5a773bf2fda8b 12
+packages/core/scss/tokens/_system.scss
+  h_c5a773bf2fda8b 12,67-68,129-130,246-247,251-258,293-294
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 8,17,35,45,47,58,60,67,76,94,104,106,117,119,127-131,143-147,158-159,161,172-173,175,177-180,183,206-210,275-277,281-285,323-324,408,410,414-418,433-437,443-444,446,448-452,454-459,488-492,504,544-548,615-619,622-623,626-631,638-639,641,643-647,660-666,668,670,672-676,679-683,740-743,746-750,788,841-842,848-849,855-856,892-893,988-989,999-1001,1043-1045,1090-1094,1146-1147,1151-1154,1173-1176,1179-1183,1211-1213,1220-1222,1229-1233,1269-1273,1307,1310-1321,1324,1352-1357,1390-1392,1443-1454,1504-1509,1553-1557,1586-1589,1613,1616-1627,1635,1649-1654,1681-1683,1713-1714,1774-1781,1784-1788,1852-1857,1902-1906,1923-1926,1935-1938,1947-1958,2022-2027,2067-2069,2072-2076,2082-2086,2179-2185,2202,2210-2214,2273-2277,2284-2288,2352-2356,2359-2363,2392-2396,2419-2423,2451-2455,2499-2505,2523-2525,2590-2592,2614-2618,2637,2648-2652,2660-2664,2666-2675,2709-2711,2714-2718,2760-2765,2792-2796,2843-2847,2899,2932-2937,3047-3051,3076-3080,3088-3092,3100,3103,3107-3110,3121-3124,3142-3146,3153-3164,3171,3175-3179,3278-3281,3311-3312,3326-3329,3359-3362,3407-3410,3422-3426,3453-3455,3482-3486,3515,3554-3557,3587-3588,3602-3606,3615,3617,3619-3622,3671-3674,3677-3680,3683-3686,3712-3714,3718-3723,3839-3844,3862-3873,3905-3910,3928-3932,4006-4010,4028-4032,4068-4069,4071,4075-4076,4115,4128,4141,4154,4183,4200-4202,4235-4236,4255-4259,4266-4271,4290-4291,4293,4299-4300,4302,4305-4307,4344-4346,4396-4399,4411-4413,4417-4419,4578-4581,4618-4620,4702-4706,4723-4727,4785-4789,4854,4864,4869-4873,4914,4916,4933-4936,5023-5027,5036-5038,5097-5102,5236-5240,5248,5250,5262,5267,5270-5275,5293-5298,5301,5304,5373-5376,5379,5425,5429-5432,5446-5448,5505-5509,5541-5545,5580-5583,5595,5624-5627,5630,5633-5644,5650,5665-5669,5690-5694,5759-5762,5795-5798,6078-6082,6089-6092,6103-6107,6122-6124,6131-6135,6151-6152,6164-6168,6190-6194,6212-6216,6231-6235,6242-6246,6256-6260,6275-6279,6295-6299,6314-6317,6330-6334,6350-6351,6361-6362,6376-6377,6401-6402,6421-6422,6437-6439,6457-6459,6471-6475,6490-6493,6500-6503,6513-6517,6532-6534,6541-6543,6550-6554,6563,6565-6569,6592-6594,6615,6617-6621,6636-6638,6653-6654,6676,6678-6682,6697-6699,6714-6718,6737-6741,6756-6760,6770-6774,6789-6793,6803-6807,6822-6826,6836-6840,6858-6862,6877-6883,6890-6892,6902-6904,6922-6926,6941-6945,6957-6961,6976-6978,6988-6992,7007-7012,7019-7023,7033-7037,7055,7071-7076,7093-7097,7104-7108,7115-7119,7126-7129,7136-7139,7146-7150,7164-7168,7187-7190,7209-7210,7231-7234,7252-7255,7273-7276,7294-7298,7313-7315,7322-7326,7337-7340,7359-7360,7381-7385,7404-7407,7422-7425,7432-7435,7445-7448,7463-7465,7479-7484,7505-7509,7531-7535,7550-7554,7561-7565,7578-7579,7608,7619,7633,7652,7662-7664,7673-7677,7690-7692,7713-7715,7732-7735,7742-7744,7758-7760,7780-7783,7802-7804,7821-7825,7835-7839,7858-7862,7878,7888,7901-7905,7927,7929,7945-7949,7964-7966,7987,7989-7994,8011-8014,8029-8032,8045-8047,8067-8071,8086-8090,8103-8106,8125-8128,8143-8147,8157-8161,8179-8182,8200-8203,8344,8346-8350,8362-8366,8377-8378,8380,8391-8392,8394,8396-8399,8402,8425-8429,8503-8505,8509-8513,8551-8552,8636,8638,8642-8646,8665-8669,8675-8676,8678,8680-8684,8686-8691,8733-8737,8749,8790-8794,8861-8865,8868-8869,8872-8877,8884-8885,8887,8889-8893,8907-8913,8915,8917,8919-8923,8926-8930,9003-9006,9009-9013,9051,9120-9121,9127-9128,9134-9135,9179-9180,9284-9285,9295-9297,9352-9354,9397-9401,9457-9458,9462-9465,9484-9487,9490-9494,9526-9528,9535-9537,9544-9548,9584-9588,9621-9632,9635,9664,9667-9677,9710-9712,9756-9767,9827-9832,9876-9880,9928-9939,9946,9960-9965,9969-9970,9974,9977-9982,10008-10010,10040-10041,10085-10092,10095-10099,10154,10178-10183,10228-10232,10263-10274,10339-10344,10348,10352,10355-10360,10400-10402,10405-10409,10415-10419,10541,10545-10549,10615-10619,10626-10630,10693-10697,10700-10704,10737-10741,10764-10768,10800-10804,10852-10858,10876-10878,10941-10943,10969-10973,10997,11008-11012,11020-11024,11026-11035,11081-11083,11086-11090,11136-11141,11168-11172,11219-11223,11279,11312-11317,11430-11434,11459-11463,11471-11475,11483,11486,11490-11493,11504-11507,11525-11529,11536-11547,11554,11558-11562,11664-11667,11706-11707,11725-11728,11766-11769,11818-11822,11836-11840,11867-11869,11896-11900,11929,11967-11970,12009-12010,12025-12029,12046,12048,12050-12053,12098-12101,12104-12107,12110-12113,12143-12145,12149-12154,12277-12281,12300-12311,12343-12348,12374-12378,12466-12470,12488-12492,12528-12529,12531,12535-12536,12575,12588,12601,12614,12648,12665-12667,12700-12701,12720-12724,12731-12736,12755-12756,12758,12764-12765,12767,12770-12772,12822-12824,12875-12878,12890-12892,12896-12898,13063-13066,13106-13108,13200-13204,13221-13225,13287-13291,13364,13374,13379-13383,13434,13436,13546-13550,13559-13561,13613-13618,13762-13766,13783-13787,13805-13810,13813,13816,13875-13880,13884,13898-13901,13904,13942,13946-13949,13958-13960,14027-14031,14067-14071,14104-14107,14115,14156-14159,14162,14165-14176,14182,14205-14209,14230-14234,14298-14301,14335-14338,14362-14363,14370,14421-14422,14428,14460-14461,14463,14468-14469,14603-14605,14636-14638,14649-14651,14693-14694,14704,14720-14722,14862-14863,14949,14961-14962,15057,15106,15112-15113,15143,15194-15195,15197,15385,15392,15401-15402,15462-15463,15628-15632,15634-15637,15639-15643,15645-15647,15649-15653,15664-15665,15669-15673,15675-15679,15681-15685,15687-15691,15693-15697,15699-15703,15705-15709,15711-15715,15717-15720,15722-15726,15729-15730,15735-15736,15741-15742,15747-15748,15754-15755,15760-15762,15767-15769,15773-15777,15779-15782,15784-15787,15789-15793,15795-15797,15799-15801,15803-15807,15809-15813,15816-15818,15822-15826,15828-15830,15833-15834,15839-15843,15845-15847,15849-15853,15855-15859,15861-15865,15867-15871,15873-15877,15879-15883,15885-15889,15891-15895,15897-15901,15903-15909,15911-15913,15915-15917,15919-15923,15925-15929,15931-15935,15937-15939,15941-15945,15947-15952,15954-15958,15960-15964,15969,15974-15979,15983-15987,15989-15993,15995-15999,16001-16004,16006-16009,16011-16015,16017-16021,16023-16026,16029-16030,16034-16037,16039-16042,16044-16047,16049-16053,16055-16057,16059-16063,16065-16068,16071-16072,16076-16080,16082-16085,16087-16090,16092-16095,16097-16100,16102-16104,16107-16112,16116-16120,16122-16126,16128-16132,16134-16138,16142-16143,16149,16155,16161,16167,16172-16174,16178-16182,16185-16187,16192-16194,16198-16201,16203-16205,16208-16210,16214-16217,16220-16222,16226-16230,16232-16236,16238-16242,16245,16250,16254-16258,16261,16263,16266-16270,16273-16275,16280-16284,16286-16289,16291-16294,16297-16299,16303-16307,16309-16313,16315-16318,16320-16323,16325-16329,16331-16335,16337-16340,16342-16345
+packages/core/src/components/action-card/action-card.scss
+  h_c5a773bf2fda8b 39-40,52
+packages/core/src/components/action-card/action-card.tsx
+  h_c5a773bf2fda8b 12,15-20,29-38,40,77-81,83-87,89-90,103,110-112,137
+packages/core/src/components/action-card/action-card.types.ts
+  h_c5a773bf2fda8b 10,12-13
+packages/core/src/components/action-card/action-card.vars.scss
+  h_c5a773bf2fda8b 17-19,21,24,29-30
+packages/core/src/components/action-card/test/action-card.ct.ts
+  h_c5a773bf2fda8b 17,19,23,26,29,44,46
+packages/core/src/components/application-header/application-header.scss
+  h_c5a773bf2fda8b 62-64,72,88,108-109,114-119,181
+packages/core/src/components/application-header/application-header.tsx
+  h_c5a773bf2fda8b 36-41,45-46,415-419
+packages/core/src/components/application-header/application-header.vars.scss
+  h_c5a773bf2fda8b 23-25,37-38
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.scss
+  h_c5a773bf2fda8b 28,55,57-58,72,88
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.tsx
+  h_c5a773bf2fda8b 54-57,73,81-85
+packages/core/src/components/application-header/application-switch-modal/application-switch-modal.vars.scss
+  h_c5a773bf2fda8b 19,24-25,27,30,34
+packages/core/src/components/application-header/test/application-header.ct.ts
+  h_c5a773bf2fda8b 14-42,93,249,308,327-387,415,482,495
+packages/core/src/components/application/application.scss
+  h_c5a773bf2fda8b 16-17
+packages/core/src/components/application/application.tsx
+  h_c5a773bf2fda8b 24-32,88-91
+packages/core/src/components/application/application.vars.scss
+  h_c5a773bf2fda8b 14-15
+packages/core/src/components/avatar/avatar.scss
+  h_c5a773bf2fda8b 32,43,49,107,119-120
+packages/core/src/components/avatar/avatar.tsx
+  h_c5a773bf2fda8b 123,134-139
+packages/core/src/components/avatar/avatar.vars.scss
+  h_c5a773bf2fda8b 19-21,30-32,36,39
+packages/core/src/components/avatar/test/avatar.ct.ts
+  h_c5a773bf2fda8b 12-28,195,203
+packages/core/src/components/badge/badge.scss
+  h_c5a773bf2fda8b 13-15,41-42,99,134-135,141-142,164-169,220,222,225,243,245,248,252,272-274,293-294,300-301,332,348,374,380,391-392,397-398,403
+packages/core/src/components/badge/badge.status-icon.ts
+  h_c5a773bf2fda8b 18,20,26-27,33-35,37,41-42,54,61,72-74,81-86,89,112,126
+packages/core/src/components/badge/badge.tsx
+  h_c5a773bf2fda8b 66-67,69-71,102-104,108,332,337
+packages/core/src/components/badge/badge.types.ts
+  h_c5a773bf2fda8b 10,21-24,28,30
+packages/core/src/components/badge/badge.vars.scss
+  h_c5a773bf2fda8b 13-20,29-36,50,54-65,76,78-88
+packages/core/src/components/badge/test/badge.ct.ts
+  h_c5a773bf2fda8b 14,60,65,73,85,93,102,113,124,134,137-138,141,155,157,161,164,167-173,177-178,180,215,217,241,252,256,267,276-277,285,289,365,385-426,434,454,469,503,567,579,607,640,655,670,691,799,831,834,838,844
+packages/core/src/components/badge/test/badge.page.ts
+  h_c5a773bf2fda8b 84,288-398
+packages/core/src/components/badge/test/badge.spec.ts
+  h_c5a773bf2fda8b 18,20,26-27,86,89,91-96,98-99,117,121-122,124,132,136-137,139-141,146-147,151,155,159,167,170
+packages/core/src/components/blind/blind.scss
+  h_c5a773bf2fda8b 18-21,33-43,78,86-88,92-94,97-99,103-116,170,189-191,194-197,199-201,203-214
+packages/core/src/components/blind/blind.tsx
+  h_c5a773bf2fda8b 21,24,30-37,66-76,78,92-95,106-108,125,129-136,140,142-146,153,157-168,170-193,195-200,204-220,223-225,227-236
+packages/core/src/components/blind/blind.vars.scss
+  h_c5a773bf2fda8b 12-20,28-32,34-43,47-49,51-62,65-67,75-90
+packages/core/src/components/blind/test/blind.ct.ts
+  h_c5a773bf2fda8b 16-73,80-81,83-86,92-94,97-98,103
+packages/core/src/components/breadcrumb-item/breadcrumb-item.tsx
+  h_c5a773bf2fda8b 33-38,64-67,182
+packages/core/src/components/breadcrumb/breadcrumb.scss
+  h_c5a773bf2fda8b 48
+packages/core/src/components/breadcrumb/breadcrumb.tsx
+  h_c5a773bf2fda8b 29-34,73-80,192,225,232
+packages/core/src/components/breadcrumb/breadcrumb.vars.scss
+  h_c5a773bf2fda8b 17,21
+packages/core/src/components/breadcrumb/test/breadcrumb.ct.ts
+  h_c5a773bf2fda8b 20-39,51,67,246-280
+packages/core/src/components/button/button-mixin.scss
+  h_c5a773bf2fda8b 175-176,183-184
+packages/core/src/components/button/button.tsx
+  h_c5a773bf2fda8b 40-45
+packages/core/src/components/button/button.vars.scss
+  h_c5a773bf2fda8b 179-182
+packages/core/src/components/button/test/button.ct.ts
+  h_c5a773bf2fda8b 23,145
+packages/core/src/components/card-accordion/card-accordion.scss
+  h_c5a773bf2fda8b 13,30,40-50,52-53,56-73,107,117-119,154
+packages/core/src/components/card-accordion/card-accordion.tsx
+  h_c5a773bf2fda8b 13-14,22-27,49,51,54-63,115-118,124
+packages/core/src/components/card-accordion/card-accordion.types.ts
+  h_c5a773bf2fda8b 2,9,16-17
+packages/core/src/components/card-accordion/card-accordion.vars.scss
+  h_c5a773bf2fda8b 19,22-42,46-53
+packages/core/src/components/card-content/card-content.scss
+  h_c5a773bf2fda8b 14-15,17-20
+packages/core/src/components/card-content/card-content.tsx
+  h_c5a773bf2fda8b 3-8
+packages/core/src/components/card-list/card-list.scss
+  h_c5a773bf2fda8b 115,118-136,138-139,146,148-150,152-153,158-159,162-163,169-174
+packages/core/src/components/card-list/card-list.tsx
+  h_c5a773bf2fda8b 84-89,484,502-505,507
+packages/core/src/components/card-list/card-list.vars.scss
+  h_c5a773bf2fda8b 13-16,18-20,24-28,36-38,42
+packages/core/src/components/card-list/test/card-list.ct.ts
+  h_c5a773bf2fda8b 59,102,126,153,180,194,254,287,316,343,372
+packages/core/src/components/card-title/card-title.tsx
+  h_c5a773bf2fda8b 4-6,8-9
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 11,18-19,24-28,31-44,69-70,73-78,80-93,95-96,99-101,104-105,108-109,112-114,117-119,122-124,127-129,132-134,137-141
+packages/core/src/components/card/card.tsx
+  h_c5a773bf2fda8b 1-8,10,13-19,30-39,41,49-52,54-58,65-66,70-76
+packages/core/src/components/card/card.types.ts
+  h_c5a773bf2fda8b 9-14
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 12-29,34-48,51-60,64-67
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 1-136
+packages/core/src/components/category-filter/_category-filter-dropdown-item.scss
+  h_c5a773bf2fda8b 20-25,32-36,40-43,46,53,57,65,73,77-80,84,90
+packages/core/src/components/category-filter/category-filter.scss
+  h_c5a773bf2fda8b 13,18,38,42-50,54,58,62-64,90,139,149-150,176-178,219
+packages/core/src/components/category-filter/category-filter.tsx
+  h_c5a773bf2fda8b 34-39,86-88,912
+packages/core/src/components/category-filter/category-filter.vars.scss
+  h_c5a773bf2fda8b 16-26,34-60,78-79
+packages/core/src/components/category-filter/test/category-filter.ct.ts
+  h_c5a773bf2fda8b 15,52,74,92,117
+packages/core/src/components/chat-ai-message/chat-ai-message.scss
+  h_c5a773bf2fda8b 19,31-32,48-49,55
+packages/core/src/components/chat-ai-message/chat-ai-message.tsx
+  h_c5a773bf2fda8b 13-14
+packages/core/src/components/chat-ai-message/chat-ai-message.vars.scss
+  h_c5a773bf2fda8b 19-25
+packages/core/src/components/chat-attachment/chat-attachment.scss
+  h_c5a773bf2fda8b 38,43,88
+packages/core/src/components/chat-attachment/chat-attachment.tsx
+  h_c5a773bf2fda8b 15-16,96
+packages/core/src/components/chat-attachment/chat-attachment.vars.scss
+  h_c5a773bf2fda8b 14-18
+packages/core/src/components/chat-attachment/tests/chat-attachment.ct.ts
+  h_c5a773bf2fda8b 107
+packages/core/src/components/chat-input/chat-input.scss
+  h_c5a773bf2fda8b 25,38,40,62-63,73-74,130,132,153,160,176
+packages/core/src/components/chat-input/chat-input.tsx
+  h_c5a773bf2fda8b 37-38,424,594-598
+packages/core/src/components/chat-input/chat-input.vars.scss
+  h_c5a773bf2fda8b 29-32,38,43-53
+packages/core/src/components/chat-input/tests/chat-input.ct.ts
+  h_c5a773bf2fda8b 31
+packages/core/src/components/chat-user-message/chat-user-message.scss
+  h_c5a773bf2fda8b 27,29-30,39,41-42,48,52-60,73,75,95-97
+packages/core/src/components/chat-user-message/chat-user-message.tsx
+  h_c5a773bf2fda8b 13-14,97
+packages/core/src/components/chat-user-message/chat-user-message.vars.scss
+  h_c5a773bf2fda8b 26-40
+packages/core/src/components/chat-user-message/mixins/action.mixin.scss
+  h_c5a773bf2fda8b 1-8,11-12
+packages/core/src/components/chat/chat.scss
+  h_c5a773bf2fda8b 30,33,48
+packages/core/src/components/chat/chat.tsx
+  h_c5a773bf2fda8b 13-14
+packages/core/src/components/chat/chat.vars.scss
+  h_c5a773bf2fda8b 13,15,18-19,21
+packages/core/src/components/chat/tests/density.ct.ts
+  h_c5a773bf2fda8b 30
+packages/core/src/components/checkbox-group/checkbox-group.tsx
+  h_c5a773bf2fda8b 20-24,26-27
+packages/core/src/components/checkbox-group/test/checkbox-group.ct.ts
+  h_c5a773bf2fda8b 12-23,38-41,55
+packages/core/src/components/checkbox/checkbox.scss
+  h_c5a773bf2fda8b 19,26-35,40
+packages/core/src/components/checkbox/checkbox.tsx
+  h_c5a773bf2fda8b 30-34,36-37,246
+packages/core/src/components/checkbox/checkbox.vars.scss
+  h_c5a773bf2fda8b 121-123,125-127
+packages/core/src/components/checkbox/tests/checkbox.ct.ts
+  h_c5a773bf2fda8b 86-87,89,93-105,118-124
+packages/core/src/components/chip/chip-mixin.scss
+  h_c5a773bf2fda8b 13-16,78,81-82,117-119,122-123,129,133,137-139,145,147,149,157,162,166,219-221,256,261
+packages/core/src/components/chip/chip.scss
+  h_c5a773bf2fda8b 13-15,20,24-25,210-211,215-218,227-228,233-235,237,240,244,250-252,257,261,265,272-273,319-320
+packages/core/src/components/chip/chip.tsx
+  h_c5a773bf2fda8b 31-36,51,53,193,202-206,209
+packages/core/src/components/chip/chip.types.ts
+  h_c5a773bf2fda8b 2,10-15,17,19-22,24,29-31
+packages/core/src/components/chip/chip.vars.scss
+  h_c5a773bf2fda8b 17,29-35,69-71,105-125,129-130,146-148
+packages/core/src/components/chip/test/chip.ct.ts
+  h_c5a773bf2fda8b 20-21,23,65,70,74-76,81,85-86,91,95-96,101,105,107,154-155
+packages/core/src/components/col/col.tsx
+  h_c5a773bf2fda8b 17-20
+packages/core/src/components/content-header/content-header.scss
+  h_c5a773bf2fda8b 35-53
+packages/core/src/components/content-header/content-header.tsx
+  h_c5a773bf2fda8b 18-22,24,79-98,106
+packages/core/src/components/content-header/test/content-header.ct.ts
+  h_c5a773bf2fda8b 36,56,80-126
+packages/core/src/components/content/content.tsx
+  h_c5a773bf2fda8b 14-19
+packages/core/src/components/css-grid/css-grid-item.tsx
+  h_c5a773bf2fda8b 13-14,16-17
+packages/core/src/components/css-grid/css-grid.tsx
+  h_c5a773bf2fda8b 28-29,31-32
+packages/core/src/components/custom-field/custom-field.tsx
+  h_c5a773bf2fda8b 20-25
+packages/core/src/components/custom-field/tests/custom-field.ct.ts
+  h_c5a773bf2fda8b 15,23-24,35-36,48-49,64-65,84-85
+packages/core/src/components/date-dropdown/date-dropdown.scss
+  h_c5a773bf2fda8b 12,22,49-50,65-72,85-86
+packages/core/src/components/date-dropdown/date-dropdown.tsx
+  h_c5a773bf2fda8b 16,26,30,34-35,44-46,48-55,137-145,147-154,156-159,163-179,199-200,218-220,229-253,270-273,278-299,302-304,319-320,324-330,332-336,340,343-349,351-359,361-384,388-399,401-402,405-407,410-415,418-433,437-439,442-444,447-453,455-457,460-462,464-472,475-480,492-495,497-500,504-511,570,572-577,582,594,611,616-617,624-634
+packages/core/src/components/date-dropdown/date-dropdown.types.ts
+  h_c5a773bf2fda8b 9-14,19
+packages/core/src/components/date-dropdown/date-dropdown.vars.scss
+  h_c5a773bf2fda8b 13-14,19,24,39
+packages/core/src/components/date-dropdown/test/date-dropdown.ct.ts
+  h_c5a773bf2fda8b 9-24,26-29,36,154,189,215,232,268-333,368,393,445-1288
+packages/core/src/components/date-input/date-input.tsx
+  h_c5a773bf2fda8b 25,36,45,50,53,66-69,71,147-151,257-280,325-329,366,382-401,496,517-519,522,542-543,551-554,563,662-668,689-692,695-709,711
+packages/core/src/components/date-input/tests/date-input.ct.ts
+  h_c5a773bf2fda8b 9-10,12-15,17-18,20,22-23,49-60,62-64,67-269,275,288,304,327,350,366-399,419-614,678,696,730,745,762,779-805,810,863-1136
+packages/core/src/components/date-picker/date-picker-component.ts
+  h_c5a773bf2fda8b 53-67
+packages/core/src/components/date-picker/date-picker.events.ts
+  h_c5a773bf2fda8b 9-11
+packages/core/src/components/date-picker/date-picker.scss
+  h_c5a773bf2fda8b 13,25,49-50,81,113-114,121-122,128-130,135,142,163-164,235-236
+packages/core/src/components/date-picker/date-picker.tsx
+  h_c5a773bf2fda8b 27,33,35-50,54-55,60-61,63-68,105-106,116-134,136-137,141-142,173-196,235-242,282-289,314,318-319,327-331,336-339,346-353,356-358,362-369,371-372,379-380,387,392-447,451,464,534,564-569,572-583,588-593,606-611,613,630,691-695,697-700,703-710,712-713,717,722-723,725-726,729-731,735,739-741,743,745,754-756,758-761,764-766,769-775,777-778,780-783,785-789,792-798,803,809-810,814-817,826,840,843-845,849,853-854,858-859,862,865,868,878,889,977-981,1012-1017,1029-1033,1050-1057,1063-1067,1080-1085,1087,1160,1170-1183
+packages/core/src/components/date-picker/date-picker.vars.scss
+  h_c5a773bf2fda8b 42-46,64,81-89
+packages/core/src/components/date-picker/test/date-picker.ct.ts
+  h_c5a773bf2fda8b 10-17,29,45-152,162,223-246,420,426,479-480,485-502,745,799-963,984-1009,1016-1018,1032-1034,1048-1050,1062-1064,1076-1078,1087-1426,1428-1551
+packages/core/src/components/date-time-card/date-time-card.scss
+  h_c5a773bf2fda8b 27-29,33,37-38,43-44,62
+packages/core/src/components/date-time-card/date-time-card.tsx
+  h_c5a773bf2fda8b 14-15,17-20
+packages/core/src/components/date-time-card/date-time-card.vars.scss
+  h_c5a773bf2fda8b 13,23-27
+packages/core/src/components/datetime-input/datetime-input.tsx
+  h_c5a773bf2fda8b 22,36-37,44,47,52,55,62,71-73,120-124,175-190,224-232,250-251,254,290-294,417-418,433-439,464-465,604-607,631-634,643,649-654,704,707-721,725-740,749,765-770,786,799,807,829-830,881-886,910-912,926-931
+packages/core/src/components/datetime-input/test/datetime-input.ct.ts
+  h_c5a773bf2fda8b 9-10,12-16,18-19,21,23-25,64,66,121,150,164,180,185,227,240,269,274,297-378,384,402,424,428-460,491,499-502,506-509,511-517,520-524,548,554,619,625,1686,1705-1983
+packages/core/src/components/datetime-picker/datetime-picker.scss
+  h_c5a773bf2fda8b 11,20,43,60
+packages/core/src/components/datetime-picker/datetime-picker.tsx
+  h_c5a773bf2fda8b 30-44,46-55,142-167,262-267,273-277,282-283,287-295,300-316,333-362,382,386-406,455-456,459,462-492,495-520,523-528,530-537,539-543,545-590,592-618,622-639,641-643,645,651-654,662-673,675-682,691-692,710,729-734,758,762,781-792
+packages/core/src/components/datetime-picker/datetime-picker.types.ts
+  h_c5a773bf2fda8b 9-11
+packages/core/src/components/datetime-picker/datetime-picker.vars.scss
+  h_c5a773bf2fda8b 15-18
+packages/core/src/components/datetime-picker/test/datetime-picker.ct.ts
+  h_c5a773bf2fda8b 10-18,30,209-210,214-217,265,271,334-508,510-909
+packages/core/src/components/divider/divider.scss
+  h_c5a773bf2fda8b 16-17
+packages/core/src/components/divider/divider.tsx
+  h_c5a773bf2fda8b 11-13
+packages/core/src/components/divider/divider.vars.scss
+  h_c5a773bf2fda8b 18
+packages/core/src/components/dropdown-button/dropdown-button.ct.ts
+  h_c5a773bf2fda8b 21,49,52-53,56,59-60,131,250,286,316,414,446,472,517,529,537,542,554,556,650,688,729,774,803
+packages/core/src/components/dropdown-button/dropdown-button.scss
+  h_c5a773bf2fda8b 90-93,96-99,101-102,104,142-143
+packages/core/src/components/dropdown-button/dropdown-button.tsx
+  h_c5a773bf2fda8b 47-53,453
+packages/core/src/components/dropdown-button/dropdown-button.vars.scss
+  h_c5a773bf2fda8b 22,26-39
+packages/core/src/components/dropdown-header/dropdown-header.tsx
+  h_c5a773bf2fda8b 12-17
+packages/core/src/components/dropdown-item/dropdown-item.scss
+  h_c5a773bf2fda8b 16,43,146-148
+packages/core/src/components/dropdown-item/dropdown-item.tsx
+  h_c5a773bf2fda8b 37-43,129,132-133
+packages/core/src/components/dropdown-item/dropdown-item.vars.scss
+  h_c5a773bf2fda8b 32-39
+packages/core/src/components/dropdown-quick-actions/dropdown-quick-actions.tsx
+  h_c5a773bf2fda8b 12-17
+packages/core/src/components/dropdown-quick-actions/dropdown-quick-actions.vars.scss
+  h_c5a773bf2fda8b 16
+packages/core/src/components/dropdown/dropdown-controller.ts
+  h_c5a773bf2fda8b 28,76,148-151
+packages/core/src/components/dropdown/dropdown.scss
+  h_c5a773bf2fda8b 36,44-49,92-94
+packages/core/src/components/dropdown/dropdown.tsx
+  h_c5a773bf2fda8b 17,45,57-60,80,84-99,101-106,114-115,132-138,147-157,344-347,353,364,408-416,524,614,684,692,792,798,807-812,820,832-834,836,840-958,987-992,1032-1033,1037-1040,1054-1062,1074,1110,1177-1181,1200-1233,1236-1262,1293,1297-1305,1312-1333,1366-1371,1376,1398-1399,1402-1403,1412-1413,1470-1476,1536-1567,1627,1640,1646,1653-1658,1662-1663
+packages/core/src/components/dropdown/dropdown.vars.scss
+  h_c5a773bf2fda8b 14,20-21,27
+packages/core/src/components/dropdown/placement.ts
+  h_c5a773bf2fda8b 17-18
+packages/core/src/components/dropdown/test/dropdown-anchor-position.ct.ts
+  h_c5a773bf2fda8b 1-790
+packages/core/src/components/dropdown/test/dropdown.ct.ts
+  h_c5a773bf2fda8b 561-564,566-572,574,691,754-757,820-823,979-980,1059-1097,1127,1265-1266,1268-1269,1286,1316-1317,1519-1520
+packages/core/src/components/empty-state/empty-state.scss
+  h_c5a773bf2fda8b 77,100-107
+packages/core/src/components/empty-state/empty-state.tsx
+  h_c5a773bf2fda8b 13-18
+packages/core/src/components/empty-state/empty-state.vars.scss
+  h_c5a773bf2fda8b 23
+packages/core/src/components/event-list-item/event-list-item.scss
+  h_c5a773bf2fda8b 108,142
+packages/core/src/components/event-list-item/event-list-item.tsx
+  h_c5a773bf2fda8b 23-28
+packages/core/src/components/event-list-item/event-list-item.vars.scss
+  h_c5a773bf2fda8b 14-15,40-42,60-63
+packages/core/src/components/event-list-item/test/event-list-item.spec.tsx
+  h_c5a773bf2fda8b 18
+packages/core/src/components/event-list/event-list.tsx
+  h_c5a773bf2fda8b 13,16-21,143,145-146,159-160,163,165,167
+packages/core/src/components/event-list/event-list.vars.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/event-list/test/event-list.ct.ts
+  h_c5a773bf2fda8b 22-33,45
+packages/core/src/components/expanding-search/expanding-search.scss
+  h_c5a773bf2fda8b 9,13,18,23-24,33-41,77-78,99-100,119-122,127-130,134-135,138-139
+packages/core/src/components/expanding-search/expanding-search.tsx
+  h_c5a773bf2fda8b 23-28,152,185
+packages/core/src/components/expanding-search/expanding-search.vars.scss
+  h_c5a773bf2fda8b 13-14,16-17,21-22,24-28,37
+packages/core/src/components/expanding-search/test/expanding-search.ct.ts
+  h_c5a773bf2fda8b 9,12-25,29-30,36,45-46,57-58,72-74,86-205
+packages/core/src/components/field-label/field-label.tsx
+  h_c5a773bf2fda8b 23-30,222
+packages/core/src/components/field-label/tests/field-label.ct.ts
+  h_c5a773bf2fda8b 15,72
+packages/core/src/components/field-wrapper/field-wrapper.mixins.scss
+  h_c5a773bf2fda8b 23
+packages/core/src/components/field-wrapper/field-wrapper.tsx
+  h_c5a773bf2fda8b 32-39,121-122,153-173,175-176,178-185,189,213,219
+packages/core/src/components/field-wrapper/field-wrapper.vars.scss
+  h_c5a773bf2fda8b 26
+packages/core/src/components/field-wrapper/helper-text-util.tsx
+  h_c5a773bf2fda8b 99,117,135,153,174
+packages/core/src/components/field-wrapper/tests/field-wrapper.ct.ts
+  h_c5a773bf2fda8b 22,42,62,87,105,123,144,165,189,219,249,305,326,347,373,389-424
+packages/core/src/components/filter-chip/filter-chip.tsx
+  h_c5a773bf2fda8b 23-25
+packages/core/src/components/filter-chip/filter-chip.vars.scss
+  h_c5a773bf2fda8b 31-35
+packages/core/src/components/flip-tile-content/flip-tile-content.tsx
+  h_c5a773bf2fda8b 12-17
+packages/core/src/components/flip-tile/flip-tile-vars.scss
+  h_c5a773bf2fda8b 10-21
+packages/core/src/components/flip-tile/flip-tile.scss
+  h_c5a773bf2fda8b 19,83-85,93
+packages/core/src/components/flip-tile/flip-tile.tsx
+  h_c5a773bf2fda8b 22,29-36,49-50,166-174,178
+packages/core/src/components/flip-tile/flip-tile.types.ts
+  h_c5a773bf2fda8b 10-16,20
+packages/core/src/components/flip-tile/flip-tile.vars.scss
+  h_c5a773bf2fda8b 14-37,44-55,62-67,77,83-85
+packages/core/src/components/flip-tile/test/flip-tile.ct.ts
+  h_c5a773bf2fda8b 11-61,65,82,89,109,121,136,151-181
+packages/core/src/components/group-item/group-item.scss
+  h_c5a773bf2fda8b 15,34,61-62,87
+packages/core/src/components/group-item/group-item.tsx
+  h_c5a773bf2fda8b 20,23-28,117-123
+packages/core/src/components/group-item/group-item.vars.scss
+  h_c5a773bf2fda8b 27-29,33-39
+packages/core/src/components/group/group-context-menu.tsx
+  h_c5a773bf2fda8b 16-18,94,108
+packages/core/src/components/group/group.scss
+  h_c5a773bf2fda8b 14,78-83,89-116,162-167,170-176,184-188,194-195
+packages/core/src/components/group/group.tsx
+  h_c5a773bf2fda8b 10-13,22,27-32,37-45,52-56,94-110,135-140,165,169,176-203,263-268,276-277,289,292-293,308-347,349-427,435,443-445,455,465
+packages/core/src/components/group/group.vars.scss
+  h_c5a773bf2fda8b 27-30,33-34,36-37,45,47-48
+packages/core/src/components/group/test/group.ct.ts
+  h_c5a773bf2fda8b 12-28,33,42,62,91,116,123,187,225-406
+packages/core/src/components/group/test/group.page.ts
+  h_c5a773bf2fda8b 1-158
+packages/core/src/components/helper-text/helper-text.tsx
+  h_c5a773bf2fda8b 12-18
+packages/core/src/components/icon-button/icon-button-mixin.scss
+  h_c5a773bf2fda8b 44
+packages/core/src/components/icon-button/icon-button.tsx
+  h_c5a773bf2fda8b 25-30
+packages/core/src/components/icon-button/icon-button.vars.scss
+  h_c5a773bf2fda8b 16
+packages/core/src/components/icon-button/test/icon-button.ct.ts
+  h_c5a773bf2fda8b 13-22,29,43,57
+packages/core/src/components/icon-toggle-button/icon-toggle-button.tsx
+  h_c5a773bf2fda8b 34-39
+packages/core/src/components/icon-toggle-button/test/icon-toggle-button.ct.ts
+  h_c5a773bf2fda8b 19,34,51
+packages/core/src/components/info-page/info-page.scss
+  h_c5a773bf2fda8b 34-37
+packages/core/src/components/info-page/info-page.tsx
+  h_c5a773bf2fda8b 18,100-103
+packages/core/src/components/info-page/info-page.vars.scss
+  h_c5a773bf2fda8b 12,17
+packages/core/src/components/info-page/test/info-page.ct.ts
+  h_c5a773bf2fda8b 39,93,97,101,107-114
+packages/core/src/components/input/input-control.mixins.scss
+  h_c5a773bf2fda8b 12-125,129-136,143,148,153,158,161,177,192-193,200-269
+packages/core/src/components/input/input.animation.ts
+  h_c5a773bf2fda8b 9,14-25
+packages/core/src/components/input/input.mixins.scss
+  h_c5a773bf2fda8b 9
+packages/core/src/components/input/input.scss
+  h_c5a773bf2fda8b 10-11,31
+packages/core/src/components/input/input.tsx
+  h_c5a773bf2fda8b 42,49-58,98-105,253-259,409
+packages/core/src/components/input/input.util.ts
+  h_c5a773bf2fda8b 16-17,57-59,64,66-68,70-75,77,82,84-92,98,100-108,110,182-184
+packages/core/src/components/input/input.vars.scss
+  h_c5a773bf2fda8b 66-77,86
+packages/core/src/components/input/number-input.tsx
+  h_c5a773bf2fda8b 40,49-57,92-99,254-260
+packages/core/src/components/input/tests/density.ct.ts
+  h_c5a773bf2fda8b 44,62
+packages/core/src/components/input/tests/form-ready.ct.ts
+  h_c5a773bf2fda8b 274
+packages/core/src/components/input/tests/textarea-dimensions.ct.ts
+  h_c5a773bf2fda8b 18,108
+packages/core/src/components/input/tests/validation.ct.ts
+  h_c5a773bf2fda8b 9-10,44-147,386-744,991,1029,1379-1450
+packages/core/src/components/input/textarea.tsx
+  h_c5a773bf2fda8b 35,44-45,47,79-86,237-247,342-351,412
+packages/core/src/components/ix-playground/ix-playground.scss
+  h_c5a773bf2fda8b 10-11,18-20,26,37
+packages/core/src/components/ix-playground/ix-playground.tsx
+  h_c5a773bf2fda8b 9,12-14
+packages/core/src/components/ix-playground/ix-playground.vars.scss
+  h_c5a773bf2fda8b 1-15
+packages/core/src/components/key-value-list/key-value-list.scss
+  h_c5a773bf2fda8b 4-5
+packages/core/src/components/key-value-list/key-value-list.tsx
+  h_c5a773bf2fda8b 13-18
+packages/core/src/components/key-value-list/key-value-list.vars.scss
+  h_c5a773bf2fda8b 7-10
+packages/core/src/components/key-value/key-value.scss
+  h_c5a773bf2fda8b 39-40
+packages/core/src/components/key-value/key-value.tsx
+  h_c5a773bf2fda8b 14-18
+packages/core/src/components/key-value/key-value.vars.scss
+  h_c5a773bf2fda8b 16-17
+packages/core/src/components/kpi/kpi.scss
+  h_c5a773bf2fda8b 16-18,37-38,40-43,76,89-90
+packages/core/src/components/kpi/kpi.tsx
+  h_c5a773bf2fda8b 11-12,14-19,42-44,46,54,56-57,59-67,89
+packages/core/src/components/kpi/kpi.types.ts
+  h_c5a773bf2fda8b 1-37
+packages/core/src/components/kpi/kpi.vars.scss
+  h_c5a773bf2fda8b 13-19,27,31,36-39
+packages/core/src/components/kpi/test/kpi.ct.ts
+  h_c5a773bf2fda8b 1-104
+packages/core/src/components/layout-auto/layout-auto.tsx
+  h_c5a773bf2fda8b 5-8
+packages/core/src/components/layout-grid/layout-grid.tsx
+  h_c5a773bf2fda8b 13-17
+packages/core/src/components/link-button/link-button.scss
+  h_c5a773bf2fda8b 25,29-36,49-54,59-64,78-79
+packages/core/src/components/link-button/link-button.tsx
+  h_c5a773bf2fda8b 10-16,19-25,27-32,47-50,61-80,82-90,104,113
+packages/core/src/components/link-button/link-button.vars.scss
+  h_c5a773bf2fda8b 24-27
+packages/core/src/components/link-button/test/link-button.ct.ts
+  h_c5a773bf2fda8b 10-15,18-34,40-47,49-55,69,74,77-173,188,199-232
+packages/core/src/components/menu-about-item/menu-about-item.tsx
+  h_c5a773bf2fda8b 24-26,28-29
+packages/core/src/components/menu-about-news/menu-about-news.scss
+  h_c5a773bf2fda8b 27,32,37,42-43,64-67,88-89,91-94,110-117
+packages/core/src/components/menu-about-news/menu-about-news.tsx
+  h_c5a773bf2fda8b 24-28,100
+packages/core/src/components/menu-about-news/menu-about-news.vars.scss
+  h_c5a773bf2fda8b 17-18,22-23,33,43-61
+packages/core/src/components/menu-about/menu-about.tsx
+  h_c5a773bf2fda8b 25-29
+packages/core/src/components/menu-about/test/menu-about.ct.ts
+  h_c5a773bf2fda8b 28,47,68,97
+packages/core/src/components/menu-avatar-item/menu-avatar-item.tsx
+  h_c5a773bf2fda8b 22-26
+packages/core/src/components/menu-avatar/menu-avatar.scss
+  h_c5a773bf2fda8b 51,65-66
+packages/core/src/components/menu-avatar/menu-avatar.tsx
+  h_c5a773bf2fda8b 25-28
+packages/core/src/components/menu-avatar/menu-avatar.vars.scss
+  h_c5a773bf2fda8b 22,28-29,31-32
+packages/core/src/components/menu-category/menu-category.scss
+  h_c5a773bf2fda8b 76
+packages/core/src/components/menu-category/menu-category.tsx
+  h_c5a773bf2fda8b 24,47-52,162-180,183-185,196-218,522-529,533,660
+packages/core/src/components/menu-category/menu-category.vars.scss
+  h_c5a773bf2fda8b 17-18,20-23,31,33-36
+packages/core/src/components/menu-category/test/menu-category.ct.ts
+  h_c5a773bf2fda8b 33,86,388,416,443,570,701,857,886
+packages/core/src/components/menu-item/menu-item.scss
+  h_c5a773bf2fda8b 34,46,52-54,60-61,67-68,70,72-73,101,174
+packages/core/src/components/menu-item/menu-item.tsx
+  h_c5a773bf2fda8b 16,40-44,111-114,233-240
+packages/core/src/components/menu-item/menu-item.vars.scss
+  h_c5a773bf2fda8b 27-30,32-36,41-54
+packages/core/src/components/menu-item/test/menu-item.ct.ts
+  h_c5a773bf2fda8b 24-25,80,139-141,281-284,307-308,335,342-377
+packages/core/src/components/menu-settings-item/menu-settings-item.tsx
+  h_c5a773bf2fda8b 24-26,28-29
+packages/core/src/components/menu-settings/menu-settings.tsx
+  h_c5a773bf2fda8b 25-29
+packages/core/src/components/menu-settings/test/menu-settings.ct.ts
+  h_c5a773bf2fda8b 27,57
+packages/core/src/components/menu/menu-expand-icon.scss
+  h_c5a773bf2fda8b 37-44,71,76,82
+packages/core/src/components/menu/menu-expand-icon.tsx
+  h_c5a773bf2fda8b 19-20,56-58,60-62
+packages/core/src/components/menu/menu-expand-icon.vars.scss
+  h_c5a773bf2fda8b 19-20,24-28
+packages/core/src/components/menu/menu.scss
+  h_c5a773bf2fda8b 44-46,77-79,87,136
+packages/core/src/components/menu/menu.tsx
+  h_c5a773bf2fda8b 11,29,35-39,48-58,214-215,374-376,378-379,404-418,422-423,425-426,694-719,732-751,1122
+packages/core/src/components/menu/menu.vars.scss
+  h_c5a773bf2fda8b 14,19,23,25-29,50-57
+packages/core/src/components/menu/test/menu.ct.ts
+  h_c5a773bf2fda8b 9,11-15,27,502,513,552,562,568-668
+packages/core/src/components/message-bar/message-bar.scss
+  h_c5a773bf2fda8b 33-34,36,38,40-41
+packages/core/src/components/message-bar/message-bar.tsx
+  h_c5a773bf2fda8b 19-20,23,30,33,41-46,57,79,82-83,85,87-99,116,118,135-139
+packages/core/src/components/message-bar/message-bar.types.ts
+  h_c5a773bf2fda8b 1-18
+packages/core/src/components/message-bar/message-bar.vars.scss
+  h_c5a773bf2fda8b 13-14,16,18,20-21,26-30,34,36,38
+packages/core/src/components/message-bar/test/message-bar.ct.ts
+  h_c5a773bf2fda8b 11-21,23-66,68,70-78,80-92,94-101,103-106,108-113,115-125
+packages/core/src/components/modal-content/modal-content.tsx
+  h_c5a773bf2fda8b 13-17
+packages/core/src/components/modal-footer/modal-footer.tsx
+  h_c5a773bf2fda8b 13-17
+packages/core/src/components/modal-header/modal-header.tsx
+  h_c5a773bf2fda8b 24-28
+packages/core/src/components/modal-loading/modal-loading.tsx
+  h_c5a773bf2fda8b 14-19
+packages/core/src/components/modal/modal.scss
+  h_c5a773bf2fda8b 44
+packages/core/src/components/modal/modal.tsx
+  h_c5a773bf2fda8b 20,29-33,115,120-131,142-159,254-255
+packages/core/src/components/modal/modal.vars.scss
+  h_c5a773bf2fda8b 14,20,32
+packages/core/src/components/modal/test/modal.ct.ts
+  h_c5a773bf2fda8b 17,23-24,33,692,694,697-699,795-968
+packages/core/src/components/pagination/pagination.scss
+  h_c5a773bf2fda8b 11,14,74
+packages/core/src/components/pagination/pagination.tsx
+  h_c5a773bf2fda8b 25-30,91-97,131-151,202-203,222-237,244,251-260,288,294-303,320,323,370-372
+packages/core/src/components/pagination/pagination.vars.scss
+  h_c5a773bf2fda8b 15,18,22
+packages/core/src/components/pagination/test/pagination.ct.ts
+  h_c5a773bf2fda8b 32-35,38-111,119,129,145,170,179-180,189,216,237,258
+packages/core/src/components/pane-layout/pane-layout.tsx
+  h_c5a773bf2fda8b 29,32-42,91-100,103
+packages/core/src/components/pane-layout/test/pane-layout.ct.ts
+  h_c5a773bf2fda8b 12,17-29,136-175
+packages/core/src/components/pane/pane.scss
+  h_c5a773bf2fda8b 233
+packages/core/src/components/pane/pane.tsx
+  h_c5a773bf2fda8b 28,42,55-59,61-62,191,226-261,481,483-484,492,502,504,533-538,540-549,556,563-580,586
+packages/core/src/components/pane/pane.vars.scss
+  h_c5a773bf2fda8b 12-22,37,44
+packages/core/src/components/pane/test/panes.ct.ts
+  h_c5a773bf2fda8b 12-16,54,93,162,196,234,260,303,342-343,382,407,656-715
+packages/core/src/components/pill/pill.tsx
+  h_c5a773bf2fda8b 15,18-23,37-38,40,116-119,121,124,147,165-173
+packages/core/src/components/pill/pill.vars.scss
+  h_c5a773bf2fda8b 20-21
+packages/core/src/components/popover-content/popover-content.tsx
+  h_c5a773bf2fda8b 16-17
+packages/core/src/components/popover-footer/popover-footer.tsx
+  h_c5a773bf2fda8b 16-17
+packages/core/src/components/popover-header/popover-header.tsx
+  h_c5a773bf2fda8b 27-28
+packages/core/src/components/popover-header/popover-header.vars.scss
+  h_c5a773bf2fda8b 13
+packages/core/src/components/popover-image/popover-image.tsx
+  h_c5a773bf2fda8b 15
+packages/core/src/components/popover/popover.scss
+  h_c5a773bf2fda8b 35-36,57-58
+packages/core/src/components/popover/popover.tsx
+  h_c5a773bf2fda8b 82-84,104-111
+packages/core/src/components/popover/popover.vars.scss
+  h_c5a773bf2fda8b 13,21,32,42-44
+packages/core/src/components/popover/test/popover.ct.ts
+  h_c5a773bf2fda8b 48,1019-1020
+packages/core/src/components/popover/test/popover.page.ts
+  h_c5a773bf2fda8b 408,434-435
+packages/core/src/components/progress-indicator/linear.scss
+  h_c5a773bf2fda8b 17-19,44-45
+packages/core/src/components/progress-indicator/linear.tsx
+  h_c5a773bf2fda8b 15,19,26
+packages/core/src/components/progress-indicator/linear.vars.scss
+  h_c5a773bf2fda8b 48-49
+packages/core/src/components/progress-indicator/progress-indicator-vars.scss
+  h_c5a773bf2fda8b 10
+packages/core/src/components/progress-indicator/progress-indicator.scss
+  h_c5a773bf2fda8b 90,97,104,108,112,132,136,140,144,148
+packages/core/src/components/progress-indicator/progress-indicator.tsx
+  h_c5a773bf2fda8b 18,26-30,32-34,77-78,80,110,137-143,186,199
+packages/core/src/components/progress-indicator/progress-indicator.types.ts
+  h_c5a773bf2fda8b 9-10,12-18,20
+packages/core/src/components/progress-indicator/progress-indicator.vars.scss
+  h_c5a773bf2fda8b 15,22-23,25-27,33,39,41,47,60-65
+packages/core/src/components/progress-indicator/test/progress-indicator.ct.ts
+  h_c5a773bf2fda8b 1-122
+packages/core/src/components/push-card/push-card.scss
+  h_c5a773bf2fda8b 10,14-16,19,27,30-31,36-37,48-62
+packages/core/src/components/push-card/push-card.tsx
+  h_c5a773bf2fda8b 11,14-20,56,58-67,75-78,80-84,88-93,109-111,113
+packages/core/src/components/push-card/push-card.types.ts
+  h_c5a773bf2fda8b 2,9,11-12
+packages/core/src/components/push-card/push-card.vars.scss
+  h_c5a773bf2fda8b 13-17,22,24-26,28-30
+packages/core/src/components/radio-group/radio-group.tsx
+  h_c5a773bf2fda8b 31-34,36-37
+packages/core/src/components/radio-group/test/radio-group.ct.ts
+  h_c5a773bf2fda8b 26-29,43,72-75,94-96,98
+packages/core/src/components/radio/radio.scss
+  h_c5a773bf2fda8b 20,34-35,40,46-54
+packages/core/src/components/radio/radio.tsx
+  h_c5a773bf2fda8b 30-33,35-36,238
+packages/core/src/components/radio/radio.vars.scss
+  h_c5a773bf2fda8b 82,86-87,97-101
+packages/core/src/components/radio/test/radio.ct.ts
+  h_c5a773bf2fda8b 199-221
+packages/core/src/components/range-field/range-field.tsx
+  h_c5a773bf2fda8b 31-34
+packages/core/src/components/range-field/range-field.vars.scss
+  h_c5a773bf2fda8b 14-23
+packages/core/src/components/range-field/tests/range-field.ct.ts
+  h_c5a773bf2fda8b 69,85,101,127,149,169,177,196,204,223,231,250,258,277,320,365,378,393
+packages/core/src/components/row/row.tsx
+  h_c5a773bf2fda8b 13-15
+packages/core/src/components/select-item/select-item.tsx
+  h_c5a773bf2fda8b 37-41
+packages/core/src/components/select/select.scss
+  h_c5a773bf2fda8b 22,112-113,127-128,159,216-217
+packages/core/src/components/select/select.tsx
+  h_c5a773bf2fda8b 49,66-69,71-72,103-107,378,1106,1122
+packages/core/src/components/select/select.vars.scss
+  h_c5a773bf2fda8b 35,40-45,72
+packages/core/src/components/select/test/select.ct.ts
+  h_c5a773bf2fda8b 51,118,147,176,227,243,475,495-533,571,634,681,750-800,819,827,1112
+packages/core/src/components/slider/slider.scss
+  h_c5a773bf2fda8b 30,134,141,143-157,177-178,187,198,210-212,227,261,266,275
+packages/core/src/components/slider/slider.tsx
+  h_c5a773bf2fda8b 45-48
+packages/core/src/components/slider/slider.vars.scss
+  h_c5a773bf2fda8b 43,48-62
+packages/core/src/components/slider/test/slider.ct.ts
+  h_c5a773bf2fda8b 21,28,63
+packages/core/src/components/spinner/spinner.scss
+  h_c5a773bf2fda8b 34,95
+packages/core/src/components/spinner/spinner.tsx
+  h_c5a773bf2fda8b 14-19
+packages/core/src/components/spinner/spinner.vars.scss
+  h_c5a773bf2fda8b 28-29
+packages/core/src/components/split-button/split-button.scss
+  h_c5a773bf2fda8b 32-34,36-43
+packages/core/src/components/split-button/split-button.tsx
+  h_c5a773bf2fda8b 37-42
+packages/core/src/components/split-button/split-button.vars.scss
+  h_c5a773bf2fda8b 17-20
+packages/core/src/components/split-button/test/split-button.ct.ts
+  h_c5a773bf2fda8b 109,127
+packages/core/src/components/tab-item/tab-item.scss
+  h_c5a773bf2fda8b 94-95,111,114-117,121-122,172,250-252,259-261
+packages/core/src/components/tab-item/tab-item.tsx
+  h_c5a773bf2fda8b 31-36,221
+packages/core/src/components/tab-item/tab-item.vars.scss
+  h_c5a773bf2fda8b 44-45,49,53-54,64-76
+packages/core/src/components/tab-panel/tab-panel.tsx
+  h_c5a773bf2fda8b 18-19,22-23
+packages/core/src/components/tab-panel/test/tab-panel.ct.ts
+  h_c5a773bf2fda8b 12-27,39
+packages/core/src/components/tab-set/tab-set.tsx
+  h_c5a773bf2fda8b 14-15,18-19
+packages/core/src/components/tab-set/test/tab-set.ct.ts
+  h_c5a773bf2fda8b 42-45
+packages/core/src/components/tabs/tabs.scss
+  h_c5a773bf2fda8b 99-101,120
+packages/core/src/components/tabs/tabs.tsx
+  h_c5a773bf2fda8b 34-39
+packages/core/src/components/tabs/tabs.vars.scss
+  h_c5a773bf2fda8b 19-22,27-30
+packages/core/src/components/tabs/test/tabs.ct.ts
+  h_c5a773bf2fda8b 51,82,108,139,172,306,390-392,435-437,473,475,511-513
+packages/core/src/components/tile/tile.scss
+  h_c5a773bf2fda8b 80-81
+packages/core/src/components/tile/tile.tsx
+  h_c5a773bf2fda8b 13-21
+packages/core/src/components/tile/tile.vars.scss
+  h_c5a773bf2fda8b 22-23,28,34
+packages/core/src/components/time-input/test/time-input-locale.spec.ts
+  h_c5a773bf2fda8b 21
+packages/core/src/components/time-input/test/time-input.ct.ts
+  h_c5a773bf2fda8b 9-21,113-116,165-168,204,217-264,339-342,461,539-744
+packages/core/src/components/time-input/time-input.tsx
+  h_c5a773bf2fda8b 39,47,52,55,62,69-72,147-151,319-326,374-378,461-462,587,611,615,630-631,641-644,653,659-664,751-755,775-781,790,796
+packages/core/src/components/time-picker/test/time-picker-column-values.spec.ts
+  h_c5a773bf2fda8b 11-15,95-135
+packages/core/src/components/time-picker/test/time-picker-constraints.spec.ts
+  h_c5a773bf2fda8b 13,16,151-238
+packages/core/src/components/time-picker/test/time-picker-locale.spec.ts
+  h_c5a773bf2fda8b 27
+packages/core/src/components/time-picker/test/time-picker.ct.ts
+  h_c5a773bf2fda8b 10-17,21-22,137,142,159,173,188,205,222,247,254,269,275,294,310,325,349,361-363,374,400,413,427,442,455,480,492-494,505,527,573,631-633,700-704,709,744,813-1242
+packages/core/src/components/time-picker/time-picker-column-values.ts
+  h_c5a773bf2fda8b 17-68
+packages/core/src/components/time-picker/time-picker-constraints.ts
+  h_c5a773bf2fda8b 70-122
+packages/core/src/components/time-picker/time-picker.scss
+  h_c5a773bf2fda8b 13,22,82-83,106-107,142
+packages/core/src/components/time-picker/time-picker.tsx
+  h_c5a773bf2fda8b 28,32,34-38,43,58,90-95,131,134,154-156,158,175,188,201,214,216-221,224-246,325,331,335-337,366,372-380,382,441-442,447-450,455-463,467-469,473,479,482-552,601,605,610-611,624-627,848,879-880,886-889,898,902-903,906,908,911,916,919,921,958,973-974,1060,1201-1211,1353-1356,1360,1362-1369,1373-1377,1475,1610-1621
+packages/core/src/components/time-picker/time-picker.vars.scss
+  h_c5a773bf2fda8b 28-30,51-58
+packages/core/src/components/toast/tests/toast.ct.ts
+  h_c5a773bf2fda8b 10-18,21,29-38,49-65,67-69,72-107,121,157,227,231,234-237,239,242,247-311
+packages/core/src/components/toast/toast-container.tsx
+  h_c5a773bf2fda8b 16-19,49
+packages/core/src/components/toast/toast-utils.ts
+  h_c5a773bf2fda8b 10-12,95-97,99,102,107,109,112-148,163,165,168
+packages/core/src/components/toast/toast.scss
+  h_c5a773bf2fda8b 29-31,82,91,110-131
+packages/core/src/components/toast/toast.tsx
+  h_c5a773bf2fda8b 21,23,29-30,33-37,39-44,55,89-90,107-138,144,151-153,155-163,166-167,169-170,172-180,182-208,248
+packages/core/src/components/toast/toast.types.ts
+  h_c5a773bf2fda8b 1-20
+packages/core/src/components/toast/toast.vars.scss
+  h_c5a773bf2fda8b 15,20-26,33-34
+packages/core/src/components/toggle-button/toggle-button.tsx
+  h_c5a773bf2fda8b 36-41
+packages/core/src/components/toggle/test/toggle.ct.ts
+  h_c5a773bf2fda8b 16-33,37,44,62,73,88,133
+packages/core/src/components/toggle/toggle.scss
+  h_c5a773bf2fda8b 59-60,69-71,75-76,95-96,106-107,116-117,127-128,138-139,159-161,168
+packages/core/src/components/toggle/toggle.tsx
+  h_c5a773bf2fda8b 32-35
+packages/core/src/components/toggle/toggle.vars.scss
+  h_c5a773bf2fda8b 215-216,228-229,236-243
+packages/core/src/components/tooltip/test/tooltip.ct.ts
+  h_c5a773bf2fda8b 24,27,31,57,59,63,80,424-524
+packages/core/src/components/tooltip/test/tooltip.spec.tsx
+  h_c5a773bf2fda8b 1-73
+packages/core/src/components/tooltip/tooltip.scss
+  h_c5a773bf2fda8b 33,51-52
+packages/core/src/components/tooltip/tooltip.tsx
+  h_c5a773bf2fda8b 50-53,56-57,114-133,148-151,153-155,177,180-183,252,259,271-274,276,294-298,304-308
+packages/core/src/components/tooltip/tooltip.vars.scss
+  h_c5a773bf2fda8b 14,25-27
+packages/core/src/components/tree-item/tree-item.scss
+  h_c5a773bf2fda8b 31,35-39,53-55,57-68,99,102-106
+packages/core/src/components/tree-item/tree-item.tsx
+  h_c5a773bf2fda8b 10-20,23,26-29,37-38,55,62,66-91,102-110,113,117-123,128-143,147-156,160-161,163-179,184-201
+packages/core/src/components/tree-item/tree-item.vars.scss
+  h_c5a773bf2fda8b 21,25-26
+packages/core/src/components/tree/test/tree.ct.ts
+  h_c5a773bf2fda8b 80,95-115,119-120,122-124,127-154,220,374,411,435,458,495,612,652,718,723,806-1743
+packages/core/src/components/tree/tree.tsx
+  h_c5a773bf2fda8b 36-39,56-59,112-162,171,179-202,221-223,267,269-272,292-298,304,307-318,324,331-335,337-343,353-479,562-568,573-607,649-650,664,679-683,721-775
+packages/core/src/components/typography/test/ix-typography.spec.tsx
+  h_c5a773bf2fda8b 1-9,19,27,31-42
+packages/core/src/components/typography/test/typography.ct.ts
+  h_c5a773bf2fda8b 1-47
+packages/core/src/components/typography/typography.scss
+  h_c5a773bf2fda8b 10-11,140
+packages/core/src/components/typography/typography.tsx
+  h_c5a773bf2fda8b 18-23,32-49
+packages/core/src/components/typography/typography.types.ts
+  h_c5a773bf2fda8b 54-71
+packages/core/src/components/typography/typography.vars.scss
+  h_c5a773bf2fda8b 1-11
+packages/core/src/components/upload/test/upload.ct.ts
+  h_c5a773bf2fda8b 9-11,14-20,25,61-184
+packages/core/src/components/upload/upload.scss
+  h_c5a773bf2fda8b 34-35,92,98-99
+packages/core/src/components/upload/upload.tsx
+  h_c5a773bf2fda8b 25-30,149-152,155-160
+packages/core/src/components/upload/upload.vars.scss
+  h_c5a773bf2fda8b 23,34-36
+packages/core/src/components/utils/a11y.ts
+  h_c5a773bf2fda8b 35-55,66-68
+packages/core/src/components/utils/animate.ts
+  h_c5a773bf2fda8b 2,10-116,118-219
+packages/core/src/components/utils/animation.ts
+  h_c5a773bf2fda8b 2,10,36,40-41,53-58,61
+packages/core/src/components/utils/application-layout/context.ts
+  h_c5a773bf2fda8b 29-32
+packages/core/src/components/utils/application-layout/service.ts
+  h_c5a773bf2fda8b 64,71,78-88
+packages/core/src/components/utils/condition-checks.ts
+  h_c5a773bf2fda8b 36-40
+packages/core/src/components/utils/confirmation-footer/confirmation-footer.fc.tsx
+  h_c5a773bf2fda8b 1-120
+packages/core/src/components/utils/confirmation-footer/confirmation-footer.mixins.scss
+  h_c5a773bf2fda8b 9-43
+packages/core/src/components/utils/confirmation-footer/confirmation-footer.types.ts
+  h_c5a773bf2fda8b 1-14
+packages/core/src/components/utils/datetime/calendar.util.ts
+  h_c5a773bf2fda8b 1-245
+packages/core/src/components/utils/datetime/date-time.types.ts
+  h_c5a773bf2fda8b 1-23
+packages/core/src/components/utils/datetime/pending-selection.ts
+  h_c5a773bf2fda8b 1-103
+packages/core/src/components/utils/input/picker-input.util.ts
+  h_c5a773bf2fda8b 11,61-68,88-128
+packages/core/src/components/utils/input/validation.ts
+  h_c5a773bf2fda8b 27-33,41,78,89,129-295,303-326,331,333-335,338,340,344-348,371-396,433-435,437,442-456,461,465-467,469-476,483-484,490,492-494,497-499,502-509
+packages/core/src/components/utils/internal/component.ts
+  h_c5a773bf2fda8b 12-32,34,94
+packages/core/src/components/utils/internal/mixins/accessibility/aria-activedescendant.mixin.ts
+  h_c5a773bf2fda8b 88-90,101-106
+packages/core/src/components/utils/internal/mixins/setup.mixin.ts
+  h_c5a773bf2fda8b 10-11
+packages/core/src/components/utils/lazy-list/lazy.ts
+  h_c5a773bf2fda8b 18
+packages/core/src/components/utils/modal/message.ts
+  h_c5a773bf2fda8b 11,17-18,27-31,110,112-114,116,120-140,159,161,225-226,234,236-240,245-249,252-270,272-276,281-294,299-303
+packages/core/src/components/utils/modal/modal-config.ts
+  h_c5a773bf2fda8b 1-107
+packages/core/src/components/utils/modal/modal.ts
+  h_c5a773bf2fda8b 14,21,118,125-126,135-136,139-141,145,152,160
+packages/core/src/components/utils/modal/test/modal-config.spec.ts
+  h_c5a773bf2fda8b 1-97
+packages/core/src/components/utils/nested-overlay/overlay-coordinator.ts
+  h_c5a773bf2fda8b 18-19,249-277,280,289-291,303
+packages/core/src/components/utils/nested-overlay/test/overlay-coordinator.spec.ts
+  h_c5a773bf2fda8b 400-440
+packages/core/src/components/utils/notification-color.ts
+  h_c5a773bf2fda8b 11,18
+packages/core/src/components/utils/status.types.ts
+  h_c5a773bf2fda8b 2,10-46,48-57
+packages/core/src/components/utils/test/a11y.spec.ts
+  h_c5a773bf2fda8b 1-54
+packages/core/src/components/utils/test/animate.spec.ts
+  h_c5a773bf2fda8b 9-33,36-73,75,78-82,84-88,90-91,93,95-96,99-109,111-115,118-125,127-129,132-147,150-173,176-179,181-184,186-187,189,191
+packages/core/src/components/utils/test/calendar.util.spec.ts
+  h_c5a773bf2fda8b 1-538
+packages/core/src/components/utils/test/condition-checks.spec.ts
+  h_c5a773bf2fda8b 1-21
+packages/core/src/components/utils/test/date-locale.spec.ts
+  h_c5a773bf2fda8b 14
+packages/core/src/components/utils/test/luxon-datetime-format-masks.spec.ts
+  h_c5a773bf2fda8b 13
+packages/core/src/components/utils/test/pending-selection.spec.ts
+  h_c5a773bf2fda8b 1-155
+packages/core/src/components/utils/test/picker-input.util.spec.ts
+  h_c5a773bf2fda8b 1-59
+packages/core/src/components/utils/test/validation.spec.ts
+  h_c5a773bf2fda8b 1-37
+packages/core/src/components/workflow-step/workflow-step.scss
+  h_c5a773bf2fda8b 52,132,187-189
+packages/core/src/components/workflow-step/workflow-step.tsx
+  h_c5a773bf2fda8b 33-37
+packages/core/src/components/workflow-step/workflow-step.vars.scss
+  h_c5a773bf2fda8b 37,41-43,68-71
+packages/core/src/components/workflow-steps/test/workflow-steps.ct.ts
+  h_c5a773bf2fda8b 28,59,96,123,163,166,170
+packages/core/src/components/workflow-steps/workflow-steps.tsx
+  h_c5a773bf2fda8b 23-26
+packages/core/src/public-api.ts
+  h_c5a773bf2fda8b 14-17,28-36
+packages/core/src/tests/utils/test/date-time.ts
+  h_c5a773bf2fda8b 1-169
+packages/core/src/tests/utils/test/index.ts
+  h_c5a773bf2fda8b 10,12,48-152
+packages/core/stencil.config.ts
+  h_c5a773bf2fda8b 16-19,41,55-57,66-68
+packages/core/tokens/manifest.json
+  h_c5a773bf2fda8b 5-6,501-519,1090-1108,2873-2891,2930-2931,2935,2949-2950,2954,2968-2969,2973,2987-2988,2992,3328-3346
+packages/core/vitest-setup.ts
+  h_c5a773bf2fda8b 10-13,30-54
+packages/documentation/package.json
+  h_c5a773bf2fda8b 26-27,30,33,39
+packages/documentation/scripts/build.ts
+  h_c5a773bf2fda8b 36,43,48,53,59,65,414
+packages/documentation/scripts/typedoc-generator.ts
+  h_c5a773bf2fda8b 285
+packages/react/package.json
+  h_c5a773bf2fda8b 73,79
+packages/react/src/components/components.server.ts
+  h_c5a773bf2fda8b 137,144,243-244,262,272,288,322,324,338-339,627-630,650-652,695-698,708-709,723-725,774-775,784-785,795-796,815-817,950,961,1085-1087,1183,1193,1235,1245,1306-1308,1368,1375,1494,1501,1629,1634-1636,1805,1807,1926,1938,2008,2026,2140-2141,2150-2151,2161,2170-2171
+packages/react/src/components/components.ts
+  h_c5a773bf2fda8b 219,479-482,489-492,518-519,530-531,562-563,574-575,660,822,854,960,1049,1362,1409,1491-1492,1502-1503
+packages/react/src/tests/toasts/toast.spec.tsx
+  h_c5a773bf2fda8b 10,12-13,48-72
+packages/react/src/toast/toast.ts
+  h_c5a773bf2fda8b 34-49,58
+packages/storybook-docs/package.json
+  h_c5a773bf2fda8b 21
+packages/storybook-docs/src/stories/action-card/accessibility/a11y-action-card.stories.tsx
+  h_c5a773bf2fda8b 10-13,20-22,27,50,55,90-100,105,120,125-126,131,136
+packages/storybook-docs/src/stories/action-card/action-card.stories.tsx
+  h_c5a773bf2fda8b 10-13,20-22,27,77,82,86,91,95,100,104,109-127,131,136,149,154-155,159,164
+packages/storybook-docs/src/stories/application-header.stories.ts
+  h_c5a773bf2fda8b 290
+packages/storybook-docs/src/stories/badge/accessibility/a11y-badge.stories.tsx
+  h_c5a773bf2fda8b 39,51,72,83,111,122
+packages/storybook-docs/src/stories/badge/badge-preview.shared.tsx
+  h_c5a773bf2fda8b 19,21-24,32-33,35,37
+packages/storybook-docs/src/stories/badge/counter.stories.tsx
+  h_c5a773bf2fda8b 69,73,81,97,101,112,121,130,142-143,146,150,154,158,160,163,167,171,201,212,258,266,289,292,296,300,305,319,333,358
+packages/storybook-docs/src/stories/badge/dot.stories.tsx
+  h_c5a773bf2fda8b 72,74,82,104,112,143
+packages/storybook-docs/src/stories/badge/label.stories.tsx
+  h_c5a773bf2fda8b 75,97,102,110,123,125,155,163,194
+packages/storybook-docs/src/stories/badge/status-icon.stories.tsx
+  h_c5a773bf2fda8b 43,74,76,106,114,145
+packages/storybook-docs/src/stories/blind.stories.tsx
+  h_c5a773bf2fda8b 7-10,17-22
+packages/storybook-docs/src/stories/card-list.stories.tsx
+  h_c5a773bf2fda8b 14-30,36-46,50-54,61-74
+packages/storybook-docs/src/stories/card.stories.tsx
+  h_c5a773bf2fda8b 24-29,35-69
+packages/storybook-docs/src/stories/chip.stories.ts
+  h_c5a773bf2fda8b 18,20-23,25,245,252,260,266,290,297,317,324
+packages/storybook-docs/src/stories/chip/accessibility/a11y-chip.stories.ts
+  h_c5a773bf2fda8b 42,53,107,129
+packages/storybook-docs/src/stories/content-header.stories.tsx
+  h_c5a773bf2fda8b 9,19-29,41-70
+packages/storybook-docs/src/stories/date-dropdown.stories.ts
+  h_c5a773bf2fda8b 35-42
+packages/storybook-docs/src/stories/date-picker.stories.tsx
+  h_c5a773bf2fda8b 25-40
+packages/storybook-docs/src/stories/datetime-input/accessibility/a11y-datetime-input.stories.ts
+  h_c5a773bf2fda8b 13,124-162
+packages/storybook-docs/src/stories/datetime-picker.stories.tsx
+  h_c5a773bf2fda8b 27-35
+packages/storybook-docs/src/stories/dropdown.stories.tsx
+  h_c5a773bf2fda8b 38-67
+packages/storybook-docs/src/stories/flip-tile.stories.ts
+  h_c5a773bf2fda8b 87-158
+packages/storybook-docs/src/stories/group/accessibility/a11y-group.stories.ts
+  h_c5a773bf2fda8b 10-11,14,17,19-39,41-44,54-57,59-66,68-84
+packages/storybook-docs/src/stories/input-date.stories.ts
+  h_c5a773bf2fda8b 38-45
+packages/storybook-docs/src/stories/input-datetime.stories.ts
+  h_c5a773bf2fda8b 38-45
+packages/storybook-docs/src/stories/kpi.stories.tsx
+  h_c5a773bf2fda8b 31-93
+packages/storybook-docs/src/stories/link-button.stories.ts
+  h_c5a773bf2fda8b 44-87
+packages/storybook-docs/src/stories/message-bar.stories.ts
+  h_c5a773bf2fda8b 12-22,24,28-39,55,64-67,77,82,84,96-109,117,119,131,133,138,140
+packages/storybook-docs/src/stories/pill/accessibility/a11y-pill.stories.ts
+  h_c5a773bf2fda8b 42,115
+packages/storybook-docs/src/stories/popover.stories.ts
+  h_c5a773bf2fda8b 135
+packages/storybook-docs/src/stories/progress-indicator.stories.ts
+  h_c5a773bf2fda8b 11,27-30,58-76,87-94
+packages/storybook-docs/src/stories/push-card.stories.tsx
+  h_c5a773bf2fda8b 1-8,10-13,20-22,34,49
+packages/storybook-docs/src/stories/toast.stories.ts
+  h_c5a773bf2fda8b 15-24,40-45,61,66-101
+packages/vue/package.json
+  h_c5a773bf2fda8b 33,50,54-55
+packages/vue/src/components/ix-action-card.ts
+  h_c5a773bf2fda8b 11,18
+packages/vue/src/components/ix-blind.ts
+  h_c5a773bf2fda8b 15
+packages/vue/src/components/ix-breadcrumb.ts
+  h_c5a773bf2fda8b 14
+packages/vue/src/components/ix-card-accordion.ts
+  h_c5a773bf2fda8b 13
+packages/vue/src/components/ix-card.ts
+  h_c5a773bf2fda8b 11,13
+packages/vue/src/components/ix-date-dropdown.ts
+  h_c5a773bf2fda8b 26-28,31-32,34-35
+packages/vue/src/components/ix-date-input.ts
+  h_c5a773bf2fda8b 36-38
+packages/vue/src/components/ix-date-picker.ts
+  h_c5a773bf2fda8b 18-20,33-34,38-39
+packages/vue/src/components/ix-datetime-input.ts
+  h_c5a773bf2fda8b 31-32,42
+packages/vue/src/components/ix-datetime-picker.ts
+  h_c5a773bf2fda8b 23-25,41-42,46-47
+packages/vue/src/components/ix-dropdown.ts
+  h_c5a773bf2fda8b 14
+packages/vue/src/components/ix-group.ts
+  h_c5a773bf2fda8b 17-18
+packages/vue/src/components/ix-link-button.ts
+  h_c5a773bf2fda8b 12-14
+packages/vue/src/components/ix-modal-loading.ts
+  h_c5a773bf2fda8b 1-9
+packages/vue/src/components/ix-pagination.ts
+  h_c5a773bf2fda8b 17,23-24
+packages/vue/src/components/ix-push-card.ts
+  h_c5a773bf2fda8b 16,18
+packages/vue/src/components/ix-time-input.ts
+  h_c5a773bf2fda8b 45
+packages/vue/src/components/ix-time-picker.ts
+  h_c5a773bf2fda8b 14,23-24,33-34,37-38
+packages/vue/src/components/ix-tree-item.ts
+  h_c5a773bf2fda8b 15-16
+packages/vue/src/modal/IxOverlay.vue
+  h_c5a773bf2fda8b 9,48,53,63-66,68,70-72
+packages/vue/src/tests/overlay.spec.ts
+  h_c5a773bf2fda8b 1-60
+patterns/angular-standalone-patterns/.editorconfig
+  h_c5a773bf2fda8b 1-17
+patterns/angular-standalone-patterns/.gitignore
+  h_c5a773bf2fda8b 1-44
+patterns/angular-standalone-patterns/angular.json
+  h_c5a773bf2fda8b 1-76
+patterns/angular-standalone-patterns/package.json
+  h_c5a773bf2fda8b 1-46
+patterns/angular-standalone-patterns/src/app/app.config.ts
+  h_c5a773bf2fda8b 1-11
+patterns/angular-standalone-patterns/src/app/app.html
+  h_c5a773bf2fda8b 1
+patterns/angular-standalone-patterns/src/app/app.routes.ts
+  h_c5a773bf2fda8b 1-29
+patterns/angular-standalone-patterns/src/app/app.ts
+  h_c5a773bf2fda8b 1-10
+patterns/angular-standalone-patterns/src/index.html
+  h_c5a773bf2fda8b 1-13
+patterns/angular-standalone-patterns/src/main.ts
+  h_c5a773bf2fda8b 1-6
+patterns/angular-standalone-patterns/src/routes/change-password/change-password.css
+  h_c5a773bf2fda8b 1-47
+patterns/angular-standalone-patterns/src/routes/change-password/change-password.html
+  h_c5a773bf2fda8b 1-61
+patterns/angular-standalone-patterns/src/routes/change-password/change-password.ts
+  h_c5a773bf2fda8b 1-109
+patterns/angular-standalone-patterns/src/routes/error-page/error-page.css
+  h_c5a773bf2fda8b 1-88
+patterns/angular-standalone-patterns/src/routes/error-page/error-page.html
+  h_c5a773bf2fda8b 1-19
+patterns/angular-standalone-patterns/src/routes/error-page/error-page.ts
+  h_c5a773bf2fda8b 1-23
+patterns/angular-standalone-patterns/src/routes/login-overlay/login-overlay.css
+  h_c5a773bf2fda8b 1-103
+patterns/angular-standalone-patterns/src/routes/login-overlay/login-overlay.html
+  h_c5a773bf2fda8b 1-51
+patterns/angular-standalone-patterns/src/routes/login-overlay/login-overlay.ts
+  h_c5a773bf2fda8b 1-22
+patterns/angular-standalone-patterns/src/routes/password-criteria/password-criteria.css
+  h_c5a773bf2fda8b 1-61
+patterns/angular-standalone-patterns/src/routes/password-criteria/password-criteria.html
+  h_c5a773bf2fda8b 1-24
+patterns/angular-standalone-patterns/src/routes/password-criteria/password-criteria.ts
+  h_c5a773bf2fda8b 1-73
+patterns/angular-standalone-patterns/src/routes/upload/upload.css
+  h_c5a773bf2fda8b 1-59
+patterns/angular-standalone-patterns/src/routes/upload/upload.html
+  h_c5a773bf2fda8b 1-21
+patterns/angular-standalone-patterns/src/routes/upload/upload.ts
+  h_c5a773bf2fda8b 1-70
+patterns/angular-standalone-patterns/src/styles.css
+  h_c5a773bf2fda8b 1-2
+patterns/angular-standalone-patterns/tsconfig.app.json
+  h_c5a773bf2fda8b 1-15
+patterns/angular-standalone-patterns/tsconfig.json
+  h_c5a773bf2fda8b 1-33
+patterns/angular-standalone-patterns/tsconfig.spec.json
+  h_c5a773bf2fda8b 1-15
+patterns/change-password.json
+  h_c5a773bf2fda8b 1-39
+patterns/error-page.json
+  h_c5a773bf2fda8b 1-39
+patterns/login-overlay.json
+  h_c5a773bf2fda8b 1-39
+patterns/password-criteria.json
+  h_c5a773bf2fda8b 1-39
+patterns/react-patterns/.gitignore
+  h_c5a773bf2fda8b 1-27
+patterns/react-patterns/eslint.config.js
+  h_c5a773bf2fda8b 1-23
+patterns/react-patterns/index.html
+  h_c5a773bf2fda8b 1-13
+patterns/react-patterns/package.json
+  h_c5a773bf2fda8b 1-37
+patterns/react-patterns/scripts/setup-corporate-theme.mjs
+  h_c5a773bf2fda8b 1-104
+patterns/react-patterns/src/main.tsx
+  h_c5a773bf2fda8b 1-100
+patterns/react-patterns/src/routes/change-password/change-password.module.css
+  h_c5a773bf2fda8b 1-73
+patterns/react-patterns/src/routes/change-password/change-password.tsx
+  h_c5a773bf2fda8b 1-186
+patterns/react-patterns/src/routes/error-page/error-page.module.css
+  h_c5a773bf2fda8b 1-88
+patterns/react-patterns/src/routes/error-page/error-page.tsx
+  h_c5a773bf2fda8b 1-38
+patterns/react-patterns/src/routes/index.tsx
+  h_c5a773bf2fda8b 1-3
+patterns/react-patterns/src/routes/login-overlay/login-overlay.module.css
+  h_c5a773bf2fda8b 1-103
+patterns/react-patterns/src/routes/login-overlay/login-overlay.tsx
+  h_c5a773bf2fda8b 1-83
+patterns/react-patterns/src/routes/password-criteria/password-criteria.module.css
+  h_c5a773bf2fda8b 1-61
+patterns/react-patterns/src/routes/password-criteria/password-criteria.tsx
+  h_c5a773bf2fda8b 1-85
+patterns/react-patterns/src/routes/upload/upload.module.css
+  h_c5a773bf2fda8b 1-59
+patterns/react-patterns/src/routes/upload/upload.tsx
+  h_c5a773bf2fda8b 1-79
+patterns/react-patterns/tsconfig.app.json
+  h_c5a773bf2fda8b 1-28
+patterns/react-patterns/tsconfig.json
+  h_c5a773bf2fda8b 1-7
+patterns/react-patterns/tsconfig.node.json
+  h_c5a773bf2fda8b 1-26
+patterns/react-patterns/vite.config.ts
+  h_c5a773bf2fda8b 1-12
+patterns/upload.json
+  h_c5a773bf2fda8b 2-21,23,25-34,36,38
+pnpm-lock.yaml
+  h_c5a773bf2fda8b 19-20,100,103-104,106-107,109-110,112-113,115-116,118-119,121-122,124-125,128,131,134,137,140,143,153,155,157-158,163,165-167,170-171,173-174,176-177,212-213,215,218-219,221-222,224-225,227-228,230-231,233-234,236-237,239-240,243,246,249,252,255,258,268,270,272-273,278,282-283,285-286,288-289,324-325,327-404,415-436,438-445,447-787,803-805,832,860,862-863,865,872,874,877,881,883,899,901,910,913,934,937,940,943,946,952,954,956-1339,1341-1535,1537,1545,1548,1551,1554,1557,1559,1587,1590,1593,1596,1605,1608,1610-1611,1613-1614,1629-1630,1633,1636,1645,1648,1651,1654,1656,1660,1663,1666,1669,1672,1676,1685,1688,1690,1692-1695,1697-1706,1708,1712,1715,1718,1721,1724,1727,1733,1742,1751,1754,1757-1760,1762-1763,1778,1782,1785,1788,1791,1794,1799,1801,1803-1804,1809-1810,1812-1815,1818,1820,1824,1827,1830,1833,1836,1850-1851,1853-1854,1859,1863,1876,1879,1882,1885,1887-1888,1897,1900,1905-1907,1909-1924,1937-1939,1969-2025,2032-2034,2050-2051,2054-2055,2058-2059,2062-2063,2066-2067,2070-2071,2074-2075,2078-2079,2082-2083,2086-2087,2090-2091,2094-2095,2098-2103,2114-2120,2122,2124-2125,2128-2134,2137-2138,2140,2143,2174-2175,2181-2191,2194,2199-2200,2203-2204,2206,2208,2210-2211,2214-2221,2224,2228-2229,2256-2303,2307-2308,2311,2314-2315,2319-2320,2325-2326,2329-2330,2333,2335,2342-2343,2346-2348,2351-2352,2356-2359,2361-2362,2365-2367,2372-2373,2376-2378,2381-2389,2403-2404,2411-2412,2419-2420,2427-2438,2443-2444,2451-2454,2461-2466,2473-2478,2484-2488,2493-2496,2501-2502,2509-2510,2519-2524,2529-2530,2537-2540,2553-2558,2563-2566,2575-2582,2591-2602,2607-2608,2611-2612,2619-2621,2628-2642,2649-2654,2679-2684,2718-2719,2818-2823,2830-2835,2848-2861,2872-2877,2884-2889,2896-2901,2908-2913,2920-2925,2938-2943,2950-2955,2962-2967,2992-2997,3010-3015,3034-3039,3046-3051,3064-3069,3082-3087,3094-3099,3106-3111,3124-3129,3136-3141,3148-3153,3160-3165,3172-3177,3202-3207,3214-3219,3226-3227,3244-3249,3286-3291,3304-3309,3316-3321,3331-3334,3343-3346,3355-3356,3367-3378,3530-3565,3592-3593,3598-3599,3610-3611,3616-3617,3628-3629,3634-3635,3646-3647,3652-3653,3664-3665,3670-3671,3682-3683,3688-3689,3700-3701,3706-3707,3718-3719,3724-3725,3736-3737,3742-3743,3754-3755,3760-3761,3772-3773,3778-3779,3790-3791,3796-3797,3808-3809,3814-3815,3826-3827,3832-3833,3844-3845,3850-3851,3862-3863,3868-3869,3880-3881,3886-3887,3898-3899,3904-3905,3916-3917,3922-3923,3934-3935,3940-3941,3952-3953,3958-3959,3976-3981,3988-3989,3994-3995,4006-4007,4012-4013,4024-4025,4030-4031,4042-4043,4048-4049,4102-4110,4132-4135,4145-4153,4328-4330,4332-4333,4359-4360,4368-4369,4386-4394,4399-4400,4408-4409,4417-4418,4426-4427,4435-4436,4444-4445,4453-4454,4532-4535,4552-4555,4565-4573,4578-4592,4601-4604,4613-4616,4625-4628,4637-4640,4645-4648,4657-4660,4665-4668,4678-4686,4695-4698,4703-4706,4711-4714,4719-4722,4727-4730,4739-4742,4751-4754,4786-4889,4894-4895,4903-4905,4908,4921-4925,4929-4930,4934-4935,4939-4940,4944-4945,4949-4950,4954-4955,4959-4960,5001-5002,5004-5019,5062-5063,5068-5069,5074-5075,5080-5081,5086-5087,5092-5093,5098-5099,5105-5106,5112-5113,5119-5120,5126-5127,5133-5134,5140-5141,5147-5154,5159-5160,5165-5166,5171-5172,5237-5238,5241-5242,5245-5248,5265-5267,5273-5275,5277-5279,5281-5283,5286-5288,5290-5292,5294-5296,5298-5300,5302-5304,5334-5339,5349-5354,5361-5366,5373-5378,5385-5390,5398-5404,5412-5418,5426-5432,5440-5446,5454-5460,5468-5474,5481-5486,5499-5558,5586-5588,5599-5610,5617-5628,5635-5646,5653-5664,5671-5682,5690-5703,5711-5724,5746-5759,5767-5780,5787-5798,5804-5813,5820-5831,5838-5849,5856-5861,6012-6013,6017-6018,6022-6023,6044-6045,6048-6049,6052-6054,6056-6058,6060-6061,6064-6066,6068-6070,6072-6074,6091-6093,6115-6116,6118,6125-6126,6130-6131,6133,6137-6139,6141,6150-6151,6156,6186-6187,6189,6464-6466,6564-6565,6606-6608,6612-6614,6648-6650,6657-6659,6672-6673,6675,6689-6691,6748-6749,6752-6754,6763-6769,6782-6783,6785-6786,6796-6799,6812-6813,6816,6825-6826,6828-6830,6840-6841,6856-6857,6860,6869-6870,6872-6874,6884-6887,7002-7128,7132-7133,7151-7156,7368-7378,7475-7477,7490-7495,7616-7623,7673-7676,7741-7744,7749-7752,7794-7795,7828-7833,7849-7852,7857-7860,7866-7870,7876-7885,7891-7895,7907-7912,7957-7961,7974-7976,7982-7984,7999-8001,8017-8022,8076-8080,8105-8108,8117-8119,8165-8167,8188-8189,8218-8221,8258-8260,8287-8293,8358-8359,8377-8378,8412-8413,8448-8451,8476-8479,8483-8489,8496-8499,8565-8566,8583-8585,8598-8601,8606-8609,8654-8657,8680-8683,8756-8758,8770-8771,8805-8808,8828-8830,8984-8992,9014-9016,9037-9039,9061-9064,9087-9088,9109-9116,9163-9165,9181-9182,9186-9187,9191-9192,9201-9205,9262-9272,9388-9389,9407-9410,9439-9442,9446-9447,9452-9453,9456-9457,9613-9615,9700-9703,9731-9733,9749-9754,9763-9768,9802-9805,9828-9832,9878-9879,9881-9882,9888-9897,9902-9903,9913-9916,9925-9926,9946-9947,9966-9969,9990-9992,10035-10038,10068-10070,10080-10083,10115-10117,10122-10123,10139-10142,10228-10231,10244-10247,10362-10365,10395-10398,10423-10425,10438-10440,10452-10455,10460-10463,10474-10483,10496-10510,10519-10522,10527-10530,10535-10538,10552-10555,10568-10571,10576-10579,10588-10591,10600-10603,10612-10615,10625-10627,10629-10634,10644-10647,10652-10655,10660-10663,10668-10671,10676-10679,10688-10691,10700-10703,10708-10711,10716-10719,10736-10739,10750-10759,10771-10773,10822-10830,10847-10849,10857-10859,10928-10929,10935-10936,10939,10953-10957,11062-11068,11079-11080,11083-11084,11141-11142,11209-11212,11220-11222,11247-11249,11261-11262,11339-11340,11395-11397,11411-11414,11431-11433,11438-11439,11534-11538,11551-11555,11565-11568,11601-11602,11606,11609,11614-11615,11617,11651-11653,11665-11668,11674-11676,11687-11689,11691-11693,11695-11697,11699-11701,11707-11709,11711-11713,11737-11740,11783-11784,11802-11805,11822-11824,11900-11901,11924-11925,11927-11928,11933-11935,11969-11970,12023-12024,12049-12052,12145-12146,12299-12304,12340-12341,12348-12350,12404-12410,12415-12417,12502-12511,12524-12527,12531-12533,12558-12561,12566-12569,12599-12601,12609-12611,12620-12622,12624-12625,12633-12642,12677-12680,12704-12707,12711-12713,12728-12731,12739-12742,12851-12869,12875-12883,12969-12970,12973-12974,12979-12980,12985-12986,12991-12992,12997-12998,13003-13004,13009-13010,13016-13017,13023-13024,13030-13031,13037-13038,13044-13045,13051-13052,13058-13059,13065-13066,13069-13070,13075-13076,13081-13083,13086-13087,13090,13107-13109,13117-13121,13142-13145,13155-13157,13167-13168,13188-13190,13204-13206,13247-13249,13255-13258,13271-13274,13285-13287,13321-13324,13379-13381,13392-13394,13422-13424,13456-13457,13476-13478,13505-13508,13573-13574,13576-13577,13672-13673,13680-13681,13684,13686-13690,13692-13694,13698-13699,13702-13711,13714-13719,13737-13740,13751-13752,13813-13815,13820-13823,13858-13861,13873-13878,13906-13907,13911-13914,13916-13918,13930-13931,13950-13974,14000-14006,14051-14054,14081-14082,14085-14086,14108-14112,14132-14136,14144-14146,14163-14170,14183-14186,14223-14235,14252-14257,14301-14303,14317-14318,14357-14358,14456-14457,14459,14634-14635,14657-14662,14670-14671,14704-14705,14740-14743,14752-14755,14789-14791,14806-14812,14892-14895,14997-15000,15004-15011,15013,15018-15022,15027-15029,15040-15041,15060-15067,15069-15072,15074,15076-15079,15081,15083,15085-15088,15090,15092-15095,15097,15099-15102,15104,15106-15109,15111,15113-15116,15118,15120-15123,15125,15127-15130,15132,15134,15136,15138,15140,15142,15152-15159,15161,15166,15169-15175,15178-15182,15184,15186-15192,15196-15198,15200-15206,15209-15212,15214-15215,15218-15319,15321,15323-15326,15328-15329,15332-15334,15337-15338,15342-15344,15346,15362,15364,15366-15367,15371,15373-15394,15396,15398,15400,15402,15404,15406-15407,15412,15414,15417,15420-15423,15426-15430,15434-15435,15437-15442,15444,15446-15449,15451-15452,15454-15459,15461-15578,15591-15617,15619-15625,15627-15628,15630-15634,15636,15638,15643,15645,15649,15651-15654,15657,15661,15665,15669,15674,15677,15679-15682,15686,15688-15691,15694,15696-15697,15700,15702,15704-15706,15710-15727,15745-15749,15753,15775-15795,15797-15798,15801,15803,15805-15806,15809,15811,15813-15822,15825,15830,15832,15834,15844-15852,15854,15858,15865,15867-15873,15878,15880,15885,15887,15892,15894-15903,15906,15910,15912-15914,15917,15923-15924,15927-15928,15932,15934-15935,15946,15948-15949,15962-15979,15982,15984-15986,15990-15992,15994,15997,16001,16003,16006,16010,16012,16015,16019,16021,16024-16033,16044-16050,16053,16057-16060,16065-16070,16073-16074,16077-16079,16088,16090-16091,16097,16099-16113,16117,16119-16121,16125,16127-16128,16130,16132-16133,16135,16137-16138,16140,16142-16143,16145,16147-16148,16150,16154,16156-16157,16159,16163,16165-16167,16171,16173-16175,16179,16181,16183,16185,16187,16189,16192,16194,16197,16199,16202,16204,16207,16209-16210,16212,16214-16215,16222,16224,16227,16229,16232,16234-16235,16242,16244,16247,16249,16252,16254,16257,16259,16262,16264,16267,16269,16272,16274,16277,16279,16282,16284-16285,16287,16289-16290,16297-16302,16304-16306,16308,16310-16312,16314,16316-16317,16319,16321-16322,16324,16326-16329,16333,16335-16338,16342,16344-16347,16351,16353-16356,16360,16362-16363,16365,16367-16368,16370,16372-16373,16375,16377-16378,16380,16382-16384,16388,16390-16392,16396,16398-16400,16404,16406-16408,16412,16414,16416,16418-16420,16424,16426-16432,16436,16438-16440,16442,16444-16446,16448,16450-16452,16456,16458-16460,16464-16470,16472-16474,16476,16478-16479,16481,16483-16484,16486,16488-16490,16492,16494-16496,16498,16500-16501,16503,16505-16506,16508,16510-16514,16516,16518-16519,16521,16523-16524,16526,16528-16529,16531,16533-16534,16536,16538-16539,16544,16546-16547,16552,16554-16557,16561,16563-16566,16570,16572-16573,16575,16577-16578,16580,16582-16583,16585,16587-16588,16590,16592-16593,16595,16597-16598,16600,16602-16603,16605,16607-16608,16610,16612-16614,16618,16620-16622,16626,16628-16630,16634,16636-16638,16642,16644-16648,16652,16654-16658,16662,16664-16666,16670,16672-16674,16678,16680-16682,16684,16686-16688,16690,16692-16693,16695,16697-16698,16700,16702-16703,16705,16707-16708,16710,16712-16713,16715,16717-16718,16720,16722-16727,16731,16733-16738,16742,16744-16746,16750,16752-16754,16758,16760-16761,16763,16765-16766,16768,16770-16771,16776,16778-16779,16784-16797,16799-16800,16802,16804-16805,16807,16809-16811,16815,16817-16819,16823,16825,16827-16828,16832,16834-16837,16841,16843-16844,16846,16848-16849,16851,16853-16854,16856,16858-16859,16861,16863-16864,16866,16868-16869,16871,16873-16875,16877,16879-16881,16883,16885-16886,16888,16890-16891,16893,16895-16900,16905,16907-16908,16910,16912-16913,16915,16917-16918,16923,16925-16927,16931,16933-16934,16936,16938-16939,16941,16943-16944,16946,16948-16949,16951,16953-16954,16956,16958-16959,16961,16963,16965-16966,16968,16972,16974-16975,16977,16979-16980,16982,16984-16986,16988,16990-16992,16994,16996-16998,17000,17002-17004,17006,17008-17010,17012,17014-17016,17018,17020-17023,17025-17087,17093,17095-17164,17169,17171-17173,17176,17178-17180,17185-17186,17189-17191,17199-17204,17207-17208,17210-17212,17220,17229,17231-17239,17251-17265,17300,17308,17357,17366,17405,17431,17506,17550-17573,17613,17616,17622,17625,17631,17634,17640,17643,17649,17652,17658,17661,17667,17670,17676,17679,17684,17687,17693,17696,17702,17705,17711,17714,17720,17723,17729,17732,17738,17741,17747,17750,17756,17759,17765,17768,17774,17777,17783,17786,17792-17794,17801,17804,17810,17813,17819,17822,17828,17831,17837-17839,17893-17896,17920-17921,17934-17937,17939-17943,18055,18057,18065,18067-18071,18073,18082,18084-18085,18087,18110,18114,18121,18137,18140,18145-18153,18161-18168,18176-18189,18192,18199-18206,18213-18220,18222,18228-18236,18238,18240-18270,18274-18282,18285,18291,18293,18295,18298,18300,18302,18310,18312-18318,18324,18326,18347,18351-18352,18473-18474,18492,18498-18506,18514,18521,18549,18556,18577,18579-18585,18588-18590,18592-18642,18646,18652-18664,18669,18676,18679-18685,18694-18697,18712-18718,18723,18732,18737-18745,18748-18749,18768-18776,18779,18782-18786,18795,18816-18843,18852-18855,18863-18869,18876-18882,18890-18896,18904-18910,18913,18933,18951-18969,18975,18985-18995,19001,19018,19023,19035-19112,19115-19118,19120-19150,19153,19155-19156,19161-19169,19171-19175,19185-19189,19193,19201,19204,19207,19210,19213,19216,19219,19244,19248,19317,19360-19382,19384-19386,19392-19396,19399-19400,19435-19438,19441,19444,19447,19450,19453,19456,19459,19462,19465,19468,19471,19474,19477,19480,19483,19486,19488-19504,19540,19542-19552,19577,19582,19592,19596,19598-19605,19607,19609-19610,19612,19614,19616-19622,19624,19626,19628,19630,19632-19636,19673-19676,19682-19684,19688-19690,19694-19696,19700-19702,19706-19708,19712-19714,19718-19720,19724-19726,19730-19732,19736-19738,19742-19744,19751-19753,19776-19889,19922,19927-19930,19936-19941,19945-19950,19954-19959,19963-19968,19972-19977,19981-19986,19990-19995,20005-20010,20014-20019,20023-20028,20036-20051,20055-20060,20064-20069,20074-20078,20080,20082,20084,20086,20092,20094,20096,20098,20103,20105,20107,20112,20116-20117,20119,20121,20123,20125,20127,20131,20133,20135,20141,20143,20149,20199,20203,20206,20213,20215-20216,20241,20243,20245,20247,20249,20251,20253,20255-20260,20264,20266-20267,20271,20273-20275,20293-20296,20317,20319,20322,20324,20337,20348,20350-20352,20360,20362-20364,20372,20374-20375,20377,20382,20384,20386-20387,20389,20391,20394-20395,20399,20401,20405,20407,20411,20419,20424,20430,20432-20437,20459,20465-20466,20468,20473,20475-20476,20479,20486,20491-20493,20502,20504-20505,20508,20510,20602,20652,20654,20672,20675,20705,20726,20730,20739,20743,20752,20779,20784,20794,20798,20802,20806,20819,20838-20842,20845,20849-20850,20855,20883-20886,20896-20900,20911,20913,20928-20929,20933,20937,20942,20949,20958,20971,20981,21016,21018-21023,21025-21028,21056-21067,21104,21106-21111,21123-21127,21144,21146,21171-21180,21184-21189,21250,21252-21261,21287,21289-21296,21308-21312,21375-21445,21447,21449,21451-21458,21460,21463-21464,21468,21470-21472,21476,21480,21482-21484,21488,21492,21494-21510,21515,21517,21520,21523,21526,21528-21529,21532,21539,21543,21545-21546,21548-21549,21558,21562,21564-21565,21567-21568,21577,21581,21583-21584,21586-21587,21596,21598,21605,21613,21625,21627,21655,21662,21664,21670-21671,21673,21679-21680,21682,21688-21689,21691,21693,21698,21700,21702,21706-21707,21709,21711,21715-21717,21719,21725-21736,21824,21826-21831,21833,21836,21840,21843-21845,21934-21938,22042,22059-22062,22099,22101-22102,22123,22127-22128,22160,22162,22167,22169-22175,22177,22179,22195,22197-22202,22204-22209,22211-22226,22228,22260-22261,22359-22364,22367-22372,22395,22413,22415-22417,22419,22444,22446,22450-22463,22470-22476,22478,22480,22484,22502-22511,22514-22515,22519-22523,22525-22527,22532,22534-22536,22541,22543-22544,22549,22551-22553,22557,22559-22561,22565,22567-22568,22572,22574-22600,22602-22608,22647-22648,22657,22659-22660,22663,22667,22673-22676,22688-22689,22717,22721-22737,22739-22740,22742-22744,22789,22791,22809-22816,22840-22841,22860,22862,22864-22865,22871,22909,22918-22919,22946,22974-22977,23005-23006,23029-23031,23033-23034,23057,23092,23104,23143,23145,23148-23151,23188-23189,23204-23205,23210-23223,23228-23230,23234-23238,23276,23283,23343-23356,23365,23367,23386-23393,23409-23413,23416-23417,23424,23482-23488,23519-23523,23572-23573,23583,23622-23626,23647-23648,23790-23791,23802-23809,23813,23816-23827,23834-23838,23862-23863,23878-23879,23899,23912,23915,23931-23934,23939-23940,24046-24047,24069-24071,24131-24159,24202-24216,24253,24378,24400-24401,24432-24440,24443,24445-24449,24451,24455,24458,24467,24472,24474,24480,24487,24490,24496,24676-24679,24701-24702,24779,24790-24791,24828-24831,24852-24855,24867-24875,24923-24924,24948-24956,24959,25002,25004,25006,25012-25016,25018,25027,25030,25040-25045,25059,25062,25065,25069,25072,25075,25079-25090,25098,25101,25106,25135-25142,25160,25163,25168,25172,25175-25176,25183,25191-25198,25206,25250-25253,25273-25274,25285-25287,25291,25310,25316,25326,25344,25348-25350,25428-25431,25442-25443,25488,25536-25537,25556-25557,25559,25561,25567-25568,25570,25577-25578,25580-25581,25587,25593-25594,25599,25601-25605,25627,25629,25641-25646,25653,25656,25673-25698,25737,25739-25741,25743,25745-25768,25772,25778,25781,25809,25812,25838,25840,25843,25863,25869,25871,25874,25894,25900,25902-25907,25909,25911,25913-25920,25922,25926-25993,26012-26018,26023-26026,26035-26043,26050,26064,26068-26077,26084,26099,26111-26124,26130-26134,26149-26155,26158,26170,26180-26192,26196,26202,26205-26211,26216,26218-26221,26223-26229,26231,26236,26244-26245,26253-26259,26268,26272-26281,26289,26308-26334,26344,26362-26389,26392-26396,26400,26411,26417-26420,26427,26436-26462,26470,26474,26479-26488,26503-26511,26516,26523-26533,26536,26542,26548,26555,26561-26568,26593-26607,26609-26610,26612,26616,26620-26621,26633-26634,26723-26750,26759,26765-26766,26798,26802-26803,26833,26835,26838,26864,26867,26871,26873-26879,26881,26899-26913,26931-26937,26941,27000-27008,27010,27012,27033,27035,27042-27048,27051,27063,27095,27102,27104-27105,27112,27156,27160,27176-27179,27201,27203-27206,27209,27213-27214,27241-27242,27249-27263,27334-27340,27343-27344,27382,27401,27404-27405,27407,27420-27424,27436-27437,27443,27546-27572,27577,27650-27675,27706-27707,27734-27742,27754-27755,27762,27769-27771,27782,27788,27791-27794,27796-27798,27800,27805-27808,27810-27811,27813,27815-27816,27821,27824-27827,27829-27831,27833,27838-27841,27843-27844,27846-27878,27880-27881,27884-27890,27892,27894,27912,27941,27946-27947,27949,27951-27952,27960-27961,27966,27968,27974,27976,27978,27980,27982,27984,27986-27989,27995,27997-28000,28002,28004,28006,28008-28011,28032-28033,28092,28106,28111,28113,28115,28117,28119-28120,28151,28153,28155,28158-28160,28239,28241-28247,28249-28250,28252-28257,28273,28282,28285-28286,28288,28290,28296-28299,28328,28361,28363,28391-28399,28434,28442,28476,28482,28485,28491,28494,28496-28519,28521,28535,28555,28623,28645,28654-28657,28698,28700,28710,28767-28782,28786,28796,28919-28926,28937-28941,28944-28945,28972-28978,28986-28992,29012,29014,29022-29023,29028,29030,29033-29035,29037,29039-29041,29043,29046-29054,29098-29099,29138-29141,29144-29145,29168-29176,29183-29186,29269-29270,29291-29307,29329-29373,29375-29377,29379-29380,29382,29384,29390-29391,29395,29397-29398,29400,29402,29404,29406,29408,29412,29416,29418,29420-29421,29426,29430,29483,29485,29488,29491,29494,29497,29500,29503,29506,29509,29512,29515,29518,29521,29524,29527,29530,29532,29535,29538,29541,29544-29545,29551-29570,29574-29576,29578,29580-29589,29602-29609,29627-29636,29647,29649-29650,29657,29699,29731-29732,29771,29805,29812-29816,29840-29847,29854,29856-29861,29900,29903-29907,29964-29970,29974,29993,30007-30011,30050,30083,30101,30117-30123,30162-30168,30251,30253,30255,30257,30259,30262,30266,30268,30319,30338,30347,30366,30375-30400,30403-30404,30453,30458,30463,30467-30469,30472-30474,30476,30480-30482,30484-30486,30488,30490-30508,30513,30530-30535,30550,30572,30594-30595,30600-30603,30633-30636,30647-30651,30673-30676,30682,30686-30687,30691-30693,30696-30701,30750,30757,30764-30806,30813-30841,30867-30871,30873,30875,30907,30920-30925,30970,30972-30975,30977,30989-30990,31023-31025,31038-31042,31056-31059,31069-31070,31102-31134,31149-31154,31205,31211,31217,31232,31238,31253,31259,31274,31276,31280-31281,31286,31288-31290,31294,31297-31301,31303,31306,31308-31310,31314,31317-31321,31323,31326,31328-31329,31334,31337-31341,31343,31346,31348-31349,31354,31357-31361,31363,31366,31369,31374,31376-31381,31383,31386,31388-31389,31394,31396-31401,31406,31408-31409,31414,31423,31426-31428,31430,31433,31442,31445,31447-31466,31473,31476,31481,31483-31484,31497,31501,31508-31510,31512-31513,31516,31519-31520,31525,31527,31542,31546,31553-31555,31557-31558,31561,31564-31565,31569-31570,31572,31587,31591,31598-31600,31602-31603,31606,31609-31610,31615,31617,31632,31635,31652,31656,31658,31672,31675,31692,31697-31786,31800-31808,31826-31827,31869,31879,31901-31903,31906-31907,31912,31914-31925,31929,31934,31939,31941,31943,31945,31949,31953-31992,31994,32009,32012,32014-32021,32025,32028,32033-32035,32037-32038,32044,32047-32050,32053,32055-32059,32061-32063,32066,32069,32074-32076,32078-32079,32085,32088-32173,32176,32178-32182,32184-32186,32188,32210-32211,32222-32226,32285,32287,32298-32304,32325,32327,32353-32357,32465-32466,32474-32478,32480-32484,32488-32493,32495-32497
+pnpm-workspace.yaml
+  h_c5a773bf2fda8b 5-6,12
+renovate.json
+  h_c5a773bf2fda8b 4
+skills/ix-installation/SKILL.md
+  h_c5a773bf2fda8b 1-240
+skills/ix/SKILL.md
+  h_c5a773bf2fda8b 1-371
+testing/angular-standalone-test-app/.editorconfig
+  h_c5a773bf2fda8b 1-16
+testing/angular-standalone-test-app/.gitignore
+  h_c5a773bf2fda8b 1-42
+testing/angular-standalone-test-app/README.md
+  h_c5a773bf2fda8b 1-27
+testing/angular-standalone-test-app/package.json
+  h_c5a773bf2fda8b 1-54
+testing/angular-standalone-test-app/src/app/app.component.html
+  h_c5a773bf2fda8b 10
+testing/angular-standalone-test-app/src/app/app.component.spec.ts
+  h_c5a773bf2fda8b 10-11,13-24
+testing/angular-standalone-test-app/src/app/app.component.ts
+  h_c5a773bf2fda8b 10-19
+testing/angular-standalone-test-app/src/app/app.config.ts
+  h_c5a773bf2fda8b 1-20
+testing/angular-standalone-test-app/src/app/app.routes.ts
+  h_c5a773bf2fda8b 1-17
+testing/angular-standalone-test-app/src/index.html
+  h_c5a773bf2fda8b 1-16
+testing/angular-standalone-test-app/src/main.ts
+  h_c5a773bf2fda8b 1-6
+testing/angular-standalone-test-app/src/playground/playground.ts
+  h_c5a773bf2fda8b 18
+testing/angular-standalone-test-app/src/styles.css
+  h_c5a773bf2fda8b 1-6
+testing/angular-standalone-test-app/tsconfig.json
+  h_c5a773bf2fda8b 1-8
+testing/angular-standalone-test-app/tsconfig.spec.json
+  h_c5a773bf2fda8b 1-9
+testing/angular-test-app/.editorconfig
+  h_c5a773bf2fda8b 1-16
+testing/angular-test-app/.gitignore
+  h_c5a773bf2fda8b 1-44
+testing/angular-test-app/README.md
+  h_c5a773bf2fda8b 1-27
+testing/angular-test-app/package.json
+  h_c5a773bf2fda8b 1-53
+testing/angular-test-app/src/app/app-routing.module.ts
+  h_c5a773bf2fda8b 1-19
+testing/angular-test-app/src/app/app.component.html
+  h_c5a773bf2fda8b 1-6
+testing/angular-test-app/src/app/app.component.spec.ts
+  h_c5a773bf2fda8b 1-19
+testing/angular-test-app/src/app/app.component.ts
+  h_c5a773bf2fda8b 1-9
+testing/angular-test-app/src/app/app.module.ts
+  h_c5a773bf2fda8b 1-39
+testing/angular-test-app/src/index.html
+  h_c5a773bf2fda8b 1-15
+testing/angular-test-app/src/main.ts
+  h_c5a773bf2fda8b 1-7
+testing/angular-test-app/src/styles.css
+  h_c5a773bf2fda8b 1-6
+testing/angular-test-app/src/test/input/input-required-check.spec.ts
+  h_c5a773bf2fda8b 4,10-14,36,42,52,59,61,85,91,102,110,118,120
+testing/angular-test-app/src/test/select/select-form.spec.ts
+  h_c5a773bf2fda8b 20,40,42,52-53,56-57
+testing/angular-test-app/src/test/utils/wait-for-hydration.ts
+  h_c5a773bf2fda8b 7
+testing/angular-test-app/tsconfig.app.json
+  h_c5a773bf2fda8b 1-33
+testing/angular-test-app/tsconfig.json
+  h_c5a773bf2fda8b 1-8
+testing/angular-test-app/tsconfig.spec.json
+  h_c5a773bf2fda8b 1-14
+testing/framework-tests/__snapshots__/action-card-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-4
+testing/framework-tests/__snapshots__/badge-aria-snapshot.yaml
+  h_c5a773bf2fda8b 3,7-10,19-21,30
+testing/framework-tests/__snapshots__/badge-counter-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1
+testing/framework-tests/__snapshots__/badge-dot-aria-snapshot.yaml
+  h_c5a773bf2fda8b 33
+testing/framework-tests/__snapshots__/blind-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-4
+testing/framework-tests/__snapshots__/blind-header-actions-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-5
+testing/framework-tests/__snapshots__/blind-variants-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-31
+testing/framework-tests/__snapshots__/card-list-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-39
+testing/framework-tests/__snapshots__/content-header-aria-snapshot.yaml
+  h_c5a773bf2fda8b 3-4
+testing/framework-tests/__snapshots__/content-header-text-overflow-aria-snapshot.yaml
+  h_c5a773bf2fda8b 3-4
+testing/framework-tests/__snapshots__/date-dropdown-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/date-input-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/date-picker-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-56
+testing/framework-tests/__snapshots__/datetime-input-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/datetime-picker-require-confirmation-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-206
+testing/framework-tests/__snapshots__/flip-tile-aria-snapshot.yaml
+  h_c5a773bf2fda8b 21-40
+testing/framework-tests/__snapshots__/group-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/group-context-menu-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-4
+testing/framework-tests/__snapshots__/group-custom-entry-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/group-header-suppressed-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-3
+testing/framework-tests/__snapshots__/kpi-aria-snapshot.yaml
+  h_c5a773bf2fda8b 3-6,8
+testing/framework-tests/__snapshots__/link-button-action-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/link-button-external-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/link-button-file-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/link-button-internal-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1-2
+testing/framework-tests/__snapshots__/message-bar-aria-snapshot.yaml
+  h_c5a773bf2fda8b 6-19
+testing/framework-tests/__snapshots__/progress-indicator-circular-status-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1,6,9-10,12,15,18
+testing/framework-tests/__snapshots__/progress-indicator-linear-status-aria-snapshot.yaml
+  h_c5a773bf2fda8b 1,3,7-8,11-13,15-16,19-20,23-24
+testing/framework-tests/package.json
+  h_c5a773bf2fda8b 17
+testing/framework-tests/src/utils.ts
+  h_c5a773bf2fda8b 17
+testing/framework-tests/tests/generated/axe.ts
+  h_c5a773bf2fda8b 60-61,67,70,80,83,149,152-154
+testing/framework-tests/tests/generated/date-dropdown-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-dropdown-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-dropdown-user-range-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-dropdown-user-range.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-input-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-input-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 10-12,14-26
+testing/framework-tests/tests/generated/date-picker-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/date-picker-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 10-12,14-26
+testing/framework-tests/tests/generated/datetime-input-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-input-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-picker-require-confirmation-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/datetime-picker-require-confirmation.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/index.ts
+  h_c5a773bf2fda8b 118-121,132-133,139-140,158-159,165-166,297-298,302-307
+testing/framework-tests/tests/generated/link-button-action-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-action.spec.ts
+  h_c5a773bf2fda8b 10-12,14-26
+testing/framework-tests/tests/generated/link-button-external-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-external.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-file-axe.spec.ts
+  h_c5a773bf2fda8b 10-12,14-26
+testing/framework-tests/tests/generated/link-button-file.spec.ts
+  h_c5a773bf2fda8b 10-12,14-26
+testing/framework-tests/tests/generated/link-button-internal-axe.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/link-button-internal.spec.ts
+  h_c5a773bf2fda8b 1-26
+testing/framework-tests/tests/generated/test-ids.autogenerated.ts
+  h_c5a773bf2fda8b 105-107,109,191,195,204,208,214-215
+testing/framework-tests/tests/working-with-axe.spec.ts
+  h_c5a773bf2fda8b 90-110
+testing/framework-tests/tests/working.spec.ts
+  h_c5a773bf2fda8b 90-111
+testing/html-test-app/src/global.css
+  h_c5a773bf2fda8b 1-33
+testing/html-test-app/src/index.html
+  h_c5a773bf2fda8b 1-21
+testing/html-test-app/src/main.js
+  h_c5a773bf2fda8b 1-15
+testing/html-test-app/vite.config.ts
+  h_c5a773bf2fda8b 1-42
+testing/ionic-test-app/package.json
+  h_c5a773bf2fda8b 30-31,38
+testing/ionic-test-app/src/App.tsx
+  h_c5a773bf2fda8b 1,95-96,99,104,118-119,121,124,128,188-193
+testing/ionic-test-app/src/pages/Demo.module.css
+  h_c5a773bf2fda8b 17
+testing/ionic-test-app/src/pages/Other.tsx
+  h_c5a773bf2fda8b 30-35,55-56,63
+testing/ionic-test-app/vite.config.ts
+  h_c5a773bf2fda8b 37
+testing/react-test-app/.gitignore
+  h_c5a773bf2fda8b 1-24
+testing/react-test-app/index.html
+  h_c5a773bf2fda8b 1-19
+testing/react-test-app/package.json
+  h_c5a773bf2fda8b 1-45
+testing/react-test-app/public/manifest.json
+  h_c5a773bf2fda8b 1-25
+testing/react-test-app/public/robots.txt
+  h_c5a773bf2fda8b 1-3
+testing/react-test-app/src/App.tsx
+  h_c5a773bf2fda8b 1-14
+testing/react-test-app/src/main.tsx
+  h_c5a773bf2fda8b 1-34
+testing/react-test-app/src/reportWebVitals.ts
+  h_c5a773bf2fda8b 1-24
+testing/react-test-app/src/setupTests.ts
+  h_c5a773bf2fda8b 1-14
+testing/react-test-app/src/vite-env.d.ts
+  h_c5a773bf2fda8b 1-10
+testing/react-test-app/tsconfig.app.json
+  h_c5a773bf2fda8b 1-24
+testing/react-test-app/tsconfig.json
+  h_c5a773bf2fda8b 1-7
+testing/react-test-app/tsconfig.node.json
+  h_c5a773bf2fda8b 1-22
+testing/react-test-app/vite.config.ts
+  h_c5a773bf2fda8b 1-17
+testing/visual-testing/playwright.config.ts
+  h_c5a773bf2fda8b 25-35
+testing/visual-testing/tests/3rd-party/bootstrap/html-elements/index.html
+  h_c5a773bf2fda8b 159
+testing/visual-testing/tests/action-card/basic/index.html
+  h_c5a773bf2fda8b 41,59-65,83,89,95
+testing/visual-testing/tests/action-card/selected/index.html
+  h_c5a773bf2fda8b 41,62-69,90,97,104
+testing/visual-testing/tests/application/application.e2e.ts
+  h_c5a773bf2fda8b 252
+testing/visual-testing/tests/badge/attached-layout/index.html
+  h_c5a773bf2fda8b 60
+testing/visual-testing/tests/badge/badge.page.ts
+  h_c5a773bf2fda8b 54
+testing/visual-testing/tests/badge/counter/index.html
+  h_c5a773bf2fda8b 75,80,86,93,97,102,108,115,163,168,174,181-203,288,294,306,312,330,339,345,359
+testing/visual-testing/tests/badge/dot/index.html
+  h_c5a773bf2fda8b 75,79-80,85,87,92,94,97,101-102,107,109,114,116,163,167-168,173,175,180,182-204,284,287,293
+testing/visual-testing/tests/badge/label/index.html
+  h_c5a773bf2fda8b 75,81,88,96,100,106,113,121,175,181,188,196-221,315,322,338,346,355,358,375
+testing/visual-testing/tests/badge/status-icon/index.html
+  h_c5a773bf2fda8b 69,71,77-78,91,93,99-100,114,118-119,124,126,129,133-134,139,141,144,148-149,154,156,174-188,204,208-209,214,216,224-225,230
+testing/visual-testing/tests/blind/basic/index.html
+  h_c5a773bf2fda8b 43,46,49-67
+testing/visual-testing/tests/blind/blind.e2e.ts
+  h_c5a773bf2fda8b 66
+testing/visual-testing/tests/blind/custom-header/index.html
+  h_c5a773bf2fda8b 43-44,46,49-50,55-65
+testing/visual-testing/tests/blind/header-actions/index.html
+  h_c5a773bf2fda8b 38
+testing/visual-testing/tests/breadcrumb/breadcrumb.e2e.ts
+  h_c5a773bf2fda8b 23-29
+testing/visual-testing/tests/card-list/basic/index.html
+  h_c5a773bf2fda8b 43,50,57,73-79,92,106
+testing/visual-testing/tests/card-list/layout-scroll/index.html
+  h_c5a773bf2fda8b 43,50,57,85,128
+testing/visual-testing/tests/card-list/long-label/index.html
+  h_c5a773bf2fda8b 46,53,60,76-82,95,138
+testing/visual-testing/tests/card/basic/index.html
+  h_c5a773bf2fda8b 15,29,31,34,36,39,41,44,46,54,56,59,61,64,66,69,71,74,76,79,81
+testing/visual-testing/tests/card/selected/index.html
+  h_c5a773bf2fda8b 15,29,31,34,36,39,41,49,51,54,56,59,61,64,66,69,71,74,76
+testing/visual-testing/tests/checkbox/basic/index.html
+  h_c5a773bf2fda8b 48
+testing/visual-testing/tests/checkbox/indeterminate/index.html
+  h_c5a773bf2fda8b 28
+testing/visual-testing/tests/checkbox/long-text/index.html
+  h_c5a773bf2fda8b 67
+testing/visual-testing/tests/chip/basic/index.html
+  h_c5a773bf2fda8b 32-33,41,47-48,51,58,68-78,101-102,104-105,113-117,143-144,147-148
+testing/visual-testing/tests/content/scrollable/index.html
+  h_c5a773bf2fda8b 58
+testing/visual-testing/tests/date-dropdown/date-dropdown.e2e.ts
+  h_c5a773bf2fda8b 63-72
+testing/visual-testing/tests/date-dropdown/require-confirmation/index.html
+  h_c5a773bf2fda8b 1-35
+testing/visual-testing/tests/date-picker/date-picker.e2e.ts
+  h_c5a773bf2fda8b 53-65
+testing/visual-testing/tests/date-picker/require-confirmation/index.html
+  h_c5a773bf2fda8b 1-34
+testing/visual-testing/tests/datetime-picker/datetime-picker.e2e.ts
+  h_c5a773bf2fda8b 29-33
+testing/visual-testing/tests/datetime-picker/require-confirmation/index.html
+  h_c5a773bf2fda8b 1-36
+testing/visual-testing/tests/flip-tile/basic/index.html
+  h_c5a773bf2fda8b 32-39,42,44-47,53-59,61-81,90,95,99,104,108,113,117,122,126,131
+testing/visual-testing/tests/flip-tile/custom-sizes/index.html
+  h_c5a773bf2fda8b 50,59
+testing/visual-testing/tests/form-fields/basic/index.html
+  h_c5a773bf2fda8b 209
+testing/visual-testing/tests/group/group.e2e.ts
+  h_c5a773bf2fda8b 10,13-16,35,43,52,64
+testing/visual-testing/tests/info-page/info-page.e2e.ts
+  h_c5a773bf2fda8b 16
+testing/visual-testing/tests/input/with-slots/index.html
+  h_c5a773bf2fda8b 35,38,87,96
+testing/visual-testing/tests/key-value-list/basic/index.html
+  h_c5a773bf2fda8b 147
+testing/visual-testing/tests/key-value/basic/index.html
+  h_c5a773bf2fda8b 79
+testing/visual-testing/tests/key-value/overflow/index.html
+  h_c5a773bf2fda8b 98
+testing/visual-testing/tests/kpi/basic/index.html
+  h_c5a773bf2fda8b 19-20,26,30-35,46
+testing/visual-testing/tests/layout-grid/layout-grid.e2e.ts
+  h_c5a773bf2fda8b 16,25,34,43
+testing/visual-testing/tests/link-button/link-button.e2e.ts
+  h_c5a773bf2fda8b 17,27-52,58-88
+testing/visual-testing/tests/link-button/truncate/index.html
+  h_c5a773bf2fda8b 32-44
+testing/visual-testing/tests/link-button/variants/index.html
+  h_c5a773bf2fda8b 1-75
+testing/visual-testing/tests/menu-about-news/menu-about-news.e2e.ts
+  h_c5a773bf2fda8b 19-37
+testing/visual-testing/tests/message-bar/basic/index.html
+  h_c5a773bf2fda8b 26-33,43,51-55,63-68,71
+testing/visual-testing/tests/message-bar/overflow/index.html
+  h_c5a773bf2fda8b 19-31,43-51,53-55
+testing/visual-testing/tests/modal/modal.e2e.ts
+  h_c5a773bf2fda8b 100,155
+testing/visual-testing/tests/modal/non-blocking/index.html
+  h_c5a773bf2fda8b 26
+testing/visual-testing/tests/number-input/basic/index.html
+  h_c5a773bf2fda8b 29,37
+testing/visual-testing/tests/pagination/advanced/index.html
+  h_c5a773bf2fda8b 32
+testing/visual-testing/tests/pill/basic/index.html
+  h_c5a773bf2fda8b 32-33,38,45-46,48,52,59-64,86,88,94,101-102,105,109,116-124,156,178
+testing/visual-testing/tests/popover/header-with-icon/index.html
+  h_c5a773bf2fda8b 31
+testing/visual-testing/tests/popover/with-image/index.html
+  h_c5a773bf2fda8b 38
+testing/visual-testing/tests/progress-indicator/basic/index.html
+  h_c5a773bf2fda8b 66-68,72-73,77-78
+testing/visual-testing/tests/push-card/basic/index.html
+  h_c5a773bf2fda8b 49,58,67,89-97,112,130,139,148
+testing/visual-testing/tests/push-card/push-card.e2e.ts
+  h_c5a773bf2fda8b 52
+testing/visual-testing/tests/radiobutton/basic/index.html
+  h_c5a773bf2fda8b 26
+testing/visual-testing/tests/radiobutton/long-text/index.html
+  h_c5a773bf2fda8b 37
+testing/visual-testing/tests/radiobutton/no-checked/index.html
+  h_c5a773bf2fda8b 26
+testing/visual-testing/tests/select/overflow/index.html
+  h_c5a773bf2fda8b 18
+testing/visual-testing/tests/slider/slider.e2e.ts
+  h_c5a773bf2fda8b 61,80,101,138-139,188-189,334-335,338-339,342-343,346-347,350-351,376-383
+testing/visual-testing/tests/style-entry-points/style-entry-points.e2e.ts
+  h_c5a773bf2fda8b 32-58
+testing/visual-testing/tests/textarea/basic/index.html
+  h_c5a773bf2fda8b 34
+testing/visual-testing/tests/textarea/readonly/index.html
+  h_c5a773bf2fda8b 36
+testing/visual-testing/tests/textarea/textarea.e2e.ts
+  h_c5a773bf2fda8b 32
+testing/visual-testing/tests/toast/basic/index.html
+  h_c5a773bf2fda8b 32-41,43-46,49,51,54-55,57-60,62
+testing/visual-testing/tests/toast/custom/index.html
+  h_c5a773bf2fda8b 60
+testing/visual-testing/tests/toast/position/index.html
+  h_c5a773bf2fda8b 34-43,45-48,51,53,56-57,59-62,64
+testing/visual-testing/tests/typography/text-color/index.html
+  h_c5a773bf2fda8b 18,23-31,34,37,40-41,43-44,46,50-51,53-54,56,60-61,63-65
+testing/visual-testing/tests/utils/test/runtime/legacy.ts
+  h_c5a773bf2fda8b 1-10
+testing/visual-testing/tests/utils/test/runtime/main.ts
+  h_c5a773bf2fda8b 10-12
+testing/visual-testing/tests/workflow-steps/workflow-steps.e2e.ts
+  h_c5a773bf2fda8b 22
+testing/vue-test-app/.gitignore
+  h_c5a773bf2fda8b 1-26
+testing/vue-test-app/index.html
+  h_c5a773bf2fda8b 1-20
+testing/vue-test-app/package.json
+  h_c5a773bf2fda8b 1-47
+testing/vue-test-app/public/vue.svg
+  h_c5a773bf2fda8b 1
+testing/vue-test-app/src/App.vue
+  h_c5a773bf2fda8b 1-14
+testing/vue-test-app/src/Root.vue
+  h_c5a773bf2fda8b 1-29
+testing/vue-test-app/src/main.ts
+  h_c5a773bf2fda8b 1-15
+testing/vue-test-app/src/setupTests.ts
+  h_c5a773bf2fda8b 1-14
+testing/vue-test-app/src/tests/application-breakpoints.spec.ts
+  h_c5a773bf2fda8b 9-10,12,14-45
+testing/vue-test-app/src/tests/message.spec.ts
+  h_c5a773bf2fda8b 9,11,13-39
+testing/vue-test-app/src/vite-env.d.ts
+  h_c5a773bf2fda8b 9,11-16
+testing/vue-test-app/tsconfig.app.json
+  h_c5a773bf2fda8b 1-12
+testing/vue-test-app/tsconfig.json
+  h_c5a773bf2fda8b 2-3,5,8-11
+testing/vue-test-app/tsconfig.node.json
+  h_c5a773bf2fda8b 1-20
+testing/vue-test-app/tsconfig.spec.json
+  h_c5a773bf2fda8b 1-15
+testing/vue-test-app/vite.config.ts
+  h_c5a773bf2fda8b 1-19
+testing/vue-test-app/vitest.config.ts
+  h_c5a773bf2fda8b 1-33
+tooling/oss-clearing/package.json
+  h_c5a773bf2fda8b 20,23-24
+tooling/registry/.gitignore
+  h_c5a773bf2fda8b 1-2
+tooling/registry/README.md
+  h_c5a773bf2fda8b 1-171
+tooling/registry/package.json
+  h_c5a773bf2fda8b 1-33
+tooling/registry/registry.json
+  h_c5a773bf2fda8b 1-1019
+tooling/registry/registry.schema.json
+  h_c5a773bf2fda8b 1-247
+tooling/registry/schemas/authored-pattern.schema.json
+  h_c5a773bf2fda8b 1-80
+tooling/registry/schemas/documentation-search-index.schema.json
+  h_c5a773bf2fda8b 1-70
+tooling/registry/schemas/example.schema.json
+  h_c5a773bf2fda8b 1-189
+tooling/registry/schemas/pattern.schema.json
+  h_c5a773bf2fda8b 1-175
+tooling/registry/schemas/registry.schema.json
+  h_c5a773bf2fda8b 1-247
+tooling/registry/scripts/simulate-gh-pages-branches.sh
+  h_c5a773bf2fda8b 1-110
+tooling/registry/src/build.ts
+  h_c5a773bf2fda8b 1-543
+tooling/registry/src/canonical-path-conflicts.ts
+  h_c5a773bf2fda8b 1-39
+tooling/registry/src/component-usage-plugin.ts
+  h_c5a773bf2fda8b 1-171
+tooling/registry/src/deployment-policy.ts
+  h_c5a773bf2fda8b 1-122
+tooling/registry/src/generate-examples.ts
+  h_c5a773bf2fda8b 9,11,13-17,19-22,24-42,45-54,56-57,59-63,65-67,69-103,105-112,114-122,124-125,127-165,167-170,172,174-177,179-180,182-185,187-192,194-196,199-205,207-208,210-244,246-268,270-273,275-276,278-296,298,300-349,351-371,373-375
+tooling/registry/src/llms.ts
+  h_c5a773bf2fda8b 2,9-16,18-115,117-158,160-173,175-245,247-250,252-279,281-343,345-378,380-423,425-490,492-721,723-726,728-766,768-789,791-793,795-842,844-909,911-961,963-981,983-988,990-992,994-998,1000-1012,1014-1070,1072-1081
+tooling/registry/src/merge-pages-registry.ts
+  h_c5a773bf2fda8b 1-540
+tooling/registry/src/pattern-dependencies.ts
+  h_c5a773bf2fda8b 1-459
+tooling/registry/src/schema-validation.ts
+  h_c5a773bf2fda8b 1-59
+tooling/registry/src/search-index.ts
+  h_c5a773bf2fda8b 1-688
+tooling/registry/src/update-registry.ts
+  h_c5a773bf2fda8b 2,9-11,13-73,75-103,105-179,181-264
+tooling/registry/test/deployment-policy.test.ts
+  h_c5a773bf2fda8b 9-12,14-36,39-48,51-59,61-73,76,78-81,83-87,90-93,97-102,104-108,111-114,116-117,119-125,127-130,132-141,143-171,173-178,180-182,184-203,205-272
+tooling/registry/test/generate-examples.test.ts
+  h_c5a773bf2fda8b 2,9-14,16-21,23-164
+tooling/registry/test/llms.test.ts
+  h_c5a773bf2fda8b 1-267
+tooling/registry/test/pattern-dependencies.test.ts
+  h_c5a773bf2fda8b 1-468
+tooling/registry/test/schema-validation.test.ts
+  h_c5a773bf2fda8b 2,9-15,17-333
+tooling/registry/test/search-index.test.ts
+  h_c5a773bf2fda8b 1-386
+tooling/registry/tsconfig.json
+  h_c5a773bf2fda8b 1-14
+turbo.json
+  h_c5a773bf2fda8b 3-20,43-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "66d6abed358eee4d7cdb770b14651d455970de0f",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
