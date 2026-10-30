@@ -541,10 +541,10 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.64.0)
+        version: 16.0.3(@rollup/wasm-node@4.66.0)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.64.0)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.66.0)(tslib@2.8.1)(typescript@5.8.3)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -574,10 +574,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.64.0'
+        version: '@rollup/wasm-node@4.66.0'
       rollup-plugin-import-css:
         specifier: ^4.2.1
-        version: 4.2.1(@rollup/wasm-node@4.64.0)
+        version: 4.2.1(@rollup/wasm-node@4.66.0)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -910,10 +910,13 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.64.0)
+        version: 16.0.3(@rollup/wasm-node@4.66.0)
+      '@rollup/plugin-terser':
+        specifier: ^0.1.0
+        version: 0.1.0(@rollup/wasm-node@4.66.0)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.64.0)(tslib@2.8.1)(typescript@6.0.2)
+        version: 8.5.0(@rollup/wasm-node@4.66.0)(tslib@2.8.1)(typescript@6.0.2)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -934,19 +937,16 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.64.0'
+        version: '@rollup/wasm-node@4.66.0'
       rollup-plugin-dts:
         specifier: ^6.4.1
-        version: 6.4.1(@rollup/wasm-node@4.64.0)(typescript@6.0.2)
+        version: 6.4.1(@rollup/wasm-node@4.66.0)(typescript@6.0.2)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
-        version: 2.2.4(@rollup/wasm-node@4.64.0)
+        version: 2.2.4(@rollup/wasm-node@4.66.0)
       rollup-plugin-sourcemaps:
         specifier: ^0.6.3
-        version: 0.6.3(@rollup/wasm-node@4.64.0)(@types/node@24.19.2)
-      rollup-plugin-terser:
-        specifier: ^7.0.2
-        version: 7.0.2(@rollup/wasm-node@4.64.0)
+        version: 0.6.3(@rollup/wasm-node@4.66.0)(@types/node@24.19.2)
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
@@ -971,7 +971,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.64.0)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.66.0)(tslib@2.8.1)(typescript@5.8.3)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1028,10 +1028,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.64.0'
+        version: '@rollup/wasm-node@4.66.0'
       rollup-plugin-preserve-directives:
         specifier: ^0.4.0
-        version: 0.4.0(@rollup/wasm-node@4.64.0)
+        version: 0.4.0(@rollup/wasm-node@4.66.0)
       shadow-dom-testing-library:
         specifier: ^1.11.2
         version: 1.11.2(@testing-library/dom@10.4.0)
@@ -5880,6 +5880,15 @@ packages:
       rollup:
         optional: true
 
+  '@rollup/plugin-terser@0.1.0':
+    resolution: {integrity: sha512-N2KK+qUfHX2hBzVzM41UWGLrEmcjVC37spC8R3c9mt3oEDFKh3N2e12/lLp9aVSt86veR0TQiCNQXrm8C6aiUQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.x || ^3.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+
   '@rollup/plugin-typescript@8.5.0':
     resolution: {integrity: sha512-wMv1/scv0m/rXx21wD2IsBbJFba8wGF3ErJIr6IKRfRj49S85Lszbxb4DCo8iILpluTjk2GAAu9CoZt4G3ppgQ==}
     engines: {node: '>=8.0.0'}
@@ -6019,6 +6028,11 @@ packages:
 
   '@rollup/wasm-node@4.64.5':
     resolution: {integrity: sha512-kN33cPixKuDMgrYkRnkAW7iwiDWzRhNUgVY+IpcniQNXuIvDAAv0cFgZsaLEFP1z8eqVGhKG13dy5hFN3yBy+g==}
+    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
+    hasBin: true
+
+  '@rollup/wasm-node@4.66.0':
+    resolution: {integrity: sha512-iZ7VKtuFJNDH+dAxK4v8gXdnSrZxbGVv/yRYY0B6bQFmb4tUQpOwOkr4f+CNf/ZvmJphDHDQ8sLCSe5ZbQYxgA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -10703,10 +10717,6 @@ packages:
     resolution: {integrity: sha512-rqRgg4R11GA9m1UsEZwQeixHsgZReCn6TOHAHtIH33yXrIvoX0OGPA20Yzzjkz7X40fZvcRSxEpQppYPcWzmcQ==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
 
-  jest-worker@26.6.2:
-    resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
-    engines: {node: '>= 10.13.0'}
-
   jest-worker@27.5.1:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
@@ -12530,9 +12540,6 @@ packages:
     resolution: {integrity: sha512-80WNmd9DA0tmZrw9qQa62GPPWfuXJknrmVmLcxvq4uZBdYqb1wYoKTmnlGUchvVWe0XiLupYkBoXVOxz3C8DYQ==}
     engines: {node: '>=0.12'}
 
-  randombytes@2.1.0:
-    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
-
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
@@ -12904,12 +12911,6 @@ packages:
       '@types/node':
         optional: true
 
-  rollup-plugin-terser@7.0.2:
-    resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
-    peerDependencies:
-      rollup: ^2.0.0
-
   router@2.2.0:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
@@ -13167,9 +13168,6 @@ packages:
   send@1.2.0:
     resolution: {integrity: sha512-uaW0WwXKpL9blXE2o0bRhoL2EGXIrZxQ2ZQ4mgcfoBxdFmQold+qWsD2jLrfZ0trjKL6vOw0j//eAwcALFjKSw==}
     engines: {node: '>= 18'}
-
-  serialize-javascript@4.0.0:
-    resolution: {integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==}
 
   serialize-javascript@7.1.2:
     resolution: {integrity: sha512-GL2BWwVa6JydKO6l/ljVgjAZF4QJ3S7dWDWi53s5GZT8PJzD2fNxi67HANQGKAqPrwEpL5ba7gUBGi0Ls/sEoQ==}
@@ -19842,40 +19840,46 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.64.5'
 
-  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.64.0)':
+  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.66.0)':
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.64.0)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.66.0)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.11
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.64.0'
+      rollup: '@rollup/wasm-node@4.66.0'
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.64.0)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-terser@0.1.0(@rollup/wasm-node@4.66.0)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.64.0)
+      terser: 5.51.2
+    optionalDependencies:
+      rollup: '@rollup/wasm-node@4.66.0'
+
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.66.0)(tslib@2.8.1)(typescript@5.8.3)':
+    dependencies:
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.66.0)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.64.0'
+      rollup: '@rollup/wasm-node@4.66.0'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.64.0)(tslib@2.8.1)(typescript@6.0.2)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.66.0)(tslib@2.8.1)(typescript@6.0.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.64.0)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.66.0)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.64.0'
+      rollup: '@rollup/wasm-node@4.66.0'
       typescript: 6.0.2
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.64.0)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.66.0)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.64.0'
+      rollup: '@rollup/wasm-node@4.66.0'
 
   '@rollup/pluginutils@5.1.2(@rollup/wasm-node@4.64.0)':
     dependencies:
@@ -19885,21 +19889,13 @@ snapshots:
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.64.0'
 
-  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.64.0)':
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.66.0)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.64.0'
-
-  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.64.0)':
-    dependencies:
-      '@types/estree': 1.0.9
-      estree-walker: 2.0.2
-      picomatch: 4.0.7
-    optionalDependencies:
-      rollup: '@rollup/wasm-node@4.64.0'
+      rollup: '@rollup/wasm-node@4.66.0'
 
   '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.64.5)':
     dependencies:
@@ -19908,6 +19904,14 @@ snapshots:
       picomatch: 4.0.7
     optionalDependencies:
       rollup: '@rollup/wasm-node@4.64.5'
+
+  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.66.0)':
+    dependencies:
+      '@types/estree': 1.0.9
+      estree-walker: 2.0.2
+      picomatch: 4.0.7
+    optionalDependencies:
+      rollup: '@rollup/wasm-node@4.66.0'
 
   '@rollup/rollup-darwin-arm64@4.34.9':
     optional: true
@@ -19965,6 +19969,13 @@ snapshots:
       fsevents: 2.3.3
 
   '@rollup/wasm-node@4.64.5':
+    dependencies:
+      '@types/estree': 1.0.9
+    optionalDependencies:
+      '@napi-rs/lzma-linux-x64-gnu': 1.5.1
+      fsevents: 2.3.3
+
+  '@rollup/wasm-node@4.66.0':
     dependencies:
       '@types/estree': 1.0.9
     optionalDependencies:
@@ -26068,12 +26079,6 @@ snapshots:
       jest-util: 30.5.1
       string-length: 4.0.2
 
-  jest-worker@26.6.2:
-    dependencies:
-      '@types/node': 24.19.2
-      merge-stream: 2.0.0
-      supports-color: 7.2.0
-
   jest-worker@27.5.1:
     dependencies:
       '@types/node': 24.19.2
@@ -28315,10 +28320,6 @@ snapshots:
       ret: 0.1.15
     optional: true
 
-  randombytes@2.1.0:
-    dependencies:
-      safe-buffer: 5.2.1
-
   range-parser@1.2.1: {}
 
   raw-body@2.5.2:
@@ -28729,17 +28730,6 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.64.0)(typescript@6.0.2):
-    dependencies:
-      '@jridgewell/remapping': 2.3.5
-      '@jridgewell/sourcemap-codec': 1.5.5
-      convert-source-map: 2.0.0
-      magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.64.0'
-      typescript: 6.0.2
-    optionalDependencies:
-      '@babel/code-frame': 7.29.0
-
   rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.64.5)(typescript@5.9.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
@@ -28751,20 +28741,31 @@ snapshots:
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.64.0):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.66.0)(typescript@6.0.2):
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.64.0)
-      rollup: '@rollup/wasm-node@4.64.0'
+      '@jridgewell/remapping': 2.3.5
+      '@jridgewell/sourcemap-codec': 1.5.5
+      convert-source-map: 2.0.0
+      magic-string: 0.30.21
+      rollup: '@rollup/wasm-node@4.66.0'
+      typescript: 6.0.2
+    optionalDependencies:
+      '@babel/code-frame': 7.29.0
 
-  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.64.0):
+  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.66.0):
     dependencies:
-      rollup: '@rollup/wasm-node@4.64.0'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.66.0)
+      rollup: '@rollup/wasm-node@4.66.0'
 
-  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.64.0):
+  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.66.0):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.64.0)
+      rollup: '@rollup/wasm-node@4.66.0'
+
+  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.66.0):
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.66.0)
       magic-string: 0.30.17
-      rollup: '@rollup/wasm-node@4.64.0'
+      rollup: '@rollup/wasm-node@4.66.0'
 
   rollup-plugin-react-scoped-css@1.1.0:
     dependencies:
@@ -28774,21 +28775,13 @@ snapshots:
       js-xxhash: 4.0.0
       rollup: '@rollup/wasm-node@4.64.0'
 
-  rollup-plugin-sourcemaps@0.6.3(@rollup/wasm-node@4.64.0)(@types/node@24.19.2):
+  rollup-plugin-sourcemaps@0.6.3(@rollup/wasm-node@4.66.0)(@types/node@24.19.2):
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.64.0)
-      rollup: '@rollup/wasm-node@4.64.0'
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.66.0)
+      rollup: '@rollup/wasm-node@4.66.0'
       source-map-resolve: 0.6.0
     optionalDependencies:
       '@types/node': 24.19.2
-
-  rollup-plugin-terser@7.0.2(@rollup/wasm-node@4.64.0):
-    dependencies:
-      '@babel/code-frame': 7.27.1
-      jest-worker: 26.6.2
-      rollup: '@rollup/wasm-node@4.64.0'
-      serialize-javascript: 4.0.0
-      terser: 5.46.0
 
   router@2.2.0:
     dependencies:
@@ -29050,10 +29043,6 @@ snapshots:
       statuses: 2.0.2
     transitivePeerDependencies:
       - supports-color
-
-  serialize-javascript@4.0.0:
-    dependencies:
-      randombytes: 2.1.0
 
   serialize-javascript@7.1.2: {}
 
