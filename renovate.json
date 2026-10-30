@@ -71,6 +71,15 @@
       "separateMajorMinor": false
     },
     {
+      "description": "Keep the Node.js runtime (Volta pin and engines) on the latest LTS line",
+      "matchFileNames": ["/^package\\.json$/"],
+      "matchDepTypes": ["volta", "engines"],
+      "matchPackageNames": ["node"],
+      "versioning": "node",
+      "groupName": "Node.js LTS runtime",
+      "separateMajorMinor": false
+    },
+    {
       "description": "Group centrally managed catalog dependencies",
       "matchFileNames": ["pnpm-workspace.yaml"],
       "groupName": "workspace catalog dependencies",

@@ -36,7 +36,7 @@ Use these resources together (in this order when conflicts appear):
 ## Environment and package manager
 
 - Use the package manager declared in `package.json`: `pnpm@10.17.0`.
-- Use Node.js `22.19.0`; Volta is configured for this version.
+- Use Node.js 24 LTS (`24.22.2`); Volta is configured for this version.
 - Install dependencies from the repository root with `pnpm install`.
 - Do not introduce new package managers, lockfiles, formatters, linters, or test runners.
 - Add dependencies only when they are required for the implementation, and keep workspace dependencies as `workspace:*` where applicable.

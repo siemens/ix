@@ -279,7 +279,7 @@ compatibility controls such as `.ix-form-control` or `.ix-form-label` should loa
 2. Start the playwright docker container mounting the current working directory into the container's _work_ directory:
 
 ```sh
-docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.58.1-noble /bin/bash
+docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.64.1-noble /bin/bash
 ```
 
 3. Install _pnpm_ within the container: `npm install -g pnpm`
