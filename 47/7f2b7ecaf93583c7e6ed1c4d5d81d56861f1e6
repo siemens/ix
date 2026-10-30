@@ -1,0 +1,16 @@
+packages/core/src/components/pane/test/panes.ct.ts
+  h_c5a773bf2fda8b 39,432,462,477,522,557,632
+packages/storybook-docs/src/stories/pane-layout.stories.tsx
+  h_c5a773bf2fda8b 14-87,93,101,104-169
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "477f2b7ecaf93583c7e6ed1c4d5d81d56861f1e6",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
