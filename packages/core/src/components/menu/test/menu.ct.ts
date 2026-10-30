@@ -7,12 +7,116 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
-import { iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
+import { iconDocument, iconGlobe, iconRocket } from '@siemens/ix-icons/icons';
 import {
   expectCollectedAfterRemoval,
   regressionTest,
   viewPorts,
 } from '@utils/test';
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-application>
+      <ix-menu>
+        <ix-menu-item>Item</ix-menu-item>
+      </ix-menu>
+    </ix-application>`,
+    { icons: { iconDocument } }
+  );
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+for (const density of ['default', 'compact']) {
+  for (const safeArea of [0, 8]) {
+    regressionTest(
+      `aligns menu width, content and overlay (${density}, safe area ${safeArea}px)`,
+      async ({ mount, page }) => {
+        await mount(
+          `<ix-application force-breakpoint="md"
+            style="--ix-application-menu-safe-area-left: ${safeArea}px">
+            <ix-menu>
+              <ix-menu-item>Item</ix-menu-item>
+            </ix-menu>
+            <div>Content</div>
+          </ix-application>`,
+          { icons: { iconDocument } }
+        );
+        await page.locator('body').evaluate((body, value) => {
+          body.setAttribute('data-ix-density', value);
+        }, density);
+
+        const application = page.locator('ix-application');
+        const menu = page.locator('ix-menu');
+        const panel = menu.locator('.menu');
+        const overlay = menu.locator('.menu-overlay');
+        const content = application.locator('.content-area');
+        const container = page.locator('ix-menu-item .tab-icon');
+        const railWidth = density === 'default' ? 48 : 40;
+        const collapsedWidth = railWidth + safeArea;
+        const expandedWidth = density === 'default' ? 240 : 160;
+        const viewport = page.viewportSize();
+        if (!viewport) {
+          throw new Error('Expected a viewport for the menu layout test');
+        }
+
+        await expect(menu).toHaveAttribute('hydrated');
+        await expect(panel).toHaveCSS('width', `${collapsedWidth}px`);
+        await expect(content).toHaveCSS('margin-left', `${collapsedWidth}px`);
+        await expect(overlay).toHaveCSS('left', `${collapsedWidth}px`);
+        await expect(overlay).toHaveCSS(
+          'width',
+          `${viewport.width - collapsedWidth}px`
+        );
+        await expect(container).toHaveCSS('width', `${railWidth}px`);
+        await expect(container.locator('svg')).toHaveCSS(
+          'width',
+          density === 'default' ? '20px' : '16px'
+        );
+        const panelBox = await panel.boundingBox();
+        const containerBox = await container.boundingBox();
+        if (!panelBox || !containerBox) {
+          throw new Error('Expected the menu panel and icon to be visible');
+        }
+        expect(containerBox.x + containerBox.width / 2).toBe(
+          panelBox.x + safeArea + railWidth / 2
+        );
+
+        await menu.evaluate((element: HTMLIxMenuElement) => {
+          element.expand = true;
+        });
+        await expect(panel).toHaveCSS('width', `${expandedWidth}px`);
+        await expect(overlay).toHaveCSS('left', `${expandedWidth}px`);
+        await expect(overlay).toHaveCSS(
+          'width',
+          `${viewport.width - expandedWidth}px`
+        );
+        await expect(content).toHaveCSS('margin-left', `${collapsedWidth}px`);
+
+        await menu.evaluate((element: HTMLIxMenuElement) => {
+          element.expand = false;
+        });
+        await application.evaluate((element: HTMLIxApplicationElement) => {
+          element.forceBreakpoint = 'lg';
+        });
+        await expect(panel).toHaveCSS('width', `${collapsedWidth}px`);
+        await expect(content).toHaveCSS('margin-left', '0px');
+
+        await application.evaluate((element: HTMLIxApplicationElement) => {
+          element.style.setProperty(
+            '--ix-application-menu-safe-area-left',
+            '0px'
+          );
+          element.forceBreakpoint = 'sm';
+        });
+        await expect(panel).toHaveCSS('width', '0px');
+        await expect(content).toHaveCSS('margin-left', '0px');
+        await expect(overlay).toHaveCSS('left', '0px');
+        await expect(overlay).toHaveCSS('width', `${viewport.width}px`);
+      }
+    );
+  }
+}
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`

@@ -32,18 +32,24 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     height: var(--ix-menu-item-height, $menuItemHeight);
     width: calc(100%);
     z-index: var(--ix-menu-item-tab--z-index);
-    padding-left: $menuItemPadding;
 
     @include hover.ghost-hover-pressed;
   }
 
   .tab-icon {
-    block-size: var(--ix-menu-item-tab-icon--icon-size);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    block-size: var(--ix-menu-item-tab-icon--container-size);
     color: var(--ix-menu-item-primary-icon--color);
-    inline-size: var(--ix-menu-item-tab-icon--icon-size);
-    min-block-size: var(--ix-menu-item-tab-icon--icon-size);
-    min-inline-size: var(--ix-menu-item-tab-icon--icon-size);
-    margin-inline: var(--ix-menu-item-tab-icon--margin-inline);
+    inline-size: var(--ix-menu-item-tab-icon--container-size);
+    min-block-size: var(--ix-menu-item-tab-icon--container-size);
+    min-inline-size: var(--ix-menu-item-tab-icon--container-size);
+    padding: calc(
+      (
+          var(--ix-menu-item-tab-icon--container-size) -
+            var(--ix-menu-item-tab-icon--icon-size)
+        ) / 2
+    );
     position: relative;
     pointer-events: none;
   }
@@ -175,8 +181,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     }
 
     .tab-icon {
-      padding-left: var(--ix-menu-item-tab-icon--padding-left);
-      padding-right: var(--ix-menu-item-tab-icon--padding-right);
+      margin-inline: var(--ix-menu-item-tab-icon-nested--margin-inline);
     }
 
     .tab-text {
