@@ -20,6 +20,8 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: zod@4.6.6
+  - zod@4.6.6
 
 overrides:
   cheerio: '1.0.0-rc.12'
