@@ -14,9 +14,21 @@ import {
   Locator,
   Page,
   PageScreenshotOptions,
-  test as testBase,
+  PlaywrightTestArgs,
+  PlaywrightTestOptions,
+  PlaywrightWorkerArgs,
+  PlaywrightWorkerOptions,
+  test as playwrightTest,
+  TestType,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
+
+// Playwright >= 1.64 ships a built-in story `mount` fixture with an incompatible
+// signature. Drop it from the base type so the IX `mount` fixture can replace it.
+const testBase = playwrightTest as unknown as TestType<
+  Omit<PlaywrightTestArgs, 'mount'> & PlaywrightTestOptions,
+  PlaywrightWorkerArgs & PlaywrightWorkerOptions
+>;
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
