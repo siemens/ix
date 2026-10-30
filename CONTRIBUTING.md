@@ -134,9 +134,7 @@ Contributions are always welcome. Here's how to get started to make sure your co
 
 ## Setup
 
-1. **Node.js Setup**: This project uses [Volta](https://volta.sh/) to pin the Node.js version defined in `<root>/package.json`. You can either:
-   - Install [Volta](https://volta.sh/) and let it automatically manage the correct Node.js version when you enter the project directory
-   - Or manually [download the installer](https://nodejs.org/) for Node.js and [install pnpm](https://pnpm.io/installation). Checkout `<root>/package.json` the property `volta` for the defined versions.
+1. **Node.js Setup**: Install the Node.js LTS version defined in the `engines.node` property of `<root>/package.json` (for example with the [Node.js installer](https://nodejs.org/) or a version manager of your choice), then [install pnpm](https://pnpm.io/installation).
 2. Fork this repository.
 3. Clone your fork.
 4. Create a new branch from main for your change.

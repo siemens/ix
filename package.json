@@ -16,7 +16,7 @@
   "packageManager": "pnpm@10.17.0",
   "engines": {
     "pnpm": ">=9.x.x",
-    "node": "24.22.2"
+    "node": ">=24.22.2"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
@@ -55,8 +55,5 @@
     "tsx": "^4.16.2",
     "turbo": "^2.10.13",
     "typescript": "^5.5.4"
-  },
-  "volta": {
-    "node": "24.22.2"
   }
 }

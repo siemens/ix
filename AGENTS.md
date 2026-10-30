@@ -36,7 +36,7 @@ Use these resources together (in this order when conflicts appear):
 ## Environment and package manager
 
 - Use the package manager declared in `package.json`.
-- Use Node.js declared in `package.json`; Volta is configured for this version.
+- Use the Node.js version declared in `engines.node` of `package.json`.
 - Install dependencies from the repository root with `pnpm install`.
 - Do not introduce new package managers, lockfiles, formatters, linters, or test runners.
 - Add dependencies only when they are required for the implementation, and keep workspace dependencies as `workspace:*` where applicable.

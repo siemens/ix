@@ -71,9 +71,9 @@
       "separateMajorMinor": false
     },
     {
-      "description": "Keep the Node.js runtime (Volta pin and engines) on the latest LTS line",
+      "description": "Keep the Node.js runtime (engines) on the latest LTS line",
       "matchFileNames": ["/^package\\.json$/"],
-      "matchDepTypes": ["volta", "engines"],
+      "matchDepTypes": ["engines"],
       "matchPackageNames": ["node"],
       "versioning": "node",
       "groupName": "Node.js LTS runtime",
