@@ -13,6 +13,8 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('number-input', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('number-input/basic');
-    await expect(page).toHaveScreenshot();
+    // Chromium rasterizes the input edges non-deterministically in dark theme,
+    // consistently differing by 2 pixels regardless of timing.
+    await expect(page).toHaveScreenshot({ maxDiffPixels: 2 });
   });
 });
