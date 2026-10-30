@@ -27,3 +27,9 @@ export default meta;
 type Story = StoryObj<Element>;
 
 export const Default: Story = {};
+
+export const WithoutDivider: Story = {
+  args: {
+    divider: false,
+  },
+};

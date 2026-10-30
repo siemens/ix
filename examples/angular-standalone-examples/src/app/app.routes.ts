@@ -396,6 +396,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/key-value-list-with-icon').then(
       (m) => m.default
     ),
+  'preview/key-value-list-without-divider': () =>
+    import('../preview-examples/key-value-list-without-divider').then(
+      (m) => m.default
+    ),
   'preview/key-value-with-custom-value': () =>
     import('../preview-examples/key-value-with-custom-value').then(
       (m) => m.default

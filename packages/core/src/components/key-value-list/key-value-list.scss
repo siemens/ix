@@ -1,8 +1,29 @@
 @use './key-value-list.vars' as *;
 :host(.keyValueList) {
+  // Items draw their own divider, the list only applies its line styling
   ::slotted(ix-key-value) {
-    border-bottom: var(--ix-key-value-list--border-width) solid
-      var(--ix-key-value-list-item--border-color);
+    border-bottom-width: var(--ix-key-value-list--border-width);
+  }
+
+  ::slotted(ix-key-value:not(.keyValue--no-divider)) {
+    border-bottom-color: var(--ix-key-value-list-item--border-color);
+  }
+}
+
+:host(.keyValueList.keyValueList--no-divider) {
+  // Items with an explicit `divider` keep their own setting
+  ::slotted(ix-key-value:not(.keyValue--divider)) {
+    border-bottom-color: transparent;
+  }
+}
+
+// Forced colors paint transparent borders, so remove hidden dividers and keep their space
+@media (forced-colors: active) {
+  :host(.keyValueList) ::slotted(ix-key-value.keyValue--no-divider),
+  :host(.keyValueList.keyValueList--no-divider)
+    ::slotted(ix-key-value:not(.keyValue--divider)) {
+    border-bottom-style: none;
+    margin-bottom: var(--ix-key-value-list--border-width);
   }
 }
 

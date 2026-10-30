@@ -280,6 +280,8 @@ import './key-value-list-with-custom-value-axe.spec.ts';
 import './key-value-list-with-custom-value.spec.ts';
 import './key-value-list-with-icon-axe.spec.ts';
 import './key-value-list-with-icon.spec.ts';
+import './key-value-list-without-divider-axe.spec.ts';
+import './key-value-list-without-divider.spec.ts';
 import './key-value-list.spec.ts';
 import './key-value-with-custom-value-axe.spec.ts';
 import './key-value-with-custom-value.spec.ts';
