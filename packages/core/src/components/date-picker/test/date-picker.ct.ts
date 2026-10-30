@@ -7,7 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { DateTime } from 'luxon';
+import {
+  calendarDayCell,
+  dateChangeDetail,
+  formatDateTime,
+  recordEvents,
+  regressionTest,
+} from '@utils/test';
 
 const DatePickerSelector = 'ix-date-picker';
 const getDateObj = async (page: Page) => {
@@ -19,7 +26,7 @@ const getDateObj = async (page: Page) => {
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await expect(datePicker).toHaveAttribute('hydrated');
   const days = datePicker.locator('[data-calendar-day]');
   await expect(days).toHaveCount(31);
   await expect(days.first()).toHaveCSS('font-size', '14px');
@@ -35,6 +42,114 @@ regressionTest('translation', async ({ mount, page }) => {
   await expect(header).toHaveCount(1);
 });
 
+regressionTest(
+  'defers year options until opened and keeps the selected and allowed years correct',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" min-date="2023/01/01" max-date="2025/12/31" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+    const yearOptions = yearSelection.locator('ix-dropdown-item');
+
+    await expect(yearOptions).toHaveCount(0);
+
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    const selectedYear = yearSelection.getByRole('menuitem', {
+      name: '2023',
+    });
+    await expect(selectedYear).toBeVisible();
+    await expect(selectedYear).toHaveAttribute('checked', '');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2022' })
+    ).toHaveClass(/disabled-item/);
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2026' })
+    ).toHaveClass(/disabled-item/);
+
+    await yearSelection.getByRole('menuitem', { name: '2024' }).click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(yearSelection.locator('[slot="button-label"]')).toHaveText(
+      '2024'
+    );
+
+    await yearSelection.click();
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+  }
+);
+
+regressionTest(
+  'scrolls the selected year into view on first open',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2023' })
+    ).toBeInViewport();
+  }
+);
+
+regressionTest(
+  'supports keyboard navigation and accessible year options',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    const selectedYear = yearSelection.getByRole('menuitem', {
+      name: '2023',
+    });
+    await expect(selectedYear).toBeVisible();
+    const selectedYearId = await selectedYear.getAttribute('id');
+    if (selectedYearId === null) {
+      throw new Error(
+        'Year menu items must have an id for keyboard navigation'
+      );
+    }
+    await expect(yearSelection).toHaveAttribute(
+      'aria-activedescendant',
+      selectedYearId
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+  }
+);
+
 regressionTest.describe('date picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
@@ -44,7 +159,7 @@ regressionTest.describe('date picker tests single', () => {
 
   regressionTest('select disabled date with enter', async ({ page }) => {
     const datePicker = page.locator(DatePickerSelector);
-    await expect(datePicker).toHaveClass(/hydrated/);
+    await expect(datePicker).toHaveAttribute('hydrated');
 
     await page.getByText(/^9$/).focus();
     await page.keyboard.press('Enter');
@@ -104,6 +219,30 @@ regressionTest.describe('date picker tests single', () => {
       isoTo: undefined,
     });
   });
+
+  regressionTest(
+    'picking a date emits dateChange and dateSelect',
+    async ({ page }) => {
+      const datePicker = page.locator(DatePickerSelector);
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+      ]);
+
+      await page.getByText(/^19$/).click();
+
+      const expected = {
+        from: '2023/09/19',
+        to: undefined,
+        isoFrom: '2023-09-19',
+        isoTo: undefined,
+      };
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+    }
+  );
 
   regressionTest('select different date in next month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
@@ -278,29 +417,13 @@ regressionTest.describe('date picker tests range', () => {
 
   regressionTest.describe('date picker range undefined values test', () => {
     regressionTest(
-      'dateSelect event with undefined from and to values',
+      'done is disabled without a selection',
       async ({ mount, page }) => {
         await mount(`<ix-date-picker></ix-date-picker>`);
 
         await page.waitForSelector('ix-date-time-card');
 
-        const dateSelectEventPromise = page.evaluate(() => {
-          return new Promise((resolve) => {
-            document.addEventListener('dateSelect', (event) => {
-              resolve((event as CustomEvent).detail);
-            });
-          });
-        });
-
-        await page.getByText('Done').click();
-
-        const eventDetail = await dateSelectEventPromise;
-        expect(eventDetail).toEqual({
-          from: undefined,
-          to: undefined,
-          isoFrom: undefined,
-          isoTo: undefined,
-        });
+        await expect(page.getByRole('button', { name: 'Done' })).toBeDisabled();
       }
     );
   });
@@ -353,10 +476,30 @@ regressionTest.describe('date picker tests range', () => {
       });
     });
 
+    await page.getByText(/^12$/).click();
+    await page.getByText(/^17$/).click();
     await page.getByText('Done').click();
 
     expect(await dateSelectEventPromise).toBeTruthy();
   });
+
+  regressionTest(
+    'done is disabled while the range is incomplete or unchanged',
+    async ({ page }) => {
+      const done = page.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^12$/).click();
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^17$/).click();
+      await expect(done).toBeEnabled();
+
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
 });
 
 regressionTest.describe('locale support', () => {
@@ -599,7 +742,7 @@ regressionTest.describe('keyboard navigation', () => {
   regressionTest.beforeEach(async ({ mount, page }) => {
     await mount(`<ix-date-input embedded value="2023/09/05"></ix-date-input>`);
     const dateInputElement = page.locator('ix-date-input');
-    await expect(dateInputElement).toHaveClass(/hydrated/);
+    await expect(dateInputElement).toHaveAttribute('hydrated');
     await dateInputElement.locator('input').focus();
     await page.keyboard.press('ArrowDown');
     await expect(page.locator('[data-calendar-day="5"]')).toBeFocused();
@@ -653,6 +796,171 @@ regressionTest.describe('keyboard navigation', () => {
   });
 });
 
+regressionTest.describe('month dropdown min/max range', () => {
+  // The dropdown button and its menu share the label, so query them by role.
+  // The menu items are slotted into the button, so they are queried from it.
+  const openMonthDropdown = async (page: Page) => {
+    await page.waitForSelector('ix-date-time-card');
+    const monthSelection = page.getByRole('button', { name: 'Select month' });
+
+    await expect(monthSelection).toBeVisible();
+    await monthSelection.click();
+    await expect(
+      page.getByRole('menu', { name: 'Select month' })
+    ).toBeVisible();
+
+    return monthSelection;
+  };
+
+  const expectMonths = async (
+    monthSelection: ReturnType<Page['getByRole']>,
+    enabled: string[],
+    disabled: string[]
+  ) => {
+    for (const name of enabled) {
+      await expect(
+        monthSelection.getByRole('menuitem', { name })
+      ).not.toHaveClass(/disabled-item/);
+    }
+
+    for (const name of disabled) {
+      await expect(monthSelection.getByRole('menuitem', { name })).toHaveClass(
+        /disabled-item/
+      );
+    }
+  };
+
+  regressionTest(
+    'enables the month a single-month range sits in',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/07/15" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(monthSelection, ['July'], ['June', 'August']);
+    }
+  );
+
+  regressionTest(
+    'enables both months a two-month range spans',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" min-date="2026/07/05" max-date="2026/08/15" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['July', 'August'],
+        ['June', 'September']
+      );
+    }
+  );
+
+  regressionTest(
+    'disables every month of a year outside the range',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/07/15" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        [],
+        ['January', 'June', 'July', 'August', 'December']
+      );
+    }
+  );
+
+  regressionTest(
+    'rebuilds the month list when `from` moves to another year after load',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/07/06" min-date="2026/07/05" max-date="2026/08/15" locale="en" single-selection></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element) => element.setAttribute('from', '2026/07/06'));
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['July', 'August'],
+        ['June', 'September']
+      );
+    }
+  );
+
+  regressionTest(
+    'year boundary - enables the months from the range start to the end of the first year',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/04/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['March', 'April', 'December'],
+        ['January', 'February']
+      );
+    }
+  );
+
+  regressionTest(
+    'enables the months up to the range end in the second year',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2027/01/06" min-date="2026/03/31" max-date="2027/01/31" locale="en" single-selection></ix-date-picker>`
+      );
+
+      const monthSelection = await openMonthDropdown(page);
+
+      await expectMonths(
+        monthSelection,
+        ['January'],
+        ['February', 'March', 'December']
+      );
+    }
+  );
+});
+
+regressionTest.describe('year dropdown sync', () => {
+  regressionTest(
+    'marks the new year as selected when `to` moves to another year after load',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2026/07/06" to="2026/07/20"></ix-date-picker>`
+      );
+      await page.waitForSelector('ix-date-time-card');
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element) => element.setAttribute('to', '2028/03/12'));
+
+      // The menu items are slotted into the button, so they are queried from it
+      const yearSelection = page.getByRole('button', { name: 'Select year' });
+      await yearSelection.click();
+
+      await expect(
+        yearSelection.getByRole('menuitem', { name: '2028', exact: true })
+      ).toHaveAttribute('checked', '');
+      await expect(
+        yearSelection.getByRole('menuitem', { name: '2026', exact: true })
+      ).not.toHaveAttribute('checked', '');
+    }
+  );
+});
+
 regressionTest.describe('week start index', () => {
   const getColumnOfFirstDay = async (page: Page) => {
     return await page.$eval(DatePickerSelector, (picker) => {
@@ -673,13 +981,41 @@ regressionTest.describe('week start index', () => {
     );
   };
 
+  /** Every day number in the grid, in the order it is rendered. */
+  const getRenderedDays = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [
+        ...(picker.shadowRoot?.querySelectorAll('[data-calendar-day]') ?? []),
+      ].map((cell) => Number(cell.getAttribute('data-calendar-day')))
+    );
+  };
+
+  /** The cell count of each day row, the header row excluded. */
+  const getRowWidths = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [...(picker.shadowRoot?.querySelectorAll('[role="row"]') ?? [])]
+        .map((row) => row.querySelectorAll('[role="gridcell"]').length)
+        .filter((width) => width > 0)
+    );
+  };
+
+  const getWeekNumbers = async (page: Page) => {
+    return await page.$eval(DatePickerSelector, (picker) =>
+      [...(picker.shadowRoot?.querySelectorAll('.week-number') ?? [])].map(
+        (cell) => Number(cell.textContent?.trim())
+      )
+    );
+  };
+
   regressionTest(
     'places the first day correctly by default',
     async ({ mount, page }) => {
       // 1 April 2026 is a Wednesday, the third column of a Monday-first grid.
       await mount(`<ix-date-picker from="2026/04/01"></ix-date-picker>`);
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(2);
     }
   );
@@ -693,7 +1029,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/04/01" week-start-index="1"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(1);
     }
   );
@@ -707,7 +1045,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/03/01" week-start-index="1"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(5);
     }
   );
@@ -719,7 +1059,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
       expect(await getColumnOfFirstDay(page)).toBe(1);
     }
   );
@@ -731,7 +1073,9 @@ regressionTest.describe('week start index', () => {
         `<ix-date-picker from="2026/04/01" week-start-index="1" locale="de"></ix-date-picker>`
       );
 
-      await expect(page.locator(DatePickerSelector)).toHaveClass(/hydrated/);
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
 
       const headers = await getColumnHeaders(page);
       expect(headers[0]).toBe('Die');
@@ -740,4 +1084,468 @@ regressionTest.describe('week start index', () => {
       expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
     }
   );
+
+  regressionTest(
+    'places the first day for a Sunday-first week',
+    async ({ mount, page }) => {
+      // weekStartIndex 6 is Sunday, the largest offset the wrap-around has to
+      // handle. 1 September 2023 is a Friday, five columns along from Sunday.
+      await mount(
+        `<ix-date-picker from="2023/09/01" week-start-index="6" single-selection></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+      expect(await getColumnOfFirstDay(page)).toBe(5);
+    }
+  );
+
+  regressionTest(
+    'rotates the weekday headers when the week start changes at runtime',
+    async ({ mount, page }) => {
+      // 1 September 2023 is a Friday: column 4 of a Monday-first grid, column 5
+      // once the week starts on Sunday. The header under it has to stay the
+      // same weekday, which only holds if the names are rebuilt with the grid.
+      await mount(`<ix-date-picker from="2023/09/01"></ix-date-picker>`);
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+      expect(await getColumnOfFirstDay(page)).toBe(4);
+
+      const fridayHeader = (await getColumnHeaders(page))[4];
+
+      await page
+        .locator(DatePickerSelector)
+        .evaluate((element: HTMLElement) =>
+          element.setAttribute('week-start-index', '6')
+        );
+
+      await expect.poll(async () => await getColumnOfFirstDay(page)).toBe(5);
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[5]).toBe(fridayHeader);
+    }
+  );
+
+  regressionTest(
+    'renders the whole month for a Sunday-first week',
+    async ({ mount, page }) => {
+      // December 2023 opens on a Friday, so a Sunday-first grid needs six rows.
+      // Counting rows by ISO week number only found five and dropped every day
+      // after the 24th.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+
+      expect(await getRenderedDays(page)).toEqual(
+        Array.from({ length: 31 }, (_, index) => index + 1)
+      );
+    }
+  );
+
+  regressionTest(
+    'renders no day past the end of a short month',
+    async ({ mount, page }) => {
+      // February 2026 has 28 days and opens on a Sunday, the case where the
+      // day counter used to run on to a 31st that does not exist.
+      await mount(
+        `<ix-date-picker from="2026/02/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+
+      const days = await getRenderedDays(page);
+      expect(days).toHaveLength(28);
+      expect(Math.max(...days)).toBe(28);
+    }
+  );
+
+  regressionTest(
+    'keeps every row seven columns wide',
+    async ({ mount, page }) => {
+      // A short final row shifts nothing on screen, but it means the grid and
+      // the headers stop agreeing about what column a weekday is.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+
+      expect(await getRowWidths(page)).toEqual([7, 7, 7, 7, 7, 7]);
+    }
+  );
+
+  regressionTest(
+    'numbers the weeks of a Sunday-first December into the new year',
+    async ({ mount, page }) => {
+      // The last row of December 2023 runs into January, so it carries week 1.
+      // The old counter repeated a number here instead of wrapping.
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6" show-week-numbers></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+
+      const weekNumbers = await getWeekNumbers(page);
+      expect(weekNumbers).toEqual([48, 49, 50, 51, 52, 1]);
+      expect(new Set(weekNumbers).size).toBe(weekNumbers.length);
+    }
+  );
+
+  regressionTest(
+    'lines a Sunday-first grid up with its headers',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" week-start-index="6" locale="en"></ix-date-picker>`
+      );
+
+      await expect(page.locator(DatePickerSelector)).toHaveAttribute(
+        'hydrated'
+      );
+
+      const headers = await getColumnHeaders(page);
+      expect(headers[0]).toBe('Sun');
+
+      // 1 December 2023 is a Friday, six columns along from Sunday.
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Fri');
+    }
+  );
 });
+
+// Dates used by the confirmation tests. Picked dates stay in the month of
+// `committedFrom`, which the picker shows on load.
+const committedFrom = DateTime.fromISO('2024-05-10');
+const committedTo = committedFrom.plus({ days: 2 });
+const pickedFrom = committedFrom.plus({ days: 10 });
+const pickedTo = pickedFrom.plus({ days: 2 });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-date-picker'), date);
+
+const mountDatePicker = async (
+  mount: (html: string) => Promise<unknown>,
+  page: Page,
+  attributes: string
+) => {
+  await mount(`<ix-date-picker ${attributes}></ix-date-picker>`);
+  await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+};
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(
+        committedFrom
+      )}" single-selection require-confirmation`
+    );
+  });
+
+  regressionTest(
+    'picking shows the pending date and emits only dateChange',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(pickedFrom)),
+        },
+      ]);
+      expect(
+        await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+          el.getCurrentDate()
+        )
+      ).toMatchObject(dateChangeDetail(committedFrom));
+    }
+  );
+
+  regressionTest(
+    'confirm emits only dateSelect after the pick emitted dateChange',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await datePicker.getByTestId('confirm').click();
+
+      const expected = expect.objectContaining(dateChangeDetail(pickedFrom));
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+      expect(
+        await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+          el.getCurrentDate()
+        )
+      ).toMatchObject(dateChangeDetail(pickedFrom));
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    }
+  );
+
+  regressionTest(
+    'cancel restores the confirmed date with dateChange and emits dateCancel',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await datePicker.getByTestId('cancel').click();
+
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(pickedFrom)),
+        },
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(committedFrom)),
+        },
+        { type: 'dateCancel', detail: null },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'cancel without a pending date emits only dateCancel',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateCancel',
+      ]);
+
+      // Re-picking the confirmed date leaves nothing pending
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, committedFrom).click();
+      await datePicker.getByTestId('cancel').click();
+
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateChange',
+        'dateCancel',
+      ]);
+    }
+  );
+
+  regressionTest(
+    'discarding without a pending date keeps the browsed month',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const monthLabel = datePicker.locator(
+        '.month-selector [slot="button-label"]'
+      );
+      await expect(monthLabel).toHaveText('May');
+
+      await datePicker.locator('ix-icon-button').nth(1).click();
+      await expect(monthLabel).toHaveText('June');
+
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+        el.discardPendingSelection()
+      );
+
+      await expect(monthLabel).toHaveText('June');
+    }
+  );
+
+  regressionTest(
+    'binding from to dateChange keeps the pick pending',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) => {
+        el.addEventListener('dateChange', (event) => {
+          el.from = (event as CustomEvent<{ from?: string }>).detail.from;
+        });
+      });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(datePicker).toHaveJSProperty(
+        'from',
+        formatDateTime(pickedFrom)
+      );
+      await expect(datePicker.getByTestId('confirm')).toBeEnabled();
+
+      await datePicker.getByTestId('cancel').click();
+
+      await expect(datePicker).toHaveJSProperty(
+        'from',
+        formatDateTime(committedFrom)
+      );
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    }
+  );
+});
+
+regressionTest.describe('require confirmation option', () => {
+  regressionTest(
+    'range mode emits dateRangeChange for every pick and dateSelect on confirm',
+    async ({ mount, page }) => {
+      await mountDatePicker(
+        mount,
+        page,
+        `from="${formatDateTime(committedFrom)}" to="${formatDateTime(
+          committedTo
+        )}" require-confirmation`
+      );
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateRangeChange',
+        'dateChange',
+        'dateRangeChange',
+      ]);
+      expect((await events())[1].detail).toMatchObject({
+        from: formatDateTime(pickedFrom),
+        to: undefined,
+      });
+
+      await datePicker.getByTestId('confirm').click();
+
+      const recorded = await events();
+      expect(recorded.map((event) => event.type).slice(4)).toEqual([
+        'dateSelect',
+      ]);
+      expect(recorded[4].detail).toMatchObject(
+        dateChangeDetail(pickedFrom, pickedTo)
+      );
+    }
+  );
+
+  regressionTest(
+    'renders no cancel button without require confirmation',
+    async ({ mount, page }) => {
+      await mountDatePicker(
+        mount,
+        page,
+        `from="${formatDateTime(committedFrom)}"`
+      );
+      const datePicker = page.locator('ix-date-picker');
+
+      await expect(datePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        datePicker.getByRole('button', { name: 'Done' })
+      ).toBeVisible();
+    }
+  );
+});
+
+regressionTest.describe('confirm button disabled state', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(committedFrom)}" to="${formatDateTime(
+        committedTo
+      )}" require-confirmation`
+    );
+  });
+
+  regressionTest('is disabled without a pending range', async ({ page }) => {
+    await expect(
+      page.locator('ix-date-picker').getByRole('button', { name: 'Confirm' })
+    ).toBeDisabled();
+  });
+
+  regressionTest(
+    'is disabled while the pending range is incomplete',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+    }
+  );
+
+  regressionTest(
+    'is disabled again after re-selecting the committed range',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+
+      await dayCell(page, committedFrom).click();
+      await dayCell(page, committedTo).click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+});
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker require-confirmation from="2024/05/10"></ix-date-picker>`
+    );
+    await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

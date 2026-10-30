@@ -22,6 +22,12 @@ import { UploadFileState } from './upload-file-state';
 import { iconError, iconSuccess } from '@siemens/ix-icons/icons';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
+/**
+ * Control for selecting and uploading files.
+ *
+ * @documentation https://ix.siemens.io//docs/components/upload/guide.md
+ * @figma-main-component-id 1028:14676
+ */
 @Component({
   tag: 'ix-upload',
   styleUrl: 'upload.scss',
@@ -140,10 +146,18 @@ export class Upload {
 
     if (this.state !== UploadFileState.LOADING) {
       event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
+      const allowsMoveOnly = ['move', 'linkMove'].includes(
+        event.dataTransfer.effectAllowed
+      );
+      event.dataTransfer.dropEffect = allowsMoveOnly ? 'move' : 'copy';
     }
 
-    if (!this.multiple && event.dataTransfer.items.length > 1) {
+    const { types, items } = event.dataTransfer;
+    const fileCount = Array.from(items).filter(
+      (item) => item.kind === 'file'
+    ).length;
+
+    if (!types.includes('Files') || (!this.multiple && fileCount > 1)) {
       event.preventDefault();
       event.stopPropagation();
       event.dataTransfer.effectAllowed = 'none';

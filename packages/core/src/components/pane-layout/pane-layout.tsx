@@ -26,15 +26,20 @@ import {
   matchBreakpoint,
 } from '../utils/breakpoints';
 import { ContextType, useContextConsumer } from '../utils/context';
-import { Disposable } from '../utils/typed-event';
+import type { Disposable } from '../utils/typed-event';
 
 /**
- * @slot left - Pane displayed to the left of the content.
- * @slot top - Pane displayed above the content.
- * @slot content - Main layout content.
- * @slot default - Additional main layout content.
- * @slot bottom - Pane displayed below the content.
- * @slot right - Pane displayed to the right of the content.
+ * Layout container that arranges collapsible panes around a content area.
+ *
+ * @documentation https://ix.siemens.io//docs/components/panes/guide.md
+ * @figma-main-component-id 19924:12291
+ *
+ * @slot left - Content displayed in the left pane.
+ * @slot top - Content displayed in the top pane.
+ * @slot content - Main pane content.
+ * @slot - Main pane content.
+ * @slot bottom - Content displayed in the bottom pane.
+ * @slot right - Content displayed in the right pane.
  */
 @Component({
   tag: 'ix-pane-layout',
@@ -83,8 +88,19 @@ export class Panes {
   }
 
   componentWillLoad() {
+    // Re-request after providers in the tree have finished willLoad.
+    this.subscribeLayoutContext();
+    this.subscribeViewportChanges();
+  }
+
+  componentDidLoad() {
+    this.setPanes(this.currentPanes);
+  }
+
+  connectedCallback() {
     this.paneElements = this.currentPanes.length;
 
+    this.observer?.disconnect();
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements += 1;
@@ -96,16 +112,6 @@ export class Panes {
       childList: true,
     });
 
-    // Re-request after providers in the tree have finished willLoad.
-    this.subscribeLayoutContext();
-    this.subscribeViewportChanges();
-  }
-
-  componentDidLoad() {
-    this.setPanes(this.currentPanes);
-  }
-
-  connectedCallback() {
     this.subscribeLayoutContext();
     this.subscribeViewportChanges();
   }

@@ -23,4 +23,19 @@
   --ix-chat-user-message-attachments--flex: 0 1
     calc(#{sys.$si-sys-sizing-size-130} + #{sys.$si-sys-sizing-spacing-x-30});
   --ix-chat-user-message-actions--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-chat-user-message-message--max-width: 80%;
+  --ix-chat-user-message-message--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-chat-user-message-message--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-chat-user-message-attachments--gap: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-chat-user-message-attachments--max-width: 75%;
+  --ix-chat-user-message-attachments--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-chat-user-message-attachments--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-chat-user-message-attachment-overflow--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-left: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-right: #{sys.$si-sys-sizing-border-radius-xs};
+  --ix-chat-user-message-actions--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-chat-user-message-actions--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-chat-user-message--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-chat-user-message-message--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-chat-user-message-action--transition-duration: 0.2s;
 }

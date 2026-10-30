@@ -12,9 +12,15 @@ import { a11yBoolean } from '../utils/a11y';
 import { IxComponentInterface } from '../utils/internal';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
+import { CHIP_VARIANTS, type ChipVariant } from '../chip/chip.types';
 
 /**
- * @slot default - Pill label.
+ * Compact label that highlights a status, count, or category.
+ *
+ * @documentation https://ix.siemens.io//docs/components/pill/guide.md
+ * @figma-main-component-id 312:1219
+ *
+ * @slot - Pill content.
  */
 @Component({
   tag: 'ix-pill',
@@ -28,17 +34,10 @@ export class Pill
   @Element() override hostElement!: HTMLIxPillElement;
 
   /**
-   * Pill variant
+   * Pill variant.
+   * Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
    */
-  @Prop({ reflect: true }) variant:
-    | 'primary'
-    | 'alarm'
-    | 'critical'
-    | 'warning'
-    | 'info'
-    | 'neutral'
-    | 'success'
-    | 'custom' = 'primary';
+  @Prop({ reflect: true }) variant: ChipVariant = 'accent';
 
   /**
    * Show pill as outline
@@ -114,10 +113,15 @@ export class Pill
     );
   }
 
+  private resolveVariant(): ChipVariant {
+    return CHIP_VARIANTS.includes(this.variant) ? this.variant : 'accent';
+  }
+
   override render() {
+    const variant = this.resolveVariant();
     let customStyle = {};
 
-    if (this.variant === 'custom') {
+    if (variant === 'custom') {
       customStyle = {
         color: this.pillColor,
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
@@ -140,7 +144,7 @@ export class Pill
     return (
       <Host
         style={
-          this.variant === 'custom'
+          variant === 'custom'
             ? {
                 '--ix-icon-button-color': this.pillColor,
               }
@@ -158,14 +162,15 @@ export class Pill
             container: true,
             outline: this.outline,
             inactive: false,
-            alarm: this.variant === 'alarm',
-            critical: this.variant === 'critical',
-            info: this.variant === 'info',
-            neutral: this.variant === 'neutral',
-            primary: this.variant === 'primary',
-            success: this.variant === 'success',
-            warning: this.variant === 'warning',
-            custom: this.variant === 'custom',
+            danger: variant === 'danger',
+            warning: variant === 'warning',
+            caution: variant === 'caution',
+            information: variant === 'information',
+            accent: variant === 'accent',
+            critical: variant === 'critical',
+            success: variant === 'success',
+            neutral: variant === 'neutral',
+            custom: variant === 'custom',
             closable: false,
             icon: !!this.icon,
             'with-gap': !this.iconOnly,

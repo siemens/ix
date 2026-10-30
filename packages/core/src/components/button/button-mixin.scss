@@ -14,7 +14,6 @@
 @use './button-variants' as *;
 
 @use './button.vars' as *;
-@use 'tokens/system' as sys;
 
 @mixin btn-active-look($name) {
   border-color: var(--ix-button-#{$name}--border-color--active);
@@ -173,14 +172,16 @@
 
   :host(.ix-focused) {
     .btn {
-      outline: 1px solid var(--ix-button--outline-color--focus);
+      outline: var(--ix-button--outline-width--focus) solid
+        var(--ix-button--outline-color--focus);
       outline-offset: var(--ix-button--focus--outline-offset);
     }
   }
 
   :host {
     .btn:focus-visible {
-      outline: 1px solid var(--ix-button--outline-color--focus);
+      outline: var(--ix-button--outline-width--focus) solid
+        var(--ix-button--outline-color--focus);
       outline-offset: var(--ix-button--focus--outline-offset);
     }
   }

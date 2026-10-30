@@ -9,7 +9,6 @@
 
 @use 'misc/common-variables' as vars;
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './link-button.vars' as *;
 :host {
@@ -23,29 +22,46 @@
     width: 100%;
     padding: var(--ix-link-button--padding);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: transparent;
     color: var(--ix-link-button--color);
     cursor: pointer;
-    text-decoration: none;
+
+    .icon:first-child {
+      margin-right: var(--ix-link-button-icon--margin);
+    }
+
+    .icon:last-child {
+      margin-left: var(--ix-link-button-icon--margin);
+    }
 
     .link {
       display: block;
       position: relative;
-      width: 100%;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
       text-decoration: underline;
-      text-underline-offset: 0.2rem;
     }
 
     @include hover.hover {
       color: var(--ix-link-button--color--hover);
+
+      .link {
+        text-decoration-thickness: var(
+          --ix-link-button-link--text-underline-thickness
+        );
+      }
     }
 
     @include hover.active {
       color: var(--ix-link-button--color--active);
+
+      .link {
+        text-decoration-thickness: var(
+          --ix-link-button-link--text-underline-thickness
+        );
+      }
     }
 
     &.disabled {
@@ -59,6 +75,7 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--ix-link-button--outline-color--focus);
+    outline: var(--ix-link-button--outline-width--focus) solid
+      var(--ix-link-button--outline-color--focus);
   }
 }

@@ -25,6 +25,16 @@
           "deprecated": false
         },
         {
+          "name": "clickable",
+          "attribute": "clickable",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "heading",
           "attribute": "heading",
           "type": "string | undefined",
@@ -46,13 +56,12 @@
           "deprecated": false
         },
         {
-          "name": "passive",
-          "attribute": "passive",
-          "type": "boolean",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -80,10 +89,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -555,10 +564,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"error\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"error\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -567,7 +576,10 @@
       "methods": [],
       "events": [],
       "cssProperties": [],
-      "slots": [],
+      "slots": [
+        "default",
+        "description"
+      ],
       "cssParts": [],
       "cssStates": []
     },
@@ -607,6 +619,16 @@
           "deprecated": false
         },
         {
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "sublabel",
           "attribute": "sublabel",
           "type": "string | undefined",
@@ -619,10 +641,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'filled'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -652,6 +674,17 @@
       "tag": "ix-breadcrumb",
       "deprecated": false,
       "properties": [
+        {
+          "name": "ariaLabelNextButton",
+          "attribute": "aria-label-next-button",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Show next breadcrumb items'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "ariaLabelPreviousButton",
           "attribute": "aria-label-previous-button",
@@ -932,13 +965,23 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "passive",
-          "attribute": "passive",
+          "name": "clickable",
+          "attribute": "clickable",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -956,10 +999,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -1001,15 +1044,25 @@
           "deprecated": false
         },
         {
-          "name": "variant",
-          "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'base'",
+          "optional": false,
+          "required": false,
+          "deprecated": true
         }
       ],
       "methods": [],
@@ -2125,10 +2178,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -2463,6 +2516,28 @@
           "deprecated": false
         },
         {
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nConfirm",
+          "attribute": "i18n-confirm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Confirm'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nDone",
           "attribute": "i18n-done",
           "type": "string",
@@ -2471,7 +2546,7 @@
           "default": "'Done'",
           "optional": false,
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "i18nNoRange",
@@ -2523,6 +2598,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "''",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "requireConfirmation",
+          "attribute": "require-confirmation",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -2593,7 +2679,15 @@
       "events": [
         {
           "name": "dateRangeChange",
-          "detail": "{ id: string; from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { id: string; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
+          "name": "dateSelect",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { id: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -2682,6 +2776,28 @@
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nConfirm",
+          "attribute": "i18n-confirm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Confirm'",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
@@ -2781,6 +2897,17 @@
         {
           "name": "readonly",
           "attribute": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "requireConfirmation",
+          "attribute": "require-confirmation",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -3023,6 +3150,28 @@
           "deprecated": false
         },
         {
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nConfirm",
+          "attribute": "i18n-confirm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Confirm'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nDone",
           "attribute": "i18n-done",
           "type": "string",
@@ -3061,6 +3210,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "''",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "requireConfirmation",
+          "attribute": "require-confirmation",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -3118,8 +3278,16 @@
       ],
       "events": [
         {
+          "name": "dateCancel",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
           "name": "dateChange",
-          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3127,15 +3295,15 @@
         },
         {
           "name": "dateRangeChange",
-          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "dateSelect",
-          "detail": "{ from?: string | undefined; to?: string | undefined; isoFrom?: string | undefined; isoTo?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3228,12 +3396,34 @@
           "deprecated": false
         },
         {
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nConfirm",
+          "attribute": "i18n-confirm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Confirm'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nDone",
           "attribute": "i-1-8n-done",
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'Confirm'",
+          "default": "'Done'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -3363,6 +3553,17 @@
         {
           "name": "readonly",
           "attribute": "readonly",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "requireConfirmation",
+          "attribute": "require-confirmation",
           "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
@@ -3579,6 +3780,28 @@
           "deprecated": false
         },
         {
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nConfirm",
+          "attribute": "i18n-confirm",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Confirm'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nDone",
           "attribute": "i18n-done",
           "type": "string",
@@ -3706,6 +3929,17 @@
           "deprecated": false
         },
         {
+          "name": "requireConfirmation",
+          "attribute": "require-confirmation",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "showTimeReference",
           "attribute": "show-time-reference",
           "type": "boolean",
@@ -3794,8 +4028,16 @@
       "methods": [],
       "events": [
         {
+          "name": "dateCancel",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
           "name": "dateChange",
-          "detail": "\"time\" | string | { from?: string | undefined; to?: string | undefined; time: string; isoFrom?: string | undefined; isoTo?: string | undefined; isoTime?: string | undefined; }",
+          "detail": "\"time\" | DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { time: string; isoTime?: string | undefined; } | string",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3803,7 +4045,7 @@
         },
         {
           "name": "dateSelect",
-          "detail": "{ from?: string | undefined; to?: string | undefined; time: string; isoFrom?: string | undefined; isoTo?: string | undefined; isoTime?: string | undefined; }",
+          "detail": "DateRange<string> & { isoFrom?: string | undefined; isoTo?: string | undefined; } & { time: string; isoTime?: string | undefined; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
@@ -3842,6 +4084,15 @@
           "name": "anchor",
           "attribute": "anchor",
           "type": "HTMLElement | Promise<HTMLElement> | string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "anchorPosition",
+          "type": "undefined | { x: number; y: number; }",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,
@@ -3991,6 +4242,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "showAt",
+          "signature": "showAt(x: number, y: number) => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "updatePosition",
           "signature": "updatePosition() => Promise<void>",
@@ -4275,7 +4531,8 @@
       "events": [],
       "cssProperties": [],
       "slots": [
-        "default"
+        "default",
+        "end"
       ],
       "cssParts": [],
       "cssStates": []
@@ -4756,7 +5013,7 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"filled\" | \"info\" | \"outline\" | \"primary\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"filled\" | \"information\" | \"neutral\" | \"outline\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'filled'",
@@ -4813,6 +5070,26 @@
       "tag": "ix-group",
       "deprecated": false,
       "properties": [
+        {
+          "name": "ariaLabelExpand",
+          "attribute": "aria-label-expand",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelSelect",
+          "attribute": "aria-label-select",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "expandOnHeaderClick",
           "attribute": "expand-on-header-click",
@@ -5766,26 +6043,6 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "ariaLabelAlarmIcon",
-          "attribute": "aria-label-alarm-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "ariaLabelWarningIcon",
-          "attribute": "aria-label-warning-icon",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
-          "required": false,
-          "deprecated": false
-        },
-        {
           "name": "label",
           "attribute": "label",
           "type": "string | undefined",
@@ -5809,7 +6066,7 @@
         {
           "name": "state",
           "attribute": "state",
-          "type": "\"alarm\" | \"neutral\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'neutral'",
@@ -5927,6 +6184,28 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "\"action\" | \"external\" | \"file\" | \"internal\" | \"none\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'none'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "iconPosition",
+          "attribute": "icon-position",
+          "type": "\"end\" | \"start\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'start'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -6895,10 +7174,10 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'info'",
+          "default": "'information'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -7478,6 +7757,28 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelJumpBackward",
+          "attribute": "aria-label-jump-backward",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Jump backward to {page}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelJumpForward",
+          "attribute": "aria-label-jump-forward",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Jump forward to {page}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "ariaLabelPageSelection",
           "attribute": "aria-label-page-selection",
           "type": "string",
@@ -7539,6 +7840,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'Page'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nPagination",
+          "attribute": "i18n-pagination",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Pagination'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -7900,10 +8212,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"caution\" | \"critical\" | \"custom\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'primary'",
+          "default": "'accent'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -8257,10 +8569,10 @@
         {
           "name": "status",
           "attribute": "status",
-          "type": "\"default\" | \"error\" | \"info\" | \"paused\" | \"success\" | \"warning\"",
+          "type": "\"base\" | \"error\" | \"information\" | \"paused\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'default'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -8324,6 +8636,17 @@
           "deprecated": false
         },
         {
+          "name": "clickable",
+          "attribute": "clickable",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "expanded",
           "attribute": "expanded",
           "type": "boolean",
@@ -8365,13 +8688,12 @@
           "deprecated": false
         },
         {
-          "name": "passive",
-          "attribute": "passive",
-          "type": "boolean",
+          "name": "outline",
+          "attribute": "outline",
+          "type": "boolean | undefined",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "false",
-          "optional": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -8388,10 +8710,10 @@
         {
           "name": "variant",
           "attribute": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"accent\" | \"base\" | \"caution\" | \"critical\" | \"danger\" | \"information\" | \"neutral\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "'outline'",
+          "default": "'base'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -10058,6 +10380,17 @@
           "deprecated": false
         },
         {
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "i18nErrorTimeUnparsable",
           "attribute": "i18n-error-time-unparsable",
           "type": "string",
@@ -10459,8 +10792,19 @@
           "deprecated": false
         },
         {
-          "name": "i18nConfirmTime",
-          "attribute": "i18n-confirm-time",
+          "name": "i18nCancel",
+          "attribute": "i18n-cancel",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Cancel'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nConfirm",
+          "attribute": "i18n-confirm",
           "type": "string",
           "mutable": false,
           "reflectToAttribute": false,
@@ -10622,6 +10966,14 @@
       ],
       "events": [
         {
+          "name": "timeCancel",
+          "detail": "void",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
           "name": "timeChange",
           "detail": "string",
           "bubbles": true,
@@ -10724,10 +11076,10 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"error\" | \"info\" | \"success\" | \"warning\"",
+          "type": "\"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
-          "default": "'info'",
+          "default": "'information'",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -11205,6 +11557,28 @@
           "deprecated": false
         },
         {
+          "name": "ariaLabelTreeCollapsed",
+          "attribute": "aria-label-tree-collapsed",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Expand tree item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelTreeExpanded",
+          "attribute": "aria-label-tree-expanded",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Collapse tree item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "context",
           "type": "TreeItemContext | undefined",
           "mutable": false,
@@ -11300,7 +11674,7 @@
         {
           "name": "textColor",
           "attribute": "text-color",
-          "type": "\"alarm\" | \"alarm-contrast\" | \"contrast\" | \"critical-contrast\" | \"info-contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"neutral-contrast\" | \"primary-contrast\" | \"soft\" | \"std\" | \"success-contrast\" | \"warning-contrast\" | \"weak\" | undefined",
+          "type": "\"caution\" | \"critical\" | \"danger\" | \"disabled\" | \"information\" | \"inverse\" | \"on-accent\" | \"on-caution\" | \"on-critical\" | \"on-danger\" | \"on-information\" | \"on-neutral\" | \"on-success\" | \"on-warning\" | \"primary\" | \"secondary\" | \"success\" | \"warning\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": true,

@@ -1,0 +1,76 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { iconStar } from '@siemens/ix-icons/icons';
+import './pill.scoped.css';
+
+import { IxPill } from '@siemens/ix-react';
+
+export default () => {
+  return (
+    <>
+      <IxPill
+        variant="custom"
+        pillColor="var(--si-sys-color-text-inverse)"
+        background="var(--si-sys-color-background-accent-hover)"
+      >
+        Label
+      </IxPill>
+
+      <IxPill tooltipText="Custom tooltip text">Label</IxPill>
+      <IxPill className="styled">Label</IxPill>
+
+      <IxPill icon={iconStar}>Label</IxPill>
+      <IxPill icon={iconStar} aria-label="Featured"></IxPill>
+      <IxPill icon={iconStar} className="styled">
+        Label
+      </IxPill>
+      <IxPill
+        variant="accent"
+        outline
+        alignLeft
+        icon={iconStar}
+        className="styled"
+      >
+        Label
+      </IxPill>
+
+      <IxPill variant="danger">Label</IxPill>
+      <IxPill variant="danger" className="styled">
+        Label
+      </IxPill>
+
+      <IxPill variant="danger" icon={iconStar}>
+        Label
+      </IxPill>
+      <IxPill variant="danger" icon={iconStar} className="styled">
+        Label
+      </IxPill>
+      <IxPill variant="danger" alignLeft icon={iconStar} className="styled">
+        Label
+      </IxPill>
+
+      <IxPill icon={iconStar} className="styled-ellipsis-4">
+        Label
+      </IxPill>
+      <IxPill
+        variant="accent"
+        outline
+        icon={iconStar}
+        className="styled-ellipsis-4"
+      >
+        Label
+      </IxPill>
+      <IxPill className="styled-ellipsis-3">Label</IxPill>
+      <IxPill variant="accent" outline className="styled-ellipsis-3">
+        Label
+      </IxPill>
+    </>
+  );
+};

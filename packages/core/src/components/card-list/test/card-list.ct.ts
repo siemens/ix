@@ -56,7 +56,7 @@ regressionTest(
     const content = cardList.locator('.CardList__Content');
     const after = page.getByRole('button', { name: 'After' });
 
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(collapseButton).toBeVisible();
 
     await cardAction.focus();
@@ -99,7 +99,7 @@ regressionTest(
     });
     const cardAction = page.getByRole('button', { name: 'Card action' });
 
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(collapseButton).toBeVisible();
 
     await cardAction.focus();
@@ -123,7 +123,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(cardList.locator('.CardList_Title')).toHaveCount(0);
   }
 );
@@ -150,7 +150,7 @@ regressionTest(
     });
     const content = cardList.locator('.CardList__Content');
 
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
     await expect(collapseButton).toBeVisible();
     await expect(showMoreCard).toBeVisible();
 
@@ -177,7 +177,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const cardList = page.locator('ix-card-list');
-  await expect(cardList).toHaveClass(/\bhydrated\b/);
+  await expect(cardList).toHaveAttribute('hydrated');
   await expect(cardList).toBeVisible();
 });
 
@@ -191,7 +191,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     // Cards 4 and 5 should be hidden initially
     const cards = cardList.locator('ix-card');
@@ -251,7 +251,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     const cards = cardList.locator('ix-card');
 
@@ -284,7 +284,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     const cards = cardList.locator('ix-card');
     const showAllButton = cardList.getByRole('button', { name: /show all/i });
@@ -313,7 +313,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     // Register a preventDefault listener before clicking
     await cardList.evaluate((el: HTMLIxCardListElement) => {
@@ -340,7 +340,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/hydrated/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     await cardList.evaluate((el: HTMLIxCardListElement) => {
       el.addEventListener('showMoreCardClick', (event) =>
@@ -369,7 +369,7 @@ regressionTest(
     `);
 
     const cardList = page.locator('ix-card-list');
-    await expect(cardList).toHaveClass(/\bhydrated\b/);
+    await expect(cardList).toHaveAttribute('hydrated');
 
     let showMoreCard = cardList.locator('.Show__All__Card');
     await showMoreCard.focus();

@@ -33,11 +33,17 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
 /**
- * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
+ * Top header bar of the application shell holding branding, navigation, and actions.
+ *
+ * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
+ * @figma-main-component-id 20920:77660
+ *
+ * @slot - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
  * @slot secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown.
  * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.
  * @slot logo - Place a company logo inside the header. Alternatively the companyLogo property can be set.
- * @slot ix-application-header-avatar - Place an avatar at the end of the header.
+ *
+ * @slot ix-application-header-avatar - Place an avatar inside the header.
  */
 @Component({
   tag: 'ix-application-header',
@@ -406,9 +412,11 @@ export class ApplicationHeader {
             ></slot>
           </div>
           <div class="name">
-            <ix-typography format="body-lg" class="application-name">
-              {this.name}
-            </ix-typography>
+            {this.name && (
+              <h1 class="application-name">
+                <ix-typography format="body-lg">{this.name}</ix-typography>
+              </h1>
+            )}
             {this.nameSuffix && this.breakpoint !== 'sm' && (
               <ix-typography format="body-sm" class="application-name-suffix">
                 {this.nameSuffix}
@@ -432,7 +440,6 @@ export class ApplicationHeader {
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
-              size="24"
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
               aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}

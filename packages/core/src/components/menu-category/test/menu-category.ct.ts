@@ -30,7 +30,7 @@ async function collapseApplicationMenu(page: Page) {
 
 async function openCollapsedCategoryDropdown(page: Page) {
   const category = page.locator('ix-menu-category');
-  await expect(category).toHaveClass(/hydrated/);
+  await expect(category).toHaveAttribute('hydrated');
   await collapseApplicationMenu(page);
   await category.hover();
 
@@ -83,7 +83,7 @@ regressionTest('renders', async ({ mount, page }) => {
     </ix-application>
     `);
   const element = page.locator('ix-menu-category');
-  await expect(element).toHaveClass('hydrated');
+  await expect(element).toHaveAttribute('hydrated');
 });
 
 regressionTest('should collapse by click', async ({ mount, page }) => {
@@ -385,7 +385,7 @@ regressionTest('do not show tooltip', async ({ mount, page }) => {
     </ix-application>
     `);
   const categoryElement = page.locator('ix-menu-category');
-  await expect(categoryElement).toHaveClass(/hydrated/);
+  await expect(categoryElement).toHaveAttribute('hydrated');
 
   await categoryElement.hover();
   await page.waitForTimeout(1500);
@@ -413,7 +413,7 @@ regressionTest('collapse after category blur', async ({ mount, page }) => {
     hasText: 'Other',
   });
   const categoryElement = page.locator('ix-menu-category');
-  await expect(categoryElement).toHaveClass(/hydrated/);
+  await expect(categoryElement).toHaveAttribute('hydrated');
 
   await categoryElement.hover();
 
@@ -440,7 +440,7 @@ regressionTest(
     </ix-application>
     `);
     const categoryElement = page.locator('ix-menu-category');
-    await expect(categoryElement).toHaveClass(/hydrated/);
+    await expect(categoryElement).toHaveAttribute('hydrated');
 
     // Navigate to category
     await page.keyboard.press('Tab');
@@ -567,7 +567,7 @@ regressionTest(
     `);
 
     const categoryElement = page.locator('ix-menu-category');
-    await expect(categoryElement).toHaveClass(/hydrated/);
+    await expect(categoryElement).toHaveAttribute('hydrated');
 
     // Navigate to category
     await page.keyboard.press('Tab');
@@ -698,7 +698,7 @@ regressionTest(
 
     // Wait for hydration before programmatic focus — otherwise focus is lost when
     // Stencil replaces the light DOM / attaches the shadow button (delegatesFocus).
-    await expect(categoryButton).toHaveClass(/hydrated/);
+    await expect(categoryButton).toHaveAttribute('hydrated');
     await categoryButton.focus();
     await expect(categoryButton).toBeFocused();
 
@@ -854,7 +854,7 @@ regressionTest(
     `);
 
     const category = page.locator('ix-menu-category');
-    await expect(category).toHaveClass(/hydrated/);
+    await expect(category).toHaveAttribute('hydrated');
     await category.hover();
 
     const dropdown = category.locator('ix-dropdown');
@@ -883,7 +883,7 @@ regressionTest(
     const categoryParent = page
       .locator('ix-menu-category')
       .locator('.category-parent');
-    await expect(categoryParent).toHaveClass(/hydrated/);
+    await expect(categoryParent).toHaveAttribute('hydrated');
 
     await categoryParent.hover();
     await page.waitForTimeout(1500);

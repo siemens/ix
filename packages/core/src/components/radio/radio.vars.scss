@@ -12,8 +12,6 @@
 :host {
   --ix-radio-checkmark--background: #{sys.$si-sys-color-text-on-accent};
   --ix-radio--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-radio--border-width: var(--theme-border-width-default);
-  --ix-radio--focus--outline-offset: var(--theme-focus-outline-offset);
   --ix-radio-checked--background: #{sys.$si-sys-color-background-accent};
   --ix-radio-checked--background--active: #{sys.$si-sys-color-background-accent-active};
   --ix-radio-checked--background--disabled: #{sys.$si-sys-color-text-disabled};
@@ -81,9 +79,12 @@
   --ix-radio-unchecked--border-color--warning: #{sys.$si-sys-color-border-warning};
   --ix-radio-unchecked--border-color--warning--active: #{sys.$si-sys-color-border-warning};
   --ix-radio-unchecked--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
+  --ix-radio-checkmark--border-color: white;
 }
 
 :host {
+  --ix-radio--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-radio--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-radio-checkmark--border-width-initial: #{sys.$si-sys-sizing-border-width-default};
   --ix-radio-checkmark--border-radius: #{sys.$si-sys-sizing-border-radius-full};
   --ix-radio--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
@@ -93,10 +94,11 @@
   --ix-radio-checkmark--height: #{sys.$si-sys-sizing-size-60};
   --ix-radio-checkmark--min-height: #{sys.$si-sys-sizing-size-60};
   --ix-radio-checkmark--max-height: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-button--height: #{sys.$si-sys-sizing-size-70};
-  --ix-radio-button--width: #{sys.$si-sys-sizing-size-70};
-  --ix-radio-selection-indicator--width: #{sys.$si-sys-sizing-size-30};
-  --ix-radio-selection-indicator--height: #{sys.$si-sys-sizing-size-30};
+  --ix-radio-button--height: #{sys.$si-sys-sizing-size-60};
+  --ix-radio-button--width: #{sys.$si-sys-sizing-size-60};
+  --ix-radio--target-size: #{sys.$si-sys-sizing-size-70};
+  --ix-radio-selection-indicator--width: calc(var(--ix-radio-checkmark--width) * 0.4);
+  --ix-radio-selection-indicator--height: calc(var(--ix-radio-checkmark--height) * 0.4);
   --ix-radio--margin: #{sys.$si-sys-sizing-spacing-y-10} 0 #{sys.$si-sys-sizing-spacing-y-10}
     #{sys.$si-sys-sizing-spacing-x-40};
 }

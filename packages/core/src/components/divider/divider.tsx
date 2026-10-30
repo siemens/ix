@@ -8,6 +8,9 @@
  */
 import { Component, h, Host } from '@stencil/core';
 
+/**
+ * Thin line that visually separates content.
+ */
 @Component({
   tag: 'ix-divider',
   styleUrl: 'divider.scss',

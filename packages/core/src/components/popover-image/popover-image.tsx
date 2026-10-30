@@ -12,6 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 /**
  * Optional image section for the popover.
  *
+ * @documentation https://ix.siemens.io//docs/components/popover/guide.md
  * @since 5.1.0
  */
 @Component({
