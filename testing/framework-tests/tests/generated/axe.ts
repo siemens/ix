@@ -118,6 +118,7 @@ import './group-custom-entry-axe.spec.ts';
 import './group-header-suppressed-axe.spec.ts';
 import './html-table-axe.spec.ts';
 import './html-table-striped-axe.spec.ts';
+import './http-error-pages-axe.spec.ts';
 import './icon-toggle-button-secondary-axe.spec.ts';
 import './icon-toggle-button-subtle-primary-axe.spec.ts';
 import './icon-toggle-button-subtle-secondary-axe.spec.ts';

@@ -1,0 +1,32 @@
+<svg width="260" height="196" viewBox="0 0 260 196" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_5117_2346)">
+<circle opacity="0.2" cx="130" cy="98" r="66" transform="rotate(90 130 98)" fill="#00D7A0"/>
+<path d="M8 168V160H0L0 168H8Z" fill="#00C1B6"/>
+<path d="M28 168V160H36V168H28Z" fill="#00C1B6"/>
+<path d="M64 168V160H56V168H64Z" fill="#00C1B6"/>
+<path d="M36 196V188H28V196H36Z" fill="#00C1B6"/>
+<path d="M8 140V132H0L0 140H8Z" fill="#00C1B6"/>
+<path d="M36 140V132H28V140H36Z" fill="#00C1B6"/>
+<path d="M224 8L232 8L232 0L224 -3.49691e-07L224 8Z" fill="#00C1B6"/>
+<path d="M224 36L232 36L232 28L224 28L224 36Z" fill="#00C1B6"/>
+<path d="M224 64L232 64L232 56L224 56L224 64Z" fill="#00C1B6"/>
+<path d="M196 36L204 36L204 28L196 28L196 36Z" fill="#00C1B6"/>
+<path d="M252 8L260 8L260 0L252 -3.49691e-07L252 8Z" fill="#00C1B6"/>
+<path d="M252 36L260 36L260 28L252 28L252 36Z" fill="#00C1B6"/>
+<path d="M90 116C85.5817 116 82 112.418 82 108L82 88C82 83.5817 85.5817 80 90 80L112 80L112 116L90 116Z" fill="#00D7A0"/>
+<rect x="112" y="118" width="40" height="6" transform="rotate(-90 112 118)" fill="#00C1B6"/>
+<rect x="76" y="107" width="18" height="6" transform="rotate(-90 76 107)" fill="#00C1B6"/>
+<rect x="130" y="90" width="4" height="11.9997" transform="rotate(90 130 90)" fill="#009999"/>
+<rect x="130" y="102" width="4" height="11.9997" transform="rotate(90 130 102)" fill="#009999"/>
+<path d="M-2.97426e-06 29.957L20.2035 29.957C26.8457 29.957 32.2243 35.3526 32.2034 41.9948L32.065 85.9622C32.044 92.6043 37.4227 98 44.0649 98L76.3055 97.9999" stroke="#009999" stroke-width="7"/>
+<path d="M170 80C174.418 80 178 83.5817 178 88L178 108C178 112.418 174.418 116 170 116L148 116L148 80L170 80Z" fill="#00D7A0"/>
+<rect x="148" y="78" width="40" height="6" transform="rotate(90 148 78)" fill="#00C1B6"/>
+<rect x="183.695" y="89" width="18" height="6" transform="rotate(90 183.695 89)" fill="#00C1B6"/>
+<path d="M260 166.043L239.797 166.043C233.154 166.043 227.776 160.647 227.797 154.005L227.935 110.038C227.956 103.396 222.577 98 215.935 98L183.695 98" stroke="#009999" stroke-width="7"/>
+</g>
+<defs>
+<clipPath id="clip0_5117_2346">
+<rect width="260" height="196" fill="white"/>
+</clipPath>
+</defs>
+</svg>

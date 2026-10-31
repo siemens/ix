@@ -129,6 +129,7 @@ import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import HttpErrorPages from '../preview-examples/http-error-pages';
 import InfoPage from '../preview-examples/info-page';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
@@ -408,6 +409,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EmptyStateCompactBreak,
     EmptyStateCompact,
     EmptyState,
+    HttpErrorPages,
     InfoPage,
     EventListCompact,
     EventListCustomItemHeight,
