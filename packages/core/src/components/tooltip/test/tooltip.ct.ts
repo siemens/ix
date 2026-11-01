@@ -142,6 +142,23 @@ regressionTest.describe('a11y', () => {
     const tooltip = page.locator('ix-tooltip');
     await expect(tooltip).not.toHaveClass(/visible/);
   });
+
+  regressionTest(
+    'closes on ESC without hide delay',
+    async ({ mount, page }) => {
+      await mount(`
+      <ix-tooltip for=".test" hide-delay="60000">tooltip</ix-tooltip>
+      <ix-button class="test"></ix-button>
+    `);
+      const button = page.locator('ix-button');
+      const tooltip = page.locator('ix-tooltip');
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await page.keyboard.press('Escape');
+      await expect(tooltip).not.toHaveClass(/visible/);
+    }
+  );
 });
 
 regressionTest('show tooltip after delay', async ({ mount, page }) => {

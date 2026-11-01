@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import type { VNode } from '@stencil/core';
 import { render, h } from '@stencil/vitest';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -38,18 +39,22 @@ describe('ix-tooltip delays', () => {
     vi.useRealTimers();
   });
 
-  async function expectHideDelay(
-    tooltipElement: unknown,
-    expectedDelay: number
-  ) {
+  async function renderWithFakeTimers(tooltipElement: VNode) {
     const { root } = await render(tooltipElement);
     const tooltip = root as HTMLIxTooltipElement;
     const dialog = tooltip.shadowRoot!.querySelector('dialog')!;
-    dialog.showPopover = vi.fn();
+    const showPopover = vi.fn();
     const hidePopover = vi.fn();
+    dialog.showPopover = showPopover;
     dialog.hidePopover = hidePopover;
 
     vi.useFakeTimers();
+    return { tooltip, showPopover, hidePopover };
+  }
+
+  async function expectHideDelay(tooltipElement: VNode, expectedDelay: number) {
+    const { tooltip, hidePopover } = await renderWithFakeTimers(tooltipElement);
+
     await tooltip.showTooltip(createAnchor());
     vi.advanceTimersByTime(0);
 
@@ -62,9 +67,15 @@ describe('ix-tooltip delays', () => {
   }
 
   it('shows the tooltip without delay by default', async () => {
-    const { root } = await render(<ix-tooltip></ix-tooltip>);
+    const { tooltip, showPopover } = await renderWithFakeTimers(
+      <ix-tooltip></ix-tooltip>
+    );
 
-    expect((root as HTMLIxTooltipElement).showDelay).toBe(0);
+    await tooltip.showTooltip(createAnchor());
+    expect(showPopover).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(0);
+    expect(showPopover).toHaveBeenCalledTimes(1);
   });
 
   it('hides a regular tooltip after 50 ms by default', async () => {

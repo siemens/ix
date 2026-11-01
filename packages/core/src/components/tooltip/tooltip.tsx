@@ -40,6 +40,8 @@ type ArrowPosition = {
 };
 
 const ARROW_OFFSET = -6;
+const DEFAULT_HIDE_DELAY = 50;
+const INTERACTIVE_HIDE_DELAY = 150;
 
 const numberToPixel = (value?: number | null) =>
   value !== null ? `${value}px` : '';
@@ -94,6 +96,8 @@ export class Tooltip {
    * Delay in milliseconds before the tooltip is hidden.
    * Defaults to 50 ms, or 150 ms for interactive tooltips,
    * so the user has time to move the pointer into the tooltip.
+   * For interactive tooltips, avoid very short delays, otherwise the tooltip
+   * closes before the pointer reaches it.
    *
    * @since 6.0.0
    */
@@ -171,7 +175,8 @@ export class Tooltip {
   /** @internal */
   @Method()
   async hideTooltip(
-    hideDelay: number = this.hideDelay ?? (this.interactive ? 150 : 50)
+    hideDelay: number = this.hideDelay ??
+      (this.interactive ? INTERACTIVE_HIDE_DELAY : DEFAULT_HIDE_DELAY)
   ) {
     this.clearTimeouts();
 
@@ -481,7 +486,7 @@ export class Tooltip {
         eventType: 'keydown',
         callback: (event: Event) => {
           if ((event as KeyboardEvent).key === 'Escape') {
-            this.hideTooltip();
+            this.hideTooltip(0);
           }
         },
       },
