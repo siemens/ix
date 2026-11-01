@@ -124,6 +124,47 @@ describe('DateDisplayFormat', () => {
       expect(dateDisplayFormat.toValue('02/2024')).toBe('2024/02/29');
     });
 
+    it('accepts a leap day in the year of the value', () => {
+      const dateDisplayFormat = createDisplayFormat({
+        value: '2024/03/01',
+        format: 'yyyy/LL/dd',
+        displayFormat: 'LL/dd',
+      });
+
+      expect(dateDisplayFormat.toValue('02/29')).toBe('2024/02/29');
+    });
+
+    it('accepts a weekday matching the resolved two-digit year', () => {
+      const dateDisplayFormat = createDisplayFormat({
+        value: '2099/03/04',
+        format: 'yyyy/LL/dd',
+        displayFormat: 'EEE dd.LL.yy',
+        locale: 'en',
+      });
+
+      expect(dateDisplayFormat.toText()).toBe('Wed 04.03.99');
+      expect(dateDisplayFormat.toValue('Wed 04.03.99')).toBe('2099/03/04');
+    });
+
+    it.each([
+      ['LL/dd', '02/30'],
+      ['LL/dd', '13/04'],
+      ['EEE dd.LL.yy', 'Thu 04.03.99'],
+    ])(
+      'rejects typed units which are out of range (%s: %s)',
+      (displayFormat, text) => {
+        const dateDisplayFormat = createDisplayFormat({
+          value: '2099/03/04',
+          format: 'yyyy/LL/dd',
+          displayFormat,
+          locale: 'en',
+        });
+
+        expect(dateDisplayFormat.toValue(text)).toBe(text);
+        expect(dateDisplayFormat.isUnparsableText(text)).toBe(true);
+      }
+    );
+
     it('keeps the reference while the typed text is incomplete', () => {
       const dateDisplayFormat = createDisplayFormat({
         value: '2099/03/04',

@@ -422,6 +422,9 @@ regressionTest.describe('displayFormat', () => {
       ).toBeVisible();
 
       await dateInputElement.evaluate((el: HTMLIxDateInputElement) => {
+        el.addEventListener('valueChange', () => {
+          el.dataset.valueChangeCount = `${Number(el.dataset.valueChangeCount ?? 0) + 1}`;
+        });
         el.displayFormat = 'dd.LL.yyyy';
       });
 
@@ -429,6 +432,17 @@ regressionTest.describe('displayFormat', () => {
       await expect(
         getInvalidText(dateInputElement, 'Date is not valid')
       ).toBeHidden();
+      await expect(dateInputElement).toHaveAttribute('value', '2065/03/04');
+      await expect(dateInputElement).not.toHaveAttribute(
+        'data-value-change-count'
+      );
+
+      const dateInput = await createDateInputAccessor(dateInputElement);
+      await dateInput.openByCalender();
+
+      await expect(
+        dateInputElement.locator('.calendar-item.selected')
+      ).toHaveText('4');
     }
   );
 

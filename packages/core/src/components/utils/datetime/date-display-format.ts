@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { DateTime } from 'luxon';
+import { DateTime, WeekdayNumbers } from 'luxon';
 import {
   convertDateFormat,
   formatWithLocale,
@@ -143,10 +143,7 @@ export class DateDisplayFormat {
     this.unparsableText = undefined;
 
     if (text && this.format !== format) {
-      const parsed = parseWithLocale(text, this.format, locale);
-      const date = this.hasTypedTwoDigitYear(text, parsed)
-        ? this.mergeWithReference(parsed)
-        : DateTime.invalid('unparsable');
+      const date = this.parseText(text);
 
       if (date.isValid) {
         this.reference = date;
@@ -186,18 +183,51 @@ export class DateDisplayFormat {
   }
 
   /**
+   * Parse text typed in `displayFormat`. Units missing in the text are merged
+   * from the reference before the date is validated, so e.g. a leap day is
+   * valid if the reference is in a leap year.
+   */
+  private parseText(text: string): DateTime {
+    const { locale } = this.host;
+    const parts = this.getParts();
+
+    if (!parts || !this.reference) {
+      const date = parseWithLocale(text, this.format, locale);
+      return !date.isValid || this.hasTypedTwoDigitYear(text, date.year)
+        ? date
+        : DateTime.invalid('unparsable');
+    }
+
+    const { rawMatches, result } = DateTime.fromFormatExplain(
+      text,
+      this.format,
+      { locale }
+    );
+
+    if (
+      !rawMatches ||
+      !result ||
+      !this.hasTypedTwoDigitYear(text, result.year)
+    ) {
+      return DateTime.invalid('unparsable');
+    }
+
+    return this.mergeWithReference(result, parts, this.reference);
+  }
+
+  /**
    * Luxon also parses three- and four-digit years for `yy`, which would not
    * look like `displayFormat`. Check that the year was typed with two digits
    * by parsing the text again with the parsed year as literal.
    */
-  private hasTypedTwoDigitYear(text: string, date: DateTime): boolean {
+  private hasTypedTwoDigitYear(text: string, parsedYear?: number): boolean {
     const tokens = this.getParts()?.twoDigitYearTokens;
 
-    if (!date.isValid || !tokens) {
+    if (parsedYear === undefined || !tokens) {
       return true;
     }
 
-    const year = String(date.year % 100).padStart(2, '0');
+    const year = String(parsedYear % 100).padStart(2, '0');
     const format = tokens
       .map((token) => {
         if (token.literal) {
@@ -212,21 +242,26 @@ export class DateDisplayFormat {
     }).rawMatches;
   }
 
-  private mergeWithReference(date: DateTime): DateTime {
-    const parts = this.getParts();
-
-    if (!date.isValid || !parts || !this.reference) {
-      return date;
-    }
-
+  private mergeWithReference(
+    parsed: Partial<Record<MergeableUnit, number>> & {
+      weekday?: WeekdayNumbers;
+    },
+    parts: DisplayFormatParts,
+    reference: DateTime
+  ): DateTime {
     const units: Partial<Record<MergeableUnit, number>> = {};
-    parts.units.forEach((unit) => (units[unit] = date[unit]));
+    parts.units.forEach((unit) => (units[unit] = parsed[unit]));
 
-    if (parts.twoDigitYearTokens) {
-      units.year = getClosestYear(date.year % 100, this.reference.year);
+    if (parts.twoDigitYearTokens && units.year !== undefined) {
+      units.year = getClosestYear(units.year % 100, reference.year);
     }
 
-    return this.reference.set(units);
+    const merged = reference.set(units);
+
+    return DateTime.fromObject(
+      { ...merged.toObject(), ...units, weekday: parsed.weekday },
+      { zone: reference.zone, locale: reference.locale ?? undefined }
+    );
   }
 
   private getParts(): DisplayFormatParts | undefined {

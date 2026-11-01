@@ -381,11 +381,6 @@ export class DateInput
 
   override componentWillLoad(): void {
     this.onInput(this.value);
-    if (this.isInputInvalid) {
-      this.from = null;
-    } else {
-      this.watchValue();
-    }
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
@@ -432,10 +427,6 @@ export class DateInput
 
   @Watch('value')
   watchValue() {
-    this.from = this.dateDisplayFormat.isUnparsableText(this.value)
-      ? undefined
-      : this.value;
-
     // Keep the text while the user is typing it, otherwise it would be
     // reformatted on every keystroke
     if (!this.dateDisplayFormat.isTypedValue(this.value)) {
@@ -482,13 +473,14 @@ export class DateInput
   }
 
   /**
-   * Updates the validation state and form value for `value`.
+   * Updates the validation state, picker state and form value for `value`.
    * Returns `false` if `value` cannot be validated without `format`.
    */
   private validateValue(value: string | undefined): boolean {
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
+      this.from = value;
       void this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
       return true;
@@ -508,6 +500,7 @@ export class DateInput
       this.invalidReason = date.invalidReason ?? undefined;
       this.from = undefined;
     } else {
+      this.from = value;
       this.updateFormInternalValue(value);
     }
 
