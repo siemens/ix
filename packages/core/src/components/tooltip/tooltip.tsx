@@ -83,11 +83,21 @@ export class Tooltip {
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
-  /** @internal */
+  /**
+   * Delay in milliseconds before the tooltip is shown.
+   *
+   * @since 6.0.0
+   */
   @Prop() showDelay = 0;
 
-  /** @internal */
-  @Prop() hideDelay = 50;
+  /**
+   * Delay in milliseconds before the tooltip is hidden.
+   * Defaults to 50 ms, or 150 ms for interactive tooltips,
+   * so the user has time to move the pointer into the tooltip.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDelay?: number;
 
   /** @internal */
   @Prop() animationFrame = false;
@@ -160,15 +170,13 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay: number = this.hideDelay) {
+  async hideTooltip(
+    hideDelay: number = this.hideDelay ?? (this.interactive ? 150 : 50)
+  ) {
     this.clearTimeouts();
 
     if (this.hideTooltipTimeout || !this.visible) {
       return;
-    }
-
-    if (this.interactive && hideDelay === 50) {
-      hideDelay = 150;
     }
 
     const dialog = await this.dialogRef.waitForCurrent();
