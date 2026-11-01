@@ -118,6 +118,8 @@ export class FieldWrapper
 
   private readonly slotRef = makeRef<HTMLDivElement>();
   private hasExplicitAriaLabel = false;
+  private errorMessageElement?: HTMLElement;
+  private helperMessageElement?: HTMLElement;
 
   override componentDidLoad() {
     this.syncAriaLabel(true);
@@ -148,31 +150,43 @@ export class FieldWrapper
   }
 
   override componentWillLoad(): Promise<void> | void {
-    if (!this.hostElement.querySelector('.error-message-container')) {
-      const errorMessageContainer = document.createElement('span');
-      errorMessageContainer.classList.add('error-message-container');
-      errorMessageContainer.id = `${this.getHostElementId()}-errormessage`;
-      errorMessageContainer.hidden = true;
-      this.hostElement.appendChild(errorMessageContainer);
+    this.errorMessageElement = this.getOrCreateMessageContainer(
+      'error-message-container',
+      'errormessage'
+    );
+    this.helperMessageElement = this.getOrCreateMessageContainer(
+      'helper-message-container',
+      'helpermessage'
+    );
+  }
+
+  /**
+   * Keep direct references to the message containers instead of querying them
+   * by ID, because consumer IDs are not valid CSS selectors in general.
+   */
+  private getOrCreateMessageContainer(
+    className: string,
+    idSuffix: string
+  ): HTMLElement {
+    const existing = this.hostElement.querySelector<HTMLElement>(
+      `.${className}`
+    );
+
+    if (existing) {
+      return existing;
     }
 
-    if (!this.hostElement.querySelector('.helper-message-container')) {
-      const helperMessageContainer = document.createElement('span');
-      helperMessageContainer.classList.add('helper-message-container');
-      helperMessageContainer.id = `${this.getHostElementId()}-helpermessage`;
-      helperMessageContainer.hidden = true;
-      this.hostElement.appendChild(helperMessageContainer);
-    }
+    const container = document.createElement('span');
+    container.classList.add(className);
+    container.id = `${this.getHostElementId()}-${idSuffix}`;
+    container.hidden = true;
+    this.hostElement.appendChild(container);
+
+    return container;
   }
 
   override componentWillRender() {
-    const errorMessageElement = this.hostElement.querySelector(
-      `#${this.getHostElementId()}-errormessage`
-    );
-
-    const helperMessageElement = this.hostElement.querySelector(
-      `#${this.getHostElementId()}-helpermessage`
-    );
+    const { errorMessageElement, helperMessageElement } = this;
 
     if (this.isInvalid && this.invalidText && errorMessageElement) {
       errorMessageElement.textContent = this.invalidText;
@@ -196,19 +210,13 @@ export class FieldWrapper
   /** @internal */
   @Method()
   getAriaErrorMessageElement(): Promise<HTMLElement | null> {
-    return Promise.resolve(
-      this.hostElement.querySelector(`#${this.getHostElementId()}-errormessage`)
-    );
+    return Promise.resolve(this.errorMessageElement ?? null);
   }
 
   /** @internal */
   @Method()
   getAriaHelperMessageElement(): Promise<HTMLElement | null> {
-    return Promise.resolve(
-      this.hostElement.querySelector(
-        `#${this.getHostElementId()}-helpermessage`
-      )
-    );
+    return Promise.resolve(this.helperMessageElement ?? null);
   }
 
   override render() {

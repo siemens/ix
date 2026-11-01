@@ -339,3 +339,39 @@ regressionTest('can disable tooltip', async ({ mount, page }) => {
 
   await expect(menuItem.locator('ix-tooltip')).toHaveCount(0);
 });
+
+for (const [variant, attributes] of [
+  ['button', ''],
+  ['link', 'href="https://ix.siemens.io/"'],
+] as const) {
+  regressionTest(
+    `does not propagate clicks while disabled (${variant})`,
+    async ({ mount, page }) => {
+      await mount(`
+        <div id="container">
+          <ix-menu-item disabled ${attributes}>Item</ix-menu-item>
+        </div>
+      `);
+
+      const menuItem = page.locator('ix-menu-item');
+      await expect(menuItem).toHaveAttribute('hydrated');
+
+      await page.evaluate(() => {
+        const clicks: string[] = [];
+        (window as any).__clicks = clicks;
+        document
+          .querySelector('ix-menu-item')!
+          .addEventListener('click', () => clicks.push('host'));
+        document
+          .querySelector('#container')!
+          .addEventListener('click', () => clicks.push('container'));
+      });
+
+      await menuItem.evaluate((element) =>
+        (element.shadowRoot!.querySelector('a, button') as HTMLElement).click()
+      );
+
+      expect(await page.evaluate(() => (window as any).__clicks)).toEqual([]);
+    }
+  );
+}

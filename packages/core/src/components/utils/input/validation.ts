@@ -144,6 +144,26 @@ function consumerValidityCheck(host: HTMLElement) {
   return !host.classList.contains('ix-invalid');
 }
 
+const validityErrorsBesideValueMissing: (keyof ValidityState)[] = [
+  'badInput',
+  'customError',
+  'patternMismatch',
+  'rangeOverflow',
+  'rangeUnderflow',
+  'stepMismatch',
+  'tooLong',
+  'tooShort',
+  'typeMismatch',
+];
+
+/** Returns `true` if a missing value is the only validity error */
+export function isOnlyValueMissing(validityState: ValidityState) {
+  return (
+    validityState.valueMissing &&
+    !validityErrorsBesideValueMissing.some((error) => validityState[error])
+  );
+}
+
 function syncAriaInvalid(
   validationElement: HTMLInputElement | HTMLTextAreaElement,
   valid: boolean
@@ -281,12 +301,22 @@ export function HookValidationLifecycle(options?: {
       proto;
 
     const observeFieldClasses = function (this: object, host: HTMLElement) {
+      let hasConsumerInvalidClass = host.classList.contains('ix-invalid');
       getValidationLifecycleState(this).classMutationObserver =
         createClassMutationObserver(
           host,
           () => {
             const result = checkFieldClasses(host, options?.includeChildren);
             proto[methodName].call(this, result);
+
+            // Consumers toggle `ix-invalid` without a value change or blur, so
+            // the ARIA attributes are synced here. Other classes are ignored,
+            // the validation itself toggles `ix-invalid--*`.
+            const hadConsumerInvalidClass = hasConsumerInvalidClass;
+            hasConsumerInvalidClass = host.classList.contains('ix-invalid');
+            if (hasConsumerInvalidClass !== hadConsumerInvalidClass) {
+              void revalidate(this);
+            }
           },
           options
         );
@@ -409,14 +439,19 @@ export function HookValidationLifecycle(options?: {
               return;
             }
 
+            // A missing required value is shown only once the field is touched
+            // (`ix-invalid--required`), so it is not announced before either
+            const validByValidity =
+              validityState.valid ||
+              (!touched && isOnlyValueMissing(validityState));
             const consumerValid = consumerValidityCheck(host);
             syncAriaInvalid(
               validationElement,
-              validityState.valid && consumerValid
+              validByValidity && consumerValid
             );
             syncAriaMessageReferences(
               validationElement,
-              !validityState.valid || !consumerValid,
+              !validByValidity || !consumerValid,
               messageElements
             );
           }

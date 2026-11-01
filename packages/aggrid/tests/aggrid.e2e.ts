@@ -152,7 +152,7 @@ regressionTest.describe('aggrid', () => {
 
     await tooltip.evaluate((element) => {
       element.style.setProperty(
-        '--si-sys-color-effects-shadow-4',
+        '--si-sys-color-effects-shadow-40',
         '1px 2px 3px rgb(12, 34, 56)'
       );
     });

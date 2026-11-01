@@ -134,7 +134,7 @@ export class IxActionCard {
                   </ix-typography>
                 ) : null}
                 {this.subheading ? (
-                  <ix-typography format="h5" text-color="soft">
+                  <ix-typography format="h5" text-color="secondary">
                     {this.subheading}
                   </ix-typography>
                 ) : null}

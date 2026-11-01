@@ -811,6 +811,40 @@ regressionTest.describe('time picker tests', () => {
   );
 });
 
+regressionTest.describe('interval validation', () => {
+  for (const [attribute, invalidValue] of [
+    ['minute-interval', '0'],
+    ['second-interval', '0.001'],
+    ['minute-interval', 'NaN'],
+  ] as const) {
+    regressionTest(
+      `falls back to default for ${attribute}="${invalidValue}"`,
+      async ({ mount, page }) => {
+        const errors: string[] = [];
+        page.on('console', (message) => {
+          if (message.type() === 'error') {
+            errors.push(message.text());
+          }
+        });
+
+        await mount(
+          `<ix-time-picker format="HH:mm:ss" time="00:00:00" ${attribute}="${invalidValue}"></ix-time-picker>`
+        );
+        const timePicker = page.locator(TIME_PICKER_SELECTOR);
+        await expect(timePicker).toHaveAttribute('hydrated');
+
+        const unit = attribute === 'minute-interval' ? 'min' : 'sec';
+        await expect(
+          timePickerUnitList(timePicker, unit).getByRole('option')
+        ).toHaveCount(60);
+        expect(errors.some((error) => error.includes('is not valid for'))).toBe(
+          true
+        );
+      }
+    );
+  }
+});
+
 // Times used by the confirmation and disabled state tests.
 const TIME_FORMAT = 'HH:mm';
 const committedTime = DateTime.fromISO('2024-05-10T10:30');

@@ -37,6 +37,11 @@ runs:
         node-version-file: './package.json'
         cache: 'pnpm'
 
+    # The root prepare script is skipped by --ignore-scripts, so disable turbo telemetry for the job here.
+    - name: Disable turbo telemetry
+      run: echo "TURBO_TELEMETRY_DISABLED=1" >> "$GITHUB_ENV"
+      shell: bash
+
     - name: Install dependencies
-      run: pnpm install
+      run: pnpm install --frozen-lockfile --ignore-scripts
       shell: bash

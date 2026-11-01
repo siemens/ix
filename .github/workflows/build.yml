@@ -35,7 +35,7 @@ jobs:
         run: pnpm lint
 
       - name: Documentation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: documentation-${{ github.run_attempt }}
           path: ./packages/documentation/build
@@ -139,5 +139,5 @@ jobs:
 
       - name: Test
         run: |
-          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
+          pnpm dlx puppeteer@22.15.0 browsers install chrome@127.0.6533.88
           pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo

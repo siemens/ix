@@ -94,7 +94,7 @@ export class ChatUserMessage {
           ></slot>
         </div>
         <div class="message">
-          <ix-typography class="message-text" format="body" textColor="std">
+          <ix-typography class="message-text" format="body" textColor="primary">
             {this.message}
             <span
               style={{

@@ -375,6 +375,7 @@ export class Select
   watchValue(value: string | string[]) {
     this.value = value;
     this.updateSelection();
+    this.updateFormInternalValue(value);
   }
 
   @Watch('disabled')

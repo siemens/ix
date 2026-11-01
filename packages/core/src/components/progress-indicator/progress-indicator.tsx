@@ -15,6 +15,7 @@ import {
   iconSuccess,
   iconWarning,
 } from '@siemens/ix-icons/icons';
+import { a11yBoolean } from '../utils/a11y';
 import { CircularProgress } from './circular';
 import type {
   ProgressIndicatorSize,
@@ -73,10 +74,10 @@ export class ProgressIndicator {
   @Prop() max: number = 100;
 
   /**
-   * The state of the progress indicator.
-   * This is used to indicate the current state of the progress indicator.
+   * Status of the progress indicator.
+   * Shared status subset plus `error` and `paused`. Default is `base`.
    */
-  @Prop() status: ProgressIndicatorStatus = 'default';
+  @Prop() status: ProgressIndicatorStatus = 'base';
 
   /**
    * The label for the progress indicator.
@@ -106,7 +107,7 @@ export class ProgressIndicator {
       case 'error':
         icon = iconError;
         break;
-      case 'info':
+      case 'information':
         icon = iconInfo;
         break;
       case 'warning':
@@ -133,7 +134,13 @@ export class ProgressIndicator {
           [this.status]: true,
         }}
       >
-        {icon && <ix-icon name={icon} size="16"></ix-icon>}
+        {icon && (
+          <ix-icon
+            name={icon}
+            size="16"
+            aria-hidden={a11yBoolean(true)}
+          ></ix-icon>
+        )}
         <div
           class={{
             text: true,
@@ -176,7 +183,7 @@ export class ProgressIndicator {
           {this.label && (
             <ix-typography
               format="body"
-              textColor={this.status === 'error' ? 'alarm' : 'soft'}
+              textColor={this.status === 'error' ? 'danger' : 'secondary'}
               class={'label'}
             >
               {this.label}
@@ -189,6 +196,7 @@ export class ProgressIndicator {
                 <LinearBar
                   value={clampedValue}
                   status={this.status}
+                  label={this.label}
                 ></LinearBar>
                 <div class="linear-slot">
                   <slot></slot>

@@ -5,7 +5,7 @@ import { IxProgressIndicator } from '@siemens/ix-vue';
 <style scoped src="./progress-indicator.css"></style>
 
 <template>
-  <h2 class="example-header">Status - Default</h2>
+  <h2 class="example-header">Status - Base</h2>
   <IxProgressIndicator
     type="circular"
     label="Download"
@@ -34,13 +34,13 @@ import { IxProgressIndicator } from '@siemens/ix-vue';
   >
     75%
   </IxProgressIndicator>
-  <h2 class="example-header">Status - Info</h2>
+  <h2 class="example-header">Status - Information</h2>
   <IxProgressIndicator
     type="circular"
     label="Download"
     :value="75"
     helper-text="This is a help text for the progress indicator"
-    status="info"
+    status="information"
   >
     75%
   </IxProgressIndicator>

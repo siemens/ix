@@ -324,6 +324,67 @@ test.describe('cross app navigation', () => {
     await expect(dialog).not.toBeVisible();
   });
 
+  test(`should open new browsing contexts without opener and referrer`, async ({
+    page,
+    mount,
+  }) => {
+    await page.evaluate(() => {
+      (window as any).__openCalls = [];
+      window.open = ((...args: unknown[]) => {
+        (window as any).__openCalls.push(args);
+        return null;
+      }) as typeof window.open;
+
+      window.addEventListener('context-request', (evt: any) => {
+        evt.callback({
+          hideHeader: false,
+          sidebar: false,
+          appSwitchConfig: {
+            apps: [
+              {
+                id: '1',
+                description: 'description 1',
+                iconSrc: '',
+                name: 'external app',
+                target: '_blank',
+                url: 'https://example.com/external',
+              },
+              {
+                id: '2',
+                description: 'description 2',
+                iconSrc: '',
+                name: 'internal app',
+                target: '_self',
+                url: 'https://example.com/internal',
+              },
+            ],
+            currentAppId: '2',
+          },
+        } as ContextType<typeof ApplicationLayoutContext>);
+      });
+    });
+    const header = page.locator('ix-application-header');
+    const appSwitchButton = header.locator('ix-icon-button.app-switch');
+    await mount(`<ix-application-header name="test"></ix-application-header>`);
+    await expect(header).toHaveAttribute('hydrated');
+
+    const appEntries = page.locator('ix-modal-content').locator('.AppEntry');
+
+    await appSwitchButton.click();
+    await appEntries.nth(0).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+
+    await appSwitchButton.click();
+    await appEntries.nth(1).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+
+    const calls = await page.evaluate(() => (window as any).__openCalls);
+    expect(calls).toEqual([
+      ['https://example.com/external', '_blank', 'noopener,noreferrer'],
+      ['https://example.com/internal', '_self'],
+    ]);
+  });
+
   test(`should show app switch apps (config async)`, async ({
     page,
     mount,

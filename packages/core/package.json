@@ -160,7 +160,7 @@
     "@types/jest": "^29.5.12",
     "@types/luxon": "^3.4.2",
     "@types/mustache": "^4.2.6",
-    "@types/node": "^20.16.0",
+    "@types/node": "catalog:",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.70.0",
     "autoprefixer": "10.4.20",
@@ -187,7 +187,7 @@
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.6.13",
-    "@siemens/ix-icons": "^3.5.0",
+    "@siemens/ix-icons": "0.0.0-beta-20261021072559",
     "@stencil/core": "^4.43.5",
     "luxon": "^3.4.4"
   },

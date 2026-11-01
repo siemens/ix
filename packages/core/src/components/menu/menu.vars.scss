@@ -11,12 +11,12 @@
 
 :host {
   --ix-menu-tabs-shadow--border-color: #{sys.$si-sys-color-border-4};
-  --ix-menu-tabs-shadow--box-shadow: #{sys.$si-sys-color-effects-shadow-2};
+  --ix-menu-tabs-shadow--box-shadow: #{sys.$si-sys-color-effects-shadow-20};
   --ix-menu-overlay--background: rgba(0, 0, 0, 0);
   --ix-menu-tabs--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-menu-navigation--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-menu--background: #{sys.$si-sys-color-background-1};
-  --ix-menu--box-shadow: #{sys.$si-sys-color-effects-shadow-2};
+  --ix-menu--box-shadow: #{sys.$si-sys-color-effects-shadow-20};
 }
 
 :host {
