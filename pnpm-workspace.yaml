@@ -20,6 +20,8 @@ catalog:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: vitest@4.1.11
+  - vitest@4.1.11
 
 overrides:
   cheerio: '1.0.0-rc.12'
