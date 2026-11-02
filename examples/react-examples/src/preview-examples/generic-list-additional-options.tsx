@@ -21,9 +21,9 @@ import {
 } from '@siemens/ix-icons/icons';
 import { useState } from 'react';
 
-export default function GenericListAdditionalOptions() {
-  addIcons({ iconEditDocument, iconProject, iconTrashcan });
+addIcons({ iconEditDocument, iconProject, iconTrashcan });
 
+export default function GenericListAdditionalOptions() {
   const [selected, setSelected] = useState([false, false, false]);
 
   const setItemSelected = (index: number, value: boolean) =>

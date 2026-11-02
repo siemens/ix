@@ -11,9 +11,9 @@ import { IxList, IxListItem } from '@siemens/ix-react';
 import { addIcons } from '@siemens/ix-icons';
 import { iconProject } from '@siemens/ix-icons/icons';
 
-export default function GenericListDraggable() {
-  addIcons({ iconProject });
+addIcons({ iconProject });
 
+export default function GenericListDraggable() {
   return (
     <IxList draggable>
       <IxListItem icon="project" label="Item 1"></IxListItem>

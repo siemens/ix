@@ -15,9 +15,9 @@ import {
   iconTrashcan,
 } from '@siemens/ix-icons/icons';
 
-export default function GenericListActionOnHover() {
-  addIcons({ iconEditDocument, iconProject, iconTrashcan });
+addIcons({ iconEditDocument, iconProject, iconTrashcan });
 
+export default function GenericListActionOnHover() {
   return (
     <IxList actionOnHover>
       <IxListItem icon="project" label="Item 1">

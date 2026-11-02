@@ -19,9 +19,9 @@ import {
 import { addIcons } from '@siemens/ix-icons';
 import { iconAlarmBell, iconContextMenu } from '@siemens/ix-icons/icons';
 
-export default function GenericListCustomContent() {
-  addIcons({ iconAlarmBell, iconContextMenu });
+addIcons({ iconAlarmBell, iconContextMenu });
 
+export default function GenericListCustomContent() {
   return (
     <IxList actionSlotAlignment="start">
       <IxListItem aria-label="Alarm: High temperature">

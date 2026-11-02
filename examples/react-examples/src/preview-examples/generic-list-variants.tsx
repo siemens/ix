@@ -11,9 +11,9 @@ import { IxList, IxListItem } from '@siemens/ix-react';
 import { addIcons } from '@siemens/ix-icons';
 import { iconProject } from '@siemens/ix-icons/icons';
 
-export default function GenericListVariants() {
-  addIcons({ iconProject });
+addIcons({ iconProject });
 
+export default function GenericListVariants() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <IxList divider itemGap="none" variant="ghost">
