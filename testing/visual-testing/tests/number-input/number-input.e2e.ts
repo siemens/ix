@@ -13,8 +13,6 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('number-input', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('number-input/basic');
-    await expect(page).toHaveScreenshot({
-      maxDiffPixels: 10,
-    });
+    await expect(page).toHaveScreenshot();
   });
 });

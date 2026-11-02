@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+import { DateTime } from 'luxon';
 import { describe, expect, it } from 'vitest';
 import {
   DateDisplayFormat,
@@ -247,6 +248,35 @@ describe('DateDisplayFormat', () => {
         '2099/03/04 09:15:30'
       );
     });
+
+    it.each([
+      ['yyyy/LL/dd HH:mm ZZ', '2024/03/01 12:00 +02:00', '+02:00'],
+      [
+        'yyyy/LL/dd HH:mm z',
+        '2024/03/01 12:00 America/New_York',
+        'America/New_York',
+      ],
+    ])(
+      'keeps the instant of a typed zone (%s)',
+      (displayFormat, text, zone) => {
+        const format = 'yyyy/LL/dd HH:mm:ss';
+        const dateDisplayFormat = createDisplayFormat({
+          value: '2024/03/01 08:00:30',
+          format,
+          displayFormat,
+          locale: 'en',
+        });
+
+        // The seconds are not typed and taken from the value
+        const typedInstant = DateTime.fromISO('2024-03-01T12:00:30', {
+          zone,
+        });
+
+        expect(dateDisplayFormat.toValue(text)).toBe(
+          typedInstant.toLocal().toFormat(format)
+        );
+      }
+    );
   });
 
   describe('parseValue', () => {

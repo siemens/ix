@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { DateTime, WeekdayNumbers } from 'luxon';
+import { DateTime, WeekdayNumbers, Zone } from 'luxon';
 import {
   convertDateFormat,
   formatWithLocale,
@@ -198,7 +198,7 @@ export class DateDisplayFormat {
         : DateTime.invalid('unparsable');
     }
 
-    const { rawMatches, result } = DateTime.fromFormatExplain(
+    const { rawMatches, result, zone } = DateTime.fromFormatExplain(
       text,
       this.format,
       { locale }
@@ -212,7 +212,7 @@ export class DateDisplayFormat {
       return DateTime.invalid('unparsable');
     }
 
-    return this.mergeWithReference(result, parts, this.reference);
+    return this.mergeWithReference(result, parts, this.reference, zone);
   }
 
   /**
@@ -242,12 +242,17 @@ export class DateDisplayFormat {
     }).rawMatches;
   }
 
+  /**
+   * A zone typed in `displayFormat` (e.g. `ZZ` or `z`) applies to the typed
+   * units, so the result is the typed instant in the zone of the reference.
+   */
   private mergeWithReference(
     parsed: Partial<Record<MergeableUnit, number>> & {
       weekday?: WeekdayNumbers;
     },
     parts: DisplayFormatParts,
-    reference: DateTime
+    reference: DateTime,
+    parsedZone?: Zone | null
   ): DateTime {
     const units: Partial<Record<MergeableUnit, number>> = {};
     parts.units.forEach((unit) => (units[unit] = parsed[unit]));
@@ -256,12 +261,13 @@ export class DateDisplayFormat {
       units.year = getClosestYear(units.year % 100, reference.year);
     }
 
-    const merged = reference.set(units);
+    const zone = parsedZone ?? reference.zone;
+    const merged = reference.setZone(zone).set(units);
 
     return DateTime.fromObject(
       { ...merged.toObject(), ...units, weekday: parsed.weekday },
-      { zone: reference.zone, locale: reference.locale ?? undefined }
-    );
+      { zone, locale: reference.locale ?? undefined }
+    ).setZone(reference.zone);
   }
 
   private getParts(): DisplayFormatParts | undefined {
