@@ -36,3 +36,16 @@ overrides:
 
 patchedDependencies:
   '@stencil/core': 'patches/@stencil__core.patch'
+
+auditConfig:
+  ignoreGhsas:
+    # extract-zip (no fix) and zod 3 via puppeteer 24 pinned by @memlab/api (testing/performance-memlab); fixed only in puppeteer 25
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3
+    - GHSA-mrhx-c7xc-m3w5
+    # minimatch: fixed only in 11 (breaking API); consumers are dev tooling (eslint, typedoc, Angular CLI) with trusted patterns
+    - GHSA-g3hv-75wg-m249
+    # uuid 8 via sockjs (webpack-dev-server): advisory affects v3/v5/v6 with `buf`; sockjs only calls v4(). Fix requires uuid 11
+    - GHSA-w5hq-g745-h8pq
+    # deepmerge: no patched version; build-time only via @rollup/plugin-node-resolve
+    - GHSA-gcqx-w48m-w2h4

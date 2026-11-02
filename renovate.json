@@ -8,6 +8,11 @@
   "prConcurrentLimit": 5,
   "groupSingleUpdates": true,
   "minimumReleaseAge": "2 days",
+  "osvVulnerabilityAlerts": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
   "packageRules": [
     {
       "description": "Do not delay Siemens dependency updates",
