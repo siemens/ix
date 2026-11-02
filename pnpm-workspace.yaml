@@ -58,8 +58,6 @@ auditConfig:
     - GHSA-mrhx-c7xc-m3w5
     # minimatch: fixed only in 11 (breaking API); consumers are dev tooling (eslint, typedoc, Angular CLI) with trusted patterns
     - GHSA-g3hv-75wg-m249
-    # echarts 5: intentional `echarts-5` devDependency alias for v5 compatibility tests in packages/echarts
-    - GHSA-fgmj-fm8m-jvvx
     # uuid 8 via sockjs (webpack-dev-server): advisory affects v3/v5/v6 with `buf`; sockjs only calls v4(). Fix requires uuid 11
     - GHSA-w5hq-g745-h8pq
     # deepmerge: no patched version; build-time only via @rollup/plugin-node-resolve

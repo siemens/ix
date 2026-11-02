@@ -874,9 +874,6 @@ importers:
       echarts:
         specifier: ^6.1.0
         version: 6.1.0
-      echarts-5:
-        specifier: npm:echarts@^5.0.0
-        version: echarts@5.6.0
       http-server:
         specifier: ^14.1.1
         version: 14.1.1
@@ -8858,9 +8855,6 @@ packages:
     peerDependencies:
       echarts: ^5.1.2 || ^6.0.0
 
-  echarts@5.6.0:
-    resolution: {integrity: sha512-oTbVTsXfKuEhxftHqL5xprgLoc0k7uScAwtryCgWF6hPYFLRwOUHiFmHGCBKP5NPFNkDVopOieyUqYGH8Fa3kA==}
-
   echarts@6.1.0:
     resolution: {integrity: sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA==}
 
@@ -14278,9 +14272,6 @@ packages:
 
   zone.js@0.15.1:
     resolution: {integrity: sha512-XE96n56IQpJM7NAoXswY3XRLcWFW83xe0BiAOeMD7K5k5xecOeul3Qcpx6GqEeeHNkW5DWL5zOyTbEfB4eti8w==}
-
-  zrender@5.6.1:
-    resolution: {integrity: sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==}
 
   zrender@6.1.0:
     resolution: {integrity: sha512-oEGMDB6pOP2S6OwRR4PdVv610zrjnA3Bh+JnSG12fYJlBKjtNAoEb5fSUoCOOINlH96I2fU38/A2UpRKs67xYQ==}
@@ -22575,11 +22566,6 @@ snapshots:
       echarts: 6.1.0
       zrender: 6.1.0
 
-  echarts@5.6.0:
-    dependencies:
-      tslib: 2.3.0
-      zrender: 5.6.1
-
   echarts@6.1.0:
     dependencies:
       tslib: 2.3.0
@@ -30242,10 +30228,6 @@ snapshots:
 
   zone.js@0.15.1:
     optional: true
-
-  zrender@5.6.1:
-    dependencies:
-      tslib: 2.3.0
 
   zrender@6.1.0:
     dependencies:
