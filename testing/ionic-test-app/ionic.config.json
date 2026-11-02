@@ -1,7 +1,0 @@
-{
-  "name": "ix-mobile",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}

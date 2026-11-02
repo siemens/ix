@@ -28,7 +28,6 @@
     "fs-extra": "^11.3.0",
     "glob": "catalog:",
     "html-examples": "workspace:*",
-    "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
     "react-examples": "workspace:*",
     "rimraf": "catalog:",
