@@ -12,7 +12,7 @@ catalog:
   '@siemens/ix-icons': 0.0.0-beta-20261021072559
   '@types/node': ^24.19.2
   eslint: ^9.39.3
-  glob: ^13.0.0
+  glob: ^14.0.2
   playwright: ^1.64.1
   rimraf: ^6.1.3
   vite: 7.3.7
@@ -24,6 +24,10 @@ minimumReleaseAgeExclude:
 overrides:
   cheerio: '1.0.0-rc.12'
   rollup: 'npm:@rollup/wasm-node'
+  # Security: basic-ftp 6 only adds FTP bounce protection (via puppeteer > get-uri)
+  'basic-ftp@<6.2.1': ^6.2.1
+  # Security: libxmljs2 has no fix; only an optional peer of @cyclonedx/cyclonedx-library (XML output unused)
+  libxmljs2: '-'
   # Security: bounded same-major overrides for vulnerable transitive dependencies (pnpm audit)
   '@babel/core@>=7.0.0 <7.29.6': ^7.29.6
   '@babel/plugin-transform-modules-systemjs@>=7.0.0 <7.29.4': ^7.29.4
@@ -32,6 +36,7 @@ overrides:
   '@remix-run/router@>=1.0.0 <1.23.3': ^1.23.3
   '@tootallnate/once@>=2.0.0 <2.0.1': ^2.0.1
   '@vue/server-renderer@>=3.0.0 <3.5.42': ^3.5.42
+  '@vue/test-utils@>=2.0.0 <2.5.1': ^2.5.1
   '@xmldom/xmldom@>=0.8.0 <0.8.15': ^0.8.15
   'ajv@>=8.0.0 <8.18.0': ^8.18.0
   'axios@>=1.0.0 <1.20.0': ^1.20.0
@@ -47,8 +52,11 @@ overrides:
   'flatted@>=3.0.0 <3.4.2': ^3.4.2
   'follow-redirects@>=1.0.0 <1.16.0': ^1.16.0
   'form-data@>=4.0.0 <4.0.6': ^4.0.6
+  # Cross-major: glob 9-13 consumers only use the glob()/globSync() API, unchanged in glob 14.
+  'glob@>=9.0.0 <14.0.2': ^14.0.2
   'http-proxy-middleware@>=2.0.0 <2.0.10': ^2.0.10
   'immutable@>=5.0.0 <5.1.8': ^5.1.8
+  'ip-address@>=10.0.0 <10.7.4': ^10.7.4
   'joi@>=17.0.0 <17.13.8': ^17.13.8
   'js-cookie@>=3.0.0 <3.0.7': ^3.0.7
   'js-yaml@>=3.0.0 <3.15.2': ^3.15.2
@@ -66,6 +74,7 @@ overrides:
   'qs@>=6.0.0 <6.16.1': ^6.16.1
   'serialize-javascript@>=7.0.0 <7.1.3': ^7.1.3
   'socket.io-parser@>=4.0.0 <4.2.7': ^4.2.7
+  'socks@>=2.0.0 <2.8.10': ^2.8.10
   'source-map-js@>=1.0.0 <1.2.2': ^1.2.2
   'svgo@>=3.0.0 <3.3.5': ^3.3.5
   'tar-fs@>=2.0.0 <2.1.4': ^2.1.4

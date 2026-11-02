@@ -29,7 +29,7 @@
     "ag-grid-angular": "^33.1.1",
     "ag-grid-community": "^33.1.1",
     "echarts": "^6.1.0",
-    "echarts-gl": "^2.0.9",
+    "echarts-gl": "^2.1.0",
     "html-test-app": "workspace:*",
     "ngx-echarts": "^21.0.0",
     "rxjs": "~7.8.0",
