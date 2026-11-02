@@ -34,9 +34,6 @@ overrides:
   # Cross-major: glob 9-13 consumers only use the glob()/globSync() API, unchanged in glob 14.
   'glob@>=9.0.0 <14.0.2': ^14.0.2
 
-patchedDependencies:
-  '@stencil/core': 'patches/@stencil__core.patch'
-
 auditConfig:
   ignoreGhsas:
     # tar 6 via @capacitor/cli 6 (testing/ionic-test-app); app is being removed in siemens/ix#2961
