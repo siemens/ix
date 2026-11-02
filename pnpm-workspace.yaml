@@ -36,3 +36,31 @@ overrides:
 
 patchedDependencies:
   '@stencil/core': 'patches/@stencil__core.patch'
+
+auditConfig:
+  ignoreGhsas:
+    # tar 6 via @capacitor/cli 6 (testing/ionic-test-app); app is being removed in siemens/ix#2961
+    - GHSA-34x7-hfp2-rc4v
+    - GHSA-8qq5-rm4j-mr97
+    - GHSA-83g3-92jg-28cx
+    - GHSA-qffp-2rhf-9h96
+    - GHSA-9ppj-qmqm-q256
+    - GHSA-r6q2-hw4h-h46w
+    - GHSA-vmf3-w455-68vh
+    - GHSA-w8wr-v893-vjvp
+    - GHSA-23hp-3jrh-7fpw
+    - GHSA-8x88-c5mf-7j5w
+    - GHSA-gvwx-54wh-qm9j
+    - GHSA-r292-9mhp-454m
+    # extract-zip (no fix) and zod 3 via puppeteer 24 pinned by @memlab/api (testing/performance-memlab); fixed only in puppeteer 25
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3
+    - GHSA-mrhx-c7xc-m3w5
+    # minimatch: fixed only in 11 (breaking API); consumers are dev tooling (eslint, typedoc, Angular CLI) with trusted patterns
+    - GHSA-g3hv-75wg-m249
+    # echarts 5: intentional `echarts-5` devDependency alias for v5 compatibility tests in packages/echarts
+    - GHSA-fgmj-fm8m-jvvx
+    # uuid 8 via sockjs (webpack-dev-server): advisory affects v3/v5/v6 with `buf`; sockjs only calls v4(). Fix requires uuid 11
+    - GHSA-w5hq-g745-h8pq
+    # deepmerge: no patched version; build-time only via @rollup/plugin-node-resolve
+    - GHSA-gcqx-w48m-w2h4
