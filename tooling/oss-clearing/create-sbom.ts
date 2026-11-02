@@ -79,7 +79,7 @@ async function resolveComponentData(
   return new Promise((resolve) => {
     const { stdout } = spawnSync(
       'pnpm',
-      ['v', '--json', '--long', `${packageName}@${version}`],
+      ['v', '--json', `${packageName}@${version}`],
       { shell: true }
     );
 
