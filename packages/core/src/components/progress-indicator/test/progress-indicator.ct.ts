@@ -91,17 +91,28 @@ for (const { status, icon } of statuses) {
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(
     `
-    <ix-progress-indicator
-      label="Download"
-      value="50"
-      status="information"
-      helper-text="Helper text"
-    >
-      50%
-    </ix-progress-indicator>
+    <div>
+      <ix-progress-indicator
+        label="Download"
+        value="50"
+        status="information"
+        helper-text="Helper text"
+      >
+        50%
+      </ix-progress-indicator>
+      <ix-progress-indicator
+        label="Download error"
+        value="50"
+        status="error"
+        helper-text="Helper text"
+      >
+        50%
+      </ix-progress-indicator>
+    </div>
     `,
     {
       icons: {
+        iconError,
         iconInfo,
       },
     }

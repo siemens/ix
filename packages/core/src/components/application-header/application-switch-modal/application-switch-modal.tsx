@@ -70,7 +70,7 @@ function ApplicationItem(props: {
             ></ix-icon>
           )}
         </ix-typography>
-        <ix-typography format="body-sm" textColor="soft">
+        <ix-typography format="body-sm" textColor="secondary">
           {props.description}
         </ix-typography>
       </div>

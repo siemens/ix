@@ -657,7 +657,7 @@ export class MenuCategory
             aria-hidden="true"
             suppressChecked
           >
-            <ix-typography format="body" bold textColor="std">
+            <ix-typography format="body" bold textColor="primary">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

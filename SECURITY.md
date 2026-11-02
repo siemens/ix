@@ -15,8 +15,9 @@ please read the next sections and follow the instructions to report your finding
 ## Reporting a Vulnerability
 
 Please DO NOT report any potential security vulnerability via a public channel (mailing list, GitHub issue, etc.).
-Instead, [report the vulnerability privately via GitHub](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)
-(if enabled for the repository) or [contact us via email](mailto:opensource@siemens.com).
+Instead, [report the vulnerability privately via GitHub](https://github.com/siemens/ix/security/advisories/new)
+(see [privately reporting a security vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability))
+or contact Siemens ProductCERT at [productcert@siemens.com](mailto:productcert@siemens.com).
 
 Please provide a detailed description of the issue, the steps to reproduce it, the affected version(s) and, if already available,
 a proposal for a fix. Include a proof of concept that demonstrates the issue through the public API of a published package.
