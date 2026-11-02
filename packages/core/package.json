@@ -176,14 +176,14 @@
     "minisearch": "^7.1.0",
     "luxon": "^3.4.4",
     "mustache": "^4.2.0",
-    "postcss": "^8.5.23",
+    "postcss": "^8.5.32",
     "puppeteer": "21.1.1",
     "rimraf": "catalog:",
     "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.12"
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.6.13",
