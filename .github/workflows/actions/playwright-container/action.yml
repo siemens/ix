@@ -11,7 +11,7 @@ inputs:
   image:
     description: 'Playwright image to use. Keep aligned with the playwright version in pnpm-workspace.yaml.'
     required: false
-    default: 'mcr.microsoft.com/playwright:v1.58.1-noble'
+    default: 'mcr.microsoft.com/playwright:v1.64.1-noble'
 runs:
   using: 'composite'
   steps:
