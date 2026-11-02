@@ -81,6 +81,10 @@ import { AlignedPlacement, DropdownAnchorPosition } from './placement';
 
 let sequenceId = 0;
 
+// Intersection rects can be off by a fraction of a pixel (e.g. inside an
+// iframe with a sub-pixel offset), which must not count as a clipped trigger
+const CLIPPED_TRIGGER_TOLERANCE_PX = 1;
+
 const createPointReference = ({
   x,
   y,
@@ -331,6 +335,12 @@ export class Dropdown
   private autoUpdateCleanup?: () => void;
   private readonly dialogRef = makeRef<HTMLDialogElement>();
   private intersectObserverTrigger?: IntersectionObserver;
+  /**
+   * The fallback placement of a clipped trigger is only known after the first
+   * intersection check, which runs after the next paint. Until then the
+   * dropdown stays transparent, so it does not flash at another position.
+   */
+  private isAwaitingTriggerVisibility = false;
   private triggerElement?: Element;
   private anchorElement?: Element;
   private forwardQueryElement: HTMLElement | null = null;
@@ -689,6 +699,8 @@ export class Dropdown
       this.intersectObserverTrigger.disconnect();
     }
 
+    this.isAwaitingTriggerVisibility = false;
+
     if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
@@ -705,14 +717,19 @@ export class Dropdown
             return;
           }
 
+          const { intersectionRect, boundingClientRect } = entry;
           const isTopHidden =
-            entry.intersectionRect.top > entry.boundingClientRect.top;
+            intersectionRect.top - boundingClientRect.top >=
+            CLIPPED_TRIGGER_TOLERANCE_PX;
           const isBottomHidden =
-            entry.intersectionRect.bottom < entry.boundingClientRect.bottom;
+            boundingClientRect.bottom - intersectionRect.bottom >=
+            CLIPPED_TRIGGER_TOLERANCE_PX;
           const isLeftHidden =
-            entry.intersectionRect.left > entry.boundingClientRect.left;
+            intersectionRect.left - boundingClientRect.left >=
+            CLIPPED_TRIGGER_TOLERANCE_PX;
           const isRightHidden =
-            entry.intersectionRect.right < entry.boundingClientRect.right;
+            boundingClientRect.right - intersectionRect.right >=
+            CLIPPED_TRIGGER_TOLERANCE_PX;
 
           this.fallbackPlacement = undefined;
 
@@ -732,6 +749,11 @@ export class Dropdown
             this.fallbackPlacement = this.createFallbackPlacement('left');
           }
         });
+
+        if (this.isAwaitingTriggerVisibility) {
+          this.isAwaitingTriggerVisibility = false;
+          void this.applyDropdownPosition();
+        }
       },
       {
         threshold: [0, 0.5, 1],
@@ -739,8 +761,16 @@ export class Dropdown
     );
 
     if (this.anchorElement) {
+      // Revealed with the first position applied after the check, see
+      // `applyDropdownPosition`
+      this.isAwaitingTriggerVisibility = true;
+      this.hostElement.setAttribute('data-ix-dropdown-positioning', '');
       this.intersectObserverTrigger.observe(this.anchorElement);
     }
+  }
+
+  private revealPositionedDropdown() {
+    this.hostElement.removeAttribute('data-ix-dropdown-positioning');
   }
 
   private createFallbackPlacement(
@@ -1278,6 +1308,8 @@ export class Dropdown
 
   private cleanupOnHide() {
     this.intersectObserverTrigger?.disconnect();
+    this.isAwaitingTriggerVisibility = false;
+    this.revealPositionedDropdown();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.keyboardNavigationCleanup = undefined;
@@ -1369,6 +1401,7 @@ export class Dropdown
       : this.anchorElement;
 
     if (!referenceElement) {
+      this.revealPositionedDropdown();
       this.applyFallbackPosition(targetElement);
       return;
     }
@@ -1448,6 +1481,10 @@ export class Dropdown
           });
 
           Object.assign(targetElement.style, overwriteStyle);
+        }
+
+        if (!this.isAwaitingTriggerVisibility) {
+          this.revealPositionedDropdown();
         }
       },
       {

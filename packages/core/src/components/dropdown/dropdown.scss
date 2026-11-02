@@ -41,6 +41,14 @@ $dropdown-offset: var(--ix-dropdown--offset);
   display: none !important;
 }
 
+// Transparent instead of hidden, so it stays measurable and focusable until
+// its final position is applied. The top layer does not inherit the opacity
+// of the host.
+:host([data-ix-dropdown-positioning]),
+:host([data-ix-dropdown-positioning]) .dialog {
+  opacity: 0;
+}
+
 // Holds DOM focus for keyboard navigation when there is no trigger element,
 // the visual focus is shown on the dropdown items
 :host(:focus) {
