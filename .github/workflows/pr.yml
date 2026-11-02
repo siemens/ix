@@ -99,6 +99,8 @@ jobs:
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
           node-version-file: './package.json'
+          # No install in this job, so the pnpm store path does not exist for the cache post step.
+          package-manager-cache: false
 
       - name: Audit dependencies
         run: pnpm audit --audit-level low
