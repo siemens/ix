@@ -46,6 +46,8 @@ Examples that use this component, with available frameworks. Look up source file
 - date-input-with-slots (angular, angular-standalone, html, react, vue)
 - datetime-input-with-slots (angular, angular-standalone, html, react, vue)
 - form-validation (angular, angular-standalone, html, react, vue)
+- generic-list-notification-icon (angular, angular-standalone, html, react, vue)
+- generic-list-users (angular, angular-standalone, html, react, vue)
 - grid (angular, angular-standalone, html, react, vue)
 - grid-padding (angular, angular-standalone, html, react, vue)
 - grid-size (angular, angular-standalone, html, react, vue)

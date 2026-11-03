@@ -51,6 +51,7 @@ Examples that use this component, with available frameworks. Look up source file
 - avatar (angular, angular-standalone, html, react, vue)
 - avatar-image (angular, angular-standalone, html, react, vue)
 - avatar-initials (angular, angular-standalone, html, react, vue)
+- generic-list-users (angular, angular-standalone, html, react, vue)
 
 ## Related patterns
 

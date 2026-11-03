@@ -1,4 +1,4 @@
-[Siemens iX angular examples]|283 examples|format: name|title|used ix tags|files
+[Siemens iX angular examples]|291 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular/ (registry version root: examples/angular/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular/button.ts
 |Used tags are iX components found in the angular source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -132,6 +132,14 @@ form-checkbox-validation|Form checkbox validation|ix-checkbox,ix-checkbox-group|
 form-layout-auto|Form layout auto|ix-button,ix-field-label,ix-input,ix-layout-auto,ix-select|.html,.ts
 form-layout-grid|Form layout grid|ix-button,ix-col,ix-field-label,ix-input,ix-layout-grid,ix-row,ix-select|.css,.html,.ts
 form-validation|Form validation|ix-button,ix-checkbox,ix-custom-field,ix-date-input,ix-icon-button,ix-input,ix-layout-auto,ix-number-input,ix-radio,ix-radio-group,ix-select,ix-select-item,ix-textarea,ix-typography|.css,.html,.ts
+generic-list-action-on-hover|Generic list action on hover|ix-icon-button,ix-list,ix-list-item|.html,.ts
+generic-list-additional-options|Generic list additional options|ix-icon-button,ix-list,ix-list-item,ix-list-item-separator|.html,.ts
+generic-list-basic|Generic list basic|ix-list,ix-list-item|.html,.ts
+generic-list-custom-content|Generic list custom content|ix-badge,ix-icon-button,ix-list,ix-list-item|.css,.html,.ts
+generic-list-draggable|Generic list draggable|ix-list,ix-list-item|.html,.ts
+generic-list-notification-icon|Generic list notification icon|ix-badge,ix-list,ix-list-item,ix-typography|.css,.html,.ts
+generic-list-users|Generic list users|ix-avatar,ix-icon-button,ix-list,ix-list-item,ix-typography|.css,.html,.ts
+generic-list-variants|Generic list variants|ix-list,ix-list-item|.html,.ts
 grid|Grid|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html,.ts
 grid-padding|Grid padding|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html,.ts
 grid-size|Grid size|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html,.ts

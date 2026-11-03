@@ -1,4 +1,4 @@
-[Siemens iX vue examples]|276 examples|format: name|title|used ix tags|files
+[Siemens iX vue examples]|284 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/vue/ (registry version root: examples/vue/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/vue/button.ts
 |Used tags are iX components found in the vue source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.vue
@@ -132,6 +132,14 @@ form-checkbox-validation|Form checkbox validation|ix-checkbox,ix-checkbox-group|
 form-layout-auto|Form layout auto|ix-button,ix-field-label,ix-input,ix-layout-auto,ix-select|.vue
 form-layout-grid|Form layout grid|ix-button,ix-col,ix-field-label,ix-input,ix-layout-grid,ix-row,ix-select|.css,.vue
 form-validation|Form validation|ix-button,ix-custom-field,ix-date-input,ix-icon-button,ix-input,ix-layout-auto,ix-number-input,ix-radio,ix-radio-group,ix-select,ix-select-item,ix-textarea,ix-typography|.css,.vue
+generic-list-action-on-hover|Generic list action on hover|ix-icon-button,ix-list,ix-list-item|.vue
+generic-list-additional-options|Generic list additional options|ix-icon-button,ix-list,ix-list-item,ix-list-item-separator|.vue
+generic-list-basic|Generic list basic|ix-list,ix-list-item|.vue
+generic-list-custom-content|Generic list custom content|ix-badge,ix-icon-button,ix-list,ix-list-item|.css,.vue
+generic-list-draggable|Generic list draggable|ix-list,ix-list-item|.vue
+generic-list-notification-icon|Generic list notification icon|ix-badge,ix-list,ix-list-item,ix-typography|.css,.vue
+generic-list-users|Generic list users|ix-avatar,ix-icon-button,ix-list,ix-list-item,ix-typography|.css,.vue
+generic-list-variants|Generic list variants|ix-list,ix-list-item|.vue
 grid|Grid|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.vue
 grid-padding|Grid padding|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.vue
 grid-size|Grid size|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.vue

@@ -558,6 +558,38 @@
           "path": "main/examples/form-validation.json"
         },
         {
+          "name": "generic-list-action-on-hover",
+          "path": "main/examples/generic-list-action-on-hover.json"
+        },
+        {
+          "name": "generic-list-additional-options",
+          "path": "main/examples/generic-list-additional-options.json"
+        },
+        {
+          "name": "generic-list-basic",
+          "path": "main/examples/generic-list-basic.json"
+        },
+        {
+          "name": "generic-list-custom-content",
+          "path": "main/examples/generic-list-custom-content.json"
+        },
+        {
+          "name": "generic-list-draggable",
+          "path": "main/examples/generic-list-draggable.json"
+        },
+        {
+          "name": "generic-list-notification-icon",
+          "path": "main/examples/generic-list-notification-icon.json"
+        },
+        {
+          "name": "generic-list-users",
+          "path": "main/examples/generic-list-users.json"
+        },
+        {
+          "name": "generic-list-variants",
+          "path": "main/examples/generic-list-variants.json"
+        },
+        {
           "name": "grid",
           "path": "main/examples/grid.json"
         },

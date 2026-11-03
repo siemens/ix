@@ -1,0 +1,87 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List example</title>
+    <script type="module" crossorigin src="../assets/generic-list-additional-options-CFAOc0rB.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/preload-helper-UZRgTS1n.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-CgUi6DzV-DNhYiKCd.js">
+    <link rel="modulepreload" crossorigin href="../assets/global-3vOHWtr1.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-DCCkv1ZQ-DZnlOMEt.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-CGiLGChb.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-MpHERktc.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DcLwhulc.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-BOgBuYcl.css">
+  </head>
+  <body>
+    <ix-list checkbox>
+      <ix-list-item
+        icon="project"
+        label="Item 1"
+        description="Some description 1"
+      >
+        <div slot="action">
+          <ix-icon-button
+            icon="edit-document"
+            variant="subtle-tertiary"
+            aria-label="Edit Item 1"
+          ></ix-icon-button>
+          <ix-icon-button
+            icon="trashcan"
+            variant="subtle-tertiary"
+            aria-label="Delete Item 1"
+          ></ix-icon-button>
+        </div>
+      </ix-list-item>
+
+      <ix-list-item-separator></ix-list-item-separator>
+
+      <ix-list-item
+        icon="project"
+        label="Item 2"
+        description="Some description 2"
+      >
+        <div slot="action">
+          <ix-icon-button
+            icon="edit-document"
+            variant="subtle-tertiary"
+            aria-label="Edit Item 2"
+          ></ix-icon-button>
+          <ix-icon-button
+            icon="trashcan"
+            variant="subtle-tertiary"
+            aria-label="Delete Item 2"
+          ></ix-icon-button>
+        </div>
+      </ix-list-item>
+      <ix-list-item
+        icon="project"
+        label="Item 3"
+        description="Some description 3"
+      >
+        <div slot="action">
+          <ix-icon-button
+            icon="edit-document"
+            variant="subtle-tertiary"
+            aria-label="Edit Item 3"
+          ></ix-icon-button>
+          <ix-icon-button
+            icon="trashcan"
+            variant="subtle-tertiary"
+            aria-label="Delete Item 3"
+          ></ix-icon-button>
+        </div>
+      </ix-list-item>
+    </ix-list>
+  </body>
+</html>

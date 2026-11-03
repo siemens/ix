@@ -4187,6 +4187,269 @@ Files:
   - `vue/form-validation.css`: [file](../examples/vue/form-validation.css)
   - `vue/form-validation.vue`: [file](../examples/vue/form-validation.vue)
 
+## generic-list-action-on-hover
+
+- Used iX components: [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-action-on-hover.html`: [file](../examples/angular/generic-list-action-on-hover.html)
+  - `angular/generic-list-action-on-hover.ts`: [file](../examples/angular/generic-list-action-on-hover.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-action-on-hover.html`: [file](../examples/angular-standalone/generic-list-action-on-hover.html)
+  - `angular-standalone/generic-list-action-on-hover.ts`: [file](../examples/angular-standalone/generic-list-action-on-hover.ts)
+
+### html
+
+Files:
+  - `html/generic-list-action-on-hover.html`: [file](../examples/html/generic-list-action-on-hover.html)
+
+### react
+
+Files:
+  - `react/generic-list-action-on-hover.tsx`: [file](../examples/react/generic-list-action-on-hover.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-action-on-hover.vue`: [file](../examples/vue/generic-list-action-on-hover.vue)
+
+## generic-list-additional-options
+
+- Used iX components: [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md), [`ix-list-item-separator`](components/ix-list-item-separator.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-additional-options.html`: [file](../examples/angular/generic-list-additional-options.html)
+  - `angular/generic-list-additional-options.ts`: [file](../examples/angular/generic-list-additional-options.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-additional-options.html`: [file](../examples/angular-standalone/generic-list-additional-options.html)
+  - `angular-standalone/generic-list-additional-options.ts`: [file](../examples/angular-standalone/generic-list-additional-options.ts)
+
+### html
+
+Files:
+  - `html/generic-list-additional-options.html`: [file](../examples/html/generic-list-additional-options.html)
+
+### react
+
+Files:
+  - `react/generic-list-additional-options.tsx`: [file](../examples/react/generic-list-additional-options.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-additional-options.vue`: [file](../examples/vue/generic-list-additional-options.vue)
+
+## generic-list-basic
+
+- Used iX components: [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-basic.html`: [file](../examples/angular/generic-list-basic.html)
+  - `angular/generic-list-basic.ts`: [file](../examples/angular/generic-list-basic.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-basic.html`: [file](../examples/angular-standalone/generic-list-basic.html)
+  - `angular-standalone/generic-list-basic.ts`: [file](../examples/angular-standalone/generic-list-basic.ts)
+
+### html
+
+Files:
+  - `html/generic-list-basic.html`: [file](../examples/html/generic-list-basic.html)
+
+### react
+
+Files:
+  - `react/generic-list-basic.tsx`: [file](../examples/react/generic-list-basic.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-basic.vue`: [file](../examples/vue/generic-list-basic.vue)
+
+## generic-list-custom-content
+
+- Used iX components: [`ix-badge`](components/ix-badge.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-custom-content.css`: [file](../examples/angular/generic-list-custom-content.css)
+  - `angular/generic-list-custom-content.html`: [file](../examples/angular/generic-list-custom-content.html)
+  - `angular/generic-list-custom-content.ts`: [file](../examples/angular/generic-list-custom-content.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-custom-content.css`: [file](../examples/angular-standalone/generic-list-custom-content.css)
+  - `angular-standalone/generic-list-custom-content.html`: [file](../examples/angular-standalone/generic-list-custom-content.html)
+  - `angular-standalone/generic-list-custom-content.ts`: [file](../examples/angular-standalone/generic-list-custom-content.ts)
+
+### html
+
+Files:
+  - `html/generic-list-custom-content.css`: [file](../examples/html/generic-list-custom-content.css)
+  - `html/generic-list-custom-content.html`: [file](../examples/html/generic-list-custom-content.html)
+
+### react
+
+Files:
+  - `react/generic-list-custom-content.scoped.css`: [file](../examples/react/generic-list-custom-content.scoped.css)
+  - `react/generic-list-custom-content.tsx`: [file](../examples/react/generic-list-custom-content.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-custom-content.css`: [file](../examples/vue/generic-list-custom-content.css)
+  - `vue/generic-list-custom-content.vue`: [file](../examples/vue/generic-list-custom-content.vue)
+
+## generic-list-draggable
+
+- Used iX components: [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-draggable.html`: [file](../examples/angular/generic-list-draggable.html)
+  - `angular/generic-list-draggable.ts`: [file](../examples/angular/generic-list-draggable.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-draggable.html`: [file](../examples/angular-standalone/generic-list-draggable.html)
+  - `angular-standalone/generic-list-draggable.ts`: [file](../examples/angular-standalone/generic-list-draggable.ts)
+
+### html
+
+Files:
+  - `html/generic-list-draggable.html`: [file](../examples/html/generic-list-draggable.html)
+
+### react
+
+Files:
+  - `react/generic-list-draggable.tsx`: [file](../examples/react/generic-list-draggable.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-draggable.vue`: [file](../examples/vue/generic-list-draggable.vue)
+
+## generic-list-notification-icon
+
+- Used iX components: [`ix-badge`](components/ix-badge.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md), [`ix-typography`](components/ix-typography.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-notification-icon.css`: [file](../examples/angular/generic-list-notification-icon.css)
+  - `angular/generic-list-notification-icon.html`: [file](../examples/angular/generic-list-notification-icon.html)
+  - `angular/generic-list-notification-icon.ts`: [file](../examples/angular/generic-list-notification-icon.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-notification-icon.css`: [file](../examples/angular-standalone/generic-list-notification-icon.css)
+  - `angular-standalone/generic-list-notification-icon.html`: [file](../examples/angular-standalone/generic-list-notification-icon.html)
+  - `angular-standalone/generic-list-notification-icon.ts`: [file](../examples/angular-standalone/generic-list-notification-icon.ts)
+
+### html
+
+Files:
+  - `html/generic-list-notification-icon.css`: [file](../examples/html/generic-list-notification-icon.css)
+  - `html/generic-list-notification-icon.html`: [file](../examples/html/generic-list-notification-icon.html)
+
+### react
+
+Files:
+  - `react/generic-list-notification-icon.scoped.css`: [file](../examples/react/generic-list-notification-icon.scoped.css)
+  - `react/generic-list-notification-icon.tsx`: [file](../examples/react/generic-list-notification-icon.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-notification-icon.css`: [file](../examples/vue/generic-list-notification-icon.css)
+  - `vue/generic-list-notification-icon.vue`: [file](../examples/vue/generic-list-notification-icon.vue)
+
+## generic-list-users
+
+- Used iX components: [`ix-avatar`](components/ix-avatar.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md), [`ix-typography`](components/ix-typography.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-users.css`: [file](../examples/angular/generic-list-users.css)
+  - `angular/generic-list-users.html`: [file](../examples/angular/generic-list-users.html)
+  - `angular/generic-list-users.ts`: [file](../examples/angular/generic-list-users.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-users.css`: [file](../examples/angular-standalone/generic-list-users.css)
+  - `angular-standalone/generic-list-users.html`: [file](../examples/angular-standalone/generic-list-users.html)
+  - `angular-standalone/generic-list-users.ts`: [file](../examples/angular-standalone/generic-list-users.ts)
+
+### html
+
+Files:
+  - `html/generic-list-users.css`: [file](../examples/html/generic-list-users.css)
+  - `html/generic-list-users.html`: [file](../examples/html/generic-list-users.html)
+
+### react
+
+Files:
+  - `react/generic-list-users.scoped.css`: [file](../examples/react/generic-list-users.scoped.css)
+  - `react/generic-list-users.tsx`: [file](../examples/react/generic-list-users.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-users.css`: [file](../examples/vue/generic-list-users.css)
+  - `vue/generic-list-users.vue`: [file](../examples/vue/generic-list-users.vue)
+
+## generic-list-variants
+
+- Used iX components: [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-variants.html`: [file](../examples/angular/generic-list-variants.html)
+  - `angular/generic-list-variants.ts`: [file](../examples/angular/generic-list-variants.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-variants.html`: [file](../examples/angular-standalone/generic-list-variants.html)
+  - `angular-standalone/generic-list-variants.ts`: [file](../examples/angular-standalone/generic-list-variants.ts)
+
+### html
+
+Files:
+  - `html/generic-list-variants.html`: [file](../examples/html/generic-list-variants.html)
+
+### react
+
+Files:
+  - `react/generic-list-variants.tsx`: [file](../examples/react/generic-list-variants.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-variants.vue`: [file](../examples/vue/generic-list-variants.vue)
+
 ## grid
 
 - Used iX components: [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)

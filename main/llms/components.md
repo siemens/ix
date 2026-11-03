@@ -2,7 +2,7 @@
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all 114 generated component detail files. Each detail file includes properties, events, methods, slots, framework names, dependencies, documentation links, Figma IDs, related examples, and related patterns.
+This index links to all 117 generated component detail files. Each detail file includes properties, events, methods, slots, framework names, dependencies, documentation links, Figma IDs, related examples, and related patterns.
 
 For a compact one-line-per-component overview with React names and Figma IDs, use [catalog.md](catalog.md).
 
@@ -68,6 +68,9 @@ For a compact one-line-per-component overview with React names and Figma IDs, us
 - [ix-layout-auto](components/ix-layout-auto.md): Responsive form layout that automatically adjusts columns to the available width.
 - [ix-layout-grid](components/ix-layout-grid.md): Column-based grid layout for arranging content responsively.
 - [ix-link-button](components/ix-link-button.md): Button styled as a hyperlink that navigates to a target.
+- [ix-list](components/ix-list.md): No component summary available.
+- [ix-list-item](components/ix-list-item.md): No component summary available.
+- [ix-list-item-separator](components/ix-list-item-separator.md): Standalone horizontal separator for list content.
 - [ix-menu](components/ix-menu.md): Primary side navigation menu of the application shell.
 - [ix-menu-about](components/ix-menu-about.md): Overlay that shows application information such as version and legal details.
 - [ix-menu-about-item](components/ix-menu-about-item.md): A single tab or entry within the about overlay.

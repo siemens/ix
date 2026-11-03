@@ -41,7 +41,7 @@
 ## Dependencies
 
 - Renders: `ix-typography`
-- Rendered by: None
+- Rendered by: `ix-list-item`
 
 ## Related examples
 

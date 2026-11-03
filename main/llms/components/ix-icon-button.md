@@ -59,6 +59,10 @@ Examples that use this component, with available frameworks. Look up source file
 - custom-field (angular, angular-standalone, html, react, vue)
 - dropdown-quick-actions (angular, angular-standalone, html, react, vue)
 - form-validation (angular, angular-standalone, html, react, vue)
+- generic-list-action-on-hover (angular, angular-standalone, html, react, vue)
+- generic-list-additional-options (angular, angular-standalone, html, react, vue)
+- generic-list-custom-content (angular, angular-standalone, html, react, vue)
+- generic-list-users (angular, angular-standalone, html, react, vue)
 - tile (angular, angular-standalone, html, react, vue)
 
 ## Related patterns

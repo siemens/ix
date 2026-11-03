@@ -59,6 +59,8 @@ Examples that use this component, with available frameworks. Look up source file
 - badge-dot (angular, angular-standalone, html, react, vue)
 - badge-label (angular, angular-standalone, html, react, vue)
 - badge-status-icon (angular, angular-standalone, html, react, vue)
+- generic-list-custom-content (angular, angular-standalone, html, react, vue)
+- generic-list-notification-icon (angular, angular-standalone, html, react, vue)
 
 ## Related patterns
 

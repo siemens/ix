@@ -1,0 +1,147 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User list example</title>
+    <script type="module" crossorigin src="../assets/generic-list-users-7SgbEE1y.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/preload-helper-UZRgTS1n.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-CgUi6DzV-DNhYiKCd.js">
+    <link rel="modulepreload" crossorigin href="../assets/global-3vOHWtr1.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-DCCkv1ZQ-DZnlOMEt.js">
+    <link rel="modulepreload" crossorigin href="../assets/ix-icon.entry-CGiLGChb.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-MpHERktc.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-DcLwhulc.js">
+    <link rel="stylesheet" crossorigin href="../assets/global-BOgBuYcl.css">
+    <link rel="stylesheet" crossorigin href="../assets/generic-list-users-Bfx5rwbg.css">
+  </head>
+  <body>
+    <ix-list class="notification-list">
+      <ix-list-item aria-label="Notification: This is the first title">
+        <div slot="action" class="notification-item">
+          <ix-avatar aria-hidden="true"></ix-avatar>
+          <div class="notification-body">
+            <div class="notification-text">
+              <ix-typography format="body" text-color="soft">
+                <time>Just now</time>
+              </ix-typography>
+              <ix-typography format="body" bold>
+                This is the first title
+              </ix-typography>
+              <ix-typography format="body">
+                This is a description of the first item
+              </ix-typography>
+            </div>
+            <div class="notification-actions">
+              <ix-icon-button
+                icon="checkbox"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Mark first notification as read"
+              ></ix-icon-button>
+              <ix-icon-button
+                icon="folder"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Archive first notification"
+              ></ix-icon-button>
+              <ix-icon-button
+                icon="trashcan"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Delete first notification"
+              ></ix-icon-button>
+            </div>
+          </div>
+        </div>
+      </ix-list-item>
+
+      <ix-list-item aria-label="Notification: This is the second title">
+        <div slot="action" class="notification-item">
+          <ix-avatar aria-hidden="true"></ix-avatar>
+          <div class="notification-body">
+            <div class="notification-text">
+              <ix-typography format="body" text-color="soft">
+                <time>5 minutes ago</time>
+              </ix-typography>
+              <ix-typography format="body" bold>
+                This is the second title
+              </ix-typography>
+              <ix-typography format="body">
+                This is a description of the second item
+              </ix-typography>
+            </div>
+            <div class="notification-actions">
+              <ix-icon-button
+                icon="checkbox"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Mark second notification as read"
+              ></ix-icon-button>
+              <ix-icon-button
+                icon="folder"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Archive second notification"
+              ></ix-icon-button>
+              <ix-icon-button
+                icon="trashcan"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Delete second notification"
+              ></ix-icon-button>
+            </div>
+          </div>
+        </div>
+      </ix-list-item>
+
+      <ix-list-item aria-label="Notification: This is the third title">
+        <div slot="action" class="notification-item">
+          <ix-avatar aria-hidden="true"></ix-avatar>
+          <div class="notification-body">
+            <div class="notification-text">
+              <ix-typography format="body" text-color="soft">
+                <time>Yesterday</time>
+              </ix-typography>
+              <ix-typography format="body" bold>
+                This is the third title
+              </ix-typography>
+              <ix-typography format="body">
+                This is a description of the third item
+              </ix-typography>
+            </div>
+            <div class="notification-actions">
+              <ix-icon-button
+                icon="checkbox"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Mark third notification as read"
+              ></ix-icon-button>
+              <ix-icon-button
+                icon="folder"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Archive third notification"
+              ></ix-icon-button>
+              <ix-icon-button
+                icon="trashcan"
+                size="16"
+                variant="subtle-tertiary"
+                aria-label="Delete third notification"
+              ></ix-icon-button>
+            </div>
+          </div>
+        </div>
+      </ix-list-item>
+    </ix-list>
+  </body>
+</html>
