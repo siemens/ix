@@ -1,0 +1,18 @@
+packages/core/src/components/card/card.scss
+  h_c5a773bf2fda8b 76-77,133
+packages/core/src/components/card/card.vars.scss
+  h_c5a773bf2fda8b 36
+packages/core/src/components/card/test/card.ct.ts
+  h_c5a773bf2fda8b 53,72-73,138
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d241617af9e5e4c16a5b08e786d59b28f5b93b0d",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
