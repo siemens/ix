@@ -50,7 +50,7 @@ regressionTest(
 );
 
 regressionTest(
-  'filled status uses ::before strip with zero chrome border width',
+  'filled status uses ::before strip with fill-matched chrome border',
   async ({ mount, page }) => {
     await mount(`<ix-card variant="danger" outline="false"></ix-card>`);
     const card = page.locator('ix-card');
@@ -64,13 +64,19 @@ regressionTest(
       return {
         borderTopWidth: parseFloat(frameStyle.borderTopWidth),
         borderSideWidth: parseFloat(frameStyle.borderLeftWidth),
+        borderLeftColor: frameStyle.borderLeftColor,
+        contentBackground: getComputedStyle(
+          el.shadowRoot!.querySelector('.card-content') as HTMLElement
+        ).backgroundColor,
         stripContent: strip.content,
         stripHeight: parseFloat(strip.height),
         stripColor: strip.backgroundColor,
       };
     });
-    expect(chrome.borderTopWidth).toBe(0);
-    expect(chrome.borderSideWidth).toBe(0);
+    // Default width kept so selecting only changes color (no content reflow)
+    expect(chrome.borderTopWidth).toBe(1);
+    expect(chrome.borderSideWidth).toBe(1);
+    expect(chrome.borderLeftColor).toBe(chrome.contentBackground);
     expect(chrome.stripContent).not.toBe('none');
     expect(chrome.stripHeight).toBe(4);
     expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');
@@ -100,7 +106,12 @@ regressionTest(
       <ix-card id="selected" variant="danger" outline selected></ix-card>
       <ix-card id="base-selected" variant="base" outline selected></ix-card>
       <ix-card id="filled-selected" variant="danger" outline="false" selected></ix-card>
+      <ix-card id="filled-selected-clickable" variant="danger" outline="false" selected clickable></ix-card>
     `);
+    await expect(page.locator('#filled-selected-clickable')).toHaveAttribute(
+      'hydrated',
+      ''
+    );
     const readChrome = (el: Element) => {
       const frame = el.shadowRoot!.querySelector('.card-chrome') as HTMLElement;
       const style = getComputedStyle(frame);
@@ -120,6 +131,7 @@ regressionTest(
     const filledSelected = await page
       .locator('#filled-selected')
       .evaluate(readChrome);
+    const filledSelectedClickable = page.locator('#filled-selected-clickable');
 
     // Outline status: uniform border-3; status color is the ::before strip
     expect(status.left).toBe(base.left);
@@ -129,10 +141,17 @@ regressionTest(
     expect(baseSelected.left).not.toBe(base.left);
     expect(selected.left).toBe(baseSelected.left);
     expect(selected.strip).toBe(status.strip);
-    // Filled selected restores 1px accent outline
+    // Filled selected: same 1px width as unselected filled; accent border color
     expect(filledSelected.width).toBe(1);
     expect(filledSelected.left).toBe(baseSelected.left);
     expect(filledSelected.strip).toBe(status.strip);
+    // Clickable filled selected keeps accent on hover (not filled hover border)
+    await filledSelectedClickable.scrollIntoViewIfNeeded();
+    await filledSelectedClickable.hover({ force: true });
+    const filledSelectedHovered =
+      await filledSelectedClickable.evaluate(readChrome);
+    expect(filledSelectedHovered.left).toBe(baseSelected.left);
+    expect(filledSelectedHovered.width).toBe(1);
   }
 );
 
