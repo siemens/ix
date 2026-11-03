@@ -51,7 +51,9 @@
     @include hover.focus-visible {
       outline: var(--ix-card-accordion--outline-width--focus) solid
         var(--ix-card-accordion--outline-color--focus);
-      outline-offset: var(--ix-card-accordion--focus--outline-offset);
+      outline-offset: calc(
+        var(--ix-card-accordion--focus--outline-offset) * -2
+      );
     }
 
     &:hover {
