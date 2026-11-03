@@ -69,5 +69,5 @@
     #{sys.$si-sys-sizing-spacing-x-40};
   --ix-select-list-header--height: #{sys.$si-sys-sizing-size-80};
   --ix-select-list-header--margin: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-select--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-select--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }
