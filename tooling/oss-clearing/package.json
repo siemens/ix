@@ -7,10 +7,13 @@
     "build": "tsx create-sbom.ts"
   },
   "devDependencies": {
-    "@cyclonedx/cyclonedx-library": "^8.0.0",
+    "@cyclonedx/cyclonedx-library": "^10.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "catalog:",
+    "@types/spdx-expression-parse": "^4.0.0",
     "fs-extra": "^11.3.0",
+    "packageurl-js": "^2.0.1",
+    "spdx-expression-parse": "^4.0.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
