@@ -109,7 +109,8 @@ $header-height: var(--ix-group--header-height);
     cursor: pointer;
 
     @include hover.focus-visible {
-      outline: 1px solid var(--ix-group-header--border-color--focus);
+      outline: var(--ix-group-header--outline-width--focus) solid
+        var(--ix-group-header--border-color--focus);
       outline-offset: -1px;
     }
   }
@@ -183,7 +184,8 @@ $header-height: var(--ix-group--header-height);
     }
 
     @include hover.focus-visible {
-      outline: 1px solid var(--ix-group-header--border-color--focus);
+      outline: var(--ix-group-header--outline-width--focus) solid
+        var(--ix-group-header--border-color--focus);
       outline-offset: -1px;
     }
   }
