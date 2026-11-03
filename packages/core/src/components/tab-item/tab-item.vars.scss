@@ -72,6 +72,6 @@
   --ix-tab-item-circle--outline-offset: calc(
     calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
   );
-  --ix-tab-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-tab-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-tab-item-circle--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
 }

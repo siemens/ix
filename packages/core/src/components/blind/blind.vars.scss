@@ -26,7 +26,7 @@ $blind-status-sys: (
   --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
   --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
   --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-blind--focus--outline-offset: calc(
     -1 * #{sys.$si-sys-sizing-focus-ring-offset}
   );
