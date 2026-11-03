@@ -11,7 +11,7 @@ import { render } from 'vitest-browser-react';
 import { TreeExample } from './update-render-item';
 
 test('should update tree item after model change', async () => {
-  const screen = render(<TreeExample />);
+  const screen = await render(<TreeExample />);
 
   const modifyButton = screen.getByRole('button', { name: 'Modify' });
 
