@@ -8,11 +8,7 @@
  */
 
 import { EventEmitter } from '@stencil/core';
-import {
-  A11yAttributes,
-  a11yBoolean,
-  a11yHostAttributes,
-} from '../utils/a11y';
+import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
