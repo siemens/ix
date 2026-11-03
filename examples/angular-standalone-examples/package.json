@@ -28,7 +28,7 @@
     "@siemens/ix-icons": "catalog:",
     "ag-grid-angular": "^33.1.1",
     "ag-grid-community": "^33.1.1",
-    "echarts": "^6.0.0",
+    "echarts": "^6.1.0",
     "echarts-gl": "^2.1.0",
     "html-examples": "workspace:*",
     "ngx-echarts": "^21.0.0",
@@ -36,20 +36,13 @@
     "tslib": "^2.6.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^21.2.25",
+    "@angular/build": "^21.2.25",
     "@angular/cli": "^21.2.25",
     "@angular/compiler-cli": "^21.2.25",
     "@playwright/test": "catalog:",
-    "@types/jasmine": "~5.1.4",
     "@types/node": "catalog:",
     "framework-tests": "workspace:*",
     "http-server": "^14.1.1",
-    "jasmine-core": "~5.1.2",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.1",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "karma-jasmine": "~5.1.0",
-    "karma": "~6.4.3",
     "typescript": "~5.9.3"
   }
 }

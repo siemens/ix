@@ -19,7 +19,7 @@
     "angular-standalone-patterns": "workspace:",
     "angular-standalone-examples": "workspace:",
     "fs-extra": "^11.3.3",
-    "glob": "^11.1.0",
+    "glob": "^14.0.2",
     "html-examples": "workspace:",
     "http-server": "^14.1.1",
     "listr2": "^10.1.0",
