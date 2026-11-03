@@ -29,6 +29,8 @@ publicHoistPattern:
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
   - '@siemens/*'
+  # Renovate security update: pnpm@10.34.5
+  - pnpm@10.34.5
 
 overrides:
   cheerio: '1.0.0-rc.12'
