@@ -39,7 +39,7 @@
   --ix-menu-item-tab-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-menu-item-tab-text--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-menu-item-tab--z-index: 500;
-  --ix-menu-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-menu-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-menu-item-tab--outline-offset: calc(
     calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
   );

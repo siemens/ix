@@ -16,7 +16,7 @@
   );
   --ix-card-accordion-content--transition-duration: var(--theme-default-time);
   --ix-card-accordion--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-card-accordion--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-card-accordion--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-card-accordion-content--color: #{sys.$si-sys-color-text-primary};
   --ix-card-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-footer--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
