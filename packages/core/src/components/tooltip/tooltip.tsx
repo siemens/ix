@@ -150,11 +150,14 @@ export class Tooltip {
   /** @internal */
   @Method()
   async showTooltip(anchorElement: Element) {
-    this.clearTimeouts();
-
-    if (this.showTooltipTimeout || this.visibleFor === anchorElement) {
+    if (this.visibleFor === anchorElement) {
+      this.clearTimeouts();
       return;
     }
+
+    // Keep a pending hide for the previous anchor so the tooltip does not
+    // linger there while the show delay for the new anchor runs
+    this.clearShowTimeout();
 
     const dialog = await this.dialogRef.waitForCurrent();
 
@@ -184,9 +187,14 @@ export class Tooltip {
       return;
     }
 
+    const anchorElement = this.visibleFor;
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
+      this.hideTooltipTimeout = undefined;
+      if (this.visibleFor !== anchorElement) {
+        return;
+      }
       const wasVisible = this.visible;
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();

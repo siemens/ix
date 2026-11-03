@@ -152,6 +152,7 @@ regressionTest.describe('a11y', () => {
     `);
       const button = page.locator('ix-button');
       const tooltip = page.locator('ix-tooltip');
+      await expect(tooltip).toHaveAttribute('hydrated');
       await button.hover();
       await expect(tooltip).toHaveClass(/visible/);
 
@@ -168,11 +169,11 @@ regressionTest('show tooltip after delay', async ({ mount, page }) => {
   `);
   const tooltip = page.locator('ix-tooltip');
   const button = page.locator('ix-button');
+  await expect(tooltip).toHaveAttribute('hydrated');
 
   await button.hover();
   await expect(tooltip).not.toHaveClass(/visible/);
-  await page.waitForTimeout(1000);
-  await expect(tooltip).toHaveClass(/visible/);
+  await expect(tooltip).toHaveClass(/visible/, { timeout: 2000 });
 });
 
 regressionTest('hide tooltip after delay', async ({ mount, page }) => {

@@ -92,6 +92,62 @@ describe('ix-tooltip delays', () => {
       50
     );
   });
+
+  it('respects an explicit hideDelay of 0 ms on an interactive tooltip', async () => {
+    const { tooltip, hidePopover } = await renderWithFakeTimers(
+      <ix-tooltip interactive hide-delay={0}></ix-tooltip>
+    );
+
+    await tooltip.showTooltip(createAnchor());
+    vi.advanceTimersByTime(0);
+
+    await tooltip.hideTooltip();
+    expect(hidePopover).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(0);
+    expect(hidePopover).toHaveBeenCalledTimes(1);
+  });
+
+  it('hides on the previous anchor while the show delay for the next anchor runs', async () => {
+    const { tooltip, showPopover, hidePopover } = await renderWithFakeTimers(
+      <ix-tooltip show-delay={1000}></ix-tooltip>
+    );
+
+    await tooltip.showTooltip(createAnchor());
+    vi.advanceTimersByTime(1000);
+    expect(showPopover).toHaveBeenCalledTimes(1);
+
+    await tooltip.hideTooltip();
+    await tooltip.showTooltip(createAnchor());
+
+    vi.advanceTimersByTime(50);
+    expect(hidePopover).toHaveBeenCalledTimes(1);
+
+    vi.advanceTimersByTime(949);
+    expect(showPopover).toHaveBeenCalledTimes(1);
+
+    vi.advanceTimersByTime(1);
+    expect(showPopover).toHaveBeenCalledTimes(2);
+  });
+
+  it('stays visible when moving to the next anchor before the hide delay', async () => {
+    const { tooltip, hidePopover } = await renderWithFakeTimers(
+      <ix-tooltip></ix-tooltip>
+    );
+
+    await tooltip.showTooltip(createAnchor());
+    vi.advanceTimersByTime(0);
+
+    await tooltip.hideTooltip();
+    await tooltip.showTooltip(createAnchor());
+
+    vi.advanceTimersByTime(50);
+    expect(hidePopover).not.toHaveBeenCalled();
+
+    await tooltip.hideTooltip();
+    vi.advanceTimersByTime(50);
+    expect(hidePopover).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('ix-tooltip popover guards', () => {
