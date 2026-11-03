@@ -50,7 +50,7 @@ regressionTest(
 );
 
 regressionTest(
-  'filled status uses ::before strip with fill-matched chrome border',
+  'filled status uses ::before strip with zero chrome border width',
   async ({ mount, page }) => {
     await mount(`<ix-card variant="danger" outline="false"></ix-card>`);
     const card = page.locator('ix-card');
@@ -64,19 +64,13 @@ regressionTest(
       return {
         borderTopWidth: parseFloat(frameStyle.borderTopWidth),
         borderSideWidth: parseFloat(frameStyle.borderLeftWidth),
-        borderLeftColor: frameStyle.borderLeftColor,
-        contentBackground: getComputedStyle(
-          el.shadowRoot!.querySelector('.card-content') as HTMLElement
-        ).backgroundColor,
         stripContent: strip.content,
         stripHeight: parseFloat(strip.height),
         stripColor: strip.backgroundColor,
       };
     });
-    // Default width kept so selecting only changes color (no content reflow)
-    expect(chrome.borderTopWidth).toBe(1);
-    expect(chrome.borderSideWidth).toBe(1);
-    expect(chrome.borderLeftColor).toBe(chrome.contentBackground);
+    expect(chrome.borderTopWidth).toBe(0);
+    expect(chrome.borderSideWidth).toBe(0);
     expect(chrome.stripContent).not.toBe('none');
     expect(chrome.stripHeight).toBe(4);
     expect(chrome.stripColor).not.toBe('rgba(0, 0, 0, 0)');
@@ -141,7 +135,7 @@ regressionTest(
     expect(baseSelected.left).not.toBe(base.left);
     expect(selected.left).toBe(baseSelected.left);
     expect(selected.strip).toBe(status.strip);
-    // Filled selected: same 1px width as unselected filled; accent border color
+    // Filled selected restores 1px accent outline
     expect(filledSelected.width).toBe(1);
     expect(filledSelected.left).toBe(baseSelected.left);
     expect(filledSelected.strip).toBe(status.strip);

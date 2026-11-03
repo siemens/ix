@@ -72,8 +72,9 @@
 
 :host(:not(.outline)) {
   --ix-card-background: var(--ix-card-filled--background);
-  /* Match fill so the default border width stays constant (no select reflow). */
   --ix-card-border-color: var(--ix-card-filled--background);
+  /* No chrome inset so accordion/content flush to outer edges (filled) */
+  --ix-card--border-width: 0;
 }
 
 /* Status strip + outline border: shared rules for any non-base variant.
@@ -129,6 +130,7 @@
 
 :host(.selected:not(.outline)) {
   --ix-card-background: var(--ix-card-filled--background--selected);
+  --ix-card--border-width: var(--ix-card--border-width-default);
 }
 
 @mixin accordionChevronColorPrimary {
