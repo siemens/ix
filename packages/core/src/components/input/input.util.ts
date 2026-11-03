@@ -8,7 +8,11 @@
  */
 
 import { EventEmitter } from '@stencil/core';
-import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import {
+  A11yAttributes,
+  a11yBoolean,
+  a11yHostAttributes,
+} from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
@@ -176,14 +180,28 @@ export function adjustPaddingForStartAndEnd(
   });
 }
 
-export function getAriaAttributesForInput(
-  component: IxInputFieldComponent
+/**
+ * Moves ARIA attributes set on the host (for example `aria-label`) to the native
+ * control, which is the element that receives focus. `role` stays on the host.
+ */
+export function inheritHostAriaAttributes(
+  hostElement: HTMLElement
+): A11yAttributes {
+  return a11yHostAttributes(hostElement, ['role']);
+}
+
+export function getAriaAttributesForInput<T>(
+  component: IxInputFieldComponent<T>,
+  inheritedAttributes: A11yAttributes = {}
 ): A11yAttributes {
   // `aria-errormessage` must reference an element id, it is set by
   // `HookValidationLifecycle` to the error message element of `ix-field-wrapper`.
   return {
+    ...inheritedAttributes,
     'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
-    'aria-required': `${a11yBoolean(component.required)}`,
+    'aria-required': `${a11yBoolean(
+      component.required || inheritedAttributes['aria-required'] === 'true'
+    )}`,
   };
 }
 

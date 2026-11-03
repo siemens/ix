@@ -26,6 +26,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
+import { A11yAttributes } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
@@ -34,6 +35,8 @@ import {
   checkAllowedKeys,
   checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
+  getAriaAttributesForInput,
+  inheritHostAriaAttributes,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -220,6 +223,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @State() isInvalidByRequired = false;
 
   private readonly inputRef = makeRef<HTMLInputElement>();
+  private inheritAriaAttributes: A11yAttributes = {};
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
@@ -241,6 +245,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   componentWillLoad() {
     this.updateOptionalFormInternalValue(this.value);
+    this.inheritAriaAttributes = inheritHostAriaAttributes(this.hostElement);
   }
 
   connectedCallback() {
@@ -565,6 +570,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 }
               }}
               onBlur={this.handleBlur}
+              ariaAttributes={getAriaAttributesForInput(
+                this,
+                this.inheritAriaAttributes
+              )}
               form={this.formInternals.form ?? undefined}
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
