@@ -5,4 +5,4 @@
 '@siemens/ix-vue': major
 ---
 
-Rename the `ix-empty-state` property `subHeader` to `description`. Replace `subHeader` property bindings and `sub-header` HTML attributes with `description`.
+Rename the `ix-empty-state` property `subHeader` to `description`.
