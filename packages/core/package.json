@@ -130,7 +130,7 @@
     "test.setup": "playwright install chromium --with-deps",
     "test": "npm run test.spec && npm run test.ct",
     "test.spec": "vitest run --config vitest.config.ts --project spec",
-    "test.ct": "playwright test --config playwright.config.ts --reporter list",
+    "test.ct": "playwright test --config playwright.config.ts",
     "generate": "stencil generate",
     "host-root": "http-server -a 127.0.0.1 -p 8080 -c-1"
   },

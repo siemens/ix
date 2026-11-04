@@ -152,9 +152,10 @@ regressionTest('show tooltip after delay', async ({ mount, page }) => {
   const tooltip = page.locator('ix-tooltip');
   const button = page.locator('ix-button');
 
+  await page.clock.install();
   await button.hover();
   await expect(tooltip).not.toHaveClass(/visible/);
-  await page.waitForTimeout(1000);
+  await page.clock.fastForward(1000);
   await expect(tooltip).toHaveClass(/visible/);
 });
 
@@ -168,10 +169,12 @@ regressionTest('hide tooltip after delay', async ({ mount, page }) => {
   const tooltip = page.locator('ix-tooltip');
   const button = page.locator('ix-button');
 
+  await page.clock.install();
   await button.hover();
   await expect(tooltip).toHaveClass(/visible/);
   await page.mouse.move(0, 0);
-  await page.waitForTimeout(1000);
+  await expect(tooltip).toHaveClass(/visible/);
+  await page.clock.fastForward(1000);
   await expect(tooltip).not.toHaveClass(/visible/);
 });
 
@@ -189,25 +192,18 @@ regressionTest(
     const menuItem2 = page.locator('ix-menu-item:nth-child(2)');
 
     await menuItem1.hover();
-    await page.waitForTimeout(5);
     await menuItem1.click();
-    await page.waitForTimeout(200);
     await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
 
     await menuItem2.hover();
-    await page.waitForTimeout(5);
     await menuItem2.click();
-    await page.waitForTimeout(200);
     await expect(menuItem2.locator('ix-tooltip')).toHaveClass(/visible/);
 
     await menuItem1.hover();
-    await page.waitForTimeout(5);
     await menuItem1.click();
-    await page.waitForTimeout(200);
     await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
 
     await page.mouse.move(0, 0);
-    await page.waitForTimeout(200);
 
     await expect(menuItem1.locator('ix-tooltip')).not.toHaveClass(/visible/);
     await expect(menuItem2.locator('ix-tooltip')).not.toHaveClass(/visible/);

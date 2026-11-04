@@ -16,7 +16,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import 'jest';
-import { regressionTest } from '@utils/test';
+import { regressionTest, waitForRender } from '@utils/test';
 import { expect } from '@playwright/test';
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
@@ -73,7 +73,7 @@ regressionTest('check if items still clickable', async ({ mount, page }) => {
     </ix-event-list>
   `);
 
-  await page.waitForTimeout(500);
+  await waitForRender(page);
   const firstEventListItem = page.locator('ix-event-list-item').first();
   const secondEventListItem = page.locator('ix-event-list-item').nth(1);
   const thirdEventListItem = page.locator('ix-event-list-item').last();

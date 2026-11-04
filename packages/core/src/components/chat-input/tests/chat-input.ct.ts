@@ -391,6 +391,7 @@ regressionTest(`form-ready - ix-chat-input`, async ({ mount, page }) => {
   await input.fill('Some prompt');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('Some prompt');
+  await expect
+    .poll(() => getFormValue(formElement, 'my-field-name', page))
+    .toBe('Some prompt');
 });

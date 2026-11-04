@@ -14,7 +14,7 @@ import {
   iconPrint,
   iconStar,
 } from '@siemens/ix-icons/icons';
-import { regressionTest, viewPorts, expect } from '@utils/test';
+import { regressionTest, viewPorts, expect, waitForRender } from '@utils/test';
 
 const html = String.raw;
 
@@ -630,7 +630,7 @@ regressionTest(
       </ix-dropdown>
     `);
     await page.setViewportSize(viewPorts.sm);
-    await page.waitForTimeout(500);
+    await waitForRender(page);
 
     const header = page.locator('ix-application-header');
     await expect(header).toBeVisible();
@@ -1509,8 +1509,7 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
     dialog.showModal();
   });
 
-  // Animation timeout
-  await page.waitForTimeout(250);
+  await waitForRender(page);
 
   const trigger = page.locator('#trigger');
   await trigger.click();
@@ -1522,9 +1521,6 @@ regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await expect(dropdown).toBeVisible();
 
   await expect(dropdown).toBeVisible();
-
-  // Animation timeout
-  await page.waitForTimeout(250);
 
   await expect(async () => {
     const dropdownRect = await dropdown.boundingBox();

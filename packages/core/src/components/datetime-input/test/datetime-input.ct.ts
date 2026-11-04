@@ -555,7 +555,7 @@ regressionTest(
     ).not.toBeVisible();
 
     // Wait a bit to ensure no event is fired
-    await page.waitForTimeout(100);
+    await waitForRender(page);
 
     const eventFired = await dateTimeInput.evaluate(
       (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
@@ -584,9 +584,9 @@ regressionTest(
 
     // Focus and blur without changing value
     await input.focus();
-    await page.waitForTimeout(50);
+    await waitForRender(page);
     await input.blur();
-    await page.waitForTimeout(100);
+    await waitForRender(page);
 
     const eventFired = await dateTimeInput.evaluate(
       (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
@@ -626,7 +626,7 @@ regressionTest(
     ).not.toBeVisible();
 
     // Wait to ensure no event is fired
-    await page.waitForTimeout(100);
+    await waitForRender(page);
 
     const eventFired = await dateTimeInput.evaluate(
       (el: DateTimeInputElementWithEventFlag) => el._changeEventFired
@@ -1526,7 +1526,7 @@ regressionTest('required field validation', async ({ mount, page }) => {
 
   await input.focus();
   // Small delay between focus and blur
-  await page.waitForTimeout(50);
+  await waitForRender(page);
   await input.blur();
 
   await expect(dateTimeInput).toHaveClass(/ix-invalid--required/, {
@@ -1568,8 +1568,9 @@ regressionTest('form-ready - basic submission', async ({ mount, page }) => {
   await input.fill('2024/05/05 14:30:00');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'appointment-time', page);
-  expect(formData).toBe('2024/05/05 14:30:00');
+  await expect
+    .poll(() => getFormValue(formElement, 'appointment-time', page))
+    .toBe('2024/05/05 14:30:00');
 });
 
 regressionTest('form-ready - initial value', async ({ mount, page }) => {
@@ -1585,8 +1586,9 @@ regressionTest('form-ready - initial value', async ({ mount, page }) => {
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
 
-  const formData = await getFormValue(formElement, 'appointment-time', page);
-  expect(formData).toBe('2024/12/25 10:00:00');
+  await expect
+    .poll(() => getFormValue(formElement, 'appointment-time', page))
+    .toBe('2024/12/25 10:00:00');
 });
 
 regressionTest(
