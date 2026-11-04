@@ -2399,6 +2399,11 @@ export namespace Components {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -2411,10 +2416,6 @@ export namespace Components {
           * @default 'large'
          */
         "layout": EmptyStateLayout;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -11008,6 +11009,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -11024,10 +11030,6 @@ declare namespace LocalJSX {
           * Empty state action click event
          */
         "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -15286,7 +15288,7 @@ declare namespace LocalJSX {
         "layout": EmptyStateLayout;
         "icon": string;
         "header": string;
-        "subHeader": string;
+        "description": string;
         "action": string;
         "ariaLabelEmptyStateIcon": string;
     }
