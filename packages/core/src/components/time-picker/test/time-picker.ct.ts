@@ -15,6 +15,7 @@ import {
   timePickerCell,
   timePickerHourCell,
 } from '@utils/test';
+import { ELEMENT_LIST_SCROLL_OFFSET } from '../time-picker-scroll';
 
 const TIME_PICKER_SELECTOR = 'ix-time-picker';
 
@@ -771,25 +772,26 @@ regressionTest.describe('time picker tests', () => {
       await page.keyboard.press('Tab');
 
       const checkScrollAlignment = async (locator: Locator) => {
-        return await locator.evaluate((el: HTMLElement) => {
-          const list = el.parentElement;
+        return await locator.evaluate(
+          (el: HTMLElement, scrollPositionOffset: number) => {
+            const list = el.parentElement;
 
-          if (!list) {
-            throw new Error('Expected time picker list element');
-          }
+            if (!list) {
+              throw new Error('Expected time picker list element');
+            }
 
-          // Offset from time-picker.tsx elementListScrollToTop
-          const scrollPositionOffset = 11;
-          // Scrollposition calculation from time-picker.tsx elementListScrollToTop
-          const expected =
-            el.offsetTop -
-            list.clientHeight / 2 +
-            el.clientHeight -
-            scrollPositionOffset;
+            // Scrollposition calculation from time-picker.tsx elementListScrollToTop
+            const expected =
+              el.offsetTop -
+              list.clientHeight / 2 +
+              el.clientHeight -
+              scrollPositionOffset;
 
-          // <= 5 px tolerance
-          return Math.abs(list.scrollTop - expected) <= 5;
-        });
+            // Tolerance must stay below the 4px offset change to catch regressions
+            return Math.abs(list.scrollTop - expected) <= 2;
+          },
+          ELEMENT_LIST_SCROLL_OFFSET
+        );
       };
 
       const hourColumn = firstPicker.locator(

@@ -50,6 +50,7 @@ import {
 } from './time-picker-display';
 import { isFormat12Hour, LUXON_FORMAT_PATTERNS } from './time-picker-format';
 import { isSelectableForUnitWithinBounds } from './time-picker-range';
+import { ELEMENT_LIST_SCROLL_OFFSET } from './time-picker-scroll';
 import { findNextSelectableRingValue } from './time-picker-step-focus';
 import type {
   TimePickerCorners,
@@ -1406,8 +1407,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       const elementListHeight = elementList.clientHeight;
       const elementContainerHeight = elementContainer.clientHeight;
 
-      // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 15;
+      let scrollPositionOffset = ELEMENT_LIST_SCROLL_OFFSET;
       if (this.hideHeader) {
         // 56 + 1 --> height of the header container and separator
         scrollPositionOffset -= 57;
