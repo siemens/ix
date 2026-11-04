@@ -47,6 +47,37 @@ controls.forEach(({ tag, control }) => {
     );
 
     regressionTest(
+      'keeps aria-labelledby and aria-hidden on the host',
+      async ({ mount, page }) => {
+        await mount(
+          `<span id="external-label">Location</span><${tag} label="City" aria-labelledby="external-label" aria-hidden="true"></${tag}>`
+        );
+        const host = page.locator(tag);
+        await expect(host).toHaveAttribute('hydrated');
+
+        await expect(host).toHaveAttribute('aria-labelledby', 'external-label');
+        await expect(host).toHaveAttribute('aria-hidden', 'true');
+        await expect(host.locator(control)).not.toHaveAttribute(
+          'aria-labelledby'
+        );
+        await expect(host.locator(control)).toHaveAttribute(
+          'aria-label',
+          'City'
+        );
+      }
+    );
+
+    regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+      await mount(
+        `<${tag} aria-label="Location" aria-required="true"></${tag}>`
+      );
+      const accessibilityScanResults = await makeAxeBuilder()
+        .include(tag)
+        .analyze();
+      expect(accessibilityScanResults.violations).toEqual([]);
+    });
+
+    regressionTest(
       'keeps aria-required from the required property',
       async ({ mount, page }) => {
         await mount(`<${tag} required></${tag}>`);
