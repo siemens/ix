@@ -33,6 +33,49 @@ export const preventFormSubmission = async (formLocator: Locator) => {
   );
 };
 
+/**
+ * Presses `key` until `target` (or one of its shadow descendants) holds focus.
+ * Keyboard navigation ensures `:focus-visible` styles apply.
+ */
+export const focusWithKeyboard = async (
+  page: Page,
+  target: Locator,
+  options?: { key?: string; maxPresses?: number }
+) => {
+  const key = options?.key ?? 'Tab';
+  const maxPresses = options?.maxPresses ?? 20;
+
+  await target.waitFor({ state: 'attached' });
+
+  for (let i = 0; i < maxPresses; i++) {
+    await page.keyboard.press(key);
+
+    const isFocused = await target.evaluate((element) => {
+      let active = document.activeElement;
+      while (active?.shadowRoot?.activeElement) {
+        active = active.shadowRoot.activeElement;
+      }
+
+      // Walk up shadow-including ancestors of the deepest focused element
+      let node: Node | null = active;
+      while (node) {
+        if (node === element) {
+          return true;
+        }
+        node =
+          node.parentNode ?? (node instanceof ShadowRoot ? node.host : null);
+      }
+      return false;
+    });
+
+    if (isFocused) {
+      return;
+    }
+  }
+
+  throw new Error(`Target not focused after ${maxPresses} "${key}" presses`);
+};
+
 export const getFormValue = async (
   formLocator: Locator,
   key: string,

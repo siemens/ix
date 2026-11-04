@@ -41,7 +41,7 @@
   --ix-menu-item-tab--z-index: 500;
   --ix-menu-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-menu-item-tab--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+    -1 * var(--ix-menu-item--outline-width--focus)
   );
   --ix-menu-item-notification--top: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-menu-item-notification--left: #{sys.$si-sys-sizing-spacing-x-80};

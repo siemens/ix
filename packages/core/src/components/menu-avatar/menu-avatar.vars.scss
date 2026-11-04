@@ -30,4 +30,7 @@
   --ix-menu-avatar-avatar-name--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-menu-avatar-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
   --ix-menu-avatar--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
+  --ix-menu-avatar--outline-offset--focus: calc(
+    -1 * var(--ix-menu-avatar--outline-width--focus)
+  );
 }

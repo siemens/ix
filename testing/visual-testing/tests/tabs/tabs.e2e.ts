@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('tabs', () => {
   regressionTest('basic', async ({ page }) => {
@@ -37,3 +37,37 @@ regressionTest.describe('tabs', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
+
+regressionTest(
+  'should show focus-visible outline on tab item',
+  async ({ mount, page }) => {
+    const container = await mount(
+      `<div style="padding: 0.5rem; width: fit-content">
+      <ix-tabs><ix-tab-item selected>Tab 1</ix-tab-item><ix-tab-item>Tab 2</ix-tab-item><ix-tab-item>Tab 3</ix-tab-item></ix-tabs>
+    </div>`
+    );
+
+    await focusWithKeyboard(page, page.locator('ix-tab-item >> nth=0'));
+
+    expect(
+      await container.screenshot({ animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);
+
+regressionTest(
+  'should show focus-visible outline on overflowing tabs',
+  async ({ mount, page }) => {
+    const container = await mount(
+      `<div style="padding: 0.5rem; width: fit-content">
+      <ix-tabs style="width: 15rem"><ix-tab-item>Tab 1</ix-tab-item><ix-tab-item>Tab 2</ix-tab-item><ix-tab-item>Tab 3</ix-tab-item><ix-tab-item>Tab 4</ix-tab-item><ix-tab-item>Tab 5</ix-tab-item><ix-tab-item>Tab 6</ix-tab-item><ix-tab-item>Tab 7</ix-tab-item><ix-tab-item>Tab 8</ix-tab-item></ix-tabs>
+    </div>`
+    );
+
+    await focusWithKeyboard(page, page.locator('ix-tabs .tabs'));
+
+    expect(
+      await container.screenshot({ animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

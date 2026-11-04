@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('checkbox', () => {
   regressionTest('basic', async ({ page }) => {
@@ -32,3 +32,34 @@ regressionTest.describe('checkbox', () => {
     expect(await page.screenshot()).toMatchSnapshot();
   });
 });
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-checkbox label="Checkbox"></ix-checkbox>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-checkbox'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
+});
+
+regressionTest(
+  'should show focus-visible outline on native checkbox',
+  async ({ page }) => {
+    await page.goto('checkbox/basic');
+    await page.addStyleTag({ content: 'body { padding: 1rem !important; }' });
+
+    await focusWithKeyboard(
+      page,
+      page.locator('input.ix-form-control[type="checkbox"]').first()
+    );
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

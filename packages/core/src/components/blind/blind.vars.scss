@@ -28,7 +28,7 @@ $blind-status-sys: (
   --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-blind--focus--outline-offset: calc(
-    -1 * #{sys.$si-sys-sizing-focus-ring-offset}
+    -2 * #{sys.$si-sys-sizing-focus-ring-offset}
   );
   --ix-blind--background: #{sys.$si-sys-color-background-1};
   --ix-blind--surface: transparent;
@@ -49,28 +49,35 @@ $blind-status-sys: (
   --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-blind-header-wrapper--min-height: calc(
-    #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+    #{sys.$si-sys-sizing-size-100} - 2 *
+      #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-blind-header-wrapper--height: calc(
-    #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+    #{sys.$si-sys-sizing-size-100} - 2 *
+      #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-blind-header-content--padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+    #{sys.$si-sys-sizing-spacing-x-40} -
+      #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-blind-content--padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
+    #{sys.$si-sys-sizing-spacing-x-60} -
+      #{sys.$si-sys-sizing-border-width-default}
   );
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header--padding-left: calc(
-    var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--icon-size) + var(--ix-blind-collapse-icon--margin-right)
+    var(--ix-blind-header-content--padding-left) +
+      var(--ix-blind-icon--icon-size) +
+      var(--ix-blind-collapse-icon--margin-right)
   );
   --ix-blind-header-title-col--width: calc(
     100% - #{sys.$si-sys-sizing-spacing-x-60}
   );
   --ix-blind-header-title-label--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header-title-sublabel--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60}
+    #{sys.$si-sys-sizing-spacing-x-60};
 }
 
 :host(:not([collapsed])) {

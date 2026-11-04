@@ -64,5 +64,6 @@
   .avatar:focus-visible {
     outline: var(--ix-menu-avatar--outline-width--focus) solid
       var(--ix-menu-avatar-button--outline-color--focus);
+    outline-offset: var(--ix-menu-avatar--outline-offset--focus);
   }
 }
