@@ -18,7 +18,7 @@
   --ix-list-item--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-list-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-list-item--outline-offset--focus: calc(
-    #{sys.$si-sys-sizing-focus-ring-offset} * -2
+    -1 * var(--ix-list-item--outline-width--focus)
   );
   --ix-list-item-primary-action--min-height: #{sys.$si-sys-sizing-size-80};
   --ix-list-item-drag-gripper--width: #{sys.$si-sys-sizing-size-50};

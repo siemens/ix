@@ -20,7 +20,9 @@
   --ix-card-accordion-content--color: #{sys.$si-sys-color-text-primary};
   --ix-card-accordion-footer--background: #{sys.$si-sys-color-background-1};
   --ix-card-accordion-footer--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-card-accordion--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-card-accordion--focus--outline-offset: calc(
+    -1 * var(--ix-card-accordion--outline-width--focus)
+  );
 
   /* Outline accordion chrome */
   --ix-card-accordion-chrome--background: #{sys.$si-sys-color-background-1};

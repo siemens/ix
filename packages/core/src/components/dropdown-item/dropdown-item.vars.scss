@@ -31,6 +31,6 @@
   --ix-dropdown-item--inner-height: 100%;
   --ix-dropdown-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-dropdown-item--outline-offset--focus: calc(
-    #{sys.$si-sys-sizing-focus-ring-offset} * -2
+    -1 * var(--ix-dropdown-item--outline-width--focus)
   );
 }

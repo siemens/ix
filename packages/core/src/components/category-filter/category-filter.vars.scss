@@ -77,7 +77,7 @@
   --ix-category-filter-button-toggle-operator--height: #{sys.$si-sys-sizing-size-80};
   --ix-category-filter-dropdown-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-category-filter-dropdown-item--outline-offset--focus: calc(
-    #{sys.$si-sys-sizing-focus-ring-offset} * -2
+    -1 * var(--ix-category-filter-dropdown-item--outline-width--focus)
   );
   --ix-category-filter-dropdown-item--border-radius: #{sys.$si-sys-sizing-border-radius-full};
 }

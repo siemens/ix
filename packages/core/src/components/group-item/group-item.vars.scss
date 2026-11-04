@@ -32,7 +32,7 @@
   --ix-group-item-group-entry-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-group-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-group-item--outline-offset--focus: calc(
-    #{sys.$si-sys-sizing-focus-ring-offset} * -2
+    -1 * var(--ix-group-item--outline-width--focus)
   );
   --ix-group-item--border-top-width: calc(
     #{sys.$si-sys-sizing-border-width-default} * 0.992
