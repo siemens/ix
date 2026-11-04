@@ -1,4 +1,4 @@
-[Siemens iX html examples]|284 examples|format: name|title|used ix tags|files
+[Siemens iX html examples]|287 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/html/ (registry version root: examples/html/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/html/button.ts
 |Used tags are iX components found in the html source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html
@@ -61,11 +61,13 @@ content-header-with-slot|Content header with slot|ix-button,ix-content-header,ix
 custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.html
 custom-field-validation|Custom field validation|ix-custom-field|.html
 date-dropdown|Date dropdown|ix-date-dropdown|.html
+date-dropdown-display-format|Date dropdown display format|ix-date-dropdown|.html
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.html
 date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.html
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.html
 date-input|Date input|ix-date-input|.html
 date-input-disabled|Date input disabled|ix-date-input|.html
+date-input-display-format|Date input display format|ix-date-input|.html
 date-input-label|Date input label|ix-date-input|.html
 date-input-min-max-date|Date input min max date|ix-date-input|.html
 date-input-readonly|Date input readonly|ix-date-input|.html
@@ -79,6 +81,7 @@ datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,
 datepicker-range|Datepicker range|ix-date-picker|.html
 datetime-input|Datetime input|ix-datetime-input|.html
 datetime-input-disabled|Datetime input disabled|ix-datetime-input|.html
+datetime-input-display-format|Datetime input display format|ix-datetime-input|.html
 datetime-input-label|Datetime input label|ix-datetime-input|.html
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.html
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.html

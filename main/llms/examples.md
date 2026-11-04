@@ -1916,6 +1916,37 @@ Files:
 Files:
   - `vue/date-dropdown.vue`: [file](../examples/vue/date-dropdown.vue)
 
+## date-dropdown-display-format
+
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
+
+### angular
+
+Files:
+  - `angular/date-dropdown-display-format.html`: [file](../examples/angular/date-dropdown-display-format.html)
+  - `angular/date-dropdown-display-format.ts`: [file](../examples/angular/date-dropdown-display-format.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-dropdown-display-format.html`: [file](../examples/angular-standalone/date-dropdown-display-format.html)
+  - `angular-standalone/date-dropdown-display-format.ts`: [file](../examples/angular-standalone/date-dropdown-display-format.ts)
+
+### html
+
+Files:
+  - `html/date-dropdown-display-format.html`: [file](../examples/html/date-dropdown-display-format.html)
+
+### react
+
+Files:
+  - `react/date-dropdown-display-format.tsx`: [file](../examples/react/date-dropdown-display-format.tsx)
+
+### vue
+
+Files:
+  - `vue/date-dropdown-display-format.vue`: [file](../examples/vue/date-dropdown-display-format.vue)
+
 ## date-dropdown-presets
 
 - Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
@@ -2070,6 +2101,37 @@ Files:
 
 Files:
   - `vue/date-input-disabled.vue`: [file](../examples/vue/date-input-disabled.vue)
+
+## date-input-display-format
+
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
+
+### angular
+
+Files:
+  - `angular/date-input-display-format.html`: [file](../examples/angular/date-input-display-format.html)
+  - `angular/date-input-display-format.ts`: [file](../examples/angular/date-input-display-format.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-input-display-format.html`: [file](../examples/angular-standalone/date-input-display-format.html)
+  - `angular-standalone/date-input-display-format.ts`: [file](../examples/angular-standalone/date-input-display-format.ts)
+
+### html
+
+Files:
+  - `html/date-input-display-format.html`: [file](../examples/html/date-input-display-format.html)
+
+### react
+
+Files:
+  - `react/date-input-display-format.tsx`: [file](../examples/react/date-input-display-format.tsx)
+
+### vue
+
+Files:
+  - `vue/date-input-display-format.vue`: [file](../examples/vue/date-input-display-format.vue)
 
 ## date-input-label
 
@@ -2467,6 +2529,37 @@ Files:
 
 Files:
   - `vue/datetime-input-disabled.vue`: [file](../examples/vue/datetime-input-disabled.vue)
+
+## datetime-input-display-format
+
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
+
+### angular
+
+Files:
+  - `angular/datetime-input-display-format.html`: [file](../examples/angular/datetime-input-display-format.html)
+  - `angular/datetime-input-display-format.ts`: [file](../examples/angular/datetime-input-display-format.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/datetime-input-display-format.html`: [file](../examples/angular-standalone/datetime-input-display-format.html)
+  - `angular-standalone/datetime-input-display-format.ts`: [file](../examples/angular-standalone/datetime-input-display-format.ts)
+
+### html
+
+Files:
+  - `html/datetime-input-display-format.html`: [file](../examples/html/datetime-input-display-format.html)
+
+### react
+
+Files:
+  - `react/datetime-input-display-format.tsx`: [file](../examples/react/datetime-input-display-format.tsx)
+
+### vue
+
+Files:
+  - `vue/datetime-input-display-format.vue`: [file](../examples/vue/datetime-input-display-format.vue)
 
 ## datetime-input-label
 

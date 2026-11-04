@@ -1,4 +1,4 @@
-[Siemens iX angular-standalone examples]|291 examples|format: name|title|used ix tags|files
+[Siemens iX angular-standalone examples]|294 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular-standalone/ (registry version root: examples/angular-standalone/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular-standalone/button.ts
 |Used tags are iX components found in the angular-standalone source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -60,11 +60,13 @@ content-header-with-slot|Content header with slot|ix-button,ix-content-header,ix
 custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.html,.ts
 custom-field-validation|Custom field validation|ix-custom-field|.html,.ts
 date-dropdown|Date dropdown|ix-date-dropdown|.html,.ts
+date-dropdown-display-format|Date dropdown display format|ix-date-dropdown|.html,.ts
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.html,.ts
 date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.html,.ts
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.html,.ts
 date-input|Date input|ix-date-input|.html,.ts
 date-input-disabled|Date input disabled|ix-date-input|.html,.ts
+date-input-display-format|Date input display format|ix-date-input|.html,.ts
 date-input-label|Date input label|ix-date-input|.html,.ts
 date-input-min-max-date|Date input min max date|ix-date-input|.html,.ts
 date-input-readonly|Date input readonly|ix-date-input|.html,.ts
@@ -78,6 +80,7 @@ datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,
 datepicker-range|Datepicker range|ix-date-picker|.ts
 datetime-input|Datetime input|ix-datetime-input|.html,.ts
 datetime-input-disabled|Datetime input disabled|ix-datetime-input|.html,.ts
+datetime-input-display-format|Datetime input display format|ix-datetime-input|.html,.ts
 datetime-input-label|Datetime input label|ix-datetime-input|.html,.ts
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.html,.ts
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.html,.ts

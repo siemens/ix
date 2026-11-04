@@ -20,8 +20,9 @@
 - `ariaLabelNextMonthButton`; attr: `aria-label-next-month-button`; type: `string | undefined`; default: `'Next month'` - ARIA label for next month navigation button
 - `ariaLabelPreviousMonthButton`; attr: `aria-label-previous-month-button`; type: `string | undefined`; default: `'Previous month'` - ARIA label for previous month navigation button
 - `disabled`; attr: `disabled`; type: `boolean`; default: `false` - Whether the input is disabled
+- `displayFormat`; attr: `display-format`; type: `string | undefined` - Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `enableTopLayer`; attr: `enable-top-layer`; type: `boolean`; default: `false` - Enable Popover API rendering for dropdown.
-- `format`; attr: `format`; type: `string`; default: `'yyyy/LL/dd HH:mm:ss'` - Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04"). See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+- `format`; attr: `format`; type: `string`; default: `'yyyy/LL/dd HH:mm:ss'` - Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04"). See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `helperText`; attr: `helper-text`; type: `string | undefined` - Helper text displayed below the input
 - `i18nCancel`; attr: `i18n-cancel`; type: `string`; default: `'Cancel'` - Text for cancel button in picker when `requireConfirmation` is enabled
 - `i18nConfirm`; attr: `i18n-confirm`; type: `string`; default: `'Confirm'` - Text for confirm button in picker when `requireConfirmation` is enabled
@@ -46,7 +47,7 @@
 - `suppressSubmitOnEnter`; attr: `suppress-submit-on-enter`; type: `boolean`; default: `false` - Prevent form submission when Enter is pressed
 - `textAlignment`; attr: `text-alignment`; type: `"end" | "start"`; default: `'start'` - Text alignment within the input field
 - `validText`; attr: `valid-text`; type: `string | undefined` - Success/valid message
-- `value`; attr: `value`; type: `string | undefined`; default: `''` - Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+- `value`; attr: `value`; type: `string | undefined`; default: `''` - Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
 - `warningText`; attr: `warning-text`; type: `string | undefined` - Warning message
 - `weekStartIndex`; attr: `week-start-index`; type: `number`; default: `0` - First day of week (0=Sunday, 1=Monday, etc.)
 
@@ -56,7 +57,7 @@
 - `ixChange` - Emitted when the date/time value changes via user interaction. Fires in two scenarios: - When the input loses focus (blur) and the value has changed - When the picker closes after the value was changed in it, or on Confirm when `requireConfirmation` is enabled Does NOT fire when: - The picker is opened/closed without changing the value - The input is blurred without modifying the value - The value is changed programmatically via the value property
 - `ixFocus` - Emitted when the input receives focus
 - `validityStateChange` - Emitted when validation state changes
-- `valueChange` - Emitted when the datetime value changes. Payload is display format or undefined
+- `valueChange` - Emitted when the datetime value changes. Payload is in `format` or undefined
 
 ## Methods
 
@@ -78,6 +79,7 @@ Examples that use this component, with available frameworks. Look up source file
 
 - datetime-input (angular, angular-standalone, html, react, vue)
 - datetime-input-disabled (angular, angular-standalone, html, react, vue)
+- datetime-input-display-format (angular, angular-standalone, html, react, vue)
 - datetime-input-label (angular, angular-standalone, html, react, vue)
 - datetime-input-min-max-date (angular, angular-standalone, html, react, vue)
 - datetime-input-readonly (angular, angular-standalone, html, react, vue)

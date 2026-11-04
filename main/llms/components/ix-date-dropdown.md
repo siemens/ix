@@ -19,6 +19,7 @@
 - `dateRangeId`; attr: `date-range-id`; type: `string`; default: `'custom'` - Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
 - `dateRangeOptions`; type: `DateDropdownOption[]`; default: `[]` - An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object. Example format: { id: 'some unique id', label: 'Name of the range', from: undefined, to: '2023/03/29' }, // ... other predefined date range options ...
 - `disabled`; attr: `disabled`; type: `boolean`; default: `false` - Disable the button that opens the dropdown containing the date picker.
+- `displayFormat`; attr: `display-format`; type: `string | undefined` - Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `enableTopLayer`; attr: `enable-top-layer`; type: `boolean`; default: `false` - Enable Popover API rendering for dropdown.
 - `format`; attr: `format`; type: `string`; default: `'yyyy/LL/dd'` - Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `from`; attr: `from`; type: `string`; default: `''` - Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected. Format is based on `format`
@@ -60,6 +61,7 @@
 Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
 
 - date-dropdown (angular, angular-standalone, html, react, vue)
+- date-dropdown-display-format (angular, angular-standalone, html, react, vue)
 - date-dropdown-presets (angular, angular-standalone, html, react, vue)
 - date-dropdown-require-confirmation (angular, angular-standalone, html, react, vue)
 - date-dropdown-user-range (angular, angular-standalone, html, react, vue)
