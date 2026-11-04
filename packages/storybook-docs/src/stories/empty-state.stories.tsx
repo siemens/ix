@@ -25,6 +25,6 @@ export const Default: Story = {
   args: {
     header: 'No assets found',
     icon: 'info',
-    subHeader: 'Try adjusting the current filters.',
+    description: 'Try adjusting the current filters.',
   },
 };

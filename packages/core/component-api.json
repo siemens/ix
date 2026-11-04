@@ -142,12 +142,55 @@
           "deprecated": false
         },
         {
+          "name": "disableSkipLinks",
+          "attribute": "disable-skip-links",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "forceBreakpoint",
           "attribute": "force-breakpoint",
           "type": "\"lg\" | \"md\" | \"sm\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToFooter",
+          "attribute": "i18n-skip-to-footer",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to footer'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToMain",
+          "attribute": "i18n-skip-to-main",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to main content'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "skipLinkMainTarget",
+          "attribute": "skip-link-main-target",
+          "type": "HTMLElement | string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -2483,6 +2526,16 @@
           "deprecated": false
         },
         {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "enableTopLayer",
           "attribute": "enable-top-layer",
           "type": "boolean",
@@ -2744,6 +2797,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -3360,6 +3423,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -4575,6 +4648,16 @@
           "deprecated": false
         },
         {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "header",
           "attribute": "header",
           "type": "string",
@@ -4602,16 +4685,6 @@
           "reflectToAttribute": false,
           "default": "'large'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "subHeader",
-          "attribute": "sub-header",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         }
@@ -6238,6 +6311,381 @@
       "slots": [
         "default"
       ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-list",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "actionOnHover",
+          "attribute": "action-on-hover",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "actionSlotAlignment",
+          "attribute": "action-slot-alignment",
+          "type": "\"center\" | \"start\" | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "active",
+          "attribute": "active",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "checkbox",
+          "attribute": "checkbox",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "divider",
+          "attribute": "divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "dragBehavior",
+          "attribute": "drag-behavior",
+          "type": "\"dynamic\" | \"separator\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'dynamic'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "draggable",
+          "attribute": "draggable",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nListItem",
+          "attribute": "i18n-list-item",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'List item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderCancelled",
+          "attribute": "i18n-reorder-cancelled",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item} reorder cancelled.'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderDropped",
+          "attribute": "i18n-reorder-dropped",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item} dropped at position {position} of {total}.'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderLifted",
+          "attribute": "i18n-reorder-lifted",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nReorderPosition",
+          "attribute": "i18n-reorder-position",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'{item}, position {position} of {total}'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "itemGap",
+          "attribute": "item-gap",
+          "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'sm'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"filled\" | \"ghost\" | \"outline\" | undefined",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "itemOrderChange",
+          "detail": "{ item: HTMLIxListItemElement; oldIndex: number; newIndex: number; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "default"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-list-item",
+      "deprecated": false,
+      "properties": [
+        {
+          "name": "actionOnHover",
+          "attribute": "action-on-hover",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "actionSlotAlignment",
+          "attribute": "action-slot-alignment",
+          "type": "\"center\" | \"start\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'center'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "active",
+          "attribute": "active",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelCheckbox",
+          "attribute": "aria-label-checkbox",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Select list item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelDragGripper",
+          "attribute": "aria-label-drag-gripper",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Reorder list item'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "ariaLabelIcon",
+          "attribute": "aria-label-icon",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "checkbox",
+          "attribute": "checkbox",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "divider",
+          "attribute": "divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "selected",
+          "attribute": "selected",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": "\"filled\" | \"ghost\" | \"outline\"",
+          "mutable": false,
+          "reflectToAttribute": true,
+          "default": "'filled'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "name": "itemClick",
+          "detail": "HTMLIxListItemElement",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        },
+        {
+          "name": "selectedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "deprecated": false
+        }
+      ],
+      "cssProperties": [],
+      "slots": [
+        "action",
+        "default"
+      ],
+      "cssParts": [],
+      "cssStates": []
+    },
+    {
+      "tag": "ix-list-item-separator",
+      "deprecated": false,
+      "properties": [],
+      "methods": [],
+      "events": [],
+      "cssProperties": [],
+      "slots": [],
       "cssParts": [],
       "cssStates": []
     },
@@ -11391,6 +11839,16 @@
           "deprecated": false
         },
         {
+          "name": "hideDelay",
+          "attribute": "hide-delay",
+          "type": "number | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "interactive",
           "attribute": "interactive",
           "type": "boolean",
@@ -11408,6 +11866,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'top'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "showDelay",
+          "attribute": "show-delay",
+          "type": "number",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "0",
           "optional": false,
           "required": false,
           "deprecated": false
