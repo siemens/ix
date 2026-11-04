@@ -1,4 +1,4 @@
-[Siemens iX vue examples]|284 examples|format: name|title|used ix tags|files
+[Siemens iX vue examples]|285 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/vue/ (registry version root: examples/vue/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/vue/button.ts
 |Used tags are iX components found in the vue source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.vue
@@ -155,6 +155,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.css,.vue
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.css,.vue
 info-page|Info page|ix-button,ix-info-page|.vue
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.vue
 input|Input|ix-input|.vue
 input-disabled|Input disabled|ix-input|.vue
 input-label|Input label|ix-input|.vue

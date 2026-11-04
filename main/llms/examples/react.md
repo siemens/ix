@@ -1,4 +1,4 @@
-[Siemens iX react examples]|286 examples|format: name|title|used ix tags|files
+[Siemens iX react examples]|287 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/react/ (registry version root: examples/react/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/react/button.ts
 |Used tags are iX components found in the react source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.tsx
@@ -155,6 +155,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.scoped.css,.tsx
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.scoped.css,.tsx
 info-page|Info page|ix-button,ix-info-page|.tsx
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.tsx
 input|Input|ix-button,ix-date-input,ix-input,ix-number-input,ix-time-input|.tsx
 input-disabled|Input disabled|ix-input|.tsx
 input-label|Input label|ix-input|.tsx

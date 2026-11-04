@@ -1,4 +1,4 @@
-[Siemens iX angular examples]|291 examples|format: name|title|used ix tags|files
+[Siemens iX angular examples]|292 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular/ (registry version root: examples/angular/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular/button.ts
 |Used tags are iX components found in the angular source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -155,6 +155,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.css,.ts
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.css,.ts
 info-page|Info page|ix-button,ix-info-page|.ts
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.ts
 input|Input|ix-input|.html,.ts
 input-disabled|Input disabled|ix-input|.html,.ts
 input-form-validation|Input form validation|ix-button,ix-input|.html,.ts

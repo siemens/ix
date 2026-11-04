@@ -77,6 +77,7 @@ Examples that use this component, with available frameworks. Look up source file
 - form-validation (angular, angular-standalone, html, react, vue)
 - group-custom-entry (angular, angular-standalone, html, react, vue)
 - info-page (angular, angular-standalone, html, react, vue)
+- info-page-illustration (angular, angular-standalone, html, react, vue)
 - input (angular, angular-standalone, html, react, vue)
 - input-form-validation (angular, angular-standalone)
 - loading (angular, angular-standalone, html, react, vue)

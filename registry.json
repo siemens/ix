@@ -650,6 +650,10 @@
           "path": "main/examples/info-page.json"
         },
         {
+          "name": "info-page-illustration",
+          "path": "main/examples/info-page-illustration.json"
+        },
+        {
           "name": "input",
           "path": "main/examples/input.json"
         },

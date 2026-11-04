@@ -1,4 +1,4 @@
-[Siemens iX html examples]|283 examples|format: name|title|used ix tags|files
+[Siemens iX html examples]|284 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/html/ (registry version root: examples/html/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/html/button.ts
 |Used tags are iX components found in the html source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html
@@ -154,6 +154,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.css,.html
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.css,.html
 info-page|Info page|ix-button,ix-info-page|.html
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.html
 input|Input|ix-input|.html
 input-disabled|Input disabled|ix-input|.html
 input-label|Input label|ix-input|.html

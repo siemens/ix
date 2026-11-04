@@ -4935,6 +4935,35 @@ Files:
 Files:
   - `vue/info-page.vue`: [file](../examples/vue/info-page.vue)
 
+## info-page-illustration
+
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-info-page`](components/ix-info-page.md)
+
+### angular
+
+Files:
+  - `angular/info-page-illustration.ts`: [file](../examples/angular/info-page-illustration.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/info-page-illustration.ts`: [file](../examples/angular-standalone/info-page-illustration.ts)
+
+### html
+
+Files:
+  - `html/info-page-illustration.html`: [file](../examples/html/info-page-illustration.html)
+
+### react
+
+Files:
+  - `react/info-page-illustration.tsx`: [file](../examples/react/info-page-illustration.tsx)
+
+### vue
+
+Files:
+  - `vue/info-page-illustration.vue`: [file](../examples/vue/info-page-illustration.vue)
+
 ## input
 
 - Used iX components: [`ix-button`](components/ix-button.md), [`ix-date-input`](components/ix-date-input.md), [`ix-input`](components/ix-input.md), [`ix-number-input`](components/ix-number-input.md), [`ix-time-input`](components/ix-time-input.md)

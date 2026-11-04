@@ -45,6 +45,7 @@
 Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
 
 - info-page (angular, angular-standalone, html, react, vue)
+- info-page-illustration (angular, angular-standalone, html, react, vue)
 
 ## Related patterns
 
