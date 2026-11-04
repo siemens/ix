@@ -63,6 +63,7 @@ import {
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
+import { getClippedSides } from '../utils/rect';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { closestPassShadow } from '../utils/shadow-dom';
 import {
@@ -80,10 +81,6 @@ import {
 import { AlignedPlacement, DropdownAnchorPosition } from './placement';
 
 let sequenceId = 0;
-
-// Intersection rects can be off by a fraction of a pixel (e.g. inside an
-// iframe with a sub-pixel offset), which must not count as a clipped trigger
-const CLIPPED_TRIGGER_TOLERANCE_PX = 1;
 
 const createPointReference = ({
   x,
@@ -717,35 +714,26 @@ export class Dropdown
             return;
           }
 
-          const { intersectionRect, boundingClientRect } = entry;
-          const isTopHidden =
-            intersectionRect.top - boundingClientRect.top >=
-            CLIPPED_TRIGGER_TOLERANCE_PX;
-          const isBottomHidden =
-            boundingClientRect.bottom - intersectionRect.bottom >=
-            CLIPPED_TRIGGER_TOLERANCE_PX;
-          const isLeftHidden =
-            intersectionRect.left - boundingClientRect.left >=
-            CLIPPED_TRIGGER_TOLERANCE_PX;
-          const isRightHidden =
-            boundingClientRect.right - intersectionRect.right >=
-            CLIPPED_TRIGGER_TOLERANCE_PX;
+          const hidden = getClippedSides(
+            entry.boundingClientRect,
+            entry.intersectionRect
+          );
 
           this.fallbackPlacement = undefined;
 
-          if (isTopHidden) {
+          if (hidden.top) {
             this.fallbackPlacement = this.createFallbackPlacement('bottom');
           }
 
-          if (isBottomHidden) {
+          if (hidden.bottom) {
             this.fallbackPlacement = this.createFallbackPlacement('top');
           }
 
-          if (isLeftHidden) {
+          if (hidden.left) {
             this.fallbackPlacement = this.createFallbackPlacement('right');
           }
 
-          if (isRightHidden) {
+          if (hidden.right) {
             this.fallbackPlacement = this.createFallbackPlacement('left');
           }
         });
