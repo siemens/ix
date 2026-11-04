@@ -5,7 +5,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { getClippedSides } from '../rect';
+import { getClippedSides, getClippingThresholds } from '../rect';
 
 const bounds = { top: 0, right: 100, bottom: 100, left: 0 };
 
@@ -46,5 +46,29 @@ describe('getClippedSides', () => {
       getClippedSides({ top: -3, right: 100, bottom: 100, left: 0 }, bounds, 4)
         .top
     ).toBe(false);
+  });
+
+  it('does not report touching edges as clipped with a zero tolerance', () => {
+    expect(getClippedSides(bounds, bounds, 0)).toEqual({
+      top: false,
+      right: false,
+      bottom: false,
+      left: false,
+    });
+  });
+});
+
+describe('getClippingThresholds', () => {
+  it('returns the ratio at which each axis is clipped by the tolerance', () => {
+    expect(getClippingThresholds({ width: 100, height: 20 })).toEqual([
+      0.99, 0.95,
+    ]);
+    expect(getClippingThresholds({ width: 100, height: 20 }, 2)).toEqual([
+      0.98, 0.9,
+    ]);
+  });
+
+  it('skips axes that are not larger than the tolerance', () => {
+    expect(getClippingThresholds({ width: 0, height: 1 })).toEqual([]);
   });
 });

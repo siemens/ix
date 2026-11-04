@@ -35,10 +35,29 @@ export function getClippedSides(
   bounds: RectEdges,
   tolerance = SUBPIXEL_TOLERANCE_PX
 ): ClippedSides {
+  const overflows = (overflow: number) => overflow > 0 && overflow >= tolerance;
+
   return {
-    top: bounds.top - rect.top >= tolerance,
-    right: rect.right - bounds.right >= tolerance,
-    bottom: rect.bottom - bounds.bottom >= tolerance,
-    left: bounds.left - rect.left >= tolerance,
+    top: overflows(bounds.top - rect.top),
+    right: overflows(rect.right - bounds.right),
+    bottom: overflows(rect.bottom - bounds.bottom),
+    left: overflows(bounds.left - rect.left),
   };
+}
+
+/**
+ * Returns the intersection ratios at which `rect` starts to be clipped by
+ * `tolerance` on either axis.
+ *
+ * An `IntersectionObserver` only reports crossings of its thresholds, so these
+ * ensure clipping that grows past the tolerance is reported even when the
+ * element was already clipped by less than the tolerance before.
+ */
+export function getClippingThresholds(
+  rect: Pick<DOMRectReadOnly, 'width' | 'height'>,
+  tolerance = SUBPIXEL_TOLERANCE_PX
+): number[] {
+  return [rect.width, rect.height]
+    .filter((size) => size > tolerance)
+    .map((size) => 1 - tolerance / size);
 }

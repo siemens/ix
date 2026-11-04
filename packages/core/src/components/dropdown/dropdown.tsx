@@ -63,7 +63,7 @@ import {
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
-import { getClippedSides } from '../utils/rect';
+import { getClippedSides, getClippingThresholds } from '../utils/rect';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { closestPassShadow } from '../utils/shadow-dom';
 import {
@@ -694,10 +694,11 @@ export class Dropdown
       return;
     }
 
-    if (!this.triggerElement) {
+    if (!this.triggerElement || !this.anchorElement) {
       return;
     }
 
+    const anchorElement = this.anchorElement;
     this.intersectObserverTrigger = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -731,13 +732,16 @@ export class Dropdown
         });
       },
       {
-        threshold: [0, 0.5, 1],
+        threshold: [
+          0,
+          0.5,
+          ...getClippingThresholds(anchorElement.getBoundingClientRect()),
+          1,
+        ],
       }
     );
 
-    if (this.anchorElement) {
-      this.intersectObserverTrigger.observe(this.anchorElement);
-    }
+    this.intersectObserverTrigger.observe(anchorElement);
   }
 
   private createFallbackPlacement(

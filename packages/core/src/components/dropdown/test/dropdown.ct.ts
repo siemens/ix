@@ -2076,4 +2076,54 @@ regressionTest.describe('trigger visibility check', () => {
       expect(new Set(visiblePlacements)).toEqual(new Set(['bottom-start']));
     }
   );
+
+  regressionTest(
+    'falls back when sub-pixel clipping of the trigger grows past the tolerance',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.5px;
+            overflow: hidden;
+          }
+
+          #content {
+            width: 200px;
+          }
+
+          #trigger {
+            width: 100px;
+          }
+        </style>
+        <div id="container">
+          <div id="content">
+            <ix-button id="trigger">Trigger</ix-button>
+          </div>
+        </div>
+        <ix-dropdown id="dropdown" trigger="trigger" placement="bottom-start">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+
+      // Clip 30px on the left, which crosses no ratio between 0.5 and 1
+      await page.locator('#container').evaluate((container) => {
+        container.scrollLeft = 30;
+      });
+
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'right-start'
+      );
+    }
+  );
 });
