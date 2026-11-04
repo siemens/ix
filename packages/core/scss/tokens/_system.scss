@@ -14,6 +14,14 @@
  * To make permanent changes ask for assistant inside the pull request
  */
 
+// Drop-shadow filter equivalent of --si-sys-color-effects-shadow-10, for shapes box-shadow cannot follow.
+$ix-effects-shadow-10-filter: var(--ix-effects-shadow-10-filter);
+// Drop-shadow filter equivalent of --si-sys-color-effects-shadow-20, for shapes box-shadow cannot follow.
+$ix-effects-shadow-20-filter: var(--ix-effects-shadow-20-filter);
+// Drop-shadow filter equivalent of --si-sys-color-effects-shadow-30, for shapes box-shadow cannot follow.
+$ix-effects-shadow-30-filter: var(--ix-effects-shadow-30-filter);
+// Drop-shadow filter equivalent of --si-sys-color-effects-shadow-40, for shapes box-shadow cannot follow.
+$ix-effects-shadow-40-filter: var(--ix-effects-shadow-40-filter);
 // The absolute bottom layer, the literal background of the application.
 $si-sys-color-background-0: var(--si-sys-color-background-0);
 // The primary surface layer where most UI components sit. E.g., cards, side panels, containers that rest above background-0
