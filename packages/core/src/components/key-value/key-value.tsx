@@ -53,9 +53,9 @@ export class KeyValue {
 
   /**
    * Show a divider line below the key value.
+   * When omitted, the divider is shown (`true`).
    * Inside `ix-key-value-list`, follows the list's `divider` unless set.
    *
-   * @default true
    * @since 6.0.0
    */
   @Prop() divider?: boolean;

@@ -33,7 +33,6 @@ export class KeyValueList {
    * When omitted, dividers are shown (`true`).
    * Items that set their own `divider` keep their value.
    *
-   * @default true
    * @since 6.0.0
    */
   @Prop() divider?: boolean;

@@ -3060,8 +3060,7 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Show a divider line below the key value. Inside `ix-key-value-list`, follows the list's `divider` unless set.
-          * @default true
+          * Show a divider line below the key value. When omitted, the divider is shown (`true`). Inside `ix-key-value-list`, follows the list's `divider` unless set.
           * @since 6.0.0
          */
         "divider"?: boolean;
@@ -3091,7 +3090,6 @@ export namespace Components {
     interface IxKeyValueList {
         /**
           * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
-          * @default true
           * @since 6.0.0
          */
         "divider"?: boolean;
@@ -11697,8 +11695,7 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Show a divider line below the key value. Inside `ix-key-value-list`, follows the list's `divider` unless set.
-          * @default true
+          * Show a divider line below the key value. When omitted, the divider is shown (`true`). Inside `ix-key-value-list`, follows the list's `divider` unless set.
           * @since 6.0.0
          */
         "divider"?: boolean;
@@ -11728,7 +11725,6 @@ declare namespace LocalJSX {
     interface IxKeyValueList {
         /**
           * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
-          * @default true
           * @since 6.0.0
          */
         "divider"?: boolean;
