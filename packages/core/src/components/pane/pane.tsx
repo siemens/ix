@@ -27,13 +27,7 @@ import {
 } from '@stencil/core';
 import { animate, AnimationControl, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
-import { applicationLayoutService } from '../utils/application-layout';
-import { ApplicationLayoutContext } from '../utils/application-layout/context';
-import {
-  addBreakpointMediaListener,
-  matchBreakpoint,
-} from '../utils/breakpoints';
-import { ContextType, useContextConsumer } from '../utils/context';
+import { subscribeApplicationLayoutMobile } from '../utils/application-layout';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -197,12 +191,7 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
-  private applicationLayoutContext?: ContextType<
-    typeof ApplicationLayoutContext
-  >;
-  private layoutContextSubscription?: { unsubscribe: () => void };
-  private layoutServiceDisposable?: Disposable;
-  private removeBreakpointMediaListener?: () => void;
+  private layoutMobileDisposable?: Disposable;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -220,9 +209,18 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  private subscribeApplicationLayoutMobile() {
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = subscribeApplicationLayoutMobile(
+      this.hostElement,
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
+  }
+
   connectedCallback() {
-    this.subscribeLayoutContext();
-    this.subscribeViewportChanges();
+    this.subscribeApplicationLayoutMobile();
 
     this.mutationObserver?.disconnect();
     this.mutationObserver = new MutationObserver((mutations) => {
@@ -267,58 +265,8 @@ export class Pane {
     this.disposableWindowClick?.();
     this.disposableKeydown?.();
     this.focusTrap?.destroy();
-    this.layoutContextSubscription?.unsubscribe();
-    this.layoutContextSubscription = undefined;
-    this.layoutServiceDisposable?.dispose();
-    this.layoutServiceDisposable = undefined;
-    this.removeBreakpointMediaListener?.();
-    this.removeBreakpointMediaListener = undefined;
-    this.applicationLayoutContext = undefined;
-  }
-
-  private resolveIsMobile() {
-    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
-    if (forcedBreakpoint) {
-      return forcedBreakpoint === 'sm';
-    }
-    // Nested panes follow the shared layout bus so a pinned menu (frozen at lg)
-    // keeps them desktop instead of reading the raw viewport.
-    if (this.applicationLayoutContext) {
-      return applicationLayoutService.breakpoint === 'sm';
-    }
-    return matchBreakpoint('sm');
-  }
-
-  private subscribeViewportChanges() {
-    this.layoutServiceDisposable?.dispose();
-    this.removeBreakpointMediaListener?.();
-
-    this.layoutServiceDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = this.resolveIsMobile();
-    });
-    // Keep following the viewport when the shared bus has detection disabled
-    // (e.g. forceBreakpoint on a sibling application the pane left).
-    this.removeBreakpointMediaListener = addBreakpointMediaListener(
-      'sm',
-      () => {
-        this.isMobile = this.resolveIsMobile();
-      }
-    );
-  }
-
-  private subscribeLayoutContext() {
-    this.layoutContextSubscription?.unsubscribe();
-    this.applicationLayoutContext = undefined;
-    this.layoutContextSubscription = useContextConsumer(
-      this.hostElement,
-      ApplicationLayoutContext,
-      (ctx) => {
-        this.applicationLayoutContext = ctx;
-        this.isMobile = this.resolveIsMobile();
-      },
-      true
-    );
-    this.isMobile = this.resolveIsMobile();
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = undefined;
   }
 
   @Watch('expanded')
@@ -366,6 +314,10 @@ export class Pane {
   }
 
   componentWillLoad() {
+    // Re-subscribe after providers in the tree have finished willLoad, before
+    // sizing so onParentSizeChange sees the resolved mobile mode.
+    this.subscribeApplicationLayoutMobile();
+
     this.onExpandedChange();
 
     this.floating = this.variant === 'floating';
@@ -373,10 +325,6 @@ export class Pane {
     if (this.expanded) {
       this.onParentSizeChange();
     }
-
-    // Re-request after providers in the tree have finished willLoad.
-    this.subscribeLayoutContext();
-    this.subscribeViewportChanges();
 
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);

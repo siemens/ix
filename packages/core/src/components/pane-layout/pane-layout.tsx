@@ -19,13 +19,7 @@ import {
   Watch,
 } from '@stencil/core';
 import type { Composition } from '../pane/pane.types';
-import { applicationLayoutService } from '../utils/application-layout';
-import { ApplicationLayoutContext } from '../utils/application-layout/context';
-import {
-  addBreakpointMediaListener,
-  matchBreakpoint,
-} from '../utils/breakpoints';
-import { ContextType, useContextConsumer } from '../utils/context';
+import { subscribeApplicationLayoutMobile } from '../utils/application-layout';
 import type { Disposable } from '../utils/typed-event';
 
 /**
@@ -76,21 +70,26 @@ export class Panes {
   }> = [];
 
   private observer?: MutationObserver;
-  private applicationLayoutContext?: ContextType<
-    typeof ApplicationLayoutContext
-  >;
-  private layoutContextSubscription?: { unsubscribe: () => void };
-  private layoutServiceDisposable?: Disposable;
-  private removeBreakpointMediaListener?: () => void;
+  private layoutMobileDisposable?: Disposable;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
   }
 
+  private subscribeApplicationLayoutMobile() {
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = subscribeApplicationLayoutMobile(
+      this.hostElement,
+      (isMobile) => {
+        this.isMobile = isMobile;
+        this.configurePanes();
+      }
+    );
+  }
+
   componentWillLoad() {
-    // Re-request after providers in the tree have finished willLoad.
-    this.subscribeLayoutContext();
-    this.subscribeViewportChanges();
+    // Re-subscribe after providers in the tree have finished willLoad.
+    this.subscribeApplicationLayoutMobile();
   }
 
   componentDidLoad() {
@@ -112,65 +111,13 @@ export class Panes {
       childList: true,
     });
 
-    this.subscribeLayoutContext();
-    this.subscribeViewportChanges();
+    this.subscribeApplicationLayoutMobile();
   }
 
   disconnectedCallback() {
     this.observer?.disconnect();
-    this.layoutContextSubscription?.unsubscribe();
-    this.layoutContextSubscription = undefined;
-    this.layoutServiceDisposable?.dispose();
-    this.layoutServiceDisposable = undefined;
-    this.removeBreakpointMediaListener?.();
-    this.removeBreakpointMediaListener = undefined;
-    this.applicationLayoutContext = undefined;
-  }
-
-  private resolveIsMobile() {
-    const forcedBreakpoint = this.applicationLayoutContext?.forceBreakpoint;
-    if (forcedBreakpoint) {
-      return forcedBreakpoint === 'sm';
-    }
-    // Nested panes follow the shared layout bus so a pinned menu (frozen at lg)
-    // keeps them desktop instead of reading the raw viewport.
-    if (this.applicationLayoutContext) {
-      return applicationLayoutService.breakpoint === 'sm';
-    }
-    return matchBreakpoint('sm');
-  }
-
-  private subscribeViewportChanges() {
-    this.layoutServiceDisposable?.dispose();
-    this.removeBreakpointMediaListener?.();
-
-    this.layoutServiceDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = this.resolveIsMobile();
-      this.configurePanes();
-    });
-    this.removeBreakpointMediaListener = addBreakpointMediaListener(
-      'sm',
-      () => {
-        this.isMobile = this.resolveIsMobile();
-        this.configurePanes();
-      }
-    );
-  }
-
-  private subscribeLayoutContext() {
-    this.layoutContextSubscription?.unsubscribe();
-    this.applicationLayoutContext = undefined;
-    this.layoutContextSubscription = useContextConsumer(
-      this.hostElement,
-      ApplicationLayoutContext,
-      (ctx) => {
-        this.applicationLayoutContext = ctx;
-        this.isMobile = this.resolveIsMobile();
-        this.configurePanes();
-      },
-      true
-    );
-    this.isMobile = this.resolveIsMobile();
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = undefined;
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {

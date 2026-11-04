@@ -652,6 +652,33 @@ regressionTest.describe('pane under pinned menu', () => {
       await expectPaneIsMobile(page, false);
     }
   );
+
+  regressionTest(
+    'new pane-layout stays desktop when mounted while narrow, then maximized',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(`
+        <ix-application>
+          <ix-menu pinned>
+            <ix-menu-item>Item</ix-menu-item>
+          </ix-menu>
+        </ix-application>
+      `);
+
+      await page.setViewportSize(viewPorts.sm);
+      await page.evaluate((markup) => {
+        document
+          .querySelector('ix-application')
+          ?.insertAdjacentHTML('beforeend', markup);
+      }, paneLayoutMarkup);
+
+      await expect(page.locator('ix-pane').first()).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
 });
 
 regressionTest(
