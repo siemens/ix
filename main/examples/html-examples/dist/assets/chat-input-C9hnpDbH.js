@@ -1,0 +1,14 @@
+import "./global-n2K_x-mG.js";
+import { a as addIcons } from "./ix-icon.entry-CGiLGChb.js";
+import { J as iconPlus, K as iconPdfDocument, L as iconMicrophone, M as iconImage } from "./index-MpHERktc.js";
+import "./init-CS3svfrS.js";
+import "./index-CgUi6DzV-DeDFYQ_b.js";
+import "./preload-helper-UZRgTS1n.js";
+import "./index-DCCkv1ZQ-DZnlOMEt.js";
+addIcons({
+  iconImage,
+  iconMicrophone,
+  iconPdfDocument,
+  iconPlus
+});
+await window.ixInitPromise;
