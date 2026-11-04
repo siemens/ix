@@ -1,0 +1,11 @@
+import "./global-mupPxDDu.js";
+/* empty css                          */
+import { a as addIcons } from "./ix-icon.entry-CGiLGChb.js";
+import { c as iconInfo } from "./index-MpHERktc.js";
+import "./init-WM6fiDp_.js";
+import "./index-CgUi6DzV-CuKOf_Vj.js";
+import "./preload-helper-UZRgTS1n.js";
+import "./index-DCCkv1ZQ-DZnlOMEt.js";
+addIcons({
+  iconInfo
+});
