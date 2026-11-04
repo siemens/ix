@@ -107,7 +107,6 @@ function onDateChange(event: CustomEvent<DateChangeEvent>) {
             :locale="locale"
             :format="format"
             @dateChange="onDateChange"
-            @dateRangeChange="onDateChange"
           />
           <div
             style="

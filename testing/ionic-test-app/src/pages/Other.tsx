@@ -27,7 +27,12 @@ const Other: React.FC = () => {
         headerSubtitle="Explain what this page is about"
       ></IxContentHeader>
       <IxBlind label="Example" sublabel="Sublabel">
-        <IxIconButton variant="tertiary" id="context-menu" slot="header-actions" icon={iconContextMenu}></IxIconButton>
+        <IxIconButton
+          variant="tertiary"
+          id="context-menu"
+          slot="header-actions"
+          icon={iconContextMenu}
+        ></IxIconButton>
         <IxTypography format="body">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
@@ -47,15 +52,15 @@ const Other: React.FC = () => {
 
       <IxKpi label="Motor speed" value="Nominal"></IxKpi>
       <IxKpi label="Motor speed" value="122.6" unit="rpm"></IxKpi>
-      <IxKpi label="Motor speed" value="122.6" state="alarm"></IxKpi>
-      <IxKpi label="Motor speed" value="122.6" state="warning"></IxKpi>
+      <IxKpi label="Motor speed" value="122.6" state="danger"></IxKpi>
+      <IxKpi label="Motor speed" value="122.6" state="caution"></IxKpi>
 
       <IxKpi label="Motor speed" value="Nominal" orientation="vertical"></IxKpi>
       <IxKpi
         label="Motor speed"
         value="{122.6}"
         unit="rpm"
-        state="alarm"
+        state="danger"
         orientation="vertical"
       ></IxKpi>
     </IxContent>

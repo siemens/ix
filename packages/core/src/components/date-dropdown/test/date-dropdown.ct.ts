@@ -6,10 +6,27 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { expect, Locator, Page } from '@playwright/test';
+import {
+  analyzeWithOpenPicker,
+  calendarDayCell,
+  createDropdownPickerAccessor,
+  dateChangeDetail,
+  formatDateRange,
+  formatDateTime,
+  Mount,
+  MountAttributes,
+  mountHydrated,
+  PENDING_SELECTION_DISMISSALS,
+  recordEvents,
+  regressionTest,
+  tabUntilFocused,
+} from '@utils/test';
 import { DateTime } from 'luxon';
-import { DateDropdownOption } from '../date-dropdown.types';
+import type {
+  DateDropdownOption,
+  DateRangeChangeEvent,
+} from '../date-dropdown.types';
 
 const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
 
@@ -251,7 +268,10 @@ regressionTest('select different year', async ({ mount, page }) => {
 regressionTest(
   're-selecting the same range moves the month dropdown back to the range year',
   async ({ mount, page }) => {
-    await mount(`<ix-date-dropdown locale="en"></ix-date-dropdown>`);
+    // Without require confirmation picking a range closes the dropdown
+    await mount(
+      `<ix-date-dropdown locale="en" require-confirmation></ix-date-dropdown>`
+    );
     const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
     await expect(dateDropdown).toHaveAttribute('hydrated');
 
@@ -420,5 +440,849 @@ regressionTest(
     await page.keyboard.press('Escape');
     await expect(dropdown).not.toBeVisible();
     await expect(trigger).not.toHaveClass(/\bactive\b/);
+  }
+);
+
+// Dates used by the confirmation and dateSelect tests. Picked and preset
+// dates stay in the month of `initialFrom`, which the picker shows on open.
+const initialFrom = DateTime.fromISO('2024-05-10');
+const initialTo = initialFrom.plus({ days: 2 });
+const pickedFrom = initialFrom.plus({ days: 10 });
+const pickedTo = pickedFrom.plus({ days: 2 });
+const presetFrom = initialFrom.minus({ days: 5 });
+const presetTo = presetFrom.plus({ days: 2 });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-date-dropdown ix-date-picker'), date);
+
+const rangeEvent = (id: string, from: DateTime, to: DateTime) => ({
+  id,
+  ...dateChangeDetail(from, to),
+});
+
+const expectSelectedDays = async (page: Page, dates: DateTime[]) => {
+  for (const date of dates) {
+    await expect(dayCell(page, date)).toHaveAttribute('aria-selected', 'true');
+  }
+};
+
+const mountDateDropdown = (
+  mount: Mount,
+  page: Page,
+  attributes: MountAttributes = {}
+) =>
+  mountHydrated(mount, page, DATE_DROPDOWN_SELECTOR, {
+    from: formatDateTime(initialFrom),
+    to: formatDateTime(initialTo),
+    ...attributes,
+  });
+
+const dateDropdownAccessor = (page: Page) =>
+  createDropdownPickerAccessor(page, {
+    host: DATE_DROPDOWN_SELECTOR,
+    trigger: (host) => host.getByTestId('date-dropdown-trigger'),
+    dropdown: (host) => host.getByTestId('date-dropdown'),
+  });
+
+regressionTest.describe('require confirmation', () => {
+  const pickRange = async (page: Page, from: DateTime, to: DateTime) => {
+    await dayCell(page, from).click();
+    await dayCell(page, to).click();
+  };
+
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDateDropdown(mount, page, { 'require-confirmation': true });
+  });
+
+  regressionTest(
+    'picking emits dateRangeChange but does not update the label',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await pickRange(page, pickedFrom, pickedTo);
+
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(formatDateRange(initialFrom, initialTo));
+      expect(await events()).toEqual([
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining({
+            id: 'custom',
+            from: formatDateTime(pickedFrom),
+            to: undefined,
+          }),
+        },
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining(
+            rangeEvent('custom', pickedFrom, pickedTo)
+          ),
+        },
+      ]);
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toMatchObject({
+        from: formatDateTime(initialFrom),
+        to: formatDateTime(initialTo),
+      });
+    }
+  );
+
+  regressionTest(
+    'confirm is disabled until a different complete range is picked',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const confirm = dateDropdown.getByRole('button', { name: 'Confirm' });
+
+      await dateDropdownAccessor(page).open();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedFrom).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+
+      // Re-selecting the committed range leaves nothing to confirm
+      await pickRange(page, initialFrom, initialTo);
+      await expect(confirm).toBeDisabled();
+    }
+  );
+
+  regressionTest('confirm applies the selection', async ({ page }) => {
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    const events = await recordEvents(dateDropdown, [
+      'dateRangeChange',
+      'dateSelect',
+    ]);
+
+    await dateDropdownAccessor(page).open();
+    await pickRange(page, pickedFrom, pickedTo);
+    await dateDropdown.getByTestId('confirm').click();
+
+    await dateDropdownAccessor(page).expectClosed();
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(pickedFrom, pickedTo));
+
+    // The picks were already reported with dateRangeChange
+    const expected = rangeEvent('custom', pickedFrom, pickedTo);
+    expect((await events()).slice(2)).toEqual([
+      { type: 'dateSelect', detail: expect.objectContaining(expected) },
+    ]);
+    expect(
+      await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+        el.getDateRange()
+      )
+    ).toMatchObject(expected);
+  });
+
+  for (const dismissal of PENDING_SELECTION_DISMISSALS) {
+    regressionTest(
+      `${dismissal} discards the pending selection and reports the restored range`,
+      async ({ page }) => {
+        const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+        const events = await recordEvents(dateDropdown, [
+          'dateRangeChange',
+          'dateSelect',
+        ]);
+
+        await dateDropdownAccessor(page).open();
+        await pickRange(page, pickedFrom, pickedTo);
+        await dateDropdownAccessor(page).dismiss(dismissal);
+
+        await dateDropdownAccessor(page).expectClosed();
+        await expect(
+          dateDropdown.getByTestId('date-dropdown-trigger')
+        ).toContainText(formatDateRange(initialFrom, initialTo));
+        await expect
+          .poll(async () => (await events()).slice(2))
+          .toEqual([
+            {
+              type: 'dateRangeChange',
+              detail: expect.objectContaining({
+                from: formatDateTime(initialFrom),
+                to: formatDateTime(initialTo),
+              }),
+            },
+          ]);
+
+        await dateDropdownAccessor(page).open();
+        await expectSelectedDays(page, [initialFrom, initialTo]);
+        await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+      }
+    );
+  }
+
+  regressionTest('confirm is reachable by keyboard', async ({ page }) => {
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+    await dateDropdownAccessor(page).open();
+    await pickRange(page, pickedFrom, pickedTo);
+    await tabUntilFocused(page, 'Confirm');
+    await page.keyboard.press('Enter');
+
+    await dateDropdownAccessor(page).expectClosed();
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(pickedFrom, pickedTo));
+  });
+
+  regressionTest(
+    'predefined range is applied only on confirm',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const options: DateDropdownOption[] = [
+        {
+          id: 'a',
+          label: 'Range A',
+          from: formatDateTime(presetFrom.minus({ days: 4 })),
+          to: formatDateTime(presetFrom.minus({ days: 2 })),
+        },
+        {
+          id: 'b',
+          label: 'Range B',
+          from: formatDateTime(presetFrom),
+          to: formatDateTime(presetTo),
+        },
+      ];
+      await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+          el.dateRangeOptions = dateRangeOptions;
+        },
+        options
+      );
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdown.getByRole('button', { name: /Range B/ }).click();
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(formatDateRange(initialFrom, initialTo));
+      await expectSelectedDays(page, [presetFrom, presetTo]);
+      const expected = rangeEvent('b', presetFrom, presetTo);
+      expect(await events()).toEqual([
+        { type: 'dateRangeChange', detail: expect.objectContaining(expected) },
+      ]);
+
+      await dateDropdown.getByTestId('confirm').click();
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(formatDateRange(presetFrom, presetTo));
+
+      expect(await events()).toEqual([
+        { type: 'dateRangeChange', detail: expect.objectContaining(expected) },
+        { type: 'dateSelect', detail: expect.objectContaining(expected) },
+      ]);
+    }
+  );
+});
+
+regressionTest.describe('events without require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDateDropdown(mount, page);
+  });
+
+  regressionTest('renders no footer buttons', async ({ page }) => {
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await dateDropdownAccessor(page).open();
+    await expect(dateDropdown.locator('.confirmation-footer')).toHaveCount(0);
+  });
+
+  regressionTest(
+    'closes and emits once a complete range is picked',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+      await dateDropdownAccessor(page).expectOpen();
+      await dayCell(page, pickedTo).click();
+
+      await dateDropdownAccessor(page).expectClosed();
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(formatDateRange(pickedFrom, pickedTo));
+
+      const expected = expect.objectContaining({
+        id: 'custom',
+        from: formatDateTime(pickedFrom),
+        to: formatDateTime(pickedTo),
+      });
+      await expect.poll(events).toEqual([
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining({ to: undefined }),
+        },
+        { type: 'dateRangeChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'closes once a predefined range is picked',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+          el.dateRangeOptions = dateRangeOptions;
+        },
+        [
+          {
+            id: 'a',
+            label: 'Range A',
+            from: formatDateTime(initialFrom),
+            to: formatDateTime(initialTo),
+          },
+          {
+            id: 'b',
+            label: 'Range B',
+            from: formatDateTime(presetFrom),
+            to: formatDateTime(presetTo),
+          },
+        ]
+      );
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdown.getByRole('button', { name: /Range B/ }).click();
+
+      await dateDropdownAccessor(page).expectClosed();
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(formatDateRange(presetFrom, presetTo));
+    }
+  );
+
+  regressionTest(
+    'shows a trailing separator while only the start date is picked',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(`${formatDateTime(pickedFrom)} -`);
+    }
+  );
+
+  regressionTest(
+    'emits dateRangeChange on pick and reverts an incomplete range on outside click',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+
+      expect(await events()).toEqual([
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining({
+            id: 'custom',
+            from: formatDateTime(pickedFrom),
+          }),
+        },
+      ]);
+
+      await dateDropdownAccessor(page).dismiss('outside click');
+      await dateDropdownAccessor(page).expectClosed();
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(formatDateRange(initialFrom, initialTo));
+
+      // Nothing was applied, so only dateRangeChange reports the restored range
+      const reverted = expect.objectContaining({
+        from: formatDateTime(initialFrom),
+        to: formatDateTime(initialTo),
+      });
+      await expect
+        .poll(async () => (await events()).slice(1))
+        .toEqual([{ type: 'dateRangeChange', detail: reverted }]);
+
+      await dateDropdownAccessor(page).open();
+      await expectSelectedDays(page, [initialFrom, initialTo]);
+    }
+  );
+
+  regressionTest(
+    'emits nothing when closed without a change',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdownAccessor(page).dismiss('outside click');
+      await dateDropdownAccessor(page).expectClosed();
+
+      expect(await events()).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'emits only dateRangeChange when the same range is picked again',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, initialFrom).click();
+      await dayCell(page, initialTo).click();
+      await dateDropdownAccessor(page).expectClosed();
+
+      await expect.poll(events).toEqual([
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining({ to: undefined }),
+        },
+        {
+          type: 'dateRangeChange',
+          detail: expect.objectContaining({
+            from: formatDateTime(initialFrom),
+            to: formatDateTime(initialTo),
+          }),
+        },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'emits only dateRangeChange when the same date is picked again in single selection',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, {
+        'single-selection': true,
+        to: undefined,
+      });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, initialFrom).click();
+      await dateDropdownAccessor(page).expectClosed();
+
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateRangeChange',
+      ]);
+    }
+  );
+
+  regressionTest(
+    'does not emit dateSelect for programmatic changes',
+    async ({ page }) => {
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      const events = await recordEvents(dateDropdown, [
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement, from) => {
+          el.from = from;
+        },
+        formatDateTime(initialFrom.plus({ months: 1 }))
+      );
+
+      await expect
+        .poll(async () => (await events()).map((event) => event.type))
+        .toContain('dateRangeChange');
+      expect((await events()).map((event) => event.type)).not.toContain(
+        'dateSelect'
+      );
+    }
+  );
+});
+
+regressionTest.describe('binding the props to dateRangeChange', () => {
+  /** Binds `dateRangeId`, `from` and `to` to `dateRangeChange`. */
+  const bindToDateRangeChange = (dateDropdown: Locator) =>
+    dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+      el.addEventListener('dateRangeChange', (event) => {
+        const { id, from, to } = (event as CustomEvent<DateRangeChangeEvent>)
+          .detail;
+        el.dateRangeId = id;
+        el.from = from ?? '';
+        el.to = to ?? '';
+      });
+    });
+
+  const expectAppliedRange = async (
+    dateDropdown: Locator,
+    from: DateTime,
+    to: DateTime
+  ) => {
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(from, to));
+    expect(
+      await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+        el.getDateRange()
+      )
+    ).toMatchObject({ from: formatDateTime(from), to: formatDateTime(to) });
+  };
+
+  regressionTest(
+    'with requireConfirmation, cancel restores the applied range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, { 'require-confirmation': true });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await bindToDateRangeChange(dateDropdown);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+
+      await expect(dateDropdown).toHaveJSProperty(
+        'to',
+        formatDateTime(pickedTo)
+      );
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+      await expect(
+        dateDropdown.getByRole('button', { name: 'Confirm' })
+      ).toBeEnabled();
+
+      await dateDropdown.getByRole('button', { name: 'Cancel' }).click();
+
+      await expect(dateDropdown).toHaveJSProperty(
+        'from',
+        formatDateTime(initialFrom)
+      );
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+    }
+  );
+
+  regressionTest(
+    'with requireConfirmation, confirm applies the range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, { 'require-confirmation': true });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await bindToDateRangeChange(dateDropdown);
+      const events = await recordEvents(dateDropdown, ['dateSelect']);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      await dateDropdown.getByRole('button', { name: 'Confirm' }).click();
+
+      await expectAppliedRange(dateDropdown, pickedFrom, pickedTo);
+      expect(await events()).toEqual([
+        {
+          type: 'dateSelect',
+          detail: expect.objectContaining(
+            rangeEvent('custom', pickedFrom, pickedTo)
+          ),
+        },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'with requireConfirmation, cancel restores the range after a predefined range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page, { 'require-confirmation': true });
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+          el.dateRangeOptions = dateRangeOptions;
+        },
+        [
+          { id: 'a', label: 'Range A', from: '2024/01/01', to: '2024/01/02' },
+          {
+            id: 'b',
+            label: 'Range B',
+            from: formatDateTime(presetFrom),
+            to: formatDateTime(presetTo),
+          },
+        ] satisfies DateDropdownOption[]
+      );
+      await bindToDateRangeChange(dateDropdown);
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdown.getByRole('button', { name: /Range B/ }).click();
+      await expect(dateDropdown).toHaveJSProperty('dateRangeId', 'b');
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+
+      await dateDropdown.getByRole('button', { name: 'Cancel' }).click();
+
+      await expect(dateDropdown).toHaveJSProperty('dateRangeId', 'custom');
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+    }
+  );
+
+  regressionTest(
+    'without requireConfirmation, closing with only a start date restores the range',
+    async ({ mount, page }) => {
+      await mountDateDropdown(mount, page);
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+      await bindToDateRangeChange(dateDropdown);
+
+      await dateDropdownAccessor(page).open();
+      await dayCell(page, pickedFrom).click();
+
+      await expect(dateDropdown).toHaveJSProperty('to', '');
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText(`${formatDateTime(pickedFrom)} - `);
+
+      await dateDropdownAccessor(page).dismiss('outside click');
+
+      await expect(dateDropdown).toHaveJSProperty(
+        'to',
+        formatDateTime(initialTo)
+      );
+      await expectAppliedRange(dateDropdown, initialFrom, initialTo);
+    }
+  );
+});
+
+regressionTest.describe('dateRangeId without a predefined range', () => {
+  const mountWithPresetSelected = async (
+    mount: Mount,
+    page: Page,
+    attributes: MountAttributes
+  ) => {
+    await mountDateDropdown(mount, page, {
+      'date-range-id': 'preset',
+      ...attributes,
+    });
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    await dateDropdown.evaluate(
+      (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+        el.dateRangeOptions = dateRangeOptions;
+      },
+      [
+        {
+          id: 'preset',
+          label: 'Preset',
+          from: formatDateTime(presetFrom),
+          to: formatDateTime(presetTo),
+        },
+      ] satisfies DateDropdownOption[]
+    );
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(presetFrom, presetTo));
+
+    return dateDropdown;
+  };
+
+  const setDateRangeId = (dateDropdown: Locator, id: string) =>
+    dateDropdown.evaluate((el: HTMLIxDateDropdownElement, id) => {
+      el.dateRangeId = id;
+    }, id);
+
+  regressionTest(
+    'selects nothing when from and to are not set',
+    async ({ mount, page }) => {
+      const dateDropdown = await mountWithPresetSelected(mount, page, {
+        from: undefined,
+        to: undefined,
+      });
+
+      await setDateRangeId(dateDropdown, 'custom');
+
+      await expect(
+        dateDropdown.getByTestId('date-dropdown-trigger')
+      ).toContainText('No range set');
+      expect(
+        await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+          el.getDateRange()
+        )
+      ).toMatchObject({ id: 'custom', isoFrom: undefined, isoTo: undefined });
+    }
+  );
+
+  regressionTest('selects from and to', async ({ mount, page }) => {
+    const dateDropdown = await mountWithPresetSelected(mount, page, {});
+    const events = await recordEvents(dateDropdown, ['dateRangeChange']);
+
+    await setDateRangeId(dateDropdown, 'custom');
+
+    await expect(
+      dateDropdown.getByTestId('date-dropdown-trigger')
+    ).toContainText(formatDateRange(initialFrom, initialTo));
+    expect(await events()).toEqual([
+      {
+        type: 'dateRangeChange',
+        detail: expect.objectContaining(
+          rangeEvent('custom', initialFrom, initialTo)
+        ),
+      },
+    ]);
+  });
+});
+
+regressionTest.describe('predefined range shows its start month', () => {
+  // Spans two months, so the start month differs from the end month
+  const spanFrom = DateTime.fromISO('2024-02-27');
+  const spanTo = DateTime.fromISO('2024-03-02');
+
+  const displayedMonth = (page: Page) =>
+    page.locator(
+      'ix-date-dropdown ix-date-picker .month-selector ix-typography'
+    );
+
+  const browseForward = async (page: Page, months: number) => {
+    const next = page
+      .locator('ix-date-dropdown ix-date-picker')
+      .getByLabel('Change calendar view to next month');
+    for (let i = 0; i < months; i++) {
+      await next.click();
+    }
+  };
+
+  const mountWithSpanOption = async (
+    mount: Mount,
+    page: Page,
+    requireConfirmation: boolean
+  ) => {
+    await mountDateDropdown(mount, page, {
+      'require-confirmation': requireConfirmation,
+    });
+    await page.locator(DATE_DROPDOWN_SELECTOR).evaluate(
+      (el: HTMLIxDateDropdownElement, dateRangeOptions) => {
+        el.dateRangeOptions = dateRangeOptions;
+      },
+      [
+        {
+          id: 'span',
+          label: 'Span',
+          from: formatDateTime(spanFrom),
+          to: formatDateTime(spanTo),
+        },
+        {
+          id: 'initial',
+          label: 'Initial',
+          from: formatDateTime(initialFrom),
+          to: formatDateTime(initialTo),
+        },
+      ]
+    );
+  };
+
+  regressionTest(
+    'with require confirmation, every click shows the start month',
+    async ({ mount, page }) => {
+      await mountWithSpanOption(mount, page, true);
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdown.getByRole('button', { name: /^Span:/ }).click();
+      await expect(displayedMonth(page)).toHaveText('February');
+
+      // Clicking the shown range again changes no selection but still moves back
+      await browseForward(page, 3);
+      await expect(displayedMonth(page)).toHaveText('May');
+      await dateDropdown.getByRole('button', { name: /^Span:/ }).click();
+      await expect(displayedMonth(page)).toHaveText('February');
+    }
+  );
+
+  regressionTest(
+    'with require confirmation, re-selecting the committed range shows its start month',
+    async ({ mount, page }) => {
+      await mountWithSpanOption(mount, page, true);
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+      await dateDropdownAccessor(page).open();
+      await browseForward(page, 3);
+      await expect(displayedMonth(page)).toHaveText('August');
+      await dateDropdown.getByRole('button', { name: /^Initial:/ }).click();
+      await expect(displayedMonth(page)).toHaveText('May');
+    }
+  );
+
+  regressionTest(
+    'a programmatic range change shows the start month',
+    async ({ mount, page }) => {
+      await mountWithSpanOption(mount, page, false);
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+      await dateDropdown.evaluate(
+        (el: HTMLIxDateDropdownElement, [from, to]) => {
+          el.from = from;
+          el.to = to;
+        },
+        [formatDateTime(spanFrom), formatDateTime(spanTo)]
+      );
+
+      await dateDropdownAccessor(page).open();
+      await expect(displayedMonth(page)).toHaveText('February');
+    }
+  );
+
+  regressionTest(
+    'without require confirmation, reopening shows the start month',
+    async ({ mount, page }) => {
+      await mountWithSpanOption(mount, page, false);
+      const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+      await dateDropdownAccessor(page).open();
+      await dateDropdown.getByRole('button', { name: /^Span:/ }).click();
+      await dateDropdownAccessor(page).expectClosed();
+
+      await dateDropdownAccessor(page).open();
+      await expect(displayedMonth(page)).toHaveText('February');
+    }
+  );
+});
+
+regressionTest(
+  'shows no trailing separator for a set range without end date',
+  async ({ mount, page }) => {
+    const dateDropdown = await mountDateDropdown(mount, page, {
+      to: undefined,
+    });
+
+    const trigger = dateDropdown.getByTestId('date-dropdown-trigger');
+
+    await expect(trigger).toContainText(formatDateTime(initialFrom));
+    await expect(trigger).not.toContainText(' -');
+  }
+);
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountDateDropdown(mount, page, { 'require-confirmation': true });
+    await dateDropdownAccessor(page).open();
+
+    const accessibilityScanResults = await analyzeWithOpenPicker(
+      makeAxeBuilder,
+      DATE_DROPDOWN_SELECTOR,
+      '[data-testid="date-dropdown-trigger"]'
+    );
+    expect(accessibilityScanResults.violations).toEqual([]);
   }
 );

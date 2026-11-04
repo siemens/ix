@@ -90,27 +90,27 @@ regressionTest(
 );
 
 regressionTest(
-  'applies default image size and allows consumer overrides',
+  'lets the slotted image determine its size',
   async ({ mount, page }) => {
     await mount(`
       <ix-info-page title-text="Invitation received">
-        <img slot="image" alt="Invitation" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" />
+        <img slot="image" alt="Invitation" width="130" height="98" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" />
       </ix-info-page>
     `);
 
-    const infoPage = page.locator('ix-info-page');
-    const imageContainer = infoPage.locator('.content__image');
-    await expect(imageContainer).toHaveCSS('width', '260px');
-    await expect(imageContainer).toHaveCSS('height', '196px');
-
-    await infoPage.evaluate((element) => {
-      element.style.setProperty('--ix-info-page-image-width', '130px');
-      element.style.setProperty('--ix-info-page-image-height', '98px');
-    });
+    const imageContainer = page.locator('ix-info-page .content__image');
     await expect(imageContainer).toHaveCSS('width', '130px');
     await expect(imageContainer).toHaveCSS('height', '98px');
   }
 );
+
+regressionTest('renders the default icon at 64px', async ({ mount, page }) => {
+  await mount(`<ix-info-page title-text="Invitation received"></ix-info-page>`);
+
+  const icon = page.locator('ix-info-page .content__image ix-icon');
+  await expect(icon).toHaveCSS('width', '64px');
+  await expect(icon).toHaveCSS('height', '64px');
+});
 
 regressionTest(
   'applies consistent vertical spacing',

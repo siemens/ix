@@ -53,6 +53,21 @@ export interface IxDatePickerComponent {
   /**
    * Annotate with @Prop() decorator
    */
+  requireConfirmation: boolean;
+
+  /**
+   * Annotate with @Prop({ attribute: 'i18n-confirm' }) decorator
+   */
+  i18nConfirm: string;
+
+  /**
+   * Annotate with @Prop({ attribute: 'i18n-cancel' }) decorator
+   */
+  i18nCancel: string;
+
+  /**
+   * Annotate with @Prop() decorator
+   */
   weekStartIndex: number;
 
   /**

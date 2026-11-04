@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
 
 @use './datetime-picker.vars' as *;
 :host {
@@ -16,6 +17,7 @@
   width: min-content;
 
   @include component.ix-component;
+  @include confirmation-footer.confirmation-footer;
 
   ix-time-picker {
     width: 100%;
@@ -46,16 +48,6 @@
   @media (min-width: 576px) {
     min-width: max-content;
 
-    .btn-select-date-container {
-      display: inline-flex;
-      flex-grow: 1;
-
-      ix-button {
-        margin-left: auto;
-        margin-top: auto;
-      }
-    }
-
     .min-width {
       width: min-content;
     }
@@ -74,16 +66,5 @@
   .individual {
     box-shadow: none;
     border: none;
-  }
-
-  .btn-select-date-container {
-    display: flex;
-    justify-content: flex-end;
-
-    @media (max-width: 576px) {
-      & .btn-select-date {
-        width: 100%;
-      }
-    }
   }
 }

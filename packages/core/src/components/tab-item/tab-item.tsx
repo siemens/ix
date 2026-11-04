@@ -218,7 +218,7 @@ export class TabItem
         )}
 
         {this.counter && variant !== 'rounded' && (
-          <ix-pill variant="primary" outline class={'tab-counter'}>
+          <ix-pill variant="accent" outline class={'tab-counter'}>
             {this.counter}
           </ix-pill>
         )}

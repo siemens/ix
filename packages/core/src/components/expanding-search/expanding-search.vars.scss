@@ -23,9 +23,7 @@
   );
   --ix-expanding-search-button--transition-duration: var(--theme-default-time);
   --ix-expanding-search--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-expanding-search--container-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-border-width-default}
-  );
+  --ix-expanding-search--container-width: #{sys.$si-sys-sizing-size-150};
   --ix-expanding-search--height: var(--ix-input--min-height);
   --ix-expanding-search-collapsed--width: #{sys.$si-sys-sizing-size-80};
   --ix-expanding-search-button-search--max-width: #{sys.$si-sys-sizing-size-80};

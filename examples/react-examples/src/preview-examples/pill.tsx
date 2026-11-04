@@ -32,7 +32,7 @@ export default () => {
         Label
       </IxPill>
       <IxPill
-        variant="primary"
+        variant="accent"
         outline
         alignLeft
         icon={iconStar}
@@ -41,18 +41,18 @@ export default () => {
         Label
       </IxPill>
 
-      <IxPill variant="alarm">Label</IxPill>
-      <IxPill variant="alarm" className="styled">
+      <IxPill variant="danger">Label</IxPill>
+      <IxPill variant="danger" className="styled">
         Label
       </IxPill>
 
-      <IxPill variant="alarm" icon={iconStar}>
+      <IxPill variant="danger" icon={iconStar}>
         Label
       </IxPill>
-      <IxPill variant="alarm" icon={iconStar} className="styled">
+      <IxPill variant="danger" icon={iconStar} className="styled">
         Label
       </IxPill>
-      <IxPill variant="alarm" alignLeft icon={iconStar} className="styled">
+      <IxPill variant="danger" alignLeft icon={iconStar} className="styled">
         Label
       </IxPill>
 
@@ -60,7 +60,7 @@ export default () => {
         Label
       </IxPill>
       <IxPill
-        variant="primary"
+        variant="accent"
         outline
         icon={iconStar}
         className="styled-ellipsis-4"
@@ -68,7 +68,7 @@ export default () => {
         Label
       </IxPill>
       <IxPill className="styled-ellipsis-3">Label</IxPill>
-      <IxPill variant="primary" outline className="styled-ellipsis-3">
+      <IxPill variant="accent" outline className="styled-ellipsis-3">
         Label
       </IxPill>
     </>

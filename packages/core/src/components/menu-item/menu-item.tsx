@@ -13,6 +13,7 @@ import {
   Element,
   h,
   Host,
+  Listen,
   Method,
   Mixin,
   Prop,
@@ -106,6 +107,10 @@ export class MenuItem
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
+   * against an allowlist (for example `https:` and relative URLs).
    *
    * @since 4.0.0
    */
@@ -222,6 +227,14 @@ export class MenuItem
   onIconChange() {
     if (!this.isHostedInsideCategory && !this.hostElement.icon) {
       this.icon = iconDocument;
+    }
+  }
+
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopPropagation();
+      event.preventDefault();
     }
   }
 
@@ -350,12 +363,6 @@ export class MenuItem
             }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
-            onClick={(e: Event) => {
-              if (this.disabled) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            }}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
             aria-current={this.active ? 'page' : undefined}

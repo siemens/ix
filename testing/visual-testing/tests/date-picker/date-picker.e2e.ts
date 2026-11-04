@@ -50,4 +50,17 @@ regressionTest.describe('date picker', () => {
     await page.goto('date-picker/year-month-selection');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest(
+    'require confirmation - pending selection',
+    async ({ page }) => {
+      await page.goto('date-picker/require-confirmation');
+      const datePicker = page.locator('ix-date-picker');
+      await datePicker.getByRole('gridcell', { name: /^20 / }).click();
+      await expect(datePicker.getByTestId('confirm')).toBeEnabled();
+      await page.mouse.move(5, 5, { steps: 10 });
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    }
+  );
 });

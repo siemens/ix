@@ -13,7 +13,7 @@ import {
   iconDocument,
   iconOpenExternal,
 } from '@siemens/ix-icons/icons';
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Listen, Prop } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 
 const linkIcons = {
@@ -44,6 +44,10 @@ export class LinkButton {
 
   /**
    * Url for the link button
+   *
+   * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
+   * against an allowlist (for example `https:` and relative URLs).
    */
   @Prop() url?: string;
 
@@ -65,6 +69,14 @@ export class LinkButton {
    * @since 6.0.0
    */
   @Prop() iconPosition: 'start' | 'end' = 'start';
+
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
 
   render() {
     const icon = this.icon !== 'none' && (

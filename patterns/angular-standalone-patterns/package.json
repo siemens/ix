@@ -21,7 +21,6 @@
     ]
   },
   "private": true,
-  "packageManager": "pnpm@10.17.0",
   "dependencies": {
     "@angular/common": "^21.2.25",
     "@angular/compiler": "^21.2.25",
@@ -41,6 +40,6 @@
     "@angular/compiler-cli": "^21.2.25",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.3",
-    "vitest": "^4.0.8"
+    "vitest": "^4.1.12"
   }
 }

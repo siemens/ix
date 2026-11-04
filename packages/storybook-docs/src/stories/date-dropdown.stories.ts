@@ -32,3 +32,11 @@ type Story = StoryObj<Element>;
 export const Default: Story = {
   args: {},
 };
+
+export const RequireConfirmation: Story = {
+  args: {
+    requireConfirmation: true,
+    from: '2026/02/08',
+    to: '2026/02/14',
+  },
+};

@@ -9,10 +9,33 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
+type MessageBarType =
+  | 'error'
+  | 'danger'
+  | 'warning'
+  | 'caution'
+  | 'success'
+  | 'information'
+  | 'neutral'
+  | 'accent'
+  | 'critical';
+
 type Element = {
-  type: 'alarm' | 'danger' | 'warning' | 'success' | 'info' | 'critical' | 'neutral' | 'primary';
+  type: MessageBarType;
   persistent: boolean;
 };
+
+const messageBarTypes: MessageBarType[] = [
+  'error',
+  'danger',
+  'warning',
+  'caution',
+  'success',
+  'information',
+  'neutral',
+  'accent',
+  'critical',
+];
 
 const meta = {
   title: 'Example/MessageBar',
@@ -29,7 +52,7 @@ const meta = {
   argTypes: {
     type: {
       control: { type: 'select' },
-      options: ['alarm', 'danger', 'warning', 'success', 'info', 'critical', 'neutral', 'primary'],
+      options: messageBarTypes,
     },
     persistent: {
       control: { type: 'boolean' },
@@ -38,7 +61,10 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=6396-139860&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components?node-id=103814-17692&m=dev',
+    },
+    a11y: {
+      test: 'error',
     },
   },
 } satisfies Meta<Element>;
@@ -48,14 +74,14 @@ type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
-    type: 'info',
+    type: 'information',
     persistent: false,
   },
 };
 
-export const Warning: Story = {
+export const Error: Story = {
   args: {
-    type: 'warning',
+    type: 'error',
     persistent: false,
   },
 };
@@ -67,6 +93,20 @@ export const Danger: Story = {
   },
 };
 
+export const Warning: Story = {
+  args: {
+    type: 'warning',
+    persistent: false,
+  },
+};
+
+export const Caution: Story = {
+  args: {
+    type: 'caution',
+    persistent: false,
+  },
+};
+
 export const Success: Story = {
   args: {
     type: 'success',
@@ -74,9 +114,9 @@ export const Success: Story = {
   },
 };
 
-export const Critical: Story = {
+export const Information: Story = {
   args: {
-    type: 'critical',
+    type: 'information',
     persistent: false,
   },
 };
@@ -88,16 +128,16 @@ export const Neutral: Story = {
   },
 };
 
-export const Primary: Story = {
+export const Accent: Story = {
   args: {
-    type: 'success',
+    type: 'accent',
     persistent: false,
   },
 };
 
-export const Alarm: Story = {
+export const Critical: Story = {
   args: {
-    type: 'alarm',
+    type: 'critical',
     persistent: false,
   },
 };

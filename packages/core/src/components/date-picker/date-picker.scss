@@ -10,6 +10,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
 @use 'mixins/text-truncation';
 
 @use './../button/button-mixin' as button-mixin;
@@ -21,6 +22,7 @@
   max-width: var(--ix-date-picker--max-width);
 
   @include component.ix-component;
+  @include confirmation-footer.confirmation-footer;
 
   .header {
     display: flex;
@@ -76,7 +78,7 @@
       }
 
       .monthMargin {
-        margin-left: var(--ix-date-picker-month-margin--margin-left);
+        padding-left: var(--ix-date-picker-month-margin--padding-left);
       }
     }
   }

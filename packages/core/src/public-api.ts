@@ -11,6 +11,10 @@ export * from './components/category-filter/input-state';
 export * from './components/category-filter/logical-filter-operator';
 export * from './components/date-input/date-input.types';
 export * from './components/datetime-input/datetime-input.types';
+export type {
+  DateRange,
+  DateRangeWithIso,
+} from './components/utils/datetime/date-time.types';
 export { FlipTileVariant } from './components/flip-tile/flip-tile.types';
 export * from './components/time-input/time-input.types';
 export * from './components/toast/toast-utils';
@@ -19,6 +23,8 @@ export * from './components/tree/tree-model';
 export * from './components/tree/tree.types';
 export * from './components/breadcrumb/breadcrumb.types';
 export type { IxDropdownItemRole } from './components/dropdown-item/dropdown-item.types';
+export * from './components/list/list.types';
+export * from './components/list-item/list-item.types';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
 export type { StatusVariant } from './components/utils/status.types';

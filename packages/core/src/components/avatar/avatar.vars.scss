@@ -33,10 +33,10 @@
   --ix-avatar-user-info--height: #{sys.$si-sys-sizing-size-90};
   --ix-avatar-user-info--padding: #{sys.$si-sys-sizing-spacing-y-60};
   --ix-avatar-user-info--width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
   );
   --ix-avatar-user-info--min-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
   );
   --ix-avatar-user-info--max-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}

@@ -1057,6 +1057,45 @@ regressionTest.describe('A11y', () => {
   });
 
   regressionTest(
+    'Tab continues within the shadow root of the trigger',
+    async ({ mount, page }) => {
+      await mount(html`
+        <test-shadow-host></test-shadow-host>
+        <button>Outside</button>
+      `);
+      await page.evaluate(() => {
+        const host = document.querySelector('test-shadow-host')!;
+        const shadowRoot = host.attachShadow({ mode: 'open' });
+        shadowRoot.innerHTML = `
+          <button id="trigger">Open</button>
+          <ix-dropdown navigation-mode="roving-tabindex">
+            <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+          </ix-dropdown>
+          <button>Inside next</button>
+        `;
+        shadowRoot.querySelector<HTMLIxDropdownElement>(
+          'ix-dropdown'
+        )!.trigger = shadowRoot.querySelector<HTMLElement>('#trigger')!;
+      });
+
+      const dropdown = page.locator('ix-dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Open' }).focus();
+      await page.keyboard.press('ArrowDown');
+      await expect(
+        page.getByRole('menuitem', { name: 'Item 1' })
+      ).toBeFocused();
+
+      await page.keyboard.press('Tab');
+      await expect(dropdown).not.toHaveClass(/show/);
+      await expect(
+        page.getByRole('button', { name: 'Inside next' })
+      ).toBeFocused();
+    }
+  );
+
+  regressionTest(
     'moves focus to the first enabled item in a roving submenu',
     async ({ mount, page }) => {
       await mount(`

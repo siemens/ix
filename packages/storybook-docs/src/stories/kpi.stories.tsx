@@ -28,3 +28,66 @@ export const Default: Story = {
     value: '98.7',
   },
 };
+
+export const Warning: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'warning',
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'danger',
+  },
+};
+
+export const Caution: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'caution',
+  },
+};
+
+export const Success: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'success',
+  },
+};
+
+export const Information: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'information',
+  },
+};
+
+export const Accent: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'accent',
+  },
+};
+
+export const Critical: Story = {
+  args: {
+    label: 'Availability',
+    unit: '%',
+    value: '98.7',
+    state: 'critical',
+  },
+};

@@ -13,6 +13,9 @@
 @use 'mixins/shadow-dom/component';
 
 @use './kpi.vars' as *;
+
+$kpi-states: (warning, danger, caution, success, information, accent, critical);
+
 :host {
   display: flex;
   flex-grow: 1;
@@ -34,12 +37,10 @@
     border-block-end: var(--ix-kpi-container--border-width) solid
       var(--ix-kpi-container--border-block-end-color);
 
-    &.alarm {
-      border-block-end-color: var(--ix-kpi-display--border-color--alarm);
-    }
-
-    &.warning {
-      border-block-end-color: var(--ix-kpi-display--border-color--warning);
+    @each $state in $kpi-states {
+      &.#{$state} {
+        border-block-end-color: var(--ix-kpi-display--border-color--#{$state});
+      }
     }
 
     .kpi-label {

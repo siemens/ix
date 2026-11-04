@@ -7,19 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { DateTime } from 'luxon';
+import {
+  formatDateTime,
+  recordEvents,
+  regressionTest,
+  timePickerCell,
+  timePickerHourCell,
+} from '@utils/test';
 
 const TIME_PICKER_SELECTOR = 'ix-time-picker';
 
-function timePickerCell(
-  picker: Locator,
-  unit: 'hr' | 'min' | 'sec',
-  value: number
-) {
-  return picker.getByRole('option', {
-    name: `${unit}: ${value}`,
-    exact: true,
-  });
+function confirmTime(picker: Locator) {
+  return picker.getByRole('button', { name: 'Confirm' }).click();
 }
 
 function timePickerUnitList(picker: Locator, unit: 'hr' | 'min' | 'sec') {
@@ -251,6 +251,7 @@ regressionTest(
     await hour10.focus();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
+    await confirmTime(picker);
     const t = await picker.evaluate(async (el: HTMLElement) => {
       return await (el as HTMLIxTimePickerElement).getCurrentTime();
     });
@@ -271,6 +272,7 @@ regressionTest(
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
+    await confirmTime(picker);
     const t = await picker.evaluate(async (el: HTMLElement) => {
       return await (el as HTMLIxTimePickerElement).getCurrentTime();
     });
@@ -356,8 +358,9 @@ regressionTest(
       });
     });
 
-    await picker.locator('ix-button').click();
-    expect(await timeSelectPromise).toBe('02:30 午前');
+    await timePickerCell(picker, 'hr', 5).click();
+    await picker.getByRole('button', { name: 'Confirm' }).click();
+    expect(await timeSelectPromise).toBe('05:30 午前');
   }
 );
 
@@ -486,8 +489,9 @@ regressionTest(
       });
     });
 
-    await picker.locator('ix-button').click();
-    expect(await timeSelectPromise).toBe('02:30 PM');
+    await timePickerCell(picker, 'hr', 3).click();
+    await picker.getByRole('button', { name: 'Confirm' }).click();
+    expect(await timeSelectPromise).toBe('03:30 PM');
   }
 );
 
@@ -566,6 +570,7 @@ regressionTest(
 
     await expect(minuteCell).toHaveAttribute('aria-selected', 'true');
     await expect(minuteCell).toHaveClass(/\bselected\b/);
+    await confirmTime(picker);
     expect(await getTimeObjs(page)).toEqual(['15:40:39']);
   }
 );
@@ -622,6 +627,9 @@ regressionTest.describe('time picker tests', () => {
         .nth(1)
         .locator('[data-am-pm-id="PM"]')
         .click();
+
+      await confirmTime(page.locator('ix-time-picker').first());
+      await confirmTime(page.locator('ix-time-picker').nth(1));
 
       expect(await getTimeObjs(page)).toEqual(['12:12:30', '10:11:12 PM']);
     }
@@ -689,13 +697,16 @@ regressionTest.describe('time picker tests', () => {
         });
       });
 
-      // Click the "Confirm" button on the first time picker
-      await page.locator('ix-time-picker').first().locator('ix-button').click();
+      const firstPicker = page.locator('ix-time-picker').first();
+      await firstPicker
+        .locator('[data-element-container-id="hour-12"]')
+        .click();
+      await confirmTime(firstPicker);
 
       // Wait for the event to be fired and get the event detail
       const eventDetail = await timeSelectPromise;
 
-      expect(eventDetail).toBe('09:10:11');
+      expect(eventDetail).toBe('12:10:11');
     }
   );
 
@@ -730,6 +741,7 @@ regressionTest.describe('time picker tests', () => {
 
       await pm.focus();
       await page.keyboard.press('Enter');
+      await confirmTime(secondPicker);
 
       expect(await getTimeObjs(page)).toEqual(['09:10:11', '11:12:13 PM']);
     }
@@ -798,3 +810,433 @@ regressionTest.describe('time picker tests', () => {
     }
   );
 });
+
+regressionTest.describe('interval validation', () => {
+  for (const [attribute, invalidValue] of [
+    ['minute-interval', '0'],
+    ['second-interval', '0.001'],
+    ['minute-interval', 'NaN'],
+  ] as const) {
+    regressionTest(
+      `falls back to default for ${attribute}="${invalidValue}"`,
+      async ({ mount, page }) => {
+        const errors: string[] = [];
+        page.on('console', (message) => {
+          if (message.type() === 'error') {
+            errors.push(message.text());
+          }
+        });
+
+        await mount(
+          `<ix-time-picker format="HH:mm:ss" time="00:00:00" ${attribute}="${invalidValue}"></ix-time-picker>`
+        );
+        const timePicker = page.locator(TIME_PICKER_SELECTOR);
+        await expect(timePicker).toHaveAttribute('hydrated');
+
+        const unit = attribute === 'minute-interval' ? 'min' : 'sec';
+        await expect(
+          timePickerUnitList(timePicker, unit).getByRole('option')
+        ).toHaveCount(60);
+        expect(errors.some((error) => error.includes('is not valid for'))).toBe(
+          true
+        );
+      }
+    );
+  }
+});
+
+// Times used by the confirmation and disabled state tests.
+const TIME_FORMAT = 'HH:mm';
+const committedTime = DateTime.fromISO('2024-05-10T10:30');
+const pickedTime = committedTime.plus({ hours: 1 });
+const minTime = committedTime.set({ hour: 9, minute: 0 });
+const maxTime = committedTime.set({ hour: 17, minute: 0 });
+const beforeMinTime = minTime.minus({ hours: 1 });
+const withinRangeTime = minTime.plus({ hours: 1 });
+
+const formatTime = (time: DateTime) => formatDateTime(time, TIME_FORMAT);
+
+const mountTimePicker = async (
+  mount: (html: string) => Promise<unknown>,
+  page: Page,
+  time: DateTime,
+  attributes = ''
+) => {
+  await mount(
+    `<ix-time-picker format="${TIME_FORMAT}" time="${formatTime(
+      time
+    )}" ${attributes}></ix-time-picker>`
+  );
+  await expect(page.locator('ix-time-picker')).toHaveAttribute('hydrated');
+};
+
+const minMaxAttributes = `min-time="${formatTime(
+  minTime
+)}" max-time="${formatTime(maxTime)}"`;
+
+regressionTest.describe('confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountTimePicker(mount, page, committedTime);
+  });
+
+  regressionTest(
+    'picking emits timeChange and only confirm commits the time',
+    async ({ page }) => {
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, [
+        'timeChange',
+        'timeSelect',
+        'timeCancel',
+      ]);
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+
+      await expect(timePickerHourCell(timePicker, pickedTime)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: formatTime(pickedTime) },
+      ]);
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBe(formatTime(committedTime));
+
+      await timePicker.getByTestId('confirm').click();
+
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: formatTime(pickedTime) },
+        { type: 'timeSelect', detail: formatTime(pickedTime) },
+      ]);
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBe(formatTime(pickedTime));
+    }
+  );
+
+  regressionTest(
+    'cancel restores the confirmed time with timeChange and emits timeCancel',
+    async ({ page }) => {
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, [
+        'timeChange',
+        'timeSelect',
+        'timeCancel',
+      ]);
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await timePicker.getByTestId('cancel').click();
+
+      await expect(
+        timePickerHourCell(timePicker, committedTime)
+      ).toHaveAttribute('aria-selected', 'true');
+      await expect(timePickerHourCell(timePicker, pickedTime)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: formatTime(pickedTime) },
+        { type: 'timeChange', detail: formatTime(committedTime) },
+        { type: 'timeCancel', detail: null },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'binding time to timeChange keeps the pick pending',
+    async ({ page }) => {
+      const timePicker = page.locator('ix-time-picker');
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) => {
+        el.addEventListener('timeChange', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        });
+      });
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await expect(timePicker).toHaveJSProperty('time', formatTime(pickedTime));
+      await expect(timePicker.getByTestId('confirm')).toBeEnabled();
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBe(formatTime(committedTime));
+
+      await timePicker.getByTestId('cancel').click();
+
+      await expect(timePicker).toHaveJSProperty(
+        'time',
+        formatTime(committedTime)
+      );
+      await expect(
+        timePickerHourCell(timePicker, committedTime)
+      ).toHaveAttribute('aria-selected', 'true');
+    }
+  );
+});
+
+regressionTest.describe('without a confirmed time', () => {
+  // Picking an hour keeps the minutes of the default time, the current time.
+  // An hour other than the current one tells them apart.
+  const pickedHour = DateTime.now().plus({ hours: 2 });
+  const defaultTime = expect.stringMatching(
+    new RegExp(`^(?!${pickedHour.toFormat('HH')}:)\\d{2}:\\d{2}$`)
+  );
+  const pickedDefaultTime = expect.stringMatching(
+    new RegExp(`^${pickedHour.toFormat('HH')}:\\d{2}$`)
+  );
+
+  /**
+   * Mounts a time picker without `time`, recording its events from before it
+   * loads. With `bindTime`, `time` is bound to `timeChange`.
+   */
+  const mountWithoutTime = async (
+    mount: (html: string) => Promise<unknown>,
+    page: Page,
+    bindTime = false
+  ) => {
+    await mount(`<div id="host"></div>`);
+    const host = page.locator('#host');
+    const events = await recordEvents(host, [
+      'timeChange',
+      'timeSelect',
+      'timeCancel',
+    ]);
+
+    await host.evaluate(
+      (el, { format, bindTime }) => {
+        const timePicker = document.createElement('ix-time-picker');
+        timePicker.format = format;
+        if (bindTime) {
+          timePicker.addEventListener('timeChange', (event) => {
+            timePicker.time = (event as CustomEvent<string>).detail;
+          });
+        }
+        el.appendChild(timePicker);
+      },
+      { format: TIME_FORMAT, bindTime }
+    );
+
+    const timePicker = page.locator('ix-time-picker');
+    await expect(timePicker).toHaveAttribute('hydrated');
+
+    return { timePicker, events };
+  };
+
+  regressionTest(
+    'emits the default time with timeChange on load, pending confirmation',
+    async ({ mount, page }) => {
+      const { timePicker, events } = await mountWithoutTime(mount, page);
+
+      await expect
+        .poll(events)
+        .toEqual([{ type: 'timeChange', detail: defaultTime }]);
+      await expect(timePicker.getByTestId('confirm')).toBeEnabled();
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'cancel resets a time bound to timeChange to the default time',
+    async ({ mount, page }) => {
+      const { timePicker, events } = await mountWithoutTime(mount, page, true);
+      await expect.poll(events).toHaveLength(1);
+
+      await timePickerHourCell(timePicker, pickedHour).click();
+      await expect
+        .poll(() =>
+          timePicker.evaluate((el: HTMLIxTimePickerElement) => el.time)
+        )
+        .toEqual(pickedDefaultTime);
+
+      await timePicker.getByTestId('cancel').click();
+
+      await expect
+        .poll(() =>
+          timePicker.evaluate((el: HTMLIxTimePickerElement) => el.time)
+        )
+        .toEqual(defaultTime);
+      await expect(timePickerHourCell(timePicker, pickedHour)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        { type: 'timeChange', detail: defaultTime },
+        { type: 'timeChange', detail: pickedDefaultTime },
+        { type: 'timeChange', detail: defaultTime },
+        { type: 'timeCancel', detail: null },
+      ]);
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBeUndefined();
+    }
+  );
+
+  regressionTest(
+    'clearing time resets to the default time without timeChange',
+    async ({ mount, page }) => {
+      await mountTimePicker(mount, page, committedTime);
+      const timePicker = page.locator('ix-time-picker');
+      const events = await recordEvents(timePicker, ['timeChange']);
+
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) => {
+        el.time = '';
+      });
+
+      await expect(timePicker.getByTestId('confirm')).toBeEnabled();
+      expect(
+        await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+          el.getCurrentTime()
+        )
+      ).toBeUndefined();
+      expect(await events()).toEqual([]);
+    }
+  );
+});
+
+regressionTest('hides the footer with hide-footer', async ({ mount, page }) => {
+  await mountTimePicker(mount, page, committedTime, 'hide-footer');
+
+  await expect(page.locator('.confirmation-footer')).toHaveCount(0);
+});
+
+regressionTest(
+  'renders cancel and confirm buttons',
+  async ({ mount, page }) => {
+    await mountTimePicker(mount, page, committedTime);
+    const timePicker = page.locator('ix-time-picker');
+
+    await expect(
+      timePicker.getByRole('button', { name: 'Cancel' })
+    ).toBeVisible();
+    await expect(
+      timePicker.getByRole('button', { name: 'Confirm' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest.describe('primary button without changes', () => {
+  regressionTest(
+    'confirm is disabled until a different time is picked',
+    async ({ mount, page }) => {
+      await mountTimePicker(mount, page, committedTime);
+      const timePicker = page.locator('ix-time-picker');
+      const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+
+      await expect(confirm).toBeDisabled();
+
+      await timePickerHourCell(timePicker, pickedTime).click();
+      await expect(confirm).toBeEnabled();
+
+      // Re-selecting the committed time leaves nothing to confirm
+      await timePickerHourCell(timePicker, committedTime).click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+
+  regressionTest(
+    'without a time the shown default time can be confirmed',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-picker format="${TIME_FORMAT}"></ix-time-picker>`);
+      const timePicker = page.locator('ix-time-picker');
+      await expect(timePicker).toHaveAttribute('hydrated');
+      const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+      const events = await recordEvents(timePicker, ['timeSelect']);
+      // Feed the confirmed time back like a parent component would
+      await timePicker.evaluate((el: HTMLIxTimePickerElement) =>
+        el.addEventListener('timeSelect', (event) => {
+          el.time = (event as CustomEvent<string>).detail;
+        })
+      );
+
+      await expect(confirm).toBeEnabled();
+      await confirm.click();
+
+      expect(await events()).toEqual([
+        { type: 'timeSelect', detail: expect.stringMatching(/^\d{2}:\d{2}$/) },
+      ]);
+      // Once the parent feeds the confirmed time back, the time has to change
+      // before it can be confirmed again
+      await expect(confirm).toBeDisabled();
+    }
+  );
+});
+
+regressionTest.describe('confirm button disabled state', () => {
+  regressionTest('follows the min/max time', async ({ mount, page }) => {
+    await mountTimePicker(mount, page, beforeMinTime, minMaxAttributes);
+    const timePicker = page.locator('ix-time-picker');
+    const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+
+    await expect(confirm).toBeDisabled();
+
+    await timePickerHourCell(timePicker, withinRangeTime).click();
+
+    await expect(confirm).toBeEnabled();
+  });
+
+  regressionTest(
+    'cancel re-evaluates against the committed time',
+    async ({ mount, page }) => {
+      await mountTimePicker(mount, page, beforeMinTime, minMaxAttributes);
+      const timePicker = page.locator('ix-time-picker');
+      const confirm = timePicker.getByRole('button', { name: 'Confirm' });
+
+      await timePickerHourCell(timePicker, withinRangeTime).click();
+      await expect(confirm).toBeEnabled();
+
+      await timePicker.getByTestId('cancel').click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+});
+
+regressionTest.describe('footer layout', () => {
+  regressionTest(
+    'is centered with two columns or fewer',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-picker format="HH:mm"></ix-time-picker>`);
+      await expect(page.locator('.confirmation-footer')).toHaveClass(
+        /layout-center/
+      );
+    }
+  );
+
+  regressionTest(
+    'is aligned to the end with more columns',
+    async ({ mount, page }) => {
+      await mount(`<ix-time-picker format="HH:mm:ss"></ix-time-picker>`);
+      await expect(page.locator('.confirmation-footer')).toHaveClass(
+        /layout-end/
+      );
+    }
+  );
+
+  regressionTest('uses i18nConfirm as label', async ({ mount, page }) => {
+    await mount(
+      `<ix-time-picker format="HH:mm" i18n-confirm="Apply"></ix-time-picker>`
+    );
+    await expect(
+      page.locator('ix-time-picker').getByRole('button', { name: 'Apply' })
+    ).toBeVisible();
+  });
+});
+
+regressionTest(
+  'accessibility with cancel and confirm',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mountTimePicker(mount, page, committedTime);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

@@ -19,7 +19,7 @@
 :host {
   display: inline-block;
   position: relative;
-  --ix-select-chip-horizontal-margin: var(--ix-select-chip--horizontal-margin);
+  --ix-select-chip-margin-inline-end: var(--ix-select-chip--margin-inline-end);
   --ix-select-trigger-min-width: var(--ix-select-trigger--min-width);
   --ix-select-overflow-chip-fallback-width: var(
     --ix-select-overflow-chip--fallback-width
@@ -109,7 +109,8 @@
       overflow: hidden;
 
       > ix-filter-chip {
-        margin: var(--ix-select-chip-horizontal-margin);
+        margin-block: var(--ix-select-chip--margin-block);
+        margin-inline: 0 var(--ix-select-chip-margin-inline-end);
         flex-shrink: 0;
         max-width: var(--ix-select-chips--max-width);
 

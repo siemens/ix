@@ -66,11 +66,11 @@ function badgeCounterPreview(): VNode {
         <div class="demo-grid">
           {cell(
             'type="counter" label="1"',
-            counterBadge({ variant: 'primary', label: '1' })
+            counterBadge({ variant: 'accent', label: '1' })
           )}
           {cell(
             'type="counter" label="12"',
-            counterBadge({ variant: 'alarm', label: '12' })
+            counterBadge({ variant: 'danger', label: '12' })
           )}
           {cell(
             'type="counter" label="99"',
@@ -78,7 +78,7 @@ function badgeCounterPreview(): VNode {
           )}
           {cell(
             'type="counter" label="100" → 99+',
-            counterBadge({ variant: 'info', label: '100' })
+            counterBadge({ variant: 'information', label: '100' })
           )}
           {cell(
             'type="counter" label="142" → 99+',
@@ -94,11 +94,11 @@ function badgeCounterPreview(): VNode {
           )}
           {cell(
             'type="counter" label="-99"',
-            counterBadge({ variant: 'primary', label: '-99' })
+            counterBadge({ variant: 'accent', label: '-99' })
           )}
           {cell(
             'type="counter" label="-100" (literal)',
-            counterBadge({ variant: 'alarm', label: '-100' })
+            counterBadge({ variant: 'danger', label: '-100' })
           )}
         </div>
       </section>
@@ -109,7 +109,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             'IxButton anchor',
             counterBadge({
-              variant: 'alarm',
+              variant: 'danger',
               label: '3',
               children: <ix-button>Notifications</ix-button>,
             }),
@@ -118,7 +118,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             'IxIconButton anchor',
             counterBadge({
-              variant: 'info',
+              variant: 'information',
               label: '5',
               children: iconButtonAnchor("What's new"),
             }),
@@ -127,7 +127,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             'IxAvatar anchor',
             counterBadge({
-              variant: 'primary',
+              variant: 'accent',
               label: '12',
               children: <ix-avatar username="User"></ix-avatar>,
             }),
@@ -139,36 +139,36 @@ function badgeCounterPreview(): VNode {
       <section>
         <h2>Formatting</h2>
         <div class="demo-grid">
-          {cell('label="1"', counterBadge({ variant: 'alarm', label: '1' }))}
-          {cell('label="99"', counterBadge({ variant: 'alarm', label: '99' }))}
+          {cell('label="1"', counterBadge({ variant: 'danger', label: '1' }))}
+          {cell('label="99"', counterBadge({ variant: 'danger', label: '99' }))}
           {cell(
             'label="100" → 99+',
-            counterBadge({ variant: 'alarm', label: '100' })
+            counterBadge({ variant: 'danger', label: '100' })
           )}
           {cell(
             'label="3.7" → 3',
-            counterBadge({ variant: 'alarm', label: '3.7' })
+            counterBadge({ variant: 'danger', label: '3.7' })
           )}
           {cell(
             'label="99.9" → 99',
-            counterBadge({ variant: 'alarm', label: '99.9' })
+            counterBadge({ variant: 'danger', label: '99.9' })
           )}
           {cell(
             'label="007" → 7',
-            counterBadge({ variant: 'alarm', label: '007' })
+            counterBadge({ variant: 'danger', label: '007' })
           )}
-          {cell('label="-1"', counterBadge({ variant: 'alarm', label: '-1' }))}
+          {cell('label="-1"', counterBadge({ variant: 'danger', label: '-1' }))}
           {cell(
             'label="new" → no indicator',
-            counterBadge({ variant: 'alarm', label: 'new' })
+            counterBadge({ variant: 'danger', label: 'new' })
           )}
           {cell(
             'label="99+" → 99+',
-            counterBadge({ variant: 'alarm', label: '99+' })
+            counterBadge({ variant: 'danger', label: '99+' })
           )}
           {cell(
             'no label → no indicator',
-            <ix-badge class="align-host" type="counter" variant="alarm"></ix-badge>
+            <ix-badge class="align-host" type="counter" variant="danger"></ix-badge>
           )}
         </div>
       </section>
@@ -198,7 +198,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             'offsetX={6} offsetY={-4}',
             counterBadge({
-              variant: 'info',
+              variant: 'information',
               label: '2',
               offsetX: 6,
               offsetY: -4,
@@ -209,7 +209,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             'Custom offset',
             counterBadge({
-              variant: 'alarm',
+              variant: 'danger',
               label: '1',
               offsetX: -4,
               offsetY: 2,
@@ -255,7 +255,7 @@ function badgeCounterPreview(): VNode {
             {cell(
               'standalone · 2s',
               counterBadge({
-                variant: 'primary',
+                variant: 'accent',
                 label: '1',
                 enableAnimation: true,
               })
@@ -263,7 +263,7 @@ function badgeCounterPreview(): VNode {
             {cell(
               'attached · 2s',
               counterBadge({
-                variant: 'primary',
+                variant: 'accent',
                 label: '1',
                 enableAnimation: true,
                 children: iconButtonAnchor("What's new"),
@@ -286,23 +286,23 @@ function badgeCounterPreview(): VNode {
       <section>
         <h2>Width</h2>
         <div class="demo-grid">
-          {cell('label="1"', counterBadge({ variant: 'primary', label: '1' }))}
+          {cell('label="1"', counterBadge({ variant: 'accent', label: '1' }))}
           {cell(
             'label="12"',
-            counterBadge({ variant: 'primary', label: '12' })
+            counterBadge({ variant: 'accent', label: '12' })
           )}
           {cell(
             'label="99"',
-            counterBadge({ variant: 'primary', label: '99' })
+            counterBadge({ variant: 'accent', label: '99' })
           )}
           {cell(
             'label="142" → 99+',
-            counterBadge({ variant: 'primary', label: '142' })
+            counterBadge({ variant: 'accent', label: '142' })
           )}
           {cell(
             '--ix-badge-max-width: 2rem',
             counterBadge({
-              variant: 'primary',
+              variant: 'accent',
               label: '142',
               hostStyle: { '--ix-badge-max-width': '2rem' },
             })
@@ -316,7 +316,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             '32px IxIconButton',
             counterBadge({
-              variant: 'alarm',
+              variant: 'danger',
               label: '1',
               children: (
                 <ix-icon-button
@@ -330,7 +330,7 @@ function badgeCounterPreview(): VNode {
           {cell(
             '24px IxIcon size="24"',
             counterBadge({
-              variant: 'alarm',
+              variant: 'danger',
               label: '12',
               children: (
                 <ix-icon
@@ -355,7 +355,7 @@ function badgeCounterPreview(): VNode {
               type="counter"
               label="3"
               role="alert"
-              variant="alarm"
+              variant="danger"
             ></ix-badge>
           )}
         </div>

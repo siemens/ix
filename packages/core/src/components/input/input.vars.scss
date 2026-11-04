@@ -69,17 +69,12 @@
   --ix-input--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-input--min-height: #{sys.$si-sys-sizing-size-80};
   --ix-input--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-input-spin-button--margin-right: calc(
-    #{sys.$si-sys-sizing-spacing-x-10} * -1
-  );
   --ix-input-spin-button--margin-left: #{sys.$si-sys-sizing-spacing-x-10};
   --ix-input-textarea--padding: calc(
       #{sys.$si-sys-sizing-spacing-y-30} - var(--ix-input--border-width)
     )
     calc(#{sys.$si-sys-sizing-spacing-x-40} - var(--ix-input--border-width));
-  --ix-input-textarea--height: calc(
-    #{sys.$si-sys-sizing-size-100} + 2 * (#{sys.$si-sys-sizing-spacing-y-20} - #{sys.$si-sys-sizing-spacing-y-10})
-  );
+  --ix-input-textarea--height: #{sys.$si-sys-sizing-size-110};
   --ix-input-start-container--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-input-icon-compact--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-input-end-container--inset: #{sys.$si-sys-sizing-spacing-x-20};

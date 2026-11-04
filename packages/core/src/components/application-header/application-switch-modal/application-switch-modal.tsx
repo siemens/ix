@@ -51,6 +51,10 @@ function ApplicationItem(props: {
       }}
       onClick={() => {
         dismissModal(props.host);
+        if (isExternal(props.target)) {
+          window.open(props.url, props.target, 'noopener,noreferrer');
+          return;
+        }
         window.open(props.url, props.target);
       }}
     >
@@ -66,7 +70,7 @@ function ApplicationItem(props: {
             ></ix-icon>
           )}
         </ix-typography>
-        <ix-typography format="body-sm" textColor="soft">
+        <ix-typography format="body-sm" textColor="secondary">
           {props.description}
         </ix-typography>
       </div>

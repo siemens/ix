@@ -66,7 +66,9 @@
     height: var(--ix-toggle-slider--height);
     width: var(--ix-toggle-slider--width);
     left: var(--ix-toggle-slider--left);
-    bottom: var(--ix-toggle-slider--bottom);
+    top: 0;
+    bottom: 0;
+    margin-block: auto;
     background-color: var(--ix-toggle-thumb-off--background);
     transition: var(--ix-toggle-thumb--transition-duration);
     border-radius: 50%;

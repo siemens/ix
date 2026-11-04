@@ -36,7 +36,7 @@ type Story = StoryObj<Element>;
 export const BasicUsage: Story = {
   args: {
     label: '12',
-    variant: 'info',
+    variant: 'information',
   },
 };
 
@@ -48,7 +48,7 @@ export const DotWithAriaLabel: Story = {
   render: stencil(() => (
     <ix-badge
       type="dot"
-      variant="alarm"
+      variant="danger"
       role="img"
       aria-label="New items"
     ></ix-badge>
@@ -69,7 +69,7 @@ export const CustomAriaLabel: Story = {
  */
 export const AttachedWithCount: Story = {
   render: stencil(() => (
-    <ix-badge label="3" variant="alarm">
+    <ix-badge label="3" variant="danger">
       <ix-button>Review changes</ix-button>
     </ix-badge>
   )),
@@ -80,7 +80,7 @@ export const AttachedWithCount: Story = {
  */
 export const AttachedDot: Story = {
   render: stencil(() => (
-    <ix-badge type="dot" variant="primary">
+    <ix-badge type="dot" variant="accent">
       <ix-icon-button icon="info" aria-label="Notifications"></ix-icon-button>
     </ix-badge>
   )),
@@ -108,7 +108,7 @@ export const MergedAriaDescribedby: Story = {
 export const OverflowLabel: Story = {
   args: {
     label: '142',
-    variant: 'primary',
+    variant: 'accent',
   },
 };
 
@@ -119,7 +119,7 @@ export const DecorativeBadge: Story = {
   render: stencil(() => (
     <div>
       <span>Notifications: 3 unread</span>
-      <ix-badge label="3" aria-hidden={true} variant="alarm"></ix-badge>
+      <ix-badge label="3" aria-hidden={true} variant="danger"></ix-badge>
     </div>
   )),
 };

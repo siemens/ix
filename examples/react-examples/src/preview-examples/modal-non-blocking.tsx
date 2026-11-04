@@ -57,7 +57,7 @@ export default function ModalNonBlockingPreview() {
   return (
     <div>
       <div style={{ padding: '1rem' }}>
-        <IxTypography format="body" textColor="std">
+        <IxTypography format="body" textColor="primary">
           Content behind the dialog
         </IxTypography>
         <IxButton id="behind">Behind control</IxButton>

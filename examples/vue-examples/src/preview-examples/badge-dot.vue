@@ -17,55 +17,55 @@ import { IxBadge } from '@siemens/ix-vue';
   <div class="container">
     <IxBadge
       type="dot"
-      variant="primary"
+      variant="accent"
       role="img"
-      aria-label="Primary"
+      aria-label="Accent"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="primary"
+      variant="accent"
       outline
       role="img"
-      aria-label="Primary outline"
+      aria-label="Accent outline"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="primary"
+      variant="accent"
       enable-animation
       role="img"
-      aria-label="Primary pulse"
+      aria-label="Accent pulse"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="primary"
+      variant="accent"
       outline
       enable-animation
       role="img"
-      aria-label="Primary pulse outline"
+      aria-label="Accent pulse outline"
     ></IxBadge>
 
-    <IxBadge type="dot" variant="alarm" role="img" aria-label="Alarm"></IxBadge>
+    <IxBadge type="dot" variant="danger" role="img" aria-label="Danger"></IxBadge>
     <IxBadge
       type="dot"
-      variant="alarm"
+      variant="danger"
       outline
       role="img"
-      aria-label="Alarm outline"
+      aria-label="Danger outline"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="alarm"
+      variant="danger"
       enable-animation
       role="img"
-      aria-label="Alarm pulse"
+      aria-label="Danger pulse"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="alarm"
+      variant="danger"
       outline
       enable-animation
       role="img"
-      aria-label="Alarm pulse outline"
+      aria-label="Danger pulse outline"
     ></IxBadge>
 
     <IxBadge
@@ -126,28 +126,28 @@ import { IxBadge } from '@siemens/ix-vue';
       aria-label="Warning pulse outline"
     ></IxBadge>
 
-    <IxBadge type="dot" variant="info" role="img" aria-label="Info"></IxBadge>
+    <IxBadge type="dot" variant="information" role="img" aria-label="Information"></IxBadge>
     <IxBadge
       type="dot"
-      variant="info"
+      variant="information"
       outline
       role="img"
-      aria-label="Info outline"
+      aria-label="Information outline"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="info"
+      variant="information"
       enable-animation
       role="img"
-      aria-label="Info pulse"
+      aria-label="Information pulse"
     ></IxBadge>
     <IxBadge
       type="dot"
-      variant="info"
+      variant="information"
       outline
       enable-animation
       role="img"
-      aria-label="Info pulse outline"
+      aria-label="Information pulse outline"
     ></IxBadge>
 
     <IxBadge

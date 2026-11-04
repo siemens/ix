@@ -10,14 +10,14 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-badge-primary-background: #{sys.$si-sys-color-background-accent};
-  --ix-badge-primary-border-color: #{sys.$si-sys-color-border-accent};
-  --ix-badge-primary-color: #{sys.$si-sys-color-text-accent};
-  --ix-badge-primary-contrast-color: #{sys.$si-sys-color-text-on-accent};
-  --ix-badge-alarm-background: #{sys.$si-sys-color-background-danger};
-  --ix-badge-alarm-border-color: #{sys.$si-sys-color-border-danger};
-  --ix-badge-alarm-color: #{sys.$si-sys-color-text-danger};
-  --ix-badge-alarm-contrast-color: #{sys.$si-sys-color-text-on-danger};
+  --ix-badge-accent-background: #{sys.$si-sys-color-background-accent};
+  --ix-badge-accent-border-color: #{sys.$si-sys-color-border-accent};
+  --ix-badge-accent-color: #{sys.$si-sys-color-text-accent};
+  --ix-badge-accent-contrast-color: #{sys.$si-sys-color-text-on-accent};
+  --ix-badge-danger-background: #{sys.$si-sys-color-background-danger};
+  --ix-badge-danger-border-color: #{sys.$si-sys-color-border-danger};
+  --ix-badge-danger-color: #{sys.$si-sys-color-text-danger};
+  --ix-badge-danger-contrast-color: #{sys.$si-sys-color-text-on-danger};
   --ix-badge-critical-background: #{sys.$si-sys-color-background-critical};
   --ix-badge-critical-border-color: #{sys.$si-sys-color-border-critical};
   --ix-badge-critical-color: #{sys.$si-sys-color-text-critical};
@@ -26,10 +26,14 @@
   --ix-badge-warning-border-color: #{sys.$si-sys-color-border-warning};
   --ix-badge-warning-color: #{sys.$si-sys-color-text-warning};
   --ix-badge-warning-contrast-color: #{sys.$si-sys-color-text-on-warning};
-  --ix-badge-info-background: #{sys.$si-sys-color-background-information};
-  --ix-badge-info-border-color: #{sys.$si-sys-color-border-information};
-  --ix-badge-info-color: #{sys.$si-sys-color-text-information};
-  --ix-badge-info-contrast-color: #{sys.$si-sys-color-text-on-information};
+  --ix-badge-caution-background: #{sys.$si-sys-color-background-caution};
+  --ix-badge-caution-border-color: #{sys.$si-sys-color-border-caution};
+  --ix-badge-caution-color: #{sys.$si-sys-color-text-caution};
+  --ix-badge-caution-contrast-color: #{sys.$si-sys-color-text-on-caution};
+  --ix-badge-information-background: #{sys.$si-sys-color-background-information};
+  --ix-badge-information-border-color: #{sys.$si-sys-color-border-information};
+  --ix-badge-information-color: #{sys.$si-sys-color-text-information};
+  --ix-badge-information-contrast-color: #{sys.$si-sys-color-text-on-information};
   --ix-badge-success-background: #{sys.$si-sys-color-background-success};
   --ix-badge-success-border-color: #{sys.$si-sys-color-border-success};
   --ix-badge-success-color: #{sys.$si-sys-color-text-success};
@@ -43,7 +47,7 @@
   --ix-badge-default-color: #{sys.$si-sys-color-text-primary};
   --ix-badge-contrast-ring-color: #{sys.$si-sys-color-background-0};
 
-  --ix-badge-pulse-color: var(--ix-badge-primary-background);
+  --ix-badge-pulse-color: var(--ix-badge-accent-background);
 }
 
 :host {
@@ -69,30 +73,18 @@
   --ix-badge-indicator--padding-inline: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-badge-label--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-badge-indicator--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-badge-indicator-outline--padding-inline: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
-  );
+  --ix-badge-indicator-outline--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-badge-status-icon--width: #{sys.$si-sys-sizing-size-60};
-  --ix-badge-status-icon-stack-outline--icon-size: calc(
-    #{sys.$si-sys-sizing-size-60} * 0.96
-  );
-  --ix-badge-status-icon--icon-size: calc(#{sys.$si-sys-sizing-size-60} * 0.96);
-  --ix-badge-pulse-status--inset: calc(#{sys.$si-sys-sizing-size-60} * 0.02);
-  --ix-badge-pulse-border--inset: calc(
-    #{sys.$si-sys-sizing-border-width-default} / 2
-  );
+  --ix-badge-status-icon-stack-outline--icon-size: #{sys.$si-sys-sizing-size-60};
+  --ix-badge-status-icon--icon-size: #{sys.$si-sys-sizing-size-60};
+  --ix-badge-pulse-status--inset: 0;
+  --ix-badge-pulse-border--inset: 0;
+  --ix-badge-pulse-border--border-width--expanded: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-badge-pulse-border--inset--expanded: calc(
-    #{sys.$si-sys-sizing-border-width-default} / 2 - #{sys.$si-sys-sizing-size-60} *
-      0.4
+    -1 * var(--ix-badge-pulse-border--border-width--expanded)
   );
-  --ix-badge-pulse-border--border-width--expanded: calc(
-    #{sys.$si-sys-sizing-size-60} * 0.4
-  );
+  --ix-badge-pulse-border--border-width--end: #{sys.$si-sys-sizing-spacing-x-50};
   --ix-badge-pulse-border--inset--end: calc(
-    #{sys.$si-sys-sizing-border-width-default} / 2 - #{sys.$si-sys-sizing-size-60} *
-      0.5
-  );
-  --ix-badge-pulse-border--border-width--end: calc(
-    #{sys.$si-sys-sizing-size-60} * 0.5
+    -1 * var(--ix-badge-pulse-border--border-width--end)
   );
 }

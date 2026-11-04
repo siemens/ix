@@ -225,12 +225,8 @@
   --ix-toggle-switch--min-width: #{sys.$si-sys-sizing-size-100};
   --ix-toggle-switch--max-width: #{sys.$si-sys-sizing-size-100};
   --ix-toggle-switch--height: #{sys.$si-sys-sizing-size-70};
-  --ix-toggle-slider--height: calc(
-    #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-y-10}
-  );
-  --ix-toggle-slider--width: calc(
-    #{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-spacing-x-10}
-  );
+  --ix-toggle-slider--height: #{sys.$si-sys-sizing-size-50};
+  --ix-toggle-slider--width: #{sys.$si-sys-sizing-size-50};
   --ix-toggle-slider--left: #{sys.$si-sys-sizing-spacing-x-10};
   --ix-toggle-slider--bottom: #{sys.$si-sys-sizing-spacing-y-10};
   --ix-toggle-slider-checked--transform: translateX(

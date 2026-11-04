@@ -15,10 +15,35 @@ export default () => {
   return (
     <>
       <div className="message-bar">
-        <IxMessageBar persistent>Message text</IxMessageBar>
-        <IxMessageBar persistent>Message text</IxMessageBar>
-        <IxMessageBar persistent type="alarm">
-          <div className="message-bar-alarm">
+        <IxMessageBar persistent type="error">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="danger">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="warning">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="caution">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="success">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="information">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="neutral">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="accent">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="critical">
+          Message text
+        </IxMessageBar>
+        <IxMessageBar persistent type="danger">
+          <div className="message-bar-with-action">
             Message text <IxButton>Action</IxButton>
           </div>
         </IxMessageBar>

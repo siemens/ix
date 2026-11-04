@@ -34,6 +34,7 @@ import {
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import type { Disposable } from '../utils/typed-event';
 import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
 import type {
   BorderlessChangedEvent,
@@ -191,6 +192,7 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
+  private layoutChangeDisposable?: Disposable;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -208,7 +210,53 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  connectedCallback() {
+    this.isMobile = matchBreakpoint('sm');
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = matchBreakpoint('sm');
+    });
+
+    this.mutationObserver?.disconnect();
+    this.mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'slot'
+        ) {
+          const newSlot = this.currentSlot;
+          const oldSlot = mutation.oldValue;
+
+          if (newSlot !== oldSlot) {
+            this.slotChanged.emit({
+              slot: oldSlot ?? '',
+              newSlot: newSlot ?? '',
+            });
+
+            if (newSlot) {
+              this.setPosition(newSlot);
+            }
+          }
+        }
+      });
+    });
+    this.mutationObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeOldValue: true,
+    });
+
+    const parentElement = this.hostElement.parentElement;
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
+      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
+    });
+    if (parentElement) this.resizeObserver.observe(parentElement);
+  }
+
   disconnectedCallback() {
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = undefined;
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
@@ -269,49 +317,10 @@ export class Pane {
       this.onParentSizeChange();
     }
 
-    this.isMobile = matchBreakpoint('sm');
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
-
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
     }
     this.setIcons();
-
-    this.mutationObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'slot'
-        ) {
-          const newSlot = this.currentSlot;
-          const oldSlot = mutation.oldValue;
-
-          if (newSlot !== oldSlot) {
-            this.slotChanged.emit({
-              slot: oldSlot ?? '',
-              newSlot: newSlot ?? '',
-            });
-
-            if (newSlot) {
-              this.setPosition(newSlot);
-            }
-          }
-        }
-      });
-    });
-    this.mutationObserver.observe(this.hostElement, {
-      attributes: true,
-      attributeOldValue: true,
-    });
-
-    const parentElement = this.hostElement.parentElement;
-    this.resizeObserver = new ResizeObserver((entries) => {
-      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
-      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
-    });
-    if (parentElement) this.resizeObserver.observe(parentElement);
   }
 
   private setPosition(value: string) {

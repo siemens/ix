@@ -51,22 +51,24 @@ export type TypographyVariants =
   | 'display-large';
 
 export type TypographyColors =
-  | 'alarm'
-  | 'alarm-contrast'
-  | 'contrast'
-  | 'critical-contrast'
-  | 'info-contrast'
-  | 'inv-contrast'
-  | 'inv-soft'
-  | 'inv-std'
-  | 'inv-weak'
-  | 'neutral-contrast'
-  | 'primary-contrast'
-  | 'soft'
-  | 'std'
-  | 'success-contrast'
-  | 'warning-contrast'
-  | 'weak';
+  | 'caution'
+  | 'critical'
+  | 'danger'
+  | 'disabled'
+  | 'information'
+  | 'inverse'
+  | 'on-accent'
+  | 'on-caution'
+  | 'on-critical'
+  | 'on-danger'
+  | 'on-information'
+  | 'on-neutral'
+  | 'on-success'
+  | 'on-warning'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning';
 
 export type TypographyFormat =
   | TypographyFormatBody

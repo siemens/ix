@@ -33,21 +33,13 @@
   --ix-card-list-show-all-card--max-width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
   );
-  --ix-card-list-show-all-card--min-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
-  );
-  --ix-card-list-show-all-card--width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
-  );
-  --ix-card-list-show-all-card--min-height: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
-  );
+  --ix-card-list-show-all-card--min-width: #{sys.$si-sys-sizing-size-150};
+  --ix-card-list-show-all-card--width: #{sys.$si-sys-sizing-size-150};
+  --ix-card-list-show-all-card--min-height: #{sys.$si-sys-sizing-size-150};
   --ix-card-list-show-all-card--max-height: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
   );
-  --ix-card-list-show-all-card--height: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
-  );
+  --ix-card-list-show-all-card--height: #{sys.$si-sys-sizing-size-150};
   --ix-card-list-show-all-card--margin-bottom: calc(
     #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
   );

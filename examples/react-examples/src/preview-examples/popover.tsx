@@ -47,7 +47,7 @@ export default function PopoverPreview() {
           ariaLabelCloseIconButton="Close popover"
         >
           Release highlights
-          <IxPill slot="additional-items" variant="info">
+          <IxPill slot="additional-items" variant="information">
             New
           </IxPill>
         </IxPopoverHeader>

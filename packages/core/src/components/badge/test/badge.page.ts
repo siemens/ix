@@ -285,4 +285,115 @@ export class BadgePage {
   tooltip(badge: Locator = this.host): Locator {
     return badge.locator('ix-tooltip');
   }
+
+  /**
+   * Freezes the pulse animation at `progress` (0–1) and returns the offset in
+   * CSS px between the painted pulse center and the indicator box center.
+   * The pulse is isolated by diffing a pulse-only screenshot against an empty one.
+   */
+  async measurePulseCenterOffset(
+    progress: number,
+    deviceScaleFactor: number,
+    badge: Locator = this.host
+  ): Promise<{ x: number; y: number }> {
+    await this.expectHydrated(badge);
+    await expect
+      .poll(() => badge.evaluate((el) => el.shadowRoot!.getAnimations().length))
+      .toBeGreaterThan(0);
+
+    const rect = await badge.evaluate((el, value) => {
+      const root = el.shadowRoot!;
+      for (const animation of root.getAnimations()) {
+        const duration = Number(animation.effect?.getTiming().duration ?? 0);
+        animation.pause();
+        animation.currentTime = duration * value;
+      }
+
+      const style = document.createElement('style');
+      style.setAttribute('data-pulse-probe', '');
+      root.appendChild(style);
+      style.textContent = `
+        .indicator > * { visibility: hidden !important; }
+        .indicator { background: transparent !important; border-color: transparent !important; outline: none !important; }
+      `;
+
+      const { x, y, width, height } = root
+        .querySelector('.indicator')!
+        .getBoundingClientRect();
+      return { x, y, width, height };
+    }, progress);
+
+    const margin = 24;
+    const clip = {
+      x: rect.x - margin,
+      y: rect.y - margin,
+      width: rect.width + margin * 2,
+      height: rect.height + margin * 2,
+    };
+
+    const withPulse = await this.page.screenshot({ clip, animations: 'allow' });
+    await badge.evaluate((el) => {
+      el.shadowRoot!.querySelector('style[data-pulse-probe]')!.textContent +=
+        '.indicator::after { display: none !important; }';
+    });
+    const withoutPulse = await this.page.screenshot({
+      clip,
+      animations: 'allow',
+    });
+    await badge.evaluate((el) =>
+      el.shadowRoot!.querySelector('style[data-pulse-probe]')!.remove()
+    );
+
+    const box = await this.page.evaluate(
+      async ([a, b]) => {
+        const read = async (base64: string) => {
+          const image = new Image();
+          image.src = `data:image/png;base64,${base64}`;
+          await image.decode();
+          const canvas = document.createElement('canvas');
+          canvas.width = image.width;
+          canvas.height = image.height;
+          const context = canvas.getContext('2d');
+          if (!context) {
+            throw new Error('Canvas 2D context unavailable');
+          }
+          context.drawImage(image, 0, 0);
+          return context.getImageData(0, 0, canvas.width, canvas.height);
+        };
+        const [imageA, imageB] = await Promise.all([read(a), read(b)]);
+        let bounds: { x0: number; y0: number; x1: number; y1: number } | null =
+          null;
+
+        for (let y = 0; y < imageA.height; y++) {
+          for (let x = 0; x < imageA.width; x++) {
+            const i = (y * imageA.width + x) * 4;
+            const delta =
+              Math.abs(imageA.data[i] - imageB.data[i]) +
+              Math.abs(imageA.data[i + 1] - imageB.data[i + 1]) +
+              Math.abs(imageA.data[i + 2] - imageB.data[i + 2]);
+
+            if (delta > 12) {
+              bounds ??= { x0: x, y0: y, x1: x + 1, y1: y + 1 };
+              bounds.x0 = Math.min(bounds.x0, x);
+              bounds.y0 = Math.min(bounds.y0, y);
+              bounds.x1 = Math.max(bounds.x1, x + 1);
+              bounds.y1 = Math.max(bounds.y1, y + 1);
+            }
+          }
+        }
+
+        return bounds;
+      },
+      [withPulse.toString('base64'), withoutPulse.toString('base64')]
+    );
+
+    if (!box) {
+      throw new Error('Expected the pulse to be painted');
+    }
+
+    return {
+      x: (box.x0 + box.x1) / 2 / deviceScaleFactor - (margin + rect.width / 2),
+      y: (box.y0 + box.y1) / 2 / deviceScaleFactor - (margin + rect.height / 2),
+    };
+  }
 }

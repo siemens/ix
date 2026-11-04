@@ -126,10 +126,11 @@ export class DropdownItem
   }
 
   private isIconOnly() {
+    // Check `innerText` last: reading it forces a layout
     return (
       this.label === undefined &&
-      this.hostElement.innerText === '' &&
-      this.icon !== undefined
+      this.icon !== undefined &&
+      this.hostElement.innerText === ''
     );
   }
 

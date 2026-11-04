@@ -60,4 +60,14 @@ regressionTest.describe('date dropdown', () => {
     await expect(dropdown).toHaveClass(/show/);
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('require confirmation', async ({ page }) => {
+    await page.goto('date-dropdown/require-confirmation');
+    const dateDropdown = page.locator('ix-date-dropdown');
+    await dateDropdown.click();
+    const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
+
+    await expect(dropdown).toHaveClass(/show/);
+    await expect(page).toHaveScreenshot();
+  });
 });

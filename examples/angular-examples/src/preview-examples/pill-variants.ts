@@ -17,28 +17,10 @@ import { Component } from '@angular/core';
     <ix-layout-grid>
       <ix-row>
         <ix-col>
-          <ix-pill variant="primary" icon="info">Primary</ix-pill>
+          <ix-pill variant="danger" icon="info">Danger</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="primary" outline icon="info">Primary</ix-pill>
-        </ix-col>
-      </ix-row>
-
-      <ix-row>
-        <ix-col>
-          <ix-pill variant="alarm" icon="info">Alarm</ix-pill>
-        </ix-col>
-        <ix-col>
-          <ix-pill variant="alarm" outline icon="info">Alarm</ix-pill>
-        </ix-col>
-      </ix-row>
-
-      <ix-row>
-        <ix-col>
-          <ix-pill variant="critical" icon="info">Critical</ix-pill>
-        </ix-col>
-        <ix-col>
-          <ix-pill variant="critical" outline icon="info">Critical</ix-pill>
+          <ix-pill variant="danger" outline icon="info">Danger</ix-pill>
         </ix-col>
       </ix-row>
 
@@ -53,19 +35,39 @@ import { Component } from '@angular/core';
 
       <ix-row>
         <ix-col>
-          <ix-pill variant="info" icon="info">Info</ix-pill>
+          <ix-pill variant="caution" icon="info">Caution</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="info" outline icon="info">Info</ix-pill>
+          <ix-pill variant="caution" outline icon="info">Caution</ix-pill>
         </ix-col>
       </ix-row>
 
       <ix-row>
         <ix-col>
-          <ix-pill variant="neutral" icon="info">Neutral</ix-pill>
+          <ix-pill variant="information" icon="info">Information</ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="neutral" outline icon="info">Neutral</ix-pill>
+          <ix-pill variant="information" outline icon="info"
+            >Information</ix-pill
+          >
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col>
+          <ix-pill variant="accent" icon="info">Accent</ix-pill>
+        </ix-col>
+        <ix-col>
+          <ix-pill variant="accent" outline icon="info">Accent</ix-pill>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col>
+          <ix-pill variant="critical" icon="info">Critical</ix-pill>
+        </ix-col>
+        <ix-col>
+          <ix-pill variant="critical" outline icon="info">Critical</ix-pill>
         </ix-col>
       </ix-row>
 
@@ -80,13 +82,23 @@ import { Component } from '@angular/core';
 
       <ix-row>
         <ix-col>
+          <ix-pill variant="neutral" icon="info">Neutral</ix-pill>
+        </ix-col>
+        <ix-col>
+          <ix-pill variant="neutral" outline icon="info">Neutral</ix-pill>
+        </ix-col>
+      </ix-row>
+
+      <ix-row>
+        <ix-col>
           <ix-pill
             variant="custom"
             pillColor="var(--si-sys-color-text-inverse)"
             background="var(--si-sys-color-background-accent-hover)"
             icon="info"
-            >Custom</ix-pill
           >
+            Custom
+          </ix-pill>
         </ix-col>
         <ix-col>
           <ix-pill
@@ -95,11 +107,12 @@ import { Component } from '@angular/core';
             pillColor="var(--si-sys-color-text-accent-hover)"
             background="var(--si-sys-color-background-accent-hover)"
             icon="info"
-            >Custom</ix-pill
           >
+            Custom
+          </ix-pill>
         </ix-col>
       </ix-row>
     </ix-layout-grid>
   `,
 })
-export default class Pill {}
+export default class PillVariants {}

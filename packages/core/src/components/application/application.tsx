@@ -84,6 +84,10 @@ export class Application {
 
   /**
    * Define application switch configuration
+   *
+   * Application `url`s are opened unchanged via `window.open()`. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Only configure trusted applications and do not
+   * derive URLs from untrusted input.
    */
   @Prop() appSwitchConfig?: AppSwitchConfiguration;
 

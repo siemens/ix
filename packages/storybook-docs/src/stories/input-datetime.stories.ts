@@ -35,3 +35,11 @@ export const Required: Story = {
     required: true,
   },
 };
+
+export const RequireConfirmation: Story = {
+  args: {
+    label: 'Require confirmation',
+    value: '2026/02/08 09:30:00',
+    requireConfirmation: true,
+  },
+};

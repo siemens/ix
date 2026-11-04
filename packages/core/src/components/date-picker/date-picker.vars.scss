@@ -61,9 +61,7 @@
   --ix-date-picker-check-position--top: calc(
     50% - #{sys.$si-sys-sizing-spacing-y-40}
   );
-  --ix-date-picker-month-margin--margin-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
-  );
+  --ix-date-picker-month-margin--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-date-picker-grid--grid-template-columns: repeat(
     7,
     #{sys.$si-sys-sizing-size-90}

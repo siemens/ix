@@ -88,6 +88,13 @@ import './generated/badge-label.spec';
 import './generated/badge-dot.spec';
 import './generated/badge-status-icon.spec';
 
+// Require confirmation tests
+import './generated/date-dropdown-require-confirmation.spec';
+import './generated/date-input-require-confirmation.spec';
+import './generated/date-picker-require-confirmation.spec';
+import './generated/datetime-input-require-confirmation.spec';
+import './generated/datetime-picker-require-confirmation.spec';
+
 // Group tests
 import './generated/group.spec';
 import './generated/group-context-menu.spec';

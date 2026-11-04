@@ -10,7 +10,7 @@ import {
   LUXON_DEFAULT_TIME_ONLY_FORMAT,
   getLuxonDateOnlyFormatMask,
   getLuxonTimeFormatMask,
-} from '../luxon-datetime-format-masks';
+} from '../datetime/luxon-datetime-format-masks';
 
 describe('getLuxonDateOnlyFormatMask', () => {
   it('returns full string when there are no time tokens', () => {
