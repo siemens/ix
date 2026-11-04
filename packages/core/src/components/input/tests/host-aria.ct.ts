@@ -15,6 +15,13 @@ const controls = [
   { tag: 'ix-textarea', control: 'textarea' },
 ];
 
+regressionTest('renders', async ({ mount, page }) => {
+  await mount('<ix-input aria-label="Location"></ix-input>');
+  const host = page.locator('ix-input');
+  await expect(host).toHaveAttribute('hydrated');
+  await expect(host.locator('input')).toBeVisible();
+});
+
 controls.forEach(({ tag, control }) => {
   regressionTest.describe(`${tag} - aria attributes on the host`, () => {
     regressionTest(
@@ -67,10 +74,12 @@ controls.forEach(({ tag, control }) => {
       }
     );
 
-    regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+    regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
       await mount(
         `<${tag} aria-label="Location" aria-required="true"></${tag}>`
       );
+      await expect(page.locator(tag)).toHaveAttribute('hydrated');
+
       const accessibilityScanResults = await makeAxeBuilder()
         .include(tag)
         .analyze();
