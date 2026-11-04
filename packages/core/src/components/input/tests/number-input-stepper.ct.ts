@@ -79,6 +79,28 @@ const dispatchTouchPointer = (
   );
 
 test.describe('ix-number-input stepper press and hold', () => {
+  test('accessibility', async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      `<ix-number-input label="Quantity" show-stepper-buttons></ix-number-input>`
+    );
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test('renders', async ({ mount, page }) => {
+    await mount(`<ix-number-input show-stepper-buttons></ix-number-input>`);
+    const numberInput = page.locator('ix-number-input');
+
+    await expect(numberInput).toHaveAttribute('hydrated');
+    await expect(
+      numberInput.getByRole('button', { name: 'increment number' })
+    ).toBeVisible();
+    await expect(
+      numberInput.getByRole('button', { name: 'decrement number' })
+    ).toBeVisible();
+  });
+
   test('steps once on press and repeats after the initial delay', async ({
     mount,
     page,
