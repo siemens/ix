@@ -2399,6 +2399,11 @@ export namespace Components {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -2411,10 +2416,6 @@ export namespace Components {
           * @default 'large'
          */
         "layout": EmptyStateLayout;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -5760,9 +5761,10 @@ export namespace Components {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
-        "hideDelay": number;
+        "hideDelay"?: number;
         "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
@@ -5775,6 +5777,8 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay": number;
@@ -11005,6 +11009,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -11021,10 +11030,6 @@ declare namespace LocalJSX {
           * Empty state action click event
          */
         "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -14566,7 +14571,8 @@ declare namespace LocalJSX {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
         "hideDelay"?: number;
         /**
@@ -14580,6 +14586,8 @@ declare namespace LocalJSX {
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay"?: number;
@@ -15280,7 +15288,7 @@ declare namespace LocalJSX {
         "layout": EmptyStateLayout;
         "icon": string;
         "header": string;
-        "subHeader": string;
+        "description": string;
         "action": string;
         "ariaLabelEmptyStateIcon": string;
     }

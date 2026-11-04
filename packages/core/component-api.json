@@ -4618,6 +4618,16 @@
           "deprecated": false
         },
         {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "header",
           "attribute": "header",
           "type": "string",
@@ -4645,16 +4655,6 @@
           "reflectToAttribute": false,
           "default": "'large'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "subHeader",
-          "attribute": "sub-header",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         }
@@ -11809,6 +11809,16 @@
           "deprecated": false
         },
         {
+          "name": "hideDelay",
+          "attribute": "hide-delay",
+          "type": "number | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "interactive",
           "attribute": "interactive",
           "type": "boolean",
@@ -11826,6 +11836,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'top'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "showDelay",
+          "attribute": "show-delay",
+          "type": "number",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "0",
           "optional": false,
           "required": false,
           "deprecated": false
