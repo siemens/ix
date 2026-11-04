@@ -3984,7 +3984,7 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * Indicates if the stepper buttons should be shown
+          * Indicates if the stepper buttons should be shown. Pressing and holding a stepper button keeps stepping the value (mouse, pen and touch), speeding up the longer the button is held.
          */
         "showStepperButtons"?: boolean;
         /**
@@ -12679,7 +12679,7 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * Indicates if the stepper buttons should be shown
+          * Indicates if the stepper buttons should be shown. Pressing and holding a stepper button keeps stepping the value (mouse, pen and touch), speeding up the longer the button is held.
          */
         "showStepperButtons"?: boolean;
         /**
