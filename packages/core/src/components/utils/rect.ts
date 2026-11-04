@@ -42,16 +42,3 @@ export function getClippedSides(
     left: bounds.left - rect.left >= tolerance,
   };
 }
-
-/**
- * Whether `rect` is fully inside `bounds`, ignoring overflows smaller than
- * `tolerance`.
- */
-export function isRectContained(
-  rect: RectEdges,
-  bounds: RectEdges,
-  tolerance = SUBPIXEL_TOLERANCE_PX
-): boolean {
-  const clipped = getClippedSides(rect, bounds, tolerance);
-  return !clipped.top && !clipped.right && !clipped.bottom && !clipped.left;
-}

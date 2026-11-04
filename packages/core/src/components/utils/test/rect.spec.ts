@@ -5,7 +5,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { getClippedSides, isRectContained } from '../rect';
+import { getClippedSides } from '../rect';
 
 const bounds = { top: 0, right: 100, bottom: 100, left: 0 };
 
@@ -45,20 +45,6 @@ describe('getClippedSides', () => {
     expect(
       getClippedSides({ top: -3, right: 100, bottom: 100, left: 0 }, bounds, 4)
         .top
-    ).toBe(false);
-  });
-});
-
-describe('isRectContained', () => {
-  it('treats sub-pixel overflow as contained', () => {
-    expect(
-      isRectContained({ top: -0.5, right: 100.5, bottom: 100, left: 0 }, bounds)
-    ).toBe(true);
-  });
-
-  it('detects overflow on any side', () => {
-    expect(
-      isRectContained({ top: 0, right: 100, bottom: 102, left: 0 }, bounds)
     ).toBe(false);
   });
 });

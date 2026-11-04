@@ -1970,14 +1970,14 @@ regressionTest.describe('dropdown transition visibility', () => {
   );
 });
 
-regressionTest.describe('placement for a clipped trigger', () => {
+regressionTest.describe('trigger visibility check', () => {
   interface PlacementRecorderWindow extends Window {
     readVisiblePlacements?: () => string[];
   }
 
   /**
-   * Records the placement of every frame in which the dropdown is not
-   * transparent, until the placements are read
+   * Records the placement of every frame in which the dropdown is shown,
+   * until the placements are read
    */
   async function recordVisiblePlacements(page: Page) {
     await page.evaluate(() => {
@@ -1994,12 +1994,7 @@ regressionTest.describe('placement for a clipped trigger', () => {
       };
 
       const record = () => {
-        // In the top layer the dialog is positioned instead of the host
-        const target = dropdown.shadowRoot?.querySelector('dialog') ?? dropdown;
-        if (
-          dropdown.classList.contains('show') &&
-          getComputedStyle(target).opacity !== '0'
-        ) {
+        if (dropdown.classList.contains('show')) {
           visiblePlacements.push(
             dropdown.dataset.ixDropdownPlacement ?? 'none'
           );
@@ -2020,7 +2015,8 @@ regressionTest.describe('placement for a clipped trigger', () => {
 
   /**
    * The intersection observer delivers its first entry after the next paint,
-   * so a dropdown that is about to move has done so after a few frames
+   * so a dropdown that is about to move to a fallback placement has done so
+   * after a few frames
    */
   async function waitForFrames(page: Page, count = 3) {
     await page.evaluate(async (count) => {
@@ -2040,50 +2036,6 @@ regressionTest.describe('placement for a clipped trigger', () => {
 
       return read();
     });
-  }
-
-  for (const enableTopLayer of [false, true]) {
-    regressionTest(
-      `does not show the dropdown before the fallback placement is applied (enableTopLayer=${enableTopLayer})`,
-      async ({ mount, page }) => {
-        await mount(html`
-          <style>
-            #trigger {
-              position: fixed;
-              left: -16px;
-              top: 100px;
-            }
-          </style>
-          <ix-button id="trigger">Trigger</ix-button>
-          <ix-dropdown
-            id="dropdown"
-            trigger="trigger"
-            placement="bottom-start"
-            ${enableTopLayer ? 'enable-top-layer' : ''}
-          >
-            <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-          </ix-dropdown>
-        `);
-
-        const dropdown = page.locator('#dropdown');
-        await expect(dropdown).toHaveAttribute('hydrated');
-
-        await recordVisiblePlacements(page);
-        await page.getByRole('button', { name: 'Trigger' }).click();
-
-        await expect(dropdown).toHaveAttribute(
-          'data-ix-dropdown-placement',
-          'right-start'
-        );
-        await expect(dropdown).not.toHaveAttribute(
-          'data-ix-dropdown-positioning'
-        );
-
-        const visiblePlacements = await readVisiblePlacements(page);
-        expect(visiblePlacements.length).toBeGreaterThan(0);
-        expect(new Set(visiblePlacements)).toEqual(new Set(['right-start']));
-      }
-    );
   }
 
   regressionTest(
@@ -2115,9 +2067,6 @@ regressionTest.describe('placement for a clipped trigger', () => {
       await page.getByRole('button', { name: 'Trigger' }).click();
 
       await expect(dropdown).toHaveClass(/show/);
-      await expect(dropdown).not.toHaveAttribute(
-        'data-ix-dropdown-positioning'
-      );
 
       const visiblePlacements = await readVisiblePlacements(page);
       await expect(dropdown).toHaveAttribute(

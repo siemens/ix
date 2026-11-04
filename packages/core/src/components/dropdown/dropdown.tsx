@@ -332,12 +332,6 @@ export class Dropdown
   private autoUpdateCleanup?: () => void;
   private readonly dialogRef = makeRef<HTMLDialogElement>();
   private intersectObserverTrigger?: IntersectionObserver;
-  /**
-   * The fallback placement of a clipped trigger is only known after the first
-   * intersection check, which runs after the next paint. Until then the
-   * dropdown stays transparent, so it does not flash at another position.
-   */
-  private isAwaitingTriggerVisibility = false;
   private triggerElement?: Element;
   private anchorElement?: Element;
   private forwardQueryElement: HTMLElement | null = null;
@@ -696,8 +690,6 @@ export class Dropdown
       this.intersectObserverTrigger.disconnect();
     }
 
-    this.isAwaitingTriggerVisibility = false;
-
     if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
@@ -714,34 +706,29 @@ export class Dropdown
             return;
           }
 
-          const hidden = getClippedSides(
+          const clipped = getClippedSides(
             entry.boundingClientRect,
             entry.intersectionRect
           );
 
           this.fallbackPlacement = undefined;
 
-          if (hidden.top) {
+          if (clipped.top) {
             this.fallbackPlacement = this.createFallbackPlacement('bottom');
           }
 
-          if (hidden.bottom) {
+          if (clipped.bottom) {
             this.fallbackPlacement = this.createFallbackPlacement('top');
           }
 
-          if (hidden.left) {
+          if (clipped.left) {
             this.fallbackPlacement = this.createFallbackPlacement('right');
           }
 
-          if (hidden.right) {
+          if (clipped.right) {
             this.fallbackPlacement = this.createFallbackPlacement('left');
           }
         });
-
-        if (this.isAwaitingTriggerVisibility) {
-          this.isAwaitingTriggerVisibility = false;
-          void this.applyDropdownPosition();
-        }
       },
       {
         threshold: [0, 0.5, 1],
@@ -749,16 +736,8 @@ export class Dropdown
     );
 
     if (this.anchorElement) {
-      // Revealed with the first position applied after the check, see
-      // `applyDropdownPosition`
-      this.isAwaitingTriggerVisibility = true;
-      this.hostElement.setAttribute('data-ix-dropdown-positioning', '');
       this.intersectObserverTrigger.observe(this.anchorElement);
     }
-  }
-
-  private revealPositionedDropdown() {
-    this.hostElement.removeAttribute('data-ix-dropdown-positioning');
   }
 
   private createFallbackPlacement(
@@ -1296,8 +1275,6 @@ export class Dropdown
 
   private cleanupOnHide() {
     this.intersectObserverTrigger?.disconnect();
-    this.isAwaitingTriggerVisibility = false;
-    this.revealPositionedDropdown();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.keyboardNavigationCleanup = undefined;
@@ -1389,7 +1366,6 @@ export class Dropdown
       : this.anchorElement;
 
     if (!referenceElement) {
-      this.revealPositionedDropdown();
       this.applyFallbackPosition(targetElement);
       return;
     }
@@ -1469,10 +1445,6 @@ export class Dropdown
           });
 
           Object.assign(targetElement.style, overwriteStyle);
-        }
-
-        if (!this.isAwaitingTriggerVisibility) {
-          this.revealPositionedDropdown();
         }
       },
       {
