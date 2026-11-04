@@ -1315,6 +1315,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -1442,6 +1447,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -1501,7 +1511,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -1764,6 +1774,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
          */
@@ -1773,7 +1788,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format": string;
@@ -1912,7 +1927,7 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+          * Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -9899,6 +9914,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -10031,6 +10051,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -10079,7 +10104,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -10360,6 +10385,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
          */
@@ -10369,7 +10399,7 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format"?: string;
@@ -10459,7 +10489,7 @@ declare namespace LocalJSX {
          */
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
-          * Emitted when the datetime value changes. Payload is display format or undefined
+          * Emitted when the datetime value changes. Payload is in `format` or undefined
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10507,7 +10537,7 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+          * Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -15086,6 +15116,7 @@ declare namespace LocalJSX {
     interface IxDateDropdownAttributes {
         "disabled": boolean;
         "format": string;
+        "displayFormat": string;
         "singleSelection": boolean;
         "from": string;
         "to": string;
@@ -15113,6 +15144,7 @@ declare namespace LocalJSX {
         "maxDate": string;
         "locale": string;
         "format": string;
+        "displayFormat": string;
         "required": boolean;
         "helperText": string;
         "label": string;
@@ -15172,6 +15204,7 @@ declare namespace LocalJSX {
         "placeholder": string;
         "value": string;
         "format": string;
+        "displayFormat": string;
         "locale": string;
         "required": boolean;
         "disabled": boolean;
