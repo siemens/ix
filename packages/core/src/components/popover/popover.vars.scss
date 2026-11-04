@@ -10,18 +10,16 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-popover--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
+  --ix-popover--box-shadow: #{sys.$si-sys-color-effects-shadow-30};
   --ix-popover--background: #{sys.$si-sys-color-background-3};
   --ix-popover--border-color: transparent;
   --ix-popover--color: #{sys.$si-sys-color-text-primary};
-  // The "spike" (arrow) shape disables box-shadow (it doesn't follow the
-  // rotated element) in favor of a filter: drop-shadow() chain, which does
-  // follow the rendered shape. drop-shadow() cannot consume a single
-  // multi-layer combined shadow token, so each layer of
-  // --si-sys-color-effects-shadow-40 is applied as its own drop-shadow(); both
-  // layers currently share the same value in Classic Light/Dark.
-  --ix-popover--elevation-filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.14))
-    drop-shadow(0px -0.25px 2px rgba(0, 0, 0, 0.08));
+  // A popover with a spike (arrow) cannot use box-shadow, because it only
+  // follows the popover's box and not the spike. A filter: drop-shadow() chain
+  // follows the rendered shape, including the spike. The helper below is
+  // generated per theme from the system shadow-30 token, so the spike casts the
+  // same elevation as --ix-popover--box-shadow in every theme.
+  --ix-popover--elevation-filter: #{sys.$ix-effects-shadow-30-filter};
   --ix-popover-close--color: #{sys.$si-sys-color-text-secondary};
   --ix-popover-close-button--background: transparent;
   --ix-popover-close-button--background--active: #{sys.$si-sys-color-background-selected};
