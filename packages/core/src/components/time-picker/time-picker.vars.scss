@@ -12,9 +12,8 @@
 :host {
   --ix-time-picker-column-header--color: #{sys.$si-sys-color-text-secondary};
   --ix-time-picker-day--color: #{sys.$si-sys-color-text-accent};
-  --ix-time-picker-day--box-shadow-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-time-picker-day--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-time-picker-day--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-time-picker-day--border-color--selected-focus: #{sys.$si-sys-color-text-inverse};
   --ix-time-picker-day--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-time-picker-day--background--selected: #{sys.$si-sys-color-background-accent};
   --ix-time-picker-day--background--selected-active: #{sys.$si-sys-color-background-accent-active};
@@ -49,11 +48,12 @@
   );
   --ix-time-picker-default-space--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-time-picker-element-list--padding: calc(
-    #{sys.$si-sys-sizing-spacing-y-10} / 2
+    var(--si-sys-sizing-focus-ring-offset) +
+      var(--si-sys-sizing-focus-ring-width)
   );
   --ix-time-picker-element-list--margin: calc(
     calc(#{sys.$si-sys-sizing-spacing-y-10} / 2) * -1
   );
-  --ix-time-picker-element-container--box-shadow-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-time-picker-element-container--border-width: #{sys.$si-sys-sizing-border-width-default};
+  --ix-time-picker-day--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
+  --ix-time-picker-day--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
 }

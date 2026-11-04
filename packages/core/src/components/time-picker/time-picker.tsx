@@ -1407,7 +1407,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
       const elementContainerHeight = elementContainer.clientHeight;
 
       // Offset which is used to adjust the scroll position to account for margins, elements being hidden, etc.
-      let scrollPositionOffset = 11;
+      let scrollPositionOffset = 15;
       if (this.hideHeader) {
         // 56 + 1 --> height of the header container and separator
         scrollPositionOffset -= 57;
