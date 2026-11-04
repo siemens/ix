@@ -199,9 +199,32 @@ export namespace Components {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableSkipLinks": boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
+        /**
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter": string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
+          * @since 6.0.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToMain": string;
+        /**
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
+          * @since 6.0.0
+         */
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -5752,9 +5775,10 @@ export namespace Components {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
-        "hideDelay": number;
+        "hideDelay"?: number;
         "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
@@ -5767,6 +5791,8 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay": number;
@@ -8675,9 +8701,32 @@ declare namespace LocalJSX {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableSkipLinks"?: boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
+        /**
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter"?: string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
+          * @since 6.0.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToMain"?: string;
+        /**
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
+          * @since 6.0.0
+         */
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -14550,7 +14599,8 @@ declare namespace LocalJSX {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
         "hideDelay"?: number;
         /**
@@ -14564,6 +14614,8 @@ declare namespace LocalJSX {
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay"?: number;
@@ -14844,6 +14896,10 @@ declare namespace LocalJSX {
         "theme": string;
         "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
+        "disableSkipLinks": boolean;
+        "i18nSkipToMain": string;
+        "i18nSkipToFooter": string;
+        "skipLinkMainTarget": string | HTMLElement;
     }
     interface IxApplicationHeaderAttributes {
         "name": string;

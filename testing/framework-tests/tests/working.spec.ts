@@ -26,6 +26,7 @@ import './generated/tabs-rounded.spec';
 import './generated/tabs.spec';
 import './generated/time-range.spec';
 import './generated/timepicker-min-max-time.spec';
+import './application-skip-link.spec';
 
 // Button tests - basic
 import './generated/buttons.spec';
@@ -74,6 +75,7 @@ import './generated/content-header-text-overflow.spec';
 
 // Info page tests
 import './generated/info-page.spec';
+import './generated/info-page-illustration.spec';
 
 // Chat tests
 import './generated/chat.spec';
