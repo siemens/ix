@@ -13,16 +13,16 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Application example</title>
-    <script type="module" crossorigin src="../assets/application-DMUmzxdY.js"></script>
+    <script type="module" crossorigin src="../assets/application-CC-OYcZ2.js"></script>
     <link rel="modulepreload" crossorigin href="../assets/preload-helper-UZRgTS1n.js">
-    <link rel="modulepreload" crossorigin href="../assets/index-CgUi6DzV-DRJgLLTs.js">
-    <link rel="modulepreload" crossorigin href="../assets/global-DrHDXkjq.js">
+    <link rel="modulepreload" crossorigin href="../assets/index-CgUi6DzV-n6i3Eibg.js">
+    <link rel="modulepreload" crossorigin href="../assets/global-Y0L6aT10.js">
     <link rel="modulepreload" crossorigin href="../assets/index-DCCkv1ZQ-DZnlOMEt.js">
-    <link rel="modulepreload" crossorigin href="../assets/init-nbwLr-Hv.js">
+    <link rel="modulepreload" crossorigin href="../assets/init-Q8EsSH6V.js">
     <link rel="stylesheet" crossorigin href="../assets/global-BOgBuYcl.css">
   </head>
   <body>
-    <ix-application>
+    <ix-application skip-link-main-target="main-content">
       <ix-application-header name="My Application">
         <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
@@ -32,10 +32,11 @@ LICENSE file in the root directory of this source tree.
         <ix-menu-item>Item 2</ix-menu-item>
       </ix-menu>
 
-      <ix-content>
+      <ix-content id="main-content" tabindex="-1">
         <ix-content-header slot="header" header-title="My Content Page">
         </ix-content-header>
       </ix-content>
+      <button slot="bottom">Footer action</button>
     </ix-application>
 
   </body>
