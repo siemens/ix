@@ -190,10 +190,10 @@ export default {
     },
     candlestick: {
       itemStyle: {
-        color: '#D72339' /* si/sys/background/danger */,
-        color0: '#1C703F' /* si/sys/background/success */,
-        borderColor: '#D72339' /* si/sys/border/danger */,
-        borderColor0: '#1C703F' /* si/sys/border/success */,
+        color: '#00A327' /* si/sys/data/rating/excellent */,
+        color0: '#D72339' /* si/sys/data/rating/bad */,
+        borderColor: '#00A327' /* si/sys/data/rating/excellent */,
+        borderColor0: '#D72339' /* si/sys/data/rating/bad */,
         borderWidth: 1,
       },
     },
