@@ -1,3 +1,7 @@
+- list:
+  - listitem:
+    - link "Skip to main content":
+      - /url: "#ix-application-main-content"
 - text: My Application
 - button "Checkboxes"
 - button "Checkboxes"
