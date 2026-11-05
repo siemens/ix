@@ -2126,4 +2126,142 @@ regressionTest.describe('trigger visibility check', () => {
       );
     }
   );
+
+  regressionTest(
+    'falls back when clipping on two axes grows past the tolerance',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.25px;
+            height: 99.25px;
+            overflow: hidden;
+          }
+
+          #content {
+            width: 200px;
+            height: 200px;
+          }
+
+          #trigger {
+            display: block;
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            border: 0;
+            padding: 0;
+          }
+        </style>
+        <div id="container">
+          <div id="content">
+            <button id="trigger">Trigger</button>
+          </div>
+        </div>
+        <ix-dropdown
+          id="dropdown"
+          trigger="trigger"
+          placement="bottom-start"
+          suppress-automatic-placement
+        >
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+
+      // The area ratio already starts below the per-axis tolerance ratios, and
+      // clipping 30px more on the left crosses no further ratio
+      await page.locator('#container').evaluate((container) => {
+        container.scrollLeft = 30;
+      });
+
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'right-start'
+      );
+    }
+  );
+
+  regressionTest(
+    'falls back when a resized trigger is clipped past the tolerance',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.5px;
+            height: 40px;
+            overflow: hidden;
+          }
+
+          #content {
+            width: 300px;
+            height: 40px;
+          }
+
+          #trigger {
+            display: block;
+            box-sizing: border-box;
+            width: 100px;
+            height: 40px;
+            border: 0;
+            padding: 0;
+          }
+        </style>
+        <div id="container">
+          <div id="content">
+            <button id="trigger">Trigger</button>
+          </div>
+        </div>
+        <ix-dropdown
+          id="dropdown"
+          trigger="trigger"
+          placement="bottom-start"
+          suppress-automatic-placement
+        >
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveClass(/show/);
+
+      await page.locator('#container').evaluate((container) => {
+        container.style.width = '199.5px';
+      });
+      await page
+        .getByRole('button', { name: 'Trigger' })
+        .evaluate((trigger) => {
+          trigger.style.width = '200px';
+        });
+
+      // Let the position update react to the resized trigger
+      await waitForFrames(page);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+
+      // 1.5px of a 200px trigger stays above the ratio for a 100px trigger,
+      // and a transform triggers neither a scroll nor a resize
+      await page.locator('#content').evaluate((content) => {
+        content.style.transform = 'translateX(-1.5px)';
+      });
+
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'right-start'
+      );
+    }
+  );
 });

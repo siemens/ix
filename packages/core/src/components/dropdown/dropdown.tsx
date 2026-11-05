@@ -686,14 +686,35 @@ export class Dropdown
   }
 
   private addObserverForTriggerVisibility() {
-    if (this.intersectObserverTrigger) {
-      this.intersectObserverTrigger.disconnect();
-    }
+    this.disconnectObserverForTriggerVisibility();
 
     if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
 
+    this.observeTriggerVisibility();
+  }
+
+  private disconnectObserverForTriggerVisibility() {
+    this.intersectObserverTrigger?.disconnect();
+    this.intersectObserverTrigger = undefined;
+  }
+
+  /**
+   * The observer only reports crossings of area ratios captured from the
+   * trigger size at creation. Re-creating it delivers a fresh entry and
+   * refreshes the ratios for the current trigger size.
+   */
+  private refreshObserverForTriggerVisibility() {
+    if (!this.intersectObserverTrigger) {
+      return;
+    }
+
+    this.disconnectObserverForTriggerVisibility();
+    this.observeTriggerVisibility();
+  }
+
+  private observeTriggerVisibility() {
     if (!this.triggerElement || !this.anchorElement) {
       return;
     }
@@ -712,23 +733,27 @@ export class Dropdown
             entry.intersectionRect
           );
 
-          this.fallbackPlacement = undefined;
+          // Assign the state only once, as every change re-renders and
+          // re-creates this observer through the position update
+          let fallbackPlacement: AlignedPlacement | undefined;
 
           if (clipped.top) {
-            this.fallbackPlacement = this.createFallbackPlacement('bottom');
+            fallbackPlacement = this.createFallbackPlacement('bottom');
           }
 
           if (clipped.bottom) {
-            this.fallbackPlacement = this.createFallbackPlacement('top');
+            fallbackPlacement = this.createFallbackPlacement('top');
           }
 
           if (clipped.left) {
-            this.fallbackPlacement = this.createFallbackPlacement('right');
+            fallbackPlacement = this.createFallbackPlacement('right');
           }
 
           if (clipped.right) {
-            this.fallbackPlacement = this.createFallbackPlacement('left');
+            fallbackPlacement = this.createFallbackPlacement('left');
           }
+
+          this.fallbackPlacement = fallbackPlacement;
         });
       },
       {
@@ -1278,7 +1303,7 @@ export class Dropdown
   }
 
   private cleanupOnHide() {
-    this.intersectObserverTrigger?.disconnect();
+    this.disconnectObserverForTriggerVisibility();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.keyboardNavigationCleanup = undefined;
@@ -1425,6 +1450,9 @@ export class Dropdown
       referenceElement,
       targetElement,
       async () => {
+        // Re-evaluate trigger clipping on every scroll or resize
+        this.refreshObserverForTriggerVisibility();
+
         const computeResponse = await computePosition(
           referenceElement,
           targetElement,
