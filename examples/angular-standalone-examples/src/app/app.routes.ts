@@ -150,6 +150,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-dropdown').then((m) => m.default),
   'preview/date-dropdown-presets': () =>
     import('../preview-examples/date-dropdown-presets').then((m) => m.default),
+  'preview/date-dropdown-display-format': () =>
+    import('../preview-examples/date-dropdown-display-format').then(
+      (m) => m.default
+    ),
   'preview/date-dropdown-require-confirmation': () =>
     import('../preview-examples/date-dropdown-require-confirmation').then(
       (m) => m.default
@@ -166,6 +170,10 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-input-label').then((m) => m.default),
   'preview/date-input-readonly': () =>
     import('../preview-examples/date-input-readonly').then((m) => m.default),
+  'preview/date-input-display-format': () =>
+    import('../preview-examples/date-input-display-format').then(
+      (m) => m.default
+    ),
   'preview/date-input-require-confirmation': () =>
     import('../preview-examples/date-input-require-confirmation').then(
       (m) => m.default
@@ -202,6 +210,10 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/datetime-input-readonly': () =>
     import('../preview-examples/datetime-input-readonly').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-display-format': () =>
+    import('../preview-examples/datetime-input-display-format').then(
       (m) => m.default
     ),
   'preview/datetime-input-require-confirmation': () =>
