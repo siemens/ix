@@ -69,6 +69,7 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownPresets from '../preview-examples/date-dropdown-presets';
+import DateDropdownDisplayFormat from '../preview-examples/date-dropdown-display-format';
 import DateDropdownRequireConfirmation from '../preview-examples/date-dropdown-require-confirmation';
 import DateRange from '../preview-examples/date-range';
 import DatetimeRange from '../preview-examples/datetime-range';
@@ -76,6 +77,7 @@ import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputDisplayFormat from '../preview-examples/date-input-display-format';
 import DateInputRequireConfirmation from '../preview-examples/date-input-require-confirmation';
 import DateInputValidation from '../preview-examples/date-input-validation';
 import DateInputWithSlots from '../preview-examples/date-input-with-slots';
@@ -90,6 +92,7 @@ import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
 import DatetimeInputMinMaxDate from '../preview-examples/datetime-input-min-max-date';
 import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
+import DatetimeInputDisplayFormat from '../preview-examples/datetime-input-display-format';
 import DatetimeInputRequireConfirmation from '../preview-examples/datetime-input-require-confirmation';
 import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
@@ -121,6 +124,7 @@ import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
 import InfoPage from '../preview-examples/info-page';
+import InfoPageIllustration from '../preview-examples/info-page-illustration';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -530,6 +534,10 @@ const routes: Routes = [
         component: DateDropdownPresets,
       },
       {
+        path: 'date-dropdown-display-format',
+        component: DateDropdownDisplayFormat,
+      },
+      {
         path: 'date-dropdown-require-confirmation',
         component: DateDropdownRequireConfirmation,
       },
@@ -556,6 +564,10 @@ const routes: Routes = [
       {
         path: 'date-input-readonly',
         component: DateInputReadonly,
+      },
+      {
+        path: 'date-input-display-format',
+        component: DateInputDisplayFormat,
       },
       {
         path: 'date-input-require-confirmation',
@@ -632,6 +644,10 @@ const routes: Routes = [
       {
         path: 'datetime-input-readonly',
         component: DatetimeInputReadonly,
+      },
+      {
+        path: 'datetime-input-display-format',
+        component: DatetimeInputDisplayFormat,
       },
       {
         path: 'datetime-input-require-confirmation',
@@ -723,6 +739,10 @@ const routes: Routes = [
       {
         path: 'info-page',
         component: InfoPage,
+      },
+      {
+        path: 'info-page-illustration',
+        component: InfoPageIllustration,
       },
       {
         path: 'event-list',
@@ -1167,6 +1187,7 @@ const routes: Routes = [
       { path: 'empty-state-compact', component: EmptyStateCompact },
       { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
       { path: 'info-page', component: InfoPage },
+      { path: 'info-page-illustration', component: InfoPageIllustration },
       { path: 'key-value', component: KeyValue },
       {
         path: 'toggle-button-subtle-secondary',
