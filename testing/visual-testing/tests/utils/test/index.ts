@@ -47,6 +47,23 @@ export const focusWithKeyboard = async (
 
   await target.waitFor({ state: 'attached' });
 
+  // `mount` returns before Stencil finishes rendering, so wait for the target
+  // and all of its (shadow-including) ancestor components to be loaded.
+  await target.evaluate(async (element) => {
+    const pending: Promise<unknown>[] = [];
+    let node: Node | null = element;
+    while (node) {
+      const { componentOnReady } = node as {
+        componentOnReady?: () => Promise<unknown>;
+      };
+      if (typeof componentOnReady === 'function') {
+        pending.push(componentOnReady.call(node));
+      }
+      node = node.parentNode ?? (node instanceof ShadowRoot ? node.host : null);
+    }
+    await Promise.all(pending);
+  });
+
   for (let i = 0; i < maxPresses; i++) {
     await page.keyboard.press(key);
 

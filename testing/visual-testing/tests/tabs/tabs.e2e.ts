@@ -60,9 +60,12 @@ regressionTest(
   async ({ mount, page }) => {
     const container = await mount(
       `<div style="padding: 0.5rem; width: fit-content">
-      <ix-tabs style="width: 15rem"><ix-tab-item>Tab 1</ix-tab-item><ix-tab-item>Tab 2</ix-tab-item><ix-tab-item>Tab 3</ix-tab-item><ix-tab-item>Tab 4</ix-tab-item><ix-tab-item>Tab 5</ix-tab-item><ix-tab-item>Tab 6</ix-tab-item><ix-tab-item>Tab 7</ix-tab-item><ix-tab-item>Tab 8</ix-tab-item></ix-tabs>
+      <ix-tabs style="width: 15rem"><ix-tab-item selected>Tab 1</ix-tab-item><ix-tab-item>Tab 2</ix-tab-item><ix-tab-item>Tab 3</ix-tab-item><ix-tab-item>Tab 4</ix-tab-item><ix-tab-item>Tab 5</ix-tab-item><ix-tab-item>Tab 6</ix-tab-item><ix-tab-item>Tab 7</ix-tab-item><ix-tab-item>Tab 8</ix-tab-item></ix-tabs>
     </div>`
     );
+
+    // Overflow is measured asynchronously after load; wait until it is applied
+    await page.locator('ix-tabs .tabs-context-menu').waitFor();
 
     await focusWithKeyboard(page, page.locator('ix-tabs .tabs'));
 
