@@ -43,3 +43,12 @@ export const RequireConfirmation: Story = {
     requireConfirmation: true,
   },
 };
+
+export const DisplayFormat: Story = {
+  args: {
+    label: 'Display format',
+    value: '2099/03/04',
+    format: 'yyyy/LL/dd',
+    displayFormat: 'dd.LL.yy',
+  },
+};
