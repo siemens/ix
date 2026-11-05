@@ -8,7 +8,7 @@
  */
 
 const textStyleDefault = {
-  color: '#4C4C68',
+  color: '#000028' /* si/sys/text/primary */,
   fontFamily: 'Siemens Sans, "Siemens Sans", Arial, Helvetica, sans-serif',
 };
 
@@ -73,7 +73,7 @@ export default {
       textStyle: textStyleDefault,
       subtextStyle: {
         ...textStyleDefault,
-        color: '#000028' /* si/sys/background/1 */,
+        color: '#4C4C68' /* si/sys/text/secondary */,
       },
     },
     line: {
@@ -147,7 +147,7 @@ export default {
       itemStyle: {
         borderWidth: 1,
         borderColor: '#000028' /* si/sys/border/1 */,
-        color: '#009999' /* si/sys/background/accent */,
+        color: '#006B80' /* si/sys/background/accent */,
       },
       label: {
         color: '#000028' /* si/sys/text/primary */,

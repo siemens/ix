@@ -79,6 +79,184 @@ function stripValueComments(source) {
   return source.replace(/\s*\/\*[^*]+?\*\/(?=\s*[,\]])/g, '');
 }
 
+const identifierChar = /[A-Za-z0-9_$]/;
+
+function skipStringLiteral(source, index) {
+  const quote = source[index];
+  let i = index + 1;
+  while (i < source.length && source[i] !== quote) {
+    i += source[i] === '\\' ? 2 : 1;
+  }
+  return i + 1;
+}
+
+function skipComment(source, index) {
+  if (source.startsWith('//', index)) {
+    const end = source.indexOf('\n', index);
+    return end === -1 ? source.length : end;
+  }
+  if (source.startsWith('/*', index)) {
+    return source.indexOf('*/', index + 2) + 2;
+  }
+  return index;
+}
+
+function skipTrivia(source, index) {
+  let i = index;
+  while (i < source.length) {
+    if (/\s/.test(source[i])) {
+      i++;
+      continue;
+    }
+    const next = skipComment(source, i);
+    if (next === i) {
+      return i;
+    }
+    i = next;
+  }
+  return i;
+}
+
+function findClosingBracket(source, openIndex) {
+  let depth = 0;
+  let i = openIndex;
+  while (i < source.length) {
+    const char = source[i];
+    if (char === "'" || char === '"' || char === '`') {
+      i = skipStringLiteral(source, i);
+      continue;
+    }
+    const afterComment = skipComment(source, i);
+    if (afterComment !== i) {
+      i = afterComment;
+      continue;
+    }
+    if ('{[('.includes(char)) {
+      depth++;
+    } else if ('}])'.includes(char) && --depth === 0) {
+      return i;
+    }
+    i++;
+  }
+  return -1;
+}
+
+// Returns the start index of the value of `name`, considering only keys
+// at the top level of the object body [start, end).
+function findPropertyValue(source, { start, end }, name) {
+  let i = start;
+  let depth = 0;
+  while (i < end) {
+    const char = source[i];
+    if (char === "'" || char === '"' || char === '`') {
+      i = skipStringLiteral(source, i);
+      continue;
+    }
+    const afterComment = skipComment(source, i);
+    if (afterComment !== i) {
+      i = afterComment;
+      continue;
+    }
+    if ('{[('.includes(char)) {
+      depth++;
+    } else if ('}])'.includes(char)) {
+      depth--;
+    } else if (
+      depth === 0 &&
+      identifierChar.test(char) &&
+      !identifierChar.test(source[i - 1] ?? '') &&
+      source[i - 1] !== '.'
+    ) {
+      let wordEnd = i;
+      while (wordEnd < end && identifierChar.test(source[wordEnd])) {
+        wordEnd++;
+      }
+      const afterWord = skipTrivia(source, wordEnd);
+      if (source.slice(i, wordEnd) === name && source[afterWord] === ':') {
+        return skipTrivia(source, afterWord + 1);
+      }
+      i = wordEnd;
+      continue;
+    }
+    i++;
+  }
+  return -1;
+}
+
+function findConstObject(source, identifier) {
+  const match = new RegExp(`^const ${identifier}\\s*=\\s*\\{`, 'm').exec(
+    source
+  );
+  if (!match) {
+    return null;
+  }
+  const open = match.index + match[0].length - 1;
+  return { start: open + 1, end: findClosingBracket(source, open) };
+}
+
+// Resolves an object-valued property, following references to top-level consts.
+function resolveObjectScope(source, valueIndex) {
+  if (source[valueIndex] === '{') {
+    return {
+      start: valueIndex + 1,
+      end: findClosingBracket(source, valueIndex),
+    };
+  }
+  const identifier = /^[A-Za-z_$][A-Za-z0-9_$]*/.exec(
+    source.slice(valueIndex)
+  )?.[0];
+  return identifier ? findConstObject(source, identifier) : null;
+}
+
+function resolvePropertyValue(source, scope, parts) {
+  let currentScope = scope;
+  for (const [index, part] of parts.entries()) {
+    if (!currentScope || currentScope.end === -1) {
+      return -1;
+    }
+    const valueIndex = findPropertyValue(source, currentScope, part);
+    if (valueIndex === -1 || index === parts.length - 1) {
+      return valueIndex;
+    }
+    currentScope = resolveObjectScope(source, valueIndex);
+  }
+  return -1;
+}
+
+function replaceStringValue(source, valueIndex, value, tokenName) {
+  const quote = source[valueIndex];
+  if (quote !== "'" && quote !== '"') {
+    return null;
+  }
+  const stringEnd = skipStringLiteral(source, valueIndex);
+  const trailingComments = /^(?:\s*\/\*[^*]*?\*\/)*/.exec(
+    source.slice(stringEnd)
+  )[0];
+  const valueEnd = stringEnd + trailingComments.length;
+  return (
+    source.slice(0, valueIndex) +
+    `'${value}' /* ${tokenName} */` +
+    source.slice(valueEnd)
+  );
+}
+
+function replaceSingleItemArrayValue(source, valueIndex, value, tokenName) {
+  if (source[valueIndex] !== '[') {
+    return null;
+  }
+  const arrayEnd = findClosingBracket(source, valueIndex);
+  const itemIndex = skipTrivia(source, valueIndex + 1);
+  const itemEnd = skipStringLiteral(source, itemIndex);
+  if (skipTrivia(source, itemEnd) !== arrayEnd) {
+    return null;
+  }
+  return (
+    source.slice(0, valueIndex) +
+    `['${value}' /* ${tokenName} */]` +
+    source.slice(arrayEnd + 1)
+  );
+}
+
 function updateAxisCommon(source, axisMappings, mode) {
   let updatedSource = source;
   let replacements = 0;
@@ -90,29 +268,44 @@ function updateAxisCommon(source, axisMappings, mode) {
     }
 
     for (const eChartsVariable of mapping.eChartsVariable ?? []) {
-      const propertyName = eChartsVariable.split('.')[0];
-      const propertyPattern =
-        propertyName === 'splitLine'
-          ? new RegExp(
-              `(splitLine:\\s*\\{[\\s\\S]*?color:\\s*\\[)'#[0-9A-Fa-f]{6}'(?:\\s*\\/\\*[^*]+?\\*\\/)*(\\])`
-            )
-          : new RegExp(
-              `(${propertyName}:\\s*\\{[\\s\\S]*?color:\\s*)'#[0-9A-Fa-f]{6}'(?:\\s*\\/\\*[^*]+?\\*\\/)*`
-            );
-      const before = updatedSource;
-      updatedSource = updatedSource.replace(
-        propertyPattern,
-        propertyName === 'splitLine'
-          ? `$1'${newHexValue}' /* ${tokenName} */$2`
-          : `$1'${newHexValue}' /* ${tokenName} */`
+      if (eChartsVariable.includes('[')) {
+        continue;
+      }
+      const valueIndex = resolvePropertyValue(
+        updatedSource,
+        findConstObject(updatedSource, 'axisCommon'),
+        eChartsVariable.split('.')
       );
-      if (updatedSource !== before) {
+      if (valueIndex === -1) {
+        continue;
+      }
+      const result =
+        replaceStringValue(updatedSource, valueIndex, newHexValue, tokenName) ??
+        replaceSingleItemArrayValue(
+          updatedSource,
+          valueIndex,
+          newHexValue,
+          tokenName
+        );
+      if (result !== null && result !== updatedSource) {
+        updatedSource = result;
         replacements++;
       }
     }
   }
 
   return { updatedSource, replacements };
+}
+
+function findThemeScope(source) {
+  const exportMatch = /export default\s*\{/.exec(source);
+  if (!exportMatch) {
+    return null;
+  }
+  const open = exportMatch.index + exportMatch[0].length - 1;
+  const exportScope = { start: open + 1, end: findClosingBracket(source, open) };
+  const themeIndex = findPropertyValue(source, exportScope, 'theme');
+  return themeIndex === -1 ? null : resolveObjectScope(source, themeIndex);
 }
 
 function updateMappedPaths(source, mappings) {
@@ -125,84 +318,33 @@ function updateMappedPaths(source, mappings) {
   for (const { eChartsVariable, hexValue, tokenName } of mappings) {
     if (
       !eChartsVariable.includes('.') ||
-      eChartsVariable === 'color' ||
       eChartsVariable === 'graph.color' ||
-      eChartsVariable.includes('axisCommon') ||
       eChartsVariable.includes('[')
     ) {
       continue;
     }
 
-    const parts = eChartsVariable.split('.');
-    const propertyPath = parts
-      .map((part, index) =>
-        index === parts.length - 1
-          ? `${part}:\\s*`
-          : `${part}:\\s*\\{[\\s\\S]*?`
-      )
-      .join('');
-    const propertyPattern = new RegExp(
-      `(${propertyPath})'#[0-9A-Fa-f]{6}'(?:\\s*\\/\\*[^*]+?\\*\\/)*|(${propertyPath})'[^']*'`,
-      'g'
+    const valueIndex = resolvePropertyValue(
+      updatedSource,
+      findThemeScope(updatedSource),
+      eChartsVariable.split('.')
     );
-    const before = updatedSource;
-    updatedSource = updatedSource.replace(
-      propertyPattern,
-      (_, hexPrefix, stringPrefix) =>
-        `${hexPrefix ?? stringPrefix}'${hexValue}' /* ${tokenName} */`
+    if (valueIndex === -1) {
+      continue;
+    }
+    const result = replaceStringValue(
+      updatedSource,
+      valueIndex,
+      hexValue,
+      tokenName
     );
-    if (updatedSource !== before) {
+    if (result !== null && result !== updatedSource) {
+      updatedSource = result;
       replacements++;
     }
   }
 
   return { updatedSource, replacements };
-}
-
-function updateTimeline(source, timelineMappings, mode) {
-  const timelineStart = source.indexOf('    timeline: {');
-  if (timelineStart === -1) {
-    return { updatedSource: source, replacements: 0 };
-  }
-
-  const timelineEnd = source.indexOf('\n    },\n    visualMap:', timelineStart);
-  if (timelineEnd === -1) {
-    return { updatedSource: source, replacements: 0 };
-  }
-
-  let timeline = source.slice(timelineStart, timelineEnd);
-  let replacements = 0;
-  const values = new Map();
-  for (const [tokenName, mapping] of Object.entries(timelineMappings)) {
-    const hexValue = mapping.hexValuesByMode?.[mode];
-    if (hexPattern.test(hexValue) || hexValue === 'transparent') {
-      for (const eChartsVariable of mapping.eChartsVariable ?? []) {
-        values.set(eChartsVariable, { tokenName, hexValue });
-      }
-    }
-  }
-
-  const replaceColors = (property, value) => {
-    const pattern = new RegExp(
-      `(${property}:\\s*\\{\\s*color:\\s*)'[^']*'(?:\\s*\\/\\*[^*]+?\\*\\/)*`,
-      'g'
-    );
-    timeline = timeline.replace(pattern, (_, prefix) => {
-      replacements++;
-      return `${prefix}'${value.hexValue}' /* ${value.tokenName} */`;
-    });
-  };
-
-  replaceColors('lineStyle', values.get('timeline.lineStyle.color'));
-  replaceColors('itemStyle', values.get('timeline.itemStyle.color'));
-  replaceColors('checkpointStyle', values.get('timeline.checkpointStyle.color'));
-  replaceColors('label', values.get('timeline.label.color'));
-  replaceColors('controlStyle', values.get('timeline.controlStyle.color'));
-
-  return {
-    updatedSource: source.slice(0, timelineStart) + timeline + source.slice(timelineEnd),
-    replacements,
-  };
 }
 
 const tokenMap = JSON.parse(await readFile(tokenMapPath, 'utf8'));
@@ -222,18 +364,12 @@ for (const [themeFile, mode] of themes) {
     tokenMap.axisCommon,
     mode
   );
-  const timelineResult = updateTimeline(
-    axisResult.updatedSource,
-    tokenMap.timeline,
-    mode
-  );
   const result = {
-    updatedSource: timelineResult.updatedSource,
+    updatedSource: axisResult.updatedSource,
     replacements:
       paletteResult.replacements +
       pathResult.replacements +
-      axisResult.replacements +
-      timelineResult.replacements,
+      axisResult.replacements,
   };
 
   if (result.updatedSource !== source) {
