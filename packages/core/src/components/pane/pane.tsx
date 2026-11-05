@@ -25,8 +25,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type { JSAnimation } from 'animejs';
-import { animate } from 'animejs';
+import { animate, AnimationControl, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
@@ -35,6 +34,7 @@ import {
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
+import type { Disposable } from '../utils/typed-event';
 import { addFocusTrap, FocusTrapResult } from '../utils/focus/focus-trap';
 import type {
   BorderlessChangedEvent,
@@ -47,8 +47,14 @@ import type {
 import { a11yBoolean } from '../utils/a11y';
 
 /**
+ * Collapsible side panel docked to an edge of the layout.
+ *
+ * @documentation https://ix.siemens.io//docs/components/panes/guide.md
+ * @figma-main-component-id 19924:12291
+ *
  * @slot header - Additional slot for the header content
- * @slot default - Pane body content.
+ *
+ * @slot - Pane content.
  */
 @Component({
   tag: 'ix-pane',
@@ -177,7 +183,7 @@ export class Pane {
   private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
   private static readonly collapsedPane = '40px';
   private static readonly collapsedPaneMobile = '48px';
-  private readonly animations: Map<string, JSAnimation> = new Map();
+  private readonly animations: Map<string, AnimationControl> = new Map();
   private animationCounter = 0;
 
   private mutationObserver?: MutationObserver;
@@ -186,6 +192,7 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
+  private layoutChangeDisposable?: Disposable;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -203,7 +210,53 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  connectedCallback() {
+    this.isMobile = matchBreakpoint('sm');
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
+      this.isMobile = matchBreakpoint('sm');
+    });
+
+    this.mutationObserver?.disconnect();
+    this.mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'slot'
+        ) {
+          const newSlot = this.currentSlot;
+          const oldSlot = mutation.oldValue;
+
+          if (newSlot !== oldSlot) {
+            this.slotChanged.emit({
+              slot: oldSlot ?? '',
+              newSlot: newSlot ?? '',
+            });
+
+            if (newSlot) {
+              this.setPosition(newSlot);
+            }
+          }
+        }
+      });
+    });
+    this.mutationObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeOldValue: true,
+    });
+
+    const parentElement = this.hostElement.parentElement;
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
+      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
+    });
+    if (parentElement) this.resizeObserver.observe(parentElement);
+  }
+
   disconnectedCallback() {
+    this.layoutChangeDisposable?.dispose();
+    this.layoutChangeDisposable = undefined;
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
@@ -264,49 +317,10 @@ export class Pane {
       this.onParentSizeChange();
     }
 
-    this.isMobile = matchBreakpoint('sm');
-    applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
-
     if (this.currentSlot) {
       this.setPosition(this.currentSlot);
     }
     this.setIcons();
-
-    this.mutationObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'slot'
-        ) {
-          const newSlot = this.currentSlot;
-          const oldSlot = mutation.oldValue;
-
-          if (newSlot !== oldSlot) {
-            this.slotChanged.emit({
-              slot: oldSlot ?? '',
-              newSlot: newSlot ?? '',
-            });
-
-            if (newSlot) {
-              this.setPosition(newSlot);
-            }
-          }
-        }
-      });
-    });
-    this.mutationObserver.observe(this.hostElement, {
-      attributes: true,
-      attributeOldValue: true,
-    });
-
-    const parentElement = this.hostElement.parentElement;
-    this.resizeObserver = new ResizeObserver((entries) => {
-      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
-      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
-    });
-    if (parentElement) this.resizeObserver.observe(parentElement);
   }
 
   private setPosition(value: string) {
@@ -403,12 +417,10 @@ export class Pane {
 
   private animateVerticalFadeIn(size: string) {
     let key = this.getKey();
-    let animation = animate(this.hostElement, {
+    let animation = animate(this.hostElement, [{ width: size }], {
       duration: Animation.mediumTime,
-      width: size,
-      easing: 'easeInOutSine',
-      delay: 0,
-      begin: () => {
+      easing: Easing.easeOutQuad,
+      onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
           this.animateVerticalPadding('0px');
@@ -416,7 +428,7 @@ export class Pane {
           this.animateVerticalPadding('8px');
         }
       },
-      complete: () => {
+      onComplete: () => {
         this.onAnimationComplete(key);
       },
     });
@@ -426,11 +438,9 @@ export class Pane {
 
   private animateHorizontalFadeIn(size: string) {
     let key = this.getKey();
-    let animation = animate(this.hostElement, {
+    let animation = animate(this.hostElement, [{ height: size }], {
       duration: Animation.mediumTime,
-      height: size,
-      easing: 'easeInOutSine',
-      delay: 0,
+      easing: Easing.easeOutQuad,
       onBegin: () => {
         if (!this.expanded) {
           this.showContent = false;
@@ -459,63 +469,60 @@ export class Pane {
     this.animations.delete(key);
   }
 
+  private getTitleDiv() {
+    return this.hostElement.shadowRoot?.querySelector<HTMLElement>(
+      '#title-div'
+    );
+  }
+
   private removePadding() {
-    animate(this.hostElement.shadowRoot!.querySelector('#title-div')!, {
-      duration: 0,
-      paddingTop: 0,
-      paddingBottom: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      delay: 0,
-    });
+    const titleDiv = this.getTitleDiv();
+
+    if (!titleDiv) {
+      return;
+    }
+
+    titleDiv.style.paddingTop = '0px';
+    titleDiv.style.paddingBottom = '0px';
+    titleDiv.style.paddingLeft = '0px';
+    titleDiv.style.paddingRight = '0px';
   }
 
   private animateHorizontalPadding(
     size: string,
     duration = Animation.mediumTime
   ) {
-    let key = this.getKey();
-    let animation = animate(
-      this.hostElement.shadowRoot!.querySelector('#title-div')!,
-      {
-        duration: duration,
-        paddingTop: size,
-        paddingBottom: size,
-        easing: 'easeInOutSine',
-        delay: 0,
-        onComplete: () => {
-          this.animations.delete(key);
-        },
-      }
-    );
-
-    this.animations.set(key, animation);
+    this.animatePadding({ paddingTop: size, paddingBottom: size }, duration);
   }
 
   private animateVerticalPadding(
     size: string,
     duration = Animation.mediumTime
   ) {
-    let key = this.getKey();
-    let animation = animate(
-      this.hostElement.shadowRoot!.querySelector('#title-div')!,
-      {
-        duration: duration,
-        paddingLeft: size,
-        paddingRight: size,
-        easing: 'easeInOutSine',
-        delay: 0,
-        onComplete: () => {
-          this.animations.delete(key);
-        },
-      }
-    );
+    this.animatePadding({ paddingLeft: size, paddingRight: size }, duration);
+  }
+
+  private animatePadding(padding: Keyframe, duration: number) {
+    const titleDiv = this.getTitleDiv();
+
+    if (!titleDiv) {
+      return;
+    }
+
+    const key = this.getKey();
+    const animation = animate(titleDiv, [padding], {
+      duration,
+      easing: Easing.easeOutQuad,
+      onComplete: () => {
+        this.animations.delete(key);
+      },
+    });
 
     this.animations.set(key, animation);
   }
 
   private clearAnimations() {
-    this.animations.forEach((animation) => animation.pause());
+    this.animations.forEach((animation) => animation.stop());
     this.animations.clear();
     this.animationCounter = 0;
   }

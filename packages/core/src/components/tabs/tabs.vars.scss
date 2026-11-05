@@ -13,12 +13,19 @@
   --ix-tabs--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-tabs-indicator--background: #{sys.$si-sys-color-border-3};
   --ix-tabs-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
-  --ix-tabs-indicator--height: 0.0625rem;
 }
 
 :host {
+  --ix-tabs-overflow-shadow--fade-width: calc(
+    var(--ix-tabs--padding-right) + #{sys.$si-sys-sizing-border-width-default}
+  );
+  --ix-tabs-indicator--height: #{sys.$si-sys-sizing-border-width-default};
   --ix-tabs--padding-right: calc(
     #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
   );
   --ix-tabs-context-menu--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-tabs--outline-offset: calc(
+    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+  );
+  --ix-tabs--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
 }

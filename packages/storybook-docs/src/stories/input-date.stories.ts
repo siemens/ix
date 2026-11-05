@@ -35,3 +35,20 @@ export const Required: Story = {
     required: true,
   },
 };
+
+export const RequireConfirmation: Story = {
+  args: {
+    label: 'Require confirmation',
+    value: '2026/02/08',
+    requireConfirmation: true,
+  },
+};
+
+export const DisplayFormat: Story = {
+  args: {
+    label: 'Display format',
+    value: '2099/03/04',
+    format: 'yyyy/LL/dd',
+    displayFormat: 'dd.LL.yy',
+  },
+};

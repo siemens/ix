@@ -7,19 +7,23 @@
     "build": "tsx create-sbom.ts"
   },
   "devDependencies": {
-    "@cyclonedx/cyclonedx-library": "^8.0.0",
+    "@cyclonedx/cyclonedx-library": "^10.0.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.15.16",
+    "@types/node": "catalog:",
+    "@types/spdx-expression-parse": "^4.0.0",
     "fs-extra": "^11.3.0",
+    "packageurl-js": "^2.0.1",
+    "spdx-expression-parse": "^4.0.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
+    "@siemens/ix-cli": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-react": "workspace:*",
-    "@siemens/ix-vue": "workspace:*"
+    "@siemens/ix-vue": "workspace:*",
+    "@siemens/ix": "workspace:*"
   }
 }

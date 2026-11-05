@@ -80,6 +80,43 @@ describe('getDeepActiveElement', () => {
   });
 });
 
+describe('getFocusTrapFocusables', () => {
+  afterEach(() => {
+    document.body.innerHTML = '';
+  });
+
+  it('excludes controls inside a display-none ancestor', () => {
+    const trapHost = document.createElement('div');
+    const visible = document.createElement('button');
+    const hiddenHost = document.createElement('div');
+    const hidden = document.createElement('button');
+    hiddenHost.style.display = 'none';
+    hiddenHost.append(hidden);
+    trapHost.append(visible, hiddenHost);
+    document.body.appendChild(trapHost);
+
+    expect(getFocusTrapFocusables(trapHost)).toEqual([visible]);
+  });
+
+  it('excludes controls inside a display-none SVG ancestor', () => {
+    const trapHost = document.createElement('div');
+    const visible = document.createElement('button');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const foreignObject = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'foreignObject'
+    );
+    const hidden = document.createElement('button');
+    svg.style.display = 'none';
+    foreignObject.append(hidden);
+    svg.append(foreignObject);
+    trapHost.append(visible, svg);
+    document.body.appendChild(trapHost);
+
+    expect(getFocusTrapFocusables(trapHost)).toEqual([visible]);
+  });
+});
+
 describe('addFocusTrap', () => {
   afterEach(() => {
     document.body.innerHTML = '';
@@ -195,6 +232,30 @@ describe('addFocusTrap', () => {
     dispatchTab(first);
 
     expect(document.activeElement).toBe(first);
+    trap.destroy();
+  });
+
+  it('does not handle a Tab event already owned by a child control', async () => {
+    const trapHost = document.createElement('div');
+    const first = document.createElement('button');
+    const second = document.createElement('button');
+    trapHost.append(first, second);
+    document.body.appendChild(trapHost);
+    second.focus();
+
+    const trap = await addFocusTrap(trapHost, {
+      listenOnDocument: true,
+      trapFocusInShadowDom: 'both',
+    });
+    const event = new KeyboardEvent('keydown', {
+      bubbles: true,
+      cancelable: true,
+      key: 'Tab',
+    });
+    event.preventDefault();
+    second.dispatchEvent(event);
+
+    expect(document.activeElement).toBe(second);
     trap.destroy();
   });
 

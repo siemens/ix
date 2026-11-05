@@ -1,6 +1,7 @@
 - main:
   - button "Arrow Left"
-  - text: Content title Subtitle
+  - heading "Content title" [level=2]
+  - text: Subtitle
   - button "Button1"
   - button "Button2"
   - button "Button3"

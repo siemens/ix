@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './tabs.vars' as *;
 
@@ -97,8 +96,9 @@
   }
 
   .tabs:focus-visible {
-    outline-offset: -1px;
-    outline: 1px solid var(--ix-tabs--outline-color--focus);
+    outline-offset: var(--ix-tabs--outline-offset);
+    outline: var(--ix-tabs--outline-width--focus) solid
+      var(--ix-tabs--outline-color--focus);
   }
 
   .tabs-context-menu {
@@ -117,7 +117,7 @@
   .overflow-shadow {
     mask-image: linear-gradient(
       90deg,
-      black calc(100% - 45px),
+      black calc(100% - var(--ix-tabs-overflow-shadow--fade-width)),
       transparent 100%
     );
   }

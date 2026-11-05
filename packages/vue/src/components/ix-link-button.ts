@@ -9,5 +9,7 @@ import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/component
 export const IxLinkButton: StencilVueComponent<JSX.IxLinkButton> = /*@__PURE__*/ defineContainer<JSX.IxLinkButton>('ix-link-button', defineIxLinkButton, [
   'disabled',
   'url',
-  'target'
+  'target',
+  'icon',
+  'iconPosition'
 ]);

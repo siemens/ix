@@ -24,3 +24,12 @@ export default meta;
 type Story = StoryObj<Element>;
 
 export const Default: Story = {};
+
+export const RequireConfirmation: Story = {
+  args: {
+    requireConfirmation: true,
+    singleSelection: true,
+    from: '2026/02/08',
+    time: '09:30:00',
+  },
+};

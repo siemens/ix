@@ -1,0 +1,57 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<style>
+  .checkbox-group-wrapper {
+    margin-bottom: 1rem;
+  }
+</style>
+
+<div class="checkbox-group-wrapper">
+  <ix-checkbox-group label="Terms of something" infoText="Info text">
+    <ix-checkbox
+      label="I agree everything"
+      name="agreed"
+      class="ix-info"
+    ></ix-checkbox>
+  </ix-checkbox-group>
+</div>
+
+<div class="checkbox-group-wrapper">
+  <ix-checkbox-group label="Terms of something" warningText="Warning text">
+    <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+    <ix-checkbox
+      label="I disagree everything"
+      name="agreed"
+      class="ix-warning"
+    ></ix-checkbox>
+  </ix-checkbox-group>
+</div>
+
+<div class="checkbox-group-wrapper">
+  <ix-checkbox-group label="Terms of something" invalidText="Invalid text">
+    <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+    <ix-checkbox
+      label="I disagree everything"
+      name="agreed"
+      class="ix-invalid"
+    ></ix-checkbox>
+  </ix-checkbox-group>
+</div>
+
+<div class="checkbox-group-wrapper">
+  <ix-checkbox-group label="Terms of something" validText="Valid text">
+    <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+    <ix-checkbox
+      label="I disagree everything"
+      name="agreed"
+      class="ix-valid"
+    ></ix-checkbox>
+  </ix-checkbox-group>
+</div>

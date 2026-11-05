@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-@use 'legacy/fonts';
+@use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
 @use 'tokens/system' as sys;
 
@@ -34,6 +34,8 @@
     h2 {
       color: var(--ix-menu-about-overlay-header--color);
       margin-bottom: var(--ix-menu-about-heading--margin-bottom);
+
+      @include fonts.typography-h2;
     }
   }
 

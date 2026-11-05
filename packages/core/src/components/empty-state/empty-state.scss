@@ -1,11 +1,10 @@
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './empty-state.vars' as *;
 :host {
   @include component.ix-component;
 
-  .label__subHeader {
+  .label__description {
     color: var(--ix-empty-state-label--color);
   }
 }
@@ -45,7 +44,7 @@
     }
   }
 
-  .label__subHeader,
+  .label__description,
   ix-typography {
     text-align: center;
   }
@@ -71,6 +70,12 @@
     justify-content: center;
     align-items: center;
     gap: var(--ix-empty-state-content-compact--gap);
+
+    .content__label {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ix-empty-state-content-label--gap);
+    }
   }
 }
 
@@ -92,5 +97,13 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--ix-empty-state-content--gap);
+
+    .content__label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--ix-empty-state-content-label--gap);
+      min-height: var(--ix-empty-state-icon--icon-size);
+    }
   }
 }

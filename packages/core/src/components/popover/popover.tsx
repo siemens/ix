@@ -40,6 +40,7 @@ import {
   addFocusTrap,
   focusFirstFocusTrapElement,
   FocusTrapResult,
+  getAdjacentFocusTrapElement,
   getFocusTrapFocusables,
 } from '../utils/focus/focus-trap';
 import { DefaultMixins } from '../utils/internal/component';
@@ -78,7 +79,9 @@ const numberToPixel = (value?: number | null) =>
 /**
  * Floating panel anchored to a trigger element.
  *
- * @slot default - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
+ * @documentation https://ix.siemens.io//docs/components/popover/guide.md
+ * @figma-main-component-id 145668:12518
+ * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
  *
  * @since 5.1.0
  */
@@ -98,8 +101,14 @@ export class Popover
 
   /**
    * Element that toggles the popover.
-   * String values are resolved as the trigger element `id`, not as CSS selectors.
-   * Also accepts a DOM element reference.
+   * String values are resolved as the trigger element `id`. Also accepts a DOM element reference.
+   *
+   * String values are inserted into an ID selector (`#<value>`) without escaping. Use
+   * application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters,
+   * digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM
+   * element reference instead.
+   * If no element with the ID exists, the popover observes the document until it appears; make sure
+   * the trigger element exists.
    *
    * @since 5.1.0
    */
@@ -185,8 +194,14 @@ export class Popover
     return {
       trapFocusInShadowDom: 'both' as const,
       listenOnDocument: true,
-      shouldDeferTabTrap: (trapHost: HTMLElement) =>
-        !popoverController.isTopmostPresentedHost(trapHost),
+      shouldDeferTabTrap: (
+        trapHost: HTMLElement,
+        activeElement: Element | null
+      ) => popoverController.shouldDeferFocusTrap(trapHost, activeElement),
+      getExcludedOverlayHosts: (
+        trapHost: HTMLElement,
+        activeElement: Element | null
+      ) => popoverController.getFocusTrapExcludedHosts(trapHost, activeElement),
     };
   }
 
@@ -197,6 +212,24 @@ export class Popover
 
   getId(): string {
     return this.getHostElementId();
+  }
+
+  getTriggerElement(): HTMLElement | undefined {
+    return this.triggerElement;
+  }
+
+  getAdjacentFocusElement(
+    current: HTMLElement,
+    backwards: boolean,
+    excludedHosts?: HTMLElement[]
+  ): HTMLElement | undefined {
+    return getAdjacentFocusTrapElement(
+      this.hostElement,
+      current,
+      backwards,
+      this.getFocusTrapOptions(),
+      excludedHosts
+    );
   }
 
   getNestedPopoverIds(): string[] {
@@ -350,6 +383,7 @@ export class Popover
       this.suppressShowWatch = true;
       this.show = true;
       this.suppressShowWatch = false;
+      popoverController.didPresent(this);
 
       dialog.showPopover();
       this.registerHoverDialogListener(dialog);
@@ -419,6 +453,7 @@ export class Popover
     this.suppressShowWatch = true;
     this.show = false;
     this.suppressShowWatch = false;
+    popoverController.didDismiss(this);
     this.closeFocus = 'restore-trigger';
 
     this.updateTriggerAria(false);

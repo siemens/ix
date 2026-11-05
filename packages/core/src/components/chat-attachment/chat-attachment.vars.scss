@@ -11,4 +11,9 @@
 
 :host {
   --ix-chat-attachment-attachment-chip--max-width: #{sys.$si-sys-sizing-size-170};
+  --ix-chat-attachment-status-content--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  --ix-chat-attachment-status-content--margin-left: calc(
+    #{sys.$si-sys-sizing-spacing-x-10} * 1.5
+  );
+  --ix-chat-attachment-has-remove-button--gap: #{sys.$si-sys-sizing-spacing-x-30};
 }

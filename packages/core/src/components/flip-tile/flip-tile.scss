@@ -10,14 +10,13 @@
 @use './flip-tile-vars' as flip-tile-vars;
 @use 'mixins/text-truncation';
 @use 'mixins/shadow-dom/component';
-@use 'legacy/fonts';
-@use 'tokens/system' as sys;
+@use 'mixins/fonts';
 
 @use './flip-tile.vars' as *;
 :host {
   display: flex;
   flex-direction: column;
-  perspective: 1000px;
+  perspective: var(--ix-flip-tile--perspective);
   border-radius: var(--ix-flip-tile--border-radius)
     var(--ix-flip-tile--border-radius) 0 0;
 
@@ -33,6 +32,7 @@
       flex-grow: 1;
       min-width: 0;
 
+      @include fonts.typography-body-lg-sbold;
       @include text-truncation.ellipsis;
     }
   }
@@ -80,7 +80,9 @@
 
 @each $variant in flip-tile-vars.$flip-tile-variants {
   :host(.flip-tile-variant-#{$variant}) {
-    border: solid 1px var(--ix-flip-tile-#{$variant}--border-color);
+    border: solid
+      var(--ix-flip-tile-variant--border-width)
+      var(--ix-flip-tile-#{$variant}--border-color);
 
     .flip-tile-container {
       background-color: var(--ix-flip-tile-#{$variant}--background);
@@ -88,7 +90,7 @@
 
       .footer {
         display: none;
-        border-top: 1px
+        border-top: var(--ix-flip-tile-footer--border-width)
           solid
           var(--ix-flip-tile-#{$variant}-footer--border-color);
         background-color: var(--ix-flip-tile-#{$variant}-footer--background);

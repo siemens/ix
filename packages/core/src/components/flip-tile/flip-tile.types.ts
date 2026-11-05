@@ -7,10 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import type { StatusVariant } from '../utils/status.types';
+
+/**
+ * Flip tile variant: `outline` and `filled` layouts or any status except `base`.
+ *
+ * @since 6.0.0
+ */
 export type FlipTileVariant =
   | 'outline'
   | 'filled'
-  | 'info'
-  | 'warning'
-  | 'alarm'
-  | 'primary';
+  | Exclude<StatusVariant, 'base'>;

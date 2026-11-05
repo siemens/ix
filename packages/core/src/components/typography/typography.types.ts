@@ -6,16 +6,32 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-type TypographyFormatLabel = 'label' | 'label-xs' | 'label-sm' | 'label-lg';
-type TypographyFormatBody = 'body' | 'body-xs' | 'body-sm' | 'body-lg';
+type TypographyFormatBody =
+  | 'body'
+  | 'body-sbold'
+  | 'body-paragraph'
+  | 'body-paragraph-sbold'
+  | 'body-sm'
+  | 'body-sm-sbold'
+  | 'body-lg'
+  | 'body-lg-sbold';
 type TypographyFormatDisplay =
   | 'display'
-  | 'display-xs'
-  | 'display-sm'
+  | 'display-sbold'
   | 'display-lg'
+  | 'display-lg-sbold'
   | 'display-xl'
-  | 'display-xxl';
-type TypographyFormatHeading = 'h6' | 'h5' | 'h4' | 'h3' | 'h2' | 'h1';
+  | 'display-xl-sbold'
+  | 'display-xxl'
+  | 'display-xxl-sbold';
+type TypographyFormatHeading =
+  | 'h6'
+  | 'h5'
+  | 'h5-bold'
+  | 'h4'
+  | 'h3'
+  | 'h2'
+  | 'h1';
 type TypographyFormatCode = 'code' | 'code-sm' | 'code-lg';
 
 export type TypographyVariants =
@@ -35,25 +51,26 @@ export type TypographyVariants =
   | 'display-large';
 
 export type TypographyColors =
-  | 'alarm'
-  | 'alarm-contrast'
-  | 'contrast'
-  | 'critical-contrast'
-  | 'info-contrast'
-  | 'inv-contrast'
-  | 'inv-soft'
-  | 'inv-std'
-  | 'inv-weak'
-  | 'neutral-contrast'
-  | 'primary-contrast'
-  | 'soft'
-  | 'std'
-  | 'success-contrast'
-  | 'warning-contrast'
-  | 'weak';
+  | 'caution'
+  | 'critical'
+  | 'danger'
+  | 'disabled'
+  | 'information'
+  | 'inverse'
+  | 'on-accent'
+  | 'on-caution'
+  | 'on-critical'
+  | 'on-danger'
+  | 'on-information'
+  | 'on-neutral'
+  | 'on-success'
+  | 'on-warning'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning';
 
 export type TypographyFormat =
-  | TypographyFormatLabel
   | TypographyFormatBody
   | TypographyFormatDisplay
   | TypographyFormatHeading

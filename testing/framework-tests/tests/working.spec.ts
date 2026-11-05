@@ -26,6 +26,7 @@ import './generated/tabs-rounded.spec';
 import './generated/tabs.spec';
 import './generated/time-range.spec';
 import './generated/timepicker-min-max-time.spec';
+import './application-skip-link.spec';
 
 // Button tests - basic
 import './generated/buttons.spec';
@@ -74,6 +75,7 @@ import './generated/content-header-text-overflow.spec';
 
 // Info page tests
 import './generated/info-page.spec';
+import './generated/info-page-illustration.spec';
 
 // Chat tests
 import './generated/chat.spec';
@@ -87,3 +89,30 @@ import './generated/badge-counter.spec';
 import './generated/badge-label.spec';
 import './generated/badge-dot.spec';
 import './generated/badge-status-icon.spec';
+
+// Require confirmation tests
+import './generated/date-dropdown-require-confirmation.spec';
+import './generated/date-input-require-confirmation.spec';
+import './generated/date-picker-require-confirmation.spec';
+import './generated/datetime-input-require-confirmation.spec';
+import './generated/datetime-picker-require-confirmation.spec';
+
+// Display format tests
+import './generated/date-dropdown-display-format.spec';
+import './generated/date-input-display-format.spec';
+import './generated/datetime-input-display-format.spec';
+
+// Group tests
+import './generated/group.spec';
+import './generated/group-context-menu.spec';
+import './generated/group-custom-entry.spec';
+import './generated/group-header-suppressed.spec';
+
+// Card family / Blind tests
+import './generated/card.spec';
+import './generated/action-card.spec';
+import './generated/push-card.spec';
+import './generated/card-list.spec';
+import './generated/blind.spec';
+import './generated/blind-variants.spec';
+import './generated/blind-header-actions.spec';

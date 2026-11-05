@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'mixins/fonts';
 @use 'tokens/system' as sys;
 
 @use './popover-content.vars' as *;
@@ -17,6 +18,7 @@
   overflow: auto;
   padding: var(--ix-popover-content--padding);
 
+  @include fonts.typography-body-paragraph;
   @include component.ix-component;
 }
 

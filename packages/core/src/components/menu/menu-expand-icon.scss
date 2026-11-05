@@ -9,10 +9,8 @@
 @use './../button/button-mixin';
 @use 'mixins/hover';
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './menu-expand-icon.vars' as *;
-$focus-bdr-width: 0.0625rem;
 
 @include button-mixin.btn;
 @include button-mixin.btn-variant(subtle-tertiary);
@@ -36,10 +34,14 @@ $focus-bdr-width: 0.0625rem;
   .line {
     fill: var(--ix-menu-expand-icon--color);
     opacity: 1;
-    x: 2px;
-    transition: x 0.075s ease-in var(--ix-menu-expand-icon--transition-delay),
-      transform 0.075s ease-in-out 0.075s, y 0.075s ease-in-out,
-      opacity 0.075s linear 0.075s;
+    x: var(--ix-menu-expand-icon-line--x);
+    transition: x var(--ix-menu-expand-icon-line--transition-duration) ease-in
+        var(--ix-menu-expand-icon--transition-delay),
+      transform var(--ix-menu-expand-icon-line--transition-duration) ease-in-out
+        var(--ix-menu-expand-icon-line--transition-duration),
+      y var(--ix-menu-expand-icon-line--transition-duration) ease-in-out,
+      opacity var(--ix-menu-expand-icon-line--transition-duration) linear
+        var(--ix-menu-expand-icon-line--transition-duration);
     transform-origin: center;
   }
 }
@@ -66,17 +68,17 @@ $focus-bdr-width: 0.0625rem;
   svg .line-1 {
     opacity: 1;
     transform: rotate(-45deg);
-    y: 11px;
+    y: var(--ix-menu-expand-icon-line-1--y);
   }
 
   svg .line-2 {
     opacity: 0;
-    x: 9;
+    x: var(--ix-menu-expand-icon-line--x--expanded);
   }
 
   svg .line-3 {
     opacity: 1;
     transform: rotate(45deg);
-    y: 11px;
+    y: var(--ix-menu-expand-icon-line-3--y);
   }
 }

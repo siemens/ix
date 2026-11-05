@@ -1,0 +1,39 @@
+{
+  "$schema": "./../tooling/registry/schemas/authored-pattern.schema.json",
+  "name": "upload",
+  "description": "Use this pattern to provide a file upload area with a list of uploaded files and remove actions for each file.",
+  "keywords": [
+    "upload",
+    "file upload",
+    "attachments",
+    "file list",
+    "remove file",
+    "documents"
+  ],
+  "preview": "react-patterns/dist/ix/upload",
+  "variants": {
+    "react": {
+      "files": [
+        {
+          "sourcePath": "react-patterns/src/routes/upload/upload.tsx"
+        },
+        {
+          "sourcePath": "react-patterns/src/routes/upload/upload.module.css"
+        }
+      ]
+    },
+    "angular": {
+      "files": [
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/upload/upload.ts"
+        },
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/upload/upload.html"
+        },
+        {
+          "sourcePath": "angular-standalone-patterns/src/routes/upload/upload.css"
+        }
+      ]
+    }
+  }
+}

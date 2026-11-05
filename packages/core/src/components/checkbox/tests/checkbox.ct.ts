@@ -14,6 +14,17 @@ import {
   test,
 } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
+  await mount(`<ix-checkbox label="Accept terms"></ix-checkbox>`);
+
+  const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+  await expect(checkbox).toHaveAttribute('type', 'checkbox');
+  await expect(page.locator('ix-checkbox button')).toHaveCount(0);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest(`form-ready`, async ({ mount, page }) => {
   await mount(`<form><ix-checkbox name="my-field-name"></ix-checkbox></form>`);
 
@@ -51,8 +62,8 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
 
 regressionTest(`disabled`, async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label" disabled></ix-checkbox>`);
-  const checkboxElement = page.locator('ix-checkbox');
-  await expect(checkboxElement).toBeDisabled();
+  const checkbox = page.getByRole('checkbox', { name: 'some label' });
+  await expect(checkbox).toBeDisabled();
 });
 
 regressionTest(`disabled = undefined`, async ({ mount, page }) => {
@@ -83,19 +94,27 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
 });
 
 regressionTest(
-  'label-less host size matches 24px active area',
-  async ({
-    mount,
-
-    page,
-  }) => {
+  'label-less checkbox has 20px layout size and 24px active area',
+  async ({ mount, page }) => {
     await mount(
-      `<ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox>`
+      `<div style="padding: 1rem"><ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox></div>`
     );
     const checkbox = page.locator('ix-checkbox');
     await expect(checkbox).toHaveClass(/label-less/);
-    await expect(checkbox).toHaveCSS('width', '24px');
-    await expect(checkbox).toHaveCSS('height', '24px');
+    await expect(checkbox).toHaveCSS('width', '20px');
+    await expect(checkbox).toHaveCSS('height', '20px');
+    await expect(page.getByRole('checkbox', { name: 'Accept' })).toBeVisible();
+
+    const box = await checkbox.boundingBox();
+    if (!box) {
+      throw new Error('checkbox has no bounding box');
+    }
+    const centerY = box.y + box.height / 2;
+    await page.mouse.click(box.x - 1.5, centerY);
+    await expect(checkbox).toHaveJSProperty('checked', true);
+
+    await page.mouse.click(box.x - 3, centerY);
+    await expect(checkbox).toHaveJSProperty('checked', true);
   }
 );
 
@@ -106,12 +125,16 @@ regressionTest(
       `<ix-checkbox name="slot-label">Custom slot label text</ix-checkbox>`
     );
     const checkbox = page.locator('ix-checkbox');
+    await expect(checkbox).toHaveAttribute('hydrated');
     await expect(checkbox).not.toHaveClass(/label-less/);
     await expect(checkbox).toHaveText(/Custom slot label text/);
-    const width = await checkbox.evaluate((element) =>
-      Number.parseFloat(getComputedStyle(element).width)
-    );
-    expect(width).toBeGreaterThan(24);
+    await expect
+      .poll(() =>
+        checkbox.evaluate((element) =>
+          Number.parseFloat(getComputedStyle(element).width)
+        )
+      )
+      .toBeGreaterThan(24);
   }
 );
 
@@ -130,19 +153,16 @@ test('Checkbox should not cause layout shift when checked', async ({
     <div id="element-below">This element should not move</div>
   `);
 
-  await page.waitForSelector('ix-checkbox', { state: 'attached' });
+  await expect(page.locator('ix-checkbox')).toHaveAttribute('hydrated');
 
   const initialBounds = await page.$eval('#element-below', (el) => {
     const rect = el.getBoundingClientRect();
     return { top: rect.top, left: rect.left };
   });
 
-  await page.click('ix-checkbox');
-
-  await page.waitForFunction(() => {
-    const checkbox = document.querySelector('ix-checkbox');
-    return checkbox?.getAttribute('aria-checked') === 'true';
-  });
+  const checkbox = page.getByRole('checkbox', { name: 'test' });
+  await checkbox.click();
+  await expect(checkbox).toBeChecked();
 
   const newBounds = await page.$eval('#element-below', (el) => {
     const rect = el.getBoundingClientRect();

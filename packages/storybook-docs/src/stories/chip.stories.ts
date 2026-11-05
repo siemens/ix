@@ -15,13 +15,14 @@ import { genericRender, makeArgTypes } from './utils/generic-render';
 const CHIP_MATRIX_ICON = 'print';
 
 const CHIP_MATRIX_VARIANTS = [
-  'primary',
-  'alarm',
-  'critical',
+  'danger',
   'warning',
-  'info',
-  'neutral',
+  'caution',
+  'information',
+  'accent',
+  'critical',
   'success',
+  'neutral',
   'custom',
 ] as const;
 
@@ -241,14 +242,14 @@ function chipMatrixOverview(): TemplateResult {
           >
           <ix-chip
             icon=${CHIP_MATRIX_ICON}
-            variant="info"
+            variant="information"
             tooltip-text="Full details: status, owner, and last update."
             aria-label="Filter: in review"
             >In review</ix-chip
           >
           <ix-chip
             icon=${CHIP_MATRIX_ICON}
-            variant="info"
+            variant="information"
             outline
             tooltip-text="Full details: status, owner, and last update."
             aria-label="Filter: in review"
@@ -256,13 +257,13 @@ function chipMatrixOverview(): TemplateResult {
           >
           <ix-chip
             icon=${CHIP_MATRIX_ICON}
-            variant="primary"
+            variant="accent"
             ?tooltip-text=${true}
             >Tooltip uses visible label</ix-chip
           >
           <ix-chip
             icon=${CHIP_MATRIX_ICON}
-            variant="primary"
+            variant="accent"
             outline
             ?tooltip-text=${true}
             >Tooltip uses visible label</ix-chip
@@ -286,14 +287,14 @@ function chipMatrixOverview(): TemplateResult {
             >Inactive (no close)</ix-chip
           >
           <div class="chip-sb-matrix__narrow">
-            <ix-chip icon=${CHIP_MATRIX_ICON} variant="primary" center-content
+            <ix-chip icon=${CHIP_MATRIX_ICON} variant="accent" center-content
               >Centered in wide chip</ix-chip
             >
           </div>
           <div class="chip-sb-matrix__narrow">
             <ix-chip
               icon=${CHIP_MATRIX_ICON}
-              variant="primary"
+              variant="accent"
               outline
               center-content
               >Centered in wide chip</ix-chip
@@ -313,14 +314,14 @@ function chipMatrixOverview(): TemplateResult {
             >Icon with accessible name</ix-chip
           >
           <ix-chip
-            variant="alarm"
+            variant="danger"
             closable
             aria-label="Active filter: severity alarm"
             aria-label-close-button="Remove alarm filter"
             >Custom close label</ix-chip
           >
           <ix-chip
-            variant="alarm"
+            variant="danger"
             outline
             closable
             aria-label="Active filter: severity alarm"

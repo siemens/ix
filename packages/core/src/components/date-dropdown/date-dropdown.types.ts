@@ -6,17 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export type DateDropdownOption = {
+import type {
+  DateRange,
+  DateRangeWithIso,
+} from '../utils/datetime/date-time.types';
+
+export type DateDropdownOption = DateRange<string> & {
   id: string;
   label: string;
-  from?: string;
-  to?: string;
 };
 
-export type DateRangeChangeEvent = {
+export type DateRangeChangeEvent = DateRangeWithIso & {
   id: string;
-  from?: string;
-  to?: string;
-  isoFrom?: string;
-  isoTo?: string;
 };

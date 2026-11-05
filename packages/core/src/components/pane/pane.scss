@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './pane.vars' as *;
 @mixin set-border($composition) {
@@ -231,7 +230,7 @@
 :host(.mobile-overlay) {
   width: 100%;
   position: absolute;
-  z-index: 100 !important;
+  z-index: var(--ix-pane-mobile-overlay--z-index) !important;
 
   .side-pane-content {
     height: var(--ix-pane-side-pane-content--height);

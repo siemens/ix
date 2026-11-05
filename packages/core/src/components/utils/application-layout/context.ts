@@ -25,6 +25,10 @@ export type AppSwitchConfiguration = {
     id: string;
     name: string;
     description: string;
+    /**
+     * Opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are
+     * not rejected. Only use trusted URLs.
+     */
     url: string;
     target: AppSwitchConfigurationTarget;
     iconSrc: string;

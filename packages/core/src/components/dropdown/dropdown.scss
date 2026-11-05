@@ -8,7 +8,6 @@
  */
 
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
 
 @use './dropdown.vars' as *;
 :host {
@@ -34,12 +33,18 @@
 $dropdown-offset: var(--ix-dropdown--offset);
 
 :host(.overflow) {
-  max-height: calc(50vh - $dropdown-offset);
+  max-height: calc(var(--ix-dropdown-overflow--max-height) - $dropdown-offset);
   overflow-y: auto;
 }
 
 :host(:not(.show)) {
   display: none !important;
+}
+
+// Holds DOM focus for keyboard navigation when there is no trigger element,
+// the visual focus is shown on the dropdown items
+:host(:focus) {
+  outline: none;
 }
 
 .dialog {
@@ -84,7 +89,9 @@ $dropdown-offset: var(--ix-dropdown--offset);
   }
 
   &.overflow {
-    max-height: calc(50vh - $dropdown-offset);
+    max-height: calc(
+      var(--ix-dropdown-overflow--max-height) - $dropdown-offset
+    );
     overflow-y: auto;
   }
 }

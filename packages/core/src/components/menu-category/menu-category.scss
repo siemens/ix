@@ -9,7 +9,6 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './menu-category.vars' as *;
 :host {
@@ -74,7 +73,7 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
-    max-height: calc(50vh - 3rem);
+    max-height: var(--ix-menu-category-category-dropdown--max-height);
 
     &::before {
       content: '';

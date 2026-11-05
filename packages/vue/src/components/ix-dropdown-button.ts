@@ -15,6 +15,7 @@ export const IxDropdownButton: StencilVueComponent<JSX.IxDropdownButton> = /*@__
   'placement',
   'ariaLabelDropdownButton',
   'focusCheckedItem',
+  'navigationMode',
   'enableTopLayer',
   'suppressAriaActiveDescendant',
   'showChange',

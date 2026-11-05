@@ -12,6 +12,7 @@ export const IxBlind: StencilVueComponent<JSX.IxBlind> = /*@__PURE__*/ defineCon
   'sublabel',
   'icon',
   'variant',
+  'outline',
   'collapsedChange'
 ], [
   'collapsedChange'

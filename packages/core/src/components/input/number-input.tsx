@@ -37,6 +37,7 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   onEnterKeyChangeEmit,
 } from './input.util';
 
@@ -45,6 +46,15 @@ let numberInputIds = 0;
 const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
 /**
+ * Text input for entering and validating a numeric value.
+ *
+ * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ *
+ * @figma-main-component-id 42365:39459
+ *
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
@@ -78,6 +88,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * Indicates if the field is required. When required, empty values (undefined) are not accepted.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Disables the input field
@@ -231,6 +249,13 @@ export class NumberInput implements IxInputFieldComponent<number> {
         this.hostElement,
         this.updatePaddings.bind(this)
       );
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    }
   }
 
   disconnectedCallback() {

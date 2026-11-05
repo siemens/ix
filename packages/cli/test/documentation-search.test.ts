@@ -1,0 +1,579 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import assert from 'node:assert/strict';
+import MiniSearch from 'minisearch';
+import test, { mock } from 'node:test';
+import {
+  clearDocumentationSearchCache,
+  searchDocumentation,
+  type DocumentationSearchMetadata,
+} from '../src/documentation-search';
+
+const fields = [
+  'kind',
+  'name',
+  'tag',
+  'description',
+  'keywords',
+  'relatedComponents',
+  'figmaMainComponentIds',
+  'apiMembers',
+  'files',
+  'sourceText',
+];
+const storeFields = [
+  'id',
+  'kind',
+  'name',
+  'tag',
+  'description',
+  'keywords',
+  'framework',
+  'path',
+  'detailPath',
+  'relatedComponents',
+  'relatedExamples',
+  'relatedPatterns',
+  'documentation',
+  'figmaMainComponentIds',
+];
+
+const documents: DocumentationSearchMetadata[] = [
+  {
+    id: 'component:ix-button',
+    kind: 'component',
+    name: 'ix-button',
+    tag: 'ix-button',
+    description: 'Button component',
+    keywords: '123:456',
+    path: 'llms/components/ix-button.md',
+    detailPath: 'llms/components/ix-button.md',
+    relatedComponents: ['ix-icon'],
+    relatedExamples: ['button'],
+    relatedPatterns: ['button-pattern'],
+    documentation: ['https://ix.siemens.io/button'],
+    figmaMainComponentIds: ['123:456'],
+  },
+  {
+    id: 'component:ix-split-button',
+    kind: 'component',
+    name: 'ix-split-button',
+    tag: 'ix-split-button',
+    description: 'Split button component',
+    keywords: 'button',
+    path: 'llms/components/ix-split-button.md',
+    detailPath: 'llms/components/ix-split-button.md',
+    relatedComponents: ['ix-button'],
+  },
+  {
+    id: 'example:react:button',
+    kind: 'example',
+    name: 'button',
+    description: 'Button example',
+    keywords: 'button',
+    framework: 'react',
+    path: 'examples/button.json',
+    detailPath: 'examples/button.json',
+    relatedComponents: ['ix-button'],
+  },
+  {
+    id: 'example:vue:button',
+    kind: 'example',
+    name: 'button',
+    description: 'Button example',
+    keywords: 'button',
+    framework: 'vue',
+    path: 'examples/button.json',
+    detailPath: 'examples/button.json',
+    relatedComponents: ['ix-button'],
+  },
+  {
+    id: 'pattern:react:button-pattern',
+    kind: 'pattern',
+    name: 'button-pattern',
+    description: 'Button workflow',
+    keywords: 'workflow',
+    framework: 'react',
+    path: 'patterns/button-pattern.json',
+    detailPath: 'patterns/button-pattern.json',
+    relatedComponents: ['ix-button'],
+  },
+];
+
+function searchIndex(): unknown {
+  const miniSearch = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  miniSearch.addAll(documents);
+  return {
+    schemaVersion: 1,
+    fields,
+    storeFields,
+    searchOptions: {
+      boost: { name: 3, description: 2 },
+      fuzzy: 0.2,
+      prefix: true,
+    },
+    payload: miniSearch.toJSON(),
+  };
+}
+
+function registry(): unknown {
+  const entry = {
+    patterns: [
+      { name: 'button-pattern', path: 'patterns/button-pattern.json' },
+    ],
+    examples: [{ name: 'button', path: 'examples/button.json' }],
+    components: { componentDoc: 'component-doc.json' },
+    documentationSearchIndex: 'documentation-search-index.json',
+  };
+  return {
+    name: 'ix',
+    'dist-tags': { latest: 'v2.0.0' },
+    versions: {
+      '1.0.0': {
+        ...entry,
+        documentationSearchIndex: '1.0.0/documentation-search-index.json',
+      },
+      '2.0.0': {
+        ...entry,
+        documentationSearchIndex: '2.0.0/documentation-search-index.json',
+      },
+    },
+  };
+}
+
+test('loads one central index, filters results, and scopes result paths by version', async () => {
+  const originalFetch = globalThis.fetch;
+  const requests: string[] = [];
+  const index = searchIndex();
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = input.toString();
+    requests.push(url);
+    if (url.endsWith('/registry.json')) {
+      return new Response(JSON.stringify(registry()));
+    }
+    return new Response(JSON.stringify(index));
+  }) as typeof fetch;
+
+  try {
+    clearDocumentationSearchCache();
+    const componentResults = await searchDocumentation({
+      baseUrl: 'https://registry.example/ix',
+      query: 'ix-button',
+      kind: 'component',
+      version: 'v1.0.0',
+    });
+    assert.equal(componentResults[0]?.id, 'component:ix-button');
+    assert.equal(
+      componentResults[0]?.path,
+      '1.0.0/llms/components/ix-button.md'
+    );
+    assert.deepEqual(componentResults[0]?.relatedExamples, ['button']);
+    assert.deepEqual(componentResults[0]?.figmaMainComponentIds, ['123:456']);
+
+    const reactExamples = await searchDocumentation({
+      baseUrl: 'https://registry.example/ix',
+      query: 'button',
+      kind: 'example',
+      framework: 'react',
+      version: '1.0.0',
+    });
+    assert.deepEqual(
+      reactExamples.map((result) => result.id),
+      ['example:react:button']
+    );
+
+    const patterns = await searchDocumentation({
+      baseUrl: 'https://registry.example/ix',
+      query: 'workflow',
+      kind: 'pattern',
+      framework: 'react',
+    });
+    assert.deepEqual(
+      patterns.map((result) => result.id),
+      ['pattern:react:button-pattern']
+    );
+    assert.equal(patterns[0]?.path, '2.0.0/patterns/button-pattern.json');
+
+    // The registry and each versioned central index are cached independently.
+    assert.deepEqual(requests, [
+      'https://registry.example/ix/registry.json',
+      'https://registry.example/ix/1.0.0/documentation-search-index.json',
+      'https://registry.example/ix/2.0.0/documentation-search-index.json',
+    ]);
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('surfaces malformed central index envelopes', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    if (input.toString().endsWith('/registry.json')) {
+      return new Response(JSON.stringify(registry()));
+    }
+    return new Response(JSON.stringify({ schemaVersion: 99, payload: {} }));
+  }) as typeof fetch;
+
+  try {
+    clearDocumentationSearchCache();
+    await assert.rejects(
+      searchDocumentation({
+        baseUrl: 'https://registry.example/ix-malformed',
+        query: 'button',
+      }),
+      /Unsupported documentation search index schema version/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('keeps unprefixed paths followable for a locally served registry', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    if (input.toString().endsWith('/registry.json')) {
+      const localRegistry = registry() as {
+        name: string;
+        'dist-tags': { latest: string };
+        versions: Record<string, unknown>;
+      };
+      localRegistry['dist-tags'].latest = 'development';
+      localRegistry.versions.development = {
+        patterns: [
+          { name: 'button-pattern', path: 'patterns/button-pattern.json' },
+        ],
+        examples: [{ name: 'button', path: 'examples/button.json' }],
+        components: { componentDoc: 'ix/component-doc.json' },
+        documentationSearchIndex: 'documentation-search-index.json',
+      };
+      return new Response(JSON.stringify(localRegistry));
+    }
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+
+  try {
+    clearDocumentationSearchCache();
+    const results = await searchDocumentation({
+      baseUrl: 'http://127.0.0.1:8080',
+      query: 'workflow',
+      kind: 'pattern',
+      framework: 'react',
+    });
+    assert.equal(results[0]?.path, 'patterns/button-pattern.json');
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('retries registry loading after a transient failure', async () => {
+  const originalFetch = globalThis.fetch;
+  let registryAttempts = 0;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    if (input.toString().endsWith('/registry.json')) {
+      registryAttempts += 1;
+      if (registryAttempts === 1) {
+        return new Response('temporary failure', { status: 503 });
+      }
+      return new Response(JSON.stringify(registry()));
+    }
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+
+  try {
+    clearDocumentationSearchCache();
+    await assert.rejects(
+      searchDocumentation({
+        baseUrl: 'https://registry.example/retry-registry',
+        query: 'button',
+      }),
+      /503/
+    );
+    const results = await searchDocumentation({
+      baseUrl: 'https://registry.example/retry-registry',
+      query: 'button',
+      kind: 'component',
+    });
+    assert.equal(results[0]?.id, 'component:ix-button');
+    assert.equal(registryAttempts, 2);
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('retries index loading after a transient failure', async () => {
+  const originalFetch = globalThis.fetch;
+  let indexAttempts = 0;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    if (input.toString().endsWith('/registry.json')) {
+      return new Response(JSON.stringify(registry()));
+    }
+    indexAttempts += 1;
+    if (indexAttempts === 1) {
+      return new Response('temporary failure', { status: 503 });
+    }
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+
+  try {
+    clearDocumentationSearchCache();
+    await assert.rejects(
+      searchDocumentation({
+        baseUrl: 'https://registry.example/retry-index',
+        query: 'button',
+      }),
+      /503/
+    );
+    const results = await searchDocumentation({
+      baseUrl: 'https://registry.example/retry-index',
+      query: 'button',
+      kind: 'component',
+    });
+    assert.equal(results[0]?.id, 'component:ix-button');
+    assert.equal(indexAttempts, 2);
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('ranks exact names ahead of partial matches and honors limit zero', async () => {
+  const originalFetch = globalThis.fetch;
+  const skewed = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  skewed.addAll([
+    { ...documents[0], description: 'An action' },
+    {
+      ...documents[1],
+      description: 'button '.repeat(25),
+      keywords: 'button '.repeat(25),
+    },
+  ]);
+  const searchOptions = {
+    boost: { name: 1, description: 100, keywords: 100 },
+    fuzzy: 0.2,
+    prefix: true,
+  };
+  // Without exact-name ranking, the partial match wins on the index score.
+  assert.equal(
+    skewed.search('button', searchOptions)[0]?.id,
+    'component:ix-split-button'
+  );
+  const envelope = {
+    ...(searchIndex() as Record<string, unknown>),
+    searchOptions,
+    payload: skewed.toJSON(),
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? registry() : envelope
+      )
+    )) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const results = await searchDocumentation({
+      baseUrl: 'https://registry.example/ranking',
+      query: 'button',
+      kind: 'component',
+      version: '2.0.0',
+      limit: 1,
+    });
+    assert.deepEqual(
+      results.map((result) => result.id),
+      ['component:ix-button']
+    );
+    assert.deepEqual(
+      await searchDocumentation({
+        baseUrl: 'https://registry.example/ranking',
+        query: 'button',
+        limit: 0,
+      }),
+      []
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('normalizes paths already prefixed with another known version', async () => {
+  const originalFetch = globalThis.fetch;
+  const prefixed = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  prefixed.add({
+    ...documents[0],
+    path: '1.0.0/llms/components/ix-button.md',
+    detailPath: '1.0.0/llms/components/ix-button.md',
+  });
+  const envelope = {
+    ...(searchIndex() as Record<string, unknown>),
+    payload: prefixed.toJSON(),
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? registry() : envelope
+      )
+    )) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const [result] = await searchDocumentation({
+      baseUrl: 'https://registry.example/versions',
+      version: 'v2.0.0',
+      query: 'ix-button',
+    });
+    assert.equal(result?.path, '2.0.0/llms/components/ix-button.md');
+    assert.equal(result?.detailPath, result?.path);
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('stored-field errors name the actual central index URL', async () => {
+  const originalFetch = globalThis.fetch;
+  const invalid = new MiniSearch<DocumentationSearchMetadata>({
+    fields,
+    storeFields,
+  });
+  invalid.add({ ...documents[0], path: '' });
+  const envelope = {
+    ...(searchIndex() as Record<string, unknown>),
+    payload: invalid.toJSON(),
+  };
+  globalThis.fetch = (async (input: string | URL | Request) =>
+    new Response(
+      JSON.stringify(
+        input.toString().endsWith('/registry.json') ? registry() : envelope
+      )
+    )) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    await assert.rejects(
+      searchDocumentation({
+        baseUrl: 'https://registry.example/malformed-fields/',
+        query: 'ix-button',
+      }),
+      /Invalid documentation search index at https:\/\/registry\.example\/malformed-fields\/2\.0\.0\/documentation-search-index\.json: stored field 'path'/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('revalidates mutable tags after TTL while reusing resolved-version indexes', async () => {
+  const originalFetch = globalThis.fetch;
+  let now = 0;
+  const clock = mock.method(Date, 'now', () => now);
+  const requests: string[] = [];
+  let latest = '1.0.0';
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    const url = input.toString();
+    requests.push(url);
+    if (url.endsWith('/registry.json')) {
+      return new Response(
+        JSON.stringify({
+          ...(registry() as object),
+          'dist-tags': { latest },
+        })
+      );
+    }
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const baseUrl = 'https://registry.example/ttl';
+    await Promise.all([
+      searchDocumentation({ baseUrl, query: 'button' }),
+      searchDocumentation({ baseUrl: `${baseUrl}/`, query: 'button' }),
+    ]);
+    assert.deepEqual(requests, [
+      `${baseUrl}/registry.json`,
+      `${baseUrl}/1.0.0/documentation-search-index.json`,
+    ]);
+
+    latest = '2.0.0';
+    now = 59_999;
+    assert.equal(
+      (
+        await searchDocumentation({ baseUrl, query: 'button' })
+      )[0]?.path.startsWith('1.0.0/'),
+      true
+    );
+    assert.equal(requests.length, 2);
+
+    now = 60_000;
+    assert.equal(
+      (
+        await searchDocumentation({ baseUrl, query: 'button' })
+      )[0]?.path.startsWith('2.0.0/'),
+      true
+    );
+    assert.deepEqual(requests.slice(2), [
+      `${baseUrl}/registry.json`,
+      `${baseUrl}/2.0.0/documentation-search-index.json`,
+    ]);
+
+    now = 120_000;
+    await searchDocumentation({ baseUrl, query: 'button', version: 'v1.0.0' });
+    assert.deepEqual(requests.slice(4), [`${baseUrl}/registry.json`]);
+  } finally {
+    clock.mock.restore();
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});
+
+test('evicts a failed registry revalidation so the next search can retry', async () => {
+  const originalFetch = globalThis.fetch;
+  let now = 0;
+  const clock = mock.method(Date, 'now', () => now);
+  let registryRequests = 0;
+  let indexRequests = 0;
+  globalThis.fetch = (async (input: string | URL | Request) => {
+    if (input.toString().endsWith('/registry.json')) {
+      registryRequests++;
+      if (registryRequests === 2) {
+        return new Response('temporary outage', { status: 503 });
+      }
+      return new Response(JSON.stringify(registry()));
+    }
+    indexRequests++;
+    return new Response(JSON.stringify(searchIndex()));
+  }) as typeof fetch;
+  try {
+    clearDocumentationSearchCache();
+    const request = {
+      baseUrl: 'https://registry.example/refresh-failure',
+      query: 'button',
+    };
+    await searchDocumentation(request);
+    now = 60_000;
+    await assert.rejects(searchDocumentation(request), /503/);
+    await searchDocumentation(request);
+    assert.equal(registryRequests, 3);
+    assert.equal(indexRequests, 1);
+  } finally {
+    clock.mock.restore();
+    globalThis.fetch = originalFetch;
+    clearDocumentationSearchCache();
+  }
+});

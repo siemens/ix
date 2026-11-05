@@ -17,6 +17,26 @@
 import { Locator } from '@playwright/test';
 import { regressionTest, expect } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+  <ix-breadcrumb>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item breadcrumb-key="item-3">Item 3</ix-breadcrumb-item>
+  </ix-breadcrumb>`);
+
+  const breadcrumb = page.locator('ix-breadcrumb');
+  await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
+    bc.nextItems = [{ label: 'Next Item 1', breadcrumbKey: 'next-item-1' }];
+  });
+  await expect(
+    breadcrumb.getByRole('button', { name: 'Show next breadcrumb items' })
+  ).toBeVisible();
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
@@ -28,7 +48,7 @@ regressionTest('renders', async ({ mount, page }) => {
   const breadcrumbItem1 = page.locator('ix-breadcrumb-item').nth(0);
   const breadcrumbItem2 = page.locator('ix-breadcrumb-item').nth(1);
   const breadcrumbItem3 = page.locator('ix-breadcrumb-item').nth(2);
-  await expect(breadcrumb).toHaveClass(/hydrated/);
+  await expect(breadcrumb).toHaveAttribute('hydrated');
   await expect(breadcrumbItem1).toBeVisible();
   await expect(breadcrumbItem2).toBeVisible();
   await expect(breadcrumbItem3).toBeVisible();
@@ -44,7 +64,7 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
 
   const breadcrumb = page.locator('ix-breadcrumb');
 
-  await expect(breadcrumb).toHaveClass(/hydrated/);
+  await expect(breadcrumb).toHaveAttribute('hydrated');
   await breadcrumb.evaluate((breadcrumbElement: HTMLIxBreadcrumbElement) => {
     const item = document.createElement('ix-breadcrumb-item');
     item.label = 'NewItem';
@@ -223,3 +243,38 @@ regressionTest.describe('keyboard navigation', () => {
     await expect(item2).toHaveVisibleFocus();
   });
 });
+
+regressionTest(
+  'should set a translatable aria-label on the next dropdown button',
+  async ({ mount, page }) => {
+    await mount(`
+  <ix-breadcrumb>
+    <ix-breadcrumb-item label="Item 1" breadcrumb-key="item-1"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 2" breadcrumb-key="item-2"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Item 3" breadcrumb-key="item-3"></ix-breadcrumb-item>
+  </ix-breadcrumb>`);
+
+    const breadcrumb = page.locator('ix-breadcrumb');
+    await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
+      bc.nextItems = [{ label: 'Next Item 1', breadcrumbKey: 'next-item-1' }];
+    });
+
+    const nextButton = breadcrumb.getByRole('button', {
+      name: 'Show next breadcrumb items',
+    });
+    await expect(nextButton).toBeVisible();
+    await expect(nextButton).toHaveAttribute(
+      'aria-label',
+      'Show next breadcrumb items'
+    );
+
+    await breadcrumb.evaluate((bc: HTMLIxBreadcrumbElement) => {
+      bc.ariaLabelNextButton = 'Weitere Breadcrumb-Elemente anzeigen';
+    });
+    await expect(
+      breadcrumb.getByRole('button', {
+        name: 'Weitere Breadcrumb-Elemente anzeigen',
+      })
+    ).toBeVisible();
+  }
+);

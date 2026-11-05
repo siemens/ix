@@ -17,10 +17,10 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
     <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-start;">
       <ix-chip>Label</ix-chip>
-      <ix-chip variant="primary" closable>Primary closable</ix-chip>
-      <ix-chip variant="primary" outline closable>Primary outline closable</ix-chip>
+      <ix-chip variant="accent" closable>Accent closable</ix-chip>
+      <ix-chip variant="accent" outline closable>Accent outline closable</ix-chip>
       <ix-chip variant="warning" closable>Warning closable</ix-chip>
-      <ix-chip variant="info" outline>Info outline</ix-chip>
+      <ix-chip variant="information" outline>Information outline</ix-chip>
       <ix-chip closable aria-label="Filter: status">Status</ix-chip>
       <ix-chip inactive>Inactive</ix-chip>
       <ix-chip
@@ -62,49 +62,49 @@ regressionTest(
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-chip></ix-chip>`);
   const datePicker = page.locator('ix-chip');
-  await expect(datePicker).toHaveClass(/hydrated/);
+  await expect(datePicker).toHaveAttribute('hydrated');
 });
 
 regressionTest.describe('default variant fallback', () => {
   regressionTest(
-    'applies primary styling when no variant attribute is set',
+    'applies accent styling when no variant attribute is set',
     async ({ mount, page }) => {
       await mount(`<ix-chip>Default</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
-      await expect(chip).toHaveAttribute('variant', 'primary');
-      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+      await expect(chip).toHaveAttribute('hydrated');
+      await expect(chip).toHaveAttribute('variant', 'accent');
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/accent/);
     }
   );
 
   regressionTest(
-    'falls back to primary styling when variant is empty',
+    'falls back to accent styling when variant is empty',
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="">Empty variant</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
-      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+      await expect(chip).toHaveAttribute('hydrated');
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/accent/);
     }
   );
 
   regressionTest(
-    'falls back to primary styling when variant is unknown',
+    'falls back to accent styling when variant is unknown',
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="not-a-variant">Bad variant</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
-      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+      await expect(chip).toHaveAttribute('hydrated');
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/accent/);
     }
   );
 
   regressionTest(
-    'applies primary outline styling when only the outline attribute is set',
+    'applies accent outline styling when only the outline attribute is set',
     async ({ mount, page }) => {
       await mount(`<ix-chip outline>Default outline</ix-chip>`);
       const chip = page.locator('ix-chip');
-      await expect(chip).toHaveClass(/hydrated/);
+      await expect(chip).toHaveAttribute('hydrated');
       const wrap = chip.locator('.chip-wrap');
-      await expect(wrap).toHaveClass(/primary/);
+      await expect(wrap).toHaveClass(/accent/);
       await expect(wrap).toHaveClass(/outline/);
     }
   );
@@ -151,7 +151,8 @@ regressionTest.describe('chip test', () => {
 regressionTest('check inactive class', async ({ mount, page }) => {
   await mount(`<ix-chip inactive>test</ix-chip>`);
   const chip = page.locator('ix-chip');
-  await expect(chip).toHaveClass('inactive hydrated');
+  await expect(chip).toHaveClass('inactive');
+  await expect(chip).toHaveAttribute('hydrated');
 });
 
 regressionTest(

@@ -10,6 +10,8 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/user-message/guide.md
+ * @figma-main-component-id 133528:33294
  * @since 5.2.0
  * @slot - Message content displayed in the user message bubble
  * @slot actions - Optional actions displayed below the user message bubble
@@ -92,7 +94,7 @@ export class ChatUserMessage {
           ></slot>
         </div>
         <div class="message">
-          <ix-typography class="message-text" format="body" textColor="std">
+          <ix-typography class="message-text" format="body" textColor="primary">
             {this.message}
             <span
               style={{

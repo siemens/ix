@@ -11,6 +11,35 @@ import { test, viewPorts } from '@utils/test';
 import { ApplicationLayoutContext } from '../../utils/application-layout/context';
 import { ContextType } from '../../utils/context';
 
+test('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(
+    `<ix-application-header name="Test Application"></ix-application-header>`
+  );
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+test('renders application name as h1', async ({ mount, page }) => {
+  await mount(
+    `<ix-application-header name="Test Application"></ix-application-header>`
+  );
+
+  const heading = page.getByRole('heading', {
+    level: 1,
+    name: 'Test Application',
+  });
+  await expect(heading).toBeVisible();
+  await expect(heading.locator('ix-typography')).toHaveCount(1);
+});
+
+test('does not render h1 when name is omitted', async ({ mount, page }) => {
+  await mount(`<ix-application-header></ix-application-header>`);
+
+  const heading = page.locator('ix-application-header').locator('h1');
+  await expect(heading).toHaveCount(0);
+});
+
 test('renders', async ({ mount, page }) => {
   page.setViewportSize({
     height: 500,
@@ -61,7 +90,7 @@ test('use brand logo if provided', async ({ mount, page }) => {
   });
 
   const header = page.locator('ix-application-header');
-  await expect(header).toHaveClass(/hydrated/);
+  await expect(header).toHaveAttribute('hydrated');
   await expect(header).toBeVisible();
 
   const companyLogo = page.locator('ix-application-header ix-siemens-logo');
@@ -217,7 +246,7 @@ test.describe('cross app navigation', () => {
         </ix-application-header>
       `
     );
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();
@@ -276,7 +305,7 @@ test.describe('cross app navigation', () => {
         </ix-application-header>
       `
     );
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();
@@ -293,6 +322,67 @@ test.describe('cross app navigation', () => {
     await appEntry.click();
 
     await expect(dialog).not.toBeVisible();
+  });
+
+  test(`should open new browsing contexts without opener and referrer`, async ({
+    page,
+    mount,
+  }) => {
+    await page.evaluate(() => {
+      (window as any).__openCalls = [];
+      window.open = ((...args: unknown[]) => {
+        (window as any).__openCalls.push(args);
+        return null;
+      }) as typeof window.open;
+
+      window.addEventListener('context-request', (evt: any) => {
+        evt.callback({
+          hideHeader: false,
+          sidebar: false,
+          appSwitchConfig: {
+            apps: [
+              {
+                id: '1',
+                description: 'description 1',
+                iconSrc: '',
+                name: 'external app',
+                target: '_blank',
+                url: 'https://example.com/external',
+              },
+              {
+                id: '2',
+                description: 'description 2',
+                iconSrc: '',
+                name: 'internal app',
+                target: '_self',
+                url: 'https://example.com/internal',
+              },
+            ],
+            currentAppId: '2',
+          },
+        } as ContextType<typeof ApplicationLayoutContext>);
+      });
+    });
+    const header = page.locator('ix-application-header');
+    const appSwitchButton = header.locator('ix-icon-button.app-switch');
+    await mount(`<ix-application-header name="test"></ix-application-header>`);
+    await expect(header).toHaveAttribute('hydrated');
+
+    const appEntries = page.locator('ix-modal-content').locator('.AppEntry');
+
+    await appSwitchButton.click();
+    await appEntries.nth(0).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+
+    await appSwitchButton.click();
+    await appEntries.nth(1).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+
+    const calls = await page.evaluate(() => (window as any).__openCalls);
+    expect(calls).toEqual([
+      ['https://example.com/external', '_blank', 'noopener,noreferrer'],
+      ['https://example.com/internal', '_self'],
+    ]);
   });
 
   test(`should show app switch apps (config async)`, async ({
@@ -322,7 +412,7 @@ test.describe('cross app navigation', () => {
     const header = page.locator('ix-application-header');
     const appSwitchButton = header.locator('ix-icon-button.app-switch');
 
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).not.toBeVisible();
 
     await application.evaluate((app) => {
@@ -389,7 +479,7 @@ test.describe('cross app navigation', () => {
     );
 
     const application = page.locator('ix-application');
-    await expect(application).toHaveClass(/hydrated/);
+    await expect(application).toHaveAttribute('hydrated');
     await application.evaluate((app) => {
       (app as any).appSwitchConfig = {
         i18nAppSwitch: 'some other language',
@@ -402,7 +492,7 @@ test.describe('cross app navigation', () => {
     const header = page.locator('ix-application-header');
     const appSwitchButton = header.locator('ix-icon-button.app-switch');
 
-    await expect(header).toHaveClass(/hydrated/);
+    await expect(header).toHaveAttribute('hydrated');
     await expect(appSwitchButton).toBeVisible();
 
     await appSwitchButton.click();

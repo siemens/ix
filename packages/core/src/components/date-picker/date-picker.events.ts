@@ -6,9 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export type DateChangeEvent = {
-  from?: string;
-  to?: string;
-  isoFrom?: string;
-  isoTo?: string;
-};
+import type { DateRangeWithIso } from '../utils/datetime/date-time.types';
+
+export type DateChangeEvent = DateRangeWithIso;

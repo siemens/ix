@@ -19,7 +19,8 @@ import {
   h,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { formatWithLocale } from '../utils/date-time-locale';
+import { formatWithLocale } from '../utils/datetime/date-time-locale';
+import { DateDisplayFormat } from '../utils/datetime/date-display-format';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -33,29 +34,33 @@ import {
   onInputFocus,
 } from '../input/input.util';
 import {
-  getTimePickerConstraintBounds,
-  isWithinTimePickerConstraints,
+  getTimeConstraintsOnDay,
+  isTimeWithinConstraints,
 } from '../time-picker/time-picker-constraints';
 import {
   ClassMutationObserver,
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  checkFieldClasses,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { DateTimeInputValidityState } from './datetime-input.types';
 import {
   getLuxonDateOnlyFormatMask,
   getLuxonTimeFormatMask,
-} from '../utils/luxon-datetime-format-masks';
+} from '../utils/datetime/luxon-datetime-format-masks';
 import { a11yBoolean } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
 import {
@@ -64,6 +69,9 @@ import {
 } from '../utils/internal/mixins/input/input-picker.mixin';
 
 /**
+ * Text input for entering and validating a combined date and time value.
+ *
+ * @documentation https://ix.siemens.io//docs/components/input-date-time/guide.md
  * @since 5.0.0
  * @form-ready
  *
@@ -90,25 +98,58 @@ export class DatetimeInput
   /** Placeholder text when input is empty */
   @Prop({ reflect: true }) placeholder?: string;
 
-  /** Value in display format (e.g., "2026/01/21 13:07:04" for default format) */
+  /** Value in `format` (e.g., "2026/01/21 13:07:04" for default format) */
   @Prop({ reflect: true, mutable: true }) value?: string = '';
 
   /**
-   * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").
+   * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values
+   * (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").
    *
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format: string = 'yyyy/LL/dd HH:mm:ss';
 
+  /**
+   * Luxon date and time format used to display and type the value in the input field.
+   * `value`, `minDate`, `maxDate` and emitted values keep using `format`,
+   * e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"`
+   * displays a two-digit year without losing the century of the value.
+   * Date and time parts missing in `displayFormat`, like seconds, are kept
+   * from the current value when the user types a date. A typed two-digit
+   * year resolves to the year closest to the current value.
+   * Defaults to `format`.
+   *
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
+
   /** Locale for date/time formatting (e.g., 'en-US', 'de-DE') */
   @Prop() locale?: string;
 
-  @Watch('locale') watchLocalePropHandler() {
+  @Watch('locale')
+  @Watch('format')
+  watchLocaleFormatPropHandler() {
+    // Sync first, so typed text rejected for the previous format is revalidated
+    this.syncInputText();
     this.onInput(this.value);
+  }
+
+  @Watch('displayFormat')
+  watchDisplayFormatPropHandler() {
+    // Only the text changes, so revalidate without emitting `valueChange`
+    this.syncInputText();
+    this.validateValue(this.value);
   }
 
   /** Whether the field is required */
   @Prop() required: boolean = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /** Whether the input is disabled */
   @Prop() disabled: boolean = false;
@@ -160,8 +201,22 @@ export class DatetimeInput
   /** Error message when datetime cannot be parsed */
   @Prop() i18nErrorDateTimeUnparsable: string = 'Date time is not valid';
 
-  /** Text for confirm button in picker (prop name matches datetime-picker) */
-  @Prop() i18nDone: string = 'Confirm';
+  /** Text for done button in picker (prop name matches datetime-picker) */
+  @Prop() i18nDone: string = 'Done';
+
+  /**
+   * Text for confirm button in picker when `requireConfirmation` is enabled
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm: string = 'Confirm';
+
+  /**
+   * Text for cancel button in picker when `requireConfirmation` is enabled
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
 
   /** Header text for time picker section */
   @Prop() i18nTime: string = 'Time';
@@ -195,7 +250,16 @@ export class DatetimeInput
    */
   @Prop() enableTopLayer: boolean = false;
 
-  /** Emitted when the datetime value changes. Payload is display format or undefined */
+  /**
+   * If true, a date and time picked in the dropdown are only applied after the
+   * user confirms them with the confirm button. The cancel button, pressing
+   * Escape or clicking outside the dropdown discards the pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation: boolean = false;
+
+  /** Emitted when the datetime value changes. Payload is in `format` or undefined */
   @Event() valueChange!: EventEmitter<string | undefined>;
 
   /** Emitted when validation state changes */
@@ -212,10 +276,11 @@ export class DatetimeInput
    *
    * Fires in two scenarios:
    * - When the input loses focus (blur) and the value has changed
-   * - When a new date/time is selected in the picker and confirmed
+   * - When the picker closes after the value was changed in it, or on
+   *   Confirm when `requireConfirmation` is enabled
    *
    * Does NOT fire when:
-   * - The picker is opened/closed without confirming a change
+   * - The picker is opened/closed without changing the value
    * - The input is blurred without modifying the value
    * - The value is changed programmatically via the value property
    */
@@ -243,6 +308,9 @@ export class DatetimeInput
 
   @State() time?: string | null = null;
 
+  @State() inputText = '';
+
+  private readonly dateDisplayFormat = new DateDisplayFormat(this);
   private classObserver?: ClassMutationObserver;
 
   public initialValue?: string;
@@ -251,6 +319,11 @@ export class DatetimeInput
 
   public touched = false;
 
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
+
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
@@ -258,6 +331,12 @@ export class DatetimeInput
   @Watch('value')
   watchValuePropHandler(newValue: string) {
     this.onInput(newValue);
+
+    // Keep the text while the user is typing it, otherwise it would be
+    // reformatted on every keystroke
+    if (!this.dateDisplayFormat.isTypedValue(this.value)) {
+      this.syncInputText();
+    }
   }
 
   @Watch('minTime')
@@ -270,16 +349,21 @@ export class DatetimeInput
     this.revalidateCurrentValue();
   }
 
-  private get combinedFormat(): string {
-    return this.format;
-  }
-
   private get dateOnlyFormat(): string {
     return getLuxonDateOnlyFormatMask(this.format);
   }
 
   private get timeOnlyFormat(): string {
     return getLuxonTimeFormatMask(this.format);
+  }
+
+  private syncInputText() {
+    this.inputText = this.dateDisplayFormat.toText();
+  }
+
+  private onTextInput(text: string) {
+    this.inputText = text;
+    this.onInput(this.dateDisplayFormat.toValue(text));
   }
 
   private syncPickerState() {
@@ -289,9 +373,7 @@ export class DatetimeInput
       return;
     }
 
-    const dateTime = DateTime.fromFormat(this.value, this.combinedFormat, {
-      locale: this.locale,
-    });
+    const dateTime = this.dateDisplayFormat.parseValue(this.value);
 
     if (dateTime.isValid) {
       this.from = formatWithLocale(dateTime, this.dateOnlyFormat, this.locale);
@@ -304,6 +386,16 @@ export class DatetimeInput
 
   async onInput(value: string | undefined) {
     this.value = value;
+    if (this.validateValue(value)) {
+      this.valueChange.emit(value);
+    }
+  }
+
+  /**
+   * Updates the validation state, picker state and form value for `value`.
+   * Returns `false` if `value` cannot be validated without `format`.
+   */
+  private validateValue(value: string | undefined): boolean {
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
@@ -311,17 +403,14 @@ export class DatetimeInput
       this.time = null;
       this.emitValidityStateChangeIfChanged();
       this.formInternals.setFormValue(null);
-      this.valueChange.emit(value);
-      return;
+      return true;
     }
 
     if (!this.format) {
-      return;
+      return false;
     }
 
-    const dateTime = DateTime.fromFormat(value, this.combinedFormat, {
-      locale: this.locale,
-    });
+    const dateTime = this.dateDisplayFormat.parseValue(value);
 
     const validationResult = this.computeConstraintValidation(dateTime);
 
@@ -343,7 +432,7 @@ export class DatetimeInput
     }
 
     this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    return true;
   }
 
   private parseConstraintDate(
@@ -373,8 +462,8 @@ export class DatetimeInput
     dateTime: DateTime,
     minDateTime: DateTime | null,
     maxDateTime: DateTime | null,
-    minTime: DateTime | null,
-    maxTime: DateTime | null
+    minTime: string | undefined,
+    maxTime: string | undefined
   ): { isInvalid: boolean; reason: string | undefined } {
     const isFormatInvalid = !dateTime.isValid;
     const isBeforeMin = !!(
@@ -389,7 +478,13 @@ export class DatetimeInput
     );
     const isOutsideTimeWindow =
       dateTime.isValid &&
-      !isWithinTimePickerConstraints(dateTime, minTime, maxTime);
+      !isTimeWithinConstraints(
+        dateTime,
+        minTime,
+        maxTime,
+        this.timeOnlyFormat,
+        this.locale
+      );
 
     const isInvalid =
       isFormatInvalid || isBeforeMin || isAfterMax || isOutsideTimeWindow;
@@ -408,46 +503,14 @@ export class DatetimeInput
     return { isInvalid, reason };
   }
 
-  private getTimeConstraintBoundsForDate(
-    dateTime: DateTime,
-    minDateTime: DateTime | null,
-    maxDateTime: DateTime | null
-  ): { min: DateTime | null; max: DateTime | null } {
-    if (!dateTime.isValid) {
-      return { min: null, max: null };
-    }
-
-    const bounds = getTimePickerConstraintBounds(
-      this.minTime,
-      this.maxTime,
-      this.timeOnlyFormat,
-      dateTime.startOf('day'),
-      this.locale
-    );
-
-    const hasDateBounds = !!(minDateTime?.isValid || maxDateTime?.isValid);
-    if (!hasDateBounds) {
-      return bounds;
-    }
-
-    const applyMinTime =
-      !!minDateTime?.isValid && dateTime.hasSame(minDateTime, 'day');
-    const applyMaxTime =
-      !!maxDateTime?.isValid && dateTime.hasSame(maxDateTime, 'day');
-
-    return {
-      min: applyMinTime ? bounds.min : null,
-      max: applyMaxTime ? bounds.max : null,
-    };
-  }
-
   private computeConstraintValidation(dateTime: DateTime): {
     isInvalid: boolean;
     reason: string | undefined;
   } {
     const minDateTime = this.parseConstraintDate(this.minDate, 'start');
     const maxDateTime = this.parseConstraintDate(this.maxDate, 'end');
-    const { min: minTime, max: maxTime } = this.getTimeConstraintBoundsForDate(
+    const { minTime, maxTime } = getTimeConstraintsOnDay(
+      { minTime: this.minTime, maxTime: this.maxTime },
       dateTime,
       minDateTime,
       maxDateTime
@@ -466,9 +529,7 @@ export class DatetimeInput
       return;
     }
 
-    const dateTime = DateTime.fromFormat(this.value, this.combinedFormat, {
-      locale: this.locale,
-    });
+    const dateTime = this.dateDisplayFormat.parseValue(this.value);
     if (!dateTime.isValid) {
       return;
     }
@@ -586,7 +647,10 @@ export class DatetimeInput
 
   @Watch('isInputInvalid')
   async onInputValidationChange() {
-    this.isInvalid = this.isInputInvalid;
+    const { isInvalid, isInvalidByRequired } = checkFieldClasses(
+      this.hostElement
+    );
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
 
     const state = await this.getValidityState();
     const validityState: DateTimeInputValidityState = {
@@ -610,6 +674,10 @@ export class DatetimeInput
     this.validityStateChange.emit(validityState);
   }
 
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
+  }
+
   @HookValidationLifecycle()
   hookValidationLifecycle({
     isInfo,
@@ -618,10 +686,20 @@ export class DatetimeInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
+  }
+
+  private onInputBlur() {
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.touched = true;
+    this.emitValidityStateChangeIfChanged();
+
+    if (!this.isInputInvalid) {
+      this.syncInputText();
+    }
   }
 
   private emitValidityStateChangeIfChanged() {
@@ -653,6 +731,7 @@ export class DatetimeInput
     this.checkClassList();
     this.updateFormInternalValue(this.value);
     this.initialValue = this.value;
+    this.syncInputText();
   }
 
   private updatePaddings() {
@@ -673,10 +752,41 @@ export class DatetimeInput
   }
 
   private readonly handleDateSelect = (event: CustomEvent) => {
+    event.stopPropagation();
     const { from, time } = event.detail;
 
-    if (!from || !time) {
+    // Without requireConfirmation the value was already applied on change
+    if (this.requireConfirmation && !this.applyPickerDateTime(from, time)) {
       return;
+    }
+
+    this.closeDropdown();
+  };
+
+  /**
+   * Applies every picker change while `requireConfirmation` is disabled.
+   * `ixChange` follows when the dropdown closes, like a native change event.
+   */
+  private readonly handlePickerChange = async (event: CustomEvent) => {
+    event.stopPropagation();
+    if (this.requireConfirmation) {
+      return;
+    }
+
+    const selection =
+      await this.datetimePickerRef.current?.getCurrentSelection();
+
+    this.applyPickerDateTime(selection?.from, selection?.time, false);
+  };
+
+  /** Returns whether the date and time were complete and valid. */
+  private applyPickerDateTime(
+    from?: string,
+    time?: string,
+    emitChange = true
+  ): boolean {
+    if (!from || !time) {
+      return false;
     }
 
     const dateOnly = DateTime.fromFormat(from, this.dateOnlyFormat, {
@@ -687,7 +797,7 @@ export class DatetimeInput
     });
 
     if (!dateOnly.isValid || !timeOnly.isValid) {
-      return;
+      return false;
     }
 
     const dateTimeCombined = dateOnly.set({
@@ -703,9 +813,12 @@ export class DatetimeInput
       this.locale
     );
     this.onInput(displayValue);
-    this.emitChange(displayValue);
-    this.closeDropdown();
-  };
+    if (emitChange) {
+      this.emitChange(displayValue);
+    }
+
+    return true;
+  }
 
   getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {
     return this.dropdownElementRef;
@@ -721,7 +834,7 @@ export class DatetimeInput
         <input
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           disabled={this.disabled}
           name={this.name}
@@ -733,16 +846,8 @@ export class DatetimeInput
             textAlign: this.textAlignment,
           }}
           type="text"
-          value={this.value ?? ''}
-          onBlur={() => {
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.touched = true;
-            this.emitValidityStateChangeIfChanged();
-          }}
+          value={this.inputText}
+          onBlur={() => this.inputBlur.onBlur()}
           onClick={(event) => {
             if (this.show) {
               event.stopPropagation();
@@ -750,12 +855,13 @@ export class DatetimeInput
             }
           }}
           onFocus={() => {
+            this.inputBlur.onFocus();
             onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
+            this.onTextInput(target.value);
           }}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
         ></input>
@@ -771,6 +877,8 @@ export class DatetimeInput
             variant="subtle-tertiary"
             icon={iconCalendar}
             size="16"
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onCalendarClick(event)}
           ></ix-icon-button>
         </SlotEnd>
@@ -821,6 +929,12 @@ export class DatetimeInput
           trigger={this.inputElementRef.waitForCurrent()}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show) {
+              this.datetimePickerRef.current?.discardPendingSelection();
+              this.emitChange(this.value);
+              this.inputBlur.onPickerClosed();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.datetimePickerRef,
@@ -844,6 +958,9 @@ export class DatetimeInput
             embedded
             from={this.from ?? ''}
             i18nDone={this.i18nDone}
+            i18nConfirm={this.i18nConfirm}
+            i18nCancel={this.i18nCancel}
+            requireConfirmation={this.requireConfirmation}
             i18nTime={this.i18nTime}
             locale={this.locale}
             maxDate={this.maxDate}
@@ -857,6 +974,12 @@ export class DatetimeInput
             timeFormat={this.timeOnlyFormat}
             weekStartIndex={this.weekStartIndex}
             onDateSelect={this.handleDateSelect}
+            onDateChange={this.handlePickerChange}
+            onTimeChange={this.handlePickerChange}
+            onDateCancel={(event) => {
+              event.stopPropagation();
+              this.closeDropdown();
+            }}
           ></ix-datetime-picker>
         </ix-dropdown>
       </Host>

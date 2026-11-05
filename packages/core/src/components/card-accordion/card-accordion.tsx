@@ -10,10 +10,8 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type {
-  CardAccordionExpandChangeEvent,
-  CardAccordionVariant,
-} from './card-accordion.types';
+import type { StatusVariant } from '../utils/status.types';
+import type { CardAccordionExpandChangeEvent } from './card-accordion.types';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -21,7 +19,12 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
 };
 
 /**
- * @slot default - Accordion content.
+ * Expandable card section that shows or hides content within a card list.
+ *
+ * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @figma-main-component-id 104612:25530
+ *
+ * @slot - Accordion content.
  */
 @Component({
   tag: 'ix-card-accordion',
@@ -43,11 +46,21 @@ export class CardAccordion {
   @Prop() collapse = false;
 
   /**
-   * Show accordion with different color variants
+   * Accordion status variant.
    *
+   * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
    * @since 4.0.0
    */
-  @Prop() variant: CardAccordionVariant = 'outline';
+  @Prop() variant: StatusVariant = 'base';
+
+  /**
+   * Show the accordion with outline chrome.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses filled accordion chrome.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   @Element() hostElement!: HTMLIxCardAccordionElement;
 
@@ -99,12 +112,16 @@ export class CardAccordion {
     this.onInitialExpandChange();
   }
 
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
   render() {
     return (
       <Host
         slot="card-accordion"
         class={{
-          [`variant-${this.variant}`]: true,
+          outline: this.isOutline,
         }}
       >
         <button

@@ -40,6 +40,8 @@ type ArrowPosition = {
 };
 
 const ARROW_OFFSET = -6;
+const DEFAULT_HIDE_DELAY = 50;
+const INTERACTIVE_HIDE_DELAY = 150;
 
 const numberToPixel = (value?: number | null) =>
   value !== null ? `${value}px` : '';
@@ -47,9 +49,14 @@ const numberToPixel = (value?: number | null) =>
 let tooltipInstance = 0;
 
 /**
+ * Small overlay that shows contextual information when hovering or focusing an element.
+ *
+ * @documentation https://ix.siemens.io//docs/components/tooltip/guide.md
+ * @figma-main-component-id 1239:30786
  * @slot title-icon - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title
- * @slot default - Tooltip body content.
+ *
+ * @slot - Tooltip content.
  */
 @Component({
   tag: 'ix-tooltip',
@@ -78,11 +85,23 @@ export class Tooltip {
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
-  /** @internal */
+  /**
+   * Delay in milliseconds before the tooltip is shown.
+   *
+   * @since 6.0.0
+   */
   @Prop() showDelay = 0;
 
-  /** @internal */
-  @Prop() hideDelay = 50;
+  /**
+   * Delay in milliseconds before the tooltip is hidden.
+   * Defaults to 50 ms, or 150 ms for interactive tooltips,
+   * so the user has time to move the pointer into the tooltip.
+   * For interactive tooltips, avoid very short delays, otherwise the tooltip
+   * closes before the pointer reaches it.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDelay?: number;
 
   /** @internal */
   @Prop() animationFrame = false;
@@ -106,24 +125,51 @@ export class Tooltip {
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
-  private get arrowElement(): HTMLElement {
-    return this.hostElement.shadowRoot!.querySelector('.arrow')!;
+  private get arrowElement(): HTMLElement | null {
+    return this.hostElement.shadowRoot?.querySelector('.arrow') ?? null;
+  }
+
+  private isDialogUsable(
+    dialog?: HTMLDialogElement | null
+  ): dialog is HTMLDialogElement {
+    return Boolean(
+      dialog && this.hostElement.isConnected && dialog.isConnected
+    );
+  }
+
+  private invokePopover(
+    dialog: HTMLDialogElement,
+    method: 'showPopover' | 'hidePopover'
+  ) {
+    const action = dialog[method];
+    if (typeof action === 'function') {
+      action.call(dialog);
+    }
   }
 
   /** @internal */
   @Method()
   async showTooltip(anchorElement: Element) {
-    this.clearTimeouts();
-
-    if (this.showTooltipTimeout || this.visibleFor === anchorElement) {
+    if (this.visibleFor === anchorElement) {
+      this.clearTimeouts();
       return;
     }
+
+    // Keep a pending hide for the previous anchor so the tooltip does not
+    // linger there while the show delay for the new anchor runs
+    this.clearShowTimeout();
 
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.showTooltipTimeout = setTimeout(() => {
+      if (!this.isDialogUsable(dialog)) {
+        return;
+      }
+      const wasVisible = this.visible;
       this.setAnchorElement(anchorElement);
-      dialog.showPopover();
+      if (!wasVisible) {
+        this.invokePopover(dialog, 'showPopover');
+      }
       this.applyTooltipPosition(anchorElement, dialog);
       this.registerTooltipListener(dialog);
     }, this.showDelay);
@@ -131,24 +177,31 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay: number = this.hideDelay) {
+  async hideTooltip(
+    hideDelay: number = this.hideDelay ??
+      (this.interactive ? INTERACTIVE_HIDE_DELAY : DEFAULT_HIDE_DELAY)
+  ) {
     this.clearTimeouts();
 
     if (this.hideTooltipTimeout || !this.visible) {
       return;
     }
 
-    if (this.interactive && hideDelay === 50) {
-      hideDelay = 150;
-    }
-
+    const anchorElement = this.visibleFor;
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
-      this.setAnchorElement();
-      dialog.hidePopover();
+      this.hideTooltipTimeout = undefined;
+      if (this.visibleFor !== anchorElement) {
+        return;
+      }
+      const wasVisible = this.visible;
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();
+      this.setAnchorElement();
+      if (wasVisible && this.isDialogUsable(dialog)) {
+        this.invokePopover(dialog, 'hidePopover');
+      }
     }, hideDelay);
   }
 
@@ -217,15 +270,14 @@ export class Tooltip {
     target: Element,
     dialog: HTMLDialogElement
   ): Promise<ComputePositionReturn> {
+    const arrowElement = this.arrowElement;
     return computePosition(target, dialog, {
       strategy: 'fixed',
       placement: this.placement,
       middleware: [
         shift(),
         offset(12),
-        arrow({
-          element: this.arrowElement,
-        }),
+        ...(arrowElement ? [arrow({ element: arrowElement })] : []),
         flip({
           fallbackStrategy: 'initialPlacement',
           fallbackAxisSideDirection: 'end',
@@ -237,8 +289,12 @@ export class Tooltip {
   }
 
   private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
+    const arrowElement = this.arrowElement;
+    if (!arrowElement) {
+      return;
+    }
     const arrowPosition = this.computeArrowPosition(computeResponse);
-    Object.assign(this.arrowElement.style, arrowPosition);
+    Object.assign(arrowElement.style, arrowPosition);
   }
 
   private async applyTooltipPosition(
@@ -256,10 +312,20 @@ export class Tooltip {
         target,
         dialog,
         async () => {
+          if (!this.isDialogUsable(dialog)) {
+            this.disposeAutoUpdate?.();
+            return;
+          }
+
           const computeResponse = await this.computeTooltipPosition(
             target,
             dialog
           );
+
+          if (!this.isDialogUsable(dialog)) {
+            this.disposeAutoUpdate?.();
+            return;
+          }
 
           const isHidden = computeResponse.middlewareData.hide?.referenceHidden;
 
@@ -428,7 +494,7 @@ export class Tooltip {
         eventType: 'keydown',
         callback: (event: Event) => {
           if ((event as KeyboardEvent).key === 'Escape') {
-            this.hideTooltip();
+            this.hideTooltip(0);
           }
         },
       },

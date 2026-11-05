@@ -11,10 +11,10 @@
     "@axe-core/playwright": "catalog:",
     "@playwright/test": "catalog:",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.16.0",
+    "@types/node": "catalog:",
     "fs-extra": "^11.3.3",
     "glob": "catalog:",
-    "html-test-app": "workspace:*",
+    "html-examples": "workspace:*",
     "tsx": "^4.21.0",
     "typescript": "^5.8.2"
   },

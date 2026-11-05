@@ -10,6 +10,11 @@
 import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+// Fake clock for the delay tests: time runs normally until hydration,
+// then is paused so the delay timers only fire when the test advances them
+const CLOCK_START = new Date('2026-01-01T00:00:00Z');
+const CLOCK_PAUSE = new Date('2026-01-01T01:00:00Z');
+
 // Reduce flaky behavior
 regressionTest.describe.configure({
   mode: 'serial',
@@ -21,14 +26,14 @@ regressionTest('renders', async ({ mount, page }) => {
     <ix-button class="test">button</ix-button>
   `);
   const tooltip = page.locator('ix-tooltip');
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
 
   const button = page.locator('ix-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   await expect(tooltip).toHaveClass(/visible/);
 });
 
@@ -54,13 +59,13 @@ regressionTest('renders in shadow DOM', async ({ mount, page }) => {
   });
 
   const tooltip = page.locator('ix-tooltip');
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   const button = page.locator('ix-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   await expect(tooltip).toHaveClass(/visible/);
 });
 
@@ -77,7 +82,7 @@ regressionTest('renders in slot', async ({ mount, page }) => {
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toHaveAttribute('hydrated');
   await expect(tooltip).toHaveClass(/visible/);
 });
 
@@ -142,23 +147,51 @@ regressionTest.describe('a11y', () => {
     const tooltip = page.locator('ix-tooltip');
     await expect(tooltip).not.toHaveClass(/visible/);
   });
+
+  regressionTest(
+    'closes on ESC without hide delay',
+    async ({ mount, page }) => {
+      await mount(`
+      <ix-tooltip for=".test" hide-delay="60000">tooltip</ix-tooltip>
+      <ix-button class="test"></ix-button>
+    `);
+      const button = page.locator('ix-button');
+      const tooltip = page.locator('ix-tooltip');
+      await expect(tooltip).toHaveAttribute('hydrated');
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await page.keyboard.press('Escape');
+      await expect(tooltip).not.toHaveClass(/visible/);
+    }
+  );
 });
 
 regressionTest('show tooltip after delay', async ({ mount, page }) => {
+  await page.clock.install({ time: CLOCK_START });
   await mount(`
     <ix-tooltip for=".test" show-delay="1000">tooltip</ix-tooltip>
     <ix-button class="test">button</ix-button>
   `);
   const tooltip = page.locator('ix-tooltip');
+  const dialog = tooltip.locator('dialog');
   const button = page.locator('ix-button');
+  await expect(tooltip).toHaveAttribute('hydrated');
+  await page.clock.pauseAt(CLOCK_PAUSE);
 
   await button.hover();
-  await expect(tooltip).not.toHaveClass(/visible/);
-  await page.waitForTimeout(1000);
+  await page.clock.runFor(999);
+  await expect(dialog).toBeHidden();
+
+  await page.clock.runFor(1);
+  await expect(dialog).toBeVisible();
+
+  await page.clock.resume();
   await expect(tooltip).toHaveClass(/visible/);
 });
 
 regressionTest('hide tooltip after delay', async ({ mount, page }) => {
+  await page.clock.install({ time: CLOCK_START });
   await mount(`
     <div style="margin: 2rem">
       <ix-tooltip for=".test" hide-delay="1000">tooltip</ix-tooltip>
@@ -166,12 +199,22 @@ regressionTest('hide tooltip after delay', async ({ mount, page }) => {
     </div>
   `);
   const tooltip = page.locator('ix-tooltip');
+  const dialog = tooltip.locator('dialog');
   const button = page.locator('ix-button');
+  await expect(tooltip).toHaveAttribute('hydrated');
 
   await button.hover();
   await expect(tooltip).toHaveClass(/visible/);
+  await page.clock.pauseAt(CLOCK_PAUSE);
+
   await page.mouse.move(0, 0);
-  await page.waitForTimeout(1000);
+  await page.clock.runFor(999);
+  await expect(dialog).toBeVisible();
+
+  await page.clock.runFor(1);
+  await expect(dialog).toBeHidden();
+
+  await page.clock.resume();
   await expect(tooltip).not.toHaveClass(/visible/);
 });
 
@@ -418,6 +461,107 @@ regressionTest.describe('handles multiple references', () => {
       expect(arrowStyle.top).toBe('-6px');
       expect(arrowStyle.left).not.toBe('unset');
       expect(arrowStyle.left).toContain('px');
+    }
+  );
+});
+
+regressionTest.describe('popover guards', () => {
+  const pageErrors = (page: Page) => {
+    const errors: Error[] = [];
+    page.on('pageerror', (error) => errors.push(error));
+    return errors;
+  };
+
+  regressionTest(
+    'does not throw when hidePopover is missing after the tooltip is shown',
+    async ({ mount, page }) => {
+      const errors = pageErrors(page);
+      await mount(`
+        <ix-tooltip for=".test" hide-delay="0">tooltip</ix-tooltip>
+        <ix-button class="test">button</ix-button>
+      `);
+      const tooltip = page.locator('ix-tooltip');
+      const button = page.locator('ix-button');
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await tooltip.evaluate(async (host) => {
+        const dialog = host.shadowRoot?.querySelector('dialog');
+        if (!dialog) {
+          throw new Error('Expected tooltip dialog');
+        }
+        Object.defineProperty(dialog, 'hidePopover', {
+          configurable: true,
+          value: undefined,
+        });
+        await (host as HTMLIxTooltipElement).hideTooltip(0);
+      });
+
+      await expect(tooltip).not.toHaveClass(/visible/);
+      expect(errors.map((error) => error.message)).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'does not throw when the dialog is detached before hide',
+    async ({ mount, page }) => {
+      const errors = pageErrors(page);
+      await mount(`
+        <ix-tooltip for=".test" hide-delay="0">tooltip</ix-tooltip>
+        <ix-button class="test">button</ix-button>
+      `);
+      const tooltip = page.locator('ix-tooltip');
+      const button = page.locator('ix-button');
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await tooltip.evaluate(async (host) => {
+        host.shadowRoot?.querySelector('dialog')?.remove();
+        await (host as HTMLIxTooltipElement).hideTooltip(0);
+      });
+
+      await expect(tooltip).not.toHaveClass(/visible/);
+      expect(errors.map((error) => error.message)).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'does not throw when switching between two triggers',
+    async ({ mount, page }) => {
+      const errors = pageErrors(page);
+      await mount(`
+        <ix-tooltip for=".test">tooltip</ix-tooltip>
+        <ix-button class="test" id="a">A</ix-button>
+        <ix-button class="test" id="b">B</ix-button>
+      `);
+      const tooltip = page.locator('ix-tooltip');
+      await page.locator('#a').hover();
+      await expect(tooltip).toHaveClass(/visible/);
+      await page.locator('#b').hover();
+      await expect(tooltip).toHaveClass(/visible/);
+      expect(errors.map((error) => error.message)).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'does not throw when the tooltip is unmounted while visible',
+    async ({ mount, page }) => {
+      const errors = pageErrors(page);
+      await mount(`
+        <ix-tooltip for=".test">tooltip</ix-tooltip>
+        <ix-button class="test">button</ix-button>
+      `);
+      const tooltip = page.locator('ix-tooltip');
+      const button = page.locator('ix-button');
+
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await tooltip.evaluate((host) => host.remove());
+      await expect(tooltip).toHaveCount(0);
+      expect(errors.map((error) => error.message)).toEqual([]);
     }
   );
 });

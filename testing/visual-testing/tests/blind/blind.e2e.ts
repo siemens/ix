@@ -63,7 +63,7 @@ regressionTest.describe('blind', () => {
       }
     );
     const blindElement = page.locator('ix-blind');
-    await expect(blindElement).toHaveClass(/hydrated/);
+    await expect(blindElement).toHaveAttribute('hydrated');
 
     const slotElement = page.getByTestId('slot');
     await slotElement.hover();

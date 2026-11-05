@@ -19,6 +19,18 @@ import 'jest';
 import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`
+    <ix-event-list>
+      <ix-event-list-item item-color="color-primary">Entry A</ix-event-list-item>
+      <ix-event-list-item item-color="color-primary" selected>Entry B</ix-event-list-item>
+    </ix-event-list>
+  `);
+
+  const { violations } = await makeAxeBuilder().analyze();
+  expect(violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
@@ -30,7 +42,7 @@ regressionTest('renders', async ({ mount, page }) => {
   `);
 
   const eventList = page.locator('ix-event-list');
-  await expect(eventList).toHaveClass(/hydrated/);
+  await expect(eventList).toHaveAttribute('hydrated');
 });
 
 regressionTest(

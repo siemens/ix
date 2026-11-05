@@ -13,6 +13,7 @@ export const IxPushCard: StencilVueComponent<JSX.IxPushCard> = /*@__PURE__*/ def
   'heading',
   'subheading',
   'variant',
+  'outline',
   'expanded',
-  'passive'
+  'clickable'
 ]);

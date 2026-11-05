@@ -11,12 +11,16 @@
 
 :host {
   --ix-range-field--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-range-field-range-delimiter--block-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-range-field-range-delimiter--inline-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-range-field-range-delimiter--min-block-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-range-field-range-delimiter--min-inline-size: #{sys.$si-sys-sizing-icon-lg};
-  --ix-range-field-range-delimiter--margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-range-field-has-label--margin-top: #{sys.$si-sys-sizing-size-80};
+  --ix-range-field-range-delimiter--block-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-range-field-range-delimiter--inline-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-range-field-range-delimiter--min-block-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-range-field-range-delimiter--min-inline-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-range-field-range-delimiter--margin-top: calc(
+    #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-spacing-y-10}
+  );
+  --ix-range-field-has-label--margin-top: calc(
+    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-10}
+  );
   --ix-range-field-fallback-label-margin--margin-top: calc(
     #{sys.$si-sys-sizing-size-80} * 0.9
   );

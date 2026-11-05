@@ -196,3 +196,26 @@ regressionTest(
     await expect(radio).not.toHaveAttribute('disabled');
   }
 );
+
+regressionTest(
+  'label-less radio has 20px layout size and 24px active area',
+  async ({ mount, page }) => {
+    await mount(
+      `<div style="padding: 1rem"><ix-radio aria-label="Option" name="no-label"></ix-radio></div>`
+    );
+    const radio = page.locator('ix-radio');
+    await expect(radio).toHaveCSS('width', '20px');
+    await expect(radio).toHaveCSS('height', '20px');
+
+    const box = await radio.boundingBox();
+    if (!box) {
+      throw new Error('radio has no bounding box');
+    }
+    const centerY = box.y + box.height / 2;
+    await page.mouse.click(box.x - 3, centerY);
+    await expect(radio).toHaveJSProperty('checked', false);
+
+    await page.mouse.click(box.x - 1.5, centerY);
+    await expect(radio).toHaveJSProperty('checked', true);
+  }
+);

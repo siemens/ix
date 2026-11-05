@@ -287,7 +287,7 @@ export const WindowControls: OverflowStory = {
     other.style.minHeight = '3rem';
     other.style.width = 'auto';
     other.style.borderBottom =
-      'var(--theme-border-width-default) solid var(--si-sys-color-border-4)';
+      'var(--si-sys-sizing-border-width-default) solid var(--si-sys-color-border-4)';
 
     other.style.display = 'flex';
     other.style.flexDirection = 'row';

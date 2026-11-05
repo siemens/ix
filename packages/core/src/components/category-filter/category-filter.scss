@@ -8,16 +8,14 @@
  */
 
 @use '../button/button';
-@use 'legacy/mixins/fonts' as legacy-fonts;
 @use 'mixins/hover';
 @use 'mixins/fonts';
-@use 'mixins/input';
+@use '../input/input-control.mixins' as input;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
-@use 'tokens/system' as sys;
 
 @use './category-filter-dropdown-item' as dropdown-item;
-@use './category-filter.vars' as *;
+@use './category-filter.vars';
 :host {
   display: block;
   position: relative;
@@ -36,46 +34,34 @@
   }
 
   .input-container {
-    $padding-with-icon: var(
-      --ix-category-filter-input-container--padding-with-icon
-    );
-    $padding-no-icon: var(
-      --ix-category-filter-input-container--padding-no-icon
-    );
-
     &:not(.readonly) {
-      &:not(.no-icon) {
-        @include input.element-input(false, $padding-with-icon);
-      }
-      &.no-icon {
-        @include input.element-input(false, $padding-no-icon);
-      }
+      @include input.element-input($feature-read-only: false);
     }
 
     &.readonly {
-      &:not(.no-icon) {
-        @include input.element-input(true, $padding-with-icon);
-      }
-      &.no-icon {
-        @include input.element-input(true, $padding-no-icon);
-      }
+      @include input.element-input;
+    }
+
+    &:not(.no-icon) {
+      padding: var(--ix-category-filter-input-container--padding-with-icon);
+    }
+
+    &.no-icon {
+      padding: var(--ix-category-filter-input-container--padding-no-icon);
     }
 
     &:not(.readonly):not(.disabled):hover {
-      border-color: var(--ix-category-filter--border-color--hover) !important;
-      background-color: var(--ix-category-filter--background--hover);
+      @include input.element-input-hover;
     }
 
     &:not(.readonly):not(.disabled).focus {
-      outline: 1px solid var(--ix-category-filter--outline-color--focus);
-      outline-offset: var(--ix-category-filter--focus--outline-offset);
-      border-color: var(--ix-category-filter--border-color--focus) !important;
+      @include input.element-input-focus;
     }
 
     &.disabled {
-      color: var(--ix-category-filter--color--disabled);
-      border-bottom: var(--ix-category-filter--border-width, 1px) solid
-        var(--ix-category-filter--border-color-bottom--disabled);
+      color: var(--ix-input--color--disabled);
+      border-bottom: var(--ix-input--border-width) solid
+        var(--ix-input--border-color--disabled);
     }
 
     display: flex;
@@ -93,15 +79,15 @@
     height: var(--ix-category-filter-text-input--height);
     min-height: var(--ix-category-filter-text-input--min-height);
     background: transparent;
+    color: inherit;
     flex-grow: 1;
-    box-shadow: none;
 
     @include text-truncation.ellipsis;
-    @include legacy-fonts.text-default;
+    @include fonts.typography-body;
 
     &::placeholder {
-      @include fonts.typography-label;
-      color: var(--ix-category-filter-placeholder--color);
+      @include fonts.typography-body;
+      color: var(--ix-input-hint--color);
     }
 
     &,
@@ -150,7 +136,7 @@
       --ix-category-filter-category-preview--border-bottom-left-radius
     );
     padding: var(--ix-category-filter-category-preview--padding);
-    margin: 2px 0;
+    margin: var(--ix-category-filter-category-preview--margin) 0;
   }
 
   ul {
@@ -160,14 +146,14 @@
   .list-unstyled > span:not(.category-preview),
   input {
     padding-inline-start: 0;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: var(--ix-category-filter-list-unstyled--padding-top);
+    padding-bottom: var(--ix-category-filter-list-unstyled--padding-bottom);
   }
 
   ix-dropdown {
     min-width: var(--ix-category-filter--min-width) !important;
 
-    @include legacy-fonts.text-default-single;
+    @include fonts.typography-body;
 
     .dropdown-item-container {
       display: flex;
@@ -187,13 +173,14 @@
         height: var(--ix-category-filter-dropdown-item--height);
         margin: var(--ix-category-filter-dropdown-item--margin);
         padding-inline: var(--ix-category-filter-dropdown-item--padding-inline);
-        border: 1px solid transparent;
-        border-radius: 100rem;
+        border: var(--ix-category-filter-dropdown-item--border-width) solid
+          transparent;
+        border-radius: var(--ix-category-filter-dropdown-item--border-radius);
         width: auto;
         justify-content: flex-start;
         flex-grow: 1;
 
-        @include legacy-fonts.text-default-single;
+        @include fonts.typography-body;
         @include text-truncation.ellipsis;
         @include hover.focus-visible {
           border-color: var(
@@ -229,7 +216,6 @@
 
 :host(.active:not(.disabled)) {
   .input-container:not(.readonly):not(.disabled) {
-    border-color: var(--ix-category-filter--border-color--hover) !important;
-    background-color: var(--ix-category-filter--background--hover);
+    @include input.element-input-hover;
   }
 }

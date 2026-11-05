@@ -29,8 +29,8 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <div style="text-align: center; margin-top: 2rem">
-      <ix-chip closable outline> Primary </ix-chip>
-      <ix-chip icon="print">Primary with icon</ix-chip>
+      <ix-chip closable outline> Accent </ix-chip>
+      <ix-chip icon="print">Accent with icon</ix-chip>
       <ix-chip
         icon="print"
         style="width: 10rem"
@@ -38,24 +38,24 @@ SPDX-License-Identifier: MIT
         onClose="{console.log}"
         onClick="{console.log}"
       >
-        Primary
+        Accent
       </ix-chip>
 
       <ix-chip variant="critical" closable outline>
         Critical
       </ix-chip>
-      <ix-chip variant="alarm" icon="print">
-        Alarm with icon
+      <ix-chip variant="danger" icon="print">
+        Danger with icon
       </ix-chip>
       <ix-chip
-        variant="alarm"
+        variant="danger"
         icon="print"
         style="width: 10rem"
         closable
         onClose="{console.log}"
         onClick="{console.log}"
       >
-        Alarm
+        Danger
       </ix-chip>
       <ix-chip
         variant="warning"
@@ -65,7 +65,17 @@ SPDX-License-Identifier: MIT
         onClose="{console.log}"
         onClick="{console.log}"
       >
-        Alarm
+        Warning
+      </ix-chip>
+      <ix-chip
+        variant="caution"
+        icon="print"
+        style="width: 10rem"
+        closable
+        onClose="{console.log}"
+        onClick="{console.log}"
+      >
+        Caution
       </ix-chip>
       <ix-chip center-content closable icon="print" style="width: 15rem"
         >Centered content
@@ -88,11 +98,11 @@ SPDX-License-Identifier: MIT
           max-width: 300px;
         "
       >
-        <ix-chip icon="print" variant="primary" outline closable>
-          Primary
+        <ix-chip icon="print" variant="accent" outline closable>
+          Accent
         </ix-chip>
-        <ix-chip icon="print" variant="alarm" outline closable>
-          Alarm
+        <ix-chip icon="print" variant="danger" outline closable>
+          Danger
         </ix-chip>
         <ix-chip icon="print" variant="critical" outline>
           Critical
@@ -100,8 +110,11 @@ SPDX-License-Identifier: MIT
         <ix-chip icon="print" variant="warning" outline>
           Warning
         </ix-chip>
-        <ix-chip icon="print" variant="info" outline>
-          Info
+        <ix-chip icon="print" variant="caution" outline>
+          Caution
+        </ix-chip>
+        <ix-chip icon="print" variant="information" outline>
+          Information
         </ix-chip>
         <ix-chip icon="print" variant="success" outline>
           Success
@@ -127,11 +140,12 @@ SPDX-License-Identifier: MIT
           max-width: 300px;
         "
       >
-        <ix-chip icon="print" variant="primary" closable>Primary</ix-chip>
-        <ix-chip icon="print" variant="alarm" closable>Alarm</ix-chip>
+        <ix-chip icon="print" variant="accent" closable>Accent</ix-chip>
+        <ix-chip icon="print" variant="danger" closable>Danger</ix-chip>
         <ix-chip icon="print" variant="critical">Critical</ix-chip>
         <ix-chip icon="print" variant="warning">Warning</ix-chip>
-        <ix-chip icon="print" variant="info">Info</ix-chip>
+        <ix-chip icon="print" variant="caution">Caution</ix-chip>
+        <ix-chip icon="print" variant="information">Information</ix-chip>
         <ix-chip icon="print" variant="success">Success</ix-chip>
         <ix-chip icon="print" variant="neutral">Neutral</ix-chip>
         <ix-chip

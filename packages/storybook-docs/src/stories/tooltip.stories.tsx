@@ -28,6 +28,6 @@ type Story = StoryObj<Element>;
 
 export const Default: Story = {
   args: {
-    for: 'tooltip-trigger',
+    for: '#tooltip-trigger',
   },
 };

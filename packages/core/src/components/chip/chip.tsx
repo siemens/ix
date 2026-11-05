@@ -28,7 +28,12 @@ import { makeRef } from '../utils/make-ref';
 import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
 /**
- * @slot default - Chip label.
+ * Compact element that represents an attribute, tag, or entity, optionally dismissible.
+ *
+ * @documentation https://ix.siemens.io//docs/components/chip/guide.md
+ * @figma-main-component-id 286:1758
+ *
+ * @slot - Chip content.
  */
 @Component({
   tag: 'ix-chip',
@@ -43,9 +48,9 @@ export class Chip
 
   /**
    * Chip variant.
-   * Defaults to `primary`. When unset or set to an unknown value the chip falls back to `primary` styling.
+   * Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
    */
-  @Prop({ reflect: true }) variant: ChipVariant = 'primary';
+  @Prop({ reflect: true }) variant: ChipVariant = 'accent';
 
   /**
    * Determines if the chip is interactive. If true no user input (e.g. mouse states, keyboard navigation)
@@ -185,7 +190,7 @@ export class Chip
   override render() {
     const variant: ChipVariant = CHIP_VARIANTS.includes(this.variant)
       ? this.variant
-      : 'primary';
+      : 'accent';
 
     const { wrap: customWrapStyle, main: customMainStyle } =
       this.getCustomStyles(variant);
@@ -194,13 +199,14 @@ export class Chip
       'chip-wrap': true,
       outline: this.outline,
       inactive: this.inactive,
-      alarm: variant === 'alarm',
-      critical: variant === 'critical',
-      info: variant === 'info',
-      neutral: variant === 'neutral',
-      primary: variant === 'primary',
-      success: variant === 'success',
+      danger: variant === 'danger',
       warning: variant === 'warning',
+      caution: variant === 'caution',
+      information: variant === 'information',
+      accent: variant === 'accent',
+      critical: variant === 'critical',
+      success: variant === 'success',
+      neutral: variant === 'neutral',
       custom: variant === 'custom',
       closable: this.closable,
       icon: !!this.icon,

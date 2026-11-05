@@ -16,7 +16,7 @@ regressionTest('renders', async ({ mount, page }) => {
   });
 
   const button = page.locator('ix-icon-toggle-button');
-  await expect(button).toHaveClass(/hydrated/);
+  await expect(button).toHaveAttribute('hydrated');
   await expect(button.locator('ix-icon')).toBeVisible();
 });
 
@@ -31,7 +31,7 @@ regressionTest(
     );
 
     const button = page.locator('ix-icon-toggle-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button).toHaveClass(/btn-icon-32/);
     await expect(button.locator('ix-icon')).toHaveClass(/size-20/);
   }
@@ -48,7 +48,7 @@ regressionTest(
     );
 
     const button = page.locator('ix-icon-toggle-button');
-    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveAttribute('hydrated');
     await expect(button).toHaveClass(/btn-icon-32/);
     await expect(button.locator('ix-icon')).toHaveClass(/size-24/);
   }

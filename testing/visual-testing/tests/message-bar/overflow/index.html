@@ -16,10 +16,19 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <div style="margin: 0.5rem; display: block; max-width: 400px">
-      <ix-message-bar style="margin-bottom: 0.5rem; display: block">
-        This is a very long message text that should wrap to multiple lines
-        instead of being truncated with an ellipsis. The text should be fully
-        visible and readable by the user.
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="error"
+      >
+        Error: A critical long message that wraps properly across multiple
+        lines without being truncated by an ellipsis at the end.
+      </ix-message-bar>
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="danger"
+      >
+        Danger: A critical long message that wraps properly across multiple
+        lines without being truncated by an ellipsis at the end.
       </ix-message-bar>
       <ix-message-bar
         style="margin-bottom: 0.5rem; display: block"
@@ -31,10 +40,19 @@ SPDX-License-Identifier: MIT
       </ix-message-bar>
       <ix-message-bar
         style="margin-bottom: 0.5rem; display: block"
-        type="alarm"
+        type="caution"
       >
-        Alarm: A critical long message that wraps properly across multiple lines
-        without being truncated by an ellipsis at the end.
+        Caution: This is a very long message text that should wrap to multiple
+        lines instead of being truncated with an ellipsis. The text should be
+        fully visible and readable by the user.
+      </ix-message-bar>
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="information"
+      >
+        Information: This is a very long message text that should wrap to
+        multiple lines instead of being truncated with an ellipsis. The text
+        should be fully visible and readable by the user.
       </ix-message-bar>
       <ix-message-bar
         style="margin-bottom: 0.5rem; display: block"

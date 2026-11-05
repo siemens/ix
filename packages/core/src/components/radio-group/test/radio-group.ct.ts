@@ -23,10 +23,10 @@ regressionTest('renders', async ({ mount, page }) => {
   const radioOption1 = page.locator('ix-radio').nth(0);
   const radioOption2 = page.locator('ix-radio').nth(1);
   const radioOption3 = page.locator('ix-radio').nth(2);
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
-  await expect(radioOption1).toHaveClass(/hydrated/);
-  await expect(radioOption2).toHaveClass(/hydrated/);
-  await expect(radioOption3).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveAttribute('hydrated');
+  await expect(radioOption1).toHaveAttribute('hydrated');
+  await expect(radioOption2).toHaveAttribute('hydrated');
+  await expect(radioOption3).toHaveAttribute('hydrated');
 });
 
 regressionTest('required', async ({ mount, page }) => {
@@ -40,7 +40,7 @@ regressionTest('required', async ({ mount, page }) => {
     `
   );
   const radioGroupElement = page.locator('ix-radio-group');
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveAttribute('hydrated');
   await expect(radioGroupElement).toHaveText(/example\*/);
 
   const radioOption2 = page.locator('ix-radio').nth(1);
@@ -69,10 +69,10 @@ regressionTest('initial checked', async ({ mount, page }) => {
   const radioOption1 = page.locator('ix-radio').nth(0);
   const radioOption2 = page.locator('ix-radio').nth(1);
   const radioOption3 = page.locator('ix-radio').nth(2);
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
-  await expect(radioOption1).toHaveClass(/hydrated/);
-  await expect(radioOption2).toHaveClass(/hydrated/);
-  await expect(radioOption3).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveAttribute('hydrated');
+  await expect(radioOption1).toHaveAttribute('hydrated');
+  await expect(radioOption2).toHaveAttribute('hydrated');
+  await expect(radioOption3).toHaveAttribute('hydrated');
 
   await expect(radioOption2.locator('.checkmark')).toBeVisible();
 });
@@ -91,11 +91,11 @@ regressionTest('change checked', async ({ mount, page }) => {
   const radioOption1 = page.locator('ix-radio').nth(0);
   const radioOption2 = page.locator('ix-radio').nth(1);
   const radioOption3 = page.locator('ix-radio').nth(2);
-  await expect(radioGroupElement).toHaveClass(/hydrated/);
-  await expect(radioOption1).toHaveClass(/hydrated/);
-  await expect(radioOption2).toHaveClass(/hydrated/);
+  await expect(radioGroupElement).toHaveAttribute('hydrated');
+  await expect(radioOption1).toHaveAttribute('hydrated');
+  await expect(radioOption2).toHaveAttribute('hydrated');
   await expect(radioOption2.locator('.checkmark')).toBeVisible();
-  await expect(radioOption3).toHaveClass(/hydrated/);
+  await expect(radioOption3).toHaveAttribute('hydrated');
 
   await radioOption3.click();
 

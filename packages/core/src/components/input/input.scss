@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use './input.vars' as *;
+
 @use './input.mixins.scss';
 
 @include input.input-field;
@@ -26,6 +28,6 @@
   }
 
   .password-eye {
-    margin-left: 0.125rem;
+    margin-left: var(--ix-input-password-eye--margin-left);
   }
 }

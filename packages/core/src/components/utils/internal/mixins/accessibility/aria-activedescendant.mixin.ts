@@ -85,7 +85,9 @@ export const AriaActiveDescendantMixin = <
           return;
         }
 
-        if ('ariaActiveDescendantElement' in Element.prototype) {
+        const supportsElementReference =
+          'ariaActiveDescendantElement' in Element.prototype;
+        if (supportsElementReference) {
           //@ts-ignore
           controllingElement.ariaActiveDescendantElement = item;
         }
@@ -96,7 +98,12 @@ export const AriaActiveDescendantMixin = <
             'aria-activedescendant',
             item.id + '-' + proxyId
           );
-        } else {
+        } else if (
+          !supportsElementReference ||
+          item.getRootNode() === controllingElement.getRootNode()
+        ) {
+          // ID references do not resolve across shadow roots, and setting the
+          // attribute would reset the element reference
           controllingElement.setAttribute('aria-activedescendant', item.id);
         }
 

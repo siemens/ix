@@ -19,7 +19,7 @@ regressionTest('renders', async ({ mount, page }) => {
     `
   );
   const fieldWrapperElement = page.locator('ix-field-wrapper');
-  await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+  await expect(fieldWrapperElement).toHaveAttribute('hydrated');
   await expect(
     fieldWrapperElement
       .locator('.field-bottom')
@@ -39,7 +39,7 @@ regressionTest(
     `
     );
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
     await expect(
       fieldWrapperElement
         .locator('.field-bottom')
@@ -59,7 +59,7 @@ regressionTest(
     `
     );
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     await fieldWrapperElement.evaluate((e: HTMLIxFieldWrapperElement) => {
       (e.helperText as any) = null;
@@ -84,7 +84,7 @@ regressionTest('doesnt render empty string text', async ({ mount, page }) => {
     `
   );
   const fieldWrapperElement = page.locator('ix-field-wrapper');
-  await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+  await expect(fieldWrapperElement).toHaveAttribute('hydrated');
   const helperTextElement = fieldWrapperElement
     .locator('.field-bottom')
     .locator('ix-typography.bottom-text')
@@ -102,7 +102,7 @@ regressionTest('show text by tooltip', async ({ mount, page }) => {
     `
   );
   const fieldWrapperElement = page.locator('ix-field-wrapper');
-  await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+  await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
   await page.mouse.move(10, 10);
 
@@ -120,7 +120,7 @@ regressionTest('show text by tooltip invalid', async ({ mount, page }) => {
     `
   );
   const fieldWrapperElement = page.locator('ix-field-wrapper');
-  await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+  await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
   await page.mouse.move(10, 10);
 
@@ -141,7 +141,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
     const tooltip = fieldWrapperElement.locator('ix-tooltip');
     await expect(tooltip).toHaveCount(0);
     await page.mouse.move(10, 10);
@@ -162,7 +162,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
     await fieldWrapperElement.evaluate((e: HTMLIxFieldWrapperElement) => {
       (e.helperText as any) = null;
     });
@@ -186,7 +186,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     await fieldWrapperElement.evaluate(
       (elm: HTMLIxHelperTextElement) => ((elm as any)[`valid-text`] = undefined)
@@ -216,7 +216,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     const bottomTextElement = fieldWrapperElement
       .locator('.field-bottom')
@@ -246,7 +246,7 @@ regressionTest(
       `
     );
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     const bottomTextElement = fieldWrapperElement
       .locator('.field-bottom')
@@ -302,7 +302,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     await setControlRefAndLabel(page, 'Test label');
 
@@ -323,7 +323,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     await setControlRefAndLabel(page, 'Test label');
 
@@ -344,7 +344,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     const helperMessageElement = fieldWrapperElement.locator(
       '.helper-message-container'
@@ -370,7 +370,7 @@ regressionTest(
     );
 
     const fieldWrapperElement = page.locator('ix-field-wrapper');
-    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
 
     const errorMessageElement = fieldWrapperElement.locator(
       '.error-message-container'
@@ -384,5 +384,41 @@ regressionTest(
 
     await expect(fieldWrapperElement).toHaveAttribute('role', 'alert');
     await expect(fieldWrapperElement).toHaveAttribute('aria-live', 'polite');
+  }
+);
+
+regressionTest(
+  'should resolve message elements when the host ID is not a valid CSS selector',
+  async ({ mount, page }) => {
+    await mount(
+      `
+    <ix-field-wrapper invalid-text="Invalid text" is-invalid id="1-field">
+      <input id="test-input" />
+    </ix-field-wrapper>
+    `
+    );
+
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveAttribute('hydrated');
+
+    const errorMessageElement = fieldWrapperElement.locator(
+      '.error-message-container'
+    );
+    await expect(errorMessageElement).toHaveAttribute(
+      'id',
+      '1-field-errormessage'
+    );
+    await expect(errorMessageElement).toHaveText('Invalid text');
+
+    const resolvedIds = await fieldWrapperElement.evaluate(
+      async (el: HTMLIxFieldWrapperElement) => [
+        (await el.getAriaErrorMessageElement())?.id,
+        (await el.getAriaHelperMessageElement())?.id,
+      ]
+    );
+    expect(resolvedIds).toEqual([
+      '1-field-errormessage',
+      '1-field-helpermessage',
+    ]);
   }
 );

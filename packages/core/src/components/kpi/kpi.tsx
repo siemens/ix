@@ -7,9 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconAlarm, iconWarning } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
+import { KPI_STATE_ICONS, type KpiState } from './kpi.types';
 
+/**
+ * Displays a key performance indicator with a label, value, and status.
+ *
+ * @documentation https://ix.siemens.io//docs/components/kpi/code.md
+ * @figma-main-component-id 423:3986
+ */
 @Component({
   tag: 'ix-kpi',
   styleUrl: 'kpi.scss',
@@ -22,20 +29,6 @@ export class Kpi {
   @Prop() label?: string;
 
   /**
-   * ARIA label for the alarm icon
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelAlarmIcon?: string;
-
-  /**
-   * ARIA label for the warning icon
-   *
-   * @since 3.2.0
-   */
-  @Prop() ariaLabelWarningIcon?: string;
-
-  /**
    *
    */
   @Prop() value?: string | number;
@@ -46,9 +39,11 @@ export class Kpi {
   @Prop() unit?: string;
 
   /**
-   *
+   * Status of the KPI.
+   * `neutral` and `accent` show no status icon.
+   * Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
    */
-  @Prop() state: 'neutral' | 'warning' | 'alarm' = 'neutral';
+  @Prop() state: KpiState = 'neutral';
 
   /**
    *
@@ -56,30 +51,20 @@ export class Kpi {
   @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal';
 
   private getStateIcon() {
-    switch (this.state) {
-      case 'alarm':
-        return (
-          <ix-icon
-            style={{ color: 'var(--ix-kpi-display-icon--color)' }}
-            name={iconAlarm}
-            size="16"
-            aria-label={this.ariaLabelAlarmIcon}
-          ></ix-icon>
-        );
+    const icon = KPI_STATE_ICONS[this.state];
 
-      case 'warning':
-        return (
-          <ix-icon
-            style={{ color: 'var(--ix-kpi-display-icon--color)' }}
-            name={iconWarning}
-            size="16"
-            aria-label={this.ariaLabelWarningIcon}
-          ></ix-icon>
-        );
-
-      default:
-        return '';
+    if (!icon) {
+      return '';
     }
+
+    return (
+      <ix-icon
+        color="--ix-kpi-display-icon--color"
+        name={icon}
+        size="16"
+        aria-hidden={a11yBoolean(true)}
+      ></ix-icon>
+    );
   }
 
   private getTooltipText() {
@@ -101,13 +86,7 @@ export class Kpi {
           stacked: this.orientation === 'vertical',
         }}
       >
-        <div
-          class={{
-            'kpi-container': true,
-            alarm: this.state === 'alarm',
-            warning: this.state === 'warning',
-          }}
-        >
+        <div class={{ 'kpi-container': true, [this.state]: true }}>
           <span class="kpi-label">
             {this.getStateIcon()}
             <span class="kpi-label-text">{this.label}</span>

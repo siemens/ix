@@ -22,7 +22,8 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { parseWithLocale } from '../utils/date-time-locale';
+import { parseWithLocale } from '../utils/datetime/date-time-locale';
+import { DateDisplayFormat } from '../utils/datetime/date-display-format';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
   DisposableChangesAndVisibilityObservers,
@@ -33,6 +34,7 @@ import {
   emitPickerValidityState,
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
+  onInputFocus,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -41,12 +43,15 @@ import {
   ValidationResults,
   createClassMutationObserver,
   getValidationText,
+  revalidate,
 } from '../utils/input';
 import {
   closeDropdown as closeDropdownUtil,
   createValidityState,
+  createPickerInputBlur,
   handleIconClick,
   openDropdown as openDropdownUtil,
+  shouldShowInputInvalid,
 } from '../utils/input/picker-input.util';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import type { DateInputValidityState } from './date-input.types';
@@ -59,8 +64,12 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 
 /**
- * @form-ready
+ * Text input for entering and validating a date value.
  *
+ * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
+ * @figma-main-component-id 442365:42749
+ *
+ * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
  */
@@ -114,8 +123,7 @@ export class DateInput
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months,
    * determine the default order of weekdays, and parse user input.
-   * Values emitted via `valueChange` reflect the locale-formatted string
-   * as typed or selected by the user.
+   * Values emitted via `valueChange` are in `format`.
    */
   @Prop() locale?: string;
 
@@ -125,16 +133,45 @@ export class DateInput
    */
   @Prop() format: string = 'yyyy/LL/dd';
 
+  /**
+   * Date format used to display and type the date in the input field.
+   * `value`, `minDate`, `maxDate` and emitted values keep using `format`,
+   * e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a
+   * two-digit year without losing the century of the value.
+   * Date parts missing in `displayFormat` are kept from the current value
+   * when the user types a date. A typed two-digit year resolves to the year
+   * closest to the current value.
+   * Defaults to `format`.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
+
   @Watch('locale')
   @Watch('format')
   watchLocaleFormatHandler() {
+    // Sync first, so typed text rejected for the previous format is revalidated
+    this.syncInputText();
     this.onInput(this.value);
+  }
+
+  @Watch('displayFormat')
+  watchDisplayFormatHandler() {
+    // Only the text changes, so revalidate without emitting `valueChange`
+    this.syncInputText();
+    this.validateValue(this.value);
   }
 
   /**
    * Required attribute.
    */
   @Prop() required?: boolean;
+
+  @Watch('required')
+  onRequiredChange() {
+    void revalidate(this);
+  }
 
   /**
    * Helper text below the input field.
@@ -242,6 +279,30 @@ export class DateInput
   @Prop() enableTopLayer: boolean = false;
 
   /**
+   * If true, changes require clicking confirm.
+   * Cancel, Escape or clicking outside all discard pending selections.
+   *
+   * If false, changes are applied immediately without requiring confirmation.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation: boolean = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm: string = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel: string = 'Cancel';
+
+  /**
    * Value change event. Emitted when the input value changes.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -270,7 +331,9 @@ export class DateInput
   @State() isInfo = false;
   @State() isWarning = false;
   @State() focus = false;
+  @State() inputText = '';
 
+  private readonly dateDisplayFormat = new DateDisplayFormat(this);
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
@@ -284,6 +347,11 @@ export class DateInput
   public invalidReason?: string;
 
   public touched = false;
+
+  private readonly inputBlur = createPickerInputBlur({
+    isPickerOpen: () => this.show,
+    onLeave: () => this.onInputBlur(),
+  });
 
   public validityTracker: PickerValidityStateTracker =
     createPickerValidityStateTracker();
@@ -313,14 +381,11 @@ export class DateInput
 
   override componentWillLoad(): void {
     this.onInput(this.value);
-    if (this.isInputInvalid) {
-      this.from = null;
-    } else {
-      this.watchValue();
-    }
 
     this.checkClassList();
     this.updateFormInternalValue(this.value);
+    this.initialValue = this.value;
+    this.syncInputText();
   }
 
   private updatePaddings() {
@@ -336,9 +401,46 @@ export class DateInput
     this.disposableChangesAndVisibilityObservers?.();
   }
 
+  private applyPickedDate(from?: string) {
+    // onInput can refocus the input and reset initialValue.
+    const hasValueChanged = this.initialValue !== from;
+    this.onInput(from);
+    if (hasValueChanged) {
+      this.ixChange.emit(from);
+      this.initialValue = from;
+    }
+  }
+
+  private onInputBlur() {
+    this.touched = true;
+    onInputBlurWithChange(this, this.inputElementRef.current, this.value);
+    this.emitValidityStateChangeIfChanged();
+
+    if (!this.isInputInvalid) {
+      this.syncInputText();
+    }
+  }
+
+  private discardPendingSelection() {
+    this.datepickerRef.current?.discardPendingSelection();
+  }
+
   @Watch('value')
   watchValue() {
-    this.from = this.value;
+    // Keep the text while the user is typing it, otherwise it would be
+    // reformatted on every keystroke
+    if (!this.dateDisplayFormat.isTypedValue(this.value)) {
+      this.syncInputText();
+    }
+  }
+
+  private syncInputText() {
+    this.inputText = this.dateDisplayFormat.toText();
+  }
+
+  private onTextInput(text: string) {
+    this.inputText = text;
+    void this.onInput(this.dateDisplayFormat.toValue(text));
   }
 
   /** @internal */
@@ -355,20 +457,40 @@ export class DateInput
 
   async onInput(value: string | undefined) {
     this.value = value;
+    if (!this.validateValue(value)) {
+      return;
+    }
+
+    if (value && !this.isInputInvalid) {
+      this.closeDropdown();
+
+      if (hasKeyboardMode()) {
+        this.inputElementRef.current?.focus();
+      }
+    }
+
+    this.valueChange.emit(value);
+  }
+
+  /**
+   * Updates the validation state, picker state and form value for `value`.
+   * Returns `false` if `value` cannot be validated without `format`.
+   */
+  private validateValue(value: string | undefined): boolean {
     if (!value) {
       this.isInputInvalid = false;
       this.invalidReason = undefined;
-      this.emitValidityStateChangeIfChanged();
+      this.from = value;
+      void this.emitValidityStateChangeIfChanged();
       this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
-      return;
+      return true;
     }
 
     if (!this.format) {
-      return;
+      return false;
     }
 
-    const date = parseWithLocale(value, this.format, this.locale);
+    const date = this.dateDisplayFormat.parseValue(value);
     const minDate = parseWithLocale(this.minDate, this.format, this.locale);
     const maxDate = parseWithLocale(this.maxDate, this.format, this.locale);
 
@@ -378,16 +500,12 @@ export class DateInput
       this.invalidReason = date.invalidReason ?? undefined;
       this.from = undefined;
     } else {
+      this.from = value;
       this.updateFormInternalValue(value);
-      this.closeDropdown();
-
-      if (hasKeyboardMode()) {
-        this.inputElementRef.current?.focus();
-      }
     }
 
-    this.emitValidityStateChangeIfChanged();
-    this.valueChange.emit(value);
+    void this.emitValidityStateChangeIfChanged();
+    return true;
   }
 
   onCalenderClick(event: Event) {
@@ -430,7 +548,7 @@ export class DateInput
           aria-haspopup="true"
           autoComplete="off"
           class={{
-            'is-invalid': this.isInputInvalid,
+            'is-invalid': this.showInputInvalid,
           }}
           disabled={this.disabled}
           readOnly={this.readonly}
@@ -438,12 +556,12 @@ export class DateInput
           required={this.required}
           ref={this.inputElementRef}
           type="text"
-          value={this.value ?? ''}
+          value={this.inputText}
           placeholder={this.placeholder}
           name={this.name}
           onInput={(event) => {
             const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
+            this.onTextInput(target.value);
           }}
           onClick={(event) => {
             if (this.show) {
@@ -451,18 +569,12 @@ export class DateInput
               event.preventDefault();
             }
           }}
-          onFocus={async () => {
+          onFocus={() => {
+            this.inputBlur.onFocus();
+            onInputFocus(this, this.value);
             this.ixFocus.emit();
           }}
-          onBlur={() => {
-            this.touched = true;
-            onInputBlurWithChange(
-              this,
-              this.inputElementRef.current,
-              this.value
-            );
-            this.emitValidityStateChangeIfChanged();
-          }}
+          onBlur={() => this.inputBlur.onBlur()}
           onKeyDown={(event) => this.handleInputKeyDown(event)}
           style={{
             textAlign: this.textAlignment,
@@ -482,11 +594,17 @@ export class DateInput
             size="16"
             icon={iconCalendar}
             aria-expanded={a11yBoolean(this.show)}
+            // Keep focus in the field, opening the picker does not leave it
+            onMouseDown={(event) => event.preventDefault()}
             onClick={(event) => this.onCalenderClick(event)}
           ></ix-icon-button>
         </SlotEnd>
       </div>
     );
+  }
+
+  private get showInputInvalid(): boolean {
+    return shouldShowInputInvalid(this.isInputInvalid, this.formInternals);
   }
 
   @HookValidationLifecycle()
@@ -497,7 +615,7 @@ export class DateInput
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.showInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
@@ -596,6 +714,13 @@ export class DateInput
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;
+
+            if (!this.show) {
+              if (this.requireConfirmation) {
+                this.discardPendingSelection();
+              }
+              this.inputBlur.onPickerClosed();
+            }
           }}
           focusTrapOptions={{
             targetElement: this.datepickerRef,
@@ -616,14 +741,29 @@ export class DateInput
             minDate={this.minDate}
             maxDate={this.maxDate}
             onDateChange={(event) => {
-              const { from } = event.detail;
-              this.onInput(from);
-              if (this.initialValue !== from) {
-                this.ixChange.emit(from);
-                this.initialValue = from;
+              event.stopPropagation();
+              // With requireConfirmation the value is applied on dateSelect
+              if (!this.requireConfirmation) {
+                this.applyPickedDate(event.detail.from);
               }
             }}
+            onDateRangeChange={(event) => event.stopPropagation()}
+            requireConfirmation={this.requireConfirmation}
+            i18nConfirm={this.i18nConfirm}
+            i18nCancel={this.i18nCancel}
+            onDateSelect={(event) => {
+              event.stopPropagation();
+              if (this.requireConfirmation) {
+                this.applyPickedDate(event.detail.from);
+              }
+              this.closeDropdown();
+            }}
+            onDateCancel={(event) => {
+              event.stopPropagation();
+              this.closeDropdown();
+            }}
             showWeekNumbers={this.showWeekNumbers}
+            weekStartIndex={this.weekStartIndex}
             ariaLabelNextMonthButton={this.ariaLabelNextMonthButton}
             ariaLabelPreviousMonthButton={this.ariaLabelPreviousMonthButton}
             embedded

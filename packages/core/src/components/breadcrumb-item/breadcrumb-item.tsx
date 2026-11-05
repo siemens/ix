@@ -30,7 +30,12 @@ import {
 import type { BreadcrumbClick } from '../breadcrumb/breadcrumb.types';
 
 /**
- * @slot default - Breadcrumb item label.
+ * A single entry within a breadcrumb navigation trail.
+ *
+ * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+ * @figma-main-component-id 358:3004
+ *
+ * @slot - Breadcrumb item label.
  */
 @Component({
   tag: 'ix-breadcrumb-item',
@@ -55,6 +60,10 @@ export class BreadcrumbItem
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
+   *
+   * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
+   * against an allowlist (for example `https:` and relative URLs).
    *
    * @since 4.0.0
    */
@@ -170,6 +179,7 @@ export class BreadcrumbItem
                   name={iconChevronRightSmall}
                   size="16"
                   class={'chevron'}
+                  aria-hidden="true"
                 ></ix-icon>
               )}
             </Fragment>

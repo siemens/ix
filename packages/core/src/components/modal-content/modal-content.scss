@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'mixins/fonts';
 @use 'tokens/system' as sys;
 
 @use './modal-content.vars' as *;
@@ -16,5 +17,6 @@
   overflow: auto;
   padding: var(--ix-modal-content--padding);
 
+  @include fonts.typography-body-paragraph;
   @include component.ix-component;
 }

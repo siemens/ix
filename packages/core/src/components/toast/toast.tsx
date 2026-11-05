@@ -18,18 +18,30 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { ToastType } from './toast-utils';
+import type { ToastType } from './toast.types';
 import {
+  iconAlarm,
   iconClose,
   iconError,
   iconInfo,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 
+interface ToastTypeConfig {
+  icon: string;
+  color: string;
+}
+
 /**
- * @slot default - Toast message content.
- * @slot action - Action displayed next to the toast message.
+ * Transient notification message that appears temporarily.
+ *
+ * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+ *
+ * @slot - Toast message content.
+ * @slot action - Toast action content.
  */
 @Component({
   tag: 'ix-toast',
@@ -40,7 +52,7 @@ export class Toast {
   /**
    * Toast type
    */
-  @Prop({ reflect: true }) type: ToastType = 'info';
+  @Prop({ reflect: true }) type: ToastType = 'information';
 
   /**
    * Toast title
@@ -74,8 +86,8 @@ export class Toast {
   @Prop() hideIcon: boolean = false;
 
   /**
-   * ARIA label for the close icon button
-   * Will be set as aria-label on the nested HTML button element
+   * ARIA label for the close icon button.
+   * Will be set as aria-label on the nested HTML button element.
    *
    * @since 3.2.0
    */
@@ -92,71 +104,108 @@ export class Toast {
 
   @Element() hostElement!: HTMLIxToastElement;
 
+  private static readonly toastTypeConfigs: Record<ToastType, ToastTypeConfig> =
+    {
+      danger: {
+        icon: iconAlarm,
+        color: '--si-sys-color-border-danger',
+      },
+      warning: {
+        icon: iconWarning,
+        color: '--si-sys-color-border-warning',
+      },
+      caution: {
+        icon: iconWarningRhomb,
+        color: '--si-sys-color-border-caution',
+      },
+      information: {
+        icon: iconInfo,
+        color: '--si-sys-color-border-information',
+      },
+      critical: {
+        icon: iconWarningOctagon,
+        color: '--si-sys-color-border-critical',
+      },
+      success: {
+        icon: iconSuccess,
+        color: '--si-sys-color-border-success',
+      },
+      error: {
+        icon: iconError,
+        color: '--si-sys-color-border-danger',
+      },
+    };
+
   private getIcon() {
     if (this.icon) {
       return (
         <ix-icon
           data-testid="toast-icon"
+          aria-hidden="true"
           name={this.icon}
           color={this.iconColor}
-          size="24"
         />
       );
     }
 
-    switch (this.type) {
-      case 'info':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            name={iconInfo}
-            size="24"
-            color="--si-sys-color-text-primary"
-          />
-        );
-
-      case 'error':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            name={iconError}
-            size="24"
-            color="--si-sys-color-text-danger"
-          />
-        );
-
-      case 'success':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            name={iconSuccess}
-            size="24"
-            color="--si-sys-color-text-success"
-          />
-        );
-
-      case 'warning':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            name={iconWarning}
-            size="24"
-            color="--si-sys-color-text-warning"
-          />
-        );
-
-      default:
-        return '';
+    const config = Toast.toastTypeConfigs[this.type];
+    if (!config) {
+      return '';
     }
+
+    return (
+      <ix-icon
+        data-testid="toast-icon"
+        aria-hidden="true"
+        name={config.icon}
+        color={config.color}
+      />
+    );
   }
 
+  private isClosing = false;
+
   private close() {
-    if (this.hostElement) {
-      this.hostElement.classList.add('animate__fadeOut');
+    if (this.isClosing) {
+      return;
     }
-    setTimeout(() => {
+    this.isClosing = true;
+
+    let closed = false;
+    const emitClose = () => {
+      if (closed) {
+        return;
+      }
+      closed = true;
+      this.hostElement.removeEventListener('animationend', onAnimationEnd);
       this.closeToast.emit();
-    }, 250);
+    };
+    const onAnimationEnd = (event: AnimationEvent) => {
+      if (
+        event.target === this.hostElement &&
+        event.animationName === 'toast-fade-out'
+      ) {
+        emitClose();
+      }
+    };
+
+    this.hostElement.addEventListener('animationend', onAnimationEnd);
+    this.hostElement.classList.add('toast-fade-out');
+
+    // Fallback in case `animationend` is not fired (e.g. no animation applied)
+    const fallbackMs = this.getAnimationDurationMs() + 50;
+    setTimeout(emitClose, fallbackMs);
+  }
+
+  private getAnimationDurationMs() {
+    const { animationDuration } = window.getComputedStyle(this.hostElement);
+    const value = parseFloat(animationDuration);
+
+    if (!Number.isFinite(value)) {
+      return 0;
+    }
+
+    return animationDuration.trim().endsWith('ms') ? value : value * 1000;
   }
 
   /**
@@ -196,12 +245,7 @@ export class Toast {
     progressBarClass.push('toast-progress-bar--animated');
 
     return (
-      <Host
-        role="alert"
-        aria-live="polite"
-        aria-atomic="true"
-        class="animate__animated animate__fadeIn"
-      >
+      <Host role="alert" aria-live="polite" aria-atomic="true">
         <div
           class="toast-body"
           onPointerLeave={() => {

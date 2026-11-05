@@ -1,0 +1,39 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { Component } from '@angular/core';
+import { IxButton, IxMessageBar } from '@siemens/ix-angular/standalone';
+
+@Component({
+  selector: 'app-example',
+  imports: [IxMessageBar, IxButton],
+  template: `
+    <div class="message-bar">
+      <ix-message-bar persistent type="error">Message text</ix-message-bar>
+      <ix-message-bar persistent type="danger">Message text</ix-message-bar>
+      <ix-message-bar persistent type="warning">Message text</ix-message-bar>
+      <ix-message-bar persistent type="caution">Message text</ix-message-bar>
+      <ix-message-bar persistent type="success">Message text</ix-message-bar>
+      <ix-message-bar persistent type="information"
+        >Message text</ix-message-bar
+      >
+      <ix-message-bar persistent type="neutral">Message text</ix-message-bar>
+      <ix-message-bar persistent type="accent">Message text</ix-message-bar>
+      <ix-message-bar persistent type="critical">Message text</ix-message-bar>
+      <ix-message-bar persistent type="danger">
+        <div class="message-bar-with-action">
+          Message text
+          <ix-button>Action</ix-button>
+        </div>
+      </ix-message-bar>
+    </div>
+  `,
+  styleUrls: ['./message-bar.css'],
+})
+export default class MessageBar {}

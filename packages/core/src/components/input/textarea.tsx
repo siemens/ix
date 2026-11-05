@@ -32,6 +32,7 @@ import {
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   checkInternalValidity,
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
@@ -40,7 +41,10 @@ import type { TextareaResizeBehavior } from './textarea.types';
 let sequentialInstanceId = 0;
 
 /**
+ * Multi-line text input for entering and validating longer text.
+ *
  * @form-ready
+ * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
  */
 @Component({
   tag: 'ix-textarea',
@@ -71,6 +75,14 @@ export class Textarea implements IxInputFieldComponent<string> {
    * Determines if the textarea field is required.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Determines if the textarea field is disabled.
@@ -222,6 +234,17 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.updateFormInternalValue(this.value);
   }
 
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(
+        this,
+        this.textAreaRef.current,
+        this.touched
+      );
+    }
+  }
+
   disconnectedCallback() {
     this.resizeObserver?.disconnect();
   }
@@ -317,6 +340,16 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
+   * @internal
+   * @since 6.0.0
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const textarea = await this.textAreaRef.waitForCurrent();
+    return textarea.validity;
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -376,7 +409,7 @@ export class Textarea implements IxInputFieldComponent<string> {
             <ix-typography
               class="bottom-text"
               slot="bottom-right"
-              textColor="soft"
+              textColor="secondary"
             >
               {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>

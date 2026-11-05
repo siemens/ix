@@ -105,18 +105,12 @@ blockquote {
 
 b,
 strong {
-  font-weight: bolder;
+  font-weight: var(--si-ref-typography-font-weight-sbold);
 }
 
 small,
 .small {
   font-size: 0.875em;
-}
-
-mark,
-.mark {
-  padding: 0.1875em;
-  background-color: #{sys.$si-sys-color-background-caution-subtle};
 }
 
 sub,
@@ -145,7 +139,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--theme-font-code);
+  font-family: var(--si-ref-typography-font-family-mono);
   font-size: 1em;
 }
 

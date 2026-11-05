@@ -24,28 +24,48 @@ import {
   Watch,
   Mixin,
 } from '@stencil/core';
-import { DateTime, Info } from 'luxon';
+import { DateTime } from 'luxon';
 import {
   formatWithLocale,
   parseWithLocale,
   toISODate,
   tryParseWithLocale,
-} from '../utils/date-time-locale';
+} from '../utils/datetime/date-time-locale';
 import type { DateTimeCardCorners } from '../date-time-card/date-time-card.types';
+import {
+  CalendarRow,
+  calendarRowsFor,
+  dayOfMonth,
+  isDayWithinRange,
+  isMonthWithinRange,
+  isPartialRange,
+  isSameDayOrUnset,
+  isSameRange,
+  isYearWithinRange,
+  monthNameOf,
+  monthsOfYear,
+  WeekdayIndex,
+  weekdayNamesFrom,
+  weekStartFrom,
+} from '../utils/datetime/calendar.util';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import { makeRef } from '../utils/make-ref';
+import type { DateRange } from '../utils/datetime/date-time.types';
+import { PendingSelection } from '../utils/datetime/pending-selection';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { IxDatePickerComponent } from './date-picker-component';
 import type { DateChangeEvent } from './date-picker.events';
-import type { DatePickerYearMonth } from './date-picker.types';
 import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
+import { DatePickerYearMonth } from './date-picker.types';
+import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
 
-interface CalendarWeek {
-  weekNumber: number;
-  dayNumbers: (number | undefined)[];
-}
-
+/**
+ * Calendar for selecting a single date or a date range.
+ *
+ * @documentation https://ix.siemens.io//docs/components/date-picker/guide.md
+ * @figma-main-component-id 561:6290
+ */
 @Component({
   tag: 'ix-date-picker',
   styleUrl: 'date-picker.scss',
@@ -82,19 +102,8 @@ export class DatePicker
   @Prop() from: string | undefined;
 
   @Watch('from')
-  watchFromPropHandler(newValue: string) {
-    if (!newValue) {
-      this.currFromDate = undefined;
-
-      return;
-    }
-
-    const date = tryParseWithLocale(newValue, this.format, this.locale);
-
-    if (date) {
-      this.currFromDate = date;
-      this.updateSelectedYearMonth(date);
-    }
+  watchFromPropHandler(newValue: string | undefined) {
+    this.onDatePropChange('from', newValue);
   }
 
   /**
@@ -104,17 +113,35 @@ export class DatePicker
   @Prop() to: string | undefined;
 
   @Watch('to')
-  watchToPropHandler(newValue: string) {
-    if (!newValue) {
-      this.currToDate = undefined;
+  watchToPropHandler(newValue: string | undefined) {
+    this.onDatePropChange('to', newValue);
+  }
 
+  /**
+   * Applies a `from`/`to` prop change. A change that echoes the displayed
+   * selection back (e.g. two-way binding to `dateChange`) keeps a pending
+   * selection pending and the done baseline unchanged.
+   */
+  private onDatePropChange(key: 'from' | 'to', value: string | undefined) {
+    const date = value
+      ? tryParseWithLocale(value, this.format, this.locale)
+      : undefined;
+
+    // An unparsable date keeps the committed date
+    if (value && !date) {
+      this.selection = this.selection.discard();
       return;
     }
 
-    const date = tryParseWithLocale(newValue, this.format, this.locale);
+    const selection = this.selection.withPropChange(key, date);
+    if (selection === this.selection) {
+      return;
+    }
+
+    this.selection = selection;
+    this.resetDoneBaseline();
 
     if (date) {
-      this.currToDate = date;
       this.updateSelectedYearMonth(date);
     }
   }
@@ -142,6 +169,30 @@ export class DatePicker
    * Text of the date select button.
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
+
+  /**
+   * If true, a selection is only applied after the user confirms it with the
+   * confirm button, which emits `dateSelect`. `dateChange` still reports
+   * every pick. The cancel button discards the
+   * pending selection.
+   *
+   * @since 6.0.0
+   */
+  @Prop() requireConfirmation = false;
+
+  /**
+   * Text of the confirm button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
+
+  /**
+   * Text of the cancel button shown when `requireConfirmation` is enabled.
+   *
+   * @since 6.0.0
+   */
+  @Prop({ attribute: 'i18n-cancel' }) i18nCancel = 'Cancel';
 
   /**
    * ARIA label for the previous month icon button.
@@ -182,9 +233,16 @@ export class DatePicker
   @Prop() weekStartIndex = 0;
 
   /**
+   * The public `weekStartIndex` prop, narrowed and sanitised for the calendar
+   * helpers. Converting in one place keeps the raw number from reaching them.
+   */
+  private get weekStart(): WeekdayIndex {
+    return weekStartFrom(this.weekStartIndex);
+  }
+
+  /**
    * Locale identifier (e.g. 'en' or 'de').
    * The locale is used to translate the labels for weekdays and months.
-   * It also determines the default order of weekdays based on the locale's conventions.
    * When the locale changes, the weekday labels are rotated according to the `weekStartIndex`.
    * The locale is also applied when formatting and parsing date values.
    * For locale-dependent format tokens (e.g. `MMMM`, `MMM`), the output will reflect the locale.
@@ -221,12 +279,14 @@ export class DatePicker
    * Re-parse `from`/`to` with the current `format` and `locale`.
    */
   private refreshSelectedDates() {
-    this.currFromDate = this.from
-      ? tryParseWithLocale(this.from, this.format, this.locale)
-      : undefined;
-    this.currToDate = this.to
-      ? tryParseWithLocale(this.to, this.format, this.locale)
-      : undefined;
+    const parse = (value?: string) =>
+      value ? tryParseWithLocale(value, this.format, this.locale) : undefined;
+
+    this.selection = this.selection.reset({
+      from: parse(this.from),
+      to: parse(this.to),
+    });
+    this.resetDoneBaseline();
   }
 
   /**
@@ -251,10 +311,12 @@ export class DatePicker
   @Prop() enableTopLayer: boolean = false;
 
   /**
-   * Emitted when the date selection changes. The `DateChangeEvent` contains `from` and `to` properties
+   * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties
    * formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+   * When a pending selection is discarded, it is emitted with the confirmed
+   * selection again. Use `dateSelect` to receive only the applied selection.
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
@@ -262,57 +324,131 @@ export class DatePicker
    * Date range change event. Emitted when the date range selection changes and the component is in range mode.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+   *
+   * Emitted together with `dateChange`.
+   *
+   * @deprecated since 6.0.0, use `dateChange` instead, which carries the same
+   * `from`/`to` range. Will be removed in 7.0.0.
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Date selection event. Emitted when the selection is confirmed via the date select button.
+   * Date selection event. Emitted when the selection is applied via the done
+   * button, or via the confirm button with `requireConfirmation`. With
+   * `singleSelection` and without `requireConfirmation` there is no button,
+   * so it is emitted together with `dateChange` when a date is picked.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
-   * Get the currently selected date or range. The object returned contains `from` and `to` properties
+   * Emitted when the pending selection is discarded via the cancel button.
+   *
+   * @since 6.0.0
+   */
+  @Event() dateCancel!: EventEmitter<void>;
+
+  /**
+   * Get the confirmed date or range. The object returned contains `from` and `to` properties
    * formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+   *
+   * With `requireConfirmation`, a pending selection is not returned until it is
+   * confirmed. Listen to `dateChange` to get every pick.
    */
   @Method()
   async getCurrentDate(): Promise<DateChangeEvent> {
-    const _from = this.currFromDate?.isValid
-      ? formatWithLocale(this.currFromDate, this.format, this.locale)
+    const { from, to } = this.selection.committed;
+
+    return this.toDateChangeEvent(from, to);
+  }
+
+  private toDateChangeEvent(from?: DateTime, to?: DateTime): DateChangeEvent {
+    const _from = from?.isValid
+      ? formatWithLocale(from, this.format, this.locale)
       : undefined;
-    const _to = this.currToDate?.isValid
-      ? formatWithLocale(this.currToDate, this.format, this.locale)
+    const _to = to?.isValid
+      ? formatWithLocale(to, this.format, this.locale)
       : undefined;
 
     if (!this.singleSelection) {
       return {
         from: _from,
         to: _to,
-        isoFrom: toISODate(this.currFromDate),
-        isoTo: toISODate(this.currToDate),
+        isoFrom: toISODate(from),
+        isoTo: toISODate(to),
       };
     }
 
     return {
       from: _from,
       to: undefined,
-      isoFrom: toISODate(this.currFromDate),
+      isoFrom: toISODate(from),
       isoTo: undefined,
     };
   }
 
-  @State()
-  currFromDate?: DateTime;
-  @State() currToDate?: DateTime;
+  /**
+   * The committed selection and, with `requireConfirmation`, an unconfirmed
+   * selection. Without `requireConfirmation` picks are committed right away.
+   */
+  @State() private selection = PendingSelection.create<DateRange<DateTime>>(
+    {},
+    (a, b) =>
+      this.singleSelection
+        ? isSameDayOrUnset(a.from, b.from)
+        : isSameRange(a, b)
+  );
 
-  @State() selectedYear = 0;
-  @State() tempYear = 0;
+  /**
+   * Selection the done button compares against while `requireConfirmation`
+   * is disabled: the selection at load, at the last done click or at the last
+   * external `from`/`to` change.
+   */
+  @State() private doneBaseline: DateRange<DateTime> = {};
+
+  private resetDoneBaseline() {
+    this.doneBaseline = this.selection.committed;
+  }
+
+  private isIncomplete(range: DateRange<DateTime>): boolean {
+    return !this.singleSelection && isPartialRange(range);
+  }
+
+  private isPrimaryActionDisabled(): boolean {
+    if (this.requireConfirmation) {
+      const { pending } = this.selection;
+
+      return !pending || this.isIncomplete(pending);
+    }
+
+    const current = this.selection.committed;
+
+    return (
+      this.isIncomplete(current) || isSameRange(current, this.doneBaseline)
+    );
+  }
+
+  private get selectedFrom(): DateTime | undefined {
+    return this.selection.displayed.from;
+  }
+
+  private get selectedTo(): DateTime | undefined {
+    return this.selection.displayed.to;
+  }
+
+  /**
+   * The month on display, as the first of that month. Carries the displayed
+   * year with it, so the two can never drift apart. The calendar grid, the
+   * header and the month/year dropdown all read it, so they always agree.
+   * Write it through {@link setDisplayedMonth}.
+   */
+  @State() selectedMonthDate: DateTime = DateTime.local().startOf('month');
+
   @State() startYear = 0;
   @State() endYear = 0;
-  @State() selectedMonth = 0;
-  @State() tempMonth = 0;
+  @State() private yearDropdownInitialized = false;
 
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -321,13 +457,11 @@ export class DatePicker
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames: string[] = [];
-  @State() monthNames: string[] = [];
   @State() focusedDay: number = 1;
 
   private isDayFocus = false;
   private monthChangedFromFocus = false;
-  private readonly DAYS_IN_WEEK = 7;
-  private calendar: CalendarWeek[] = [];
+  private calendar: CalendarRow[] = [];
   private _minDateObj?: DateTime;
   private _maxDateObj?: DateTime;
   private calendarDirty = true;
@@ -397,9 +531,7 @@ export class DatePicker
   }
 
   private getDaysInCurrentMonth(): number {
-    return (
-      DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth || 0
-    );
+    return this.selectedMonthDate.daysInMonth ?? 0;
   }
 
   private getFirstDayOfWeek(day: number): number {
@@ -429,14 +561,33 @@ export class DatePicker
    */
   @Method()
   async updateSelectedYearMonth(date: DatePickerYearMonth) {
-    this.selectedYear = date.year;
-    this.selectedMonth = date.month - 1;
+    this.setDisplayedMonth(
+      DateTime.fromObject({
+        year: date.year,
+        month: date.month,
+      })
+    );
   }
 
-  @Watch('selectedYear')
-  @Watch('selectedMonth')
-  @Watch('weekStartIndex')
+  /**
+   * The single way to move the calendar. `month` may be any day of the target
+   * month; it is normalised to the first of that month.
+   */
+  private setDisplayedMonth(month: DateTime) {
+    if (this.selectedMonthDate?.hasSame(month, 'month')) {
+      return;
+    }
+    this.selectedMonthDate = month.startOf('month');
+  }
+
+  @Watch('selectedMonthDate')
   onCalendarStateChange() {
+    this.calendarDirty = true;
+  }
+
+  @Watch('weekStartIndex')
+  onWeekStartIndexChange() {
+    this.setTranslations();
     this.calendarDirty = true;
   }
 
@@ -452,15 +603,14 @@ export class DatePicker
     this.setTranslations();
     this.refreshDates();
 
-    const year = this.currFromDate?.year ?? this.getDateTimeNow().year;
-    this.startYear = year - 101;
-    this.endYear = year + 101;
+    const initialMonth = (
+      this.selection.committed.from ?? this.getDateTimeNow()
+    ).startOf('month');
 
-    this.selectedMonth =
-      (this.currFromDate?.month ?? this.getDateTimeNow().month) - 1;
-    this.selectedYear = year;
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
+    this.startYear = initialMonth.year - 101;
+    this.endYear = initialMonth.year + 101;
+
+    this.setDisplayedMonth(initialMonth);
   }
 
   private keyboardNavigationYearSelection?: () => void;
@@ -477,7 +627,7 @@ export class DatePicker
 
   override componentWillRender() {
     if (this.calendarDirty) {
-      this.calculateCalendar();
+      this.calendar = calendarRowsFor(this.selectedMonthDate, this.weekStart);
       this.calendarDirty = false;
     }
   }
@@ -537,180 +687,62 @@ export class DatePicker
     dayElement.focus();
   }
 
-  private setTranslations() {
-    this.dayNames = this.rotateWeekDayNames(
-      Info.weekdays('long', {
-        locale: this.locale,
-      }),
-      this.weekStartIndex
-    );
-
-    this.monthNames = Info.months('long', {
-      locale: this.locale,
-    });
-  }
-
   /**
-   * Rotate the WeekdayNames array.
-   * Based on the position that should be the new 0-index.
+   * Discards a pending selection made while `requireConfirmation` is enabled,
+   * reports the restored selection with `dateChange` and shows the month of
+   * the committed selection again. Without a pending selection the displayed
+   * month is kept.
+   * @internal
    */
-  private rotateWeekDayNames(weekdays: string[], index: number): string[] {
-    const clone = [...weekdays];
-
-    if (index === 0) {
-      return clone;
+  @Method()
+  async discardPendingSelection(): Promise<void> {
+    if (!this.selection.hasPending) {
+      return;
     }
 
-    index = -index;
-    const len = weekdays.length;
+    this.selection = this.selection.discard();
+    const { from, to } = this.selection.committed;
+    this.emitDateChange(from, to);
 
-    clone.push(...clone.splice(0, ((-index % len) + len) % len));
-    return clone;
+    if (from) {
+      this.setDisplayedMonth(from);
+    }
+  }
+
+  private setTranslations() {
+    this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
   }
 
   private async onDone() {
+    this.resetDoneBaseline();
     const date = await this.getCurrentDate();
     this.dateSelect.emit(date);
   }
 
-  /**
-   * The column `date` occupies in a calendar grid whose first column is
-   * `weekStartIndex`, a 0-based index into the Monday-first `Info.weekdays()`
-   * ordering.
-   *
-   * Arithmetic on indices rather than a weekday-name lookup, so it cannot be
-   * thrown off by the locale used to render the column headers. Note that
-   * Luxon's `weekday` counts 1-7 while the name arrays are 0-based.
-   */
-  private weekdayColumnOf(date: DateTime): number {
-    const weekdayIndex = date.weekday - 1;
+  private async onConfirm() {
+    this.selection = this.selection.commit();
 
-    return (
-      (((weekdayIndex - this.weekStartIndex) % this.DAYS_IN_WEEK) +
-        this.DAYS_IN_WEEK) %
-      this.DAYS_IN_WEEK
-    );
+    // The picks were already reported with `dateChange`
+    this.dateSelect.emit(await this.getCurrentDate());
   }
 
-  private calculateCalendar() {
-    const calendar: CalendarWeek[] = [];
-    const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
-    const monthStart = month.startOf('month');
-    const monthEnd = month.endOf('month');
-    let startWeek = monthStart.weekNumber;
-    let endWeek = monthEnd.weekNumber;
-    const monthStartWeekDayIndex = this.weekdayColumnOf(monthStart);
-    const monthEndWeekDayIndex = this.weekdayColumnOf(monthEnd);
-
-    let correctLastWeek = false;
-    if (endWeek === 1) {
-      endWeek = monthEnd.weeksInWeekYear + 1;
-      correctLastWeek = true;
-    }
-
-    let correctFirstWeek = false;
-    if (startWeek === monthStart.weeksInWeekYear) {
-      startWeek = 1;
-      endWeek++;
-
-      correctFirstWeek = true;
-    }
-
-    let currDayNumber = 1;
-    for (
-      let weekIndex = startWeek;
-      weekIndex <= endWeek && currDayNumber <= 31;
-      weekIndex++
-    ) {
-      const daysArr: (number | undefined)[] = [];
-
-      for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
-        // Display empty cells until the calender starts/has ended
-        if (
-          (weekIndex === startWeek && j < monthStartWeekDayIndex) ||
-          (weekIndex === endWeek && j > monthEndWeekDayIndex)
-        ) {
-          daysArr.push(undefined);
-        } else {
-          daysArr.push(currDayNumber++);
-        }
-      }
-
-      if (correctFirstWeek || correctLastWeek) {
-        if (weekIndex === 1) {
-          calendar.push({
-            weekNumber: monthStart.weeksInWeekYear,
-            dayNumbers: daysArr,
-          });
-        } else if (weekIndex === monthEnd.weekNumber) {
-          calendar.push({
-            weekNumber: 1,
-            dayNumbers: daysArr,
-          });
-        } else {
-          calendar.push({
-            weekNumber: weekIndex - 1,
-            dayNumbers: daysArr,
-          });
-        }
-        continue;
-      }
-
-      calendar.push({
-        weekNumber: weekIndex,
-        dayNumbers: daysArr,
-      });
-    }
-
-    this.calendar = calendar;
-  }
-
-  private selectMonth(month: number) {
-    this.selectedMonth = month;
-    this.selectedYear = this.tempYear;
-    this.tempMonth = month;
+  private async onCancel() {
+    await this.discardPendingSelection();
+    this.dateCancel.emit();
   }
 
   private changeCalendarView(number: -1 | 1) {
-    if (this.selectedMonth + number < 0) {
-      this.selectedYear--;
-      this.selectedMonth = 11;
-    } else if (this.selectedMonth + number > 11) {
-      this.selectedYear++;
-      this.selectedMonth = 0;
-    } else {
-      this.selectedMonth += number;
-    }
-
-    this.tempMonth = this.selectedMonth;
-    this.tempYear = this.selectedYear;
+    this.setDisplayedMonth(this.selectedMonthDate.plus({ months: number }));
   }
 
   private navigateByMonthOrYear(unit: 'month' | 'year', direction: -1 | 1) {
-    let targetYear = this.selectedYear;
-    let targetMonth = this.selectedMonth;
+    const targetMonth = this.selectedMonthDate.plus(
+      unit === 'year' ? { years: direction } : { months: direction }
+    );
 
-    if (unit === 'year') {
-      targetYear += direction;
-    } else {
-      targetMonth += direction;
-      if (targetMonth < 0) {
-        targetMonth = 11;
-        targetYear--;
-      } else if (targetMonth > 11) {
-        targetMonth = 0;
-        targetYear++;
-      }
-    }
+    this.focusedDay = Math.min(this.focusedDay, targetMonth.daysInMonth ?? 0);
 
-    const daysInTargetMonth =
-      DateTime.utc(targetYear, targetMonth + 1).daysInMonth || 0;
-    this.focusedDay = Math.min(this.focusedDay, daysInTargetMonth);
-
-    this.selectedYear = targetYear;
-    this.selectedMonth = targetMonth;
-    this.tempYear = targetYear;
-    this.tempMonth = targetMonth;
+    this.setDisplayedMonth(targetMonth);
     this.monthChangedFromFocus = true;
   }
 
@@ -719,68 +751,70 @@ export class DatePicker
       return;
     }
 
-    const date = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
-    );
+    const date = dayOfMonth(this.selectedMonthDate, selectedDay);
+    let from = this.selectedFrom;
+    let to = this.selectedTo;
 
-    if (this.singleSelection || this.currFromDate === undefined) {
-      this.currFromDate = date;
-      this.onDateChange();
-
+    if (this.singleSelection || (from !== undefined && to !== undefined)) {
+      from = date;
+      to = undefined;
+      this.applySelection(from, to);
       return;
     }
-
-    // Reset the range selection
-    if (this.currToDate !== undefined) {
-      this.currFromDate = date;
-      this.currToDate = undefined;
-      this.onDateChange();
-
+    if (from === undefined) {
+      from = date;
+      this.applySelection(from, to);
       return;
     }
-
-    // Swap from/to if the second date is before the current date
-    if (date < this.currFromDate) {
-      this.currToDate = this.currFromDate;
-      this.currFromDate = date;
-      this.onDateChange();
-
-      return;
+    if (date < from) {
+      to = from;
+      from = date;
+    } else {
+      // Set the range normally
+      to = date;
     }
 
-    // Set the range normally
-    this.currToDate = date;
-    this.onDateChange();
+    this.applySelection(from, to);
   }
 
-  private onDateChange() {
-    this.getCurrentDate().then((date) => {
-      this.dateChange.emit(date);
-      if (!this.singleSelection) {
-        this.dateRangeChange.emit(date);
-      }
-    });
+  private applySelection(from?: DateTime, to?: DateTime) {
+    this.selection = this.requireConfirmation
+      ? this.selection.select({ from, to })
+      : this.selection.reset({ from, to });
+
+    this.emitDateChange(from, to);
+
+    if (this.singleSelection && !this.requireConfirmation && !this.embedded) {
+      this.dateSelect.emit(this.toDateChangeEvent(from, to));
+    }
+  }
+
+  private emitDateChange(from?: DateTime, to?: DateTime) {
+    const date = this.toDateChangeEvent(from, to);
+
+    this.dateChange.emit(date);
+    if (!this.singleSelection) {
+      this.dateRangeChange.emit(date);
+    }
   }
 
   private getUtilitiesBasedOnDay(day: number) {
     const todayObj = this.getDateTimeNow();
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
-    );
+    const selectedDayObj = dayOfMonth(this.selectedMonthDate, day);
     return {
       isFirstDay: () => day === 1,
       isToday: () => todayObj.hasSame(selectedDayObj, 'day'),
       isSelected: () =>
         !!(
-          this.currFromDate?.hasSame(selectedDayObj, 'day') ||
-          this.currToDate?.hasSame(selectedDayObj, 'day')
+          this.selectedFrom?.hasSame(selectedDayObj, 'day') ||
+          this.selectedTo?.hasSame(selectedDayObj, 'day')
         ),
       isRange: () =>
         !!(
-          this.currFromDate &&
-          selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
-          this.currToDate !== undefined &&
-          selectedDayObj.startOf('day') < this.currToDate?.startOf('day')
+          this.selectedFrom &&
+          selectedDayObj.startOf('day') > this.selectedFrom.startOf('day') &&
+          this.selectedTo !== undefined &&
+          selectedDayObj.startOf('day') < this.selectedTo.startOf('day')
         ),
     };
   }
@@ -789,9 +823,7 @@ export class DatePicker
     day: number,
     util: ReturnType<DatePicker['getUtilitiesBasedOnDay']>
   ): Record<string, boolean> {
-    const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
-    );
+    const selectedDayObj = dayOfMonth(this.selectedMonthDate, day);
 
     return {
       'calendar-item': true,
@@ -805,56 +837,35 @@ export class DatePicker
   }
 
   private isWithinMinMaxYear(year: number): boolean {
-    const minDateYear = this._minDateObj?.year;
-    const maxDateYear = this._maxDateObj?.year;
-    const isBefore = minDateYear ? year < minDateYear : false;
-    const isAfter = maxDateYear ? year > maxDateYear : false;
-
-    return !isBefore && !isAfter;
+    return isYearWithinRange(year, this._minDateObj, this._maxDateObj);
   }
 
-  private isWithinMinMaxMonth(month: number): boolean {
-    const minDateMonth = this._minDateObj?.month;
-    const maxDateMonth = this._maxDateObj?.month;
-    const isBefore = minDateMonth
-      ? this.tempYear === this._minDateObj?.year && month < minDateMonth
-      : false;
-    const isAfter = maxDateMonth
-      ? this.tempYear === this._maxDateObj?.year && month > maxDateMonth
-      : false;
-
-    return !isBefore && !isAfter;
+  /** `month` is the first of the month being offered, so it carries its year. */
+  private isWithinMinMaxMonth(month: DateTime): boolean {
+    return isMonthWithinRange(month, this._minDateObj, this._maxDateObj);
   }
 
   private isWithinMinMaxDate(date: DateTime): boolean {
-    const isBefore = this._minDateObj
-      ? date.startOf('day') < this._minDateObj.startOf('day')
-      : false;
-    const isAfter = this._maxDateObj
-      ? date.startOf('day') > this._maxDateObj.startOf('day')
-      : false;
-
-    return !isBefore && !isAfter;
+    return isDayWithinRange(date, this._minDateObj, this._maxDateObj);
   }
 
   private renderMonths() {
-    return this.monthNames.map((month, index) => {
-      const selected =
-        this.tempYear === this.selectedYear && this.tempMonth === index;
+    return monthsOfYear(this.selectedMonthDate.year).map((month) => {
+      const name = monthNameOf(month, this.locale);
 
       return (
         <ix-dropdown-item
-          checked={selected}
-          key={month}
+          checked={month.hasSame(this.selectedMonthDate, 'month')}
+          key={name}
           class={{
             'month-dropdown-item': true,
-            'disabled-item': !this.isWithinMinMaxMonth(index),
+            'disabled-item': !this.isWithinMinMaxMonth(month),
           }}
           onClick={() => {
-            this.selectMonth(index);
+            this.setDisplayedMonth(month);
           }}
         >
-          <span class="capitalize monthMargin">{`${month}`}</span>
+          <span class="capitalize monthMargin">{name}</span>
         </ix-dropdown-item>
       );
     });
@@ -864,7 +875,7 @@ export class DatePicker
     const rows = [];
 
     for (let year = this.startYear; year <= this.endYear; year++) {
-      const selected = this.tempYear === year;
+      const selected = this.selectedMonthDate.year === year;
 
       rows.push(
         <ix-dropdown-item
@@ -875,8 +886,7 @@ export class DatePicker
             'disabled-item': !this.isWithinMinMaxYear(year),
           }}
           onClick={() => {
-            this.tempYear = year;
-            this.selectedYear = this.tempYear;
+            this.setDisplayedMonth(this.selectedMonthDate.set({ year }));
           }}
         >
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -964,6 +974,11 @@ export class DatePicker
   );
 
   override render() {
+    // Formatted once per render rather than per day cell, which would repeat
+    // the same locale lookup up to 42 times.
+    const monthLabel = monthNameOf(this.selectedMonthDate, this.locale);
+    const yearLabel = this.selectedMonthDate.year;
+
     return (
       <Host
         onKeyDown={(event: KeyboardEvent) => this.onKeyDown(event)}
@@ -994,8 +1009,12 @@ export class DatePicker
                   event.stopPropagation();
                 }}
               >
-                <ix-typography bold class="capitalize" slot="button-label">
-                  {this.monthNames[this.selectedMonth]}
+                <ix-typography
+                  format="body-sbold"
+                  class="capitalize"
+                  slot="button-label"
+                >
+                  {monthLabel}
                 </ix-typography>
                 {this.renderMonths()}
               </ix-dropdown-button>
@@ -1007,6 +1026,11 @@ export class DatePicker
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
                 label={null}
+                onShowChange={(event) => {
+                  if (event.detail) {
+                    this.yearDropdownInitialized = true;
+                  }
+                }}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
@@ -1023,18 +1047,24 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current?.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement | null;
+                      // On first open the year items were just rendered and are not
+                      // hydrated yet, so the `checked` attribute is not reflected.
+                      // Match on the property and wait for hydration instead.
+                      const selectedYearItem = Array.from(
+                        this.yearDropdownButtonRef.current?.querySelectorAll(
+                          'ix-dropdown-item'
+                        ) ?? []
+                      ).find((item) => item.checked);
 
                       if (!selectedYearItem) {
                         return;
                       }
 
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
+                      selectedYearItem.componentOnReady().then(() => {
+                        requestAnimationFrameNoNgZone(() => {
+                          selectedYearItem.scrollIntoView({
+                            block: 'center',
+                          });
                         });
                       });
                     });
@@ -1047,10 +1077,14 @@ export class DatePicker
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="top"></div>
                 </div>
-                <ix-typography bold class="capitalize" slot="button-label">
-                  {this.selectedYear}
+                <ix-typography
+                  format="body-sbold"
+                  class="capitalize"
+                  slot="button-label"
+                >
+                  {yearLabel}
                 </ix-typography>
-                {this.renderYears()}
+                {this.yearDropdownInitialized ? this.renderYears() : null}
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="bottom"></div>
                 </div>
@@ -1123,7 +1157,7 @@ export class DatePicker
                         autofocus={util.isToday()}
                         onFocus={() => this.onDayFocus()}
                         onBlur={() => this.onDayBlur()}
-                        aria-label={`${day} ${this.monthNames[this.selectedMonth]} ${this.selectedYear}`}
+                        aria-label={`${day} ${monthLabel} ${yearLabel}`}
                       >
                         {day}
                       </div>
@@ -1133,19 +1167,20 @@ export class DatePicker
               );
             })}
           </div>
-          <div
-            class={{
-              button: true,
-              hidden: this.singleSelection || this.embedded,
-            }}
-          >
-            <ix-button
-              hidden={this.singleSelection || this.embedded}
-              onClick={() => this.onDone()}
-            >
-              {this.i18nDone}
-            </ix-button>
-          </div>
+          {(this.requireConfirmation ||
+            !(this.singleSelection || this.embedded)) && (
+            <ConfirmationFooter
+              class="button"
+              requireConfirmation={this.requireConfirmation}
+              i18nDone={this.i18nDone}
+              i18nConfirm={this.i18nConfirm}
+              i18nCancel={this.i18nCancel}
+              primaryActionDisabled={this.isPrimaryActionDisabled()}
+              onDone={() => this.onDone()}
+              onConfirm={() => this.onConfirm()}
+              onCancel={() => this.onCancel()}
+            />
+          )}
         </ix-date-time-card>
       </Host>
     );

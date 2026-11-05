@@ -9,7 +9,6 @@
 @use './linear' as linear;
 @use './circular' as circular;
 @use './progress-indicator-vars' as progress-vars;
-@use 'tokens/system' as sys;
 
 @use './progress-indicator.vars' as *;
 :host {
@@ -88,29 +87,29 @@
     height: 100%;
 
     &.xs {
-      --ix-progress-indicator-height: 0.125rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-xs--height);
       --ix-progress-indicator-margin: var(
         --ix-progress-indicator-extra-small--margin
       );
     }
 
     &.sm {
-      --ix-progress-indicator-height: 0.25rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-sm--height);
       --ix-progress-indicator-margin: var(
         --ix-progress-indicator-small--margin
       );
     }
 
     &.md {
-      --ix-progress-indicator-height: 0.5rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-md--height);
     }
 
     &.lg {
-      --ix-progress-indicator-height: 1rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-lg--height);
     }
 
     &.xl {
-      --ix-progress-indicator-height: 1.5rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-xl--height);
     }
 
     --ix-progress-indicator-color: var(
@@ -130,23 +129,23 @@
 :host(.linear) {
   .progress-indicator {
     &.xs {
-      --ix-progress-indicator-height: 0.125rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-xs--height);
     }
 
     &.sm {
-      --ix-progress-indicator-height: 0.25rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-sm--height);
     }
 
     &.md {
-      --ix-progress-indicator-height: 0.5rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-md--height);
     }
 
     &.lg {
-      --ix-progress-indicator-height: 1rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-lg--height);
     }
 
     &.xl {
-      --ix-progress-indicator-height: 1.5rem;
+      --ix-progress-indicator-height: var(--ix-progress-indicator-xl--height);
     }
   }
 

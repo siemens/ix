@@ -9,6 +9,7 @@ import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/compone
 export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
   'disabled',
   'format',
+  'displayFormat',
   'singleSelection',
   'from',
   'to',
@@ -23,9 +24,14 @@ export const IxDateDropdown: StencilVueComponent<JSX.IxDateDropdown> = /*@__PURE
   'weekStartIndex',
   'i18nDone',
   'i18nNoRange',
+  'requireConfirmation',
+  'i18nConfirm',
+  'i18nCancel',
   'today',
   'enableTopLayer',
-  'dateRangeChange'
+  'dateRangeChange',
+  'dateSelect'
 ], [
-  'dateRangeChange'
+  'dateRangeChange',
+  'dateSelect'
 ]);

@@ -8,7 +8,6 @@
  */
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
-@use 'tokens/system' as sys;
 
 @use './application-switch-modal.vars' as *;
 :host {
@@ -26,7 +25,7 @@
     position: relative;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    max-height: 50vh;
+    max-height: var(--ix-application-switch-modal-content-apps--max-height);
     margin-right: var(--ix-application-switch-modal-content-apps--margin-right);
     gap: var(--ix-application-switch-modal-content-apps--gap);
   }
@@ -53,9 +52,10 @@
     padding-inline-end: var(
       --ix-application-switch-modal-app-entry--padding-inline-end
     );
-    flex: 1 1 calc(45%);
+    flex: 1 1 var(--ix-application-switch-modal-app-entry--flex-basis);
     cursor: pointer;
-    border: 0.0625rem solid transparent;
+    border: var(--ix-application-switch-modal-app-entry--border-width) solid
+      transparent;
   }
 
   .AppEntry.Selected {
@@ -69,7 +69,7 @@
   }
 
   .AppEntry:focus-visible {
-    border: 1px solid
+    border: var(--ix-application-switch-modal-app-entry--border-width) solid
       var(--ix-application-switch-modal-app-entry--border-color--focus);
   }
 
@@ -85,6 +85,6 @@
   .AppIcon {
     width: var(--ix-application-switch-modal-app-icon--icon-size);
     height: var(--ix-application-switch-modal-app-icon--icon-size);
-    border-radius: 0.25rem;
+    border-radius: var(--ix-application-switch-modal-app-icon--border-radius);
   }
 }

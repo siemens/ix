@@ -17,6 +17,7 @@
 
   .radio-checkmark {
     all: unset;
+    box-sizing: border-box;
 
     display: inline-flex;
     position: relative;
@@ -30,16 +31,27 @@
     height: var(--ix-radio-checkmark--height);
     min-height: var(--ix-radio-checkmark--min-height);
     max-height: var(--ix-radio-checkmark--max-height);
-    border: var(--ix-radio-checkmark--border-width-initial) solid white;
+    border: var(--ix-radio-checkmark--border-width-initial) solid
+      var(--ix-radio-checkmark--border-color);
     border-radius: var(--ix-radio-checkmark--border-radius);
   }
 
   .radio-button {
+    position: relative;
     height: var(--ix-radio-button--height);
     width: var(--ix-radio-button--width);
     display: flex;
     align-items: center;
     justify-content: center;
+
+    // Extends the pointer target without adding layout space
+    &::before {
+      content: '';
+      position: absolute;
+      inset: calc(
+        (var(--ix-radio-button--height) - var(--ix-radio--target-size)) / 2
+      );
+    }
   }
 
   label {
