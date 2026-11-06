@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive content header</title>
+  </head>
+  <body>
+    <ix-content-header
+      has-back-button
+      header-title="Production line overview with a long title that wraps without overlapping the page content below"
+      header-subtitle="Review the current configuration and production reports"
+    >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >Discard changes</ix-button
+      >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >Refresh data</ix-button
+      >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >Export production report</ix-button
+      >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >Import configuration</ix-button
+      >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >Manage permissions</ix-button
+      >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >View change history</ix-button
+      >
+      <ix-button slot="secondary-actions" variant="tertiary"
+        >Open settings</ix-button
+      >
+      <ix-button variant="primary">Save changes</ix-button>
+    </ix-content-header>
+    <p>Page content follows the header without overlap.</p>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>
