@@ -787,7 +787,7 @@ regressionTest.describe('time picker tests', () => {
               el.clientHeight -
               scrollPositionOffset;
 
-            // Tolerance must stay below the 4px offset change to catch regressions
+            // Keep tolerance tight to catch alignment regressions
             return Math.abs(list.scrollTop - expected) <= 2;
           },
           ELEMENT_LIST_SCROLL_OFFSET

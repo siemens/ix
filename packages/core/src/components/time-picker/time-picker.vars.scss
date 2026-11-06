@@ -52,7 +52,7 @@
       var(--si-sys-sizing-focus-ring-width)
   );
   --ix-time-picker-element-list--margin: calc(
-    calc(#{sys.$si-sys-sizing-spacing-y-10} / 2) * -1
+    var(--ix-time-picker-element-list--padding) * -1
   );
   --ix-time-picker-day--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-time-picker-day--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
