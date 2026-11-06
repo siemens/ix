@@ -19,8 +19,7 @@ import {
   Watch,
 } from '@stencil/core';
 import type { Composition } from '../pane/pane.types';
-import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { subscribeApplicationLayoutMobile } from '../utils/application-layout';
 import type { Disposable } from '../utils/typed-event';
 
 /**
@@ -71,10 +70,26 @@ export class Panes {
   }> = [];
 
   private observer?: MutationObserver;
-  private layoutChangeDisposable?: Disposable;
+  private layoutMobileDisposable?: Disposable;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
+  }
+
+  private subscribeApplicationLayoutMobile() {
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = subscribeApplicationLayoutMobile(
+      this.hostElement,
+      (isMobile) => {
+        this.isMobile = isMobile;
+        this.configurePanes();
+      }
+    );
+  }
+
+  componentWillLoad() {
+    // Re-subscribe after providers in the tree have finished willLoad.
+    this.subscribeApplicationLayoutMobile();
   }
 
   componentDidLoad() {
@@ -96,18 +111,13 @@ export class Panes {
       childList: true,
     });
 
-    this.isMobile = matchBreakpoint('sm');
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-      this.configurePanes();
-    });
+    this.subscribeApplicationLayoutMobile();
   }
 
   disconnectedCallback() {
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = undefined;
     this.observer?.disconnect();
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = undefined;
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {

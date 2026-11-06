@@ -199,9 +199,32 @@ export namespace Components {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableSkipLinks": boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
+        /**
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter": string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
+          * @since 6.0.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToMain": string;
+        /**
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
+          * @since 6.0.0
+         */
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -1292,6 +1315,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -1419,6 +1447,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -1478,7 +1511,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -1741,6 +1774,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
          */
@@ -1750,7 +1788,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format": string;
@@ -1889,7 +1927,7 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+          * Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -2376,6 +2414,11 @@ export namespace Components {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -2388,10 +2431,6 @@ export namespace Components {
           * @default 'large'
          */
         "layout": EmptyStateLayout;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -5749,9 +5788,10 @@ export namespace Components {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
-        "hideDelay": number;
+        "hideDelay"?: number;
         "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
@@ -5764,6 +5804,8 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay": number;
@@ -8672,9 +8714,32 @@ declare namespace LocalJSX {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableSkipLinks"?: boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
+        /**
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter"?: string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
+          * @since 6.0.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToMain"?: string;
+        /**
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
+          * @since 6.0.0
+         */
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -9861,6 +9926,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -9993,6 +10063,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -10041,7 +10116,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -10322,6 +10397,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
          */
@@ -10331,7 +10411,7 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format"?: string;
@@ -10421,7 +10501,7 @@ declare namespace LocalJSX {
          */
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
-          * Emitted when the datetime value changes. Payload is display format or undefined
+          * Emitted when the datetime value changes. Payload is in `format` or undefined
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10469,7 +10549,7 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+          * Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -10971,6 +11051,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -10987,10 +11072,6 @@ declare namespace LocalJSX {
           * Empty state action click event
          */
         "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -14544,7 +14625,8 @@ declare namespace LocalJSX {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
         "hideDelay"?: number;
         /**
@@ -14558,6 +14640,8 @@ declare namespace LocalJSX {
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay"?: number;
@@ -14838,6 +14922,10 @@ declare namespace LocalJSX {
         "theme": string;
         "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
+        "disableSkipLinks": boolean;
+        "i18nSkipToMain": string;
+        "i18nSkipToFooter": string;
+        "skipLinkMainTarget": string | HTMLElement;
     }
     interface IxApplicationHeaderAttributes {
         "name": string;
@@ -15052,6 +15140,7 @@ declare namespace LocalJSX {
     interface IxDateDropdownAttributes {
         "disabled": boolean;
         "format": string;
+        "displayFormat": string;
         "singleSelection": boolean;
         "from": string;
         "to": string;
@@ -15079,6 +15168,7 @@ declare namespace LocalJSX {
         "maxDate": string;
         "locale": string;
         "format": string;
+        "displayFormat": string;
         "required": boolean;
         "helperText": string;
         "label": string;
@@ -15138,6 +15228,7 @@ declare namespace LocalJSX {
         "placeholder": string;
         "value": string;
         "format": string;
+        "displayFormat": string;
         "locale": string;
         "required": boolean;
         "disabled": boolean;
@@ -15254,7 +15345,7 @@ declare namespace LocalJSX {
         "layout": EmptyStateLayout;
         "icon": string;
         "header": string;
-        "subHeader": string;
+        "description": string;
         "action": string;
         "ariaLabelEmptyStateIcon": string;
     }

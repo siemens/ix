@@ -10,6 +10,22 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
+regressionTest('focused skip link', async ({ page }) => {
+  await page.goto('application/basic');
+  await page.setViewportSize(viewPorts.lg);
+
+  const skipLink = page.getByRole('link', {
+    name: 'Skip to main content',
+  });
+  await skipLink.focus();
+  await expect(skipLink).toBeFocused();
+
+  await expect(page).toHaveScreenshot({
+    fullPage: true,
+    animations: 'disabled',
+  });
+});
+
 regressionTest.describe('basic navigation large', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('application/basic');

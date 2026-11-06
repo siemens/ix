@@ -15,7 +15,7 @@ import { IxEmptyState } from '@siemens/ix-angular/standalone';
   imports: [IxEmptyState],
   template: `<ix-empty-state
     header="No elements available"
-    subHeader="Create an element first"
+    description="Create an element first"
     icon="add"
     action="Create element"
     (actionClick)="onActionClick($event)"
