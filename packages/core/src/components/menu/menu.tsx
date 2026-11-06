@@ -70,6 +70,28 @@ export class Menu {
    */
   @Prop({ mutable: true }) showSettings = false;
 
+  @Watch('showSettings')
+  onShowSettingsChange(show: boolean) {
+    if (!this.settings) {
+      return;
+    }
+
+    this.settings.show = show;
+
+    if (show) {
+      this.overlayCloseToken++;
+      const wasAboutVisible = this.showAbout && !this.isOverlayClosing;
+      this.isOverlayClosing = false;
+      this.showAbout = false;
+      if (this.about) {
+        this.about.show = false;
+      }
+      if (!wasAboutVisible) {
+        this.animateOverlayFadeIn();
+      }
+    }
+  }
+
   /**
    * Is about tab visible
    */
@@ -207,6 +229,10 @@ export class Menu {
   >;
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
+  private isOverlayClosing = false;
+  private overlayCloseToken = 0;
+  private overlayFadeOutRaf?: number;
+  private overlayFadeInRaf?: number;
   private lastFocusedMenuItem?:
     | HTMLIxMenuItemElement
     | HTMLIxMenuCategoryElement;
@@ -357,6 +383,8 @@ export class Menu {
   }
 
   componentDidLoad() {
+    this.onShowSettingsChange(this.showSettings);
+
     requestAnimationFrame(() => {
       this.suppressAnchorWrapperTabStops();
       this.handleOverflowIndicator();
@@ -419,6 +447,17 @@ export class Menu {
   }
 
   disconnectedCallback() {
+    if (this.isOverlayClosing) {
+      this.resetOverlay();
+    }
+    if (this.overlayFadeOutRaf) {
+      cancelAnimationFrame(this.overlayFadeOutRaf);
+      this.overlayFadeOutRaf = undefined;
+    }
+    if (this.overlayFadeInRaf) {
+      cancelAnimationFrame(this.overlayFadeInRaf);
+      this.overlayFadeInRaf = undefined;
+    }
     this.breakpointChangeDisposable?.dispose();
     this.breakpointChangeDisposable = undefined;
     this.themeNameDisposer?.dispose();
@@ -583,14 +622,12 @@ export class Menu {
       return;
     }
 
-    if (!this.isOverlayVisible()) {
-      this.animateOverlayFadeIn();
-    }
-
     if (show) {
-      this.resetOverlay();
-      this.showSettings = show;
-      this.settings.show = this.showSettings;
+      if (this.showSettings === show) {
+        this.onShowSettingsChange(show);
+      } else {
+        this.showSettings = show;
+      }
     } else {
       this.onOverlayClose();
     }
@@ -626,6 +663,8 @@ export class Menu {
   }
 
   private resetOverlay() {
+    this.isOverlayClosing = false;
+    this.overlayCloseToken++;
     this.showSettings = false;
     this.showAbout = false;
 
@@ -657,8 +696,15 @@ export class Menu {
   @Listen('close')
   onOverlayClose(event?: CustomEvent<CustomCloseEvent>) {
     const shouldRestoreFocus = this.shouldRestoreMenuFocus(event);
+    this.isOverlayClosing = true;
+    const closeToken = ++this.overlayCloseToken;
 
     this.animateOverlayFadeOut(() => {
+      if (closeToken !== this.overlayCloseToken) {
+        return;
+      }
+
+      this.isOverlayClosing = false;
       this.resetOverlay();
 
       if (shouldRestoreFocus) {
@@ -684,7 +730,17 @@ export class Menu {
   }
 
   private animateOverlayFadeIn() {
-    requestAnimationFrame(() => {
+    if (this.overlayFadeOutRaf) {
+      cancelAnimationFrame(this.overlayFadeOutRaf);
+      this.overlayFadeOutRaf = undefined;
+    }
+
+    if (this.overlayFadeInRaf) {
+      cancelAnimationFrame(this.overlayFadeInRaf);
+    }
+
+    this.overlayFadeInRaf = requestAnimationFrame(() => {
+      this.overlayFadeInRaf = undefined;
       const overlayContainer = this.overlayContainer;
 
       if (!overlayContainer) {
@@ -721,7 +777,17 @@ export class Menu {
   }
 
   private animateOverlayFadeOut(onComplete: Function) {
-    requestAnimationFrame(() => {
+    if (this.overlayFadeInRaf) {
+      cancelAnimationFrame(this.overlayFadeInRaf);
+      this.overlayFadeInRaf = undefined;
+    }
+
+    if (this.overlayFadeOutRaf) {
+      cancelAnimationFrame(this.overlayFadeOutRaf);
+    }
+
+    this.overlayFadeOutRaf = requestAnimationFrame(() => {
+      this.overlayFadeOutRaf = undefined;
       const overlayContainer = this.overlayContainer;
 
       if (!overlayContainer) {
