@@ -1,57 +1,52 @@
 import "./global-BFmC_PbI.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";
 import "./index-DCCkv1ZQ-DZnlOMEt.js";
 import "./typed-event-CWshStHZ-DBYwEilm.js";
 await globalThis.ixInitPromise;
+const data = {
+  months: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  values: [150, 230, 224, 218, 135, 147, 260]
+};
 function initChart(options2) {
   const theme = resolveEChartThemeName();
   var myChart2 = echarts.init(document.querySelector("#main"), theme);
   myChart2.setOption(options2);
   return myChart2;
 }
-const data = {
-  years: ["2023", "2022", "2021", "2020", "2019"],
-  salesEurope: [87, 22, 28, 43, 79],
-  salesUS: [35, 24, 33, 5, 40],
-  salesChina: [19, 44, 23, 5, 10]
-};
-const seriesData = [
-  { name: "Europe", data: data.salesEurope },
-  { name: "U.S", data: data.salesUS },
-  { name: "China", data: data.salesChina }
-];
-const series = seriesData.map(({ name, data: data2 }) => ({
-  name,
-  data: data2,
-  type: "bar",
-  stack: "x"
-}));
 const options = {
-  grid: {
-    bottom: 100
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: "none"
+      },
+      restore: {},
+      saveAsImage: {},
+      magicType: {
+        type: ["line", "bar"]
+      },
+      dataView: {
+        show: true
+      }
+    }
   },
   xAxis: {
-    type: "value",
-    name: "Revenue (in Millions of USD)",
-    nameLocation: "middle",
-    nameGap: 40
+    type: "category",
+    data: data.months
   },
   yAxis: {
-    type: "category",
-    data: data.years,
-    name: "Years",
-    nameLocation: "end"
+    type: "value"
   },
-  legend: {
-    show: true,
-    bottom: 0,
-    padding: 16
-  },
-  series
+  series: [
+    {
+      data: data.values,
+      type: "line",
+      step: "end"
+    }
+  ]
 };
 registerTheme(echarts);
 var myChart = initChart(options);

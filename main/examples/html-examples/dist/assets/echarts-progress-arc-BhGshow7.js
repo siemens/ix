@@ -1,6 +1,6 @@
 import "./global-BFmC_PbI.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName, g as getComputedCSSProperty } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName, g as getComputedCSSProperty } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";
@@ -38,8 +38,8 @@ function getOptions() {
           show: false
         },
         radius: "100%",
-        startAngle: 90,
-        endAngle: -270,
+        startAngle: 200,
+        endAngle: -20,
         splitLine: {
           show: false
         },
@@ -65,28 +65,15 @@ function getOptions() {
             value,
             detail: {
               offsetCenter: [0, 0],
+              overflow: "break",
               fontSize: "2rem",
               fontWeight: "normal",
               color: getComputedCSSProperty(
                 "--si-sys-color-text-secondary"
               ),
-              rich: {
-                valueStyle: {
-                  fontSize: "2rem",
-                  color: getComputedCSSProperty(
-                    "--si-sys-color-text-secondary"
-                  ),
-                  fontWeight: "bold"
-                },
-                textStyle: {
-                  fontSize: "1.5rem",
-                  color: getComputedCSSProperty(
-                    "--si-sys-color-text-secondary"
-                  )
-                }
-              },
-              formatter: `{valueStyle|{value}}/100
-{textStyle|completed}`
+              width: 250,
+              lineHeight: 35,
+              formatter: "{value} / 100 \n completed"
             },
             pointer: {
               show: false

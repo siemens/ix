@@ -1,6 +1,6 @@
 import "./global-BFmC_PbI.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";
@@ -14,35 +14,44 @@ function initChart(options2) {
   return myChart2;
 }
 const data = {
-  products: [
-    "Product A",
-    "Product B",
-    "Product C",
-    "Product D",
-    "Product E",
-    "Product F"
-  ],
-  sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4]
+  years: ["2023", "2022", "2021", "2020", "2019"],
+  salesEurope: [87, 22, 28, 43, 79],
+  salesUS: [35, 24, 33, 5, 40],
+  salesChina: [19, 44, 23, 5, 10]
 };
+const seriesData = [
+  { name: "Europe", data: data.salesEurope },
+  { name: "U.S", data: data.salesUS },
+  { name: "China", data: data.salesChina }
+];
+const series = seriesData.map(({ name, data: data2 }) => ({
+  name,
+  data: data2,
+  type: "bar",
+  stack: "x"
+}));
 const options = {
+  grid: {
+    bottom: 100
+  },
   xAxis: {
-    data: data.products,
-    name: "Product",
-    nameLocation: "end"
+    type: "value",
+    name: "Revenue (in Millions of USD)",
+    nameLocation: "middle",
+    nameGap: 40
   },
   yAxis: {
-    name: "Number of sold products \n (in Mio)",
+    type: "category",
+    data: data.years,
+    name: "Years",
     nameLocation: "end"
   },
   legend: {
-    show: true
+    show: true,
+    bottom: 0,
+    padding: 16
   },
-  series: [
-    {
-      data: data.sales,
-      type: "bar"
-    }
-  ]
+  series
 };
 registerTheme(echarts);
 var myChart = initChart(options);

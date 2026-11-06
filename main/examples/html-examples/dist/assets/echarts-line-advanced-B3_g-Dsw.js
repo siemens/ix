@@ -1,6 +1,6 @@
 import "./global-BFmC_PbI.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName, g as getComputedCSSProperty } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName, g as getComputedCSSProperty } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";
@@ -13,52 +13,38 @@ function initChart(options) {
   myChart2.setOption(options);
   return myChart2;
 }
-let base = +new Date(1968, 9, 3);
-let oneDay = 24 * 3600 * 1e3;
-let date = [];
-let data = [Math.random() * 300];
-for (let i = 1; i < 2e4; i++) {
-  var now = new Date(base += oneDay);
-  date.push(
-    [now.getFullYear(), now.getMonth() + 1, now.getDate()].join("/")
-  );
-  data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
-}
+const dates = Array.from(
+  { length: 2025 - 2013 },
+  (_, i) => (2013 + i).toString()
+);
+const stockData = [
+  77.67,
+  82.81,
+  84.09,
+  91.75,
+  118.15,
+  107.48,
+  99.36,
+  93.07,
+  137.18,
+  104.38,
+  156.48,
+  168.52
+];
 function getOptions() {
   return {
-    toolbox: {
-      feature: {
-        dataZoom: {
-          yAxisIndex: "none"
-        }
-      }
-    },
-    xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: date
-    },
+    tooltip: { trigger: "axis" },
+    xAxis: { type: "category", data: dates },
     yAxis: {
       type: "value",
-      boundaryGap: [0, "100%"]
+      splitLine: { lineStyle: { type: "dashed" } }
     },
-    dataZoom: [
-      {
-        type: "inside",
-        start: 0,
-        end: 10
-      },
-      {
-        start: 0,
-        end: 10
-      }
-    ],
     series: [
       {
-        name: "Synthetic data",
         type: "line",
-        symbol: "none",
-        sampling: "lttb",
+        data: stockData,
+        smooth: true,
+        lineStyle: { width: 4, shadowBlur: 10 },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
@@ -67,13 +53,33 @@ function getOptions() {
                 "--si-sys-color-background-accent"
               )
             },
-            {
-              offset: 1,
-              color: "transparent"
-            }
+            { offset: 1, color: "transparent" }
           ])
         },
-        data
+        markPoint: {
+          data: [
+            {
+              type: "max",
+              name: "Max",
+              symbol: "circle",
+              symbolSize: 60
+            },
+            {
+              type: "min",
+              name: "Min",
+              symbol: "circle",
+              symbolSize: 60
+            }
+          ],
+          label: {
+            fontWeight: "bold",
+            color: getComputedCSSProperty("--si-sys-color-text-inverse")
+          }
+        },
+        markLine: {
+          data: [{ type: "average", name: "Avg" }],
+          lineStyle: { type: "dashed" }
+        }
       }
     ]
   };

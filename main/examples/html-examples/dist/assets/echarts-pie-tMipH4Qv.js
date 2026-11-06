@@ -1,6 +1,6 @@
 import "./global-BFmC_PbI.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName, g as getComputedCSSProperty } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName, g as getComputedCSSProperty } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";
@@ -14,11 +14,13 @@ function initChart(options) {
   return myChart2;
 }
 const data = [
-  { value: 72.17, name: "Windows" },
-  { value: 15.42, name: "macOS" },
-  { value: 4.03, name: "Linux" },
-  { value: 2.27, name: "Chrome OS" },
-  { value: 6.11, name: "Other" }
+  { value: 29.4, name: "China" },
+  { value: 14.3, name: "U.S" },
+  { value: 9.8, name: "EEA" },
+  { value: 6.8, name: "India" },
+  { value: 4.9, name: "Russia" },
+  { value: 3.5, name: "Japan" },
+  { value: 31.5, name: "Other" }
 ];
 function getOptions() {
   return {
@@ -31,10 +33,10 @@ function getOptions() {
     },
     series: [
       {
-        bottom: 16,
-        name: "OS Share",
+        name: "CO2 emissions from<",
         type: "pie",
-        radius: ["60%", "90%"],
+        radius: "80%",
+        data,
         label: {
           show: true,
           color: getComputedCSSProperty(
@@ -42,16 +44,12 @@ function getOptions() {
           )
         },
         emphasis: {
-          label: {
-            show: true,
-            fontSize: 25,
-            fontWeight: "bold"
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)"
           }
-        },
-        labelLine: {
-          show: true
-        },
-        data
+        }
       }
     ]
   };

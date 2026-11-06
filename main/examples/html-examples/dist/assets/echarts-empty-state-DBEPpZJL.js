@@ -2,7 +2,7 @@ import "./global-BFmC_PbI.js";
 import { a as addIcons } from "./ix-icon.entry-CGiLGChb.js";
 import { c as iconInfo } from "./index-MpHERktc.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";

@@ -1,50 +1,46 @@
 import "./global-BFmC_PbI.js";
 import "./init-C5YnK6N4.js";
-import { r as registerTheme, a as resolveEChartThemeName } from "./index-z-hdKcHr.js";
+import { r as registerTheme, a as resolveEChartThemeName } from "./index-sGmm-1dZ.js";
 import { t as themeSwitcher } from "./theme-switcher-CRVG13AN-OnrBiSI3.js";
 import "./index-CgUi6DzV-fQJuTF8s.js";
 import "./preload-helper-UZRgTS1n.js";
 import "./index-DCCkv1ZQ-DZnlOMEt.js";
 import "./typed-event-CWshStHZ-DBYwEilm.js";
 await globalThis.ixInitPromise;
-const data = {
-  months: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  values: [150, 230, 224, 218, 135, 147, 260]
-};
 function initChart(options2) {
   const theme = resolveEChartThemeName();
   var myChart2 = echarts.init(document.querySelector("#main"), theme);
   myChart2.setOption(options2);
   return myChart2;
 }
+const data = {
+  products: [
+    "Product A",
+    "Product B",
+    "Product C",
+    "Product D",
+    "Product E",
+    "Product F"
+  ],
+  sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4]
+};
 const options = {
-  toolbox: {
-    feature: {
-      dataZoom: {
-        yAxisIndex: "none"
-      },
-      restore: {},
-      saveAsImage: {},
-      magicType: {
-        type: ["line", "bar"]
-      },
-      dataView: {
-        show: true
-      }
-    }
-  },
   xAxis: {
-    type: "category",
-    data: data.months
+    data: data.products,
+    name: "Product",
+    nameLocation: "end"
   },
   yAxis: {
-    type: "value"
+    name: "Number of sold products \n (in Mio)",
+    nameLocation: "end"
+  },
+  legend: {
+    show: true
   },
   series: [
     {
-      data: data.values,
-      type: "line",
-      step: "end"
+      data: data.sales,
+      type: "bar"
     }
   ]
 };
