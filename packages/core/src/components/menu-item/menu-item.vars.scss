@@ -22,12 +22,23 @@
 
 :host {
   --ix-menu-item--height: #{sys.$si-sys-sizing-size-100};
+  --ix-menu-item-tab-icon--slot-width: #{sys.$si-sys-sizing-icon-lg};
   --ix-menu-item--padding-inline: calc(
-    (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-icon-lg}) / 2
+    (
+        #{sys.$si-sys-sizing-size-100} - var(
+            --ix-menu-item-tab-icon--slot-width
+          )
+      ) /
+      2
   );
   --ix-menu-item-tab-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
   --ix-menu-item-tab-icon--margin-inline: calc(
-    (#{sys.$si-sys-sizing-icon-lg} - #{sys.$si-sys-sizing-icon-md}) / 2
+    (
+        var(--ix-menu-item-tab-icon--slot-width) - var(
+            --ix-menu-item-tab-icon--icon-size
+          )
+      ) /
+      2
   );
   --ix-menu-item-tab-text--margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0
     #{sys.$si-sys-sizing-spacing-x-70};
