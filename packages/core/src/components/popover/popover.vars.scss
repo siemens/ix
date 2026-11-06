@@ -19,7 +19,7 @@
   // follow the rendered shape. drop-shadow() cannot consume a single
   // multi-layer combined shadow token, so each layer of
   // --si-sys-color-effects-shadow-40 is applied as its own drop-shadow(); both
-  // layers currently share the same value in Classic Light/Dark.
+  // layers currently share the same value in Community Light/Dark.
   --ix-popover--elevation-filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.14))
     drop-shadow(0px -0.25px 2px rgba(0, 0, 0, 0.08));
   --ix-popover-close--color: #{sys.$si-sys-color-text-secondary};
