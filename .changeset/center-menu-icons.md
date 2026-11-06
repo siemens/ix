@@ -1,4 +1,6 @@
+---
 '@siemens/ix': patch
+---
 
 Update the collapsed application menu width in default and compact density.
 Refresh notification badges on menu items and menu categories, keeping them right-aligned as counts grow.
