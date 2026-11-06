@@ -102,7 +102,7 @@ export class Select
 
   @Watch('required')
   onRequiredChange() {
-    void revalidate(this);
+    this.syncValidity();
   }
 
   /**
@@ -376,11 +376,30 @@ export class Select
     this.value = value;
     this.updateSelection();
     this.updateFormInternalValue(value);
+    this.syncValidity();
+  }
+
+  @Listen('invalid')
+  onInvalid(event: Event) {
+    event.preventDefault();
+    this.touched = true;
+    void revalidate(this);
+  }
+
+  private syncValidity() {
+    if (this.required && !this.disabled && !this.readonly && !this.hasValue()) {
+      const message = this.invalidText?.trim() ? this.invalidText : ' ';
+      this.formInternals.setValidity({ valueMissing: true }, message);
+    } else {
+      this.formInternals.setValidity({});
+    }
+    void revalidate(this);
   }
 
   @Watch('disabled')
   @Watch('readonly')
   watchDisabledReadonly() {
+    this.syncValidity();
     // Disabled/readonly hides the chip close button, changing chip widths, so
     // invalidate the measurement cache to force a re-measure on next render.
     this.chipWidths.clear();
@@ -398,7 +417,7 @@ export class Select
   /** @internal */
   @Method()
   async hasValidValue(): Promise<boolean> {
-    return this.required && !!this.hasValue();
+    return !this.required || this.disabled || this.readonly || this.hasValue();
   }
 
   private hasValue() {
@@ -586,6 +605,7 @@ export class Select
   override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
+    this.syncValidity();
   }
 
   override disconnectedCallback(): void {
