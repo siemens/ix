@@ -36,6 +36,7 @@ import {
   checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
+  inheritHostAriaAttributes,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -211,6 +212,7 @@ export class Input implements IxInputFieldComponent<string> {
   /** @internal */
   public initialValue?: string;
   private readonly inputRef = makeRef<HTMLInputElement>();
+  private inheritAriaAttributes: A11yAttributes = {};
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly passwordToggleRef = () => this.updatePaddings();
@@ -232,6 +234,7 @@ export class Input implements IxInputFieldComponent<string> {
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
     this.inputType = this.type;
+    this.inheritAriaAttributes = inheritHostAriaAttributes(this.hostElement);
   }
 
   connectedCallback(): void {
@@ -317,7 +320,10 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const inputAria: A11yAttributes = getAriaAttributesForInput(this);
+    const inputAria: A11yAttributes = getAriaAttributesForInput(
+      this,
+      this.inheritAriaAttributes
+    );
     return (
       <Host
         class={{
