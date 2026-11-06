@@ -16,6 +16,7 @@ a[href] {
   --ix-link--color--hover: #{sys.$si-sys-color-text-accent-hover};
   --ix-link--color--visited: #{sys.$si-sys-color-text-accent};
   --ix-link--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-link--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }
 
 @mixin no-link-decoration {
@@ -39,7 +40,8 @@ a[href] {
   }
 
   @include hover.focus-visible {
-    outline: 1px solid var(--ix-link--outline-color--focus);
+    outline: var(--ix-link--outline-width--focus) solid
+      var(--ix-link--outline-color--focus);
     outline-offset: 0.2rem;
   }
 

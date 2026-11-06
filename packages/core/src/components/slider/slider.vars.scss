@@ -54,7 +54,7 @@
   --ix-slider-reference--height: #{sys.$si-sys-sizing-size-50};
   --ix-slider-input--track-height: var(--ix-slider-track--height);
   --ix-slider--z-index: 10;
-  --ix-slider--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-slider--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-slider--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-slider-ticks--tick-size: calc(var(--ix-slider--thumb-size) * 0.375);
   --ix-slider-track--height: #{sys.$si-sys-sizing-size-20};

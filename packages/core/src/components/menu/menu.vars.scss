@@ -47,12 +47,12 @@
   --ix-menu-buttons--margin: #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc(#{sys.$si-sys-sizing-spacing-x-40} +
         #{sys.$si-sys-sizing-spacing-x-10});
   --ix-menu-empty--margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
-  --ix-menu--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-menu--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-menu-tabs--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+    -1 * var(--ix-menu--outline-width--focus)
   );
   --ix-menu-navigation--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+    -1 * var(--ix-menu--outline-width--focus)
   );
   --ix-menu-tabs-shadow--height: #{sys.$si-sys-sizing-border-width-default};
 }

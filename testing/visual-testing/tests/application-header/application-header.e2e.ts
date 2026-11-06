@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, viewPorts } from '@utils/test';
+import { focusWithKeyboard, regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('application header: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -109,3 +109,21 @@ regressionTest.describe('application header: standalone', () => {
     });
   });
 });
+
+regressionTest(
+  'should show focus-visible outline on application switch entry',
+  async ({ page }) => {
+    await page.goto('application/application-switch');
+    await page.locator('ix-application-header .app-switch').click();
+    await expect(page.locator('ix-modal')).toHaveAttribute('hydrated');
+
+    await focusWithKeyboard(
+      page,
+      page.locator('ix-application-switch-modal .AppEntry').first()
+    );
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

@@ -33,8 +33,9 @@
     @include text-truncation.ellipsis;
 
     &:focus-visible {
-      outline: 1px solid var(--ix-tree-item--outline-color--focus);
-      outline-offset: -1px;
+      outline: var(--ix-tree-item--outline-width--focus) solid
+        var(--ix-tree-item--outline-color--focus);
+      outline-offset: calc(-1 * var(--ix-tree-item--outline-width--focus));
     }
 
     .tree-node-text {
@@ -55,13 +56,14 @@
       outline: none;
 
       &:focus-visible {
-        outline: 1px solid var(--ix-tree-item--outline-color--focus);
-        outline-offset: -1px;
+        outline: var(--ix-tree-item--outline-width--focus) solid
+          var(--ix-tree-item--outline-color--focus);
+        outline-offset: calc(-1 * var(--ix-tree-item--outline-width--focus));
       }
 
       ix-icon {
-        transition: transform var(--ix-tree-item-expand-icon--transition-duration)
-          ease-in-out;
+        transition: transform
+          var(--ix-tree-item-expand-icon--transition-duration) ease-in-out;
 
         &.icon-toggle-down {
           transform: rotate(90deg);
@@ -101,6 +103,7 @@
 }
 
 :host(:focus-visible) {
-  outline: 1px solid var(--ix-tree-item--outline-color--focus);
-  outline-offset: -1px;
+  outline: var(--ix-tree-item--outline-width--focus) solid
+    var(--ix-tree-item--outline-color--focus);
+  outline-offset: calc(-1 * var(--ix-tree-item--outline-width--focus));
 }

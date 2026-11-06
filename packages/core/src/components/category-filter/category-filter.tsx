@@ -828,7 +828,7 @@ export class CategoryFilter {
     tokenList: HTMLElement,
     chips: HTMLIxFilterChipElement[]
   ) {
-    await Promise.all(chips.map((chip) => chip.componentOnReady()));
+    await Promise.all(chips.map((chip) => chip.componentOnReady?.()));
     tokenList.scrollTop = tokenList.scrollHeight;
   }
 
