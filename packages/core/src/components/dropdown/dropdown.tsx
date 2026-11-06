@@ -63,6 +63,7 @@ import {
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
+import { getClippedSides, getClippingThresholds } from '../utils/rect';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { closestPassShadow } from '../utils/shadow-dom';
 import {
@@ -685,18 +686,40 @@ export class Dropdown
   }
 
   private addObserverForTriggerVisibility() {
-    if (this.intersectObserverTrigger) {
-      this.intersectObserverTrigger.disconnect();
-    }
+    this.disconnectObserverForTriggerVisibility();
 
     if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
 
-    if (!this.triggerElement) {
+    this.observeTriggerVisibility();
+  }
+
+  private disconnectObserverForTriggerVisibility() {
+    this.intersectObserverTrigger?.disconnect();
+    this.intersectObserverTrigger = undefined;
+  }
+
+  /**
+   * The observer only reports crossings of area ratios captured from the
+   * trigger size at creation. Re-creating it delivers a fresh entry and
+   * refreshes the ratios for the current trigger size.
+   */
+  private refreshObserverForTriggerVisibility() {
+    if (!this.intersectObserverTrigger) {
       return;
     }
 
+    this.disconnectObserverForTriggerVisibility();
+    this.observeTriggerVisibility();
+  }
+
+  private observeTriggerVisibility() {
+    if (!this.triggerElement || !this.anchorElement) {
+      return;
+    }
+
+    const anchorElement = this.anchorElement;
     this.intersectObserverTrigger = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -705,42 +728,45 @@ export class Dropdown
             return;
           }
 
-          const isTopHidden =
-            entry.intersectionRect.top > entry.boundingClientRect.top;
-          const isBottomHidden =
-            entry.intersectionRect.bottom < entry.boundingClientRect.bottom;
-          const isLeftHidden =
-            entry.intersectionRect.left > entry.boundingClientRect.left;
-          const isRightHidden =
-            entry.intersectionRect.right < entry.boundingClientRect.right;
+          const clipped = getClippedSides(
+            entry.boundingClientRect,
+            entry.intersectionRect
+          );
 
-          this.fallbackPlacement = undefined;
+          // Assign the state only once, as every change re-renders and
+          // re-creates this observer through the position update
+          let fallbackPlacement: AlignedPlacement | undefined;
 
-          if (isTopHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('bottom');
+          if (clipped.top) {
+            fallbackPlacement = this.createFallbackPlacement('bottom');
           }
 
-          if (isBottomHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('top');
+          if (clipped.bottom) {
+            fallbackPlacement = this.createFallbackPlacement('top');
           }
 
-          if (isLeftHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('right');
+          if (clipped.left) {
+            fallbackPlacement = this.createFallbackPlacement('right');
           }
 
-          if (isRightHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('left');
+          if (clipped.right) {
+            fallbackPlacement = this.createFallbackPlacement('left');
           }
+
+          this.fallbackPlacement = fallbackPlacement;
         });
       },
       {
-        threshold: [0, 0.5, 1],
+        threshold: [
+          0,
+          0.5,
+          ...getClippingThresholds(anchorElement.getBoundingClientRect()),
+          1,
+        ],
       }
     );
 
-    if (this.anchorElement) {
-      this.intersectObserverTrigger.observe(this.anchorElement);
-    }
+    this.intersectObserverTrigger.observe(anchorElement);
   }
 
   private createFallbackPlacement(
@@ -1277,7 +1303,7 @@ export class Dropdown
   }
 
   private cleanupOnHide() {
-    this.intersectObserverTrigger?.disconnect();
+    this.disconnectObserverForTriggerVisibility();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.keyboardNavigationCleanup = undefined;
@@ -1424,6 +1450,9 @@ export class Dropdown
       referenceElement,
       targetElement,
       async () => {
+        // Re-evaluate trigger clipping on every scroll or resize
+        this.refreshObserverForTriggerVisibility();
+
         const computeResponse = await computePosition(
           referenceElement,
           targetElement,
