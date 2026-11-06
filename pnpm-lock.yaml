@@ -654,10 +654,10 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.67.2)
+        version: 16.0.3(@rollup/wasm-node@4.67.4)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.67.2)(tslib@2.9.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@5.8.3)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -687,10 +687,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.67.2'
+        version: '@rollup/wasm-node@4.67.4'
       rollup-plugin-import-css:
         specifier: ^4.2.1
-        version: 4.2.1(@rollup/wasm-node@4.67.2)
+        version: 4.2.1(@rollup/wasm-node@4.67.4)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -852,7 +852,7 @@ importers:
         version: 1.15.1(@playwright/test@1.64.1)(@stencil/core@4.45.2)(@vitest/browser-playwright@4.1.12)(happy-dom@21.0.4)(jsdom@27.4.0(@noble/hashes@1.8.0)(supports-color@8.1.1))(playwright@1.64.1)(vitest@4.1.12)
       '@stencil/vue-output-target':
         specifier: ^0.14.6
-        version: 0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.4.5))
+        version: 0.14.7(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.4.5))
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1014,10 +1014,10 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.67.2)
+        version: 16.0.3(@rollup/wasm-node@4.67.4)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.67.2)(tslib@2.9.1)(typescript@6.0.2)
+        version: 8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@6.0.2)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -1035,13 +1035,13 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.67.2'
+        version: '@rollup/wasm-node@4.67.4'
       rollup-plugin-dts:
         specifier: ^6.4.1
-        version: 6.4.1(@rollup/wasm-node@4.67.2)(typescript@6.0.2)
+        version: 6.4.1(@rollup/wasm-node@4.67.4)(typescript@6.0.2)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
-        version: 2.2.4(@rollup/wasm-node@4.67.2)
+        version: 2.2.4(@rollup/wasm-node@4.67.4)
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
@@ -1066,7 +1066,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.67.2)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.8.1)(typescript@5.8.3)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1123,10 +1123,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.67.2'
+        version: '@rollup/wasm-node@4.67.4'
       rollup-plugin-preserve-directives:
         specifier: ^0.4.0
-        version: 0.4.0(@rollup/wasm-node@4.67.2)
+        version: 0.4.0(@rollup/wasm-node@4.67.4)
       shadow-dom-testing-library:
         specifier: ^1.11.2
         version: 1.11.2(@testing-library/dom@10.4.2)
@@ -1216,14 +1216,14 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~5.2.1
-        version: link:../core
+        specifier: ~5.3.0
+        version: 5.3.0(@siemens/ix-icons@3.7.1)
       '@siemens/ix-icons':
-        specifier: 0.0.0-beta-20261021072559
-        version: 0.0.0-beta-20261021072559
+        specifier: 3.7.1
+        version: 3.7.1
       '@stencil/vue-output-target':
         specifier: ^0.14.6
-        version: 0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))
+        version: 0.14.7(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -6250,8 +6250,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.67.2':
-    resolution: {integrity: sha512-mu5DT4kQL+8OxOZUuQDofhu1O/4LugTZ1ERr7bU1WjV5QSK7gr3gj/4tWb1F+Kj6rJWKlMrBIHpn61YkdUyAJQ==}
+  '@rollup/wasm-node@4.67.4':
+    resolution: {integrity: sha512-26yp7lyYcecROUVGCHo25V18zy+pVBXUDHOIHW8K59n49ezWTTEbuwGXJAf8T32D+ZUcpkrDZUT029zFdCH61A==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -6284,6 +6284,15 @@ packages:
   '@siemens/ix-icons@3.7.0':
     resolution: {integrity: sha512-1nk58wy/s+Snz0Fw1b80IM5fzz53wtDJ54yLmEfIX317LYQcp9Z0jU5V7MQvbiuJ0HLrPgwJe1kvTrn8z5S5Hg==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
+
+  '@siemens/ix-icons@3.7.1':
+    resolution: {integrity: sha512-tnswQGzAFi5fN3Unkem52AZLP/MobXbgPrEe1CKQ+Pa1O5qX23m6DctGFumuKxZxoKBeW/lnf3zt61AUXT8aRQ==}
+    engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
+
+  '@siemens/ix@5.3.0':
+    resolution: {integrity: sha512-7tbrWI2CYAYItx7AoVte5lNHcp0Psu55WP2zCg6StMlap3guaQLZdmIkA+x8bbKfuzvOmGBnaKhoY5oJI8x/Ag==}
+    peerDependencies:
+      '@siemens/ix-icons': ^3.5.0
 
   '@sigstore/bundle@4.0.0':
     resolution: {integrity: sha512-NwCl5Y0V6Di0NexvkTqdoVfmjTaQwoLM236r89KEojGmq/jMls8S+zb7yOwAPdXvbwfKDlP+lmXgAL4vKSQT+A==}
@@ -6419,8 +6428,8 @@ packages:
       playwright:
         optional: true
 
-  '@stencil/vue-output-target@0.14.6':
-    resolution: {integrity: sha512-IkgRf6UjoZg83CWguSxiRMqNLIRI29C0SBDj3m6OuB5ShVDqt2idV+kROdHhzR9DQFEPbKZqp7XNJIfrYN1zhg==}
+  '@stencil/vue-output-target@0.14.7':
+    resolution: {integrity: sha512-otE09Jzgd7+eRAApsvCsIIv+Yv+GakJrofd9gXA5dXbgIfK+nqWIMoYD4HlrXVKjI8KbUvPBuFdAQ8J3tqTVjg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >=4.0.0 || ^5.0.0 || >=5.0.0-beta.18'
       vue: ^3.4.38
@@ -7673,6 +7682,17 @@ packages:
   alien-signals@3.2.1:
     resolution: {integrity: sha512-I8FjmltrfnDFoZedi5CG8DghVYNhzb/Ijluz7tCSJH0xpd0484Kowhbb1XDYOxfJpU1p5wnM2X54dA+IfGyD1g==}
 
+  animejs@4.5.0:
+    resolution: {integrity: sha512-NQimYX+lz8WaXonGS9zVVoviCIAjONeJayxacUditaivYLqyXgGjFKjuyl0aUUhFKm5MriX9ty1TGovNzoJQWA==}
+    peerDependencies:
+      '@types/three': '>=0.150.0'
+      three: '>=0.150.0'
+    peerDependenciesMeta:
+      '@types/three':
+        optional: true
+      three:
+        optional: true
+
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
     engines: {node: '>=6'}
@@ -8410,9 +8430,6 @@ packages:
   cookie@1.1.1:
     resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
     engines: {node: '>=18'}
-
-  copy-anything@2.0.6:
-    resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
 
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
@@ -9822,11 +9839,6 @@ packages:
     resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
 
-  image-size@0.5.5:
-    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
-    engines: {node: '>=0.10.0'}
-    hasBin: true
-
   immutable@5.1.9:
     resolution: {integrity: sha512-m8nVez3rwrgmWxtLMt1ZYXB2Lv7OKYn/disyxAlSDYAlKSlFoPPfIAmAM/M5xqL4m4C/wAPw7S2/CNaUii1Hxg==}
 
@@ -10095,9 +10107,6 @@ packages:
   is-weakset@2.0.4:
     resolution: {integrity: sha512-mfcwb6IzQyOKTs84CQMrOwW4gQcaTOAWJ0zzJCl2WSPDrWk/OzDaImWFH3djXhb24g4eudZfLRozAvPGw4d9hQ==}
     engines: {node: '>= 0.4'}
-
-  is-what@3.14.1:
-    resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==}
 
   is-what@4.1.16:
     resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
@@ -10669,11 +10678,6 @@ packages:
       webpack:
         optional: true
 
-  less@4.3.0:
-    resolution: {integrity: sha512-X9RyH9fvemArzfdP8Pi3irr7lor2Ok4rOttDXBhlwDg+wKQsXOXgHWduAJE1EsF7JJx0w0bcO6BC6tCKKYnXKA==}
-    engines: {node: '>=14'}
-    hasBin: true
-
   less@4.9.0:
     resolution: {integrity: sha512-umRhrCH7fCi8Uj2RcwKjJdvUORTjeWqkdKx0LbcZvjIwsAVsnIAGcxHaqowPeBFBjQuWOeC/bve0AlpFzF/+SQ==}
     engines: {node: '>=18'}
@@ -10897,10 +10901,6 @@ packages:
 
   magicast@0.5.5:
     resolution: {integrity: sha512-UicdXN8zQ3JHlxVq+28afMXPr1z7WNY6+7EJnzTdQWkTAlMLF5fNCCKxJHBQwGaNGR11581EiQmQzx73+MvszA==}
-
-  make-dir@2.1.0:
-    resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
-    engines: {node: '>=6'}
 
   make-dir@4.0.0:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
@@ -12748,10 +12748,6 @@ packages:
   selfsigned@5.5.0:
     resolution: {integrity: sha512-ftnu3TW4+3eBfLRFnDEkzGxSF/10BJBkaLJuBHZX0kiPS7bRdlpZGu6YGt4KngMkdTwJE6MbjavFpqHvqVt+Ew==}
     engines: {node: '>=18'}
-
-  semver@5.7.2:
-    resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
-    hasBin: true
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -19083,75 +19079,75 @@ snapshots:
 
   '@rollup/plugin-json@6.1.0':
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.67.2)
-      rollup: '@rollup/wasm-node@4.67.2'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.67.4)
+      rollup: '@rollup/wasm-node@4.67.4'
 
-  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.67.2)':
+  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.67.4)':
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.67.2)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.67.4)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.11
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.2)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.8.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.4)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.2)(tslib@2.9.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.4)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.9.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.2)(tslib@2.9.1)(typescript@6.0.2)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@6.0.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.4)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       typescript: 6.0.2
     optionalDependencies:
       tslib: 2.9.1
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.67.2)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.67.4)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
   '@rollup/pluginutils@5.1.2':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
-  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.67.2)':
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.67.4)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
-  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.67.2)':
+  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.67.4)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
   '@rollup/rollup-darwin-arm64@4.34.9':
     optional: true
@@ -19208,7 +19204,7 @@ snapshots:
       '@napi-rs/lzma-linux-x64-gnu': 1.5.1
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.67.2':
+  '@rollup/wasm-node@4.67.4':
     dependencies:
       '@types/estree': 1.0.10
     optionalDependencies:
@@ -19246,6 +19242,18 @@ snapshots:
   '@siemens/ix-icons@0.0.0-beta-20261021072559': {}
 
   '@siemens/ix-icons@3.7.0': {}
+
+  '@siemens/ix-icons@3.7.1': {}
+
+  '@siemens/ix@5.3.0(@siemens/ix-icons@3.7.1)':
+    dependencies:
+      '@floating-ui/dom': 1.6.13
+      '@siemens/ix-icons': 3.7.1
+      animejs: 4.5.0
+      luxon: 3.4.4
+    transitivePeerDependencies:
+      - '@types/three'
+      - three
 
   '@sigstore/bundle@4.0.0':
     dependencies:
@@ -19405,13 +19413,13 @@ snapshots:
       jsdom: 27.4.0(@noble/hashes@1.8.0)(supports-color@8.1.1)
       playwright: 1.64.1
 
-  '@stencil/vue-output-target@0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.4.5))':
+  '@stencil/vue-output-target@0.14.7(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.4.5))':
     dependencies:
       vue: 3.5.44(typescript@5.4.5)
     optionalDependencies:
       '@stencil/core': 4.45.2
 
-  '@stencil/vue-output-target@0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.14.7(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))':
     dependencies:
       vue: 3.5.44(typescript@5.8.3)
     optionalDependencies:
@@ -21165,6 +21173,8 @@ snapshots:
 
   alien-signals@3.2.1: {}
 
+  animejs@4.5.0: {}
+
   ansi-colors@4.1.3: {}
 
   ansi-escapes@4.3.2:
@@ -21996,10 +22006,6 @@ snapshots:
   cookie@0.7.2: {}
 
   cookie@1.1.1: {}
-
-  copy-anything@2.0.6:
-    dependencies:
-      is-what: 3.14.1
 
   copy-anything@3.0.5:
     dependencies:
@@ -23962,9 +23968,6 @@ snapshots:
 
   ignore@7.0.5: {}
 
-  image-size@0.5.5:
-    optional: true
-
   immutable@5.1.9: {}
 
   import-fresh@3.3.0:
@@ -24194,8 +24197,6 @@ snapshots:
     dependencies:
       call-bound: 1.0.4
       get-intrinsic: 1.3.0
-
-  is-what@3.14.1: {}
 
   is-what@4.1.16: {}
 
@@ -25363,22 +25364,6 @@ snapshots:
     optionalDependencies:
       webpack: 5.112.0(@swc/core@1.9.2(@swc/helpers@0.5.23))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.1)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@24.19.2))(svgo@3.3.5)(uglify-js@3.19.3)
 
-  less@4.3.0(supports-color@8.1.1):
-    dependencies:
-      copy-anything: 2.0.6
-      parse-node-version: 1.0.1
-      tslib: 2.9.1
-    optionalDependencies:
-      errno: 0.1.8
-      graceful-fs: 4.2.11
-      image-size: 0.5.5
-      make-dir: 2.1.0
-      mime: 1.6.0
-      needle: 3.2.0(supports-color@8.1.1)
-      source-map: 0.6.1
-    transitivePeerDependencies:
-      - supports-color
-
   less@4.9.0(supports-color@8.1.1):
     dependencies:
       copy-anything: 3.0.5
@@ -25620,12 +25605,6 @@ snapshots:
       '@babel/parser': 7.29.9
       '@babel/types': 7.29.8
       source-map-js: 1.2.2
-
-  make-dir@2.1.0:
-    dependencies:
-      pify: 4.0.1
-      semver: 5.7.2
-    optional: true
 
   make-dir@4.0.0:
     dependencies:
@@ -26231,18 +26210,18 @@ snapshots:
       find-cache-directory: 6.0.0
       injection-js: 2.4.0
       jsonc-parser: 3.3.1
-      less: 4.3.0(supports-color@8.1.1)
+      less: 4.9.0(supports-color@8.1.1)
       ora: 9.3.0
       piscina: 5.3.2
       postcss: 8.5.28
-      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.67.2)(typescript@5.9.3)
+      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.67.4)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.105.1
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.23))(@types/node@24.19.2)(typescript@5.9.3))
     transitivePeerDependencies:
       - supports-color
@@ -26263,18 +26242,18 @@ snapshots:
       find-cache-directory: 6.0.0
       injection-js: 2.4.0
       jsonc-parser: 3.3.1
-      less: 4.3.0(supports-color@8.1.1)
+      less: 4.9.0(supports-color@8.1.1)
       ora: 9.3.0
       piscina: 5.3.2
       postcss: 8.5.28
-      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.67.2)(typescript@5.9.3)
+      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.67.4)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.105.1
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@5.9.3))
     transitivePeerDependencies:
       - supports-color
@@ -27793,42 +27772,42 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.67.2)(typescript@5.9.3):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.67.4)(typescript@5.9.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       typescript: 5.9.3
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.67.2)(typescript@6.0.2):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.67.4)(typescript@6.0.2):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       typescript: 6.0.2
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.67.2):
+  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.67.4):
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.67.2)
-      rollup: '@rollup/wasm-node@4.67.2'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.67.4)
+      rollup: '@rollup/wasm-node@4.67.4'
 
-  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.67.2):
+  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.67.4):
     dependencies:
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
-  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.67.2):
+  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.67.4):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.67.2)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.67.4)
       magic-string: 0.30.17
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
   rollup-plugin-react-scoped-css@1.1.0:
     dependencies:
@@ -27836,7 +27815,7 @@ snapshots:
       css-tree: 3.0.0
       escodegen: 2.1.0
       js-xxhash: 4.0.0
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
 
   router@2.2.0(supports-color@8.1.1):
     dependencies:
@@ -28066,9 +28045,6 @@ snapshots:
     dependencies:
       '@peculiar/x509': 1.14.3
       pkijs: 3.4.1
-
-  semver@5.7.2:
-    optional: true
 
   semver@6.3.1: {}
 
@@ -29423,7 +29399,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -29443,7 +29419,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -29463,7 +29439,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -29483,7 +29459,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -29503,7 +29479,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -29523,7 +29499,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6
@@ -29543,7 +29519,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6
@@ -29563,7 +29539,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.2'
+      rollup: '@rollup/wasm-node@4.67.4'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6
