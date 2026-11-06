@@ -30,6 +30,6 @@ export const Default: Story = {};
 
 export const WithoutDivider: Story = {
   args: {
-    divider: false,
+    hideDividers: true,
   },
 };

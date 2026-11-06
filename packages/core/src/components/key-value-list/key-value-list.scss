@@ -11,8 +11,7 @@
 }
 
 :host(.keyValueList.keyValueList--no-divider) {
-  // Items with an explicit `divider` keep their own setting
-  ::slotted(ix-key-value:not(.keyValue--divider)) {
+  ::slotted(ix-key-value) {
     border-bottom-color: transparent;
   }
 }
@@ -20,8 +19,7 @@
 // Forced colors paint transparent borders, so remove hidden dividers and keep their space
 @media (forced-colors: active) {
   :host(.keyValueList) ::slotted(ix-key-value.keyValue--no-divider),
-  :host(.keyValueList.keyValueList--no-divider)
-    ::slotted(ix-key-value:not(.keyValue--divider)) {
+  :host(.keyValueList.keyValueList--no-divider) ::slotted(ix-key-value) {
     border-bottom-style: none;
     margin-bottom: var(--ix-key-value-list--border-width);
   }

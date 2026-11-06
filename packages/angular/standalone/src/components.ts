@@ -1819,14 +1819,14 @@ export declare interface IxInput extends Components.IxInput {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxKeyValue,
-  inputs: ['ariaLabelIcon', 'divider', 'icon', 'label', 'labelPosition', 'value']
+  inputs: ['ariaLabelIcon', 'hideDivider', 'icon', 'label', 'labelPosition', 'value']
 })
 @Component({
   selector: 'ix-key-value',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'divider', 'icon', { name: 'label', required: true }, 'labelPosition', 'value'],
+  inputs: ['ariaLabelIcon', 'hideDivider', 'icon', { name: 'label', required: true }, 'labelPosition', 'value'],
 })
 export class IxKeyValue {
   protected el: HTMLIxKeyValueElement;
@@ -1842,14 +1842,14 @@ export declare interface IxKeyValue extends Components.IxKeyValue {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxKeyValueList,
-  inputs: ['divider', 'striped']
+  inputs: ['hideDividers', 'striped']
 })
 @Component({
   selector: 'ix-key-value-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['divider', 'striped'],
+  inputs: ['hideDividers', 'striped'],
 })
 export class IxKeyValueList {
   protected el: HTMLIxKeyValueListElement;

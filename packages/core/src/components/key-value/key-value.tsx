@@ -52,13 +52,12 @@ export class KeyValue {
   @Prop() value?: string;
 
   /**
-   * Show a divider line below the key value.
-   * When omitted, the divider is shown (`true`).
-   * Inside `ix-key-value-list`, follows the list's `divider` unless set.
+   * Hide the divider line below the key value.
+   * Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
    *
    * @since 6.0.0
    */
-  @Prop() divider?: boolean;
+  @Prop() hideDivider = false;
 
   render() {
     return (
@@ -67,8 +66,7 @@ export class KeyValue {
           keyValue: true,
           [`keyValue--${this.labelPosition === 'top' ? 'column' : 'row'}`]:
             true,
-          'keyValue--divider': this.divider === true,
-          'keyValue--no-divider': this.divider === false,
+          'keyValue--no-divider': this.hideDivider,
         }}
       >
         {this.icon && (

@@ -29,13 +29,11 @@ export class KeyValueList {
   @Prop() striped: boolean = false;
 
   /**
-   * Show divider lines below the key value items.
-   * When omitted, dividers are shown (`true`).
-   * Items that set their own `divider` keep their value.
+   * Hide the divider lines below all key value items.
    *
    * @since 6.0.0
    */
-  @Prop() divider?: boolean;
+  @Prop() hideDividers = false;
 
   render() {
     return (
@@ -43,7 +41,7 @@ export class KeyValueList {
         class={{
           keyValueList: true,
           'keyValueList--striped': this.striped,
-          'keyValueList--no-divider': this.divider === false,
+          'keyValueList--no-divider': this.hideDividers,
         }}
       >
         <slot></slot>

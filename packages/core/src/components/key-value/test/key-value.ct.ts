@@ -30,7 +30,7 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
     `
     <div>
       <ix-key-value label="Label" value="Value"></ix-key-value>
-      <ix-key-value label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+      <ix-key-value label="Label" label-position="left" value="Value" hide-divider></ix-key-value>
       <ix-key-value id="with-icon" icon="location" label="Label" value="Value"></ix-key-value>
     </div>
   `,
@@ -74,8 +74,8 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(`
       <div>
-        <ix-key-value id="top" label="Label" value="Value" divider="false"></ix-key-value>
-        <ix-key-value id="left" label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+        <ix-key-value id="top" label="Label" value="Value" hide-divider></ix-key-value>
+        <ix-key-value id="left" label="Label" label-position="left" value="Value" hide-divider></ix-key-value>
       </div>
     `);
 
@@ -95,7 +95,7 @@ regressionTest(
     const heightWithDivider = await getHeight(keyValue);
 
     await keyValue.evaluate((element: HTMLIxKeyValueElement) => {
-      element.divider = false;
+      element.hideDivider = true;
     });
 
     await expectDividerHidden(keyValue);
@@ -129,7 +129,7 @@ regressionTest(
       <div>
         <ix-key-value id="shown" label="Label" label-position="left" value="Value"></ix-key-value>
         <div id="after-shown"></div>
-        <ix-key-value id="hidden" label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+        <ix-key-value id="hidden" label="Label" label-position="left" value="Value" hide-divider></ix-key-value>
         <div id="after-hidden"></div>
       </div>
     `);

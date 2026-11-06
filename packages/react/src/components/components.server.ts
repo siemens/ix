@@ -1243,7 +1243,7 @@ export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEven
         label: 'label',
         labelPosition: 'label-position',
         value: 'value',
-        divider: 'divider'
+        hideDivider: 'hide-divider'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxKeyValue as StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue, 'label'>,
@@ -1256,7 +1256,7 @@ export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyV
     tagName: 'ix-key-value-list',
     properties: {
         striped: 'striped',
-        divider: 'divider'
+        hideDividers: 'hide-dividers'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxKeyValueList as StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>,

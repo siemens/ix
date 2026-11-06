@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'app-example',
   template: `
-    <ix-key-value-list [divider]="false">
+    <ix-key-value-list [hideDividers]="true">
       <ix-key-value
         label="Label"
         labelPosition="left"

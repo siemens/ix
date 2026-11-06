@@ -33,6 +33,6 @@ export const WithoutDivider: Story = {
     label: 'Location',
     labelPosition: 'left',
     value: 'Munich',
-    divider: false,
+    hideDivider: true,
   },
 };

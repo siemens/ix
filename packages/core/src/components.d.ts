@@ -3060,10 +3060,11 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Show a divider line below the key value. When omitted, the divider is shown (`true`). Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * Hide the divider line below the key value. Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
           * @since 6.0.0
+          * @default false
          */
-        "divider"?: boolean;
+        "hideDivider": boolean;
         /**
           * Optional key value icon
          */
@@ -3089,10 +3090,11 @@ export namespace Components {
      */
     interface IxKeyValueList {
         /**
-          * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
+          * Hide the divider lines below all key value items.
           * @since 6.0.0
+          * @default false
          */
-        "divider"?: boolean;
+        "hideDividers": boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -11695,10 +11697,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
-          * Show a divider line below the key value. When omitted, the divider is shown (`true`). Inside `ix-key-value-list`, follows the list's `divider` unless set.
+          * Hide the divider line below the key value. Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
           * @since 6.0.0
+          * @default false
          */
-        "divider"?: boolean;
+        "hideDivider"?: boolean;
         /**
           * Optional key value icon
          */
@@ -11724,10 +11727,11 @@ declare namespace LocalJSX {
      */
     interface IxKeyValueList {
         /**
-          * Show divider lines below the key value items. When omitted, dividers are shown (`true`). Items that set their own `divider` keep their value.
+          * Hide the divider lines below all key value items.
           * @since 6.0.0
+          * @default false
          */
-        "divider"?: boolean;
+        "hideDividers"?: boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -15399,11 +15403,11 @@ declare namespace LocalJSX {
         "label": string;
         "labelPosition": KeyValueLabelPosition;
         "value": string;
-        "divider": boolean;
+        "hideDivider": boolean;
     }
     interface IxKeyValueListAttributes {
         "striped": boolean;
-        "divider": boolean;
+        "hideDividers": boolean;
     }
     interface IxKpiAttributes {
         "label": string;

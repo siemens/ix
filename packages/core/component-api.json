@@ -5963,12 +5963,13 @@
           "deprecated": false
         },
         {
-          "name": "divider",
-          "attribute": "divider",
-          "type": "boolean | undefined",
+          "name": "hideDivider",
+          "attribute": "hide-divider",
+          "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
-          "optional": true,
+          "default": "false",
+          "optional": false,
           "required": false,
           "deprecated": false
         },
@@ -6028,12 +6029,13 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "divider",
-          "attribute": "divider",
-          "type": "boolean | undefined",
+          "name": "hideDividers",
+          "attribute": "hide-dividers",
+          "type": "boolean",
           "mutable": false,
           "reflectToAttribute": false,
-          "optional": true,
+          "default": "false",
+          "optional": false,
           "required": false,
           "deprecated": false
         },

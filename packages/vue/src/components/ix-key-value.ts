@@ -12,5 +12,5 @@ export const IxKeyValue: StencilVueComponent<JSX.IxKeyValue> = /*@__PURE__*/ def
   'label',
   'labelPosition',
   'value',
-  'divider'
+  'hideDivider'
 ]);

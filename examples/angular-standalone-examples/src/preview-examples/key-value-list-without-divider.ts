@@ -14,7 +14,7 @@ import { IxKeyValueList, IxKeyValue } from '@siemens/ix-angular/standalone';
   selector: 'app-example',
   imports: [IxKeyValueList, IxKeyValue],
   template: `
-    <ix-key-value-list [divider]="false">
+    <ix-key-value-list [hideDividers]="true">
       <ix-key-value
         label="Label"
         labelPosition="left"

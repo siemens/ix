@@ -32,7 +32,7 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
     <div>
       <ix-key-value-list>${keyValues(2)}</ix-key-value-list>
-      <ix-key-value-list striped divider="false">${keyValues(
+      <ix-key-value-list striped hide-dividers>${keyValues(
         2
       )}</ix-key-value-list>
     </div>
@@ -67,48 +67,30 @@ regressionTest(
   }
 );
 
-regressionTest(
-  'hides dividers on items that do not set their own divider',
-  async ({ mount, page }) => {
-    await mount(
-      `<ix-key-value-list divider="false">${keyValues(3)}</ix-key-value-list>`
-    );
+regressionTest('hides the dividers of all items', async ({ mount, page }) => {
+  await mount(
+    `<ix-key-value-list hide-dividers>${keyValues(3)}</ix-key-value-list>`
+  );
 
-    const items = page.locator('ix-key-value');
-    await expect(items).toHaveCount(3);
-    for (const item of await items.all()) {
-      await expectDividerHidden(item);
-    }
+  const items = page.locator('ix-key-value');
+  await expect(items).toHaveCount(3);
+  for (const item of await items.all()) {
+    await expectDividerHidden(item);
   }
-);
+});
 
 regressionTest(
-  'an item hiding its divider wins over a list with dividers',
+  'an item can hide its own divider in a list with dividers',
   async ({ mount, page }) => {
     await mount(`
       <ix-key-value-list>
-        <ix-key-value id="inherit" label="Label" value="Value"></ix-key-value>
-        <ix-key-value id="explicit" label="Label" value="Value" divider="false"></ix-key-value>
+        <ix-key-value id="shown" label="Label" value="Value"></ix-key-value>
+        <ix-key-value id="hidden" label="Label" value="Value" hide-divider></ix-key-value>
       </ix-key-value-list>
     `);
 
-    await expectDividerVisible(page.locator('#inherit'));
-    await expectDividerHidden(page.locator('#explicit'));
-  }
-);
-
-regressionTest(
-  'an item showing its divider wins over a list without dividers',
-  async ({ mount, page }) => {
-    await mount(`
-      <ix-key-value-list divider="false">
-        <ix-key-value id="inherit" label="Label" value="Value"></ix-key-value>
-        <ix-key-value id="explicit" label="Label" value="Value" divider></ix-key-value>
-      </ix-key-value-list>
-    `);
-
-    await expectDividerHidden(page.locator('#inherit'));
-    await expectDividerVisible(page.locator('#explicit'));
+    await expectDividerVisible(page.locator('#shown'));
+    await expectDividerHidden(page.locator('#hidden'));
   }
 );
 
@@ -116,7 +98,7 @@ regressionTest(
   'items added later follow the list divider setting',
   async ({ mount, page }) => {
     await mount(
-      `<ix-key-value-list divider="false">${keyValues(1)}</ix-key-value-list>`
+      `<ix-key-value-list hide-dividers>${keyValues(1)}</ix-key-value-list>`
     );
     const list = page.locator('ix-key-value-list');
     await expect(list).toHaveAttribute('hydrated');
@@ -137,37 +119,37 @@ regressionTest(
 );
 
 regressionTest(
-  'toggling the list divider updates items without changing their height',
+  'toggling the list dividers updates items without changing their height',
   async ({ mount, page }) => {
-    await mount(`
-      <ix-key-value-list>
-        <ix-key-value id="inherit" label="Label" label-position="left" value="Value"></ix-key-value>
-        <ix-key-value id="explicit" label="Label" label-position="left" value="Value" divider></ix-key-value>
-      </ix-key-value-list>
-    `);
+    await mount(`<ix-key-value-list>${keyValues(2)}</ix-key-value-list>`);
     const list = page.locator('ix-key-value-list');
-    const inherit = page.locator('#inherit');
-    const explicit = page.locator('#explicit');
-    await expectDividerVisible(inherit);
+    const items = page.locator('ix-key-value');
+    await expect(items).toHaveCount(2);
+    for (const item of await items.all()) {
+      await expectDividerVisible(item);
+    }
     const listHeight = await list.evaluate(
       (element) => element.getBoundingClientRect().height
     );
 
     await list.evaluate((element: HTMLIxKeyValueListElement) => {
-      element.divider = false;
+      element.hideDividers = true;
     });
 
-    await expectDividerHidden(inherit);
-    await expectDividerVisible(explicit);
+    for (const item of await items.all()) {
+      await expectDividerHidden(item);
+    }
     expect(
       await list.evaluate((element) => element.getBoundingClientRect().height)
     ).toBe(listHeight);
 
     await list.evaluate((element: HTMLIxKeyValueListElement) => {
-      element.divider = true;
+      element.hideDividers = false;
     });
 
-    await expectDividerVisible(inherit);
+    for (const item of await items.all()) {
+      await expectDividerVisible(item);
+    }
   }
 );
 
@@ -179,7 +161,7 @@ regressionTest(
         <ix-key-value-list id="with-divider" striped>${keyValues(
           2
         )}</ix-key-value-list>
-        <ix-key-value-list id="without-divider" striped divider="false">${keyValues(
+        <ix-key-value-list id="without-divider" striped hide-dividers>${keyValues(
           2
         )}</ix-key-value-list>
       </div>
@@ -269,17 +251,16 @@ regressionTest(
     await mount(`
       <div>
         <ix-key-value-list id="with-divider">${keyValues(2)}</ix-key-value-list>
-        <ix-key-value-list id="without-divider" divider="false">
-          ${keyValues(2)}
-          <ix-key-value id="explicit" label="Label" value="Value" divider></ix-key-value>
-        </ix-key-value-list>
+        <ix-key-value-list id="without-divider" hide-dividers>${keyValues(
+          2
+        )}</ix-key-value-list>
         <ix-key-value-list id="item-hidden">
-          <ix-key-value id="item-off" label="Label" label-position="left" value="Value" divider="false"></ix-key-value>
+          <ix-key-value id="item-off" label="Label" label-position="left" value="Value" hide-divider></ix-key-value>
           <ix-key-value label="Label" label-position="left" value="Value"></ix-key-value>
         </ix-key-value-list>
       </div>
     `);
-    await expect(page.locator('#explicit')).toHaveAttribute('hydrated');
+    await expect(page.locator('#item-off')).toHaveAttribute('hydrated');
 
     const withoutDivider = page.locator('#without-divider ix-key-value');
     await expect(withoutDivider.nth(0)).toHaveCSS(
@@ -290,7 +271,7 @@ regressionTest(
       'border-bottom-style',
       'none'
     );
-    await expect(page.locator('#explicit')).toHaveCSS(
+    await expect(page.locator('#with-divider ix-key-value').first()).toHaveCSS(
       'border-bottom-style',
       'solid'
     );

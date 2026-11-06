@@ -12,7 +12,7 @@ import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxKeyValueList :divider="false">
+  <IxKeyValueList hide-dividers>
     <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>
     <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>
     <IxKeyValue label="Label" label-position="left" value="Value"></IxKeyValue>

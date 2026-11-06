@@ -8,5 +8,5 @@ import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/compone
 
 export const IxKeyValueList: StencilVueComponent<JSX.IxKeyValueList> = /*@__PURE__*/ defineContainer<JSX.IxKeyValueList>('ix-key-value-list', defineIxKeyValueList, [
   'striped',
-  'divider'
+  'hideDividers'
 ]);
