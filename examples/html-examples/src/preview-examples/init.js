@@ -99,9 +99,9 @@ function detectThemeSwitching(isBrandThemeAvailable) {
 
     if (theme === 'brand' && !isBrandThemeAvailable) {
       console.warn(
-        'Brand theme requested but CSS not available - falling back to Classic theme'
+        'Brand theme requested but CSS not available - falling back to Community theme'
       );
-      theme = 'classic';
+      theme = 'community';
     }
 
     document.documentElement.dataset.ixTheme = theme;

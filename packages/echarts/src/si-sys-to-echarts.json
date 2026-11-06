@@ -11,8 +11,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/border/2": {
@@ -35,8 +35,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#9999A9",
         "Siemens Brand Light": "#66667E",
-        "Classic Dark": "#919CA1",
-        "Classic Light": "#5B6A71"
+        "Community Dark": "#919CA1",
+        "Community Light": "#5B6A71"
       }
     },
     "si/sys/border/4": {
@@ -46,8 +46,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#4C4C68",
         "Siemens Brand Light": "#E5E5E9",
-        "Classic Dark": "#405158",
-        "Classic Light": "#EBEDEE"
+        "Community Dark": "#405158",
+        "Community Light": "#EBEDEE"
       }
     },
     "transparent": {
@@ -61,8 +61,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "transparent",
         "Siemens Brand Light": "transparent",
-        "Classic Dark": "transparent",
-        "Classic Light": "transparent"
+        "Community Dark": "transparent",
+        "Community Light": "transparent"
       }
     },
     "si/sys/background/1": {
@@ -76,8 +76,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#23233C",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#1A272D",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#1A272D",
+        "Community Light": "#FFFFFF"
       }
     }
   },
@@ -89,8 +89,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     }
   },
@@ -103,8 +103,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/data/categorical/1": {
@@ -114,8 +114,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00C1B6",
         "Siemens Brand Light": "#009999",
-        "Classic Dark": "#00BDDA",
-        "Classic Light": "#0096B4"
+        "Community Dark": "#00BDDA",
+        "Community Light": "#0096B4"
       }
     },
     "si/sys/data/categorical/3": {
@@ -126,8 +126,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#01D65A",
         "Siemens Brand Light": "#00890E",
-        "Classic Dark": "#01D65A",
-        "Classic Light": "#00890E"
+        "Community Dark": "#01D65A",
+        "Community Light": "#00890E"
       }
     },
     "transparent": {
@@ -137,8 +137,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "transparent",
         "Siemens Brand Light": "transparent",
-        "Classic Dark": "transparent",
-        "Classic Light": "transparent"
+        "Community Dark": "transparent",
+        "Community Light": "transparent"
       }
     },
     "si/sys/text/accent": {
@@ -149,8 +149,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00CCCC",
         "Siemens Brand Light": "#006B80",
-        "Classic Dark": "#00C9E4",
-        "Classic Light": "#006A87"
+        "Community Dark": "#00C9E4",
+        "Community Light": "#006A87"
       }
     },
     "si/sys/border/accent": {
@@ -161,8 +161,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00CCCC",
         "Siemens Brand Light": "#006B80",
-        "Classic Dark": "#00C9E4",
-        "Classic Light": "#006A87"
+        "Community Dark": "#00C9E4",
+        "Community Light": "#006A87"
       }
     },
     "si/sys/text/on-accent": {
@@ -172,8 +172,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#000028",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#000609",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
       }
     }
   },
@@ -185,8 +185,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/text/secondary": {
@@ -196,8 +196,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#B3B3BE",
         "Siemens Brand Light": "#4C4C68",
-        "Classic Dark": "#AEB5B8",
-        "Classic Light": "#405158"
+        "Community Dark": "#AEB5B8",
+        "Community Light": "#405158"
       }
     }
   },
@@ -209,8 +209,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/background/inverse": {
@@ -221,8 +221,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/background/3": {
@@ -233,29 +233,29 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#2D2D45",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#243137",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#243137",
+        "Community Light": "#FFFFFF"
       }
     }
   },
   "colors": {
-    "si/sys/data/categorical/1": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#00C1B6", "Siemens Brand Light": "#009999", "Classic Dark": "#00BDDA", "Classic Light": "#0096B4" } },
-    "si/sys/data/categorical/2": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#00FFB9", "Siemens Brand Light": "#005159", "Classic Dark": "#00EAFF", "Classic Light": "#005159" } },
-    "si/sys/data/categorical/3": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#01D65A", "Siemens Brand Light": "#00890E", "Classic Dark": "#01D65A", "Classic Light": "#00890E" } },
-    "si/sys/data/categorical/4": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#85E9D2", "Siemens Brand Light": "#1A747D", "Classic Dark": "#85E9D2", "Classic Light": "#1A747D" } },
-    "si/sys/data/categorical/5": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#6895F6", "Siemens Brand Light": "#3664C6", "Classic Dark": "#6895F6", "Classic Light": "#3664C6" } },
-    "si/sys/data/categorical/6": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#CCF5F5", "Siemens Brand Light": "#002949", "Classic Dark": "#CCF5F5", "Classic Light": "#002949" } },
-    "si/sys/data/categorical/7": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#805CFF", "Siemens Brand Light": "#7353E5", "Classic Dark": "#805CFF", "Classic Light": "#7353E5" } },
-    "si/sys/data/categorical/8": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#BFB0F3", "Siemens Brand Light": "#553BA3", "Classic Dark": "#BFB0F3", "Classic Light": "#553BA3" } },
-    "si/sys/data/categorical/9": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#B95CC9", "Siemens Brand Light": "#740089", "Classic Dark": "#B95CC9", "Classic Light": "#740089" } },
-    "si/sys/data/categorical/10": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF2640", "Siemens Brand Light": "#D72339", "Classic Dark": "#FF2626", "Classic Light": "#D72323" } },
-    "si/sys/data/categorical/11": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#E5659B", "Siemens Brand Light": "#4F153D", "Classic Dark": "#E5659B", "Classic Light": "#4F153D" } },
-    "si/sys/data/categorical/12": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF98C4", "Siemens Brand Light": "#C04774", "Classic Dark": "#FF98C4", "Classic Light": "#C04774" } },
-    "si/sys/data/categorical/13": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#97C7FF", "Siemens Brand Light": "#00237A", "Classic Dark": "#97C7FF", "Classic Light": "#00237A" } },
-    "si/sys/data/categorical/14": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF9000", "Siemens Brand Light": "#801100", "Classic Dark": "#FF8000", "Classic Light": "#643200" } },
-    "si/sys/data/categorical/15": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FFD732", "Siemens Brand Light": "#805800", "Classic Dark": "#FFC832", "Classic Light": "#7B5A00" } },
-    "si/sys/data/categorical/16": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#AAAA96", "Siemens Brand Light": "#757563", "Classic Dark": "#AAAA96", "Classic Light": "#757563" } },
-    "si/sys/data/categorical/17": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#7D8099", "Siemens Brand Light": "#4C4C68", "Classic Dark": "#72848C", "Classic Light": "#405158" } }
+    "si/sys/data/categorical/1": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#00C1B6", "Siemens Brand Light": "#009999", "Community Dark": "#00BDDA", "Community Light": "#0096B4" } },
+    "si/sys/data/categorical/2": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#00FFB9", "Siemens Brand Light": "#005159", "Community Dark": "#00EAFF", "Community Light": "#005159" } },
+    "si/sys/data/categorical/3": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#01D65A", "Siemens Brand Light": "#00890E", "Community Dark": "#01D65A", "Community Light": "#00890E" } },
+    "si/sys/data/categorical/4": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#85E9D2", "Siemens Brand Light": "#1A747D", "Community Dark": "#85E9D2", "Community Light": "#1A747D" } },
+    "si/sys/data/categorical/5": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#6895F6", "Siemens Brand Light": "#3664C6", "Community Dark": "#6895F6", "Community Light": "#3664C6" } },
+    "si/sys/data/categorical/6": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#CCF5F5", "Siemens Brand Light": "#002949", "Community Dark": "#CCF5F5", "Community Light": "#002949" } },
+    "si/sys/data/categorical/7": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#805CFF", "Siemens Brand Light": "#7353E5", "Community Dark": "#805CFF", "Community Light": "#7353E5" } },
+    "si/sys/data/categorical/8": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#BFB0F3", "Siemens Brand Light": "#553BA3", "Community Dark": "#BFB0F3", "Community Light": "#553BA3" } },
+    "si/sys/data/categorical/9": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#B95CC9", "Siemens Brand Light": "#740089", "Community Dark": "#B95CC9", "Community Light": "#740089" } },
+    "si/sys/data/categorical/10": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF2640", "Siemens Brand Light": "#D72339", "Community Dark": "#FF2626", "Community Light": "#D72323" } },
+    "si/sys/data/categorical/11": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#E5659B", "Siemens Brand Light": "#4F153D", "Community Dark": "#E5659B", "Community Light": "#4F153D" } },
+    "si/sys/data/categorical/12": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF98C4", "Siemens Brand Light": "#C04774", "Community Dark": "#FF98C4", "Community Light": "#C04774" } },
+    "si/sys/data/categorical/13": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#97C7FF", "Siemens Brand Light": "#00237A", "Community Dark": "#97C7FF", "Community Light": "#00237A" } },
+    "si/sys/data/categorical/14": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF9000", "Siemens Brand Light": "#801100", "Community Dark": "#FF8000", "Community Light": "#643200" } },
+    "si/sys/data/categorical/15": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FFD732", "Siemens Brand Light": "#805800", "Community Dark": "#FFC832", "Community Light": "#7B5A00" } },
+    "si/sys/data/categorical/16": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#AAAA96", "Siemens Brand Light": "#757563", "Community Dark": "#AAAA96", "Community Light": "#757563" } },
+    "si/sys/data/categorical/17": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#7D8099", "Siemens Brand Light": "#4C4C68", "Community Dark": "#72848C", "Community Light": "#405158" } }
   },
   "graph": {
     "si/sys/data/categorical/1": {
@@ -266,8 +266,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00C1B6",
         "Siemens Brand Light": "#009999",
-        "Classic Dark": "#00BDDA",
-        "Classic Light": "#0096B4"
+        "Community Dark": "#00BDDA",
+        "Community Light": "#0096B4"
       }
     },
     "si/sys/text/on-accent": {
@@ -277,8 +277,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#000028",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#000609",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
       }
     }
   },
@@ -290,8 +290,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     }
   },
@@ -303,8 +303,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00CCCC",
         "Siemens Brand Light": "#006B80",
-        "Classic Dark": "#00C9E4",
-        "Classic Light": "#006A87"
+        "Community Dark": "#00C9E4",
+        "Community Light": "#006A87"
       }
     },
     "si/sys/border/1": {
@@ -314,8 +314,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/text/primary": {
@@ -325,8 +325,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "transparent": {
@@ -343,8 +343,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     }
   },
@@ -356,8 +356,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     },
     "si/sys/text/primary": {
@@ -369,8 +369,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     }
   },
@@ -382,8 +382,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     }
   },
@@ -395,8 +395,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     },
     "si/sys/text/primary": {
@@ -406,8 +406,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "transparent":{"eChartsVariable": ["pie.label.textBorderColor"]}
@@ -420,8 +420,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#23233C",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#1A272D",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#1A272D",
+        "Community Light": "#FFFFFF"
       }
     },
     "si/sys/text/primary": {
@@ -431,8 +431,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/border/1": {
@@ -442,8 +442,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/border/3": {
@@ -453,8 +453,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     }
   },
@@ -466,8 +466,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     }
   },
@@ -479,8 +479,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#66667E",
         "Siemens Brand Light": "#9999A9",
-        "Classic Dark": "#5B6A71",
-        "Classic Light": "#72848C"
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
       }
     }
   },
@@ -492,8 +492,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#B3B3BE",
         "Siemens Brand Light": "#4C4C68",
-        "Classic Dark": "#AEB5B8",
-        "Classic Light": "#405158"
+        "Community Dark": "#AEB5B8",
+        "Community Light": "#405158"
       }
     },
     "si/sys/border/accent-hover": {
@@ -503,8 +503,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00FFB9",
         "Siemens Brand Light": "#005159",
-        "Classic Dark": "#00EAFF",
-        "Classic Light": "#004F69"
+        "Community Dark": "#00EAFF",
+        "Community Light": "#004F69"
       }
     }
   },
@@ -516,8 +516,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "transparent",
         "Siemens Brand Light": "transparent",
-        "Classic Dark": "transparent",
-        "Classic Light": "transparent"
+        "Community Dark": "transparent",
+        "Community Light": "transparent"
       }
     },
     "si/sys/text/primary": {
@@ -527,8 +527,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     }
   },
@@ -541,8 +541,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#00A327",
         "Siemens Brand Light": "#00A327",
-        "Classic Dark": "#00A327",
-        "Classic Light": "#00A327"
+        "Community Dark": "#00A327",
+        "Community Light": "#00A327"
       }
     },
     "si/sys/data/rating/bad": {
@@ -553,8 +553,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#D72339",
         "Siemens Brand Light": "#D72339",
-        "Classic Dark": "#D72323",
-        "Classic Light": "#D72323"
+        "Community Dark": "#D72323",
+        "Community Light": "#D72323"
       }
     }
   },
@@ -566,8 +566,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#D72339",
         "Siemens Brand Light": "#D72339",
-        "Classic Dark": "#D72323",
-        "Classic Light": "#D72323"
+        "Community Dark": "#D72323",
+        "Community Light": "#D72323"
       }
     },
     "si/sys/background/warning": {
@@ -577,8 +577,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FF9000",
         "Siemens Brand Light": "#C75300",
-        "Classic Dark": "#FF8000",
-        "Classic Light": "#BA5D00"
+        "Community Dark": "#FF8000",
+        "Community Light": "#BA5D00"
       }
     },
     "si/sys/background/caution": {
@@ -588,8 +588,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFD732",
         "Siemens Brand Light": "#EDBF00",
-        "Classic Dark": "#FFC832",
-        "Classic Light": "#FCB900"
+        "Community Dark": "#FFC832",
+        "Community Light": "#FCB900"
       }
     }
   },
@@ -601,8 +601,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/text/on-accent": {
@@ -612,8 +612,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#000028",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#000609",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
       }
     }
   },
@@ -625,8 +625,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/text/on-accent": {
@@ -636,8 +636,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#000028",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#000609",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
       }
     }
   },
@@ -649,8 +649,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#FFFFFF",
         "Siemens Brand Light": "#000028",
-        "Classic Dark": "#FFFFFF",
-        "Classic Light": "#000609"
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
       }
     },
     "si/sys/text/on-accent": {
@@ -660,8 +660,8 @@
       "hexValuesByMode": {
         "Siemens Brand Dark": "#000028",
         "Siemens Brand Light": "#FFFFFF",
-        "Classic Dark": "#000609",
-        "Classic Light": "#FFFFFF"
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
       }
     }
   }

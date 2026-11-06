@@ -7,8 +7,8 @@ const tokenMapPath = path.join(sourceDirectory, 'si-sys-to-echarts.json');
 const themes = [
   ['brand-dark.ts', 'Siemens Brand Dark'],
   ['brand-light.ts', 'Siemens Brand Light'],
-  ['classic-dark.ts', 'Classic Dark'],
-  ['classic-light.ts', 'Classic Light'],
+  ['community-dark.ts', 'Community Dark'],
+  ['community-light.ts', 'Community Light'],
 ];
 
 const hexPattern = /^#[0-9A-Fa-f]{6}$/;
