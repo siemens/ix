@@ -45,6 +45,15 @@ let numberInputIds = 0;
 
 const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 
+/** Delay before a held stepper button starts to auto-repeat (ms) */
+const STEPPER_REPEAT_DELAY = 400;
+/** First auto-repeat interval of a held stepper button (ms) */
+const STEPPER_REPEAT_INTERVAL = 100;
+/** Fastest auto-repeat interval of a held stepper button (ms) */
+const STEPPER_REPEAT_MIN_INTERVAL = 25;
+/** Factor applied to the interval after each repeat to speed up stepping */
+const STEPPER_REPEAT_ACCELERATION = 0.9;
+
 /**
  * Text input for entering and validating a numeric value.
  *
@@ -163,7 +172,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Prop() allowedCharactersPattern?: string;
 
   /**
-   * Indicates if the stepper buttons should be shown
+   * Indicates if the stepper buttons should be shown.
+   * Pressing and holding a stepper button keeps stepping the value
+   * (mouse, pen and touch), speeding up the longer the button is held.
    */
   @Prop() showStepperButtons?: boolean;
 
@@ -229,6 +240,17 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
+  private stepperRepeatTimeout?: ReturnType<typeof setTimeout>;
+  private stepperPointerId?: number;
+  private stepperPressedByPointer = false;
+
+  @Watch('disabled')
+  @Watch('readonly')
+  @Watch('showStepperButtons')
+  onStepperAvailabilityChange() {
+    this.stopStepperRepeat();
+  }
+
   @Watch('value')
   onValueChange(newValue: number | undefined) {
     this.updateOptionalFormInternalValue(newValue);
@@ -260,6 +282,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   disconnectedCallback() {
     this.disposableChangesAndVisibilityObservers?.();
+    this.stopStepperRepeat();
   }
 
   private updatePaddings() {
@@ -400,9 +423,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
     );
   }
 
-  private handleStepOperation(operation: 'up' | 'down') {
+  /**
+   * Steps the value up or down once.
+   * Returns false if the value could not move further in this direction
+   * (min or max reached), so a held stepper button can stop repeating.
+   */
+  private handleStepOperation(operation: 'up' | 'down'): boolean {
     if (!this.inputRef.current) {
-      return;
+      return false;
     }
 
     const currentValue =
@@ -427,22 +455,134 @@ export class NumberInput implements IxInputFieldComponent<number> {
     );
     newValue = Number(newValue.toFixed(decimalPlaces));
 
+    let reachedLimit = false;
+
     if (this.min !== undefined) {
       const minValue =
         typeof this.min === 'string' ? Number.parseFloat(this.min) : this.min;
       newValue = Math.max(newValue, minValue);
+      reachedLimit ||= operation === 'down' && newValue <= minValue;
     }
 
     if (this.max !== undefined) {
       const maxValue =
         typeof this.max === 'string' ? Number.parseFloat(this.max) : this.max;
       newValue = Math.min(newValue, maxValue);
+      reachedLimit ||= operation === 'up' && newValue >= maxValue;
     }
 
     this.inputRef.current.value = newValue.toString();
     this.updateFormInternalValue(newValue);
     checkInternalValidity(this, this.inputRef.current);
     this.handleValueChangeEvent(newValue);
+
+    return !reachedLimit && Number.isFinite(newValue);
+  }
+
+  private readonly handleStepperPointerDown = (
+    event: PointerEvent,
+    operation: 'up' | 'down'
+  ) => {
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
+    // Only the primary mouse button steps, like a native click
+    if (event.pointerType === 'mouse' && event.button !== 0) {
+      return;
+    }
+
+    this.stopStepperRepeat();
+    this.stepperPressedByPointer = true;
+
+    if (!this.handleStepOperation(operation)) {
+      return;
+    }
+
+    this.stepperPointerId = event.pointerId;
+    this.addStepperReleaseListeners();
+    this.scheduleStepperRepeat(operation, STEPPER_REPEAT_DELAY, 0);
+  };
+
+  private scheduleStepperRepeat(
+    operation: 'up' | 'down',
+    delay: number,
+    repeatCount: number
+  ) {
+    this.stepperRepeatTimeout = setTimeout(() => {
+      if (!this.handleStepOperation(operation)) {
+        this.stopStepperRepeat();
+        return;
+      }
+
+      const nextInterval = Math.max(
+        STEPPER_REPEAT_MIN_INTERVAL,
+        STEPPER_REPEAT_INTERVAL *
+          Math.pow(STEPPER_REPEAT_ACCELERATION, repeatCount)
+      );
+      this.scheduleStepperRepeat(operation, nextInterval, repeatCount + 1);
+    }, delay);
+  }
+
+  private readonly handleStepperPointerRelease = (event: Event) => {
+    const pointerId = (event as PointerEvent).pointerId;
+    if (
+      pointerId !== undefined &&
+      this.stepperPointerId !== undefined &&
+      pointerId !== this.stepperPointerId
+    ) {
+      return;
+    }
+    this.stopStepperRepeat();
+  };
+
+  private readonly stopStepperRepeatListener = () => this.stopStepperRepeat();
+
+  private addStepperReleaseListeners() {
+    // Listen on window so releasing the pointer anywhere ends the repeat
+    window.addEventListener('pointerup', this.handleStepperPointerRelease);
+    window.addEventListener('pointercancel', this.handleStepperPointerRelease);
+    window.addEventListener('blur', this.stopStepperRepeatListener);
+    document.addEventListener(
+      'visibilitychange',
+      this.stopStepperRepeatListener
+    );
+  }
+
+  private stopStepperRepeat() {
+    if (this.stepperRepeatTimeout !== undefined) {
+      clearTimeout(this.stepperRepeatTimeout);
+      this.stepperRepeatTimeout = undefined;
+    }
+    this.stepperPointerId = undefined;
+    window.removeEventListener('pointerup', this.handleStepperPointerRelease);
+    window.removeEventListener(
+      'pointercancel',
+      this.handleStepperPointerRelease
+    );
+    window.removeEventListener('blur', this.stopStepperRepeatListener);
+    document.removeEventListener(
+      'visibilitychange',
+      this.stopStepperRepeatListener
+    );
+  }
+
+  private readonly handleStepperContextMenu = (event: MouseEvent) => {
+    // A touch long press opens the context menu while the button is held
+    if (this.stepperPointerId !== undefined) {
+      event.preventDefault();
+    }
+  };
+
+  private handleStepperClick(event: MouseEvent, operation: 'up' | 'down') {
+    // Pointer presses already stepped on pointerdown. Only clicks without a
+    // pointer press (keyboard activation, programmatic click) step here.
+    const pressedByPointer = this.stepperPressedByPointer;
+    this.stepperPressedByPointer = false;
+
+    if (event.detail === 0 || !pressedByPointer) {
+      this.handleStepOperation(operation);
+    }
   }
 
   /** @internal */
@@ -585,7 +725,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   size="16"
                   class="number-stepper-button step-minus"
                   aria-label="decrement number"
-                  onClick={() => this.handleStepOperation('down')}
+                  onPointerDown={(event: PointerEvent) =>
+                    this.handleStepperPointerDown(event, 'down')
+                  }
+                  onPointerLeave={this.handleStepperPointerRelease}
+                  onContextMenu={this.handleStepperContextMenu}
+                  onClick={(event: MouseEvent) =>
+                    this.handleStepperClick(event, 'down')
+                  }
                 ></ix-icon-button>
                 <ix-icon-button
                   variant="subtle-tertiary"
@@ -593,7 +740,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
                   size="16"
                   class="number-stepper-button step-plus"
                   aria-label="increment number"
-                  onClick={() => this.handleStepOperation('up')}
+                  onPointerDown={(event: PointerEvent) =>
+                    this.handleStepperPointerDown(event, 'up')
+                  }
+                  onPointerLeave={this.handleStepperPointerRelease}
+                  onContextMenu={this.handleStepperContextMenu}
+                  onClick={(event: MouseEvent) =>
+                    this.handleStepperClick(event, 'up')
+                  }
                 ></ix-icon-button>
               </div>
             </SlotEnd>
