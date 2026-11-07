@@ -433,4 +433,12 @@ regressionTest.describe('Home and End keys', () => {
       }
     );
   });
+
+  regressionTest('allows typing a space character into the input', async ({ mount, page }) => {
+    await mount(`<ix-category-filter></ix-category-filter>`);
+    const input = page.locator('ix-category-filter input').first();
+    await input.click();
+    await page.keyboard.type('env 1');
+    await expect(input).toHaveValue('env 1');
+  });
 });

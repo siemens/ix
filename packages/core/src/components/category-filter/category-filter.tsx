@@ -432,9 +432,9 @@ export class CategoryFilter {
   }
 
   private handleInputElementKeyDown(e: KeyboardEvent) {
-    // The host is the dropdown trigger, which would otherwise treat Home/End
-    // as dropdown navigation and cancel the native caret movement.
-    if (e.key === 'Home' || e.key === 'End') {
+    // The host is the dropdown trigger, which would otherwise treat Home/End/Space
+    // as dropdown navigation and cancel the native caret movement or space typing.
+    if (e.key === 'Home' || e.key === 'End' || e.key === ' ') {
       e.stopPropagation();
       return;
     }
