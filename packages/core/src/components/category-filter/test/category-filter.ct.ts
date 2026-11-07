@@ -436,9 +436,14 @@ regressionTest.describe('Home and End keys', () => {
 
   regressionTest('allows typing a space character into the input', async ({ mount, page }) => {
     await mount(`<ix-category-filter></ix-category-filter>`);
+    const categoryFilter = page.locator('ix-category-filter');
+    await expect(categoryFilter).toHaveAttribute('hydrated');
+    await expect(categoryFilter).toHaveAttribute('data-ix-dropdown-trigger', /.+/);
     const input = page.locator('ix-category-filter input').first();
-    await input.click();
-    await page.keyboard.type('env 1');
-    await expect(input).toHaveValue('env 1');
+    await input.focus();
+    await expect(input).toBeFocused();
+    await expect(getDropdown(page)).toHaveJSProperty('show', false);
+    await page.keyboard.type(' env 1');
+    await expect(input).toHaveValue(' env 1');
   });
 });
