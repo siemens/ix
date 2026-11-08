@@ -2300,7 +2300,6 @@ export namespace Components {
         "label"?: string | null;
         /**
           * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
-          * @since 6.0.0
          */
         "navigationBoundaryHandler"?: NavigationBoundaryHandler;
         /**
@@ -10928,7 +10927,6 @@ declare namespace LocalJSX {
         "label"?: string | null;
         /**
           * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
-          * @since 6.0.0
          */
         "navigationBoundaryHandler"?: NavigationBoundaryHandler;
         /**
