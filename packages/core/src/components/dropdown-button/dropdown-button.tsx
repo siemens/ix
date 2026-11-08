@@ -142,7 +142,6 @@ export class DropdownButton
    * item, instead of wrapping around.
    *
    * @internal
-   * @since 6.0.0
    */
   @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
 
