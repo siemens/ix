@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { waitForComponentReady } from '../utils/component-ready';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -828,7 +829,7 @@ export class CategoryFilter {
     tokenList: HTMLElement,
     chips: HTMLIxFilterChipElement[]
   ) {
-    await Promise.all(chips.map((chip) => chip.componentOnReady()));
+    await Promise.all(chips.map((chip) => waitForComponentReady(chip)));
     tokenList.scrollTop = tokenList.scrollHeight;
   }
 
