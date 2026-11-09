@@ -735,6 +735,123 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await expect(dropdown).toBeVisible();
 });
 
+regressionTest.describe('navigation boundary handler', () => {
+  type BoundaryWindow = Window & {
+    releaseBoundary: () => void;
+    itemClicks: string[];
+  };
+
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(html`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+    await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
+
+    // The handler appends "Item 4" but only resolves once the test releases it,
+    // so the pending phase can be asserted deterministically.
+    await page.locator('ix-dropdown').evaluate((dropdown) => {
+      const win = window as unknown as BoundaryWindow;
+      win.itemClicks = [];
+      dropdown.addEventListener('click', (event) => {
+        const item = (event.target as HTMLElement).closest('ix-dropdown-item');
+        if (item) {
+          win.itemClicks.push(item.label ?? '');
+        }
+      });
+      (dropdown as HTMLIxDropdownElement).navigationBoundaryHandler = () =>
+        new Promise((resolve) => {
+          win.releaseBoundary = () => {
+            const item = document.createElement('ix-dropdown-item');
+            item.label = 'Item 4';
+            dropdown.appendChild(item);
+            requestAnimationFrame(() => resolve(item));
+          };
+        });
+    });
+
+    await page.locator('#trigger').focus();
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('End');
+    await expect(page.getByRole('menuitem', { name: 'Item 3' })).toHaveClass(
+      /ix-focused/
+    );
+  });
+
+  const itemClicks = (page: Page) =>
+    page.evaluate(() => (window as unknown as BoundaryWindow).itemClicks);
+
+  regressionTest(
+    'discards keys and clicks while the handler is pending',
+    async ({ page }) => {
+      const dropdown = page.locator('ix-dropdown');
+
+      await page.keyboard.press('ArrowDown');
+      await expect(dropdown).toHaveAttribute('aria-busy', 'true');
+
+      await page.keyboard.press('ArrowUp');
+      await page.keyboard.press('Enter');
+      await expect(page.getByRole('menuitem', { name: 'Item 3' })).toHaveClass(
+        /ix-focused/
+      );
+
+      await page.getByRole('menuitem', { name: 'Item 1' }).click();
+      await expect(dropdown).toBeVisible();
+      expect(await itemClicks(page)).toEqual([]);
+
+      await page.evaluate(() =>
+        (window as unknown as BoundaryWindow).releaseBoundary()
+      );
+
+      await expect(dropdown).not.toHaveAttribute('aria-busy');
+      expect(await itemClicks(page)).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'discards keys until the resolved item is active',
+    async ({ page }) => {
+      await page.keyboard.press('ArrowDown');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute(
+        'aria-busy',
+        'true'
+      );
+
+      // Enter right after the handler resolves, before the next animation frame
+      // applies the new active item.
+      await page.evaluate(
+        () =>
+          new Promise<void>((done) => {
+            const win = window as unknown as BoundaryWindow;
+            win.releaseBoundary();
+            requestAnimationFrame(() =>
+              setTimeout(() => {
+                document.querySelector('#trigger')!.dispatchEvent(
+                  new KeyboardEvent('keydown', {
+                    key: 'Enter',
+                    bubbles: true,
+                    composed: true,
+                    cancelable: true,
+                  })
+                );
+                done();
+              })
+            );
+          })
+      );
+
+      await expect(page.getByRole('menuitem', { name: 'Item 4' })).toHaveClass(
+        /ix-focused/
+      );
+      expect(await itemClicks(page)).toEqual([]);
+    }
+  );
+});
+
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
     regressionTest.beforeEach(async ({ mount, page }) => {

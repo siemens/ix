@@ -76,6 +76,7 @@ import {
   configureKeyboardInteraction,
   createRovingTabindexInteraction,
   initRovingTabindex,
+  type NavigationBoundaryHandler,
 } from './dropdown-focus';
 import { AlignedPlacement, DropdownAnchorPosition } from './placement';
 
@@ -294,6 +295,15 @@ export class Dropdown
   @Prop() hostRole?: string;
 
   /**
+   * Resolves the item to activate when arrow keys move past the first or last
+   * item, instead of wrapping around.
+   *
+   * @internal
+   * @since 6.0.0
+   */
+  @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
+
+  /**
    * @internal
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
@@ -313,6 +323,9 @@ export class Dropdown
   @Event() showChanged!: EventEmitter<boolean>;
 
   @State() fallbackPlacement?: AlignedPlacement;
+
+  /** Set while the navigation boundary handler renders more items. */
+  @State() navigationBoundaryPending = false;
 
   /**
    * Will be fired only after dropdown changed visibility to "true"
@@ -1043,6 +1056,12 @@ export class Dropdown
             activeElement?.click();
           },
           itemTriggerKeys: this.keyboardItemTriggerKeys,
+          // Read lazily so the handler can be set after the dropdown opened.
+          onNavigationBoundary: (direction) =>
+            this.navigationBoundaryHandler?.(direction),
+          onNavigationBoundaryPendingChange: (pending) => {
+            this.navigationBoundaryPending = pending;
+          },
           ...(this.isRovingTabindex
             ? {
                 ...createRovingTabindexInteraction(getItemsHost),
@@ -1484,6 +1503,20 @@ export class Dropdown
     return trigger;
   }
 
+  /**
+   * While keyboard navigation waits for more items to render, clicks are
+   * discarded like keys are: they must neither activate an item nor close the
+   * dropdown as an inside click.
+   */
+  private onDropdownClickCapture(event: PointerEvent) {
+    if (!this.navigationBoundaryPending) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   private onDropdownClick(event: PointerEvent) {
     if (
       dropdownController.pathIncludesChildOverlay(this, event.composedPath())
@@ -1659,6 +1692,7 @@ export class Dropdown
     return (
       <Host
         {...ariaAttributes}
+        aria-busy={this.navigationBoundaryPending ? 'true' : undefined}
         tabindex={this.isHostFocused() ? -1 : undefined}
         aria-modal={isDialogRole ? 'true' : undefined}
         data-ix-dropdown={this.dropdownElementId}
@@ -1677,6 +1711,9 @@ export class Dropdown
                 minWidth: '0px',
                 position: this.positioningStrategy,
               }
+        }
+        onClickCapture={(event: PointerEvent) =>
+          this.onDropdownClickCapture(event)
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
