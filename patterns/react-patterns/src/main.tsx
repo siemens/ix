@@ -21,10 +21,10 @@ const applyThemeFromQueryParams = () => {
   const rawTheme = queryParams.get('theme');
   const rawColorSchema = queryParams.get('colorSchema');
 
-  const fallbackTheme = corporateThemeAvailable ? 'brand' : 'classic';
+  const fallbackTheme = corporateThemeAvailable ? 'brand' : 'community';
   const resolvedTheme =
     rawTheme === 'brand' && !corporateThemeAvailable
-      ? 'classic'
+      ? 'community'
       : rawTheme ?? fallbackTheme;
 
   document.documentElement.setAttribute('data-ix-theme', resolvedTheme);

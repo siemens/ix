@@ -63,6 +63,7 @@ import {
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
+import { getClippedSides, getClippingThresholds } from '../utils/rect';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { closestPassShadow } from '../utils/shadow-dom';
 import {
@@ -76,6 +77,7 @@ import {
   configureKeyboardInteraction,
   createRovingTabindexInteraction,
   initRovingTabindex,
+  type NavigationBoundaryHandler,
 } from './dropdown-focus';
 import { AlignedPlacement, DropdownAnchorPosition } from './placement';
 
@@ -294,6 +296,15 @@ export class Dropdown
   @Prop() hostRole?: string;
 
   /**
+   * Resolves the item to activate when arrow keys move past the first or last
+   * item, instead of wrapping around.
+   *
+   * @internal
+   * @since 6.0.0
+   */
+  @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
+
+  /**
    * @internal
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
@@ -313,6 +324,9 @@ export class Dropdown
   @Event() showChanged!: EventEmitter<boolean>;
 
   @State() fallbackPlacement?: AlignedPlacement;
+
+  /** Set while the navigation boundary handler renders more items. */
+  @State() navigationBoundaryPending = false;
 
   /**
    * Will be fired only after dropdown changed visibility to "true"
@@ -685,18 +699,40 @@ export class Dropdown
   }
 
   private addObserverForTriggerVisibility() {
-    if (this.intersectObserverTrigger) {
-      this.intersectObserverTrigger.disconnect();
-    }
+    this.disconnectObserverForTriggerVisibility();
 
     if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
 
-    if (!this.triggerElement) {
+    this.observeTriggerVisibility();
+  }
+
+  private disconnectObserverForTriggerVisibility() {
+    this.intersectObserverTrigger?.disconnect();
+    this.intersectObserverTrigger = undefined;
+  }
+
+  /**
+   * The observer only reports crossings of area ratios captured from the
+   * trigger size at creation. Re-creating it delivers a fresh entry and
+   * refreshes the ratios for the current trigger size.
+   */
+  private refreshObserverForTriggerVisibility() {
+    if (!this.intersectObserverTrigger) {
       return;
     }
 
+    this.disconnectObserverForTriggerVisibility();
+    this.observeTriggerVisibility();
+  }
+
+  private observeTriggerVisibility() {
+    if (!this.triggerElement || !this.anchorElement) {
+      return;
+    }
+
+    const anchorElement = this.anchorElement;
     this.intersectObserverTrigger = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -705,42 +741,45 @@ export class Dropdown
             return;
           }
 
-          const isTopHidden =
-            entry.intersectionRect.top > entry.boundingClientRect.top;
-          const isBottomHidden =
-            entry.intersectionRect.bottom < entry.boundingClientRect.bottom;
-          const isLeftHidden =
-            entry.intersectionRect.left > entry.boundingClientRect.left;
-          const isRightHidden =
-            entry.intersectionRect.right < entry.boundingClientRect.right;
+          const clipped = getClippedSides(
+            entry.boundingClientRect,
+            entry.intersectionRect
+          );
 
-          this.fallbackPlacement = undefined;
+          // Assign the state only once, as every change re-renders and
+          // re-creates this observer through the position update
+          let fallbackPlacement: AlignedPlacement | undefined;
 
-          if (isTopHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('bottom');
+          if (clipped.top) {
+            fallbackPlacement = this.createFallbackPlacement('bottom');
           }
 
-          if (isBottomHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('top');
+          if (clipped.bottom) {
+            fallbackPlacement = this.createFallbackPlacement('top');
           }
 
-          if (isLeftHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('right');
+          if (clipped.left) {
+            fallbackPlacement = this.createFallbackPlacement('right');
           }
 
-          if (isRightHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('left');
+          if (clipped.right) {
+            fallbackPlacement = this.createFallbackPlacement('left');
           }
+
+          this.fallbackPlacement = fallbackPlacement;
         });
       },
       {
-        threshold: [0, 0.5, 1],
+        threshold: [
+          0,
+          0.5,
+          ...getClippingThresholds(anchorElement.getBoundingClientRect()),
+          1,
+        ],
       }
     );
 
-    if (this.anchorElement) {
-      this.intersectObserverTrigger.observe(this.anchorElement);
-    }
+    this.intersectObserverTrigger.observe(anchorElement);
   }
 
   private createFallbackPlacement(
@@ -1043,6 +1082,12 @@ export class Dropdown
             activeElement?.click();
           },
           itemTriggerKeys: this.keyboardItemTriggerKeys,
+          // Read lazily so the handler can be set after the dropdown opened.
+          onNavigationBoundary: (direction) =>
+            this.navigationBoundaryHandler?.(direction),
+          onNavigationBoundaryPendingChange: (pending) => {
+            this.navigationBoundaryPending = pending;
+          },
           ...(this.isRovingTabindex
             ? {
                 ...createRovingTabindexInteraction(getItemsHost),
@@ -1277,7 +1322,7 @@ export class Dropdown
   }
 
   private cleanupOnHide() {
-    this.intersectObserverTrigger?.disconnect();
+    this.disconnectObserverForTriggerVisibility();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.keyboardNavigationCleanup = undefined;
@@ -1424,6 +1469,9 @@ export class Dropdown
       referenceElement,
       targetElement,
       async () => {
+        // Re-evaluate trigger clipping on every scroll or resize
+        this.refreshObserverForTriggerVisibility();
+
         const computeResponse = await computePosition(
           referenceElement,
           targetElement,
@@ -1482,6 +1530,20 @@ export class Dropdown
     const trigger = !!element.hasAttribute('data-ix-dropdown-trigger');
 
     return trigger;
+  }
+
+  /**
+   * While keyboard navigation waits for more items to render, clicks are
+   * discarded like keys are: they must neither activate an item nor close the
+   * dropdown as an inside click.
+   */
+  private onDropdownClickCapture(event: PointerEvent) {
+    if (!this.navigationBoundaryPending) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   private onDropdownClick(event: PointerEvent) {
@@ -1659,6 +1721,7 @@ export class Dropdown
     return (
       <Host
         {...ariaAttributes}
+        aria-busy={this.navigationBoundaryPending ? 'true' : undefined}
         tabindex={this.isHostFocused() ? -1 : undefined}
         aria-modal={isDialogRole ? 'true' : undefined}
         data-ix-dropdown={this.dropdownElementId}
@@ -1677,6 +1740,9 @@ export class Dropdown
                 minWidth: '0px',
                 position: this.positioningStrategy,
               }
+        }
+        onClickCapture={(event: PointerEvent) =>
+          this.onDropdownClickCapture(event)
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
