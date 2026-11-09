@@ -96,6 +96,8 @@ const itemPropertyDefaults: Required<
 };
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/list/guide.md
+ * @figma-main-component-id 124354:231473
  * @slot default - List items and optional group separators.
  * @since 6.0.0
  */

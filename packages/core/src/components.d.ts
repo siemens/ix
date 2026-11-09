@@ -3227,6 +3227,8 @@ export namespace Components {
         "url"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/list/guide.md
+     * @figma-main-component-id 124354:231473
      * @since 6.0.0
      */
     interface IxList {
@@ -3316,6 +3318,8 @@ export namespace Components {
         "variant"?: ListItemVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/list/guide.md
+     * @figma-main-component-id 124221:389212
      * @since 6.0.0
      */
     interface IxListItem {
@@ -7403,6 +7407,8 @@ declare global {
         "itemOrderChange": ListItemOrderChangeEvent;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/list/guide.md
+     * @figma-main-component-id 124354:231473
      * @since 6.0.0
      */
     interface HTMLIxListElement extends Components.IxList, HTMLStencilElement {
@@ -7424,6 +7430,8 @@ declare global {
         "selectedChange": boolean;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/list/guide.md
+     * @figma-main-component-id 124221:389212
      * @since 6.0.0
      */
     interface HTMLIxListItemElement extends Components.IxListItem, HTMLStencilElement {
@@ -11903,6 +11911,8 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/list/guide.md
+     * @figma-main-component-id 124354:231473
      * @since 6.0.0
      */
     interface IxList {
@@ -11997,6 +12007,8 @@ declare namespace LocalJSX {
         "variant"?: ListItemVariant;
     }
     /**
+     * @documentation https://ix.siemens.io//docs/components/list/guide.md
+     * @figma-main-component-id 124221:389212
      * @since 6.0.0
      */
     interface IxListItem {
@@ -16603,10 +16615,14 @@ declare module "@stencil/core" {
              */
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/list/guide.md
+             * @figma-main-component-id 124354:231473
              * @since 6.0.0
              */
             "ix-list": LocalJSX.IntrinsicElements["ix-list"] & JSXBase.HTMLAttributes<HTMLIxListElement>;
             /**
+             * @documentation https://ix.siemens.io//docs/components/list/guide.md
+             * @figma-main-component-id 124221:389212
              * @since 6.0.0
              */
             "ix-list-item": LocalJSX.IntrinsicElements["ix-list-item"] & JSXBase.HTMLAttributes<HTMLIxListItemElement>;

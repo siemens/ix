@@ -53,6 +53,8 @@ const interactiveElementSelector = [
 ].join(',');
 
 /**
+ * @documentation https://ix.siemens.io//docs/components/list/guide.md
+ * @figma-main-component-id 124221:389212
  * @slot default - Non-interactive custom content rendered after the standard icon, label, and description layout.
  * @slot action - Interactive trailing controls that do not activate the item.
  * @since 6.0.0
