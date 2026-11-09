@@ -225,6 +225,39 @@ regressionTest('set date from a button', async ({ mount, page }) => {
   await expect(button).toHaveText(/2024\/02\/17 \- 2024\/02\/27/);
 });
 
+regressionTest(
+  'displays the selected range in displayFormat',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-dropdown from="2099/02/17" to="2099/02/27" display-format="yy/LL/dd"></ix-date-dropdown>`
+    );
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    const button = dateDropdown.locator('[data-date-dropdown-trigger]');
+
+    await expect(button).toHaveText(/99\/02\/17 - 99\/02\/27/);
+
+    const range = await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) =>
+      el.getDateRange()
+    );
+    expect(range.from).toBe('2099/02/17');
+    expect(range.to).toBe('2099/02/27');
+  }
+);
+
+regressionTest(
+  'displays a single date with a locale-dependent displayFormat',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-dropdown from="2023/03/05" to="2023/03/05" locale="de" display-format="dd MMMM yyyy"></ix-date-dropdown>`
+    );
+    const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+    const button = dateDropdown.locator('[data-date-dropdown-trigger]');
+
+    await expect(button).toHaveText(/05 März 2023/);
+    await expect(button).not.toHaveText(/ - /);
+  }
+);
+
 regressionTest('select different year', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown from="2024/02/16"></ix-date-dropdown>`);
   const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);

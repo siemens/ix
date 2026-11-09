@@ -7,6 +7,7 @@
 import { DateTime } from 'luxon';
 import { describe, expect, it } from 'vitest';
 import {
+  convertDateFormat,
   formatWithLocale,
   parseWithLocale,
   toISODate,
@@ -69,6 +70,39 @@ describe('parseWithLocale', () => {
   it('returns an invalid DateTime for a mismatched format', () => {
     const result = parseWithLocale('Aug 6, 2014', 'yyyy/LL/dd');
     expect(result.isValid).toBe(false);
+  });
+});
+
+describe('convertDateFormat', () => {
+  it('converts a value into another format', () => {
+    expect(convertDateFormat('2099/03/04', 'yyyy/LL/dd', 'yy/LL/dd')).toBe(
+      '99/03/04'
+    );
+    expect(convertDateFormat('04.03.2099', 'dd.LL.yyyy', 'yyyy/LL/dd')).toBe(
+      '2099/03/04'
+    );
+  });
+
+  it('converts locale-dependent tokens using the given locale', () => {
+    expect(
+      convertDateFormat('2023/03/05', 'yyyy/LL/dd', 'dd MMMM yyyy', 'de')
+    ).toBe('05 März 2023');
+  });
+
+  it('returns the value unchanged when both formats are identical', () => {
+    expect(convertDateFormat('2023/3/5', 'yyyy/L/d', 'yyyy/L/d')).toBe(
+      '2023/3/5'
+    );
+  });
+
+  it('returns the value unchanged when it does not match the source format', () => {
+    expect(convertDateFormat('not a date', 'yyyy/LL/dd', 'yy/LL/dd')).toBe(
+      'not a date'
+    );
+  });
+
+  it('returns an empty value unchanged', () => {
+    expect(convertDateFormat('', 'yyyy/LL/dd', 'yy/LL/dd')).toBe('');
   });
 });
 

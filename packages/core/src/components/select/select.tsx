@@ -57,6 +57,7 @@ import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
+import { waitForComponentReady } from '../utils/component-ready';
 import { makeRef } from '../utils/make-ref';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
@@ -1247,16 +1248,6 @@ export class Select
     this.applyOverflowState(visible, hidden);
   }
 
-  private async waitForComponentReady(element?: HTMLElement) {
-    const stencilComponent = element as
-      | Partial<{ componentOnReady: () => Promise<unknown> }>
-      | undefined;
-
-    if (typeof stencilComponent?.componentOnReady === 'function') {
-      await stencilComponent.componentOnReady();
-    }
-  }
-
   private waitForNextFrame() {
     return new Promise<void>((resolve) =>
       requestAnimationFrameNoNgZone(() => resolve())
@@ -1265,7 +1256,7 @@ export class Select
 
   private async waitForChipLayout(elements: (HTMLElement | undefined)[]) {
     await Promise.all(
-      elements.map((element) => this.waitForComponentReady(element))
+      elements.map((element) => waitForComponentReady(element))
     );
     await this.waitForNextFrame();
   }

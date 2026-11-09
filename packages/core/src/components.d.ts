@@ -35,6 +35,7 @@ import { ElementReference } from "./components/utils/element-reference";
 import { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { FocusTrapOptions } from "./components/utils/focus/focus-trap";
+import { NavigationBoundaryHandler } from "./components/dropdown/dropdown-focus";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 import { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 import { EmptyStateLayout } from "./components/empty-state/empty-state.types";
@@ -43,6 +44,8 @@ import { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 import { IconButtonVariant } from "./components/icon-button/icon-button.types";
 import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { KpiState } from "./components/kpi/kpi.types";
+import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
+import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { MessageBarType } from "./components/message-bar/message-bar.types";
 import { IxModalSize } from "./components/modal/modal.types";
@@ -94,6 +97,7 @@ export { ElementReference } from "./components/utils/element-reference";
 export { AlignedPlacement, DropdownAnchorPosition } from "./components/dropdown/placement";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { FocusTrapOptions } from "./components/utils/focus/focus-trap";
+export { NavigationBoundaryHandler } from "./components/dropdown/dropdown-focus";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button.types";
 export { IxDropdownItemRole } from "./components/dropdown-item/dropdown-item.types";
 export { EmptyStateLayout } from "./components/empty-state/empty-state.types";
@@ -102,6 +106,8 @@ export { FlipTileVariant } from "./components/flip-tile/flip-tile.types";
 export { IconButtonVariant } from "./components/icon-button/icon-button.types";
 export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { KpiState } from "./components/kpi/kpi.types";
+export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
+export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { MessageBarType } from "./components/message-bar/message-bar.types";
 export { IxModalSize } from "./components/modal/modal.types";
@@ -195,9 +201,32 @@ export namespace Components {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableSkipLinks": boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint": Breakpoint | undefined;
+        /**
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter": string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
+          * @since 6.0.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToMain": string;
+        /**
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
+          * @since 6.0.0
+         */
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -1288,6 +1317,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -1420,6 +1454,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -1479,7 +1518,7 @@ export namespace Components {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -1742,6 +1781,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
          */
@@ -1751,7 +1795,7 @@ export namespace Components {
          */
         "focusInput": () => Promise<void>;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format": string;
@@ -1890,7 +1934,7 @@ export namespace Components {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+          * Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -2148,6 +2192,11 @@ export namespace Components {
          */
         "keyboardItemTriggerKeys": string[];
         /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+          * @since 6.0.0
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
+        /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
           * @since 5.2.0
           * @default 'active-descendant'
@@ -2254,6 +2303,10 @@ export namespace Components {
           * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
         /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
           * @since 5.2.0
@@ -2377,6 +2430,11 @@ export namespace Components {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -2389,10 +2447,6 @@ export namespace Components {
           * @default 'large'
          */
         "layout": EmptyStateLayout;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -3181,6 +3235,186 @@ export namespace Components {
           * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxList {
+        /**
+          * Show action content on hover or focus for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Default action slot alignment for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
+          * Enable activation for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "active"?: boolean;
+        /**
+          * Display selection checkboxes on list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "checkbox"?: boolean;
+        /**
+          * Default disabled state for list items that do not define their own state.
+          * @since 6.0.0
+         */
+        "disabled"?: boolean;
+        /**
+          * Display dividers between direct list items with the `ghost` variant.
+          * @since 6.0.0
+          * @default false
+         */
+        "divider": boolean;
+        /**
+          * Visual behavior used while dragging a list item.
+          * @since 6.0.0
+          * @default 'dynamic'
+         */
+        "dragBehavior": ListDragBehavior;
+        /**
+          * Enable drag-and-drop reordering of direct list items.
+          * @since 6.0.0
+          * @default false
+         */
+        "draggable": boolean;
+        /**
+          * i18n fallback label for list items without a label.
+          * @since 6.0.0
+          * @default 'List item'
+         */
+        "i18nListItem": string;
+        /**
+          * i18n announcement when list item reordering is cancelled. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} reorder cancelled.'
+         */
+        "i18nReorderCancelled": string;
+        /**
+          * i18n announcement when a reordered list item is dropped. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item} dropped at position {position} of {total}.'
+         */
+        "i18nReorderDropped": string;
+        /**
+          * i18n announcement when a list item is lifted for reordering. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.'
+         */
+        "i18nReorderLifted": string;
+        /**
+          * i18n announcement when a list item changes position. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item}, position {position} of {total}'
+         */
+        "i18nReorderPosition": string;
+        /**
+          * Space between direct list items.
+          * @since 6.0.0
+          * @default 'sm'
+         */
+        "itemGap": ListItemGap;
+        /**
+          * Default visual variant for list items that do not define their own variant.
+          * @since 6.0.0
+         */
+        "variant"?: ListItemVariant;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxListItem {
+        /**
+          * Show action slot content only when the item is hovered or focused.
+          * @since 6.0.0
+          * @default false
+         */
+        "actionOnHover": boolean;
+        /**
+          * Vertical alignment of the action slot content.
+          * @since 6.0.0
+          * @default 'center'
+         */
+        "actionSlotAlignment": ListItemActionSlotAlignment;
+        /**
+          * Enable activation of the primary item surface.
+          * @since 6.0.0
+          * @default false
+         */
+        "active": boolean;
+        /**
+          * Accessible label for the selection checkbox.
+          * @since 6.0.0
+          * @default 'Select list item'
+         */
+        "ariaLabelCheckbox": string;
+        /**
+          * Accessible label for the drag gripper.
+          * @since 6.0.0
+          * @default 'Reorder list item'
+         */
+        "ariaLabelDragGripper": string;
+        /**
+          * Accessible label for the item icon.
+          * @since 6.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Display selection with checkbox semantics.
+          * @since 6.0.0
+          * @default false
+         */
+        "checkbox": boolean;
+        /**
+          * Supporting text displayed below the label.
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
+          * Disable item activation and action controls.
+          * @since 6.0.0
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Display a divider below this item when its variant is `ghost`.
+          * @since 6.0.0
+          * @default false
+         */
+        "divider": boolean;
+        /**
+          * Icon displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "icon"?: string;
+        /**
+          * Label displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "label"?: string;
+        /**
+          * Show the item as selected.
+          * @since 6.0.0
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * Visual variant of the item.
+          * @since 6.0.0
+          * @default 'filled'
+         */
+        "variant": ListItemVariant;
+    }
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 6.0.0
+     */
+    interface IxListItemSeparator {
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -5578,9 +5812,10 @@ export namespace Components {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
-        "hideDelay": number;
+        "hideDelay"?: number;
         "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
@@ -5593,6 +5828,8 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay": number;
@@ -5954,6 +6191,14 @@ export interface IxIconToggleButtonCustomEvent<T> extends CustomEvent<T> {
 export interface IxInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxInputElement;
+}
+export interface IxListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxListElement;
+}
+export interface IxListItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxListItemElement;
 }
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -7179,6 +7424,57 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    interface HTMLIxListElementEventMap {
+        "itemOrderChange": ListItemOrderChangeEvent;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface HTMLIxListElement extends Components.IxList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxListElementEventMap>(type: K, listener: (this: HTMLIxListElement, ev: IxListCustomEvent<HTMLIxListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxListElement: {
+        prototype: HTMLIxListElement;
+        new (): HTMLIxListElement;
+    };
+    interface HTMLIxListItemElementEventMap {
+        "itemClick": HTMLIxListItemElement;
+        "selectedChange": boolean;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface HTMLIxListItemElement extends Components.IxListItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxListItemElementEventMap>(type: K, listener: (this: HTMLIxListItemElement, ev: IxListItemCustomEvent<HTMLIxListItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxListItemElement: {
+        prototype: HTMLIxListItemElement;
+        new (): HTMLIxListItemElement;
+    };
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 6.0.0
+     */
+    interface HTMLIxListItemSeparatorElement extends Components.IxListItemSeparator, HTMLStencilElement {
+    }
+    var HTMLIxListItemSeparatorElement: {
+        prototype: HTMLIxListItemSeparatorElement;
+        new (): HTMLIxListItemSeparatorElement;
+    };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
@@ -8306,6 +8602,9 @@ declare global {
         "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
+        "ix-list": HTMLIxListElement;
+        "ix-list-item": HTMLIxListItemElement;
+        "ix-list-item-separator": HTMLIxListItemSeparatorElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -8439,9 +8738,32 @@ declare namespace LocalJSX {
          */
         "colorSchema"?: ThemeVariant;
         /**
+          * Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
+          * @since 6.0.0
+          * @default false
+         */
+        "disableSkipLinks"?: boolean;
+        /**
           * Change the responsive layout of the menu structure
          */
         "forceBreakpoint"?: Breakpoint | undefined;
+        /**
+          * Localized text for the link that focuses the application footer.
+          * @since 6.0.0
+          * @default 'Skip to footer'
+         */
+        "i18nSkipToFooter"?: string;
+        /**
+          * Localized text for the link that bypasses repeated application content and focuses the main region.
+          * @since 6.0.0
+          * @default 'Skip to main content'
+         */
+        "i18nSkipToMain"?: string;
+        /**
+          * Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
+          * @since 6.0.0
+         */
+        "skipLinkMainTarget"?: string | HTMLElement;
         /**
           * Application theme
          */
@@ -9628,6 +9950,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Date format used to display the selected dates in the dropdown button. `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -9760,6 +10087,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
           * @since 4.3.0
@@ -9808,7 +10140,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+          * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
          */
         "locale"?: string;
         /**
@@ -10089,6 +10421,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Luxon date and time format used to display and type the value in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd HH:mm:ss"` with `displayFormat="yy/LL/dd HH:mm"` displays a two-digit year without losing the century of the value. Date and time parts missing in `displayFormat`, like seconds, are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`.  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * @since 6.0.0
+         */
+        "displayFormat"?: string;
+        /**
           * Enable Popover API rendering for dropdown.
           * @default false
          */
@@ -10098,7 +10435,7 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Luxon date and time format for display (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+          * Luxon date and time format of `value`, `minDate`, `maxDate` and emitted values (e.g., 'yyyy/LL/dd HH:mm:ss' → "2026/01/20 13:07:04").  See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
           * @default 'yyyy/LL/dd HH:mm:ss'
          */
         "format"?: string;
@@ -10188,7 +10525,7 @@ declare namespace LocalJSX {
          */
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
-          * Emitted when the datetime value changes. Payload is display format or undefined
+          * Emitted when the datetime value changes. Payload is in `format` or undefined
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10236,7 +10573,7 @@ declare namespace LocalJSX {
          */
         "validText"?: string;
         /**
-          * Value in display format (e.g., "2026/01/21 13:07:04" for default format)
+          * Value in `format` (e.g., "2026/01/21 13:07:04" for default format)
           * @default ''
          */
         "value"?: string;
@@ -10500,6 +10837,11 @@ declare namespace LocalJSX {
          */
         "keyboardItemTriggerKeys"?: string[];
         /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+          * @since 6.0.0
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
+        /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the trigger/anchor element while a   visual focus indicator moves between the items. Consumers can expose the   active item through `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is required because the focused item is announced   directly. Besides the built-in item components, arbitrary focusable   elements (e.g. a native `<button>`) can opt into this navigation by adding   the `data-ix-roving-item` attribute; such native elements keep their own   activation (<kbd>Enter</kbd> / <kbd>Space</kbd> fire a real click).
           * @since 5.2.0
           * @default 'active-descendant'
@@ -10608,6 +10950,10 @@ declare namespace LocalJSX {
           * Set label text. An empty or omitted label renders an icon-only trigger. Set to `null` to keep the standard trigger layout for custom `button-label` slot content.
          */
         "label"?: string | null;
+        /**
+          * Resolves the item to activate when arrow keys move past the first or last item, instead of wrapping around.
+         */
+        "navigationBoundaryHandler"?: NavigationBoundaryHandler;
         /**
           * Controls how keyboard navigation moves focus between dropdown items.  - `active-descendant`: DOM focus stays on the dropdown button while a visual   focus indicator moves between the items, exposed via `aria-activedescendant`. - `roving-tabindex`: real DOM focus is moved to each item using a roving   `tabindex` (`0` for the active item, `-1` for the others). No   `aria-activedescendant` is used because the focused item is announced   directly.
           * @since 5.2.0
@@ -10738,6 +11084,11 @@ declare namespace LocalJSX {
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
+          * Optional empty state description
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
           * Empty state header
          */
         "header": string;
@@ -10754,10 +11105,6 @@ declare namespace LocalJSX {
           * Empty state action click event
          */
         "onActionClick"?: (event: IxEmptyStateCustomEvent<void>) => void;
-        /**
-          * Optional empty state sub header
-         */
-        "subHeader"?: string;
     }
     /**
      * List that displays a sequence of events or status entries.
@@ -11579,6 +11926,201 @@ declare namespace LocalJSX {
           * Url for the link button  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
          */
         "url"?: string;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxList {
+        /**
+          * Show action content on hover or focus for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Default action slot alignment for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
+          * Enable activation for list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "active"?: boolean;
+        /**
+          * Display selection checkboxes on list items that do not define their own setting.
+          * @since 6.0.0
+         */
+        "checkbox"?: boolean;
+        /**
+          * Default disabled state for list items that do not define their own state.
+          * @since 6.0.0
+         */
+        "disabled"?: boolean;
+        /**
+          * Display dividers between direct list items with the `ghost` variant.
+          * @since 6.0.0
+          * @default false
+         */
+        "divider"?: boolean;
+        /**
+          * Visual behavior used while dragging a list item.
+          * @since 6.0.0
+          * @default 'dynamic'
+         */
+        "dragBehavior"?: ListDragBehavior;
+        /**
+          * Enable drag-and-drop reordering of direct list items.
+          * @since 6.0.0
+          * @default false
+         */
+        "draggable"?: boolean;
+        /**
+          * i18n fallback label for list items without a label.
+          * @since 6.0.0
+          * @default 'List item'
+         */
+        "i18nListItem"?: string;
+        /**
+          * i18n announcement when list item reordering is cancelled. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} reorder cancelled.'
+         */
+        "i18nReorderCancelled"?: string;
+        /**
+          * i18n announcement when a reordered list item is dropped. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item} dropped at position {position} of {total}.'
+         */
+        "i18nReorderDropped"?: string;
+        /**
+          * i18n announcement when a list item is lifted for reordering. Use `{item}` for the item label.
+          * @since 6.0.0
+          * @default '{item} lifted. Use arrow keys to move, Enter or Space to drop, and Escape to cancel.'
+         */
+        "i18nReorderLifted"?: string;
+        /**
+          * i18n announcement when a list item changes position. Use `{item}`, `{position}`, and `{total}` placeholders.
+          * @since 6.0.0
+          * @default '{item}, position {position} of {total}'
+         */
+        "i18nReorderPosition"?: string;
+        /**
+          * Space between direct list items.
+          * @since 6.0.0
+          * @default 'sm'
+         */
+        "itemGap"?: ListItemGap;
+        /**
+          * Emitted after a list item has been reordered.
+          * @since 6.0.0
+         */
+        "onItemOrderChange"?: (event: IxListCustomEvent<ListItemOrderChangeEvent>) => void;
+        /**
+          * Default visual variant for list items that do not define their own variant.
+          * @since 6.0.0
+         */
+        "variant"?: ListItemVariant;
+    }
+    /**
+     * @since 6.0.0
+     */
+    interface IxListItem {
+        /**
+          * Show action slot content only when the item is hovered or focused.
+          * @since 6.0.0
+          * @default false
+         */
+        "actionOnHover"?: boolean;
+        /**
+          * Vertical alignment of the action slot content.
+          * @since 6.0.0
+          * @default 'center'
+         */
+        "actionSlotAlignment"?: ListItemActionSlotAlignment;
+        /**
+          * Enable activation of the primary item surface.
+          * @since 6.0.0
+          * @default false
+         */
+        "active"?: boolean;
+        /**
+          * Accessible label for the selection checkbox.
+          * @since 6.0.0
+          * @default 'Select list item'
+         */
+        "ariaLabelCheckbox"?: string;
+        /**
+          * Accessible label for the drag gripper.
+          * @since 6.0.0
+          * @default 'Reorder list item'
+         */
+        "ariaLabelDragGripper"?: string;
+        /**
+          * Accessible label for the item icon.
+          * @since 6.0.0
+         */
+        "ariaLabelIcon"?: string;
+        /**
+          * Display selection with checkbox semantics.
+          * @since 6.0.0
+          * @default false
+         */
+        "checkbox"?: boolean;
+        /**
+          * Supporting text displayed below the label.
+          * @since 6.0.0
+         */
+        "description"?: string;
+        /**
+          * Disable item activation and action controls.
+          * @since 6.0.0
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Display a divider below this item when its variant is `ghost`.
+          * @since 6.0.0
+          * @default false
+         */
+        "divider"?: boolean;
+        /**
+          * Icon displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "icon"?: string;
+        /**
+          * Label displayed by the standard item layout.
+          * @since 6.0.0
+         */
+        "label"?: string;
+        /**
+          * Emitted when the primary item surface is activated.
+          * @since 6.0.0
+         */
+        "onItemClick"?: (event: IxListItemCustomEvent<HTMLIxListItemElement>) => void;
+        /**
+          * Requests a controlled selection update when a checkbox item is activated.
+          * @since 6.0.0
+         */
+        "onSelectedChange"?: (event: IxListItemCustomEvent<boolean>) => void;
+        /**
+          * Show the item as selected.
+          * @since 6.0.0
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * Visual variant of the item.
+          * @since 6.0.0
+          * @default 'filled'
+         */
+        "variant"?: ListItemVariant;
+    }
+    /**
+     * Standalone horizontal separator for list content.
+     * @since 6.0.0
+     */
+    interface IxListItemSeparator {
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -14104,7 +14646,8 @@ declare namespace LocalJSX {
          */
         "for"?: ElementReference | ElementReference[];
         /**
-          * @default 50
+          * Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
+          * @since 6.0.0
          */
         "hideDelay"?: number;
         /**
@@ -14118,6 +14661,8 @@ declare namespace LocalJSX {
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
         /**
+          * Delay in milliseconds before the tooltip is shown.
+          * @since 6.0.0
           * @default 0
          */
         "showDelay"?: number;
@@ -14398,6 +14943,10 @@ declare namespace LocalJSX {
         "theme": string;
         "colorSchema": ThemeVariant;
         "forceBreakpoint": Breakpoint | undefined;
+        "disableSkipLinks": boolean;
+        "i18nSkipToMain": string;
+        "i18nSkipToFooter": string;
+        "skipLinkMainTarget": string | HTMLElement;
     }
     interface IxApplicationHeaderAttributes {
         "name": string;
@@ -14612,6 +15161,7 @@ declare namespace LocalJSX {
     interface IxDateDropdownAttributes {
         "disabled": boolean;
         "format": string;
+        "displayFormat": string;
         "singleSelection": boolean;
         "from": string;
         "to": string;
@@ -14639,6 +15189,7 @@ declare namespace LocalJSX {
         "maxDate": string;
         "locale": string;
         "format": string;
+        "displayFormat": string;
         "required": boolean;
         "helperText": string;
         "label": string;
@@ -14698,6 +15249,7 @@ declare namespace LocalJSX {
         "placeholder": string;
         "value": string;
         "format": string;
+        "displayFormat": string;
         "locale": string;
         "required": boolean;
         "disabled": boolean;
@@ -14814,7 +15366,7 @@ declare namespace LocalJSX {
         "layout": EmptyStateLayout;
         "icon": string;
         "header": string;
-        "subHeader": string;
+        "description": string;
         "action": string;
         "ariaLabelEmptyStateIcon": string;
     }
@@ -14985,6 +15537,39 @@ declare namespace LocalJSX {
         "target": '_self' | '_blank' | '_parent' | '_top';
         "icon": 'none' | 'internal' | 'external' | 'file' | 'action';
         "iconPosition": 'start' | 'end';
+    }
+    interface IxListAttributes {
+        "divider": boolean;
+        "itemGap": ListItemGap;
+        "variant": ListItemVariant;
+        "active": boolean;
+        "disabled": boolean;
+        "checkbox": boolean;
+        "actionOnHover": boolean;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
+        "draggable": boolean;
+        "dragBehavior": ListDragBehavior;
+        "i18nListItem": string;
+        "i18nReorderLifted": string;
+        "i18nReorderPosition": string;
+        "i18nReorderDropped": string;
+        "i18nReorderCancelled": string;
+    }
+    interface IxListItemAttributes {
+        "variant": ListItemVariant;
+        "label": string;
+        "description": string;
+        "icon": string;
+        "ariaLabelIcon": string;
+        "ariaLabelDragGripper": string;
+        "ariaLabelCheckbox": string;
+        "selected": boolean;
+        "active": boolean;
+        "disabled": boolean;
+        "checkbox": boolean;
+        "divider": boolean;
+        "actionOnHover": boolean;
+        "actionSlotAlignment": ListItemActionSlotAlignment;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;
@@ -15587,6 +16172,9 @@ declare namespace LocalJSX {
         "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": Omit<IxLayoutGrid, keyof IxLayoutGridAttributes> & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes]?: IxLayoutGrid[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `attr:${K}`]?: IxLayoutGridAttributes[K] } & { [K in keyof IxLayoutGrid & keyof IxLayoutGridAttributes as `prop:${K}`]?: IxLayoutGrid[K] };
         "ix-link-button": Omit<IxLinkButton, keyof IxLinkButtonAttributes> & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes]?: IxLinkButton[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `attr:${K}`]?: IxLinkButtonAttributes[K] } & { [K in keyof IxLinkButton & keyof IxLinkButtonAttributes as `prop:${K}`]?: IxLinkButton[K] };
+        "ix-list": Omit<IxList, keyof IxListAttributes> & { [K in keyof IxList & keyof IxListAttributes]?: IxList[K] } & { [K in keyof IxList & keyof IxListAttributes as `attr:${K}`]?: IxListAttributes[K] } & { [K in keyof IxList & keyof IxListAttributes as `prop:${K}`]?: IxList[K] };
+        "ix-list-item": Omit<IxListItem, keyof IxListItemAttributes> & { [K in keyof IxListItem & keyof IxListItemAttributes]?: IxListItem[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `attr:${K}`]?: IxListItemAttributes[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `prop:${K}`]?: IxListItem[K] };
+        "ix-list-item-separator": IxListItemSeparator;
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -16039,6 +16627,19 @@ declare module "@stencil/core" {
              * @figma-main-component-id 107603:15976
              */
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
+            /**
+             * @since 6.0.0
+             */
+            "ix-list": LocalJSX.IntrinsicElements["ix-list"] & JSXBase.HTMLAttributes<HTMLIxListElement>;
+            /**
+             * @since 6.0.0
+             */
+            "ix-list-item": LocalJSX.IntrinsicElements["ix-list-item"] & JSXBase.HTMLAttributes<HTMLIxListItemElement>;
+            /**
+             * Standalone horizontal separator for list content.
+             * @since 6.0.0
+             */
+            "ix-list-item-separator": LocalJSX.IntrinsicElements["ix-list-item-separator"] & JSXBase.HTMLAttributes<HTMLIxListItemSeparatorElement>;
             /**
              * Primary side navigation menu of the application shell.
              * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md

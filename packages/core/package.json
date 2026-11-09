@@ -160,12 +160,11 @@
     "@types/jest": "^29.5.12",
     "@types/luxon": "^3.4.2",
     "@types/mustache": "^4.2.6",
-    "@types/node": "^20.16.0",
+    "@types/node": "catalog:",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.70.0",
     "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "catalog:",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
@@ -176,14 +175,13 @@
     "minisearch": "^7.1.0",
     "luxon": "^3.4.4",
     "mustache": "^4.2.0",
-    "postcss": "^8.5.23",
-    "puppeteer": "21.1.1",
+    "postcss": "^8.5.32",
     "rimraf": "catalog:",
     "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.12"
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.6.13",
@@ -200,11 +198,6 @@
     },
     "luxon": {
       "optional": true
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }

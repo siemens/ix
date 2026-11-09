@@ -10,12 +10,10 @@ import fs from 'fs-extra';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import deepmerge from 'deepmerge';
 import dedent from 'dedent';
 import { Framework } from '../detect';
+import { deepMerge } from './deep-merge';
 import { usageAngular, usageReact, usageVue } from './prompts/icons';
-
-const overwriteMerge = (_: unknown[], sourceArray: unknown[]) => sourceArray;
 
 export type MCPConfigName = 'claude' | 'cursor' | 'vscode';
 
@@ -222,10 +220,9 @@ export const initMCPConfig = async (
     }
   }
 
-  const mergedConfig = deepmerge<Record<string, unknown>>(
+  const mergedConfig = deepMerge<Record<string, unknown>>(
     { [config.serverKey]: { siemensix: server } },
-    existingConfig,
-    { arrayMerge: overwriteMerge }
+    existingConfig
   );
 
   const writeInstructions = !existingInstructions.includes(

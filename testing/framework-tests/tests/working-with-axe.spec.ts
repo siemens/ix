@@ -26,6 +26,7 @@ import './generated/tabs-overflow-axe.spec';
 import './generated/tabs-rounded-axe.spec';
 import './generated/time-range-axe.spec';
 import './generated/timepicker-min-max-time-axe.spec';
+import './application-skip-link-axe.spec';
 
 // Button tests - basic
 import './generated/buttons-axe.spec';
@@ -74,6 +75,7 @@ import './generated/content-header-text-overflow-axe.spec';
 
 // Info page tests
 import './generated/info-page-axe.spec';
+import './generated/info-page-illustration-axe.spec';
 
 // Chat tests
 import './generated/chat-axe.spec';
@@ -94,6 +96,11 @@ import './generated/date-input-require-confirmation-axe.spec';
 import './generated/date-picker-require-confirmation-axe.spec';
 import './generated/datetime-input-require-confirmation-axe.spec';
 import './generated/datetime-picker-require-confirmation-axe.spec';
+
+// Display format tests
+import './generated/date-dropdown-display-format-axe.spec';
+import './generated/date-input-display-format-axe.spec';
+import './generated/datetime-input-display-format-axe.spec';
 
 // Group tests
 import './generated/group-axe.spec';
