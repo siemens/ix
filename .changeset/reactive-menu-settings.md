@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-Keep the menu settings overlay synchronized with initial and updated `showSettings` values, including reopening it after dismissal and switching from the about overlay. Fixes #2623.
+Keep the menu settings and about overlays synchronized with initial and updated `showSettings` and `showAbout` values, including reopening after dismissal and switching between overlays. Fixes #2623.
