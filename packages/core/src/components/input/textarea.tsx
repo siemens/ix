@@ -352,7 +352,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
-   * @internal
+   * Returns the validity state of the textarea field.
    * @since 6.0.0
    */
   @Method()

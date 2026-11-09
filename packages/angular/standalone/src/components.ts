@@ -3257,7 +3257,7 @@ export declare interface IxTabs extends Components.IxTabs {
 @ProxyCmp({
   defineCustomElementFn: defineIxTextarea,
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput', 'clear']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-textarea',
