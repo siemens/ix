@@ -24,7 +24,7 @@ import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 /**
  * Settings overlay opened from the application menu.
  *
- * @documentation https://ix.siemens.io//docs/components/settings/guide.md
+ * @documentation https://ix.siemens.io/docs/components/settings/guide.md
  *
  * @slot - Settings menu content.
  */

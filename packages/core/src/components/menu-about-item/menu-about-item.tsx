@@ -23,7 +23,7 @@ import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 /**
  * A single tab or entry within the about overlay.
  *
- * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+ * @documentation https://ix.siemens.io/docs/components/about-and-legal/guide.md
  * @deprecated since 5.0.0, use ix-tab-item instead of ix-menu-about-item
  *
  * @slot - About item content.

@@ -116,14 +116,14 @@ Targeted commands:
 
   ```tsx
   /**
-   * @documentation https://ix.siemens.io//docs/components/<component>/guide.md
+   * @documentation https://ix.siemens.io/docs/components/<component>/guide.md
    * @figma-main-component-id <figma-node-id>
    * @since <version>
    */
   ```
 
 - Add these tags when adding a new component, and keep them correct when renaming, splitting, or moving a component.
-- `@documentation` must point to the matching page on `ix.siemens.io` (existing tags use the `https://ix.siemens.io//docs/components/...` format).
+- `@documentation` must point to the matching page on `ix.siemens.io` using the `https://ix.siemens.io/docs/components/...` format (no duplicate slashes).
 - `@figma-main-component-id` must be the node ID of the main component in the IX Figma library.
 - If no documentation page or Figma main component exists yet, do not invent a value. Omit the tag and warn the developer explicitly (in the agent response and PR description) which tag is missing and why.
 - Internal components (`@internal`) are exempt.

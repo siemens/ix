@@ -13,7 +13,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 /**
  * Main content region of an application page.
  *
- * @documentation https://ix.siemens.io//docs/components/content/guide.md
+ * @documentation https://ix.siemens.io/docs/components/content/guide.md
  *
  * @slot header - Display content at the top of the content page.
  * @slot - Main content.

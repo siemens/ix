@@ -3,7 +3,7 @@ import { Component, h, Host } from '@stencil/core';
 /**
  * Title area of a card.
  *
- * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+ * @documentation https://ix.siemens.io/docs/components/breadcrumb/guide.md
  * @slot title-actions - Place additional actions inside title
  *
  * @slot - Card title content.

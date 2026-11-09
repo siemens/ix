@@ -66,7 +66,7 @@ import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 /**
  * Text input for entering and validating a date value.
  *
- * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
+ * @documentation https://ix.siemens.io/docs/components/input-date/guide.md
  * @figma-main-component-id 442365:42749
  *
  * @form-ready
