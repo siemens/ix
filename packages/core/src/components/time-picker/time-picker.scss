@@ -81,6 +81,9 @@
       overflow: auto;
       padding: var(--ix-time-picker-element-list--padding);
       margin: var(--ix-time-picker-element-list--margin);
+      // Keep the bottom padding inside the picker so focus rings of the last
+      // visible cell do not overlap the content below (e.g. footer separator)
+      margin-block-end: 0;
       max-height: var(--ix-time-picker-element-list--max-height);
 
       button {
