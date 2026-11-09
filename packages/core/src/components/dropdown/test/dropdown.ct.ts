@@ -735,6 +735,123 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await expect(dropdown).toBeVisible();
 });
 
+regressionTest.describe('navigation boundary handler', () => {
+  type BoundaryWindow = Window & {
+    releaseBoundary: () => void;
+    itemClicks: string[];
+  };
+
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(html`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 3"></ix-dropdown-item>
+      </ix-dropdown>
+    `);
+    await expect(page.locator('ix-dropdown')).toHaveAttribute('hydrated');
+
+    // The handler appends "Item 4" but only resolves once the test releases it,
+    // so the pending phase can be asserted deterministically.
+    await page.locator('ix-dropdown').evaluate((dropdown) => {
+      const win = window as unknown as BoundaryWindow;
+      win.itemClicks = [];
+      dropdown.addEventListener('click', (event) => {
+        const item = (event.target as HTMLElement).closest('ix-dropdown-item');
+        if (item) {
+          win.itemClicks.push(item.label ?? '');
+        }
+      });
+      (dropdown as HTMLIxDropdownElement).navigationBoundaryHandler = () =>
+        new Promise((resolve) => {
+          win.releaseBoundary = () => {
+            const item = document.createElement('ix-dropdown-item');
+            item.label = 'Item 4';
+            dropdown.appendChild(item);
+            requestAnimationFrame(() => resolve(item));
+          };
+        });
+    });
+
+    await page.locator('#trigger').focus();
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('End');
+    await expect(page.getByRole('menuitem', { name: 'Item 3' })).toHaveClass(
+      /ix-focused/
+    );
+  });
+
+  const itemClicks = (page: Page) =>
+    page.evaluate(() => (window as unknown as BoundaryWindow).itemClicks);
+
+  regressionTest(
+    'discards keys and clicks while the handler is pending',
+    async ({ page }) => {
+      const dropdown = page.locator('ix-dropdown');
+
+      await page.keyboard.press('ArrowDown');
+      await expect(dropdown).toHaveAttribute('aria-busy', 'true');
+
+      await page.keyboard.press('ArrowUp');
+      await page.keyboard.press('Enter');
+      await expect(page.getByRole('menuitem', { name: 'Item 3' })).toHaveClass(
+        /ix-focused/
+      );
+
+      await page.getByRole('menuitem', { name: 'Item 1' }).click();
+      await expect(dropdown).toBeVisible();
+      expect(await itemClicks(page)).toEqual([]);
+
+      await page.evaluate(() =>
+        (window as unknown as BoundaryWindow).releaseBoundary()
+      );
+
+      await expect(dropdown).not.toHaveAttribute('aria-busy');
+      expect(await itemClicks(page)).toEqual([]);
+    }
+  );
+
+  regressionTest(
+    'discards keys until the resolved item is active',
+    async ({ page }) => {
+      await page.keyboard.press('ArrowDown');
+      await expect(page.locator('ix-dropdown')).toHaveAttribute(
+        'aria-busy',
+        'true'
+      );
+
+      // Enter right after the handler resolves, before the next animation frame
+      // applies the new active item.
+      await page.evaluate(
+        () =>
+          new Promise<void>((done) => {
+            const win = window as unknown as BoundaryWindow;
+            win.releaseBoundary();
+            requestAnimationFrame(() =>
+              setTimeout(() => {
+                document.querySelector('#trigger')!.dispatchEvent(
+                  new KeyboardEvent('keydown', {
+                    key: 'Enter',
+                    bubbles: true,
+                    composed: true,
+                    cancelable: true,
+                  })
+                );
+                done();
+              })
+            );
+          })
+      );
+
+      await expect(page.getByRole('menuitem', { name: 'Item 4' })).toHaveClass(
+        /ix-focused/
+      );
+      expect(await itemClicks(page)).toEqual([]);
+    }
+  );
+});
+
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
     regressionTest.beforeEach(async ({ mount, page }) => {
@@ -1966,6 +2083,302 @@ regressionTest.describe('dropdown transition visibility', () => {
       );
 
       await expectPlacementAfterScroll(page, 'top-end');
+    }
+  );
+});
+
+regressionTest.describe('trigger visibility check', () => {
+  interface PlacementRecorderWindow extends Window {
+    readVisiblePlacements?: () => string[];
+  }
+
+  /**
+   * Records the placement of every frame in which the dropdown is shown,
+   * until the placements are read
+   */
+  async function recordVisiblePlacements(page: Page) {
+    await page.evaluate(() => {
+      const dropdown = document.querySelector<HTMLElement>('#dropdown');
+      if (!dropdown) {
+        throw new Error('Expected dropdown');
+      }
+
+      const visiblePlacements: string[] = [];
+      let isRecording = true;
+      (window as PlacementRecorderWindow).readVisiblePlacements = () => {
+        isRecording = false;
+        return visiblePlacements;
+      };
+
+      const record = () => {
+        if (dropdown.classList.contains('show')) {
+          visiblePlacements.push(
+            dropdown.dataset.ixDropdownPlacement ?? 'none'
+          );
+        }
+      };
+
+      // Resize observer callbacks run right before the paint
+      new ResizeObserver(record).observe(dropdown);
+      const recordFrame = () => {
+        record();
+        if (isRecording) {
+          requestAnimationFrame(recordFrame);
+        }
+      };
+      requestAnimationFrame(recordFrame);
+    });
+  }
+
+  /**
+   * The intersection observer delivers its first entry after the next paint,
+   * so a dropdown that is about to move to a fallback placement has done so
+   * after a few frames
+   */
+  async function waitForFrames(page: Page, count = 3) {
+    await page.evaluate(async (count) => {
+      for (let i = 0; i < count; i++) {
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+      }
+    }, count);
+  }
+
+  async function readVisiblePlacements(page: Page) {
+    await waitForFrames(page);
+    return page.evaluate(() => {
+      const read = (window as PlacementRecorderWindow).readVisiblePlacements;
+      if (!read) {
+        throw new Error('Expected placement recorder');
+      }
+
+      return read();
+    });
+  }
+
+  regressionTest(
+    'ignores sub-pixel clipping of the trigger',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.5px;
+            overflow: hidden;
+          }
+
+          #trigger {
+            width: 100px;
+          }
+        </style>
+        <div id="container">
+          <ix-button id="trigger">Trigger</ix-button>
+        </div>
+        <ix-dropdown id="dropdown" trigger="trigger" placement="bottom-start">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await recordVisiblePlacements(page);
+      await page.getByRole('button', { name: 'Trigger' }).click();
+
+      await expect(dropdown).toHaveClass(/show/);
+
+      const visiblePlacements = await readVisiblePlacements(page);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+      expect(new Set(visiblePlacements)).toEqual(new Set(['bottom-start']));
+    }
+  );
+
+  regressionTest(
+    'falls back when sub-pixel clipping of the trigger grows past the tolerance',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.5px;
+            overflow: hidden;
+          }
+
+          #content {
+            width: 200px;
+          }
+
+          #trigger {
+            width: 100px;
+          }
+        </style>
+        <div id="container">
+          <div id="content">
+            <ix-button id="trigger">Trigger</ix-button>
+          </div>
+        </div>
+        <ix-dropdown id="dropdown" trigger="trigger" placement="bottom-start">
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+
+      // Clip 30px on the left, which crosses no ratio between 0.5 and 1
+      await page.locator('#container').evaluate((container) => {
+        container.scrollLeft = 30;
+      });
+
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'right-start'
+      );
+    }
+  );
+
+  regressionTest(
+    'falls back when clipping on two axes grows past the tolerance',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.25px;
+            height: 99.25px;
+            overflow: hidden;
+          }
+
+          #content {
+            width: 200px;
+            height: 200px;
+          }
+
+          #trigger {
+            display: block;
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            border: 0;
+            padding: 0;
+          }
+        </style>
+        <div id="container">
+          <div id="content">
+            <button id="trigger">Trigger</button>
+          </div>
+        </div>
+        <ix-dropdown
+          id="dropdown"
+          trigger="trigger"
+          placement="bottom-start"
+          suppress-automatic-placement
+        >
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveClass(/show/);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+
+      // The area ratio already starts below the per-axis tolerance ratios, and
+      // clipping 30px more on the left crosses no further ratio
+      await page.locator('#container').evaluate((container) => {
+        container.scrollLeft = 30;
+      });
+
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'right-start'
+      );
+    }
+  );
+
+  regressionTest(
+    'falls back when a resized trigger is clipped past the tolerance',
+    async ({ mount, page }) => {
+      await mount(html`
+        <style>
+          #container {
+            width: 99.5px;
+            height: 40px;
+            overflow: hidden;
+          }
+
+          #content {
+            width: 300px;
+            height: 40px;
+          }
+
+          #trigger {
+            display: block;
+            box-sizing: border-box;
+            width: 100px;
+            height: 40px;
+            border: 0;
+            padding: 0;
+          }
+        </style>
+        <div id="container">
+          <div id="content">
+            <button id="trigger">Trigger</button>
+          </div>
+        </div>
+        <ix-dropdown
+          id="dropdown"
+          trigger="trigger"
+          placement="bottom-start"
+          suppress-automatic-placement
+        >
+          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        </ix-dropdown>
+      `);
+
+      const dropdown = page.locator('#dropdown');
+      await expect(dropdown).toHaveAttribute('hydrated');
+
+      await page.getByRole('button', { name: 'Trigger' }).click();
+      await expect(dropdown).toHaveClass(/show/);
+
+      await page.locator('#container').evaluate((container) => {
+        container.style.width = '199.5px';
+      });
+      await page
+        .getByRole('button', { name: 'Trigger' })
+        .evaluate((trigger) => {
+          trigger.style.width = '200px';
+        });
+
+      // Let the position update react to the resized trigger
+      await waitForFrames(page);
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'bottom-start'
+      );
+
+      // 1.5px of a 200px trigger stays above the ratio for a 100px trigger,
+      // and a transform triggers neither a scroll nor a resize
+      await page.locator('#content').evaluate((content) => {
+        content.style.transform = 'translateX(-1.5px)';
+      });
+
+      await expect(dropdown).toHaveAttribute(
+        'data-ix-dropdown-placement',
+        'right-start'
+      );
     }
   );
 });
