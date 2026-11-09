@@ -29,8 +29,8 @@ function addAdditionalThemeIfExist() {
 }
 
 const hasAdditionalTheme = addAdditionalThemeIfExist();
-const themes = ['classic', ...additionalThemes];
-const defaultTheme = hasAdditionalTheme ? 'brand' : 'classic';
+const themes = ['community', ...additionalThemes];
+const defaultTheme = hasAdditionalTheme ? 'brand' : 'community';
 
 const preview: Preview = {
   globalTypes: {

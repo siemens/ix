@@ -22,8 +22,8 @@
     color-scheme: dark;
   }
 
-  [data-ix-theme='classic'] {
-    --theme-name: classic;
+  [data-ix-theme='community'] {
+    --theme-name: community;
     --theme-color-schema: dark;
     @include tokens.complete-dark();
 
@@ -39,8 +39,8 @@
     color-scheme: light;
   }
 
-  [data-ix-theme='classic'] {
-    --theme-name: classic;
+  [data-ix-theme='community'] {
+    --theme-name: community;
     --theme-color-schema: light;
     @include tokens.complete-light();
 
@@ -56,8 +56,8 @@
     color-scheme: light dark;
   }
 
-  [data-ix-theme='classic'] {
-    --theme-name: classic;
+  [data-ix-theme='community'] {
+    --theme-name: community;
     @include tokens.shared();
 
     &[data-ix-color-schema='dark'] {

@@ -18,13 +18,13 @@ import { devices } from '@playwright/test';
 
 let THEMES = [
   {
-    name: 'theme-classic-light',
-    theme: 'classic',
+    name: 'theme-community-light',
+    theme: 'community',
     colorSchema: 'light',
   },
   {
-    name: 'theme-classic-dark',
-    theme: 'classic',
+    name: 'theme-community-dark',
+    theme: 'community',
     colorSchema: 'dark',
   },
   {
