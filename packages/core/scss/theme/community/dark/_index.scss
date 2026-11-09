@@ -16,7 +16,7 @@
 
 @use "../composition" as tokens;
 
-[data-ix-theme='classic'][data-ix-color-schema='dark'] {
+[data-ix-theme='community'][data-ix-color-schema='dark'] {
   @include tokens.complete-dark();
 
   &[data-ix-density='compact'] {
