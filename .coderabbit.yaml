@@ -51,7 +51,7 @@ reviews:
           - @figma-main-component-id <Figma main component node ID>
         - If either tag is missing, flag it as a review issue and warn the author.
         - Accept a missing tag only when the PR description states that the documentation page or Figma main component does not exist yet; still post a warning so it is tracked.
-        - Flag placeholder or obviously wrong values (empty, TODO, links not pointing to ix.siemens.io, URLs with duplicate slashes such as "ix.siemens.io//docs", IDs not in Figma "<number>:<number>" format).
+        - Flag placeholder or obviously wrong values (empty, TODO, links not pointing to ix.siemens.io, IDs not in Figma "<number>:<number>" format).
 
     - path: 'packages/core/src/components/**/test/*.ct.ts'
       instructions: |
