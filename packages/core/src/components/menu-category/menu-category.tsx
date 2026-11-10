@@ -522,7 +522,7 @@ export class MenuCategory
   private getMenuItemsExpandedPadding() {
     return (
       getComputedStyle(this.hostElement)
-        .getPropertyValue('--ix-menu-category-menu-items-expanded--padding')
+        .getPropertyValue('--ix-menu-category-menu-items--padding--expanded')
         .trim() || '0px'
     );
   }

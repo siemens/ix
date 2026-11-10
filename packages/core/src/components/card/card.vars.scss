@@ -30,34 +30,31 @@ $card-status-sys: (
 
 :host {
   --ix-card--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-accordion--color: #{sys.$si-sys-color-text-primary};
+  --ix-card-slotted-accordion--color: #{sys.$si-sys-color-text-primary};
   --ix-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-card--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card--border-width-default: #{sys.$si-sys-sizing-border-width-default};
+  --ix-card--border-width--selected: #{sys.$si-sys-sizing-border-width-default};
   --ix-card--strip-height: #{sys.$si-sys-sizing-border-width-emphasis};
-  --ix-card--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
 
-  --ix-card-base--background: transparent;
-  --ix-card-base--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-base--background--active: #{sys.$si-sys-color-background-active};
-  --ix-card-base--background--selected: #{sys.$si-sys-color-background-active};
-  --ix-card-base--border-color: #{sys.$si-sys-color-border-3};
-  --ix-card-base--border-color--hover: #{sys.$si-sys-color-border-3};
-  --ix-card-base--border-color--active: #{sys.$si-sys-color-border-3};
-  --ix-card-base--border-color--selected: #{sys.$si-sys-color-border-accent-active};
-  --ix-card-base--color: #{sys.$si-sys-color-text-primary};
+  --ix-card--background--base: transparent;
+  --ix-card--background--base--hover: #{sys.$si-sys-color-background-hover};
+  --ix-card--background--base--active: #{sys.$si-sys-color-background-active};
+  --ix-card--background--base--selected: #{sys.$si-sys-color-background-active};
+  --ix-card--border-color--base: #{sys.$si-sys-color-border-3};
+  --ix-card--border-color--base--selected: #{sys.$si-sys-color-border-accent-active};
+  --ix-card--color--base: #{sys.$si-sys-color-text-primary};
 
-  --ix-card-filled--background: #{sys.$si-sys-color-background-1};
-  --ix-card-filled--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-card-filled--background--active: #{sys.$si-sys-color-background-active};
-  --ix-card-filled--background--selected: #{sys.$si-sys-color-background-active};
+  --ix-card--background--filled: #{sys.$si-sys-color-background-1};
+  --ix-card--background--filled--hover: #{sys.$si-sys-color-background-hover};
+  --ix-card--background--filled--active: #{sys.$si-sys-color-background-active};
+  --ix-card--background--filled--selected: #{sys.$si-sys-color-background-active};
 
-  --ix-card-status-color: transparent;
+  --ix-card--status-color: transparent;
 }
 
 @each $status, $color in $card-status-sys {
   :host(.card-#{$status}) {
-    --ix-card-status-color: #{$color};
+    --ix-card--status-color: #{$color};
   }
 }
 
@@ -66,5 +63,5 @@ $card-status-sys: (
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} +
       #{sys.$si-sys-sizing-spacing-x-30}
   );
-  --ix-card-content--height: calc(100% - #{sys.$si-sys-sizing-size-80});
+  --ix-card-body--height: calc(100% - #{sys.$si-sys-sizing-size-80});
 }

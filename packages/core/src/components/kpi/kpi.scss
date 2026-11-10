@@ -92,7 +92,7 @@ $kpi-states: (warning, danger, caution, success, information, accent, critical);
 }
 
 :host(.stacked) {
-  height: var(--ix-kpi-stacked--height);
+  height: var(--ix-kpi--height--stacked);
 
   .kpi-container {
     justify-content: center;

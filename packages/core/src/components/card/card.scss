@@ -21,10 +21,10 @@
   width: var(--ix-card--width);
   border-radius: var(--ix-card--border-radius);
 
-  color: var(--ix-card-base--color);
+  color: var(--ix-card--color--base);
 
-  --ix-card-background: var(--ix-card-base--background);
-  --ix-card-border-color: var(--ix-card-base--border-color);
+  --_ix-card-background: var(--ix-card--background--base);
+  --_ix-card-border-color: var(--ix-card--border-color--base);
 
   @include component.ix-component;
 
@@ -37,7 +37,7 @@
     min-height: 0;
     box-sizing: border-box;
     border: var(--ix-card--border-width) solid
-      var(--ix-card-border-color, var(--ix-card--border-color));
+      var(--_ix-card-border-color, var(--ix-card--border-color));
     border-radius: inherit;
     overflow: hidden;
   }
@@ -48,8 +48,8 @@
     flex-shrink: 0;
     flex-grow: 1;
     width: 100%;
-    height: var(--ix-card-content--height);
-    background-color: var(--ix-card-background, transparent);
+    height: var(--ix-card-body--height);
+    background-color: var(--_ix-card-background, transparent);
     overflow: hidden;
   }
 
@@ -71,14 +71,14 @@
 }
 
 :host(:not(.outline)) {
-  --ix-card-background: var(--ix-card-filled--background);
-  --ix-card-border-color: var(--ix-card-filled--background);
+  --_ix-card-background: var(--ix-card--background--filled);
+  --_ix-card-border-color: var(--ix-card--background--filled);
   /* No chrome inset so accordion/content flush to outer edges (filled) */
   --ix-card--border-width: 0;
 }
 
 /* Status strip + outline border: shared rules for any non-base variant.
- * Per-status colors stay on `--ix-card-status-color` in card.vars.scss. */
+ * Per-status colors stay on `--ix-card--status-color` in card.vars.scss. */
 :host(:not(.card-base))::before {
   content: '';
   position: absolute;
@@ -89,35 +89,35 @@
   border-radius: var(--ix-card--border-radius) var(--ix-card--border-radius) 0 0;
   z-index: 1;
   pointer-events: none;
-  background-color: var(--ix-card-status-color);
+  background-color: var(--ix-card--status-color);
 }
 
 /* Outline status: uniform border-3 when not selected. */
 :host(.outline:not(.card-base)) {
-  --ix-card-border-color: var(--ix-card-base--border-color);
+  --_ix-card-border-color: var(--ix-card--border-color--base);
 }
 
 :host(.clickable.outline:hover) {
-  --ix-card-background: var(--ix-card-base--background--hover);
+  --_ix-card-background: var(--ix-card--background--base--hover);
 }
 
 :host(.clickable.outline:active) {
-  --ix-card-background: var(--ix-card-base--background--active);
+  --_ix-card-background: var(--ix-card--background--base--active);
 }
 
 :host(.clickable:not(.outline):hover) {
-  --ix-card-background: var(--ix-card-filled--background--hover);
-  --ix-card-border-color: var(--ix-card-filled--background--hover);
+  --_ix-card-background: var(--ix-card--background--filled--hover);
+  --_ix-card-border-color: var(--ix-card--background--filled--hover);
 }
 
 :host(.clickable:not(.outline):active) {
-  --ix-card-background: var(--ix-card-filled--background--active);
-  --ix-card-border-color: var(--ix-card-filled--background--active);
+  --_ix-card-background: var(--ix-card--background--filled--active);
+  --_ix-card-border-color: var(--ix-card--background--filled--active);
 }
 
 :host(.selected:not(.clickable)),
 :host(.selected) {
-  --ix-card-background: var(--ix-card-base--background--selected);
+  --_ix-card-background: var(--ix-card--background--base--selected);
 }
 
 /* Include .clickable:not(.outline) so specificity ties hover/active (0,4,0). */
@@ -125,17 +125,17 @@
 :host(.outline.selected),
 :host(.selected:not(.outline)),
 :host(.selected.clickable:not(.outline)) {
-  --ix-card-border-color: var(--ix-card-base--border-color--selected);
+  --_ix-card-border-color: var(--ix-card--border-color--base--selected);
 }
 
 :host(.selected:not(.outline)) {
-  --ix-card-background: var(--ix-card-filled--background--selected);
-  --ix-card--border-width: var(--ix-card--border-width-default);
+  --_ix-card-background: var(--ix-card--background--filled--selected);
+  --ix-card--border-width: var(--ix-card--border-width--selected);
 }
 
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
-    color: var(--ix-card-accordion--color);
+    color: var(--ix-card-slotted-accordion--color);
   }
 }
 

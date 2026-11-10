@@ -17,8 +17,8 @@
   flex-direction: column;
   width: 100%;
   transition: var(--ix-card-accordion--transition-duration) ease-in-out;
-  --ix-card-accordion-expanded-height: var(
-    --ix-card-accordion--expanded-height
+  --_ix-card-accordion-expanded-height: var(
+    --ix-card-accordion--height--expanded
   );
 
   @include component.ix-component;
@@ -51,7 +51,7 @@
     @include hover.focus-visible {
       outline: var(--ix-card-accordion--outline-width--focus) solid
         var(--ix-card-accordion--outline-color--focus);
-      outline-offset: var(--ix-card-accordion--focus--outline-offset);
+      outline-offset: var(--ix-card-accordion--outline-offset--focus);
     }
 
     &:hover {
@@ -78,16 +78,16 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--ix-card-background);
+    background-color: var(--_ix-card-background);
     z-index: -1;
   }
 
   .expand-icon {
-    block-size: var(--ix-card-accordion-expand-icon--icon-size);
-    inline-size: var(--ix-card-accordion-expand-icon--icon-size);
+    block-size: var(--ix-card-accordion-expand-icon--size);
+    inline-size: var(--ix-card-accordion-expand-icon--size);
     margin-left: var(--ix-card-accordion-expand-icon--margin-left);
-    min-block-size: var(--ix-card-accordion-expand-icon--icon-size);
-    min-inline-size: var(--ix-card-accordion-expand-icon--icon-size);
+    min-block-size: var(--ix-card-accordion-expand-icon--size);
+    min-inline-size: var(--ix-card-accordion-expand-icon--size);
     transition: var(--ix-card-accordion-expand-icon--transition-duration)
       transform ease-in-out;
   }
@@ -112,7 +112,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    border-radius: var(--ix-card-accordion-expand-content--border-radius, 0);
+    border-radius: var(--_ix-card-accordion-expand-content--border-radius, 0);
     border-top: none;
     border: var(--ix-card-accordion-chrome-frame--border-width, 0px) solid
       transparent;
@@ -120,7 +120,7 @@
   }
 
   .expand-content.show {
-    height: var(--ix-card-accordion-expanded-height);
+    height: var(--_ix-card-accordion-expanded-height);
   }
 
   .expand-content-inner {

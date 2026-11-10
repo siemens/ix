@@ -26,11 +26,11 @@
     content: '';
     position: absolute;
     background-color: var(--ix-tabs-indicator--background--selected);
-    width: var(--ix-tab-active-indicator-width);
+    width: var(--_ix-tab-active-indicator-width);
     height: var(--ix-tabs-indicator--height);
     left: 0;
     bottom: 0;
-    transform: translateX(var(--ix-tab-active-indicator-offset));
+    transform: translateX(var(--_ix-tab-active-indicator-offset));
   }
 
   @if $position == 'top' {

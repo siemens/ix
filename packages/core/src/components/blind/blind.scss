@@ -22,10 +22,10 @@
   border-radius: var(--ix-blind--border-radius);
 
   ix-icon:not([size]) {
-    block-size: var(--ix-blind-icon--icon-size);
-    inline-size: var(--ix-blind-icon--icon-size);
-    min-block-size: var(--ix-blind-icon--icon-size);
-    min-inline-size: var(--ix-blind-icon--icon-size);
+    block-size: var(--ix-blind-icon--size);
+    inline-size: var(--ix-blind-icon--size);
+    min-block-size: var(--ix-blind-icon--size);
+    min-inline-size: var(--ix-blind-icon--size);
   }
 
   @include component.ix-component;
@@ -96,7 +96,7 @@
     @include hover.focus-visible {
       outline: var(--ix-blind--outline-width--focus) solid
         var(--ix-blind--outline-color--focus);
-      outline-offset: var(--ix-blind--focus--outline-offset);
+      outline-offset: var(--ix-blind--outline-offset--focus);
     }
   }
 
@@ -111,7 +111,7 @@
   }
 
   .header-actions {
-    --ix-icon-button-color: var(--ix-blind-header-actions--color);
+    --_ix-icon-button-color: var(--ix-blind-header-actions--color);
   }
 
   .blind-header-title-icon,
@@ -193,7 +193,7 @@
 
 :host(.outline) {
   --ix-blind--surface: transparent;
-  --ix-blind--border-color: var(--ix-blind-outline--border-color);
+  --ix-blind--border-color: var(--ix-blind--border-color--outline);
 }
 
 :host(.outline) .blind-header {
@@ -211,5 +211,5 @@
     var(--ix-blind--border-radius);
   z-index: 1;
   pointer-events: none;
-  background-color: var(--ix-blind-status-color);
+  background-color: var(--ix-blind--status-color);
 }

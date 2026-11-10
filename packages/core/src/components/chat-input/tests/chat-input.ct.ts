@@ -273,7 +273,7 @@ regressionTest(
   'ix-chat-input renders slotted attachments with selected layout',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input attachment-layout="scroll" style="width: 40rem; --ix-chat-input-max-width: 40rem">
+      <ix-chat-input attachment-layout="scroll" style="width: 40rem; --_ix-chat-input-max-width: 40rem">
         <ix-chat-attachment slot="attachments" file-name="file_01.txt"></ix-chat-attachment>
         <ix-chat-attachment slot="attachments" status="loading"></ix-chat-attachment>
       </ix-chat-input>
@@ -300,7 +300,7 @@ regressionTest(
   'ix-chat-input adds scrollbar spacing only when attachments are scrollable',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input attachment-layout="scroll" style="width: 12rem; --ix-chat-input-max-width: 12rem">
+      <ix-chat-input attachment-layout="scroll" style="width: 12rem; --_ix-chat-input-max-width: 12rem">
         ${Array.from(
           { length: 8 },
           (_, index) =>
@@ -319,7 +319,7 @@ regressionTest(
 
     await chatInput.evaluate((element) => {
       element.style.width = '90rem';
-      element.style.setProperty('--ix-chat-input-max-width', '90rem');
+      element.style.setProperty('--_ix-chat-input-max-width', '90rem');
     });
 
     await expect(attachments).not.toHaveClass(/has-attachment-scrollbar/);
@@ -330,7 +330,7 @@ regressionTest(
   'ix-chat-input does not render an attachment overflow dropdown',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input style="width: 16rem; --ix-chat-input-max-width: 16rem">
+      <ix-chat-input style="width: 16rem; --_ix-chat-input-max-width: 16rem">
         ${Array.from(
           { length: 10 },
           (_, index) =>

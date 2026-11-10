@@ -10,9 +10,9 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-list--item-gap--sm: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-list--item-gap--md: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-list--item-gap--lg: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-list--gap--sm: #{sys.$si-sys-sizing-spacing-y-20};
+  --ix-list--gap--md: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-list--gap--lg: #{sys.$si-sys-sizing-spacing-y-50};
   --ix-list-drag--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
   --ix-list-drag-placeholder--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-list-drag-placeholder--border-radius: #{sys.$si-sys-sizing-border-radius-sm};

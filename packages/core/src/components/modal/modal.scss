@@ -20,13 +20,13 @@
   display: none;
 
   dialog {
-    --ix-dialog-padding: var(--ix-modal--dialog-padding);
+    --_ix-dialog-padding: var(--ix-modal-dialog--padding);
 
     margin: 0;
-    padding: var(--ix-dialog-padding);
-    padding-top: calc(var(--ix-dialog-padding) + var(--ix-safe-area-inset-top));
+    padding: var(--_ix-dialog-padding);
+    padding-top: calc(var(--_ix-dialog-padding) + var(--ix-safe-area-inset-top));
     padding-bottom: calc(
-      var(--ix-dialog-padding) + var(--ix-safe-area-inset-bottom)
+      var(--_ix-dialog-padding) + var(--ix-safe-area-inset-bottom)
     );
     left: 50%;
   }
@@ -47,23 +47,23 @@
   }
 
   .modal-size-360 {
-    width: var(--ix-modal-extra-small--width);
+    width: var(--ix-modal--width--360);
   }
 
   .modal-size-480 {
-    width: var(--ix-modal-small--width);
+    width: var(--ix-modal--width--480);
   }
 
   .modal-size-600 {
-    width: var(--ix-modal-medium--width);
+    width: var(--ix-modal--width--600);
   }
 
   .modal-size-720 {
-    width: var(--ix-modal-large--width);
+    width: var(--ix-modal--width--720);
   }
 
   .modal-size-840 {
-    width: var(--ix-modal-extra-large--width);
+    width: var(--ix-modal--width--840);
   }
 
   .modal-size-full-width {
@@ -77,21 +77,21 @@
     transform: none !important;
     box-shadow: none;
 
-    --ix-dialog-full-screen-height: calc(
+    --_ix-dialog-full-screen-height: calc(
       var(--ix-safe-area-inset-top) + var(--ix-safe-area-inset-bottom)
     );
 
-    width: calc(100% - var(--ix-dialog-padding) * 2);
-    min-width: calc(100% - var(--ix-dialog-padding) * 2);
-    max-width: calc(100% - var(--ix-dialog-padding) * 2);
+    width: calc(100% - var(--_ix-dialog-padding) * 2);
+    min-width: calc(100% - var(--_ix-dialog-padding) * 2);
+    max-width: calc(100% - var(--_ix-dialog-padding) * 2);
 
     min-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% - (var(--_ix-dialog-padding) * 2) -
+        var(--_ix-dialog-full-screen-height)
     );
     max-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% - (var(--_ix-dialog-padding) * 2) -
+        var(--_ix-dialog-full-screen-height)
     );
   }
 

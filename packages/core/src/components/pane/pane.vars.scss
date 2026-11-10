@@ -26,11 +26,11 @@
   --ix-pane-top-bottom-title--margin-block: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-pane-top-bottom-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-50};
   --ix-pane-title-finished--margin: #{sys.$si-sys-sizing-spacing-y-50};
-  --ix-pane-title-collapsed--margin: #{sys.$si-sys-sizing-spacing-y-50};
+  --ix-pane-title--margin--collapsed: #{sys.$si-sys-sizing-spacing-y-50};
   --ix-pane-left-right-title--margin-block: #{sys.$si-sys-sizing-spacing-y-50};
   --ix-pane-left-right-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-pane-mobile-title--margin-block: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-pane-mobile-title--margin-inline: #{sys.$si-sys-sizing-spacing-x-50};
+  --ix-pane-title--margin-block--mobile: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-pane-title--margin-inline--mobile: #{sys.$si-sys-sizing-spacing-x-50};
   --ix-pane-content--padding-block-start: #{sys.$si-sys-sizing-spacing-y-40};
   --ix-pane-content--padding-inline: #{sys.$si-sys-sizing-spacing-x-50};
   --ix-pane-content--padding-block-end: #{sys.$si-sys-sizing-spacing-y-60};
@@ -41,5 +41,5 @@
   --ix-pane-side-pane-content--height: calc(
     100% - #{sys.$si-sys-sizing-size-90}
   );
-  --ix-pane-mobile-overlay--z-index: 100;
+  --ix-pane-overlay--z-index--mobile: 100;
 }

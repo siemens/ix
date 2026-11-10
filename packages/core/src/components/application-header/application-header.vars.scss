@@ -33,7 +33,7 @@
       var(--ix-safe-area-inset-left, 0rem)
   );
   --ix-application-header-right-side--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-application-header-app-icon--icon-size: #{sys.$si-sys-sizing-size-80};
+  --ix-application-header-app-icon--size: #{sys.$si-sys-sizing-size-80};
   --ix-application-header-app-icon--outline-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-application-header-app-icon--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-application-header-app-switch--margin: 0
@@ -46,7 +46,7 @@
   --ix-application-header-logo--height: #{sys.$si-sys-sizing-size-80};
   --ix-application-header-logo--margin-right: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-header-logo--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-application-header-slot-content-active--padding: #{sys.$si-sys-sizing-spacing-y-40}
+  --ix-application-header-slot-content--padding--active: #{sys.$si-sys-sizing-spacing-y-40}
     #{sys.$si-sys-sizing-spacing-x-80};
   --ix-application-header-context-menu-visible--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-application-header-right-side--margin-left: #{sys.$si-sys-sizing-spacing-x-40};

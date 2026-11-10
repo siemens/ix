@@ -19,7 +19,7 @@
 
   .start-container ::slotted(ix-icon.size-24),
   .start-container ::slotted(ix-icon-button.btn-icon-16) {
-    margin-left: var(--ix-input-icon-compact--margin-left);
+    margin-left: var(--ix-input-icon--margin-left--compact);
   }
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
@@ -40,7 +40,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
   .end-container ::slotted(ix-icon.size-24),
   .end-container ::slotted(ix-icon-button.btn-icon-16) {
     margin-right: calc(
-      var(--ix-input-icon-compact--margin-right) - #{$input-end-container-inset}
+      var(--ix-input-icon--margin-right--compact) - #{$input-end-container-inset}
     );
   }
 

@@ -55,7 +55,7 @@
   input[type='checkbox']:focus-visible + .checkbox-button .checkbox-control {
     outline: var(--ix-checkbox--outline-width--focus) solid
       var(--ix-checkbox--outline-color--focus);
-    outline-offset: var(--ix-checkbox--focus--outline-offset);
+    outline-offset: var(--ix-checkbox--outline-offset--focus);
   }
 
   input[type='checkbox'] {
@@ -87,69 +87,69 @@
 @mixin checkbox-base() {
   :host {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background);
+      background-color: var(--ix-checkbox--background--unchecked);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color);
+        var(--ix-checkbox--border-color--unchecked);
     }
   }
 
   :host(:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--hover);
+      background-color: var(--ix-checkbox--background--unchecked--hover);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--hover);
+        var(--ix-checkbox--border-color--unchecked--hover);
     }
   }
 
   :host(:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--active);
+      background-color: var(--ix-checkbox--background--unchecked--active);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--active);
+        var(--ix-checkbox--border-color--unchecked--active);
     }
   }
 
   :host(.checked),
   :host(.indeterminate) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background);
+      background-color: var(--ix-checkbox--background--checked);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color);
+        var(--ix-checkbox--border-color--checked);
     }
   }
 
   :host(.checked:hover),
   :host(.indeterminate:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--hover);
+      background-color: var(--ix-checkbox--background--checked--hover);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--hover);
+        var(--ix-checkbox--border-color--checked--hover);
     }
   }
 
   :host(.checked:active),
   :host(.indeterminate:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--active);
+      background-color: var(--ix-checkbox--background--checked--active);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--active);
+        var(--ix-checkbox--border-color--checked--active);
     }
   }
 
   :host(.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--disabled);
+      background-color: var(--ix-checkbox--background--unchecked--disabled);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--disabled);
+        var(--ix-checkbox--border-color--unchecked--disabled);
     }
   }
 
   :host(.checked.disabled),
   :host(.indeterminate.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--disabled);
+      background-color: var(--ix-checkbox--background--checked--disabled);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--disabled);
+        var(--ix-checkbox--border-color--checked--disabled);
     }
   }
 }
@@ -158,92 +158,92 @@
   :host(#{$selector}) {
     .checkbox-control {
       @content;
-      background-color: var(--ix-checkbox-unchecked--background);
+      background-color: var(--ix-checkbox--background--unchecked);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color);
+        var(--ix-checkbox--border-color--unchecked);
     }
   }
 
   :host(#{$selector}:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--hover);
+      background-color: var(--ix-checkbox--background--unchecked--hover);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--hover);
+        var(--ix-checkbox--border-color--unchecked--hover);
     }
   }
 
   :host(#{$selector}:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--active);
+      background-color: var(--ix-checkbox--background--unchecked--active);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--active);
+        var(--ix-checkbox--border-color--unchecked--active);
     }
   }
 
   :host(#{$selector}.checked),
   :host(#{$selector}.indeterminate) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background);
+      background-color: var(--ix-checkbox--background--checked);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color);
+        var(--ix-checkbox--border-color--checked);
     }
   }
 
   :host(#{$selector}.checked:hover),
   :host(#{$selector}.indeterminate:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--hover);
+      background-color: var(--ix-checkbox--background--checked--hover);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--hover);
+        var(--ix-checkbox--border-color--checked--hover);
     }
   }
 
   :host(#{$selector}.checked:active),
   :host(#{$selector}.indeterminate:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--active);
+      background-color: var(--ix-checkbox--background--checked--active);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--active);
+        var(--ix-checkbox--border-color--checked--active);
     }
   }
 
   :host(#{$selector}.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--disabled);
+      background-color: var(--ix-checkbox--background--unchecked--disabled);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--disabled);
+        var(--ix-checkbox--border-color--unchecked--disabled);
     }
   }
 
   :host(#{$selector}.checked.disabled),
   :host(#{$selector}.indeterminate.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--disabled);
+      background-color: var(--ix-checkbox--background--checked--disabled);
       border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--disabled);
+        var(--ix-checkbox--border-color--checked--disabled);
     }
   }
 }
 
 @mixin define-checkbox-vars($state, $type) {
-  --ix-checkbox-#{$state}--background: var(
-    --ix-checkbox-#{$state}--background--#{$type}
+  --ix-checkbox--background--#{$state}: var(
+    --ix-checkbox--background--#{$type}--#{$state}
   );
-  --ix-checkbox-#{$state}--background--hover: var(
-    --ix-checkbox-#{$state}--background--#{$type}--hover
+  --ix-checkbox--background--#{$state}--hover: var(
+    --ix-checkbox--background--#{$type}--#{$state}--hover
   );
-  --ix-checkbox-#{$state}--background--active: var(
-    --ix-checkbox-#{$state}--background--#{$type}--active
+  --ix-checkbox--background--#{$state}--active: var(
+    --ix-checkbox--background--#{$type}--#{$state}--active
   );
 
-  --ix-checkbox-#{$state}--border-color: var(
-    --ix-checkbox-#{$state}--border-color--#{$type}
+  --ix-checkbox--border-color--#{$state}: var(
+    --ix-checkbox--border-color--#{$type}--#{$state}
   );
-  --ix-checkbox-#{$state}--border-color--hover: var(
-    --ix-checkbox-#{$state}--border-color--#{$type}--hover
+  --ix-checkbox--border-color--#{$state}--hover: var(
+    --ix-checkbox--border-color--#{$type}--#{$state}--hover
   );
-  --ix-checkbox-#{$state}--border-color--active: var(
-    --ix-checkbox-#{$state}--border-color--#{$type}--active
+  --ix-checkbox--border-color--#{$state}--active: var(
+    --ix-checkbox--border-color--#{$type}--#{$state}--active
   );
 }
 

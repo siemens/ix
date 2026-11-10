@@ -348,7 +348,7 @@ export namespace Components {
      * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
-     * Override max-width with `--ix-badge-max-width`.
+     * Override max-width with `--ix-badge--max-width`.
      * @documentation https://ix.siemens.io//docs/components/badge/guide.md
      * @figma-main-component-id 138424:114072
      * @since 5.2.0
@@ -382,7 +382,7 @@ export namespace Components {
          */
         "border": boolean;
         /**
-          * Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+          * Play the attention pulse animation. Override duration with `--ix-badge--animation-duration` (default `2s`).
           * @since 5.2.0
           * @default false
          */
@@ -6404,7 +6404,7 @@ declare global {
      * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
-     * Override max-width with `--ix-badge-max-width`.
+     * Override max-width with `--ix-badge--max-width`.
      * @documentation https://ix.siemens.io//docs/components/badge/guide.md
      * @figma-main-component-id 138424:114072
      * @since 5.2.0
@@ -8881,7 +8881,7 @@ declare namespace LocalJSX {
      * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
      * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
      * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
-     * Override max-width with `--ix-badge-max-width`.
+     * Override max-width with `--ix-badge--max-width`.
      * @documentation https://ix.siemens.io//docs/components/badge/guide.md
      * @figma-main-component-id 138424:114072
      * @since 5.2.0
@@ -8915,7 +8915,7 @@ declare namespace LocalJSX {
          */
         "border"?: boolean;
         /**
-          * Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+          * Play the attention pulse animation. Override duration with `--ix-badge--animation-duration` (default `2s`).
           * @since 5.2.0
           * @default false
          */
@@ -16274,7 +16274,7 @@ declare module "@stencil/core" {
              * **Standalone** (empty default slot): author `role` / `aria-*` stay on the host.
              * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
              * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
-             * Override max-width with `--ix-badge-max-width`.
+             * Override max-width with `--ix-badge--max-width`.
              * @documentation https://ix.siemens.io//docs/components/badge/guide.md
              * @figma-main-component-id 138424:114072
              * @since 5.2.0

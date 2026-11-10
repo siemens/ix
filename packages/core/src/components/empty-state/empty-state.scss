@@ -14,11 +14,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--ix-empty-state-large--gap);
+  gap: var(--ix-empty-state--gap--large);
 
   .emptyState__icon {
-    width: var(--ix-empty-state-icon-large--icon-size);
-    height: var(--ix-empty-state-icon-large--icon-size--icon);
+    width: var(--ix-empty-state-icon--width--large);
+    height: var(--ix-empty-state-icon--height--large);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,14 +33,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--ix-empty-state-content-large--gap);
+    gap: var(--ix-empty-state-content--gap--large);
 
     .content__label {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: var(--ix-empty-state-content-label-large--gap);
+      gap: var(--ix-empty-state-content-label--gap--large);
     }
   }
 
@@ -55,13 +55,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: var(--ix-empty-state-compact--gap);
+  gap: var(--ix-empty-state--gap--compact);
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: var(--ix-empty-state-icon-compact--icon-size);
+    height: var(--ix-empty-state-icon--size--compact);
   }
 
   .emptyState__content {
@@ -69,7 +69,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: var(--ix-empty-state-content-compact--gap);
+    gap: var(--ix-empty-state-content--gap--compact);
 
     .content__label {
       display: flex;
@@ -83,13 +83,13 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: var(--ix-empty-state-compact-break--gap);
+  gap: var(--ix-empty-state--gap--compact-break);
 
   .emptyState__icon {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: var(--ix-empty-state-icon--icon-size);
+    height: var(--ix-empty-state-icon--size);
   }
 
   .emptyState__content {
@@ -103,7 +103,7 @@
       flex-direction: column;
       justify-content: center;
       gap: var(--ix-empty-state-content-label--gap);
-      min-height: var(--ix-empty-state-icon--icon-size);
+      min-height: var(--ix-empty-state-icon--size);
     }
   }
 }

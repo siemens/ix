@@ -18,12 +18,12 @@
 
   .left-button {
     width: var(--ix-split-button-left-button--width);
-    --ix-button-border-radius-right: 0;
+    --_ix-button-border-radius-right: 0;
   }
 
   .right-button {
     width: var(--ix-split-button-right-button--width);
-    --ix-dropdown-button-border-radius-left: 0;
+    --ix-dropdown-button--border-radius-left: 0;
   }
 
   @include component.ix-component;

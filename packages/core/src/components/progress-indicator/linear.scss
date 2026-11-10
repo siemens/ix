@@ -8,18 +8,17 @@
  */
 @use './progress-indicator-vars' as progress-vars;
 
-@use './linear.vars' as *;
 @mixin linear {
   .linear-progress-container {
     width: 100%;
-    height: var(--ix-progress-indicator-height);
+    height: var(--_ix-progress-indicator-height);
     background-color: var(--ix-progress-indicator-track--background);
     border-radius: var(
       --ix-progress-indicator-linear-progress-container--border-radius
     );
     overflow: hidden;
     margin: var(
-      --ix-progress-indicator-margin,
+      --_ix-progress-indicator-margin,
       var(--ix-progress-indicator-progress-container--margin)
     );
   }
@@ -27,7 +26,7 @@
   @each $state in progress-vars.$progress-indicator-states {
     .linear-progress-container.#{$state} {
       background-color: var(
-        --ix-progress-indicator-track-#{$state}--background
+        --ix-progress-indicator-track--background--#{$state}
       );
     }
   }
@@ -40,7 +39,7 @@
 
   .progress-bar {
     height: 100%;
-    background-color: var(--ix-progress-indicator-color);
+    background-color: var(--_ix-progress-indicator-color);
     transition: width
       var(--ix-progress-indicator-progress-bar--transition-duration) ease;
   }

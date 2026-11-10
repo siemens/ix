@@ -19,9 +19,9 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   display: block;
   cursor: pointer;
 
-  height: var(--ix-menu-item-height, $menuItemHeight);
-  min-height: var(--ix-menu-item-height, $menuItemHeight);
-  max-height: var(--ix-menu-item-height, $menuItemHeight);
+  height: var(--_ix-menu-item-height, $menuItemHeight);
+  min-height: var(--_ix-menu-item-height, $menuItemHeight);
+  max-height: var(--_ix-menu-item-height, $menuItemHeight);
 
   .tab {
     all: unset;
@@ -29,7 +29,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     display: flex;
     position: relative;
     align-items: center;
-    height: var(--ix-menu-item-height, $menuItemHeight);
+    height: var(--_ix-menu-item-height, $menuItemHeight);
     width: calc(100%);
     z-index: var(--ix-menu-item-tab--z-index);
     padding-left: $menuItemPadding;
@@ -38,11 +38,11 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   }
 
   .tab-icon {
-    block-size: var(--ix-menu-item-tab-icon--icon-size);
-    color: var(--ix-menu-item-primary-icon--color);
-    inline-size: var(--ix-menu-item-tab-icon--icon-size);
-    min-block-size: var(--ix-menu-item-tab-icon--icon-size);
-    min-inline-size: var(--ix-menu-item-tab-icon--icon-size);
+    block-size: var(--ix-menu-item-tab-icon--size);
+    color: var(--ix-menu-item-icon--color--primary);
+    inline-size: var(--ix-menu-item-tab-icon--size);
+    min-block-size: var(--ix-menu-item-tab-icon--size);
+    min-inline-size: var(--ix-menu-item-tab-icon--size);
     margin-inline: var(--ix-menu-item-tab-icon--margin-inline);
     position: relative;
     pointer-events: none;
@@ -79,7 +79,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
 
   .tab-text {
     display: block;
-    color: var(--ix-menu-item-primary--color);
+    color: var(--ix-menu-item--color--primary);
     margin: var(--ix-menu-item-tab-text--margin);
     user-select: none;
     width: 100%;
@@ -91,20 +91,20 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
 :host(.active),
 :host(.selected) {
   .tab {
-    background-color: var(--ix-menu-item-primary--background--selected);
+    background-color: var(--ix-menu-item--background--primary--selected);
   }
 
   .tab::before {
     content: '';
-    background-color: var(--ix-menu-item-primary--border-color--selected);
-    height: var(--ix-menu-item-height, $menuItemHeight);
+    background-color: var(--ix-menu-item--border-color--primary--selected);
+    height: var(--_ix-menu-item-height, $menuItemHeight);
     width: var(--ix-menu-item-tab--width);
     left: 0;
     position: absolute;
   }
 
   .tab > .glyph {
-    color: var(--ix-menu-item-primary-icon--color--selected);
+    color: var(--ix-menu-item-icon--color--primary--selected);
   }
 }
 
@@ -124,7 +124,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
 
 :host(.bottom-tab),
 :host([slot='bottom']) {
-  $bottom-height: var(--ix-menu-item-bottom-tab-bottom--bottom-height);
+  $bottom-height: var(--ix-menu-item-bottom-tab-bottom--height);
 
   min-height: $bottom-height;
   height: $bottom-height;
@@ -142,11 +142,11 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   &.active,
   &.selected {
     &:hover {
-      background-color: var(--ix-menu-item-secondary--background--selected);
+      background-color: var(--ix-menu-item--background--secondary--selected);
     }
 
     &:active {
-      background-color: var(--ix-menu-item-secondary--background--selected);
+      background-color: var(--ix-menu-item--background--secondary--selected);
     }
   }
 }
@@ -156,7 +156,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
 :host(.active[slot='bottom']),
 :host(.selected[slot='bottom']) {
   .tab {
-    background-color: var(--ix-menu-item-secondary--background--selected);
+    background-color: var(--ix-menu-item--background--secondary--selected);
   }
 }
 

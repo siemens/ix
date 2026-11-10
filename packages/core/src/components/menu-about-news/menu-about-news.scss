@@ -11,7 +11,7 @@
 @use 'mixins/shadow-dom/component';
 @use './menu-about-news.vars' as *;
 $left: var(--ix-menu-about-news--left);
-$expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
+$expanded-left-offset: var(--ix-menu-about-news--left--expanded);
 
 :host {
   --margin: var(--ix-menu-about-news--margin);
@@ -107,14 +107,14 @@ $expanded-left-offset: var(--ix-menu-about-news--expanded-left-offset);
   :host {
     display: flex;
     flex-direction: column;
-    max-height: var(--ix-menu-about-news-mobile--max-height);
-    width: var(--ix-menu-about-news-mobile--width);
-    max-width: var(--ix-menu-about-news-mobile--max-width);
+    max-height: var(--ix-menu-about-news--max-height--mobile);
+    width: var(--ix-menu-about-news--width--mobile);
+    max-width: var(--ix-menu-about-news--max-width--mobile);
     transform: translateX(
-      calc(var(--ix-menu-about-news-mobile--side-inset) - 50%)
+      calc(var(--ix-menu-about-news-side--inset--mobile) - 50%)
     );
-    left: calc(50% - var(--ix-menu-about-news-mobile--side-inset)) !important;
-    bottom: var(--ix-menu-about-news-mobile--bottom) !important;
+    left: calc(50% - var(--ix-menu-about-news-side--inset--mobile)) !important;
+    bottom: var(--ix-menu-about-news--bottom--mobile) !important;
     margin-inline: 0 !important;
     z-index: calc(var(--ix-menu-about-news--z-index) - 1);
 

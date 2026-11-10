@@ -52,11 +52,11 @@
     margin-bottom: var(
       --ix-chat-user-message-attachment-overflow--margin-bottom
     );
-    --ix-dropdown-button-border-radius-left: var(
-      --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-left
+    --ix-dropdown-button--border-radius-left: var(
+      --ix-chat-user-message-attachment-overflow-button--border-radius-left
     );
-    --ix-dropdown-button-border-radius-right: var(
-      --ix-chat-user-message-attachment-overflow--dropdown-button-border-radius-right
+    --ix-dropdown-button--border-radius-right: var(
+      --ix-chat-user-message-attachment-overflow-button--border-radius-right
     );
   }
 

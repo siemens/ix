@@ -6,14 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@use './layout-grid.vars' as *;
+@use 'tokens/system' as sys;
+
 :host {
+  --_ix-layout-grid-gutter: #{sys.$si-sys-sizing-spacing-x-80};
+
   display: block;
   flex: 1 1 0%;
   width: 100%;
 
-  padding-left: calc(var(--ix-layout-grid-gutter) * 0.5);
-  padding-right: calc(var(--ix-layout-grid-gutter) * 0.5);
+  padding-left: calc(var(--_ix-layout-grid-gutter) * 0.5);
+  padding-right: calc(var(--_ix-layout-grid-gutter) * 0.5);
 }
 
 :host(.no-margin) {

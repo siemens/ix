@@ -24,9 +24,9 @@
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: var(--ix-dropdown-header--height);
-    color: var(--ix-dropdown-header--color);
-    padding: var(--ix-dropdown-header--padding);
+    height: var(--ix-dropdown-heading--height);
+    color: var(--ix-dropdown-heading--color);
+    padding: var(--ix-dropdown-heading--padding);
   }
 }
 
@@ -87,9 +87,9 @@ $dropdown-offset: var(--ix-dropdown--offset);
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: var(--ix-dropdown-header--height);
-    color: var(--ix-dropdown-header--color);
-    padding: var(--ix-dropdown-header--padding);
+    height: var(--ix-dropdown-heading--height);
+    color: var(--ix-dropdown-heading--color);
+    padding: var(--ix-dropdown-heading--padding);
   }
 
   &.overflow {

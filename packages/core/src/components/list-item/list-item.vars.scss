@@ -17,11 +17,11 @@
   --ix-list-item--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-list-item--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-list-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-list-item-primary-action--min-height: #{sys.$si-sys-sizing-size-80};
+  --ix-list-item-action--min-height--primary: #{sys.$si-sys-sizing-size-80};
   --ix-list-item-drag-gripper--width: #{sys.$si-sys-sizing-size-50};
   --ix-list-item-drag-gripper--height: #{sys.$si-sys-sizing-size-80};
-  --ix-list-item-drag-gripper--focus-ring-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-list-item-drag-gripper--icon-size: #{sys.$si-sys-sizing-icon-sm};
+  --ix-list-item-drag-gripper--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-list-item-drag-gripper-icon--size: #{sys.$si-sys-sizing-icon-sm};
   --ix-list-item--padding-left--draggable: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-list-item-selection-checkbox--size: #{sys.$si-sys-sizing-size-60};
   --ix-list-item-selection-checkbox--margin-right: #{sys.$si-sys-sizing-spacing-x-30};

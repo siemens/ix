@@ -93,7 +93,7 @@
     justify-content: center;
 
     &--show-week-numbers {
-      grid-template-columns: var(--ix-date-picker-grid--week-number-columns);
+      grid-template-columns: var(--ix-date-picker-grid-week-number--columns);
     }
 
     [role='row'] {
@@ -120,7 +120,7 @@
       &:focus-visible {
         outline: var(--ix-date-picker--outline-width--focus) solid
           var(--ix-date-picker-day--outline-color--focus);
-        outline-offset: var(--ix-date-picker--focus--outline-offset);
+        outline-offset: var(--ix-date-picker--outline-offset--focus);
         z-index: 1;
       }
 
@@ -128,19 +128,19 @@
         border: var(--ix-date-picker-today--border-width) solid
           var(--ix-date-picker-today--border-color);
         box-shadow: inset 0 0 0 var(--ix-date-picker-today--box-shadow-width)
-          var(--ix-date-picker-today--contrast-ring-color);
+          var(--ix-date-picker-today-contrast-ring--color);
 
         &.selected {
           &.disabled {
             border: var(--ix-date-picker-today--border-width) solid
-              var(--ix-date-picker-day--background--selected-disabled);
+              var(--ix-date-picker-day--background--selected--disabled);
           }
         }
 
         &.range {
           &.disabled {
             border: var(--ix-date-picker-range--border-width) solid
-              var(--ix-date-picker-today--border-color--range-disabled);
+              var(--ix-date-picker-today--border-color--range--disabled);
           }
         }
 
@@ -166,22 +166,22 @@
 
         &:hover {
           background-color: var(
-            --ix-date-picker-day--background--selected-hover
+            --ix-date-picker-day--background--selected--hover
           );
         }
 
         &:active {
           background-color: var(
-            --ix-date-picker-day--background--selected-active
+            --ix-date-picker-day--background--selected--active
           );
         }
 
         &.disabled {
           pointer-events: none;
           background-color: var(
-            --ix-date-picker-day--background--selected-disabled
+            --ix-date-picker-day--background--selected--disabled
           );
-          color: var(--ix-date-picker-day--color--selected-disabled);
+          color: var(--ix-date-picker-day--color--selected--disabled);
         }
       }
 
@@ -190,19 +190,19 @@
         color: var(--ix-date-picker-day--color--range);
 
         &:hover {
-          background-color: var(--ix-date-picker-day--background--range-hover);
+          background-color: var(--ix-date-picker-day--background--range--hover);
         }
 
         &:active {
-          background-color: var(--ix-date-picker-day--background--range-active);
+          background-color: var(--ix-date-picker-day--background--range--active);
         }
 
         &.disabled {
           pointer-events: none;
           background-color: var(
-            --ix-date-picker-day--background--range-disabled
+            --ix-date-picker-day--background--range--disabled
           );
-          color: var(--ix-date-picker-day--color--range-disabled);
+          color: var(--ix-date-picker-day--color--range--disabled);
         }
       }
 
@@ -278,6 +278,6 @@
 
   .month-selector,
   .year-selector {
-    --ix-button-padding: var(--ix-date-picker-year-selector--button-padding);
+    --_ix-button-padding: var(--ix-date-picker-year-selector-button--padding);
   }
 }

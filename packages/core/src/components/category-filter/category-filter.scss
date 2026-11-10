@@ -43,11 +43,11 @@
     }
 
     &:not(.no-icon) {
-      padding: var(--ix-category-filter-input-container--padding-with-icon);
+      padding: var(--ix-category-filter-input-container--padding--with-icon);
     }
 
     &.no-icon {
-      padding: var(--ix-category-filter-input-container--padding-no-icon);
+      padding: var(--ix-category-filter-input-container--padding--no-icon);
     }
 
     &:not(.readonly):not(.disabled):hover {
@@ -111,10 +111,10 @@
   }
 
   ix-icon {
-    block-size: var(--ix-category-filter-icon--icon-size);
-    inline-size: var(--ix-category-filter-icon--icon-size);
-    min-block-size: var(--ix-category-filter-icon--icon-size);
-    min-inline-size: var(--ix-category-filter-icon--icon-size);
+    block-size: var(--ix-category-filter-icon--size);
+    inline-size: var(--ix-category-filter-icon--size);
+    min-block-size: var(--ix-category-filter-icon--size);
+    min-inline-size: var(--ix-category-filter-icon--size);
     position: absolute;
     top: var(--ix-category-filter-icon--top);
     left: var(--ix-category-filter-icon--left);

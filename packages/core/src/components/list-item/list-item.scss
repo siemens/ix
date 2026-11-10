@@ -38,7 +38,7 @@
     gap: var(--ix-list-item--gap);
     flex: 1 1 auto;
     min-width: 0;
-    min-height: var(--ix-list-item-primary-action--min-height);
+    min-height: var(--ix-list-item-action--min-height--primary);
     padding: 0;
     border: 0;
     outline: 0;
@@ -74,7 +74,7 @@
 
     &:focus-visible::after {
       position: absolute;
-      inset: calc(-1 * var(--ix-list-item-drag-gripper--focus-ring-offset));
+      inset: calc(-1 * var(--ix-list-item-drag-gripper--outline-offset--focus));
       border: var(--ix-list-item--outline-width--focus) solid
         var(--ix-list-item--outline-color--focus);
       border-radius: var(--ix-list-item--border-radius);
@@ -83,8 +83,8 @@
     }
 
     ix-icon {
-      width: var(--ix-list-item-drag-gripper--icon-size);
-      height: var(--ix-list-item-drag-gripper--icon-size);
+      width: var(--ix-list-item-drag-gripper-icon--size);
+      height: var(--ix-list-item-drag-gripper-icon--size);
     }
   }
 

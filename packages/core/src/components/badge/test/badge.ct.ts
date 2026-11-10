@@ -252,8 +252,8 @@ regressionTest.describe('ix-badge', () => {
             variant="accent"
             outline
             style="
-              --ix-badge-default-color: rgb(1, 2, 3);
-              --ix-badge-accent-color: rgb(4, 5, 6);
+              --ix-badge-default--color: rgb(1, 2, 3);
+              --ix-badge--color--accent: rgb(4, 5, 6);
             "
           ></ix-badge>
         `);

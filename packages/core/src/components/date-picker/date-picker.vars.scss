@@ -16,22 +16,22 @@
   --ix-date-picker-day--background--disabled: rgba(0, 0, 0, 0);
   --ix-date-picker-day--background--hover: #{sys.$si-sys-color-background-hover};
   --ix-date-picker-day--background--range: #{sys.$si-sys-color-background-active};
-  --ix-date-picker-day--background--range-active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-date-picker-day--background--range-disabled: #{sys.$si-sys-color-background-1};
-  --ix-date-picker-day--background--range-hover: #{sys.$si-sys-color-background-accent-secondary-hover};
+  --ix-date-picker-day--background--range--active: #{sys.$si-sys-color-background-accent-secondary-active};
+  --ix-date-picker-day--background--range--disabled: #{sys.$si-sys-color-background-1};
+  --ix-date-picker-day--background--range--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
   --ix-date-picker-day--background--selected: #{sys.$si-sys-color-background-accent};
-  --ix-date-picker-day--background--selected-active: #{sys.$si-sys-color-background-accent-active};
-  --ix-date-picker-day--background--selected-disabled: #{sys.$si-sys-color-background-1};
-  --ix-date-picker-day--background--selected-hover: #{sys.$si-sys-color-background-accent-hover};
+  --ix-date-picker-day--background--selected--active: #{sys.$si-sys-color-background-accent-active};
+  --ix-date-picker-day--background--selected--disabled: #{sys.$si-sys-color-background-1};
+  --ix-date-picker-day--background--selected--hover: #{sys.$si-sys-color-background-accent-hover};
   --ix-date-picker-day--color: #{sys.$si-sys-color-text-accent};
   --ix-date-picker-day--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-date-picker-day--color--range: #{sys.$si-sys-color-text-primary};
-  --ix-date-picker-day--color--range-disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-date-picker-day--color--range--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-date-picker-day--color--selected: #{sys.$si-sys-color-text-on-accent};
-  --ix-date-picker-day--color--selected-disabled: #{sys.$si-sys-color-text-disabled};
+  --ix-date-picker-day--color--selected--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-date-picker-today--border-color: #{sys.$si-sys-color-border-accent};
-  --ix-date-picker-today--contrast-ring-color: #{sys.$si-sys-color-background-0};
-  --ix-date-picker-today--border-color--range-disabled: #{sys.$si-sys-color-background-1};
+  --ix-date-picker-today-contrast-ring--color: #{sys.$si-sys-color-background-0};
+  --ix-date-picker-today--border-color--range--disabled: #{sys.$si-sys-color-background-1};
   --ix-date-picker-weekday--color: #{sys.$si-sys-color-text-secondary};
   --ix-date-picker-menu-item--color: #{sys.$si-sys-color-text-primary};
   --ix-date-picker-list-item--background--hover: #{sys.$si-sys-color-background-hover};
@@ -43,7 +43,7 @@
     --si-ref-typography-font-weight-sbold
   );
   --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
-  --ix-date-picker--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-date-picker--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-date-picker--max-width: calc(
     #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60}
   );
@@ -70,14 +70,14 @@
     7,
     #{sys.$si-sys-sizing-size-90}
   );
-  --ix-date-picker-grid--week-number-columns: #{sys.$si-sys-sizing-size-70} repeat(7, #{sys.$si-sys-sizing-size-90});
+  --ix-date-picker-grid-week-number--columns: #{sys.$si-sys-sizing-size-70} repeat(7, #{sys.$si-sys-sizing-size-90});
   --ix-date-picker-calendar-item--width: #{sys.$si-sys-sizing-size-90};
   --ix-date-picker-calendar-item--height: #{sys.$si-sys-sizing-size-90};
   --ix-date-picker-week-number--width: #{sys.$si-sys-sizing-size-70};
   --ix-date-picker-button--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
   --ix-date-picker-first-of-type--padding-bottom: #{sys.$si-sys-sizing-spacing-y-120};
   --ix-date-picker-last-of-type--padding-top: #{sys.$si-sys-sizing-spacing-y-120};
-  --ix-date-picker-year-selector--button-padding: 0 #{sys.$si-sys-sizing-spacing-x-20};
+  --ix-date-picker-year-selector-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-20};
   --ix-date-picker-dropdown--font-size: 14px;
   --ix-date-picker-dropdown--line-height: 20px;
   --ix-date-picker-calendar-item--border-width: #{sys.$si-sys-sizing-border-width-default};

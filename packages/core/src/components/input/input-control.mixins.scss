@@ -16,7 +16,7 @@
 @mixin element-input-focus {
   outline: var(--ix-input--outline-width--focus) solid
     var(--ix-input--outline-color--focus);
-  outline-offset: var(--ix-input--focus--outline-offset);
+  outline-offset: var(--ix-input--outline-offset--focus);
   border-color: var(--ix-input--border-color--focus) !important;
 }
 

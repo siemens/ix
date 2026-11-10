@@ -6,13 +6,13 @@
   position: relative;
   margin: var(--ix-layout-auto--margin);
 
-  --ix-layout-grid-gap: var(--ix-layout-auto--layout-grid-gap);
+  --_ix-layout-grid-gap: var(--ix-layout-auto--gap);
 
   .container {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-    gap: var(--ix-layout-grid-gap);
+    gap: var(--_ix-layout-grid-gap);
   }
 
   ::slotted(*) {

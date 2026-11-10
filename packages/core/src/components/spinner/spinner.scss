@@ -12,8 +12,8 @@
 @use './spinner.vars' as *;
 @mixin ix-spinner(
   $size-name: 'md',
-  $size: var(--ix-spinner-medium--size),
-  $track-size: var(--ix-spinner-track--border-width-emphasis)
+  $size: var(--ix-spinner--size--md),
+  $track-size: var(--ix-spinner-track--border-width--emphasis)
 ) {
   :host {
     display: block;
@@ -91,7 +91,7 @@
     inset: 8.33%;
     border-radius: 100%;
     border: $track-size solid
-      var(--ix-button-color, var(--ix-spinner--border-color));
+      var(--_ix-button-color, var(--ix-spinner--border-color));
     animation: clipMask var(--ix-spinner--mask-duration) linear infinite;
   }
 
@@ -106,36 +106,36 @@
   }
 
   .primary::after {
-    border-color: var(--ix-spinner-primary--border-color);
+    border-color: var(--ix-spinner--border-color--primary);
   }
 
   .primary::before {
-    border-color: var(--ix-spinner-primary-track--border-color);
+    border-color: var(--ix-spinner-track--border-color--primary);
   }
 }
 
 @include ix-spinner(
   $size-name: 'xxs',
-  $size: var(--ix-spinner-extra-extra-small--size),
-  $track-size: var(--ix-spinner-track--border-width-default)
+  $size: var(--ix-spinner--size--xxs),
+  $track-size: var(--ix-spinner-track--border-width)
 );
 @include ix-spinner(
   $size-name: 'xs',
-  $size: var(--ix-spinner-extra-small--size),
-  $track-size: var(--ix-spinner-track--border-width-selected)
+  $size: var(--ix-spinner--size--xs),
+  $track-size: var(--ix-spinner-track--border-width--selected)
 );
 @include ix-spinner(
   $size-name: 'sm',
-  $size: var(--ix-spinner-small--size),
-  $track-size: var(--ix-spinner-track--border-width-selected)
+  $size: var(--ix-spinner--size--sm),
+  $track-size: var(--ix-spinner-track--border-width--selected)
 );
 @include ix-spinner(
   $size-name: 'md',
-  $size: var(--ix-spinner-medium--size),
-  $track-size: var(--ix-spinner-track--border-width-selected)
+  $size: var(--ix-spinner--size--md),
+  $track-size: var(--ix-spinner-track--border-width--selected)
 );
 @include ix-spinner(
   $size-name: 'xxl',
-  $size: var(--ix-spinner-large--size),
-  $track-size: var(--ix-spinner-track--border-width-emphasis)
+  $size: var(--ix-spinner--size--xxl),
+  $track-size: var(--ix-spinner-track--border-width--emphasis)
 );

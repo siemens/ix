@@ -118,7 +118,7 @@
   button:focus-visible {
     outline: var(--ix-avatar--outline-width--focus) solid
       var(--ix-avatar--outline-color--focus);
-    outline-offset: var(--ix-avatar--focus--outline-offset);
+    outline-offset: var(--ix-avatar--outline-offset--focus);
   }
 
   .avatar {

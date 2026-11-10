@@ -19,10 +19,10 @@
 :host {
   display: inline-block;
   position: relative;
-  --ix-select-chip-margin-inline-end: var(--ix-select-chip--margin-inline-end);
-  --ix-select-trigger-min-width: var(--ix-select-trigger--min-width);
-  --ix-select-overflow-chip-fallback-width: var(
-    --ix-select-overflow-chip--fallback-width
+  --_ix-select-chip-margin-inline-end: var(--ix-select-chip--margin-inline-end);
+  --_ix-select-trigger-min-width: var(--ix-select-trigger--min-width);
+  --_ix-select-overflow-chip-fallback-width: var(
+    --ix-select-overflow-chip-fallback--width
   );
 
   min-height: var(--ix-select--min-height);
@@ -110,7 +110,7 @@
 
       > ix-filter-chip {
         margin-block: var(--ix-select-chip--margin-block);
-        margin-inline: 0 var(--ix-select-chip-margin-inline-end);
+        margin-inline: 0 var(--_ix-select-chip-margin-inline-end);
         flex-shrink: 0;
         max-width: var(--ix-select-chips--max-width);
 
@@ -126,17 +126,17 @@
           &:focus-visible {
             outline: var(--ix-select--outline-width--focus) solid
               var(--ix-select--outline-color--focus);
-            outline-offset: var(--ix-select--focus--outline-offset);
+            outline-offset: var(--ix-select--outline-offset--focus);
           }
         }
       }
     }
 
     ix-icon-button {
-      height: var(--ix-select-icon--icon-size);
-      width: var(--ix-select-icon--icon-size--icon);
-      min-height: var(--ix-select-icon--icon-size);
-      min-width: var(--ix-select-icon--icon-size--icon);
+      height: var(--ix-select-icon--height);
+      width: var(--ix-select-icon--width);
+      min-height: var(--ix-select-icon--height);
+      min-width: var(--ix-select-icon--width);
     }
 
     input {
@@ -182,7 +182,7 @@
   }
 
   .dropdown-visible {
-    --ix-icon-button-color: var(--ix-select-overflow-button--color--active);
+    --_ix-icon-button-color: var(--ix-select-overflow-button--color--active);
   }
 
   .add-item {
@@ -197,7 +197,7 @@
     display: flex;
     align-items: center;
     height: var(--ix-select-list-header--height);
-    color: var(--ix-select-item-hint--color);
+    color: var(--ix-select-list-header--color);
     margin: var(--ix-select-list-header--margin);
 
     @include text-truncation.ellipsis;
@@ -215,7 +215,7 @@
   .select {
     outline: var(--ix-select--outline-width--focus) solid
       var(--ix-select--outline-color--focus);
-    outline-offset: var(--ix-select--focus--outline-offset);
+    outline-offset: var(--ix-select--outline-offset--focus);
   }
 }
 

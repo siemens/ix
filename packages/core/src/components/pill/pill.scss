@@ -33,10 +33,10 @@
     }
 
     &.outline {
-      background-color: var(--ix-pill-outline--background);
+      background-color: var(--ix-pill--background--outline);
       &.icon {
-        padding-left: var(--ix-pill-outline-icon--padding-left);
-        padding-right: var(--ix-pill-outline-icon--padding-right);
+        padding-left: var(--ix-pill-icon--padding-left--outline);
+        padding-right: var(--ix-pill-icon--padding-right--outline);
       }
     }
 

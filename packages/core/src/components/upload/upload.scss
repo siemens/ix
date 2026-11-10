@@ -113,18 +113,18 @@
       }
 
       > ix-icon {
-        block-size: var(--ix-upload-icon--icon-size);
-        inline-size: var(--ix-upload-icon--icon-size);
+        block-size: var(--ix-upload-icon--size);
+        inline-size: var(--ix-upload-icon--size);
         margin-inline-end: var(--ix-upload-icon--margin-inline-end);
-        min-block-size: var(--ix-upload-icon--icon-size);
-        min-inline-size: var(--ix-upload-icon--icon-size);
+        min-block-size: var(--ix-upload-icon--size);
+        min-inline-size: var(--ix-upload-icon--size);
 
         &.icon-error {
-          color: var(--ix-upload-error-icon--color);
+          color: var(--ix-upload-icon--color--error);
         }
 
         &.icon-success {
-          color: var(--ix-upload-success-icon--color);
+          color: var(--ix-upload-icon--color--success);
         }
       }
     }

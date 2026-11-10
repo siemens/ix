@@ -9,6 +9,10 @@
 @use './push-card.vars' as *;
 
 :host {
+  --_ix-card-content--padding: var(--ix-push-card-content--padding);
+}
+
+:host {
   display: block;
   position: relative;
   box-sizing: border-box;
@@ -25,10 +29,10 @@
 
   .icon {
     /* Explicit size so CSS wins over ix-icon defaults */
-    height: var(--ix-push-card-icon--icon-size);
-    width: var(--ix-push-card-icon--icon-size);
-    min-height: var(--ix-push-card-icon--icon-size);
-    min-width: var(--ix-push-card-icon--icon-size);
+    height: var(--ix-push-card-icon--size);
+    width: var(--ix-push-card-icon--size);
+    min-height: var(--ix-push-card-icon--size);
+    min-width: var(--ix-push-card-icon--size);
   }
 
   ix-card-title {
@@ -46,7 +50,7 @@
   }
 
   ix-card-accordion {
-    --ix-card-accordion-expand-content--border-radius: 0 0
+    --_ix-card-accordion-expand-content--border-radius: 0 0
       var(--ix-push-card--border-radius) var(--ix-push-card--border-radius);
     /* No inner border around expanded content */
     --ix-card-accordion-chrome-frame--border-color: transparent;

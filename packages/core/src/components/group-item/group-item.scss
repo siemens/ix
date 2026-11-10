@@ -93,23 +93,23 @@ $focusBorderWidth: var(--ix-group-item--border-width--focus);
 }
 
 :host(:not(.suppress-mouse-states):hover) {
-  background-color: var(--ix-group-item--background--selected-hover);
+  background-color: var(--ix-group-item--background--selected--hover);
   border-color: var(--ix-group-item--border-color--hover);
 }
 
 :host(:not(.suppress-mouse-states).selected:hover) {
-  background-color: var(--ix-group-item--background--selected-hover);
+  background-color: var(--ix-group-item--background--selected--hover);
 }
 
 :host(:not(.suppress-mouse-states):active):not(.suppress-mouse-states) {
-  background-color: var(--ix-group-item--background--selected-active);
+  background-color: var(--ix-group-item--background--selected--active);
   border-color: var(--ix-group-item--border-color--active);
 }
 
 :host(:not(.suppress-mouse-states).selected:active):not(
     .suppress-mouse-states
   ) {
-  background-color: var(--ix-group-item--background--selected-active);
+  background-color: var(--ix-group-item--background--selected--active);
 }
 
 :host([disabled]) {

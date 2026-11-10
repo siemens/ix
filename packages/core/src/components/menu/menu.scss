@@ -11,7 +11,7 @@
 @use 'tokens/system' as sys;
 
 @use './menu.vars' as *;
-$menu-expanded-width: var(--ix-menu--expanded-width);
+$menu-expanded-width: var(--ix-menu--width--expanded);
 
 :host {
   display: flex;
@@ -116,7 +116,7 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     padding-block-end: var(--ix-menu--padding-block-end);
     overflow: hidden;
 
-    padding-left: var(--ix-application-menu-safe-area-left, 0);
+    padding-left: var(--ix-application-menu--safe-area-left, 0);
 
     &.expanded {
       box-shadow: var(--ix-menu--box-shadow);
@@ -156,11 +156,11 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
   }
 
   .menu-avatar {
-    max-height: var(--ix-menu-avatar--max-height);
+    max-height: var(--ix-menu-slotted-avatar--max-height);
   }
 
   .avatar {
-    margin-bottom: var(--ix-menu-avatar--margin-bottom);
+    margin-bottom: var(--ix-menu-slotted-avatar--margin-bottom);
   }
 
   #cui-imprint {

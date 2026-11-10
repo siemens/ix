@@ -11,5 +11,5 @@
 
 :host {
   --ix-layout-auto--margin: 0 #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-layout-auto--layout-grid-gap: #{sys.$si-sys-sizing-spacing-x-80};
+  --ix-layout-auto--gap: #{sys.$si-sys-sizing-spacing-x-80};
 }

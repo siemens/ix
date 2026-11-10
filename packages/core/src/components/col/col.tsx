@@ -105,7 +105,7 @@ export class Col {
       };
     }
 
-    const colSize = `calc(calc(${size} / var(--ix-layout-grid-columns)) * 100%)`;
+    const colSize = `calc(calc(${size} / var(--_ix-layout-grid-columns)) * 100%)`;
 
     return {
       flex: `0 0 ${colSize}`,

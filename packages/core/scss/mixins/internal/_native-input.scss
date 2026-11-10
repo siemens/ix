@@ -20,7 +20,7 @@ $-border-width: var(
   outline: 1px solid
     var(--ix-input--outline-color--focus, #{sys.$si-sys-color-effects-focus});
   outline-offset: var(
-    --ix-input--focus--outline-offset,
+    --ix-input--outline-offset--focus,
     #{sys.$si-sys-sizing-focus-ring-offset}
   );
   border-color: var(

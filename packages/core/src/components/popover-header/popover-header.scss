@@ -33,21 +33,21 @@
     align-self: flex-start;
     border-radius: var(--ix-popover-header-close-button--border-radius);
 
-    --ix-icon-button-color: var(--ix-popover-close--color);
-    --ix-button-tertiary--color: var(--ix-popover-close--color);
-    --ix-button-tertiary--color--hover: var(--ix-popover-close--color);
-    --ix-button-tertiary--color--active: var(--ix-popover-close--color);
-    --ix-button-tertiary--background: var(
+    --_ix-icon-button-color: var(--ix-popover-close--color);
+    --ix-button--color--tertiary: var(--ix-popover-close--color);
+    --ix-button--color--tertiary--hover: var(--ix-popover-close--color);
+    --ix-button--color--tertiary--active: var(--ix-popover-close--color);
+    --ix-button--background--tertiary: var(
       --ix-popover-close-button--background
     );
-    --ix-button-tertiary--background--hover: var(
+    --ix-button--background--tertiary--hover: var(
       --ix-popover-close-button--background--hover
     );
-    --ix-button-tertiary--background--active: var(
+    --ix-button--background--tertiary--active: var(
       --ix-popover-close-button--background--active
     );
-    --ix-button-tertiary--border-color: transparent;
-    --ix-button-tertiary--border-color--hover: transparent;
-    --ix-button-tertiary--border-color--active: transparent;
+    --ix-button--border-color--tertiary: transparent;
+    --ix-button--border-color--tertiary--hover: transparent;
+    --ix-button--border-color--tertiary--active: transparent;
   }
 }

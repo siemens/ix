@@ -27,11 +27,11 @@
     content: '';
     position: absolute;
     background-color: var(--ix-tabs-indicator--background--selected);
-    width: var(--ix-tab-active-indicator-width);
+    width: var(--_ix-tab-active-indicator-width);
     height: var(--ix-tabs-indicator--height);
     left: 0;
     bottom: 0;
-    transform: translateX(var(--ix-tab-active-indicator-offset));
+    transform: translateX(var(--_ix-tab-active-indicator-offset));
   }
 
   @if $position == 'top' {
@@ -59,7 +59,7 @@
   color: var(--ix-tab-item--color);
   touch-action: none; // Disable default touch behaviors for drag
 
-  height: var(--ix-tab-item--size-size);
+  height: var(--ix-tab-item--size);
   min-height: var(--ix-tab-item--min-height);
   max-height: var(--ix-tab-item--max-height);
 
@@ -121,7 +121,7 @@
     padding-left: var(--ix-tab-item-counter--padding-left);
     padding-right: var(--ix-tab-item-counter--padding-right);
     font: var(--ix-tab-item-pill--font);
-    color: var(--ix-tab-item-pill-outline--color);
+    color: var(--ix-tab-item-pill--color--outline);
     cursor: pointer;
 
     &.selected {
@@ -144,7 +144,7 @@
 }
 
 :host(.circle) {
-  height: var(--ix-tab-item-circle--height--circle);
+  height: var(--ix-tab-item--height--rounded);
   min-height: var(--ix-tab-item-circle--min-height);
   max-height: var(--ix-tab-item-circle--max-height);
 }
@@ -236,10 +236,10 @@
 }
 
 :host(.small-tab) {
-  height: var(--ix-tab-item-small-tab--height);
-  min-height: var(--ix-tab-item-small-tab--min-height);
-  max-height: var(--ix-tab-item-small-tab--max-height);
-  padding: var(--ix-tab-item-small-tab--padding);
+  height: var(--ix-tab-item--height--small);
+  min-height: var(--ix-tab-item--min-height--small);
+  max-height: var(--ix-tab-item--max-height--small);
+  padding: var(--ix-tab-item--padding--small);
 }
 
 :host(.small-tab.icon) {

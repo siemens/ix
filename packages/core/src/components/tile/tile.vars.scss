@@ -21,9 +21,9 @@
 :host {
   --ix-tile--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-tile--border-width: #{sys.$si-sys-sizing-border-width-none};
-  --ix-tile--height-small: #{sys.$si-sys-sizing-size-90};
-  --ix-tile--height-medium: #{sys.$si-sys-sizing-size-120};
-  --ix-tile--height-big: #{sys.$si-sys-sizing-size-150};
+  --ix-tile--height--small: #{sys.$si-sys-sizing-size-90};
+  --ix-tile--height--medium: #{sys.$si-sys-sizing-size-120};
+  --ix-tile--height--big: #{sys.$si-sys-sizing-size-150};
   --ix-tile--width: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
   );

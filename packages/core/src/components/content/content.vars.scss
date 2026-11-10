@@ -12,5 +12,5 @@
 :host {
   --ix-content--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90}
     #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-90};
-  --ix-content-header--margin-bottom: #{sys.$si-sys-sizing-spacing-y-80};
+  --ix-content-slotted-header--margin-bottom: #{sys.$si-sys-sizing-spacing-y-80};
 }

@@ -12,7 +12,7 @@
 
 @use './group.vars' as *;
 
-$header-height: var(--ix-group--header-height);
+$header-height: var(--ix-group-header--height);
 
 :host {
   display: flex;
@@ -20,7 +20,7 @@ $header-height: var(--ix-group--header-height);
   position: relative;
   width: var(--ix-group--width);
   min-width: var(--ix-group--min-width);
-  border-color: var(--ix-group-item--border-color);
+  border-color: var(--ix-group--border-color);
 
   @include text-truncation.ellipsis;
 
@@ -31,30 +31,30 @@ $header-height: var(--ix-group--header-height);
     border-radius: var(--ix-group--border-radius) var(--ix-group--border-radius)
       0 0;
     display: flex;
-    background-color: var(--ix-group-item--background);
+    background-color: var(--ix-group-header--background);
     color: var(--ix-group-header--color);
 
     @include hover.hover {
-      background-color: var(--ix-group-item--background--hover);
+      background-color: var(--ix-group-header--background--hover);
 
       &.selected {
-        background-color: var(--ix-group-item--background--selected);
+        background-color: var(--ix-group-header--background--selected);
       }
     }
 
     @include hover.active {
-      background-color: var(--ix-group-item--background--active);
+      background-color: var(--ix-group-header--background--active);
 
       &.selected {
-        background-color: var(--ix-group-item--background--selected);
+        background-color: var(--ix-group-header--background--selected);
       }
     }
 
     &.selected {
-      background-color: var(--ix-group-item--background--selected);
+      background-color: var(--ix-group-header--background--selected);
 
       .group-header-selection-indicator {
-        background-color: var(--ix-group-item-indicator--background--selected);
+        background-color: var(--ix-group-header-indicator--background--selected);
       }
     }
 
@@ -62,7 +62,7 @@ $header-height: var(--ix-group--header-height);
       background-color: var(--ix-group-header-selection-indicator--background);
 
       &.group-header-selection-indicator-item-selected {
-        background-color: var(--ix-group-item-indicator--background--selected);
+        background-color: var(--ix-group-header-indicator--background--selected);
       }
     }
   }
@@ -176,10 +176,10 @@ $header-height: var(--ix-group--header-height);
     border-radius: var(--ix-group-header--border-radius--focus);
 
     ix-icon:not([size]) {
-      block-size: var(--ix-group-icon--icon-size);
-      inline-size: var(--ix-group-icon--icon-size);
-      min-block-size: var(--ix-group-icon--icon-size);
-      min-inline-size: var(--ix-group-icon--icon-size);
+      block-size: var(--ix-group-icon--size);
+      inline-size: var(--ix-group-icon--size);
+      min-block-size: var(--ix-group-icon--size);
+      min-inline-size: var(--ix-group-icon--size);
     }
 
     @include hover.focus-visible {

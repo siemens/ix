@@ -45,7 +45,7 @@
     }
 
     .icon {
-      color: var(--ix-icon-button-color, currentColor);
+      color: var(--_ix-icon-button-color, currentColor);
       margin: 0;
     }
 
@@ -54,7 +54,7 @@
     }
   }
 
-  @include icon-button-size('12', var(--ix-icon-button-extra-small--size));
-  @include icon-button-size('16', var(--ix-icon-button-small--size));
-  @include icon-button-size('32', var(--ix-icon-button-large--size));
+  @include icon-button-size('12', var(--ix-icon-button--size--12));
+  @include icon-button-size('16', var(--ix-icon-button--size--16));
+  @include icon-button-size('32', var(--ix-icon-button--size--32));
 }

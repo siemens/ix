@@ -61,7 +61,7 @@
   .chat-input:focus-within {
     outline: var(--ix-chat-input--outline-width--focus) solid
       var(--ix-chat-input--outline-color--focus);
-    outline-offset: var(--ix-chat-input--focus--outline-offset);
+    outline-offset: var(--ix-chat-input--outline-offset--focus);
     border-color: var(--ix-chat-input--border-color--focus);
   }
 

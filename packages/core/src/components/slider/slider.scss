@@ -95,7 +95,7 @@
   min-height: var(--ix-slider--min-height);
   justify-content: center;
 
-  --thumb-size: var(--ix-slider--thumb-size);
+  --thumb-size: var(--ix-slider-thumb--size);
   --value: 0;
   --trace-start: 0;
   --trace-end: 0;
@@ -184,7 +184,7 @@
 
   @include track() {
     background: transparent;
-    height: var(--ix-slider-input--track-height);
+    height: var(--ix-slider-input-track--height);
   }
 
   @include clear-browser-thumb();

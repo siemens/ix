@@ -46,9 +46,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--ix-tree-item-icon-toggle-container--icon-size);
-    height: var(--ix-tree-item-icon-toggle-container--icon-size);
-    min-width: var(--ix-tree-item-icon-toggle-container--icon-size);
+    width: var(--ix-tree-item-icon-toggle-container-icon--size);
+    height: var(--ix-tree-item-icon-toggle-container-icon--size);
+    min-width: var(--ix-tree-item-icon-toggle-container-icon--size);
 
     .icon-toggle {
       display: flex;
@@ -87,12 +87,12 @@
 
 :host(.selected.hover),
 :host(.selected:hover) {
-  background-color: var(--ix-tree-item--background--selected-hover);
+  background-color: var(--ix-tree-item--background--selected--hover);
 }
 
 :host(.selected.active),
 :host(.selected:active) {
-  background-color: var(--ix-tree-item--background--selected-active);
+  background-color: var(--ix-tree-item--background--selected--active);
 }
 
 :host(.disabled) {

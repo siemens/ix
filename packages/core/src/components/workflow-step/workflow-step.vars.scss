@@ -27,13 +27,9 @@
   --ix-workflow-step-icon-done--color: #{sys.$si-sys-color-text-accent};
   --ix-workflow-step-icon-done--color--hover: #{sys.$si-sys-color-text-accent-hover};
   --ix-workflow-step-icon-done--color--active: #{sys.$si-sys-color-text-accent-active};
-  --ix-workflow-step-icon-error--color: #{sys.$si-sys-color-text-danger};
-  --ix-workflow-step-icon-success--color: #{sys.$si-sys-color-text-success};
-  --ix-workflow-step-icon-warning--color: #{sys.$si-sys-color-text-warning};
   --ix-workflow-step-icon-done--color--selected: #{sys.$si-sys-color-text-accent-active};
   --ix-workflow-step-icon-done--color--selected--hover: #{sys.$si-sys-color-text-accent-active};
   --ix-workflow-step-icon-done--color--selected--active: #{sys.$si-sys-color-text-accent-active};
-  --ix-workflow-step-icon-status--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-workflow-step-step--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
 
@@ -41,18 +37,18 @@
   --ix-workflow-step--border-radius: calc(
     #{sys.$si-sys-sizing-border-radius-xs} / 2
   );
-  --ix-workflow-step-horizontal--width: calc(
+  --ix-workflow-step--width--horizontal: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
   );
   --ix-workflow-step--height: #{sys.$si-sys-sizing-size-110};
-  --ix-workflow-step-horizontal--min-width: #{sys.$si-sys-sizing-size-80};
-  --ix-workflow-step-horizontal--min-height: #{sys.$si-sys-sizing-size-110};
-  --ix-workflow-step-horizontal--max-width: calc(
+  --ix-workflow-step--min-width--horizontal: #{sys.$si-sys-sizing-size-80};
+  --ix-workflow-step--min-height--horizontal: #{sys.$si-sys-sizing-size-110};
+  --ix-workflow-step--max-width--horizontal: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
   );
-  --ix-workflow-step-vertical--min-width: #{sys.$si-sys-sizing-size-110};
-  --ix-workflow-step-vertical--min-height: #{sys.$si-sys-sizing-size-80};
-  --ix-workflow-step-vertical--max-height: calc(
+  --ix-workflow-step--min-width--vertical: #{sys.$si-sys-sizing-size-110};
+  --ix-workflow-step--min-height--vertical: #{sys.$si-sys-sizing-size-80};
+  --ix-workflow-step--max-height--vertical: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
   );
   --ix-workflow-step-step--padding: calc(
@@ -61,10 +57,10 @@
     0 #{sys.$si-sys-sizing-spacing-y-40} 0;
   --ix-workflow-step-text--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
   --ix-workflow-step-text--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-workflow-step-wrapper-vertical--padding-left: calc(
+  --ix-workflow-step-wrapper--padding-left--vertical: calc(
     #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
   );
-  --ix-workflow-step-text-vertical--margin: 0 #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-workflow-step-text--margin--vertical: 0 #{sys.$si-sys-sizing-spacing-x-60};
   --ix-workflow-step-line--height: #{sys.$si-sys-sizing-size-10};
   --ix-workflow-step-line--width: #{sys.$si-sys-sizing-size-10};
   --ix-workflow-step--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};

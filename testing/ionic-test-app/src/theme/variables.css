@@ -18,7 +18,7 @@ body[data-screen-orientation='landscape-primary'] {
   * we need to adjust the safe areas for the menu.
   * The data-screen-orientation attribute is added by the main.ts file
   */
-  --ix-application-menu-safe-area-left: var(--ix-safe-area-inset-left);
+  --ix-application-menu--safe-area-left: var(--ix-safe-area-inset-left);
 }
 
 :root .md,

@@ -23,7 +23,7 @@
     max-height: inherit;
     flex-direction: column;
     // variable set through component logic
-    gap: var(--ix-list-item-gap, 0);
+    gap: var(--_ix-list-item-gap, 0);
     overflow-y: auto;
   }
 
@@ -37,13 +37,13 @@
   ::slotted(ix-list-item.pointer-dragging) {
     position: fixed;
     z-index: 1;
-    top: var(--ix-list-drag-top);
-    left: var(--ix-list-drag-left);
-    width: var(--ix-list-drag-width);
+    top: var(--_ix-list-drag-top);
+    left: var(--_ix-list-drag-left);
+    width: var(--_ix-list-drag-width);
     box-shadow: var(--ix-list-drag--box-shadow);
     cursor: grabbing;
     pointer-events: none;
-    transform: translate(var(--ix-list-drag-x, 0), var(--ix-list-drag-y, 0));
+    transform: translate(var(--_ix-list-drag-x, 0), var(--_ix-list-drag-y, 0));
   }
 }
 
@@ -60,7 +60,7 @@
   ::slotted(.ix-list-drag-placeholder.separator) {
     position: absolute;
     z-index: 1;
-    top: var(--ix-list-drag-separator-top, 0);
+    top: var(--_ix-list-drag-separator-top, 0);
     right: 0;
     left: 0;
     height: 0 !important;

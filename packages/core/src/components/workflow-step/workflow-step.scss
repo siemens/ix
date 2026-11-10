@@ -11,19 +11,19 @@
 
 @use './workflow-step.vars' as *;
 :host(:not(.host-vertical)) {
-  width: var(--ix-workflow-step-horizontal--width);
+  width: var(--ix-workflow-step--width--horizontal);
   height: var(--ix-workflow-step--height);
-  min-width: var(--ix-workflow-step-horizontal--min-width);
-  min-height: var(--ix-workflow-step-horizontal--min-height);
-  max-width: var(--ix-workflow-step-horizontal--max-width);
+  min-width: var(--ix-workflow-step--min-width--horizontal);
+  min-height: var(--ix-workflow-step--min-height--horizontal);
+  max-width: var(--ix-workflow-step--max-width--horizontal);
 }
 
 :host(.host-vertical) {
   width: 100%;
   height: var(--ix-workflow-step--height);
-  min-width: var(--ix-workflow-step-vertical--min-width);
-  min-height: var(--ix-workflow-step-vertical--min-height);
-  max-height: var(--ix-workflow-step-vertical--max-height);
+  min-width: var(--ix-workflow-step--min-width--vertical);
+  min-height: var(--ix-workflow-step--min-height--vertical);
+  max-height: var(--ix-workflow-step--max-height--vertical);
 }
 
 :host {
@@ -125,7 +125,7 @@
 
       .wrapper {
         width: auto;
-        padding-left: var(--ix-workflow-step-wrapper-vertical--padding-left);
+        padding-left: var(--ix-workflow-step-wrapper--padding-left--vertical);
         height: 100%;
 
         .line {
@@ -149,7 +149,7 @@
       }
 
       .text {
-        margin: var(--ix-workflow-step-text-vertical--margin);
+        margin: var(--ix-workflow-step-text--margin--vertical);
         padding: 0;
         width: auto;
       }

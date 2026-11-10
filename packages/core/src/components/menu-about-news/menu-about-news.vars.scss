@@ -25,7 +25,7 @@
     #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} + #{sys.$si-sys-sizing-spacing-x-10} *
       0.2
   );
-  --ix-menu-about-news--expanded-left-offset: calc(
+  --ix-menu-about-news--left--expanded: calc(
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
       0.8
   );
@@ -49,14 +49,14 @@
   --ix-menu-about-news-arrow--width: 0.5rem;
   --ix-menu-about-news-arrow--height: 0.5rem;
   --ix-menu-about-news-arrow--transform: 0.8rem;
-  --ix-menu-about-news-mobile--max-height: calc(
-    100vh - var(--ix-menu-about-news-mobile--viewport-offset)
+  --ix-menu-about-news--max-height--mobile: calc(
+    100vh - var(--ix-menu-about-news--viewport-offset--mobile)
   );
-  --ix-menu-about-news-mobile--viewport-offset: 4.75rem;
-  --ix-menu-about-news-mobile--width: calc(
-    100% - 2 * var(--ix-menu-about-news-mobile--side-inset)
+  --ix-menu-about-news--viewport-offset--mobile: 4.75rem;
+  --ix-menu-about-news--width--mobile: calc(
+    100% - 2 * var(--ix-menu-about-news-side--inset--mobile)
   );
-  --ix-menu-about-news-mobile--max-width: 30rem;
-  --ix-menu-about-news-mobile--side-inset: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-menu-about-news-mobile--bottom: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-menu-about-news--max-width--mobile: 30rem;
+  --ix-menu-about-news-side--inset--mobile: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-menu-about-news--bottom--mobile: #{sys.$si-sys-sizing-spacing-y-60};
 }

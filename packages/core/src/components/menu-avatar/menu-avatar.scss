@@ -43,7 +43,7 @@
       line-height: 1.14;
 
       .typography-body {
-        color: var(--ix-menu-avatar-item-primary--color);
+        color: var(--ix-menu-avatar-text--color--primary);
         @include text-truncation.ellipsis;
       }
     }

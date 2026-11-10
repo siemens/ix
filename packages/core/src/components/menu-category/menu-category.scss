@@ -60,7 +60,7 @@
 
   .menu-items--expanded {
     max-height: 999999999px;
-    padding: var(--ix-menu-category-menu-items-expanded--padding);
+    padding: var(--ix-menu-category-menu-items--padding--expanded);
   }
 
   .menu-items--collapsed {
@@ -103,8 +103,8 @@
     }
 
     ::slotted(ix-menu-item) {
-      --ix-menu-item-height: var(
-        --ix-menu-category-category-dropdown--menu-item-height
+      --_ix-menu-item-height: var(
+        --ix-menu-category-category-dropdown-menu-item--height
       );
     }
   }
@@ -119,7 +119,7 @@
   }
 
   ::slotted(ix-menu-item) {
-    --ix-menu-item-height: var(--ix-menu-category--menu-item-height);
+    --_ix-menu-item-height: var(--ix-menu-category-menu-item--height);
   }
 }
 

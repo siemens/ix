@@ -14,22 +14,22 @@
   @if $composition {
     border-#{$composition}: var(--ix-pane--border-width)
       solid
-      var(--ix-pane--border-color);
+      var(--_ix-pane--border-color);
   }
 }
 
 :host(.floating-pane) {
-  --ix-pane--background: var(--ix-pane-floating--background);
-  --ix-pane--border-color: var(--ix-pane-floating--border-color);
-  --ix-pane--color: var(--ix-pane-floating--color);
-  --ix-pane--box-shadow: var(--ix-pane-floating--box-shadow);
+  --_ix-pane--background: var(--ix-pane-floating--background);
+  --_ix-pane--border-color: var(--ix-pane-floating--border-color);
+  --_ix-pane--color: var(--ix-pane-floating--color);
+  --_ix-pane--box-shadow: var(--ix-pane-floating--box-shadow);
 }
 
 :host(.inline-pane) {
-  --ix-pane--background: var(--ix-pane-inline--background);
-  --ix-pane--border-color: var(--ix-pane-inline--border-color);
-  --ix-pane--color: var(--ix-pane-inline--color);
-  --ix-pane--box-shadow: var(--ix-pane-inline--box-shadow);
+  --_ix-pane--background: var(--ix-pane-inline--background);
+  --_ix-pane--border-color: var(--ix-pane-inline--border-color);
+  --_ix-pane--color: var(--ix-pane-inline--color);
+  --_ix-pane--box-shadow: var(--ix-pane-inline--box-shadow);
 }
 
 :host {
@@ -37,8 +37,8 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  box-shadow: var(--ix-pane--box-shadow);
-  background-color: var(--ix-pane--background);
+  box-shadow: var(--_ix-pane--box-shadow);
+  background-color: var(--_ix-pane--background);
 
   @include component.ix-component;
 
@@ -48,7 +48,7 @@
   }
 
   .pane-icon {
-    color: var(--ix-pane--color);
+    color: var(--_ix-pane--color);
   }
 
   .slot-header-content {
@@ -108,7 +108,7 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--ix-pane-title-collapsed--margin);
+      margin: var(--ix-pane-title--margin--collapsed);
     }
   }
 
@@ -156,7 +156,7 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--ix-pane-title-collapsed--margin);
+      margin: var(--ix-pane-title--margin--collapsed);
     }
   }
 
@@ -173,8 +173,8 @@
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
-      margin: var(--ix-pane-mobile-title--margin-block)
-        var(--ix-pane-mobile-title--margin-inline);
+      margin: var(--ix-pane-title--margin-block--mobile)
+        var(--ix-pane-title--margin-inline--mobile);
     }
   }
 
@@ -208,7 +208,7 @@
 }
 
 :host(.nav-left-border) {
-  border-left: var(--ix-pane--border-width) solid var(--ix-pane--border-color);
+  border-left: var(--ix-pane--border-width) solid var(--_ix-pane--border-color);
 }
 
 :host(.left-pane-border) {
@@ -230,7 +230,7 @@
 :host(.mobile-overlay) {
   width: 100%;
   position: absolute;
-  z-index: var(--ix-pane-mobile-overlay--z-index) !important;
+  z-index: var(--ix-pane-overlay--z-index--mobile) !important;
 
   .side-pane-content {
     height: var(--ix-pane-side-pane-content--height);

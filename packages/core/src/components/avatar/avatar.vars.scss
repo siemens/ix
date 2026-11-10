@@ -18,7 +18,7 @@
 :host {
   --ix-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
   --ix-avatar--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-avatar--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-avatar--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-avatar-image--height: #{sys.$si-sys-sizing-size-80};
   --ix-avatar-image--width: #{sys.$si-sys-sizing-size-80};
   --ix-avatar-image--min-height: #{sys.$si-sys-sizing-size-80};

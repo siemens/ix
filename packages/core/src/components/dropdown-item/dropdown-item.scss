@@ -11,8 +11,8 @@
 @use 'mixins/hover';
 
 @use './dropdown-item.vars' as *;
-$itemPadding: var(--ix-dropdown-item--item-padding);
-$itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
+$itemPadding: var(--ix-dropdown-item--padding);
+$itemPaddingRight: var(--ix-dropdown-item--padding-right);
 $focusBorder: var(--ix-dropdown-item--border-width--focus);
 
 @mixin applyItemWidth($padding, $paddingRight) {
@@ -60,19 +60,19 @@ $focusBorder: var(--ix-dropdown-item--border-width--focus);
     justify-content: center;
     position: relative;
     height: 100%;
-    width: var(--ix-dropdown-item-checked--width);
-    min-width: var(--ix-dropdown-item-checked--min-width);
-    margin-right: var(--ix-dropdown-item-checked--margin-right);
+    width: var(--ix-dropdown-item--width--checked);
+    min-width: var(--ix-dropdown-item--min-width--checked);
+    margin-right: var(--ix-dropdown-item--margin-right--checked);
 
     color: var(--ix-dropdown-item-checkmark--color);
   }
 
   .dropdown-item-icon {
-    block-size: var(--ix-dropdown-item-icon--icon-size);
-    inline-size: var(--ix-dropdown-item-icon--icon-size);
+    block-size: var(--ix-dropdown-item-icon--size);
+    inline-size: var(--ix-dropdown-item-icon--size);
     margin-right: var(--ix-dropdown-item-icon--margin-right);
-    min-block-size: var(--ix-dropdown-item-icon--icon-size);
-    min-inline-size: var(--ix-dropdown-item-icon--icon-size);
+    min-block-size: var(--ix-dropdown-item-icon--size);
+    min-inline-size: var(--ix-dropdown-item-icon--size);
     color: var(--ix-dropdown-item-icon--color);
   }
 
@@ -145,7 +145,7 @@ $focusBorder: var(--ix-dropdown-item--border-width--focus);
 :host(.outline-visible) {
   outline: var(--ix-dropdown-item--outline-width--focus) solid
     var(--ix-dropdown-item--outline-color--focus);
-  outline-offset: var(--ix-dropdown-item-outline-visible--outline-offset);
+  outline-offset: var(--ix-dropdown-item--outline-offset--focus);
 }
 
 :host([hidden]) {

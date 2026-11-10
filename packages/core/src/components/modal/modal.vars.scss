@@ -18,14 +18,14 @@
 
 :host {
   --ix-modal--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-modal--dialog-padding: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-modal-extra-small--width: calc(
+  --ix-modal-dialog--padding: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-modal--width--360: calc(
     #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-100}
   );
-  --ix-modal-small--width: #{sys.$si-sys-sizing-size-180};
-  --ix-modal-medium--width: #{sys.$si-sys-sizing-size-190};
-  --ix-modal-large--width: #{sys.$si-sys-sizing-size-200};
-  --ix-modal-extra-large--width: calc(
+  --ix-modal--width--480: #{sys.$si-sys-sizing-size-180};
+  --ix-modal--width--600: #{sys.$si-sys-sizing-size-190};
+  --ix-modal--width--720: #{sys.$si-sys-sizing-size-200};
+  --ix-modal--width--840: calc(
     #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-140} + #{sys.$si-sys-sizing-spacing-x-80}
   );
   --ix-modal-with-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-110};

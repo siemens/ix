@@ -11,11 +11,11 @@
 @use 'mixins/hover';
 
 @use './expanding-search.vars';
-$container-width: var(--ix-expanding-search--container-width);
+$container-width: var(--ix-expanding-search-container--width);
 
 :host {
   display: inline-flex;
-  width: var(--ix-expanding-search-collapsed--width);
+  width: var(--ix-expanding-search--width--collapsed);
   height: var(--ix-expanding-search--height);
   align-items: center;
   justify-content: space-between;
@@ -81,13 +81,13 @@ $container-width: var(--ix-expanding-search--container-width);
   }
 
   .btn-search.btn-search--expanded {
-    margin-left: var(--ix-expanding-search-button-search-expanded--margin-left);
+    margin-left: var(--ix-expanding-search-button-search--margin-left--expanded);
     pointer-events: none;
   }
 
   .btn-search:active {
-    width: var(--ix-expanding-search-button-search-active--width);
-    height: var(--ix-expanding-search-button-search-active--height);
+    width: var(--ix-expanding-search-button-search--width--active);
+    height: var(--ix-expanding-search-button-search--height--active);
     border-radius: var(--ix-expanding-search--border-radius);
     border: var(--ix-expanding-search-button--border--active) !important;
   }

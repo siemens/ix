@@ -24,22 +24,22 @@ $blind-status-sys: (
   --ix-blind-header--color: #{sys.$si-sys-color-text-primary};
   --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
   --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
-  --ix-blind-outline--border-color: #{sys.$si-sys-color-border-3};
+  --ix-blind--border-color--outline: #{sys.$si-sys-color-border-3};
   --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-blind--focus--outline-offset: calc(
+  --ix-blind--outline-offset--focus: calc(
     -1 * #{sys.$si-sys-sizing-focus-ring-offset}
   );
   --ix-blind--background: #{sys.$si-sys-color-background-1};
   --ix-blind--surface: transparent;
   --ix-blind--border-color: #{sys.$si-sys-color-border-3};
-  --ix-blind-status-color: transparent;
+  --ix-blind--status-color: transparent;
   --ix-blind--strip-width: #{sys.$si-sys-sizing-border-width-emphasis};
 }
 
 @each $status, $color in $blind-status-sys {
   :host(.blind-#{$status}) {
-    --ix-blind-status-color: #{$color};
+    --ix-blind--status-color: #{$color};
   }
 }
 
@@ -47,7 +47,7 @@ $blind-status-sys: (
   --ix-blind-content--transition-duration: var(--theme-default-time);
   --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-blind-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
+  --ix-blind-icon--size: #{sys.$si-sys-sizing-icon-md};
   --ix-blind-header-wrapper--min-height: calc(
     #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
   );
@@ -63,7 +63,7 @@ $blind-status-sys: (
   --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-blind-header--padding-left: calc(
-    var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--icon-size) + var(--ix-blind-collapse-icon--margin-right)
+    var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--size) + var(--ix-blind-collapse-icon--margin-right)
   );
   --ix-blind-header-title-col--width: calc(
     100% - #{sys.$si-sys-sizing-spacing-x-60}

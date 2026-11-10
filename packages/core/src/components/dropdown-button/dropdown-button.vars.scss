@@ -15,8 +15,8 @@
 $dropdown-button-variants: button-variants.$btn-variants;
 
 :host {
-  --ix-dropdown-button-border-radius-left: var(--ix-button--border-radius);
-  --ix-dropdown-button-border-radius-right: var(--ix-button--border-radius);
+  --ix-dropdown-button--border-radius-left: var(--ix-button--border-radius);
+  --ix-dropdown-button--border-radius-right: var(--ix-button--border-radius);
   --ix-dropdown-button--height: #{sys.$si-sys-sizing-size-80};
   --ix-dropdown-button-dropdown-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-dropdown-button-dropdown-chevron--margin-left: #{sys.$si-sys-sizing-spacing-x-20};

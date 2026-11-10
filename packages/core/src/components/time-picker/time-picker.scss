@@ -128,26 +128,26 @@
 
           &:hover:not(.disabled) {
             background-color: var(
-              --ix-time-picker-day--background--selected-hover
+              --ix-time-picker-day--background--selected--hover
             );
           }
 
           &:active:not(.disabled) {
             background-color: var(
-              --ix-time-picker-day--background--selected-active
+              --ix-time-picker-day--background--selected--active
             );
           }
 
           &:focus-visible {
             border: var(--ix-time-picker-element-container--border-width) solid
-              var(--ix-time-picker-day--border-color--selected-focus);
+              var(--ix-time-picker-day--border-color--selected--focus);
           }
 
           &.disabled {
             background-color: var(
-              --ix-time-picker-day--background--selected-disabled
+              --ix-time-picker-day--background--selected--disabled
             );
-            color: var(--ix-time-picker-day--color--selected-disabled);
+            color: var(--ix-time-picker-day--color--selected--disabled);
           }
         }
       }

@@ -31,7 +31,7 @@
     height: var(--ix-radio-checkmark--height);
     min-height: var(--ix-radio-checkmark--min-height);
     max-height: var(--ix-radio-checkmark--max-height);
-    border: var(--ix-radio-checkmark--border-width-initial) solid
+    border: var(--ix-radio-checkmark--border-width--initial) solid
       var(--ix-radio-checkmark--border-color);
     border-radius: var(--ix-radio-checkmark--border-radius);
   }
@@ -75,52 +75,52 @@
 @mixin radio-base() {
   :host {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background);
+      background-color: var(--ix-radio--background--unchecked);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color);
+        var(--ix-radio--border-color--unchecked);
     }
   }
 
   :host(:hover) {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background--hover);
+      background-color: var(--ix-radio--background--unchecked--hover);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color--hover);
+        var(--ix-radio--border-color--unchecked--hover);
     }
   }
 
   :host(:active) {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background--active);
+      background-color: var(--ix-radio--background--unchecked--active);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color--active);
+        var(--ix-radio--border-color--unchecked--active);
     }
   }
 
   :host(.checked),
   :host([indeterminate]) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background);
+      background-color: var(--ix-radio--background--checked);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color);
+        var(--ix-radio--border-color--checked);
     }
   }
 
   :host(.checked:hover),
   :host([indeterminate]:hover) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background--hover);
+      background-color: var(--ix-radio--background--checked--hover);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color--hover);
+        var(--ix-radio--border-color--checked--hover);
     }
   }
 
   :host(.checked:active),
   :host([indeterminate]:active) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background--active);
+      background-color: var(--ix-radio--background--checked--active);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color--active);
+        var(--ix-radio--border-color--checked--active);
     }
   }
 
@@ -128,25 +128,25 @@
     pointer-events: none;
 
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background--disabled);
+      background-color: var(--ix-radio--background--unchecked--disabled);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color--disabled);
+        var(--ix-radio--border-color--unchecked--disabled);
     }
   }
 
   :host(.checked.disabled),
   :host([indeterminate].disabled) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background--disabled);
+      background-color: var(--ix-radio--background--checked--disabled);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color--disabled);
+        var(--ix-radio--border-color--checked--disabled);
     }
   }
 
   :host(:focus-visible) {
     outline: var(--ix-radio--outline-width--focus) solid
       var(--ix-radio--outline-color--focus);
-    outline-offset: var(--ix-radio--focus--outline-offset);
+    outline-offset: var(--ix-radio--outline-offset--focus);
   }
 
   ix-typography {
@@ -163,92 +163,92 @@
 
   :host(#{$selector}) {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background);
+      background-color: var(--ix-radio--background--unchecked);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color);
+        var(--ix-radio--border-color--unchecked);
     }
   }
 
   :host(#{$selector}:hover) {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background--hover);
+      background-color: var(--ix-radio--background--unchecked--hover);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color--hover);
+        var(--ix-radio--border-color--unchecked--hover);
     }
   }
 
   :host(#{$selector}:active) {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background--active);
+      background-color: var(--ix-radio--background--unchecked--active);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color--active);
+        var(--ix-radio--border-color--unchecked--active);
     }
   }
 
   :host(#{$selector}.checked),
   :host(#{$selector}[indeterminate]) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background);
+      background-color: var(--ix-radio--background--checked);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color);
+        var(--ix-radio--border-color--checked);
     }
   }
 
   :host(#{$selector}.checked:hover),
   :host(#{$selector}[indeterminate]:hover) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background--hover);
+      background-color: var(--ix-radio--background--checked--hover);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color--hover);
+        var(--ix-radio--border-color--checked--hover);
     }
   }
 
   :host(#{$selector}.checked:active),
   :host(#{$selector}[indeterminate]:active) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background--active);
+      background-color: var(--ix-radio--background--checked--active);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color--active);
+        var(--ix-radio--border-color--checked--active);
     }
   }
 
   :host(#{$selector}.disabled) {
     .radio-checkmark {
-      background-color: var(--ix-radio-unchecked--background--disabled);
+      background-color: var(--ix-radio--background--unchecked--disabled);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-unchecked--border-color--disabled);
+        var(--ix-radio--border-color--unchecked--disabled);
     }
   }
 
   :host(#{$selector}.checked.disabled),
   :host(#{$selector}[indeterminate].disabled) {
     .radio-checkmark {
-      background-color: var(--ix-radio-checked--background--disabled);
+      background-color: var(--ix-radio--background--checked--disabled);
       border: var(--ix-radio--border-width) solid
-        var(--ix-radio-checked--border-color--disabled);
+        var(--ix-radio--border-color--checked--disabled);
     }
   }
 }
 
 @mixin define-radio-vars($state, $type) {
-  --ix-radio-#{$state}--background: var(
-    --ix-radio-#{$state}--background--#{$type}
+  --ix-radio--background--#{$state}: var(
+    --ix-radio--background--#{$type}--#{$state}
   );
-  --ix-radio-#{$state}--background--hover: var(
-    --ix-radio-#{$state}--background--#{$type}--hover
+  --ix-radio--background--#{$state}--hover: var(
+    --ix-radio--background--#{$type}--#{$state}--hover
   );
-  --ix-radio-#{$state}--background--active: var(
-    --ix-radio-#{$state}--background--#{$type}--active
+  --ix-radio--background--#{$state}--active: var(
+    --ix-radio--background--#{$type}--#{$state}--active
   );
 
-  --ix-radio-#{$state}--border-color: var(
-    --ix-radio-#{$state}--border-color--#{$type}
+  --ix-radio--border-color--#{$state}: var(
+    --ix-radio--border-color--#{$type}--#{$state}
   );
-  --ix-radio-#{$state}--border-color--hover: var(
-    --ix-radio-#{$state}--border-color--#{$type}--hover
+  --ix-radio--border-color--#{$state}--hover: var(
+    --ix-radio--border-color--#{$type}--#{$state}--hover
   );
-  --ix-radio-#{$state}--border-color--active: var(
-    --ix-radio-#{$state}--border-color--#{$type}--active
+  --ix-radio--border-color--#{$state}--active: var(
+    --ix-radio--border-color--#{$type}--#{$state}--active
   );
 }
 

@@ -32,13 +32,13 @@
   --ix-category-filter-reset-button--top: #{sys.$si-sys-sizing-spacing-y-20};
   --ix-category-filter-reset-button--right: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-category-filter-input-container--padding-block: #{sys.$si-sys-sizing-border-width-default};
-  --ix-category-filter-input-container--padding-with-icon: var(
+  --ix-category-filter-input-container--padding--with-icon: var(
       --ix-category-filter-input-container--padding-block
     )
     #{sys.$si-sys-sizing-spacing-x-80} var(
       --ix-category-filter-input-container--padding-block
     ) calc(#{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-spacing-x-20});
-  --ix-category-filter-input-container--padding-no-icon: var(
+  --ix-category-filter-input-container--padding--no-icon: var(
       --ix-category-filter-input-container--padding-block
     )
     #{sys.$si-sys-sizing-spacing-x-80} var(
@@ -67,7 +67,7 @@
   --ix-category-filter-text-input--min-height: calc(
     #{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}
   );
-  --ix-category-filter-icon--icon-size: #{sys.$si-sys-sizing-icon-sm};
+  --ix-category-filter-icon--size: #{sys.$si-sys-sizing-icon-sm};
   --ix-category-filter-category-preview--height: #{sys.$si-sys-sizing-size-70};
   --ix-category-filter-category-preview--border-top-left-radius: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-category-filter-category-preview--border-bottom-left-radius: #{sys.$si-sys-sizing-spacing-x-60};

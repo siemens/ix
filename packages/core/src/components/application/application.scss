@@ -82,7 +82,7 @@
     flex-wrap: nowrap;
     height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
     width: 100%;
-    margin-left: var(--ix-application-menu-margin-left);
+    margin-left: var(--_ix-application-menu-margin-left);
     min-width: 0;
   }
 
@@ -116,12 +116,12 @@
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu-margin-left: var(
-    --ix-application-breakpoint-md--application-menu-margin-left
+  --_ix-application-menu-margin-left: var(
+    --ix-application-menu--margin-left--md
   );
 
   aside.slotted {
-    margin-left: var(--ix-application-menu-margin-left);
+    margin-left: var(--_ix-application-menu-margin-left);
   }
 
   aside.slotted + .content-area {
@@ -129,17 +129,17 @@
   }
 
   aside:not(.slotted) + .content-area {
-    margin-left: var(--ix-application-menu-margin-left);
+    margin-left: var(--_ix-application-menu-margin-left);
   }
 }
 
 :host(.breakpoint-lg) {
-  --ix-application-menu-margin-left: 0;
+  --_ix-application-menu-margin-left: 0;
 }
 
 :host(.breakpoint-sm) {
-  --ix-application-menu-margin-left: var(
-    --ix-application-menu-safe-area-left,
+  --_ix-application-menu-margin-left: var(
+    --ix-application-menu--safe-area-left,
     0rem
   );
 }

@@ -17,9 +17,9 @@
   max-height: $height;
 }
 
-$heightSmall: var(--ix-tile--height-small);
-$heightMedium: var(--ix-tile--height-medium);
-$heightBig: var(--ix-tile--height-big);
+$heightSmall: var(--ix-tile--height--small);
+$heightMedium: var(--ix-tile--height--medium);
+$heightBig: var(--ix-tile--height--big);
 $width: var(--ix-tile--width);
 
 :host {

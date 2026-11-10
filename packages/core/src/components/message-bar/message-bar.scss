@@ -58,11 +58,11 @@
   }
 
   ix-icon {
-    block-size: var(--ix-message-bar-icon--icon-size);
-    inline-size: var(--ix-message-bar-icon--icon-size);
+    block-size: var(--ix-message-bar-icon--size);
+    inline-size: var(--ix-message-bar-icon--size);
     margin-top: var(--ix-message-bar-icon--margin-top);
-    min-block-size: var(--ix-message-bar-icon--icon-size);
-    min-inline-size: var(--ix-message-bar-icon--icon-size);
+    min-block-size: var(--ix-message-bar-icon--size);
+    min-inline-size: var(--ix-message-bar-icon--size);
   }
 
   .message-bar-hidden {

@@ -5,20 +5,20 @@
 }
 
 :host {
-  --ix-empty-state-large--gap: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-empty-state-icon-large--icon-size: calc(
+  --ix-empty-state--gap--large: #{sys.$si-sys-sizing-spacing-y-60};
+  --ix-empty-state-icon--width--large: calc(
     #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-x-40}
   );
-  --ix-empty-state-icon-large--icon-size--icon: calc(
+  --ix-empty-state-icon--height--large: calc(
     #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-y-40}
   );
-  --ix-empty-state-content-large--gap: #{sys.$si-sys-sizing-spacing-y-80};
-  --ix-empty-state-content-label-large--gap: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-empty-state-compact--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-empty-state-icon-compact--icon-size: #{sys.$si-sys-sizing-size-90};
-  --ix-empty-state-content-compact--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-empty-state-compact-break--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-empty-state-icon--icon-size: #{sys.$si-sys-sizing-size-90};
+  --ix-empty-state-content--gap--large: #{sys.$si-sys-sizing-spacing-y-80};
+  --ix-empty-state-content-label--gap--large: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-empty-state--gap--compact: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-empty-state-icon--size--compact: #{sys.$si-sys-sizing-size-90};
+  --ix-empty-state-content--gap--compact: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-empty-state--gap--compact-break: #{sys.$si-sys-sizing-spacing-x-60};
+  --ix-empty-state-icon--size: #{sys.$si-sys-sizing-size-90};
   --ix-empty-state-content--gap: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-empty-state-content-label--gap: #{sys.$si-sys-sizing-spacing-y-20};
 }

@@ -39,7 +39,7 @@
 
   .content-container {
     flex-grow: 1;
-    margin: var(--ix-flip-tile-content-container--margin);
+    margin: var(--ix-flip-tile-container--margin);
   }
 
   .flip-tile-container {
@@ -82,19 +82,19 @@
   :host(.flip-tile-variant-#{$variant}) {
     border: solid
       var(--ix-flip-tile-variant--border-width)
-      var(--ix-flip-tile-#{$variant}--border-color);
+      var(--ix-flip-tile--border-color--#{$variant});
 
     .flip-tile-container {
-      background-color: var(--ix-flip-tile-#{$variant}--background);
-      color: var(--ix-flip-tile-#{$variant}--color);
+      background-color: var(--ix-flip-tile--background--#{$variant});
+      color: var(--ix-flip-tile--color--#{$variant});
 
       .footer {
         display: none;
         border-top: var(--ix-flip-tile-footer--border-width)
           solid
-          var(--ix-flip-tile-#{$variant}-footer--border-color);
-        background-color: var(--ix-flip-tile-#{$variant}-footer--background);
-        color: var(--ix-flip-tile-#{$variant}-footer--color);
+          var(--ix-flip-tile-footer--border-color--#{$variant});
+        background-color: var(--ix-flip-tile-footer--background--#{$variant});
+        color: var(--ix-flip-tile-footer--color--#{$variant});
       }
 
       .footer.show-footer {

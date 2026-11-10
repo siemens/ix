@@ -276,7 +276,7 @@ function badgeCounterPreview(): VNode {
                 variant: 'warning',
                 label: '1',
                 enableAnimation: true,
-                hostStyle: { '--ix-badge-animation-duration': '6s' },
+                hostStyle: { '--ix-badge--animation-duration': '6s' },
               })
             )}
           </div>
@@ -300,11 +300,11 @@ function badgeCounterPreview(): VNode {
             counterBadge({ variant: 'accent', label: '142' })
           )}
           {cell(
-            '--ix-badge-max-width: 2rem',
+            '--ix-badge--max-width: 2rem',
             counterBadge({
               variant: 'accent',
               label: '142',
-              hostStyle: { '--ix-badge-max-width': '2rem' },
+              hostStyle: { '--ix-badge--max-width': '2rem' },
             })
           )}
         </div>

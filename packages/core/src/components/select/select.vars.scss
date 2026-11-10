@@ -31,19 +31,19 @@
   --ix-select--color: #{sys.$si-sys-color-text-primary};
   --ix-select--color--disabled: #{sys.$si-sys-color-text-disabled};
   --ix-select--color--readonly: #{sys.$si-sys-color-text-primary};
-  --ix-select-item-hint--color: #{sys.$si-sys-color-text-secondary};
+  --ix-select-list-header--color: #{sys.$si-sys-color-text-secondary};
   --ix-select-placeholder--color: #{sys.$si-sys-color-text-secondary};
   --ix-select-overflow-button--color--active: #{sys.$si-sys-color-text-primary};
 }
 
 :host {
-  --ix-select--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-select--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-select--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-select--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-select-chip--margin-block: #{sys.$si-sys-sizing-spacing-y-10};
   --ix-select-chip--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
   --ix-select-trigger--min-width: #{sys.$si-sys-sizing-size-120};
-  --ix-select-overflow-chip--fallback-width: calc(
+  --ix-select-overflow-chip-fallback--width: calc(
     #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
   );
   --ix-select--min-height: #{sys.$si-sys-sizing-size-80};
@@ -52,10 +52,10 @@
     40%,
     calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120})
   );
-  --ix-select-icon--icon-size: calc(
+  --ix-select-icon--height: calc(
     #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10}
   );
-  --ix-select-icon--icon-size--icon: calc(
+  --ix-select-icon--width: calc(
     #{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10}
   );
   --ix-select-input-container--height: calc(
