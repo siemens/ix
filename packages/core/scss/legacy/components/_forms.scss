@@ -47,7 +47,7 @@
       background-color: #{sys.$si-sys-color-background-4};
       border-color: #{sys.$si-sys-color-border-accent-hover};
       outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-      outline: 1px solid #{sys.$si-sys-color-effects-focus};
+      outline: #{sys.$si-sys-sizing-focus-ring-width} solid #{sys.$si-sys-color-effects-focus};
     }
   }
 }

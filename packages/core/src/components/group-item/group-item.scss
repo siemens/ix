@@ -12,7 +12,6 @@
 @use 'mixins/text-truncation';
 
 @use './group-item.vars' as *;
-$focusBorderWidth: var(--ix-group-item--border-width--focus);
 
 :host {
   display: flex;
@@ -31,14 +30,16 @@ $focusBorderWidth: var(--ix-group-item--border-width--focus);
     position: relative;
     outline: none;
     background-color: var(--ix-group-item--background);
-    border: var(--ix-group-item-group-footer--border-width) solid transparent;
+    border: none;
     color: var(--ix-group-item--color);
     cursor: pointer;
 
     padding-left: var(--ix-group-item-group-footer--padding-left);
 
     &:focus-visible {
-      border: $focusBorderWidth solid var(--ix-group-item--border-color--focus);
+      outline: var(--ix-group-item--outline-width--focus) solid
+        var(--ix-group-item--outline-color--focus);
+      outline-offset: var(--ix-group-item--outline-offset--focus);
     }
 
     &:disabled {
@@ -58,8 +59,8 @@ $focusBorderWidth: var(--ix-group-item--border-width--focus);
 
   .group-entry-selection-indicator {
     position: absolute;
-    left: calc(0px - #{$focusBorderWidth});
-    height: calc(100% + 2 * #{$focusBorderWidth});
+    left: 0;
+    height: 100%;
     width: var(--ix-group-item-group-entry-selection-indicator--width);
   }
 

@@ -17,8 +17,6 @@
     align-items: center;
     cursor: pointer;
     padding: var(--ix-category-filter-dropdown-item--padding);
-    border: var(--ix-category-filter-dropdown-item--border-width) solid
-      transparent;
     color: var(
       --ix-menu-item--color,
       var(--ix-category-filter-dropdown-item--color)
@@ -27,9 +25,12 @@
   }
 
   &:focus-visible {
-    outline: none;
+    outline: var(--ix-category-filter-dropdown-item--outline-width--focus) solid
+      var(--ix-category-filter-dropdown-item--outline-color--focus);
+    outline-offset: var(
+      --ix-category-filter-dropdown-item--outline-offset--focus
+    );
     background-color: var(--ix-menu-item--background, transparent);
-    border-color: var(--ix-category-filter-dropdown-item--border-color--focus);
     color: var(
       --ix-menu-item--color--focus,
       var(--ix-category-filter-dropdown-item--color--focus)

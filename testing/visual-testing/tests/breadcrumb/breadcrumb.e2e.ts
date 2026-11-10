@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('breadcrumb', () => {
   regressionTest('basic', async ({ page }) => {
@@ -30,4 +30,18 @@ regressionTest.describe('breadcrumb', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-breadcrumb><ix-breadcrumb-item label="Home"></ix-breadcrumb-item><ix-breadcrumb-item label="Page"></ix-breadcrumb-item></ix-breadcrumb>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-breadcrumb-item >> nth=0'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

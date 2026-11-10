@@ -325,9 +325,11 @@ export class MenuItem
         ></ix-icon>
       ),
       this.notifications ? (
-        <div class="notification">
-          <div class="pill">{this.notifications}</div>
-        </div>
+        <ix-badge
+          class="notification"
+          type="counter"
+          label={String(this.notifications)}
+        ></ix-badge>
       ) : null,
       <span id={this.internalItemId} class="tab-text typography-body">
         {this.label}
