@@ -197,8 +197,12 @@ export function getAriaAttributesForInput<T>(
 ): A11yAttributes {
   // `aria-errormessage` must reference an element id, it is set by
   // `HookValidationLifecycle` to the error message element of `ix-field-wrapper`.
+  // `ix-field-wrapper` stops naming the control once it started with an `aria-label`,
+  // so the field label has to come back here when that `aria-label` is removed
+  const ariaLabel = inheritedAttributes['aria-label'] ?? component.label;
   return {
     ...inheritedAttributes,
+    ...(ariaLabel ? { 'aria-label': ariaLabel } : {}),
     'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
     'aria-required': `${a11yBoolean(
       component.required || inheritedAttributes['aria-required'] === 'true'

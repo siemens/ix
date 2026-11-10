@@ -64,6 +64,22 @@ controls.forEach(({ tag, control }) => {
     );
 
     regressionTest(
+      'falls back to the label when aria-label is removed after hydration',
+      async ({ mount, page }) => {
+        await mount(`<${tag} label="City" aria-label="Location"></${tag}>`);
+        const host = page.locator(tag);
+        await expect(host).toHaveAttribute('hydrated');
+        const nativeControl = host.locator(control);
+        await expect(nativeControl).toHaveAttribute('aria-label', 'Location');
+
+        await host.evaluate((element) => {
+          element.removeAttribute('aria-label');
+        });
+        await expect(nativeControl).toHaveAttribute('aria-label', 'City');
+      }
+    );
+
+    regressionTest(
       'exposes aria-required on the native control',
       async ({ mount, page }) => {
         await mount(`<${tag} aria-required="true"></${tag}>`);
