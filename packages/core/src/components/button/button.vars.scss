@@ -178,7 +178,7 @@
 :host {
   --ix-button--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-button--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-button--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-button--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-button--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
   --ix-button--height: #{sys.$si-sys-sizing-size-80};

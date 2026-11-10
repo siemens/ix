@@ -51,12 +51,23 @@ export class KeyValue {
    */
   @Prop() value?: string;
 
+  /**
+   * Hide the divider line below the key value.
+   * Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDivider = false;
+
   render() {
     return (
       <Host
-        class={`keyValue keyValue--${
-          this.labelPosition === 'top' ? 'column' : 'row'
-        }`}
+        class={{
+          keyValue: true,
+          [`keyValue--${this.labelPosition === 'top' ? 'column' : 'row'}`]:
+            true,
+          'keyValue--no-divider': this.hideDivider,
+        }}
       >
         {this.icon && (
           <ix-icon

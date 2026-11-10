@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    min-height: var(--ix-select--min-height);
     background-color: var(--ix-select--background);
     border: var(--ix-select--border-width) solid var(--ix-select--border-color);
     border-radius: var(--ix-select--border-radius);
@@ -130,13 +131,6 @@
           }
         }
       }
-    }
-
-    ix-icon-button {
-      height: var(--ix-select-icon--icon-size);
-      width: var(--ix-select-icon--icon-size--icon);
-      min-height: var(--ix-select-icon--icon-size);
-      min-width: var(--ix-select-icon--icon-size--icon);
     }
 
     input {

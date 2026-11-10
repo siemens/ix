@@ -45,16 +45,12 @@
     color: inherit;
     background: transparent;
     text-align: start;
+  }
 
-    &:focus-visible::after {
-      position: absolute;
-      inset: 0;
-      border: var(--ix-list-item--outline-width--focus) solid
-        var(--ix-list-item--outline-color--focus);
-      border-radius: var(--ix-list-item--border-radius);
-      content: '';
-      pointer-events: none;
-    }
+  .item-surface:has(> .primary-action:focus-visible) {
+    outline: var(--ix-list-item--outline-width--focus) solid
+      var(--ix-list-item--outline-color--focus);
+    outline-offset: var(--ix-list-item--outline-offset--focus);
   }
 
   .drag-gripper {
@@ -66,20 +62,17 @@
     height: var(--ix-list-item-drag-gripper--height);
     padding: 0;
     border: 0;
+    border-radius: var(--ix-list-item--border-radius);
     outline: 0;
     color: inherit;
     background: transparent;
     cursor: grab;
     touch-action: none;
 
-    &:focus-visible::after {
-      position: absolute;
-      inset: calc(-1 * var(--ix-list-item-drag-gripper--focus-ring-offset));
-      border: var(--ix-list-item--outline-width--focus) solid
+    &:focus-visible {
+      outline: var(--ix-list-item--outline-width--focus) solid
         var(--ix-list-item--outline-color--focus);
-      border-radius: var(--ix-list-item--border-radius);
-      content: '';
-      pointer-events: none;
+      outline-offset: var(--ix-list-item--outline-offset--focus);
     }
 
     ix-icon {
@@ -214,8 +207,7 @@
 :host([variant='ghost'].divider) {
   .item-surface {
     border-bottom-color: var(--ix-list-item--border-color--divider);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 0;
   }
 }
 
@@ -241,16 +233,10 @@
   }
 }
 
-:host(:has(.drag-gripper:focus-visible)) {
-  .primary-action:focus-visible::after {
-    display: none;
-  }
-}
-
 :host(.pointer-dragging) {
-  .primary-action:focus-visible::after,
-  .drag-gripper:focus-visible::after {
-    display: none;
+  .item-surface:has(> .primary-action:focus-visible),
+  .drag-gripper:focus-visible {
+    outline: none;
   }
 }
 

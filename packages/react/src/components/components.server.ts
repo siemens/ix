@@ -1249,7 +1249,8 @@ export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEven
         ariaLabelIcon: 'aria-label-icon',
         label: 'label',
         labelPosition: 'label-position',
-        value: 'value'
+        value: 'value',
+        hideDivider: 'hide-divider'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxKeyValue as StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue, 'label'>,
@@ -1260,7 +1261,10 @@ export type IxKeyValueListEvents = NonNullable<unknown>;
 
 export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList> = /*@__PURE__*/ createComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>({
     tagName: 'ix-key-value-list',
-    properties: { striped: 'striped' },
+    properties: {
+        striped: 'striped',
+        hideDividers: 'hide-dividers'
+    },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxKeyValueList as StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>,
     serializeShadowRoot

@@ -96,6 +96,26 @@ const rememberRovingTabindex = (host: HTMLElement, items: HTMLElement[]) => {
   });
 };
 
+export type NavigationBoundaryDirection = 'next' | 'previous';
+
+/**
+ * Called when arrow key navigation would move past the first or last item.
+ * Resolves to the item that should become active instead of wrapping around,
+ * or `undefined` to keep the default wrap-around behavior.
+ */
+export type NavigationBoundaryHandler = (
+  direction: NavigationBoundaryDirection
+) => Promise<HTMLElement | undefined>;
+
+/**
+ * Like {@link NavigationBoundaryHandler}, but may return `undefined` instead of
+ * a promise when no boundary handling applies, so navigation wraps around
+ * without waiting.
+ */
+type OptionalNavigationBoundaryHandler = (
+  direction: NavigationBoundaryDirection
+) => Promise<HTMLElement | undefined> | undefined;
+
 export const getIndexOfDropdownItem = (
   items: HTMLElement[],
   item: HTMLElement | null,
@@ -219,9 +239,7 @@ export const initRovingTabindex = (
     activeItem = items.find((item) => item.matches('[checked]'));
   }
 
-  if (!activeItem) {
-    activeItem = position === 'last' ? items[items.length - 1] : items[0];
-  }
+  activeItem ??= position === 'last' ? items[items.length - 1] : items[0];
 
   activeItem.tabIndex = 0;
   focusItem(activeItem);
@@ -269,6 +287,17 @@ export const configureKeyboardInteraction = (
      */
     onTabKey?: (event: KeyboardEvent) => void;
     /**
+     * Lets the owner extend the item list (e.g. an infinite year list)
+     * instead of wrapping when arrow keys move past the first or last item.
+     */
+    onNavigationBoundary?: OptionalNavigationBoundaryHandler;
+    /**
+     * Invoked when waiting for {@link onNavigationBoundary} starts and once the
+     * resolved item is active. Keys moving or activating items are discarded
+     * in between.
+     */
+    onNavigationBoundaryPendingChange?: (pending: boolean) => void;
+    /**
      * Register the keydown listener in the capture phase. Used by the
      * roving-tabindex strategy so activation keys can be intercepted before the
      * focused item handles them, preventing duplicate activation.
@@ -301,7 +330,118 @@ export const configureKeyboardInteraction = (
   const getEventListenerTarget =
     options.getEventListenerTarget ?? (() => getItemsHost());
 
+  const handledKeys = new Set([
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'Home',
+    'End',
+    'Enter',
+    ' ',
+    ...itemTriggerKeys,
+  ]);
+
+  let boundaryPending = false;
+  let disposed = false;
+
+  const setBoundaryPending = (pending: boolean) => {
+    boundaryPending = pending;
+    options.onNavigationBoundaryPendingChange?.(pending);
+  };
+
+  const requestBoundaryItem = (
+    direction: NavigationBoundaryDirection,
+    items: HTMLElement[],
+    activeElement: HTMLElement | null
+  ) => {
+    if (!options.onNavigationBoundary || items.length === 0) {
+      return undefined;
+    }
+
+    const boundaryIndex = direction === 'next' ? items.length - 1 : 0;
+    const currentIndex = getIndexOfDropdownItem(
+      items,
+      activeElement,
+      activeQuerySelector
+    );
+
+    if (currentIndex !== boundaryIndex) {
+      return undefined;
+    }
+
+    try {
+      return options.onNavigationBoundary(direction);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+
+  const moveActiveItem = async (
+    direction: NavigationBoundaryDirection,
+    items: HTMLElement[],
+    activeElement: HTMLElement | null
+  ) => {
+    const getAdjacentItem = () =>
+      direction === 'next'
+        ? getNextFocusableDropdownItem(
+            items,
+            activeElement,
+            activeQuerySelector
+          )
+        : getPreviousFocusableItem(items, activeElement, activeQuerySelector);
+
+    const boundaryItem = requestBoundaryItem(direction, items, activeElement);
+    if (!boundaryItem) {
+      const item = getAdjacentItem();
+      if (item !== undefined) {
+        setItemActive(item);
+      }
+      return;
+    }
+
+    setBoundaryPending(true);
+
+    let item: HTMLElement | undefined;
+    try {
+      item = await boundaryItem;
+    } catch (e) {
+      if (Build.isDev) {
+        console.error('Error during dropdown navigation boundary:', e);
+      }
+    }
+
+    if (disposed) {
+      setBoundaryPending(false);
+      return;
+    }
+
+    item ??= getAdjacentItem();
+    if (item !== undefined) {
+      setItemActive(item);
+    }
+
+    // setItemActive applies the active state in the next animation frame. Keep
+    // discarding keys until then, so they cannot act on the previous item.
+    requestAnimationFrameNoNgZone(() => {
+      if (!disposed) {
+        setBoundaryPending(false);
+      }
+    });
+  };
+
   const callback = async (event: KeyboardEvent) => {
+    if (boundaryPending && handledKeys.has(event.key)) {
+      // The active item is about to change once the boundary resolves. Acting on
+      // the stale item would select or move from the wrong one, so discard the
+      // key instead of queueing it.
+      event.preventDefault();
+      if (options.useCapture) {
+        event.stopPropagation();
+      }
+      return;
+    }
+
     const activeElement = getActiveElement();
     let items: HTMLElement[] = [];
 
@@ -365,15 +505,7 @@ export const configureKeyboardInteraction = (
 
         // Disable movement/scroll with keyboard
         event.preventDefault();
-        const nextItem = getNextFocusableDropdownItem(
-          items,
-          activeElement,
-          activeQuerySelector
-        );
-
-        if (nextItem !== undefined) {
-          setItemActive(nextItem);
-        }
+        await moveActiveItem('next', items, activeElement);
         break;
       }
 
@@ -384,14 +516,7 @@ export const configureKeyboardInteraction = (
         }
         // Disable movement/scroll with keyboard
         event.preventDefault();
-        const prevItem = getPreviousFocusableItem(
-          items,
-          activeElement,
-          activeQuerySelector
-        );
-        if (prevItem !== undefined) {
-          setItemActive(prevItem);
-        }
+        await moveActiveItem('previous', items, activeElement);
         break;
       }
 
@@ -461,6 +586,11 @@ export const configureKeyboardInteraction = (
 
   const listenerTarget = getEventListenerTarget();
   listenerTarget.addEventListener('keydown', callback, options.useCapture);
-  return () =>
+  return () => {
+    disposed = true;
+    if (boundaryPending) {
+      setBoundaryPending(false);
+    }
     listenerTarget.removeEventListener('keydown', callback, options.useCapture);
+  };
 };

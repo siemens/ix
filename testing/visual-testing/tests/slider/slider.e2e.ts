@@ -8,7 +8,7 @@
  */
 import { expect } from '@playwright/test';
 import { iconRocket } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest('should show reference value', async ({ page, mount }) => {
   await mount(`
@@ -384,5 +384,19 @@ regressionTest('should render with error', async ({ page, mount }) => {
 
   expect(
     await page.locator('#slider-container').screenshot()
+  ).toMatchSnapshot();
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-slider style="width: 20rem" value="50"></ix-slider>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-slider'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
   ).toMatchSnapshot();
 });

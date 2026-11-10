@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, viewPorts } from '@utils/test';
+import { focusWithKeyboard, regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('menu', () => {
   regressionTest(
@@ -259,3 +259,32 @@ regressionTest.describe('menu', () => {
     await expect(page).toHaveScreenshot();
   });
 });
+
+regressionTest(
+  'should show focus-visible outline on menu navigation',
+  async ({ page }) => {
+    await page.goto('menu/basic');
+
+    await focusWithKeyboard(page, page.locator('ix-menu .menu-navigation'));
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);
+
+regressionTest(
+  'should show focus-visible outline on menu item',
+  async ({ page }) => {
+    await page.goto('menu/basic');
+    await focusWithKeyboard(page, page.locator('ix-menu .menu-navigation'));
+
+    await focusWithKeyboard(page, page.locator('ix-menu-item').first(), {
+      key: 'ArrowDown',
+    });
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

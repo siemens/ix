@@ -36,5 +36,5 @@ $dropdown-button-variants: button-variants.$btn-variants;
       var(--ix-dropdown-button-triangle--edge-inset)
   );
   --ix-dropdown-button-triangle--border-width: #{sys.$si-sys-sizing-border-width-emphasis};
-  --ix-dropdown-button--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-dropdown-button--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }

@@ -82,14 +82,61 @@ export function dayOfMonth(month: DateTime, day: number): DateTime {
  */
 export function weekdayNamesFrom(
   weekStart: WeekdayIndex,
-  locale?: string
+  locale?: string,
+  length: 'long' | 'short' | 'narrow' = 'long'
 ): string[] {
-  const names = Info.weekdays('long', { locale });
+  const names = Info.weekdays(length, { locale });
 
   return Array.from(
     { length: DAYS_IN_WEEK },
     (_, column) => names[(column + weekStart) % DAYS_IN_WEEK]
   );
+}
+
+/**
+ * Longest weekday label, in user-perceived characters, that still fits a
+ * calendar column header.
+ */
+const MAX_WEEKDAY_LABEL_LENGTH = 6;
+
+let graphemeSegmenter: Intl.Segmenter | undefined;
+
+/**
+ * Number of user-perceived characters in `value`. Falls back to code points
+ * where `Intl.Segmenter` is unavailable (Firefox < 125).
+ */
+function graphemeLengthOf(value: string): number {
+  if (typeof Intl.Segmenter !== 'function') {
+    return [...value].length;
+  }
+
+  // Grapheme boundaries do not depend on the locale, so one instance is shared.
+  graphemeSegmenter ??= new Intl.Segmenter(undefined, {
+    granularity: 'grapheme',
+  });
+  return [...graphemeSegmenter.segment(value)].length;
+}
+
+/**
+ * The weekday column header labels for a grid whose first column is
+ * `weekStart`, localised.
+ *
+ * Uses the locale's abbreviated names. If any of them is too long to fit a
+ * column (e.g. Arabic, where the abbreviated and full names are the same), all
+ * seven fall back to the narrow names so the header stays consistent.
+ * Length is counted in graphemes, so combining marks and multi-code-point
+ * characters count once.
+ */
+export function weekdayLabelsFrom(
+  weekStart: WeekdayIndex,
+  locale?: string
+): string[] {
+  const shortNames = weekdayNamesFrom(weekStart, locale, 'short');
+  const fits = shortNames.every(
+    (name) => graphemeLengthOf(name) <= MAX_WEEKDAY_LABEL_LENGTH
+  );
+
+  return fits ? shortNames : weekdayNamesFrom(weekStart, locale, 'narrow');
 }
 
 /**

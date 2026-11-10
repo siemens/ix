@@ -23,7 +23,7 @@
 :host {
   --ix-card-list-title-button--transition-duration: var(--theme-default-time);
   --ix-card-list-content--transition-duration: var(--theme-default-time);
-  --ix-card-list-show-all--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-card-list-show-all--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-card-list-show-all--focus-outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-card-list-title--height: #{sys.$si-sys-sizing-size-80};
   --ix-card-list--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};

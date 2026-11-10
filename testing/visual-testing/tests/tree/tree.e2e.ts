@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('tree', () => {
   regressionTest('should append item to tree', async ({ page }) => {
@@ -97,4 +97,41 @@ regressionTest.describe('tree', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: 20rem; height: 8rem">
+        <ix-tree root="root"></ix-tree>
+      </div>`
+  );
+
+  await page.locator('ix-tree').evaluate((tree: HTMLIxTreeElement) => {
+    tree.model = {
+      root: {
+        id: 'root',
+        children: ['item-1', 'item-2'],
+        hasChildren: true,
+        data: { name: '' },
+      },
+      'item-1': {
+        id: 'item-1',
+        children: [],
+        hasChildren: false,
+        data: { name: 'Item 1' },
+      },
+      'item-2': {
+        id: 'item-2',
+        children: [],
+        hasChildren: false,
+        data: { name: 'Item 2' },
+      },
+    };
+  });
+
+  await focusWithKeyboard(page, page.locator('ix-tree-item').first());
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });
