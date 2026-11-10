@@ -32,20 +32,37 @@ regressionTest.describe('menu', () => {
     }
   );
 
-  regressionTest(
-    'basic lg - no default icon on second level, visible ellipsis for category',
-    async ({ page }) => {
-      await page.setViewportSize(viewPorts.lg);
-      await page.goto('menu/basic');
+  for (const density of ['default', 'compact']) {
+    regressionTest(
+      `basic lg - no default icon on second level, visible ellipsis for category${
+        density === 'default' ? '' : ' (compact)'
+      }`,
+      async ({ page }) => {
+        await page.setViewportSize(viewPorts.lg);
+        await page.goto('menu/basic');
+        await page.locator('html').evaluate((element, value) => {
+          element.setAttribute('data-ix-density', value);
+        }, density);
 
-      const category = page.locator('ix-menu-category');
-      await category.click();
+        const menu = page.locator('ix-menu');
+        const toggle = menu.locator('ix-menu-expand-icon');
+        await toggle.click();
+        await expect(menu).not.toHaveClass(/\bexpanded\b/);
+        await page.mouse.move(9999, 9999);
+        await expect(page).toHaveScreenshot(`menu-collapsed-${density}.png`, {
+          animations: 'disabled',
+        });
 
-      await page.waitForTimeout(1000);
-
-      await expect(page).toHaveScreenshot();
-    }
-  );
+        await toggle.click();
+        await expect(menu).toHaveClass(/\bexpanded\b/);
+        const category = menu.locator('ix-menu-category');
+        await category.click();
+        await expect(category.locator('.menu-items--expanded')).toBeVisible();
+        await page.mouse.move(9999, 9999);
+        await expect(page).toHaveScreenshot({ animations: 'disabled' });
+      }
+    );
+  }
 
   regressionTest(
     'link - should render menu items with a[href]',

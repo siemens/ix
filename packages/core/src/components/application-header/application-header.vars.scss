@@ -32,6 +32,10 @@
     #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
       var(--ix-safe-area-inset-left, 0rem)
   );
+  --ix-application-header--padding-left--mobile: calc(
+    (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}) / 2 +
+      var(--ix-safe-area-inset-left, 0rem)
+  );
   --ix-application-header-right-side--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-application-header-app-icon--icon-size: #{sys.$si-sys-sizing-size-80};
   --ix-application-header-app-icon--outline-width: #{sys.$si-sys-sizing-border-width-default};
