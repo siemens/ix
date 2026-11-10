@@ -15,4 +15,9 @@ regressionTest.describe('key value list', () => {
     await page.goto('key-value-list/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('divider', async ({ page }) => {
+    await page.goto('key-value-list/divider');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

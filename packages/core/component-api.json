@@ -6046,6 +6046,17 @@
           "deprecated": false
         },
         {
+          "name": "hideDivider",
+          "attribute": "hide-divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6100,6 +6111,17 @@
       "tag": "ix-key-value-list",
       "deprecated": false,
       "properties": [
+        {
+          "name": "hideDividers",
+          "attribute": "hide-dividers",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "striped",
           "attribute": "striped",

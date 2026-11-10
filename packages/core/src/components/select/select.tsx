@@ -1574,6 +1574,7 @@ export class Select
                           : iconChevronDownSmall
                       }
                       variant="subtle-tertiary"
+                      size="16"
                     ></ix-icon-button>
                   )}
                 </div>

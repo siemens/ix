@@ -28,10 +28,21 @@ export class KeyValueList {
    */
   @Prop() striped: boolean = false;
 
+  /**
+   * Hide the divider lines below all key value items.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDividers = false;
+
   render() {
     return (
       <Host
-        class={{ keyValueList: true, 'keyValueList--striped': this.striped }}
+        class={{
+          keyValueList: true,
+          'keyValueList--striped': this.striped,
+          'keyValueList--no-divider': this.hideDividers,
+        }}
       >
         <slot></slot>
       </Host>

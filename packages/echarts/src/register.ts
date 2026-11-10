@@ -10,8 +10,8 @@
 import type { ECharts } from 'echarts';
 import brandDark from './themes/brand-dark';
 import brandLight from './themes/brand-light';
-import classicDark from './themes/classic-dark';
-import classicLight from './themes/classic-light';
+import communityDark from './themes/community-dark';
+import communityLight from './themes/community-light';
 
 declare global {
   interface Window {
@@ -26,7 +26,7 @@ export default function registerTheme(echartsInstance?: any) {
     throw Error('echarts not found');
   }
 
-  [classicDark, classicLight, brandDark, brandLight].forEach((themeBundle) => {
+  [communityDark, communityLight, brandDark, brandLight].forEach((themeBundle) => {
     echarts.registerTheme(themeBundle.themeName, themeBundle.theme);
   });
 }

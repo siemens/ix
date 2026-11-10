@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconRocket } from '@siemens/ix-icons/icons';
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('icon-toggle-button: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -56,4 +57,19 @@ regressionTest.describe('icon-toggle-button: basic', () => {
     await page.goto('icon-toggle-button/loading');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-icon-toggle-button icon="rocket" aria-label="Rocket"></ix-icon-toggle-button>
+    </div>`,
+    { icons: { iconRocket } }
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-icon-toggle-button'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

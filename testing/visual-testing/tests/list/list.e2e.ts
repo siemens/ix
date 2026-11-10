@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('list', () => {
   regressionTest('basic', async ({ page }) => {
@@ -49,4 +49,14 @@ regressionTest.describe('list', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     await page.mouse.up();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ page }) => {
+  await page.goto('list/basic');
+
+  await focusWithKeyboard(page, page.locator('ix-list-item').first());
+
+  expect(
+    await page.screenshot({ fullPage: true, animations: 'disabled' })
+  ).toMatchSnapshot();
 });

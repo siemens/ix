@@ -26,6 +26,7 @@
 :host {
   --ix-group-header--font: #{sys.$si-sys-typography-h4};
   --ix-group-header--border-radius--focus: #{sys.$si-sys-sizing-border-radius-sm};
+  --ix-group-header--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-group--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
   --ix-group-subheader--font: #{sys.$si-sys-typography-body-paragraph};
   --ix-group-context-menu--height: #{sys.$si-sys-sizing-size-80};
