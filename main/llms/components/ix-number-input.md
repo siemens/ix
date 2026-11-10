@@ -51,8 +51,10 @@
 
 ## Methods
 
+- `clear() => Promise<void>` - Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation. Emits 0 unless allowEmptyValueChange is enabled, in which case it emits undefined.
 - `focusInput() => Promise<void>` - Focuses the input field
 - `getNativeInputElement() => Promise<HTMLInputElement>` - Returns the native input element used under the hood
+- `getValidityState() => Promise<ValidityState>` - Returns the validity state of the number input field.
 
 ## Slots
 

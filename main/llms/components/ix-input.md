@@ -49,6 +49,7 @@
 
 ## Methods
 
+- `clear() => Promise<void>` - Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
 - `focusInput() => Promise<void>` - Focuses the input field
 - `getNativeInputElement() => Promise<HTMLInputElement>` - Returns the native input element used in the text field.
 - `getValidityState() => Promise<ValidityState>` - Returns the validity state of the input field.
