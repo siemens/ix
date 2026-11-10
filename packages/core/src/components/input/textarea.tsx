@@ -34,6 +34,7 @@ import {
   onInputBlurWithChange,
   revalidateAfterPropChange,
   checkInternalValidity,
+  syncNativeControlValue,
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
 import type { TextareaResizeBehavior } from './textarea.types';
@@ -77,6 +78,12 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Prop({ reflect: true }) required: boolean = false;
 
   private revalidateAfterRender = false;
+
+  @Watch('value')
+  onValueChange(value: string) {
+    syncNativeControlValue(this.textAreaRef.current, value);
+    this.syncFormInternals(value);
+  }
 
   @Watch('required')
   onRequiredChange() {
@@ -231,7 +238,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value);
+    this.syncFormInternals(this.value);
   }
 
   componentDidRender() {
@@ -312,8 +319,13 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   updateFormInternalValue(value: string) {
-    this.formInternals.setFormValue(value);
+    // Form value and validity are synced in `onValueChange`
     this.value = value;
+  }
+
+  private syncFormInternals(value: string) {
+    this.formInternals.setFormValue(value);
+
     if (this.textAreaRef.current && this.touched) {
       checkInternalValidity(this, this.textAreaRef.current);
     }

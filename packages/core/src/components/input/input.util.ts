@@ -245,6 +245,16 @@ export function handleSubmitOnEnterKeydown(
   }
 }
 
+// The VDOM diff skips the write when `value` returns to its last rendered state
+export function syncNativeControlValue(
+  control: HTMLInputElement | HTMLTextAreaElement | null | undefined,
+  nextValue = ''
+) {
+  if (control && control.value !== nextValue) {
+    control.value = nextValue;
+  }
+}
+
 export function onInputFocus<T>(comp: { initialValue?: T }, currentValue: T) {
   comp.initialValue = currentValue;
 }
