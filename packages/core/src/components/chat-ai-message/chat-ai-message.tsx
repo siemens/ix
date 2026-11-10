@@ -10,7 +10,7 @@
 import { Component, Host, State, h } from '@stencil/core';
 
 /**
- * @documentation https://ix.siemens.io//docs/components/ai-message/guide.md
+ * @documentation https://ix.siemens.io/docs/components/ai-message/guide.md
  * @figma-main-component-id 133528:33343
  * @since 5.2.0
  * @slot - AI-generated message content

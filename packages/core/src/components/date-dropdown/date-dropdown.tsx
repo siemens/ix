@@ -54,7 +54,7 @@ type DropdownRange = DateRange<string> & { id: string };
 /**
  * Dropdown for selecting a date or a relative date range.
  *
- * @documentation https://ix.siemens.io//docs/components/date-dropdown/code.md
+ * @documentation https://ix.siemens.io/docs/components/date-dropdown/code.md
  * @figma-main-component-id 45886:27067
  */
 @Component({

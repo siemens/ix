@@ -102,7 +102,7 @@ const createPointReference = ({
 /**
  * Floating overlay that displays a list of options or actions anchored to a trigger.
  *
- * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
+ * @documentation https://ix.siemens.io/docs/components/dropdown/guide.md
  * @figma-main-component-id 1233:32649
  *
  * @slot - Dropdown content.
