@@ -43,7 +43,7 @@
 
 ## Dependencies
 
-- Renders: `ix-tooltip`
+- Renders: `ix-badge`, `ix-tooltip`
 - Rendered by: `ix-menu`, `ix-menu-category`
 
 ## Related examples

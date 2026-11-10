@@ -48,7 +48,7 @@
 ## Dependencies
 
 - Renders: `ix-tooltip`
-- Rendered by: None
+- Rendered by: `ix-menu-item`
 
 ## Related examples
 

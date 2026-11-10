@@ -1,0 +1,33 @@
+import "./global-C9wM715q.js";
+import { a as addIcons } from "./ix-icon.entry-CGiLGChb.js";
+import { B as iconNetworkDevice, C as iconPlant, D as iconPiechart, d as iconHome, E as iconAlarmBell } from "./index-MpHERktc.js";
+import "./init-GdkYiSb0.js";
+import "./index-CgUi6DzV-FsX9HaJ-.js";
+import "./preload-helper-UZRgTS1n.js";
+import "./index-DCCkv1ZQ-DZnlOMEt.js";
+addIcons({
+  iconAlarmBell,
+  iconHome,
+  iconPiechart,
+  iconPlant,
+  iconNetworkDevice
+});
+(async function() {
+  await window.customElements.whenDefined("ix-menu");
+  const menuItems = document.querySelectorAll("ix-menu-item");
+  function registerClickListener(itemElement) {
+    itemElement.addEventListener("click", () => {
+      for (const item of menuItems) {
+        item.removeAttribute("active");
+      }
+      itemElement.setAttribute("active", "");
+      document.getElementById("contentHeaderId").setAttribute(
+        "header-title",
+        `Example ${itemElement.innerText.toLowerCase()} content`
+      );
+    });
+  }
+  for (const element of menuItems) {
+    registerClickListener(element);
+  }
+})();
