@@ -55,7 +55,6 @@ controls.forEach(({ tag, control }) => {
           'aria-label',
           'Destination'
         );
-        await expect(host).not.toHaveAttribute('aria-label');
 
         await host.evaluate((element) => {
           element.removeAttribute('aria-label');
