@@ -348,3 +348,15 @@ export async function emitPickerValidityStateChangeIfChanged(
     invalidReason: context.invalidReason,
   });
 }
+
+export function resetInputValidation<T>(
+  comp: IxInputFieldComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement
+): void {
+  input.value = '';
+  input.removeAttribute('data-ix-touched');
+  lastValidityStates.delete(comp.hostElement);
+  clearInternalValidationClasses(comp.hostElement);
+  // Notify form integrations even when the value was already empty.
+  comp.hostElement.dispatchEvent(new Event('ixClear'));
+}
