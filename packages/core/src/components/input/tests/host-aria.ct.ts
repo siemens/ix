@@ -40,6 +40,31 @@ controls.forEach(({ tag, control }) => {
     );
 
     regressionTest(
+      'updates the native control when aria-label changes after hydration',
+      async ({ mount, page }) => {
+        await mount(`<${tag} aria-label="Location"></${tag}>`);
+        const host = page.locator(tag);
+        await expect(host).toHaveAttribute('hydrated');
+        const nativeControl = host.locator(control);
+        await expect(nativeControl).toHaveAttribute('aria-label', 'Location');
+
+        await host.evaluate((element) => {
+          element.setAttribute('aria-label', 'Destination');
+        });
+        await expect(nativeControl).toHaveAttribute(
+          'aria-label',
+          'Destination'
+        );
+        await expect(host).not.toHaveAttribute('aria-label');
+
+        await host.evaluate((element) => {
+          element.removeAttribute('aria-label');
+        });
+        await expect(nativeControl).not.toHaveAttribute('aria-label');
+      }
+    );
+
+    regressionTest(
       'exposes aria-required on the native control',
       async ({ mount, page }) => {
         await mount(`<${tag} aria-required="true"></${tag}>`);

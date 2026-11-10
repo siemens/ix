@@ -16,12 +16,18 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
   h,
 } from '@stencil/core';
-import { A11yAttributes } from '../utils/a11y';
+import { A11yAttributeName, A11yAttributes } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import {
   HookValidationLifecycle,
   IxInputFieldComponent,
@@ -36,7 +42,7 @@ import {
   checkInternalValidity,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
-  inheritHostAriaAttributes,
+  HOST_ONLY_ARIA_ATTRIBUTES,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -67,8 +73,11 @@ let inputIds = 0;
   shadow: true,
   formAssociated: true,
 })
-export class Input implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxInputElement;
+export class Input
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxInputFieldComponent<string>, InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -212,7 +221,6 @@ export class Input implements IxInputFieldComponent<string> {
   /** @internal */
   public initialValue?: string;
   private readonly inputRef = makeRef<HTMLInputElement>();
-  private inheritAriaAttributes: A11yAttributes = {};
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly passwordToggleRef = () => this.updatePaddings();
@@ -231,13 +239,18 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
-  componentWillLoad() {
-    this.updateFormInternalValue(this.value);
-    this.inputType = this.type;
-    this.inheritAriaAttributes = inheritHostAriaAttributes(this.hostElement);
+  override getIgnoredAriaAttributes(): A11yAttributeName[] {
+    return HOST_ONLY_ARIA_ATTRIBUTES;
   }
 
-  connectedCallback(): void {
+  override componentWillLoad() {
+    super.componentWillLoad();
+    this.updateFormInternalValue(this.value);
+    this.inputType = this.type;
+  }
+
+  override connectedCallback(): void {
+    super.connectedCallback();
     this.disposableChangesAndVisibilityObservers =
       addDisposableChangesAndVisibilityObservers(
         this.hostElement,
@@ -253,14 +266,15 @@ export class Input implements IxInputFieldComponent<string> {
     );
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
     }
   }
 
-  disconnectedCallback(): void {
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
     this.disposableChangesAndVisibilityObservers?.();
   }
 
@@ -319,7 +333,7 @@ export class Input implements IxInputFieldComponent<string> {
     return Promise.resolve(this.touched);
   }
 
-  render() {
+  override render() {
     const inputAria: A11yAttributes = getAriaAttributesForInput(
       this,
       this.inheritAriaAttributes

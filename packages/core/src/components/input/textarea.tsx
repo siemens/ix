@@ -15,6 +15,7 @@ import {
   EventEmitter,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -25,12 +26,17 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { A11yAttributes } from '../utils/a11y';
+import { A11yAttributeName } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
   getAriaAttributesForInput,
-  inheritHostAriaAttributes,
+  HOST_ONLY_ARIA_ATTRIBUTES,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -54,8 +60,11 @@ let sequentialInstanceId = 0;
   shadow: true,
   formAssociated: true,
 })
-export class Textarea implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxTextareaElement;
+export class Textarea
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxInputFieldComponent<string>, InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxTextareaElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -198,7 +207,6 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-  private inheritAriaAttributes: A11yAttributes = {};
 
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
     this.initResizeObserver();
@@ -234,12 +242,16 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.initResizeObserver();
   }
 
-  componentWillLoad() {
-    this.updateFormInternalValue(this.value);
-    this.inheritAriaAttributes = inheritHostAriaAttributes(this.hostElement);
+  override getIgnoredAriaAttributes(): A11yAttributeName[] {
+    return HOST_ONLY_ARIA_ATTRIBUTES;
   }
 
-  componentDidRender() {
+  override componentWillLoad() {
+    super.componentWillLoad();
+    this.updateFormInternalValue(this.value);
+  }
+
+  override componentDidRender() {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(
@@ -250,7 +262,8 @@ export class Textarea implements IxInputFieldComponent<string> {
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback();
     this.resizeObserver?.disconnect();
   }
 
@@ -387,7 +400,7 @@ export class Textarea implements IxInputFieldComponent<string> {
     return normalizeCssDimension(this.textareaWidth);
   }
 
-  render() {
+  override render() {
     return (
       <Host
         class={{

@@ -8,12 +8,7 @@
  */
 
 import { EventEmitter } from '@stencil/core';
-import {
-  A11yAttributeName,
-  A11yAttributes,
-  a11yBoolean,
-  a11yHostAttributes,
-} from '../utils/a11y';
+import { A11yAttributeName, A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
@@ -183,7 +178,7 @@ export function adjustPaddingForStartAndEnd(
 
 // ID references would not resolve from inside the shadow root, and `aria-hidden`
 // must keep hiding the whole component, so these stay on the host
-const HOST_ONLY_ARIA_ATTRIBUTES: A11yAttributeName[] = [
+export const HOST_ONLY_ARIA_ATTRIBUTES: A11yAttributeName[] = [
   'role',
   'aria-activedescendant',
   'aria-controls',
@@ -195,16 +190,6 @@ const HOST_ONLY_ARIA_ATTRIBUTES: A11yAttributeName[] = [
   'aria-labelledby',
   'aria-owns',
 ];
-
-/**
- * Moves ARIA attributes set on the host (for example `aria-label`) to the native
- * control, which is the element that receives focus.
- */
-export function inheritHostAriaAttributes(
-  hostElement: HTMLElement
-): A11yAttributes {
-  return a11yHostAttributes(hostElement, HOST_ONLY_ARIA_ATTRIBUTES);
-}
 
 export function getAriaAttributesForInput<T>(
   component: IxInputFieldComponent<T>,
