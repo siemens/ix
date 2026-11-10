@@ -80,6 +80,20 @@ controls.forEach(({ tag, control }) => {
     );
 
     regressionTest(
+      'uses the label when the host aria-label is blank',
+      async ({ mount, page }) => {
+        await mount(`<${tag} label="City" aria-label="  "></${tag}>`);
+        const host = page.locator(tag);
+        await expect(host).toHaveAttribute('hydrated');
+
+        await expect(host.locator(control)).toHaveAttribute(
+          'aria-label',
+          'City'
+        );
+      }
+    );
+
+    regressionTest(
       'exposes aria-required on the native control',
       async ({ mount, page }) => {
         await mount(`<${tag} aria-required="true"></${tag}>`);
