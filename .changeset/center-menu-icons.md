@@ -2,7 +2,6 @@
 '@siemens/ix': patch
 ---
 
-Update the collapsed application menu width in default and compact density.
-Refresh notification badges on menu items and menu categories, keeping them right-aligned as counts grow.
-Use counter badges for menu item and menu category notifications, aligned to the icon column's right edge and growing left as counts increase.
-Notification counts above 99 are displayed as `99+`.
+Align icons in **ix-menu-item** and **ix-menu-category** within the collapsed **ix-menu** and refine notification badges.
+
+- Notifications on **ix-menu-item** and **ix-menu-category** are now rendered as **ix-badge** counters, aligned to the right edge of the icon column and growing to the left as the count increases. Counts above 99 are shown as `99+`.
