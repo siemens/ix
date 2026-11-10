@@ -32,14 +32,7 @@
       2
   );
   --ix-menu-item-tab-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-item-tab-icon--margin-inline: calc(
-    (
-        var(--ix-menu-item-tab-icon--slot-width) - var(
-            --ix-menu-item-tab-icon--icon-size
-          )
-      ) /
-      2
-  );
+  --ix-menu-item-tab-icon--margin-inline: #{sys.$si-sys-sizing-spacing-x-10};
   --ix-menu-item-tab-text--margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0
     #{sys.$si-sys-sizing-spacing-x-70};
   --ix-menu-item-bottom-tab-bottom--bottom-height: #{sys.$si-sys-sizing-size-90};

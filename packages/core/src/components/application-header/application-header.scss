@@ -207,6 +207,8 @@
   }
 
   @include breakpoints.media-breakpoint-match('sm') {
+    padding-left: var(--ix-application-header--padding-left--mobile);
+
     .logo {
       margin-left: var(--ix-application-header-logo--margin-left--mobile);
       display: none !important;
