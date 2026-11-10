@@ -207,7 +207,6 @@ export class Textarea
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>(() => {
     this.initResizeObserver();
   });
