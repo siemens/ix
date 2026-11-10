@@ -130,12 +130,13 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @Prop() marker?: SliderMarker;
 
   /**
-   * Show a trace line
+   * Color the track between **traceReference** and the current value, and show the reference marker.
+   * Without this, the track is colored from the minimum to the current value.
    */
   @Prop() trace = false;
 
   /**
-   * Define the start point of the trace line
+   * Start point of the trace segment when **trace** is enabled
    */
   @Prop() traceReference = 0;
 
@@ -272,11 +273,14 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   }
 
   private isMarkerActive(markerValue: number) {
-    const start = Math.min(this.traceReference, this.rangeInput);
-    const end = Math.max(this.traceReference, this.rangeInput);
-    const value = markerValue;
+    const start = this.trace
+      ? Math.min(this.rangeTraceReference, this.rangeInput)
+      : this.rangeMin;
+    const end = this.trace
+      ? Math.max(this.rangeTraceReference, this.rangeInput)
+      : this.rangeInput;
 
-    return value >= start && value <= end;
+    return markerValue >= start && markerValue <= end;
   }
 
   // Listen globally on window because sometimes the event listener
@@ -302,19 +306,20 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   render() {
     const range = this.rangeMax - this.rangeMin;
 
-    let traceReferenceInPercentage =
+    const traceReferenceInPercentage =
       (this.rangeTraceReference - this.rangeMin) / range;
 
-    let valueInPercentage = (this.rangeInput - this.rangeMin) / range;
+    const valueInPercentage = (this.rangeInput - this.rangeMin) / range;
 
-    const distance = valueInPercentage - traceReferenceInPercentage;
+    const showReferenceSpan =
+      this.trace && traceReferenceInPercentage !== valueInPercentage;
 
-    let traceStart = traceReferenceInPercentage;
+    let traceStart = 0;
     let traceEnd = valueInPercentage;
 
-    if (distance <= 0) {
-      traceStart = valueInPercentage;
-      traceEnd = traceReferenceInPercentage;
+    if (showReferenceSpan) {
+      traceStart = Math.min(traceReferenceInPercentage, valueInPercentage);
+      traceEnd = Math.max(traceReferenceInPercentage, valueInPercentage);
     }
 
     return (
@@ -343,15 +348,25 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
           controlRef={this.controlRef}
         >
           <div class="slider-container">
-            <div class="slider">
+            <div
+              class={{
+                slider: true,
+                'value-fill': traceEnd > traceStart,
+                trace: showReferenceSpan,
+                'hide-trace-reference':
+                  !showReferenceSpan ||
+                  this.traceReference <= this.min ||
+                  this.traceReference >= this.max,
+              }}
+              style={{
+                '--value': `${valueInPercentage}`,
+                '--trace-reference': `${traceReferenceInPercentage}`,
+                '--trace-start': `${traceStart}`,
+                '--trace-end': `${traceEnd}`,
+              }}
+            >
               <div class="track">
-                <div
-                  ref={this.thumbRef}
-                  class="thumb"
-                  style={{
-                    left: `calc(${valueInPercentage} * (100% - var(--thumb-size)))`,
-                  }}
-                ></div>
+                <div ref={this.thumbRef} class="thumb"></div>
                 <svg class="ticks" xmlns="http://www.w3.org/2000/svg">
                   {this.marker
                     ?.filter(
@@ -366,8 +381,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                         <circle
                           class={{
                             tick: true,
-                            'tick-active':
-                              this.isMarkerActive(markerValue) && this.trace,
+                            'tick-active': this.isMarkerActive(markerValue),
                             'tick-at-min': markerPosition === 0,
                             'tick-at-max': markerPosition === 1,
                           }}
@@ -399,21 +413,6 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                 }}
                 onBlur={() => {
                   this.showTooltip = false;
-                }}
-                style={{
-                  '--value': `${valueInPercentage}`,
-                  '--trace-reference': `${traceReferenceInPercentage}`,
-                  '--trace-start': `${traceStart}`,
-                  '--trace-end': `${traceEnd}`,
-                }}
-                class={{
-                  trace:
-                    this.trace &&
-                    traceReferenceInPercentage !== valueInPercentage,
-                  'hide-trace-reference':
-                    this.trace &&
-                    (this.traceReference <= this.min ||
-                      this.traceReference >= this.max),
                 }}
                 role="slider"
                 aria-valuenow={this.rangeInput}

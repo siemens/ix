@@ -113,3 +113,82 @@ regressionTest(`form-readiness`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'ix-slider', page);
   expect(formData).toBe('50');
 });
+
+regressionTest(
+  'colors the track from the minimum to the value',
+  async ({ page, mount }) => {
+    await mount(`<ix-slider value="50"></ix-slider>`);
+
+    const control = page.locator('ix-slider .slider');
+    await expect(control).toHaveClass(/value-fill/);
+    await expect(control).toHaveClass(/hide-trace-reference/);
+    expect((await control.getAttribute('class'))?.split(/\s+/)).not.toContain(
+      'trace'
+    );
+    await expect(control).toHaveAttribute('style', /--trace-start:\s*0/);
+    await expect(control).toHaveAttribute('style', /--trace-end:\s*0\.5/);
+  }
+);
+
+regressionTest(
+  'colors the track between the trace reference and the value',
+  async ({ page, mount }) => {
+    await mount(
+      `<ix-slider value="75" trace trace-reference="25"></ix-slider>`
+    );
+
+    const control = page.locator('ix-slider .slider');
+    await expect(control).toHaveClass(/value-fill/);
+    await expect(control).toHaveClass(/trace/);
+    await expect(control).not.toHaveClass(/hide-trace-reference/);
+    await expect(control).toHaveAttribute('style', /--trace-start:\s*0\.25/);
+    await expect(control).toHaveAttribute('style', /--trace-end:\s*0\.75/);
+  }
+);
+
+regressionTest(
+  'uses a round thumb inside a 32px control',
+  async ({ page, mount }) => {
+    await mount(`<ix-slider value="50"></ix-slider>`);
+
+    const slider = page.locator('ix-slider');
+    await expect(slider.locator('.slider')).toHaveCSS('height', '32px');
+    await expect(slider.locator('.thumb')).toHaveCSS('width', '20px');
+    await expect(slider.locator('.thumb')).toHaveCSS('height', '20px');
+  }
+);
+
+regressionTest(
+  'lets 3px of the thumb extend past the track ends',
+  async ({ page, mount }) => {
+    await mount(`<ix-slider value="0"></ix-slider>`);
+
+    const slider = page.locator('ix-slider');
+    const track = slider.locator('.track');
+    const thumb = slider.locator('.thumb');
+    await expect(thumb).toHaveCSS('left', '-3px');
+
+    const trackAtMin = await track.boundingBox();
+    const thumbAtMin = await thumb.boundingBox();
+    expect(trackAtMin).toBeTruthy();
+    expect(thumbAtMin).toBeTruthy();
+    expect(Math.round(trackAtMin!.x - thumbAtMin!.x)).toBe(3);
+
+    await slider.evaluate((element: HTMLIxSliderElement) => {
+      element.value = element.max;
+    });
+
+    await expect
+      .poll(async () => {
+        const trackAtMax = await track.boundingBox();
+        const thumbAtMax = await thumb.boundingBox();
+        if (!trackAtMax || !thumbAtMax) {
+          return null;
+        }
+        return Math.round(
+          thumbAtMax.x + thumbAtMax.width - (trackAtMax.x + trackAtMax.width)
+        );
+      })
+      .toBe(3);
+  }
+);

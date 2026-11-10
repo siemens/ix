@@ -4940,12 +4940,12 @@ export namespace Components {
          */
         "step": number;
         /**
-          * Show a trace line
+          * Color the track between **traceReference** and the current value, and show the reference marker. Without this, the track is colored from the minimum to the current value.
           * @default false
          */
         "trace": boolean;
         /**
-          * Define the start point of the trace line
+          * Start point of the trace segment when **trace** is enabled
           * @default 0
          */
         "traceReference": number;
@@ -13764,12 +13764,12 @@ declare namespace LocalJSX {
          */
         "step"?: number;
         /**
-          * Show a trace line
+          * Color the track between **traceReference** and the current value, and show the reference marker. Without this, the track is colored from the minimum to the current value.
           * @default false
          */
         "trace"?: boolean;
         /**
-          * Define the start point of the trace line
+          * Start point of the trace segment when **trace** is enabled
           * @default 0
          */
         "traceReference"?: number;
