@@ -1,0 +1,24 @@
+.changeset/slider-thumb-value-fill.md
+  h_c5a773bf2fda8b 1-5
+packages/core/src/components.d.ts
+  h_c5a773bf2fda8b 4943,4948,13767,13772
+packages/core/src/components/slider/slider.scss
+  h_c5a773bf2fda8b 99-101,116-118,123,127,130,133-134,138-139,150,158,162-163,180-181,183,241,261,266-268,289-298,342-355
+packages/core/src/components/slider/slider.tsx
+  h_c5a773bf2fda8b 133-134,139,276-283,309,312,314-315,317,320-322,351-367,369,384
+packages/core/src/components/slider/slider.vars.scss
+  h_c5a773bf2fda8b 14,24-26,47-55,58,67
+packages/core/src/components/slider/test/slider.ct.ts
+  h_c5a773bf2fda8b 116-194
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "41ad1237ecdd70b74a313f7e62b5209c5d38c172",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
