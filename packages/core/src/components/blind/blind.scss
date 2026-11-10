@@ -37,7 +37,6 @@
     box-sizing: border-box;
     border: var(--ix-blind--border-width) solid var(--ix-blind--border-color);
     border-radius: inherit;
-    overflow: hidden;
     background-color: var(--ix-blind--surface);
   }
 
@@ -45,7 +44,12 @@
     position: relative;
     min-height: var(--ix-blind-header-wrapper--min-height);
     height: var(--ix-blind-header-wrapper--height);
+  }
+
+  section {
     overflow: hidden;
+    border-radius: 0 0 var(--ix-blind--inner-border-radius)
+      var(--ix-blind--inner-border-radius);
   }
 
   .blind-header-content {
@@ -86,8 +90,8 @@
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: var(--ix-blind--border-radius) var(--ix-blind--border-radius)
-      0 0;
+    border-radius: var(--ix-blind--inner-border-radius)
+      var(--ix-blind--inner-border-radius) 0 0;
     cursor: pointer;
     background-color: transparent;
 
@@ -194,10 +198,6 @@
 :host(.outline) {
   --ix-blind--surface: transparent;
   --ix-blind--border-color: var(--ix-blind-outline--border-color);
-}
-
-:host(.outline) .blind-header {
-  border-radius: 0;
 }
 
 :host(:not(.blind-base))::before {

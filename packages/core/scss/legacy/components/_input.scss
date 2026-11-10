@@ -64,7 +64,7 @@ label.ix-form-label.label-alignment-left {
         :read-only
       ) {
       border-color: #{sys.$si-sys-color-border-accent-hover} !important;
-      outline: 1px solid #{sys.$si-sys-color-effects-focus};
+      outline: #{sys.$si-sys-sizing-focus-ring-width} solid #{sys.$si-sys-color-effects-focus};
       outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }

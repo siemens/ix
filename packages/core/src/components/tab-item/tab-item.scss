@@ -247,7 +247,7 @@
 }
 
 :host(:not(.circle):focus-visible) {
-  outline-offset: var(--ix-tab-item-circle--outline-offset);
+  outline-offset: calc(var(--ix-tab-item--outline-width--focus) * -1);
   outline: var(--ix-tab-item--outline-width--focus) solid
     var(--ix-tab-item--outline-color--focus);
 }

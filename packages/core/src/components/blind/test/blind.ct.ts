@@ -120,3 +120,19 @@ regressionTest(
     }
   }
 );
+
+regressionTest(
+  'header focus-visible outline uses a positive offset',
+  async ({ mount, page }) => {
+    await mount(`<ix-blind label="Example label">Some content</ix-blind>`);
+    const blindElement = page.locator('ix-blind');
+    await expect(blindElement).toHaveAttribute('hydrated');
+
+    await page.keyboard.press('Tab');
+
+    const header = page.getByRole('button', { name: 'Example label' });
+    await expect(header).toBeFocused();
+    await expect(header).toHaveCSS('outline-style', 'solid');
+    await expect(header).toHaveCSS('outline-offset', '1px');
+  }
+);
