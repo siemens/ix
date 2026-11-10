@@ -1,4 +1,4 @@
-[Siemens iX angular examples]|295 examples|format: name|title|used ix tags|files
+[Siemens iX angular examples]|296 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular/ (registry version root: examples/angular/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular/button.ts
 |Used tags are iX components found in the angular source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -176,6 +176,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.ts
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.ts
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.css,.ts
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.ts
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.ts
 key-value-with-custom-value|Key value with custom value|ix-key-value|.css,.ts
 key-value-with-icon|Key value with icon|ix-key-value|.ts
 key-value-with-label-left|Key value with label left|ix-key-value|.ts

@@ -1,0 +1,30 @@
+import "./global-6cXsYRw9.js";
+/* empty css                     */
+import "./init-RFUYR9Fx.js";
+import "./index-CgUi6DzV-Bt-yb_YL.js";
+import "./preload-helper-UZRgTS1n.js";
+import "./index-DCCkv1ZQ-DZnlOMEt.js";
+const messageBarContainer = document.getElementById("messageBarContainer");
+const showButton = document.getElementById("showButton");
+function createMessageBar() {
+  const newMessageBar = document.createElement("ix-message-bar");
+  newMessageBar.id = "messageBar";
+  newMessageBar.textContent = "Message text";
+  newMessageBar.addEventListener("closeAnimationCompleted", (event) => {
+    const messageBarToRemove = event.target;
+    if (messageBarToRemove.parentNode === messageBarContainer) {
+      messageBarContainer.removeChild(messageBarToRemove);
+      showButton.style.display = "inline-block";
+    }
+  });
+  return newMessageBar;
+}
+function handleShowMessage() {
+  if (messageBarContainer.children.length === 0) {
+    const newMessageBar = createMessageBar();
+    messageBarContainer.appendChild(newMessageBar);
+    showButton.style.display = "none";
+  }
+}
+messageBarContainer.appendChild(createMessageBar());
+showButton.addEventListener("click", handleShowMessage);

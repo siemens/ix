@@ -5563,6 +5563,35 @@ Files:
 Files:
   - `vue/key-value-list-with-icon.vue`: [file](../examples/vue/key-value-list-with-icon.vue)
 
+## key-value-list-without-divider
+
+- Used iX components: [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
+
+### angular
+
+Files:
+  - `angular/key-value-list-without-divider.ts`: [file](../examples/angular/key-value-list-without-divider.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/key-value-list-without-divider.ts`: [file](../examples/angular-standalone/key-value-list-without-divider.ts)
+
+### html
+
+Files:
+  - `html/key-value-list-without-divider.html`: [file](../examples/html/key-value-list-without-divider.html)
+
+### react
+
+Files:
+  - `react/key-value-list-without-divider.tsx`: [file](../examples/react/key-value-list-without-divider.tsx)
+
+### vue
+
+Files:
+  - `vue/key-value-list-without-divider.vue`: [file](../examples/vue/key-value-list-without-divider.vue)
+
 ## key-value-with-custom-value
 
 - Used iX components: [`ix-key-value`](components/ix-key-value.md)

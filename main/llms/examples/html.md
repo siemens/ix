@@ -1,4 +1,4 @@
-[Siemens iX html examples]|287 examples|format: name|title|used ix tags|files
+[Siemens iX html examples]|288 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/html/ (registry version root: examples/html/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/html/button.ts
 |Used tags are iX components found in the html source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html
@@ -174,6 +174,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.html
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.html
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.css,.html
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.html
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.html
 key-value-with-custom-value|Key value with custom value|ix-key-value|.css,.html
 key-value-with-icon|Key value with icon|ix-key-value|.html
 key-value-with-label-left|Key value with label left|ix-key-value|.html

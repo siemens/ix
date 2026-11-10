@@ -1,4 +1,4 @@
-[Siemens iX vue examples]|288 examples|format: name|title|used ix tags|files
+[Siemens iX vue examples]|289 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/vue/ (registry version root: examples/vue/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/vue/button.ts
 |Used tags are iX components found in the vue source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.vue
@@ -175,6 +175,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.vue
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.vue
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.css,.vue
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.vue
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.vue
 key-value-with-custom-value|Key value with custom value|ix-key-value|.css,.vue
 key-value-with-icon|Key value with icon|ix-key-value|.vue
 key-value-with-label-left|Key value with label left|ix-key-value|.vue

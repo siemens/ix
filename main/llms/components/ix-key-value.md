@@ -17,6 +17,7 @@
 ## Properties
 
 - `ariaLabelIcon`; attr: `aria-label-icon`; type: `string | undefined` - ARIA label for the icon
+- `hideDivider`; attr: `hide-divider`; type: `boolean`; default: `false` - Hide the divider line below the key value. Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
 - `icon`; attr: `icon`; type: `string | undefined` - Optional key value icon
 - `label`; attr: `label`; type: `string` - Key value label
 - `labelPosition`; attr: `label-position`; type: `"left" | "top"`; default: `'top'` - Optional key value label position - 'top' or 'left'
@@ -48,6 +49,7 @@ Examples that use this component, with available frameworks. Look up source file
 - key-value-list-striped (angular, angular-standalone, html, react, vue)
 - key-value-list-with-custom-value (angular, angular-standalone, html, react, vue)
 - key-value-list-with-icon (angular, angular-standalone, html, react, vue)
+- key-value-list-without-divider (angular, angular-standalone, html, react, vue)
 - key-value-with-custom-value (angular, angular-standalone, html, react, vue)
 - key-value-with-icon (angular, angular-standalone, html, react, vue)
 - key-value-with-label-left (angular, angular-standalone, html, react, vue)

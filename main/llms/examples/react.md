@@ -1,4 +1,4 @@
-[Siemens iX react examples]|290 examples|format: name|title|used ix tags|files
+[Siemens iX react examples]|291 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/react/ (registry version root: examples/react/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/react/button.ts
 |Used tags are iX components found in the react source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.tsx
@@ -175,6 +175,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.tsx
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.tsx
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.scoped.css,.tsx
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.tsx
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.tsx
 key-value-with-custom-value|Key value with custom value|ix-key-value|.scoped.css,.tsx
 key-value-with-icon|Key value with icon|ix-key-value|.tsx
 key-value-with-label-left|Key value with label left|ix-key-value|.tsx

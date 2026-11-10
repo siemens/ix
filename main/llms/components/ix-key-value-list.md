@@ -16,6 +16,7 @@
 
 ## Properties
 
+- `hideDividers`; attr: `hide-dividers`; type: `boolean`; default: `false` - Hide the divider lines below all key value items.
 - `striped`; attr: `striped`; type: `boolean`; default: `false` - Optional striped key value list style
 
 ## Events
@@ -43,6 +44,7 @@ Examples that use this component, with available frameworks. Look up source file
 - key-value-list-striped (angular, angular-standalone, html, react, vue)
 - key-value-list-with-custom-value (angular, angular-standalone, html, react, vue)
 - key-value-list-with-icon (angular, angular-standalone, html, react, vue)
+- key-value-list-without-divider (angular, angular-standalone, html, react, vue)
 
 ## Related patterns
 

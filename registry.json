@@ -734,6 +734,10 @@
           "path": "main/examples/key-value-list-with-icon.json"
         },
         {
+          "name": "key-value-list-without-divider",
+          "path": "main/examples/key-value-list-without-divider.json"
+        },
+        {
           "name": "key-value-with-custom-value",
           "path": "main/examples/key-value-with-custom-value.json"
         },
