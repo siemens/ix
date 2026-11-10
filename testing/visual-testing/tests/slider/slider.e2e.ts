@@ -102,11 +102,13 @@ regressionTest('should show float steps', async ({ page, mount }) => {
 
   const thumb = slider.locator('.thumb');
   const thumbBox = await thumb.boundingBox();
-  expect(thumbBox).toBeTruthy();
+  if (!thumbBox) {
+    throw new Error('Slider thumb is not visible');
+  }
 
   await page.mouse.move(
-    thumbBox!.x + thumbBox!.width / 2,
-    thumbBox!.y + thumbBox!.height / 2
+    thumbBox.x + thumbBox.width / 2,
+    thumbBox.y + thumbBox.height / 2
   );
   await page.mouse.down();
 

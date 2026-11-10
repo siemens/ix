@@ -170,9 +170,10 @@ regressionTest(
 
     const trackAtMin = await track.boundingBox();
     const thumbAtMin = await thumb.boundingBox();
-    expect(trackAtMin).toBeTruthy();
-    expect(thumbAtMin).toBeTruthy();
-    expect(Math.round(trackAtMin!.x - thumbAtMin!.x)).toBe(3);
+    if (!trackAtMin || !thumbAtMin) {
+      throw new Error('Slider track or thumb is not visible');
+    }
+    expect(Math.round(trackAtMin.x - thumbAtMin.x)).toBe(3);
 
     await slider.evaluate((element: HTMLIxSliderElement) => {
       element.value = element.max;
