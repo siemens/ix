@@ -3110,6 +3110,12 @@ export namespace Components {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Hide the divider line below the key value. Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
+          * @since 6.0.0
+          * @default false
+         */
+        "hideDivider": boolean;
+        /**
           * Optional key value icon
          */
         "icon"?: string;
@@ -3133,6 +3139,12 @@ export namespace Components {
      * @figma-main-component-id 4784:118515
      */
     interface IxKeyValueList {
+        /**
+          * Hide the divider lines below all key value items.
+          * @since 6.0.0
+          * @default false
+         */
+        "hideDividers": boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -11786,6 +11798,12 @@ declare namespace LocalJSX {
          */
         "ariaLabelIcon"?: string;
         /**
+          * Hide the divider line below the key value. Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
+          * @since 6.0.0
+          * @default false
+         */
+        "hideDivider"?: boolean;
+        /**
           * Optional key value icon
          */
         "icon"?: string;
@@ -11809,6 +11827,12 @@ declare namespace LocalJSX {
      * @figma-main-component-id 4784:118515
      */
     interface IxKeyValueList {
+        /**
+          * Hide the divider lines below all key value items.
+          * @since 6.0.0
+          * @default false
+         */
+        "hideDividers"?: boolean;
         /**
           * Optional striped key value list style
           * @default false
@@ -15490,9 +15514,11 @@ declare namespace LocalJSX {
         "label": string;
         "labelPosition": KeyValueLabelPosition;
         "value": string;
+        "hideDivider": boolean;
     }
     interface IxKeyValueListAttributes {
         "striped": boolean;
+        "hideDividers": boolean;
     }
     interface IxKpiAttributes {
         "label": string;
