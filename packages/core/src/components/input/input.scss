@@ -10,6 +10,7 @@
 @use './input.vars' as *;
 
 @use './input.mixins.scss';
+@use 'mixins/component-vars' as cv;
 
 @include input.input-field;
 
@@ -28,6 +29,6 @@
   }
 
   .password-eye {
-    margin-left: var(--ix-input-password-eye--margin-left);
+    margin-left: cv.get-var('input-password-eye--margin-left');
   }
 }

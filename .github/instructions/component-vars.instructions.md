@@ -10,9 +10,40 @@ SPDX-License-Identifier: MIT
 
 # Component CSS custom properties
 
-Component-level CSS custom properties are declared in `packages/core/src/components/<component>/<component>.vars.scss`. They are public theming API.
+Component-level CSS custom properties are declared in `packages/core/src/components/<component>/<component>.vars.scss`. They are internal (see [Internal API disclaimer](#internal-api-disclaimer)).
 
-Validated by `packages/core/scripts/lint/component-vars.spec.ts` (`pnpm --filter @siemens/ix test.spec`).
+Validated at compile time by `packages/core/scss/mixins/_component-vars.scss` and by `packages/core/scripts/lint/component-vars.spec.ts` (`pnpm --filter @siemens/ix test.spec`).
+
+## Type-safe Sass helpers
+
+Never write `--ix-*: …` or `var(--ix-*)` by hand in component SCSS. Use the registry module, which fails the build on unknown names (like an unknown `sys.$si-sys-*` token). Names are passed without the `--ix-` prefix.
+
+```scss
+@use 'mixins/component-vars' as cv;
+
+:host {
+  @include cv.define-var('button--background--primary', sys.$si-sys-color-primary);
+  @include cv.declare-var('button--color--custom'); // no default, set per state or from TSX
+}
+
+:host(.selected) {
+  @include cv.set-var('button--background--primary', sys.$si-sys-color-primary-hover);
+}
+
+.btn {
+  background: cv.get-var('button--background--primary');
+  width: calc(#{cv.get-var('button--size', 2rem)} * 2);
+}
+```
+
+| Helper                                       | Purpose                                                                                                                   |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `define-var($name, $value)`                  | Declares and registers a property with a default. Only in vars files, inside a selector. Errors on duplicates.            |
+| `declare-var($name)`                         | Registers a property without emitting CSS (runtime properties, state-only properties). Only in vars files, top level.     |
+| `set-var($name, $value, $external: false)`   | Overrides a registered property. Errors on unknown names.                                                                 |
+| `get-var($name, $fallback: null, $external)` | Returns `var(--ix-<name>[, <fallback>])`. Errors on unknown names. Wrap in `#{…}` inside `calc()`, `min()`, `max()`, etc. |
+
+Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property) or set at runtime from TSX. External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or set from TSX. Known never-set properties are listed in `UNSET_PROPERTIES` in the spec; remove entries when fixing them.
 
 ## Grammar
 
@@ -66,7 +97,7 @@ Component CSS custom properties are not a public API and are not covered by sema
 Properties set at runtime (inline styles from TSX), passed from a parent to a child component, or used only to wire internal styles follow the same grammar. There is no separate private prefix: do not use `--_ix-`.
 
 - Never declare a property from itself (`--ix-a--b: var(--ix-a--b)` is a cycle). If a parent overrides a child's default, set the child's property directly on the child element. Styles from the outer tree win over the child's `:host` defaults.
-- If a runtime property has no default, set its value in the component SCSS or TSX instead of the vars file.
+- If a runtime property has no default, register it with `cv.declare-var` in the vars file and set its value in the component SCSS (`cv.set-var`) or TSX.
 
 ## Ownership
 

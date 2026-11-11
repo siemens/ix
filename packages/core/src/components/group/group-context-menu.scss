@@ -9,15 +9,16 @@
 @use 'tokens/system' as sys;
 
 @use './group.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
 
-  height: var(--ix-group-context-menu--height);
-  width: var(--ix-group-context-menu--width);
+  height: cv.get-var('group-context-menu--height');
+  width: cv.get-var('group-context-menu--width');
 
-  margin-block-start: var(--ix-group-context-menu--margin-block-start);
-  margin-inline-end: var(--ix-group-context-menu--margin-inline-end);
+  margin-block-start: cv.get-var('group-context-menu--margin-block-start');
+  margin-inline-end: cv.get-var('group-context-menu--margin-inline-end');
   margin-inline-start: auto;
 
   .hide {

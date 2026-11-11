@@ -7,16 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-layout-grid--gutter: #{sys.$si-sys-sizing-spacing-x-80};
+  @include cv.set-var(
+    'layout-grid--gutter',
+    sys.$si-sys-sizing-spacing-x-80,
+    $external: true
+  );
 
   display: block;
   flex: 1 1 0%;
   width: 100%;
 
-  padding-left: calc(var(--ix-layout-grid--gutter) * 0.5);
-  padding-right: calc(var(--ix-layout-grid--gutter) * 0.5);
+  padding-left: calc(
+    #{cv.get-var('layout-grid--gutter', $external: true)} * 0.5
+  );
+  padding-right: calc(
+    #{cv.get-var('layout-grid--gutter', $external: true)} * 0.5
+  );
 }
 
 :host(.no-margin) {

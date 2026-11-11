@@ -12,16 +12,35 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-breadcrumb-separator--color: #{sys.$si-sys-color-text-secondary};
+  @include cv.define-var(
+    'breadcrumb-separator--color',
+    sys.$si-sys-color-text-secondary
+  );
 }
 
 :host {
-  --ix-breadcrumb-ellipsis--font: #{sys.$si-sys-typography-body-paragraph-sbold};
-  --ix-breadcrumb--height: #{sys.$si-sys-sizing-size-90};
-  --ix-breadcrumb-previous-button--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-breadcrumb-more-text-ellipsis--width: #{sys.$si-sys-sizing-size-50};
-  --ix-breadcrumb-more-text-icon--padding-top: #{sys.$si-sys-sizing-spacing-y-10};
-  --ix-breadcrumb-chevron--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-var(
+    'breadcrumb-ellipsis--font',
+    sys.$si-sys-typography-body-paragraph-sbold
+  );
+  @include cv.define-var('breadcrumb--height', sys.$si-sys-sizing-size-90);
+  @include cv.define-var(
+    'breadcrumb-previous-button--margin-right',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'breadcrumb-more-text-ellipsis--width',
+    sys.$si-sys-sizing-size-50
+  );
+  @include cv.define-var(
+    'breadcrumb-more-text-icon--padding-top',
+    sys.$si-sys-sizing-spacing-y-10
+  );
+  @include cv.define-var(
+    'breadcrumb-chevron--margin-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
 }

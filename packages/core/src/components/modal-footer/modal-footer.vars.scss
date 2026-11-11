@@ -12,8 +12,12 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-modal-footer--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-modal-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-var(
+    'modal-footer--padding',
+    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var('modal-footer--gap', sys.$si-sys-sizing-spacing-x-40);
 }

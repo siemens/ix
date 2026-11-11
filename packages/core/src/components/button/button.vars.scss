@@ -12,158 +12,596 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('button--border-radius-left');
+@include cv.declare-var('button--border-radius-right');
+@include cv.declare-var('button--color');
 
 :host {
-  --ix-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-button--background--danger-primary: #{sys.$si-sys-color-background-danger};
-  --ix-button--background--danger-primary--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-button--background--danger-primary--disabled: #{sys.$si-sys-color-background-1};
-  --ix-button--background--danger-primary--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-button--border-color--danger-primary: rgba(0, 0, 0, 0);
-  --ix-button--border-color--danger-primary--active: rgba(0, 0, 0, 0);
-  --ix-button--border-color--danger-primary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--border-color--danger-primary--hover: rgba(0, 0, 0, 0);
-  --ix-button--color--danger-primary: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--color--danger-primary--active: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--color--danger-primary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--danger-primary--hover: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--background--danger-secondary: rgba(0, 0, 0, 0);
-  --ix-button--background--danger-secondary--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-button--background--danger-secondary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--background--danger-secondary--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-button--border-color--danger-secondary: #{sys.$si-sys-color-text-danger};
-  --ix-button--border-color--danger-secondary--active: #{sys.$si-sys-color-border-danger};
-  --ix-button--border-color--danger-secondary--disabled: #{sys.$si-sys-color-border-3};
-  --ix-button--border-color--danger-secondary--hover: #{sys.$si-sys-color-border-danger};
-  --ix-button--color--danger-secondary: #{sys.$si-sys-color-text-danger};
-  --ix-button--color--danger-secondary--active: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--color--danger-secondary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--danger-secondary--hover: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--background--danger-tertiary: rgba(0, 0, 0, 0);
-  --ix-button--background--danger-tertiary--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-button--background--danger-tertiary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--background--danger-tertiary--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-button--border-color--danger-tertiary: rgba(0, 0, 0, 0);
-  --ix-button--border-color--danger-tertiary--active: rgba(0, 0, 0, 0);
-  --ix-button--border-color--danger-tertiary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--border-color--danger-tertiary--hover: rgba(0, 0, 0, 0);
-  --ix-button--color--danger-tertiary: #{sys.$si-sys-color-text-danger};
-  --ix-button--color--danger-tertiary--active: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--color--danger-tertiary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--danger-tertiary--hover: #{sys.$si-sys-color-text-on-danger};
-  --ix-button--background--primary: #{sys.$si-sys-color-background-accent};
-  --ix-button--background--primary--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-button--background--primary--disabled: #{sys.$si-sys-color-background-1};
-  --ix-button--background--primary--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-button--background--primary--pressed: #{sys.$si-sys-color-background-accent-hover};
-  --ix-button--background--primary--pressed--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-button--border-color--primary: rgba(0, 0, 0, 0);
-  --ix-button--border-color--primary--active: rgba(0, 0, 0, 0);
-  --ix-button--border-color--primary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--border-color--primary--hover: rgba(0, 0, 0, 0);
-  --ix-button--color--primary: #{sys.$si-sys-color-text-on-accent};
-  --ix-button--color--primary--active: #{sys.$si-sys-color-text-on-accent};
-  --ix-button--color--primary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--primary--hover: #{sys.$si-sys-color-text-on-accent};
-  --ix-button--color--primary--pressed: #{sys.$si-sys-color-text-on-accent};
-  --ix-button--color--primary--pressed--active: #{sys.$si-sys-color-text-on-accent};
-  --ix-button--color--primary--pressed--hover: #{sys.$si-sys-color-text-on-accent};
-  --ix-button--background--secondary: #{sys.$si-sys-color-background-accent-secondary};
-  --ix-button--background--secondary--active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--secondary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--background--secondary--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--background--secondary--pressed: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--secondary--pressed--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--border-color--secondary: #{sys.$si-sys-color-border-accent};
-  --ix-button--border-color--secondary--active: #{sys.$si-sys-color-border-accent-active};
-  --ix-button--border-color--secondary--disabled: #{sys.$si-sys-color-border-3};
-  --ix-button--border-color--secondary--hover: #{sys.$si-sys-color-border-accent-hover};
-  --ix-button--color--secondary: #{sys.$si-sys-color-text-accent};
-  --ix-button--color--secondary--active: #{sys.$si-sys-color-text-accent-active};
-  --ix-button--color--secondary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--secondary--hover: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--secondary--pressed: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--secondary--pressed--active: #{sys.$si-sys-color-text-accent-active};
-  --ix-button--color--secondary--pressed--hover: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--background--subtle-primary: #{sys.$si-sys-color-background-2};
-  --ix-button--background--subtle-primary--active: #{sys.$si-sys-color-background-selected};
-  --ix-button--background--subtle-primary--disabled: #{sys.$si-sys-color-background-1};
-  --ix-button--background--subtle-primary--hover: #{sys.$si-sys-color-background-hover};
-  --ix-button--background--subtle-primary--pressed: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--subtle-primary--pressed--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--border-color--subtle-primary: rgba(0, 0, 0, 0);
-  --ix-button--border-color--subtle-primary--active: rgba(0, 0, 0, 0);
-  --ix-button--border-color--subtle-primary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--border-color--subtle-primary--hover: rgba(0, 0, 0, 0);
-  --ix-button--color--subtle-primary: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-primary--active: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-primary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--subtle-primary--hover: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-primary--pressed: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--subtle-primary--pressed--active: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--subtle-primary--pressed--hover: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--background--subtle-secondary: rgba(0, 0, 0, 0);
-  --ix-button--background--subtle-secondary--active: #{sys.$si-sys-color-background-selected};
-  --ix-button--background--subtle-secondary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--background--subtle-secondary--hover: #{sys.$si-sys-color-background-hover};
-  --ix-button--background--subtle-secondary--pressed: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--subtle-secondary--pressed--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--border-color--subtle-secondary: #{sys.$si-sys-color-border-2};
-  --ix-button--border-color--subtle-secondary--active: #{sys.$si-sys-color-border-2};
-  --ix-button--border-color--subtle-secondary--disabled: #{sys.$si-sys-color-border-3};
-  --ix-button--border-color--subtle-secondary--hover: #{sys.$si-sys-color-border-2};
-  --ix-button--color--subtle-secondary: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-secondary--active: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-secondary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--subtle-secondary--hover: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-secondary--pressed: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--subtle-secondary--pressed--active: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--subtle-secondary--pressed--hover: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--background--subtle-tertiary: rgba(0, 0, 0, 0);
-  --ix-button--background--subtle-tertiary--active: #{sys.$si-sys-color-background-selected};
-  --ix-button--background--subtle-tertiary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--background--subtle-tertiary--hover: #{sys.$si-sys-color-background-hover};
-  --ix-button--background--subtle-tertiary--pressed: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--subtle-tertiary--pressed--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--border-color--subtle-tertiary: rgba(0, 0, 0, 0);
-  --ix-button--border-color--subtle-tertiary--active: rgba(0, 0, 0, 0);
-  --ix-button--border-color--subtle-tertiary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--border-color--subtle-tertiary--hover: rgba(0, 0, 0, 0);
-  --ix-button--color--subtle-tertiary: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-tertiary--active: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-tertiary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--subtle-tertiary--hover: #{sys.$si-sys-color-text-primary};
-  --ix-button--color--subtle-tertiary--pressed: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--subtle-tertiary--pressed--active: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--subtle-tertiary--pressed--hover: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--background--tertiary: rgba(0, 0, 0, 0);
-  --ix-button--background--tertiary--active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--tertiary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--background--tertiary--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--background--tertiary--pressed: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-button--background--tertiary--pressed--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-button--border-color--tertiary: rgba(0, 0, 0, 0);
-  --ix-button--border-color--tertiary--active: rgba(0, 0, 0, 0);
-  --ix-button--border-color--tertiary--disabled: rgba(0, 0, 0, 0);
-  --ix-button--border-color--tertiary--hover: rgba(0, 0, 0, 0);
-  --ix-button--color--tertiary: #{sys.$si-sys-color-text-accent};
-  --ix-button--color--tertiary--active: #{sys.$si-sys-color-text-accent-active};
-  --ix-button--color--tertiary--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-button--color--tertiary--hover: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--tertiary--pressed: #{sys.$si-sys-color-text-accent-hover};
-  --ix-button--color--tertiary--pressed--active: #{sys.$si-sys-color-text-accent-active};
-  --ix-button--color--tertiary--pressed--hover: #{sys.$si-sys-color-text-accent-hover};
+  @include cv.define-var(
+    'button--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'button--background--danger-primary',
+    sys.$si-sys-color-background-danger
+  );
+  @include cv.define-var(
+    'button--background--danger-primary--active',
+    sys.$si-sys-color-background-danger-active
+  );
+  @include cv.define-var(
+    'button--background--danger-primary--disabled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'button--background--danger-primary--hover',
+    sys.$si-sys-color-background-danger-hover
+  );
+  @include cv.define-var(
+    'button--border-color--danger-primary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--danger-primary--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--danger-primary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--danger-primary--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--color--danger-primary',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-primary--active',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-primary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--danger-primary--hover',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--background--danger-secondary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--danger-secondary--active',
+    sys.$si-sys-color-background-danger-active
+  );
+  @include cv.define-var(
+    'button--background--danger-secondary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--danger-secondary--hover',
+    sys.$si-sys-color-background-danger-hover
+  );
+  @include cv.define-var(
+    'button--border-color--danger-secondary',
+    sys.$si-sys-color-text-danger
+  );
+  @include cv.define-var(
+    'button--border-color--danger-secondary--active',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'button--border-color--danger-secondary--disabled',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'button--border-color--danger-secondary--hover',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-secondary',
+    sys.$si-sys-color-text-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-secondary--active',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-secondary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--danger-secondary--hover',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--background--danger-tertiary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--danger-tertiary--active',
+    sys.$si-sys-color-background-danger-active
+  );
+  @include cv.define-var(
+    'button--background--danger-tertiary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--danger-tertiary--hover',
+    sys.$si-sys-color-background-danger-hover
+  );
+  @include cv.define-var(
+    'button--border-color--danger-tertiary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--danger-tertiary--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--danger-tertiary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--danger-tertiary--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--color--danger-tertiary',
+    sys.$si-sys-color-text-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-tertiary--active',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--color--danger-tertiary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--danger-tertiary--hover',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'button--background--primary',
+    sys.$si-sys-color-background-accent
+  );
+  @include cv.define-var(
+    'button--background--primary--active',
+    sys.$si-sys-color-background-accent-active
+  );
+  @include cv.define-var(
+    'button--background--primary--disabled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'button--background--primary--hover',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var(
+    'button--background--primary--pressed',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var(
+    'button--background--primary--pressed--hover',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var('button--border-color--primary', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'button--border-color--primary--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--primary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--primary--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--color--primary',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'button--color--primary--active',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'button--color--primary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--primary--hover',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'button--color--primary--pressed',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'button--color--primary--pressed--active',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'button--color--primary--pressed--hover',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'button--background--secondary',
+    sys.$si-sys-color-background-accent-secondary
+  );
+  @include cv.define-var(
+    'button--background--secondary--active',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--secondary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--secondary--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'button--background--secondary--pressed',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--secondary--pressed--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'button--border-color--secondary',
+    sys.$si-sys-color-border-accent
+  );
+  @include cv.define-var(
+    'button--border-color--secondary--active',
+    sys.$si-sys-color-border-accent-active
+  );
+  @include cv.define-var(
+    'button--border-color--secondary--disabled',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'button--border-color--secondary--hover',
+    sys.$si-sys-color-border-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--secondary',
+    sys.$si-sys-color-text-accent
+  );
+  @include cv.define-var(
+    'button--color--secondary--active',
+    sys.$si-sys-color-text-accent-active
+  );
+  @include cv.define-var(
+    'button--color--secondary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--secondary--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--secondary--pressed',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--secondary--pressed--active',
+    sys.$si-sys-color-text-accent-active
+  );
+  @include cv.define-var(
+    'button--color--secondary--pressed--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--background--subtle-primary',
+    sys.$si-sys-color-background-2
+  );
+  @include cv.define-var(
+    'button--background--subtle-primary--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'button--background--subtle-primary--disabled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'button--background--subtle-primary--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'button--background--subtle-primary--pressed',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--subtle-primary--pressed--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-primary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-primary--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-primary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-primary--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary--active',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary--hover',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary--pressed',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary--pressed--active',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--subtle-primary--pressed--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--background--subtle-secondary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--subtle-secondary--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'button--background--subtle-secondary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--subtle-secondary--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'button--background--subtle-secondary--pressed',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--subtle-secondary--pressed--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-secondary',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-secondary--active',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-secondary--disabled',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-secondary--hover',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary--active',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary--hover',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary--pressed',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary--pressed--active',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--subtle-secondary--pressed--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--background--subtle-tertiary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--subtle-tertiary--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'button--background--subtle-tertiary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--subtle-tertiary--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'button--background--subtle-tertiary--pressed',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--subtle-tertiary--pressed--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-tertiary',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-tertiary--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-tertiary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--subtle-tertiary--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary--active',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary--hover',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary--pressed',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary--pressed--active',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--subtle-tertiary--pressed--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var('button--background--tertiary', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'button--background--tertiary--active',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--tertiary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--background--tertiary--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'button--background--tertiary--pressed',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'button--background--tertiary--pressed--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var('button--border-color--tertiary', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'button--border-color--tertiary--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--tertiary--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--border-color--tertiary--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'button--color--tertiary',
+    sys.$si-sys-color-text-accent
+  );
+  @include cv.define-var(
+    'button--color--tertiary--active',
+    sys.$si-sys-color-text-accent-active
+  );
+  @include cv.define-var(
+    'button--color--tertiary--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'button--color--tertiary--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--tertiary--pressed',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'button--color--tertiary--pressed--active',
+    sys.$si-sys-color-text-accent-active
+  );
+  @include cv.define-var(
+    'button--color--tertiary--pressed--hover',
+    sys.$si-sys-color-text-accent-hover
+  );
 }
 
 :host {
-  --ix-button--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-button--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-button--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-button--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-button--height: #{sys.$si-sys-sizing-size-80};
-  --ix-button--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-button-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-button-icon-right--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-button--min-width: #{sys.$si-sys-sizing-size-120};
+  @include cv.define-var(
+    'button--border-radius',
+    sys.$si-sys-sizing-border-radius-xs
+  );
+  @include cv.define-var(
+    'button--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'button--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'button--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
+  @include cv.define-var(
+    'button--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var('button--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'button--margin-right',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'button-icon--margin-right',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'button-icon-right--margin-left',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var('button--min-width', sys.$si-sys-sizing-size-120);
 }

@@ -10,12 +10,13 @@
 @use 'tokens/system' as sys;
 
 @use './input.vars' as *;
+@use 'mixins/component-vars' as cv;
 @include input.input-field;
 
 :host {
   .input-wrapper.show-stepper-buttons {
     input[type='number'] {
-      min-width: var(--ix-input-show-stepper-buttons--min-width);
+      min-width: cv.get-var('input-show-stepper-buttons--min-width');
     }
   }
 

@@ -2,6 +2,7 @@
 @use 'tokens/system' as sys;
 
 @use './field-wrapper.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   position: relative;
@@ -12,7 +13,7 @@
     position: relative;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--ix-field-wrapper-slot-wrapper--gap);
+    gap: cv.get-var('field-wrapper-slot-wrapper--gap');
   }
 
   .field-bottom,
@@ -21,7 +22,7 @@
     flex-direction: row;
     position: relative;
     justify-content: space-between;
-    gap: var(--ix-field-wrapper-field-top--gap);
+    gap: cv.get-var('field-wrapper-field-top--gap');
     width: 100%;
     min-width: 100%;
   }
@@ -34,7 +35,7 @@
   @include field-wrapper.helper-text;
 
   .bottom-text {
-    margin-top: var(--ix-field-wrapper-bottom-text--margin-top);
-    margin-bottom: var(--ix-field-wrapper-bottom-text--margin-bottom);
+    margin-top: cv.get-var('field-wrapper-bottom-text--margin-top');
+    margin-bottom: cv.get-var('field-wrapper-bottom-text--margin-bottom');
   }
 }

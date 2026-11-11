@@ -8,12 +8,13 @@
  */
 
 @use './divider.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
 
   width: 100%;
-  border-bottom: var(--ix-divider--border-width) solid
-    var(--ix-divider--border-color);
-  margin: var(--ix-divider--margin);
+  border-bottom: cv.get-var('divider--border-width') solid
+    cv.get-var('divider--border-color');
+  margin: cv.get-var('divider--margin');
 }

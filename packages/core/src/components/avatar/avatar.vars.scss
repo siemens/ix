@@ -12,40 +12,83 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-avatar--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-avatar--background: #{sys.$si-sys-color-background-neutral};
-  --ix-avatar--color: #{sys.$si-sys-color-text-on-neutral};
+  @include cv.define-var(
+    'avatar--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'avatar--background',
+    sys.$si-sys-color-background-neutral
+  );
+  @include cv.define-var('avatar--color', sys.$si-sys-color-text-on-neutral);
 }
 
 :host {
-  --ix-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-avatar--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-avatar--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-avatar-image--height: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-image--width: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-image--min-height: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-image--min-width: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-initials--height: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-initials--width: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-initials--min-height: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-initials--min-width: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-initials--margin-top: calc(
-    #{sys.$si-sys-sizing-spacing-y-10} / 2
+  @include cv.define-var(
+    'avatar--border-radius',
+    sys.$si-sys-sizing-border-radius-full
   );
-  --ix-avatar-user-info--height: #{sys.$si-sys-sizing-size-90};
-  --ix-avatar-user-info--padding: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-avatar-user-info--width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
+  @include cv.define-var(
+    'avatar--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
   );
-  --ix-avatar-user-info--min-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
+  @include cv.define-var(
+    'avatar--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
   );
-  --ix-avatar-user-info--max-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  @include cv.define-var('avatar-image--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var('avatar-image--width', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'avatar-image--min-height',
+    sys.$si-sys-sizing-size-80
   );
-  --ix-avatar-user-info--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-avatar-user-info-avatar--width: #{sys.$si-sys-sizing-size-80};
-  --ix-avatar-user--max-width: #{sys.$si-sys-sizing-size-150};
+  @include cv.define-var('avatar-image--min-width', sys.$si-sys-sizing-size-80);
+  @include cv.define-var('avatar-initials--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var('avatar-initials--width', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'avatar-initials--min-height',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'avatar-initials--min-width',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'avatar-initials--margin-top',
+    calc(#{sys.$si-sys-sizing-spacing-y-10} / 2)
+  );
+  @include cv.define-var(
+    'avatar-user-info--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'avatar-user-info--padding',
+    sys.$si-sys-sizing-spacing-y-60
+  );
+  @include cv.define-var(
+    'avatar-user-info--width',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100})
+  );
+  @include cv.define-var(
+    'avatar-user-info--min-width',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100})
+  );
+  @include cv.define-var(
+    'avatar-user-info--max-width',
+    calc(
+      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    )
+  );
+  @include cv.define-var(
+    'avatar-user-info--gap',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var(
+    'avatar-user-info-avatar--width',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var('avatar-user--max-width', sys.$si-sys-sizing-size-150);
 }

@@ -12,8 +12,15 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-pane-layout--padding-block: #{sys.$si-sys-sizing-spacing-y-100};
-  --ix-pane-layout--padding-inline: #{sys.$si-sys-sizing-spacing-x-100};
+  @include cv.define-var(
+    'pane-layout--padding-block',
+    sys.$si-sys-sizing-spacing-y-100
+  );
+  @include cv.define-var(
+    'pane-layout--padding-inline',
+    sys.$si-sys-sizing-spacing-x-100
+  );
 }

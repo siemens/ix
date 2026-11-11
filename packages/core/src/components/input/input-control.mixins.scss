@@ -12,17 +12,18 @@
 @use 'mixins/validation/form-component';
 
 @use './input.vars';
+@use 'mixins/component-vars' as cv;
 
 @mixin element-input-focus {
-  outline: var(--ix-input--outline-width--focus) solid
-    var(--ix-input--outline-color--focus);
-  outline-offset: var(--ix-input--outline-offset--focus);
-  border-color: var(--ix-input--border-color--focus) !important;
+  outline: cv.get-var('input--outline-width--focus') solid
+    cv.get-var('input--outline-color--focus');
+  outline-offset: cv.get-var('input--outline-offset--focus');
+  border-color: cv.get-var('input--border-color--focus') !important;
 }
 
 @mixin element-input-hover {
-  border-color: var(--ix-input--border-color--hover) !important;
-  background-color: var(--ix-input--background--hover);
+  border-color: cv.get-var('input--border-color--hover') !important;
+  background-color: cv.get-var('input--background--hover');
 }
 
 @mixin number-input {
@@ -30,7 +31,7 @@
     text-align: right;
 
     &::-webkit-inner-spin-button {
-      margin-left: var(--ix-input-spin-button--margin-left);
+      margin-left: cv.get-var('input-spin-button--margin-left');
       display: none;
     }
   }
@@ -38,15 +39,16 @@
 
 @mixin element-input($feature-read-only: true) {
   & {
-    min-height: var(--ix-input--min-height);
+    min-height: cv.get-var('input--min-height');
     width: auto;
-    padding: var(--ix-input--padding);
-    background-color: var(--ix-input--background);
-    color: var(--ix-input--color);
+    padding: cv.get-var('input--padding');
+    background-color: cv.get-var('input--background');
+    color: cv.get-var('input--color');
     appearance: textfield;
     text-overflow: ellipsis;
-    border: var(--ix-input--border-width) solid var(--ix-input--border-color);
-    border-radius: var(--ix-input--border-radius);
+    border: cv.get-var('input--border-width') solid
+      cv.get-var('input--border-color');
+    border-radius: cv.get-var('input--border-radius');
 
     @include fonts.typography-body;
   }
@@ -55,16 +57,17 @@
 
   &:-webkit-autofill,
   &:autofill {
-    -webkit-box-shadow: 0 0 0 1000px var(--ix-input--background--autofill) inset !important;
-    -webkit-text-fill-color: var(--ix-input--color--autofill) !important;
-    background-color: var(--ix-input--background--autofill) !important;
-    border: var(--ix-input--border-width) solid
-      var(--ix-input--border-color--autofill) !important;
-    color: var(--ix-input--color--autofill) !important;
+    -webkit-box-shadow: 0 0 0 1000px cv.get-var('input--background--autofill')
+      inset !important;
+    -webkit-text-fill-color: cv.get-var('input--color--autofill') !important;
+    background-color: cv.get-var('input--background--autofill') !important;
+    border: cv.get-var('input--border-width') solid
+      cv.get-var('input--border-color--autofill') !important;
+    color: cv.get-var('input--color--autofill') !important;
   }
 
   &::placeholder {
-    color: var(--ix-input-hint--color);
+    color: cv.get-var('input-hint--color');
   }
 
   &.hover,
@@ -100,9 +103,9 @@
     &:read-only {
       background-color: transparent;
       outline: none;
-      border: var(--ix-input--border-width)
+      border: cv.get-var('input--border-width')
         solid
-        var(--ix-input--border-color--readonly);
+        cv.get-var('input--border-color--readonly');
 
       &::placeholder {
         color: transparent;
@@ -114,8 +117,8 @@
   &.disabled {
     background-color: transparent;
     outline: none;
-    border: var(--ix-input--border-width) solid
-      var(--ix-input--border-color--disabled);
+    border: cv.get-var('input--border-width') solid
+      cv.get-var('input--border-color--disabled');
   }
 
   &:disabled::placeholder,
@@ -126,21 +129,22 @@
 
 @mixin input-control {
   & {
-    color: var(--ix-input--color);
-    border-radius: var(--ix-input--border-radius);
-    height: var(--ix-input--min-height);
-    min-height: var(--ix-input--min-height);
-    min-width: var(--ix-input--min-height);
-    background-color: var(--ix-input--background);
-    border: solid var(--ix-input--border-width) var(--ix-input--border-color);
-    padding: var(--ix-input--padding);
+    color: cv.get-var('input--color');
+    border-radius: cv.get-var('input--border-radius');
+    height: cv.get-var('input--min-height');
+    min-height: cv.get-var('input--min-height');
+    min-width: cv.get-var('input--min-height');
+    background-color: cv.get-var('input--background');
+    border: solid cv.get-var('input--border-width')
+      cv.get-var('input--border-color');
+    padding: cv.get-var('input--padding');
   }
 
   @include fonts.typography-body;
   @include text-truncation.ellipsis;
 
   &::placeholder {
-    color: var(--ix-input-hint--color);
+    color: cv.get-var('input-hint--color');
   }
 
   &:not(:read-only):not([readonly]):not([readOnly]):not(.readonly) {
@@ -155,7 +159,7 @@
   }
 
   &:focus-visible {
-    color: var(--ix-input--color);
+    color: cv.get-var('input--color');
   }
 
   @include number-input;
@@ -174,7 +178,7 @@
   &[readOnly],
   &.readonly {
     outline: none !important;
-    border-color: var(--ix-input--border-color--readonly);
+    border-color: cv.get-var('input--border-color--readonly');
     cursor: default !important;
 
     &::placeholder {
@@ -189,8 +193,8 @@
     border-inline-start: none !important;
     border-inline-end: none !important;
     border-radius: 0rem;
-    color: var(--ix-input--color--disabled);
-    border-color: var(--ix-input--border-color--disabled);
+    color: cv.get-var('input--color--disabled');
+    border-color: cv.get-var('input--border-color--disabled');
 
     &::placeholder {
       color: transparent;
@@ -200,11 +204,11 @@
 
 @mixin element-textarea {
   & {
-    min-height: var(--ix-input--min-height);
-    padding: var(--ix-input-textarea--padding);
+    min-height: cv.get-var('input--min-height');
+    padding: cv.get-var('input-textarea--padding');
 
     &:not([rows]) {
-      height: var(--ix-input-textarea--height);
+      height: cv.get-var('input-textarea--height');
     }
   }
 }
@@ -223,47 +227,57 @@
 
   @include form-component.input-info {
     & {
-      border-color: var(--ix-input--border-color--info);
+      border-color: cv.get-var('input--border-color--info');
     }
 
     &:hover {
-      border-color: var(--ix-input--border-color--info--hover) !important;
+      border-color: cv.get-var('input--border-color--info--hover') !important;
     }
 
     &:active {
-      border-color: var(--ix-input--border-color--info--active) !important;
+      border-color: cv.get-var('input--border-color--info--active') !important;
     }
   }
 
   @include form-component.input-warning {
     & {
-      background-color: var(--ix-input--background--warning);
-      border-color: var(--ix-input--border-color--warning--active) !important;
+      background-color: cv.get-var('input--background--warning');
+      border-color: cv.get-var(
+        'input--border-color--warning--active'
+      ) !important;
     }
 
     &:hover {
-      background-color: var(--ix-input--background--warning--hover);
-      border-color: var(--ix-input--border-color--warning--hover) !important;
+      background-color: cv.get-var('input--background--warning--hover');
+      border-color: cv.get-var(
+        'input--border-color--warning--hover'
+      ) !important;
     }
 
     &:active {
-      border-color: var(--ix-input--border-color--warning--active) !important;
+      border-color: cv.get-var(
+        'input--border-color--warning--active'
+      ) !important;
     }
   }
 
   @include form-component.input-invalid {
     & {
-      background-color: var(--ix-input--background--invalid);
-      border-color: var(--ix-input--border-color--invalid) !important;
+      background-color: cv.get-var('input--background--invalid');
+      border-color: cv.get-var('input--border-color--invalid') !important;
     }
 
     &:hover {
-      background-color: var(--ix-input--background--invalid--hover);
-      border-color: var(--ix-input--border-color--invalid--hover) !important;
+      background-color: cv.get-var('input--background--invalid--hover');
+      border-color: cv.get-var(
+        'input--border-color--invalid--hover'
+      ) !important;
     }
 
     &:active {
-      border-color: var(--ix-input--border-color--invalid--active) !important;
+      border-color: cv.get-var(
+        'input--border-color--invalid--active'
+      ) !important;
     }
   }
 }

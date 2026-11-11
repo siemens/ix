@@ -13,20 +13,21 @@
 @use 'mixins/fonts';
 
 @use './flip-tile.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   flex-direction: column;
-  perspective: var(--ix-flip-tile--perspective);
-  border-radius: var(--ix-flip-tile--border-radius)
-    var(--ix-flip-tile--border-radius) 0 0;
+  perspective: cv.get-var('flip-tile--perspective');
+  border-radius: cv.get-var('flip-tile--border-radius')
+    cv.get-var('flip-tile--border-radius') 0 0;
 
   @include component.ix-component;
 
   .flip-tile-header {
     display: flex;
     align-items: center;
-    height: var(--ix-flip-tile-header--height);
-    padding: var(--ix-flip-tile-header--padding);
+    height: cv.get-var('flip-tile-header--height');
+    padding: cv.get-var('flip-tile-header--padding');
 
     .header-slot-container {
       flex-grow: 1;
@@ -39,7 +40,7 @@
 
   .content-container {
     flex-grow: 1;
-    margin: var(--ix-flip-tile-container--margin);
+    margin: cv.get-var('flip-tile-container--margin');
   }
 
   .flip-tile-container {
@@ -47,14 +48,14 @@
     flex-direction: column;
     height: 100%;
     transform-style: preserve-3d;
-    border-radius: var(--ix-flip-tile--border-radius)
-      var(--ix-flip-tile--border-radius) 0 0;
+    border-radius: cv.get-var('flip-tile--border-radius')
+      cv.get-var('flip-tile--border-radius') 0 0;
 
     .footer {
-      height: var(--ix-flip-tile-footer--height);
+      height: cv.get-var('flip-tile-footer--height');
       align-items: center;
       justify-content: center;
-      padding: var(--ix-flip-tile-footer--padding);
+      padding: cv.get-var('flip-tile-footer--padding');
 
       :first-child {
         height: 100%;
@@ -74,27 +75,29 @@
   }
 
   &:hover .flip-tile-container .footer ix-icon {
-    color: var(--ix-flip-tile-footer-icon--color--hover);
+    color: cv.get-var('flip-tile-footer-icon--color--hover');
   }
 }
 
 @each $variant in flip-tile-vars.$flip-tile-variants {
   :host(.flip-tile-variant-#{$variant}) {
     border: solid
-      var(--ix-flip-tile-variant--border-width)
-      var(--ix-flip-tile--border-color--#{$variant});
+      cv.get-var('flip-tile-variant--border-width')
+      cv.get-var('flip-tile--border-color--#{$variant}');
 
     .flip-tile-container {
-      background-color: var(--ix-flip-tile--background--#{$variant});
-      color: var(--ix-flip-tile--color--#{$variant});
+      background-color: cv.get-var('flip-tile--background--#{$variant}');
+      color: cv.get-var('flip-tile--color--#{$variant}');
 
       .footer {
         display: none;
-        border-top: var(--ix-flip-tile-footer--border-width)
+        border-top: cv.get-var('flip-tile-footer--border-width')
           solid
-          var(--ix-flip-tile-footer--border-color--#{$variant});
-        background-color: var(--ix-flip-tile-footer--background--#{$variant});
-        color: var(--ix-flip-tile-footer--color--#{$variant});
+          cv.get-var('flip-tile-footer--border-color--#{$variant}');
+        background-color: cv.get-var(
+          'flip-tile-footer--background--#{$variant}'
+        );
+        color: cv.get-var('flip-tile-footer--color--#{$variant}');
       }
 
       .footer.show-footer {

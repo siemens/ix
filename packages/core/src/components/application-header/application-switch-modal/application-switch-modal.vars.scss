@@ -12,28 +12,75 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-application-switch-modal-app-entry--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-application-switch-modal-app-entry--border-color--focus: #{sys.$si-sys-color-effects-focus};
+  @include cv.define-var(
+    'application-switch-modal-app-entry--background--selected',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-entry--border-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
 }
 
 :host {
-  --ix-application-switch-modal-content--padding: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-application-switch-modal-content-apps--max-height: 50vh;
-  --ix-application-switch-modal-content-apps--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-application-switch-modal-content-apps--gap: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-application-switch-modal-loading--margin-right: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-application-switch-modal-app-entry--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-application-switch-modal-app-entry--flex-basis: 45%;
-  --ix-application-switch-modal-app-entry--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-application-switch-modal-app-entry--padding: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-application-switch-modal-app-entry--border-width)
+  @include cv.define-var(
+    'application-switch-modal-content--padding',
+    sys.$si-sys-sizing-spacing-y-90
   );
-  --ix-application-switch-modal-app-entry--padding-inline-end: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} - var(--ix-application-switch-modal-app-entry--border-width)
+  @include cv.define-var(
+    'application-switch-modal-content-apps--max-height',
+    50vh
   );
-  --ix-application-switch-modal-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-application-switch-modal-app-icon--size: #{sys.$si-sys-sizing-size-100};
-  --ix-application-switch-modal-app-icon--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
+  @include cv.define-var(
+    'application-switch-modal-content-apps--margin-right',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'application-switch-modal-content-apps--gap',
+    sys.$si-sys-sizing-spacing-x-80
+  );
+  @include cv.define-var(
+    'application-switch-modal-loading--margin-right',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-entry--gap',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var('application-switch-modal-app-entry--flex-basis', 45%);
+  @include cv.define-var(
+    'application-switch-modal-app-entry--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-entry--padding',
+    calc(
+      #{sys.$si-sys-sizing-spacing-y-40} - #{cv.get-var(
+          'application-switch-modal-app-entry--border-width'
+        )}
+    )
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-entry--padding-inline-end',
+    calc(
+      #{sys.$si-sys-sizing-spacing-x-60} - #{cv.get-var(
+          'application-switch-modal-app-entry--border-width'
+        )}
+    )
+  );
+  @include cv.define-var(
+    'application-switch-modal-icon--margin-left',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-icon--size',
+    sys.$si-sys-sizing-size-100
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-icon--border-radius',
+    sys.$si-sys-sizing-border-radius-sm
+  );
 }

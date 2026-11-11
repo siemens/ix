@@ -12,7 +12,11 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-event-list-row--height--large: #{sys.$si-sys-sizing-size-130};
+  @include cv.define-var(
+    'event-list-row--height--large',
+    sys.$si-sys-sizing-size-130
+  );
 }

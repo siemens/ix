@@ -10,14 +10,15 @@
 @use 'mixins/text-truncation';
 
 @use './chip.vars' as *;
+@use 'mixins/component-vars' as cv;
 $predefined-chips: danger, critical, caution, warning, information, neutral,
   success;
-$border-radius: var(--ix-chip--border-radius);
-$outline-border-width: var(--ix-chip--border-width--focus);
+$border-radius: cv.get-var('chip--border-radius');
+$outline-border-width: cv.get-var('chip--border-width--focus');
 
 @mixin chip-container(
   $interaction: true,
-  $padding-inline: var(--ix-chip--padding-inline)
+  $padding-inline: cv.get-var('chip--padding-inline')
 ) {
   .container {
     display: inline-flex;
@@ -27,11 +28,11 @@ $outline-border-width: var(--ix-chip--border-width--focus);
     position: relative;
     align-items: center;
     border-radius: $border-radius;
-    padding: var(--ix-chip-container--padding);
+    padding: cv.get-var('chip-container--padding');
     vertical-align: top;
 
-    height: var(--ix-chip-container--height);
-    max-height: var(--ix-chip-container--max-height);
+    height: cv.get-var('chip-container--height');
+    max-height: cv.get-var('chip-container--max-height');
 
     @if $interaction {
       cursor: pointer;
@@ -47,13 +48,13 @@ $outline-border-width: var(--ix-chip--border-width--focus);
     }
 
     .with-icon {
-      margin-right: var(--ix-chip-with-icon--margin-right);
+      margin-right: cv.get-var('chip-with-icon--margin-right');
     }
 
     .close-button-container {
       display: inline-flex;
       margin-left: auto;
-      padding-left: var(--ix-chip-close-button-container--padding-left);
+      padding-left: cv.get-var('chip-close-button-container--padding-left');
     }
 
     .slot-container {
@@ -77,11 +78,11 @@ $outline-border-width: var(--ix-chip--border-width--focus);
             .with-icon {
               //TODO(IX-3400): Replace warning/caution check with proper CSS variable when available
               @if $color == 'warning' {
-                color: var(--ix-chip-icon--color--warning);
+                color: cv.get-var('chip-icon--color--warning');
               } @else if $color == 'caution' {
-                color: var(--ix-chip-icon--color--caution);
+                color: cv.get-var('chip-icon--color--caution');
               } @else {
-                color: var(--ix-chip--color--#{$color});
+                color: cv.get-var('chip--color--#{$color}');
               }
             }
           }
@@ -90,7 +91,7 @@ $outline-border-width: var(--ix-chip--border-width--focus);
 
       &.closable:not(.inactive) {
         padding-right: calc(
-          var(--ix-chip-inactive--padding-right--outline) - #{$outline-border-width}
+          #{cv.get-var('chip-inactive--padding-right--outline')} - #{$outline-border-width}
         );
       }
 
@@ -104,7 +105,7 @@ $outline-border-width: var(--ix-chip--border-width--focus);
       padding-left: $padding-inline;
 
       &.closable:not(.inactive) {
-        padding-right: var(--ix-chip-inactive--padding-right--outline);
+        padding-right: cv.get-var('chip-inactive--padding-right--outline');
       }
 
       &.closable.inactive,
@@ -115,55 +116,67 @@ $outline-border-width: var(--ix-chip--border-width--focus);
   }
 
   .container.accent {
-    background-color: var(--ix-chip--background--accent);
-    color: var(--ix-chip--color--accent);
+    background-color: cv.get-var('chip--background--accent');
+    color: cv.get-var('chip--color--accent');
 
     .close-button {
-      color: var(--ix-chip--color--accent);
-      --ix-icon-button--color: var(--ix-chip--color--accent);
+      color: cv.get-var('chip--color--accent');
+      @include cv.set-var(
+        'icon-button--color',
+        cv.get-var('chip--color--accent'),
+        $external: true
+      );
       pointer-events: auto;
     }
 
     @if $interaction {
       &:hover {
-        background-color: var(--ix-chip--background--accent--hover);
+        background-color: cv.get-var('chip--background--accent--hover');
       }
 
       &:active {
-        background-color: var(--ix-chip--background--accent--active);
+        background-color: cv.get-var('chip--background--accent--active');
       }
 
       &:focus-visible {
-        outline: var(--ix-chip--outline-width--focus)
+        outline: cv.get-var('chip--outline-width--focus')
           solid
-          var(--ix-chip-container--outline-color--focus);
-        outline-offset: var(--ix-chip--outline-offset--focus);
+          cv.get-var('chip-container--outline-color--focus');
+        outline-offset: cv.get-var('chip--outline-offset--focus');
       }
     }
   }
 
   .container.accent.outline {
-    color: var(--ix-chip--color--outline);
-    background-color: var(--ix-chip--background--accent--outline);
+    color: cv.get-var('chip--color--outline');
+    background-color: cv.get-var('chip--background--accent--outline');
     border: solid $outline-border-width
-      var(--ix-chip--border-color--accent--outline);
+      cv.get-var('chip--border-color--accent--outline');
 
     .close-button {
-      color: var(--ix-chip--color--outline);
-      --ix-icon-button--color: var(--ix-chip--color--outline);
+      color: cv.get-var('chip--color--outline');
+      @include cv.set-var(
+        'icon-button--color',
+        cv.get-var('chip--color--outline'),
+        $external: true
+      );
     }
 
     .with-icon {
-      color: var(--ix-chip-icon--color--accent);
+      color: cv.get-var('chip-icon--color--accent');
     }
 
     @if $interaction {
       &:hover {
-        background-color: var(--ix-chip--background--accent--outline--hover);
+        background-color: cv.get-var(
+          'chip--background--accent--outline--hover'
+        );
       }
 
       &:active {
-        background-color: var(--ix-chip--background--accent--outline--active);
+        background-color: cv.get-var(
+          'chip--background--accent--outline--active'
+        );
       }
     }
   }
@@ -175,51 +188,55 @@ $outline-border-width: var(--ix-chip--border-width--focus);
 
   @each $color in $predefined-chips {
     .container.#{$color} {
-      color: var(--ix-chip--color--#{$color}--contrast);
+      color: cv.get-var('chip--color--#{$color}--contrast');
 
       &:not(.outline) {
-        background-color: var(--ix-chip--background--#{$color});
+        background-color: cv.get-var('chip--background--#{$color}');
 
         .close-button {
-          color: var(--ix-chip--color--#{$color}--contrast);
-          --ix-icon-button--color: var(--ix-chip--color--#{$color}--contrast);
+          color: cv.get-var('chip--color--#{$color}--contrast');
+          @include cv.set-var(
+            'icon-button--color',
+            cv.get-var('chip--color--#{$color}--contrast'),
+            $external: true
+          );
         }
 
         @if $interaction {
           &:hover {
-            background-color: var(--ix-chip--background--#{$color}--hover);
+            background-color: cv.get-var('chip--background--#{$color}--hover');
           }
 
           &.active,
           &:active {
-            background-color: var(--ix-chip--background--#{$color}--active);
+            background-color: cv.get-var('chip--background--#{$color}--active');
           }
         }
       }
 
       &.outline {
-        color: var(--ix-chip--color--outline);
-        background-color: var(--ix-chip--background--outline);
-        border-color: var(--ix-chip--border-color--#{$color});
+        color: cv.get-var('chip--color--outline');
+        background-color: cv.get-var('chip--background--outline');
+        border-color: cv.get-var('chip--border-color--#{$color}');
 
         @if $interaction {
           &:hover {
-            background-color: var(--ix-chip--background--outline--hover);
+            background-color: cv.get-var('chip--background--outline--hover');
           }
 
           &.active,
           &:active {
-            background-color: var(--ix-chip--background--outline--active);
+            background-color: cv.get-var('chip--background--outline--active');
           }
         }
       }
 
       @if $interaction {
         &:focus-visible {
-          outline: var(--ix-chip--outline-width--focus)
+          outline: cv.get-var('chip--outline-width--focus')
             solid
-            var(--ix-chip-container--outline-color--focus);
-          outline-offset: var(--ix-chip--outline-offset--focus);
+            cv.get-var('chip-container--outline-color--focus');
+          outline-offset: cv.get-var('chip--outline-offset--focus');
         }
       }
     }
@@ -227,12 +244,12 @@ $outline-border-width: var(--ix-chip--border-width--focus);
   .container.custom.outline {
     @if $interaction {
       &:hover {
-        background-color: var(--ix-chip--background--outline--hover);
+        background-color: cv.get-var('chip--background--outline--hover');
       }
 
       &.active,
       &:active {
-        background-color: var(--ix-chip--background--outline--active);
+        background-color: cv.get-var('chip--background--outline--active');
       }
     }
   }
@@ -253,12 +270,14 @@ $outline-border-width: var(--ix-chip--border-width--focus);
       }
 
       &:hover::after {
-        background-color: var(--ix-chip-container--background-color--hover);
+        background-color: cv.get-var('chip-container--background-color--hover');
       }
 
       &.active::after,
       &:active::after {
-        background-color: var(--ix-chip-container--background-color--active);
+        background-color: cv.get-var(
+          'chip-container--background-color--active'
+        );
       }
     }
   }

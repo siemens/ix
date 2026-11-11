@@ -12,7 +12,8 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-modal-loading--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-var('modal-loading--gap', sys.$si-sys-sizing-spacing-x-40);
 }

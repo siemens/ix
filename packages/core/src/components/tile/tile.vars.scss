@@ -12,28 +12,57 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-tile--background: #{sys.$si-sys-color-background-1};
-  --ix-tile--color: #{sys.$si-sys-color-text-primary};
-  --ix-tile-subheader--color: #{sys.$si-sys-color-text-secondary};
-  --ix-tile-footer--border-color: #{sys.$si-sys-color-background-0};
-  --ix-tile--border-color: rgba(0, 0, 0, 0);
-  --ix-tile--box-shadow: none;
+  @include cv.define-var('tile--background', sys.$si-sys-color-background-1);
+  @include cv.define-var('tile--color', sys.$si-sys-color-text-primary);
+  @include cv.define-var(
+    'tile-subheader--color',
+    sys.$si-sys-color-text-secondary
+  );
+  @include cv.define-var(
+    'tile-footer--border-color',
+    sys.$si-sys-color-background-0
+  );
+  @include cv.define-var('tile--border-color', rgba(0, 0, 0, 0));
+  @include cv.define-var('tile--box-shadow', none);
 }
 
 :host {
-  --ix-tile--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-tile--border-width: #{sys.$si-sys-sizing-border-width-none};
-  --ix-tile--height--small: #{sys.$si-sys-sizing-size-90};
-  --ix-tile--height--medium: #{sys.$si-sys-sizing-size-120};
-  --ix-tile--height--big: #{sys.$si-sys-sizing-size-150};
-  --ix-tile--width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
+  @include cv.define-var(
+    'tile--border-radius',
+    sys.$si-sys-sizing-border-radius-sm
   );
-  --ix-tile-footer--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-tile-has-content--height: #{sys.$si-sys-sizing-size-90};
-  --ix-tile-has-content--max-height: #{sys.$si-sys-sizing-size-90};
-  --ix-tile-has-content--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-tile-footer--border-width: #{sys.$si-sys-sizing-border-width-default};
+  @include cv.define-var(
+    'tile--border-width',
+    sys.$si-sys-sizing-border-width-none
+  );
+  @include cv.define-var('tile--height--small', sys.$si-sys-sizing-size-90);
+  @include cv.define-var('tile--height--medium', sys.$si-sys-sizing-size-120);
+  @include cv.define-var('tile--height--big', sys.$si-sys-sizing-size-150);
+  @include cv.define-var(
+    'tile--width',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100})
+  );
+  @include cv.define-var(
+    'tile-footer--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  @include cv.define-var(
+    'tile-has-content--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'tile-has-content--max-height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'tile-has-content--padding-inline-end',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'tile-footer--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
 }

@@ -9,6 +9,7 @@
 @use 'tokens/system' as sys;
 
 @use './radio-group.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: inline-block;
   position: relative;
@@ -16,8 +17,8 @@
   .checkbox-container {
     display: flex;
     flex-direction: column;
-    gap: var(--ix-radio-group-checkbox-container--gap);
-    margin: var(--ix-radio-group-checkbox-container--margin);
+    gap: cv.get-var('radio-group-checkbox-container--gap');
+    margin: cv.get-var('radio-group-checkbox-container--margin');
     flex-wrap: wrap;
 
     &.row-layout {

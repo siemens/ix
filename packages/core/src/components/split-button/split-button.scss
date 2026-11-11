@@ -11,36 +11,41 @@
 @use './../utils/focus/focus-proxy';
 
 @use './split-button.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   position: relative;
   display: inline-flex;
   vertical-align: middle;
 
   .left-button {
-    width: var(--ix-split-button-left-button--width);
-    --ix-button--border-radius-right: 0;
+    width: cv.get-var('split-button-left-button--width');
+    @include cv.set-var('button--border-radius-right', 0, $external: true);
   }
 
   .right-button {
-    width: var(--ix-split-button-right-button--width);
-    --ix-dropdown-button--border-radius-left: 0;
+    width: cv.get-var('split-button-right-button--width');
+    @include cv.set-var(
+      'dropdown-button--border-radius-left',
+      0,
+      $external: true
+    );
   }
 
   @include component.ix-component;
 
   .left-button-border {
-    border-top-width: var(
-      --ix-split-button-left-button-border--border-top-width
+    border-top-width: cv.get-var(
+      'split-button-left-button-border--border-top-width'
     );
     border-right-width: 0;
-    border-left-width: var(
-      --ix-split-button-left-button-border--border-left-width
+    border-left-width: cv.get-var(
+      'split-button-left-button-border--border-left-width'
     );
-    border-bottom-width: var(
-      --ix-split-button-left-button-border--border-bottom-width
+    border-bottom-width: cv.get-var(
+      'split-button-left-button-border--border-bottom-width'
     );
 
-    margin-right: var(--ix-split-button-left-button-border--margin-right);
+    margin-right: cv.get-var('split-button-left-button-border--margin-right');
   }
 
   @include focus-proxy.focus-proxy;

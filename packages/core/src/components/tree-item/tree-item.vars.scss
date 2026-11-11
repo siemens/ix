@@ -12,20 +12,48 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-tree-item--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-tree-item--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-tree-item--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-tree-item--background--selected--active: #{sys.$si-sys-color-background-selected};
-  --ix-tree-item--background--selected--hover: #{sys.$si-sys-color-background-hover};
+  @include cv.define-var(
+    'tree-item--background--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'tree-item--background--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'tree-item--background--selected',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'tree-item--background--selected--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'tree-item--background--selected--hover',
+    sys.$si-sys-color-background-hover
+  );
 }
 
 :host {
-  --ix-tree-item-expand-icon--transition-duration: var(--theme-default-time);
-  --ix-tree-item--height: #{sys.$si-sys-sizing-size-80};
-  --ix-tree-item-tree-node-container--height: #{sys.$si-sys-sizing-size-80};
-  --ix-tree-item-icon-toggle-container-icon--size: #{sys.$si-sys-sizing-size-80};
-  --ix-tree-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-tree-item--opacity: 0.5;
+  @include cv.define-var(
+    'tree-item-expand-icon--transition-duration',
+    var(--theme-default-time)
+  );
+  @include cv.define-var('tree-item--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'tree-item-tree-node-container--height',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'tree-item-icon-toggle-container-icon--size',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'tree-item--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var('tree-item--opacity', 0.5);
 }

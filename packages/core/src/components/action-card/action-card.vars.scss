@@ -12,24 +12,47 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-action-card--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  @include cv.define-var(
+    'action-card--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
 }
 
 :host {
-  --ix-action-card--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-action-card--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-action-card--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-action-card--min-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
+  @include cv.define-var(
+    'action-card--border-radius',
+    sys.$si-sys-sizing-border-radius-sm
   );
-  --ix-action-card--width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
+  @include cv.define-var(
+    'action-card--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
   );
-  --ix-action-card--height: #{sys.$si-sys-sizing-size-140};
-  --ix-action-card--min-height: #{sys.$si-sys-sizing-size-140};
-  --ix-action-card--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
-  --ix-action-card-content--padding: #{sys.$si-sys-sizing-spacing-y-60}
-    #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60};
+  @include cv.define-var(
+    'action-card--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
+  @include cv.define-var(
+    'action-card--min-width',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100})
+  );
+  @include cv.define-var(
+    'action-card--width',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100})
+  );
+  @include cv.define-var('action-card--height', sys.$si-sys-sizing-size-140);
+  @include cv.define-var(
+    'action-card--min-height',
+    sys.$si-sys-sizing-size-140
+  );
+  @include cv.define-var(
+    'action-card--margin',
+    #{sys.$si-sys-sizing-spacing-y-20} 0
+  );
+  @include cv.define-var(
+    'action-card-content--padding',
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60}
+  );
 }

@@ -13,13 +13,18 @@
  *
  *   --ix-<component>[-<part>]--<property>[--<modifier>...]
  *
+ * and that every `var(--ix-*)` reference in the compiled component CSS resolves
+ * to a declared property.
+ *
  * See `.github/instructions/component-vars.instructions.md`.
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { compile } from 'sass';
 import { describe, expect, it } from 'vitest';
 
-const COMPONENTS_DIR = path.resolve(__dirname, '../../src/components');
+const CORE_DIR = path.resolve(__dirname, '../..');
+const COMPONENTS_DIR = path.join(CORE_DIR, 'src/components');
 
 /** Modifier categories in canonical order. */
 const MODIFIER_CATEGORIES: string[][] = [
@@ -133,13 +138,13 @@ const PROPERTIES = new Set(
   border-bottom-width border-color border-left-width border-radius border-radius-left border-radius-right
   border-style border-top-color border-top-left-radius border-top-right-radius border-top-width border-width
   bottom box-shadow box-shadow-color box-shadow-width color column-gap columns edge-inset elevation-filter fade-width fill filter
-  flex flex-basis font font-size font-weight gap grid-template-columns grid-template-rows height inline-size
+  fallback-width flex flex-basis font font-size font-weight gap grid-template-columns grid-template-rows height inline-size
   inner-height inset left line-height margin margin-block margin-block-end margin-block-start margin-bottom
   margin-inline margin-inline-end margin-inline-start margin-left margin-right margin-top mask-duration mask-size
   max-height max-width min-block-size min-height min-inline-size min-width offset offset-x offset-y opacity
-  outline outline-color outline-offset outline-width padding padding-block padding-block-end padding-block-start
+  outline outline-color outline-offset outline-width overflow padding padding-block padding-block-end padding-block-start
   padding-bottom padding-inline padding-inline-end padding-inline-start padding-left padding-right padding-top
-  perspective right rotate rotation-duration row-gap safe-area-left size status-color strip-height strip-width
+  perspective pulse-color right rotate rotation-duration row-gap safe-area-left size status-color strip-height strip-width
   stroke stroke-width surface target-size text-underline-thickness tick-size top transform transition-delay transition-duration translate
   viewport-offset width x y z-index`
     .trim()
@@ -171,16 +176,18 @@ function componentOf(file: string) {
   return COMPONENT_ALIASES[stem] ?? stem;
 }
 
+function stripComments(source: string) {
+  return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+}
+
 function declarationsOf(file: string): Declaration[] {
-  const source = readFileSync(file, 'utf8')
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/\/\/.*$/gm, '');
-  return [...source.matchAll(/(?:^|[{;\s])(--[\w#{}$-]+)\s*:/g)].map(
+  const source = stripComments(readFileSync(file, 'utf8'));
+  return [...source.matchAll(/cv\.(?:define|declare)-var\(\s*'([^']+)'/g)].map(
     (match) => ({
       file: path.relative(COMPONENTS_DIR, file),
       component: componentOf(file),
       // Interpolated `@each` values are validated as a status modifier.
-      name: match[1].replace(/#\{\$[\w-]+\}/g, 'danger'),
+      name: `--ix-${match[1].replace(/#\{\$[\w-]+\}/g, 'danger')}`,
     })
   );
 }
@@ -281,5 +288,137 @@ describe('component CSS custom properties', () => {
       .filter(([, owningFiles]) => owningFiles.size > 1)
       .map(([name, owningFiles]) => `${name}: ${[...owningFiles].join(', ')}`);
     expect(duplicates).toEqual([]);
+  });
+});
+
+/**
+ * Properties that are read but never set anywhere in IX. Reads resolve to the
+ * `var()` fallback or the inherited value. Remove entries once fixed.
+ */
+const UNSET_PROPERTIES = new Set<string>([
+  '--ix-application-menu--safe-area-left',
+  '--ix-button--background--danger-primary--pressed',
+  '--ix-button--background--danger-primary--pressed--hover',
+  '--ix-button--background--danger-secondary--pressed',
+  '--ix-button--background--danger-secondary--pressed--hover',
+  '--ix-button--background--danger-tertiary--pressed',
+  '--ix-button--background--danger-tertiary--pressed--hover',
+  '--ix-button--color--danger-primary--pressed',
+  '--ix-button--color--danger-primary--pressed--active',
+  '--ix-button--color--danger-primary--pressed--hover',
+  '--ix-button--color--danger-secondary--pressed',
+  '--ix-button--color--danger-secondary--pressed--active',
+  '--ix-button--color--danger-secondary--pressed--hover',
+  '--ix-button--color--danger-tertiary--pressed',
+  '--ix-button--color--danger-tertiary--pressed--active',
+  '--ix-button--color--danger-tertiary--pressed--hover',
+  '--ix-checkbox--background--info--mixed',
+  '--ix-checkbox--background--info--mixed--active',
+  '--ix-checkbox--background--info--mixed--hover',
+  '--ix-layout-grid-row--margin',
+  '--ix-menu-item--background',
+  '--ix-menu-item--background--active',
+  '--ix-menu-item--background--disabled',
+  '--ix-menu-item--background--hover',
+  '--ix-menu-item--color',
+  '--ix-menu-item--color--active',
+  '--ix-menu-item--color--focus',
+  '--ix-menu-item--color--hover',
+  '--ix-menu-item-icon--color',
+  '--ix-menu-item-icon-check--color',
+  '--ix-radio--background--info--mixed',
+  '--ix-radio--background--info--mixed--active',
+  '--ix-radio--background--info--mixed--hover',
+  '--ix-radio--background--invalid--mixed',
+  '--ix-radio--background--invalid--mixed--active',
+  '--ix-radio--background--invalid--mixed--hover',
+  '--ix-radio--background--warning--mixed',
+  '--ix-radio--background--warning--mixed--active',
+  '--ix-radio--background--warning--mixed--hover',
+  '--ix-radio--border-color--info--mixed',
+  '--ix-radio--border-color--info--mixed--active',
+  '--ix-radio--border-color--info--mixed--hover',
+  '--ix-radio--border-color--invalid--mixed',
+  '--ix-radio--border-color--invalid--mixed--active',
+  '--ix-radio--border-color--invalid--mixed--hover',
+  '--ix-radio--border-color--warning--mixed',
+  '--ix-radio--border-color--warning--mixed--active',
+  '--ix-radio--border-color--warning--mixed--hover',
+  '--ix-tab-active-indicator--offset',
+  '--ix-tab-active-indicator--width',
+]);
+
+/** Global (non-component) properties declared in `scss/`. */
+const GLOBAL_PROPERTY = /^--ix-safe-area-inset-/;
+
+function styleEntries() {
+  return findFiles(COMPONENTS_DIR, ['.tsx']).flatMap((file) =>
+    [
+      ...readFileSync(file, 'utf8').matchAll(
+        /styleUrls?:\s*(\[[^\]]*\]|'[^']*')/g
+      ),
+    ].flatMap(([, urls]) =>
+      [...urls.matchAll(/'([^']+\.scss)'/g)].map(([, url]) =>
+        path.resolve(path.dirname(file), url)
+      )
+    )
+  );
+}
+
+describe('component CSS custom property references', () => {
+  const scssSources = findFiles(COMPONENTS_DIR, ['.scss']);
+  const compiled = [...new Set(styleEntries())].map(
+    (entry) => compile(entry, { loadPaths: [path.join(CORE_DIR, 'scss')] }).css
+  );
+
+  it('declares properties with define-var, declare-var or set-var', () => {
+    const raw = scssSources.flatMap((file) =>
+      [
+        ...stripComments(readFileSync(file, 'utf8')).matchAll(
+          /(?:^|[{;])\s*(--ix-[\w#{}$-]+)\s*:/g
+        ),
+      ]
+        .filter(([, name]) => !GLOBAL_PROPERTY.test(name))
+        .map(([, name]) => `${path.relative(COMPONENTS_DIR, file)}: ${name}`)
+    );
+    expect(raw).toEqual([]);
+  });
+
+  it('reads properties with get-var', () => {
+    const raw = scssSources.flatMap((file) =>
+      [
+        ...stripComments(readFileSync(file, 'utf8')).matchAll(
+          /var\(\s*(--ix-[\w#{}$-]+)/g
+        ),
+      ]
+        .filter(([, name]) => !GLOBAL_PROPERTY.test(name))
+        .map(([, name]) => `${path.relative(COMPONENTS_DIR, file)}: ${name}`)
+    );
+    expect(raw).toEqual([]);
+  });
+
+  it('resolves every var(--ix-*) in the compiled CSS', () => {
+    const declared = new Set<string>();
+    const referenced = new Set<string>();
+    for (const css of compiled) {
+      for (const [, name] of css.matchAll(/(--ix-[\w-]+)\s*:/g)) {
+        declared.add(name);
+      }
+      for (const [, name] of css.matchAll(/var\(\s*(--ix-[\w-]+)/g)) {
+        referenced.add(name);
+      }
+    }
+    // Properties set at runtime from TSX (inline styles or setProperty).
+    for (const file of findFiles(COMPONENTS_DIR, ['.tsx'])) {
+      for (const [, name] of readFileSync(file, 'utf8').matchAll(
+        /['"`](--ix-[\w-]+)['"`]/g
+      )) {
+        declared.add(name);
+      }
+    }
+    const unresolved = [...referenced]
+      .filter((name) => !declared.has(name) && !GLOBAL_PROPERTY.test(name))
+      .sort();
+    expect(unresolved).toEqual([...UNSET_PROPERTIES].sort());
   });
 });

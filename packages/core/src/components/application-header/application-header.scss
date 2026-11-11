@@ -10,6 +10,7 @@
 @use 'mixins/breakpoints';
 
 @use './application-header.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   flex-wrap: nowrap;
@@ -17,18 +18,18 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-  min-height: var(--ix-application-header--min-height);
+  min-height: cv.get-var('application-header--min-height');
   padding-top: var(--ix-safe-area-inset-top, 0rem);
-  padding-right: var(--ix-application-header--padding-right);
-  padding-left: var(--ix-application-header--padding-left);
+  padding-right: cv.get-var('application-header--padding-right');
+  padding-left: cv.get-var('application-header--padding-left');
 
-  color: var(--ix-application-header--color);
-  background-color: var(--ix-application-header--background);
+  color: cv.get-var('application-header--color');
+  background-color: cv.get-var('application-header--background');
 
-  border-bottom: var(--ix-application-header--border-width) solid
-    var(--ix-application-header--border-color);
+  border-bottom: cv.get-var('application-header--border-width') solid
+    cv.get-var('application-header--border-color');
 
-  z-index: var(--ix-application-header--z-index);
+  z-index: cv.get-var('application-header--z-index');
 
   @include component.ix-component;
 
@@ -40,7 +41,7 @@
     position: relative;
     align-items: center;
     min-width: 0;
-    min-height: var(--ix-application-header-right-side--min-height);
+    min-height: cv.get-var('application-header-right-side--min-height');
     height: 100%;
   }
 
@@ -50,18 +51,18 @@
     .app-icon {
       display: block;
       position: relative;
-      width: var(--ix-application-header-app-icon--size);
-      min-width: var(--ix-application-header-app-icon--size);
-      max-width: var(--ix-application-header-app-icon--size);
-      height: var(--ix-application-header-app-icon--size);
-      min-height: var(--ix-application-header-app-icon--size);
-      max-height: var(--ix-application-header-app-icon--size);
+      width: cv.get-var('application-header-app-icon--size');
+      min-width: cv.get-var('application-header-app-icon--size');
+      max-width: cv.get-var('application-header-app-icon--size');
+      height: cv.get-var('application-header-app-icon--size');
+      min-height: cv.get-var('application-header-app-icon--size');
+      max-height: cv.get-var('application-header-app-icon--size');
     }
 
     .app-icon.app-icon-outline {
-      outline: var(--ix-application-header-app-icon--outline-width) solid
-        var(--ix-application-header-app-icon--outline-color);
-      border-radius: var(--ix-application-header-app-icon--border-radius);
+      outline: cv.get-var('application-header-app-icon--outline-width') solid
+        cv.get-var('application-header-app-icon--outline-color');
+      border-radius: cv.get-var('application-header-app-icon--border-radius');
     }
 
     .app-icon img {
@@ -69,11 +70,11 @@
       display: block;
       width: 100%;
       height: 100%;
-      border-radius: var(--ix-application-header-app-icon--border-radius);
+      border-radius: cv.get-var('application-header-app-icon--border-radius');
     }
 
     .app-switch {
-      margin: var(--ix-application-header-app-switch--margin);
+      margin: cv.get-var('application-header-app-switch--margin');
     }
 
     .app-switch.without-app-icon {
@@ -87,12 +88,12 @@
       flex-wrap: nowrap;
       align-items: baseline;
 
-      margin-left: var(--ix-application-header-name--margin-left);
-      margin-right: var(--ix-application-header-name--margin-right);
-      color: var(--ix-application-header--color);
+      margin-left: cv.get-var('application-header-name--margin-left');
+      margin-right: cv.get-var('application-header-name--margin-right');
+      color: cv.get-var('application-header--color');
       min-width: 0;
 
-      gap: var(--ix-application-header-name--gap);
+      gap: cv.get-var('application-header-name--gap');
       overflow: hidden;
     }
 
@@ -123,19 +124,19 @@
       flex: 1 1 auto;
       min-width: 0;
       flex-shrink: 1;
-      color: var(--ix-application-header-name-suffix--color);
+      color: cv.get-var('application-header-name-suffix--color');
     }
 
     .logo {
       display: inline-flex;
       align-items: center;
       position: relative;
-      height: var(--ix-application-header-logo--height);
+      height: cv.get-var('application-header-logo--height');
       overflow: hidden;
       line-height: 0rem;
-      color: var(--ix-application-header-logo--color);
-      margin-right: var(--ix-application-header-logo--margin-right);
-      margin-left: var(--ix-application-header-logo--margin-left);
+      color: cv.get-var('application-header-logo--color');
+      margin-right: cv.get-var('application-header-logo--margin-right');
+      margin-left: cv.get-var('application-header-logo--margin-left');
       min-width: fit-content;
     }
 
@@ -173,13 +174,13 @@
     }
 
     .dropdown-content > .slot-content-active {
-      padding: var(--ix-application-header-slot-content--padding--active);
+      padding: cv.get-var('application-header-slot-content--padding--active');
       border-top: none;
     }
 
     .dropdown-content .slot-content-active ~ .slot-content-active {
-      border-top: var(--ix-application-header-dropdown-item--border-width) solid
-        var(--ix-application-header-dropdown-item--border-color);
+      border-top: cv.get-var('application-header-dropdown-item--border-width')
+        solid cv.get-var('application-header-dropdown-item--border-color');
     }
 
     .context-menu {
@@ -188,13 +189,13 @@
 
     .context-menu.context-menu-visible {
       display: block;
-      margin-left: var(
-        --ix-application-header-context-menu-visible--margin-left
+      margin-left: cv.get-var(
+        'application-header-context-menu-visible--margin-left'
       );
     }
 
     ::slotted(ix-avatar) {
-      margin-left: var(--ix-application-header-right-side--margin-left);
+      margin-left: cv.get-var('application-header-right-side--margin-left');
     }
 
     .primary-navigation {
@@ -208,7 +209,7 @@
 
   @include breakpoints.media-breakpoint-match('sm') {
     .logo {
-      margin-left: var(--ix-application-header-logo--margin-left--mobile);
+      margin-left: cv.get-var('application-header-logo--margin-left--mobile');
       display: none !important;
     }
 

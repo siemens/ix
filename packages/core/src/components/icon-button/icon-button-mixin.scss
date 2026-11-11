@@ -11,6 +11,7 @@
 @use 'mixins/shadow-dom/component';
 
 @use './icon-button.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin icon-button-size($sizeName, $size) {
   :host(.btn-icon-#{$sizeName}) {
     height: $size;
@@ -41,11 +42,11 @@
     }
 
     button.btn-oval {
-      border-radius: var(--ix-icon-button-btn-oval--border-radius);
+      border-radius: cv.get-var('icon-button-btn-oval--border-radius');
     }
 
     .icon {
-      color: var(--ix-icon-button--color, currentColor);
+      color: cv.get-var('icon-button--color', currentColor);
       margin: 0;
     }
 
@@ -54,7 +55,7 @@
     }
   }
 
-  @include icon-button-size('12', var(--ix-icon-button--size--12));
-  @include icon-button-size('16', var(--ix-icon-button--size--16));
-  @include icon-button-size('32', var(--ix-icon-button--size--32));
+  @include icon-button-size('12', cv.get-var('icon-button--size--12'));
+  @include icon-button-size('16', cv.get-var('icon-button--size--16'));
+  @include icon-button-size('32', cv.get-var('icon-button--size--32'));
 }

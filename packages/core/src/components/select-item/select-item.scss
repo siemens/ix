@@ -8,6 +8,7 @@
  */
 
 @use './select-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
@@ -17,12 +18,16 @@
   }
 
   ix-dropdown-item {
-    color: var(--ix-select-item--color);
+    color: cv.get-var('select-item--color');
   }
 
   .select-item-checked {
-    background-color: var(--ix-select-item--background--selected);
-    --ix-dropdown-item-checkmark--color: var(--ix-select-item--color);
+    background-color: cv.get-var('select-item--background--selected');
+    @include cv.set-var(
+      'dropdown-item-checkmark--color',
+      cv.get-var('select-item--color'),
+      $external: true
+    );
   }
 }
 

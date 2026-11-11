@@ -10,20 +10,21 @@
 @use 'mixins/shadow-dom/component';
 
 @use './workflow-step.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host(:not(.host-vertical)) {
-  width: var(--ix-workflow-step--width--horizontal);
-  height: var(--ix-workflow-step--height);
-  min-width: var(--ix-workflow-step--min-width--horizontal);
-  min-height: var(--ix-workflow-step--min-height--horizontal);
-  max-width: var(--ix-workflow-step--max-width--horizontal);
+  width: cv.get-var('workflow-step--width--horizontal');
+  height: cv.get-var('workflow-step--height');
+  min-width: cv.get-var('workflow-step--min-width--horizontal');
+  min-height: cv.get-var('workflow-step--min-height--horizontal');
+  max-width: cv.get-var('workflow-step--max-width--horizontal');
 }
 
 :host(.host-vertical) {
   width: 100%;
-  height: var(--ix-workflow-step--height);
-  min-width: var(--ix-workflow-step--min-width--vertical);
-  min-height: var(--ix-workflow-step--min-height--vertical);
-  max-height: var(--ix-workflow-step--max-height--vertical);
+  height: cv.get-var('workflow-step--height');
+  min-width: cv.get-var('workflow-step--min-width--vertical');
+  min-height: cv.get-var('workflow-step--min-height--vertical');
+  max-height: cv.get-var('workflow-step--max-height--vertical');
 }
 
 :host {
@@ -36,9 +37,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--ix-workflow-step--background);
-    border-radius: var(--ix-workflow-step--border-radius);
-    padding: var(--ix-workflow-step-step--padding);
+    background-color: cv.get-var('workflow-step--background');
+    border-radius: cv.get-var('workflow-step--border-radius');
+    padding: cv.get-var('workflow-step-step--padding');
 
     .wrapper {
       display: flex;
@@ -49,8 +50,8 @@
 
       .line {
         width: 100%;
-        height: var(--ix-workflow-step-line--height);
-        background-color: var(--ix-workflow-step-icon-default--color);
+        height: cv.get-var('workflow-step-line--height');
+        background-color: cv.get-var('workflow-step-icon-default--color');
 
         &.first,
         &.last {
@@ -67,31 +68,35 @@
         }
 
         &.selected {
-          background-color: var(
-            --ix-workflow-step-icon-default--color--selected
+          background-color: cv.get-var(
+            'workflow-step-icon-default--color--selected'
           );
         }
 
         &.done {
-          background-color: var(--ix-workflow-step-icon-done--color);
+          background-color: cv.get-var('workflow-step-icon-done--color');
 
           &.selected {
-            background-color: var(
-              --ix-workflow-step-icon-done--color--selected
+            background-color: cv.get-var(
+              'workflow-step-icon-done--color--selected'
             );
           }
         }
 
         &.warning {
-          background-color: var(--ix-workflow-step-line--background--warning);
+          background-color: cv.get-var(
+            'workflow-step-line--background--warning'
+          );
         }
 
         &.success {
-          background-color: var(--ix-workflow-step-line--background--success);
+          background-color: cv.get-var(
+            'workflow-step-line--background--success'
+          );
         }
 
         &.error {
-          background-color: var(--ix-workflow-step-line--background--error);
+          background-color: cv.get-var('workflow-step-line--background--error');
         }
       }
 
@@ -108,9 +113,9 @@
     }
 
     .text {
-      margin-top: var(--ix-workflow-step-text--margin-top);
+      margin-top: cv.get-var('workflow-step-text--margin-top');
       width: 100%;
-      padding: var(--ix-workflow-step-text--padding);
+      padding: cv.get-var('workflow-step-text--padding');
 
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -125,11 +130,13 @@
 
       .wrapper {
         width: auto;
-        padding-left: var(--ix-workflow-step-wrapper--padding-left--vertical);
+        padding-left: cv.get-var(
+          'workflow-step-wrapper--padding-left--vertical'
+        );
         height: 100%;
 
         .line {
-          width: var(--ix-workflow-step-line--width);
+          width: cv.get-var('workflow-step-line--width');
           height: 100%;
 
           &.first,
@@ -149,7 +156,7 @@
       }
 
       .text {
-        margin: var(--ix-workflow-step-text--margin--vertical);
+        margin: cv.get-var('workflow-step-text--margin--vertical');
         padding: 0;
         width: auto;
       }
@@ -157,53 +164,59 @@
 
     &.clickable {
       &:hover {
-        background-color: var(--ix-workflow-step--background--hover);
-        --ix-workflow-step-icon-default--color--selected: var(
-          --ix-workflow-step-icon-default--color--selected--hover
+        background-color: cv.get-var('workflow-step--background--hover');
+        @include cv.set-var(
+          'workflow-step-icon-default--color--selected',
+          cv.get-var('workflow-step-icon-default--color--selected--hover')
         );
-        --ix-workflow-step-icon-done--color: var(
-          --ix-workflow-step-icon-done--color--hover
+        @include cv.set-var(
+          'workflow-step-icon-done--color',
+          cv.get-var('workflow-step-icon-done--color--hover')
         );
-        --ix-workflow-step-icon-done--color--selected: var(
-          --ix-workflow-step-icon-done--color--selected--hover
+        @include cv.set-var(
+          'workflow-step-icon-done--color--selected',
+          cv.get-var('workflow-step-icon-done--color--selected--hover')
         );
       }
 
       &:active {
-        background-color: var(--ix-workflow-step--background--active);
-        --ix-workflow-step-icon-default--color--selected: var(
-          --ix-workflow-step-icon-default--color--selected--active
+        background-color: cv.get-var('workflow-step--background--active');
+        @include cv.set-var(
+          'workflow-step-icon-default--color--selected',
+          cv.get-var('workflow-step-icon-default--color--selected--active')
         );
-        --ix-workflow-step-icon-done--color: var(
-          --ix-workflow-step-icon-done--color--active
+        @include cv.set-var(
+          'workflow-step-icon-done--color',
+          cv.get-var('workflow-step-icon-done--color--active')
         );
-        --ix-workflow-step-icon-done--color--selected: var(
-          --ix-workflow-step-icon-done--color--selected--active
+        @include cv.set-var(
+          'workflow-step-icon-done--color--selected',
+          cv.get-var('workflow-step-icon-done--color--selected--active')
         );
       }
     }
 
     &:focus-visible {
-      outline: var(--ix-workflow-step--outline-width--focus) solid
-        var(--ix-workflow-step-step--outline-color--focus);
-      outline-offset: var(--ix-workflow-step-step--outline-offset);
+      outline: cv.get-var('workflow-step--outline-width--focus') solid
+        cv.get-var('workflow-step-step--outline-color--focus');
+      outline-offset: cv.get-var('workflow-step-step--outline-offset');
     }
 
     &.selected {
-      background-color: var(--ix-workflow-step--background--selected);
+      background-color: cv.get-var('workflow-step--background--selected');
     }
 
     &.disabled {
-      background-color: var(--ix-workflow-step--background--disabled);
+      background-color: cv.get-var('workflow-step--background--disabled');
 
       .line {
-        background-color: var(
-          --ix-workflow-step-icon-default--color--disabled
+        background-color: cv.get-var(
+          'workflow-step-icon-default--color--disabled'
         ) !important;
       }
 
       .text {
-        color: var(--ix-workflow-step--color--disabled);
+        color: cv.get-var('workflow-step--color--disabled');
       }
     }
   }

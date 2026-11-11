@@ -8,18 +8,20 @@
  */
 @use './progress-indicator-vars' as progress-vars;
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 @mixin circular {
   .circular-progress-container {
-    --ix-progress-indicator-track--color: var(
-      --ix-progress-indicator-track--background
+    @include cv.set-var(
+      'progress-indicator-track--color',
+      cv.get-var('progress-indicator-track--background')
     );
 
     display: flex;
     align-items: center;
     width: 100%;
-    gap: var(--ix-progress-indicator-progress-container--gap);
-    margin: var(--ix-progress-indicator--margin);
+    gap: cv.get-var('progress-indicator-progress-container--gap');
+    margin: cv.get-var('progress-indicator--margin');
 
     &.align-left {
       justify-content: flex-start;
@@ -36,8 +38,9 @@
 
   @each $state in progress-vars.$progress-indicator-states {
     .circular-progress-container.#{$state} {
-      --ix-progress-indicator-track--color: var(
-        --ix-progress-indicator-track--background--#{$state}
+      @include cv.set-var(
+        'progress-indicator-track--color',
+        cv.get-var('progress-indicator-track--background--#{$state}')
       );
     }
   }

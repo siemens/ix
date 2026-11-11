@@ -12,82 +12,285 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('radio--background--mixed');
+@include cv.declare-var('radio--background--mixed--active');
+@include cv.declare-var('radio--background--mixed--hover');
+@include cv.declare-var('radio--border-color--mixed');
+@include cv.declare-var('radio--border-color--mixed--active');
+@include cv.declare-var('radio--border-color--mixed--hover');
 
 :host {
-  --ix-radio-checkmark--background: #{sys.$si-sys-color-text-on-accent};
-  --ix-radio--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-radio--background--checked: #{sys.$si-sys-color-background-accent};
-  --ix-radio--background--checked--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-radio--background--checked--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-radio--background--checked--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-radio--background--info--checked: #{sys.$si-sys-color-background-information};
-  --ix-radio--background--info--checked--active: #{sys.$si-sys-color-background-information-active};
-  --ix-radio--background--info--checked--hover: #{sys.$si-sys-color-background-information-hover};
-  --ix-radio--background--invalid--checked: #{sys.$si-sys-color-background-danger};
-  --ix-radio--background--invalid--checked--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-radio--background--invalid--checked--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-radio--background--warning--checked: #{sys.$si-sys-color-background-warning};
-  --ix-radio--background--warning--checked--active: #{sys.$si-sys-color-background-warning-active};
-  --ix-radio--background--warning--checked--hover: #{sys.$si-sys-color-background-warning-hover};
-  --ix-radio--border-color--checked: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--checked--active: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--checked--disabled: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--checked--hover: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--info--checked: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--info--checked--active: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--info--checked--hover: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--invalid--checked: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--invalid--checked--active: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--invalid--checked--hover: rgba(0, 0, 0, 0);
-  --ix-radio--border-color--warning--checked: #{sys.$si-sys-color-border-warning};
-  --ix-radio--border-color--warning--checked--active: #{sys.$si-sys-color-border-warning};
-  --ix-radio--border-color--warning--checked--hover: #{sys.$si-sys-color-border-warning};
-  --ix-radio--background--unchecked: #{sys.$si-sys-color-background-1};
-  --ix-radio--background--unchecked--active: #{sys.$si-sys-color-background-selected};
-  --ix-radio--background--unchecked--disabled: rgba(0, 0, 0, 0);
-  --ix-radio--background--unchecked--hover: #{sys.$si-sys-color-background-hover};
-  --ix-radio--background--info--unchecked: #{sys.$si-sys-color-background-1};
-  --ix-radio--background--info--unchecked--active: #{sys.$si-sys-color-background-selected};
-  --ix-radio--background--info--unchecked--hover: #{sys.$si-sys-color-background-hover};
-  --ix-radio--background--invalid--unchecked: #{sys.$si-sys-color-background-1};
-  --ix-radio--background--invalid--unchecked--active: #{sys.$si-sys-color-background-selected};
-  --ix-radio--background--invalid--unchecked--hover: #{sys.$si-sys-color-background-hover};
-  --ix-radio--background--warning--unchecked: #{sys.$si-sys-color-background-1};
-  --ix-radio--background--warning--unchecked--active: #{sys.$si-sys-color-background-selected};
-  --ix-radio--background--warning--unchecked--hover: #{sys.$si-sys-color-background-hover};
-  --ix-radio--border-color--unchecked: #{sys.$si-sys-color-border-2};
-  --ix-radio--border-color--unchecked--active: #{sys.$si-sys-color-border-2};
-  --ix-radio--border-color--unchecked--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-radio--border-color--unchecked--hover: #{sys.$si-sys-color-border-2};
-  --ix-radio--border-color--info--unchecked: #{sys.$si-sys-color-border-information};
-  --ix-radio--border-color--info--unchecked--active: #{sys.$si-sys-color-border-information};
-  --ix-radio--border-color--info--unchecked--hover: #{sys.$si-sys-color-border-information};
-  --ix-radio--border-color--invalid--unchecked: #{sys.$si-sys-color-border-danger};
-  --ix-radio--border-color--invalid--unchecked--active: #{sys.$si-sys-color-border-danger};
-  --ix-radio--border-color--invalid--unchecked--hover: #{sys.$si-sys-color-border-danger};
-  --ix-radio--border-color--warning--unchecked: #{sys.$si-sys-color-border-warning};
-  --ix-radio--border-color--warning--unchecked--active: #{sys.$si-sys-color-border-warning};
-  --ix-radio--border-color--warning--unchecked--hover: #{sys.$si-sys-color-border-warning};
-  --ix-radio-checkmark--border-color: white;
+  @include cv.define-var(
+    'radio-checkmark--background',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'radio--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'radio--background--checked',
+    sys.$si-sys-color-background-accent
+  );
+  @include cv.define-var(
+    'radio--background--checked--active',
+    sys.$si-sys-color-background-accent-active
+  );
+  @include cv.define-var(
+    'radio--background--checked--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'radio--background--checked--hover',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var(
+    'radio--background--info--checked',
+    sys.$si-sys-color-background-information
+  );
+  @include cv.define-var(
+    'radio--background--info--checked--active',
+    sys.$si-sys-color-background-information-active
+  );
+  @include cv.define-var(
+    'radio--background--info--checked--hover',
+    sys.$si-sys-color-background-information-hover
+  );
+  @include cv.define-var(
+    'radio--background--invalid--checked',
+    sys.$si-sys-color-background-danger
+  );
+  @include cv.define-var(
+    'radio--background--invalid--checked--active',
+    sys.$si-sys-color-background-danger-active
+  );
+  @include cv.define-var(
+    'radio--background--invalid--checked--hover',
+    sys.$si-sys-color-background-danger-hover
+  );
+  @include cv.define-var(
+    'radio--background--warning--checked',
+    sys.$si-sys-color-background-warning
+  );
+  @include cv.define-var(
+    'radio--background--warning--checked--active',
+    sys.$si-sys-color-background-warning-active
+  );
+  @include cv.define-var(
+    'radio--background--warning--checked--hover',
+    sys.$si-sys-color-background-warning-hover
+  );
+  @include cv.define-var('radio--border-color--checked', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'radio--border-color--checked--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--checked--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--checked--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--info--checked',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--info--checked--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--info--checked--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--invalid--checked',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--invalid--checked--active',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--invalid--checked--hover',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--border-color--warning--checked',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'radio--border-color--warning--checked--active',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'radio--border-color--warning--checked--hover',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'radio--background--unchecked',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'radio--background--unchecked--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'radio--background--unchecked--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'radio--background--unchecked--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'radio--background--info--unchecked',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'radio--background--info--unchecked--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'radio--background--info--unchecked--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'radio--background--invalid--unchecked',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'radio--background--invalid--unchecked--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'radio--background--invalid--unchecked--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'radio--background--warning--unchecked',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'radio--background--warning--unchecked--active',
+    sys.$si-sys-color-background-selected
+  );
+  @include cv.define-var(
+    'radio--background--warning--unchecked--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'radio--border-color--unchecked',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'radio--border-color--unchecked--active',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'radio--border-color--unchecked--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'radio--border-color--unchecked--hover',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'radio--border-color--info--unchecked',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'radio--border-color--info--unchecked--active',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'radio--border-color--info--unchecked--hover',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'radio--border-color--invalid--unchecked',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'radio--border-color--invalid--unchecked--active',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'radio--border-color--invalid--unchecked--hover',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'radio--border-color--warning--unchecked',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'radio--border-color--warning--unchecked--active',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'radio--border-color--warning--unchecked--hover',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var('radio-checkmark--border-color', white);
 }
 
 :host {
-  --ix-radio--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-radio--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-radio-checkmark--border-width--initial: #{sys.$si-sys-sizing-border-width-default};
-  --ix-radio-checkmark--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-radio--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-radio-checkmark--width: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-checkmark--min-width: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-checkmark--max-width: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-checkmark--height: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-checkmark--min-height: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-checkmark--max-height: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-button--height: #{sys.$si-sys-sizing-size-60};
-  --ix-radio-button--width: #{sys.$si-sys-sizing-size-60};
-  --ix-radio--target-size: #{sys.$si-sys-sizing-size-70};
-  --ix-radio-selection-indicator--width: calc(var(--ix-radio-checkmark--width) * 0.4);
-  --ix-radio-selection-indicator--height: calc(var(--ix-radio-checkmark--height) * 0.4);
-  --ix-radio--margin: #{sys.$si-sys-sizing-spacing-y-10} 0 #{sys.$si-sys-sizing-spacing-y-10}
-    #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-var(
+    'radio--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'radio--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
+  @include cv.define-var(
+    'radio-checkmark--border-width--initial',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'radio-checkmark--border-radius',
+    sys.$si-sys-sizing-border-radius-full
+  );
+  @include cv.define-var(
+    'radio--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var('radio-checkmark--width', sys.$si-sys-sizing-size-60);
+  @include cv.define-var(
+    'radio-checkmark--min-width',
+    sys.$si-sys-sizing-size-60
+  );
+  @include cv.define-var(
+    'radio-checkmark--max-width',
+    sys.$si-sys-sizing-size-60
+  );
+  @include cv.define-var('radio-checkmark--height', sys.$si-sys-sizing-size-60);
+  @include cv.define-var(
+    'radio-checkmark--min-height',
+    sys.$si-sys-sizing-size-60
+  );
+  @include cv.define-var(
+    'radio-checkmark--max-height',
+    sys.$si-sys-sizing-size-60
+  );
+  @include cv.define-var('radio-button--height', sys.$si-sys-sizing-size-60);
+  @include cv.define-var('radio-button--width', sys.$si-sys-sizing-size-60);
+  @include cv.define-var('radio--target-size', sys.$si-sys-sizing-size-70);
+  @include cv.define-var(
+    'radio-selection-indicator--width',
+    calc(#{cv.get-var('radio-checkmark--width')} * 0.4)
+  );
+  @include cv.define-var(
+    'radio-selection-indicator--height',
+    calc(#{cv.get-var('radio-checkmark--height')} * 0.4)
+  );
+  @include cv.define-var(
+    'radio--margin',
+    #{sys.$si-sys-sizing-spacing-y-10} 0 #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-40}
+  );
 }

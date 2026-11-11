@@ -12,15 +12,34 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-toast-container--z-index: var(--theme-z-index-toast);
+  @include cv.define-var(
+    'toast-container--z-index',
+    var(--theme-z-index-toast)
+  );
 }
 
 :host {
-  --ix-toast-container--margin-block-end: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-toast-container-top-right--right: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-toast-container-top-right--top: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-toast-container-bottom-right--right: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-toast-container-bottom-right--bottom: #{sys.$si-sys-sizing-spacing-y-90};
+  @include cv.define-var(
+    'toast-container--margin-block-end',
+    sys.$si-sys-sizing-spacing-y-60
+  );
+  @include cv.define-var(
+    'toast-container-top-right--right',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var(
+    'toast-container-top-right--top',
+    sys.$si-sys-sizing-spacing-y-90
+  );
+  @include cv.define-var(
+    'toast-container-bottom-right--right',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var(
+    'toast-container-bottom-right--bottom',
+    sys.$si-sys-sizing-spacing-y-90
+  );
 }

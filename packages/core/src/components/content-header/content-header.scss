@@ -8,6 +8,7 @@
  */
 
 @use './content-header.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   flex-direction: row;
@@ -19,7 +20,7 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    margin-right: var(--ix-content-header-title-group--margin-right);
+    margin-right: cv.get-var('content-header-title-group--margin-right');
 
     .headerText {
       min-width: 0;
@@ -39,7 +40,7 @@
       padding: 0;
 
       &.secondary {
-        padding: var(--ix-content-header--padding--secondary);
+        padding: cv.get-var('content-header--padding--secondary');
       }
 
       &.truncate {
@@ -62,13 +63,13 @@
         display: inline-flex;
         flex: 0 0 auto;
         align-self: flex-start;
-        margin-left: var(--ix-content-header-header-slot--margin-left);
+        margin-left: cv.get-var('content-header-header-slot--margin-left');
       }
     }
   }
 
   .backButton {
-    margin-right: var(--ix-content-header-back-button--margin-right);
+    margin-right: cv.get-var('content-header-back-button--margin-right');
   }
 
   .buttons {

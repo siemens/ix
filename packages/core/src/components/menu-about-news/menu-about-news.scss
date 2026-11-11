@@ -10,86 +10,91 @@
 @use 'mixins/breakpoints';
 @use 'mixins/shadow-dom/component';
 @use './menu-about-news.vars' as *;
-$left: var(--ix-menu-about-news--left);
-$expanded-left-offset: var(--ix-menu-about-news--left--expanded);
+@use 'mixins/component-vars' as cv;
+$left: cv.get-var('menu-about-news--left');
+$expanded-left-offset: cv.get-var('menu-about-news--left--expanded');
 
 :host {
-  --margin: var(--ix-menu-about-news--margin);
+  --margin: #{cv.get-var('menu-about-news--margin')};
 
   display: block;
   position: fixed;
-  width: var(--ix-menu-about-news--width);
+  width: cv.get-var('menu-about-news--width');
   height: auto;
-  background-color: var(--ix-menu-about-news--background);
-  border-radius: var(--ix-menu-about-news--border-radius);
-  padding: var(--ix-menu-about-news--padding);
+  background-color: cv.get-var('menu-about-news--background');
+  border-radius: cv.get-var('menu-about-news--border-radius');
+  padding: cv.get-var('menu-about-news--padding');
   left: $left;
-  z-index: var(--ix-menu-about-news-desktop--z-index);
-  transition: left var(--ix-menu-about-news--transition-duration);
+  z-index: cv.get-var('menu-about-news-desktop--z-index');
+  transition: left cv.get-var('menu-about-news--transition-duration');
 
   margin-inline-start: var(--margin) !important;
 
-  box-shadow: var(--ix-menu-about-news--box-shadow);
+  box-shadow: cv.get-var('menu-about-news--box-shadow');
   @include component.ix-component;
 
   .banner-container {
     position: absolute;
-    top: var(--ix-menu-about-news-banner-container--top);
-    left: var(--ix-menu-about-news-banner-container--left);
+    top: cv.get-var('menu-about-news-banner-container--top');
+    left: cv.get-var('menu-about-news-banner-container--left');
 
     svg {
       position: absolute;
-      height: var(--ix-menu-about-news-svg--height);
-      width: var(--ix-menu-about-news-svg--width);
+      height: cv.get-var('menu-about-news-svg--height');
+      width: cv.get-var('menu-about-news-svg--width');
 
       polygon {
-        fill: var(--ix-menu-about-news-banner--fill);
+        fill: cv.get-var('menu-about-news-banner--fill');
       }
     }
 
     ix-icon {
-      margin: var(--ix-menu-about-news-icon--margin);
+      margin: cv.get-var('menu-about-news-icon--margin');
       position: absolute;
       z-index: 1;
     }
   }
 
   .cui-popover-news-header {
-    margin-bottom: var(
-      --ix-menu-about-news-cui-popover-news-header--margin-bottom
+    margin-bottom: cv.get-var(
+      'menu-about-news-cui-popover-news-header--margin-bottom'
     );
-    margin-inline-start: var(
-      --ix-menu-about-news-cui-popover-news-header--margin-inline-start
+    margin-inline-start: cv.get-var(
+      'menu-about-news-cui-popover-news-header--margin-inline-start'
     );
   }
 
   .slot-container {
-    font: var(--ix-menu-about-news-content--font);
+    font: cv.get-var('menu-about-news-content--font');
   }
 
   .popover-body {
-    color: var(--ix-menu-about-news-body--color);
+    color: cv.get-var('menu-about-news-body--color');
   }
 
   .cui-popover-news-footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: var(--ix-menu-about-news-cui-popover-news-footer--margin-top);
+    margin-top: cv.get-var(
+      'menu-about-news-cui-popover-news-footer--margin-top'
+    );
   }
 
   ix-icon-button {
-    top: var(--ix-menu-about-news-icon--top);
-    right: var(--ix-menu-about-news-icon--right);
+    top: cv.get-var('menu-about-news-icon--top');
+    right: cv.get-var('menu-about-news-icon--right');
     position: absolute;
   }
 
   #arrow {
     position: absolute;
-    width: var(--ix-menu-about-news-arrow--width);
-    height: var(--ix-menu-about-news-arrow--height);
-    background-color: var(--ix-menu-about-news-arrow--background);
+    width: cv.get-var('menu-about-news-arrow--width');
+    height: cv.get-var('menu-about-news-arrow--height');
+    background-color: cv.get-var('menu-about-news-arrow--background');
     transform: translateX(
-        calc(var(--margin) * -1 - var(--ix-menu-about-news-arrow--transform))
+        calc(
+          var(--margin) * -1 - #{cv.get-var('menu-about-news-arrow--transform')}
+        )
       )
       rotateZ(45deg);
   }
@@ -107,16 +112,18 @@ $expanded-left-offset: var(--ix-menu-about-news--left--expanded);
   :host {
     display: flex;
     flex-direction: column;
-    max-height: var(--ix-menu-about-news--max-height--mobile);
-    width: var(--ix-menu-about-news--width--mobile);
-    max-width: var(--ix-menu-about-news--max-width--mobile);
+    max-height: cv.get-var('menu-about-news--max-height--mobile');
+    width: cv.get-var('menu-about-news--width--mobile');
+    max-width: cv.get-var('menu-about-news--max-width--mobile');
     transform: translateX(
-      calc(var(--ix-menu-about-news-side--inset--mobile) - 50%)
+      calc(#{cv.get-var('menu-about-news-side--inset--mobile')} - 50%)
     );
-    left: calc(50% - var(--ix-menu-about-news-side--inset--mobile)) !important;
-    bottom: var(--ix-menu-about-news--bottom--mobile) !important;
+    left: calc(
+      50% - #{cv.get-var('menu-about-news-side--inset--mobile')}
+    ) !important;
+    bottom: cv.get-var('menu-about-news--bottom--mobile') !important;
     margin-inline: 0 !important;
-    z-index: calc(var(--ix-menu-about-news--z-index) - 1);
+    z-index: calc(#{cv.get-var('menu-about-news--z-index')} - 1);
 
     .slot-container {
       overflow-y: auto;

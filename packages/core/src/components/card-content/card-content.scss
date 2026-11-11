@@ -10,12 +10,13 @@
 @use 'tokens/system' as sys;
 
 @use './card-content.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   /* Host itself — mixin only sets border-box on descendants */
   box-sizing: border-box;
   display: flex;
-  padding: var(
-    --ix-card-content--padding,
+  padding: cv.get-var(
+    'card-content--padding',
     #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
   );
   height: 100%;
@@ -28,7 +29,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
-    gap: var(--ix-card-content-content-wrapper--gap);
+    gap: cv.get-var('card-content-content-wrapper--gap');
     display: flex;
     flex-direction: column;
     align-items: flex-start;

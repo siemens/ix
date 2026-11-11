@@ -11,10 +11,11 @@
 @use 'mixins/text-truncation';
 
 @use './upload.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
-  min-height: var(--ix-upload--min-height);
-  height: var(--ix-upload--height);
+  min-height: cv.get-var('upload--min-height');
+  height: cv.get-var('upload--height');
 
   @include component.ix-component;
 
@@ -29,12 +30,12 @@
     height: 100%;
     width: 100%;
 
-    padding: var(--ix-upload-file-upload-area--padding);
+    padding: cv.get-var('upload-file-upload-area--padding');
 
-    border: var(--ix-upload-file-upload-area--border-width) dashed
-      var(--ix-upload--border-color);
-    border-radius: var(--ix-upload--border-radius);
-    color: var(--ix-upload-text--color);
+    border: cv.get-var('upload-file-upload-area--border-width') dashed
+      cv.get-var('upload--border-color');
+    border-radius: cv.get-var('upload--border-radius');
+    color: cv.get-var('upload-text--color');
 
     &.multiline {
       max-height: unset;
@@ -57,23 +58,23 @@
     }
 
     &:not(.disabled).file-over {
-      border-color: var(--ix-upload--border-color--dragover);
+      border-color: cv.get-var('upload--border-color--dragover');
       border-style: solid;
     }
 
     &.checking {
-      color: var(--ix-upload-text--color--checking);
+      color: cv.get-var('upload-text--color--checking');
       border-style: solid;
     }
 
     &.disabled {
       border-style: solid;
-      color: var(--ix-upload-text--color--disabled);
+      color: cv.get-var('upload-text--color--disabled');
     }
 
     ix-button {
-      margin-inline-start: var(
-        --ix-upload-file-upload-area--margin-inline-start
+      margin-inline-start: cv.get-var(
+        'upload-file-upload-area--margin-inline-start'
       );
     }
 
@@ -89,19 +90,19 @@
     }
 
     .loader {
-      font-size: var(--ix-upload-loader--font-size);
-      width: var(--ix-upload-loader--width);
-      height: var(--ix-upload-loader--height);
+      font-size: cv.get-var('upload-loader--font-size');
+      width: cv.get-var('upload-loader--width');
+      height: cv.get-var('upload-loader--height');
       border-radius: 50%;
       position: relative;
       text-indent: -9999em;
-      animation: optimise-loading var(--ix-upload-loader--animation-duration)
-        infinite ease;
+      animation: optimise-loading
+        cv.get-var('upload-loader--animation-duration') infinite ease;
       transform: translateZ(0);
     }
 
     .upload-filename {
-      margin-bottom: var(--ix-upload-filename--margin-bottom);
+      margin-bottom: cv.get-var('upload-filename--margin-bottom');
     }
 
     .state {
@@ -109,22 +110,22 @@
       align-items: center;
 
       > ix-spinner {
-        margin-inline-end: var(--ix-upload-state--margin-inline-end);
+        margin-inline-end: cv.get-var('upload-state--margin-inline-end');
       }
 
       > ix-icon {
-        block-size: var(--ix-upload-icon--size);
-        inline-size: var(--ix-upload-icon--size);
-        margin-inline-end: var(--ix-upload-icon--margin-inline-end);
-        min-block-size: var(--ix-upload-icon--size);
-        min-inline-size: var(--ix-upload-icon--size);
+        block-size: cv.get-var('upload-icon--size');
+        inline-size: cv.get-var('upload-icon--size');
+        margin-inline-end: cv.get-var('upload-icon--margin-inline-end');
+        min-block-size: cv.get-var('upload-icon--size');
+        min-inline-size: cv.get-var('upload-icon--size');
 
         &.icon-error {
-          color: var(--ix-upload-icon--color--error);
+          color: cv.get-var('upload-icon--color--error');
         }
 
         &.icon-success {
-          color: var(--ix-upload-icon--color--success);
+          color: cv.get-var('upload-icon--color--success');
         }
       }
     }

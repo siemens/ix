@@ -9,9 +9,10 @@
 @use 'mixins/shadow-dom/component';
 
 @use './menu-avatar-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
-  color: var(--ix-menu-avatar-item--color);
+  color: cv.get-var('menu-avatar-item--color');
 
   @include component.ix-component;
 }

@@ -12,10 +12,23 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-dropdown-quick-actions--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-dropdown-quick-actions--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-dropdown-quick-actions--margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-dropdown-quick-actions-item--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+  @include cv.define-var(
+    'dropdown-quick-actions--margin-inline-start',
+    sys.$si-sys-sizing-spacing-x-80
+  );
+  @include cv.define-var(
+    'dropdown-quick-actions--margin-inline-end',
+    sys.$si-sys-sizing-spacing-x-80
+  );
+  @include cv.define-var(
+    'dropdown-quick-actions--margin-block-end',
+    sys.$si-sys-sizing-spacing-y-20
+  );
+  @include cv.define-var(
+    'dropdown-quick-actions-item--margin-inline-end',
+    sys.$si-sys-sizing-spacing-x-20
+  );
 }

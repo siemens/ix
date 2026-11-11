@@ -1,0 +1,73 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// Compile-time registry for component CSS custom properties (`--ix-*`).
+//
+// Sass loads a module once per compilation, so every file in a component's
+// style compilation shares this registry. Unknown names fail the build the
+// same way an unknown `sys.$si-sys-*` token does.
+//
+//   @include define-var('button--background', sys.$si-sys-color-primary);
+//   @include set-var('button--background', sys.$si-sys-color-secondary);
+//   background: get-var('button--background');
+//
+// Use `$external: true` only for properties owned by another component or set
+// at runtime (TSX). Those references are validated against the compiled CSS
+// by `scripts/lint/component-vars.spec.ts`.
+
+@use 'sass:map';
+
+$_registry: ();
+
+@function _emit($name, $fallback: null) {
+  @if $fallback == null {
+    @return var(--ix-#{$name});
+  }
+  @return var(--ix-#{$name}, #{$fallback});
+}
+
+/// Registers a component custom property without a default value. Use it for
+/// properties that are only set per state (`set-var`) or at runtime (TSX).
+@mixin declare-var($name) {
+  @if map.has-key($_registry, $name) {
+    @error 'Component var --ix-#{$name} is already defined. Use set-var to override it.';
+  }
+  $_registry: map.set($_registry, $name, true) !global;
+}
+
+/// Declares a component custom property and registers it.
+@mixin define-var($name, $value) {
+  @if not & {
+    @error 'define-var("#{$name}") must be used inside a selector, e.g. :host.';
+  }
+  @if map.has-key($_registry, $name) {
+    @error 'Component var --ix-#{$name} is already defined. Use set-var to override it.';
+  }
+  $_registry: map.set($_registry, $name, true) !global;
+  --ix-#{$name}: #{$value};
+}
+
+/// Overrides an already defined component custom property.
+@mixin set-var($name, $value, $external: false) {
+  @if not & {
+    @error 'set-var("#{$name}") must be used inside a selector.';
+  }
+  @if not $external and not map.has-key($_registry, $name) {
+    @error 'Undefined component var --ix-#{$name}. Define it with define-var or declare-var in the vars file first.';
+  }
+  --ix-#{$name}: #{$value};
+}
+
+/// Returns `var(--ix-<name>[, <fallback>])` for a registered property.
+@function get-var($name, $fallback: null, $external: false) {
+  @if not $external and not map.has-key($_registry, $name) {
+    @error 'Undefined component var --ix-#{$name}.';
+  }
+  @return _emit($name, $fallback);
+}

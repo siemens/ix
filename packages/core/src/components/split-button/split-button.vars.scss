@@ -12,14 +12,31 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-split-button-left-button--width: calc(
-    100% - #{sys.$si-sys-sizing-size-80}
+  @include cv.define-var(
+    'split-button-left-button--width',
+    calc(100% - #{sys.$si-sys-sizing-size-80})
   );
-  --ix-split-button-right-button--width: #{sys.$si-sys-sizing-size-80};
-  --ix-split-button-left-button-border--border-top-width: #{sys.$si-sys-sizing-border-width-selected};
-  --ix-split-button-left-button-border--border-left-width: #{sys.$si-sys-sizing-border-width-selected};
-  --ix-split-button-left-button-border--border-bottom-width: #{sys.$si-sys-sizing-border-width-selected};
-  --ix-split-button-left-button-border--margin-right: #{sys.$si-sys-sizing-spacing-x-10};
+  @include cv.define-var(
+    'split-button-right-button--width',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'split-button-left-button-border--border-top-width',
+    sys.$si-sys-sizing-border-width-selected
+  );
+  @include cv.define-var(
+    'split-button-left-button-border--border-left-width',
+    sys.$si-sys-sizing-border-width-selected
+  );
+  @include cv.define-var(
+    'split-button-left-button-border--border-bottom-width',
+    sys.$si-sys-sizing-border-width-selected
+  );
+  @include cv.define-var(
+    'split-button-left-button-border--margin-right',
+    sys.$si-sys-sizing-spacing-x-10
+  );
 }

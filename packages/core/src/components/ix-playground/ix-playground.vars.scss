@@ -9,11 +9,21 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-playground--gap: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-playground--max-width: 64rem;
-  --ix-playground--padding: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-playground-scenario--gap: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-playground--padding-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+  @include cv.define-var('playground--gap', sys.$si-sys-sizing-spacing-y-90);
+  @include cv.define-var('playground--max-width', 64rem);
+  @include cv.define-var(
+    'playground--padding',
+    sys.$si-sys-sizing-spacing-y-90
+  );
+  @include cv.define-var(
+    'playground-scenario--gap',
+    sys.$si-sys-sizing-spacing-y-60
+  );
+  @include cv.define-var(
+    'playground--padding-inline-start',
+    sys.$si-sys-sizing-spacing-x-80
+  );
 }

@@ -12,7 +12,11 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-workflow-steps--min-width: #{sys.$si-sys-sizing-size-80};
+  @include cv.define-var(
+    'workflow-steps--min-width',
+    sys.$si-sys-sizing-size-80
+  );
 }

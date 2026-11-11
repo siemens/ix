@@ -12,56 +12,174 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-input--background: #{sys.$si-sys-color-background-1};
-  --ix-input--background--autofill: rgba(0, 0, 0, 0);
-  --ix-input--background--hover: #{sys.$si-sys-color-background-4};
-  --ix-input--background--invalid: #{sys.$si-sys-color-background-1};
-  --ix-input--background--invalid--hover: #{sys.$si-sys-color-background-4};
-  --ix-input--background--warning: #{sys.$si-sys-color-background-1};
-  --ix-input--background--warning--hover: #{sys.$si-sys-color-background-4};
-  --ix-input--border-color: #{sys.$si-sys-color-border-2};
-  --ix-input--border-color--autofill: #{sys.$si-sys-color-border-2};
-  --ix-input--border-color--disabled: #{sys.$si-sys-color-border-4};
-  --ix-input--border-color--focus: #{sys.$si-sys-color-border-1};
-  --ix-input--border-color--hover: #{sys.$si-sys-color-border-1};
-  --ix-input--border-color--info: #{sys.$si-sys-color-border-information};
-  --ix-input--border-color--info--active: #{sys.$si-sys-color-border-information};
-  --ix-input--border-color--info--hover: #{sys.$si-sys-color-border-information};
-  --ix-input--border-color--invalid: #{sys.$si-sys-color-border-danger};
-  --ix-input--border-color--invalid--active: #{sys.$si-sys-color-border-danger};
-  --ix-input--border-color--invalid--hover: #{sys.$si-sys-color-border-danger};
-  --ix-input--border-color--readonly: #{sys.$si-sys-color-border-4};
-  --ix-input--border-color--warning--active: #{sys.$si-sys-color-border-warning};
-  --ix-input--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
-  --ix-input--color: #{sys.$si-sys-color-text-primary};
-  --ix-input--color--autofill: #{sys.$si-sys-color-text-primary};
-  --ix-input--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-input--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-input-hint--color: #{sys.$si-sys-color-text-secondary};
+  @include cv.define-var('input--background', sys.$si-sys-color-background-1);
+  @include cv.define-var('input--background--autofill', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'input--background--hover',
+    sys.$si-sys-color-background-4
+  );
+  @include cv.define-var(
+    'input--background--invalid',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'input--background--invalid--hover',
+    sys.$si-sys-color-background-4
+  );
+  @include cv.define-var(
+    'input--background--warning',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'input--background--warning--hover',
+    sys.$si-sys-color-background-4
+  );
+  @include cv.define-var('input--border-color', sys.$si-sys-color-border-2);
+  @include cv.define-var(
+    'input--border-color--autofill',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'input--border-color--disabled',
+    sys.$si-sys-color-border-4
+  );
+  @include cv.define-var(
+    'input--border-color--focus',
+    sys.$si-sys-color-border-1
+  );
+  @include cv.define-var(
+    'input--border-color--hover',
+    sys.$si-sys-color-border-1
+  );
+  @include cv.define-var(
+    'input--border-color--info',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'input--border-color--info--active',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'input--border-color--info--hover',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'input--border-color--invalid',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'input--border-color--invalid--active',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'input--border-color--invalid--hover',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'input--border-color--readonly',
+    sys.$si-sys-color-border-4
+  );
+  @include cv.define-var(
+    'input--border-color--warning--active',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'input--border-color--warning--hover',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var('input--color', sys.$si-sys-color-text-primary);
+  @include cv.define-var(
+    'input--color--autofill',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'input--color--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'input--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var('input-hint--color', sys.$si-sys-color-text-secondary);
 }
 
 :host {
-  --ix-input--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-input--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-input--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-input--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-input--min-height: #{sys.$si-sys-sizing-size-80};
-  --ix-input--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-input-spin-button--margin-left: #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-input-textarea--padding: calc(
-      #{sys.$si-sys-sizing-spacing-y-30} - var(--ix-input--border-width)
-    )
-    calc(#{sys.$si-sys-sizing-spacing-x-40} - var(--ix-input--border-width));
-  --ix-input-textarea--height: #{sys.$si-sys-sizing-size-110};
-  --ix-input-start-container--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-input-icon--margin-left--compact: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-input-end-container--inset: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-input-end-container--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-input-icon--margin-right--compact: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-input-bottom-text--margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-input-bottom-text--margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-input-show-stepper-buttons--min-width: #{sys.$si-sys-sizing-size-130};
-  --ix-input-password-eye--margin-left: #{sys.$si-sys-sizing-spacing-x-10};
+  @include cv.define-var(
+    'input--border-radius',
+    sys.$si-sys-sizing-border-radius-xs
+  );
+  @include cv.define-var(
+    'input--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'input--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'input--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
+  @include cv.define-var('input--min-height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'input--padding',
+    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var(
+    'input-spin-button--margin-left',
+    sys.$si-sys-sizing-spacing-x-10
+  );
+  @include cv.define-var(
+    'input-textarea--padding',
+    calc(
+        #{sys.$si-sys-sizing-spacing-y-30} - #{cv.get-var(
+            'input--border-width'
+          )}
+      )
+      calc(
+        #{sys.$si-sys-sizing-spacing-x-40} - #{cv.get-var(
+            'input--border-width'
+          )}
+      )
+  );
+  @include cv.define-var('input-textarea--height', sys.$si-sys-sizing-size-110);
+  @include cv.define-var(
+    'input-start-container--margin-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'input-icon--margin-left--compact',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'input-end-container--inset',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'input-end-container--margin-right',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'input-icon--margin-right--compact',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'input-bottom-text--margin-top',
+    sys.$si-sys-sizing-spacing-y-20
+  );
+  @include cv.define-var(
+    'input-bottom-text--margin-bottom',
+    sys.$si-sys-sizing-spacing-y-20
+  );
+  @include cv.define-var(
+    'input-show-stepper-buttons--min-width',
+    sys.$si-sys-sizing-size-130
+  );
+  @include cv.define-var(
+    'input-password-eye--margin-left',
+    sys.$si-sys-sizing-spacing-x-10
+  );
 }

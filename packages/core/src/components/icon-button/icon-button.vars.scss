@@ -12,10 +12,17 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('icon-button--color');
 
 :host {
-  --ix-icon-button--size--12: #{sys.$si-sys-sizing-size-50};
-  --ix-icon-button--size--16: #{sys.$si-sys-sizing-size-70};
-  --ix-icon-button--size--32: #{sys.$si-sys-sizing-size-80};
-  --ix-icon-button-btn-oval--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  @include cv.define-var('icon-button--size--12', sys.$si-sys-sizing-size-50);
+  @include cv.define-var('icon-button--size--16', sys.$si-sys-sizing-size-70);
+  @include cv.define-var('icon-button--size--32', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'icon-button-btn-oval--border-radius',
+    sys.$si-sys-sizing-border-radius-full
+  );
 }

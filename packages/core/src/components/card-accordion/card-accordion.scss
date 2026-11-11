@@ -10,13 +10,14 @@
 @use 'mixins/shadow-dom/component';
 
 @use './card-accordion.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   width: 100%;
-  transition: var(--ix-card-accordion--transition-duration) ease-in-out;
+  transition: cv.get-var('card-accordion--transition-duration') ease-in-out;
 
   @include component.ix-component;
 
@@ -28,44 +29,44 @@
 
     appearance: button;
 
-    height: var(--ix-card-accordion-expand-action--height);
+    height: cv.get-var('card-accordion-expand-action--height');
     width: 100%;
 
     align-items: center;
     justify-content: flex-start;
 
-    border-top: var(--ix-card-accordion-expand-action--border-top-width) solid
-      var(--ix-card-accordion-expand-action--border-top-color);
-    border-bottom-left-radius: var(
-      --ix-card-accordion-expand-action--border-bottom-left-radius
+    border-top: cv.get-var('card-accordion-expand-action--border-top-width')
+      solid cv.get-var('card-accordion-expand-action--border-top-color');
+    border-bottom-left-radius: cv.get-var(
+      'card-accordion-expand-action--border-bottom-left-radius'
     );
-    border-bottom-right-radius: var(
-      --ix-card-accordion-expand-action--border-bottom-right-radius
+    border-bottom-right-radius: cv.get-var(
+      'card-accordion-expand-action--border-bottom-right-radius'
     );
 
-    background-color: var(--ix-card-accordion-chrome--background);
+    background-color: cv.get-var('card-accordion-chrome--background');
 
     @include hover.focus-visible {
-      outline: var(--ix-card-accordion--outline-width--focus) solid
-        var(--ix-card-accordion--outline-color--focus);
-      outline-offset: var(--ix-card-accordion--outline-offset--focus);
+      outline: cv.get-var('card-accordion--outline-width--focus') solid
+        cv.get-var('card-accordion--outline-color--focus');
+      outline-offset: cv.get-var('card-accordion--outline-offset--focus');
     }
 
     &:hover {
-      background: var(--ix-card-accordion-chrome--background--hover);
+      background: cv.get-var('card-accordion-chrome--background--hover');
     }
 
     &:active {
-      background: var(--ix-card-accordion-chrome--background--active);
+      background: cv.get-var('card-accordion-chrome--background--active');
     }
 
     /* Expanded: content owns the bottom corners */
     &.show {
-      border-bottom-left-radius: var(
-        --ix-card-accordion-expand-action--border-radius--expanded
+      border-bottom-left-radius: cv.get-var(
+        'card-accordion-expand-action--border-radius--expanded'
       );
-      border-bottom-right-radius: var(
-        --ix-card-accordion-expand-action--border-radius--expanded
+      border-bottom-right-radius: cv.get-var(
+        'card-accordion-expand-action--border-radius--expanded'
       );
     }
   }
@@ -75,17 +76,17 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--ix-card--background);
+    background-color: cv.get-var('card--background', $external: true);
     z-index: -1;
   }
 
   .expand-icon {
-    block-size: var(--ix-card-accordion-expand-icon--size);
-    inline-size: var(--ix-card-accordion-expand-icon--size);
-    margin-left: var(--ix-card-accordion-expand-icon--margin-left);
-    min-block-size: var(--ix-card-accordion-expand-icon--size);
-    min-inline-size: var(--ix-card-accordion-expand-icon--size);
-    transition: var(--ix-card-accordion-expand-icon--transition-duration)
+    block-size: cv.get-var('card-accordion-expand-icon--size');
+    inline-size: cv.get-var('card-accordion-expand-icon--size');
+    margin-left: cv.get-var('card-accordion-expand-icon--margin-left');
+    min-block-size: cv.get-var('card-accordion-expand-icon--size');
+    min-inline-size: cv.get-var('card-accordion-expand-icon--size');
+    transition: cv.get-var('card-accordion-expand-icon--transition-duration')
       transform ease-in-out;
   }
 
@@ -99,9 +100,9 @@
     width: 100%;
     height: 0;
     overflow: hidden;
-    transition: height var(--ix-card-accordion-content--transition-duration)
+    transition: height cv.get-var('card-accordion-content--transition-duration')
       ease-in-out;
-    background-color: var(--ix-card-accordion-chrome-frame--background);
+    background-color: cv.get-var('card-accordion-chrome-frame--background');
   }
 
   .expand-content::after {
@@ -109,15 +110,18 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    border-radius: var(--ix-card-accordion-expand-content--border-radius, 0);
+    border-radius: cv.get-var(
+      'card-accordion-expand-content--border-radius',
+      0
+    );
     border-top: none;
-    border: var(--ix-card-accordion-chrome-frame--border-width, 0px) solid
+    border: cv.get-var('card-accordion-chrome-frame--border-width', 0px) solid
       transparent;
-    border-color: var(--ix-card-accordion-chrome-frame--border-color);
+    border-color: cv.get-var('card-accordion-chrome-frame--border-color');
   }
 
   .expand-content.show {
-    height: var(--ix-card-accordion--height--expanded);
+    height: cv.get-var('card-accordion--height--expanded');
   }
 
   .expand-content-inner {
@@ -128,15 +132,15 @@
 
   .expand-content-body {
     opacity: 0;
-    transition: opacity var(--ix-card-accordion-content--transition-duration)
-      ease-in-out;
+    transition: opacity
+      cv.get-var('card-accordion-content--transition-duration') ease-in-out;
   }
 
   .expand-content.show .expand-content-body {
     display: block;
     overflow: auto;
-    height: var(--ix-card-accordion-expand-content-body--height);
-    color: var(--ix-card-accordion-content--color);
+    height: cv.get-var('card-accordion-expand-content-body--height');
+    color: cv.get-var('card-accordion-content--color');
     opacity: 1;
   }
 
@@ -146,10 +150,14 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: var(--ix-card-accordion-expand-content-footer--height);
+    height: cv.get-var('card-accordion-expand-content-footer--height');
 
-    background-color: var(--ix-card-accordion-chrome-footer--background);
-    border-bottom-left-radius: var(--ix-card-accordion-footer--border-radius);
-    border-bottom-right-radius: var(--ix-card-accordion-footer--border-radius);
+    background-color: cv.get-var('card-accordion-chrome-footer--background');
+    border-bottom-left-radius: cv.get-var(
+      'card-accordion-footer--border-radius'
+    );
+    border-bottom-right-radius: cv.get-var(
+      'card-accordion-footer--border-radius'
+    );
   }
 }

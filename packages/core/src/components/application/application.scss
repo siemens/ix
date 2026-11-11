@@ -11,11 +11,12 @@
 @use 'mixins/fonts';
 
 @use './application.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   position: relative;
-  width: var(--ix-application--width);
-  height: var(--ix-application--height);
+  width: cv.get-var('application--width');
+  height: cv.get-var('application--height');
 
   flex-direction: column;
 
@@ -33,33 +34,35 @@
     position: absolute;
     inset-block-start: -100%;
     inset-inline-start: calc(
-      var(--ix-safe-area-inset-left, 0rem) +
-        var(--ix-application-skip-link--outline-width--focus) +
-        var(--ix-application-skip-link--outline-offset--focus)
+      var(--ix-safe-area-inset-left, 0rem) + #{cv.get-var(
+          'application-skip-link--outline-width--focus'
+        )} + #{cv.get-var('application-skip-link--outline-offset--focus')}
     );
     z-index: calc(var(--theme-z-index-fixed) + 1);
-    padding: var(--ix-application-skip-link--padding);
-    background-color: var(--ix-application-skip-link--background);
-    color: var(--ix-application-skip-link--color);
+    padding: cv.get-var('application-skip-link--padding');
+    background-color: cv.get-var('application-skip-link--background');
+    color: cv.get-var('application-skip-link--color');
     white-space: nowrap;
 
     &:focus {
       inset-block-start: calc(
-        var(--ix-safe-area-inset-top, 0rem) +
-          var(--ix-application-skip-link--outline-width--focus) +
-          var(--ix-application-skip-link--outline-offset--focus)
+        var(--ix-safe-area-inset-top, 0rem) + #{cv.get-var(
+            'application-skip-link--outline-width--focus'
+          )} + #{cv.get-var('application-skip-link--outline-offset--focus')}
       );
     }
 
     &:focus-visible {
-      outline: var(--ix-application-skip-link--outline-width--focus) solid
-        var(--ix-application-skip-link--outline-color--focus);
-      outline-offset: var(--ix-application-skip-link--outline-offset--focus);
+      outline: cv.get-var('application-skip-link--outline-width--focus') solid
+        cv.get-var('application-skip-link--outline-color--focus');
+      outline-offset: cv.get-var(
+        'application-skip-link--outline-offset--focus'
+      );
     }
   }
 
   ix-application-header {
-    z-index: calc(var(--ix-application-child-header--z-index) + 1);
+    z-index: calc(#{cv.get-var('application-child-header--z-index')} + 1);
   }
 
   .logo-wrapper {
@@ -82,7 +85,7 @@
     flex-wrap: nowrap;
     height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
     width: 100%;
-    margin-left: var(--ix-application-menu--margin-left);
+    margin-left: cv.get-var('application-menu--margin-left');
     min-width: 0;
   }
 
@@ -109,19 +112,20 @@
 
 :host(:dir(rtl)) .skip-link {
   inset-inline-start: calc(
-    var(--ix-safe-area-inset-right, 0rem) +
-      var(--ix-application-skip-link--outline-width--focus) +
-      var(--ix-application-skip-link--outline-offset--focus)
+    var(--ix-safe-area-inset-right, 0rem) + #{cv.get-var(
+        'application-skip-link--outline-width--focus'
+      )} + #{cv.get-var('application-skip-link--outline-offset--focus')}
   );
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu--margin-left: var(
-    --ix-application-menu--margin-left--md
+  @include cv.set-var(
+    'application-menu--margin-left',
+    cv.get-var('application-menu--margin-left--md')
   );
 
   aside.slotted {
-    margin-left: var(--ix-application-menu--margin-left);
+    margin-left: cv.get-var('application-menu--margin-left');
   }
 
   aside.slotted + .content-area {
@@ -129,17 +133,17 @@
   }
 
   aside:not(.slotted) + .content-area {
-    margin-left: var(--ix-application-menu--margin-left);
+    margin-left: cv.get-var('application-menu--margin-left');
   }
 }
 
 :host(.breakpoint-lg) {
-  --ix-application-menu--margin-left: 0;
+  @include cv.set-var('application-menu--margin-left', 0);
 }
 
 :host(.breakpoint-sm) {
-  --ix-application-menu--margin-left: var(
-    --ix-application-menu--safe-area-left,
-    0rem
+  @include cv.set-var(
+    'application-menu--margin-left',
+    cv.get-var('application-menu--safe-area-left', 0rem)
   );
 }

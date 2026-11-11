@@ -7,17 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use './push-card.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-card-content--padding: var(--ix-push-card-content--padding);
+  @include cv.set-var(
+    'card-content--padding',
+    cv.get-var('push-card-content--padding'),
+    $external: true
+  );
 }
 
 :host {
   display: block;
   position: relative;
   box-sizing: border-box;
-  width: var(--ix-push-card--width);
-  min-width: var(--ix-push-card--width);
+  width: cv.get-var('push-card--width');
+  min-width: cv.get-var('push-card--width');
 
   ix-card {
     width: 100%;
@@ -29,20 +34,20 @@
 
   .icon {
     /* Explicit size so CSS wins over ix-icon defaults */
-    height: var(--ix-push-card-icon--size);
-    width: var(--ix-push-card-icon--size);
-    min-height: var(--ix-push-card-icon--size);
-    min-width: var(--ix-push-card-icon--size);
+    height: cv.get-var('push-card-icon--size');
+    width: cv.get-var('push-card-icon--size');
+    min-height: cv.get-var('push-card-icon--size');
+    min-width: cv.get-var('push-card-icon--size');
   }
 
   ix-card-title {
-    height: var(--ix-push-card--height);
+    height: cv.get-var('push-card--height');
     margin-top: 0;
     margin-bottom: 0;
   }
 
   ix-card-content {
-    height: var(--ix-push-card-content--height);
+    height: cv.get-var('push-card-content--height');
 
     &::part(content) {
       overflow: visible;
@@ -50,19 +55,33 @@
   }
 
   ix-card-accordion {
-    --ix-card-accordion-expand-content--border-radius: 0 0
-      var(--ix-push-card--border-radius) var(--ix-push-card--border-radius);
+    @include cv.set-var(
+      'card-accordion-expand-content--border-radius',
+      0 0 cv.get-var('push-card--border-radius')
+        cv.get-var('push-card--border-radius'),
+      $external: true
+    );
     /* No inner border around expanded content */
-    --ix-card-accordion-chrome-frame--border-color: transparent;
-    --ix-card-accordion-chrome-frame--border-width: var(
-      --ix-push-card-accordion-chrome-frame--border-width
+    @include cv.set-var(
+      'card-accordion-chrome-frame--border-color',
+      transparent,
+      $external: true
+    );
+    @include cv.set-var(
+      'card-accordion-chrome-frame--border-width',
+      cv.get-var('push-card-accordion-chrome-frame--border-width'),
+      $external: true
     );
     /* Separator on accordion top (not content bottom) */
-    --ix-card-accordion-expand-action--border-top-width: var(
-      --ix-push-card--border-width
+    @include cv.set-var(
+      'card-accordion-expand-action--border-top-width',
+      cv.get-var('push-card--border-width'),
+      $external: true
     );
-    --ix-card-accordion-expand-action--border-top-color: var(
-      --ix-push-card-accordion--border-color
+    @include cv.set-var(
+      'card-accordion-expand-action--border-top-color',
+      cv.get-var('push-card-accordion--border-color'),
+      $external: true
     );
   }
 }

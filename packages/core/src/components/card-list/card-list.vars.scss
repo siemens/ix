@@ -12,40 +12,109 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('card-list--overflow');
 
 :host {
   /* End card / show-more — accent chrome */
-  --ix-card-list-show-all--border-color: #{sys.$si-sys-color-background-accent};
-  --ix-card-list-show-all--color: #{sys.$si-sys-color-background-accent};
-  --ix-card-list-show-all--color--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-card-list-show-all--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-card-list-show-all--background: #{sys.$si-sys-color-background-accent-secondary};
-  --ix-card-list-show-all--background--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-card-list-show-all--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
+  @include cv.define-var(
+    'card-list-show-all--border-color',
+    sys.$si-sys-color-background-accent
+  );
+  @include cv.define-var(
+    'card-list-show-all--color',
+    sys.$si-sys-color-background-accent
+  );
+  @include cv.define-var(
+    'card-list-show-all--color--hover',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var(
+    'card-list-show-all--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'card-list-show-all--background',
+    sys.$si-sys-color-background-accent-secondary
+  );
+  @include cv.define-var(
+    'card-list-show-all--background--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'card-list-show-all--background--active',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
 }
 
 :host {
-  --ix-card-list-title-button--transition-duration: var(--theme-default-time);
-  --ix-card-list-content--transition-duration: var(--theme-default-time);
-  --ix-card-list-show-all--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-card-list-show-all--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-card-list-title--height: #{sys.$si-sys-sizing-size-80};
-  --ix-card-list--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-card-list-title--margin-bottom: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-card-list-title-button--margin-right: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-card-list-content--gap: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-card-list-show-all-card--max-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70}
+  @include cv.define-var(
+    'card-list-title-button--transition-duration',
+    var(--theme-default-time)
   );
-  --ix-card-list-show-all-card--min-width: #{sys.$si-sys-sizing-size-150};
-  --ix-card-list-show-all-card--width: #{sys.$si-sys-sizing-size-150};
-  --ix-card-list-show-all-card--min-height: #{sys.$si-sys-sizing-size-150};
-  --ix-card-list-show-all-card--max-height: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+  @include cv.define-var(
+    'card-list-content--transition-duration',
+    var(--theme-default-time)
   );
-  --ix-card-list-show-all-card--height: #{sys.$si-sys-sizing-size-150};
-  --ix-card-list-show-all-card--margin-bottom: calc(
-    #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
+  @include cv.define-var(
+    'card-list-show-all--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
   );
-  --ix-card-list-show-all-card-icon--size: #{sys.$si-sys-sizing-size-110};
+  @include cv.define-var(
+    'card-list-show-all--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
+  @include cv.define-var('card-list-title--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'card-list--margin',
+    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var(
+    'card-list-title--margin-bottom',
+    sys.$si-sys-sizing-spacing-y-60
+  );
+  @include cv.define-var(
+    'card-list-title-button--margin-right',
+    sys.$si-sys-sizing-spacing-x-60
+  );
+  @include cv.define-var(
+    'card-list-content--gap',
+    sys.$si-sys-sizing-spacing-x-80
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--max-width',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-70})
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--min-width',
+    sys.$si-sys-sizing-size-150
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--width',
+    sys.$si-sys-sizing-size-150
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--min-height',
+    sys.$si-sys-sizing-size-150
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--max-height',
+    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70})
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--height',
+    sys.$si-sys-sizing-size-150
+  );
+  @include cv.define-var(
+    'card-list-show-all-card--margin-bottom',
+    calc(
+      #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
+    )
+  );
+  @include cv.define-var(
+    'card-list-show-all-card-icon--size',
+    sys.$si-sys-sizing-size-110
+  );
 }

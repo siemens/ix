@@ -10,9 +10,10 @@
 @use 'tokens/system' as sys;
 
 @use './css-grid.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: grid;
   position: relative;
-  row-gap: var(--ix-css-grid--row-gap);
-  column-gap: var(--ix-css-grid--column-gap);
+  row-gap: cv.get-var('css-grid--row-gap');
+  column-gap: cv.get-var('css-grid--column-gap');
 }

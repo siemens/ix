@@ -10,19 +10,20 @@
 @use 'tokens/system' as sys;
 
 @use './dropdown-header.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   align-items: center;
   position: relative;
-  height: var(--ix-dropdown-header--height);
+  height: cv.get-var('dropdown-header--height');
   width: auto;
 
-  padding: var(--ix-dropdown-header--padding);
+  padding: cv.get-var('dropdown-header--padding');
 
   overflow: hidden;
   cursor: default;
 
-  color: var(--ix-dropdown-header--color);
+  color: cv.get-var('dropdown-header--color');
 
   @include component.ix-component;
 }

@@ -12,9 +12,15 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-checkbox-group-checkbox-container--gap: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-checkbox-group-checkbox-container--margin: #{sys.$si-sys-sizing-spacing-y-30}
-    0;
+  @include cv.define-var(
+    'checkbox-group-checkbox-container--gap',
+    sys.$si-sys-sizing-spacing-y-40
+  );
+  @include cv.define-var(
+    'checkbox-group-checkbox-container--margin',
+    #{sys.$si-sys-sizing-spacing-y-30} 0
+  );
 }

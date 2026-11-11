@@ -10,30 +10,33 @@
 @use 'mixins/shadow-dom/component';
 
 @use './dropdown.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
-  background-color: var(--ix-dropdown--background);
-  border-radius: var(--ix-dropdown--border-radius);
+  background-color: cv.get-var('dropdown--background');
+  border-radius: cv.get-var('dropdown--border-radius');
   min-width: 0px;
-  z-index: var(--ix-dropdown--z-index);
-  box-shadow: var(--ix-dropdown--box-shadow);
+  z-index: cv.get-var('dropdown--z-index');
+  box-shadow: cv.get-var('dropdown--box-shadow');
 
-  padding: var(--ix-dropdown--padding);
+  padding: cv.get-var('dropdown--padding');
 
   @include component.ix-component;
 
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: var(--ix-dropdown-heading--height);
-    color: var(--ix-dropdown-heading--color);
-    padding: var(--ix-dropdown-heading--padding);
+    height: cv.get-var('dropdown-heading--height');
+    color: cv.get-var('dropdown-heading--color');
+    padding: cv.get-var('dropdown-heading--padding');
   }
 }
 
-$dropdown-offset: var(--ix-dropdown--offset);
+$dropdown-offset: cv.get-var('dropdown--offset');
 
 :host(.overflow) {
-  max-height: calc(var(--ix-dropdown-overflow--max-height) - $dropdown-offset);
+  max-height: calc(
+    #{cv.get-var('dropdown-overflow--max-height')} - $dropdown-offset
+  );
   overflow-y: auto;
 }
 
@@ -55,21 +58,21 @@ $dropdown-offset: var(--ix-dropdown--offset);
   margin: 0;
   border: none;
   outline: none;
-  padding: var(--ix-dropdown-dialog--padding);
+  padding: cv.get-var('dropdown-dialog--padding');
   min-width: 0;
   max-width: 100vw;
   width: max-content;
   height: fit-content;
-  background-color: var(--ix-dropdown--background);
-  border-radius: var(--ix-dropdown--border-radius);
-  box-shadow: var(--ix-dropdown--box-shadow);
+  background-color: cv.get-var('dropdown--background');
+  border-radius: cv.get-var('dropdown--border-radius');
+  box-shadow: cv.get-var('dropdown--box-shadow');
   overflow-x: visible;
   overflow-y: visible;
 
   inset: unset;
 
   color-scheme: inherit;
-  color: var(--ix-dropdown--color);
+  color: cv.get-var('dropdown--color');
 
   box-sizing: border-box;
 
@@ -87,14 +90,14 @@ $dropdown-offset: var(--ix-dropdown--offset);
   .dropdown-header {
     display: flex;
     align-items: center;
-    height: var(--ix-dropdown-heading--height);
-    color: var(--ix-dropdown-heading--color);
-    padding: var(--ix-dropdown-heading--padding);
+    height: cv.get-var('dropdown-heading--height');
+    color: cv.get-var('dropdown-heading--color');
+    padding: cv.get-var('dropdown-heading--padding');
   }
 
   &.overflow {
     max-height: calc(
-      var(--ix-dropdown-overflow--max-height) - $dropdown-offset
+      #{cv.get-var('dropdown-overflow--max-height')} - $dropdown-offset
     );
     overflow-y: auto;
   }

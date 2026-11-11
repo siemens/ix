@@ -12,12 +12,23 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-chat-attachment-attachment-chip--max-width: #{sys.$si-sys-sizing-size-170};
-  --ix-chat-attachment-status-content--gap: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-chat-attachment-status-content--margin-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-10} * 1.5
+  @include cv.define-var(
+    'chat-attachment-attachment-chip--max-width',
+    sys.$si-sys-sizing-size-170
   );
-  --ix-chat-attachment-has-remove-button--gap: #{sys.$si-sys-sizing-spacing-x-30};
+  @include cv.define-var(
+    'chat-attachment-status-content--gap',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'chat-attachment-status-content--margin-left',
+    calc(#{sys.$si-sys-sizing-spacing-x-10} * 1.5)
+  );
+  @include cv.define-var(
+    'chat-attachment-has-remove-button--gap',
+    sys.$si-sys-sizing-spacing-x-30
+  );
 }

@@ -12,30 +12,75 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-menu-category--background--expanded: #{sys.$si-sys-color-background-selected};
+  @include cv.define-var(
+    'menu-category--background--expanded',
+    sys.$si-sys-color-background-selected
+  );
 }
 
 :host {
-  --ix-menu-category-chevron--transition-duration: var(--theme-default-time);
-  --ix-menu-category-items--transition-duration: var(--theme-default-time);
-  --ix-menu-category-category-text--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-menu-category-category-chevron--block-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-category-category-chevron--inline-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-category-category-chevron--min-block-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-category-category-chevron--min-inline-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-category-menu-items--padding--expanded: #{sys.$si-sys-sizing-spacing-y-20}
-    0 #{sys.$si-sys-sizing-spacing-y-20}
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-spacing-x-10}
-    );
-  --ix-menu-category-category-dropdown-menu-item--height: #{sys.$si-sys-sizing-size-90};
-  --ix-menu-category-category-dropdown-header--padding-left: #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-menu-category-category-dropdown-header--min-width: #{sys.$si-sys-sizing-size-160};
-  --ix-menu-category-menu-item--height: #{sys.$si-sys-sizing-size-90};
-  --ix-menu-category-category-dropdown--max-height: calc(
-    50vh - var(--ix-menu-category-category-dropdown--viewport-offset)
+  @include cv.define-var(
+    'menu-category-chevron--transition-duration',
+    var(--theme-default-time)
   );
-  --ix-menu-category-category-dropdown--viewport-offset: #{sys.$si-sys-sizing-size-100};
+  @include cv.define-var(
+    'menu-category-items--transition-duration',
+    var(--theme-default-time)
+  );
+  @include cv.define-var(
+    'menu-category-category-text--padding-right',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'menu-category-category-chevron--block-size',
+    sys.$si-sys-sizing-icon-md
+  );
+  @include cv.define-var(
+    'menu-category-category-chevron--inline-size',
+    sys.$si-sys-sizing-icon-md
+  );
+  @include cv.define-var(
+    'menu-category-category-chevron--min-block-size',
+    sys.$si-sys-sizing-icon-md
+  );
+  @include cv.define-var(
+    'menu-category-category-chevron--min-inline-size',
+    sys.$si-sys-sizing-icon-md
+  );
+  @include cv.define-var(
+    'menu-category-menu-items--padding--expanded',
+    #{sys.$si-sys-sizing-spacing-y-20} 0 #{sys.$si-sys-sizing-spacing-y-20}
+      calc(
+        #{sys.$si-sys-sizing-spacing-x-80} + #{sys.$si-sys-sizing-spacing-x-10}
+      )
+  );
+  @include cv.define-var(
+    'menu-category-category-dropdown-menu-item--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'menu-category-category-dropdown-header--padding-left',
+    sys.$si-sys-sizing-spacing-x-10
+  );
+  @include cv.define-var(
+    'menu-category-category-dropdown-header--min-width',
+    sys.$si-sys-sizing-size-160
+  );
+  @include cv.define-var(
+    'menu-category-menu-item--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'menu-category-category-dropdown--viewport-offset',
+    sys.$si-sys-sizing-size-100
+  );
+  @include cv.define-var(
+    'menu-category-category-dropdown--max-height',
+    calc(
+      50vh - #{cv.get-var('menu-category-category-dropdown--viewport-offset')}
+    )
+  );
 }

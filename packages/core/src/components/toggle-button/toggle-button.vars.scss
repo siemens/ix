@@ -12,9 +12,16 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-toggle-button--height: #{sys.$si-sys-sizing-size-80};
-  --ix-toggle-button--min-width: #{sys.$si-sys-sizing-size-120};
-  --ix-toggle-button-icon-right-icon--size: #{sys.$si-sys-sizing-icon-lg};
+  @include cv.define-var('toggle-button--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'toggle-button--min-width',
+    sys.$si-sys-sizing-size-120
+  );
+  @include cv.define-var(
+    'toggle-button-icon-right-icon--size',
+    sys.$si-sys-sizing-icon-lg
+  );
 }

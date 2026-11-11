@@ -12,9 +12,19 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-popover-footer--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-popover-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-popover-footer-footer-end--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-var(
+    'popover-footer--padding',
+    #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
+  );
+  @include cv.define-var(
+    'popover-footer--gap',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'popover-footer-footer-end--gap',
+    sys.$si-sys-sizing-spacing-x-40
+  );
 }

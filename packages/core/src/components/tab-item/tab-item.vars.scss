@@ -12,70 +12,199 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-tab-item-pill--background: #{sys.$si-sys-color-background-0};
-  --ix-tab-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-tab-item-pill--color--outline: #{sys.$si-sys-color-text-primary};
-  --ix-tab-item-animated-circle--background: #{sys.$si-sys-color-background-1};
-  --ix-tab-item-animated-circle--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-tab-item-animated-circle--background--disabled: rgba(0, 0, 0, 0);
-  --ix-tab-item-animated-circle--background--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-tab-item-animated-circle--background--selected: rgba(0, 0, 0, 0);
-  --ix-tab-item-animated-circle--border-color: rgba(0, 0, 0, 0);
-  --ix-tab-item-animated-circle--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-tab-item-animated-circle--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-tab-item-animated-icon--color: #{sys.$si-sys-color-text-primary};
-  --ix-tab-item-animated-icon--color--selected: #{sys.$si-sys-color-text-accent-hover};
-  --ix-tab-item--background: rgba(0, 0, 0, 0);
-  --ix-tab-item--background--active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-tab-item--background--disabled: rgba(0, 0, 0, 0);
-  --ix-tab-item--background--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-tab-item--background--selected: rgba(0, 0, 0, 0);
-  --ix-tab-item--color: #{sys.$si-sys-color-text-primary};
-  --ix-tab-item--color--active: #{sys.$si-sys-color-text-primary};
-  --ix-tab-item--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-tab-item--color--hover: #{sys.$si-sys-color-text-primary};
-  --ix-tab-item--color--selected: #{sys.$si-sys-color-text-accent-hover};
-  --ix-tab-item-indicator--background--disabled: #{sys.$si-sys-color-border-3};
-  --ix-tab-item-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
-  --ix-tab-item-pill--border-color: #{sys.$si-sys-color-border-3};
-  --ix-tab-item-pill--border-color--disabled: #{sys.$si-sys-color-border-3};
-  --ix-tab-item-pill--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
+  @include cv.define-var(
+    'tab-item-pill--background',
+    sys.$si-sys-color-background-0
+  );
+  @include cv.define-var(
+    'tab-item--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'tab-item-pill--color--outline',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--background',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--background--active',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--background--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--background--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--background--selected',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--border-color',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--border-color--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'tab-item-animated-circle--border-color--selected',
+    sys.$si-sys-color-border-accent-hover
+  );
+  @include cv.define-var(
+    'tab-item-animated-icon--color',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'tab-item-animated-icon--color--selected',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var('tab-item--background', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'tab-item--background--active',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var('tab-item--background--disabled', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'tab-item--background--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var('tab-item--background--selected', rgba(0, 0, 0, 0));
+  @include cv.define-var('tab-item--color', sys.$si-sys-color-text-primary);
+  @include cv.define-var(
+    'tab-item--color--active',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'tab-item--color--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'tab-item--color--hover',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'tab-item--color--selected',
+    sys.$si-sys-color-text-accent-hover
+  );
+  @include cv.define-var(
+    'tab-item-indicator--background--disabled',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'tab-item-indicator--background--selected',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var(
+    'tab-item-pill--border-color',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'tab-item-pill--border-color--disabled',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'tab-item-pill--border-color--selected',
+    sys.$si-sys-color-border-accent-hover
+  );
 }
 
 :host {
-  --ix-tab-item--font: #{sys.$si-sys-typography-h5};
-  --ix-tab-item-pill--font: #{sys.$si-sys-typography-body-sm};
-  --ix-tab-item--size: #{sys.$si-sys-sizing-size-90};
-  --ix-tab-item--min-height: #{sys.$si-sys-sizing-size-90};
-  --ix-tab-item--max-height: #{sys.$si-sys-sizing-size-90};
-  --ix-tab-item--padding: #{sys.$si-sys-sizing-border-width-default} #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-tab-item--gap: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-tab-item-circle--height: #{sys.$si-sys-sizing-size-100};
-  --ix-tab-item-circle--width: #{sys.$si-sys-sizing-size-100};
-  --ix-tab-item--height--rounded: #{sys.$si-sys-sizing-size-110};
-  --ix-tab-item-circle--min-height: #{sys.$si-sys-sizing-size-110};
-  --ix-tab-item-circle--max-height: calc(
-    #{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40}
+  @include cv.define-var('tab-item--font', sys.$si-sys-typography-h5);
+  @include cv.define-var('tab-item-pill--font', sys.$si-sys-typography-body-sm);
+  @include cv.define-var('tab-item--size', sys.$si-sys-sizing-size-90);
+  @include cv.define-var('tab-item--min-height', sys.$si-sys-sizing-size-90);
+  @include cv.define-var('tab-item--max-height', sys.$si-sys-sizing-size-90);
+  @include cv.define-var(
+    'tab-item--padding',
+    #{sys.$si-sys-sizing-border-width-default} #{sys.$si-sys-sizing-spacing-x-80}
   );
-  --ix-tab-item-icon-only--padding: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-tab-item--height--small: #{sys.$si-sys-sizing-size-80};
-  --ix-tab-item--min-height--small: #{sys.$si-sys-sizing-size-80};
-  --ix-tab-item--max-height--small: #{sys.$si-sys-sizing-size-80};
-  --ix-tab-item--padding--small: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-tab-item-icon--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-tab-item-circle--border-width: #{sys.$si-sys-sizing-border-width-selected};
-  --ix-tab-item-counter--height: 16px;
-  --ix-tab-item-counter--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-tab-item-counter--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-tab-item-counter--bottom: #{sys.$si-sys-sizing-spacing-y-30};
-  --ix-tab-item-counter--padding-left: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-tab-item-counter--padding-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-tab-item-indicator--height: #{sys.$si-sys-sizing-border-width-selected};
-  --ix-tab-item-circle--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+  @include cv.define-var('tab-item--gap', sys.$si-sys-sizing-spacing-x-40);
+  @include cv.define-var(
+    'tab-item-circle--height',
+    sys.$si-sys-sizing-size-100
   );
-  --ix-tab-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-tab-item-circle--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
+  @include cv.define-var('tab-item-circle--width', sys.$si-sys-sizing-size-100);
+  @include cv.define-var(
+    'tab-item--height--rounded',
+    sys.$si-sys-sizing-size-110
+  );
+  @include cv.define-var(
+    'tab-item-circle--min-height',
+    sys.$si-sys-sizing-size-110
+  );
+  @include cv.define-var(
+    'tab-item-circle--max-height',
+    calc(#{sys.$si-sys-sizing-size-110} + #{sys.$si-sys-sizing-spacing-y-40})
+  );
+  @include cv.define-var(
+    'tab-item-icon-only--padding',
+    sys.$si-sys-sizing-spacing-y-60
+  );
+  @include cv.define-var('tab-item--height--small', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'tab-item--min-height--small',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'tab-item--max-height--small',
+    sys.$si-sys-sizing-size-80
+  );
+  @include cv.define-var(
+    'tab-item--padding--small',
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  @include cv.define-var(
+    'tab-item-icon--padding',
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  @include cv.define-var(
+    'tab-item-circle--border-width',
+    sys.$si-sys-sizing-border-width-selected
+  );
+  @include cv.define-var('tab-item-counter--height', 16px);
+  @include cv.define-var(
+    'tab-item-counter--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'tab-item-counter--border-radius',
+    sys.$si-sys-sizing-border-radius-full
+  );
+  @include cv.define-var(
+    'tab-item-counter--bottom',
+    sys.$si-sys-sizing-spacing-y-30
+  );
+  @include cv.define-var(
+    'tab-item-counter--padding-left',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'tab-item-counter--padding-right',
+    sys.$si-sys-sizing-spacing-x-20
+  );
+  @include cv.define-var(
+    'tab-item-indicator--height',
+    sys.$si-sys-sizing-border-width-selected
+  );
+  @include cv.define-var(
+    'tab-item-circle--outline-offset',
+    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
+  );
+  @include cv.define-var(
+    'tab-item--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'tab-item-circle--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
 }

@@ -12,83 +12,223 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-date-picker-day--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-date-picker-day--background: rgba(0, 0, 0, 0);
-  --ix-date-picker-day--background--active: #{sys.$si-sys-color-background-active};
-  --ix-date-picker-day--background--disabled: rgba(0, 0, 0, 0);
-  --ix-date-picker-day--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-date-picker-day--background--range: #{sys.$si-sys-color-background-active};
-  --ix-date-picker-day--background--range--active: #{sys.$si-sys-color-background-accent-secondary-active};
-  --ix-date-picker-day--background--range--disabled: #{sys.$si-sys-color-background-1};
-  --ix-date-picker-day--background--range--hover: #{sys.$si-sys-color-background-accent-secondary-hover};
-  --ix-date-picker-day--background--selected: #{sys.$si-sys-color-background-accent};
-  --ix-date-picker-day--background--selected--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-date-picker-day--background--selected--disabled: #{sys.$si-sys-color-background-1};
-  --ix-date-picker-day--background--selected--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-date-picker-day--color: #{sys.$si-sys-color-text-accent};
-  --ix-date-picker-day--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-date-picker-day--color--range: #{sys.$si-sys-color-text-primary};
-  --ix-date-picker-day--color--range--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-date-picker-day--color--selected: #{sys.$si-sys-color-text-on-accent};
-  --ix-date-picker-day--color--selected--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-date-picker-today--border-color: #{sys.$si-sys-color-border-accent};
-  --ix-date-picker-today-contrast-ring--color: #{sys.$si-sys-color-background-0};
-  --ix-date-picker-today--border-color--range--disabled: #{sys.$si-sys-color-background-1};
-  --ix-date-picker-weekday--color: #{sys.$si-sys-color-text-secondary};
-  --ix-date-picker-menu-item--color: #{sys.$si-sys-color-text-primary};
-  --ix-date-picker-list-item--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-date-picker-list-item--background--selected: #{sys.$si-sys-color-background-selected};
+  @include cv.define-var(
+    'date-picker-day--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var('date-picker-day--background', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'date-picker-day--background--active',
+    sys.$si-sys-color-background-active
+  );
+  @include cv.define-var(
+    'date-picker-day--background--disabled',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'date-picker-day--background--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'date-picker-day--background--range',
+    sys.$si-sys-color-background-active
+  );
+  @include cv.define-var(
+    'date-picker-day--background--range--active',
+    sys.$si-sys-color-background-accent-secondary-active
+  );
+  @include cv.define-var(
+    'date-picker-day--background--range--disabled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'date-picker-day--background--range--hover',
+    sys.$si-sys-color-background-accent-secondary-hover
+  );
+  @include cv.define-var(
+    'date-picker-day--background--selected',
+    sys.$si-sys-color-background-accent
+  );
+  @include cv.define-var(
+    'date-picker-day--background--selected--active',
+    sys.$si-sys-color-background-accent-active
+  );
+  @include cv.define-var(
+    'date-picker-day--background--selected--disabled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'date-picker-day--background--selected--hover',
+    sys.$si-sys-color-background-accent-hover
+  );
+  @include cv.define-var(
+    'date-picker-day--color',
+    sys.$si-sys-color-text-accent
+  );
+  @include cv.define-var(
+    'date-picker-day--color--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'date-picker-day--color--range',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'date-picker-day--color--range--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'date-picker-day--color--selected',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'date-picker-day--color--selected--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'date-picker-today--border-color',
+    sys.$si-sys-color-border-accent
+  );
+  @include cv.define-var(
+    'date-picker-today-contrast-ring--color',
+    sys.$si-sys-color-background-0
+  );
+  @include cv.define-var(
+    'date-picker-today--border-color--range--disabled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'date-picker-weekday--color',
+    sys.$si-sys-color-text-secondary
+  );
+  @include cv.define-var(
+    'date-picker-menu-item--color',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'date-picker-list-item--background--hover',
+    sys.$si-sys-color-background-hover
+  );
+  @include cv.define-var(
+    'date-picker-list-item--background--selected',
+    sys.$si-sys-color-background-selected
+  );
 }
 
 :host {
-  --ix-date-picker-day--font-weight--selected: var(
-    --si-ref-typography-font-weight-sbold
+  @include cv.define-var(
+    'date-picker-day--font-weight--selected',
+    var(--si-ref-typography-font-weight-sbold)
   );
-  --ix-date-picker-weekday--font-size: var(--si-ref-typography-font-size-code);
-  --ix-date-picker--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-date-picker--max-width: calc(
-    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60}
+  @include cv.define-var(
+    'date-picker-weekday--font-size',
+    var(--si-ref-typography-font-size-code)
   );
-  --ix-date-picker-selector--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-date-picker-arrow-year--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90};
-  --ix-date-picker-arrow-position--left: calc(
-    (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-30}
+  @include cv.define-var(
+    'date-picker--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
   );
-  --ix-date-picker-arrow-position--top: calc(
-    50% - #{sys.$si-sys-sizing-spacing-y-40}
+  @include cv.define-var(
+    'date-picker--max-width',
+    calc(#{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-60})
   );
-  --ix-date-picker-check-position--left: calc(
-    (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-40}
+  @include cv.define-var(
+    'date-picker-selector--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-60}
   );
-  --ix-date-picker-check-position--top: calc(
-    50% - #{sys.$si-sys-sizing-spacing-y-40}
+  @include cv.define-var(
+    'date-picker-arrow-year--padding',
+    #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90}
   );
-  --ix-date-picker-month-margin--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-date-picker-grid--grid-template-columns: repeat(
-    7,
-    #{sys.$si-sys-sizing-size-90}
+  @include cv.define-var(
+    'date-picker-arrow-position--left',
+    calc(
+      (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-30}
+    )
   );
-  --ix-date-picker-grid--grid-template-rows: repeat(
-    7,
-    #{sys.$si-sys-sizing-size-90}
+  @include cv.define-var(
+    'date-picker-arrow-position--top',
+    calc(50% - #{sys.$si-sys-sizing-spacing-y-40})
   );
-  --ix-date-picker-grid-week-number--columns: #{sys.$si-sys-sizing-size-70} repeat(7, #{sys.$si-sys-sizing-size-90});
-  --ix-date-picker-calendar-item--width: #{sys.$si-sys-sizing-size-90};
-  --ix-date-picker-calendar-item--height: #{sys.$si-sys-sizing-size-90};
-  --ix-date-picker-week-number--width: #{sys.$si-sys-sizing-size-70};
-  --ix-date-picker-button--margin-top: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-date-picker-first-of-type--padding-bottom: #{sys.$si-sys-sizing-spacing-y-120};
-  --ix-date-picker-last-of-type--padding-top: #{sys.$si-sys-sizing-spacing-y-120};
-  --ix-date-picker-year-selector-button--padding: 0 #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-date-picker-dropdown--font-size: 14px;
-  --ix-date-picker-dropdown--line-height: 20px;
-  --ix-date-picker-calendar-item--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-date-picker--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-date-picker-today--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-date-picker-today--box-shadow-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-date-picker-range--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-date-picker-week-number--font-size: 10px;
-  --ix-date-picker-week-number--line-height: 14px;
+  @include cv.define-var(
+    'date-picker-check-position--left',
+    calc(
+      (#{sys.$si-sys-sizing-size-90} / 2) - #{sys.$si-sys-sizing-spacing-x-40}
+    )
+  );
+  @include cv.define-var(
+    'date-picker-check-position--top',
+    calc(50% - #{sys.$si-sys-sizing-spacing-y-40})
+  );
+  @include cv.define-var(
+    'date-picker-month-margin--padding-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'date-picker-grid--grid-template-columns',
+    repeat(7, #{sys.$si-sys-sizing-size-90})
+  );
+  @include cv.define-var(
+    'date-picker-grid--grid-template-rows',
+    repeat(7, #{sys.$si-sys-sizing-size-90})
+  );
+  @include cv.define-var(
+    'date-picker-grid-week-number--columns',
+    #{sys.$si-sys-sizing-size-70} repeat(7, #{sys.$si-sys-sizing-size-90})
+  );
+  @include cv.define-var(
+    'date-picker-calendar-item--width',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'date-picker-calendar-item--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'date-picker-week-number--width',
+    sys.$si-sys-sizing-size-70
+  );
+  @include cv.define-var(
+    'date-picker-button--margin-top',
+    sys.$si-sys-sizing-spacing-y-60
+  );
+  @include cv.define-var(
+    'date-picker-first-of-type--padding-bottom',
+    sys.$si-sys-sizing-spacing-y-120
+  );
+  @include cv.define-var(
+    'date-picker-last-of-type--padding-top',
+    sys.$si-sys-sizing-spacing-y-120
+  );
+  @include cv.define-var(
+    'date-picker-year-selector-button--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  @include cv.define-var('date-picker-dropdown--font-size', 14px);
+  @include cv.define-var('date-picker-dropdown--line-height', 20px);
+  @include cv.define-var(
+    'date-picker-calendar-item--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'date-picker--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'date-picker-today--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'date-picker-today--box-shadow-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'date-picker-range--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var('date-picker-week-number--font-size', 10px);
+  @include cv.define-var('date-picker-week-number--line-height', 14px);
 }

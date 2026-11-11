@@ -12,48 +12,127 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-menu-item-tab--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-menu-item-notification--background: #{sys.$si-sys-color-text-accent};
-  --ix-menu-item-notification--color: #{sys.$si-sys-color-text-on-accent};
-  --ix-menu-item--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-menu-item--background--primary--selected: #{sys.$si-sys-color-background-0};
-  --ix-menu-item--border-color--primary--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-menu-item--color--primary: #{sys.$si-sys-color-text-primary};
-  --ix-menu-item-icon--color--primary: #{sys.$si-sys-color-text-primary};
-  --ix-menu-item-icon--color--primary--selected: #{sys.$si-sys-color-text-primary};
-  --ix-menu-item--background--secondary--selected: #{sys.$si-sys-color-background-0};
+  @include cv.define-var(
+    'menu-item-tab--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'menu-item-notification--background',
+    sys.$si-sys-color-text-accent
+  );
+  @include cv.define-var(
+    'menu-item-notification--color',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'menu-item--color--disabled',
+    sys.$si-sys-color-text-disabled
+  );
+  @include cv.define-var(
+    'menu-item--background--primary--selected',
+    sys.$si-sys-color-background-0
+  );
+  @include cv.define-var(
+    'menu-item--border-color--primary--selected',
+    sys.$si-sys-color-border-accent-hover
+  );
+  @include cv.define-var(
+    'menu-item--color--primary',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'menu-item-icon--color--primary',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'menu-item-icon--color--primary--selected',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'menu-item--background--secondary--selected',
+    sys.$si-sys-color-background-0
+  );
 }
 
 :host {
-  --ix-menu-item--height: #{sys.$si-sys-sizing-size-100};
-  --ix-menu-item--padding-inline: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-menu-item-tab-icon--size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-item-tab-icon--margin-inline: calc(
-    (#{sys.$si-sys-sizing-icon-lg} - #{sys.$si-sys-sizing-icon-md}) / 2
+  @include cv.define-var('menu-item--height', sys.$si-sys-sizing-size-100);
+  @include cv.define-var(
+    'menu-item--padding-inline',
+    sys.$si-sys-sizing-spacing-x-60
   );
-  --ix-menu-item-pill--padding: #{sys.$si-sys-sizing-spacing-y-20}
-    #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-menu-item-tab-text--margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0
-    #{sys.$si-sys-sizing-spacing-x-70};
-  --ix-menu-item-bottom-tab-bottom--height: #{sys.$si-sys-sizing-size-90};
-  --ix-menu-item-tab--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab-text--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab--z-index: 500;
-  --ix-menu-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-menu-item-tab--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+  @include cv.define-var(
+    'menu-item-tab-icon--size',
+    sys.$si-sys-sizing-icon-md
   );
-  --ix-menu-item-notification--top: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-menu-item-notification--left: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-menu-item-pill--height: 0.5rem;
-  --ix-menu-item-pill--min-width: 1rem;
-  --ix-menu-item-pill--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-menu-item-pill--font-size: 0.75rem;
-  --ix-menu-item-pill--font-weight: var(--si-ref-typography-font-weight-bold);
-  --ix-menu-item-tab--width: #{sys.$si-sys-sizing-border-width-emphasis};
-  --ix-menu-item-notification--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-var(
+    'menu-item-tab-icon--margin-inline',
+    calc((#{sys.$si-sys-sizing-icon-lg} - #{sys.$si-sys-sizing-icon-md}) / 2)
+  );
+  @include cv.define-var(
+    'menu-item-pill--padding',
+    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20}
+  );
+  @include cv.define-var(
+    'menu-item-tab-text--margin',
+    0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70}
+  );
+  @include cv.define-var(
+    'menu-item-bottom-tab-bottom--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'menu-item-tab--padding-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'menu-item-tab-icon--padding-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'menu-item-tab-icon--padding-right',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'menu-item-tab-text--margin-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var('menu-item-tab--z-index', 500);
+  @include cv.define-var(
+    'menu-item--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'menu-item-tab--outline-offset',
+    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
+  );
+  @include cv.define-var(
+    'menu-item-notification--top',
+    sys.$si-sys-sizing-spacing-y-20
+  );
+  @include cv.define-var(
+    'menu-item-notification--left',
+    sys.$si-sys-sizing-spacing-x-80
+  );
+  @include cv.define-var('menu-item-pill--height', 0.5rem);
+  @include cv.define-var('menu-item-pill--min-width', 1rem);
+  @include cv.define-var(
+    'menu-item-pill--border-radius',
+    sys.$si-sys-sizing-border-radius-full
+  );
+  @include cv.define-var('menu-item-pill--font-size', 0.75rem);
+  @include cv.define-var(
+    'menu-item-pill--font-weight',
+    var(--si-ref-typography-font-weight-bold)
+  );
+  @include cv.define-var(
+    'menu-item-tab--width',
+    sys.$si-sys-sizing-border-width-emphasis
+  );
+  @include cv.define-var(
+    'menu-item-notification--padding-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
 }

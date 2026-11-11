@@ -11,8 +11,9 @@
 @use 'mixins/text-truncation';
 
 @use './menu-item.vars' as *;
-$menuItemHeight: var(--ix-menu-item--height);
-$menuItemPadding: var(--ix-menu-item--padding-inline);
+@use 'mixins/component-vars' as cv;
+$menuItemHeight: cv.get-var('menu-item--height');
+$menuItemPadding: cv.get-var('menu-item--padding-inline');
 
 :host {
   position: relative;
@@ -31,56 +32,56 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     align-items: center;
     height: $menuItemHeight;
     width: calc(100%);
-    z-index: var(--ix-menu-item-tab--z-index);
+    z-index: cv.get-var('menu-item-tab--z-index');
     padding-left: $menuItemPadding;
 
     @include hover.ghost-hover-pressed;
   }
 
   .tab-icon {
-    block-size: var(--ix-menu-item-tab-icon--size);
-    color: var(--ix-menu-item-icon--color--primary);
-    inline-size: var(--ix-menu-item-tab-icon--size);
-    min-block-size: var(--ix-menu-item-tab-icon--size);
-    min-inline-size: var(--ix-menu-item-tab-icon--size);
-    margin-inline: var(--ix-menu-item-tab-icon--margin-inline);
+    block-size: cv.get-var('menu-item-tab-icon--size');
+    color: cv.get-var('menu-item-icon--color--primary');
+    inline-size: cv.get-var('menu-item-tab-icon--size');
+    min-block-size: cv.get-var('menu-item-tab-icon--size');
+    min-inline-size: cv.get-var('menu-item-tab-icon--size');
+    margin-inline: cv.get-var('menu-item-tab-icon--margin-inline');
     position: relative;
     pointer-events: none;
   }
 
   .tab:focus-visible {
-    outline: var(--ix-menu-item--outline-width--focus) solid
-      var(--ix-menu-item-tab--outline-color--focus);
-    outline-offset: var(--ix-menu-item-tab--outline-offset);
+    outline: cv.get-var('menu-item--outline-width--focus') solid
+      cv.get-var('menu-item-tab--outline-color--focus');
+    outline-offset: cv.get-var('menu-item-tab--outline-offset');
   }
 
   .notification {
     display: inline-flex;
     position: absolute;
-    top: var(--ix-menu-item-notification--top);
-    left: var(--ix-menu-item-notification--left);
+    top: cv.get-var('menu-item-notification--top');
+    left: cv.get-var('menu-item-notification--left');
 
     .pill {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      height: var(--ix-menu-item-pill--height);
-      min-width: var(--ix-menu-item-pill--min-width);
+      height: cv.get-var('menu-item-pill--height');
+      min-width: cv.get-var('menu-item-pill--min-width');
       position: relative;
-      border-radius: var(--ix-menu-item-pill--border-radius);
-      background-color: var(--ix-menu-item-notification--background);
-      font-size: var(--ix-menu-item-pill--font-size);
-      font-weight: var(--ix-menu-item-pill--font-weight);
+      border-radius: cv.get-var('menu-item-pill--border-radius');
+      background-color: cv.get-var('menu-item-notification--background');
+      font-size: cv.get-var('menu-item-pill--font-size');
+      font-weight: cv.get-var('menu-item-pill--font-weight');
       line-height: 1;
-      color: var(--ix-menu-item-notification--color);
-      padding: var(--ix-menu-item-pill--padding);
+      color: cv.get-var('menu-item-notification--color');
+      padding: cv.get-var('menu-item-pill--padding');
     }
   }
 
   .tab-text {
     display: block;
-    color: var(--ix-menu-item--color--primary);
-    margin: var(--ix-menu-item-tab-text--margin);
+    color: cv.get-var('menu-item--color--primary');
+    margin: cv.get-var('menu-item-tab-text--margin');
     user-select: none;
     width: 100%;
 
@@ -91,40 +92,40 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
 :host(.active),
 :host(.selected) {
   .tab {
-    background-color: var(--ix-menu-item--background--primary--selected);
+    background-color: cv.get-var('menu-item--background--primary--selected');
   }
 
   .tab::before {
     content: '';
-    background-color: var(--ix-menu-item--border-color--primary--selected);
+    background-color: cv.get-var('menu-item--border-color--primary--selected');
     height: $menuItemHeight;
-    width: var(--ix-menu-item-tab--width);
+    width: cv.get-var('menu-item-tab--width');
     left: 0;
     position: absolute;
   }
 
   .tab > .glyph {
-    color: var(--ix-menu-item-icon--color--primary--selected);
+    color: cv.get-var('menu-item-icon--color--primary--selected');
   }
 }
 
 :host(.disabled) {
-  color: var(--ix-menu-item--color--disabled);
+  color: cv.get-var('menu-item--color--disabled');
   pointer-events: none;
   cursor: default;
 
   .tab > .tab-icon {
-    color: var(--ix-menu-item--color--disabled);
+    color: cv.get-var('menu-item--color--disabled');
   }
 
   .tab-text {
-    color: var(--ix-menu-item--color--disabled);
+    color: cv.get-var('menu-item--color--disabled');
   }
 }
 
 :host(.bottom-tab),
 :host([slot='bottom']) {
-  $bottom-height: var(--ix-menu-item-bottom-tab-bottom--height);
+  $bottom-height: cv.get-var('menu-item-bottom-tab-bottom--height');
 
   min-height: $bottom-height;
   height: $bottom-height;
@@ -142,11 +143,15 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   &.active,
   &.selected {
     &:hover {
-      background-color: var(--ix-menu-item--background--secondary--selected);
+      background-color: cv.get-var(
+        'menu-item--background--secondary--selected'
+      );
     }
 
     &:active {
-      background-color: var(--ix-menu-item--background--secondary--selected);
+      background-color: cv.get-var(
+        'menu-item--background--secondary--selected'
+      );
     }
   }
 }
@@ -156,7 +161,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
 :host(.active[slot='bottom']),
 :host(.selected[slot='bottom']) {
   .tab {
-    background-color: var(--ix-menu-item--background--secondary--selected);
+    background-color: cv.get-var('menu-item--background--secondary--selected');
   }
 }
 
@@ -164,23 +169,23 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   .tab {
     flex-direction: row;
     padding-left: calc(
-      var(--ix-menu-item-tab--padding-left) + $menuItemPadding
+      #{cv.get-var('menu-item-tab--padding-left')} + $menuItemPadding
     );
 
     .notification {
       position: relative;
       top: 0;
       left: 0;
-      padding-left: var(--ix-menu-item-notification--padding-left);
+      padding-left: cv.get-var('menu-item-notification--padding-left');
     }
 
     .tab-icon {
-      padding-left: var(--ix-menu-item-tab-icon--padding-left);
-      padding-right: var(--ix-menu-item-tab-icon--padding-right);
+      padding-left: cv.get-var('menu-item-tab-icon--padding-left');
+      padding-right: cv.get-var('menu-item-tab-icon--padding-right');
     }
 
     .tab-text {
-      margin-left: var(--ix-menu-item-tab-text--margin-left);
+      margin-left: cv.get-var('menu-item-tab-text--margin-left');
     }
 
     &::before {

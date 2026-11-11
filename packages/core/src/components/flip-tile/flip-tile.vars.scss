@@ -12,79 +12,281 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-flip-tile-footer-icon--color--hover: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile--background--accent: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--accent: #{sys.$si-sys-color-border-accent};
-  --ix-flip-tile--color--accent: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--accent: #{sys.$si-sys-color-background-accent};
-  --ix-flip-tile-footer--border-color--accent: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--accent: #{sys.$si-sys-color-text-on-accent};
-  --ix-flip-tile--background--caution: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--caution: #{sys.$si-sys-color-border-caution};
-  --ix-flip-tile--color--caution: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--caution: #{sys.$si-sys-color-background-caution};
-  --ix-flip-tile-footer--border-color--caution: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--caution: #{sys.$si-sys-color-text-on-caution};
-  --ix-flip-tile--background--critical: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--critical: #{sys.$si-sys-color-border-critical};
-  --ix-flip-tile--color--critical: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--critical: #{sys.$si-sys-color-background-critical};
-  --ix-flip-tile-footer--border-color--critical: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--critical: #{sys.$si-sys-color-text-on-critical};
-  --ix-flip-tile--background--danger: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--danger: #{sys.$si-sys-color-border-danger};
-  --ix-flip-tile--color--danger: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--danger: #{sys.$si-sys-color-background-danger};
-  --ix-flip-tile-footer--border-color--danger: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--danger: #{sys.$si-sys-color-text-on-danger};
-  --ix-flip-tile--background--filled: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--filled: rgba(0, 0, 0, 0);
-  --ix-flip-tile--color--filled: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--filled: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile-footer--border-color--filled: #{sys.$si-sys-color-background-0};
-  --ix-flip-tile-footer--color--filled: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile--background--information: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--information: #{sys.$si-sys-color-border-information};
-  --ix-flip-tile--color--information: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--information: #{sys.$si-sys-color-background-information};
-  --ix-flip-tile-footer--border-color--information: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--information: #{sys.$si-sys-color-text-on-information};
-  --ix-flip-tile--background--neutral: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--neutral: #{sys.$si-sys-color-border-neutral};
-  --ix-flip-tile--color--neutral: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--neutral: #{sys.$si-sys-color-background-neutral};
-  --ix-flip-tile-footer--border-color--neutral: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--neutral: #{sys.$si-sys-color-text-on-neutral};
-  --ix-flip-tile--background--outline: rgba(0, 0, 0, 0);
-  --ix-flip-tile--border-color--outline: #{sys.$si-sys-color-border-3};
-  --ix-flip-tile--color--outline: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--outline: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--border-color--outline: #{sys.$si-sys-color-border-3};
-  --ix-flip-tile-footer--color--outline: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile--background--success: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--success: #{sys.$si-sys-color-border-success};
-  --ix-flip-tile--color--success: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--success: #{sys.$si-sys-color-background-success};
-  --ix-flip-tile-footer--border-color--success: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--success: #{sys.$si-sys-color-text-on-success};
-  --ix-flip-tile--background--warning: #{sys.$si-sys-color-background-1};
-  --ix-flip-tile--border-color--warning: #{sys.$si-sys-color-border-warning};
-  --ix-flip-tile--color--warning: #{sys.$si-sys-color-text-primary};
-  --ix-flip-tile-footer--background--warning: #{sys.$si-sys-color-background-warning};
-  --ix-flip-tile-footer--border-color--warning: rgba(0, 0, 0, 0);
-  --ix-flip-tile-footer--color--warning: #{sys.$si-sys-color-text-on-warning};
+  @include cv.define-var(
+    'flip-tile-footer-icon--color--hover',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile--background--accent',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--accent',
+    sys.$si-sys-color-border-accent
+  );
+  @include cv.define-var(
+    'flip-tile--color--accent',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--accent',
+    sys.$si-sys-color-background-accent
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--accent',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--accent',
+    sys.$si-sys-color-text-on-accent
+  );
+  @include cv.define-var(
+    'flip-tile--background--caution',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--caution',
+    sys.$si-sys-color-border-caution
+  );
+  @include cv.define-var(
+    'flip-tile--color--caution',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--caution',
+    sys.$si-sys-color-background-caution
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--caution',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--caution',
+    sys.$si-sys-color-text-on-caution
+  );
+  @include cv.define-var(
+    'flip-tile--background--critical',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--critical',
+    sys.$si-sys-color-border-critical
+  );
+  @include cv.define-var(
+    'flip-tile--color--critical',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--critical',
+    sys.$si-sys-color-background-critical
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--critical',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--critical',
+    sys.$si-sys-color-text-on-critical
+  );
+  @include cv.define-var(
+    'flip-tile--background--danger',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--danger',
+    sys.$si-sys-color-border-danger
+  );
+  @include cv.define-var(
+    'flip-tile--color--danger',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--danger',
+    sys.$si-sys-color-background-danger
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--danger',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--danger',
+    sys.$si-sys-color-text-on-danger
+  );
+  @include cv.define-var(
+    'flip-tile--background--filled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var('flip-tile--border-color--filled', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'flip-tile--color--filled',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--filled',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--filled',
+    sys.$si-sys-color-background-0
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--filled',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile--background--information',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--information',
+    sys.$si-sys-color-border-information
+  );
+  @include cv.define-var(
+    'flip-tile--color--information',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--information',
+    sys.$si-sys-color-background-information
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--information',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--information',
+    sys.$si-sys-color-text-on-information
+  );
+  @include cv.define-var(
+    'flip-tile--background--neutral',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--neutral',
+    sys.$si-sys-color-border-neutral
+  );
+  @include cv.define-var(
+    'flip-tile--color--neutral',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--neutral',
+    sys.$si-sys-color-background-neutral
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--neutral',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--neutral',
+    sys.$si-sys-color-text-on-neutral
+  );
+  @include cv.define-var('flip-tile--background--outline', rgba(0, 0, 0, 0));
+  @include cv.define-var(
+    'flip-tile--border-color--outline',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'flip-tile--color--outline',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--outline',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--outline',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--outline',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile--background--success',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--success',
+    sys.$si-sys-color-border-success
+  );
+  @include cv.define-var(
+    'flip-tile--color--success',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--success',
+    sys.$si-sys-color-background-success
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--success',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--success',
+    sys.$si-sys-color-text-on-success
+  );
+  @include cv.define-var(
+    'flip-tile--background--warning',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'flip-tile--border-color--warning',
+    sys.$si-sys-color-border-warning
+  );
+  @include cv.define-var(
+    'flip-tile--color--warning',
+    sys.$si-sys-color-text-primary
+  );
+  @include cv.define-var(
+    'flip-tile-footer--background--warning',
+    sys.$si-sys-color-background-warning
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-color--warning',
+    rgba(0, 0, 0, 0)
+  );
+  @include cv.define-var(
+    'flip-tile-footer--color--warning',
+    sys.$si-sys-color-text-on-warning
+  );
 }
 
 :host {
-  --ix-flip-tile--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-flip-tile-header--height: #{sys.$si-sys-sizing-size-90};
-  --ix-flip-tile-header--padding: 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-flip-tile-container--margin: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-flip-tile-footer--height: #{sys.$si-sys-sizing-size-100};
-  --ix-flip-tile-footer--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-flip-tile--perspective: 1000px;
-  --ix-flip-tile-variant--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-flip-tile-footer--border-width: #{sys.$si-sys-sizing-border-width-default};
+  @include cv.define-var(
+    'flip-tile--border-radius',
+    sys.$si-sys-sizing-border-radius-sm
+  );
+  @include cv.define-var(
+    'flip-tile-header--height',
+    sys.$si-sys-sizing-size-90
+  );
+  @include cv.define-var(
+    'flip-tile-header--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  @include cv.define-var(
+    'flip-tile-container--margin',
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  @include cv.define-var(
+    'flip-tile-footer--height',
+    sys.$si-sys-sizing-size-100
+  );
+  @include cv.define-var(
+    'flip-tile-footer--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var('flip-tile--perspective', 1000px);
+  @include cv.define-var(
+    'flip-tile-variant--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'flip-tile-footer--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
 }

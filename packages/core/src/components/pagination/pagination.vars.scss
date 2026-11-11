@@ -12,16 +12,41 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-pagination-basic--padding: 0 #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-pagination-advanced--padding: 0 #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-pagination-page-selection--width: #{sys.$si-sys-sizing-size-110};
-  --ix-pagination-page-selection--margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pagination-item-count--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-pagination-item-count--width: #{sys.$si-sys-sizing-size-120};
-  --ix-pagination--min-width: #{sys.$si-sys-sizing-size-80};
-  --ix-pagination--height: #{sys.$si-sys-sizing-size-80};
-  --ix-pagination--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pagination-button--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-10};
+  @include cv.define-var(
+    'pagination-basic--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-10}
+  );
+  @include cv.define-var(
+    'pagination-advanced--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-50}
+  );
+  @include cv.define-var(
+    'pagination-page-selection--width',
+    sys.$si-sys-sizing-size-110
+  );
+  @include cv.define-var(
+    'pagination-page-selection--margin',
+    0 #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var(
+    'pagination-item-count--margin-inline-start',
+    sys.$si-sys-sizing-spacing-x-80
+  );
+  @include cv.define-var(
+    'pagination-item-count--width',
+    sys.$si-sys-sizing-size-120
+  );
+  @include cv.define-var('pagination--min-width', sys.$si-sys-sizing-size-80);
+  @include cv.define-var('pagination--height', sys.$si-sys-sizing-size-80);
+  @include cv.define-var(
+    'pagination--padding',
+    0 #{sys.$si-sys-sizing-spacing-x-40}
+  );
+  @include cv.define-var(
+    'pagination-button--margin-inline-start',
+    sys.$si-sys-sizing-spacing-x-10
+  );
 }

@@ -9,17 +9,18 @@
 @use './input-control.mixins' as input;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/validation/form-component';
+@use 'mixins/component-vars' as cv;
 
 @include input.form;
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
-    margin-left: var(--ix-input-start-container--margin-left);
+    margin-left: cv.get-var('input-start-container--margin-left');
   }
 
   .start-container ::slotted(ix-icon.size-24),
   .start-container ::slotted(ix-icon-button.btn-icon-16) {
-    margin-left: var(--ix-input-icon--margin-left--compact);
+    margin-left: cv.get-var('input-icon--margin-left--compact');
   }
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
@@ -28,19 +29,19 @@
   }
 }
 
-$input-end-container-inset: var(--ix-input-end-container--inset);
+$input-end-container-inset: cv.get-var('input-end-container--inset');
 
 @mixin applySpacingToEndSlot {
   .end-container ::slotted(*) {
     margin-right: calc(
-      var(--ix-input-end-container--margin-right) - #{$input-end-container-inset}
+      #{cv.get-var('input-end-container--margin-right')} - #{$input-end-container-inset}
     );
   }
 
   .end-container ::slotted(ix-icon.size-24),
   .end-container ::slotted(ix-icon-button.btn-icon-16) {
     margin-right: calc(
-      var(--ix-input-icon--margin-right--compact) - #{$input-end-container-inset}
+      #{cv.get-var('input-icon--margin-right--compact')} - #{$input-end-container-inset}
     );
   }
 
@@ -82,7 +83,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
     }
 
     .start-container {
-      left: var(--ix-input--border-width);
+      left: cv.get-var('input--border-width');
     }
 
     .end-container {
@@ -93,8 +94,8 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
     @include applySpacingToEndSlot;
 
     .bottom-text {
-      margin-top: var(--ix-input-bottom-text--margin-top);
-      margin-bottom: var(--ix-input-bottom-text--margin-bottom);
+      margin-top: cv.get-var('input-bottom-text--margin-top');
+      margin-bottom: cv.get-var('input-bottom-text--margin-bottom');
     }
 
     .input-wrapper:hover input:not(:disabled):not(:read-only) {
@@ -108,7 +109,7 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
     input,
     textarea {
       pointer-events: none;
-      color: var(--ix-input--color--disabled);
+      color: cv.get-var('input--color--disabled');
     }
   }
 
@@ -124,50 +125,60 @@ $input-end-container-inset: var(--ix-input-end-container--inset);
 
   @include form-component.host-info {
     input {
-      border-color: var(--ix-input--border-color--info);
+      border-color: cv.get-var('input--border-color--info');
     }
 
     input:hover,
     .input-wrapper:hover input {
-      border-color: var(--ix-input--border-color--info--hover) !important;
+      border-color: cv.get-var('input--border-color--info--hover') !important;
     }
 
     input:active {
-      border-color: var(--ix-input--border-color--info--active) !important;
+      border-color: cv.get-var('input--border-color--info--active') !important;
     }
   }
 
   @include form-component.host-warning {
     input {
-      background-color: var(--ix-input--background--warning);
-      border-color: var(--ix-input--border-color--warning--active) !important;
+      background-color: cv.get-var('input--background--warning');
+      border-color: cv.get-var(
+        'input--border-color--warning--active'
+      ) !important;
     }
 
     input:hover,
     .input-wrapper:hover input {
-      background-color: var(--ix-input--background--warning--hover);
-      border-color: var(--ix-input--border-color--warning--active) !important;
+      background-color: cv.get-var('input--background--warning--hover');
+      border-color: cv.get-var(
+        'input--border-color--warning--active'
+      ) !important;
     }
 
     input:active {
-      border-color: var(--ix-input--border-color--warning--active) !important;
+      border-color: cv.get-var(
+        'input--border-color--warning--active'
+      ) !important;
     }
   }
 
   @include form-component.host-invalid {
     input {
-      background-color: var(--ix-input--background--invalid);
-      border-color: var(--ix-input--border-color--invalid) !important;
+      background-color: cv.get-var('input--background--invalid');
+      border-color: cv.get-var('input--border-color--invalid') !important;
     }
 
     input:hover,
     .input-wrapper:hover input {
-      background-color: var(--ix-input--background--invalid--hover);
-      border-color: var(--ix-input--border-color--invalid--hover) !important;
+      background-color: cv.get-var('input--background--invalid--hover');
+      border-color: cv.get-var(
+        'input--border-color--invalid--hover'
+      ) !important;
     }
 
     input:active {
-      border-color: var(--ix-input--border-color--invalid--active) !important;
+      border-color: cv.get-var(
+        'input--border-color--invalid--active'
+      ) !important;
     }
   }
 }

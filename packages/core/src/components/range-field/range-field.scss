@@ -10,24 +10,25 @@
 @use 'tokens/system' as sys;
 
 @use './range-field.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   @include component.ix-component();
   display: inline-flex;
   position: relative;
-  gap: var(--ix-range-field--gap);
+  gap: cv.get-var('range-field--gap');
 
   .range-delimiter {
-    block-size: var(--ix-range-field-range-delimiter--block-size);
-    inline-size: var(--ix-range-field-range-delimiter--inline-size);
-    min-block-size: var(--ix-range-field-range-delimiter--min-block-size);
-    min-inline-size: var(--ix-range-field-range-delimiter--min-inline-size);
+    block-size: cv.get-var('range-field-range-delimiter--block-size');
+    inline-size: cv.get-var('range-field-range-delimiter--inline-size');
+    min-block-size: cv.get-var('range-field-range-delimiter--min-block-size');
+    min-inline-size: cv.get-var('range-field-range-delimiter--min-inline-size');
     order: 2;
     flex: 0 0 auto;
-    margin-top: var(--ix-range-field-range-delimiter--margin-top);
+    margin-top: cv.get-var('range-field-range-delimiter--margin-top');
   }
 
   .range-delimiter.has-label {
-    margin-top: var(--ix-range-field-has-label--margin-top);
+    margin-top: cv.get-var('range-field-has-label--margin-top');
   }
 
   ::slotted(:first-child),
@@ -45,10 +46,10 @@
   }
 
   ::slotted(.fallback-label-margin) {
-    margin-top: var(--ix-range-field-fallback-label-margin--margin-top);
+    margin-top: cv.get-var('range-field-fallback-label-margin--margin-top');
   }
 }
 
 :host(.hide-arrow) {
-  gap: var(--ix-range-field-hide-arrow--gap);
+  gap: cv.get-var('range-field-hide-arrow--gap');
 }

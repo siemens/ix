@@ -11,6 +11,7 @@
 @use 'tokens/system' as sys;
 
 @use './event-list.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
@@ -19,7 +20,7 @@
 }
 
 :host(.item-size-l) {
-  --event-list-item-height: var(--ix-event-list-row--height--large);
+  --event-list-item-height: #{cv.get-var('event-list-row--height--large')};
   --event-list-item-content-white-space: normal;
 }
 

@@ -12,15 +12,43 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('list--gap');
+@include cv.declare-var('list-drag--left');
+@include cv.declare-var('list-drag--top');
+@include cv.declare-var('list-drag--width');
+@include cv.declare-var('list-drag--x');
+@include cv.declare-var('list-drag--y');
+@include cv.declare-var('list-drag-separator--top');
 
 :host {
-  --ix-list--gap--sm: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-list--gap--md: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-list--gap--lg: #{sys.$si-sys-sizing-spacing-y-50};
-  --ix-list-drag--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
-  --ix-list-drag-placeholder--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-list-drag-placeholder--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-list-drag-placeholder--height--divider: #{sys.$si-sys-sizing-size-20};
-  --ix-list-drag-placeholder--border-color--divider: #{sys.$si-sys-color-border-2};
-  --ix-list-drag-placeholder--border-color--separator: #{sys.$si-sys-color-border-1};
+  @include cv.define-var('list--gap--sm', sys.$si-sys-sizing-spacing-y-20);
+  @include cv.define-var('list--gap--md', sys.$si-sys-sizing-spacing-y-40);
+  @include cv.define-var('list--gap--lg', sys.$si-sys-sizing-spacing-y-50);
+  @include cv.define-var(
+    'list-drag--box-shadow',
+    sys.$si-sys-color-effects-shadow-40
+  );
+  @include cv.define-var(
+    'list-drag-placeholder--border-width',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'list-drag-placeholder--border-radius',
+    sys.$si-sys-sizing-border-radius-sm
+  );
+  @include cv.define-var(
+    'list-drag-placeholder--height--divider',
+    sys.$si-sys-sizing-size-20
+  );
+  @include cv.define-var(
+    'list-drag-placeholder--border-color--divider',
+    sys.$si-sys-color-border-2
+  );
+  @include cv.define-var(
+    'list-drag-placeholder--border-color--separator',
+    sys.$si-sys-color-border-1
+  );
 }

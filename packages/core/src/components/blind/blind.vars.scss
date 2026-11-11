@@ -12,6 +12,7 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 $blind-status-sys: (
   danger: sys.$si-sys-color-border-danger,
@@ -25,70 +26,149 @@ $blind-status-sys: (
 );
 
 :host {
-  --ix-blind-header--color: #{sys.$si-sys-color-text-primary};
-  --ix-blind-header-sublabel--color: #{sys.$si-sys-color-text-secondary};
-  --ix-blind-header-actions--color: #{sys.$si-sys-color-text-accent};
-  --ix-blind--border-color--outline: #{sys.$si-sys-color-border-3};
-  --ix-blind--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-blind--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-blind--outline-offset--focus: calc(
-    -1 * #{sys.$si-sys-sizing-focus-ring-offset}
+  @include cv.define-var('blind-header--color', sys.$si-sys-color-text-primary);
+  @include cv.define-var(
+    'blind-header-sublabel--color',
+    sys.$si-sys-color-text-secondary
   );
-  --ix-blind--background: #{sys.$si-sys-color-background-1};
-  --ix-blind--surface: transparent;
-  --ix-blind--border-color: #{sys.$si-sys-color-border-3};
-  --ix-blind--status-color: transparent;
-  --ix-blind--strip-width: #{sys.$si-sys-sizing-border-width-emphasis};
+  @include cv.define-var(
+    'blind-header-actions--color',
+    sys.$si-sys-color-text-accent
+  );
+  @include cv.define-var(
+    'blind--border-color--outline',
+    sys.$si-sys-color-border-3
+  );
+  @include cv.define-var(
+    'blind--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'blind--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'blind--outline-offset--focus',
+    calc(-1 * #{sys.$si-sys-sizing-focus-ring-offset})
+  );
+  @include cv.define-var('blind--background', sys.$si-sys-color-background-1);
+  @include cv.define-var('blind--surface', transparent);
+  @include cv.define-var('blind--border-color', sys.$si-sys-color-border-3);
+  @include cv.define-var('blind--status-color', transparent);
+  @include cv.define-var(
+    'blind--strip-width',
+    sys.$si-sys-sizing-border-width-emphasis
+  );
 }
 
 @each $status, $color in $blind-status-sys {
   :host(.blind-#{$status}) {
-    --ix-blind--status-color: #{$color};
+    @include cv.set-var('blind--status-color', $color);
   }
 }
 
 :host {
-  --ix-blind-content--transition-duration: var(--theme-default-time);
-  --ix-blind--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-blind--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-blind-icon--size: #{sys.$si-sys-sizing-icon-md};
-  --ix-blind-header-wrapper--min-height: calc(
-    #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+  @include cv.define-var(
+    'blind-content--transition-duration',
+    var(--theme-default-time)
   );
-  --ix-blind-header-wrapper--height: calc(
-    #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+  @include cv.define-var(
+    'blind--border-radius',
+    sys.$si-sys-sizing-border-radius-sm
   );
-  --ix-blind-header-content--padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+  @include cv.define-var(
+    'blind--border-width',
+    sys.$si-sys-sizing-border-width-default
   );
-  --ix-blind-content--padding-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
+  @include cv.define-var('blind-icon--size', sys.$si-sys-sizing-icon-md);
+  @include cv.define-var(
+    'blind-header-wrapper--min-height',
+    calc(
+      #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+    )
   );
-  --ix-blind-header-title--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-collapse-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-header--padding-left: calc(
-    var(--ix-blind-header-content--padding-left) + var(--ix-blind-icon--size) + var(--ix-blind-collapse-icon--margin-right)
+  @include cv.define-var(
+    'blind-header-wrapper--height',
+    calc(
+      #{sys.$si-sys-sizing-size-100} - 2 * #{sys.$si-sys-sizing-border-width-default}
+    )
   );
-  --ix-blind-header-title-col--width: calc(
-    100% - #{sys.$si-sys-sizing-spacing-x-60}
+  @include cv.define-var(
+    'blind-header-content--padding-left',
+    calc(
+      #{sys.$si-sys-sizing-spacing-x-40} - #{sys.$si-sys-sizing-border-width-default}
+    )
   );
-  --ix-blind-header-title-label--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-header-title-sublabel--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-content--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
+  @include cv.define-var(
+    'blind-content--padding-left',
+    calc(
+      #{sys.$si-sys-sizing-spacing-x-60} - #{sys.$si-sys-sizing-border-width-default}
+    )
+  );
+  @include cv.define-var(
+    'blind-header-title--margin-right',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'blind-collapse-icon--margin-right',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'blind-header--padding-left',
+    calc(
+      #{cv.get-var('blind-header-content--padding-left')} + #{cv.get-var(
+          'blind-icon--size'
+        )} + #{cv.get-var('blind-collapse-icon--margin-right')}
+    )
+  );
+  @include cv.define-var(
+    'blind-header-title-col--width',
+    calc(100% - #{sys.$si-sys-sizing-spacing-x-60})
+  );
+  @include cv.define-var(
+    'blind-header-title-label--padding-inline-end',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'blind-header-title-sublabel--padding-inline',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.define-var(
+    'blind-content--padding',
+    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
+  );
 }
 
 :host(:not([collapsed])) {
-  --ix-blind-header-wrapper--min-height: calc(
-    #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
+  @include cv.set-var(
+    'blind-header-wrapper--min-height',
+    calc(
+      #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
+    )
   );
-  --ix-blind-header-wrapper--height: calc(
-    #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
+  @include cv.set-var(
+    'blind-header-wrapper--height',
+    calc(
+      #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-border-width-default}
+    )
   );
 }
 
 :host(:not(.outline)) {
-  --ix-blind-header-wrapper--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-blind-header-wrapper--height: #{sys.$si-sys-sizing-size-100};
-  --ix-blind-header-content--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-blind-content--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
+  @include cv.set-var(
+    'blind-header-wrapper--min-height',
+    sys.$si-sys-sizing-size-100
+  );
+  @include cv.set-var(
+    'blind-header-wrapper--height',
+    sys.$si-sys-sizing-size-100
+  );
+  @include cv.set-var(
+    'blind-header-content--padding-left',
+    sys.$si-sys-sizing-spacing-x-40
+  );
+  @include cv.set-var(
+    'blind-content--padding-left',
+    sys.$si-sys-sizing-spacing-x-60
+  );
 }

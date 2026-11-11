@@ -10,14 +10,15 @@
 @use 'mixins/shadow-dom/component';
 
 @use './toggle.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: inline-flex;
   flex-direction: row;
   position: relative;
-  min-height: var(--ix-toggle--min-height);
-  max-height: var(--ix-toggle--max-height);
-  margin-block-start: var(--ix-toggle--margin-block-start);
-  margin-block-end: var(--ix-toggle--margin-block-end);
+  min-height: cv.get-var('toggle--min-height');
+  max-height: cv.get-var('toggle--max-height');
+  margin-block-start: cv.get-var('toggle--margin-block-start');
+  margin-block-end: cv.get-var('toggle--margin-block-end');
 
   @include component.ix-component;
 
@@ -33,19 +34,19 @@
     display: block;
     white-space: normal;
     overflow: hidden;
-    margin-block-start: var(--ix-toggle-label--margin-block-start);
-    margin-inline-start: var(--ix-toggle-label--margin-inline-start);
-    min-height: var(--ix-toggle-label--min-height);
+    margin-block-start: cv.get-var('toggle-label--margin-block-start');
+    margin-inline-start: cv.get-var('toggle-label--margin-inline-start');
+    min-height: cv.get-var('toggle-label--min-height');
   }
 
   .switch {
     all: unset;
     position: relative;
     display: inline-block;
-    width: var(--ix-toggle-switch--width);
-    min-width: var(--ix-toggle-switch--min-width);
-    max-width: var(--ix-toggle-switch--max-width);
-    height: var(--ix-toggle-switch--height);
+    width: cv.get-var('toggle-switch--width');
+    min-width: cv.get-var('toggle-switch--min-width');
+    max-width: cv.get-var('toggle-switch--max-width');
+    height: cv.get-var('toggle-switch--height');
   }
 
   .slider {
@@ -54,93 +55,93 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--ix-toggle--background--off);
-    transition: var(--ix-toggle-track--transition-duration);
-    border-radius: var(--ix-toggle-slider--border-radius);
-    border: var(--ix-toggle-slider--border-width) solid transparent;
+    background-color: cv.get-var('toggle--background--off');
+    transition: cv.get-var('toggle-track--transition-duration');
+    border-radius: cv.get-var('toggle-slider--border-radius');
+    border: cv.get-var('toggle-slider--border-width') solid transparent;
   }
 
   .slider:before {
     position: absolute;
     content: '';
-    height: var(--ix-toggle-slider--height);
-    width: var(--ix-toggle-slider--width);
-    left: var(--ix-toggle-slider--left);
+    height: cv.get-var('toggle-slider--height');
+    width: cv.get-var('toggle-slider--width');
+    left: cv.get-var('toggle-slider--left');
     top: 0;
     bottom: 0;
     margin-block: auto;
-    background-color: var(--ix-toggle-thumb--background--off);
-    transition: var(--ix-toggle-thumb--transition-duration);
+    background-color: cv.get-var('toggle-thumb--background--off');
+    transition: cv.get-var('toggle-thumb--transition-duration');
     border-radius: 50%;
-    border: var(--ix-toggle-slider--border-width) solid
-      var(--ix-toggle-thumb--border-color--off);
+    border: cv.get-var('toggle-slider--border-width') solid
+      cv.get-var('toggle-thumb--border-color--off');
   }
 
   .switch.checked > .slider::before {
-    background-color: var(--ix-toggle-thumb--background--on);
-    transform: var(--ix-toggle-slider--transform--checked);
+    background-color: cv.get-var('toggle-thumb--background--on');
+    transform: cv.get-var('toggle-slider--transform--checked');
   }
 
   .switch > .slider {
-    border-color: var(--ix-toggle--border-color--off);
+    border-color: cv.get-var('toggle--border-color--off');
   }
 
   .switch:hover > .slider {
-    background-color: var(--ix-toggle--background--off--hover);
-    border-color: var(--ix-toggle--border-color--off--hover);
+    background-color: cv.get-var('toggle--background--off--hover');
+    border-color: cv.get-var('toggle--border-color--off--hover');
   }
 
   .switch:hover > .slider:before {
-    background-color: var(--ix-toggle-thumb--background--off--hover);
-    border: var(--ix-toggle-switch--border-width) solid
-      var(--ix-toggle-thumb--border-color--off--hover);
+    background-color: cv.get-var('toggle-thumb--background--off--hover');
+    border: cv.get-var('toggle-switch--border-width') solid
+      cv.get-var('toggle-thumb--border-color--off--hover');
   }
 
   .switch:active > .slider {
-    background-color: var(--ix-toggle--background--off--active);
-    border-color: var(--ix-toggle--border-color--off--active);
+    background-color: cv.get-var('toggle--background--off--active');
+    border-color: cv.get-var('toggle--border-color--off--active');
   }
 
   .switch:active > .slider:before {
-    background-color: var(--ix-toggle-thumb--background--off--active);
-    border: var(--ix-toggle-switch--border-width) solid
-      var(--ix-toggle-thumb--border-color--off--active);
+    background-color: cv.get-var('toggle-thumb--background--off--active');
+    border: cv.get-var('toggle-switch--border-width') solid
+      cv.get-var('toggle-thumb--border-color--off--active');
   }
 
   .switch.checked > .slider {
-    background-color: var(--ix-toggle--background--on);
-    border-color: var(--ix-toggle--border-color--on);
+    background-color: cv.get-var('toggle--background--on');
+    border-color: cv.get-var('toggle--border-color--on');
   }
 
   .switch.checked > .slider:before {
-    border: var(--ix-toggle-switch--border-width) solid
-      var(--ix-toggle-thumb--border-color--on);
+    border: cv.get-var('toggle-switch--border-width') solid
+      cv.get-var('toggle-thumb--border-color--on');
   }
 
   .switch.checked:hover > .slider {
-    background-color: var(--ix-toggle--background--on--hover);
-    border-color: var(--ix-toggle--border-color--on--hover);
+    background-color: cv.get-var('toggle--background--on--hover');
+    border-color: cv.get-var('toggle--border-color--on--hover');
   }
 
   .switch.checked:hover > .slider:before {
-    background-color: var(--ix-toggle-thumb--background--on--hover);
-    border: var(--ix-toggle-switch--border-width) solid
-      var(--ix-toggle-thumb--border-color--on--hover);
+    background-color: cv.get-var('toggle-thumb--background--on--hover');
+    border: cv.get-var('toggle-switch--border-width') solid
+      cv.get-var('toggle-thumb--border-color--on--hover');
   }
 
   .switch.checked:active > .slider {
-    background-color: var(--ix-toggle--background--on--active);
-    border-color: var(--ix-toggle--border-color--on--active);
+    background-color: cv.get-var('toggle--background--on--active');
+    border-color: cv.get-var('toggle--border-color--on--active');
   }
 
   .switch.checked:active > .slider:before {
-    background-color: var(--ix-toggle-thumb--background--on--active);
-    border: var(--ix-toggle-switch--border-width) solid
-      var(--ix-toggle-thumb--border-color--on--active);
+    background-color: cv.get-var('toggle-thumb--background--on--active');
+    border: cv.get-var('toggle-switch--border-width') solid
+      cv.get-var('toggle-thumb--border-color--on--active');
   }
 
   .switch.indeterminate > .slider::before {
-    transform: var(--ix-toggle-slider--transform);
+    transform: cv.get-var('toggle-slider--transform');
   }
 }
 
@@ -156,36 +157,36 @@
 }
 
 :host(:not(.disabled):focus-visible) .switch > .slider {
-  outline: var(--ix-toggle--outline-width--focus) solid
-    var(--ix-toggle--outline-color--focus);
-  outline-offset: var(--ix-toggle-switch--outline-offset);
+  outline: cv.get-var('toggle--outline-width--focus') solid
+    cv.get-var('toggle--outline-color--focus');
+  outline-offset: cv.get-var('toggle-switch--outline-offset');
 }
 
 :host(.disabled) {
   pointer-events: none;
 
   .switch {
-    opacity: var(--ix-toggle-switch--opacity);
+    opacity: cv.get-var('toggle-switch--opacity');
   }
 
   .switch > .slider {
-    background-color: var(--ix-toggle--background--off--disabled);
+    background-color: cv.get-var('toggle--background--off--disabled');
   }
 
   .switch > .slider:before {
-    background-color: var(--ix-toggle-thumb--background--off--disabled);
+    background-color: cv.get-var('toggle-thumb--background--off--disabled');
   }
 
   .switch.checked > .slider {
-    background-color: var(--ix-toggle--background--on--disabled);
+    background-color: cv.get-var('toggle--background--on--disabled');
   }
 
   .switch.checked > .slider:before {
-    background-color: var(--ix-toggle-thumb--background--on--disabled);
+    background-color: cv.get-var('toggle-thumb--background--on--disabled');
   }
 
   .label {
-    color: var(--ix-toggle-label--color--disabled);
+    color: cv.get-var('toggle-label--color--disabled');
   }
 }
 
@@ -198,44 +199,56 @@
 }
 
 @mixin define-toggle-vars($state, $type) {
-  --ix-toggle--background--#{$state}: var(
-    --ix-toggle--background--#{$type}--#{$state}
+  @include cv.set-var(
+    'toggle--background--#{$state}',
+    cv.get-var('toggle--background--#{$type}--#{$state}')
   );
-  --ix-toggle--background--#{$state}--hover: var(
-    --ix-toggle--background--#{$type}--#{$state}--hover
+  @include cv.set-var(
+    'toggle--background--#{$state}--hover',
+    cv.get-var('toggle--background--#{$type}--#{$state}--hover')
   );
-  --ix-toggle--background--#{$state}--active: var(
-    --ix-toggle--background--#{$type}--#{$state}--active
-  );
-
-  --ix-toggle-thumb--border-color--#{$state}: var(
-    --ix-toggle-thumb--border-color--#{$type}--#{$state}
-  );
-  --ix-toggle-thumb--border-color--#{$state}--hover: var(
-    --ix-toggle-thumb--border-color--#{$type}--#{$state}--hover
-  );
-  --ix-toggle-thumb--border-color--#{$state}--active: var(
-    --ix-toggle-thumb--border-color--#{$type}--#{$state}--active
+  @include cv.set-var(
+    'toggle--background--#{$state}--active',
+    cv.get-var('toggle--background--#{$type}--#{$state}--active')
   );
 
-  --ix-toggle-thumb--background--#{$state}: var(
-    --ix-toggle-thumb--background--#{$type}--#{$state}
+  @include cv.set-var(
+    'toggle-thumb--border-color--#{$state}',
+    cv.get-var('toggle-thumb--border-color--#{$type}--#{$state}')
   );
-  --ix-toggle-thumb--background--#{$state}--hover: var(
-    --ix-toggle-thumb--background--#{$type}--#{$state}--hover
+  @include cv.set-var(
+    'toggle-thumb--border-color--#{$state}--hover',
+    cv.get-var('toggle-thumb--border-color--#{$type}--#{$state}--hover')
   );
-  --ix-toggle-thumb--background--#{$state}--active: var(
-    --ix-toggle-thumb--background--#{$type}--#{$state}--active
+  @include cv.set-var(
+    'toggle-thumb--border-color--#{$state}--active',
+    cv.get-var('toggle-thumb--border-color--#{$type}--#{$state}--active')
   );
 
-  --ix-toggle--border-color--#{$state}: var(
-    --ix-toggle--border-color--#{$type}--#{$state}
+  @include cv.set-var(
+    'toggle-thumb--background--#{$state}',
+    cv.get-var('toggle-thumb--background--#{$type}--#{$state}')
   );
-  --ix-toggle--border-color--#{$state}--hover: var(
-    --ix-toggle--border-color--#{$type}--#{$state}--hover
+  @include cv.set-var(
+    'toggle-thumb--background--#{$state}--hover',
+    cv.get-var('toggle-thumb--background--#{$type}--#{$state}--hover')
   );
-  --ix-toggle--border-color--#{$state}--active: var(
-    --ix-toggle--border-color--#{$type}--#{$state}--active
+  @include cv.set-var(
+    'toggle-thumb--background--#{$state}--active',
+    cv.get-var('toggle-thumb--background--#{$type}--#{$state}--active')
+  );
+
+  @include cv.set-var(
+    'toggle--border-color--#{$state}',
+    cv.get-var('toggle--border-color--#{$type}--#{$state}')
+  );
+  @include cv.set-var(
+    'toggle--border-color--#{$state}--hover',
+    cv.get-var('toggle--border-color--#{$type}--#{$state}--hover')
+  );
+  @include cv.set-var(
+    'toggle--border-color--#{$state}--active',
+    cv.get-var('toggle--border-color--#{$type}--#{$state}--active')
   );
 }
 

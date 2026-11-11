@@ -10,9 +10,11 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
-@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as
+  confirmation-footer;
 
 @use './time-picker.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
@@ -33,7 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: var(--ix-time-picker-header--height);
+    height: cv.get-var('time-picker-header--height');
   }
 
   .clock {
@@ -53,11 +55,11 @@
         justify-content: space-around;
 
         .column-header {
-          height: var(--ix-time-picker-column-header--height);
-          width: var(--ix-time-picker-column-header--width);
-          line-height: var(--ix-time-picker-column-header--line-height);
+          height: cv.get-var('time-picker-column-header--height');
+          width: cv.get-var('time-picker-column-header--width');
+          line-height: cv.get-var('time-picker-column-header--line-height');
           text-align: center;
-          color: var(--ix-time-picker-column-header--color);
+          color: cv.get-var('time-picker-column-header--color');
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -71,17 +73,17 @@
         align-items: center;
         justify-content: center;
         min-height: 100%;
-        margin-top: var(--ix-time-picker-column-separator--margin-top);
-        width: var(--ix-time-picker-column-separator--width);
+        margin-top: cv.get-var('time-picker-column-separator--margin-top');
+        width: cv.get-var('time-picker-column-separator--width');
       }
     }
 
     .element-list {
       list-style-type: none;
       overflow: auto;
-      padding: var(--ix-time-picker-element-list--padding);
-      margin: var(--ix-time-picker-element-list--margin);
-      max-height: var(--ix-time-picker-element-list--max-height);
+      padding: cv.get-var('time-picker-element-list--padding');
+      margin: cv.get-var('time-picker-element-list--margin');
+      max-height: cv.get-var('time-picker-element-list--max-height');
 
       button {
         all: unset;
@@ -89,30 +91,32 @@
 
       .element-container {
         box-sizing: border-box;
-        width: var(--ix-time-picker-element-container--width);
-        height: var(--ix-time-picker-element-container--height);
-        margin-bottom: var(--ix-time-picker-element-container--margin-bottom);
+        width: cv.get-var('time-picker-element-container--width');
+        height: cv.get-var('time-picker-element-container--height');
+        margin-bottom: cv.get-var(
+          'time-picker-element-container--margin-bottom'
+        );
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        color: var(--ix-time-picker-day--color);
+        color: cv.get-var('time-picker-day--color');
 
         &:hover:not(.disabled) {
-          background-color: var(--ix-time-picker-day--background--hover);
+          background-color: cv.get-var('time-picker-day--background--hover');
         }
 
         &:focus-visible {
           box-shadow: 0 0 0
-            var(--ix-time-picker-element-container--box-shadow-width)
-            var(--ix-time-picker-day--box-shadow-color--focus);
+            cv.get-var('time-picker-element-container--box-shadow-width')
+            cv.get-var('time-picker-day--box-shadow-color--focus');
         }
 
         &.disabled {
           cursor: default;
 
           &:not(.selected) {
-            color: var(--ix-time-picker-day--color--disabled);
+            color: cv.get-var('time-picker-day--color--disabled');
           }
         }
 
@@ -122,40 +126,40 @@
         }
 
         &.selected {
-          background-color: var(--ix-time-picker-day--background--selected);
-          color: var(--ix-time-picker-day--color--selected);
-          font-weight: var(--ix-time-picker-day--font-weight--selected);
+          background-color: cv.get-var('time-picker-day--background--selected');
+          color: cv.get-var('time-picker-day--color--selected');
+          font-weight: cv.get-var('time-picker-day--font-weight--selected');
 
           &:hover:not(.disabled) {
-            background-color: var(
-              --ix-time-picker-day--background--selected--hover
+            background-color: cv.get-var(
+              'time-picker-day--background--selected--hover'
             );
           }
 
           &:active:not(.disabled) {
-            background-color: var(
-              --ix-time-picker-day--background--selected--active
+            background-color: cv.get-var(
+              'time-picker-day--background--selected--active'
             );
           }
 
           &:focus-visible {
-            border: var(--ix-time-picker-element-container--border-width) solid
-              var(--ix-time-picker-day--border-color--selected--focus);
+            border: cv.get-var('time-picker-element-container--border-width')
+              solid cv.get-var('time-picker-day--border-color--selected--focus');
           }
 
           &.disabled {
-            background-color: var(
-              --ix-time-picker-day--background--selected--disabled
+            background-color: cv.get-var(
+              'time-picker-day--background--selected--disabled'
             );
-            color: var(--ix-time-picker-day--color--selected--disabled);
+            color: cv.get-var('time-picker-day--color--selected--disabled');
           }
         }
       }
 
       .element-list-padding {
-        width: var(--ix-time-picker-element-list-padding--width);
-        height: var(--ix-time-picker-element-list-padding--height);
-        min-height: var(--ix-time-picker-element-list-padding--min-height);
+        width: cv.get-var('time-picker-element-list-padding--width');
+        height: cv.get-var('time-picker-element-list-padding--height');
+        min-height: cv.get-var('time-picker-element-list-padding--min-height');
       }
     }
 
@@ -170,7 +174,7 @@
   }
 
   .default-space {
-    margin-left: var(--ix-time-picker-default-space--margin-left);
+    margin-left: cv.get-var('time-picker-default-space--margin-left');
   }
 
   .text-align {

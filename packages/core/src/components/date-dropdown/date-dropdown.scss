@@ -9,11 +9,13 @@
 
 @use './../button/button-mixin' as button-mixin;
 @use 'mixins/shadow-dom/component';
-@use './../utils/confirmation-footer/confirmation-footer.mixins' as confirmation-footer;
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as
+  confirmation-footer;
 @use 'mixins/scrollbar' as scrollbar;
 @use 'mixins/breakpoints';
 
 @use './date-dropdown.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: inline-block;
   position: relative;
@@ -24,31 +26,31 @@
   .pull-right {
     position: relative;
     float: right;
-    padding: var(--ix-date-dropdown-pull-right--padding);
+    padding: cv.get-var('date-dropdown-pull-right--padding');
   }
 
   .quick-selection {
     display: inline-flex;
     flex-direction: column;
-    gap: var(--ix-date-dropdown-quick-selection--gap);
-    border-right: var(--ix-date-dropdown-divider--border);
+    gap: cv.get-var('date-dropdown-quick-selection--gap');
+    border-right: cv.get-var('date-dropdown-divider--border');
     overflow: auto;
-    padding: var(--ix-date-dropdown-quick-selection--padding);
+    padding: cv.get-var('date-dropdown-quick-selection--padding');
 
     @include scrollbar.scrollbar;
 
     .btn {
       @include button-mixin.btn-base;
-      min-width: var(--ix-date-dropdown-button--min-width);
-      min-height: var(--ix-date-dropdown-button--min-height);
-      max-height: var(--ix-date-dropdown-button--max-height);
+      min-width: cv.get-var('date-dropdown-button--min-width');
+      min-height: cv.get-var('date-dropdown-button--min-height');
+      max-height: cv.get-var('date-dropdown-button--max-height');
       justify-content: flex-start;
     }
 
     .btn:focus-visible {
-      outline: var(--ix-date-dropdown--outline-width--focus) solid
-        var(--ix-date-dropdown--outline-color--focus);
-      outline-offset: var(--ix-date-dropdown--outline-offset--focus);
+      outline: cv.get-var('date-dropdown--outline-width--focus') solid
+        cv.get-var('date-dropdown--outline-color--focus');
+      outline-offset: cv.get-var('date-dropdown--outline-offset--focus');
     }
 
     @include button-mixin.btn-base-variant('subtle-tertiary');
@@ -57,16 +59,16 @@
   .container {
     display: flex;
     flex-direction: row;
-    max-height: var(--ix-date-dropdown-container--max-height);
+    max-height: cv.get-var('date-dropdown-container--max-height');
 
     flex-wrap: nowrap;
   }
 
   .container.has-footer {
-    height: var(--ix-date-dropdown-container--height);
+    height: cv.get-var('date-dropdown-container--height');
 
     ix-date-picker {
-      height: var(--ix-date-dropdown-picker-wrapper--height);
+      height: cv.get-var('date-dropdown-picker-wrapper--height');
     }
   }
 
@@ -90,7 +92,7 @@
     }
 
     .quick-selection {
-      max-height: var(--ix-date-dropdown-quick-selection--max-height);
+      max-height: cv.get-var('date-dropdown-quick-selection--max-height');
     }
   }
 }

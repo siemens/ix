@@ -12,19 +12,50 @@
 // can change or be removed in any release without notice.
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('application-menu--safe-area-left');
+@include cv.declare-var('application-menu--margin-left');
 
 :host {
-  --ix-application-child-header--z-index: var(--theme-z-index-sticky);
-  --ix-application-skip-link--background: #{sys.$si-sys-color-background-1};
-  --ix-application-skip-link--color: #{sys.$si-sys-color-text-accent};
-  --ix-application-skip-link--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-application-skip-link--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-application-skip-link--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-application-skip-link--padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-application--width: 100vw;
-  --ix-application--height: 100vh;
-  --ix-application-menu--margin-left--md: calc(
-    #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} +
-      var(--ix-application-menu--safe-area-left, 0rem)
+  @include cv.define-var(
+    'application-child-header--z-index',
+    var(--theme-z-index-sticky)
+  );
+  @include cv.define-var(
+    'application-skip-link--background',
+    sys.$si-sys-color-background-1
+  );
+  @include cv.define-var(
+    'application-skip-link--color',
+    sys.$si-sys-color-text-accent
+  );
+  @include cv.define-var(
+    'application-skip-link--outline-color--focus',
+    sys.$si-sys-color-effects-focus
+  );
+  @include cv.define-var(
+    'application-skip-link--outline-width--focus',
+    sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'application-skip-link--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
+  );
+  @include cv.define-var(
+    'application-skip-link--padding',
+    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60}
+  );
+  @include cv.define-var('application--width', 100vw);
+  @include cv.define-var('application--height', 100vh);
+  @include cv.define-var(
+    'application-menu--margin-left--md',
+    calc(
+      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} + #{cv.get-var(
+          'application-menu--safe-area-left',
+          0rem
+        )}
+    )
   );
 }
