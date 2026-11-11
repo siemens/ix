@@ -62,8 +62,8 @@ ix-kpi|Displays a key performance indicator with a label, value, and status.|rea
 ix-layout-auto|Responsive form layout that automatically adjusts columns to the available width.|react:IxLayoutAuto
 ix-layout-grid|Column-based grid layout for arranging content responsively.|react:IxLayoutGrid
 ix-link-button|Button styled as a hyperlink that navigates to a target.|react:IxLinkButton|figma:107603:15976
-ix-list|No component summary available.|react:IxList
-ix-list-item|No component summary available.|react:IxListItem
+ix-list|No component summary available.|react:IxList|figma:124354:231473
+ix-list-item|No component summary available.|react:IxListItem|figma:124221:389212
 ix-list-item-separator|Standalone horizontal separator for list content.|react:IxListItemSeparator
 ix-menu|Primary side navigation menu of the application shell.|react:IxMenu|figma:20977:55554
 ix-menu-about|Overlay that shows application information such as version and legal details.|react:IxMenuAbout

@@ -17,6 +17,8 @@
 1233:33137|ix-dropdown-header
 1233:34168|ix-dropdown-quick-actions
 1239:30786|ix-tooltip
+124221:389212|ix-list-item
+124354:231473|ix-list
 1274:34186|ix-group-item
 1274:38298|ix-group
 133528:32836|ix-chat-input

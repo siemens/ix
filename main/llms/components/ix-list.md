@@ -8,11 +8,11 @@
 
 ## Documentation
 
-- None
+- https://ix.siemens.io/docs/components/list/guide.md
 
 ## Figma IDs
 
-- None
+- 124354:231473
 
 ## Properties
 
