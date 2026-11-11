@@ -1,0 +1,14 @@
+packages/storybook-docs/src/stories/slider.stories.ts
+  h_c5a773bf2fda8b 40-54,59,72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "e8cef8fa14cbb695e6f417fdb6f446f6294ce9ae",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
