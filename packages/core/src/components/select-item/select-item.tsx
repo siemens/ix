@@ -37,7 +37,7 @@ import {
 /**
  * A selectable option within a select control.
  *
- * @documentation https://ix.siemens.io//docs/components/select/guide.md
+ * @documentation https://ix.siemens.io/docs/components/select/guide.md
  */
 @Component({
   tag: 'ix-select-item',
