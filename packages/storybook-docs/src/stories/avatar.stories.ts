@@ -8,6 +8,7 @@
  */
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components-vite';
+import { html } from 'lit';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxAvatar;
@@ -66,5 +67,71 @@ export const withAvatar: Story = {
     extra: 'Administrator',
     username: 'John Doe',
     initials: 'JD',
+  },
+};
+
+export const UsernameWrapping: Story = {
+  render: () => html`
+    <div
+      style="display: grid; grid-template-columns: repeat(2, minmax(20rem, 1fr)); gap: 2rem; min-height: 16rem;"
+    >
+      <div>
+        <ix-typography format="label">Default truncation</ix-typography>
+        <ix-application-header name="Default">
+          <ix-avatar
+            initials="JD"
+            username="Alexandria Catherine Montgomery"
+            extra="Lead Industrial Experience Administrator"
+          ></ix-avatar>
+        </ix-application-header>
+      </div>
+      <div>
+        <ix-typography format="label">Wrapped</ix-typography>
+        <ix-application-header name="Wrapped">
+          <ix-avatar
+            initials="JD"
+            username="Alexandria Catherine Montgomery"
+            extra="Lead Industrial Experience Administrator"
+            wrap-username
+          ></ix-avatar>
+        </ix-application-header>
+      </div>
+    </div>
+  `,
+  play: async ({ canvasElement }) => {
+    await customElements.whenDefined('ix-avatar');
+
+    const avatars = Array.from(
+      canvasElement.querySelectorAll<HTMLIxAvatarElement>('ix-avatar')
+    );
+
+    if (avatars.length !== 2) {
+      throw new Error('Unable to find the avatar comparison');
+    }
+
+    const dropdowns = avatars.flatMap((avatar) => {
+      const dropdown =
+        avatar.shadowRoot?.querySelector<HTMLIxDropdownElement>('ix-dropdown');
+      return dropdown ? [dropdown] : [];
+    });
+
+    if (dropdowns.length !== avatars.length) {
+      throw new Error('Unable to find the avatar dropdowns');
+    }
+
+    const showEvents = dropdowns.map(
+      (dropdown) =>
+        new Promise<void>((resolve) => {
+          dropdown.addEventListener('showChanged', () => resolve(), {
+            once: true,
+          });
+        })
+    );
+
+    dropdowns.forEach((dropdown) => {
+      dropdown.show = true;
+    });
+
+    await Promise.all(showEvents);
   },
 };
