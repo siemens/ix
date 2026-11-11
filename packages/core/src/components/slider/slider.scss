@@ -140,6 +140,7 @@
     width: calc((var(--trace-end) - var(--trace-start)) * 100%);
     left: calc(var(--trace-start) * 100%);
     height: var(--ix-slider-trace--height);
+    border-radius: var(--ix-slider-track--border-radius);
     background-color: var(--trace-color);
     top: 50%;
     transform: translateY(-50%);
@@ -247,6 +248,7 @@
   .track {
     position: absolute;
     background-color: var(--track-color);
+    border-radius: var(--ix-slider-track--border-radius);
     height: var(--ix-slider-track--height);
     width: 100%;
     top: 50%;

@@ -67,5 +67,6 @@
   --ix-slider--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
   --ix-slider-ticks--tick-size: calc(#{sys.$si-sys-sizing-size-50} * 0.375);
   --ix-slider-track--height: #{sys.$si-sys-sizing-size-20};
+  --ix-slider-track--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
   --ix-slider-thumb--border-radius: #{sys.$si-sys-sizing-border-radius-full};
 }
