@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'sass:string';
 @use 'misc/common-variables' as vars;
 @use 'mixins/fonts';
 @use 'mixins/shadow-dom/component';
@@ -45,33 +46,25 @@
       border-style: solid;
     }
 
-    &.selected {
-      background-color: cv.get-var(
-        'button--background--#{$name}--pressed',
-        $external: true
-      );
-      color: cv.get-var('button--color--#{$name}--pressed', $external: true);
+    // Danger variants have no pressed style and keep their default look.
+    @if not string.index($name, 'danger') {
+      &.selected {
+        background-color: cv.get-var('button--background--#{$name}--pressed');
+        color: cv.get-var('button--color--#{$name}--pressed');
 
-      @include hover.hover {
-        background-color: cv.get-var(
-          'button--background--#{$name}--pressed--hover',
-          $external: true
-        );
-        color: cv.get-var(
-          'button--color--#{$name}--pressed--hover',
-          $external: true
-        );
-      }
+        @include hover.hover {
+          background-color: cv.get-var(
+            'button--background--#{$name}--pressed--hover'
+          );
+          color: cv.get-var('button--color--#{$name}--pressed--hover');
+        }
 
-      @include hover.active {
-        background-color: cv.get-var(
-          'button--background--#{$name}--pressed--hover',
-          $external: true
-        );
-        color: cv.get-var(
-          'button--color--#{$name}--pressed--active',
-          $external: true
-        );
+        @include hover.active {
+          background-color: cv.get-var(
+            'button--background--#{$name}--pressed--hover'
+          );
+          color: cv.get-var('button--color--#{$name}--pressed--active');
+        }
       }
     }
 

@@ -104,10 +104,12 @@ $chip-color-sys-values: (
       'chip--border-color--#{$color}',
       chip-color-sys-value($color, background)
     );
-    @include cv.define-var(
-      'chip--color--#{$color}',
-      chip-color-sys-value($color, background)
-    );
+    @if $color != 'warning' and $color != 'caution' {
+      @include cv.define-var(
+        'chip--color--#{$color}',
+        chip-color-sys-value($color, background)
+      );
+    }
     @include cv.define-var(
       'chip--color--#{$color}--contrast',
       chip-color-sys-value($color, contrast)

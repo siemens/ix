@@ -13,7 +13,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-:host(:not(:first-of-type)) {
-  margin-block-start: cv.get-var('layout-grid-row--margin', 0, $external: true);
-}

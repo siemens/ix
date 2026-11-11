@@ -20,69 +20,37 @@
     padding: cv.get-var('category-filter-dropdown-item--padding');
     border: cv.get-var('category-filter-dropdown-item--border-width') solid
       transparent;
-    color: cv.get-var(
-      'menu-item--color',
-      cv.get-var('category-filter-dropdown-item--color'),
-      $external: true
-    );
+    color: cv.get-var('category-filter-dropdown-item--color');
     background-color: transparent;
   }
 
   &:focus-visible {
     outline: none;
-    background-color: cv.get-var(
-      'menu-item--background',
-      transparent,
-      $external: true
-    );
+    background-color: transparent;
     border-color: cv.get-var(
       'category-filter-dropdown-item--border-color--focus'
     );
-    color: cv.get-var(
-      'menu-item--color--focus',
-      cv.get-var('category-filter-dropdown-item--color--focus'),
-      $external: true
-    );
+    color: cv.get-var('category-filter-dropdown-item--color--focus');
   }
 
   @include hover.hover {
-    color: cv.get-var(
-      'menu-item--color--hover',
-      cv.get-var('category-filter-dropdown-item--color--hover'),
-      $external: true
-    );
+    color: cv.get-var('category-filter-dropdown-item--color--hover');
     background-color: cv.get-var(
-      'menu-item--background--hover',
-      cv.get-var('category-filter-dropdown-item--background-color--hover'),
-      $external: true
+      'category-filter-dropdown-item--background-color--hover'
     );
   }
 
   @include hover.active {
-    color: cv.get-var(
-      'menu-item--color--active',
-      cv.get-var('category-filter-dropdown-item--color--active'),
-      $external: true
-    );
+    color: cv.get-var('category-filter-dropdown-item--color--active');
     background-color: cv.get-var(
-      'menu-item--background--active',
-      cv.get-var('category-filter-dropdown-item--background-color--active'),
-      $external: true
+      'category-filter-dropdown-item--background-color--active'
     );
   }
 
   &.disabled,
   &:disabled {
-    color: cv.get-var(
-      'menu-item--color--disabled',
-      cv.get-var('category-filter-dropdown-item--color--disabled'),
-      $external: true
-    );
-    background-color: cv.get-var(
-      'menu-item--background--disabled',
-      transparent,
-      $external: true
-    );
+    color: cv.get-var('category-filter-dropdown-item--color--disabled');
+    background-color: transparent;
   }
 
   > a,
@@ -92,11 +60,7 @@
   }
 
   > .glyph {
-    color: cv.get-var(
-      'menu-item-icon--color',
-      cv.get-var('category-filter-glyph--color'),
-      $external: true
-    );
+    color: cv.get-var('category-filter-glyph--color');
     margin-inline-end: cv.get-var('category-filter-glyph--margin-inline-end');
 
     &.disabled {
@@ -104,11 +68,7 @@
     }
 
     &.glyph-single-check {
-      color: cv.get-var(
-        'menu-item-icon-check--color',
-        cv.get-var('category-filter-glyph-single-check--color'),
-        $external: true
-      );
+      color: cv.get-var('category-filter-glyph-single-check--color');
     }
   }
 }

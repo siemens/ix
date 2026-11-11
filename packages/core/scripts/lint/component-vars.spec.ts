@@ -291,63 +291,6 @@ describe('component CSS custom properties', () => {
   });
 });
 
-/**
- * Properties that are read but never set anywhere in IX. Reads resolve to the
- * `var()` fallback or the inherited value. Remove entries once fixed.
- */
-const UNSET_PROPERTIES = new Set<string>([
-  '--ix-application-menu--safe-area-left',
-  '--ix-button--background--danger-primary--pressed',
-  '--ix-button--background--danger-primary--pressed--hover',
-  '--ix-button--background--danger-secondary--pressed',
-  '--ix-button--background--danger-secondary--pressed--hover',
-  '--ix-button--background--danger-tertiary--pressed',
-  '--ix-button--background--danger-tertiary--pressed--hover',
-  '--ix-button--color--danger-primary--pressed',
-  '--ix-button--color--danger-primary--pressed--active',
-  '--ix-button--color--danger-primary--pressed--hover',
-  '--ix-button--color--danger-secondary--pressed',
-  '--ix-button--color--danger-secondary--pressed--active',
-  '--ix-button--color--danger-secondary--pressed--hover',
-  '--ix-button--color--danger-tertiary--pressed',
-  '--ix-button--color--danger-tertiary--pressed--active',
-  '--ix-button--color--danger-tertiary--pressed--hover',
-  '--ix-checkbox--background--info--mixed',
-  '--ix-checkbox--background--info--mixed--active',
-  '--ix-checkbox--background--info--mixed--hover',
-  '--ix-layout-grid-row--margin',
-  '--ix-menu-item--background',
-  '--ix-menu-item--background--active',
-  '--ix-menu-item--background--disabled',
-  '--ix-menu-item--background--hover',
-  '--ix-menu-item--color',
-  '--ix-menu-item--color--active',
-  '--ix-menu-item--color--focus',
-  '--ix-menu-item--color--hover',
-  '--ix-menu-item-icon--color',
-  '--ix-menu-item-icon-check--color',
-  '--ix-radio--background--info--mixed',
-  '--ix-radio--background--info--mixed--active',
-  '--ix-radio--background--info--mixed--hover',
-  '--ix-radio--background--invalid--mixed',
-  '--ix-radio--background--invalid--mixed--active',
-  '--ix-radio--background--invalid--mixed--hover',
-  '--ix-radio--background--warning--mixed',
-  '--ix-radio--background--warning--mixed--active',
-  '--ix-radio--background--warning--mixed--hover',
-  '--ix-radio--border-color--info--mixed',
-  '--ix-radio--border-color--info--mixed--active',
-  '--ix-radio--border-color--info--mixed--hover',
-  '--ix-radio--border-color--invalid--mixed',
-  '--ix-radio--border-color--invalid--mixed--active',
-  '--ix-radio--border-color--invalid--mixed--hover',
-  '--ix-radio--border-color--warning--mixed',
-  '--ix-radio--border-color--warning--mixed--active',
-  '--ix-radio--border-color--warning--mixed--hover',
-  '--ix-tab-active-indicator--offset',
-  '--ix-tab-active-indicator--width',
-]);
-
 /** Global (non-component) properties declared in `scss/`. */
 const GLOBAL_PROPERTY = /^--ix-safe-area-inset-/;
 
@@ -397,28 +340,61 @@ describe('component CSS custom property references', () => {
     expect(raw).toEqual([]);
   });
 
+  // Custom property declarations and `var()` references per property.
+  const declared = new Set<string>();
+  const references = new Map<string, Set<string>>();
+  const read = new Set<string>();
+  for (const css of compiled) {
+    for (const [, name, value] of css.matchAll(/(--ix-[\w-]+)\s*:([^;}]*)/g)) {
+      declared.add(name);
+      const targets = references.get(name) ?? new Set<string>();
+      for (const [, target] of value.matchAll(/var\(\s*(--ix-[\w-]+)/g)) {
+        targets.add(target);
+      }
+      references.set(name, targets);
+    }
+    const properties = css.replace(/--ix-[\w-]+\s*:[^;}]*/g, '');
+    for (const [, name] of properties.matchAll(/var\(\s*(--ix-[\w-]+)/g)) {
+      read.add(name);
+    }
+  }
+  // Properties set or read at runtime from TSX (inline styles, setProperty,
+  // getPropertyValue).
+  const runtimeSources = findFiles(COMPONENTS_DIR, ['.tsx', '.ts']).filter(
+    (file) => !file.split(path.sep).includes('test')
+  );
+  for (const file of runtimeSources) {
+    for (const [match, name] of readFileSync(file, 'utf8').matchAll(
+      /(?:var\(\s*)?(--ix-[\w-]+)/g
+    )) {
+      if (!match.startsWith('var(')) declared.add(name);
+      read.add(name);
+    }
+  }
+
   it('resolves every var(--ix-*) in the compiled CSS', () => {
-    const declared = new Set<string>();
-    const referenced = new Set<string>();
-    for (const css of compiled) {
-      for (const [, name] of css.matchAll(/(--ix-[\w-]+)\s*:/g)) {
-        declared.add(name);
-      }
-      for (const [, name] of css.matchAll(/var\(\s*(--ix-[\w-]+)/g)) {
-        referenced.add(name);
-      }
-    }
-    // Properties set at runtime from TSX (inline styles or setProperty).
-    for (const file of findFiles(COMPONENTS_DIR, ['.tsx'])) {
-      for (const [, name] of readFileSync(file, 'utf8').matchAll(
-        /['"`](--ix-[\w-]+)['"`]/g
-      )) {
-        declared.add(name);
-      }
-    }
+    const referenced = new Set([
+      ...read,
+      ...[...references.values()].flatMap((targets) => [...targets]),
+    ]);
     const unresolved = [...referenced]
       .filter((name) => !declared.has(name) && !GLOBAL_PROPERTY.test(name))
       .sort();
-    expect(unresolved).toEqual([...UNSET_PROPERTIES].sort());
+    expect(unresolved).toEqual([]);
+  });
+
+  it('reads every declared property', () => {
+    const used = new Set<string>();
+    const pending = [...read];
+    while (pending.length) {
+      const name = pending.pop()!;
+      if (used.has(name)) continue;
+      used.add(name);
+      pending.push(...(references.get(name) ?? []));
+    }
+    const unused = [...declared]
+      .filter((name) => !used.has(name) && !GLOBAL_PROPERTY.test(name))
+      .sort();
+    expect(unused).toEqual([]);
   });
 });

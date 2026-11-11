@@ -15,7 +15,6 @@
 @use 'mixins/component-vars' as cv;
 
 // Runtime properties without a default (set per state or from TSX).
-@include cv.declare-var('application-menu--safe-area-left');
 @include cv.declare-var('application-menu--margin-left');
 
 :host {
@@ -51,11 +50,6 @@
   @include cv.define-var('application--height', 100vh);
   @include cv.define-var(
     'application-menu--margin-left--md',
-    calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} + #{cv.get-var(
-          'application-menu--safe-area-left',
-          0rem
-        )}
-    )
+    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20})
   );
 }

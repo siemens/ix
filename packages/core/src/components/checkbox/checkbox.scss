@@ -232,21 +232,15 @@
 @mixin define-checkbox-vars($state, $type) {
   @include cv.set-var(
     'checkbox--background--#{$state}',
-    cv.get-var('checkbox--background--#{$type}--#{$state}', $external: true)
+    cv.get-var('checkbox--background--#{$type}--#{$state}')
   );
   @include cv.set-var(
     'checkbox--background--#{$state}--hover',
-    cv.get-var(
-      'checkbox--background--#{$type}--#{$state}--hover',
-      $external: true
-    )
+    cv.get-var('checkbox--background--#{$type}--#{$state}--hover')
   );
   @include cv.set-var(
     'checkbox--background--#{$state}--active',
-    cv.get-var(
-      'checkbox--background--#{$type}--#{$state}--active',
-      $external: true
-    )
+    cv.get-var('checkbox--background--#{$type}--#{$state}--active')
   );
 
   @include cv.set-var(
@@ -267,25 +261,21 @@
 @include checkbox-variant($selector: '.ix-info') {
   @include define-checkbox-vars('unchecked', 'info');
   @include define-checkbox-vars('checked', 'info');
-  @include define-checkbox-vars('mixed', 'info');
 }
 
 @include checkbox-variant($selector: '.ix-warning') {
   @include define-checkbox-vars('unchecked', 'warning');
   @include define-checkbox-vars('checked', 'warning');
-  @include define-checkbox-vars('mixed', 'warning');
 }
 
 @include checkbox-variant($selector: '.ix-invalid--required') {
   @include define-checkbox-vars('unchecked', 'invalid');
   @include define-checkbox-vars('checked', 'invalid');
-  @include define-checkbox-vars('mixed', 'invalid');
 }
 
 @include checkbox-variant($selector: '.ix-invalid') {
   @include define-checkbox-vars('unchecked', 'invalid');
   @include define-checkbox-vars('checked', 'invalid');
-  @include define-checkbox-vars('mixed', 'invalid');
 }
 
 :host(.disabled) {

@@ -31,13 +31,9 @@
       'tabs-indicator--background--selected',
       $external: true
     );
-    width: cv.get-var('tab-active-indicator--width', $external: true);
     height: cv.get-var('tabs-indicator--height', $external: true);
     left: 0;
     bottom: 0;
-    transform: translateX(
-      #{cv.get-var('tab-active-indicator--offset', $external: true)}
-    );
   }
 
   @if $position == 'top' {

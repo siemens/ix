@@ -238,37 +238,28 @@
 @mixin define-radio-vars($state, $type) {
   @include cv.set-var(
     'radio--background--#{$state}',
-    cv.get-var('radio--background--#{$type}--#{$state}', $external: true)
+    cv.get-var('radio--background--#{$type}--#{$state}')
   );
   @include cv.set-var(
     'radio--background--#{$state}--hover',
-    cv.get-var('radio--background--#{$type}--#{$state}--hover', $external: true)
+    cv.get-var('radio--background--#{$type}--#{$state}--hover')
   );
   @include cv.set-var(
     'radio--background--#{$state}--active',
-    cv.get-var(
-      'radio--background--#{$type}--#{$state}--active',
-      $external: true
-    )
+    cv.get-var('radio--background--#{$type}--#{$state}--active')
   );
 
   @include cv.set-var(
     'radio--border-color--#{$state}',
-    cv.get-var('radio--border-color--#{$type}--#{$state}', $external: true)
+    cv.get-var('radio--border-color--#{$type}--#{$state}')
   );
   @include cv.set-var(
     'radio--border-color--#{$state}--hover',
-    cv.get-var(
-      'radio--border-color--#{$type}--#{$state}--hover',
-      $external: true
-    )
+    cv.get-var('radio--border-color--#{$type}--#{$state}--hover')
   );
   @include cv.set-var(
     'radio--border-color--#{$state}--active',
-    cv.get-var(
-      'radio--border-color--#{$type}--#{$state}--active',
-      $external: true
-    )
+    cv.get-var('radio--border-color--#{$type}--#{$state}--active')
   );
 }
 
@@ -276,23 +267,19 @@
 @include radio-variant($selector: '.ix-info') {
   @include define-radio-vars('unchecked', 'info');
   @include define-radio-vars('checked', 'info');
-  @include define-radio-vars('mixed', 'info');
 }
 
 @include radio-variant($selector: '.ix-warning') {
   @include define-radio-vars('unchecked', 'warning');
   @include define-radio-vars('checked', 'warning');
-  @include define-radio-vars('mixed', 'warning');
 }
 
 @include radio-variant($selector: '.ix-invalid--required') {
   @include define-radio-vars('unchecked', 'invalid');
   @include define-radio-vars('checked', 'invalid');
-  @include define-radio-vars('mixed', 'invalid');
 }
 
 @include radio-variant($selector: '.ix-invalid') {
   @include define-radio-vars('unchecked', 'invalid');
   @include define-radio-vars('checked', 'invalid');
-  @include define-radio-vars('mixed', 'invalid');
 }

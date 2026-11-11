@@ -43,7 +43,7 @@ Never write `--ix-*: …` or `var(--ix-*)` by hand in component SCSS. Use the re
 | `set-var($name, $value, $external: false)`   | Overrides a registered property. Errors on unknown names.                                                                 |
 | `get-var($name, $fallback: null, $external)` | Returns `var(--ix-<name>[, <fallback>])`. Errors on unknown names. Wrap in `#{…}` inside `calc()`, `min()`, `max()`, etc. |
 
-Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property) or set at runtime from TSX. External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or set from TSX. Known never-set properties are listed in `UNSET_PROPERTIES` in the spec; remove entries when fixing them.
+Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property) or set at runtime from TSX. External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or set from TSX. The spec also fails on declared properties that are never read (directly or through another property). Remove dead properties instead of keeping them.
 
 ## Grammar
 

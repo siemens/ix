@@ -117,12 +117,6 @@ $menu-expanded-width: cv.get-var('menu--width--expanded');
     padding-block-end: cv.get-var('menu--padding-block-end');
     overflow: hidden;
 
-    padding-left: cv.get-var(
-      'application-menu--safe-area-left',
-      0,
-      $external: true
-    );
-
     &.expanded {
       box-shadow: cv.get-var('menu--box-shadow');
     }

@@ -28,7 +28,6 @@
     'badge--border-color--accent',
     sys.$si-sys-color-border-accent
   );
-  @include cv.define-var('badge--color--accent', sys.$si-sys-color-text-accent);
   @include cv.define-var(
     'badge--color--accent--contrast',
     sys.$si-sys-color-text-on-accent

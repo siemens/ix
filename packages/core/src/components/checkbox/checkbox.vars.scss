@@ -14,14 +14,6 @@
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
 
-// Runtime properties without a default (set per state or from TSX).
-@include cv.declare-var('checkbox--background--mixed');
-@include cv.declare-var('checkbox--background--mixed--active');
-@include cv.declare-var('checkbox--background--mixed--hover');
-@include cv.declare-var('checkbox--border-color--mixed');
-@include cv.declare-var('checkbox--border-color--mixed--active');
-@include cv.declare-var('checkbox--border-color--mixed--hover');
-
 :host {
   @include cv.define-var(
     'checkbox-checkmark--color',
@@ -130,66 +122,6 @@
   );
   @include cv.define-var(
     'checkbox--border-color--warning--checked--hover',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--mixed',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--mixed--active',
-    sys.$si-sys-color-background-danger-active
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--mixed--hover',
-    sys.$si-sys-color-background-danger-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--mixed',
-    sys.$si-sys-color-background-warning
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--mixed--active',
-    sys.$si-sys-color-background-warning-active
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--mixed--hover',
-    sys.$si-sys-color-background-warning-hover
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--mixed',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--mixed--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--mixed--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--mixed',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--mixed--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--mixed--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--mixed',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--mixed--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--mixed--hover',
     sys.$si-sys-color-border-warning
   );
   @include cv.define-var(

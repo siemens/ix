@@ -57,13 +57,7 @@
   @include cv.define-var('menu--width--expanded', sys.$si-sys-sizing-size-160);
   @include cv.define-var(
     'menu--width',
-    calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20} + #{cv.get-var(
-          'application-menu--safe-area-left',
-          0rem,
-          $external: true
-        )}
-    )
+    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20})
   );
   @include cv.define-var(
     'menu--padding-block-end',

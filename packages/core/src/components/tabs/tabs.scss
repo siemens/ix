@@ -27,13 +27,9 @@
     content: '';
     position: absolute;
     background-color: cv.get-var('tabs-indicator--background--selected');
-    width: cv.get-var('tab-active-indicator--width', $external: true);
     height: cv.get-var('tabs-indicator--height');
     left: 0;
     bottom: 0;
-    transform: translateX(
-      #{cv.get-var('tab-active-indicator--offset', $external: true)}
-    );
   }
 
   @if $position == 'top' {

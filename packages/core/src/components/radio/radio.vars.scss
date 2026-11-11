@@ -14,14 +14,6 @@
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
 
-// Runtime properties without a default (set per state or from TSX).
-@include cv.declare-var('radio--background--mixed');
-@include cv.declare-var('radio--background--mixed--active');
-@include cv.declare-var('radio--background--mixed--hover');
-@include cv.declare-var('radio--border-color--mixed');
-@include cv.declare-var('radio--border-color--mixed--active');
-@include cv.declare-var('radio--border-color--mixed--hover');
-
 :host {
   @include cv.define-var(
     'radio-checkmark--background',

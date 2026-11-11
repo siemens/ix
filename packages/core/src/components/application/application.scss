@@ -142,8 +142,5 @@
 }
 
 :host(.breakpoint-sm) {
-  @include cv.set-var(
-    'application-menu--margin-left',
-    cv.get-var('application-menu--safe-area-left', 0rem)
-  );
+  @include cv.set-var('application-menu--margin-left', 0rem);
 }
