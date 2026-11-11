@@ -32,6 +32,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -40,6 +41,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  resetInputValidation,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   HOST_ONLY_ARIA_ATTRIBUTES,
@@ -56,10 +58,10 @@ let inputIds = 0;
  * Text input for entering and validating a single-line value.
  *
  *
- * @documentation https://ix.siemens.io//docs/components/input/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ * @documentation https://ix.siemens.io/docs/components/input/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-validation/guide.md
  *
  * @figma-main-component-id 42365:39459
  *
@@ -229,9 +231,14 @@ export class Input
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
+  }
+
+  @Watch('value')
+  onValueChange(newValue: string) {
+    this.updateFormInternalValue(newValue);
   }
 
   @Watch('type')
@@ -270,6 +277,8 @@ export class Input
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -283,6 +292,9 @@ export class Input
     this.value = value;
 
     if (this.inputRef.current && this.touched) {
+      if (this.inputRef.current.value !== value) {
+        this.inputRef.current.value = value;
+      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -331,6 +343,21 @@ export class Input
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 6.0.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const input = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, input);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   override render() {

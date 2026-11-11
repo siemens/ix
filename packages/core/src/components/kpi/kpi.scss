@@ -84,11 +84,11 @@ $kpi-states: (warning, danger, caution, success, information, accent, critical);
   @include hover.active {
     background-color: var(--ix-kpi-display--background--active);
   }
+}
 
-  @include hover.focus-visible {
-    outline: var(--ix-kpi--outline-width--focus) solid
-      var(--ix-kpi--outline-color--focus);
-  }
+:host(:focus-visible) {
+  outline: var(--ix-kpi--outline-width--focus) solid
+    var(--ix-kpi--outline-color--focus);
 }
 
 :host(.stacked) {

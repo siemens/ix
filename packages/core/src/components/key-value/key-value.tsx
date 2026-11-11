@@ -13,7 +13,7 @@ import type { KeyValueLabelPosition } from './key-value.types';
 /**
  * Displays a labeled key together with its value.
  *
- * @documentation https://ix.siemens.io//docs/components/key-value/code.md
+ * @documentation https://ix.siemens.io/docs/components/key-value/code.md
  * @figma-main-component-id 4727:112546
  *
  * @slot custom-value - Optional custom value at key value instead of text value
@@ -51,12 +51,23 @@ export class KeyValue {
    */
   @Prop() value?: string;
 
+  /**
+   * Hide the divider line below the key value.
+   * Inside `ix-key-value-list`, the divider is also hidden when the list sets `hideDividers`.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDivider = false;
+
   render() {
     return (
       <Host
-        class={`keyValue keyValue--${
-          this.labelPosition === 'top' ? 'column' : 'row'
-        }`}
+        class={{
+          keyValue: true,
+          [`keyValue--${this.labelPosition === 'top' ? 'column' : 'row'}`]:
+            true,
+          'keyValue--no-divider': this.hideDivider,
+        }}
       >
         {this.icon && (
           <ix-icon

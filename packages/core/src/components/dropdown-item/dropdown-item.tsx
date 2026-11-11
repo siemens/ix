@@ -36,7 +36,7 @@ import type { IxDropdownItemRole } from './dropdown-item.types';
 /**
  * Selectable entry within a dropdown menu.
  *
- * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/dropdown-button/guide.md
  * @figma-main-component-id 1603:52792
  *
  * @slot - Dropdown item label.

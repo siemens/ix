@@ -142,12 +142,55 @@
           "deprecated": false
         },
         {
+          "name": "disableSkipLinks",
+          "attribute": "disable-skip-links",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "forceBreakpoint",
           "attribute": "force-breakpoint",
           "type": "\"lg\" | \"md\" | \"sm\" | undefined",
           "mutable": false,
           "reflectToAttribute": false,
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToFooter",
+          "attribute": "i18n-skip-to-footer",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to footer'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "i18nSkipToMain",
+          "attribute": "i18n-skip-to-main",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'Skip to main content'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "skipLinkMainTarget",
+          "attribute": "skip-link-main-target",
+          "type": "HTMLElement | string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -2483,6 +2526,16 @@
           "deprecated": false
         },
         {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "enableTopLayer",
           "attribute": "enable-top-layer",
           "type": "boolean",
@@ -2744,6 +2797,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -3013,6 +3076,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
@@ -3360,6 +3428,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -4575,6 +4653,16 @@
           "deprecated": false
         },
         {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "header",
           "attribute": "header",
           "type": "string",
@@ -4602,16 +4690,6 @@
           "reflectToAttribute": false,
           "default": "'large'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "subHeader",
-          "attribute": "sub-header",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         }
@@ -5891,6 +5969,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -5963,6 +6046,17 @@
           "deprecated": false
         },
         {
+          "name": "hideDivider",
+          "attribute": "hide-divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6017,6 +6111,17 @@
       "tag": "ix-key-value-list",
       "deprecated": false,
       "properties": [
+        {
+          "name": "hideDividers",
+          "attribute": "hide-dividers",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "striped",
           "attribute": "striped",
@@ -8042,6 +8147,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -8049,6 +8159,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],
@@ -10586,6 +10701,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -10593,6 +10713,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],
@@ -11766,6 +11891,16 @@
           "deprecated": false
         },
         {
+          "name": "hideDelay",
+          "attribute": "hide-delay",
+          "type": "number | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "interactive",
           "attribute": "interactive",
           "type": "boolean",
@@ -11783,6 +11918,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'top'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "showDelay",
+          "attribute": "show-delay",
+          "type": "number",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "0",
           "optional": false,
           "required": false,
           "deprecated": false

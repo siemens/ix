@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('workflow-steps', () => {
   regressionTest('basic', async ({ page }) => {
@@ -39,4 +39,18 @@ regressionTest.describe('workflow-steps', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-workflow-steps clickable style="width: 30rem"><ix-workflow-step>Step 1</ix-workflow-step><ix-workflow-step>Step 2</ix-workflow-step></ix-workflow-steps>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-workflow-step >> nth=0'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

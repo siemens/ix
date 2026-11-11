@@ -1,0 +1,668 @@
+{
+  "axisCommon": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "axisLabel.color",
+        "categoryAxis.axisLabel.color",
+        "logAxis.axisLabel.color",
+        "timeAxis.axisLabel.color",
+        "valueAxis.axisLabel.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/border/2": {
+      "eChartsVariable": [
+        "axisLine.lineStyle.color",
+        "axisTick.lineStyle.color",
+        "categoryAxis.axisLine.lineStyle.color",
+        "categoryAxis.axisTick.lineStyle.color",
+        "categoryAxis.splitLine.lineStyle.color",
+        "logAxis.axisLine.lineStyle.color",
+        "logAxis.axisTick.lineStyle.color",
+        "logAxis.splitLine.lineStyle.color",
+        "timeAxis.axisLine.lineStyle.color",
+        "timeAxis.axisTick.lineStyle.color",
+        "timeAxis.splitLine.lineStyle.color",
+        "valueAxis.axisLine.lineStyle.color",
+        "valueAxis.axisTick.lineStyle.color",
+        "valueAxis.splitLine.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#9999A9",
+        "Siemens Brand Light": "#66667E",
+        "Community Dark": "#919CA1",
+        "Community Light": "#5B6A71"
+      }
+    },
+    "si/sys/border/4": {
+      "eChartsVariable": [
+        "splitLine.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#4C4C68",
+        "Siemens Brand Light": "#E5E5E9",
+        "Community Dark": "#405158",
+        "Community Light": "#EBEDEE"
+      }
+    },
+    "transparent": {
+      "eChartsVariable": [
+        "splitArea.areaStyle.color[0]",
+        "categoryAxis.splitArea.areaStyle.color[0]",
+        "logAxis.splitArea.areaStyle.color[0]",
+        "timeAxis.splitArea.areaStyle.color[0]",
+        "valueAxis.splitArea.areaStyle.color[0]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "transparent",
+        "Siemens Brand Light": "transparent",
+        "Community Dark": "transparent",
+        "Community Light": "transparent"
+      }
+    },
+    "si/sys/background/1": {
+      "eChartsVariable": [
+        "splitArea.areaStyle.color[1]",
+        "categoryAxis.splitArea.areaStyle.color[1]",
+        "logAxis.splitArea.areaStyle.color[1]",
+        "timeAxis.splitArea.areaStyle.color[1]",
+        "valueAxis.splitArea.areaStyle.color[1]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#23233C",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#1A272D",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  },
+  "legend": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "legend.textStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    }
+  },
+  "timeline": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "timeline.emphasis.label.color",
+        "timeline.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/data/categorical/1": {
+      "eChartsVariable": [
+        "timeline.checkpointStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00C1B6",
+        "Siemens Brand Light": "#009999",
+        "Community Dark": "#00BDDA",
+        "Community Light": "#0096B4"
+      }
+    },
+    "si/sys/data/categorical/3": {
+      "eChartsVariable": [
+        "timeline.emphasis.itemStyle.color",
+        "timeline.itemStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#01D65A",
+        "Siemens Brand Light": "#00890E",
+        "Community Dark": "#01D65A",
+        "Community Light": "#00890E"
+      }
+    },
+    "transparent": {
+      "eChartsVariable": [
+        "timeline.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "transparent",
+        "Siemens Brand Light": "transparent",
+        "Community Dark": "transparent",
+        "Community Light": "transparent"
+      }
+    },
+    "si/sys/text/accent": {
+      "eChartsVariable": [
+        "timeline.controlStyle.color",
+        "timeline.emphasis.controlStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00CCCC",
+        "Siemens Brand Light": "#006B80",
+        "Community Dark": "#00C9E4",
+        "Community Light": "#006A87"
+      }
+    },
+    "si/sys/border/accent": {
+      "eChartsVariable": [
+        "timeline.controlStyle.borderColor",
+        "timeline.emphasis.controlStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00CCCC",
+        "Siemens Brand Light": "#006B80",
+        "Community Dark": "#00C9E4",
+        "Community Light": "#006A87"
+      }
+    },
+    "si/sys/text/on-accent": {
+      "eChartsVariable": [
+        "timeline.checkpointStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#000028",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  },
+  "title": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "title.textStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/text/secondary": {
+      "eChartsVariable": [
+        "title.subtextStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#B3B3BE",
+        "Siemens Brand Light": "#4C4C68",
+        "Community Dark": "#AEB5B8",
+        "Community Light": "#405158"
+      }
+    }
+  },
+  "tooltip": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "tooltip.textStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/background/inverse": {
+      "eChartsVariable": [
+        "tooltip.axisPointer.crossStyle.color",
+        "tooltip.axisPointer.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/background/3": {
+      "eChartsVariable": [
+        "tooltip.backgroundColor",
+        "tooltip.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#2D2D45",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#243137",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  },
+  "colors": {
+    "si/sys/data/categorical/1": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#00C1B6", "Siemens Brand Light": "#009999", "Community Dark": "#00BDDA", "Community Light": "#0096B4" } },
+    "si/sys/data/categorical/2": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#00FFB9", "Siemens Brand Light": "#005159", "Community Dark": "#00EAFF", "Community Light": "#005159" } },
+    "si/sys/data/categorical/3": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#01D65A", "Siemens Brand Light": "#00890E", "Community Dark": "#01D65A", "Community Light": "#00890E" } },
+    "si/sys/data/categorical/4": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#85E9D2", "Siemens Brand Light": "#1A747D", "Community Dark": "#85E9D2", "Community Light": "#1A747D" } },
+    "si/sys/data/categorical/5": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#6895F6", "Siemens Brand Light": "#3664C6", "Community Dark": "#6895F6", "Community Light": "#3664C6" } },
+    "si/sys/data/categorical/6": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#CCF5F5", "Siemens Brand Light": "#002949", "Community Dark": "#CCF5F5", "Community Light": "#002949" } },
+    "si/sys/data/categorical/7": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#805CFF", "Siemens Brand Light": "#7353E5", "Community Dark": "#805CFF", "Community Light": "#7353E5" } },
+    "si/sys/data/categorical/8": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#BFB0F3", "Siemens Brand Light": "#553BA3", "Community Dark": "#BFB0F3", "Community Light": "#553BA3" } },
+    "si/sys/data/categorical/9": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#B95CC9", "Siemens Brand Light": "#740089", "Community Dark": "#B95CC9", "Community Light": "#740089" } },
+    "si/sys/data/categorical/10": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF2640", "Siemens Brand Light": "#D72339", "Community Dark": "#FF2626", "Community Light": "#D72323" } },
+    "si/sys/data/categorical/11": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#E5659B", "Siemens Brand Light": "#4F153D", "Community Dark": "#E5659B", "Community Light": "#4F153D" } },
+    "si/sys/data/categorical/12": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF98C4", "Siemens Brand Light": "#C04774", "Community Dark": "#FF98C4", "Community Light": "#C04774" } },
+    "si/sys/data/categorical/13": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#97C7FF", "Siemens Brand Light": "#00237A", "Community Dark": "#97C7FF", "Community Light": "#00237A" } },
+    "si/sys/data/categorical/14": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FF9000", "Siemens Brand Light": "#801100", "Community Dark": "#FF8000", "Community Light": "#643200" } },
+    "si/sys/data/categorical/15": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#FFD732", "Siemens Brand Light": "#805800", "Community Dark": "#FFC832", "Community Light": "#7B5A00" } },
+    "si/sys/data/categorical/16": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#AAAA96", "Siemens Brand Light": "#757563", "Community Dark": "#AAAA96", "Community Light": "#757563" } },
+    "si/sys/data/categorical/17": { "eChartsVariable": ["color", "graph.color"], "hexValuesByMode": { "Siemens Brand Dark": "#7D8099", "Siemens Brand Light": "#4C4C68", "Community Dark": "#72848C", "Community Light": "#405158" } }
+  },
+  "graph": {
+    "si/sys/data/categorical/1": {
+      "eChartsVariable": [
+        "graph.itemStyle.borderColor",
+        "graph.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00C1B6",
+        "Siemens Brand Light": "#009999",
+        "Community Dark": "#00BDDA",
+        "Community Light": "#0096B4"
+      }
+    },
+    "si/sys/text/on-accent": {
+      "eChartsVariable": [
+        "graph.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#000028",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  },
+  "bar": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "bar.itemStyle.barBorderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    }
+  },
+  "boxplot": {
+    "si/sys/background/accent": {
+      "eChartsVariable": [
+        "boxplot.itemStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00CCCC",
+        "Siemens Brand Light": "#006B80",
+        "Community Dark": "#00C9E4",
+        "Community Light": "#006A87"
+      }
+    },
+    "si/sys/border/1": {
+      "eChartsVariable": [
+        "boxplot.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "boxplot.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "transparent": {
+      "eChartsVariable": [
+        "boxplot.label.textBorderColor"
+      ]
+    }
+  },
+  "funnel": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "funnel.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    }
+  },
+  "gauge": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "gauge.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "gauge.axisLabel.color",
+        "gauge.detail.color",
+        "gauge.title.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    }
+  },
+  "parallel": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "parallel.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    }
+  },
+  "pie": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "pie.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "pie.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "transparent":{"eChartsVariable": ["pie.label.textBorderColor"]}
+  },
+  "radar": {
+    "si/sys/background/1": {
+      "eChartsVariable": [
+        "radar.splitArea.areaStyle.color[1]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#23233C",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#1A272D",
+        "Community Light": "#FFFFFF"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "radar.axisName.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/border/1": {
+      "eChartsVariable": [
+        "radar.axisLine.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "radar.splitLine.lineStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    }
+  },
+  "sankey": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "sankey.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    }
+  },
+  "scatter": {
+    "si/sys/border/3": {
+      "eChartsVariable": [
+        "scatter.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#66667E",
+        "Siemens Brand Light": "#9999A9",
+        "Community Dark": "#5B6A71",
+        "Community Light": "#72848C"
+      }
+    }
+  },
+  "toolbox": {
+    "si/sys/text/secondary": {
+      "eChartsVariable": [
+        "toolbox.iconStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#B3B3BE",
+        "Siemens Brand Light": "#4C4C68",
+        "Community Dark": "#AEB5B8",
+        "Community Light": "#405158"
+      }
+    },
+    "si/sys/border/accent-hover": {
+      "eChartsVariable": [
+        "toolbox.emphasis.iconStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00FFB9",
+        "Siemens Brand Light": "#005159",
+        "Community Dark": "#00EAFF",
+        "Community Light": "#004F69"
+      }
+    }
+  },
+  "root": {
+    "transparent": {
+      "eChartsVariable": [
+        "backgroundColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "transparent",
+        "Siemens Brand Light": "transparent",
+        "Community Dark": "transparent",
+        "Community Light": "transparent"
+      }
+    },
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "textStyle.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    }
+  },
+  "candlestick": {
+    "si/sys/data/rating/excellent": {
+      "eChartsVariable": [
+        "candlestick.itemStyle.color",
+        "candlestick.itemStyle.borderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#00A327",
+        "Siemens Brand Light": "#00A327",
+        "Community Dark": "#00A327",
+        "Community Light": "#00A327"
+      }
+    },
+    "si/sys/data/rating/bad": {
+      "eChartsVariable": [
+        "candlestick.itemStyle.color0",
+        "candlestick.itemStyle.borderColor0"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#D72339",
+        "Siemens Brand Light": "#D72339",
+        "Community Dark": "#D72323",
+        "Community Light": "#D72323"
+      }
+    }
+  },
+  "visualMap": {
+    "si/sys/background/danger": {
+      "eChartsVariable": [
+        "visualMap.color[0]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#D72339",
+        "Siemens Brand Light": "#D72339",
+        "Community Dark": "#D72323",
+        "Community Light": "#D72323"
+      }
+    },
+    "si/sys/background/warning": {
+      "eChartsVariable": [
+        "visualMap.color[1]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FF9000",
+        "Siemens Brand Light": "#C75300",
+        "Community Dark": "#FF8000",
+        "Community Light": "#BA5D00"
+      }
+    },
+    "si/sys/background/caution": {
+      "eChartsVariable": [
+        "visualMap.color[2]"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFD732",
+        "Siemens Brand Light": "#EDBF00",
+        "Community Dark": "#FFC832",
+        "Community Light": "#FCB900"
+      }
+    }
+  },
+  "markPoint": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "markPoint.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/text/on-accent": {
+      "eChartsVariable": [
+        "markPoint.label.textBorderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#000028",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  },
+  "markLine": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "markLine.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/text/on-accent": {
+      "eChartsVariable": [
+        "markLine.label.textBorderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#000028",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  },
+  "markArea": {
+    "si/sys/text/primary": {
+      "eChartsVariable": [
+        "markArea.label.color"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#FFFFFF",
+        "Siemens Brand Light": "#000028",
+        "Community Dark": "#FFFFFF",
+        "Community Light": "#000609"
+      }
+    },
+    "si/sys/text/on-accent": {
+      "eChartsVariable": [
+        "markArea.label.textBorderColor"
+      ],
+      "hexValuesByMode": {
+        "Siemens Brand Dark": "#000028",
+        "Siemens Brand Light": "#FFFFFF",
+        "Community Dark": "#000609",
+        "Community Light": "#FFFFFF"
+      }
+    }
+  }
+}

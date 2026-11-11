@@ -10,7 +10,7 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-kpi--outline-color--focus: var(--focus--border-color);
+  --ix-kpi--outline-color--focus: #{sys.$si-sys-color-effects-focus};
   --ix-kpi-display--border-color--accent: #{sys.$si-sys-color-border-accent};
   --ix-kpi-display--border-color--caution: #{sys.$si-sys-color-border-caution};
   --ix-kpi-display--border-color--critical: #{sys.$si-sys-color-border-critical};
@@ -36,5 +36,5 @@
   --ix-kpi-stacked--height: #{sys.$si-sys-sizing-size-110};
   --ix-kpi-container--border-width: #{sys.$si-sys-sizing-border-width-selected};
   --ix-kpi-label--margin-block-start: #{sys.$si-sys-sizing-spacing-y-10};
-  --ix-kpi--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-kpi--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }

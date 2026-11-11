@@ -11,7 +11,7 @@
 
 :host {
   --ix-application-switch-modal-app-entry--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-application-switch-modal-app-entry--border-color--focus: #{sys.$si-sys-color-effects-focus};
+  --ix-application-switch-modal-app-entry--outline-color--focus: #{sys.$si-sys-color-effects-focus};
 }
 
 :host {
@@ -22,13 +22,10 @@
   --ix-application-switch-modal-loading--margin-right: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-switch-modal-app-entry--gap: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-switch-modal-app-entry--flex-basis: 45%;
-  --ix-application-switch-modal-app-entry--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-application-switch-modal-app-entry--padding: calc(
-    #{sys.$si-sys-sizing-spacing-y-40} - var(--ix-application-switch-modal-app-entry--border-width)
-  );
-  --ix-application-switch-modal-app-entry--padding-inline-end: calc(
-    #{sys.$si-sys-sizing-spacing-x-60} - var(--ix-application-switch-modal-app-entry--border-width)
-  );
+  --ix-application-switch-modal-app-entry--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
+  --ix-application-switch-modal-app-entry--outline-offset--focus: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-application-switch-modal-app-entry--padding: #{sys.$si-sys-sizing-spacing-y-40};
+  --ix-application-switch-modal-app-entry--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-switch-modal-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-application-switch-modal-app-icon--icon-size: #{sys.$si-sys-sizing-size-100};
   --ix-application-switch-modal-app-icon--border-radius: #{sys.$si-sys-sizing-border-radius-sm};

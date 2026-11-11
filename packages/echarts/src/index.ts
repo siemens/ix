@@ -12,5 +12,5 @@ export { resolveEChartThemeName } from './theme-util';
 export { default as getComputedCSSProperty } from './computecss';
 export { default as brandDark } from './themes/brand-dark';
 export { default as brandLight } from './themes/brand-light';
-export { default as classicDark } from './themes/classic-dark';
-export { default as classicLight } from './themes/classic-light';
+export { default as communityDark } from './themes/community-dark';
+export { default as communityLight } from './themes/community-light';

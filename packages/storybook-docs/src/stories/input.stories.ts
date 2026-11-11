@@ -79,3 +79,27 @@ export const MinLength: Story = {
 export const ValidationState: Story = {
   args: {},
 };
+
+export const ClearValidation: Story = {
+  render: () => {
+    const container = document.createElement('div');
+    const fields = [
+      document.createElement('ix-input'),
+      document.createElement('ix-number-input'),
+      document.createElement('ix-textarea'),
+    ];
+
+    for (const field of fields) {
+      field.label = field.tagName.toLowerCase();
+      field.required = true;
+      field.setAttribute('value', '42');
+      const clearButton = document.createElement('ix-button');
+      clearButton.type = 'button';
+      clearButton.textContent = `Clear ${field.label}`;
+      clearButton.addEventListener('click', () => void field.clear());
+      container.append(field, clearButton);
+    }
+
+    return container;
+  },
+};
