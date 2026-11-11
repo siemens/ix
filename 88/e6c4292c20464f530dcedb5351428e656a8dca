@@ -1,0 +1,21 @@
+packages/core/src/components/slider/slider.scss
+  s_16128eea968754::t_8d583b7c8f1048 289,323-330,341-343,345-346
+packages/core/src/components/slider/slider.vars.scss
+  s_16128eea968754::t_782fe083c6ad20 14,16-17,22-23,28,34,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "88e6c4292c20464f530dcedb5351428e656a8dca",
+  "prompts": {},
+  "sessions": {
+    "s_16128eea968754": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "ad735e42-77f6-439f-b652-b4c39f3a890c",
+        "model": "unknown"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
