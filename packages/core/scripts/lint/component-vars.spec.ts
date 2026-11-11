@@ -188,9 +188,7 @@ function declarationsOf(file: string): Declaration[] {
 const files = findFiles(COMPONENTS_DIR, ['.vars.scss']);
 const components = new Set(files.map(componentOf));
 const declarations = files.flatMap(declarationsOf);
-const publicDeclarations = declarations.filter(({ name }) =>
-  NAME.test(name)
-);
+const publicDeclarations = declarations.filter(({ name }) => NAME.test(name));
 
 function format({ file, name }: Declaration) {
   return `${file}: ${name}`;
@@ -217,6 +215,18 @@ function owningComponent(block: string) {
 describe('component CSS custom properties', () => {
   it('finds vars files', () => {
     expect(files.length).toBeGreaterThan(50);
+  });
+
+  it('marks every vars file as internal API', () => {
+    const missing = files
+      .filter(
+        (file) =>
+          !readFileSync(file, 'utf8').includes(
+            '// Internal: these CSS custom properties are implementation details'
+          )
+      )
+      .map((file) => path.relative(COMPONENTS_DIR, file));
+    expect(missing).toEqual([]);
   });
 
   it('uses only the --ix- prefix in component sources', () => {

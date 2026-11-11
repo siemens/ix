@@ -20,12 +20,12 @@ Validated by `packages/core/scripts/lint/component-vars.spec.ts` (`pnpm --filter
 --ix-<component>[-<part>]--<property>[--<modifier>...]
 ```
 
-| Segment | Rule | Examples |
-| --- | --- | --- |
-| `<component>` | Tag name without `ix-` of the component that owns the vars file. | `button`, `menu-item`, `progress-indicator` |
-| `<part>` | Optional element inside the component's shadow DOM. Use nouns. Never use another component's name as the part. | `icon`, `thumb`, `fill`, `slotted-avatar` |
-| `<property>` | The CSS property the value feeds into (`color`, `background`, `border-color`, `height`, ...) or one of the approved custom names (`size`, `offset-x`, `status-color`, ...). | `background`, `border-radius` |
-| `<modifier>` | Zero or more conditions, each prefixed with `--`, in canonical category order. | `--primary--hover`, `--danger--disabled` |
+| Segment       | Rule                                                                                                                                                                        | Examples                                    |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `<component>` | Tag name without `ix-` of the component that owns the vars file.                                                                                                            | `button`, `menu-item`, `progress-indicator` |
+| `<part>`      | Optional element inside the component's shadow DOM. Use nouns. Never use another component's name as the part.                                                              | `icon`, `thumb`, `fill`, `slotted-avatar`   |
+| `<property>`  | The CSS property the value feeds into (`color`, `background`, `border-color`, `height`, ...) or one of the approved custom names (`size`, `offset-x`, `status-color`, ...). | `background`, `border-radius`               |
+| `<modifier>`  | Zero or more conditions, each prefixed with `--`, in canonical category order.                                                                                              | `--primary--hover`, `--danger--disabled`    |
 
 Examples:
 
@@ -50,6 +50,16 @@ Modifiers must come from this vocabulary and appear in this category order:
 8. Disabled: `readonly`, `disabled`
 
 Size modifiers use the component's public API value (for example, `ix-spinner size="xxl"` maps to `--xxl`).
+
+## Internal API disclaimer
+
+Component CSS custom properties are not a public API and are not covered by semantic versioning. Every `*.vars.scss` file starts (after the license header) with this comment:
+
+```scss
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+```
 
 ## Runtime properties
 
