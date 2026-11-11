@@ -97,6 +97,28 @@ export class Menu {
    */
   @Prop({ mutable: true }) showAbout = false;
 
+  @Watch('showAbout')
+  onShowAboutChange(show: boolean) {
+    if (!this.about) {
+      return;
+    }
+
+    this.about.show = show;
+
+    if (show) {
+      this.overlayCloseToken++;
+      const wasSettingsVisible = this.showSettings && !this.isOverlayClosing;
+      this.isOverlayClosing = false;
+      this.showSettings = false;
+      if (this.settings) {
+        this.settings.show = false;
+      }
+      if (!wasSettingsVisible) {
+        this.animateOverlayFadeIn();
+      }
+    }
+  }
+
   /**
    * Show toggle between light and dark variant. Only if the provided theme have implemented both!
    */
@@ -384,6 +406,7 @@ export class Menu {
 
   componentDidLoad() {
     this.onShowSettingsChange(this.showSettings);
+    this.onShowAboutChange(this.showAbout);
 
     requestAnimationFrame(() => {
       this.suppressAnchorWrapperTabStops();
@@ -649,14 +672,12 @@ export class Menu {
       return;
     }
 
-    if (!this.isOverlayVisible()) {
-      this.animateOverlayFadeIn();
-    }
-
     if (show) {
-      this.resetOverlay();
-      this.showAbout = show;
-      this.about.show = this.showAbout;
+      if (this.showAbout === show) {
+        this.onShowAboutChange(show);
+      } else {
+        this.showAbout = show;
+      }
     } else {
       this.onOverlayClose();
     }
