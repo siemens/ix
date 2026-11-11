@@ -13,7 +13,7 @@ import { TRAP_FOCUS_INCLUDE_ATTRIBUTE } from '../utils/focus/focus-trap';
 /**
  * Main body section of the popover.
  *
- * @documentation https://ix.siemens.io//docs/components/popover/guide.md
+ * @documentation https://ix.siemens.io/docs/components/popover/guide.md
  * @slot - Popover body content.
  *
  * @since 5.1.0

@@ -25,7 +25,7 @@ import { a11yBoolean } from '../utils/a11y';
 /**
  * A single node within a tree.
  *
- * @documentation https://ix.siemens.io//docs/components/tree/code.md
+ * @documentation https://ix.siemens.io/docs/components/tree/code.md
  * @slot - Tree item content.
  */
 @Component({
