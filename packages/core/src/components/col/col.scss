@@ -16,7 +16,7 @@
   max-width: 100%;
   min-height: 1px;
 
-  padding: calc(var(--_ix-layout-grid-gutter) * 0.5);
+  padding: calc(var(--ix-layout-grid--gutter) * 0.5);
 
   @include component.ix-component;
 }

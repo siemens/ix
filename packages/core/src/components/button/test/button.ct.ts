@@ -70,7 +70,7 @@ regressionTest(
         <ix-button id="default-button">Content</ix-button>
         <ix-button id="icon-button" icon="rocket">Content</ix-button>
         <ix-button id="loading-button" loading>Content</ix-button>
-        <ix-button id="override-button" style="--_ix-button-padding: 0 20px">
+        <ix-button id="override-button" style="--ix-button--padding: 0 20px">
           Content
         </ix-button>
       `,

@@ -91,7 +91,7 @@
     inset: 8.33%;
     border-radius: 100%;
     border: $track-size solid
-      var(--_ix-button-color, var(--ix-spinner--border-color));
+      var(--ix-button--color, var(--ix-spinner--border-color));
     animation: clipMask var(--ix-spinner--mask-duration) linear infinite;
   }
 

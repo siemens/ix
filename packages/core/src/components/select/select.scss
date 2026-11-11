@@ -19,9 +19,7 @@
 :host {
   display: inline-block;
   position: relative;
-  --_ix-select-chip-margin-inline-end: var(--ix-select-chip--margin-inline-end);
-  --_ix-select-trigger-min-width: var(--ix-select-trigger--min-width);
-  --_ix-select-overflow-chip-fallback-width: var(
+  --ix-select-overflow-chip--fallback-width: var(
     --ix-select-overflow-chip-fallback--width
   );
 
@@ -110,7 +108,7 @@
 
       > ix-filter-chip {
         margin-block: var(--ix-select-chip--margin-block);
-        margin-inline: 0 var(--_ix-select-chip-margin-inline-end);
+        margin-inline: 0 var(--ix-select-chip--margin-inline-end);
         flex-shrink: 0;
         max-width: var(--ix-select-chips--max-width);
 
@@ -182,7 +180,7 @@
   }
 
   .dropdown-visible {
-    --_ix-icon-button-color: var(--ix-select-overflow-button--color--active);
+    --ix-icon-button--color: var(--ix-select-overflow-button--color--active);
   }
 
   .add-item {

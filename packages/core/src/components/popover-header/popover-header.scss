@@ -33,7 +33,7 @@
     align-self: flex-start;
     border-radius: var(--ix-popover-header-close-button--border-radius);
 
-    --_ix-icon-button-color: var(--ix-popover-close--color);
+    --ix-icon-button--color: var(--ix-popover-close--color);
     --ix-button--color--tertiary: var(--ix-popover-close--color);
     --ix-button--color--tertiary--hover: var(--ix-popover-close--color);
     --ix-button--color--tertiary--active: var(--ix-popover-close--color);

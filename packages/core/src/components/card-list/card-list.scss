@@ -93,7 +93,7 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     height: 100%;
     width: 100%;
     pointer-events: all;
-    mask-image: var(--_ix-card-list-overflow, none);
+    mask-image: var(--ix-card-list--overflow, none);
   }
 
   .Show__All__Card {
@@ -111,26 +111,26 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     max-height: var(--ix-card-list-show-all-card--max-height);
     height: var(--ix-card-list-show-all-card--height);
 
-    --_ix-card-border-color: var(--ix-card-list-show-all--border-color);
-    --_ix-card-background: var(--ix-card-list-show-all--background);
+    --ix-card--border-color: var(--ix-card-list-show-all--border-color);
+    --ix-card--background: var(--ix-card-list-show-all--background);
     color: var(--ix-card-list-show-all--color);
 
     /* End card owns padding; neutralize ix-card-content default inset */
     ix-card-content {
-      --_ix-card-content--padding: 0;
+      --ix-card-content--padding: 0;
       height: 100%;
     }
 
     /* Beat ix-card :host(.clickable…) hover/active so End-card accent chrome wins */
     &.clickable:hover,
     &:hover {
-      --_ix-card-background: var(--ix-card-list-show-all--background--hover);
+      --ix-card--background: var(--ix-card-list-show-all--background--hover);
       color: var(--ix-card-list-show-all--color--hover);
     }
 
     &.clickable:active,
     &:active {
-      --_ix-card-background: var(--ix-card-list-show-all--background--active);
+      --ix-card--background: var(--ix-card-list-show-all--background--active);
       color: var(--ix-card-list-show-all--color--hover);
     }
 

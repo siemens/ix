@@ -17,9 +17,6 @@
   flex-direction: column;
   width: 100%;
   transition: var(--ix-card-accordion--transition-duration) ease-in-out;
-  --_ix-card-accordion-expanded-height: var(
-    --ix-card-accordion--height--expanded
-  );
 
   @include component.ix-component;
 
@@ -78,7 +75,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--_ix-card-background);
+    background-color: var(--ix-card--background);
     z-index: -1;
   }
 
@@ -112,7 +109,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    border-radius: var(--_ix-card-accordion-expand-content--border-radius, 0);
+    border-radius: var(--ix-card-accordion-expand-content--border-radius, 0);
     border-top: none;
     border: var(--ix-card-accordion-chrome-frame--border-width, 0px) solid
       transparent;
@@ -120,7 +117,7 @@
   }
 
   .expand-content.show {
-    height: var(--_ix-card-accordion-expanded-height);
+    height: var(--ix-card-accordion--height--expanded);
   }
 
   .expand-content-inner {

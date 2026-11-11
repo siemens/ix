@@ -20,13 +20,13 @@
   display: none;
 
   dialog {
-    --_ix-dialog-padding: var(--ix-modal-dialog--padding);
+    --ix-dialog--padding: var(--ix-modal-dialog--padding);
 
     margin: 0;
-    padding: var(--_ix-dialog-padding);
-    padding-top: calc(var(--_ix-dialog-padding) + var(--ix-safe-area-inset-top));
+    padding: var(--ix-dialog--padding);
+    padding-top: calc(var(--ix-dialog--padding) + var(--ix-safe-area-inset-top));
     padding-bottom: calc(
-      var(--_ix-dialog-padding) + var(--ix-safe-area-inset-bottom)
+      var(--ix-dialog--padding) + var(--ix-safe-area-inset-bottom)
     );
     left: 50%;
   }
@@ -77,21 +77,21 @@
     transform: none !important;
     box-shadow: none;
 
-    --_ix-dialog-full-screen-height: calc(
+    --ix-dialog--height--full-screen: calc(
       var(--ix-safe-area-inset-top) + var(--ix-safe-area-inset-bottom)
     );
 
-    width: calc(100% - var(--_ix-dialog-padding) * 2);
-    min-width: calc(100% - var(--_ix-dialog-padding) * 2);
-    max-width: calc(100% - var(--_ix-dialog-padding) * 2);
+    width: calc(100% - var(--ix-dialog--padding) * 2);
+    min-width: calc(100% - var(--ix-dialog--padding) * 2);
+    max-width: calc(100% - var(--ix-dialog--padding) * 2);
 
     min-height: calc(
-      100% - (var(--_ix-dialog-padding) * 2) -
-        var(--_ix-dialog-full-screen-height)
+      100% - (var(--ix-dialog--padding) * 2) -
+        var(--ix-dialog--height--full-screen)
     );
     max-height: calc(
-      100% - (var(--_ix-dialog-padding) * 2) -
-        var(--_ix-dialog-full-screen-height)
+      100% - (var(--ix-dialog--padding) * 2) -
+        var(--ix-dialog--height--full-screen)
     );
   }
 

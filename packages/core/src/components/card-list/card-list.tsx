@@ -411,7 +411,7 @@ export class CardList {
       transparent 100%
     )`;
     return {
-      '--_ix-card-list-overflow': maskLayer,
+      '--ix-card-list--overflow': maskLayer,
     };
   }
 

@@ -44,8 +44,8 @@ export class LayoutGrid {
           'no-margin': this.noMargin,
         }}
         style={{
-          '--_ix-layout-grid-columns': `${this.columns}`,
-          '--_ix-layout-grid-gutter': `${this.gap}px`,
+          '--ix-layout-grid--columns': `${this.columns}`,
+          '--ix-layout-grid--gutter': `${this.gap}px`,
         }}
       >
         <slot></slot>

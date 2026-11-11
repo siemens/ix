@@ -19,9 +19,9 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   display: block;
   cursor: pointer;
 
-  height: var(--_ix-menu-item-height, $menuItemHeight);
-  min-height: var(--_ix-menu-item-height, $menuItemHeight);
-  max-height: var(--_ix-menu-item-height, $menuItemHeight);
+  height: $menuItemHeight;
+  min-height: $menuItemHeight;
+  max-height: $menuItemHeight;
 
   .tab {
     all: unset;
@@ -29,7 +29,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     display: flex;
     position: relative;
     align-items: center;
-    height: var(--_ix-menu-item-height, $menuItemHeight);
+    height: $menuItemHeight;
     width: calc(100%);
     z-index: var(--ix-menu-item-tab--z-index);
     padding-left: $menuItemPadding;
@@ -97,7 +97,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   .tab::before {
     content: '';
     background-color: var(--ix-menu-item--border-color--primary--selected);
-    height: var(--_ix-menu-item-height, $menuItemHeight);
+    height: $menuItemHeight;
     width: var(--ix-menu-item-tab--width);
     left: 0;
     position: absolute;

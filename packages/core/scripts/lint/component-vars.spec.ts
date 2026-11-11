@@ -156,11 +156,13 @@ const NAME =
 
 type Declaration = { file: string; name: string; component: string };
 
-function findVarsFiles(dir: string): string[] {
+function findFiles(dir: string, extensions: string[]): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) return findVarsFiles(full);
-    return entry.name.endsWith('.vars.scss') ? [full] : [];
+    if (entry.isDirectory()) return findFiles(full, extensions);
+    return extensions.some((extension) => entry.name.endsWith(extension))
+      ? [full]
+      : [];
   });
 }
 
@@ -183,7 +185,7 @@ function declarationsOf(file: string): Declaration[] {
   );
 }
 
-const files = findVarsFiles(COMPONENTS_DIR);
+const files = findFiles(COMPONENTS_DIR, ['.vars.scss']);
 const components = new Set(files.map(componentOf));
 const declarations = files.flatMap(declarationsOf);
 const publicDeclarations = declarations.filter(({ name }) =>
@@ -217,15 +219,18 @@ describe('component CSS custom properties', () => {
     expect(files.length).toBeGreaterThan(50);
   });
 
-  it('never declares private (--_ix-) properties in vars files', () => {
-    const privates = declarations.filter(({ name }) => name.startsWith('--_'));
-    expect(privates.map(format)).toEqual([]);
+  it('uses only the --ix- prefix in component sources', () => {
+    const sources = findFiles(COMPONENTS_DIR, ['.scss', '.tsx', '.ts']);
+    const prefixed = sources.flatMap((file) =>
+      [...readFileSync(file, 'utf8').matchAll(/--_ix-[\w-]+/g)].map(
+        ([name]) => `${path.relative(COMPONENTS_DIR, file)}: ${name}`
+      )
+    );
+    expect(prefixed).toEqual([]);
   });
 
   it('follows --ix-<component>[-<part>]--<property>[--<modifier>...]', () => {
-    const invalid = declarations.filter(
-      ({ name }) => !name.startsWith('--_') && !NAME.test(name)
-    );
+    const invalid = declarations.filter(({ name }) => !NAME.test(name));
     expect(invalid.map(format)).toEqual([]);
   });
 

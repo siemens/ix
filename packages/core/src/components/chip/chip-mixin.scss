@@ -120,7 +120,7 @@ $outline-border-width: var(--ix-chip--border-width--focus);
 
     .close-button {
       color: var(--ix-chip--color--accent);
-      --_ix-icon-button-color: var(--ix-chip--color--accent);
+      --ix-icon-button--color: var(--ix-chip--color--accent);
       pointer-events: auto;
     }
 
@@ -150,7 +150,7 @@ $outline-border-width: var(--ix-chip--border-width--focus);
 
     .close-button {
       color: var(--ix-chip--color--outline);
-      --_ix-icon-button-color: var(--ix-chip--color--outline);
+      --ix-icon-button--color: var(--ix-chip--color--outline);
     }
 
     .with-icon {
@@ -182,7 +182,7 @@ $outline-border-width: var(--ix-chip--border-width--focus);
 
         .close-button {
           color: var(--ix-chip--color--#{$color}--contrast);
-          --_ix-icon-button-color: var(--ix-chip--color--#{$color}--contrast);
+          --ix-icon-button--color: var(--ix-chip--color--#{$color}--contrast);
         }
 
         @if $interaction {

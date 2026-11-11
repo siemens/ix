@@ -20,12 +20,12 @@
 /// Styles of the `ConfirmationFooter` functional component.
 @mixin confirmation-footer {
   .confirmation-footer {
-    --_ix-confirmation-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
+    --ix-confirmation-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
 
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: var(--_ix-confirmation-footer--gap);
+    gap: var(--ix-confirmation-footer--gap);
   }
 
   .confirmation-footer.layout-center {

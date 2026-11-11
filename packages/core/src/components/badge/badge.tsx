@@ -616,8 +616,8 @@ export class Badge
     const customHostStyle =
       hostVariant === 'custom'
         ? ({
-            '--_ix-badge-custom-background': this.background,
-            '--_ix-badge-custom-color': this.badgeColor,
+            '--ix-badge--background--custom': this.background,
+            '--ix-badge--color--custom': this.badgeColor,
           } as Record<string, string | undefined>)
         : undefined;
 

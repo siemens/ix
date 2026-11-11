@@ -11,16 +11,13 @@
 @mixin linear {
   .linear-progress-container {
     width: 100%;
-    height: var(--_ix-progress-indicator-height);
+    height: var(--ix-progress-indicator--height);
     background-color: var(--ix-progress-indicator-track--background);
     border-radius: var(
       --ix-progress-indicator-linear-progress-container--border-radius
     );
     overflow: hidden;
-    margin: var(
-      --_ix-progress-indicator-margin,
-      var(--ix-progress-indicator-progress-container--margin)
-    );
+    margin: var(--ix-progress-indicator--margin);
   }
 
   @each $state in progress-vars.$progress-indicator-states {
@@ -39,7 +36,7 @@
 
   .progress-bar {
     height: 100%;
-    background-color: var(--_ix-progress-indicator-color);
+    background-color: var(--ix-progress-indicator--color);
     transition: width
       var(--ix-progress-indicator-progress-bar--transition-duration) ease;
   }

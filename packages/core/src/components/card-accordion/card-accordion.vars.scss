@@ -53,7 +53,7 @@
   --ix-card-accordion-expand-icon--size: #{sys.$si-sys-sizing-icon-md};
   --ix-card-accordion-expand-icon--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-card-accordion-expand-content-body--height: calc(
-    var(--_ix-card-accordion-expanded-height) - #{sys.$si-sys-sizing-spacing-y-60}
+    var(--ix-card-accordion--height--expanded) - #{sys.$si-sys-sizing-spacing-y-60}
   );
   --ix-card-accordion-expand-content-footer--height: #{sys.$si-sys-sizing-size-60};
 }

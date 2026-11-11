@@ -82,43 +82,41 @@
       align-items: flex-end;
     }
 
-    --_ix-progress-indicator-margin: var(--ix-progress-indicator--margin);
-
     height: 100%;
 
     &.xs {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--xs);
-      --_ix-progress-indicator-margin: var(
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--xs);
+      --ix-progress-indicator--margin: var(
         --ix-progress-indicator--margin--xs
       );
     }
 
     &.sm {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--sm);
-      --_ix-progress-indicator-margin: var(
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--sm);
+      --ix-progress-indicator--margin: var(
         --ix-progress-indicator--margin--sm
       );
     }
 
     &.md {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--md);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--md);
     }
 
     &.lg {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--lg);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--lg);
     }
 
     &.xl {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--xl);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--xl);
     }
 
-    --_ix-progress-indicator-color: var(
+    --ix-progress-indicator--color: var(
       --ix-progress-indicator-fill--background
     );
 
     @each $state in progress-vars.$progress-indicator-states {
       &.#{$state} {
-        --_ix-progress-indicator-color: var(
+        --ix-progress-indicator--color: var(
           --ix-progress-indicator-fill--background--#{$state}
         );
       }
@@ -129,23 +127,23 @@
 :host(.linear) {
   .progress-indicator {
     &.xs {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--xs);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--xs);
     }
 
     &.sm {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--sm);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--sm);
     }
 
     &.md {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--md);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--md);
     }
 
     &.lg {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--lg);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--lg);
     }
 
     &.xl {
-      --_ix-progress-indicator-height: var(--ix-progress-indicator--height--xl);
+      --ix-progress-indicator--height: var(--ix-progress-indicator--height--xl);
     }
   }
 

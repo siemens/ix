@@ -103,7 +103,7 @@
     }
 
     ::slotted(ix-menu-item) {
-      --_ix-menu-item-height: var(
+      --ix-menu-item--height: var(
         --ix-menu-category-category-dropdown-menu-item--height
       );
     }
@@ -119,7 +119,7 @@
   }
 
   ::slotted(ix-menu-item) {
-    --_ix-menu-item-height: var(--ix-menu-category-menu-item--height);
+    --ix-menu-item--height: var(--ix-menu-category-menu-item--height);
   }
 }
 

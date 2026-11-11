@@ -15,7 +15,7 @@
   box-sizing: border-box;
   display: flex;
   padding: var(
-    --_ix-card-content--padding,
+    --ix-card-content--padding,
     #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
   );
   height: 100%;

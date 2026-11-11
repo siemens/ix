@@ -138,10 +138,10 @@ export class BadgePage {
   ): Promise<void> {
     await expect(async () => {
       const resolvedBackground = await badge.evaluate((el) =>
-        el.style.getPropertyValue('--_ix-badge-custom-background')
+        el.style.getPropertyValue('--ix-badge--background--custom')
       );
       const resolvedColor = await badge.evaluate((el) =>
-        el.style.getPropertyValue('--_ix-badge-custom-color')
+        el.style.getPropertyValue('--ix-badge--color--custom')
       );
       expect(resolvedBackground).toBe(background);
       expect(resolvedColor).toBe(color);

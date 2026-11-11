@@ -11,7 +11,7 @@
 @use './badge.vars' as *;
 
 :host {
-  --_ix-badge-pulse-color: var(--ix-badge--background--accent);
+  --ix-badge--pulse-color: var(--ix-badge--background--accent);
 }
 
 $predefined-variants: danger, warning, caution, information, accent, critical,
@@ -213,7 +213,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 @each $variant in $status-icon-variants {
   :host([type='status-icon'].#{$variant}) {
-    --_ix-badge-pulse-color: var(--ix-badge--color--#{$variant});
+    --ix-badge--pulse-color: var(--ix-badge--color--#{$variant});
 
     .status-icon:not(.status-icon-plate) {
       color: var(--ix-badge--color--#{$variant});
@@ -223,7 +223,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 /* Error uses danger color tokens. */
 :host([type='status-icon'].error) {
-  --_ix-badge-pulse-color: var(--ix-badge--color--danger);
+  --ix-badge--pulse-color: var(--ix-badge--color--danger);
 
   .status-icon:not(.status-icon-plate) {
     color: var(--ix-badge--color--danger);
@@ -232,7 +232,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 @each $variant in $status-icon-variants {
   :host([type='status-icon'].#{$variant}:not(.outline)) {
-    --_ix-badge-pulse-color: var(--ix-badge--background--#{$variant});
+    --ix-badge--pulse-color: var(--ix-badge--background--#{$variant});
 
     .status-icon-glyph {
       color: var(--ix-badge--background--#{$variant});
@@ -246,7 +246,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 /* Filled error status icons use the danger color tokens. */
 :host([type='status-icon'].error:not(.outline)) {
-  --_ix-badge-pulse-color: var(--ix-badge--background--danger);
+  --ix-badge--pulse-color: var(--ix-badge--background--danger);
 
   .status-icon-glyph {
     color: var(--ix-badge--background--danger);
@@ -259,7 +259,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 @each $variant in $predefined-variants {
   :host(.#{$variant}:not(.outline):not([type='status-icon'])) {
-    --_ix-badge-pulse-color: var(--ix-badge--background--#{$variant});
+    --ix-badge--pulse-color: var(--ix-badge--background--#{$variant});
 
     .indicator {
       background-color: var(--ix-badge--background--#{$variant});
@@ -268,7 +268,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
   }
 
   :host(.#{$variant}.outline:not([type='status-icon'])) {
-    --_ix-badge-pulse-color: var(--ix-badge--border-color--#{$variant});
+    --ix-badge--pulse-color: var(--ix-badge--border-color--#{$variant});
 
     .indicator {
       background-color: var(--ix-badge--background--outline);
@@ -281,22 +281,22 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 }
 
 :host(.custom:not(.outline):not([type='status-icon'])) {
-  --_ix-badge-pulse-color: var(--_ix-badge-custom-background);
+  --ix-badge--pulse-color: var(--ix-badge--background--custom);
 
   .indicator {
-    background-color: var(--_ix-badge-custom-background);
-    color: var(--_ix-badge-custom-color);
+    background-color: var(--ix-badge--background--custom);
+    color: var(--ix-badge--color--custom);
   }
 }
 
 :host(.custom.outline:not([type='status-icon'])) {
-  --_ix-badge-pulse-color: var(--_ix-badge-custom-background);
+  --ix-badge--pulse-color: var(--ix-badge--background--custom);
 
   .indicator {
     background-color: var(--ix-badge--background--outline);
     border: var(--ix-badge-indicator--border-width) solid
-      var(--_ix-badge-custom-background);
-    color: var(--_ix-badge-custom-color, var(--ix-badge-default--color));
+      var(--ix-badge--background--custom);
+    color: var(--ix-badge--color--custom, var(--ix-badge-default--color));
   }
 }
 
@@ -337,7 +337,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
   z-index: -1;
   pointer-events: none;
   border-radius: inherit;
-  background-color: var(--_ix-badge-pulse-color);
+  background-color: var(--ix-badge--pulse-color);
   transform: scale(0.521);
   transform-origin: center;
   opacity: 0;
@@ -355,7 +355,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
   box-sizing: border-box;
   background-color: transparent;
   border-style: solid;
-  border-color: var(--_ix-badge-pulse-color);
+  border-color: var(--ix-badge--pulse-color);
   border-width: 0;
   border-radius: inherit;
   opacity: 0;

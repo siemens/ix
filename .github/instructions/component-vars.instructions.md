@@ -51,16 +51,12 @@ Modifiers must come from this vocabulary and appear in this category order:
 
 Size modifiers use the component's public API value (for example, `ix-spinner size="xxl"` maps to `--xxl`).
 
-## Private properties
+## Runtime properties
 
-Properties that are set at runtime (inline styles from TSX), passed between components, or used only to wire internal styles are private:
+Properties set at runtime (inline styles from TSX), passed from a parent to a child component, or used only to wire internal styles follow the same grammar. There is no separate private prefix: do not use `--_ix-`.
 
-```
---_ix-<component>-<name>
-```
-
-- Do not declare private properties in `*.vars.scss`. Set defaults in the component SCSS instead.
-- Do not document private properties as public API. Consumers must not rely on them.
+- Never declare a property from itself (`--ix-a--b: var(--ix-a--b)` is a cycle). If a parent overrides a child's default, set the child's property directly on the child element. Styles from the outer tree win over the child's `:host` defaults.
+- If a runtime property has no default, set its value in the component SCSS or TSX instead of the vars file.
 
 ## Ownership
 

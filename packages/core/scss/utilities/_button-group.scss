@@ -8,16 +8,16 @@
  */
 .ix-button-group {
   ix-button:first-child {
-    --_ix-button-border-radius-right: 0;
+    --ix-button--border-radius-right: 0;
   }
 
   ix-button:last-child {
-    --_ix-button-border-radius-left: 0;
+    --ix-button--border-radius-left: 0;
   }
 
   ix-button:not(:first-child):not(:last-child) {
-    --_ix-button-border-radius-right: 0;
-    --_ix-button-border-radius-left: 0;
+    --ix-button--border-radius-right: 0;
+    --ix-button--border-radius-left: 0;
   }
 }
 

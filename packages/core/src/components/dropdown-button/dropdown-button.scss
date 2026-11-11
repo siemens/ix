@@ -54,10 +54,10 @@
 
   ix-button,
   ix-icon-button {
-    --_ix-button-border-radius-left: var(
+    --ix-button--border-radius-left: var(
       --ix-dropdown-button--border-radius-left
     );
-    --_ix-button-border-radius-right: var(
+    --ix-button--border-radius-right: var(
       --ix-dropdown-button--border-radius-right
     );
   }

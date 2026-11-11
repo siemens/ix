@@ -17,38 +17,38 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
 @mixin host-variants($variant) {
   :host(.event-list-item-#{$variant}) {
     .event-list-item {
-      --_ix-event-list-item--border-color: var(
+      --ix-event-list-item--border-color: var(
         --ix-event-list-item--border-color--#{$variant}
       );
 
       // Backgrounds
-      --_ix-event-list-item--background: var(
+      --ix-event-list-item--background: var(
         --ix-event-list-item--background--#{$variant}
       );
-      --_ix-event-list-item--background--hover: var(
+      --ix-event-list-item--background--hover: var(
         --ix-event-list-item--background--#{$variant}--hover
       );
-      --_ix-event-list-item--background--active: var(
+      --ix-event-list-item--background--active: var(
         --ix-event-list-item--background--#{$variant}--active
       );
-      --_ix-event-list-item--background--disabled: var(
+      --ix-event-list-item--background--disabled: var(
         --ix-event-list-item--background--#{$variant}--disabled
       );
-      --_ix-event-list-item--background--selected: var(
+      --ix-event-list-item--background--selected: var(
         --ix-event-list-item--background--#{$variant}--selected
       );
 
       // Borders
-      --_ix-event-list-item--border-color--hover: var(
+      --ix-event-list-item--border-color--hover: var(
         --ix-event-list-item--border-color--#{$variant}--hover
       );
-      --_ix-event-list-item--border-color--active: var(
+      --ix-event-list-item--border-color--active: var(
         --ix-event-list-item--border-color--#{$variant}--active
       );
-      --_ix-event-list-item--border-color--selected: var(
+      --ix-event-list-item--border-color--selected: var(
         --ix-event-list-item--border-color--#{$variant}--selected
       );
-      --_ix-event-list-item--border-color--disabled: var(
+      --ix-event-list-item--border-color--disabled: var(
         --ix-event-list-item--border-color--#{$variant}--disabled
       );
     }
@@ -71,7 +71,7 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
       --event-list-item-border-radius,
       var(--ix-event-list-item--border-radius)
     );
-    background-color: var(--_ix-event-list-item--background);
+    background-color: var(--ix-event-list-item--background);
     overflow: hidden;
     transition: var(--ix-event-list-item--transition-duration);
     cursor: pointer;
@@ -106,7 +106,7 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
       width: var(--ix-event-list-item-container--width);
       height: 100%;
       border: var(--ix-event-list-item-container--border-width) solid;
-      border-color: var(--_ix-event-list-item--border-color);
+      border-color: var(--ix-event-list-item--border-color);
       border-top-left-radius: 0;
       border-top-right-radius: var(
         --event-list-item-border-radius,
@@ -145,27 +145,27 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
 
     &:not(.selected) {
       @include hover.hover {
-        background-color: var(--_ix-event-list-item--background--hover);
+        background-color: var(--ix-event-list-item--background--hover);
       }
 
       @include hover.active {
-        background-color: var(--_ix-event-list-item--background--active);
+        background-color: var(--ix-event-list-item--background--active);
       }
 
       .event-list-item-container {
         @include hover.hover {
-          border-color: var(--_ix-event-list-item--border-color--hover);
+          border-color: var(--ix-event-list-item--border-color--hover);
         }
 
         @include hover.active {
-          border-color: var(--_ix-event-list-item--border-color--active);
+          border-color: var(--ix-event-list-item--border-color--active);
         }
       }
     }
 
     &.selected .event-list-item-container {
-      background-color: var(--_ix-event-list-item--background--selected);
-      border-color: var(--_ix-event-list-item--border-color--selected);
+      background-color: var(--ix-event-list-item--background--selected);
+      border-color: var(--ix-event-list-item--border-color--selected);
     }
 
     &[disabled],
@@ -173,8 +173,8 @@ $default-event-list-item-height: var(--ix-event-list-item--height);
       pointer-events: none;
 
       .event-list-item-container {
-        background-color: var(--_ix-event-list-item--background--disabled);
-        border-color: var(--_ix-event-list-item--border-color--disabled);
+        background-color: var(--ix-event-list-item--background--disabled);
+        border-color: var(--ix-event-list-item--border-color--disabled);
       }
     }
   }
