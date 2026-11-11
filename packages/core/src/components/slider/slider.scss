@@ -286,7 +286,7 @@
   }
 }
 
-:host(:not(.disabled):not(.invalid):not(.warning):not(.info):not(.valid)) {
+:host(:not(.disabled):not(.invalid):not(.warning):not(.info)) {
   .slider:has(input:hover) {
     --trace-color: var(--ix-slider-trace--background--hover);
   }
@@ -320,6 +320,14 @@
   @include thumb() {
     background-color: var(--ix-slider-thumb--background--warning);
   }
+
+  @include thumb-hover() {
+    background-color: var(--ix-slider-thumb--background--warning--hover);
+  }
+
+  @include thumb-active() {
+    background-color: var(--ix-slider-thumb--background--warning--active);
+  }
 }
 
 :host(.info) {
@@ -329,14 +337,13 @@
   @include thumb() {
     background-color: var(--ix-slider-thumb--background--info);
   }
-}
 
-:host(.valid) {
-  --trace-color: var(--ix-slider-trace--background--success);
-  --tick-color--active: var(--ix-slider-trace-marker--background--success);
+  @include thumb-hover() {
+    background-color: var(--ix-slider-thumb--background--info--hover);
+  }
 
-  @include thumb() {
-    background-color: var(--ix-slider-thumb--background--success);
+  @include thumb-active() {
+    background-color: var(--ix-slider-thumb--background--info--active);
   }
 }
 
