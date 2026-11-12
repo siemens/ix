@@ -31,11 +31,6 @@ import {
   iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 
-interface ToastTypeConfig {
-  icon: string;
-  color: string;
-}
-
 /**
  * Transient notification message that appears temporarily.
  *
@@ -106,37 +101,15 @@ export class Toast {
 
   @Element() hostElement!: HTMLIxToastElement;
 
-  private static readonly toastTypeConfigs: Record<ToastType, ToastTypeConfig> =
-    {
-      danger: {
-        icon: iconAlarm,
-        color: '--si-sys-color-border-danger',
-      },
-      warning: {
-        icon: iconWarning,
-        color: '--si-sys-color-border-warning',
-      },
-      caution: {
-        icon: iconWarningRhomb,
-        color: '--si-sys-color-border-caution',
-      },
-      information: {
-        icon: iconInfo,
-        color: '--si-sys-color-border-information',
-      },
-      critical: {
-        icon: iconWarningOctagon,
-        color: '--si-sys-color-border-critical',
-      },
-      success: {
-        icon: iconSuccess,
-        color: '--si-sys-color-border-success',
-      },
-      error: {
-        icon: iconError,
-        color: '--si-sys-color-border-danger',
-      },
-    };
+  private static readonly toastTypeIcons: Record<ToastType, string> = {
+    danger: iconAlarm,
+    warning: iconWarning,
+    caution: iconWarningRhomb,
+    information: iconInfo,
+    critical: iconWarningOctagon,
+    success: iconSuccess,
+    error: iconError,
+  };
 
   private getIcon() {
     if (this.icon) {
@@ -150,8 +123,8 @@ export class Toast {
       );
     }
 
-    const config = Toast.toastTypeConfigs[this.type];
-    if (!config) {
+    const icon = Toast.toastTypeIcons[this.type];
+    if (!icon) {
       return '';
     }
 
@@ -159,8 +132,8 @@ export class Toast {
       <ix-icon
         data-testid="toast-icon"
         aria-hidden="true"
-        name={config.icon}
-        color={config.color}
+        name={icon}
+        color="--ix-toast-status-color"
       />
     );
   }
@@ -235,7 +208,7 @@ export class Toast {
   }
 
   render() {
-    let progressBarStyle: Record<string, string> = {};
+    let progressBarStyle: Record<string, string>;
 
     const progressBarClass = ['toast-progress-bar'];
 

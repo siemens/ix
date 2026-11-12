@@ -17,7 +17,7 @@ import {
   iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
-import { toast } from './../../../public-api';
+import { toast } from '../toast-utils';
 import type { ToastType } from '../toast.types';
 
 declare global {
@@ -145,6 +145,84 @@ for (const { type } of toastTypes) {
     }
   );
 }
+
+regressionTest(
+  'uses the shared status color for default icons and the strip',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" prevent-auto-close>
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
+
+    const toast = page.getByRole('alert');
+    const icon = toast.getByTestId('toast-icon');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast-status-color');
+    const initialColor = await icon.evaluate(
+      (element) => getComputedStyle(element).color
+    );
+
+    await toast.evaluate((element) => {
+      element.style.setProperty(
+        '--ix-toast-status-color',
+        'var(--si-sys-color-border-caution)'
+      );
+    });
+
+    const overriddenColor = await icon.evaluate(
+      (element) => getComputedStyle(element).color
+    );
+    expect(overriddenColor).not.toBe(initialColor);
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').backgroundColor
+      )
+    ).toBe(overriddenColor);
+  }
+);
+
+regressionTest(
+  'preserves custom icon colors independently of the status strip',
+  async ({ mount, page }) => {
+    await mount('');
+    await page.evaluate(async (customIcon) => {
+      await window.toast({
+        title: 'Toast headline',
+        message: 'Lorem ipsum dolor sit amet',
+        type: 'warning',
+        icon: customIcon,
+        iconColor: '--si-sys-color-border-success',
+        autoClose: false,
+      });
+    }, iconInfo);
+
+    const toast = page.getByRole('alert');
+    const icon = toast.getByTestId('toast-icon');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(icon).toHaveJSProperty('name', iconInfo);
+    await expect(icon).toHaveJSProperty(
+      'color',
+      '--si-sys-color-border-success'
+    );
+    const customColor = await icon.evaluate(
+      (element) => getComputedStyle(element).color
+    );
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').backgroundColor
+      )
+    ).not.toBe(customColor);
+
+    await toast.evaluate((element) => {
+      element.style.setProperty(
+        '--ix-toast-status-color',
+        'var(--si-sys-color-border-critical)'
+      );
+    });
+    await expect(icon).toHaveCSS('color', customColor);
+  }
+);
 
 regressionTest(
   'updates the status strip when the type changes and keeps it when the icon is hidden',
