@@ -65,5 +65,6 @@
   .avatar:focus-visible {
     outline: cv.get-var('menu-avatar--outline-width--focus') solid
       cv.get-var('menu-avatar-button--outline-color--focus');
+    outline-offset: cv.get-var('menu-avatar--outline-offset--focus');
   }
 }

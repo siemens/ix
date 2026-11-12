@@ -51,6 +51,6 @@
   );
   @include cv.define-var(
     'link-button--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
 }

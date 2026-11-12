@@ -180,8 +180,6 @@
         padding-inline: cv.get-var(
           'category-filter-dropdown-item--padding-inline'
         );
-        border: cv.get-var('category-filter-dropdown-item--border-width') solid
-          transparent;
         border-radius: cv.get-var(
           'category-filter-dropdown-item--border-radius'
         );
@@ -191,11 +189,6 @@
 
         @include fonts.typography-body;
         @include text-truncation.ellipsis;
-        @include hover.focus-visible {
-          border-color: cv.get-var(
-            'category-filter-dropdown-item--border-color--focus'
-          );
-        }
       }
 
       .category-item {

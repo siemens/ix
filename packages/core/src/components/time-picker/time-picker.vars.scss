@@ -24,16 +24,12 @@
     sys.$si-sys-color-text-accent
   );
   @include cv.define-var(
-    'time-picker-day--box-shadow-color--focus',
+    'time-picker-day--outline-color--focus',
     sys.$si-sys-color-effects-focus
   );
   @include cv.define-var(
     'time-picker-day--color--disabled',
     sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'time-picker-day--border-color--selected--focus',
-    sys.$si-sys-color-text-inverse
   );
   @include cv.define-var(
     'time-picker-day--background--hover',
@@ -134,18 +130,20 @@
   );
   @include cv.define-var(
     'time-picker-element-list--padding',
-    calc(#{sys.$si-sys-sizing-spacing-y-10} / 2)
+    calc(
+      #{sys.$si-sys-sizing-focus-ring-offset} + #{sys.$si-sys-sizing-focus-ring-width}
+    )
   );
   @include cv.define-var(
     'time-picker-element-list--margin',
-    calc(calc(#{sys.$si-sys-sizing-spacing-y-10} / 2) * -1)
+    calc(#{cv.get-var('time-picker-element-list--padding')} * -1)
   );
   @include cv.define-var(
-    'time-picker-element-container--box-shadow-width',
-    sys.$si-sys-sizing-border-width-default
+    'time-picker-day--outline-width--focus',
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
-    'time-picker-element-container--border-width',
-    sys.$si-sys-sizing-border-width-default
+    'time-picker-day--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
   );
 }

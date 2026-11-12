@@ -56,26 +56,10 @@ $menuItemPadding: cv.get-var('menu-item--padding-inline');
   }
 
   .notification {
-    display: inline-flex;
     position: absolute;
     top: cv.get-var('menu-item-notification--top');
-    left: cv.get-var('menu-item-notification--left');
-
-    .pill {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      height: cv.get-var('menu-item-pill--height');
-      min-width: cv.get-var('menu-item-pill--min-width');
-      position: relative;
-      border-radius: cv.get-var('menu-item-pill--border-radius');
-      background-color: cv.get-var('menu-item-notification--background');
-      font-size: cv.get-var('menu-item-pill--font-size');
-      font-weight: cv.get-var('menu-item-pill--font-weight');
-      line-height: 1;
-      color: cv.get-var('menu-item-notification--color');
-      padding: cv.get-var('menu-item-pill--padding');
-    }
+    right: cv.get-var('menu-item-notification--right');
+    flex-shrink: 0;
   }
 
   .tab-text {
@@ -175,7 +159,7 @@ $menuItemPadding: cv.get-var('menu-item--padding-inline');
     .notification {
       position: relative;
       top: 0;
-      left: 0;
+      right: 0;
       padding-left: cv.get-var('menu-item-notification--padding-left');
     }
 

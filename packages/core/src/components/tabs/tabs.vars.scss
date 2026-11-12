@@ -51,11 +51,11 @@
     sys.$si-sys-sizing-spacing-x-40
   );
   @include cv.define-var(
-    'tabs--outline-offset',
-    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
+    'tabs--outline-width--focus',
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
-    'tabs--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    'tabs--outline-offset',
+    calc(-1 * #{cv.get-var('tabs--outline-width--focus')})
   );
 }

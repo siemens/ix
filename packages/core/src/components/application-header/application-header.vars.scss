@@ -77,6 +77,13 @@
     )
   );
   @include cv.define-var(
+    'application-header--padding-left--mobile',
+    calc(
+      (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}) / 2 +
+        var(--ix-safe-area-inset-left, 0rem)
+    )
+  );
+  @include cv.define-var(
     'application-header-right-side--min-height',
     sys.$si-sys-sizing-size-100
   );

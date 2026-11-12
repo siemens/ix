@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    min-height: cv.get-var('select--min-height');
     background-color: cv.get-var('select--background');
     border: cv.get-var('select--border-width') solid
       cv.get-var('select--border-color');
@@ -131,13 +132,6 @@
           }
         }
       }
-    }
-
-    ix-icon-button {
-      height: cv.get-var('select-icon--height');
-      width: cv.get-var('select-icon--width');
-      min-height: cv.get-var('select-icon--height');
-      min-width: cv.get-var('select-icon--width');
     }
 
     input {

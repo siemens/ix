@@ -20,14 +20,6 @@
     sys.$si-sys-color-effects-focus
   );
   @include cv.define-var(
-    'menu-item-notification--background',
-    sys.$si-sys-color-text-accent
-  );
-  @include cv.define-var(
-    'menu-item-notification--color',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
     'menu-item--color--disabled',
     sys.$si-sys-color-text-disabled
   );
@@ -60,8 +52,18 @@
 :host {
   @include cv.define-var('menu-item--height', sys.$si-sys-sizing-size-100);
   @include cv.define-var(
+    'menu-item-tab-icon-slot--width',
+    sys.$si-sys-sizing-icon-lg
+  );
+  @include cv.define-var(
     'menu-item--padding-inline',
-    sys.$si-sys-sizing-spacing-x-60
+    calc(
+      (
+          #{sys.$si-sys-sizing-size-100} - #{cv.get-var(
+              'menu-item-tab-icon-slot--width'
+            )}
+        ) / 2
+    )
   );
   @include cv.define-var(
     'menu-item-tab-icon--size',
@@ -69,11 +71,7 @@
   );
   @include cv.define-var(
     'menu-item-tab-icon--margin-inline',
-    calc((#{sys.$si-sys-sizing-icon-lg} - #{sys.$si-sys-sizing-icon-md}) / 2)
-  );
-  @include cv.define-var(
-    'menu-item-pill--padding',
-    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20}
+    sys.$si-sys-sizing-spacing-x-10
   );
   @include cv.define-var(
     'menu-item-tab-text--margin',
@@ -102,30 +100,21 @@
   @include cv.define-var('menu-item-tab--z-index', 500);
   @include cv.define-var(
     'menu-item--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'menu-item-tab--outline-offset',
-    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
+    calc(-1 * #{cv.get-var('menu-item--outline-width--focus')})
   );
   @include cv.define-var(
     'menu-item-notification--top',
     sys.$si-sys-sizing-spacing-y-20
   );
   @include cv.define-var(
-    'menu-item-notification--left',
-    sys.$si-sys-sizing-spacing-x-80
-  );
-  @include cv.define-var('menu-item-pill--height', 0.5rem);
-  @include cv.define-var('menu-item-pill--min-width', 1rem);
-  @include cv.define-var(
-    'menu-item-pill--border-radius',
-    sys.$si-sys-sizing-border-radius-full
-  );
-  @include cv.define-var('menu-item-pill--font-size', 0.75rem);
-  @include cv.define-var(
-    'menu-item-pill--font-weight',
-    var(--si-ref-typography-font-weight-bold)
+    'menu-item-notification--right',
+    calc(
+      100% - #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    )
   );
   @include cv.define-var(
     'menu-item-tab--width',

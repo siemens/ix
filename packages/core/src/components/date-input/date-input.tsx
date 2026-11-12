@@ -35,6 +35,7 @@ import {
   handleSubmitOnEnterKeydown,
   onInputBlurWithChange,
   onInputFocus,
+  resetInputValidation,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -66,7 +67,7 @@ import { a11yBoolean, forceTabIndex } from '../utils/a11y';
 /**
  * Text input for entering and validating a date value.
  *
- * @documentation https://ix.siemens.io//docs/components/input-date/guide.md
+ * @documentation https://ix.siemens.io/docs/components/input-date/guide.md
  * @figma-main-component-id 442365:42749
  *
  * @form-ready
@@ -656,6 +657,32 @@ export class DateInput
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 6.0.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const input = await this.getNativeInputElement();
+    await this.closeDropdown();
+    this.inputBlur.onFocus();
+    this.touched = false;
+    this.initialValue = '';
+    this.isInputInvalid = false;
+    this.invalidReason = undefined;
+    this.validityTracker = createPickerValidityStateTracker();
+    this.from = '';
+    resetInputValidation(this, input);
+    const wasEmpty = this.value === '';
+    this.updateFormInternalValue('');
+    // The value watcher emits for changed values; empty fields need an event too.
+    if (wasEmpty) {
+      this.valueChange.emit('');
+    }
+    await revalidate(this);
   }
 
   getPickerElement(): MakeRef<HTMLIxDropdownElement> | null {

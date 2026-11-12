@@ -45,11 +45,11 @@ $blind-status-sys: (
   );
   @include cv.define-var(
     'blind--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'blind--outline-offset--focus',
-    calc(-1 * #{sys.$si-sys-sizing-focus-ring-offset})
+    sys.$si-sys-sizing-focus-ring-offset
   );
   @include cv.define-var('blind--background', sys.$si-sys-color-background-1);
   @include cv.define-var('blind--surface', transparent);
@@ -79,6 +79,15 @@ $blind-status-sys: (
   @include cv.define-var(
     'blind--border-width',
     sys.$si-sys-sizing-border-width-default
+  );
+  @include cv.define-var(
+    'blind-section--border-radius',
+    max(
+      0px,
+      #{cv.get-var('blind--border-radius')} - #{cv.get-var(
+          'blind--border-width'
+        )}
+    )
   );
   @include cv.define-var('blind-icon--size', sys.$si-sys-sizing-icon-md);
   @include cv.define-var(

@@ -39,7 +39,6 @@
     border: cv.get-var('blind--border-width') solid
       cv.get-var('blind--border-color');
     border-radius: inherit;
-    overflow: hidden;
     background-color: cv.get-var('blind--surface');
   }
 
@@ -47,7 +46,12 @@
     position: relative;
     min-height: cv.get-var('blind-header-wrapper--min-height');
     height: cv.get-var('blind-header-wrapper--height');
+  }
+
+  section {
     overflow: hidden;
+    border-radius: 0 0 cv.get-var('blind-section--border-radius')
+      cv.get-var('blind-section--border-radius');
   }
 
   .blind-header-content {
@@ -88,8 +92,8 @@
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: cv.get-var('blind--border-radius')
-      cv.get-var('blind--border-radius') 0 0;
+    border-radius: cv.get-var('blind-section--border-radius')
+      cv.get-var('blind-section--border-radius') 0 0;
     cursor: pointer;
     background-color: transparent;
 
@@ -205,10 +209,6 @@
     'blind--border-color',
     cv.get-var('blind--border-color--outline')
   );
-}
-
-:host(.outline) .blind-header {
-  border-radius: 0;
 }
 
 :host(:not(.blind-base))::before {

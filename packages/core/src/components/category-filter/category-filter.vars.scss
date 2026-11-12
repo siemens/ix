@@ -16,7 +16,7 @@
 
 :host {
   @include cv.define-var(
-    'category-filter-dropdown-item--border-color--focus',
+    'category-filter-dropdown-item--outline-color--focus',
     sys.$si-sys-color-effects-focus
   );
   @include cv.define-var(
@@ -198,8 +198,14 @@
     sys.$si-sys-sizing-size-80
   );
   @include cv.define-var(
-    'category-filter-dropdown-item--border-width',
-    sys.$si-sys-sizing-border-width-default
+    'category-filter-dropdown-item--outline-width--focus',
+    sys.$si-sys-sizing-focus-ring-width
+  );
+  @include cv.define-var(
+    'category-filter-dropdown-item--outline-offset--focus',
+    calc(
+      -1 * #{cv.get-var('category-filter-dropdown-item--outline-width--focus')}
+    )
   );
   @include cv.define-var(
     'category-filter-dropdown-item--border-radius',

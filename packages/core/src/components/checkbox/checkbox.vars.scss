@@ -245,7 +245,7 @@
   );
   @include cv.define-var(
     'checkbox--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var('checkbox-button--height', sys.$si-sys-sizing-size-60);
   @include cv.define-var('checkbox-button--width', sys.$si-sys-sizing-size-60);

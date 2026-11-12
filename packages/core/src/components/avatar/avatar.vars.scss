@@ -33,11 +33,11 @@
   );
   @include cv.define-var(
     'avatar--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'avatar--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
+    calc(-1 * #{cv.get-var('avatar--outline-width--focus')})
   );
   @include cv.define-var('avatar-image--height', sys.$si-sys-sizing-size-80);
   @include cv.define-var('avatar-image--width', sys.$si-sys-sizing-size-80);

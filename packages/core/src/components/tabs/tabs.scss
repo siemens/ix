@@ -119,5 +119,9 @@
       black calc(100% - #{cv.get-var('tabs-overflow-shadow--fade-width')}),
       transparent 100%
     );
+
+    &:has(.tabs:focus-visible) {
+      mask-image: none;
+    }
   }
 }

@@ -84,6 +84,10 @@
   );
   @include cv.define-var(
     'menu-avatar--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
+  );
+  @include cv.define-var(
+    'menu-avatar--outline-offset--focus',
+    calc(-1 * #{cv.get-var('menu-avatar--outline-width--focus')})
   );
 }

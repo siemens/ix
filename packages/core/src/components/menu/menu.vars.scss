@@ -55,10 +55,7 @@
     var(--theme-default-time)
   );
   @include cv.define-var('menu--width--expanded', sys.$si-sys-sizing-size-160);
-  @include cv.define-var(
-    'menu--width',
-    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20})
-  );
+  @include cv.define-var('menu--width', sys.$si-sys-sizing-size-100);
   @include cv.define-var(
     'menu--padding-block-end',
     calc(
@@ -67,14 +64,9 @@
   );
   @include cv.define-var(
     'menu-overlay--width',
-    calc(
-      100vw - #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-spacing-x-20}
-    )
+    calc(100vw - #{sys.$si-sys-sizing-size-100})
   );
-  @include cv.define-var(
-    'menu-overlay--left',
-    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20})
-  );
+  @include cv.define-var('menu-overlay--left', sys.$si-sys-sizing-size-100);
   @include cv.define-var(
     'menu-slotted-avatar--max-height',
     sys.$si-sys-sizing-size-100
@@ -93,8 +85,9 @@
   );
   @include cv.define-var(
     'menu-buttons--margin',
-    #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc(#{sys.$si-sys-sizing-spacing-x-40} +
-          #{sys.$si-sys-sizing-spacing-x-10})
+    #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc((
+            #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}
+          ) / 2)
   );
   @include cv.define-var(
     'menu-empty--margin-bottom',
@@ -102,15 +95,15 @@
   );
   @include cv.define-var(
     'menu--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'menu-tabs--outline-offset',
-    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
+    calc(-1 * #{cv.get-var('menu--outline-width--focus')})
   );
   @include cv.define-var(
     'menu-navigation--outline-offset',
-    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
+    calc(-1 * #{cv.get-var('menu--outline-width--focus')})
   );
   @include cv.define-var(
     'menu-tabs-shadow--height',

@@ -59,8 +59,6 @@
     );
     flex: 1 1 cv.get-var('application-switch-modal-app-entry--flex-basis');
     cursor: pointer;
-    border: cv.get-var('application-switch-modal-app-entry--border-width') solid
-      transparent;
   }
 
   .AppEntry.Selected {
@@ -74,8 +72,14 @@
   }
 
   .AppEntry:focus-visible {
-    border: cv.get-var('application-switch-modal-app-entry--border-width') solid
-      cv.get-var('application-switch-modal-app-entry--border-color--focus');
+    outline: cv.get-var(
+        'application-switch-modal-app-entry--outline-width--focus'
+      )
+      solid
+      cv.get-var('application-switch-modal-app-entry--outline-color--focus');
+    outline-offset: cv.get-var(
+      'application-switch-modal-app-entry--outline-offset--focus'
+    );
   }
 
   .AppName {

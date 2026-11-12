@@ -17,7 +17,7 @@ import { CHIP_VARIANTS, type ChipVariant } from '../chip/chip.types';
 /**
  * Compact label that highlights a status, count, or category.
  *
- * @documentation https://ix.siemens.io//docs/components/pill/guide.md
+ * @documentation https://ix.siemens.io/docs/components/pill/guide.md
  * @figma-main-component-id 312:1219
  *
  * @slot - Pill content.

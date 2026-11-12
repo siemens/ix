@@ -17,19 +17,19 @@
 :host {
   @include cv.define-var(
     'field-wrapper-icon--color--info',
-    sys.$si-sys-color-text-information
+    sys.$si-sys-color-background-information
   );
   @include cv.define-var(
     'field-wrapper-icon--color--invalid',
-    sys.$si-sys-color-text-danger
+    sys.$si-sys-color-background-danger
   );
   @include cv.define-var(
     'field-wrapper-icon--color--valid',
-    sys.$si-sys-color-text-success
+    sys.$si-sys-color-background-success
   );
   @include cv.define-var(
     'field-wrapper-icon--color--warning',
-    sys.$si-sys-color-text-warning
+    sys.$si-sys-color-background-warning
   );
 }
 

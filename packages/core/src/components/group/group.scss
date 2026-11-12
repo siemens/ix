@@ -116,8 +116,11 @@ $header-height: cv.get-var('group-header--height');
     cursor: pointer;
 
     @include hover.focus-visible {
-      outline: 1px solid cv.get-var('group-header--border-color--focus');
-      outline-offset: -1px;
+      outline: cv.get-var('group-header--outline-width--focus') solid
+        cv.get-var('group-header--border-color--focus');
+      outline-offset: calc(
+        -1 * #{cv.get-var('group-header--outline-width--focus')}
+      );
     }
   }
 
@@ -192,8 +195,11 @@ $header-height: cv.get-var('group-header--height');
     }
 
     @include hover.focus-visible {
-      outline: 1px solid cv.get-var('group-header--border-color--focus');
-      outline-offset: -1px;
+      outline: cv.get-var('group-header--outline-width--focus') solid
+        cv.get-var('group-header--border-color--focus');
+      outline-offset: calc(
+        -1 * #{cv.get-var('group-header--outline-width--focus')}
+      );
     }
   }
 

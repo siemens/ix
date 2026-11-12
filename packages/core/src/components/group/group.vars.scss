@@ -62,6 +62,10 @@
     sys.$si-sys-sizing-border-radius-sm
   );
   @include cv.define-var(
+    'group-header--outline-width--focus',
+    sys.$si-sys-sizing-focus-ring-width
+  );
+  @include cv.define-var(
     'group--border-radius',
     sys.$si-sys-sizing-border-radius-sm
   );

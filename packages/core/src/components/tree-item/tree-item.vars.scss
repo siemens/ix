@@ -55,5 +55,9 @@
     'tree-item--outline-color--focus',
     sys.$si-sys-color-effects-focus
   );
+  @include cv.define-var(
+    'tree-item--outline-width--focus',
+    sys.$si-sys-sizing-focus-ring-width
+  );
   @include cv.define-var('tree-item--opacity', 0.5);
 }

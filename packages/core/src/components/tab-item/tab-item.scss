@@ -261,7 +261,7 @@
 }
 
 :host(:not(.circle):focus-visible) {
-  outline-offset: cv.get-var('tab-item-circle--outline-offset');
+  outline-offset: calc(#{cv.get-var('tab-item--outline-width--focus')} * -1);
   outline: cv.get-var('tab-item--outline-width--focus') solid
     cv.get-var('tab-item--outline-color--focus');
 }

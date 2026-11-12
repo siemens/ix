@@ -34,8 +34,11 @@
     @include text-truncation.ellipsis;
 
     &:focus-visible {
-      outline: 1px solid cv.get-var('tree-item--outline-color--focus');
-      outline-offset: -1px;
+      outline: cv.get-var('tree-item--outline-width--focus') solid
+        cv.get-var('tree-item--outline-color--focus');
+      outline-offset: calc(
+        -1 * #{cv.get-var('tree-item--outline-width--focus')}
+      );
     }
 
     .tree-node-text {
@@ -56,8 +59,11 @@
       outline: none;
 
       &:focus-visible {
-        outline: 1px solid cv.get-var('tree-item--outline-color--focus');
-        outline-offset: -1px;
+        outline: cv.get-var('tree-item--outline-width--focus') solid
+          cv.get-var('tree-item--outline-color--focus');
+        outline-offset: calc(
+          -1 * #{cv.get-var('tree-item--outline-width--focus')}
+        );
       }
 
       ix-icon {
@@ -102,6 +108,7 @@
 }
 
 :host(:focus-visible) {
-  outline: 1px solid cv.get-var('tree-item--outline-color--focus');
-  outline-offset: -1px;
+  outline: cv.get-var('tree-item--outline-width--focus') solid
+    cv.get-var('tree-item--outline-color--focus');
+  outline-offset: calc(-1 * #{cv.get-var('tree-item--outline-width--focus')});
 }

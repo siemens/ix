@@ -20,7 +20,7 @@
     sys.$si-sys-color-background-selected
   );
   @include cv.define-var(
-    'application-switch-modal-app-entry--border-color--focus',
+    'application-switch-modal-app-entry--outline-color--focus',
     sys.$si-sys-color-effects-focus
   );
 }
@@ -52,24 +52,20 @@
   );
   @include cv.define-var('application-switch-modal-app-entry--flex-basis', 45%);
   @include cv.define-var(
-    'application-switch-modal-app-entry--border-width',
-    sys.$si-sys-sizing-border-width-default
+    'application-switch-modal-app-entry--outline-width--focus',
+    sys.$si-sys-sizing-focus-ring-width
+  );
+  @include cv.define-var(
+    'application-switch-modal-app-entry--outline-offset--focus',
+    sys.$si-sys-sizing-focus-ring-offset
   );
   @include cv.define-var(
     'application-switch-modal-app-entry--padding',
-    calc(
-      #{sys.$si-sys-sizing-spacing-y-40} - #{cv.get-var(
-          'application-switch-modal-app-entry--border-width'
-        )}
-    )
+    sys.$si-sys-sizing-spacing-y-40
   );
   @include cv.define-var(
     'application-switch-modal-app-entry--padding-inline-end',
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-60} - #{cv.get-var(
-          'application-switch-modal-app-entry--border-width'
-        )}
-    )
+    sys.$si-sys-sizing-spacing-x-60
   );
   @include cv.define-var(
     'application-switch-modal-icon--margin-left',

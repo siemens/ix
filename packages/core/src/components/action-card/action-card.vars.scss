@@ -28,7 +28,7 @@
   );
   @include cv.define-var(
     'action-card--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'action-card--outline-offset--focus',

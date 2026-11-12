@@ -159,6 +159,11 @@
       flex-direction: row;
       flex-wrap: nowrap;
       height: 100%;
+      padding: 0
+        calc(
+          var(--si-sys-sizing-focus-ring-offset) +
+            var(--si-sys-sizing-focus-ring-width)
+        );
     }
 
     .content {
@@ -208,6 +213,8 @@
   }
 
   @include breakpoints.media-breakpoint-match('sm') {
+    padding-left: cv.get-var('application-header--padding-left--mobile');
+
     .logo {
       margin-left: cv.get-var('application-header-logo--margin-left--mobile');
       display: none !important;

@@ -196,12 +196,8 @@
     sys.$si-sys-sizing-border-width-selected
   );
   @include cv.define-var(
-    'tab-item-circle--outline-offset',
-    calc(calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1)
-  );
-  @include cv.define-var(
     'tab-item--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'tab-item-circle--outline-offset--focus',

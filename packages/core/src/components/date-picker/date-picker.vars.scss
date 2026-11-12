@@ -215,7 +215,7 @@
   );
   @include cv.define-var(
     'date-picker--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'date-picker-today--border-width',

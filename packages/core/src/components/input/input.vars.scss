@@ -117,7 +117,7 @@
   );
   @include cv.define-var(
     'input--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'input--outline-offset--focus',

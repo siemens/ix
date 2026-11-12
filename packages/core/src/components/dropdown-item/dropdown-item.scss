@@ -14,7 +14,6 @@
 @use 'mixins/component-vars' as cv;
 $itemPadding: cv.get-var('dropdown-item--padding');
 $itemPaddingRight: cv.get-var('dropdown-item--padding-right');
-$focusBorder: cv.get-var('dropdown-item--border-width--focus');
 
 @mixin applyItemWidth($padding, $paddingRight) {
   width: calc(100% - #{$padding} - #{$paddingRight});
@@ -42,7 +41,6 @@ $focusBorder: cv.get-var('dropdown-item--border-width--focus');
     align-items: center;
     position: relative;
     height: cv.get-var('dropdown-item--inner-height');
-    border: $focusBorder solid transparent;
     white-space: nowrap;
 
     @include applyItemWidth($itemPadding, $itemPaddingRight);
@@ -127,22 +125,8 @@ $focusBorder: cv.get-var('dropdown-item--border-width--focus');
   }
 }
 
-:host(:focus-visible) {
-  outline: none;
-
-  .dropdown-item {
-    border-color: cv.get-var('dropdown-item--border-color--focus');
-  }
-}
-
-:host(.ix-focused) {
-  outline: none;
-
-  .dropdown-item {
-    border-color: cv.get-var('dropdown-item--border-color--focus');
-  }
-}
-
+:host(:focus-visible),
+:host(.ix-focused),
 :host(.outline-visible) {
   outline: cv.get-var('dropdown-item--outline-width--focus') solid
     cv.get-var('dropdown-item--outline-color--focus');

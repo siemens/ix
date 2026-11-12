@@ -139,7 +139,11 @@
   @include cv.define-var('select--min-height', sys.$si-sys-sizing-size-80);
   @include cv.define-var(
     'select--padding',
-    0 0 0 #{sys.$si-sys-sizing-spacing-x-40}
+    0
+      calc(
+        #{sys.$si-sys-sizing-spacing-x-20} - #{sys.$si-sys-sizing-border-width-default}
+      )
+      0 #{sys.$si-sys-sizing-spacing-x-40}
   );
   @include cv.define-var(
     'select-chips--max-width',
@@ -147,14 +151,6 @@
       40%,
       calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120})
     )
-  );
-  @include cv.define-var(
-    'select-icon--height',
-    calc(#{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-y-10})
-  );
-  @include cv.define-var(
-    'select-icon--width',
-    calc(#{sys.$si-sys-sizing-size-80} - #{sys.$si-sys-sizing-spacing-x-10})
   );
   @include cv.define-var(
     'select-input-container--height',
@@ -182,6 +178,6 @@
   );
   @include cv.define-var(
     'select--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
 }

@@ -28,10 +28,6 @@
     sys.$si-sys-color-text-disabled
   );
   @include cv.define-var(
-    'dropdown-item--border-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
     'dropdown-item--outline-color--focus',
     sys.$si-sys-color-effects-focus
   );
@@ -79,20 +75,13 @@
     'dropdown-item-submenu--padding-inline-end',
     sys.$si-sys-sizing-spacing-x-40
   );
-  @include cv.define-var(
-    'dropdown-item--border-width--focus',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'dropdown-item--inner-height',
-    calc(100% - 2 * #{cv.get-var('dropdown-item--border-width--focus')})
-  );
+  @include cv.define-var('dropdown-item--inner-height', 100%);
   @include cv.define-var(
     'dropdown-item--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'dropdown-item--outline-offset--focus',
-    calc(0px - #{cv.get-var('dropdown-item--outline-width--focus')})
+    calc(-1 * #{cv.get-var('dropdown-item--outline-width--focus')})
   );
 }

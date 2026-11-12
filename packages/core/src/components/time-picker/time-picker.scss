@@ -83,6 +83,9 @@
       overflow: auto;
       padding: cv.get-var('time-picker-element-list--padding');
       margin: cv.get-var('time-picker-element-list--margin');
+      // Keep the bottom padding inside the picker so focus rings of the last
+      // visible cell do not overlap the content below (e.g. footer separator)
+      margin-block-end: 0;
       max-height: cv.get-var('time-picker-element-list--max-height');
 
       button {
@@ -107,9 +110,9 @@
         }
 
         &:focus-visible {
-          box-shadow: 0 0 0
-            cv.get-var('time-picker-element-container--box-shadow-width')
-            cv.get-var('time-picker-day--box-shadow-color--focus');
+          outline: cv.get-var('time-picker-day--outline-width--focus') solid
+            cv.get-var('time-picker-day--outline-color--focus');
+          outline-offset: cv.get-var('time-picker-day--outline-offset--focus');
         }
 
         &.disabled {
@@ -140,11 +143,6 @@
             background-color: cv.get-var(
               'time-picker-day--background--selected--active'
             );
-          }
-
-          &:focus-visible {
-            border: cv.get-var('time-picker-element-container--border-width')
-              solid cv.get-var('time-picker-day--border-color--selected--focus');
           }
 
           &.disabled {

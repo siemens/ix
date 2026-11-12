@@ -17,7 +17,7 @@
 :host {
   @include cv.define-var(
     'kpi--outline-color--focus',
-    var(--focus--border-color)
+    sys.$si-sys-color-effects-focus
   );
   @include cv.define-var(
     'kpi-display--border-color--accent',
@@ -106,6 +106,6 @@
   );
   @include cv.define-var(
     'kpi--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
 }

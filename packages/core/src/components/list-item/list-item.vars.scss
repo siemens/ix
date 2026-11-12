@@ -31,7 +31,11 @@
   );
   @include cv.define-var(
     'list-item--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
+  );
+  @include cv.define-var(
+    'list-item--outline-offset--focus',
+    calc(-1 * #{cv.get-var('list-item--outline-width--focus')})
   );
   @include cv.define-var(
     'list-item-action--min-height--primary',
@@ -44,10 +48,6 @@
   @include cv.define-var(
     'list-item-drag-gripper--height',
     sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'list-item-drag-gripper--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
   );
   @include cv.define-var(
     'list-item-drag-gripper-icon--size',

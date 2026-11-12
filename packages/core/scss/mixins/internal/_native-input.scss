@@ -17,7 +17,11 @@ $-border-width: var(
 );
 
 @mixin element-input-focus {
-  outline: 1px solid
+  outline: var(
+      --ix-input--outline-width--focus,
+      #{sys.$si-sys-sizing-focus-ring-width}
+    )
+    solid
     var(--ix-input--outline-color--focus, #{sys.$si-sys-color-effects-focus});
   outline-offset: var(
     --ix-input--outline-offset--focus,

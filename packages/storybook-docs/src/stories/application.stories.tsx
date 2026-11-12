@@ -48,3 +48,37 @@ export default meta;
 type Story = StoryObj<Element>;
 
 export const Default: Story = {};
+
+export const AppSwitch: Story = {
+  args: {
+    appSwitchConfig: {
+      currentAppId: 'operations',
+      apps: [
+        {
+          id: 'operations',
+          name: 'Operations',
+          description: 'Monitor and control your plants',
+          iconSrc: '/images/example-app-icon.svg',
+          url: 'https://ix.siemens.io',
+          target: '_self',
+        },
+        {
+          id: 'maintenance',
+          name: 'Maintenance',
+          description: 'Plan and track maintenance tasks',
+          iconSrc: '/images/example-app-icon-2-3.svg',
+          url: 'https://ix.siemens.io',
+          target: '_blank',
+        },
+        {
+          id: 'analytics',
+          name: 'Analytics',
+          description: 'Analyze production data',
+          iconSrc: '/images/example-app-icon-3-2.svg',
+          url: 'https://ix.siemens.io',
+          target: '_blank',
+        },
+      ],
+    },
+  },
+};

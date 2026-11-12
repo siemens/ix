@@ -50,6 +50,6 @@
   @include cv.define-var('application--height', 100vh);
   @include cv.define-var(
     'application-menu--margin-left--md',
-    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20})
+    sys.$si-sys-sizing-size-100
   );
 }

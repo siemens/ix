@@ -36,7 +36,7 @@
   );
   @include cv.define-var(
     'card-accordion--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
+    sys.$si-sys-sizing-focus-ring-width
   );
   @include cv.define-var(
     'card-accordion-content--color',
@@ -48,7 +48,7 @@
   );
   @include cv.define-var(
     'card-accordion--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
+    calc(-1 * #{cv.get-var('card-accordion--outline-width--focus')})
   );
 
   /* Outline accordion chrome */

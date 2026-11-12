@@ -13,7 +13,6 @@
 
 @use './group-item.vars' as *;
 @use 'mixins/component-vars' as cv;
-$focusBorderWidth: cv.get-var('group-item--border-width--focus');
 
 :host {
   display: flex;
@@ -32,16 +31,16 @@ $focusBorderWidth: cv.get-var('group-item--border-width--focus');
     position: relative;
     outline: none;
     background-color: cv.get-var('group-item--background');
-    border: cv.get-var('group-item-group-footer--border-width') solid
-      transparent;
+    border: none;
     color: cv.get-var('group-item--color');
     cursor: pointer;
 
     padding-left: cv.get-var('group-item-group-footer--padding-left');
 
     &:focus-visible {
-      border: $focusBorderWidth solid
-        cv.get-var('group-item--border-color--focus');
+      outline: cv.get-var('group-item--outline-width--focus') solid
+        cv.get-var('group-item--outline-color--focus');
+      outline-offset: cv.get-var('group-item--outline-offset--focus');
     }
 
     &:disabled {
@@ -61,8 +60,8 @@ $focusBorderWidth: cv.get-var('group-item--border-width--focus');
 
   .group-entry-selection-indicator {
     position: absolute;
-    left: calc(0px - #{$focusBorderWidth});
-    height: calc(100% + 2 * #{$focusBorderWidth});
+    left: 0;
+    height: 100%;
     width: cv.get-var('group-item-group-entry-selection-indicator--width');
   }
 

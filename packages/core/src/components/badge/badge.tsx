@@ -63,7 +63,7 @@ const BADGE_DESCRIPTION_SLOT = 'description';
  *
  * Override max-width with `--ix-badge--max-width`.
  *
- * @documentation https://ix.siemens.io//docs/components/badge/guide.md
+ * @documentation https://ix.siemens.io/docs/components/badge/guide.md
  * @figma-main-component-id 138424:114072
  * @since 5.2.0
  *
