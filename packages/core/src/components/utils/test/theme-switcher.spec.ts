@@ -238,9 +238,9 @@ describe('ThemeSwitcher', () => {
   it('returns the explicit theme from the dataset', async () => {
     const { themeSwitcher } = await loadThemeSwitcher();
 
-    document.documentElement.dataset.ixTheme = 'classic';
+    document.documentElement.dataset.ixTheme = 'community';
 
-    expect(themeSwitcher.getTheme()).toBe('classic');
+    expect(themeSwitcher.getTheme()).toBe('community');
   });
 
   it('falls back to the computed style theme when no dataset value is set', async () => {
@@ -254,9 +254,9 @@ describe('ThemeSwitcher', () => {
   it('sets theme and color schema when both values are provided', async () => {
     const { themeSwitcher } = await loadThemeSwitcher();
 
-    themeSwitcher.setTheme('classic', 'dark');
+    themeSwitcher.setTheme('community', 'dark');
 
-    expect(document.documentElement.dataset.ixTheme).toBe('classic');
+    expect(document.documentElement.dataset.ixTheme).toBe('community');
     expect(document.documentElement.dataset.ixColorSchema).toBe('dark');
   });
 
@@ -265,9 +265,9 @@ describe('ThemeSwitcher', () => {
 
     document.documentElement.dataset.ixColorSchema = 'system';
 
-    themeSwitcher.setTheme('classic');
+    themeSwitcher.setTheme('community');
 
-    expect(document.documentElement.dataset.ixTheme).toBe('classic');
+    expect(document.documentElement.dataset.ixTheme).toBe('community');
     expect(document.documentElement.dataset.ixColorSchema).toBe('system');
   });
 
@@ -362,7 +362,7 @@ describe('ThemeSwitcher', () => {
 
     themeSwitcher.themeChanged.on(listener);
 
-    document.documentElement.dataset.ixTheme = 'classic';
+    document.documentElement.dataset.ixTheme = 'community';
     document.documentElement.dataset.ixColorSchema = 'dark';
 
     mutationCallback?.(
@@ -383,7 +383,7 @@ describe('ThemeSwitcher', () => {
     );
 
     expect(listener).toHaveBeenLastCalledWith({
-      theme: 'classic',
+      theme: 'community',
       colorSchema: 'dark',
       mode: 'dark',
       isMediaChange: false,
@@ -415,7 +415,7 @@ describe('ThemeSwitcher', () => {
 
     themeSwitcher.themeChanged.on(listener);
 
-    document.documentElement.dataset.ixTheme = 'classic';
+    document.documentElement.dataset.ixTheme = 'community';
     document.documentElement.dataset.ixColorSchema = 'system';
 
     mutationCallback?.(
@@ -436,7 +436,7 @@ describe('ThemeSwitcher', () => {
     );
 
     expect(listener).toHaveBeenLastCalledWith({
-      theme: 'classic',
+      theme: 'community',
       colorSchema: 'system',
       mode: 'dark',
       isMediaChange: false,
@@ -447,14 +447,14 @@ describe('ThemeSwitcher', () => {
     const { themeSwitcher } = await loadThemeSwitcher();
     const listener = vi.fn();
 
-    document.documentElement.dataset.ixTheme = 'classic';
+    document.documentElement.dataset.ixTheme = 'community';
     document.documentElement.dataset.ixColorSchema = 'dark';
 
     themeSwitcher.themeChanged.on(listener);
     mediaChangeListener?.({ matches: true } as MediaQueryListEvent);
 
     expect(listener).toHaveBeenCalledWith({
-      theme: 'classic',
+      theme: 'community',
       colorSchema: 'dark',
       mode: 'dark',
       isMediaChange: true,

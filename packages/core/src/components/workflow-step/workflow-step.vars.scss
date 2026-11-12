@@ -67,6 +67,8 @@
   --ix-workflow-step-text-vertical--margin: 0 #{sys.$si-sys-sizing-spacing-x-60};
   --ix-workflow-step-line--height: #{sys.$si-sys-sizing-size-10};
   --ix-workflow-step-line--width: #{sys.$si-sys-sizing-size-10};
-  --ix-workflow-step--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-workflow-step-step--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-workflow-step--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
+  --ix-workflow-step-step--outline-offset: calc(
+    -1 * var(--ix-workflow-step--outline-width--focus)
+  );
 }

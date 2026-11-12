@@ -14,7 +14,7 @@ import { KPI_STATE_ICONS, type KpiState } from './kpi.types';
 /**
  * Displays a key performance indicator with a label, value, and status.
  *
- * @documentation https://ix.siemens.io//docs/components/kpi/code.md
+ * @documentation https://ix.siemens.io/docs/components/kpi/code.md
  * @figma-main-component-id 423:3986
  */
 @Component({

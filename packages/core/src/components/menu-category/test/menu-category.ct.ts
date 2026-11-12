@@ -55,17 +55,38 @@ async function requireBoundingBox(locator: {
   return box;
 }
 
-regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
     <ix-application>
       <ix-menu>
-        <ix-menu-category label="Category label">
-          <ix-menu-item>Test</ix-menu-item>
+        <ix-menu-category label="Category label" notifications="5">
+          <ix-menu-item notifications="5">Notifications</ix-menu-item>
           <ix-menu-item>Test</ix-menu-item>
         </ix-menu-category>
       </ix-menu>
     </ix-application>
   `);
+
+  const category = page.locator('ix-menu-category');
+  await expect(category).toHaveAttribute('hydrated');
+
+  const categoryParent = category.locator('.category-parent');
+  const categoryBadge = categoryParent.locator('ix-badge');
+  await expect(categoryBadge).toHaveAttribute('hydrated');
+  await expect(categoryBadge).toHaveAttribute('type', 'counter');
+  await expect(categoryBadge).toHaveAttribute('label', '5');
+  await expect(categoryBadge).toBeVisible();
+
+  await categoryParent.getByRole('menuitem').click();
+
+  const notifiedMenuItem = category.locator('ix-menu-item[notifications="5"]');
+  await expect(notifiedMenuItem).toHaveAttribute('hydrated');
+
+  const itemBadge = notifiedMenuItem.locator('ix-badge');
+  await expect(itemBadge).toHaveAttribute('hydrated');
+  await expect(itemBadge).toHaveAttribute('type', 'counter');
+  await expect(itemBadge).toHaveAttribute('label', '5');
+  await expect(itemBadge).toBeVisible();
 
   const accessibilityScanResults = await makeAxeBuilder().analyze();
   expect(accessibilityScanResults.violations).toEqual([]);
@@ -442,7 +463,8 @@ regressionTest(
     const categoryElement = page.locator('ix-menu-category');
     await expect(categoryElement).toHaveAttribute('hydrated');
 
-    // Navigate to category
+    // Navigate through skip link and burger button to the category
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
@@ -569,7 +591,8 @@ regressionTest(
     const categoryElement = page.locator('ix-menu-category');
     await expect(categoryElement).toHaveAttribute('hydrated');
 
-    // Navigate to category
+    // Navigate through skip link and burger button to the category
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');

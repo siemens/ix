@@ -173,8 +173,6 @@
         height: var(--ix-category-filter-dropdown-item--height);
         margin: var(--ix-category-filter-dropdown-item--margin);
         padding-inline: var(--ix-category-filter-dropdown-item--padding-inline);
-        border: var(--ix-category-filter-dropdown-item--border-width) solid
-          transparent;
         border-radius: var(--ix-category-filter-dropdown-item--border-radius);
         width: auto;
         justify-content: flex-start;
@@ -182,11 +180,6 @@
 
         @include fonts.typography-body;
         @include text-truncation.ellipsis;
-        @include hover.focus-visible {
-          border-color: var(
-            --ix-category-filter-dropdown-item--border-color--focus
-          );
-        }
       }
 
       .category-item {

@@ -81,7 +81,7 @@
   --ix-date-picker-dropdown--font-size: 14px;
   --ix-date-picker-dropdown--line-height: 20px;
   --ix-date-picker-calendar-item--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-date-picker--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-date-picker--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-date-picker-today--border-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-date-picker-today--box-shadow-width: #{sys.$si-sys-sizing-border-width-default};
   --ix-date-picker-range--border-width: #{sys.$si-sys-sizing-border-width-default};

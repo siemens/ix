@@ -92,12 +92,8 @@
   background-color: var(--ix-card-status-color);
 }
 
-:host(.selected) {
-  --ix-card-border-color: var(--ix-card-base--border-color--selected);
-}
-
-:host(.outline:not(.card-base)),
-:host(.outline.selected:not(.card-base)) {
+/* Outline status: uniform border-3 when not selected. */
+:host(.outline:not(.card-base)) {
   --ix-card-border-color: var(--ix-card-base--border-color);
 }
 
@@ -124,9 +120,17 @@
   --ix-card-background: var(--ix-card-base--background--selected);
 }
 
+/* Include .clickable:not(.outline) so specificity ties hover/active (0,4,0). */
+:host(.selected),
+:host(.outline.selected),
+:host(.selected:not(.outline)),
+:host(.selected.clickable:not(.outline)) {
+  --ix-card-border-color: var(--ix-card-base--border-color--selected);
+}
+
 :host(.selected:not(.outline)) {
   --ix-card-background: var(--ix-card-filled--background--selected);
-  --ix-card-border-color: var(--ix-card-filled--background--selected);
+  --ix-card--border-width: var(--ix-card--border-width-default);
 }
 
 @mixin accordionChevronColorPrimary {

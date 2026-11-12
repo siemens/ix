@@ -168,8 +168,8 @@ catalogs:
       specifier: ^4.11.0
       version: 4.11.0
     '@esbuild/linux-arm64':
-      specifier: 0.27.2
-      version: 0.27.2
+      specifier: 0.28.1
+      version: 0.28.1
     '@playwright/test':
       specifier: ^1.64.1
       version: 1.64.1
@@ -648,16 +648,16 @@ importers:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 'catalog:'
-        version: 0.27.2
+        version: 0.28.1
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.67.4)
+        version: 16.0.3(@rollup/wasm-node@4.68.2)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@5.8.3)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -687,10 +687,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.67.4'
+        version: '@rollup/wasm-node@4.68.2'
       rollup-plugin-import-css:
         specifier: ^4.2.1
-        version: 4.2.1(@rollup/wasm-node@4.67.4)
+        version: 4.2.1(@rollup/wasm-node@4.68.2)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1011,10 +1011,10 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.67.4)
+        version: 16.0.3(@rollup/wasm-node@4.68.2)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@6.0.2)
+        version: 8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@6.0.2)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -1032,13 +1032,13 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.67.4'
+        version: '@rollup/wasm-node@4.68.2'
       rollup-plugin-dts:
         specifier: ^6.4.1
-        version: 6.4.1(@rollup/wasm-node@4.67.4)(typescript@6.0.2)
+        version: 6.4.1(@rollup/wasm-node@4.68.2)(typescript@6.0.2)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
-        version: 2.2.4(@rollup/wasm-node@4.67.4)
+        version: 2.2.4(@rollup/wasm-node@4.68.2)
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
@@ -1063,7 +1063,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.8.1)(typescript@5.8.3)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1120,10 +1120,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.67.4'
+        version: '@rollup/wasm-node@4.68.2'
       rollup-plugin-preserve-directives:
         specifier: ^0.4.0
-        version: 0.4.0(@rollup/wasm-node@4.67.4)
+        version: 0.4.0(@rollup/wasm-node@4.68.2)
       shadow-dom-testing-library:
         specifier: ^1.11.2
         version: 1.11.2(@testing-library/dom@10.4.2)
@@ -1798,7 +1798,7 @@ importers:
     devDependencies:
       '@esbuild/linux-arm64':
         specifier: 'catalog:'
-        version: 0.27.2
+        version: 0.28.1
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.64.1
@@ -5817,8 +5817,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.67.4':
-    resolution: {integrity: sha512-26yp7lyYcecROUVGCHo25V18zy+pVBXUDHOIHW8K59n49ezWTTEbuwGXJAf8T32D+ZUcpkrDZUT029zFdCH61A==}
+  '@rollup/wasm-node@4.68.2':
+    resolution: {integrity: sha512-OK7T631dhV4wT7VKFgTE36okpWwhFl/Gh9sHBasClr7LC53Y7g9qzFEygNVDxsTsiBxFcKhKOsx63u/MdW6JTQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -7232,7 +7232,6 @@ packages:
 
   ansi-html-community@0.0.8:
     resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==}
-    engines: {'0': node >= 0.8.0}
     hasBin: true
 
   ansi-regex@5.0.1:
@@ -10052,7 +10051,6 @@ packages:
 
   jsonparse@1.3.1:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
-    engines: {'0': node >= 0.2.0}
 
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -15684,10 +15682,10 @@ snapshots:
   '@esbuild/linux-arm64@0.25.12':
     optional: true
 
-  '@esbuild/linux-arm64@0.27.2': {}
-
-  '@esbuild/linux-arm64@0.28.1':
+  '@esbuild/linux-arm64@0.27.2':
     optional: true
+
+  '@esbuild/linux-arm64@0.28.1': {}
 
   '@esbuild/linux-arm@0.25.12':
     optional: true
@@ -17989,75 +17987,75 @@ snapshots:
 
   '@rollup/plugin-json@6.1.0':
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.67.4)
-      rollup: '@rollup/wasm-node@4.67.4'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.68.2)
+      rollup: '@rollup/wasm-node@4.68.2'
 
-  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.67.4)':
+  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.68.2)':
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.67.4)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.68.2)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.11
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.8.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.4)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.2)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.4)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.2)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.9.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.67.4)(tslib@2.9.1)(typescript@6.0.2)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@6.0.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.67.4)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.2)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       typescript: 6.0.2
     optionalDependencies:
       tslib: 2.9.1
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.67.4)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.68.2)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
   '@rollup/pluginutils@5.1.2':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
-  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.67.4)':
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.68.2)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
-  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.67.4)':
+  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.68.2)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
   '@rollup/rollup-darwin-arm64@4.44.0':
     optional: true
@@ -18090,7 +18088,7 @@ snapshots:
       '@napi-rs/lzma-linux-x64-gnu': 1.5.1
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.67.4':
+  '@rollup/wasm-node@4.68.2':
     dependencies:
       '@types/estree': 1.0.10
     optionalDependencies:
@@ -24956,14 +24954,14 @@ snapshots:
       ora: 9.3.0
       piscina: 5.3.2
       postcss: 8.5.28
-      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.67.4)(typescript@5.9.3)
+      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.68.2)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.105.1
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.23))(@types/node@24.19.2)(typescript@5.9.3))
     transitivePeerDependencies:
       - supports-color
@@ -24988,14 +24986,14 @@ snapshots:
       ora: 9.3.0
       piscina: 5.3.2
       postcss: 8.5.28
-      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.67.4)(typescript@5.9.3)
+      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.68.2)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.105.1
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@5.9.3))
     transitivePeerDependencies:
       - supports-color
@@ -26496,42 +26494,42 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.67.4)(typescript@5.9.3):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.68.2)(typescript@5.9.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       typescript: 5.9.3
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.67.4)(typescript@6.0.2):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.68.2)(typescript@6.0.2):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       typescript: 6.0.2
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.67.4):
+  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.68.2):
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.67.4)
-      rollup: '@rollup/wasm-node@4.67.4'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.68.2)
+      rollup: '@rollup/wasm-node@4.68.2'
 
-  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.67.4):
+  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.68.2):
     dependencies:
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
-  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.67.4):
+  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.68.2):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.67.4)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.68.2)
       magic-string: 0.30.17
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
   rollup-plugin-react-scoped-css@1.1.0:
     dependencies:
@@ -26539,7 +26537,7 @@ snapshots:
       css-tree: 3.0.0
       escodegen: 2.1.0
       js-xxhash: 4.0.0
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
 
   router@2.2.0(supports-color@8.1.1):
     dependencies:
@@ -28100,7 +28098,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28120,7 +28118,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28140,7 +28138,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28160,7 +28158,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28180,7 +28178,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28200,7 +28198,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6
@@ -28220,7 +28218,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.67.4'
+      rollup: '@rollup/wasm-node@4.68.2'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6

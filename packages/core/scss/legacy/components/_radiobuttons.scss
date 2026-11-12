@@ -66,14 +66,14 @@
 
   .ix-form-control[type='radio'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline: #{sys.$si-sys-sizing-focus-ring-width} solid #{sys.$si-sys-color-effects-focus};
       outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }
 
   .ix-form-control[type='radio']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline: #{sys.$si-sys-sizing-focus-ring-width} solid #{sys.$si-sys-color-effects-focus};
       outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }

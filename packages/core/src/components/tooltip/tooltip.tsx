@@ -40,6 +40,8 @@ type ArrowPosition = {
 };
 
 const ARROW_OFFSET = -6;
+const DEFAULT_HIDE_DELAY = 50;
+const INTERACTIVE_HIDE_DELAY = 150;
 
 const numberToPixel = (value?: number | null) =>
   value !== null ? `${value}px` : '';
@@ -49,7 +51,7 @@ let tooltipInstance = 0;
 /**
  * Small overlay that shows contextual information when hovering or focusing an element.
  *
- * @documentation https://ix.siemens.io//docs/components/tooltip/guide.md
+ * @documentation https://ix.siemens.io/docs/components/tooltip/guide.md
  * @figma-main-component-id 1239:30786
  * @slot title-icon - Icon displayed next to the tooltip title. The icon will be displayed as 16x16px.
  * @slot title-content - Content of tooltip title
@@ -83,11 +85,23 @@ export class Tooltip {
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
-  /** @internal */
+  /**
+   * Delay in milliseconds before the tooltip is shown.
+   *
+   * @since 6.0.0
+   */
   @Prop() showDelay = 0;
 
-  /** @internal */
-  @Prop() hideDelay = 50;
+  /**
+   * Delay in milliseconds before the tooltip is hidden.
+   * Defaults to 50 ms, or 150 ms for interactive tooltips,
+   * so the user has time to move the pointer into the tooltip.
+   * For interactive tooltips, avoid very short delays, otherwise the tooltip
+   * closes before the pointer reaches it.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDelay?: number;
 
   /** @internal */
   @Prop() animationFrame = false;
@@ -136,11 +150,14 @@ export class Tooltip {
   /** @internal */
   @Method()
   async showTooltip(anchorElement: Element) {
-    this.clearTimeouts();
-
-    if (this.showTooltipTimeout || this.visibleFor === anchorElement) {
+    if (this.visibleFor === anchorElement) {
+      this.clearTimeouts();
       return;
     }
+
+    // Keep a pending hide for the previous anchor so the tooltip does not
+    // linger there while the show delay for the new anchor runs
+    this.clearShowTimeout();
 
     const dialog = await this.dialogRef.waitForCurrent();
 
@@ -160,20 +177,24 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay: number = this.hideDelay) {
+  async hideTooltip(
+    hideDelay: number = this.hideDelay ??
+      (this.interactive ? INTERACTIVE_HIDE_DELAY : DEFAULT_HIDE_DELAY)
+  ) {
     this.clearTimeouts();
 
     if (this.hideTooltipTimeout || !this.visible) {
       return;
     }
 
-    if (this.interactive && hideDelay === 50) {
-      hideDelay = 150;
-    }
-
+    const anchorElement = this.visibleFor;
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
+      this.hideTooltipTimeout = undefined;
+      if (this.visibleFor !== anchorElement) {
+        return;
+      }
       const wasVisible = this.visible;
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();
@@ -473,7 +494,7 @@ export class Tooltip {
         eventType: 'keydown',
         callback: (event: Event) => {
           if ((event as KeyboardEvent).key === 'Escape') {
-            this.hideTooltip();
+            this.hideTooltip(0);
           }
         },
       },

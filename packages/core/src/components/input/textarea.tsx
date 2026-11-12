@@ -24,11 +24,13 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
   getAriaAttributesForInput,
+  resetInputValidation,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -44,7 +46,7 @@ let sequentialInstanceId = 0;
  * Multi-line text input for entering and validating longer text.
  *
  * @form-ready
- * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
+ * @documentation https://ix.siemens.io/docs/components/textarea/guide.md
  */
 @Component({
   tag: 'ix-textarea',
@@ -211,7 +213,12 @@ export class Textarea implements IxInputFieldComponent<string> {
   private lastObservedInlineHeight?: string;
   private lastObservedInlineWidth?: string;
 
-  @HookValidationLifecycle()
+  @Watch('value')
+  onValueChange(newValue: string) {
+    this.updateFormInternalValue(newValue);
+  }
+
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
@@ -242,6 +249,8 @@ export class Textarea implements IxInputFieldComponent<string> {
         this.textAreaRef.current,
         this.touched
       );
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -315,6 +324,9 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
     if (this.textAreaRef.current && this.touched) {
+      if (this.textAreaRef.current.value !== value) {
+        this.textAreaRef.current.value = value;
+      }
       checkInternalValidity(this, this.textAreaRef.current);
     }
   }
@@ -340,7 +352,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
-   * @internal
+   * Returns the validity state of the textarea field.
    * @since 6.0.0
    */
   @Method()
@@ -364,6 +376,21 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 6.0.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const textarea = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, textarea);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   private getTextareaHeight(): string | undefined {
