@@ -37,12 +37,26 @@ const meta = {
     },
   }),
   args: {
-    value: 25,
+    label: 'Label',
+    helperText: 'Helper text',
+    invalidText: 'Invalid text',
+    warningText: 'Warning text',
+    infoText: 'Info text',
+    validText: 'Valid text',
+    min: 0,
+    max: 100,
+    step: 1,
+    value: 50,
+    trace: true,
+    traceReference: 0,
+    showTextAsTooltip: false,
+    disabled: false,
+    validation: 'default',
   },
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=11015-14138&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=50042-20987&m=dev',
     },
   },
 } satisfies Meta<Element>;
@@ -55,6 +69,7 @@ export const Default: Story = {};
 
 export const Reference: Story = {
   args: {
+    value: 25,
     traceReference: 50,
     trace: true,
   },
