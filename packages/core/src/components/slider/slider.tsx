@@ -130,9 +130,8 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @Prop() marker?: SliderMarker;
 
   /**
-   * Color the track and show the reference marker.
-   * The colored segment runs from the minimum to the current value when **traceReference** is at the minimum.
-   * Otherwise it runs between **traceReference** and the current value.
+   * Color the track from **traceReference** to the current value, or from the minimum if they are equal.
+   * Show the reference marker only when it is between the minimum and maximum and differs from the value.
    */
   @Prop() trace = false;
 

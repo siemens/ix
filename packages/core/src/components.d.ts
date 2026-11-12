@@ -4944,7 +4944,7 @@ export namespace Components {
          */
         "step": number;
         /**
-          * Color the track and show the reference marker. The colored segment runs from the minimum to the current value when **traceReference** is at the minimum. Otherwise it runs between **traceReference** and the current value.
+          * Color the track from **traceReference** to the current value, or from the minimum if they are equal. Show the reference marker only when it is between the minimum and maximum and differs from the value.
           * @default false
          */
         "trace": boolean;
@@ -13776,7 +13776,7 @@ declare namespace LocalJSX {
          */
         "step"?: number;
         /**
-          * Color the track and show the reference marker. The colored segment runs from the minimum to the current value when **traceReference** is at the minimum. Otherwise it runs between **traceReference** and the current value.
+          * Color the track from **traceReference** to the current value, or from the minimum if they are equal. Show the reference marker only when it is between the minimum and maximum and differs from the value.
           * @default false
          */
         "trace"?: boolean;

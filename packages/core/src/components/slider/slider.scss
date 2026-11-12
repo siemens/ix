@@ -113,9 +113,8 @@
 
   @include component.ix-component;
 
-  // Chrome and Firefox keep the thumb inside the input. The input hangs
-  // past the track by the overhang, so the circle starts 3px outside at
-  // the minimum and ends 3px outside at the maximum.
+  // The input hangs past the track by the overhang, so the circle starts
+  // 3px outside at the minimum and ends 3px outside at the maximum.
   input[type='range'] {
     position: absolute;
     top: 50%;
