@@ -36,8 +36,6 @@ const __packages = path.join(__dirname, '../node_modules');
 const __htmlTestAppRoot = path.join(__packages, 'html-examples');
 const __htmlTestAppDist = path.join(__htmlTestAppRoot, 'dist');
 
-const __mobileTestAppDist = path.join(__packages, 'ionic-test-app', 'dist');
-
 const __htmlTestApp = path.join(
   __packages,
   'html-examples',
@@ -122,7 +120,6 @@ async function copyStaticFiles() {
   );
 
   fs.copySync(__htmlTestAppDist, __previewHtml);
-  fs.copySync(__mobileTestAppDist, path.join(__demo, 'preview', 'mobile'));
 
   fs.copySync(__htmlTestApp, __exampleCodeHtml);
   fs.copySync(__reactTestApp, path.join(__demo, 'react'));
