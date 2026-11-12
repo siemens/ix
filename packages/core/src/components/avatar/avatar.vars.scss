@@ -17,8 +17,10 @@
 
 :host {
   --ix-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-avatar--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-avatar--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
+  --ix-avatar--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
+  --ix-avatar--focus--outline-offset: calc(
+    -1 * var(--ix-avatar--outline-width--focus)
+  );
   --ix-avatar-image--height: #{sys.$si-sys-sizing-size-80};
   --ix-avatar-image--width: #{sys.$si-sys-sizing-size-80};
   --ix-avatar-image--min-height: #{sys.$si-sys-sizing-size-80};
@@ -39,7 +41,8 @@
     #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100}
   );
   --ix-avatar-user-info--max-width: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-100} +
+      #{sys.$si-sys-sizing-spacing-x-20}
   );
   --ix-avatar-user-info--gap: #{sys.$si-sys-sizing-spacing-x-60};
   --ix-avatar-user-info-avatar--width: #{sys.$si-sys-sizing-size-80};

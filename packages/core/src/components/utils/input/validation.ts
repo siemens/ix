@@ -295,18 +295,30 @@ export async function revalidate(instance: object) {
 
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
+  /** Text controls defer error feedback until touched; pickers can validate eagerly. */
+  useTouchedForAria?: boolean;
 }) {
   return (proto: IxComponentInterface, methodName: string) => {
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 
     const observeFieldClasses = function (this: object, host: HTMLElement) {
+      let hasConsumerInvalidClass = host.classList.contains('ix-invalid');
       getValidationLifecycleState(this).classMutationObserver =
         createClassMutationObserver(
           host,
           () => {
             const result = checkFieldClasses(host, options?.includeChildren);
             proto[methodName].call(this, result);
+
+            // Consumers toggle `ix-invalid` without a value change or blur, so
+            // the ARIA attributes are synced here. Other classes are ignored,
+            // the validation itself toggles `ix-invalid--*`.
+            const hadConsumerInvalidClass = hasConsumerInvalidClass;
+            hasConsumerInvalidClass = host.classList.contains('ix-invalid');
+            if (hasConsumerInvalidClass !== hadConsumerInvalidClass) {
+              void revalidate(this);
+            }
           },
           options
         );
@@ -429,19 +441,19 @@ export function HookValidationLifecycle(options?: {
               return;
             }
 
-            // A missing required value is shown only once the field is touched
-            // (`ix-invalid--required`), so it is not announced before either
             const validByValidity =
               validityState.valid ||
               (!touched && isOnlyValueMissing(validityState));
             const consumerValid = consumerValidityCheck(host);
+            const showInternalError =
+              !validByValidity && (!options?.useTouchedForAria || !!touched);
             syncAriaInvalid(
               validationElement,
-              validByValidity && consumerValid
+              !showInternalError && consumerValid
             );
             syncAriaMessageReferences(
               validationElement,
-              !validByValidity || !consumerValid,
+              showInternalError || !consumerValid,
               messageElements
             );
           }

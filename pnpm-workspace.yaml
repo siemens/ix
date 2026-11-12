@@ -7,14 +7,24 @@ packages:
 
 catalog:
   '@axe-core/playwright': ^4.11.0
-  '@esbuild/linux-arm64': 0.27.2
-  '@playwright/test': ^1.58.1
+  '@esbuild/linux-arm64': 0.28.1
+  '@playwright/test': ^1.64.1
   '@siemens/ix-icons': 0.0.0-beta-20261021072559
+  '@types/node': ^24.19.2
   eslint: ^9.39.3
-  glob: ^13.0.0
-  playwright: ^1.58.1
+  glob: ^14.0.2
+  playwright: ^1.64.1
   rimraf: ^6.1.3
-  vite: 7.3.5
+  vite: 7.3.7
+
+linkWorkspacePackages: deep
+preferWorkspacePackages: true
+
+# angular-test-app echarts dependency needs public hoisting
+publicHoistPattern:
+  - zrender
+  - claygl
+  - 'eslint**'
 
 minimumReleaseAge: 2880
 minimumReleaseAgeExclude:
@@ -23,6 +33,53 @@ minimumReleaseAgeExclude:
 overrides:
   cheerio: '1.0.0-rc.12'
   rollup: 'npm:@rollup/wasm-node'
+  # Security: basic-ftp 6 only adds FTP bounce protection (via puppeteer > get-uri)
+  'basic-ftp@<6.2.1': ^6.2.1
+  # Security: optional XML peers of @cyclonedx/cyclonedx-library; the SBOM script only writes JSON
+  libxmljs2: '-'
+  xmlbuilder2: '-'
+  # Security: @stencil-community/postcss pins postcss ~8.4.27
+  'postcss@>=8.0.0 <8.5.23': ^8.5.23
+  # Cross-major: glob 9-13 consumers only use the glob()/globSync() API, unchanged in glob 14.
+  'glob@>=9.0.0 <14.0.2': ^14.0.2
 
-patchedDependencies:
-  '@stencil/core': 'patches/@stencil__core.patch'
+auditConfig:
+  ignoreGhsas:
+    # tar 6 via @capacitor/cli 6 (testing/ionic-test-app); app is being removed in siemens/ix#2961
+    - GHSA-34x7-hfp2-rc4v
+    - GHSA-8qq5-rm4j-mr97
+    - GHSA-83g3-92jg-28cx
+    - GHSA-qffp-2rhf-9h96
+    - GHSA-9ppj-qmqm-q256
+    - GHSA-r6q2-hw4h-h46w
+    - GHSA-vmf3-w455-68vh
+    - GHSA-w8wr-v893-vjvp
+    - GHSA-23hp-3jrh-7fpw
+    - GHSA-8x88-c5mf-7j5w
+    - GHSA-gvwx-54wh-qm9j
+    - GHSA-r292-9mhp-454m
+    # extract-zip (no fix) and zod 3 via puppeteer 24 pinned by @memlab/api (testing/performance-memlab); fixed only in puppeteer 25
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3
+    - GHSA-mrhx-c7xc-m3w5
+    # minimatch: fixed only in 11 (breaking API); consumers are dev tooling (eslint, typedoc, Angular CLI) with trusted patterns
+    - GHSA-g3hv-75wg-m249
+    # uuid 8 via sockjs (webpack-dev-server): advisory affects v3/v5/v6 with `buf`; sockjs only calls v4(). Fix requires uuid 11
+    - GHSA-w5hq-g745-h8pq
+    # deepmerge: no patched version; build-time only via @rollup/plugin-node-resolve
+    - GHSA-gcqx-w48m-w2h4
+
+allowBuilds:
+  '@memlab/cli': false
+  '@parcel/watcher': false
+  '@swc/core': false
+  core-js: false
+  esbuild: false
+  lmdb: false
+  memlab: false
+  msgpackr-extract: false
+  msw: false
+  puppeteer: false
+  sleep: false
+  unrs-resolver: false
+  vue-demi: false

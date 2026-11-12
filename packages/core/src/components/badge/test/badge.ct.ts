@@ -403,7 +403,7 @@ regressionTest.describe('ix-badge', () => {
         async ({ mount, page }) => {
           await page.emulateMedia({ reducedMotion: 'no-preference' });
           await page.evaluate((value) => {
-            document.documentElement.setAttribute('data-ix-theme', 'classic');
+            document.documentElement.setAttribute('data-ix-theme', 'community');
             document.documentElement.setAttribute('data-ix-density', value);
           }, density);
           await mount(

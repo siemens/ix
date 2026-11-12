@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('basic', () => {
   regressionTest('basic', async ({ page }) => {
@@ -35,4 +35,18 @@ regressionTest.describe('basic', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-dropdown-button label="Dropdown button"></ix-dropdown-button>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-dropdown-button'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

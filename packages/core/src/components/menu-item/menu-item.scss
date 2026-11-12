@@ -55,26 +55,10 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
   }
 
   .notification {
-    display: inline-flex;
     position: absolute;
     top: var(--ix-menu-item-notification--top);
-    left: var(--ix-menu-item-notification--left);
-
-    .pill {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      height: var(--ix-menu-item-pill--height);
-      min-width: var(--ix-menu-item-pill--min-width);
-      position: relative;
-      border-radius: var(--ix-menu-item-pill--border-radius);
-      background-color: var(--ix-menu-item-notification--background);
-      font-size: var(--ix-menu-item-pill--font-size);
-      font-weight: var(--ix-menu-item-pill--font-weight);
-      line-height: 1;
-      color: var(--ix-menu-item-notification--color);
-      padding: var(--ix-menu-item-pill--padding);
-    }
+    right: var(--ix-menu-item-notification--right);
+    flex-shrink: 0;
   }
 
   .tab-text {
@@ -170,7 +154,7 @@ $menuItemPadding: var(--ix-menu-item--padding-inline);
     .notification {
       position: relative;
       top: 0;
-      left: 0;
+      right: 0;
       padding-left: var(--ix-menu-item-notification--padding-left);
     }
 

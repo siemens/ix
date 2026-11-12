@@ -14,7 +14,7 @@ import type { StatusVariant } from '../utils/status.types';
 /**
  * Card that represents a selectable action or option to start a task or workflow.
  *
- * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @documentation https://ix.siemens.io/docs/components/card/guide.md
  * @figma-main-component-id 104612:25269
  *
  * @slot - Card content.

@@ -25,7 +25,7 @@
   );
   --ix-tabs-context-menu--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
   --ix-tabs--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
+    -1 * var(--ix-tabs--outline-width--focus)
   );
-  --ix-tabs--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-tabs--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }

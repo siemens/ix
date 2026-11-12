@@ -34,7 +34,7 @@ import type {
 /**
  * Header area of a content page showing the title and page-level actions.
  *
- * @documentation https://ix.siemens.io//docs/components/content-header/guide.md
+ * @documentation https://ix.siemens.io/docs/components/content-header/guide.md
  * @figma-main-component-id 4727:112521
  *
  * @slot header - Content to be placed in the header area next to the title

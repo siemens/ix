@@ -39,7 +39,7 @@ let sequenceId = 0;
 /**
  * Navigation entry within the side menu.
  *
- * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @documentation https://ix.siemens.io/docs/components/application-menu/guide.md
  * @figma-main-component-id 308:1293
  * @slot - Menu item label.
  */
@@ -325,9 +325,11 @@ export class MenuItem
         ></ix-icon>
       ),
       this.notifications ? (
-        <div class="notification">
-          <div class="pill">{this.notifications}</div>
-        </div>
+        <ix-badge
+          class="notification"
+          type="counter"
+          label={String(this.notifications)}
+        ></ix-badge>
       ) : null,
       <span id={this.internalItemId} class="tab-text typography-body">
         {this.label}

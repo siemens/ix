@@ -14,6 +14,23 @@ import {
   viewPorts,
 } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu show-settings>
+        <ix-menu-item>Home</ix-menu-item>
+        <ix-menu-settings></ix-menu-settings>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  await expect(
+    page.getByRole('button', { name: 'Close Settings' })
+  ).toBeVisible();
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
@@ -27,6 +44,403 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(element).toHaveAttribute('hydrated');
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
+
+regressionTest(
+  'should open settings when showSettings is initially true',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu show-settings>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const settings = page.locator('ix-menu-settings');
+    await expect(menu).toHaveAttribute('hydrated');
+    await expect(settings).toHaveJSProperty('show', true);
+    await expect(
+      settings.getByRole('button', { name: 'Close Settings' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should react to showSettings changes after closing the overlay',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const settings = page.locator('ix-menu-settings');
+    const closeButton = settings.getByRole('button', {
+      name: 'Close Settings',
+    });
+    await expect(menu).toHaveAttribute('hydrated');
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = true;
+    });
+    await expect(settings).toHaveJSProperty('show', true);
+    await expect(closeButton).toBeVisible();
+
+    await closeButton.click();
+    await expect(menu).toHaveJSProperty('showSettings', false);
+    await expect(settings).toHaveJSProperty('show', false);
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = true;
+    });
+    await expect(closeButton).toBeVisible();
+    await expect(menu.getByRole('dialog', { name: 'Settings' })).toHaveCSS(
+      'opacity',
+      '1'
+    );
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = false;
+    });
+    await expect(settings).toHaveJSProperty('show', false);
+    await expect(closeButton).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should replace the about overlay when showSettings becomes true',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-about></ix-menu-about>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const settings = page.locator('ix-menu-settings');
+    await expect(menu).toHaveAttribute('hydrated');
+    await menu.evaluate((element: HTMLIxMenuElement) =>
+      element.toggleAbout(true)
+    );
+    await expect(about).toBeVisible();
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = true;
+    });
+    await expect(menu).toHaveJSProperty('showAbout', false);
+    await expect(about).toHaveJSProperty('show', false);
+    await expect(settings).toHaveJSProperty('show', true);
+    await expect(about).not.toBeVisible();
+    await expect(settings).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should keep settings open when showSettings changes during close',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu show-settings>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const closeButton = page.getByRole('button', { name: 'Close Settings' });
+    await expect(menu).toHaveAttribute('hydrated');
+    await closeButton.click();
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = false;
+      element.showSettings = true;
+    });
+
+    await expect(menu.getByRole('dialog', { name: 'Settings' })).toHaveCSS(
+      'opacity',
+      '1'
+    );
+    await expect(closeButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showSettings', true);
+  }
+);
+
+regressionTest(
+  'should open settings when showSettings becomes true while about is closing',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-about></ix-menu-about>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const settings = page.locator('ix-menu-settings');
+    const closeAboutButton = page.getByRole('button', {
+      name: 'Close About',
+    });
+    const closeSettingsButton = settings.getByRole('button', {
+      name: 'Close Settings',
+    });
+
+    await expect(menu).toHaveAttribute('hydrated');
+    await menu.evaluate((element: HTMLIxMenuElement) =>
+      element.toggleAbout(true)
+    );
+    await expect(about).toBeVisible();
+
+    await closeAboutButton.click();
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showSettings = true;
+    });
+
+    await expect(menu.getByRole('dialog', { name: 'Settings' })).toHaveCSS(
+      'opacity',
+      '1'
+    );
+    await expect(closeSettingsButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showSettings', true);
+    await expect(settings).toHaveJSProperty('show', true);
+    await expect(menu).toHaveJSProperty('showAbout', false);
+    await expect(about).toHaveJSProperty('show', false);
+  }
+);
+
+regressionTest(
+  'should complete pending overlay close when disconnected and not reopen overlay on reattach',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu show-settings>
+          <ix-menu-settings></ix-menu-settings>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    const settings = page.locator('ix-menu-settings');
+    const closeButton = page.getByRole('button', { name: 'Close Settings' });
+
+    await expect(menu).toHaveAttribute('hydrated');
+    await expect(closeButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showSettings', true);
+    await expect(settings).toHaveJSProperty('show', true);
+
+    const menuHandle = await menu.evaluateHandle(
+      async (element: HTMLIxMenuElement) => {
+        await element.toggleSettings(false);
+        element.remove();
+        return element;
+      }
+    );
+
+    await application.evaluate((app, el) => app.append(el), menuHandle);
+
+    await expect(menu).toHaveJSProperty('showSettings', false);
+    await expect(settings).toHaveJSProperty('show', false);
+    await expect(closeButton).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should open about when showAbout is initially true',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu show-about>
+      <ix-menu-about></ix-menu-about>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    await expect(menu).toHaveAttribute('hydrated');
+    await expect(about).toHaveJSProperty('show', true);
+    await expect(
+      about.getByRole('button', { name: 'Close About' })
+    ).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should react to showAbout changes after closing the overlay',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-about></ix-menu-about>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const closeButton = about.getByRole('button', {
+      name: 'Close About',
+    });
+    await expect(menu).toHaveAttribute('hydrated');
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showAbout = true;
+    });
+    await expect(about).toHaveJSProperty('show', true);
+    await expect(closeButton).toBeVisible();
+
+    await closeButton.click();
+    await expect(menu).toHaveJSProperty('showAbout', false);
+    await expect(about).toHaveJSProperty('show', false);
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showAbout = true;
+    });
+    await expect(closeButton).toBeVisible();
+    await expect(
+      menu.getByRole('dialog', { name: 'About & legal information' })
+    ).toHaveCSS('opacity', '1');
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showAbout = false;
+    });
+    await expect(about).toHaveJSProperty('show', false);
+    await expect(closeButton).not.toBeVisible();
+  }
+);
+
+regressionTest(
+  'should replace the settings overlay when showAbout becomes true',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-about></ix-menu-about>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const settings = page.locator('ix-menu-settings');
+    await expect(menu).toHaveAttribute('hydrated');
+    await menu.evaluate((element: HTMLIxMenuElement) =>
+      element.toggleSettings(true)
+    );
+    await expect(settings).toBeVisible();
+
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showAbout = true;
+    });
+    await expect(menu).toHaveJSProperty('showSettings', false);
+    await expect(settings).toHaveJSProperty('show', false);
+    await expect(about).toHaveJSProperty('show', true);
+    await expect(settings).not.toBeVisible();
+    await expect(about).toBeVisible();
+  }
+);
+
+regressionTest(
+  'should keep about open when showAbout changes during close',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu show-about>
+      <ix-menu-about></ix-menu-about>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const closeButton = about.getByRole('button', { name: 'Close About' });
+    await expect(menu).toHaveAttribute('hydrated');
+    await closeButton.click();
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showAbout = false;
+      element.showAbout = true;
+    });
+
+    await expect(
+      menu.getByRole('dialog', { name: 'About & legal information' })
+    ).toHaveCSS('opacity', '1');
+    await expect(closeButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showAbout', true);
+    await expect(about).toHaveJSProperty('show', true);
+  }
+);
+
+regressionTest(
+  'should open about when showAbout becomes true while settings is closing',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-menu>
+      <ix-menu-about></ix-menu-about>
+      <ix-menu-settings></ix-menu-settings>
+    </ix-menu>
+  `);
+
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const settings = page.locator('ix-menu-settings');
+    const closeSettingsButton = settings.getByRole('button', {
+      name: 'Close Settings',
+    });
+    const closeAboutButton = about.getByRole('button', {
+      name: 'Close About',
+    });
+
+    await expect(menu).toHaveAttribute('hydrated');
+    await menu.evaluate((element: HTMLIxMenuElement) =>
+      element.toggleSettings(true)
+    );
+    await expect(settings).toBeVisible();
+
+    await closeSettingsButton.click();
+    await menu.evaluate((element: HTMLIxMenuElement) => {
+      element.showAbout = true;
+    });
+
+    await expect(
+      menu.getByRole('dialog', { name: 'About & legal information' })
+    ).toHaveCSS('opacity', '1');
+    await expect(closeAboutButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showAbout', true);
+    await expect(about).toHaveJSProperty('show', true);
+    await expect(menu).toHaveJSProperty('showSettings', false);
+    await expect(settings).toHaveJSProperty('show', false);
+  }
+);
+
+regressionTest(
+  'should complete pending about overlay close when disconnected and not reopen overlay on reattach',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu show-about>
+          <ix-menu-about></ix-menu-about>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const application = page.locator('ix-application');
+    const menu = page.locator('ix-menu');
+    const about = page.locator('ix-menu-about');
+    const closeButton = about.getByRole('button', { name: 'Close About' });
+
+    await expect(menu).toHaveAttribute('hydrated');
+    await expect(closeButton).toBeVisible();
+    await expect(menu).toHaveJSProperty('showAbout', true);
+    await expect(about).toHaveJSProperty('show', true);
+
+    const menuHandle = await menu.evaluateHandle(
+      async (element: HTMLIxMenuElement) => {
+        await element.toggleAbout(false);
+        element.remove();
+        return element;
+      }
+    );
+
+    await application.evaluate((app, el) => app.append(el), menuHandle);
+
+    await expect(menu).toHaveJSProperty('showAbout', false);
+    await expect(about).toHaveJSProperty('show', false);
+    await expect(closeButton).not.toBeVisible();
+  }
+);
 
 regressionTest(
   'should be open when start-expanded ist set',
@@ -442,7 +856,8 @@ regressionTest(
     // Wait for roving tabindex to be initialised (set by rAF in componentDidLoad)
     await expect(items.first()).toHaveAttribute('aria-setsize', '3');
 
-    // Tab twice: skip burger button and reach menu navigation container
+    // Tab through skip link and burger button to reach menu navigation container
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
