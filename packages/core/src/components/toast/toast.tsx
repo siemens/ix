@@ -38,7 +38,7 @@ interface ToastTypeConfig {
 /**
  * Transient notification message that appears temporarily.
  *
- * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+ * @documentation https://ix.siemens.io/docs/components/toast/guide.md
  *
  * @slot - Toast message content.
  * @slot action - Toast action content.
