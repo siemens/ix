@@ -47,7 +47,7 @@ const meta = {
     max: 100,
     step: 1,
     value: 50,
-    trace: false,
+    trace: true,
     traceReference: 0,
     showTextAsTooltip: false,
     disabled: false,

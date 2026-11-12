@@ -130,8 +130,9 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
   @Prop() marker?: SliderMarker;
 
   /**
-   * Color the track between **traceReference** and the current value, and show the reference marker.
-   * Without this, the track is colored from the minimum to the current value.
+   * Color the track and show the reference marker.
+   * The colored segment runs from the minimum to the current value when **traceReference** is at the minimum.
+   * Otherwise it runs between **traceReference** and the current value.
    */
   @Prop() trace = false;
 
@@ -315,7 +316,7 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
       this.trace && traceReferenceInPercentage !== valueInPercentage;
 
     let traceStart = 0;
-    let traceEnd = valueInPercentage;
+    let traceEnd = this.trace ? valueInPercentage : 0;
 
     if (showReferenceSpan) {
       traceStart = Math.min(traceReferenceInPercentage, valueInPercentage);
@@ -381,7 +382,8 @@ export class Slider implements FieldWrapperInterface, IxFormValidationState {
                         <circle
                           class={{
                             tick: true,
-                            'tick-active': this.isMarkerActive(markerValue),
+                            'tick-active':
+                              this.trace && this.isMarkerActive(markerValue),
                             'tick-at-min': markerPosition === 0,
                             'tick-at-max': markerPosition === 1,
                           }}

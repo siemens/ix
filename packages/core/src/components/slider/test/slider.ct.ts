@@ -115,16 +115,26 @@ regressionTest(`form-readiness`, async ({ mount, page }) => {
 });
 
 regressionTest(
-  'colors the track from the minimum to the value',
+  'leaves the track uncolored when trace is off',
   async ({ page, mount }) => {
     await mount(`<ix-slider value="50"></ix-slider>`);
 
     const control = page.locator('ix-slider .slider');
-    await expect(control).toHaveClass(/value-fill/);
-    await expect(control).toHaveClass(/hide-trace-reference/);
+    await expect(control).not.toHaveClass(/value-fill/);
     expect((await control.getAttribute('class'))?.split(/\s+/)).not.toContain(
       'trace'
     );
+  }
+);
+
+regressionTest(
+  'colors the track from the minimum to the value when trace is on',
+  async ({ page, mount }) => {
+    await mount(`<ix-slider value="50" trace></ix-slider>`);
+
+    const control = page.locator('ix-slider .slider');
+    await expect(control).toHaveClass(/value-fill/);
+    await expect(control).toHaveClass(/hide-trace-reference/);
     await expect(control).toHaveAttribute('style', /--trace-start:\s*0/);
     await expect(control).toHaveAttribute('style', /--trace-end:\s*0\.5/);
   }
