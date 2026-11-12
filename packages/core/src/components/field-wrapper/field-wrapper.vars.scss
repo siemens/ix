@@ -10,10 +10,10 @@
 @use 'tokens/system' as sys;
 
 :host {
-  --ix-field-wrapper-icon--color--info: #{sys.$si-sys-color-text-information};
-  --ix-field-wrapper-icon--color--invalid: #{sys.$si-sys-color-text-danger};
-  --ix-field-wrapper-icon--color--valid: #{sys.$si-sys-color-text-success};
-  --ix-field-wrapper-icon--color--warning: #{sys.$si-sys-color-text-warning};
+  --ix-field-wrapper-icon--color--info: #{sys.$si-sys-color-background-information};
+  --ix-field-wrapper-icon--color--invalid: #{sys.$si-sys-color-background-danger};
+  --ix-field-wrapper-icon--color--valid: #{sys.$si-sys-color-background-success};
+  --ix-field-wrapper-icon--color--warning: #{sys.$si-sys-color-background-warning};
 }
 
 :host {
