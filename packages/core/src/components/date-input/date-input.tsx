@@ -186,8 +186,6 @@ export class DateInput
   /**
    * ARIA label for the calendar icon button.
    * Will be set as aria-label on the nested HTML button element.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
 
@@ -234,8 +232,6 @@ export class DateInput
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -274,7 +270,6 @@ export class DateInput
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -319,8 +314,6 @@ export class DateInput
   @Event() ixBlur!: EventEmitter<void>;
   /**
    * Change event. Emitted when the date input loses focus and the value has changed.
-   *
-   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string | undefined>;
   @State() show = false;

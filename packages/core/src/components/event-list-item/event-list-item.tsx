@@ -35,8 +35,6 @@ import { a11yBoolean } from '../utils/a11y';
 export class EventListItem {
   /**
    * Variant of the event list item
-   *
-   * @since 4.0.0
    */
   @Prop() variant: 'outline' | 'filled' = 'outline';
 

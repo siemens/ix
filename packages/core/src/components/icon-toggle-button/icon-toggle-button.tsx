@@ -68,9 +68,6 @@ export class IconToggleButton
 
   /**
    * Button in oval shape
-   *
-   * @since 3.1.0
-   *
    */
   @Prop() oval: boolean = false;
 

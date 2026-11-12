@@ -51,8 +51,6 @@ export class EmptyState {
 
   /**
    * ARIA label for the empty state icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelEmptyStateIcon?: string;
 

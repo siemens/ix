@@ -167,8 +167,6 @@ export class DatetimePicker
 
   /**
    * Top label of the time picker.
-   *
-   * @since 3.0.0
    */
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
@@ -249,8 +247,6 @@ export class DatetimePicker
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 

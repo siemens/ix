@@ -68,8 +68,6 @@ export class Pagination {
   /**
    * Custom item count options for advanced mode.
    * Provide an array of positive numbers to display in the items per page dropdown.
-   *
-   * @since 4.4.0
    */
   @Prop() itemCountOptions: number[] = [10, 15, 20, 40, 100];
 
@@ -108,24 +106,18 @@ export class Pagination {
   /**
    * ARIA label for the chevron left icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelChevronLeftIconButton?: string = 'Previous page';
 
   /**
    * ARIA label for the chevron right icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelChevronRightIconButton?: string = 'Next page';
 
   /**
    * ARIA label for the page selection input
    * Will be set as aria-label on the nested HTML input element
-   *
-   * @since 4.1.0
    */
   @Prop() ariaLabelPageSelection = 'Page selection input';
 

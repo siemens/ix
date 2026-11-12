@@ -179,20 +179,16 @@ export class Menu {
 
   /**
    * Event emitted when the app switch button is clicked
-   *
-   * @since 3.0.0
    */
   @Event() openAppSwitch!: EventEmitter<void>;
 
   /**
    * Event emitted when the settings button is clicked
-   * @since 3.0.0
    */
   @Event() openSettings!: EventEmitter<void>;
 
   /**
    * Event emitted when the about button is clicked
-   * @since 3.0.0
    */
   @Event() openAbout!: EventEmitter<void>;
 

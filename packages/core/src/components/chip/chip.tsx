@@ -96,15 +96,12 @@ export class Chip
   /**
    * Display a tooltip. By default, no tooltip will be displayed.
    * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-   *
-   * @since 3.0.0
    */
   @Prop() tooltipText: string | boolean = false;
 
   /**
    * Center the content of the chip.
    * Set to false to disable centering.
-   * @since 3.2.0
    */
   @Prop() centerContent = false;
 

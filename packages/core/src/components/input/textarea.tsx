@@ -186,7 +186,6 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * Event emitted when the textarea field loses focus and the value has changed.
-   *@since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
 

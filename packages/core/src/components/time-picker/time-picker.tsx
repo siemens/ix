@@ -160,15 +160,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Hides the header of the picker.
-   *
-   * @since 3.2.0
    */
   @Prop() hideHeader: boolean = false;
 
   /**
    * Interval for hour selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) hourInterval: number = 1;
   @Watch('hourInterval')
@@ -180,8 +176,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Interval for minute selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) minuteInterval: number = 1;
   @Watch('minuteInterval')
@@ -193,8 +187,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Interval for second selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) secondInterval: number = 1;
   @Watch('secondInterval')
@@ -206,8 +198,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Interval for millisecond selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) millisecondInterval: number = 100;
   @Watch('millisecondInterval')

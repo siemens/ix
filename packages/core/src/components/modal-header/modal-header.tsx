@@ -55,8 +55,6 @@ export class ModalHeader {
   /**
    * ARIA label for the close icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelCloseIconButton?: string = 'Close modal';
 

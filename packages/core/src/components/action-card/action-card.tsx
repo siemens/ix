@@ -46,8 +46,6 @@ export class IxActionCard {
 
   /**
    * ARIA label for the icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelIcon?: string;
 
@@ -68,8 +66,6 @@ export class IxActionCard {
 
   /**
    * ARIA label for the card
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelCard?: string;
 

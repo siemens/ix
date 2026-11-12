@@ -198,7 +198,7 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
    */
   menuToggle: EventEmitter<IxApplicationHeaderCustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<IxApplicationHeaderCustomEvent<void>>;
 }
@@ -983,7 +983,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<IxDateInputCustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Change event. Emitted when the date input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the date input loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
 }
@@ -1544,7 +1544,7 @@ import type { IxFlipTileCustomEvent } from '@siemens/ix/components';
 
 export declare interface IxFlipTile extends Components.IxFlipTile {
   /**
-   * Event emitted when the index changes @since 3.0.0
+   * Event emitted when the index changes
    */
   toggle: EventEmitter<IxFlipTileCustomEvent<number>>;
 }
@@ -1811,7 +1811,7 @@ export declare interface IxInput extends Components.IxInput {
    */
   ixBlur: EventEmitter<IxInputCustomEvent<void>>;
   /**
-   * Event emitted when the text field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the text field loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxInputCustomEvent<string>>;
 }
@@ -2086,15 +2086,15 @@ export declare interface IxMenu extends Components.IxMenu {
    */
   mapExpandChange: EventEmitter<IxMenuCustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<IxMenuCustomEvent<void>>;
   /**
-   * Event emitted when the settings button is clicked @since 3.0.0
+   * Event emitted when the settings button is clicked
    */
   openSettings: EventEmitter<IxMenuCustomEvent<void>>;
   /**
-   * Event emitted when the about button is clicked @since 3.0.0
+   * Event emitted when the about button is clicked
    */
   openAbout: EventEmitter<IxMenuCustomEvent<void>>;
 }
@@ -2128,7 +2128,7 @@ import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/
 
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
-   * Active tab changed @since 3.0.0
+   * Active tab changed
    */
   tabChange: EventEmitter<IxMenuAboutCustomEvent<string>>;
   /**
@@ -2346,7 +2346,7 @@ import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@sieme
 
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
-   * Active tab changed @since 3.0.0
+   * Active tab changed
    */
   tabChange: EventEmitter<IxMenuSettingsCustomEvent<string>>;
   /**
@@ -2573,7 +2573,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    */
   ixBlur: EventEmitter<IxNumberInputCustomEvent<void>>;
   /**
-   * Event emitted when the input field loses focus and the value has changed @since 4.4.0
+   * Event emitted when the input field loses focus and the value has changed
    */
   ixChange: EventEmitter<IxNumberInputCustomEvent<number>>;
 }
@@ -3296,7 +3296,7 @@ export declare interface IxTextarea extends Components.IxTextarea {
    */
   ixBlur: EventEmitter<IxTextareaCustomEvent<void>>;
   /**
-   * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the textarea field loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxTextareaCustomEvent<string>>;
 }
@@ -3363,7 +3363,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   validityStateChange: EventEmitter<IxTimeInputCustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Change event. Emitted when the time input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the time input loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxTimeInputCustomEvent<string>>;
 }

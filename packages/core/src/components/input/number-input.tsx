@@ -187,8 +187,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
   /**
    * If true, the valueChange event will return null instead of 0 for an empty input state.
    * This property will be removed in 5.0.0 and this behaviour will be default.
-   *
-   * @since 4.1.0
    */
   @Prop({ reflect: true }) allowEmptyValueChange: boolean = false;
 
@@ -209,7 +207,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   /**
    * Event emitted when the input field loses focus and the value has changed
-   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<number>;
 
