@@ -93,7 +93,7 @@ export class Application {
    * `javascript:` or `data:` are not rejected. Only configure trusted applications and do not
    * derive URLs from untrusted input.
    *
-   * @breaking-change 6.0.0 Applications are opened with `noopener` and `noreferrer`
+   * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
    */
   @Prop() appSwitchConfig?: AppSwitchConfiguration;
 

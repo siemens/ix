@@ -975,7 +975,7 @@ import type { DateInputValidityState as IIxDateInputDateInputValidityState } fro
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
-   * Value change event. Emitted when the input value changes. @breaking-change 6.0.0 Emitted only on Confirm with `requireConfirmation`
+   * Value change event. Emitted when the input value changes. @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
    */
   valueChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
   /**
@@ -1084,7 +1084,7 @@ import type { DateTimeInputValidityState as IIxDatetimeInputDateTimeInputValidit
 
 export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
-   * Emitted when the datetime value changes. Payload is in `format` or undefined @breaking-change 6.0.0 Emitted for every picked date or time, or only on Confirm with `requireConfirmation`
+   * Emitted when the datetime value changes. Payload is in `format` or undefined @breaking-change 6.0.0 Emit timing changed for picker selections
    */
   valueChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
   /**

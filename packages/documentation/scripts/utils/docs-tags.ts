@@ -29,13 +29,12 @@ export function convertDocsTagsToTSXElement(
     }
 
     if (name === 'breaking-change') {
-      // `@breaking-change <version> <summary>`
+      // `@breaking-change <version> <summary>`, the summary is a plain text tooltip
       const [version, ...summary] = (text ?? '').trim().split(/\s+/);
-      const description = escapeMarkdown(summary.join(' ')).replace(
-        /`/g,
-        '\\`'
-      );
-      template = `<BreakingChangeTag message={\`${version}\`} description={\`${description}\`} />`;
+      const description = summary.join(' ').replace(/`/g, '');
+      template = `<BreakingChangeTag message={${JSON.stringify(
+        version
+      )}} description={${JSON.stringify(description)}} />`;
     }
 
     if (name === 'form-ready') {

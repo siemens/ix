@@ -302,7 +302,7 @@ export class DateInput
   /**
    * Value change event. Emitted when the input value changes.
    *
-   * @breaking-change 6.0.0 Emitted only on Confirm with `requireConfirmation`
+   * @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
 

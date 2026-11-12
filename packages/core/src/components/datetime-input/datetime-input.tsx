@@ -266,7 +266,7 @@ export class DatetimeInput
   /**
    * Emitted when the datetime value changes. Payload is in `format` or undefined
    *
-   * @breaking-change 6.0.0 Emitted for every picked date or time, or only on Confirm with `requireConfirmation`
+   * @breaking-change 6.0.0 Emit timing changed for picker selections
    */
   @Event() valueChange!: EventEmitter<string | undefined>;
 

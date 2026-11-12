@@ -188,7 +188,7 @@ export namespace Components {
     interface IxApplication {
         /**
           * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
-          * @breaking-change 6.0.0 Applications are opened with `noopener` and `noreferrer`
+          * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -8642,7 +8642,7 @@ declare namespace LocalJSX {
     interface IxApplication {
         /**
           * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
-          * @breaking-change 6.0.0 Applications are opened with `noopener` and `noreferrer`
+          * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -10064,7 +10064,7 @@ declare namespace LocalJSX {
         "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateInputValidityState>) => void;
         /**
           * Value change event. Emitted when the input value changes.
-          * @breaking-change 6.0.0 Emitted only on Confirm with `requireConfirmation`
+          * @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
          */
         "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
@@ -10423,7 +10423,7 @@ declare namespace LocalJSX {
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
           * Emitted when the datetime value changes. Payload is in `format` or undefined
-          * @breaking-change 6.0.0 Emitted for every picked date or time, or only on Confirm with `requireConfirmation`
+          * @breaking-change 6.0.0 Emit timing changed for picker selections
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
