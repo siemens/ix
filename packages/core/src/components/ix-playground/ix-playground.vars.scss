@@ -12,18 +12,13 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('playground--gap', sys.$si-sys-sizing-spacing-y-90);
-  @include cv.define-var('playground--max-width', 64rem);
-  @include cv.define-var(
-    'playground--padding',
-    sys.$si-sys-sizing-spacing-y-90
-  );
-  @include cv.define-var(
-    'playground-scenario--gap',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'playground--padding-inline-start',
-    sys.$si-sys-sizing-spacing-x-80
+  @include cv.define-vars(
+    (
+      'playground--gap': sys.$si-sys-sizing-spacing-y-90,
+      'playground--max-width': 64rem,
+      'playground--padding': sys.$si-sys-sizing-spacing-y-90,
+      'playground-scenario--gap': sys.$si-sys-sizing-spacing-y-60,
+      'playground--padding-inline-start': sys.$si-sys-sizing-spacing-x-80,
+    )
   );
 }

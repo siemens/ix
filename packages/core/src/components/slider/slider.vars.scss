@@ -15,175 +15,85 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'slider-thumb--background--active',
-    sys.$si-sys-color-background-accent-active
-  );
-  @include cv.define-var(
-    'slider-thumb--background--disabled',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'slider-thumb--background--hover',
-    sys.$si-sys-color-background-accent-hover
-  );
-  @include cv.define-var(
-    'slider-thumb--background--info',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'slider-thumb--background--invalid--active',
-    sys.$si-sys-color-background-danger-active
-  );
-  @include cv.define-var(
-    'slider-thumb--background--invalid--hover',
-    sys.$si-sys-color-background-danger-hover
-  );
-  @include cv.define-var(
-    'slider-thumb--background--invalid',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'slider-thumb--background--success',
-    sys.$si-sys-color-background-success
-  );
-  @include cv.define-var(
-    'slider-thumb--background--warning',
-    sys.$si-sys-color-background-warning
-  );
-  @include cv.define-var(
-    'slider-thumb--background',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'slider-thumb--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'slider-trace--background--disabled',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'slider-trace--background--info',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'slider-trace--background--invalid',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'slider-trace--background--success',
-    sys.$si-sys-color-border-success
-  );
-  @include cv.define-var(
-    'slider-trace--background--warning',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'slider-trace--background',
-    sys.$si-sys-color-border-accent
-  );
-  @include cv.define-var(
-    'slider-trace-marker--background--disabled',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'slider-trace-marker--background--info',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'slider-trace-marker--background--invalid',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'slider-trace-marker--background--success',
-    sys.$si-sys-color-background-success
-  );
-  @include cv.define-var(
-    'slider-trace-marker--background--warning',
-    sys.$si-sys-color-background-warning
-  );
-  @include cv.define-var(
-    'slider-trace-marker--background',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'slider-track--background--disabled',
-    sys.$si-sys-color-background-2
-  );
-  @include cv.define-var(
-    'slider-track--background',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'slider-track-marker--background--disabled',
-    sys.$si-sys-color-background-2
-  );
-  @include cv.define-var(
-    'slider-track-marker--background',
-    sys.$si-sys-color-border-2
+  @include cv.define-vars(
+    (
+      'slider-thumb--background--active':
+        sys.$si-sys-color-background-accent-active,
+      'slider-thumb--background--disabled': sys.$si-sys-color-border-2,
+      'slider-thumb--background--hover':
+        sys.$si-sys-color-background-accent-hover,
+      'slider-thumb--background--info': sys.$si-sys-color-background-information,
+      'slider-thumb--background--invalid--active':
+        sys.$si-sys-color-background-danger-active,
+      'slider-thumb--background--invalid--hover':
+        sys.$si-sys-color-background-danger-hover,
+      'slider-thumb--background--invalid': sys.$si-sys-color-background-danger,
+      'slider-thumb--background--success': sys.$si-sys-color-background-success,
+      'slider-thumb--background--warning': sys.$si-sys-color-background-warning,
+      'slider-thumb--background': sys.$si-sys-color-background-accent,
+      'slider-thumb--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'slider-trace--background--disabled': sys.$si-sys-color-border-2,
+      'slider-trace--background--info': sys.$si-sys-color-border-information,
+      'slider-trace--background--invalid': sys.$si-sys-color-border-danger,
+      'slider-trace--background--success': sys.$si-sys-color-border-success,
+      'slider-trace--background--warning': sys.$si-sys-color-border-warning,
+      'slider-trace--background': sys.$si-sys-color-border-accent,
+      'slider-trace-marker--background--disabled': sys.$si-sys-color-border-2,
+      'slider-trace-marker--background--info':
+        sys.$si-sys-color-background-information,
+      'slider-trace-marker--background--invalid':
+        sys.$si-sys-color-background-danger,
+      'slider-trace-marker--background--success':
+        sys.$si-sys-color-background-success,
+      'slider-trace-marker--background--warning':
+        sys.$si-sys-color-background-warning,
+      'slider-trace-marker--background': sys.$si-sys-color-background-accent,
+      'slider-track--background--disabled': sys.$si-sys-color-background-2,
+      'slider-track--background': sys.$si-sys-color-border-4,
+      'slider-track-marker--background--disabled':
+        sys.$si-sys-color-background-2,
+      'slider-track-marker--background': sys.$si-sys-color-border-2,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'slider-thumb--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var('slider--min-height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var('slider-thumb--size', sys.$si-sys-sizing-size-50);
-  @include cv.define-var('slider--height', sys.$si-sys-sizing-size-70);
-  @include cv.define-var(
-    'slider-label--margin-top',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var('slider-track--height', sys.$si-sys-sizing-size-20);
-  @include cv.define-var(
-    'slider-input-track--height',
-    cv.get-var('slider-track--height')
-  );
-  @include cv.define-var(
-    'slider-input--margin-top',
-    calc(
-      (
-          #{cv.get-var('slider-input-track--height')} - #{cv.get-var(
-              'slider-thumb--size'
-            )}
-        ) / 2
+  @include cv.define-vars(
+    (
+      'slider-thumb--transition-duration': var(--theme-default-time),
+      'slider--min-height': sys.$si-sys-sizing-size-80,
+      'slider-thumb--size': sys.$si-sys-sizing-size-50,
+      'slider--height': sys.$si-sys-sizing-size-70,
+      'slider-label--margin-top': sys.$si-sys-sizing-spacing-y-40,
+      'slider-track--height': sys.$si-sys-sizing-size-20,
     )
   );
-  @include cv.define-var(
-    'slider-trace--height',
-    cv.get-var('slider-track--height')
+  @include cv.define-vars(
+    (
+      'slider-input-track--height': cv.get-var('slider-track--height'),
+    )
   );
-  @include cv.define-var(
-    'slider-trace--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var('slider-reference--width', sys.$si-sys-sizing-size-10);
-  @include cv.define-var(
-    'slider-reference--height',
-    sys.$si-sys-sizing-size-50
-  );
-  @include cv.define-var('slider--z-index', 10);
-  @include cv.define-var(
-    'slider--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'slider--outline-offset',
-    sys.$si-sys-sizing-focus-ring-offset
-  );
-  @include cv.define-var(
-    'slider-ticks--tick-size',
-    calc(#{cv.get-var('slider-thumb--size')} * 0.375)
-  );
-  @include cv.define-var(
-    'slider-track--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var(
-    'slider-thumb--border-radius',
-    sys.$si-sys-sizing-border-radius-full
+  @include cv.define-vars(
+    (
+      'slider-input--margin-top':
+        calc(
+          (
+              #{cv.get-var('slider-input-track--height')} - #{cv.get-var(
+                  'slider-thumb--size'
+                )}
+            ) / 2
+        ),
+      'slider-trace--height': cv.get-var('slider-track--height'),
+      'slider-trace--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'slider-reference--width': sys.$si-sys-sizing-size-10,
+      'slider-reference--height': sys.$si-sys-sizing-size-50,
+      'slider--z-index': 10,
+      'slider--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+      'slider--outline-offset': sys.$si-sys-sizing-focus-ring-offset,
+      'slider-ticks--tick-size':
+        calc(#{cv.get-var('slider-thumb--size')} * 0.375),
+      'slider-track--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'slider-thumb--border-radius': sys.$si-sys-sizing-border-radius-full,
+    )
   );
 }

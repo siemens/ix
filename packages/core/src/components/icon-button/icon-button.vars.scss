@@ -18,11 +18,13 @@
 @include cv.declare-var('icon-button--color');
 
 :host {
-  @include cv.define-var('icon-button--size--12', sys.$si-sys-sizing-size-50);
-  @include cv.define-var('icon-button--size--16', sys.$si-sys-sizing-size-70);
-  @include cv.define-var('icon-button--size--32', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'icon-button-btn-oval--border-radius',
-    sys.$si-sys-sizing-border-radius-full
+  @include cv.define-vars(
+    (
+      'icon-button--size--12': sys.$si-sys-sizing-size-50,
+      'icon-button--size--16': sys.$si-sys-sizing-size-70,
+      'icon-button--size--32': sys.$si-sys-sizing-size-80,
+      'icon-button-btn-oval--border-radius':
+        sys.$si-sys-sizing-border-radius-full,
+    )
   );
 }

@@ -15,20 +15,13 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'chat-attachment-attachment-chip--max-width',
-    sys.$si-sys-sizing-size-170
-  );
-  @include cv.define-var(
-    'chat-attachment-status-content--gap',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'chat-attachment-status-content--margin-left',
-    calc(#{sys.$si-sys-sizing-spacing-x-10} * 1.5)
-  );
-  @include cv.define-var(
-    'chat-attachment-has-remove-button--gap',
-    sys.$si-sys-sizing-spacing-x-30
+  @include cv.define-vars(
+    (
+      'chat-attachment-attachment-chip--max-width': sys.$si-sys-sizing-size-170,
+      'chat-attachment-status-content--gap': sys.$si-sys-sizing-spacing-x-40,
+      'chat-attachment-status-content--margin-left':
+        calc(#{sys.$si-sys-sizing-spacing-x-10} * 1.5),
+      'chat-attachment-has-remove-button--gap': sys.$si-sys-sizing-spacing-x-30,
+    )
   );
 }

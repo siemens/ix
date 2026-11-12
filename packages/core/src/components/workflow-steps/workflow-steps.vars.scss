@@ -15,8 +15,9 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'workflow-steps--min-width',
-    sys.$si-sys-sizing-size-80
+  @include cv.define-vars(
+    (
+      'workflow-steps--min-width': sys.$si-sys-sizing-size-80,
+    )
   );
 }

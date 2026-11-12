@@ -15,31 +15,21 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'toast-container--z-index',
-    var(--theme-z-index-toast)
+  @include cv.define-vars(
+    (
+      'toast-container--z-index': var(--theme-z-index-toast),
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'toast-container--margin-block-end',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'toast-container-top-right--right',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'toast-container-top-right--top',
-    sys.$si-sys-sizing-spacing-y-90
-  );
-  @include cv.define-var(
-    'toast-container-bottom-right--right',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'toast-container-bottom-right--bottom',
-    sys.$si-sys-sizing-spacing-y-90
+  @include cv.define-vars(
+    (
+      'toast-container--margin-block-end': sys.$si-sys-sizing-spacing-y-60,
+      'toast-container-top-right--right': sys.$si-sys-sizing-spacing-x-60,
+      'toast-container-top-right--top': sys.$si-sys-sizing-spacing-y-90,
+      'toast-container-bottom-right--right': sys.$si-sys-sizing-spacing-x-60,
+      'toast-container-bottom-right--bottom': sys.$si-sys-sizing-spacing-y-90,
+    )
   );
 }

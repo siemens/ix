@@ -15,34 +15,29 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('tooltip--color', sys.$si-sys-color-text-primary);
-  @include cv.define-var(
-    'tooltip--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
+  @include cv.define-vars(
+    (
+      'tooltip--color': sys.$si-sys-color-text-primary,
+      'tooltip--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'tooltip--background': sys.$si-sys-color-background-3,
+    )
   );
-  @include cv.define-var('tooltip--background', sys.$si-sys-color-background-3);
 }
 
 :host {
-  @include cv.define-var(
-    'tooltip-dialog--max-width',
-    calc(
-      #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-50}
+  @include cv.define-vars(
+    (
+      'tooltip-dialog--max-width':
+        calc(
+          #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-x-100} +
+            #{sys.$si-sys-sizing-spacing-x-50}
+        ),
+      'tooltip-container--padding': #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-50},
+      'tooltip-icon--margin': #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-20}
+        #{sys.$si-sys-sizing-spacing-y-10} 0,
+      'tooltip-container--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'tooltip-arrow--width': 12px,
+      'tooltip-arrow--height': 12px,
     )
   );
-  @include cv.define-var(
-    'tooltip-container--padding',
-    #{sys.$si-sys-sizing-spacing-y-30} #{sys.$si-sys-sizing-spacing-x-50}
-  );
-  @include cv.define-var(
-    'tooltip-icon--margin',
-    #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-20} #{sys.$si-sys-sizing-spacing-y-10}
-      0
-  );
-  @include cv.define-var(
-    'tooltip-container--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var('tooltip-arrow--width', 12px);
-  @include cv.define-var('tooltip-arrow--height', 12px);
 }

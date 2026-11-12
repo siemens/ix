@@ -15,89 +15,50 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'message-bar--border-color--error',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'message-bar--border-color--danger',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'message-bar--border-color--warning',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'message-bar--border-color--caution',
-    sys.$si-sys-color-border-caution
-  );
-  @include cv.define-var(
-    'message-bar--border-color--success',
-    sys.$si-sys-color-border-success
-  );
-  @include cv.define-var(
-    'message-bar--border-color--information',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'message-bar--border-color--neutral',
-    sys.$si-sys-color-border-neutral
-  );
-  @include cv.define-var(
-    'message-bar--border-color--accent',
-    sys.$si-sys-color-border-accent
-  );
-  @include cv.define-var(
-    'message-bar--border-color--critical',
-    sys.$si-sys-color-border-critical
-  );
-  @include cv.define-var(
-    'message-bar--background',
-    sys.$si-sys-color-background-accent-secondary
+  @include cv.define-vars(
+    (
+      'message-bar--border-color--error': sys.$si-sys-color-border-danger,
+      'message-bar--border-color--danger': sys.$si-sys-color-border-danger,
+      'message-bar--border-color--warning': sys.$si-sys-color-border-warning,
+      'message-bar--border-color--caution': sys.$si-sys-color-border-caution,
+      'message-bar--border-color--success': sys.$si-sys-color-border-success,
+      'message-bar--border-color--information':
+        sys.$si-sys-color-border-information,
+      'message-bar--border-color--neutral': sys.$si-sys-color-border-neutral,
+      'message-bar--border-color--accent': sys.$si-sys-color-border-accent,
+      'message-bar--border-color--critical': sys.$si-sys-color-border-critical,
+      'message-bar--background': sys.$si-sys-color-background-accent-secondary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'message-bar--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
+  @include cv.define-vars(
+    (
+      'message-bar--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'message-bar--border-width': sys.$si-sys-sizing-border-width-selected,
+      'message-bar--margin': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
+        0 #{sys.$si-sys-sizing-spacing-x-40},
+      'message-bar-message-container--min-height': sys.$si-sys-sizing-size-100,
+    )
   );
-  @include cv.define-var(
-    'message-bar--border-width',
-    sys.$si-sys-sizing-border-width-selected
-  );
-  @include cv.define-var(
-    'message-bar--margin',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'message-bar-message-container--min-height',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var(
-    'message-bar-message-container--padding',
-    calc(
-        #{sys.$si-sys-sizing-spacing-y-50} - #{cv.get-var(
-            'message-bar--border-width'
-          )}
-      )
-      #{sys.$si-sys-sizing-spacing-x-50} calc(
-        #{sys.$si-sys-sizing-spacing-y-50} - #{cv.get-var(
-            'message-bar--border-width'
-          )}
-      ) #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'message-bar-message-content--min-height',
-    sys.$si-sys-sizing-size-60
-  );
-  @include cv.define-var(
-    'message-bar-message-content--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var('message-bar-icon--size', sys.$si-sys-sizing-icon-md);
-  @include cv.define-var(
-    'message-bar-icon--margin-top',
-    sys.$si-sys-sizing-spacing-y-30
+  @include cv.define-vars(
+    (
+      'message-bar-message-container--padding':
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-50} - #{cv.get-var(
+              'message-bar--border-width'
+            )}
+        )
+        #{sys.$si-sys-sizing-spacing-x-50} calc(
+          #{sys.$si-sys-sizing-spacing-y-50} - #{cv.get-var(
+              'message-bar--border-width'
+            )}
+        ) #{sys.$si-sys-sizing-spacing-x-60},
+      'message-bar-message-content--min-height': sys.$si-sys-sizing-size-60,
+      'message-bar-message-content--padding': 0 #{sys.$si-sys-sizing-spacing-x-60},
+      'message-bar-icon--size': sys.$si-sys-sizing-icon-md,
+      'message-bar-icon--margin-top': sys.$si-sys-sizing-spacing-y-30,
+    )
   );
 }

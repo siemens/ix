@@ -15,79 +15,41 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'menu-avatar-button--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'menu-avatar-button--background--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'menu-avatar-button--background--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'menu-avatar-button--color--active',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'menu-avatar-button--color--hover',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'menu-avatar-text--color--primary',
-    sys.$si-sys-color-text-primary
+  @include cv.define-vars(
+    (
+      'menu-avatar-button--outline-color--focus':
+        sys.$si-sys-color-effects-focus,
+      'menu-avatar-button--background--active':
+        sys.$si-sys-color-background-selected,
+      'menu-avatar-button--background--hover':
+        sys.$si-sys-color-background-hover,
+      'menu-avatar-button--color--active': sys.$si-sys-color-text-primary,
+      'menu-avatar-button--color--hover': sys.$si-sys-color-text-primary,
+      'menu-avatar-text--color--primary': sys.$si-sys-color-text-primary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'menu-avatar-button--transition-duration',
-    var(--theme-default-time)
+  @include cv.define-vars(
+    (
+      'menu-avatar-button--transition-duration': var(--theme-default-time),
+      'menu-avatar--margin-bottom': sys.$si-sys-sizing-spacing-y-40,
+      'menu-avatar--margin-right': sys.$si-sys-sizing-spacing-x-50,
+      'menu-avatar-avatar--height': sys.$si-sys-sizing-size-90,
+      'menu-avatar-avatar--max-height': sys.$si-sys-sizing-size-90,
+      'menu-avatar-avatar--padding-left': sys.$si-sys-sizing-spacing-x-20,
+      'menu-avatar-avatar--margin-left': sys.$si-sys-sizing-spacing-x-30,
+      'menu-avatar-avatar--margin-right': sys.$si-sys-sizing-spacing-x-30,
+      'menu-avatar-avatar-name--margin-left': sys.$si-sys-sizing-spacing-x-60,
+      'menu-avatar-avatar--border-radius': sys.$si-sys-sizing-border-radius-full,
+      'menu-avatar--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
   );
-  @include cv.define-var(
-    'menu-avatar--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'menu-avatar--margin-right',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar--height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar--max-height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar--padding-left',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar--margin-left',
-    sys.$si-sys-sizing-spacing-x-30
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar--margin-right',
-    sys.$si-sys-sizing-spacing-x-30
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar-name--margin-left',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'menu-avatar-avatar--border-radius',
-    sys.$si-sys-sizing-border-radius-full
-  );
-  @include cv.define-var(
-    'menu-avatar--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'menu-avatar--outline-offset--focus',
-    calc(-1 * #{cv.get-var('menu-avatar--outline-width--focus')})
+  @include cv.define-vars(
+    (
+      'menu-avatar--outline-offset--focus':
+        calc(-1 * #{cv.get-var('menu-avatar--outline-width--focus')}),
+    )
   );
 }

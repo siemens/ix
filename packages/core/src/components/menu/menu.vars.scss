@@ -15,98 +15,56 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'menu-tabs-shadow--box-shadow',
-    sys.$si-sys-color-effects-shadow-20
-  );
-  @include cv.define-var('menu-overlay--background', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'menu-tabs--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'menu-navigation--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var('menu--background', sys.$si-sys-color-background-1);
-  @include cv.define-var(
-    'menu--box-shadow',
-    sys.$si-sys-color-effects-shadow-20
+  @include cv.define-vars(
+    (
+      'menu-tabs-shadow--box-shadow': sys.$si-sys-color-effects-shadow-20,
+      'menu-overlay--background': rgba(0, 0, 0, 0),
+      'menu-tabs--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'menu-navigation--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'menu--background': sys.$si-sys-color-background-1,
+      'menu--box-shadow': sys.$si-sys-color-effects-shadow-20,
+    )
   );
 }
 
 :host {
-  @include cv.define-var('menu-overlay--blur-radius', 1rem);
-  @include cv.define-var(
-    'menu-tabs-shadow-container--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-50
-  );
-  @include cv.define-var('menu--z-index', var(--theme-z-index-sticky));
-  @include cv.define-var(
-    'menu-tabs-shadow--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var(
-    'menu-panel--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var(
-    'menu-overlay--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var('menu--width--expanded', sys.$si-sys-sizing-size-160);
-  @include cv.define-var('menu--width', sys.$si-sys-sizing-size-100);
-  @include cv.define-var(
-    'menu--padding-block-end',
-    calc(
-      #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0rem)
+  @include cv.define-vars(
+    (
+      'menu-overlay--blur-radius': 1rem,
+      'menu-tabs-shadow-container--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-50,
+      'menu--z-index': var(--theme-z-index-sticky),
+      'menu-tabs-shadow--transition-duration': var(--theme-default-time),
+      'menu-panel--transition-duration': var(--theme-default-time),
+      'menu-overlay--transition-duration': var(--theme-default-time),
+      'menu--width--expanded': sys.$si-sys-sizing-size-160,
+      'menu--width': sys.$si-sys-sizing-size-100,
+      'menu--padding-block-end':
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0rem)
+        ),
+      'menu-overlay--width': calc(100vw - #{sys.$si-sys-sizing-size-100}),
+      'menu-overlay--left': sys.$si-sys-sizing-size-100,
+      'menu-slotted-avatar--max-height': sys.$si-sys-sizing-size-100,
+      'menu-slotted-avatar--margin-bottom': sys.$si-sys-sizing-spacing-y-90,
+      'menu-cui-imprint-product-name--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-60,
+      'menu-cui-imprint-product-description--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-90,
+      'menu-buttons--margin': #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc((
+              #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}
+            ) / 2),
+      'menu-empty--margin-bottom': sys.$si-sys-sizing-spacing-y-50,
+      'menu--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
     )
   );
-  @include cv.define-var(
-    'menu-overlay--width',
-    calc(100vw - #{sys.$si-sys-sizing-size-100})
-  );
-  @include cv.define-var('menu-overlay--left', sys.$si-sys-sizing-size-100);
-  @include cv.define-var(
-    'menu-slotted-avatar--max-height',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var(
-    'menu-slotted-avatar--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-90
-  );
-  @include cv.define-var(
-    'menu-cui-imprint-product-name--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'menu-cui-imprint-product-description--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-90
-  );
-  @include cv.define-var(
-    'menu-buttons--margin',
-    #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc((
-            #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}
-          ) / 2)
-  );
-  @include cv.define-var(
-    'menu-empty--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-50
-  );
-  @include cv.define-var(
-    'menu--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'menu-tabs--outline-offset',
-    calc(-1 * #{cv.get-var('menu--outline-width--focus')})
-  );
-  @include cv.define-var(
-    'menu-navigation--outline-offset',
-    calc(-1 * #{cv.get-var('menu--outline-width--focus')})
-  );
-  @include cv.define-var(
-    'menu-tabs-shadow--height',
-    sys.$si-sys-sizing-border-width-default
+  @include cv.define-vars(
+    (
+      'menu-tabs--outline-offset':
+        calc(-1 * #{cv.get-var('menu--outline-width--focus')}),
+      'menu-navigation--outline-offset':
+        calc(-1 * #{cv.get-var('menu--outline-width--focus')}),
+      'menu-tabs-shadow--height': sys.$si-sys-sizing-border-width-default,
+    )
   );
 }

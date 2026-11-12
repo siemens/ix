@@ -15,12 +15,11 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'list-item-separator--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'list-item-separator--border-color',
-    sys.$si-sys-color-border-3
+  @include cv.define-vars(
+    (
+      'list-item-separator--border-width':
+        sys.$si-sys-sizing-border-width-default,
+      'list-item-separator--border-color': sys.$si-sys-color-border-3,
+    )
   );
 }

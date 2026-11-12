@@ -18,166 +18,74 @@
 @include cv.declare-var('select-overflow-chip--fallback-width');
 
 :host {
-  @include cv.define-var(
-    'select--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var('select--background', sys.$si-sys-color-background-1);
-  @include cv.define-var(
-    'select--background--hover',
-    sys.$si-sys-color-background-4
-  );
-  @include cv.define-var(
-    'select--background--invalid',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'select--background--warning',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var('select--border-color', sys.$si-sys-color-border-2);
-  @include cv.define-var(
-    'select--border-color--disabled',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'select--border-color--hover',
-    sys.$si-sys-color-border-1
-  );
-  @include cv.define-var(
-    'select--border-color--info',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'select--border-color--info--active',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'select--border-color--info--hover',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'select--border-color--invalid',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'select--border-color--invalid--active',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'select--border-color--invalid--hover',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'select--border-color--readonly',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'select--border-color--warning',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'select--border-color--warning--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'select--border-color--warning--hover',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var('select--color', sys.$si-sys-color-text-primary);
-  @include cv.define-var(
-    'select--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'select--color--readonly',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'select-list-header--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'select-placeholder--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'select-overflow-button--color--active',
-    sys.$si-sys-color-text-primary
+  @include cv.define-vars(
+    (
+      'select--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'select--background': sys.$si-sys-color-background-1,
+      'select--background--hover': sys.$si-sys-color-background-4,
+      'select--background--invalid': sys.$si-sys-color-background-1,
+      'select--background--warning': sys.$si-sys-color-background-1,
+      'select--border-color': sys.$si-sys-color-border-2,
+      'select--border-color--disabled': sys.$si-sys-color-border-4,
+      'select--border-color--hover': sys.$si-sys-color-border-1,
+      'select--border-color--info': sys.$si-sys-color-border-information,
+      'select--border-color--info--active': sys.$si-sys-color-border-information,
+      'select--border-color--info--hover': sys.$si-sys-color-border-information,
+      'select--border-color--invalid': sys.$si-sys-color-border-danger,
+      'select--border-color--invalid--active': sys.$si-sys-color-border-danger,
+      'select--border-color--invalid--hover': sys.$si-sys-color-border-danger,
+      'select--border-color--readonly': sys.$si-sys-color-border-4,
+      'select--border-color--warning': sys.$si-sys-color-border-warning,
+      'select--border-color--warning--active': sys.$si-sys-color-border-warning,
+      'select--border-color--warning--hover': sys.$si-sys-color-border-warning,
+      'select--color': sys.$si-sys-color-text-primary,
+      'select--color--disabled': sys.$si-sys-color-text-disabled,
+      'select--color--readonly': sys.$si-sys-color-text-primary,
+      'select-list-header--color': sys.$si-sys-color-text-secondary,
+      'select-placeholder--color': sys.$si-sys-color-text-secondary,
+      'select-overflow-button--color--active': sys.$si-sys-color-text-primary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'select--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
-  );
-  @include cv.define-var(
-    'select--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var(
-    'select--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'select-chip--margin-block',
-    sys.$si-sys-sizing-spacing-y-10
-  );
-  @include cv.define-var(
-    'select-chip--margin-inline-end',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'select-trigger--min-width',
-    sys.$si-sys-sizing-size-120
-  );
-  @include cv.define-var(
-    'select-overflow-chip-fallback--width',
-    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20})
-  );
-  @include cv.define-var('select--min-height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'select--padding',
-    0
-      calc(
-        #{sys.$si-sys-sizing-spacing-x-20} - #{sys.$si-sys-sizing-border-width-default}
-      )
-      0 #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'select-chips--max-width',
-    min(
-      40%,
-      calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120})
+  @include cv.define-vars(
+    (
+      'select--outline-offset--focus': sys.$si-sys-sizing-focus-ring-offset,
+      'select--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'select--border-width': sys.$si-sys-sizing-border-width-default,
+      'select-chip--margin-block': sys.$si-sys-sizing-spacing-y-10,
+      'select-chip--margin-inline-end': sys.$si-sys-sizing-spacing-x-20,
+      'select-trigger--min-width': sys.$si-sys-sizing-size-120,
+      'select-overflow-chip-fallback--width':
+        calc(
+          #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+        ),
+      'select--min-height': sys.$si-sys-sizing-size-80,
+      'select--padding': 0
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-20} - #{sys.$si-sys-sizing-border-width-default}
+        )
+        0 #{sys.$si-sys-sizing-spacing-x-40},
+      'select-chips--max-width':
+        min(
+          40%,
+          calc(
+            #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-120}
+          )
+        ),
+      'select-input-container--height':
+        calc(#{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}),
+      'select-overflow-dropdown-content--gap': sys.$si-sys-sizing-spacing-y-20,
+      'select-overflow-dropdown-content--max-height':
+        calc(
+          #{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-y-60}
+        ),
+      'select-overflow-dropdown-content--padding': #{sys.$si-sys-sizing-spacing-y-40}
+        #{sys.$si-sys-sizing-spacing-x-40},
+      'select-list-header--height': sys.$si-sys-sizing-size-80,
+      'select-list-header--margin': 0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60},
+      'select--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
     )
-  );
-  @include cv.define-var(
-    'select-input-container--height',
-    calc(#{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20})
-  );
-  @include cv.define-var(
-    'select-overflow-dropdown-content--gap',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'select-overflow-dropdown-content--max-height',
-    calc(#{sys.$si-sys-sizing-size-160} + #{sys.$si-sys-sizing-spacing-y-60})
-  );
-  @include cv.define-var(
-    'select-overflow-dropdown-content--padding',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'select-list-header--height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'select-list-header--margin',
-    0 #{sys.$si-sys-sizing-spacing-x-40} 0 #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'select--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
   );
 }

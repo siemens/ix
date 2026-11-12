@@ -15,34 +15,24 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'pill--background--outline',
-    sys.$si-sys-color-background-accent-secondary
+  @include cv.define-vars(
+    (
+      'pill--background--outline': sys.$si-sys-color-background-accent-secondary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var('pill--height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('pill--max-height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var(
-    'pill--padding-inline',
-    sys.$si-sys-sizing-spacing-x-40
+  @include cv.define-vars(
+    (
+      'pill--height': sys.$si-sys-sizing-size-60,
+      'pill--max-height': sys.$si-sys-sizing-size-60,
+      'pill--padding-inline': sys.$si-sys-sizing-spacing-x-40,
+      'pill-icon--padding-left--outline': sys.$si-sys-sizing-spacing-x-40,
+      'pill-icon--padding-right--outline': sys.$si-sys-sizing-spacing-x-40,
+      'pill-solid-icon--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'pill-solid-icon--padding-right': sys.$si-sys-sizing-spacing-x-40,
+      'pill-with-gap--gap': sys.$si-sys-sizing-spacing-x-20,
+    )
   );
-  @include cv.define-var(
-    'pill-icon--padding-left--outline',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'pill-icon--padding-right--outline',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'pill-solid-icon--padding-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'pill-solid-icon--padding-right',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var('pill-with-gap--gap', sys.$si-sys-sizing-spacing-x-20);
 }

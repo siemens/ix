@@ -15,39 +15,24 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'chat-ai-message--color',
-    sys.$si-sys-color-text-primary
+  @include cv.define-vars(
+    (
+      'chat-ai-message--color': sys.$si-sys-color-text-primary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'chat-ai-message-meta--min-height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'chat-ai-message-actions--gap',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'chat-ai-message--gap',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'chat-ai-message-message--gap',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'chat-ai-message-message--font',
-    sys.$si-sys-typography-body-paragraph
-  );
-  @include cv.define-var(
-    'chat-ai-message-message--font-weight',
-    var(--si-ref-typography-font-weight-bold)
-  );
-  @include cv.define-var(
-    'chat-ai-message-meta--gap',
-    sys.$si-sys-sizing-spacing-x-60
+  @include cv.define-vars(
+    (
+      'chat-ai-message-meta--min-height': sys.$si-sys-sizing-size-80,
+      'chat-ai-message-actions--gap': sys.$si-sys-sizing-spacing-x-20,
+      'chat-ai-message--gap': sys.$si-sys-sizing-spacing-y-60,
+      'chat-ai-message-message--gap': sys.$si-sys-sizing-spacing-y-60,
+      'chat-ai-message-message--font': sys.$si-sys-typography-body-paragraph,
+      'chat-ai-message-message--font-weight':
+        var(--si-ref-typography-font-weight-bold),
+      'chat-ai-message-meta--gap': sys.$si-sys-sizing-spacing-x-60,
+    )
   );
 }

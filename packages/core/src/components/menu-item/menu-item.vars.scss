@@ -15,113 +15,62 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'menu-item-tab--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'menu-item--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'menu-item--background--primary--selected',
-    sys.$si-sys-color-background-0
-  );
-  @include cv.define-var(
-    'menu-item--border-color--primary--selected',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var(
-    'menu-item--color--primary',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'menu-item-icon--color--primary',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'menu-item-icon--color--primary--selected',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'menu-item--background--secondary--selected',
-    sys.$si-sys-color-background-0
+  @include cv.define-vars(
+    (
+      'menu-item-tab--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'menu-item--color--disabled': sys.$si-sys-color-text-disabled,
+      'menu-item--background--primary--selected': sys.$si-sys-color-background-0,
+      'menu-item--border-color--primary--selected':
+        sys.$si-sys-color-border-accent-hover,
+      'menu-item--color--primary': sys.$si-sys-color-text-primary,
+      'menu-item-icon--color--primary': sys.$si-sys-color-text-primary,
+      'menu-item-icon--color--primary--selected': sys.$si-sys-color-text-primary,
+      'menu-item--background--secondary--selected':
+        sys.$si-sys-color-background-0,
+    )
   );
 }
 
 :host {
-  @include cv.define-var('menu-item--height', sys.$si-sys-sizing-size-100);
-  @include cv.define-var(
-    'menu-item-tab-icon-slot--width',
-    sys.$si-sys-sizing-icon-lg
-  );
-  @include cv.define-var(
-    'menu-item--padding-inline',
-    calc(
-      (
-          #{sys.$si-sys-sizing-size-100} - #{cv.get-var(
-              'menu-item-tab-icon-slot--width'
-            )}
-        ) / 2
+  @include cv.define-vars(
+    (
+      'menu-item--height': sys.$si-sys-sizing-size-100,
+      'menu-item-tab-icon-slot--width': sys.$si-sys-sizing-icon-lg,
     )
   );
-  @include cv.define-var(
-    'menu-item-tab-icon--size',
-    sys.$si-sys-sizing-icon-md
-  );
-  @include cv.define-var(
-    'menu-item-tab-icon--margin-inline',
-    sys.$si-sys-sizing-spacing-x-10
-  );
-  @include cv.define-var(
-    'menu-item-tab-text--margin',
-    0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70}
-  );
-  @include cv.define-var(
-    'menu-item-bottom-tab-bottom--height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'menu-item-tab--padding-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'menu-item-tab-icon--padding-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'menu-item-tab-icon--padding-right',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'menu-item-tab-text--margin-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var('menu-item-tab--z-index', 500);
-  @include cv.define-var(
-    'menu-item--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'menu-item-tab--outline-offset',
-    calc(-1 * #{cv.get-var('menu-item--outline-width--focus')})
-  );
-  @include cv.define-var(
-    'menu-item-notification--top',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'menu-item-notification--right',
-    calc(
-      100% - #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  @include cv.define-vars(
+    (
+      'menu-item--padding-inline':
+        calc(
+          (
+              #{sys.$si-sys-sizing-size-100} - #{cv.get-var(
+                  'menu-item-tab-icon-slot--width'
+                )}
+            ) / 2
+        ),
+      'menu-item-tab-icon--size': sys.$si-sys-sizing-icon-md,
+      'menu-item-tab-icon--margin-inline': sys.$si-sys-sizing-spacing-x-10,
+      'menu-item-tab-text--margin': 0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70},
+      'menu-item-bottom-tab-bottom--height': sys.$si-sys-sizing-size-90,
+      'menu-item-tab--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab-icon--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab-icon--padding-right': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab-text--margin-left': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab--z-index': 500,
+      'menu-item--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
     )
   );
-  @include cv.define-var(
-    'menu-item-tab--width',
-    sys.$si-sys-sizing-border-width-emphasis
-  );
-  @include cv.define-var(
-    'menu-item-notification--padding-left',
-    sys.$si-sys-sizing-spacing-x-40
+  @include cv.define-vars(
+    (
+      'menu-item-tab--outline-offset':
+        calc(-1 * #{cv.get-var('menu-item--outline-width--focus')}),
+      'menu-item-notification--top': sys.$si-sys-sizing-spacing-y-20,
+      'menu-item-notification--right':
+        calc(
+          100% - #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
+        ),
+      'menu-item-tab--width': sys.$si-sys-sizing-border-width-emphasis,
+      'menu-item-notification--padding-left': sys.$si-sys-sizing-spacing-x-40,
+    )
   );
 }

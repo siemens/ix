@@ -15,135 +15,72 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'time-picker-column-header--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'time-picker-day--color',
-    sys.$si-sys-color-text-accent
-  );
-  @include cv.define-var(
-    'time-picker-day--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'time-picker-day--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'time-picker-day--background--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'time-picker-day--background--selected',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'time-picker-day--background--selected--active',
-    sys.$si-sys-color-background-accent-active
-  );
-  @include cv.define-var(
-    'time-picker-day--background--selected--disabled',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'time-picker-day--background--selected--hover',
-    sys.$si-sys-color-background-accent-hover
-  );
-  @include cv.define-var(
-    'time-picker-day--color--selected',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'time-picker-day--color--selected--disabled',
-    sys.$si-sys-color-text-disabled
+  @include cv.define-vars(
+    (
+      'time-picker-column-header--color': sys.$si-sys-color-text-secondary,
+      'time-picker-day--color': sys.$si-sys-color-text-accent,
+      'time-picker-day--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'time-picker-day--color--disabled': sys.$si-sys-color-text-disabled,
+      'time-picker-day--background--hover': sys.$si-sys-color-background-hover,
+      'time-picker-day--background--selected':
+        sys.$si-sys-color-background-accent,
+      'time-picker-day--background--selected--active':
+        sys.$si-sys-color-background-accent-active,
+      'time-picker-day--background--selected--disabled':
+        sys.$si-sys-color-background-1,
+      'time-picker-day--background--selected--hover':
+        sys.$si-sys-color-background-accent-hover,
+      'time-picker-day--color--selected': sys.$si-sys-color-text-on-accent,
+      'time-picker-day--color--selected--disabled':
+        sys.$si-sys-color-text-disabled,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'time-picker-day--font-weight--selected',
-    var(--si-ref-typography-font-weight-sbold)
-  );
-  @include cv.define-var(
-    'time-picker-header--height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'time-picker-column-header--height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'time-picker-column-header--width',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'time-picker-column-header--line-height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'time-picker-column-separator--margin-top',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var(
-    'time-picker-column-separator--width',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'time-picker-element-list--max-height',
-    calc(
-      #{sys.$si-sys-sizing-size-90} * 6 + #{sys.$si-sys-sizing-spacing-y-10} * 6
+  @include cv.define-vars(
+    (
+      'time-picker-day--font-weight--selected':
+        var(--si-ref-typography-font-weight-sbold),
+      'time-picker-header--height': sys.$si-sys-sizing-size-80,
+      'time-picker-column-header--height': sys.$si-sys-sizing-size-90,
+      'time-picker-column-header--width': sys.$si-sys-sizing-size-90,
+      'time-picker-column-header--line-height': sys.$si-sys-sizing-size-90,
+      'time-picker-column-separator--margin-top': sys.$si-sys-sizing-size-100,
+      'time-picker-column-separator--width': sys.$si-sys-sizing-spacing-x-40,
+      'time-picker-element-list--max-height':
+        calc(
+          #{sys.$si-sys-sizing-size-90} * 6 + #{sys.$si-sys-sizing-spacing-y-10} *
+            6
+        ),
+      'time-picker-element-container--width': sys.$si-sys-sizing-size-90,
+      'time-picker-element-container--height': sys.$si-sys-sizing-size-90,
+      'time-picker-element-container--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-10,
+      'time-picker-element-list-padding--width': sys.$si-sys-sizing-size-90,
+      'time-picker-element-list-padding--height':
+        calc(
+          #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+        ),
+      'time-picker-element-list-padding--min-height':
+        calc(
+          #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+        ),
+      'time-picker-default-space--margin-left': sys.$si-sys-sizing-spacing-x-60,
+      'time-picker-element-list--padding':
+        calc(
+          #{sys.$si-sys-sizing-focus-ring-offset} + #{sys.$si-sys-sizing-focus-ring-width}
+        ),
     )
   );
-  @include cv.define-var(
-    'time-picker-element-container--width',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'time-picker-element-container--height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'time-picker-element-container--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-10
-  );
-  @include cv.define-var(
-    'time-picker-element-list-padding--width',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'time-picker-element-list-padding--height',
-    calc(
-      #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
+  @include cv.define-vars(
+    (
+      'time-picker-element-list--margin':
+        calc(#{cv.get-var('time-picker-element-list--padding')} * -1),
+      'time-picker-day--outline-width--focus':
+        sys.$si-sys-sizing-focus-ring-width,
+      'time-picker-day--outline-offset--focus':
+        sys.$si-sys-sizing-focus-ring-offset,
     )
-  );
-  @include cv.define-var(
-    'time-picker-element-list-padding--min-height',
-    calc(
-      #{sys.$si-sys-sizing-size-90} * 5 + 5 * #{sys.$si-sys-sizing-spacing-y-10}
-    )
-  );
-  @include cv.define-var(
-    'time-picker-default-space--margin-left',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'time-picker-element-list--padding',
-    calc(
-      #{sys.$si-sys-sizing-focus-ring-offset} + #{sys.$si-sys-sizing-focus-ring-width}
-    )
-  );
-  @include cv.define-var(
-    'time-picker-element-list--margin',
-    calc(#{cv.get-var('time-picker-element-list--padding')} * -1)
-  );
-  @include cv.define-var(
-    'time-picker-day--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'time-picker-day--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
   );
 }

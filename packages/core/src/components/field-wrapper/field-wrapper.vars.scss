@@ -15,51 +15,28 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'field-wrapper-icon--color--info',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'field-wrapper-icon--color--invalid',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'field-wrapper-icon--color--valid',
-    sys.$si-sys-color-background-success
-  );
-  @include cv.define-var(
-    'field-wrapper-icon--color--warning',
-    sys.$si-sys-color-background-warning
+  @include cv.define-vars(
+    (
+      'field-wrapper-icon--color--info':
+        sys.$si-sys-color-background-information,
+      'field-wrapper-icon--color--invalid': sys.$si-sys-color-background-danger,
+      'field-wrapper-icon--color--valid': sys.$si-sys-color-background-success,
+      'field-wrapper-icon--color--warning': sys.$si-sys-color-background-warning,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'field-wrapper-bottom-text--gap',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'field-wrapper-bottom-text--margin-right',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'field-wrapper-slot-wrapper--gap',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'field-wrapper-field-top--gap',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'field-wrapper-bottom-text--margin-top',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'field-wrapper-bottom-text--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'field-wrapper-text-icon--margin',
-    sys.$si-sys-sizing-spacing-y-10
+  @include cv.define-vars(
+    (
+      'field-wrapper-bottom-text--gap': sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-bottom-text--margin-right': sys.$si-sys-sizing-spacing-x-20,
+      'field-wrapper-slot-wrapper--gap': sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-field-top--gap': sys.$si-sys-sizing-spacing-x-60,
+      'field-wrapper-bottom-text--margin-top': sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-bottom-text--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-text-icon--margin': sys.$si-sys-sizing-spacing-y-10,
+    )
   );
 }

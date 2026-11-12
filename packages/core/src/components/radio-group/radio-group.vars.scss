@@ -15,12 +15,11 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'radio-group-checkbox-container--gap',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'radio-group-checkbox-container--margin',
-    #{sys.$si-sys-sizing-spacing-y-30} 0
+  @include cv.define-vars(
+    (
+      'radio-group-checkbox-container--gap': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60},
+      'radio-group-checkbox-container--margin': #{sys.$si-sys-sizing-spacing-y-30}
+        0,
+    )
   );
 }

@@ -15,37 +15,31 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'push-card--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
+  @include cv.define-vars(
+    (
+      'push-card--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'push-card--border-width': sys.$si-sys-sizing-border-width-default,
+      'push-card-accordion--border-color': sys.$si-sys-color-background-0,
+      'push-card--width': sys.$si-sys-sizing-size-170,
+    )
   );
-  @include cv.define-var(
-    'push-card--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'push-card-accordion--border-color',
-    sys.$si-sys-color-background-0
-  );
-  @include cv.define-var('push-card--width', sys.$si-sys-sizing-size-170);
 }
 
 :host {
-  @include cv.define-var('push-card-icon--size', sys.$si-sys-sizing-size-90);
-  @include cv.define-var('push-card--height', sys.$si-sys-sizing-size-100);
-  @include cv.define-var(
-    'push-card-content--height',
-    calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} + #{sys.$si-sys-sizing-spacing-y-50} +
-        #{sys.$si-sys-sizing-size-30} - 2 * #{sys.$si-sys-sizing-border-width-default}
+  @include cv.define-vars(
+    (
+      'push-card-icon--size': sys.$si-sys-sizing-size-90,
+      'push-card--height': sys.$si-sys-sizing-size-100,
+      'push-card-content--height':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} +
+            #{sys.$si-sys-sizing-spacing-y-50} + #{sys.$si-sys-sizing-size-30} -
+            2 * #{sys.$si-sys-sizing-border-width-default}
+        ),
+      'push-card-content--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
+        #{sys.$si-sys-sizing-spacing-y-60},
+      'push-card-accordion-chrome-frame--border-width':
+        sys.$si-sys-sizing-border-width-none,
     )
-  );
-  @include cv.define-var(
-    'push-card-content--padding',
-    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60}
-  );
-  @include cv.define-var(
-    'push-card-accordion-chrome-frame--border-width',
-    sys.$si-sys-sizing-border-width-none
   );
 }

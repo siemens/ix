@@ -24,31 +24,20 @@
 @include cv.declare-var('list-drag-separator--top');
 
 :host {
-  @include cv.define-var('list--gap--sm', sys.$si-sys-sizing-spacing-y-20);
-  @include cv.define-var('list--gap--md', sys.$si-sys-sizing-spacing-y-40);
-  @include cv.define-var('list--gap--lg', sys.$si-sys-sizing-spacing-y-50);
-  @include cv.define-var(
-    'list-drag--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
-  );
-  @include cv.define-var(
-    'list-drag-placeholder--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'list-drag-placeholder--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'list-drag-placeholder--height--divider',
-    sys.$si-sys-sizing-size-20
-  );
-  @include cv.define-var(
-    'list-drag-placeholder--border-color--divider',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'list-drag-placeholder--border-color--separator',
-    sys.$si-sys-color-border-1
+  @include cv.define-vars(
+    (
+      'list--gap--sm': sys.$si-sys-sizing-spacing-y-20,
+      'list--gap--md': sys.$si-sys-sizing-spacing-y-40,
+      'list--gap--lg': sys.$si-sys-sizing-spacing-y-50,
+      'list-drag--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'list-drag-placeholder--border-width':
+        sys.$si-sys-sizing-border-width-default,
+      'list-drag-placeholder--border-radius':
+        sys.$si-sys-sizing-border-radius-sm,
+      'list-drag-placeholder--height--divider': sys.$si-sys-sizing-size-20,
+      'list-drag-placeholder--border-color--divider': sys.$si-sys-color-border-2,
+      'list-drag-placeholder--border-color--separator':
+        sys.$si-sys-color-border-1,
+    )
   );
 }

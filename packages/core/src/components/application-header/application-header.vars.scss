@@ -15,135 +15,68 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'application-header-dropdown-item--border-color',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'application-header--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'application-header--border-color',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'application-header--color',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'application-header-app-icon--outline-color',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'application-header-logo--color',
-    sys.$si-sys-color-effects-logo
-  );
-  @include cv.define-var(
-    'application-header-name-suffix--color',
-    sys.$si-sys-color-text-secondary
+  @include cv.define-vars(
+    (
+      'application-header-dropdown-item--border-color':
+        sys.$si-sys-color-border-4,
+      'application-header--background': sys.$si-sys-color-background-1,
+      'application-header--border-color': sys.$si-sys-color-border-4,
+      'application-header--color': sys.$si-sys-color-text-primary,
+      'application-header-app-icon--outline-color': sys.$si-sys-color-border-2,
+      'application-header-logo--color': sys.$si-sys-color-effects-logo,
+      'application-header-name-suffix--color': sys.$si-sys-color-text-secondary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'application-header--z-index',
-    var(--theme-z-index-fixed)
-  );
-  @include cv.define-var(
-    'application-header--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'application-header-dropdown-item--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'application-header--min-height',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var(
-    'application-header--padding-right',
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
-        var(--ix-safe-area-inset-right, 0rem)
+  @include cv.define-vars(
+    (
+      'application-header--z-index': var(--theme-z-index-fixed),
+      'application-header--border-width':
+        sys.$si-sys-sizing-border-width-default,
+      'application-header-dropdown-item--border-width':
+        sys.$si-sys-sizing-border-width-default,
+      'application-header--min-height': sys.$si-sys-sizing-size-100,
+      'application-header--padding-right':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
+            var(--ix-safe-area-inset-right, 0rem)
+        ),
+      'application-header--padding-left':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
+            var(--ix-safe-area-inset-left, 0rem)
+        ),
+      'application-header--padding-left--mobile':
+        calc(
+          (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}) / 2 +
+            var(--ix-safe-area-inset-left, 0rem)
+        ),
+      'application-header-right-side--min-height': sys.$si-sys-sizing-size-100,
+      'application-header-app-icon--size': sys.$si-sys-sizing-size-80,
+      'application-header-app-icon--outline-width':
+        sys.$si-sys-sizing-border-width-default,
+      'application-header-app-icon--border-radius':
+        sys.$si-sys-sizing-border-radius-xs,
+      'application-header-app-switch--margin': 0
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
+        ),
+      'application-header-name--margin-left': sys.$si-sys-sizing-spacing-x-50,
+      'application-header-name--margin-right': sys.$si-sys-sizing-spacing-x-50,
+      'application-header-name--gap': sys.$si-sys-sizing-spacing-x-50,
+      'application-header-logo--height': sys.$si-sys-sizing-size-80,
+      'application-header-logo--margin-right': sys.$si-sys-sizing-spacing-x-60,
+      'application-header-logo--margin-left': sys.$si-sys-sizing-spacing-x-60,
+      'application-header-slot-content--padding--active': #{sys.$si-sys-sizing-spacing-y-40}
+        #{sys.$si-sys-sizing-spacing-x-80},
+      'application-header-context-menu-visible--margin-left':
+        sys.$si-sys-sizing-spacing-x-40,
+      'application-header-right-side--margin-left':
+        sys.$si-sys-sizing-spacing-x-40,
+      'application-header-logo--margin-left--mobile':
+        sys.$si-sys-sizing-spacing-x-40,
     )
-  );
-  @include cv.define-var(
-    'application-header--padding-left',
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
-        var(--ix-safe-area-inset-left, 0rem)
-    )
-  );
-  @include cv.define-var(
-    'application-header--padding-left--mobile',
-    calc(
-      (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}) / 2 +
-        var(--ix-safe-area-inset-left, 0rem)
-    )
-  );
-  @include cv.define-var(
-    'application-header-right-side--min-height',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var(
-    'application-header-app-icon--size',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'application-header-app-icon--outline-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'application-header-app-icon--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var(
-    'application-header-app-switch--margin',
-    0
-      calc(
-        #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10}
-      )
-  );
-  @include cv.define-var(
-    'application-header-name--margin-left',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'application-header-name--margin-right',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'application-header-name--gap',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'application-header-logo--height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'application-header-logo--margin-right',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'application-header-logo--margin-left',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'application-header-slot-content--padding--active',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-80}
-  );
-  @include cv.define-var(
-    'application-header-context-menu-visible--margin-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'application-header-right-side--margin-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'application-header-logo--margin-left--mobile',
-    sys.$si-sys-sizing-spacing-x-40
   );
 }

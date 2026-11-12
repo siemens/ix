@@ -21,97 +21,43 @@
 @include cv.declare-var('pane--color');
 
 :host {
-  @include cv.define-var(
-    'pane-floating--background',
-    sys.$si-sys-color-background-1
+  @include cv.define-vars(
+    (
+      'pane-floating--background': sys.$si-sys-color-background-1,
+      'pane-floating--border-color': sys.$si-sys-color-border-4,
+      'pane-floating--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'pane-floating--color': sys.$si-sys-color-text-primary,
+      'pane-inline--background': sys.$si-sys-color-background-0,
+      'pane-inline--border-color': sys.$si-sys-color-border-3,
+      'pane-inline--box-shadow': none,
+      'pane-inline--color': sys.$si-sys-color-text-primary,
+    )
   );
-  @include cv.define-var(
-    'pane-floating--border-color',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'pane-floating--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
-  );
-  @include cv.define-var(
-    'pane-floating--color',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'pane-inline--background',
-    sys.$si-sys-color-background-0
-  );
-  @include cv.define-var(
-    'pane-inline--border-color',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var('pane-inline--box-shadow', none);
-  @include cv.define-var('pane-inline--color', sys.$si-sys-color-text-primary);
 }
 
 :host {
-  @include cv.define-var('pane-title--gap', sys.$si-sys-sizing-spacing-x-40);
-  @include cv.define-var('pane-header--gap', sys.$si-sys-sizing-spacing-x-40);
-  @include cv.define-var(
-    'pane-top-bottom-title--margin-block',
-    sys.$si-sys-sizing-spacing-y-20
+  @include cv.define-vars(
+    (
+      'pane-title--gap': sys.$si-sys-sizing-spacing-x-40,
+      'pane-header--gap': sys.$si-sys-sizing-spacing-x-40,
+      'pane-top-bottom-title--margin-block': sys.$si-sys-sizing-spacing-y-20,
+      'pane-top-bottom-title--margin-inline': sys.$si-sys-sizing-spacing-x-50,
+      'pane-title-finished--margin': sys.$si-sys-sizing-spacing-y-50,
+      'pane-title--margin--collapsed': sys.$si-sys-sizing-spacing-y-50,
+      'pane-left-right-title--margin-block': sys.$si-sys-sizing-spacing-y-50,
+      'pane-left-right-title--margin-inline': sys.$si-sys-sizing-spacing-x-20,
+      'pane-title--margin-block--mobile': sys.$si-sys-sizing-spacing-y-40,
+      'pane-title--margin-inline--mobile': sys.$si-sys-sizing-spacing-x-50,
+      'pane-content--padding-block-start': sys.$si-sys-sizing-spacing-y-40,
+      'pane-content--padding-inline': sys.$si-sys-sizing-spacing-x-50,
+      'pane-content--padding-block-end': sys.$si-sys-sizing-spacing-y-60,
+      'pane--border-width': sys.$si-sys-sizing-border-width-default,
+      'pane-slot-header-content--max-height': sys.$si-sys-sizing-size-80,
+      'pane-slot-header--max-height': sys.$si-sys-sizing-size-80,
+      'pane-rotate--max-width': sys.$si-sys-sizing-size-80,
+      'pane-side-pane-content--height':
+        calc(100% - #{sys.$si-sys-sizing-size-90}),
+      'pane-overlay--z-index--mobile': 100,
+    )
   );
-  @include cv.define-var(
-    'pane-top-bottom-title--margin-inline',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'pane-title-finished--margin',
-    sys.$si-sys-sizing-spacing-y-50
-  );
-  @include cv.define-var(
-    'pane-title--margin--collapsed',
-    sys.$si-sys-sizing-spacing-y-50
-  );
-  @include cv.define-var(
-    'pane-left-right-title--margin-block',
-    sys.$si-sys-sizing-spacing-y-50
-  );
-  @include cv.define-var(
-    'pane-left-right-title--margin-inline',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'pane-title--margin-block--mobile',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'pane-title--margin-inline--mobile',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'pane-content--padding-block-start',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'pane-content--padding-inline',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'pane-content--padding-block-end',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'pane--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'pane-slot-header-content--max-height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'pane-slot-header--max-height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var('pane-rotate--max-width', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'pane-side-pane-content--height',
-    calc(100% - #{sys.$si-sys-sizing-size-90})
-  );
-  @include cv.define-var('pane-overlay--z-index--mobile', 100);
 }

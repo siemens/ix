@@ -15,42 +15,26 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('link-button--color', sys.$si-sys-color-text-accent);
-  @include cv.define-var(
-    'link-button--color--hover',
-    sys.$si-sys-color-text-accent-hover
-  );
-  @include cv.define-var(
-    'link-button--color--active',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'link-button--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'link-button--outline-color--focus',
-    sys.$si-sys-color-effects-focus
+  @include cv.define-vars(
+    (
+      'link-button--color': sys.$si-sys-color-text-accent,
+      'link-button--color--hover': sys.$si-sys-color-text-accent-hover,
+      'link-button--color--active': sys.$si-sys-color-text-accent-active,
+      'link-button--color--disabled': sys.$si-sys-color-text-disabled,
+      'link-button--outline-color--focus': sys.$si-sys-color-effects-focus,
+    )
   );
 }
 
 :host {
-  @include cv.define-var('link-button--height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var('link-button--min-width', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'link-button--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-20} 0 0
-  );
-  @include cv.define-var(
-    'link-button-icon--margin',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'link-button-link--text-underline-thickness',
-    sys.$si-sys-sizing-size-10
-  );
-  @include cv.define-var(
-    'link-button--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
+  @include cv.define-vars(
+    (
+      'link-button--height': sys.$si-sys-sizing-size-80,
+      'link-button--min-width': sys.$si-sys-sizing-size-80,
+      'link-button--padding': 0 #{sys.$si-sys-sizing-spacing-x-20} 0 0,
+      'link-button-icon--margin': sys.$si-sys-sizing-spacing-x-20,
+      'link-button-link--text-underline-thickness': sys.$si-sys-sizing-size-10,
+      'link-button--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
   );
 }

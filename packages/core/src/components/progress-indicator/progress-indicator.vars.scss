@@ -20,171 +20,78 @@
 @include cv.declare-var('progress-indicator-track--color');
 
 :host {
-  @include cv.define-var(
-    'progress-indicator-fill--background',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var(
-    'progress-indicator-fill--background--error',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'progress-indicator-fill--background--information',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'progress-indicator-fill--background--paused',
-    sys.$si-sys-color-border-1
-  );
-  @include cv.define-var(
-    'progress-indicator-fill--background--success',
-    sys.$si-sys-color-border-success
-  );
-  @include cv.define-var(
-    'progress-indicator-fill--background--warning',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'progress-indicator-helper--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'progress-indicator-helper--color--error',
-    sys.$si-sys-color-text-danger
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-icon--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-icon--color--error',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-icon--color--information',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-icon--color--paused',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-icon--color--success',
-    sys.$si-sys-color-border-success
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-icon--color--warning',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'progress-indicator-helper--color--information',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'progress-indicator-helper--color--paused',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'progress-indicator-helper--color--success',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'progress-indicator-helper--color--warning',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'progress-indicator-track--background',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'progress-indicator-track--background--error',
-    sys.$si-sys-color-background-danger-subtle
-  );
-  @include cv.define-var(
-    'progress-indicator-track--background--information',
-    sys.$si-sys-color-background-information-subtle
-  );
-  @include cv.define-var(
-    'progress-indicator-track--background--paused',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'progress-indicator-track--background--success',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'progress-indicator-track--background--warning',
-    sys.$si-sys-color-background-warning-subtle
+  @include cv.define-vars(
+    (
+      'progress-indicator-fill--background':
+        sys.$si-sys-color-border-accent-hover,
+      'progress-indicator-fill--background--error':
+        sys.$si-sys-color-border-danger,
+      'progress-indicator-fill--background--information':
+        sys.$si-sys-color-border-information,
+      'progress-indicator-fill--background--paused': sys.$si-sys-color-border-1,
+      'progress-indicator-fill--background--success':
+        sys.$si-sys-color-border-success,
+      'progress-indicator-fill--background--warning':
+        sys.$si-sys-color-border-warning,
+      'progress-indicator-helper--color': sys.$si-sys-color-text-secondary,
+      'progress-indicator-helper--color--error': sys.$si-sys-color-text-danger,
+      'progress-indicator-helper-icon--color': sys.$si-sys-color-text-secondary,
+      'progress-indicator-helper-icon--color--error':
+        sys.$si-sys-color-border-danger,
+      'progress-indicator-helper-icon--color--information':
+        sys.$si-sys-color-border-information,
+      'progress-indicator-helper-icon--color--paused':
+        sys.$si-sys-color-text-secondary,
+      'progress-indicator-helper-icon--color--success':
+        sys.$si-sys-color-border-success,
+      'progress-indicator-helper-icon--color--warning':
+        sys.$si-sys-color-border-warning,
+      'progress-indicator-helper--color--information':
+        sys.$si-sys-color-text-primary,
+      'progress-indicator-helper--color--paused': sys.$si-sys-color-text-primary,
+      'progress-indicator-helper--color--success':
+        sys.$si-sys-color-text-primary,
+      'progress-indicator-helper--color--warning':
+        sys.$si-sys-color-text-primary,
+      'progress-indicator-track--background': sys.$si-sys-color-border-4,
+      'progress-indicator-track--background--error':
+        sys.$si-sys-color-background-danger-subtle,
+      'progress-indicator-track--background--information':
+        sys.$si-sys-color-background-information-subtle,
+      'progress-indicator-track--background--paused': sys.$si-sys-color-border-4,
+      'progress-indicator-track--background--success':
+        sys.$si-sys-color-border-4,
+      'progress-indicator-track--background--warning':
+        sys.$si-sys-color-background-warning-subtle,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'progress-indicator--width',
-    calc(#{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-size-120})
-  );
-  @include cv.define-var(
-    'progress-indicator-progress-container--gap',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'progress-indicator-linear-progress-container--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var(
-    'progress-indicator-progress-bar--transition-duration',
-    0.3s
-  );
-  @include cv.define-var(
-    'progress-indicator-label--margin',
-    #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-20} 0
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-text--margin',
-    #{sys.$si-sys-sizing-spacing-y-20} 0
-  );
-  @include cv.define-var(
-    'progress-indicator-helper-text--gap',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'progress-indicator-icon--margin',
-    #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-10}
-  );
-  @include cv.define-var(
-    'progress-indicator--margin',
-    #{sys.$si-sys-sizing-spacing-y-40} 0
-  );
-  @include cv.define-var(
-    'progress-indicator--margin--xs',
-    #{sys.$si-sys-sizing-spacing-y-20} 0
-  );
-  @include cv.define-var(
-    'progress-indicator--margin--sm',
-    #{sys.$si-sys-sizing-spacing-y-30} 0
-  );
-  @include cv.define-var(
-    'progress-indicator-linear-slot--min-width',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'progress-indicator--height--xs',
-    sys.$si-sys-sizing-size-10
-  );
-  @include cv.define-var(
-    'progress-indicator--height--sm',
-    sys.$si-sys-sizing-size-20
-  );
-  @include cv.define-var(
-    'progress-indicator--height--md',
-    sys.$si-sys-sizing-size-30
-  );
-  @include cv.define-var(
-    'progress-indicator--height--lg',
-    sys.$si-sys-sizing-size-50
-  );
-  @include cv.define-var(
-    'progress-indicator--height--xl',
-    sys.$si-sys-sizing-size-70
+  @include cv.define-vars(
+    (
+      'progress-indicator--width':
+        calc(#{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-size-120}),
+      'progress-indicator-progress-container--gap':
+        sys.$si-sys-sizing-spacing-x-20,
+      'progress-indicator-linear-progress-container--border-radius':
+        sys.$si-sys-sizing-border-radius-xs,
+      'progress-indicator-progress-bar--transition-duration': 0.3s,
+      'progress-indicator-label--margin': #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-20}
+        0,
+      'progress-indicator-helper-text--margin': #{sys.$si-sys-sizing-spacing-y-20}
+        0,
+      'progress-indicator-helper-text--gap': sys.$si-sys-sizing-spacing-x-20,
+      'progress-indicator-icon--margin': #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-10},
+      'progress-indicator--margin': #{sys.$si-sys-sizing-spacing-y-40} 0,
+      'progress-indicator--margin--xs': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'progress-indicator--margin--sm': #{sys.$si-sys-sizing-spacing-y-30} 0,
+      'progress-indicator-linear-slot--min-width': sys.$si-sys-sizing-size-80,
+      'progress-indicator--height--xs': sys.$si-sys-sizing-size-10,
+      'progress-indicator--height--sm': sys.$si-sys-sizing-size-20,
+      'progress-indicator--height--md': sys.$si-sys-sizing-size-30,
+      'progress-indicator--height--lg': sys.$si-sys-sizing-size-50,
+      'progress-indicator--height--xl': sys.$si-sys-sizing-size-70,
+    )
   );
 }

@@ -15,8 +15,9 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'menu-avatar-item--color',
-    sys.$si-sys-color-text-primary
+  @include cv.define-vars(
+    (
+      'menu-avatar-item--color': sys.$si-sys-color-text-primary,
+    )
   );
 }

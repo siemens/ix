@@ -18,8 +18,9 @@
 @include cv.declare-var('card-content--padding');
 
 :host {
-  @include cv.define-var(
-    'card-content-content-wrapper--gap',
-    sys.$si-sys-sizing-spacing-y-40
+  @include cv.define-vars(
+    (
+      'card-content-content-wrapper--gap': sys.$si-sys-sizing-spacing-y-40,
+    )
   );
 }

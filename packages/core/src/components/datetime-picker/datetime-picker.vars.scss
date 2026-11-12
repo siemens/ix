@@ -15,15 +15,18 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'datetime-picker-separator--background',
-    sys.$si-sys-color-border-4
+  @include cv.define-vars(
+    (
+      'datetime-picker-separator--background': sys.$si-sys-color-border-4,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'datetime-picker-col-separator--border-width',
-    sys.$si-sys-sizing-border-width-default
+  @include cv.define-vars(
+    (
+      'datetime-picker-col-separator--border-width':
+        sys.$si-sys-sizing-border-width-default,
+    )
   );
 }

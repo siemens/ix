@@ -15,17 +15,12 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'card-title--margin-top',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'card-title--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var('card-title--gap', sys.$si-sys-sizing-spacing-x-60);
-  @include cv.define-var(
-    'card-title-title-actions--gap',
-    sys.$si-sys-sizing-spacing-x-20
+  @include cv.define-vars(
+    (
+      'card-title--margin-top': sys.$si-sys-sizing-spacing-y-20,
+      'card-title--margin-bottom': sys.$si-sys-sizing-spacing-y-20,
+      'card-title--gap': sys.$si-sys-sizing-spacing-x-60,
+      'card-title-title-actions--gap': sys.$si-sys-sizing-spacing-x-20,
+    )
   );
 }

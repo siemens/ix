@@ -22,9 +22,21 @@ Never write `--ix-*: …` or `var(--ix-*)` by hand in component SCSS. Use the re
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('button--background--primary', sys.$si-sys-color-primary);
-  @include cv.declare-var('button--color--custom'); // no default, set per state or from TSX
+  @include cv.define-vars(
+    (
+      'button--background--primary': sys.$si-sys-color-primary,
+      'button--size': 2rem,
+    )
+  );
+  // Values that read a property of the same map go in a following block
+  @include cv.define-vars(
+    (
+      'button--min-width': calc(#{cv.get-var('button--size')} * 2),
+    )
+  );
 }
+
+@include cv.declare-var('button--color--custom'); // no default, set per state or from TSX
 
 :host(.selected) {
   @include cv.set-var('button--background--primary', sys.$si-sys-color-primary-hover);
@@ -36,12 +48,13 @@ Never write `--ix-*: …` or `var(--ix-*)` by hand in component SCSS. Use the re
 }
 ```
 
-| Helper                                       | Purpose                                                                                                                   |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `define-var($name, $value)`                  | Declares and registers a property with a default. Only in vars files, inside a selector. Errors on duplicates.            |
-| `declare-var($name)`                         | Registers a property without emitting CSS (runtime properties, state-only properties). Only in vars files, top level.     |
-| `set-var($name, $value, $external: false)`   | Overrides a registered property. Errors on unknown names.                                                                 |
-| `get-var($name, $fallback: null, $external)` | Returns `var(--ix-<name>[, <fallback>])`. Errors on unknown names. Wrap in `#{…}` inside `calc()`, `min()`, `max()`, etc. |
+| Helper                                       | Purpose                                                                                                                                                                                       |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `define-vars($vars)`                         | Declares and registers a map of properties with defaults. Only in vars files, inside a selector. Errors on duplicates. A value cannot `get-var` a key of the same map; use a following block. |
+| `define-var($name, $value)`                  | Single-property form used by `define-vars`. Prefer `define-vars` in vars files.                                                                                                               |
+| `declare-var($name)`                         | Registers a property without emitting CSS (runtime properties, state-only properties). Only in vars files, top level.                                                                         |
+| `set-var($name, $value, $external: false)`   | Overrides a registered property. Errors on unknown names.                                                                                                                                     |
+| `get-var($name, $fallback: null, $external)` | Returns `var(--ix-<name>[, <fallback>])`. Errors on unknown names. Wrap in `#{…}` inside `calc()`, `min()`, `max()`, etc.                                                                     |
 
 Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property) or set at runtime from TSX. External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or set from TSX. The spec also fails on declared properties that are never read (directly or through another property). Remove dead properties instead of keeping them.
 

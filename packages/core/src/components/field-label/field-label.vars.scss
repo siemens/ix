@@ -15,12 +15,10 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'field-label--margin-top',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'field-label--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-20
+  @include cv.define-vars(
+    (
+      'field-label--margin-top': sys.$si-sys-sizing-spacing-y-40,
+      'field-label--margin-bottom': sys.$si-sys-sizing-spacing-y-20,
+    )
   );
 }

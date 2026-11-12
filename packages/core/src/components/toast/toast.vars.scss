@@ -15,55 +15,34 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('toast--background', sys.$si-sys-color-background-1);
-  @include cv.define-var('toast--border-color', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toast--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
-  );
-  @include cv.define-var(
-    'toast-timer-value--background',
-    sys.$si-sys-color-border-3
+  @include cv.define-vars(
+    (
+      'toast--background': sys.$si-sys-color-background-1,
+      'toast--border-color': rgba(0, 0, 0, 0),
+      'toast--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'toast-timer-value--background': sys.$si-sys-color-border-3,
+    )
   );
 }
 
 :host {
-  @include cv.define-var('toast--animation-duration', var(--theme-medium-time));
-  @include cv.define-var(
-    'toast--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'toast--border-width',
-    sys.$si-sys-sizing-border-width-none
-  );
-  @include cv.define-var('toast--min-width', sys.$si-sys-sizing-size-170);
-  @include cv.define-var('toast--max-width', sys.$si-sys-sizing-size-170);
-  @include cv.define-var('toast--min-height', sys.$si-sys-sizing-size-100);
-  @include cv.define-var('toast-body--min-height', sys.$si-sys-sizing-size-100);
-  @include cv.define-var(
-    'toast-body--padding',
-    #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50} #{sys.$si-sys-sizing-spacing-y-20}
-  );
-  @include cv.define-var(
-    'toast-icon--padding',
-    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20}
-  );
-  @include cv.define-var(
-    'toast-content--padding',
-    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20}
-  );
-  @include cv.define-var(
-    'toast-title--margin',
-    #{sys.$si-sys-sizing-spacing-y-20} 0
-  );
-  @include cv.define-var(
-    'toast-action--margin-top',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var('toast-close--opacity', 0.6);
-  @include cv.define-var(
-    'toast-progress-bar--height',
-    sys.$si-sys-sizing-size-10
+  @include cv.define-vars(
+    (
+      'toast--animation-duration': var(--theme-medium-time),
+      'toast--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'toast--border-width': sys.$si-sys-sizing-border-width-none,
+      'toast--min-width': sys.$si-sys-sizing-size-170,
+      'toast--max-width': sys.$si-sys-sizing-size-170,
+      'toast--min-height': sys.$si-sys-sizing-size-100,
+      'toast-body--min-height': sys.$si-sys-sizing-size-100,
+      'toast-body--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
+        #{sys.$si-sys-sizing-spacing-y-20},
+      'toast-icon--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20},
+      'toast-content--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20},
+      'toast-title--margin': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'toast-action--margin-top': sys.$si-sys-sizing-spacing-y-40,
+      'toast-close--opacity': 0.6,
+      'toast-progress-bar--height': sys.$si-sys-sizing-size-10,
+    )
   );
 }

@@ -15,43 +15,35 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'modal-backdrop--background',
-    sys.$si-sys-color-effects-backdrop
+  @include cv.define-vars(
+    (
+      'modal-backdrop--background': sys.$si-sys-color-effects-backdrop,
+      'modal--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'modal--color': sys.$si-sys-color-text-primary,
+      'modal--background': sys.$si-sys-color-background-3,
+    )
   );
-  @include cv.define-var(
-    'modal--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
-  );
-  @include cv.define-var('modal--color', sys.$si-sys-color-text-primary);
-  @include cv.define-var('modal--background', sys.$si-sys-color-background-3);
 }
 
 :host {
-  @include cv.define-var(
-    'modal--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'modal-dialog--padding',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'modal--width--360',
-    calc(#{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-100})
-  );
-  @include cv.define-var('modal--width--480', sys.$si-sys-sizing-size-180);
-  @include cv.define-var('modal--width--600', sys.$si-sys-sizing-size-190);
-  @include cv.define-var('modal--width--720', sys.$si-sys-sizing-size-200);
-  @include cv.define-var(
-    'modal--width--840',
-    calc(
-      #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-140} + #{sys.$si-sys-sizing-spacing-x-80}
+  @include cv.define-vars(
+    (
+      'modal--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'modal-dialog--padding': sys.$si-sys-sizing-spacing-y-60,
+      'modal--width--360':
+        calc(
+          #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-x-100}
+        ),
+      'modal--width--480': sys.$si-sys-sizing-size-180,
+      'modal--width--600': sys.$si-sys-sizing-size-190,
+      'modal--width--720': sys.$si-sys-sizing-size-200,
+      'modal--width--840':
+        calc(
+          #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-140} +
+            #{sys.$si-sys-sizing-spacing-x-80}
+        ),
+      'modal-with-icon--margin-left': sys.$si-sys-sizing-spacing-x-110,
+      'modal--max-height': 80vh,
     )
   );
-  @include cv.define-var(
-    'modal-with-icon--margin-left',
-    sys.$si-sys-sizing-spacing-x-110
-  );
-  @include cv.define-var('modal--max-height', 80vh);
 }

@@ -18,38 +18,21 @@
 @include cv.declare-var('application-menu--margin-left');
 
 :host {
-  @include cv.define-var(
-    'application-child-header--z-index',
-    var(--theme-z-index-sticky)
-  );
-  @include cv.define-var(
-    'application-skip-link--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'application-skip-link--color',
-    sys.$si-sys-color-text-accent
-  );
-  @include cv.define-var(
-    'application-skip-link--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'application-skip-link--outline-width--focus',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'application-skip-link--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
-  );
-  @include cv.define-var(
-    'application-skip-link--padding',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var('application--width', 100vw);
-  @include cv.define-var('application--height', 100vh);
-  @include cv.define-var(
-    'application-menu--margin-left--md',
-    sys.$si-sys-sizing-size-100
+  @include cv.define-vars(
+    (
+      'application-child-header--z-index': var(--theme-z-index-sticky),
+      'application-skip-link--background': sys.$si-sys-color-background-1,
+      'application-skip-link--color': sys.$si-sys-color-text-accent,
+      'application-skip-link--outline-color--focus':
+        sys.$si-sys-color-effects-focus,
+      'application-skip-link--outline-width--focus':
+        sys.$si-sys-sizing-border-width-default,
+      'application-skip-link--outline-offset--focus':
+        sys.$si-sys-sizing-focus-ring-offset,
+      'application-skip-link--padding': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60},
+      'application--width': 100vw,
+      'application--height': 100vh,
+      'application-menu--margin-left--md': sys.$si-sys-sizing-size-100,
+    )
   );
 }

@@ -20,214 +20,93 @@
 @include cv.declare-var('badge--pulse-color');
 
 :host {
-  @include cv.define-var(
-    'badge--background--accent',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'badge--border-color--accent',
-    sys.$si-sys-color-border-accent
-  );
-  @include cv.define-var(
-    'badge--color--accent--contrast',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'badge--background--danger',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'badge--border-color--danger',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var('badge--color--danger', sys.$si-sys-color-text-danger);
-  @include cv.define-var(
-    'badge--color--danger--contrast',
-    sys.$si-sys-color-text-on-danger
-  );
-  @include cv.define-var(
-    'badge--background--critical',
-    sys.$si-sys-color-background-critical
-  );
-  @include cv.define-var(
-    'badge--border-color--critical',
-    sys.$si-sys-color-border-critical
-  );
-  @include cv.define-var(
-    'badge--color--critical',
-    sys.$si-sys-color-text-critical
-  );
-  @include cv.define-var(
-    'badge--color--critical--contrast',
-    sys.$si-sys-color-text-on-critical
-  );
-  @include cv.define-var(
-    'badge--background--warning',
-    sys.$si-sys-color-background-warning
-  );
-  @include cv.define-var(
-    'badge--border-color--warning',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'badge--color--warning',
-    sys.$si-sys-color-text-warning
-  );
-  @include cv.define-var(
-    'badge--color--warning--contrast',
-    sys.$si-sys-color-text-on-warning
-  );
-  @include cv.define-var(
-    'badge--background--caution',
-    sys.$si-sys-color-background-caution
-  );
-  @include cv.define-var(
-    'badge--border-color--caution',
-    sys.$si-sys-color-border-caution
-  );
-  @include cv.define-var(
-    'badge--color--caution',
-    sys.$si-sys-color-text-caution
-  );
-  @include cv.define-var(
-    'badge--color--caution--contrast',
-    sys.$si-sys-color-text-on-caution
-  );
-  @include cv.define-var(
-    'badge--background--information',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'badge--border-color--information',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'badge--color--information',
-    sys.$si-sys-color-text-information
-  );
-  @include cv.define-var(
-    'badge--color--information--contrast',
-    sys.$si-sys-color-text-on-information
-  );
-  @include cv.define-var(
-    'badge--background--success',
-    sys.$si-sys-color-background-success
-  );
-  @include cv.define-var(
-    'badge--border-color--success',
-    sys.$si-sys-color-border-success
-  );
-  @include cv.define-var(
-    'badge--color--success',
-    sys.$si-sys-color-text-success
-  );
-  @include cv.define-var(
-    'badge--color--success--contrast',
-    sys.$si-sys-color-text-on-success
-  );
-  @include cv.define-var(
-    'badge--background--neutral',
-    sys.$si-sys-color-background-neutral
-  );
-  @include cv.define-var(
-    'badge--border-color--neutral',
-    sys.$si-sys-color-border-neutral
-  );
-  @include cv.define-var(
-    'badge--color--neutral--contrast',
-    sys.$si-sys-color-text-on-neutral
-  );
-
-  @include cv.define-var('badge--background--outline', transparent);
-  @include cv.define-var(
-    'badge-default--color',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'badge-contrast-ring--color',
-    sys.$si-sys-color-background-0
+  @include cv.define-vars(
+    (
+      'badge--background--accent': sys.$si-sys-color-background-accent,
+      'badge--border-color--accent': sys.$si-sys-color-border-accent,
+      'badge--color--accent--contrast': sys.$si-sys-color-text-on-accent,
+      'badge--background--danger': sys.$si-sys-color-background-danger,
+      'badge--border-color--danger': sys.$si-sys-color-border-danger,
+      'badge--color--danger': sys.$si-sys-color-text-danger,
+      'badge--color--danger--contrast': sys.$si-sys-color-text-on-danger,
+      'badge--background--critical': sys.$si-sys-color-background-critical,
+      'badge--border-color--critical': sys.$si-sys-color-border-critical,
+      'badge--color--critical': sys.$si-sys-color-text-critical,
+      'badge--color--critical--contrast': sys.$si-sys-color-text-on-critical,
+      'badge--background--warning': sys.$si-sys-color-background-warning,
+      'badge--border-color--warning': sys.$si-sys-color-border-warning,
+      'badge--color--warning': sys.$si-sys-color-text-warning,
+      'badge--color--warning--contrast': sys.$si-sys-color-text-on-warning,
+      'badge--background--caution': sys.$si-sys-color-background-caution,
+      'badge--border-color--caution': sys.$si-sys-color-border-caution,
+      'badge--color--caution': sys.$si-sys-color-text-caution,
+      'badge--color--caution--contrast': sys.$si-sys-color-text-on-caution,
+      'badge--background--information': sys.$si-sys-color-background-information,
+      'badge--border-color--information': sys.$si-sys-color-border-information,
+      'badge--color--information': sys.$si-sys-color-text-information,
+      'badge--color--information--contrast':
+        sys.$si-sys-color-text-on-information,
+      'badge--background--success': sys.$si-sys-color-background-success,
+      'badge--border-color--success': sys.$si-sys-color-border-success,
+      'badge--color--success': sys.$si-sys-color-text-success,
+      'badge--color--success--contrast': sys.$si-sys-color-text-on-success,
+      'badge--background--neutral': sys.$si-sys-color-background-neutral,
+      'badge--border-color--neutral': sys.$si-sys-color-border-neutral,
+      'badge--color--neutral--contrast': sys.$si-sys-color-text-on-neutral,
+      'badge--background--outline': transparent,
+      'badge-default--color': sys.$si-sys-color-text-primary,
+      'badge-contrast-ring--color': sys.$si-sys-color-background-0,
+    )
   );
 }
 
 :host {
-  @include cv.define-var('badge--offset-x', 0rem);
-  @include cv.define-var('badge--offset-y', 0rem);
-  @include cv.define-var('badge--max-width', none);
-  @include cv.define-var('badge--animation-duration', 2s);
-  @include cv.define-var(
-    'badge-indicator--font',
-    sys.$si-sys-typography-body-sbold
+  @include cv.define-vars(
+    (
+      'badge--offset-x': 0rem,
+      'badge--offset-y': 0rem,
+      'badge--max-width': none,
+      'badge--animation-duration': 2s,
+      'badge-indicator--font': sys.$si-sys-typography-body-sbold,
+      'badge-counter--font-weight': bold,
+      'badge-label--font-weight': 400,
+      'badge--line-height': sys.$si-sys-sizing-size-60,
+      'badge-tooltip--font-size': 0.875rem,
+      'badge-indicator--border-radius': sys.$si-sys-sizing-border-radius-full,
+      'badge-indicator--border-width': sys.$si-sys-sizing-border-width-default,
+      'badge-indicator--outline-width': sys.$si-sys-sizing-border-width-default,
+      'badge-indicator--width': sys.$si-sys-sizing-size-40,
+      'badge-indicator--height': sys.$si-sys-sizing-size-40,
+      'badge-indicator--min-width': sys.$si-sys-sizing-size-40,
+      'badge-indicator--min-height': sys.$si-sys-sizing-size-40,
+      'badge--height': sys.$si-sys-sizing-size-60,
+      'badge--min-width': sys.$si-sys-sizing-size-60,
+      'badge--min-height': sys.$si-sys-sizing-size-60,
+      'badge-indicator--padding-inline': sys.$si-sys-sizing-spacing-x-20,
+      'badge-label--padding-inline': sys.$si-sys-sizing-spacing-x-40,
+      'badge-indicator--gap': sys.$si-sys-sizing-spacing-x-20,
+      'badge-indicator--padding-inline--outline':
+        sys.$si-sys-sizing-spacing-x-40,
+      'badge-status-icon--width': sys.$si-sys-sizing-size-60,
+      'badge-status-icon-stack-icon--size--outline': sys.$si-sys-sizing-size-60,
+      'badge-status-icon--size': sys.$si-sys-sizing-size-60,
+      'badge-pulse-status--inset': 0,
+      'badge-pulse-border--inset': 0,
+      'badge-pulse-border--border-width--expanded':
+        sys.$si-sys-sizing-spacing-x-40,
+    )
   );
-  @include cv.define-var('badge-counter--font-weight', bold);
-  @include cv.define-var('badge-label--font-weight', 400);
-  @include cv.define-var('badge--line-height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('badge-tooltip--font-size', 0.875rem);
-  @include cv.define-var(
-    'badge-indicator--border-radius',
-    sys.$si-sys-sizing-border-radius-full
+  @include cv.define-vars(
+    (
+      'badge-pulse-border--inset--expanded':
+        calc(-1 * #{cv.get-var('badge-pulse-border--border-width--expanded')}),
+      'badge-pulse-border--border-width--end': sys.$si-sys-sizing-spacing-x-50,
+    )
   );
-  @include cv.define-var(
-    'badge-indicator--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'badge-indicator--outline-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var('badge-indicator--width', sys.$si-sys-sizing-size-40);
-  @include cv.define-var('badge-indicator--height', sys.$si-sys-sizing-size-40);
-  @include cv.define-var(
-    'badge-indicator--min-width',
-    sys.$si-sys-sizing-size-40
-  );
-  @include cv.define-var(
-    'badge-indicator--min-height',
-    sys.$si-sys-sizing-size-40
-  );
-  @include cv.define-var('badge--height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('badge--min-width', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('badge--min-height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var(
-    'badge-indicator--padding-inline',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'badge-label--padding-inline',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'badge-indicator--gap',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'badge-indicator--padding-inline--outline',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'badge-status-icon--width',
-    sys.$si-sys-sizing-size-60
-  );
-  @include cv.define-var(
-    'badge-status-icon-stack-icon--size--outline',
-    sys.$si-sys-sizing-size-60
-  );
-  @include cv.define-var('badge-status-icon--size', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('badge-pulse-status--inset', 0);
-  @include cv.define-var('badge-pulse-border--inset', 0);
-  @include cv.define-var(
-    'badge-pulse-border--border-width--expanded',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'badge-pulse-border--inset--expanded',
-    calc(-1 * #{cv.get-var('badge-pulse-border--border-width--expanded')})
-  );
-  @include cv.define-var(
-    'badge-pulse-border--border-width--end',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'badge-pulse-border--inset--end',
-    calc(-1 * #{cv.get-var('badge-pulse-border--border-width--end')})
+  @include cv.define-vars(
+    (
+      'badge-pulse-border--inset--end':
+        calc(-1 * #{cv.get-var('badge-pulse-border--border-width--end')}),
+    )
   );
 }

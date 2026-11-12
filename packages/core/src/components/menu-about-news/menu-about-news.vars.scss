@@ -15,122 +15,71 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'menu-about-news--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'menu-about-news-arrow--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'menu-about-news-banner--fill',
-    sys.$si-sys-color-text-accent
-  );
-  @include cv.define-var(
-    'menu-about-news-body--color',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'menu-about-news-content--font',
-    sys.$si-sys-typography-body-paragraph
-  );
-  @include cv.define-var(
-    'menu-about-news--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
+  @include cv.define-vars(
+    (
+      'menu-about-news--background': sys.$si-sys-color-background-1,
+      'menu-about-news-arrow--background': sys.$si-sys-color-background-1,
+      'menu-about-news-banner--fill': sys.$si-sys-color-text-accent,
+      'menu-about-news-body--color': sys.$si-sys-color-text-primary,
+      'menu-about-news-content--font': sys.$si-sys-typography-body-paragraph,
+      'menu-about-news--box-shadow': sys.$si-sys-color-effects-shadow-40,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'menu-about-news--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var(
-    'menu-about-news--z-index',
-    var(--theme-z-index-sticky)
-  );
-  @include cv.define-var(
-    'menu-about-news--left',
-    calc(
-      #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} + #{sys.$si-sys-sizing-spacing-x-10} *
-        0.2
+  @include cv.define-vars(
+    (
+      'menu-about-news--transition-duration': var(--theme-default-time),
+      'menu-about-news--z-index': var(--theme-z-index-sticky),
+      'menu-about-news--left':
+        calc(
+          #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} +
+            #{sys.$si-sys-sizing-spacing-x-10} * 0.2
+        ),
+      'menu-about-news--left--expanded':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
+            0.8
+        ),
+      'menu-about-news--margin': sys.$si-sys-sizing-spacing-x-40,
+      'menu-about-news--width': sys.$si-sys-sizing-size-170,
+      'menu-about-news--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'menu-about-news--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60},
+      'menu-about-news-banner-container--left': sys.$si-sys-sizing-spacing-x-60,
+      'menu-about-news-icon--margin': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40},
+      'menu-about-news-cui-popover-news-header--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-100,
+      'menu-about-news-cui-popover-news-header--margin-inline-start':
+        sys.$si-sys-sizing-spacing-x-120,
+      'menu-about-news-cui-popover-news-footer--margin-top':
+        sys.$si-sys-sizing-spacing-y-60,
+      'menu-about-news-icon--top': sys.$si-sys-sizing-spacing-y-40,
+      'menu-about-news-icon--right': sys.$si-sys-sizing-spacing-x-40,
+      'menu-about-news-desktop--z-index': 10000,
+      'menu-about-news-banner-container--top':
+        calc(#{sys.$si-sys-sizing-spacing-y-10} / 2),
+      'menu-about-news-svg--height': 3.625rem,
+      'menu-about-news-svg--width': 3rem,
+      'menu-about-news-arrow--width': 0.5rem,
+      'menu-about-news-arrow--height': 0.5rem,
+      'menu-about-news-arrow--transform': 0.8rem,
+      'menu-about-news--viewport-offset--mobile': 4.75rem,
     )
   );
-  @include cv.define-var(
-    'menu-about-news--left--expanded',
-    calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
-        0.8
+  @include cv.define-vars(
+    (
+      'menu-about-news--max-height--mobile':
+        calc(100vh - #{cv.get-var('menu-about-news--viewport-offset--mobile')}),
+      'menu-about-news-side--inset--mobile': sys.$si-sys-sizing-spacing-x-60,
     )
   );
-  @include cv.define-var(
-    'menu-about-news--margin',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var('menu-about-news--width', sys.$si-sys-sizing-size-170);
-  @include cv.define-var(
-    'menu-about-news--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'menu-about-news--padding',
-    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'menu-about-news-banner-container--left',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'menu-about-news-icon--margin',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'menu-about-news-cui-popover-news-header--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-100
-  );
-  @include cv.define-var(
-    'menu-about-news-cui-popover-news-header--margin-inline-start',
-    sys.$si-sys-sizing-spacing-x-120
-  );
-  @include cv.define-var(
-    'menu-about-news-cui-popover-news-footer--margin-top',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'menu-about-news-icon--top',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'menu-about-news-icon--right',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var('menu-about-news-desktop--z-index', 10000);
-  @include cv.define-var(
-    'menu-about-news-banner-container--top',
-    calc(#{sys.$si-sys-sizing-spacing-y-10} / 2)
-  );
-  @include cv.define-var('menu-about-news-svg--height', 3.625rem);
-  @include cv.define-var('menu-about-news-svg--width', 3rem);
-  @include cv.define-var('menu-about-news-arrow--width', 0.5rem);
-  @include cv.define-var('menu-about-news-arrow--height', 0.5rem);
-  @include cv.define-var('menu-about-news-arrow--transform', 0.8rem);
-  @include cv.define-var('menu-about-news--viewport-offset--mobile', 4.75rem);
-  @include cv.define-var(
-    'menu-about-news--max-height--mobile',
-    calc(100vh - #{cv.get-var('menu-about-news--viewport-offset--mobile')})
-  );
-  @include cv.define-var(
-    'menu-about-news-side--inset--mobile',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'menu-about-news--width--mobile',
-    calc(100% - 2 * #{cv.get-var('menu-about-news-side--inset--mobile')})
-  );
-  @include cv.define-var('menu-about-news--max-width--mobile', 30rem);
-  @include cv.define-var(
-    'menu-about-news--bottom--mobile',
-    sys.$si-sys-sizing-spacing-y-60
+  @include cv.define-vars(
+    (
+      'menu-about-news--width--mobile':
+        calc(100% - 2 * #{cv.get-var('menu-about-news-side--inset--mobile')}),
+      'menu-about-news--max-width--mobile': 30rem,
+      'menu-about-news--bottom--mobile': sys.$si-sys-sizing-spacing-y-60,
+    )
   );
 }

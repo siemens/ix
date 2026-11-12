@@ -15,9 +15,10 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('select-item--color', sys.$si-sys-color-text-primary);
-  @include cv.define-var(
-    'select-item--background--selected',
-    sys.$si-sys-color-background-selected
+  @include cv.define-vars(
+    (
+      'select-item--color': sys.$si-sys-color-text-primary,
+      'select-item--background--selected': sys.$si-sys-color-background-selected,
+    )
   );
 }

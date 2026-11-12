@@ -15,178 +15,93 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'workflow-step-line--background--warning',
-    sys.$si-sys-color-text-warning
-  );
-  @include cv.define-var(
-    'workflow-step-line--background--success',
-    sys.$si-sys-color-text-success
-  );
-  @include cv.define-var(
-    'workflow-step-line--background--error',
-    sys.$si-sys-color-text-danger
-  );
-  @include cv.define-var('workflow-step--background', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'workflow-step--background--active',
-    sys.$si-sys-color-background-accent-secondary-active
-  );
-  @include cv.define-var(
-    'workflow-step--background--disabled',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'workflow-step--background--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'workflow-step--background--selected',
-    sys.$si-sys-color-background-accent-secondary-active
-  );
-  @include cv.define-var(
-    'workflow-step--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'workflow-step-icon-default--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'workflow-step-icon-default--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'workflow-step-icon-default--color--selected',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-default--color--selected--hover',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-default--color--selected--active',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-done--color',
-    sys.$si-sys-color-text-accent
-  );
-  @include cv.define-var(
-    'workflow-step-icon-done--color--hover',
-    sys.$si-sys-color-text-accent-hover
-  );
-  @include cv.define-var(
-    'workflow-step-icon-done--color--active',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-error--color',
-    sys.$si-sys-color-text-danger
-  );
-  @include cv.define-var(
-    'workflow-step-icon-success--color',
-    sys.$si-sys-color-text-success
-  );
-  @include cv.define-var(
-    'workflow-step-icon-warning--color',
-    sys.$si-sys-color-text-warning
-  );
-  @include cv.define-var(
-    'workflow-step-icon-done--color--selected',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-done--color--selected--hover',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-done--color--selected--active',
-    sys.$si-sys-color-text-accent-active
-  );
-  @include cv.define-var(
-    'workflow-step-icon-status--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'workflow-step-step--outline-color--focus',
-    sys.$si-sys-color-effects-focus
+  @include cv.define-vars(
+    (
+      'workflow-step-line--background--warning': sys.$si-sys-color-text-warning,
+      'workflow-step-line--background--success': sys.$si-sys-color-text-success,
+      'workflow-step-line--background--error': sys.$si-sys-color-text-danger,
+      'workflow-step--background': rgba(0, 0, 0, 0),
+      'workflow-step--background--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'workflow-step--background--disabled': rgba(0, 0, 0, 0),
+      'workflow-step--background--hover': sys.$si-sys-color-background-hover,
+      'workflow-step--background--selected':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'workflow-step--color--disabled': sys.$si-sys-color-text-disabled,
+      'workflow-step-icon-default--color': sys.$si-sys-color-text-secondary,
+      'workflow-step-icon-default--color--disabled':
+        sys.$si-sys-color-text-disabled,
+      'workflow-step-icon-default--color--selected':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-default--color--selected--hover':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-default--color--selected--active':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-done--color': sys.$si-sys-color-text-accent,
+      'workflow-step-icon-done--color--hover':
+        sys.$si-sys-color-text-accent-hover,
+      'workflow-step-icon-done--color--active':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-error--color': sys.$si-sys-color-text-danger,
+      'workflow-step-icon-success--color': sys.$si-sys-color-text-success,
+      'workflow-step-icon-warning--color': sys.$si-sys-color-text-warning,
+      'workflow-step-icon-done--color--selected':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-done--color--selected--hover':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-done--color--selected--active':
+        sys.$si-sys-color-text-accent-active,
+      'workflow-step-icon-status--color--disabled':
+        sys.$si-sys-color-text-disabled,
+      'workflow-step-step--outline-color--focus':
+        sys.$si-sys-color-effects-focus,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'workflow-step--border-radius',
-    calc(#{sys.$si-sys-sizing-border-radius-xs} / 2)
-  );
-  @include cv.define-var(
-    'workflow-step--width--horizontal',
-    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90})
-  );
-  @include cv.define-var('workflow-step--height', sys.$si-sys-sizing-size-110);
-  @include cv.define-var(
-    'workflow-step--min-width--horizontal',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'workflow-step--min-height--horizontal',
-    sys.$si-sys-sizing-size-110
-  );
-  @include cv.define-var(
-    'workflow-step--max-width--horizontal',
-    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90})
-  );
-  @include cv.define-var(
-    'workflow-step--min-width--vertical',
-    sys.$si-sys-sizing-size-110
-  );
-  @include cv.define-var(
-    'workflow-step--min-height--vertical',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'workflow-step--max-height--vertical',
-    calc(#{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90})
-  );
-  @include cv.define-var(
-    'workflow-step-step--padding',
-    calc(
-        #{sys.$si-sys-sizing-spacing-y-60} + #{sys.$si-sys-sizing-spacing-y-10}
-      )
-      0 #{sys.$si-sys-sizing-spacing-y-40} 0
-  );
-  @include cv.define-var(
-    'workflow-step-text--margin-top',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'workflow-step-text--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'workflow-step-wrapper--padding-left--vertical',
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
+  @include cv.define-vars(
+    (
+      'workflow-step--border-radius':
+        calc(#{sys.$si-sys-sizing-border-radius-xs} / 2),
+      'workflow-step--width--horizontal':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+        ),
+      'workflow-step--height': sys.$si-sys-sizing-size-110,
+      'workflow-step--min-width--horizontal': sys.$si-sys-sizing-size-80,
+      'workflow-step--min-height--horizontal': sys.$si-sys-sizing-size-110,
+      'workflow-step--max-width--horizontal':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-90}
+        ),
+      'workflow-step--min-width--vertical': sys.$si-sys-sizing-size-110,
+      'workflow-step--min-height--vertical': sys.$si-sys-sizing-size-80,
+      'workflow-step--max-height--vertical':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
+        ),
+      'workflow-step-step--padding':
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-60} + #{sys.$si-sys-sizing-spacing-y-10}
+        )
+        0 #{sys.$si-sys-sizing-spacing-y-40} 0,
+      'workflow-step-text--margin-top': sys.$si-sys-sizing-spacing-y-60,
+      'workflow-step-text--padding': 0 #{sys.$si-sys-sizing-spacing-x-40},
+      'workflow-step-wrapper--padding-left--vertical':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-10}
+        ),
+      'workflow-step-text--margin--vertical': 0 #{sys.$si-sys-sizing-spacing-x-60},
+      'workflow-step-line--height': sys.$si-sys-sizing-size-10,
+      'workflow-step-line--width': sys.$si-sys-sizing-size-10,
+      'workflow-step--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
     )
   );
-  @include cv.define-var(
-    'workflow-step-text--margin--vertical',
-    0 #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'workflow-step-line--height',
-    sys.$si-sys-sizing-size-10
-  );
-  @include cv.define-var(
-    'workflow-step-line--width',
-    sys.$si-sys-sizing-size-10
-  );
-  @include cv.define-var(
-    'workflow-step--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'workflow-step-step--outline-offset',
-    calc(-1 * #{cv.get-var('workflow-step--outline-width--focus')})
+  @include cv.define-vars(
+    (
+      'workflow-step-step--outline-offset':
+        calc(-1 * #{cv.get-var('workflow-step--outline-width--focus')}),
+    )
   );
 }

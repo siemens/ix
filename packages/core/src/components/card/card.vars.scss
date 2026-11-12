@@ -38,68 +38,28 @@ $card-status-sys: (
 );
 
 :host {
-  @include cv.define-var(
-    'card-slotted-accordion--color',
-    sys.$si-sys-color-text-primary
+  @include cv.define-vars(
+    (
+      'card-slotted-accordion--color': sys.$si-sys-color-text-primary,
+      'card--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'card--border-width': sys.$si-sys-sizing-border-width-default,
+      'card--border-width--selected': sys.$si-sys-sizing-border-width-default,
+      'card--strip-height': sys.$si-sys-sizing-border-width-emphasis,
+      'card--background--base': transparent,
+      'card--background--base--hover': sys.$si-sys-color-background-hover,
+      'card--background--base--active': sys.$si-sys-color-background-active,
+      'card--background--base--selected': sys.$si-sys-color-background-active,
+      'card--border-color--base': sys.$si-sys-color-border-3,
+      'card--border-color--base--selected':
+        sys.$si-sys-color-border-accent-active,
+      'card--color--base': sys.$si-sys-color-text-primary,
+      'card--background--filled': sys.$si-sys-color-background-1,
+      'card--background--filled--hover': sys.$si-sys-color-background-hover,
+      'card--background--filled--active': sys.$si-sys-color-background-active,
+      'card--background--filled--selected': sys.$si-sys-color-background-active,
+      'card--status-color': transparent,
+    )
   );
-  @include cv.define-var(
-    'card--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'card--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'card--border-width--selected',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'card--strip-height',
-    sys.$si-sys-sizing-border-width-emphasis
-  );
-
-  @include cv.define-var('card--background--base', transparent);
-  @include cv.define-var(
-    'card--background--base--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'card--background--base--active',
-    sys.$si-sys-color-background-active
-  );
-  @include cv.define-var(
-    'card--background--base--selected',
-    sys.$si-sys-color-background-active
-  );
-  @include cv.define-var(
-    'card--border-color--base',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'card--border-color--base--selected',
-    sys.$si-sys-color-border-accent-active
-  );
-  @include cv.define-var('card--color--base', sys.$si-sys-color-text-primary);
-
-  @include cv.define-var(
-    'card--background--filled',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'card--background--filled--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'card--background--filled--active',
-    sys.$si-sys-color-background-active
-  );
-  @include cv.define-var(
-    'card--background--filled--selected',
-    sys.$si-sys-color-background-active
-  );
-
-  @include cv.define-var('card--status-color', transparent);
 }
 
 @each $status, $color in $card-status-sys {
@@ -109,14 +69,14 @@ $card-status-sys: (
 }
 
 :host {
-  @include cv.define-var(
-    'card--width',
-    calc(
-      #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} + #{sys.$si-sys-sizing-spacing-x-30}
+  @include cv.define-vars(
+    (
+      'card--width':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-x-110} +
+            #{sys.$si-sys-sizing-spacing-x-30}
+        ),
+      'card-body--height': calc(100% - #{sys.$si-sys-sizing-size-80}),
     )
-  );
-  @include cv.define-var(
-    'card-body--height',
-    calc(100% - #{sys.$si-sys-sizing-size-80})
   );
 }

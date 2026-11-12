@@ -15,52 +15,23 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'textarea--background--invalid',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'textarea--background--invalid--hover',
-    sys.$si-sys-color-background-4
-  );
-  @include cv.define-var(
-    'textarea--background--warning',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'textarea--background--warning--hover',
-    sys.$si-sys-color-background-4
-  );
-  @include cv.define-var(
-    'textarea--border-color--info',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'textarea--border-color--info--active',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'textarea--border-color--info--hover',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'textarea--border-color--invalid',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'textarea--border-color--invalid--active',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'textarea--border-color--invalid--hover',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'textarea--border-color--warning--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'textarea--border-color--warning--hover',
-    sys.$si-sys-color-border-warning
+  @include cv.define-vars(
+    (
+      'textarea--background--invalid': sys.$si-sys-color-background-1,
+      'textarea--background--invalid--hover': sys.$si-sys-color-background-4,
+      'textarea--background--warning': sys.$si-sys-color-background-1,
+      'textarea--background--warning--hover': sys.$si-sys-color-background-4,
+      'textarea--border-color--info': sys.$si-sys-color-border-information,
+      'textarea--border-color--info--active':
+        sys.$si-sys-color-border-information,
+      'textarea--border-color--info--hover':
+        sys.$si-sys-color-border-information,
+      'textarea--border-color--invalid': sys.$si-sys-color-border-danger,
+      'textarea--border-color--invalid--active': sys.$si-sys-color-border-danger,
+      'textarea--border-color--invalid--hover': sys.$si-sys-color-border-danger,
+      'textarea--border-color--warning--active':
+        sys.$si-sys-color-border-warning,
+      'textarea--border-color--warning--hover': sys.$si-sys-color-border-warning,
+    )
   );
 }

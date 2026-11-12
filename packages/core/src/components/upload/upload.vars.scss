@@ -15,64 +15,38 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'upload-icon--color--error',
-    sys.$si-sys-color-text-danger
-  );
-  @include cv.define-var(
-    'upload-icon--color--success',
-    sys.$si-sys-color-text-success
-  );
-  @include cv.define-var('upload--border-color', sys.$si-sys-color-border-3);
-  @include cv.define-var(
-    'upload--border-color--dragover',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var('upload-text--color', sys.$si-sys-color-text-primary);
-  @include cv.define-var(
-    'upload-text--color--checking',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'upload-text--color--disabled',
-    sys.$si-sys-color-text-disabled
+  @include cv.define-vars(
+    (
+      'upload-icon--color--error': sys.$si-sys-color-text-danger,
+      'upload-icon--color--success': sys.$si-sys-color-text-success,
+      'upload--border-color': sys.$si-sys-color-border-3,
+      'upload--border-color--dragover': sys.$si-sys-color-border-accent-hover,
+      'upload-text--color': sys.$si-sys-color-text-primary,
+      'upload-text--color--checking': sys.$si-sys-color-text-primary,
+      'upload-text--color--disabled': sys.$si-sys-color-text-disabled,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'upload--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
+  @include cv.define-vars(
+    (
+      'upload--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'upload--min-height': sys.$si-sys-sizing-size-110,
+      'upload--height': sys.$si-sys-sizing-size-110,
+      'upload-file-upload-area--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60},
+      'upload-file-upload-area--margin-inline-start':
+        sys.$si-sys-sizing-spacing-x-60,
+      'upload-loader--width': sys.$si-sys-sizing-size-50,
+      'upload-loader--height': sys.$si-sys-sizing-size-50,
+      'upload-filename--margin-bottom': sys.$si-sys-sizing-spacing-y-60,
+      'upload-state--margin-inline-end': sys.$si-sys-sizing-spacing-x-40,
+      'upload-icon--size': sys.$si-sys-sizing-icon-lg,
+      'upload-icon--margin-inline-end': sys.$si-sys-sizing-spacing-x-40,
+      'upload-file-upload-area--border-width':
+        sys.$si-sys-sizing-border-width-default,
+      'upload-loader--font-size': 0.937rem,
+      'upload-loader--animation-duration': 1.1s,
+    )
   );
-  @include cv.define-var('upload--min-height', sys.$si-sys-sizing-size-110);
-  @include cv.define-var('upload--height', sys.$si-sys-sizing-size-110);
-  @include cv.define-var(
-    'upload-file-upload-area--padding',
-    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'upload-file-upload-area--margin-inline-start',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var('upload-loader--width', sys.$si-sys-sizing-size-50);
-  @include cv.define-var('upload-loader--height', sys.$si-sys-sizing-size-50);
-  @include cv.define-var(
-    'upload-filename--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'upload-state--margin-inline-end',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var('upload-icon--size', sys.$si-sys-sizing-icon-lg);
-  @include cv.define-var(
-    'upload-icon--margin-inline-end',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'upload-file-upload-area--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var('upload-loader--font-size', 0.937rem);
-  @include cv.define-var('upload-loader--animation-duration', 1.1s);
 }

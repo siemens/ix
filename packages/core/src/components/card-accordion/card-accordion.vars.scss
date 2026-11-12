@@ -18,76 +18,50 @@
 @include cv.declare-var('card-accordion-expand-content--border-radius');
 
 :host {
-  @include cv.define-var(
-    'card-accordion--transition-duration',
-    var(--theme-default-time)
+  @include cv.define-vars(
+    (
+      'card-accordion--transition-duration': var(--theme-default-time),
+      'card-accordion-expand-icon--transition-duration':
+        var(--theme-default-time),
+      'card-accordion-content--transition-duration': var(--theme-default-time),
+      'card-accordion--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'card-accordion--outline-width--focus':
+        sys.$si-sys-sizing-focus-ring-width,
+      'card-accordion-content--color': sys.$si-sys-color-text-primary,
+      'card-accordion-footer--border-radius':
+        sys.$si-sys-sizing-border-radius-sm,
+    )
   );
-  @include cv.define-var(
-    'card-accordion-expand-icon--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var(
-    'card-accordion-content--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var(
-    'card-accordion--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'card-accordion--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'card-accordion-content--color',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'card-accordion-footer--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'card-accordion--outline-offset--focus',
-    calc(-1 * #{cv.get-var('card-accordion--outline-width--focus')})
+  @include cv.define-vars(
+    (
+      'card-accordion--outline-offset--focus':
+        calc(-1 * #{cv.get-var('card-accordion--outline-width--focus')}),
+    )
   );
 
   /* Outline accordion chrome */
-  @include cv.define-var(
-    'card-accordion-chrome--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'card-accordion-chrome--background--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'card-accordion-chrome--background--active',
-    sys.$si-sys-color-background-active
-  );
-  @include cv.define-var(
-    'card-accordion-chrome-footer--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'card-accordion-chrome-frame--background',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'card-accordion-chrome-frame--border-color',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'card-accordion-chrome-frame--border-width',
-    sys.$si-sys-sizing-border-width-default
+  @include cv.define-vars(
+    (
+      'card-accordion-chrome--background': sys.$si-sys-color-background-1,
+      'card-accordion-chrome--background--hover':
+        sys.$si-sys-color-background-hover,
+      'card-accordion-chrome--background--active':
+        sys.$si-sys-color-background-active,
+      'card-accordion-chrome-footer--background': sys.$si-sys-color-background-1,
+      'card-accordion-chrome-frame--background': sys.$si-sys-color-background-1,
+      'card-accordion-chrome-frame--border-color': sys.$si-sys-color-border-3,
+      'card-accordion-chrome-frame--border-width':
+        sys.$si-sys-sizing-border-width-default,
+    )
   );
   /* Outline bar stays square; filled collapsed rounds bottom corners */
-  @include cv.define-var(
-    'card-accordion-expand-action--border-bottom-left-radius',
-    sys.$si-sys-sizing-border-radius-none
-  );
-  @include cv.define-var(
-    'card-accordion-expand-action--border-bottom-right-radius',
-    sys.$si-sys-sizing-border-radius-none
+  @include cv.define-vars(
+    (
+      'card-accordion-expand-action--border-bottom-left-radius':
+        sys.$si-sys-sizing-border-radius-none,
+      'card-accordion-expand-action--border-bottom-right-radius':
+        sys.$si-sys-sizing-border-radius-none,
+    )
   );
 }
 
@@ -108,43 +82,28 @@
 }
 
 :host {
-  @include cv.define-var(
-    'card-accordion--height--expanded',
-    sys.$si-sys-sizing-size-160
-  );
-  @include cv.define-var(
-    'card-accordion-expand-action--height',
-    calc(#{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20})
-  );
-  /* Separator above the expand bar (push-card sets these) */
-  @include cv.define-var(
-    'card-accordion-expand-action--border-top-width',
-    sys.$si-sys-sizing-border-width-none
-  );
-  @include cv.define-var(
-    'card-accordion-expand-action--border-top-color',
-    transparent
-  );
-  @include cv.define-var(
-    'card-accordion-expand-action--border-radius--expanded',
-    sys.$si-sys-sizing-border-radius-none
-  );
-  @include cv.define-var(
-    'card-accordion-expand-icon--size',
-    sys.$si-sys-sizing-icon-md
-  );
-  @include cv.define-var(
-    'card-accordion-expand-icon--margin-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'card-accordion-expand-content-body--height',
-    calc(
-      #{cv.get-var('card-accordion--height--expanded')} - #{sys.$si-sys-sizing-spacing-y-60}
+  @include cv.define-vars(
+    (
+      'card-accordion--height--expanded': sys.$si-sys-sizing-size-160,
+      'card-accordion-expand-action--height':
+        calc(#{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}),
     )
   );
-  @include cv.define-var(
-    'card-accordion-expand-content-footer--height',
-    sys.$si-sys-sizing-size-60
+  /* Separator above the expand bar (push-card sets these) */
+  @include cv.define-vars(
+    (
+      'card-accordion-expand-action--border-top-width':
+        sys.$si-sys-sizing-border-width-none,
+      'card-accordion-expand-action--border-top-color': transparent,
+      'card-accordion-expand-action--border-radius--expanded':
+        sys.$si-sys-sizing-border-radius-none,
+      'card-accordion-expand-icon--size': sys.$si-sys-sizing-icon-md,
+      'card-accordion-expand-icon--margin-left': sys.$si-sys-sizing-spacing-x-40,
+      'card-accordion-expand-content-body--height':
+        calc(
+          #{cv.get-var('card-accordion--height--expanded')} - #{sys.$si-sys-sizing-spacing-y-60}
+        ),
+      'card-accordion-expand-content-footer--height': sys.$si-sys-sizing-size-60,
+    )
   );
 }

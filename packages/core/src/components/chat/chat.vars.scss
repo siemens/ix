@@ -15,23 +15,18 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('chat--min-width', sys.$si-sys-sizing-size-170);
-  @include cv.define-var(
-    'chat--max-width',
-    calc(#{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-90})
-  );
-  @include cv.define-var(
-    'chat-messages--max-width',
-    sys.$si-sys-sizing-size-200
-  );
-  @include cv.define-var('chat-messages--gap', sys.$si-sys-sizing-spacing-y-90);
-  @include cv.define-var(
-    'chat-messages--padding',
-    #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90}
-  );
-  @include cv.define-var('chat-prompt--max-width', sys.$si-sys-sizing-size-200);
-  @include cv.define-var(
-    'chat-prompt--padding',
-    #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90}
+  @include cv.define-vars(
+    (
+      'chat--min-width': sys.$si-sys-sizing-size-170,
+      'chat--max-width':
+        calc(
+          #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-90}
+        ),
+      'chat-messages--max-width': sys.$si-sys-sizing-size-200,
+      'chat-messages--gap': sys.$si-sys-sizing-spacing-y-90,
+      'chat-messages--padding': #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90},
+      'chat-prompt--max-width': sys.$si-sys-sizing-size-200,
+      'chat-prompt--padding': #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90},
+    )
   );
 }

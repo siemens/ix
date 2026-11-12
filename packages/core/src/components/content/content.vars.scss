@@ -15,13 +15,11 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'content--padding',
-    #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90} #{sys.$si-sys-sizing-spacing-y-20}
-      #{sys.$si-sys-sizing-spacing-x-90}
-  );
-  @include cv.define-var(
-    'content-slotted-header--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-80
+  @include cv.define-vars(
+    (
+      'content--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-90}
+        #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-90},
+      'content-slotted-header--margin-bottom': sys.$si-sys-sizing-spacing-y-80,
+    )
   );
 }

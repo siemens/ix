@@ -15,8 +15,9 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'event-list-row--height--large',
-    sys.$si-sys-sizing-size-130
+  @include cv.define-vars(
+    (
+      'event-list-row--height--large': sys.$si-sys-sizing-size-130,
+    )
   );
 }

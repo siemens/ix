@@ -15,5 +15,9 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('modal-loading--gap', sys.$si-sys-sizing-spacing-x-40);
+  @include cv.define-vars(
+    (
+      'modal-loading--gap': sys.$si-sys-sizing-spacing-x-40,
+    )
+  );
 }

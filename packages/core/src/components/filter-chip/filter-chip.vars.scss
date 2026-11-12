@@ -15,78 +15,43 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('filter-chip--background', transparent);
-  @include cv.define-var(
-    'filter-chip--border-color--disabled',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'filter-chip--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'filter-chip--background--hover',
-    sys.$si-sys-color-background-accent-secondary-hover
-  );
-  @include cv.define-var(
-    'filter-chip--background--active',
-    sys.$si-sys-color-background-accent-secondary-active
-  );
-  @include cv.define-var(
-    'filter-chip--border-color--primary--outline',
-    sys.$si-sys-color-border-accent
-  );
-  @include cv.define-var(
-    'filter-chip--border-color--primary--outline--active',
-    sys.$si-sys-color-border-accent-active
-  );
-  @include cv.define-var(
-    'filter-chip--border-color--primary--outline--hover',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var(
-    'filter-chip--color--primary--outline',
-    sys.$si-sys-color-border-accent
-  );
-  @include cv.define-var(
-    'filter-chip--color--primary--outline--active',
-    sys.$si-sys-color-border-accent-active
-  );
-  @include cv.define-var(
-    'filter-chip--color--primary--outline--hover',
-    sys.$si-sys-color-border-accent-hover
+  @include cv.define-vars(
+    (
+      'filter-chip--background': transparent,
+      'filter-chip--border-color--disabled': sys.$si-sys-color-border-3,
+      'filter-chip--color--disabled': sys.$si-sys-color-text-disabled,
+      'filter-chip--background--hover':
+        sys.$si-sys-color-background-accent-secondary-hover,
+      'filter-chip--background--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'filter-chip--border-color--primary--outline':
+        sys.$si-sys-color-border-accent,
+      'filter-chip--border-color--primary--outline--active':
+        sys.$si-sys-color-border-accent-active,
+      'filter-chip--border-color--primary--outline--hover':
+        sys.$si-sys-color-border-accent-hover,
+      'filter-chip--color--primary--outline': sys.$si-sys-color-border-accent,
+      'filter-chip--color--primary--outline--active':
+        sys.$si-sys-color-border-accent-active,
+      'filter-chip--color--primary--outline--hover':
+        sys.$si-sys-color-border-accent-hover,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'filter-chip--padding-left',
-    sys.$si-sys-sizing-spacing-x-40
+  @include cv.define-vars(
+    (
+      'filter-chip--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'filter-chip-icon--margin-left': sys.$si-sys-sizing-spacing-x-20,
+      'filter-chip--padding-right--disabled': sys.$si-sys-sizing-spacing-x-40,
+      'filter-chip-hide-close-button--padding-right--readonly':
+        sys.$si-sys-sizing-spacing-x-40,
+      'filter-chip--border-width': sys.$si-sys-sizing-border-width-default,
+      'filter-chip--height': sys.$si-sys-sizing-size-70,
+      'filter-chip--border-radius': sys.$si-sys-sizing-spacing-x-90,
+      'filter-chip-slot-container--line-height': sys.$si-sys-sizing-size-70,
+      'filter-chip-icon--size': sys.$si-sys-sizing-size-70,
+    )
   );
-  @include cv.define-var(
-    'filter-chip-icon--margin-left',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'filter-chip--padding-right--disabled',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'filter-chip-hide-close-button--padding-right--readonly',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'filter-chip--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var('filter-chip--height', sys.$si-sys-sizing-size-70);
-  @include cv.define-var(
-    'filter-chip--border-radius',
-    sys.$si-sys-sizing-spacing-x-90
-  );
-  @include cv.define-var(
-    'filter-chip-slot-container--line-height',
-    sys.$si-sys-sizing-size-70
-  );
-  @include cv.define-var('filter-chip-icon--size', sys.$si-sys-sizing-size-70);
 }

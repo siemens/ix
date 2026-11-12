@@ -15,562 +15,209 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'toggle--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'toggle-label--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'toggle--background--off',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'toggle--background--off--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var('toggle--background--off--disabled', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toggle--background--off--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'toggle--background--info--off',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'toggle--background--info--off--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'toggle--background--info--off--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'toggle--background--invalid--off',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'toggle--background--invalid--off--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'toggle--background--invalid--off--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'toggle--background--valid--off',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'toggle--background--valid--off--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'toggle--background--valid--off--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'toggle--background--warning--off',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'toggle--background--warning--off--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'toggle--background--warning--off--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'toggle--border-color--off',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'toggle--border-color--off--active',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'toggle--border-color--off--hover',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'toggle--border-color--info--off',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'toggle--border-color--info--off--active',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'toggle--border-color--info--off--hover',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'toggle--border-color--invalid--off',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'toggle--border-color--invalid--off--active',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'toggle--border-color--invalid--off--hover',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'toggle--border-color--valid--off',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'toggle--border-color--valid--off--active',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'toggle--border-color--valid--off--hover',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'toggle--border-color--warning--off',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'toggle--border-color--warning--off--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'toggle--border-color--warning--off--hover',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'toggle--background--on',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'toggle--background--on--active',
-    sys.$si-sys-color-background-accent-active
-  );
-  @include cv.define-var(
-    'toggle--background--on--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'toggle--background--on--hover',
-    sys.$si-sys-color-background-accent-hover
-  );
-  @include cv.define-var(
-    'toggle--background--info--on',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'toggle--background--info--on--active',
-    sys.$si-sys-color-background-information-active
-  );
-  @include cv.define-var(
-    'toggle--background--info--on--hover',
-    sys.$si-sys-color-background-information-hover
-  );
-  @include cv.define-var(
-    'toggle--background--invalid--on',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'toggle--background--invalid--on--active',
-    sys.$si-sys-color-background-danger-active
-  );
-  @include cv.define-var(
-    'toggle--background--invalid--on--hover',
-    sys.$si-sys-color-background-danger-hover
-  );
-  @include cv.define-var(
-    'toggle--background--valid--on',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'toggle--background--valid--on--active',
-    sys.$si-sys-color-background-accent-active
-  );
-  @include cv.define-var(
-    'toggle--background--valid--on--hover',
-    sys.$si-sys-color-background-accent-hover
-  );
-  @include cv.define-var(
-    'toggle--background--warning--on',
-    sys.$si-sys-color-background-warning
-  );
-  @include cv.define-var(
-    'toggle--background--warning--on--active',
-    sys.$si-sys-color-background-warning-active
-  );
-  @include cv.define-var(
-    'toggle--background--warning--on--hover',
-    sys.$si-sys-color-background-warning-hover
-  );
-  @include cv.define-var('toggle--border-color--on', rgba(0, 0, 0, 0));
-  @include cv.define-var('toggle--border-color--on--active', rgba(0, 0, 0, 0));
-  @include cv.define-var('toggle--border-color--on--hover', rgba(0, 0, 0, 0));
-  @include cv.define-var('toggle--border-color--info--on', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toggle--border-color--info--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle--border-color--info--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var('toggle--border-color--invalid--on', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toggle--border-color--invalid--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle--border-color--invalid--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var('toggle--border-color--valid--on', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toggle--border-color--valid--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle--border-color--valid--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle--border-color--warning--on',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'toggle--border-color--warning--on--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'toggle--border-color--warning--on--hover',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--off',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--off--active',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--off--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--off--hover',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--info--off',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--info--off--active',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--info--off--hover',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--invalid--off',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--invalid--off--active',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--invalid--off--hover',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--valid--off',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--valid--off--active',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--valid--off--hover',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--warning--off',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--warning--off--active',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--warning--off--hover',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var('toggle-thumb--border-color--off', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toggle-thumb--border-color--off--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--off--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--info--off',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--info--off--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--info--off--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--invalid--off',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--invalid--off--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--invalid--off--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--valid--off',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--valid--off--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--valid--off--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--warning--off',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--warning--off--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--warning--off--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--on',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--on--active',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--on--disabled',
-    sys.$si-sys-color-text-inverse
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--on--hover',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--info--on',
-    sys.$si-sys-color-text-on-information
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--info--on--active',
-    sys.$si-sys-color-text-on-information
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--info--on--hover',
-    sys.$si-sys-color-text-on-information
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--invalid--on',
-    sys.$si-sys-color-text-on-danger
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--invalid--on--active',
-    sys.$si-sys-color-text-on-danger
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--invalid--on--hover',
-    sys.$si-sys-color-text-on-danger
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--valid--on',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--valid--on--active',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--valid--on--hover',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--warning--on',
-    sys.$si-sys-color-text-on-warning
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--warning--on--active',
-    sys.$si-sys-color-text-on-warning
-  );
-  @include cv.define-var(
-    'toggle-thumb--background--warning--on--hover',
-    sys.$si-sys-color-text-on-warning
-  );
-  @include cv.define-var('toggle-thumb--border-color--on', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'toggle-thumb--border-color--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--info--on',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--info--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--info--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--invalid--on',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--invalid--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--invalid--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--valid--on',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--valid--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--valid--on--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--warning--on',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--warning--on--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'toggle-thumb--border-color--warning--on--hover',
-    rgba(0, 0, 0, 0)
+  @include cv.define-vars(
+    (
+      'toggle--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'toggle-label--color--disabled': sys.$si-sys-color-text-disabled,
+      'toggle--background--off': sys.$si-sys-color-background-1,
+      'toggle--background--off--active': sys.$si-sys-color-background-selected,
+      'toggle--background--off--disabled': rgba(0, 0, 0, 0),
+      'toggle--background--off--hover': sys.$si-sys-color-background-hover,
+      'toggle--background--info--off': sys.$si-sys-color-background-1,
+      'toggle--background--info--off--active':
+        sys.$si-sys-color-background-selected,
+      'toggle--background--info--off--hover': sys.$si-sys-color-background-hover,
+      'toggle--background--invalid--off': sys.$si-sys-color-background-1,
+      'toggle--background--invalid--off--active':
+        sys.$si-sys-color-background-selected,
+      'toggle--background--invalid--off--hover':
+        sys.$si-sys-color-background-hover,
+      'toggle--background--valid--off': sys.$si-sys-color-background-1,
+      'toggle--background--valid--off--active':
+        sys.$si-sys-color-background-selected,
+      'toggle--background--valid--off--hover':
+        sys.$si-sys-color-background-hover,
+      'toggle--background--warning--off': sys.$si-sys-color-background-1,
+      'toggle--background--warning--off--active':
+        sys.$si-sys-color-background-selected,
+      'toggle--background--warning--off--hover':
+        sys.$si-sys-color-background-hover,
+      'toggle--border-color--off': sys.$si-sys-color-border-2,
+      'toggle--border-color--off--active': sys.$si-sys-color-border-2,
+      'toggle--border-color--off--hover': sys.$si-sys-color-border-2,
+      'toggle--border-color--info--off':
+        sys.$si-sys-color-background-information,
+      'toggle--border-color--info--off--active':
+        sys.$si-sys-color-background-information,
+      'toggle--border-color--info--off--hover':
+        sys.$si-sys-color-background-information,
+      'toggle--border-color--invalid--off': sys.$si-sys-color-border-danger,
+      'toggle--border-color--invalid--off--active':
+        sys.$si-sys-color-border-danger,
+      'toggle--border-color--invalid--off--hover':
+        sys.$si-sys-color-border-danger,
+      'toggle--border-color--valid--off': sys.$si-sys-color-border-2,
+      'toggle--border-color--valid--off--active': sys.$si-sys-color-border-2,
+      'toggle--border-color--valid--off--hover': sys.$si-sys-color-border-2,
+      'toggle--border-color--warning--off': sys.$si-sys-color-border-warning,
+      'toggle--border-color--warning--off--active':
+        sys.$si-sys-color-border-warning,
+      'toggle--border-color--warning--off--hover':
+        sys.$si-sys-color-border-warning,
+      'toggle--background--on': sys.$si-sys-color-background-accent,
+      'toggle--background--on--active':
+        sys.$si-sys-color-background-accent-active,
+      'toggle--background--on--disabled': sys.$si-sys-color-text-disabled,
+      'toggle--background--on--hover': sys.$si-sys-color-background-accent-hover,
+      'toggle--background--info--on': sys.$si-sys-color-background-information,
+      'toggle--background--info--on--active':
+        sys.$si-sys-color-background-information-active,
+      'toggle--background--info--on--hover':
+        sys.$si-sys-color-background-information-hover,
+      'toggle--background--invalid--on': sys.$si-sys-color-background-danger,
+      'toggle--background--invalid--on--active':
+        sys.$si-sys-color-background-danger-active,
+      'toggle--background--invalid--on--hover':
+        sys.$si-sys-color-background-danger-hover,
+      'toggle--background--valid--on': sys.$si-sys-color-background-accent,
+      'toggle--background--valid--on--active':
+        sys.$si-sys-color-background-accent-active,
+      'toggle--background--valid--on--hover':
+        sys.$si-sys-color-background-accent-hover,
+      'toggle--background--warning--on': sys.$si-sys-color-background-warning,
+      'toggle--background--warning--on--active':
+        sys.$si-sys-color-background-warning-active,
+      'toggle--background--warning--on--hover':
+        sys.$si-sys-color-background-warning-hover,
+      'toggle--border-color--on': rgba(0, 0, 0, 0),
+      'toggle--border-color--on--active': rgba(0, 0, 0, 0),
+      'toggle--border-color--on--hover': rgba(0, 0, 0, 0),
+      'toggle--border-color--info--on': rgba(0, 0, 0, 0),
+      'toggle--border-color--info--on--active': rgba(0, 0, 0, 0),
+      'toggle--border-color--info--on--hover': rgba(0, 0, 0, 0),
+      'toggle--border-color--invalid--on': rgba(0, 0, 0, 0),
+      'toggle--border-color--invalid--on--active': rgba(0, 0, 0, 0),
+      'toggle--border-color--invalid--on--hover': rgba(0, 0, 0, 0),
+      'toggle--border-color--valid--on': rgba(0, 0, 0, 0),
+      'toggle--border-color--valid--on--active': rgba(0, 0, 0, 0),
+      'toggle--border-color--valid--on--hover': rgba(0, 0, 0, 0),
+      'toggle--border-color--warning--on': sys.$si-sys-color-border-warning,
+      'toggle--border-color--warning--on--active':
+        sys.$si-sys-color-border-warning,
+      'toggle--border-color--warning--on--hover':
+        sys.$si-sys-color-border-warning,
+      'toggle-thumb--background--off': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--off--active': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--off--disabled': sys.$si-sys-color-text-disabled,
+      'toggle-thumb--background--off--hover': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--info--off': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--info--off--active':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--info--off--hover':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--invalid--off': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--invalid--off--active':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--invalid--off--hover':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--valid--off': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--valid--off--active':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--valid--off--hover':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--warning--off': sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--warning--off--active':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--background--warning--off--hover':
+        sys.$si-sys-color-text-secondary,
+      'toggle-thumb--border-color--off': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--off--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--off--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--info--off': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--info--off--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--info--off--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--invalid--off': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--invalid--off--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--invalid--off--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--valid--off': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--valid--off--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--valid--off--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--warning--off': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--warning--off--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--warning--off--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--background--on': sys.$si-sys-color-text-on-accent,
+      'toggle-thumb--background--on--active': sys.$si-sys-color-text-on-accent,
+      'toggle-thumb--background--on--disabled': sys.$si-sys-color-text-inverse,
+      'toggle-thumb--background--on--hover': sys.$si-sys-color-text-on-accent,
+      'toggle-thumb--background--info--on':
+        sys.$si-sys-color-text-on-information,
+      'toggle-thumb--background--info--on--active':
+        sys.$si-sys-color-text-on-information,
+      'toggle-thumb--background--info--on--hover':
+        sys.$si-sys-color-text-on-information,
+      'toggle-thumb--background--invalid--on': sys.$si-sys-color-text-on-danger,
+      'toggle-thumb--background--invalid--on--active':
+        sys.$si-sys-color-text-on-danger,
+      'toggle-thumb--background--invalid--on--hover':
+        sys.$si-sys-color-text-on-danger,
+      'toggle-thumb--background--valid--on': sys.$si-sys-color-text-on-accent,
+      'toggle-thumb--background--valid--on--active':
+        sys.$si-sys-color-text-on-accent,
+      'toggle-thumb--background--valid--on--hover':
+        sys.$si-sys-color-text-on-accent,
+      'toggle-thumb--background--warning--on': sys.$si-sys-color-text-on-warning,
+      'toggle-thumb--background--warning--on--active':
+        sys.$si-sys-color-text-on-warning,
+      'toggle-thumb--background--warning--on--hover':
+        sys.$si-sys-color-text-on-warning,
+      'toggle-thumb--border-color--on': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--on--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--on--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--info--on': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--info--on--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--info--on--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--invalid--on': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--invalid--on--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--invalid--on--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--valid--on': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--valid--on--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--valid--on--hover': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--warning--on': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--warning--on--active': rgba(0, 0, 0, 0),
+      'toggle-thumb--border-color--warning--on--hover': rgba(0, 0, 0, 0),
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'toggle-track--transition-duration',
-    var(--theme-default-time)
+  @include cv.define-vars(
+    (
+      'toggle-track--transition-duration': var(--theme-default-time),
+      'toggle-thumb--transition-duration': var(--theme-default-time),
+      'toggle--min-height': sys.$si-sys-sizing-size-70,
+      'toggle--max-height': calc(100% - #{sys.$si-sys-sizing-spacing-y-40}),
+      'toggle--margin-block-start': sys.$si-sys-sizing-spacing-y-20,
+      'toggle--margin-block-end': sys.$si-sys-sizing-spacing-y-20,
+      'toggle-label--margin-block-start': sys.$si-sys-sizing-spacing-y-20,
+      'toggle-label--margin-inline-start': sys.$si-sys-sizing-spacing-x-40,
+      'toggle-label--min-height': sys.$si-sys-sizing-size-60,
+      'toggle-switch--width': sys.$si-sys-sizing-size-100,
+      'toggle-switch--min-width': sys.$si-sys-sizing-size-100,
+      'toggle-switch--max-width': sys.$si-sys-sizing-size-100,
+      'toggle-switch--height': sys.$si-sys-sizing-size-70,
+      'toggle-slider--height': sys.$si-sys-sizing-size-50,
+      'toggle-slider--width': sys.$si-sys-sizing-size-50,
+      'toggle-slider--left': sys.$si-sys-sizing-spacing-x-10,
+      'toggle-slider--transform--checked':
+        translateX(#{sys.$si-sys-sizing-size-70}),
+      'toggle-slider--transform': translateX(#{sys.$si-sys-sizing-spacing-x-50}),
+      'toggle-slider--border-radius': sys.$si-sys-sizing-border-radius-full,
+      'toggle-slider--border-width': sys.$si-sys-sizing-border-width-default,
+      'toggle-switch--border-width': sys.$si-sys-sizing-border-width-default,
+      'toggle--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+      'toggle-switch--outline-offset':
+        calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2),
+      'toggle-switch--opacity': 0.5,
+    )
   );
-  @include cv.define-var(
-    'toggle-thumb--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var('toggle--min-height', sys.$si-sys-sizing-size-70);
-  @include cv.define-var(
-    'toggle--max-height',
-    calc(100% - #{sys.$si-sys-sizing-spacing-y-40})
-  );
-  @include cv.define-var(
-    'toggle--margin-block-start',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'toggle--margin-block-end',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'toggle-label--margin-block-start',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'toggle-label--margin-inline-start',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'toggle-label--min-height',
-    sys.$si-sys-sizing-size-60
-  );
-  @include cv.define-var('toggle-switch--width', sys.$si-sys-sizing-size-100);
-  @include cv.define-var(
-    'toggle-switch--min-width',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var(
-    'toggle-switch--max-width',
-    sys.$si-sys-sizing-size-100
-  );
-  @include cv.define-var('toggle-switch--height', sys.$si-sys-sizing-size-70);
-  @include cv.define-var('toggle-slider--height', sys.$si-sys-sizing-size-50);
-  @include cv.define-var('toggle-slider--width', sys.$si-sys-sizing-size-50);
-  @include cv.define-var(
-    'toggle-slider--left',
-    sys.$si-sys-sizing-spacing-x-10
-  );
-  @include cv.define-var(
-    'toggle-slider--transform--checked',
-    translateX(#{sys.$si-sys-sizing-size-70})
-  );
-  @include cv.define-var(
-    'toggle-slider--transform',
-    translateX(#{sys.$si-sys-sizing-spacing-x-50})
-  );
-  @include cv.define-var(
-    'toggle-slider--border-radius',
-    sys.$si-sys-sizing-border-radius-full
-  );
-  @include cv.define-var(
-    'toggle-slider--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'toggle-switch--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'toggle--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'toggle-switch--outline-offset',
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2)
-  );
-  @include cv.define-var('toggle-switch--opacity', 0.5);
 }

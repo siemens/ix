@@ -15,39 +15,31 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var('spinner--border-color', sys.$si-sys-color-border-2);
-  @include cv.define-var(
-    'spinner-track--border-color',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'spinner--border-color--primary',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var(
-    'spinner-track--border-color--primary',
-    sys.$si-sys-color-border-4
+  @include cv.define-vars(
+    (
+      'spinner--border-color': sys.$si-sys-color-border-2,
+      'spinner-track--border-color': sys.$si-sys-color-border-4,
+      'spinner--border-color--primary': sys.$si-sys-color-border-accent-hover,
+      'spinner-track--border-color--primary': sys.$si-sys-color-border-4,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'spinner-track--border-width',
-    sys.$si-sys-sizing-border-width-default
+  @include cv.define-vars(
+    (
+      'spinner-track--border-width': sys.$si-sys-sizing-border-width-default,
+      'spinner-track--border-width--selected':
+        sys.$si-sys-sizing-border-width-selected,
+      'spinner-track--border-width--emphasis':
+        sys.$si-sys-sizing-border-width-emphasis,
+      'spinner--size--md': sys.$si-sys-sizing-size-80,
+      'spinner--size--xxs': sys.$si-sys-sizing-size-40,
+      'spinner--size--xs': sys.$si-sys-sizing-size-50,
+      'spinner--size--sm': sys.$si-sys-sizing-size-60,
+      'spinner--size--xxl': sys.$si-sys-sizing-size-130,
+      'spinner--rotation-duration': 2s,
+      'spinner--mask-duration': 3s,
+    )
   );
-  @include cv.define-var(
-    'spinner-track--border-width--selected',
-    sys.$si-sys-sizing-border-width-selected
-  );
-  @include cv.define-var(
-    'spinner-track--border-width--emphasis',
-    sys.$si-sys-sizing-border-width-emphasis
-  );
-  @include cv.define-var('spinner--size--md', sys.$si-sys-sizing-size-80);
-  @include cv.define-var('spinner--size--xxs', sys.$si-sys-sizing-size-40);
-  @include cv.define-var('spinner--size--xs', sys.$si-sys-sizing-size-50);
-  @include cv.define-var('spinner--size--sm', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('spinner--size--xxl', sys.$si-sys-sizing-size-130);
-  @include cv.define-var('spinner--rotation-duration', 2s);
-  @include cv.define-var('spinner--mask-duration', 3s);
 }

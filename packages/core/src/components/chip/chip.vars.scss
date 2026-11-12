@@ -68,190 +68,103 @@ $chip-color-sys-values: (
 }
 
 :host {
-  @include cv.define-var(
-    'chip--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var('chip-close--color', sys.$si-sys-color-text-primary);
-  @include cv.define-var(
-    'chip-icon--color--warning',
-    sys.$si-sys-color-text-warning
-  );
-  @include cv.define-var(
-    'chip-icon--color--caution',
-    sys.$si-sys-color-text-caution
-  );
-  @include cv.define-var(
-    'chip-icon--color--accent',
-    sys.$si-sys-color-text-accent
+  @include cv.define-vars(
+    (
+      'chip--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'chip-close--color': sys.$si-sys-color-text-primary,
+      'chip-icon--color--warning': sys.$si-sys-color-text-warning,
+      'chip-icon--color--caution': sys.$si-sys-color-text-caution,
+      'chip-icon--color--accent': sys.$si-sys-color-text-accent,
+    )
   );
   @each $color
     in (danger, critical, caution, warning, information, neutral, success)
   {
-    @include cv.define-var(
-      'chip--background--#{$color}',
-      chip-color-sys-value($color, background)
-    );
-    @include cv.define-var(
-      'chip--background--#{$color}--hover',
-      chip-color-sys-value($color, hover)
-    );
-    @include cv.define-var(
-      'chip--background--#{$color}--active',
-      chip-color-sys-value($color, active)
-    );
-    @include cv.define-var(
-      'chip--border-color--#{$color}',
-      chip-color-sys-value($color, background)
+    @include cv.define-vars(
+      (
+        'chip--background--#{$color}': chip-color-sys-value($color, background),
+        'chip--background--#{$color}--hover':
+          chip-color-sys-value($color, hover),
+        'chip--background--#{$color}--active':
+          chip-color-sys-value($color, active),
+        'chip--border-color--#{$color}':
+          chip-color-sys-value($color, background),
+      )
     );
     @if $color != 'warning' and $color != 'caution' {
-      @include cv.define-var(
-        'chip--color--#{$color}',
-        chip-color-sys-value($color, background)
+      @include cv.define-vars(
+        (
+          'chip--color--#{$color}': chip-color-sys-value($color, background),
+        )
       );
     }
-    @include cv.define-var(
-      'chip--color--#{$color}--contrast',
-      chip-color-sys-value($color, contrast)
+    @include cv.define-vars(
+      (
+        'chip--color--#{$color}--contrast':
+          chip-color-sys-value($color, contrast),
+      )
     );
   }
-  @include cv.define-var('chip-close-button--background', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'chip-close-button--background--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'chip-close-button--background--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'chip--background--outline',
-    sys.$si-sys-color-background-accent-secondary
-  );
-  @include cv.define-var(
-    'chip--background--outline--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'chip--background--outline--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'chip--color--outline',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'chip--background--accent',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'chip--background--accent--active',
-    sys.$si-sys-color-background-accent-active
-  );
-  @include cv.define-var(
-    'chip--background--accent--hover',
-    sys.$si-sys-color-background-accent-hover
-  );
-  @include cv.define-var(
-    'chip--color--accent',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'chip--background--accent--outline',
-    sys.$si-sys-color-background-accent-secondary
-  );
-  @include cv.define-var(
-    'chip--background--accent--outline--active',
-    sys.$si-sys-color-background-accent-secondary-active
-  );
-  @include cv.define-var(
-    'chip--background--accent--outline--hover',
-    sys.$si-sys-color-background-accent-secondary-hover
-  );
-  @include cv.define-var(
-    'chip--border-color--accent--outline',
-    sys.$si-sys-color-border-accent
-  );
-  @include cv.define-var(
-    'chip--border-color--accent--outline--active',
-    sys.$si-sys-color-border-accent-active
-  );
-  @include cv.define-var(
-    'chip--border-color--accent--outline--hover',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var(
-    'chip--color--accent--outline--active',
-    sys.$si-sys-color-border-accent-active
-  );
-  @include cv.define-var(
-    'chip--color--accent--outline',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'chip--color--accent--outline--hover',
-    sys.$si-sys-color-border-accent-hover
+  @include cv.define-vars(
+    (
+      'chip-close-button--background': rgba(0, 0, 0, 0),
+      'chip-close-button--background--active':
+        sys.$si-sys-color-background-selected,
+      'chip-close-button--background--hover': sys.$si-sys-color-background-hover,
+      'chip--background--outline': sys.$si-sys-color-background-accent-secondary,
+      'chip--background--outline--active': sys.$si-sys-color-background-selected,
+      'chip--background--outline--hover': sys.$si-sys-color-background-hover,
+      'chip--color--outline': sys.$si-sys-color-text-primary,
+      'chip--background--accent': sys.$si-sys-color-background-accent,
+      'chip--background--accent--active':
+        sys.$si-sys-color-background-accent-active,
+      'chip--background--accent--hover':
+        sys.$si-sys-color-background-accent-hover,
+      'chip--color--accent': sys.$si-sys-color-text-on-accent,
+      'chip--background--accent--outline':
+        sys.$si-sys-color-background-accent-secondary,
+      'chip--background--accent--outline--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'chip--background--accent--outline--hover':
+        sys.$si-sys-color-background-accent-secondary-hover,
+      'chip--border-color--accent--outline': sys.$si-sys-color-border-accent,
+      'chip--border-color--accent--outline--active':
+        sys.$si-sys-color-border-accent-active,
+      'chip--border-color--accent--outline--hover':
+        sys.$si-sys-color-border-accent-hover,
+      'chip--color--accent--outline--active':
+        sys.$si-sys-color-border-accent-active,
+      'chip--color--accent--outline': sys.$si-sys-color-text-primary,
+      'chip--color--accent--outline--hover':
+        sys.$si-sys-color-border-accent-hover,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'chip-attachment--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var(
-    'chip--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
-  );
-  @include cv.define-var(
-    'chip--padding-inline',
-    sys.$si-sys-sizing-spacing-x-50
-  );
-  @include cv.define-var(
-    'chip-container--padding',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var('chip-container--height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'chip-container--max-height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'chip-with-icon--margin-right',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'chip-close-button-container--padding-left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'chip-inactive--padding-right--outline',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var('chip-close--size', sys.$si-sys-sizing-size-70);
-  @include cv.define-var('chip-close--inset', sys.$si-sys-sizing-spacing-x-20);
-  @include cv.define-var('chip--height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var('chip--max-height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var('chip-wrap--min-height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var('chip-wrap--max-height', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'chip-main--padding-block',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'chip-main--padding-right--outline',
-    sys.$si-sys-sizing-spacing-x-30
-  );
-  @include cv.define-var(
-    'chip--border-radius',
-    sys.$si-sys-sizing-border-radius-full
-  );
-  @include cv.define-var(
-    'chip--border-width--focus',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'chip--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
+  @include cv.define-vars(
+    (
+      'chip-attachment--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'chip--outline-offset--focus': sys.$si-sys-sizing-focus-ring-offset,
+      'chip--padding-inline': sys.$si-sys-sizing-spacing-x-50,
+      'chip-container--padding': sys.$si-sys-sizing-spacing-y-40,
+      'chip-container--height': sys.$si-sys-sizing-size-80,
+      'chip-container--max-height': sys.$si-sys-sizing-size-80,
+      'chip-with-icon--margin-right': sys.$si-sys-sizing-spacing-x-20,
+      'chip-close-button-container--padding-left':
+        sys.$si-sys-sizing-spacing-x-40,
+      'chip-inactive--padding-right--outline': sys.$si-sys-sizing-spacing-x-20,
+      'chip-close--size': sys.$si-sys-sizing-size-70,
+      'chip-close--inset': sys.$si-sys-sizing-spacing-x-20,
+      'chip--height': sys.$si-sys-sizing-size-80,
+      'chip--max-height': sys.$si-sys-sizing-size-80,
+      'chip-wrap--min-height': sys.$si-sys-sizing-size-80,
+      'chip-wrap--max-height': sys.$si-sys-sizing-size-80,
+      'chip-main--padding-block': sys.$si-sys-sizing-spacing-y-40,
+      'chip-main--padding-right--outline': sys.$si-sys-sizing-spacing-x-30,
+      'chip--border-radius': sys.$si-sys-sizing-border-radius-full,
+      'chip--border-width--focus': sys.$si-sys-sizing-border-width-default,
+      'chip--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
   );
 }

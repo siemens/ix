@@ -28,158 +28,79 @@
 @include cv.declare-var('event-list-item--border-color--selected');
 
 :host {
-  @include cv.define-var(
-    'event-list-item-empty-indicator--border',
-    #{sys.$si-sys-sizing-border-width-default} solid #{sys.$si-sys-color-border-4}
-  );
-  @include cv.define-var(
-    'event-list-item--background--filled',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'event-list-item--background--filled--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'event-list-item--background--filled--disabled',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'event-list-item--background--filled--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'event-list-item--background--filled--selected',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--filled',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--filled--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--filled--disabled',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--filled--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--filled--selected',
-    sys.$si-sys-color-border-accent-hover
-  );
-  @include cv.define-var(
-    'event-list-item--background--outline',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'event-list-item--background--outline--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'event-list-item--background--outline--disabled',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'event-list-item--background--outline--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'event-list-item--background--outline--selected',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--outline',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--outline--active',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--outline--disabled',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--outline--hover',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'event-list-item--border-color--outline--selected',
-    sys.$si-sys-color-border-accent-hover
+  @include cv.define-vars(
+    (
+      'event-list-item-empty-indicator--border': #{sys.$si-sys-sizing-border-width-default}
+        solid #{sys.$si-sys-color-border-4},
+      'event-list-item--background--filled': sys.$si-sys-color-background-1,
+      'event-list-item--background--filled--active':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--background--filled--disabled':
+        sys.$si-sys-color-background-1,
+      'event-list-item--background--filled--hover':
+        sys.$si-sys-color-background-hover,
+      'event-list-item--background--filled--selected':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--border-color--filled': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--active': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--disabled': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--hover': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--selected':
+        sys.$si-sys-color-border-accent-hover,
+      'event-list-item--background--outline': rgba(0, 0, 0, 0),
+      'event-list-item--background--outline--active':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--background--outline--disabled': rgba(0, 0, 0, 0),
+      'event-list-item--background--outline--hover':
+        sys.$si-sys-color-background-hover,
+      'event-list-item--background--outline--selected':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--border-color--outline': sys.$si-sys-color-border-3,
+      'event-list-item--border-color--outline--active':
+        sys.$si-sys-color-border-3,
+      'event-list-item--border-color--outline--disabled':
+        sys.$si-sys-color-border-4,
+      'event-list-item--border-color--outline--hover':
+        sys.$si-sys-color-border-3,
+      'event-list-item--border-color--outline--selected':
+        sys.$si-sys-color-border-accent-hover,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'event-list-item--transition-duration',
-    var(--theme-default-time)
-  );
-  @include cv.define-var('event-list-item--height', sys.$si-sys-sizing-size-90);
-  @include cv.define-var(
-    'event-list-item--border-radius',
-    vars.$default-border-radius
-  );
-  @include cv.define-var(
-    'event-list-item--margin-bottom',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'event-list-item-indicator-visual--width',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'event-list-item-indicator--max-width',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'event-list-item-indicator--min-width',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'event-list-item-indicator--border-top-left-radius',
-    vars.$default-border-radius
-  );
-  @include cv.define-var(
-    'event-list-item-indicator--border-bottom-left-radius',
-    vars.$default-border-radius
-  );
-  @include cv.define-var(
-    'event-list-item-container--width',
-    calc(
-      100% -
-        (
-          #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40}
-        )
+  @include cv.define-vars(
+    (
+      'event-list-item--transition-duration': var(--theme-default-time),
+      'event-list-item--height': sys.$si-sys-sizing-size-90,
+      'event-list-item--border-radius': vars.$default-border-radius,
+      'event-list-item--margin-bottom': sys.$si-sys-sizing-spacing-y-40,
+      'event-list-item-indicator-visual--width': sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-indicator--max-width': sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-indicator--min-width': sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-indicator--border-top-left-radius':
+        vars.$default-border-radius,
+      'event-list-item-indicator--border-bottom-left-radius':
+        vars.$default-border-radius,
+      'event-list-item-container--width':
+        calc(
+          100% -
+            (
+              #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40}
+            )
+        ),
+      'event-list-item-container--border-top-right-radius':
+        vars.$default-border-radius,
+      'event-list-item-container--border-bottom-right-radius':
+        vars.$default-border-radius,
+      'event-list-item-container--padding-left': sys.$si-sys-sizing-spacing-x-60,
+      'event-list-item-event-content--padding-inline-end':
+        sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-chevron-icon--margin-right':
+        sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-container--border-width':
+        calc(#{sys.$si-sys-sizing-border-width-default} * 0.992),
+      'event-list-item-chevron-icon--opacity': 0.6,
     )
   );
-  @include cv.define-var(
-    'event-list-item-container--border-top-right-radius',
-    vars.$default-border-radius
-  );
-  @include cv.define-var(
-    'event-list-item-container--border-bottom-right-radius',
-    vars.$default-border-radius
-  );
-  @include cv.define-var(
-    'event-list-item-container--padding-left',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'event-list-item-event-content--padding-inline-end',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'event-list-item-chevron-icon--margin-right',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'event-list-item-container--border-width',
-    calc(#{sys.$si-sys-sizing-border-width-default} * 0.992)
-  );
-  @include cv.define-var('event-list-item-chevron-icon--opacity', 0.6);
 }

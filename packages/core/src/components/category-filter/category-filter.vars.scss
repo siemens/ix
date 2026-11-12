@@ -15,200 +15,108 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'category-filter-dropdown-item--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'category-filter-category-preview--background',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'category-filter-header--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--color',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--color--focus',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--color--hover',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--background-color--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--color--active',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--background-color--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--color--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'category-filter-a--color--active',
-    sys.$si-sys-color-text-primary
-  );
-  @include cv.define-var(
-    'category-filter-glyph--color',
-    sys.$si-sys-color-text-secondary
-  );
-  @include cv.define-var(
-    'category-filter-glyph--color--disabled',
-    var(--color-weak-text)
-  );
-  @include cv.define-var(
-    'category-filter-glyph-single-check--color',
-    sys.$si-sys-color-text-secondary
+  @include cv.define-vars(
+    (
+      'category-filter-dropdown-item--outline-color--focus':
+        sys.$si-sys-color-effects-focus,
+      'category-filter-category-preview--background': rgba(0, 0, 0, 0),
+      'category-filter-header--color': sys.$si-sys-color-text-secondary,
+      'category-filter-dropdown-item--color': sys.$si-sys-color-text-primary,
+      'category-filter-dropdown-item--color--focus':
+        sys.$si-sys-color-text-primary,
+      'category-filter-dropdown-item--color--hover':
+        sys.$si-sys-color-text-primary,
+      'category-filter-dropdown-item--background-color--hover':
+        sys.$si-sys-color-background-hover,
+      'category-filter-dropdown-item--color--active':
+        sys.$si-sys-color-text-primary,
+      'category-filter-dropdown-item--background-color--active':
+        sys.$si-sys-color-background-selected,
+      'category-filter-dropdown-item--color--disabled':
+        sys.$si-sys-color-text-disabled,
+      'category-filter-a--color--active': sys.$si-sys-color-text-primary,
+      'category-filter-glyph--color': sys.$si-sys-color-text-secondary,
+      'category-filter-glyph--color--disabled': var(--color-weak-text),
+      'category-filter-glyph-single-check--color':
+        sys.$si-sys-color-text-secondary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'category-filter-dropdown-item--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-90}
-  );
-  @include cv.define-var(
-    'category-filter-glyph--margin-inline-end',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'category-filter-reset-button--top',
-    sys.$si-sys-sizing-spacing-y-20
-  );
-  @include cv.define-var(
-    'category-filter-reset-button--right',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'category-filter-input-container--padding-block',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'category-filter-input-container--padding--with-icon',
-    cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-80}
-      cv.get-var('category-filter-input-container--padding-block') calc(#{sys.$si-sys-sizing-spacing-x-80} +
-          #{sys.$si-sys-sizing-spacing-x-20})
-  );
-  @include cv.define-var(
-    'category-filter-input-container--padding--no-icon',
-    cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-80}
-      cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-20}
-  );
-  @include cv.define-var(
-    'category-filter-icon--top',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'category-filter-icon--left',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'category-filter--margin-right',
-    sys.$si-sys-sizing-spacing-x-20
-  );
-  @include cv.define-var(
-    'category-filter-category-preview--padding',
-    #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-header--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--margin',
-    #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-40}
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--padding-inline',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'category-filter-button-toggle-operator--margin-inline',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'category-filter-category-preview--margin',
-    sys.$si-sys-sizing-spacing-y-10
-  );
-  @include cv.define-var(
-    'category-filter-list-unstyled--padding-top',
-    sys.$si-sys-sizing-spacing-y-10
-  );
-  @include cv.define-var(
-    'category-filter-list-unstyled--padding-bottom',
-    sys.$si-sys-sizing-spacing-y-10
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'category-filter-input-container--max-height',
-    calc(#{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50})
-  );
-  @include cv.define-var(
-    'category-filter-text-input--height',
-    calc(#{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20})
-  );
-  @include cv.define-var(
-    'category-filter-text-input--min-height',
-    calc(#{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20})
-  );
-  @include cv.define-var(
-    'category-filter-icon--size',
-    sys.$si-sys-sizing-icon-sm
-  );
-  @include cv.define-var(
-    'category-filter-category-preview--height',
-    sys.$si-sys-sizing-size-70
-  );
-  @include cv.define-var(
-    'category-filter-category-preview--border-top-left-radius',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'category-filter-category-preview--border-bottom-left-radius',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'category-filter--min-width',
-    sys.$si-sys-sizing-size-150
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-header--height',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'category-filter-button-toggle-operator--width',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'category-filter-button-toggle-operator--height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'category-filter-dropdown-item--outline-offset--focus',
-    calc(
-      -1 * #{cv.get-var('category-filter-dropdown-item--outline-width--focus')}
+  @include cv.define-vars(
+    (
+      'category-filter-dropdown-item--padding': 0 #{sys.$si-sys-sizing-spacing-x-90},
+      'category-filter-glyph--margin-inline-end':
+        sys.$si-sys-sizing-spacing-x-40,
+      'category-filter-reset-button--top': sys.$si-sys-sizing-spacing-y-20,
+      'category-filter-reset-button--right': sys.$si-sys-sizing-spacing-x-20,
+      'category-filter-input-container--padding-block':
+        sys.$si-sys-sizing-border-width-default,
     )
   );
-  @include cv.define-var(
-    'category-filter-dropdown-item--border-radius',
-    sys.$si-sys-sizing-border-radius-full
+  @include cv.define-vars(
+    (
+      'category-filter-input-container--padding--with-icon':
+        cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-80}
+        cv.get-var('category-filter-input-container--padding-block') calc(#{sys.$si-sys-sizing-spacing-x-80} +
+            #{sys.$si-sys-sizing-spacing-x-20}),
+      'category-filter-input-container--padding--no-icon':
+        cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-80}
+        cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-20},
+      'category-filter-icon--top': sys.$si-sys-sizing-spacing-y-40,
+      'category-filter-icon--left': sys.$si-sys-sizing-spacing-x-40,
+      'category-filter--margin-right': sys.$si-sys-sizing-spacing-x-20,
+      'category-filter-category-preview--padding': #{sys.$si-sys-sizing-spacing-y-40}
+        #{sys.$si-sys-sizing-spacing-x-40},
+      'category-filter-dropdown-header--padding': 0 #{sys.$si-sys-sizing-spacing-x-60},
+      'category-filter-dropdown-item--margin': #{sys.$si-sys-sizing-spacing-y-20}
+        #{sys.$si-sys-sizing-spacing-x-40},
+      'category-filter-dropdown-item--padding-inline':
+        sys.$si-sys-sizing-spacing-x-40,
+      'category-filter-button-toggle-operator--margin-inline':
+        sys.$si-sys-sizing-spacing-x-40,
+      'category-filter-category-preview--margin':
+        sys.$si-sys-sizing-spacing-y-10,
+      'category-filter-list-unstyled--padding-top':
+        sys.$si-sys-sizing-spacing-y-10,
+      'category-filter-list-unstyled--padding-bottom':
+        sys.$si-sys-sizing-spacing-y-10,
+      'category-filter-dropdown-item--height': sys.$si-sys-sizing-size-90,
+      'category-filter-input-container--max-height':
+        calc(
+          #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-y-50}
+        ),
+      'category-filter-text-input--height':
+        calc(#{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}),
+      'category-filter-text-input--min-height':
+        calc(#{sys.$si-sys-sizing-size-70} + #{sys.$si-sys-sizing-spacing-y-20}),
+      'category-filter-icon--size': sys.$si-sys-sizing-icon-sm,
+      'category-filter-category-preview--height': sys.$si-sys-sizing-size-70,
+      'category-filter-category-preview--border-top-left-radius':
+        sys.$si-sys-sizing-spacing-x-60,
+      'category-filter-category-preview--border-bottom-left-radius':
+        sys.$si-sys-sizing-spacing-x-60,
+      'category-filter--min-width': sys.$si-sys-sizing-size-150,
+      'category-filter-dropdown-header--height': sys.$si-sys-sizing-size-90,
+      'category-filter-button-toggle-operator--width':
+        sys.$si-sys-sizing-size-80,
+      'category-filter-button-toggle-operator--height':
+        sys.$si-sys-sizing-size-80,
+      'category-filter-dropdown-item--outline-width--focus':
+        sys.$si-sys-sizing-focus-ring-width,
+    )
+  );
+  @include cv.define-vars(
+    (
+      'category-filter-dropdown-item--outline-offset--focus':
+        calc(
+          -1 * #{cv.get-var(
+              'category-filter-dropdown-item--outline-width--focus'
+            )}
+        ),
+      'category-filter-dropdown-item--border-radius':
+        sys.$si-sys-sizing-border-radius-full,
+    )
   );
 }

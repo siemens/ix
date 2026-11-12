@@ -15,55 +15,30 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'date-time-card--box-shadow',
-    sys.$si-sys-color-effects-shadow-40
-  );
-  @include cv.define-var(
-    'date-time-card-separator--background',
-    sys.$si-sys-color-border-4
-  );
-  @include cv.define-var(
-    'date-time-card--background',
-    sys.$si-sys-color-background-3
+  @include cv.define-vars(
+    (
+      'date-time-card--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'date-time-card-separator--background': sys.$si-sys-color-border-4,
+      'date-time-card--background': sys.$si-sys-color-background-3,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'date-time-card-header--padding',
-    #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'date-time-card-content--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60}
-  );
-  @include cv.define-var(
-    'date-time-card-time-picker--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'date-time-card-footer--padding',
-    #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
-  );
-  @include cv.define-var(
-    'date-time-card-standalone-appearance--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'date-time-card-rounded--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'date-time-card-left--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'date-time-card-right--border-radius',
-    sys.$si-sys-sizing-border-radius-sm
-  );
-  @include cv.define-var(
-    'date-time-card-separator--height',
-    sys.$si-sys-sizing-border-width-default
+  @include cv.define-vars(
+    (
+      'date-time-card-header--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60},
+      'date-time-card-content--padding': 0 #{sys.$si-sys-sizing-spacing-x-60} #{sys.$si-sys-sizing-spacing-y-60},
+      'date-time-card-time-picker--padding': 0 #{sys.$si-sys-sizing-spacing-x-60},
+      'date-time-card-footer--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60},
+      'date-time-card-standalone-appearance--border-radius':
+        sys.$si-sys-sizing-border-radius-sm,
+      'date-time-card-rounded--border-radius':
+        sys.$si-sys-sizing-border-radius-sm,
+      'date-time-card-left--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'date-time-card-right--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'date-time-card-separator--height':
+        sys.$si-sys-sizing-border-width-default,
+    )
   );
 }

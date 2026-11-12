@@ -6,56 +6,34 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'empty-state-label--color',
-    sys.$si-sys-color-text-secondary
+  @include cv.define-vars(
+    (
+      'empty-state-label--color': sys.$si-sys-color-text-secondary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'empty-state--gap--large',
-    sys.$si-sys-sizing-spacing-y-60
-  );
-  @include cv.define-var(
-    'empty-state-icon--width--large',
-    calc(#{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-x-40})
-  );
-  @include cv.define-var(
-    'empty-state-icon--height--large',
-    calc(#{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-y-40})
-  );
-  @include cv.define-var(
-    'empty-state-content--gap--large',
-    sys.$si-sys-sizing-spacing-y-80
-  );
-  @include cv.define-var(
-    'empty-state-content-label--gap--large',
-    sys.$si-sys-sizing-spacing-y-40
-  );
-  @include cv.define-var(
-    'empty-state--gap--compact',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'empty-state-icon--size--compact',
-    sys.$si-sys-sizing-size-90
-  );
-  @include cv.define-var(
-    'empty-state-content--gap--compact',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var(
-    'empty-state--gap--compact-break',
-    sys.$si-sys-sizing-spacing-x-60
-  );
-  @include cv.define-var('empty-state-icon--size', sys.$si-sys-sizing-size-90);
-  @include cv.define-var(
-    'empty-state-content--gap',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'empty-state-content-label--gap',
-    sys.$si-sys-sizing-spacing-y-20
+  @include cv.define-vars(
+    (
+      'empty-state--gap--large': sys.$si-sys-sizing-spacing-y-60,
+      'empty-state-icon--width--large':
+        calc(
+          #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-x-40}
+        ),
+      'empty-state-icon--height--large':
+        calc(
+          #{sys.$si-sys-sizing-icon-xxl} + #{sys.$si-sys-sizing-spacing-y-40}
+        ),
+      'empty-state-content--gap--large': sys.$si-sys-sizing-spacing-y-80,
+      'empty-state-content-label--gap--large': sys.$si-sys-sizing-spacing-y-40,
+      'empty-state--gap--compact': sys.$si-sys-sizing-spacing-x-60,
+      'empty-state-icon--size--compact': sys.$si-sys-sizing-size-90,
+      'empty-state-content--gap--compact': sys.$si-sys-sizing-spacing-x-60,
+      'empty-state--gap--compact-break': sys.$si-sys-sizing-spacing-x-60,
+      'empty-state-icon--size': sys.$si-sys-sizing-size-90,
+      'empty-state-content--gap': sys.$si-sys-sizing-spacing-x-40,
+      'empty-state-content-label--gap': sys.$si-sys-sizing-spacing-y-20,
+    )
   );
 }

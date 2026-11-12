@@ -15,47 +15,40 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'tabs--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'tabs-indicator--background',
-    sys.$si-sys-color-border-3
-  );
-  @include cv.define-var(
-    'tabs-indicator--background--selected',
-    sys.$si-sys-color-background-accent-hover
+  @include cv.define-vars(
+    (
+      'tabs--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'tabs-indicator--background': sys.$si-sys-color-border-3,
+      'tabs-indicator--background--selected':
+        sys.$si-sys-color-background-accent-hover,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'tabs--padding-right',
-    calc(
-      #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+  @include cv.define-vars(
+    (
+      'tabs--padding-right':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-100} + #{sys.$si-sys-sizing-spacing-x-20}
+        ),
     )
   );
-  @include cv.define-var(
-    'tabs-overflow-shadow--fade-width',
-    calc(
-      #{cv.get-var('tabs--padding-right')} + #{sys.$si-sys-sizing-border-width-default}
+  @include cv.define-vars(
+    (
+      'tabs-overflow-shadow--fade-width':
+        calc(
+          #{cv.get-var('tabs--padding-right')} + #{sys.$si-sys-sizing-border-width-default}
+        ),
+      'tabs-indicator--height': sys.$si-sys-sizing-border-width-default,
+      'tabs-context-menu--margin-right': sys.$si-sys-sizing-spacing-x-40,
+      'tabs--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
     )
   );
-  @include cv.define-var(
-    'tabs-indicator--height',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'tabs-context-menu--margin-right',
-    sys.$si-sys-sizing-spacing-x-40
-  );
-  @include cv.define-var(
-    'tabs--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var(
-    'tabs--outline-offset',
-    calc(-1 * #{cv.get-var('tabs--outline-width--focus')})
+  @include cv.define-vars(
+    (
+      'tabs--outline-offset':
+        calc(-1 * #{cv.get-var('tabs--outline-width--focus')}),
+    )
   );
 }

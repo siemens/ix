@@ -180,16 +180,37 @@ function stripComments(source: string) {
   return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
 }
 
+/** Returns the argument source of each `cv.define-vars((…))` call. */
+function defineVarsBlocks(source: string) {
+  return [...source.matchAll(/cv\.define-vars\(/g)].map((match) => {
+    const start = match.index! + match[0].length;
+    let depth = 1;
+    let end = start;
+    while (depth > 0) {
+      if (source[end] === '(') depth++;
+      if (source[end] === ')') depth--;
+      end++;
+    }
+    return source.slice(start, end - 1);
+  });
+}
+
 function declarationsOf(file: string): Declaration[] {
   const source = stripComments(readFileSync(file, 'utf8'));
-  return [...source.matchAll(/cv\.(?:define|declare)-var\(\s*'([^']+)'/g)].map(
-    (match) => ({
-      file: path.relative(COMPONENTS_DIR, file),
-      component: componentOf(file),
-      // Interpolated `@each` values are validated as a status modifier.
-      name: `--ix-${match[1].replace(/#\{\$[\w-]+\}/g, 'danger')}`,
-    })
-  );
+  const names = [
+    ...[...source.matchAll(/cv\.(?:define|declare)-var\(\s*'([^']+)'/g)].map(
+      ([, name]) => name
+    ),
+    ...defineVarsBlocks(source).flatMap((block) =>
+      [...block.matchAll(/'([^']+)'\s*:/g)].map(([, name]) => name)
+    ),
+  ];
+  return names.map((name) => ({
+    file: path.relative(COMPONENTS_DIR, file),
+    component: componentOf(file),
+    // Interpolated `@each` values are validated as a status modifier.
+    name: `--ix-${name.replace(/#\{\$[\w-]+\}/g, 'danger')}`,
+  }));
 }
 
 const files = findFiles(COMPONENTS_DIR, ['.vars.scss']);
@@ -314,7 +335,7 @@ describe('component CSS custom property references', () => {
     (entry) => compile(entry, { loadPaths: [path.join(CORE_DIR, 'scss')] }).css
   );
 
-  it('declares properties with define-var, declare-var or set-var', () => {
+  it('declares properties with define-vars, declare-var or set-var', () => {
     const raw = scssSources.flatMap((file) =>
       [
         ...stripComments(readFileSync(file, 'utf8')).matchAll(

@@ -15,245 +15,114 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'checkbox-checkmark--color',
-    sys.$si-sys-color-text-on-accent
-  );
-  @include cv.define-var(
-    'checkbox--outline-color--focus',
-    sys.$si-sys-color-effects-focus
-  );
-  @include cv.define-var(
-    'checkbox--background--checked',
-    sys.$si-sys-color-background-accent
-  );
-  @include cv.define-var(
-    'checkbox--background--checked--active',
-    sys.$si-sys-color-background-accent-active
-  );
-  @include cv.define-var(
-    'checkbox--background--checked--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'checkbox--background--checked--hover',
-    sys.$si-sys-color-background-accent-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--info--checked',
-    sys.$si-sys-color-background-information
-  );
-  @include cv.define-var(
-    'checkbox--background--info--checked--active',
-    sys.$si-sys-color-background-information-active
-  );
-  @include cv.define-var(
-    'checkbox--background--info--checked--hover',
-    sys.$si-sys-color-background-information-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--checked',
-    sys.$si-sys-color-background-danger
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--checked--active',
-    sys.$si-sys-color-background-danger-active
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--checked--hover',
-    sys.$si-sys-color-background-danger-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--checked',
-    sys.$si-sys-color-background-warning
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--checked--active',
-    sys.$si-sys-color-background-warning-active
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--checked--hover',
-    sys.$si-sys-color-background-warning-hover
-  );
-  @include cv.define-var('checkbox--border-color--checked', rgba(0, 0, 0, 0));
-  @include cv.define-var(
-    'checkbox--border-color--checked--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--checked--disabled',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--checked--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--checked',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--checked--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--checked--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--checked',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--checked--active',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--checked--hover',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--checked',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--checked--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--checked--hover',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--background--unchecked',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'checkbox--background--unchecked--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'checkbox--background--unchecked--disabled',
-    rgba(0, 0, 0, 0)
-  );
-  @include cv.define-var(
-    'checkbox--background--unchecked--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--info--unchecked',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'checkbox--background--info--unchecked--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'checkbox--background--info--unchecked--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--unchecked',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--unchecked--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'checkbox--background--invalid--unchecked--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--unchecked',
-    sys.$si-sys-color-background-1
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--unchecked--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'checkbox--background--warning--unchecked--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'checkbox--border-color--unchecked',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'checkbox--border-color--unchecked--active',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'checkbox--border-color--unchecked--disabled',
-    sys.$si-sys-color-text-disabled
-  );
-  @include cv.define-var(
-    'checkbox--border-color--unchecked--hover',
-    sys.$si-sys-color-border-2
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--unchecked',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--unchecked--active',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'checkbox--border-color--info--unchecked--hover',
-    sys.$si-sys-color-border-information
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--unchecked',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--unchecked--active',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'checkbox--border-color--invalid--unchecked--hover',
-    sys.$si-sys-color-border-danger
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--unchecked',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--unchecked--active',
-    sys.$si-sys-color-border-warning
-  );
-  @include cv.define-var(
-    'checkbox--border-color--warning--unchecked--hover',
-    sys.$si-sys-color-border-warning
+  @include cv.define-vars(
+    (
+      'checkbox-checkmark--color': sys.$si-sys-color-text-on-accent,
+      'checkbox--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'checkbox--background--checked': sys.$si-sys-color-background-accent,
+      'checkbox--background--checked--active':
+        sys.$si-sys-color-background-accent-active,
+      'checkbox--background--checked--disabled': sys.$si-sys-color-text-disabled,
+      'checkbox--background--checked--hover':
+        sys.$si-sys-color-background-accent-hover,
+      'checkbox--background--info--checked':
+        sys.$si-sys-color-background-information,
+      'checkbox--background--info--checked--active':
+        sys.$si-sys-color-background-information-active,
+      'checkbox--background--info--checked--hover':
+        sys.$si-sys-color-background-information-hover,
+      'checkbox--background--invalid--checked':
+        sys.$si-sys-color-background-danger,
+      'checkbox--background--invalid--checked--active':
+        sys.$si-sys-color-background-danger-active,
+      'checkbox--background--invalid--checked--hover':
+        sys.$si-sys-color-background-danger-hover,
+      'checkbox--background--warning--checked':
+        sys.$si-sys-color-background-warning,
+      'checkbox--background--warning--checked--active':
+        sys.$si-sys-color-background-warning-active,
+      'checkbox--background--warning--checked--hover':
+        sys.$si-sys-color-background-warning-hover,
+      'checkbox--border-color--checked': rgba(0, 0, 0, 0),
+      'checkbox--border-color--checked--active': rgba(0, 0, 0, 0),
+      'checkbox--border-color--checked--disabled': rgba(0, 0, 0, 0),
+      'checkbox--border-color--checked--hover': rgba(0, 0, 0, 0),
+      'checkbox--border-color--info--checked': rgba(0, 0, 0, 0),
+      'checkbox--border-color--info--checked--active': rgba(0, 0, 0, 0),
+      'checkbox--border-color--info--checked--hover': rgba(0, 0, 0, 0),
+      'checkbox--border-color--invalid--checked': rgba(0, 0, 0, 0),
+      'checkbox--border-color--invalid--checked--active': rgba(0, 0, 0, 0),
+      'checkbox--border-color--invalid--checked--hover': rgba(0, 0, 0, 0),
+      'checkbox--border-color--warning--checked':
+        sys.$si-sys-color-border-warning,
+      'checkbox--border-color--warning--checked--active':
+        sys.$si-sys-color-border-warning,
+      'checkbox--border-color--warning--checked--hover':
+        sys.$si-sys-color-border-warning,
+      'checkbox--background--unchecked': sys.$si-sys-color-background-1,
+      'checkbox--background--unchecked--active':
+        sys.$si-sys-color-background-selected,
+      'checkbox--background--unchecked--disabled': rgba(0, 0, 0, 0),
+      'checkbox--background--unchecked--hover':
+        sys.$si-sys-color-background-hover,
+      'checkbox--background--info--unchecked': sys.$si-sys-color-background-1,
+      'checkbox--background--info--unchecked--active':
+        sys.$si-sys-color-background-selected,
+      'checkbox--background--info--unchecked--hover':
+        sys.$si-sys-color-background-hover,
+      'checkbox--background--invalid--unchecked': sys.$si-sys-color-background-1,
+      'checkbox--background--invalid--unchecked--active':
+        sys.$si-sys-color-background-selected,
+      'checkbox--background--invalid--unchecked--hover':
+        sys.$si-sys-color-background-hover,
+      'checkbox--background--warning--unchecked': sys.$si-sys-color-background-1,
+      'checkbox--background--warning--unchecked--active':
+        sys.$si-sys-color-background-selected,
+      'checkbox--background--warning--unchecked--hover':
+        sys.$si-sys-color-background-hover,
+      'checkbox--border-color--unchecked': sys.$si-sys-color-border-2,
+      'checkbox--border-color--unchecked--active': sys.$si-sys-color-border-2,
+      'checkbox--border-color--unchecked--disabled':
+        sys.$si-sys-color-text-disabled,
+      'checkbox--border-color--unchecked--hover': sys.$si-sys-color-border-2,
+      'checkbox--border-color--info--unchecked':
+        sys.$si-sys-color-border-information,
+      'checkbox--border-color--info--unchecked--active':
+        sys.$si-sys-color-border-information,
+      'checkbox--border-color--info--unchecked--hover':
+        sys.$si-sys-color-border-information,
+      'checkbox--border-color--invalid--unchecked':
+        sys.$si-sys-color-border-danger,
+      'checkbox--border-color--invalid--unchecked--active':
+        sys.$si-sys-color-border-danger,
+      'checkbox--border-color--invalid--unchecked--hover':
+        sys.$si-sys-color-border-danger,
+      'checkbox--border-color--warning--unchecked':
+        sys.$si-sys-color-border-warning,
+      'checkbox--border-color--warning--unchecked--active':
+        sys.$si-sys-color-border-warning,
+      'checkbox--border-color--warning--unchecked--hover':
+        sys.$si-sys-color-border-warning,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'checkbox-label--gap',
-    sys.$si-sys-sizing-spacing-x-30
+  @include cv.define-vars(
+    (
+      'checkbox-label--gap': sys.$si-sys-sizing-spacing-x-30,
+      'checkbox--border-width': sys.$si-sys-sizing-border-width-default,
+      'checkbox--outline-offset--focus': sys.$si-sys-sizing-focus-ring-offset,
+      'checkbox--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+      'checkbox-button--height': sys.$si-sys-sizing-size-60,
+      'checkbox-button--width': sys.$si-sys-sizing-size-60,
+      'checkbox--target-size': sys.$si-sys-sizing-size-70,
+      'checkbox--width': sys.$si-sys-sizing-size-60,
+      'checkbox--min-width': sys.$si-sys-sizing-size-60,
+      'checkbox--max-width': sys.$si-sys-sizing-size-60,
+      'checkbox--height': sys.$si-sys-sizing-size-60,
+      'checkbox--min-height': sys.$si-sys-sizing-size-60,
+      'checkbox--max-height': sys.$si-sys-sizing-size-60,
+    )
   );
-  @include cv.define-var(
-    'checkbox--border-width',
-    sys.$si-sys-sizing-border-width-default
-  );
-  @include cv.define-var(
-    'checkbox--outline-offset--focus',
-    sys.$si-sys-sizing-focus-ring-offset
-  );
-  @include cv.define-var(
-    'checkbox--outline-width--focus',
-    sys.$si-sys-sizing-focus-ring-width
-  );
-  @include cv.define-var('checkbox-button--height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox-button--width', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox--target-size', sys.$si-sys-sizing-size-70);
-  @include cv.define-var('checkbox--width', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox--min-width', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox--max-width', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox--height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox--min-height', sys.$si-sys-sizing-size-60);
-  @include cv.define-var('checkbox--max-height', sys.$si-sys-sizing-size-60);
 }

@@ -15,8 +15,9 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'modal-content--padding',
-    0 #{sys.$si-sys-sizing-spacing-x-40} #{sys.$si-sys-sizing-spacing-y-40}
+  @include cv.define-vars(
+    (
+      'modal-content--padding': 0 #{sys.$si-sys-sizing-spacing-x-40} #{sys.$si-sys-sizing-spacing-y-40},
+    )
   );
 }

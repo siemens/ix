@@ -15,41 +15,29 @@
 @use 'mixins/component-vars' as cv;
 
 :host {
-  @include cv.define-var(
-    'menu-expand-icon--background--active',
-    sys.$si-sys-color-background-selected
-  );
-  @include cv.define-var(
-    'menu-expand-icon--background--hover',
-    sys.$si-sys-color-background-hover
-  );
-  @include cv.define-var(
-    'menu-expand-icon--color',
-    sys.$si-sys-color-text-primary
+  @include cv.define-vars(
+    (
+      'menu-expand-icon--background--active':
+        sys.$si-sys-color-background-selected,
+      'menu-expand-icon--background--hover': sys.$si-sys-color-background-hover,
+      'menu-expand-icon--color': sys.$si-sys-color-text-primary,
+    )
   );
 }
 
 :host {
-  @include cv.define-var(
-    'menu-expand-icon--transition-delay',
-    var(--theme-default-time)
+  @include cv.define-vars(
+    (
+      'menu-expand-icon--transition-delay': var(--theme-default-time),
+      'menu-expand-icon--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'menu-expand-icon--height': sys.$si-sys-sizing-size-80,
+      'menu-expand-icon--width': sys.$si-sys-sizing-size-80,
+      'menu-expand-icon-menu-expand-button--width': sys.$si-sys-sizing-size-80,
+      'menu-expand-icon-line--x': 2px,
+      'menu-expand-icon-line--transition-duration': 0.075s,
+      'menu-expand-icon-line-1--y': 9px,
+      'menu-expand-icon-line--x--expanded': 8,
+      'menu-expand-icon-line-3--y': 9px,
+    )
   );
-  @include cv.define-var(
-    'menu-expand-icon--border-radius',
-    sys.$si-sys-sizing-border-radius-xs
-  );
-  @include cv.define-var(
-    'menu-expand-icon--height',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var('menu-expand-icon--width', sys.$si-sys-sizing-size-80);
-  @include cv.define-var(
-    'menu-expand-icon-menu-expand-button--width',
-    sys.$si-sys-sizing-size-80
-  );
-  @include cv.define-var('menu-expand-icon-line--x', 2px);
-  @include cv.define-var('menu-expand-icon-line--transition-duration', 0.075s);
-  @include cv.define-var('menu-expand-icon-line-1--y', 9px);
-  @include cv.define-var('menu-expand-icon-line--x--expanded', 8);
-  @include cv.define-var('menu-expand-icon-line-3--y', 9px);
 }
