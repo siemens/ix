@@ -16,6 +16,7 @@
 
 ## Properties
 
+- `ariaLabelMoreActions`; attr: `aria-label-more-actions`; type: `string`; default: `'More actions'` - Accessible label for the secondary actions overflow menu.
 - `hasBackButton`; attr: `has-back-button`; type: `boolean`; default: `false` - Display a back button
 - `headerSubtitle`; attr: `header-subtitle`; type: `string | undefined`; default: `undefined` - Subtitle of Header
 - `headerTitle`; attr: `header-title`; type: `string | undefined` - Title of Header
@@ -34,10 +35,11 @@
 
 - `` - Default slot for action buttons or other content
 - `header` - Content to be placed in the header area next to the title
+- `secondary-actions` - ix-button and ix-icon-button actions that collapse into a vertical overflow menu when space is limited. Provide an accessible name for icon-only actions.
 
 ## Dependencies
 
-- Renders: `ix-icon-button`, `ix-typography`
+- Renders: `ix-dropdown`, `ix-dropdown-item`, `ix-icon-button`, `ix-typography`
 - Rendered by: None
 
 ## Related examples

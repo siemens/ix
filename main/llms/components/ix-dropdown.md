@@ -49,7 +49,7 @@
 ## Dependencies
 
 - Renders: None
-- Rendered by: `ix-application-header`, `ix-avatar`, `ix-category-filter`, `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input`, `ix-dropdown-button`, `ix-menu-avatar`, `ix-menu-category`, `ix-select`, `ix-time-input`
+- Rendered by: `ix-application-header`, `ix-avatar`, `ix-category-filter`, `ix-content-header`, `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input`, `ix-dropdown-button`, `ix-menu-avatar`, `ix-menu-category`, `ix-select`, `ix-time-input`
 
 ## Related examples
 

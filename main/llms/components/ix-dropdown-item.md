@@ -41,7 +41,7 @@
 ## Dependencies
 
 - Renders: None
-- Rendered by: `ix-breadcrumb`, `ix-date-picker`, `ix-menu-avatar-item`, `ix-menu-category`, `ix-select`, `ix-select-item`, `ix-tabs`
+- Rendered by: `ix-breadcrumb`, `ix-content-header`, `ix-date-picker`, `ix-menu-avatar-item`, `ix-menu-category`, `ix-select`, `ix-select-item`, `ix-tabs`
 
 ## Related examples
 
