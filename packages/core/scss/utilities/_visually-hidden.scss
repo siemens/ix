@@ -1,0 +1,52 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/// Hides content visually while keeping it available to assistive technology.
+///
+/// `display: none` and `visibility: hidden` are deliberately not used, because
+/// both remove the element from the accessibility tree. Instead the element is
+/// shrunk to a single clipped pixel, which keeps it exposed to screen readers.
+///
+/// @since 6.0.0
+@mixin visually-hidden {
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  // `clip` is deprecated but still the most widely honoured of the two, so
+  // both are set. This matches the inline treatment in `ix-badge`.
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  // Without this the clipped text can collapse into a single-character column,
+  // which some screen readers announce letter by letter.
+  white-space: nowrap !important;
+  border: 0 !important;
+
+  // Taking a table caption out of flow collapses the table layout, so the
+  // caption is hidden without being absolutely positioned.
+  &:not(caption) {
+    position: absolute !important;
+  }
+}
+
+/// Always hidden visually, always exposed to assistive technology.
+///
+/// @since 6.0.0
+.ix-visually-hidden {
+  @include visually-hidden;
+}
+
+/// Visible as soon as the element receives focus. Intended for content that is
+/// only relevant to keyboard users, such as a "skip to main content" link.
+///
+/// @since 6.0.0
+.ix-visually-hidden-focusable:not(:focus):not(:focus-within) {
+  @include visually-hidden;
+}
