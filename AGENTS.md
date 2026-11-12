@@ -35,8 +35,8 @@ Use these resources together (in this order when conflicts appear):
 
 ## Environment and package manager
 
-- Use the package manager declared in `package.json`: `pnpm@10.17.0`.
-- Use Node.js `22.19.0`; Volta is configured for this version.
+- Use the package manager declared in `package.json`.
+- Use the Node.js version declared in `engines.node` of `package.json`.
 - Install dependencies from the repository root with `pnpm install`.
 - Do not introduce new package managers, lockfiles, formatters, linters, or test runners.
 - Add dependencies only when they are required for the implementation, and keep workspace dependencies as `workspace:*` where applicable.
@@ -109,6 +109,24 @@ Targeted commands:
 - Keep docs and examples aligned across Web Components, Angular, React, and Vue when the behavior is framework-visible.
 - Do not document generated implementation details as public API.
 - Ensure examples use supported imports, current component names, and realistic consumer code.
+
+### Component metadata (`@documentation`, `@figma-main-component-id`)
+
+- Every public component in `packages/core/src/components/**` must declare both JSDoc tags in its class-level comment (next to `@since`):
+
+  ```tsx
+  /**
+   * @documentation https://ix.siemens.io/docs/components/<component>/guide.md
+   * @figma-main-component-id <figma-node-id>
+   * @since <version>
+   */
+  ```
+
+- Add these tags when adding a new component, and keep them correct when renaming, splitting, or moving a component.
+- `@documentation` must point to the matching page on `ix.siemens.io`.
+- `@figma-main-component-id` must be the node ID of the main component in the IX Figma library.
+- If no documentation page or Figma main component exists yet, do not invent a value. Omit the tag and warn the developer explicitly (in the agent response and PR description) which tag is missing and why.
+- Internal components (`@internal`) are exempt.
 
 ## Changesets and release impact
 

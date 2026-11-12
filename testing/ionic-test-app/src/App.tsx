@@ -32,8 +32,8 @@ import '@ionic/react/css/palettes/dark.always.css';
 /* Theme variables */
 /* Core CSS for iX */
 import '@siemens/ix/css/foundation.css';
-import '@siemens/ix/css/theme/classic-dark.css';
-import '@siemens/ix/css/theme/classic-light.css';
+import '@siemens/ix/css/theme/community-dark.css';
+import '@siemens/ix/css/theme/community-light.css';
 
 import './theme/variables.css';
 import './theme/preview.css';

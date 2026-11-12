@@ -1,0 +1,3 @@
+- main:
+  - textbox "Date and time": 05.10.26 09:30
+  - button "Toggle calendar"

@@ -27,8 +27,7 @@ import {
 } from '@stencil/core';
 import { animate, AnimationControl, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
-import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { subscribeApplicationLayoutMobile } from '../utils/application-layout';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -49,7 +48,7 @@ import { a11yBoolean } from '../utils/a11y';
 /**
  * Collapsible side panel docked to an edge of the layout.
  *
- * @documentation https://ix.siemens.io//docs/components/panes/guide.md
+ * @documentation https://ix.siemens.io/docs/components/panes/guide.md
  * @figma-main-component-id 19924:12291
  *
  * @slot header - Additional slot for the header content
@@ -192,7 +191,7 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
-  private layoutChangeDisposable?: Disposable;
+  private layoutMobileDisposable?: Disposable;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -210,12 +209,18 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  private subscribeApplicationLayoutMobile() {
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = subscribeApplicationLayoutMobile(
+      this.hostElement,
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
+  }
+
   connectedCallback() {
-    this.isMobile = matchBreakpoint('sm');
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
+    this.subscribeApplicationLayoutMobile();
 
     this.mutationObserver?.disconnect();
     this.mutationObserver = new MutationObserver((mutations) => {
@@ -255,13 +260,13 @@ export class Pane {
   }
 
   disconnectedCallback() {
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = undefined;
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
     this.disposableKeydown?.();
     this.focusTrap?.destroy();
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = undefined;
   }
 
   @Watch('expanded')
@@ -309,6 +314,10 @@ export class Pane {
   }
 
   componentWillLoad() {
+    // Re-subscribe after providers in the tree have finished willLoad, before
+    // sizing so onParentSizeChange sees the resolved mobile mode.
+    this.subscribeApplicationLayoutMobile();
+
     this.onExpandedChange();
 
     this.floating = this.variant === 'floating';

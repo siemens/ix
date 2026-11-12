@@ -57,6 +57,13 @@ export class ValueAccessor
     }
   }
 
+  @HostListener('ixClear', ['$event.target'])
+  _handleClearEvent(el: HTMLElement): void {
+    if (el === this.elementRef.nativeElement) {
+      this.getAssignedNgControl()?.control?.markAsUntouched();
+    }
+  }
+
   @HostListener('ixBlur', ['$event.target'])
   _handleBlurEvent(el: any): void {
     if (el === this.elementRef.nativeElement) {

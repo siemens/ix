@@ -25,7 +25,7 @@ import {
 /**
  * Button that displays only an icon to trigger an action.
  *
- * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/icon-button/guide.md
  * @figma-main-component-id 270:941
  */
 @Component({

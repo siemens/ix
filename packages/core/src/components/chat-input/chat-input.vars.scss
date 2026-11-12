@@ -43,7 +43,7 @@
   --ix-chat-input--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
   --ix-chat-input-follow-up-prompts--gap: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
   --ix-chat-input-follow-up-prompts--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-chat-input--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
+  --ix-chat-input--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
   --ix-chat-input-attachments--gap: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
   --ix-chat-input-attachments--margin-bottom: #{sys.$si-sys-sizing-spacing-y-50};
   --ix-chat-input-character-limit--gap: #{sys.$si-sys-sizing-spacing-x-40};

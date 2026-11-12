@@ -16,6 +16,9 @@ concurrency:
   group: pr-${{ github.head_ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 env:
   CORPORATE_THEME_TOKEN: ${{ secrets.CORPORATE_THEME_TOKEN }}
   CORPORATE_THEME_VERSION: ${{ vars.CORPORATE_THEME_VERSION }}
@@ -26,6 +29,9 @@ jobs:
   # executed inside the pinned Playwright image, see actions/playwright-container.
   changes:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     outputs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
       core_all_changed_files: ${{ steps.changes.outputs.core_all_changed_files }}
@@ -75,6 +81,7 @@ jobs:
               - pnpm-lock.yaml
               - pnpm-workspace.yaml
               - turbo.json
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -212,5 +219,5 @@ jobs:
 
       - name: Test
         run: |
-          pnpm dlx puppeteer@22.15.0 browsers install chrome@127.0.6533.88
+          pnpm dlx puppeteer@24.31.0 browsers install chrome@142.0.7444.175
           pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo

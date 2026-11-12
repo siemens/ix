@@ -10,7 +10,7 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 
 /**
- * @documentation https://ix.siemens.io//docs/components/user-message/guide.md
+ * @documentation https://ix.siemens.io/docs/components/user-message/guide.md
  * @figma-main-component-id 133528:33294
  * @since 5.2.0
  * @slot - Message content displayed in the user message bubble

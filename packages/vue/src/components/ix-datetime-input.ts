@@ -11,6 +11,7 @@ export const IxDatetimeInput: StencilVueComponent<JSX.IxDatetimeInput> = /*@__PU
   'placeholder',
   'value',
   'format',
+  'displayFormat',
   'locale',
   'required',
   'disabled',

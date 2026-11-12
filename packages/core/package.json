@@ -69,8 +69,8 @@
     "./dist/siemens-ix/siemens-ix-reset.css": "./dist/siemens-ix/siemens-ix-reset.css",
     "./dist/siemens-ix/siemens-ix-scrollbar.css": "./dist/siemens-ix/siemens-ix-scrollbar.css",
     "./dist/siemens-ix/siemens-ix-utilities.css": "./dist/siemens-ix/siemens-ix-utilities.css",
-    "./dist/siemens-ix/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
-    "./dist/siemens-ix/theme/classic-light.css": "./dist/siemens-ix/theme/classic-light.css",
+    "./dist/siemens-ix/theme/community-dark.css": "./dist/siemens-ix/theme/community-dark.css",
+    "./dist/siemens-ix/theme/community-light.css": "./dist/siemens-ix/theme/community-light.css",
     "./css/default.css": "./dist/siemens-ix/siemens-ix.css",
     "./css/foundation.css": "./dist/siemens-ix/siemens-ix-foundation.css",
     "./css/reset.css": "./dist/siemens-ix/siemens-ix-reset.css",
@@ -79,8 +79,8 @@
     "./css/utilities.css": "./dist/siemens-ix/siemens-ix-utilities.css",
     "./css/globals.css": "./dist/siemens-ix/siemens-ix-globals.css",
     "./css/legacy.css": "./dist/siemens-ix/siemens-ix-legacy.css",
-    "./css/theme/classic-dark.css": "./dist/siemens-ix/theme/classic-dark.css",
-    "./css/theme/classic-light.css": "./dist/siemens-ix/theme/classic-light.css",
+    "./css/theme/community-dark.css": "./dist/siemens-ix/theme/community-dark.css",
+    "./css/theme/community-light.css": "./dist/siemens-ix/theme/community-light.css",
     "./scss/default": "./scss/ix.scss",
     "./scss/foundation": "./scss/ix-foundation.scss",
     "./scss/reset": "./scss/ix-reset.scss",
@@ -93,10 +93,10 @@
     "./scss/ix.scss": "./scss/ix.scss",
     "./scss/ix-foundation": "./scss/ix-foundation.scss",
     "./scss/ix-foundation.scss": "./scss/ix-foundation.scss",
-    "./scss/theme/classic": "./scss/theme/classic/theme.scss",
-    "./scss/theme/classic/theme": "./scss/theme/classic/theme.scss",
-    "./scss/theme/classic/light": "./scss/theme/classic/light/_index.scss",
-    "./scss/theme/classic/dark": "./scss/theme/classic/dark/_index.scss",
+    "./scss/theme/community": "./scss/theme/community/theme.scss",
+    "./scss/theme/community/theme": "./scss/theme/community/theme.scss",
+    "./scss/theme/community/light": "./scss/theme/community/light/_index.scss",
+    "./scss/theme/community/dark": "./scss/theme/community/dark/_index.scss",
     "./scss/tokens/system": "./scss/tokens/_system.scss",
     "./scss/tokens/legacy": "./scss/tokens/_legacy.scss",
     "./scss/misc/common-variables": "./scss/misc/_common-variables.scss",
@@ -160,12 +160,11 @@
     "@types/jest": "^29.5.12",
     "@types/luxon": "^3.4.2",
     "@types/mustache": "^4.2.6",
-    "@types/node": "^20.16.0",
+    "@types/node": "catalog:",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.70.0",
     "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "catalog:",
     "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.35.0",
@@ -176,14 +175,13 @@
     "minisearch": "^7.1.0",
     "luxon": "^3.4.4",
     "mustache": "^4.2.0",
-    "postcss": "^8.5.23",
-    "puppeteer": "21.1.1",
+    "postcss": "^8.5.32",
     "rimraf": "catalog:",
     "sass": "^1.89.2",
     "start-server-and-test": "^2.0.12",
     "tsx": "^4.19.3",
     "typescript": "~5.4.5",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.12"
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.6.13",
@@ -200,11 +198,6 @@
     },
     "luxon": {
       "optional": true
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }

@@ -10,6 +10,9 @@ on:
       - '@siemens/ix@*'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   CORPORATE_THEME_TOKEN: ${{ secrets.CORPORATE_THEME_TOKEN }}
   CORPORATE_THEME_VERSION: ${{ vars.CORPORATE_THEME_VERSION }}
@@ -139,5 +142,5 @@ jobs:
 
       - name: Test
         run: |
-          pnpm dlx puppeteer@22.15.0 browsers install chrome@127.0.6533.88
+          pnpm dlx puppeteer@24.31.0 browsers install chrome@142.0.7444.175
           pnpm turbo run test.memlab --filter=performance-memlab --cache-dir=.turbo
