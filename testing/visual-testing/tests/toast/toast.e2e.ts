@@ -44,7 +44,7 @@ regressionTest.describe('toast', () => {
       for (const bar of bars) {
         if (bar instanceof HTMLElement) {
           bar.style.animation = 'none';
-          bar.style.transform = 'scaleX(0.65)';
+          bar.style.transform = 'scaleX(1)';
         }
       }
     });

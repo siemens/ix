@@ -76,6 +76,67 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(toast).toBeVisible();
 });
 
+regressionTest(
+  'clips the timer bar to the rounded toast corners',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" auto-close-delay="100000">
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
+
+    const toast = page.getByRole('alert');
+    await expect(toast).toHaveAttribute('hydrated');
+    const bar = toast.locator('.toast-progress-bar');
+    await bar.evaluate((element) => {
+      element.style.animation = 'none';
+      element.style.transform = 'scaleX(1)';
+    });
+
+    for (const radius of [null, '12px']) {
+      if (radius) {
+        await toast.evaluate((element, value) => {
+          element.style.setProperty('--ix-toast--border-radius', value);
+        }, radius);
+      }
+
+      const hits = await bar.evaluate((element) => {
+        const root = element.getRootNode();
+        if (!(root instanceof ShadowRoot)) {
+          throw new Error('The timer bar must be inside the toast shadow root');
+        }
+        const { left, right, bottom, width, height } =
+          element.getBoundingClientRect();
+        return {
+          bottomLeft:
+            root.elementFromPoint(left + 0.5, bottom - 0.5) === element,
+          bottomRight:
+            root.elementFromPoint(right - 0.5, bottom - 0.5) === element,
+          center:
+            root.elementFromPoint(left + width / 2, bottom - height / 2) ===
+            element,
+        };
+      });
+      expect(hits).toEqual({
+        bottomLeft: false,
+        bottomRight: false,
+        center: true,
+      });
+    }
+
+    await bar.evaluate((element) => {
+      element.style.transform = 'scaleX(0.5)';
+    });
+    const toastWidth = await toast.evaluate(
+      (element) => element.getBoundingClientRect().width
+    );
+    const barWidth = await bar.evaluate(
+      (element) => element.getBoundingClientRect().width
+    );
+    expect(barWidth).toBe(toastWidth / 2);
+  }
+);
+
 for (const { type } of toastTypes) {
   regressionTest(
     `aligns the ${type} toast with the design`,
