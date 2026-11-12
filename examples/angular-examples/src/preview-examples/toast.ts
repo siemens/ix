@@ -36,7 +36,7 @@ export default class Toast {
       await this.toastService.show({
         type,
         title: 'Toast headline',
-        message: 'Lorem ipsum dolor sit amet',
+        message: 'This is a toast test message!',
         autoClose: false,
       });
     }
