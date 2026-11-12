@@ -78,7 +78,7 @@ export class WorkflowStep {
 
   @State() iconName?: string;
 
-  @State() iconColor: string = 'workflow-step-icon-default--color';
+  @State() iconColor: string = 'var(--ix-workflow-step-icon-default--color)';
 
   /**
    * @internal
@@ -103,23 +103,23 @@ export class WorkflowStep {
     switch (this.status) {
       case 'open':
         this.iconName = this.selected ? iconCircleDot : iconCircle;
-        this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
+        this.iconColor = `var(--ix-workflow-step-icon-default--color${selectedStyle})`;
         break;
       case 'success':
         this.iconName = iconSuccess;
-        this.iconColor = 'workflow-step-icon-success--color';
+        this.iconColor = 'var(--ix-workflow-step-icon-success--color)';
         break;
       case 'done':
         this.iconName = iconCircleFilled;
-        this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
+        this.iconColor = `var(--ix-workflow-step-icon-done--color${selectedStyle})`;
         break;
       case 'warning':
         this.iconName = iconWarning;
-        this.iconColor = 'workflow-step-icon-warning--color';
+        this.iconColor = 'var(--ix-workflow-step-icon-warning--color)';
         break;
       case 'error':
         this.iconName = iconError;
-        this.iconColor = 'workflow-step-icon-error--color';
+        this.iconColor = 'var(--ix-workflow-step-icon-error--color)';
         break;
       default:
         this.iconName = iconCircle;
@@ -127,7 +127,7 @@ export class WorkflowStep {
     }
 
     if (this.disabled) {
-      this.iconColor = 'workflow-step-icon-status--color--disabled';
+      this.iconColor = 'var(--ix-workflow-step-icon-status--color--disabled)';
     }
   }
 
@@ -186,7 +186,7 @@ export class WorkflowStep {
           aria-hidden="true"
         ></ix-icon>
         <ix-icon
-          style={{ color: `var(--ix-${this.iconColor})` }}
+          style={{ color: this.iconColor }}
           name={this.iconName}
           class="absolute"
           aria-label={this.getIconAriaLabel()}

@@ -294,8 +294,9 @@
   .month-selector,
   .year-selector {
     @include cv.set-var(
-      'button--padding',
-      cv.get-var('date-picker-year-selector-button--padding')
+      'dropdown-button--padding',
+      cv.get-var('date-picker-year-selector-button--padding'),
+      $external: true
     );
   }
 }

@@ -81,6 +81,18 @@
     sys.$si-sys-color-text-accent-active
   );
   @include cv.define-var(
+    'workflow-step-icon-error--color',
+    sys.$si-sys-color-text-danger
+  );
+  @include cv.define-var(
+    'workflow-step-icon-success--color',
+    sys.$si-sys-color-text-success
+  );
+  @include cv.define-var(
+    'workflow-step-icon-warning--color',
+    sys.$si-sys-color-text-warning
+  );
+  @include cv.define-var(
     'workflow-step-icon-done--color--selected',
     sys.$si-sys-color-text-accent-active
   );
@@ -91,6 +103,10 @@
   @include cv.define-var(
     'workflow-step-icon-done--color--selected--active',
     sys.$si-sys-color-text-accent-active
+  );
+  @include cv.define-var(
+    'workflow-step-icon-status--color--disabled',
+    sys.$si-sys-color-text-disabled
   );
   @include cv.define-var(
     'workflow-step-step--outline-color--focus',

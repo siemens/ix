@@ -76,6 +76,12 @@
   }
 
   .dropdown-button > ix-button {
+    // ix-button defines --ix-button--padding on its :host, which blocks
+    // inheritance, so the value is forwarded explicitly.
+    @include cv.set-var(
+      'button--padding',
+      cv.get-var('dropdown-button--padding')
+    );
     width: 100%;
     height: 100%;
   }

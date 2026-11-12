@@ -30,6 +30,10 @@ $dropdown-button-variants: button-variants.$btn-variants;
   );
   @include cv.define-var('dropdown-button--height', sys.$si-sys-sizing-size-80);
   @include cv.define-var(
+    'dropdown-button--padding',
+    cv.get-var('button--padding')
+  );
+  @include cv.define-var(
     'dropdown-button-dropdown-icon--margin-right',
     sys.$si-sys-sizing-spacing-x-20
   );
