@@ -14,8 +14,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `<ix-info-page
     titleText="Request timeout"
-    copyText="The server took too long to respond."
-    instructions="Check your connection and try again."
+    description="The server took too long to respond. Check your connection and try again."
   >
     <svg
       slot="image"

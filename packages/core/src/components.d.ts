@@ -2960,10 +2960,10 @@ export namespace Components {
      */
     interface IxInfoPage {
         /**
-          * Optional explanation of the topic and how it can be resolved.
+          * Optional description explaining the topic, e.g. its cause and how it can be resolved.
           * @since 6.0.0
          */
-        "copyText"?: string;
+        "description"?: string;
         /**
           * Icon displayed above the title.
           * @since 6.0.0
@@ -2976,11 +2976,6 @@ export namespace Components {
           * @default '--si-sys-color-background-warning'
          */
         "iconColor": string;
-        /**
-          * Optional instructions describing what the user should do next.
-          * @since 6.0.0
-         */
-        "instructions"?: string;
         /**
           * Short and concise title describing the topic.
           * @since 6.0.0
@@ -11674,10 +11669,10 @@ declare namespace LocalJSX {
      */
     interface IxInfoPage {
         /**
-          * Optional explanation of the topic and how it can be resolved.
+          * Optional description explaining the topic, e.g. its cause and how it can be resolved.
           * @since 6.0.0
          */
-        "copyText"?: string;
+        "description"?: string;
         /**
           * Icon displayed above the title.
           * @since 6.0.0
@@ -11690,11 +11685,6 @@ declare namespace LocalJSX {
           * @default '--si-sys-color-background-warning'
          */
         "iconColor"?: string;
-        /**
-          * Optional instructions describing what the user should do next.
-          * @since 6.0.0
-         */
-        "instructions"?: string;
         /**
           * Short and concise title describing the topic.
           * @since 6.0.0
@@ -15521,8 +15511,7 @@ declare namespace LocalJSX {
         "icon": string;
         "iconColor": string;
         "titleText": string;
-        "copyText": string;
-        "instructions": string;
+        "description": string;
     }
     interface IxInputAttributes {
         "type": 'text' | 'email' | 'password' | 'tel' | 'url';

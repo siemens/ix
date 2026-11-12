@@ -14,8 +14,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `<ix-info-page
     titleText="Report could not be generated"
-    copyText="An error occurred while generating the report."
-    instructions="Contact your administrator for more information."
+    description="An error occurred while generating the report. Contact your administrator for more information."
   >
     <ix-button slot="actions">Return to overview</ix-button>
   </ix-info-page>`,
