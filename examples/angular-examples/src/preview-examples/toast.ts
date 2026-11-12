@@ -8,6 +8,7 @@
  */
 
 import { Component, inject } from '@angular/core';
+import type { ToastType } from '@siemens/ix';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
@@ -21,8 +22,23 @@ export default class Toast {
   private readonly toastService = inject(ToastService);
 
   async showToastMessage() {
-    this.toastService.show({
-      message: 'My toast message!',
-    });
+    const toastTypes: ToastType[] = [
+      'information',
+      'success',
+      'caution',
+      'warning',
+      'danger',
+      'critical',
+      'error',
+    ];
+
+    for (const type of toastTypes) {
+      await this.toastService.show({
+        type,
+        title: 'Toast headline',
+        message: 'Lorem ipsum dolor sit amet',
+        autoClose: false,
+      });
+    }
   }
 }

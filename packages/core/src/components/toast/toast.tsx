@@ -19,6 +19,7 @@ import {
   State,
 } from '@stencil/core';
 import type { ToastType } from './toast.types';
+import { hasSlottedContent } from '../utils/shadow-dom';
 import {
   iconAlarm,
   iconClose,
@@ -41,7 +42,7 @@ interface ToastTypeConfig {
  * @documentation https://ix.siemens.io/docs/components/toast/guide.md
  *
  * @slot - Toast message content.
- * @slot action - Toast action content.
+ * @slot action - Optional toast action content. Empty actions do not reserve spacing.
  */
 @Component({
   tag: 'ix-toast',
@@ -50,7 +51,7 @@ interface ToastTypeConfig {
 })
 export class Toast {
   /**
-   * Toast type
+   * Toast type, determining the status icon and left-side status strip color.
    */
   @Prop({ reflect: true }) type: ToastType = 'information';
 
@@ -101,6 +102,7 @@ export class Toast {
   @State() progress = 0;
   @State() touched = false;
   @State() paused = false;
+  @State() private hasAction = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
@@ -269,8 +271,20 @@ export class Toast {
             <div class="toast-message">
               <slot></slot>
             </div>
-            <div class="toast-action">
-              <slot name="action"></slot>
+            <div
+              class={{
+                'toast-action': true,
+                'toast-action--empty': !this.hasAction,
+              }}
+            >
+              <slot
+                name="action"
+                onSlotchange={(event) => {
+                  this.hasAction = hasSlottedContent(
+                    event.target as HTMLSlotElement
+                  );
+                }}
+              ></slot>
             </div>
           </div>
           <div class="toast-close">
