@@ -13,11 +13,11 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('content-header', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('content-header/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
   regressionTest('secondary', async ({ page }) => {
     await page.goto('content-header/secondary');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
   regressionTest('responsive actions', async ({ page }) => {
     await page.setViewportSize({ width: 900, height: 450 });
@@ -26,6 +26,6 @@ regressionTest.describe('content-header', () => {
     await expect(
       page.getByRole('menuitem', { name: 'Export production report' })
     ).toBeVisible();
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot({ fullPage: true });
   });
 });
