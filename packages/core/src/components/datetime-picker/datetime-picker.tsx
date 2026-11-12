@@ -277,6 +277,8 @@ export class DatetimePicker
   /**
    * Datetime selection event. Emitted when the selection is applied via the
    * done button, or via the confirm button with `requireConfirmation`.
+   *
+   * @breaking-change 6.0.0 `from`, `to` and `time` are localized, use `isoFrom`, `isoTo` and `isoTime` for ISO 8601 values
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 

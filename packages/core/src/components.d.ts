@@ -147,6 +147,7 @@ export namespace Components {
         /**
           * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
          */
         "clickable"?: boolean;
         /**
@@ -161,6 +162,7 @@ export namespace Components {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -174,6 +176,7 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -185,6 +188,7 @@ export namespace Components {
     interface IxApplication {
         /**
           * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
+          * @breaking-change 6.0.0 Applications are opened with `noopener` and `noreferrer`
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -422,6 +426,7 @@ export namespace Components {
         /**
           * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant": BadgeVariant;
@@ -448,6 +453,7 @@ export namespace Components {
         /**
           * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -456,6 +462,7 @@ export namespace Components {
         "sublabel"?: string;
         /**
           * Blind status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -627,12 +634,14 @@ export namespace Components {
         /**
           * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable": boolean;
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -642,6 +651,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -1141,6 +1151,7 @@ export namespace Components {
         "tooltipText": string | boolean;
         /**
           * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant": ChipVariant;
@@ -1196,6 +1207,7 @@ export namespace Components {
         /**
           * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Text wraps by default instead of truncating, set `ellipsis` to restore truncation
           * @default 'wrap'
          */
         "textOverflow": ContentHeaderTextOverflow;
@@ -1323,6 +1335,7 @@ export namespace Components {
         /**
           * Text for the done button. Will be used for translation.
           * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
+          * @breaking-change 6.0.0 The done button was removed, the property has no effect
           * @default 'Done'
          */
         "i18nDone": string;
@@ -1478,6 +1491,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
+          * @breaking-change 6.0.0 Also used to parse user input and format the values emitted via `valueChange`
          */
         "locale"?: string;
         /**
@@ -1789,6 +1803,7 @@ export namespace Components {
         "i18nConfirm": string;
         /**
           * Text for done button in picker (prop name matches datetime-picker)
+          * @breaking-change 6.0.0 Default changed from `Confirm` to `Done`
           * @default 'Done'
          */
         "i18nDone": string;
@@ -2379,6 +2394,7 @@ export namespace Components {
         /**
           * Optional empty state description
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `subHeader` property
          */
         "description"?: string;
         /**
@@ -2440,6 +2456,7 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "itemColor"?: string;
         /**
@@ -2635,6 +2652,7 @@ export namespace Components {
         "index": number;
         /**
           * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
+          * @breaking-change 6.0.0 Status variant values renamed
           * @default 'filled'
          */
         "variant": FlipTileVariant;
@@ -2805,6 +2823,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -2825,6 +2844,7 @@ export namespace Components {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size": ButtonIconSize;
@@ -2882,6 +2902,7 @@ export namespace Components {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size": ButtonIconSize;
@@ -3107,6 +3128,7 @@ export namespace Components {
         "orientation": 'horizontal' | 'vertical';
         /**
           * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
+          * @breaking-change 6.0.0 Status state values renamed
           * @default 'neutral'
          */
         "state": KpiState;
@@ -3793,6 +3815,7 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
+          * @breaking-change 6.0.0 Type values renamed (`info` is now `information`)
           * @default 'information'
          */
         "type": MessageBarType;
@@ -3886,6 +3909,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
     }
@@ -4239,6 +4263,7 @@ export namespace Components {
         "tooltipText": string | boolean;
         /**
           * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant": ChipVariant;
@@ -4348,6 +4373,7 @@ export namespace Components {
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
     }
@@ -4400,11 +4426,13 @@ export namespace Components {
         "showTextAsTooltip": boolean;
         /**
           * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
+          * @breaking-change 6.0.0 Size scale changed (`sm` is now 20px)
           * @default 'md'
          */
         "size": ProgressIndicatorSize;
         /**
           * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @breaking-change 6.0.0 Status values renamed (`default` is now `base`)
           * @default 'base'
          */
         "status": ProgressIndicatorStatus;
@@ -4437,6 +4465,7 @@ export namespace Components {
         /**
           * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable": boolean;
@@ -4460,6 +4489,7 @@ export namespace Components {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -4468,6 +4498,7 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -4872,6 +4903,7 @@ export namespace Components {
         "hideTrack": boolean;
         /**
           * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @breaking-change 6.0.0 Size values renamed and remapped to different pixel sizes
           * @default 'md'
          */
         "size": SpinnerSize;
@@ -5450,6 +5482,7 @@ export namespace Components {
         /**
           * Text of the time confirm button.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `i18nConfirmTime` property
           * @default 'Confirm'
          */
         "i18nConfirm": string;
@@ -8568,6 +8601,7 @@ declare namespace LocalJSX {
         /**
           * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
          */
         "clickable"?: boolean;
         /**
@@ -8582,6 +8616,7 @@ declare namespace LocalJSX {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -8595,6 +8630,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -8606,6 +8642,7 @@ declare namespace LocalJSX {
     interface IxApplication {
         /**
           * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
+          * @breaking-change 6.0.0 Applications are opened with `noopener` and `noreferrer`
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -8851,6 +8888,7 @@ declare namespace LocalJSX {
         /**
           * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant"?: BadgeVariant;
@@ -8881,6 +8919,7 @@ declare namespace LocalJSX {
         /**
           * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -8889,6 +8928,7 @@ declare namespace LocalJSX {
         "sublabel"?: string;
         /**
           * Blind status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -9074,12 +9114,14 @@ declare namespace LocalJSX {
         /**
           * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable"?: boolean;
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -9089,6 +9131,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -9653,6 +9696,7 @@ declare namespace LocalJSX {
         "tooltipText"?: string | boolean;
         /**
           * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant"?: ChipVariant;
@@ -9712,6 +9756,7 @@ declare namespace LocalJSX {
         /**
           * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Text wraps by default instead of truncating, set `ellipsis` to restore truncation
           * @default 'wrap'
          */
         "textOverflow"?: ContentHeaderTextOverflow;
@@ -9835,6 +9880,7 @@ declare namespace LocalJSX {
         /**
           * Text for the done button. Will be used for translation.
           * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
+          * @breaking-change 6.0.0 The done button was removed, the property has no effect
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -9864,6 +9910,7 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range. When a pending selection is discarded, it is emitted with the applied range again.  Use `dateSelect` to only receive applied ranges.
+          * @breaking-change 6.0.0 Emitted for every pick instead of on close, `from` and `to` are localized (use `isoFrom` and `isoTo`)
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
@@ -9988,6 +10035,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
+          * @breaking-change 6.0.0 Also used to parse user input and format the values emitted via `valueChange`
          */
         "locale"?: string;
         /**
@@ -10016,6 +10064,7 @@ declare namespace LocalJSX {
         "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateInputValidityState>) => void;
         /**
           * Value change event. Emitted when the input value changes.
+          * @breaking-change 6.0.0 Emitted only on Confirm with `requireConfirmation`
          */
         "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
@@ -10164,15 +10213,18 @@ declare namespace LocalJSX {
         "onDateCancel"?: (event: IxDatePickerCustomEvent<void>) => void;
         /**
           * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` When a pending selection is discarded, it is emitted with the confirmed selection again. Use `dateSelect` to receive only the applied selection.
+          * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.  Emitted together with `dateChange`.
           * @deprecated since 6.0.0, use `dateChange` instead, which carries the same `from`/`to` range. Will be removed in 7.0.0.
+          * @breaking-change 6.0.0 Deprecated, `from` and `to` are localized (use `isoFrom` and `isoTo`)
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`. With `singleSelection` and without `requireConfirmation` there is no button, so it is emitted together with `dateChange` when a date is picked. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -10300,6 +10352,7 @@ declare namespace LocalJSX {
         "i18nConfirm"?: string;
         /**
           * Text for done button in picker (prop name matches datetime-picker)
+          * @breaking-change 6.0.0 Default changed from `Confirm` to `Done`
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -10357,6 +10410,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxDatetimeInputCustomEvent<void>) => void;
         /**
           * Emitted when the date/time value changes via user interaction.  Fires in two scenarios: - When the input loses focus (blur) and the value has changed - When the picker closes after the value was changed in it, or on   Confirm when `requireConfirmation` is enabled  Does NOT fire when: - The picker is opened/closed without changing the value - The input is blurred without modifying the value - The value is changed programmatically via the value property
+          * @breaking-change 6.0.0 Emitted once when the picker closes, or on Confirm with `requireConfirmation`
          */
         "onIxChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10369,6 +10423,7 @@ declare namespace LocalJSX {
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
           * Emitted when the datetime value changes. Payload is in `format` or undefined
+          * @breaking-change 6.0.0 Emitted for every picked date or time, or only on Confirm with `requireConfirmation`
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10550,6 +10605,7 @@ declare namespace LocalJSX {
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Datetime selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`.
+          * @breaking-change 6.0.0 `from`, `to` and `time` are localized, use `isoFrom`, `isoTo` and `isoTime` for ISO 8601 values
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
@@ -10920,6 +10976,7 @@ declare namespace LocalJSX {
         /**
           * Optional empty state description
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `subHeader` property
          */
         "description"?: string;
         /**
@@ -10985,6 +11042,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "itemColor"?: string;
         /**
@@ -11194,6 +11252,7 @@ declare namespace LocalJSX {
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
           * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
+          * @breaking-change 6.0.0 Status variant values renamed
           * @default 'filled'
          */
         "variant"?: FlipTileVariant;
@@ -11380,6 +11439,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -11400,6 +11460,7 @@ declare namespace LocalJSX {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size"?: ButtonIconSize;
@@ -11461,6 +11522,7 @@ declare namespace LocalJSX {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size"?: ButtonIconSize;
@@ -11688,6 +11750,7 @@ declare namespace LocalJSX {
         "orientation"?: 'horizontal' | 'vertical';
         /**
           * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
+          * @breaking-change 6.0.0 Status state values renamed
           * @default 'neutral'
          */
         "state"?: KpiState;
@@ -12432,6 +12495,7 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
+          * @breaking-change 6.0.0 Type values renamed (`info` is now `information`)
           * @default 'information'
          */
         "type"?: MessageBarType;
@@ -12521,6 +12585,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -12906,6 +12971,7 @@ declare namespace LocalJSX {
         "tooltipText"?: string | boolean;
         /**
           * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant"?: ChipVariant;
@@ -13015,6 +13081,7 @@ declare namespace LocalJSX {
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -13072,11 +13139,13 @@ declare namespace LocalJSX {
         "showTextAsTooltip"?: boolean;
         /**
           * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
+          * @breaking-change 6.0.0 Size scale changed (`sm` is now 20px)
           * @default 'md'
          */
         "size"?: ProgressIndicatorSize;
         /**
           * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @breaking-change 6.0.0 Status values renamed (`default` is now `base`)
           * @default 'base'
          */
         "status"?: ProgressIndicatorStatus;
@@ -13109,6 +13178,7 @@ declare namespace LocalJSX {
         /**
           * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable"?: boolean;
@@ -13132,6 +13202,7 @@ declare namespace LocalJSX {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -13140,6 +13211,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -13577,6 +13649,7 @@ declare namespace LocalJSX {
         "hideTrack"?: boolean;
         /**
           * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @breaking-change 6.0.0 Size values renamed and remapped to different pixel sizes
           * @default 'md'
          */
         "size"?: SpinnerSize;
@@ -14167,6 +14240,7 @@ declare namespace LocalJSX {
         /**
           * Text of the time confirm button.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `i18nConfirmTime` property
           * @default 'Confirm'
          */
         "i18nConfirm"?: string;
@@ -14232,6 +14306,7 @@ declare namespace LocalJSX {
         "onTimeCancel"?: (event: IxTimePickerCustomEvent<void>) => void;
         /**
           * Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `timeSelect` for the applied time.
+          * @breaking-change 6.0.0 Emitted for every pick, the applied time is emitted with `timeSelect`
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**

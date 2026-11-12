@@ -62,12 +62,15 @@ export class IconButton
    * Defaults to `20`.
    *
    * @since 6.0.0 Size `20` is available
+   * @breaking-change 6.0.0 Default changed to `20`
    */
   @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
    * Icon color as a CSS custom property name, for example
    * `--si-sys-color-text-primary`.
+   *
+   * @breaking-change 6.0.0 Requires the full CSS custom property name
    */
   @Prop() iconColor?: string;
 

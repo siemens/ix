@@ -44,6 +44,8 @@ export class EventListItem {
    * Example value: `--si-sys-color-background-danger`
    *
    * {@link https://ix.siemens.io/docs/styles/colors}
+   *
+   * @breaking-change 6.0.0 Requires the full CSS custom property name
    */
   @Prop() itemColor?: string;
 

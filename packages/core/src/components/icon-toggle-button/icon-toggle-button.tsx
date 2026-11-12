@@ -82,6 +82,7 @@ export class IconToggleButton
    * Defaults to `20`.
    *
    * @since 6.0.0 Size `20` is available
+   * @breaking-change 6.0.0 Default changed to `20`
    */
   @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 

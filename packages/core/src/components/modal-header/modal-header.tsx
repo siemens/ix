@@ -72,6 +72,8 @@ export class ModalHeader {
   /**
    * Icon color as a CSS custom property name, for example
    * `--si-sys-color-text-primary`.
+   *
+   * @breaking-change 6.0.0 Requires the full CSS custom property name
    */
   @Prop() iconColor?: string;
 

@@ -36,6 +36,8 @@ export class Pill
   /**
    * Pill variant.
    * Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+   *
+   * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
    */
   @Prop({ reflect: true }) variant: ChipVariant = 'accent';
 

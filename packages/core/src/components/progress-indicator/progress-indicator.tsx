@@ -53,6 +53,8 @@ export class ProgressIndicator {
    * - **md**: 32px (default).
    * - **lg**: 48px.
    * - **xl**: 64px.
+   *
+   * @breaking-change 6.0.0 Size scale changed (`sm` is now 20px)
    */
   @Prop() size: ProgressIndicatorSize = 'md';
 
@@ -74,6 +76,8 @@ export class ProgressIndicator {
   /**
    * Status of the progress indicator.
    * Shared status subset plus `error` and `paused`. Default is `base`.
+   *
+   * @breaking-change 6.0.0 Status values renamed (`default` is now `base`)
    */
   @Prop() status: ProgressIndicatorStatus = 'base';
 

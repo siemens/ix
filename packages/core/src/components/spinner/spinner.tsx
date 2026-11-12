@@ -38,6 +38,8 @@ export class Spinner {
    * - **sm**: 20px.
    * - **md**: 32px (default).
    * - **xxl**: 96px.
+   *
+   * @breaking-change 6.0.0 Size values renamed and remapped to different pixel sizes
    */
   @Prop() size: SpinnerSize = 'md';
 

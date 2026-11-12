@@ -47,6 +47,8 @@ export class FlipTile {
    * Variation of the Flip
    *
    * Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
+   *
+   * @breaking-change 6.0.0 Status variant values renamed
    */
   @Prop() variant: FlipTileVariant = 'filled';
 

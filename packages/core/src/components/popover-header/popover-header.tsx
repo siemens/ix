@@ -53,6 +53,7 @@ export class PopoverHeader {
    * `--si-sys-color-text-primary`.
    *
    * @since 5.1.0
+   * @breaking-change 6.0.0 Requires the full CSS custom property name
    */
   @Prop() iconColor?: string;
 

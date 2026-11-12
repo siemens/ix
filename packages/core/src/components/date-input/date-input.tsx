@@ -124,6 +124,8 @@ export class DateInput
    * The locale is used to translate the labels for weekdays and months,
    * determine the default order of weekdays, and parse user input.
    * Values emitted via `valueChange` are in `format`.
+   *
+   * @breaking-change 6.0.0 Also used to parse user input and format the values emitted via `valueChange`
    */
   @Prop() locale?: string;
 
@@ -299,6 +301,8 @@ export class DateInput
 
   /**
    * Value change event. Emitted when the input value changes.
+   *
+   * @breaking-change 6.0.0 Emitted only on Confirm with `requireConfirmation`
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
 

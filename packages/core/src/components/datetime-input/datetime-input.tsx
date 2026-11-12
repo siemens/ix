@@ -201,7 +201,11 @@ export class DatetimeInput
   /** Error message when datetime cannot be parsed */
   @Prop() i18nErrorDateTimeUnparsable: string = 'Date time is not valid';
 
-  /** Text for done button in picker (prop name matches datetime-picker) */
+  /**
+   * Text for done button in picker (prop name matches datetime-picker)
+   *
+   * @breaking-change 6.0.0 Default changed from `Confirm` to `Done`
+   */
   @Prop() i18nDone: string = 'Done';
 
   /**
@@ -259,7 +263,11 @@ export class DatetimeInput
    */
   @Prop() requireConfirmation: boolean = false;
 
-  /** Emitted when the datetime value changes. Payload is in `format` or undefined */
+  /**
+   * Emitted when the datetime value changes. Payload is in `format` or undefined
+   *
+   * @breaking-change 6.0.0 Emitted for every picked date or time, or only on Confirm with `requireConfirmation`
+   */
   @Event() valueChange!: EventEmitter<string | undefined>;
 
   /** Emitted when validation state changes */
@@ -283,6 +291,8 @@ export class DatetimeInput
    * - The picker is opened/closed without changing the value
    * - The input is blurred without modifying the value
    * - The value is changed programmatically via the value property
+   *
+   * @breaking-change 6.0.0 Emitted once when the picker closes, or on Confirm with `requireConfirmation`
    */
   @Event() ixChange!: EventEmitter<string | undefined>;
 
