@@ -26,8 +26,8 @@
 - `min`; attr: `min`; type: `number`; default: `0` - Minimum slider value
 - `showTextAsTooltip`; attr: `show-text-as-tooltip`; type: `boolean`; default: `false` - Show helper, info, warning, error and valid text as tooltip
 - `step`; attr: `step`; type: `number`; default: `1` - Legal number intervals {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}
-- `trace`; attr: `trace`; type: `boolean`; default: `false` - Show a trace line
-- `traceReference`; attr: `trace-reference`; type: `number`; default: `0` - Define the start point of the trace line
+- `trace`; attr: `trace`; type: `boolean`; default: `false` - Color the track from **traceReference** to the current value, or from the minimum if they are equal. Show the reference marker only when it is between the minimum and maximum and differs from the value.
+- `traceReference`; attr: `trace-reference`; type: `number`; default: `0` - Start point of the trace segment when **trace** is enabled
 - `validText`; attr: `valid-text`; type: `string | undefined` - Valid text for the field component
 - `value`; attr: `value`; type: `number`; default: `0` - Current value of the slider
 - `warningText`; attr: `warning-text`; type: `string | undefined` - Warning text for the field component
