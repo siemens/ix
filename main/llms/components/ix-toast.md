@@ -23,7 +23,7 @@
 - `iconColor`; attr: `icon-color`; type: `string | undefined` - Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
 - `preventAutoClose`; attr: `prevent-auto-close`; type: `boolean`; default: `false` - Autoclose behavior
 - `toastTitle`; attr: `toast-title`; type: `string | undefined` - Toast title
-- `type`; attr: `type`; type: `"caution" | "critical" | "danger" | "error" | "information" | "success" | "warning"`; default: `'information'` - Toast type
+- `type`; attr: `type`; type: `"caution" | "critical" | "danger" | "error" | "information" | "success" | "warning"`; default: `'information'` - Toast type, determining the status icon and left-side status strip color.
 
 ## Events
 
@@ -38,7 +38,7 @@
 ## Slots
 
 - `` - Toast message content.
-- `action` - Toast action content.
+- `action` - Optional toast action content. Empty actions do not reserve spacing.
 
 ## Dependencies
 
