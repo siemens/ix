@@ -138,17 +138,16 @@ export namespace Components {
     interface IxActionCard {
         /**
           * ARIA label for the card
-          * @since 3.2.0
          */
         "ariaLabelCard"?: string;
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
          */
         "clickable"?: boolean;
         /**
@@ -163,6 +162,7 @@ export namespace Components {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -176,6 +176,7 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -187,6 +188,7 @@ export namespace Components {
     interface IxApplication {
         /**
           * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
+          * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -240,49 +242,40 @@ export namespace Components {
     interface IxApplicationHeader {
         /**
           * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
-          * @since 4.0.0
          */
         "appIcon"?: string;
         /**
           * Alt text for the app icon
-          * @since 4.0.0
          */
         "appIconAlt"?: string;
         /**
           * Render subtle outline around app icon to ensure proper contrast.
-          * @since 4.0.0
           * @default false
          */
         "appIconOutline": boolean;
         /**
           * ARIA label for the app switch icon button
-          * @since 3.2.0
          */
         "ariaLabelAppSwitchIconButton"?: string;
         /**
           * ARIA label for the more menu icon button
-          * @since 3.2.0
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
-          * @since 4.0.0
          */
         "companyLogo"?: string;
         /**
           * Alt text for the company logo
-          * @since 4.0.0
          */
         "companyLogoAlt"?: string;
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
           * Hides the bottom border of the header
-          * @since 4.0.0
           * @default false
          */
         "hideBottomBorder": boolean;
@@ -292,7 +285,6 @@ export namespace Components {
         "name"?: string;
         /**
           * Define a suffix which will be displayed next to the application name
-          * @since 4.0.0
          */
         "nameSuffix"?: string;
         /**
@@ -315,7 +307,6 @@ export namespace Components {
     interface IxAvatar {
         /**
           * aria-label for the tooltip
-          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -332,7 +323,6 @@ export namespace Components {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
@@ -436,6 +426,7 @@ export namespace Components {
         /**
           * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant": BadgeVariant;
@@ -462,6 +453,7 @@ export namespace Components {
         /**
           * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -470,6 +462,7 @@ export namespace Components {
         "sublabel"?: string;
         /**
           * Blind status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -494,7 +487,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -531,7 +523,6 @@ export namespace Components {
         "hideChevron": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
-          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -556,7 +547,6 @@ export namespace Components {
         "label"?: string;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 4.0.0
          */
         "rel"?: string;
         /**
@@ -565,7 +555,6 @@ export namespace Components {
         "subtle": boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -587,12 +576,10 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
-          * @since 3.1.0
          */
         "form"?: string;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -601,7 +588,6 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -621,12 +607,10 @@ export namespace Components {
         "loading": boolean;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -650,12 +634,14 @@ export namespace Components {
         /**
           * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable": boolean;
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -665,6 +651,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -677,7 +664,6 @@ export namespace Components {
     interface IxCardAccordion {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -693,7 +679,6 @@ export namespace Components {
         /**
           * Accordion status variant.
           * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
-          * @since 4.0.0
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -713,7 +698,6 @@ export namespace Components {
     interface IxCardList {
         /**
           * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
-          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -780,17 +764,14 @@ export namespace Components {
     interface IxCategoryFilter {
         /**
           * ARIA label for the filter input Will be set as aria-label on the nested HTML input element
-          * @since 3.2.0
          */
         "ariaLabelFilterInput"?: string;
         /**
           * ARIA label for the operator button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelOperatorButton"?: string;
         /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelResetButton"?: string;
         /**
@@ -810,7 +791,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -1138,7 +1118,6 @@ export namespace Components {
         "background": string | undefined;
         /**
           * Center the content of the chip. Set to false to disable centering.
-          * @since 3.2.0
           * @default false
          */
         "centerContent": boolean;
@@ -1167,12 +1146,12 @@ export namespace Components {
         "outline": boolean;
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-          * @since 3.0.0
           * @default false
          */
         "tooltipText": string | boolean;
         /**
           * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant": ChipVariant;
@@ -1235,6 +1214,7 @@ export namespace Components {
         /**
           * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Text wraps by default instead of truncating, set `ellipsis` to restore truncation
           * @default 'wrap'
          */
         "textOverflow": ContentHeaderTextOverflow;
@@ -1331,7 +1311,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -1363,6 +1342,7 @@ export namespace Components {
         /**
           * Text for the done button. Will be used for translation.
           * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
+          * @breaking-change 6.0.0 The done button was removed, the property has no effect
           * @default 'Done'
          */
         "i18nDone": string;
@@ -1398,7 +1378,6 @@ export namespace Components {
         "requireConfirmation": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
@@ -1436,7 +1415,6 @@ export namespace Components {
     interface IxDateInput {
         /**
           * ARIA label for the calendar icon button. Will be set as aria-label on the nested HTML button element.
-          * @since 3.2.0
           * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
@@ -1468,7 +1446,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -1526,6 +1503,7 @@ export namespace Components {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
+          * @breaking-change 6.0.0 Also used to parse user input and format the values emitted via `valueChange`
          */
         "locale"?: string;
         /**
@@ -1568,7 +1546,6 @@ export namespace Components {
         "showTextAsTooltip"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
@@ -1645,7 +1622,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         "focusActiveDay": () => Promise<void>;
@@ -1705,7 +1681,6 @@ export namespace Components {
         "requireConfirmation": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
@@ -1840,6 +1815,7 @@ export namespace Components {
         "i18nConfirm": string;
         /**
           * Text for done button in picker (prop name matches datetime-picker)
+          * @breaking-change 6.0.0 Default changed from `Confirm` to `Done`
           * @default 'Done'
          */
         "i18nDone": string;
@@ -2049,7 +2025,6 @@ export namespace Components {
         "i18nSecondColumnHeader": string;
         /**
           * Top label of the time picker.
-          * @since 3.0.0
           * @default 'Time'
          */
         "i18nTime": string;
@@ -2088,7 +2063,6 @@ export namespace Components {
         "showTimeReference": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers": boolean;
@@ -2150,13 +2124,11 @@ export namespace Components {
         "closeBehavior": CloseBehavior;
         /**
           * Suppress automatic focus when the dropdown is shown
-          * @since 4.3.0
           * @default false
          */
         "disableFocusHandling": boolean;
         /**
           * Close dropdown when tabbing away, and do not trap focus inside dropdown
-          * @since 4.3.0
           * @default false
          */
         "disableFocusTrap": boolean;
@@ -2168,7 +2140,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v5.x, will default to true in v6.0.0
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -2276,7 +2247,6 @@ export namespace Components {
     interface IxDropdownButton {
         /**
           * ARIA label for the dropdown button. Set as `aria-label` on the host, which is the interactive control. The nested button is inert and is not exposed to assistive technology.
-          * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
         /**
@@ -2292,7 +2262,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -2354,7 +2323,6 @@ export namespace Components {
     interface IxDropdownItem {
         /**
           * ARIA label for the item's button Will be set as aria-label for the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -2433,12 +2401,12 @@ export namespace Components {
         "action"?: string;
         /**
           * ARIA label for the empty state icon
-          * @since 3.2.0
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
           * Optional empty state description
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `subHeader` property
          */
         "description"?: string;
         /**
@@ -2500,6 +2468,7 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "itemColor"?: string;
         /**
@@ -2509,7 +2478,6 @@ export namespace Components {
         "selected": boolean;
         /**
           * Variant of the event list item
-          * @since 4.0.0
           * @default 'outline'
          */
         "variant": 'outline' | 'filled';
@@ -2522,18 +2490,15 @@ export namespace Components {
     interface IxExpandingSearch {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Clear search'
          */
         "ariaLabelClearIconButton"?: string;
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelSearchIconButton"?: string;
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
-          * @since 3.2.0
           * @default 'Search input'
          */
         "ariaLabelSearchInput"?: string;
@@ -2685,7 +2650,6 @@ export namespace Components {
     interface IxFlipTile {
         /**
           * ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelEyeIconButton"?: string;
         /**
@@ -2695,13 +2659,12 @@ export namespace Components {
         "height": number | 'auto';
         /**
           * Index of the currently visible content
-          * @since 3.0.0
           * @default 0
          */
         "index": number;
         /**
           * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
-          * @since 4.0.0
+          * @breaking-change 6.0.0 Status variant values renamed
           * @default 'filled'
          */
         "variant": FlipTileVariant;
@@ -2872,6 +2835,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -2892,6 +2856,7 @@ export namespace Components {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size": ButtonIconSize;
@@ -2938,7 +2903,6 @@ export namespace Components {
         "outline": boolean;
         /**
           * Button in oval shape
-          * @since 3.1.0
           * @default false
          */
         "oval": boolean;
@@ -2950,6 +2914,7 @@ export namespace Components {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size": ButtonIconSize;
@@ -3123,7 +3088,6 @@ export namespace Components {
     interface IxKeyValue {
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -3181,6 +3145,7 @@ export namespace Components {
         "orientation": 'horizontal' | 'vertical';
         /**
           * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
+          * @breaking-change 6.0.0 Status state values renamed
           * @default 'neutral'
          */
         "state": KpiState;
@@ -3630,7 +3595,6 @@ export namespace Components {
     interface IxMenuAvatar {
         /**
           * aria-label for the tooltip
-          * @since 4.3.0.
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -3640,7 +3604,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -3663,7 +3626,6 @@ export namespace Components {
         "initials"?: string;
         /**
           * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
-          * @since 4.3.0.
          */
         "tooltipText"?: string;
         /**
@@ -3713,7 +3675,6 @@ export namespace Components {
         "setTabIndex": (value: number) => Promise<void>;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -3780,7 +3741,6 @@ export namespace Components {
         "home": boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
-          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -3802,19 +3762,16 @@ export namespace Components {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 4.0.0
          */
         "rel"?: string;
         "setTabIndex": (value: number) => Promise<void>;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -3879,6 +3836,7 @@ export namespace Components {
         "persistent": boolean;
         /**
           * Specifies the type of the alert.
+          * @breaking-change 6.0.0 Type values renamed (`info` is now `information`)
           * @default 'information'
          */
         "type": MessageBarType;
@@ -3954,7 +3912,6 @@ export namespace Components {
     interface IxModalHeader {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Close modal'
          */
         "ariaLabelCloseIconButton"?: string;
@@ -3973,6 +3930,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
     }
@@ -3993,7 +3951,6 @@ export namespace Components {
     interface IxNumberInput {
         /**
           * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
-          * @since 4.1.0
           * @default false
          */
         "allowEmptyValueChange": boolean;
@@ -4126,13 +4083,11 @@ export namespace Components {
         "advanced": boolean;
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Previous page'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Next page'
          */
         "ariaLabelChevronRightIconButton"?: string;
@@ -4150,7 +4105,6 @@ export namespace Components {
         "ariaLabelJumpForward": string;
         /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
-          * @since 4.1.0
           * @default 'Page selection input'
          */
         "ariaLabelPageSelection": string;
@@ -4192,7 +4146,6 @@ export namespace Components {
         "itemCount": number;
         /**
           * Custom item count options for advanced mode. Provide an array of positive numbers to display in the items per page dropdown.
-          * @since 4.4.0
           * @default [10, 15, 20, 40, 100]
          */
         "itemCountOptions": number[];
@@ -4315,7 +4268,6 @@ export namespace Components {
         "alignLeft": boolean;
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -4337,12 +4289,12 @@ export namespace Components {
         "pillColor": string | undefined;
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-          * @since 3.0.0
           * @default false
          */
         "tooltipText": string | boolean;
         /**
           * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant": ChipVariant;
@@ -4452,6 +4404,7 @@ export namespace Components {
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
     }
@@ -4477,7 +4430,6 @@ export namespace Components {
      * Shows progress through a sequence of steps.
      * @documentation https://ix.siemens.io/docs/components/progress-indicator/guide.md
      * @figma-main-component-id 69677:5549
-     * @since 3.2.0
      */
     interface IxProgressIndicator {
         /**
@@ -4505,11 +4457,13 @@ export namespace Components {
         "showTextAsTooltip": boolean;
         /**
           * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
+          * @breaking-change 6.0.0 Size scale changed (`sm` is now 20px)
           * @default 'md'
          */
         "size": ProgressIndicatorSize;
         /**
           * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @breaking-change 6.0.0 Status values renamed (`default` is now `base`)
           * @default 'base'
          */
         "status": ProgressIndicatorStatus;
@@ -4537,12 +4491,12 @@ export namespace Components {
     interface IxPushCard {
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable": boolean;
@@ -4566,6 +4520,7 @@ export namespace Components {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -4574,6 +4529,7 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant": StatusVariant;
@@ -4607,7 +4563,6 @@ export namespace Components {
         "name"?: string;
         /**
           * Requires the radio component and its group to be checked for the form to be submittable
-          * @since 3.0.0
           * @default false
          */
         "required": boolean;
@@ -4710,7 +4665,6 @@ export namespace Components {
         "ariaLabelAddItem": string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Clear selection'
          */
         "ariaLabelClearIconButton"?: string;
@@ -4740,7 +4694,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -4906,23 +4859,19 @@ export namespace Components {
         "hasValidValue": () => Promise<boolean>;
         /**
           * Show text below the field component
-          * @since 4.3.0
          */
         "helperText"?: string;
         /**
           * Info text for the field component
-          * @since 4.3.0
          */
         "infoText"?: string;
         /**
           * Error text for the field component
-          * @since 4.3.0
          */
         "invalidText"?: string;
         "isTouched": () => Promise<boolean>;
         /**
           * Label for the field component
-          * @since 4.3.0
          */
         "label"?: string;
         /**
@@ -4941,7 +4890,6 @@ export namespace Components {
         "min": number;
         /**
           * Show helper, info, warning, error and valid text as tooltip
-          * @since 4.3.0
           * @default false
          */
         "showTextAsTooltip": boolean;
@@ -4962,7 +4910,6 @@ export namespace Components {
         "traceReference": number;
         /**
           * Valid text for the field component
-          * @since 4.3.0
          */
         "validText"?: string;
         /**
@@ -4972,7 +4919,6 @@ export namespace Components {
         "value": number;
         /**
           * Warning text for the field component
-          * @since 4.3.0
          */
         "warningText"?: string;
     }
@@ -4988,6 +4934,7 @@ export namespace Components {
         "hideTrack": boolean;
         /**
           * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @breaking-change 6.0.0 Size values renamed and remapped to different pixel sizes
           * @default 'md'
          */
         "size": SpinnerSize;
@@ -5005,12 +4952,10 @@ export namespace Components {
     interface IxSplitButton {
         /**
           * ARIA label for the button (use if no label and icon button)
-          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
           * ARIA label for the split icon button
-          * @since 3.2.0
          */
         "ariaLabelSplitIconButton"?: string;
         /**
@@ -5020,13 +4965,11 @@ export namespace Components {
         "closeBehavior": CloseBehavior;
         /**
           * Disables only the main button while keeping the dropdown trigger enabled
-          * @since 4.1.0
           * @default false
          */
         "disableButton": boolean;
         /**
           * Disables only the dropdown trigger while keeping the main button enabled
-          * @since 4.1.0
           * @default false
          */
         "disableDropdownButton": boolean;
@@ -5038,7 +4981,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -5319,7 +5261,6 @@ export namespace Components {
      * Text input for entering and validating a time value.
      * @documentation https://ix.siemens.io/docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
-     * @since 3.2.0
      * @form-ready 
      */
     interface IxTimeInput {
@@ -5337,7 +5278,6 @@ export namespace Components {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer": boolean;
         /**
@@ -5362,7 +5302,6 @@ export namespace Components {
         "helperText"?: string;
         /**
           * Hides the header of the picker.
-          * @since 4.0.0
           * @default false
          */
         "hideHeader": boolean;
@@ -5558,13 +5497,11 @@ export namespace Components {
         "hideFooter": boolean;
         /**
           * Hides the header of the picker.
-          * @since 3.2.0
           * @default false
          */
         "hideHeader": boolean;
         /**
           * Interval for hour selection.
-          * @since 3.2.0
           * @default 1
          */
         "hourInterval": number;
@@ -5582,6 +5519,7 @@ export namespace Components {
         /**
           * Text of the time confirm button.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `i18nConfirmTime` property
           * @default 'Confirm'
          */
         "i18nConfirm": string;
@@ -5627,7 +5565,6 @@ export namespace Components {
         "maxTime"?: string;
         /**
           * Interval for millisecond selection.
-          * @since 3.2.0
           * @default 100
          */
         "millisecondInterval": number;
@@ -5638,13 +5575,11 @@ export namespace Components {
         "minTime"?: string;
         /**
           * Interval for minute selection.
-          * @since 3.2.0
           * @default 1
          */
         "minuteInterval": number;
         /**
           * Interval for second selection.
-          * @since 3.2.0
           * @default 1
          */
         "secondInterval": number;
@@ -5660,7 +5595,6 @@ export namespace Components {
     interface IxToast {
         /**
           * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
-          * @since 3.2.0
           * @default 'Close toast'
          */
         "ariaLabelCloseIconButton"?: string;
@@ -5802,7 +5736,6 @@ export namespace Components {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -5903,7 +5836,6 @@ export namespace Components {
         "root": string;
         /**
           * Enable to toggle items by click on the item
-          * @since 3.0.0
          */
         "toggleOnItemClick"?: boolean;
     }
@@ -8012,7 +7944,6 @@ declare global {
      * Shows progress through a sequence of steps.
      * @documentation https://ix.siemens.io/docs/components/progress-indicator/guide.md
      * @figma-main-component-id 69677:5549
-     * @since 3.2.0
      */
     interface HTMLIxProgressIndicatorElement extends Components.IxProgressIndicator, HTMLStencilElement {
     }
@@ -8314,7 +8245,6 @@ declare global {
      * Text input for entering and validating a time value.
      * @documentation https://ix.siemens.io/docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
-     * @since 3.2.0
      * @form-ready 
      */
     interface HTMLIxTimeInputElement extends Components.IxTimeInput, HTMLStencilElement {
@@ -8704,17 +8634,16 @@ declare namespace LocalJSX {
     interface IxActionCard {
         /**
           * ARIA label for the card
-          * @since 3.2.0
          */
         "ariaLabelCard"?: string;
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Enable pointer interaction on the action card. When omitted, the card is clickable (`true`). When `false`, the wrapping button is disabled.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
          */
         "clickable"?: boolean;
         /**
@@ -8729,6 +8658,7 @@ declare namespace LocalJSX {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -8742,6 +8672,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -8753,6 +8684,7 @@ declare namespace LocalJSX {
     interface IxApplication {
         /**
           * Define application switch configuration  Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
+          * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
          */
         "appSwitchConfig"?: AppSwitchConfiguration;
         /**
@@ -8806,49 +8738,40 @@ declare namespace LocalJSX {
     interface IxApplicationHeader {
         /**
           * The app icon will be shown as the first element inside the header. It will be hidden on smaller screens.
-          * @since 4.0.0
          */
         "appIcon"?: string;
         /**
           * Alt text for the app icon
-          * @since 4.0.0
          */
         "appIconAlt"?: string;
         /**
           * Render subtle outline around app icon to ensure proper contrast.
-          * @since 4.0.0
           * @default false
          */
         "appIconOutline"?: boolean;
         /**
           * ARIA label for the app switch icon button
-          * @since 3.2.0
          */
         "ariaLabelAppSwitchIconButton"?: string;
         /**
           * ARIA label for the more menu icon button
-          * @since 3.2.0
          */
         "ariaLabelMoreMenuIconButton"?: string;
         /**
           * Company logo will be show on the left side of the application name. It will be hidden on smaller screens.
-          * @since 4.0.0
          */
         "companyLogo"?: string;
         /**
           * Alt text for the company logo
-          * @since 4.0.0
          */
         "companyLogoAlt"?: string;
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
           * Hides the bottom border of the header
-          * @since 4.0.0
           * @default false
          */
         "hideBottomBorder"?: boolean;
@@ -8858,7 +8781,6 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Define a suffix which will be displayed next to the application name
-          * @since 4.0.0
          */
         "nameSuffix"?: string;
         /**
@@ -8867,7 +8789,6 @@ declare namespace LocalJSX {
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
         /**
           * Event emitted when the app switch button is clicked
-          * @since 3.0.0
          */
         "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
         /**
@@ -8890,7 +8811,6 @@ declare namespace LocalJSX {
     interface IxAvatar {
         /**
           * aria-label for the tooltip
-          * @since 4.0.0
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -8907,7 +8827,6 @@ declare namespace LocalJSX {
         "initials"?: string;
         /**
           * Text to display in a tooltip when hovering over the avatar
-          * @since 4.0.0
          */
         "tooltipText"?: string;
         /**
@@ -9011,6 +8930,7 @@ declare namespace LocalJSX {
         /**
           * Color variant. For `status-icon`, glyphs exist for `critical`, `danger`, `error`, `warning`, `caution`, `success`, and `information`; other values fall back to `information`. Use `error` only with `status-icon` (other types map it to `danger`).
           * @since 5.2.0
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant"?: BadgeVariant;
@@ -9041,6 +8961,7 @@ declare namespace LocalJSX {
         /**
           * Show the blind with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface. A non-base status shows a left status strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -9049,6 +8970,7 @@ declare namespace LocalJSX {
         "sublabel"?: string;
         /**
           * Blind status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -9073,7 +8995,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -9123,7 +9044,6 @@ declare namespace LocalJSX {
         "hideChevron"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
-          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -9149,7 +9069,6 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<BreadcrumbClick>) => void;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 4.0.0
          */
         "rel"?: string;
         /**
@@ -9158,7 +9077,6 @@ declare namespace LocalJSX {
         "subtle"?: boolean;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -9180,12 +9098,10 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
-          * @since 3.1.0
          */
         "form"?: string;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.
-          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -9194,7 +9110,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -9214,12 +9129,10 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
@@ -9243,12 +9156,14 @@ declare namespace LocalJSX {
         /**
           * Enable pointer cursor and hover/active surface styles. Default is `false` (non-clickable).
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable"?: boolean;
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -9258,6 +9173,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -9270,7 +9186,6 @@ declare namespace LocalJSX {
     interface IxCardAccordion {
         /**
           * ARIA label for the card's expand button. Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -9287,7 +9202,6 @@ declare namespace LocalJSX {
         /**
           * Accordion status variant.
           * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
-          * @since 4.0.0
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -9307,7 +9221,6 @@ declare namespace LocalJSX {
     interface IxCardList {
         /**
           * ARIA label for the card list's expand and collapse button. Defaults to `Collapse card list` when expanded and `Expand card list` when collapsed. A non-empty custom value overrides the label in both states.
-          * @since 3.2.0
          */
         "ariaLabelExpandButton"?: string;
         /**
@@ -9390,17 +9303,14 @@ declare namespace LocalJSX {
     interface IxCategoryFilter {
         /**
           * ARIA label for the filter input Will be set as aria-label on the nested HTML input element
-          * @since 3.2.0
          */
         "ariaLabelFilterInput"?: string;
         /**
           * ARIA label for the operator button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelOperatorButton"?: string;
         /**
           * ARIA label for the reset button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelResetButton"?: string;
         /**
@@ -9420,7 +9330,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -9792,7 +9701,6 @@ declare namespace LocalJSX {
         "background"?: string | undefined;
         /**
           * Center the content of the chip. Set to false to disable centering.
-          * @since 3.2.0
           * @default false
          */
         "centerContent"?: boolean;
@@ -9825,12 +9733,12 @@ declare namespace LocalJSX {
         "outline"?: boolean;
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-          * @since 3.0.0
           * @default false
          */
         "tooltipText"?: string | boolean;
         /**
           * Chip variant. Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant"?: ChipVariant;
@@ -9897,6 +9805,7 @@ declare namespace LocalJSX {
         /**
           * Controls how the title and subtitle handle limited horizontal space. Ellipsis visually truncates the text without adding a tooltip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Text wraps by default instead of truncating, set `ellipsis` to restore truncation
           * @default 'wrap'
          */
         "textOverflow"?: ContentHeaderTextOverflow;
@@ -9993,7 +9902,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -10021,6 +9929,7 @@ declare namespace LocalJSX {
         /**
           * Text for the done button. Will be used for translation.
           * @deprecated The done button was removed. Without `requireConfirmation` the dropdown closes once a complete date or range is selected.
+          * @breaking-change 6.0.0 The done button was removed, the property has no effect
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -10050,6 +9959,7 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range. When a pending selection is discarded, it is emitted with the applied range again.  Use `dateSelect` to only receive applied ranges.
+          * @breaking-change 6.0.0 Emitted for every pick instead of on close, `from` and `to` are localized (use `isoFrom` and `isoTo`)
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
@@ -10065,7 +9975,6 @@ declare namespace LocalJSX {
         "requireConfirmation"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
@@ -10103,7 +10012,6 @@ declare namespace LocalJSX {
     interface IxDateInput {
         /**
           * ARIA label for the calendar icon button. Will be set as aria-label on the nested HTML button element.
-          * @since 3.2.0
           * @default 'Open calendar'
          */
         "ariaLabelCalendarButton"?: string;
@@ -10130,7 +10038,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -10177,6 +10084,7 @@ declare namespace LocalJSX {
         "label"?: string;
         /**
           * Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
+          * @breaking-change 6.0.0 Also used to parse user input and format the values emitted via `valueChange`
          */
         "locale"?: string;
         /**
@@ -10196,7 +10104,6 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Change event. Emitted when the date input loses focus and the value has changed.
-          * @since 4.4.0
          */
         "onIxChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
@@ -10206,6 +10113,7 @@ declare namespace LocalJSX {
         "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateInputValidityState>) => void;
         /**
           * Value change event. Emitted when the input value changes.
+          * @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
          */
         "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
@@ -10233,7 +10141,6 @@ declare namespace LocalJSX {
         "showTextAsTooltip"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
@@ -10306,7 +10213,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -10356,15 +10262,18 @@ declare namespace LocalJSX {
         "onDateCancel"?: (event: IxDatePickerCustomEvent<void>) => void;
         /**
           * Emitted on any date selection change. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` When a pending selection is discarded, it is emitted with the confirmed selection again. Use `dateSelect` to receive only the applied selection.
+          * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
          */
         "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date range change event. Emitted when the date range selection changes and the component is in range mode. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.  Emitted together with `dateChange`.
           * @deprecated since 6.0.0, use `dateChange` instead, which carries the same `from`/`to` range. Will be removed in 7.0.0.
+          * @breaking-change 6.0.0 Deprecated, `from` and `to` are localized (use `isoFrom` and `isoTo`)
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`. With `singleSelection` and without `requireConfirmation` there is no button, so it is emitted together with `dateChange` when a date is picked. The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties. Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+          * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -10375,7 +10284,6 @@ declare namespace LocalJSX {
         "requireConfirmation"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
@@ -10493,6 +10401,7 @@ declare namespace LocalJSX {
         "i18nConfirm"?: string;
         /**
           * Text for done button in picker (prop name matches datetime-picker)
+          * @breaking-change 6.0.0 Default changed from `Confirm` to `Done`
           * @default 'Done'
          */
         "i18nDone"?: string;
@@ -10550,6 +10459,7 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxDatetimeInputCustomEvent<void>) => void;
         /**
           * Emitted when the date/time value changes via user interaction.  Fires in two scenarios: - When the input loses focus (blur) and the value has changed - When the picker closes after the value was changed in it, or on   Confirm when `requireConfirmation` is enabled  Does NOT fire when: - The picker is opened/closed without changing the value - The input is blurred without modifying the value - The value is changed programmatically via the value property
+          * @breaking-change 6.0.0 Emitted once when the picker closes, or on Confirm with `requireConfirmation`
          */
         "onIxChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10562,6 +10472,7 @@ declare namespace LocalJSX {
         "onValidityStateChange"?: (event: IxDatetimeInputCustomEvent<DateTimeInputValidityState>) => void;
         /**
           * Emitted when the datetime value changes. Payload is in `format` or undefined
+          * @breaking-change 6.0.0 Emit timing changed for picker selections
          */
         "onValueChange"?: (event: IxDatetimeInputCustomEvent<string | undefined>) => void;
         /**
@@ -10707,7 +10618,6 @@ declare namespace LocalJSX {
         "i18nSecondColumnHeader"?: string;
         /**
           * Top label of the time picker.
-          * @since 3.0.0
           * @default 'Time'
          */
         "i18nTime"?: string;
@@ -10744,6 +10654,7 @@ declare namespace LocalJSX {
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
           * Datetime selection event. Emitted when the selection is applied via the done button, or via the confirm button with `requireConfirmation`.
+          * @breaking-change 6.0.0 `from`, `to` and `time` are localized, use `isoFrom`, `isoTo` and `isoTime` for ISO 8601 values
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
@@ -10763,7 +10674,6 @@ declare namespace LocalJSX {
         "showTimeReference"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker.
-          * @since 3.0.0
           * @default false
          */
         "showWeekNumbers"?: boolean;
@@ -10825,13 +10735,11 @@ declare namespace LocalJSX {
         "closeBehavior"?: CloseBehavior;
         /**
           * Suppress automatic focus when the dropdown is shown
-          * @since 4.3.0
           * @default false
          */
         "disableFocusHandling"?: boolean;
         /**
           * Close dropdown when tabbing away, and do not trap focus inside dropdown
-          * @since 4.3.0
           * @default false
          */
         "disableFocusTrap"?: boolean;
@@ -10842,7 +10750,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for top-layer positioning.
           * @default false in v5.x, will default to true in v6.0.0
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -10953,7 +10860,6 @@ declare namespace LocalJSX {
     interface IxDropdownButton {
         /**
           * ARIA label for the dropdown button. Set as `aria-label` on the host, which is the interactive control. The nested button is inert and is not exposed to assistive technology.
-          * @since 3.2.0
          */
         "ariaLabelDropdownButton"?: string;
         /**
@@ -10969,7 +10875,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -11038,7 +10943,6 @@ declare namespace LocalJSX {
     interface IxDropdownItem {
         /**
           * ARIA label for the item's button Will be set as aria-label for the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
@@ -11116,12 +11020,12 @@ declare namespace LocalJSX {
         "action"?: string;
         /**
           * ARIA label for the empty state icon
-          * @since 3.2.0
          */
         "ariaLabelEmptyStateIcon"?: string;
         /**
           * Optional empty state description
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `subHeader` property
          */
         "description"?: string;
         /**
@@ -11187,6 +11091,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example value: `--si-sys-color-background-danger`  {@link https://ix.siemens.io/docs/styles/colors}
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "itemColor"?: string;
         /**
@@ -11200,7 +11105,6 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Variant of the event list item
-          * @since 4.0.0
           * @default 'outline'
          */
         "variant"?: 'outline' | 'filled';
@@ -11213,18 +11117,15 @@ declare namespace LocalJSX {
     interface IxExpandingSearch {
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Clear search'
          */
         "ariaLabelClearIconButton"?: string;
         /**
           * ARIA label for the search icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelSearchIconButton"?: string;
         /**
           * ARIA label for the search input Will be set as aria-label on the nested HTML input element
-          * @since 3.2.0
           * @default 'Search input'
          */
         "ariaLabelSearchInput"?: string;
@@ -11382,7 +11283,6 @@ declare namespace LocalJSX {
     interface IxFlipTile {
         /**
           * ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
          */
         "ariaLabelEyeIconButton"?: string;
         /**
@@ -11392,18 +11292,16 @@ declare namespace LocalJSX {
         "height"?: number | 'auto';
         /**
           * Index of the currently visible content
-          * @since 3.0.0
           * @default 0
          */
         "index"?: number;
         /**
           * Event emitted when the index changes
-          * @since 3.0.0
          */
         "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
           * Variation of the Flip  Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
-          * @since 4.0.0
+          * @breaking-change 6.0.0 Status variant values renamed
           * @default 'filled'
          */
         "variant"?: FlipTileVariant;
@@ -11590,6 +11488,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -11610,6 +11509,7 @@ declare namespace LocalJSX {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size"?: ButtonIconSize;
@@ -11660,7 +11560,6 @@ declare namespace LocalJSX {
         "outline"?: boolean;
         /**
           * Button in oval shape
-          * @since 3.1.0
           * @default false
          */
         "oval"?: boolean;
@@ -11672,6 +11571,7 @@ declare namespace LocalJSX {
         /**
           * Size of icon in button. `12` and `16` shrink the control. `20` and `24` keep a 32×32 control. Defaults to `20`.
           * @since 6.0.0 Size `20` is available
+          * @breaking-change 6.0.0 Default changed to `20`
           * @default '20'
          */
         "size"?: ButtonIconSize;
@@ -11773,7 +11673,6 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
         /**
           * Event emitted when the text field loses focus and the value has changed.
-          * @since 4.4.0
          */
         "onIxChange"?: (event: IxInputCustomEvent<string>) => void;
         /**
@@ -11843,7 +11742,6 @@ declare namespace LocalJSX {
     interface IxKeyValue {
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -11901,6 +11799,7 @@ declare namespace LocalJSX {
         "orientation"?: 'horizontal' | 'vertical';
         /**
           * Status of the KPI. `neutral` and `accent` show no status icon. Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
+          * @breaking-change 6.0.0 Status state values renamed
           * @default 'neutral'
          */
         "state"?: KpiState;
@@ -12246,17 +12145,14 @@ declare namespace LocalJSX {
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
           * Event emitted when the about button is clicked
-          * @since 3.0.0
          */
         "onOpenAbout"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Event emitted when the app switch button is clicked
-          * @since 3.0.0
          */
         "onOpenAppSwitch"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Event emitted when the settings button is clicked
-          * @since 3.0.0
          */
         "onOpenSettings"?: (event: IxMenuCustomEvent<void>) => void;
         /**
@@ -12307,7 +12203,6 @@ declare namespace LocalJSX {
         "onClose"?: (event: IxMenuAboutCustomEvent<CustomCloseEvent>) => void;
         /**
           * Active tab changed
-          * @since 3.0.0
          */
         "onTabChange"?: (event: IxMenuAboutCustomEvent<string>) => void;
         /**
@@ -12389,7 +12284,6 @@ declare namespace LocalJSX {
     interface IxMenuAvatar {
         /**
           * aria-label for the tooltip
-          * @since 4.3.0.
          */
         "ariaLabelTooltip"?: string;
         /**
@@ -12399,7 +12293,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -12426,7 +12319,6 @@ declare namespace LocalJSX {
         "onLogoutClick"?: (event: IxMenuAvatarCustomEvent<any>) => void;
         /**
           * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
-          * @since 4.3.0.
          */
         "tooltipText"?: string;
         /**
@@ -12479,7 +12371,6 @@ declare namespace LocalJSX {
         "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<string>) => void;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -12546,7 +12437,6 @@ declare namespace LocalJSX {
         "home"?: boolean;
         /**
           * URL for the button link. When provided, the button will render as an anchor tag.  The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations against an allowlist (for example `https:` and relative URLs).
-          * @since 4.0.0
          */
         "href"?: string;
         /**
@@ -12568,18 +12458,15 @@ declare namespace LocalJSX {
         "notifications"?: number;
         /**
           * Specifies the relationship between the current document and the linked document when href is provided.
-          * @since 4.0.0
          */
         "rel"?: string;
         /**
           * Specifies where to open the linked document when href is provided.
-          * @since 4.0.0
           * @default '_self'
          */
         "target"?: AnchorTarget;
         /**
           * Will be shown as tooltip text, if not provided menu text content will be used.
-          * @since 4.0.0
          */
         "tooltipText"?: string;
     }
@@ -12610,7 +12497,6 @@ declare namespace LocalJSX {
         "onClose"?: (event: IxMenuSettingsCustomEvent<CustomCloseEvent>) => void;
         /**
           * Active tab changed
-          * @since 3.0.0
          */
         "onTabChange"?: (event: IxMenuSettingsCustomEvent<string>) => void;
         /**
@@ -12662,6 +12548,7 @@ declare namespace LocalJSX {
         "persistent"?: boolean;
         /**
           * Specifies the type of the alert.
+          * @breaking-change 6.0.0 Type values renamed (`info` is now `information`)
           * @default 'information'
          */
         "type"?: MessageBarType;
@@ -12733,7 +12620,6 @@ declare namespace LocalJSX {
     interface IxModalHeader {
         /**
           * ARIA label for the close icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Close modal'
          */
         "ariaLabelCloseIconButton"?: string;
@@ -12752,6 +12638,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -12776,7 +12663,6 @@ declare namespace LocalJSX {
     interface IxNumberInput {
         /**
           * If true, the valueChange event will return null instead of 0 for an empty input state. This property will be removed in 5.0.0 and this behaviour will be default.
-          * @since 4.1.0
           * @default false
          */
         "allowEmptyValueChange"?: boolean;
@@ -12827,7 +12713,6 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
           * Event emitted when the input field loses focus and the value has changed
-          * @since 4.4.0
          */
         "onIxChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
@@ -12906,13 +12791,11 @@ declare namespace LocalJSX {
         "advanced"?: boolean;
         /**
           * ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Previous page'
          */
         "ariaLabelChevronLeftIconButton"?: string;
         /**
           * ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Next page'
          */
         "ariaLabelChevronRightIconButton"?: string;
@@ -12930,7 +12813,6 @@ declare namespace LocalJSX {
         "ariaLabelJumpForward"?: string;
         /**
           * ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
-          * @since 4.1.0
           * @default 'Page selection input'
          */
         "ariaLabelPageSelection"?: string;
@@ -12972,7 +12854,6 @@ declare namespace LocalJSX {
         "itemCount"?: number;
         /**
           * Custom item count options for advanced mode. Provide an array of positive numbers to display in the items per page dropdown.
-          * @since 4.4.0
           * @default [10, 15, 20, 40, 100]
          */
         "itemCountOptions"?: number[];
@@ -13117,7 +12998,6 @@ declare namespace LocalJSX {
         "alignLeft"?: boolean;
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
@@ -13139,12 +13019,12 @@ declare namespace LocalJSX {
         "pillColor"?: string | undefined;
         /**
           * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-          * @since 3.0.0
           * @default false
          */
         "tooltipText"?: string | boolean;
         /**
           * Pill variant. Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+          * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
           * @default 'accent'
          */
         "variant"?: ChipVariant;
@@ -13254,6 +13134,7 @@ declare namespace LocalJSX {
         /**
           * Icon color as a CSS custom property name, for example `--si-sys-color-text-primary`.
           * @since 5.1.0
+          * @breaking-change 6.0.0 Requires the full CSS custom property name
          */
         "iconColor"?: string;
         /**
@@ -13284,7 +13165,6 @@ declare namespace LocalJSX {
      * Shows progress through a sequence of steps.
      * @documentation https://ix.siemens.io/docs/components/progress-indicator/guide.md
      * @figma-main-component-id 69677:5549
-     * @since 3.2.0
      */
     interface IxProgressIndicator {
         /**
@@ -13312,11 +13192,13 @@ declare namespace LocalJSX {
         "showTextAsTooltip"?: boolean;
         /**
           * Size of the progress indicator.  For **circular**, diameters are: - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **lg**: 48px. - **xl**: 64px.
+          * @breaking-change 6.0.0 Size scale changed (`sm` is now 20px)
           * @default 'md'
          */
         "size"?: ProgressIndicatorSize;
         /**
           * Status of the progress indicator. Shared status subset plus `error` and `paused`. Default is `base`.
+          * @breaking-change 6.0.0 Status values renamed (`default` is now `base`)
           * @default 'base'
          */
         "status"?: ProgressIndicatorStatus;
@@ -13344,12 +13226,12 @@ declare namespace LocalJSX {
     interface IxPushCard {
         /**
           * ARIA label for the icon
-          * @since 3.2.0
          */
         "ariaLabelIcon"?: string;
         /**
           * Enable pointer interaction on the upper card region. Default is `false`; only the accordion control is interactive.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `passive` property
           * @default false
          */
         "clickable"?: boolean;
@@ -13373,6 +13255,7 @@ declare namespace LocalJSX {
         /**
           * Show the card with outline chrome. When omitted, outline chrome is used (`true`). When `false`, uses a filled surface; status variants then show a top color strip.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
          */
         "outline"?: boolean;
         /**
@@ -13381,6 +13264,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card status variant
+          * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
           * @default 'base'
          */
         "variant"?: StatusVariant;
@@ -13428,7 +13312,6 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxRadioCustomEvent<string>) => void;
         /**
           * Requires the radio component and its group to be checked for the form to be submittable
-          * @since 3.0.0
           * @default false
          */
         "required"?: boolean;
@@ -13531,7 +13414,6 @@ declare namespace LocalJSX {
         "ariaLabelAddItem"?: string;
         /**
           * ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
-          * @since 3.2.0
           * @default 'Clear selection'
          */
         "ariaLabelClearIconButton"?: string;
@@ -13561,7 +13443,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -13739,22 +13620,18 @@ declare namespace LocalJSX {
         "form"?: string;
         /**
           * Show text below the field component
-          * @since 4.3.0
          */
         "helperText"?: string;
         /**
           * Info text for the field component
-          * @since 4.3.0
          */
         "infoText"?: string;
         /**
           * Error text for the field component
-          * @since 4.3.0
          */
         "invalidText"?: string;
         /**
           * Label for the field component
-          * @since 4.3.0
          */
         "label"?: string;
         /**
@@ -13781,7 +13658,6 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
           * Show helper, info, warning, error and valid text as tooltip
-          * @since 4.3.0
           * @default false
          */
         "showTextAsTooltip"?: boolean;
@@ -13802,7 +13678,6 @@ declare namespace LocalJSX {
         "traceReference"?: number;
         /**
           * Valid text for the field component
-          * @since 4.3.0
          */
         "validText"?: string;
         /**
@@ -13812,7 +13687,6 @@ declare namespace LocalJSX {
         "value"?: number;
         /**
           * Warning text for the field component
-          * @since 4.3.0
          */
         "warningText"?: string;
     }
@@ -13828,6 +13702,7 @@ declare namespace LocalJSX {
         "hideTrack"?: boolean;
         /**
           * Size of the spinner.  - **xxs**: 12px. - **xs**: 16px. - **sm**: 20px. - **md**: 32px (default). - **xxl**: 96px.
+          * @breaking-change 6.0.0 Size values renamed and remapped to different pixel sizes
           * @default 'md'
          */
         "size"?: SpinnerSize;
@@ -13845,12 +13720,10 @@ declare namespace LocalJSX {
     interface IxSplitButton {
         /**
           * ARIA label for the button (use if no label and icon button)
-          * @since 3.2.0
          */
         "ariaLabelButton"?: string;
         /**
           * ARIA label for the split icon button
-          * @since 3.2.0
          */
         "ariaLabelSplitIconButton"?: string;
         /**
@@ -13860,13 +13733,11 @@ declare namespace LocalJSX {
         "closeBehavior"?: CloseBehavior;
         /**
           * Disables only the main button while keeping the dropdown trigger enabled
-          * @since 4.1.0
           * @default false
          */
         "disableButton"?: boolean;
         /**
           * Disables only the dropdown trigger while keeping the main button enabled
-          * @since 4.1.0
           * @default false
          */
         "disableDropdownButton"?: boolean;
@@ -13878,7 +13749,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -14098,7 +13968,6 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
           * Event emitted when the textarea field loses focus and the value has changed.
-          * @since 4.4.0
          */
         "onIxChange"?: (event: IxTextareaCustomEvent<string>) => void;
         /**
@@ -14178,7 +14047,6 @@ declare namespace LocalJSX {
      * Text input for entering and validating a time value.
      * @documentation https://ix.siemens.io/docs/components/input-time/guide.md
      * @figma-main-component-id 68801:5742
-     * @since 3.2.0
      * @form-ready 
      */
     interface IxTimeInput {
@@ -14196,7 +14064,6 @@ declare namespace LocalJSX {
         /**
           * Enable Popover API rendering for dropdown.
           * @default false
-          * @since 4.3.0
          */
         "enableTopLayer"?: boolean;
         /**
@@ -14214,7 +14081,6 @@ declare namespace LocalJSX {
         "helperText"?: string;
         /**
           * Hides the header of the picker.
-          * @since 4.0.0
           * @default false
          */
         "hideHeader"?: boolean;
@@ -14320,7 +14186,6 @@ declare namespace LocalJSX {
         "onIxBlur"?: (event: IxTimeInputCustomEvent<void>) => void;
         /**
           * Change event. Emitted when the time input loses focus and the value has changed.
-          * @since 4.4.0
          */
         "onIxChange"?: (event: IxTimeInputCustomEvent<string>) => void;
         "onIxFocus"?: (event: IxTimeInputCustomEvent<void>) => void;
@@ -14406,13 +14271,11 @@ declare namespace LocalJSX {
         "hideFooter"?: boolean;
         /**
           * Hides the header of the picker.
-          * @since 3.2.0
           * @default false
          */
         "hideHeader"?: boolean;
         /**
           * Interval for hour selection.
-          * @since 3.2.0
           * @default 1
          */
         "hourInterval"?: number;
@@ -14430,6 +14293,7 @@ declare namespace LocalJSX {
         /**
           * Text of the time confirm button.
           * @since 6.0.0
+          * @breaking-change 6.0.0 Replaces the removed `i18nConfirmTime` property
           * @default 'Confirm'
          */
         "i18nConfirm"?: string;
@@ -14475,7 +14339,6 @@ declare namespace LocalJSX {
         "maxTime"?: string;
         /**
           * Interval for millisecond selection.
-          * @since 3.2.0
           * @default 100
          */
         "millisecondInterval"?: number;
@@ -14486,7 +14349,6 @@ declare namespace LocalJSX {
         "minTime"?: string;
         /**
           * Interval for minute selection.
-          * @since 3.2.0
           * @default 1
          */
         "minuteInterval"?: number;
@@ -14497,6 +14359,7 @@ declare namespace LocalJSX {
         "onTimeCancel"?: (event: IxTimePickerCustomEvent<void>) => void;
         /**
           * Time change event. Emitted for every change made, also for a time that is not confirmed yet. When a pending time is discarded, it is emitted with the confirmed time again, or the default time if none is confirmed, which is also emitted on load. Use `timeSelect` for the applied time.
+          * @breaking-change 6.0.0 Emitted for every pick, the applied time is emitted with `timeSelect`
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
@@ -14505,7 +14368,6 @@ declare namespace LocalJSX {
         "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Interval for second selection.
-          * @since 3.2.0
           * @default 1
          */
         "secondInterval"?: number;
@@ -14521,7 +14383,6 @@ declare namespace LocalJSX {
     interface IxToast {
         /**
           * ARIA label for the close icon button. Will be set as aria-label on the nested HTML button element.
-          * @since 3.2.0
           * @default 'Close toast'
          */
         "ariaLabelCloseIconButton"?: string;
@@ -14660,7 +14521,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Icon name for the right side of the button
-          * @since 4.0.0
          */
         "iconRight"?: string;
         /**
@@ -14771,7 +14631,6 @@ declare namespace LocalJSX {
         "root"?: string;
         /**
           * Enable to toggle items by click on the item
-          * @since 3.0.0
          */
         "toggleOnItemClick"?: boolean;
     }
@@ -16858,7 +16717,6 @@ declare module "@stencil/core" {
              * Shows progress through a sequence of steps.
              * @documentation https://ix.siemens.io/docs/components/progress-indicator/guide.md
              * @figma-main-component-id 69677:5549
-             * @since 3.2.0
              */
             "ix-progress-indicator": LocalJSX.IntrinsicElements["ix-progress-indicator"] & JSXBase.HTMLAttributes<HTMLIxProgressIndicatorElement>;
             /**
@@ -16959,7 +16817,6 @@ declare module "@stencil/core" {
              * Text input for entering and validating a time value.
              * @documentation https://ix.siemens.io/docs/components/input-time/guide.md
              * @figma-main-component-id 68801:5742
-             * @since 3.2.0
              * @form-ready 
              */
             "ix-time-input": LocalJSX.IntrinsicElements["ix-time-input"] & JSXBase.HTMLAttributes<HTMLIxTimeInputElement>;

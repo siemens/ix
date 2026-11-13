@@ -62,24 +62,18 @@ export class ExpandingSearch
   /**
    * ARIA label for the search icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSearchIconButton?: string;
 
   /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string = 'Clear search';
 
   /**
    * ARIA label for the search input
    * Will be set as aria-label on the nested HTML input element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSearchInput?: string = 'Search input';
 

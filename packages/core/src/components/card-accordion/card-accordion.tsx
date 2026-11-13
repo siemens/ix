@@ -35,8 +35,6 @@ export class CardAccordion {
   /**
    * ARIA label for the card's expand button.
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelExpandButton?: string;
 
@@ -49,7 +47,6 @@ export class CardAccordion {
    * Accordion status variant.
    *
    * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
-   * @since 4.0.0
    */
   @Prop() variant: StatusVariant = 'base';
 

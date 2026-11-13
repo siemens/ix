@@ -36,6 +36,8 @@ export class Pill
   /**
    * Pill variant.
    * Defaults to `accent`. When unset or set to an unknown value the pill falls back to `accent` styling.
+   *
+   * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
    */
   @Prop({ reflect: true }) variant: ChipVariant = 'accent';
 
@@ -51,8 +53,6 @@ export class Pill
 
   /**
    * ARIA label for the icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelIcon?: string;
 
@@ -74,7 +74,6 @@ export class Pill
   /**
    * Display a tooltip. By default, no tooltip will be displayed.
    * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-   * @since 3.0.0
    */
   @Prop() tooltipText: string | boolean = false;
 

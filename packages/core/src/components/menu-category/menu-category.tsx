@@ -81,8 +81,6 @@ export class MenuCategory
 
   /**
    * Will be shown as tooltip text, if not provided menu text content will be used.
-   *
-   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 

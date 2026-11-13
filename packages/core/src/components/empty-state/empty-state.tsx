@@ -41,6 +41,7 @@ export class EmptyState {
    * Optional empty state description
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the removed `subHeader` property
    */
   @Prop() description?: string;
 
@@ -51,8 +52,6 @@ export class EmptyState {
 
   /**
    * ARIA label for the empty state icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelEmptyStateIcon?: string;
 

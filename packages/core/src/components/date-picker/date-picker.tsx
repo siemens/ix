@@ -300,8 +300,6 @@ export class DatePicker
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -315,7 +313,6 @@ export class DatePicker
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -326,6 +323,8 @@ export class DatePicker
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    * When a pending selection is discarded, it is emitted with the confirmed
    * selection again. Use `dateSelect` to receive only the applied selection.
+   *
+   * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
@@ -338,6 +337,7 @@ export class DatePicker
    *
    * @deprecated since 6.0.0, use `dateChange` instead, which carries the same
    * `from`/`to` range. Will be removed in 7.0.0.
+   * @breaking-change 6.0.0 Deprecated, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
@@ -348,6 +348,8 @@ export class DatePicker
    * so it is emitted together with `dateChange` when a date is picked.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+   *
+   * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 

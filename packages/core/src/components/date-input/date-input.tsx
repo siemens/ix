@@ -125,6 +125,8 @@ export class DateInput
    * The locale is used to translate the labels for weekdays and months,
    * determine the default order of weekdays, and parse user input.
    * Values emitted via `valueChange` are in `format`.
+   *
+   * @breaking-change 6.0.0 Also used to parse user input and format the values emitted via `valueChange`
    */
   @Prop() locale?: string;
 
@@ -187,8 +189,6 @@ export class DateInput
   /**
    * ARIA label for the calendar icon button.
    * Will be set as aria-label on the nested HTML button element.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelCalendarButton?: string = 'Open calendar';
 
@@ -235,8 +235,6 @@ export class DateInput
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -275,7 +273,6 @@ export class DateInput
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -305,6 +302,8 @@ export class DateInput
 
   /**
    * Value change event. Emitted when the input value changes.
+   *
+   * @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
 
@@ -320,8 +319,6 @@ export class DateInput
   @Event() ixBlur!: EventEmitter<void>;
   /**
    * Change event. Emitted when the date input loses focus and the value has changed.
-   *
-   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string | undefined>;
   @State() show = false;

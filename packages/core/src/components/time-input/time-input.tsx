@@ -70,7 +70,6 @@ import { a11yBoolean, forceTabIndex } from '../utils/a11y';
  *
  * @documentation https://ix.siemens.io/docs/components/input-time/guide.md
  * @figma-main-component-id 68801:5742
- * @since 3.2.0
  * @form-ready
  * @slot start - Element will be displayed at the start of the input
  * @slot end - Element will be displayed at the end of the input
@@ -290,8 +289,6 @@ export class TimeInput
 
   /**
    * Hides the header of the picker.
-   *
-   * @since 4.0.0
    */
   @Prop() hideHeader: boolean = false;
 
@@ -304,7 +301,6 @@ export class TimeInput
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -342,8 +338,6 @@ export class TimeInput
 
   /**
    * Change event. Emitted when the time input loses focus and the value has changed.
-   *
-   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
 
