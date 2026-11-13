@@ -8,7 +8,7 @@
  */
 
 import { EventEmitter } from '@stencil/core';
-import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import { A11yAttributeName, A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   IxFormComponent,
   IxInputFieldComponent,
@@ -176,14 +176,38 @@ export function adjustPaddingForStartAndEnd(
   });
 }
 
-export function getAriaAttributesForInput(
-  component: IxInputFieldComponent
+// ID references would not resolve from inside the shadow root, and `aria-hidden`
+// must keep hiding the whole component, so these stay on the host
+export const HOST_ONLY_ARIA_ATTRIBUTES: A11yAttributeName[] = [
+  'role',
+  'aria-activedescendant',
+  'aria-controls',
+  'aria-describedby',
+  'aria-details',
+  'aria-errormessage',
+  'aria-flowto',
+  'aria-hidden',
+  'aria-labelledby',
+  'aria-owns',
+];
+
+export function getAriaAttributesForInput<T>(
+  component: IxInputFieldComponent<T>,
+  inheritedAttributes: A11yAttributes = {}
 ): A11yAttributes {
   // `aria-errormessage` must reference an element id, it is set by
   // `HookValidationLifecycle` to the error message element of `ix-field-wrapper`.
+  // `ix-field-wrapper` stops naming the control once it started with an `aria-label`,
+  // so the field label has to come back here when that `aria-label` is removed
+  const ariaLabel =
+    inheritedAttributes['aria-label']?.trim() || component.label;
   return {
+    ...inheritedAttributes,
+    ...(ariaLabel ? { 'aria-label': ariaLabel } : {}),
     'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
-    'aria-required': `${a11yBoolean(component.required)}`,
+    'aria-required': `${a11yBoolean(
+      component.required || inheritedAttributes['aria-required'] === 'true'
+    )}`,
   };
 }
 

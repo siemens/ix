@@ -17,6 +17,7 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
@@ -27,6 +28,12 @@ import {
   ValidationResults,
   revalidate,
 } from '../utils/input';
+import { A11yAttributeName } from '../utils/a11y';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
@@ -36,6 +43,8 @@ import {
   checkInternalValidity,
   resetInputValidation,
   DisposableChangesAndVisibilityObservers,
+  getAriaAttributesForInput,
+  HOST_ONLY_ARIA_ATTRIBUTES,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
@@ -67,8 +76,11 @@ const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
   shadow: true,
   formAssociated: true,
 })
-export class NumberInput implements IxInputFieldComponent<number> {
-  @Element() hostElement!: HTMLIxNumberInputElement;
+export class NumberInput
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxInputFieldComponent<number>, InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxNumberInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
@@ -241,11 +253,17 @@ export class NumberInput implements IxInputFieldComponent<number> {
     mapValidationResult(this, result);
   }
 
-  componentWillLoad() {
+  override getIgnoredAriaAttributes(): A11yAttributeName[] {
+    return HOST_ONLY_ARIA_ATTRIBUTES;
+  }
+
+  override componentWillLoad() {
+    super.componentWillLoad();
     this.updateOptionalFormInternalValue(this.value);
   }
 
-  connectedCallback() {
+  override connectedCallback() {
+    super.connectedCallback();
     this.disposableChangesAndVisibilityObservers =
       addDisposableChangesAndVisibilityObservers(
         this.hostElement,
@@ -253,7 +271,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
       );
   }
 
-  componentDidRender() {
+  override componentDidRender() {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
@@ -262,7 +280,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   }
 
-  disconnectedCallback() {
+  override disconnectedCallback() {
+    super.disconnectedCallback();
     this.disposableChangesAndVisibilityObservers?.();
   }
 
@@ -525,7 +544,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     return input.validity;
   }
 
-  render() {
+  override render() {
     const showStepperButtons =
       this.showStepperButtons && (this.disabled || this.readonly) === false;
 
@@ -602,6 +621,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
                 }
               }}
               onBlur={this.handleBlur}
+              ariaAttributes={getAriaAttributesForInput(
+                this,
+                this.inheritAriaAttributes
+              )}
               form={this.formInternals.form ?? undefined}
               suppressSubmitOnEnter={this.suppressSubmitOnEnter}
               textAlignment={this.textAlignment}
