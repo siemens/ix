@@ -14,6 +14,16 @@
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
 
+$toast-status-sys: (
+  danger: sys.$si-sys-color-border-danger,
+  warning: sys.$si-sys-color-border-warning,
+  caution: sys.$si-sys-color-border-caution,
+  information: sys.$si-sys-color-border-information,
+  critical: sys.$si-sys-color-border-critical,
+  success: sys.$si-sys-color-border-success,
+  error: sys.$si-sys-color-border-danger,
+);
+
 :host {
   @include cv.define-vars(
     (
@@ -21,8 +31,16 @@
       'toast--border-color': rgba(0, 0, 0, 0),
       'toast--box-shadow': sys.$si-sys-color-effects-shadow-40,
       'toast-timer-value--background': sys.$si-sys-color-border-3,
+      'toast--status-color': transparent,
+      'toast--strip-width': sys.$si-sys-sizing-border-width-emphasis,
     )
   );
+}
+
+@each $status, $color in $toast-status-sys {
+  :host([type='#{$status}']) {
+    @include cv.set-var('toast--status-color', $color);
+  }
 }
 
 :host {
@@ -35,14 +53,22 @@
       'toast--max-width': sys.$si-sys-sizing-size-170,
       'toast--min-height': sys.$si-sys-sizing-size-100,
       'toast-body--min-height': sys.$si-sys-sizing-size-100,
-      'toast-body--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
-        #{sys.$si-sys-sizing-spacing-y-20},
       'toast-icon--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20},
       'toast-content--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20},
-      'toast-title--margin': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'toast-title--margin': 0,
       'toast-action--margin-top': sys.$si-sys-sizing-spacing-y-40,
       'toast-close--opacity': 0.6,
       'toast-progress-bar--height': sys.$si-sys-sizing-size-10,
+    )
+  );
+  @include cv.define-vars(
+    (
+      'toast-body--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-40} + #{cv.get-var(
+              'toast-progress-bar--height'
+            )}
+        ),
     )
   );
 }

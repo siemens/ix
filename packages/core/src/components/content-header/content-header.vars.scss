@@ -23,6 +23,9 @@
       'content-header--padding--secondary': #{sys.$si-sys-sizing-spacing-y-20} 0,
       'content-header-back-button--margin-right':
         sys.$si-sys-sizing-spacing-x-40,
+      'content-header-overflow-button--margin-left':
+        sys.$si-sys-sizing-spacing-x-40,
+      'content-header-actions--gap': sys.$si-sys-sizing-spacing-x-20,
     )
   );
 }

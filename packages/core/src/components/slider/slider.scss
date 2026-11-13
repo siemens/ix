@@ -97,6 +97,9 @@
   justify-content: center;
 
   --thumb-size: #{cv.get-var('slider-thumb--size')};
+  --thumb-height: #{cv.get-var('slider-thumb--height')};
+  --thumb-overhang: #{cv.get-var('slider-thumb--overhang')};
+  --thumb-inset: #{cv.get-var('slider-thumb--inset')};
   --value: 0;
   --trace-start: 0;
   --trace-end: 0;
@@ -111,70 +114,54 @@
 
   @include component.ix-component;
 
+  // The input hangs past the track by the overhang, so the circle starts
+  // 3px outside at the minimum and ends 3px outside at the maximum.
   input[type='range'] {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 0;
+    left: calc(-1 * var(--thumb-overhang));
     appearance: none;
     background: transparent;
     cursor: pointer;
-    width: 100%;
+    width: calc(100% + 2 * var(--thumb-overhang));
     height: cv.get-var('slider--height');
     margin: 0;
+    z-index: 2;
   }
 
-  // Trace line
-  input[type='range'].trace::before {
+  // Trace line. Percentages stay on the full track, not on the inset input.
+  .slider.value-fill::before {
     content: '';
     position: absolute;
     display: block;
-    z-index: -1;
+    z-index: 1;
+    pointer-events: none;
     width: calc((var(--trace-end) - var(--trace-start)) * 100%);
     left: calc(var(--trace-start) * 100%);
     height: cv.get-var('slider-trace--height');
+    border-radius: cv.get-var('slider-track--border-radius');
     background-color: var(--trace-color);
     top: 50%;
     transform: translateY(-50%);
-    border-radius: clamp(
-        0rem,
-        calc((0.01 - var(--trace-start)) * 999rem),
-        #{cv.get-var('slider-trace--border-radius')}
-      )
-      clamp(
-        0rem,
-        calc((var(--trace-end) - 0.99) * 999rem),
-        #{cv.get-var('slider-trace--border-radius')}
-      )
-      clamp(
-        0rem,
-        calc((var(--trace-end) - 0.99) * 999rem),
-        #{cv.get-var('slider-trace--border-radius')}
-      )
-      clamp(
-        0rem,
-        calc((0.01 - var(--trace-start)) * 999rem),
-        #{cv.get-var('slider-trace--border-radius')}
-      );
   }
 
   .slider-container {
     width: 100%;
+    margin-bottom: cv.get-var('slider-control--gap');
 
     .slider {
       width: 100%;
-
-      input[type='range'] {
-        width: 100%;
-      }
     }
   }
 
   // Trace reference
-  input[type='range'].trace:not(.hide-trace-reference)::after {
+  .slider.trace:not(.hide-trace-reference)::after {
     content: '';
     position: absolute;
     display: block;
+    z-index: 1;
+    pointer-events: none;
     width: cv.get-var('slider-reference--width');
     height: cv.get-var('slider-reference--height');
     background-color: var(--trace-reference-color);
@@ -191,9 +178,10 @@
   @include clear-browser-thumb();
 
   @include thumb() {
-    border-radius: 50%;
+    border: none;
+    border-radius: cv.get-var('slider-thumb--border-radius');
     background-color: cv.get-var('slider-thumb--background');
-    height: var(--thumb-size);
+    height: var(--thumb-height);
     width: var(--thumb-size);
     transition: all cv.get-var('slider-thumb--transition-duration') ease-in-out;
     z-index: cv.get-var('slider--z-index');
@@ -251,6 +239,7 @@
 
   .slider {
     position: relative;
+    isolation: isolate;
     display: block;
     width: 100%;
     height: cv.get-var('slider--height');
@@ -259,23 +248,26 @@
   .track {
     position: absolute;
     background-color: var(--track-color);
+    border-radius: cv.get-var('slider-track--border-radius');
     height: cv.get-var('slider-track--height');
     width: 100%;
     top: 50%;
     transform: translateY(-50%);
     left: 0px;
-    border-radius: cv.get-var('slider-track--border-radius');
   }
 
   .thumb {
     display: block;
     position: absolute;
     background-color: transparent;
-    height: var(--thumb-size);
+    height: var(--thumb-height);
     width: var(--thumb-size);
     border-radius: cv.get-var('slider-thumb--border-radius');
     top: 50%;
     transform: translateY(-50%);
+    left: calc(
+      var(--value) * (100% - 2 * var(--thumb-inset)) - var(--thumb-overhang)
+    );
   }
 
   .hide-tooltip {
@@ -296,6 +288,16 @@
   }
 }
 
+:host(:not(.disabled):not(.invalid):not(.warning):not(.info)) {
+  .slider:has(input:hover) {
+    --trace-color: #{cv.get-var('slider-trace--background--hover')};
+  }
+
+  .slider:has(input:active) {
+    --trace-color: #{cv.get-var('slider-trace--background--active')};
+  }
+}
+
 :host(.invalid) {
   --trace-color: #{cv.get-var('slider-trace--background--invalid')};
   --tick-color--active: #{cv.get-var('slider-trace-marker--background--invalid')};
@@ -313,27 +315,20 @@
   }
 }
 
-:host(.disabled) {
-  pointer-events: none;
-
-  --track-color: #{cv.get-var('slider-track--background--disabled')};
-  --trace-color: #{cv.get-var('slider-trace--background--disabled')};
-  --tick-color: #{cv.get-var('slider-track-marker--background--disabled')};
-  --tick-color--active: #{cv.get-var(
-      'slider-trace-marker--background--disabled'
-    )};
-
-  @include thumb {
-    background-color: cv.get-var('slider-thumb--background--disabled');
-  }
-}
-
 :host(.warning) {
   --trace-color: #{cv.get-var('slider-trace--background--warning')};
   --tick-color--active: #{cv.get-var('slider-trace-marker--background--warning')};
 
   @include thumb() {
     background-color: cv.get-var('slider-thumb--background--warning');
+  }
+
+  @include thumb-hover() {
+    background-color: cv.get-var('slider-thumb--background--warning--hover');
+  }
+
+  @include thumb-active() {
+    background-color: cv.get-var('slider-thumb--background--warning--active');
   }
 }
 
@@ -344,13 +339,26 @@
   @include thumb() {
     background-color: cv.get-var('slider-thumb--background--info');
   }
+
+  @include thumb-hover() {
+    background-color: cv.get-var('slider-thumb--background--info--hover');
+  }
+
+  @include thumb-active() {
+    background-color: cv.get-var('slider-thumb--background--info--active');
+  }
 }
 
-:host(.valid) {
-  --trace-color: #{cv.get-var('slider-trace--background--success')};
-  --tick-color--active: #{cv.get-var('slider-trace-marker--background--success')};
+// Declared last so a disabled slider shows gray even when a status class is also set.
+:host(.disabled) {
+  pointer-events: none;
 
-  @include thumb() {
-    background-color: cv.get-var('slider-thumb--background--success');
+  --track-color: #{cv.get-var('slider-track--background--disabled')};
+  --trace-color: #{cv.get-var('slider-trace--background--disabled')};
+  --tick-color: #{cv.get-var('slider-track-marker--background--disabled')};
+  --tick-color--active: #{cv.get-var('slider-trace-marker--background--disabled')};
+
+  @include thumb {
+    background-color: cv.get-var('slider-thumb--background--disabled');
   }
 }

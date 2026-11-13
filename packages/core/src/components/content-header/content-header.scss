@@ -12,6 +12,7 @@
 :host {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-start;
   padding: 0;
 
@@ -74,5 +75,44 @@
 
   .buttons {
     flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    &.inline-secondary-actions {
+      column-gap: cv.get-var('content-header-actions--gap');
+    }
+  }
+
+  .primaryActions,
+  .secondaryActions {
+    display: flex;
+    gap: cv.get-var('content-header-actions--gap');
+  }
+
+  .primaryActions {
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    ::slotted(*) {
+      max-width: 100%;
+    }
+  }
+
+  .secondaryActions {
+    width: max-content;
+
+    &.collapsed {
+      position: fixed;
+      top: 0;
+      right: 100%;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  .overflowButton {
+    margin-left: cv.get-var('content-header-overflow-button--margin-left');
   }
 }

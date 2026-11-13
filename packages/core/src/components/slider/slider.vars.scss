@@ -19,39 +19,47 @@
     (
       'slider-thumb--background--active':
         sys.$si-sys-color-background-accent-active,
-      'slider-thumb--background--disabled': sys.$si-sys-color-border-2,
+      'slider-thumb--background--disabled':
+        sys.$si-sys-color-background-disabled,
       'slider-thumb--background--hover':
         sys.$si-sys-color-background-accent-hover,
+      'slider-thumb--background--info--active':
+        sys.$si-sys-color-background-information-active,
+      'slider-thumb--background--info--hover':
+        sys.$si-sys-color-background-information-hover,
       'slider-thumb--background--info': sys.$si-sys-color-background-information,
       'slider-thumb--background--invalid--active':
         sys.$si-sys-color-background-danger-active,
       'slider-thumb--background--invalid--hover':
         sys.$si-sys-color-background-danger-hover,
       'slider-thumb--background--invalid': sys.$si-sys-color-background-danger,
-      'slider-thumb--background--success': sys.$si-sys-color-background-success,
+      'slider-thumb--background--warning--active':
+        sys.$si-sys-color-background-warning-active,
+      'slider-thumb--background--warning--hover':
+        sys.$si-sys-color-background-warning-hover,
       'slider-thumb--background--warning': sys.$si-sys-color-background-warning,
       'slider-thumb--background': sys.$si-sys-color-background-accent,
       'slider-thumb--outline-color--focus': sys.$si-sys-color-effects-focus,
-      'slider-trace--background--disabled': sys.$si-sys-color-border-2,
+      'slider-trace--background--active': sys.$si-sys-color-border-accent-active,
+      'slider-trace--background--disabled': sys.$si-sys-color-border-disabled,
+      'slider-trace--background--hover': sys.$si-sys-color-border-accent-hover,
       'slider-trace--background--info': sys.$si-sys-color-border-information,
       'slider-trace--background--invalid': sys.$si-sys-color-border-danger,
-      'slider-trace--background--success': sys.$si-sys-color-border-success,
       'slider-trace--background--warning': sys.$si-sys-color-border-warning,
       'slider-trace--background': sys.$si-sys-color-border-accent,
-      'slider-trace-marker--background--disabled': sys.$si-sys-color-border-2,
+      'slider-trace-marker--background--disabled':
+        sys.$si-sys-color-background-disabled,
       'slider-trace-marker--background--info':
         sys.$si-sys-color-background-information,
       'slider-trace-marker--background--invalid':
         sys.$si-sys-color-background-danger,
-      'slider-trace-marker--background--success':
-        sys.$si-sys-color-background-success,
       'slider-trace-marker--background--warning':
         sys.$si-sys-color-background-warning,
       'slider-trace-marker--background': sys.$si-sys-color-background-accent,
       'slider-track--background--disabled': sys.$si-sys-color-background-2,
       'slider-track--background': sys.$si-sys-color-border-4,
       'slider-track-marker--background--disabled':
-        sys.$si-sys-color-background-2,
+        sys.$si-sys-color-background-disabled,
       'slider-track-marker--background': sys.$si-sys-color-border-2,
     )
   );
@@ -62,15 +70,36 @@
     (
       'slider-thumb--transition-duration': var(--theme-default-time),
       'slider--min-height': sys.$si-sys-sizing-size-80,
-      'slider-thumb--size': sys.$si-sys-sizing-size-50,
-      'slider--height': sys.$si-sys-sizing-size-70,
+      'slider-thumb--size': sys.$si-sys-sizing-size-60,
+      // The 20px circle is centered 7px in from each track end, so 3px paints outside the component.
+      'slider-thumb--overhang': 3px,
+      'slider--height': sys.$si-sys-sizing-size-80,
+      'slider-control--gap': sys.$si-sys-sizing-spacing-y-10,
       'slider-label--margin-top': sys.$si-sys-sizing-spacing-y-40,
       'slider-track--height': sys.$si-sys-sizing-size-20,
+      'slider-reference--width': sys.$si-sys-sizing-size-10,
+      'slider-reference--height': sys.$si-sys-sizing-size-50,
+      'slider--z-index': 10,
+      'slider--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+      'slider--outline-offset': sys.$si-sys-sizing-focus-ring-offset,
+      'slider-ticks--tick-size': calc(#{sys.$si-sys-sizing-size-50} * 0.375),
+      'slider-track--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'slider-thumb--border-radius': sys.$si-sys-sizing-border-radius-full,
     )
   );
   @include cv.define-vars(
     (
+      'slider-thumb--height': cv.get-var('slider-thumb--size'),
+      'slider-thumb--inset':
+        calc(
+          (
+              #{cv.get-var('slider-thumb--size')} - 2 * #{cv.get-var(
+                  'slider-thumb--overhang'
+                )}
+            ) / 2
+        ),
       'slider-input-track--height': cv.get-var('slider-track--height'),
+      'slider-trace--height': cv.get-var('slider-track--height'),
     )
   );
   @include cv.define-vars(
@@ -79,21 +108,10 @@
         calc(
           (
               #{cv.get-var('slider-input-track--height')} - #{cv.get-var(
-                  'slider-thumb--size'
+                  'slider-thumb--height'
                 )}
             ) / 2
         ),
-      'slider-trace--height': cv.get-var('slider-track--height'),
-      'slider-trace--border-radius': sys.$si-sys-sizing-border-radius-xs,
-      'slider-reference--width': sys.$si-sys-sizing-size-10,
-      'slider-reference--height': sys.$si-sys-sizing-size-50,
-      'slider--z-index': 10,
-      'slider--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
-      'slider--outline-offset': sys.$si-sys-sizing-focus-ring-offset,
-      'slider-ticks--tick-size':
-        calc(#{cv.get-var('slider-thumb--size')} * 0.375),
-      'slider-track--border-radius': sys.$si-sys-sizing-border-radius-xs,
-      'slider-thumb--border-radius': sys.$si-sys-sizing-border-radius-full,
     )
   );
 }

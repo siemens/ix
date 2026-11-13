@@ -61,9 +61,9 @@
   ix-icon {
     block-size: cv.get-var('message-bar-icon--size');
     inline-size: cv.get-var('message-bar-icon--size');
-    margin-top: cv.get-var('message-bar-icon--margin-top');
     min-block-size: cv.get-var('message-bar-icon--size');
     min-inline-size: cv.get-var('message-bar-icon--size');
+    align-self: center;
   }
 
   .message-bar-hidden {

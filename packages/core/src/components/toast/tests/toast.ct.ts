@@ -17,7 +17,7 @@ import {
   iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
-import { toast } from './../../../public-api';
+import { toast } from '../toast-utils';
 import type { ToastType } from '../toast.types';
 
 declare global {
@@ -25,6 +25,32 @@ declare global {
     toast: typeof toast;
   }
 }
+
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount('');
+
+  await page.evaluate(async () => {
+    await window.toast({
+      title: 'Info',
+      message: 'This is a toast message',
+      autoClose: false,
+    });
+  });
+
+  const toast = page.getByRole('alert');
+  await expect(toast).toHaveAttribute('hydrated');
+  await expect(toast).toBeVisible();
+  await expect(
+    toast.getByRole('button', { name: 'Close toast' })
+  ).toBeVisible();
+  await expect(toast.locator('.toast-icon')).toHaveAttribute(
+    'aria-hidden',
+    'true'
+  );
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
 
 const toastTypes: { type: ToastType; icon: string }[] = [
   { type: 'success', icon: iconSuccess },
@@ -50,23 +76,342 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(toast).toBeVisible();
 });
 
-regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
-  await mount('');
+regressionTest(
+  'clips the timer bar to the rounded toast corners',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" auto-close-delay="100000">
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
 
-  await page.evaluate(() => {
-    window.toast({
-      title: 'Info',
-      message: 'This is a toast message',
-      autoClose: false,
+    const toast = page.getByRole('alert');
+    await expect(toast).toHaveAttribute('hydrated');
+    const bar = toast.locator('.toast-progress-bar');
+    await bar.evaluate((element) => {
+      element.style.animation = 'none';
+      element.style.transform = 'scaleX(1)';
     });
+
+    for (const radius of [null, '12px']) {
+      if (radius) {
+        await toast.evaluate((element, value) => {
+          element.style.setProperty('--ix-toast--border-radius', value);
+        }, radius);
+      }
+
+      const hits = await bar.evaluate((element) => {
+        const root = element.getRootNode();
+        if (!(root instanceof ShadowRoot)) {
+          throw new Error('The timer bar must be inside the toast shadow root');
+        }
+        const { left, right, bottom, width, height } =
+          element.getBoundingClientRect();
+        return {
+          bottomLeft:
+            root.elementFromPoint(left + 0.5, bottom - 0.5) === element,
+          bottomRight:
+            root.elementFromPoint(right - 0.5, bottom - 0.5) === element,
+          center:
+            root.elementFromPoint(left + width / 2, bottom - height / 2) ===
+            element,
+        };
+      });
+      expect(hits).toEqual({
+        bottomLeft: false,
+        bottomRight: false,
+        center: true,
+      });
+    }
+
+    await bar.evaluate((element) => {
+      element.style.transform = 'scaleX(0.5)';
+    });
+    const toastWidth = await toast.evaluate(
+      (element) => element.getBoundingClientRect().width
+    );
+    const barWidth = await bar.evaluate(
+      (element) => element.getBoundingClientRect().width
+    );
+    expect(barWidth).toBe(toastWidth / 2);
+  }
+);
+
+for (const { type } of toastTypes) {
+  regressionTest(
+    `aligns the ${type} toast with the design`,
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-toast type="${type}" toast-title="Toast headline" auto-close-delay="100000">
+          Lorem ipsum dolor sit amet
+        </ix-toast>
+      `);
+
+      const toast = page.getByRole('alert');
+      await expect(toast).toHaveAttribute('hydrated');
+      await toast.evaluate((element: HTMLIxToastElement) => element.pause());
+
+      const title = toast.locator('ix-typography');
+      const message = toast.locator('.toast-message');
+      const icon = toast.getByTestId('toast-icon');
+      await expect(title).toHaveCSS('margin', '0px');
+      await expect(toast.locator('.toast-action')).toHaveCSS(
+        'margin-top',
+        '0px'
+      );
+
+      const bounds = await toast.boundingBox();
+      expect(bounds).toMatchObject({ width: 320, height: 70 });
+      const titleBounds = await title.boundingBox();
+      const messageBounds = await message.boundingBox();
+      const iconBounds = await icon.boundingBox();
+      expect(titleBounds).not.toBeNull();
+      expect(messageBounds).not.toBeNull();
+      expect(iconBounds).not.toBeNull();
+      expect(titleBounds).toMatchObject({
+        x: messageBounds?.x,
+        y: iconBounds?.y,
+      });
+      expect(messageBounds?.y).toBe(
+        await title.evaluate(
+          (element) => element.getBoundingClientRect().bottom
+        )
+      );
+
+      const strip = await toast.evaluate((element) => {
+        const style = getComputedStyle(element, '::before');
+        return {
+          content: style.content,
+          position: style.position,
+          width: style.width,
+          height: style.height,
+          left: style.left,
+          pointerEvents: style.pointerEvents,
+          zIndex: style.zIndex,
+          color: style.backgroundColor,
+        };
+      });
+      expect(strip).toMatchObject({
+        content: '""',
+        position: 'absolute',
+        width: '4px',
+        height: '70px',
+        left: '0px',
+        pointerEvents: 'none',
+        zIndex: '1',
+        color: await icon.evaluate(
+          (element) => getComputedStyle(element).color
+        ),
+      });
+    }
+  );
+}
+
+regressionTest(
+  'uses the shared status color for default icons and the strip',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" prevent-auto-close>
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
+
+    const toast = page.getByRole('alert');
+    const icon = toast.getByTestId('toast-icon');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast--status-color');
+    const initialColor = await icon.evaluate(
+      (element) => getComputedStyle(element).color
+    );
+
+    await toast.evaluate((element) => {
+      element.style.setProperty(
+        '--ix-toast--status-color',
+        'var(--si-sys-color-border-caution)'
+      );
+    });
+
+    const overriddenColor = await icon.evaluate(
+      (element) => getComputedStyle(element).color
+    );
+    expect(overriddenColor).not.toBe(initialColor);
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').backgroundColor
+      )
+    ).toBe(overriddenColor);
+  }
+);
+
+regressionTest(
+  'preserves custom icon colors independently of the status strip',
+  async ({ mount, page }) => {
+    await mount('');
+    await page.evaluate(async (customIcon) => {
+      await window.toast({
+        title: 'Toast headline',
+        message: 'Lorem ipsum dolor sit amet',
+        type: 'warning',
+        icon: customIcon,
+        iconColor: '--si-sys-color-border-success',
+        autoClose: false,
+      });
+    }, iconInfo);
+
+    const toast = page.getByRole('alert');
+    const icon = toast.getByTestId('toast-icon');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(icon).toHaveJSProperty('name', iconInfo);
+    await expect(icon).toHaveJSProperty(
+      'color',
+      '--si-sys-color-border-success'
+    );
+    const customColor = await icon.evaluate(
+      (element) => getComputedStyle(element).color
+    );
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').backgroundColor
+      )
+    ).not.toBe(customColor);
+
+    await toast.evaluate((element) => {
+      element.style.setProperty(
+        '--ix-toast--status-color',
+        'var(--si-sys-color-border-critical)'
+      );
+    });
+    await expect(icon).toHaveCSS('color', customColor);
+  }
+);
+
+regressionTest(
+  'updates the status strip when the type changes and keeps it when the icon is hidden',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" prevent-auto-close>
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
+
+    const toast = page.getByRole('alert');
+    await expect(toast).toHaveAttribute('hydrated');
+    const informationColor = await toast.evaluate(
+      (element) => getComputedStyle(element, '::before').backgroundColor
+    );
+
+    await toast.evaluate((element: HTMLIxToastElement) => {
+      element.type = 'warning';
+    });
+    await expect(toast).toHaveAttribute('type', 'warning');
+    const warningColor = await toast
+      .getByTestId('toast-icon')
+      .evaluate((element) => getComputedStyle(element).color);
+    expect(warningColor).not.toBe(informationColor);
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').backgroundColor
+      )
+    ).toBe(warningColor);
+
+    await toast.evaluate((element: HTMLIxToastElement) => {
+      element.hideIcon = true;
+    });
+    await expect(toast.getByTestId('toast-icon')).toHaveCount(0);
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').backgroundColor
+      )
+    ).toBe(warningColor);
+  }
+);
+
+regressionTest(
+  'updates action spacing when slotted actions are added and removed',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" prevent-auto-close>
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
+
+    const toast = page.getByRole('alert');
+    const action = toast.locator('.toast-action');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(action).toHaveCSS('margin-top', '0px');
+    expect(await toast.boundingBox()).toMatchObject({ height: 70 });
+
+    await toast.evaluate((element) => {
+      const button = document.createElement('button');
+      button.slot = 'action';
+      button.textContent = 'Undo';
+      element.appendChild(button);
+    });
+
+    await expect(toast.getByRole('button', { name: 'Undo' })).toBeVisible();
+    await expect(action).toHaveCSS('margin-top', '8px');
+
+    await toast.getByRole('button', { name: 'Undo' }).evaluate((button) => {
+      button.remove();
+    });
+
+    await expect(action).toHaveCSS('margin-top', '0px');
+    expect(await toast.boundingBox()).toMatchObject({ height: 70 });
+  }
+);
+
+for (const hideIcon of [false, true]) {
+  regressionTest(
+    `keeps wrapped content aligned with hideIcon=${hideIcon}`,
+    async ({ mount, page }) => {
+      await mount(`
+        <ix-toast toast-title="ThisIsAVeryLongToastHeadlineWithoutAnySpacesThatShouldWrap"
+          prevent-auto-close ${hideIcon ? 'hide-icon' : ''}>
+          ThisIsAVeryLongToastMessageWithoutAnySpacesThatShouldWrap
+        </ix-toast>
+      `);
+
+      const toast = page.getByRole('alert');
+      await expect(toast).toHaveAttribute('hydrated');
+      await expect(toast.getByTestId('toast-icon')).toHaveCount(
+        hideIcon ? 0 : 1
+      );
+      const title = toast.locator('ix-typography');
+      const message = toast.locator('.toast-message');
+      const titleBounds = await title.boundingBox();
+      const messageBounds = await message.boundingBox();
+      expect(titleBounds).toMatchObject({ x: messageBounds?.x });
+      expect(
+        await toast.evaluate((element) => element.clientHeight)
+      ).toBeGreaterThan(70);
+      for (const content of [title, message]) {
+        expect(
+          await content.evaluate(
+            (element) => element.scrollWidth <= element.clientWidth
+          )
+        ).toBe(true);
+      }
+    }
+  );
+}
+
+regressionTest('respects compact density', async ({ mount, page }) => {
+  await mount(`
+    <ix-toast toast-title="Toast headline" prevent-auto-close>
+      Lorem ipsum dolor sit amet
+    </ix-toast>
+  `);
+  await page.evaluate(() => {
+    document.body.setAttribute('data-ix-density', 'compact');
   });
 
-  const toast = page.locator('ix-toast');
+  const toast = page.getByRole('alert');
   await expect(toast).toHaveAttribute('hydrated');
-  await expect(toast).toBeVisible();
-
-  const accessibilityScanResults = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults.violations).toEqual([]);
+  await expect(toast).toHaveCSS('max-width', '240px');
+  expect(await toast.boundingBox()).toMatchObject({ width: 240, height: 52 });
+  const titleBounds = await toast.locator('ix-typography').boundingBox();
+  const messageBounds = await toast.locator('.toast-message').boundingBox();
+  expect(titleBounds).toMatchObject({ x: messageBounds?.x });
 });
 
 regressionTest(

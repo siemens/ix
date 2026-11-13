@@ -141,7 +141,7 @@ const PROPERTIES = new Set(
   fallback-width flex flex-basis font font-size font-weight gap grid-template-columns grid-template-rows height inline-size
   inner-height inset left line-height margin margin-block margin-block-end margin-block-start margin-bottom
   margin-inline margin-inline-end margin-inline-start margin-left margin-right margin-top mask-duration mask-size
-  max-height max-width min-block-size min-height min-inline-size min-width offset offset-x offset-y opacity
+  max-height max-width min-block-size min-height min-inline-size min-width offset offset-x offset-y opacity overhang
   outline outline-color outline-offset outline-width overflow padding padding-block padding-block-end padding-block-start
   padding-bottom padding-inline padding-inline-end padding-inline-start padding-left padding-right padding-top
   perspective pulse-color right rotate rotation-duration row-gap safe-area-left size status-color strip-height strip-width
