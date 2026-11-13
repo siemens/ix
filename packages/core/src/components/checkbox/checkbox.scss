@@ -38,6 +38,7 @@
   .checkbox-control {
     all: unset;
     box-sizing: border-box;
+    border-radius: var(--ix-checkbox--border-radius);
     display: inline-flex;
     position: relative;
 
