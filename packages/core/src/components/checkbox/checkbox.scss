@@ -42,6 +42,7 @@
   .checkbox-control {
     all: unset;
     box-sizing: border-box;
+    border-radius: cv.get-var('checkbox--border-radius');
     display: inline-flex;
     position: relative;
 

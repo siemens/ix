@@ -111,6 +111,7 @@
   @include cv.define-vars(
     (
       'checkbox-label--gap': sys.$si-sys-sizing-spacing-x-30,
+      'checkbox--border-radius': sys.$si-sys-sizing-border-radius-xs,
       'checkbox--border-width': sys.$si-sys-sizing-border-width-default,
       'checkbox--outline-offset--focus': sys.$si-sys-sizing-focus-ring-offset,
       'checkbox--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
