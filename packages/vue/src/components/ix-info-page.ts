@@ -10,6 +10,5 @@ export const IxInfoPage: StencilVueComponent<JSX.IxInfoPage> = /*@__PURE__*/ def
   'icon',
   'iconColor',
   'titleText',
-  'copyText',
-  'instructions'
+  'description'
 ]);

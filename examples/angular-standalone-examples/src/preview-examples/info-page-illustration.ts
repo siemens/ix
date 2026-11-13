@@ -15,8 +15,7 @@ import { IxButton, IxInfoPage } from '@siemens/ix-angular/standalone';
   imports: [IxButton, IxInfoPage],
   template: `<ix-info-page
     titleText="Request timeout"
-    copyText="The server took too long to respond."
-    instructions="Check your connection and try again."
+    description="The server took too long to respond. Check your connection and try again."
   >
     <svg
       slot="image"
