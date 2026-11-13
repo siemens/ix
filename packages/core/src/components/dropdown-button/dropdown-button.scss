@@ -10,32 +10,6 @@
 @use './dropdown-button.vars' as *;
 @use 'mixins/component-vars' as cv;
 
-@mixin triangle($name: '') {
-  @if ($name != '') {
-    $name: '#{$name}-';
-  }
-
-  .triangle.#{$name}primary {
-    color: cv.get-var('button--color--#{$name}primary');
-  }
-  .triangle.#{$name}secondary {
-    color: cv.get-var('button--color--#{$name}secondary');
-  }
-  .triangle.#{$name}tertiary {
-    color: cv.get-var('button--color--#{$name}tertiary');
-  }
-
-  .triangle.#{$name}primary.disabled {
-    color: cv.get-var('button--color--#{$name}primary--disabled');
-  }
-  .triangle.#{$name}secondary.disabled {
-    color: cv.get-var('button--color--#{$name}secondary--disabled');
-  }
-  .triangle.#{$name}tertiary.disabled {
-    color: cv.get-var('button--color--#{$name}tertiary--disabled');
-  }
-}
-
 :host {
   display: inline-block;
   position: relative;
@@ -59,11 +33,13 @@
   ix-icon-button {
     @include cv.set-var(
       'button--border-radius-left',
-      cv.get-var('dropdown-button--border-radius-left')
+      cv.get-var('dropdown-button--border-radius-left'),
+      $external: true
     );
     @include cv.set-var(
       'button--border-radius-right',
-      cv.get-var('dropdown-button--border-radius-right')
+      cv.get-var('dropdown-button--border-radius-right'),
+      $external: true
     );
   }
 
@@ -80,7 +56,8 @@
     // inheritance, so the value is forwarded explicitly.
     @include cv.set-var(
       'button--padding',
-      cv.get-var('dropdown-button--padding')
+      cv.get-var('dropdown-button--padding'),
+      $external: true
     );
     width: 100%;
     height: 100%;
@@ -101,26 +78,6 @@
   .dropdown-button .dropdown-chevron {
     margin-left: cv.get-var('dropdown-button-dropdown-chevron--margin-left');
   }
-
-  .triangle {
-    position: absolute;
-    margin-inline-start: cv.get-var(
-      'dropdown-button-triangle--margin-inline-start'
-    );
-    margin-block-start: cv.get-var(
-      'dropdown-button-triangle--margin-block-start'
-    );
-    border-right: 0 solid transparent;
-    border-left: cv.get-var('dropdown-button-triangle--border-width') solid
-      transparent;
-    border-top: 0 solid transparent;
-    border-bottom: cv.get-var('dropdown-button-triangle--border-width') solid;
-    color: cv.get-var('button--color--primary');
-  }
-
-  @include triangle();
-  @include triangle('subtle');
-  @include triangle('danger');
 
   .content {
     display: flex;
@@ -155,17 +112,8 @@
 
 :host(:focus-visible) {
   outline: cv.get-var('dropdown-button--outline-width--focus') solid
-    cv.get-var('button--outline-color--focus');
-  outline-offset: cv.get-var('button--outline-offset--focus');
-}
-
-:host([aria-expanded='true']) {
-  @each $variant in $dropdown-button-variants {
-    @include cv.set-var(
-      'button--color--#{$variant}',
-      cv.get-var('button--color--#{$variant}--active')
-    );
-  }
+    cv.get-var('dropdown-button--outline-color--focus');
+  outline-offset: cv.get-var('dropdown-button--outline-offset--focus');
 }
 
 :host([aria-expanded='true']:focus-visible) {

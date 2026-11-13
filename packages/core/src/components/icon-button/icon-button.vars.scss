@@ -25,6 +25,14 @@
       'icon-button--size--32': sys.$si-sys-sizing-size-80,
       'icon-button-btn-oval--border-radius':
         sys.$si-sys-sizing-border-radius-full,
+      'icon-button-dropdown-indicator--size':
+        sys.$si-sys-sizing-border-width-emphasis,
+      'icon-button-dropdown-indicator--inset':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-10} * 1.5 - #{cv.get-var(
+              'button--border-width'
+            )}
+        ),
     )
   );
 }

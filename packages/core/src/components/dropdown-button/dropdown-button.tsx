@@ -211,19 +211,6 @@ export class DropdownButton
     return text || undefined;
   }
 
-  private getTriangle() {
-    return (
-      <div
-        class={{
-          triangle: true,
-          [this.variant]: true,
-          hide: !this.isIconOnly(),
-          disabled: this.disabled,
-        }}
-      ></div>
-    );
-  }
-
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
     if (this.disabled && event.detail) {
       return;
@@ -470,11 +457,11 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
+                dropdownIndicator={!hideChevron}
                 aria-hidden="true"
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
               ></ix-icon-button>
-              {!hideChevron && this.getTriangle()}
             </div>
           )}
         </div>

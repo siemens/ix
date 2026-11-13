@@ -117,3 +117,6 @@ Properties set at runtime (inline styles from TSX), passed from a parent to a ch
 - Every property in a vars file must start with that file's component name.
 - A property must be declared in exactly one vars file.
 - If a parent component styles a slotted child or an internal element that looks like another component, use a part name owned by the parent (for example, `--ix-menu-slotted-avatar--max-height` or `--ix-group-header--background`), not the child's prefix.
+- Only files of the owning component (its folder) may `@use` its vars file. Loading it elsewhere emits all of its `:host` declarations into the other component's CSS.
+- To restyle a child component, override its property on the child element with `set-var(..., $external: true)`. If a component needs a visual that belongs to another component (for example, the `ix-dropdown-button` triangle), render it inside the owning component (here via the internal `dropdownIndicator` prop of `ix-icon-button`).
+- Map keys in `define-vars` must be single-quoted strings.

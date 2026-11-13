@@ -2860,6 +2860,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Show a dropdown indicator triangle in the bottom-right corner.
+          * @since 6.0.0
+          * @default false
+         */
+        "dropdownIndicator": boolean;
+        /**
           * Icon name
          */
         "icon"?: string;
@@ -11570,6 +11576,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Show a dropdown indicator triangle in the bottom-right corner.
+          * @since 6.0.0
+          * @default false
+         */
+        "dropdownIndicator"?: boolean;
+        /**
           * Icon name
          */
         "icon"?: string;
@@ -15505,6 +15517,7 @@ declare namespace LocalJSX {
         "type": 'button' | 'submit';
         "loading": boolean;
         "inert": boolean;
+        "dropdownIndicator": boolean;
     }
     interface IxIconToggleButtonAttributes {
         "variant": ButtonVariant;

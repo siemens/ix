@@ -180,31 +180,75 @@ function stripComments(source: string) {
   return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
 }
 
-/** Returns the argument source of each `cv.define-vars((…))` call. */
-function defineVarsBlocks(source: string) {
-  return [...source.matchAll(/cv\.define-vars\(/g)].map((match) => {
-    const start = match.index! + match[0].length;
-    let depth = 1;
-    let end = start;
-    while (depth > 0) {
-      if (source[end] === '(') depth++;
-      if (source[end] === ')') depth--;
-      end++;
+/** Returns the source between the parenthesis at `open` and its match. */
+function balanced(source: string, open: number) {
+  let depth = 0;
+  for (let index = open; index < source.length; index++) {
+    if (source[index] === '(') depth++;
+    if (source[index] === ')' && --depth === 0) {
+      return source.slice(open + 1, index);
     }
-    return source.slice(start, end - 1);
+  }
+  throw new Error(`Unbalanced parenthesis at offset ${open}`);
+}
+
+/** Splits on commas that are not nested in parentheses or quotes. */
+function splitTopLevel(source: string) {
+  const parts: string[] = [];
+  let depth = 0;
+  let quote = '';
+  let current = '';
+  for (const char of source) {
+    if (quote) {
+      if (char === quote) quote = '';
+    } else if (char === "'" || char === '"') {
+      quote = char;
+    } else if (char === '(') {
+      depth++;
+    } else if (char === ')') {
+      depth--;
+    } else if (char === ',' && depth === 0) {
+      parts.push(current.trim());
+      current = '';
+      continue;
+    }
+    current += char;
+  }
+  parts.push(current.trim());
+  return parts.filter(Boolean);
+}
+
+/** Inner source of each `(…)` that directly follows `pattern`. */
+function literalsAfter(source: string, pattern: RegExp) {
+  return [...source.matchAll(pattern)].map((match) => {
+    const open = source.indexOf('(', match.index! + match[0].length - 1);
+    return balanced(source, open);
   });
 }
 
+const QUOTED_KEY = /^'([^']+)'\s*:/;
+
+/**
+ * Property names of a vars file: `define-var`/`declare-var` calls and the keys
+ * of maps passed to `define-vars`.
+ */
+function namesOf(source: string) {
+  const entries = literalsAfter(source, /cv\.define-vars\(\s*\(/g).flatMap(
+    splitTopLevel
+  );
+  return {
+    names: [
+      ...[...source.matchAll(/cv\.(?:define|declare)-var\(\s*'([^']+)'/g)].map(
+        ([, name]) => name
+      ),
+      ...entries.flatMap((entry) => QUOTED_KEY.exec(entry)?.[1] ?? []),
+    ],
+    malformed: entries.filter((entry) => !QUOTED_KEY.test(entry)),
+  };
+}
+
 function declarationsOf(file: string): Declaration[] {
-  const source = stripComments(readFileSync(file, 'utf8'));
-  const names = [
-    ...[...source.matchAll(/cv\.(?:define|declare)-var\(\s*'([^']+)'/g)].map(
-      ([, name]) => name
-    ),
-    ...defineVarsBlocks(source).flatMap((block) =>
-      [...block.matchAll(/'([^']+)'\s*:/g)].map(([, name]) => name)
-    ),
-  ];
+  const { names } = namesOf(stripComments(readFileSync(file, 'utf8')));
   return names.map((name) => ({
     file: path.relative(COMPONENTS_DIR, file),
     component: componentOf(file),
@@ -265,6 +309,33 @@ describe('component CSS custom properties', () => {
       )
     );
     expect(prefixed).toEqual([]);
+  });
+
+  it('uses single-quoted string keys in component var maps', () => {
+    const malformed = files.flatMap((file) =>
+      namesOf(stripComments(readFileSync(file, 'utf8'))).malformed.map(
+        (entry) => `${path.relative(COMPONENTS_DIR, file)}: ${entry}`
+      )
+    );
+    expect(malformed).toEqual([]);
+  });
+
+  it("never loads another component's vars file", () => {
+    const sources = findFiles(COMPONENTS_DIR, ['.scss']);
+    const foreign = sources.flatMap((file) =>
+      [
+        ...stripComments(readFileSync(file, 'utf8')).matchAll(
+          /@use\s+'([^']+\.vars)'([^;]*);/g
+        ),
+      ]
+        .filter(([, url]) =>
+          path
+            .relative(path.dirname(path.resolve(path.dirname(file), url)), file)
+            .startsWith('..')
+        )
+        .map(([, url]) => `${path.relative(COMPONENTS_DIR, file)}: ${url}`)
+    );
+    expect(foreign).toEqual([]);
   });
 
   it('follows --ix-<component>[-<part>]--<property>[--<modifier>...]', () => {

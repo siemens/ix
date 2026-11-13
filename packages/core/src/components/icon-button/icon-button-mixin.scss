@@ -53,6 +53,21 @@
     ix-spinner {
       margin: 0;
     }
+
+    button.has-dropdown-indicator {
+      position: relative;
+    }
+
+    .dropdown-indicator {
+      position: absolute;
+      inset-inline-end: cv.get-var('icon-button-dropdown-indicator--inset');
+      inset-block-end: cv.get-var('icon-button-dropdown-indicator--inset');
+      border-inline-start: cv.get-var('icon-button-dropdown-indicator--size')
+        solid transparent;
+      border-block-end: cv.get-var('icon-button-dropdown-indicator--size') solid
+        currentColor;
+      pointer-events: none;
+    }
   }
 
   @include icon-button-size('12', cv.get-var('icon-button--size--12'));
