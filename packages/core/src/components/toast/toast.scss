@@ -25,6 +25,7 @@
   border: var(--ix-toast--border-width) solid var(--ix-toast--border-color);
   border-radius: var(--ix-toast--border-radius);
   box-shadow: var(--ix-toast--box-shadow);
+  overflow: hidden;
 
   animation-name: toast-fade-in;
   animation-duration: var(--ix-toast--animation-duration);
@@ -69,6 +70,10 @@
 
       .toast-action {
         margin-top: var(--ix-toast-action--margin-top);
+
+        &--empty {
+          margin-top: 0;
+        }
       }
     }
   }
@@ -106,6 +111,20 @@
       transform: scaleX(0);
     }
   }
+}
+
+:host::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--ix-toast--strip-width);
+  border-radius: var(--ix-toast--border-radius) 0 0
+    var(--ix-toast--border-radius);
+  z-index: 1;
+  pointer-events: none;
+  background-color: var(--ix-toast-status-color);
 }
 
 :host(.toast-fade-out) {

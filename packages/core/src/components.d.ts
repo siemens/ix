@@ -5704,7 +5704,7 @@ export namespace Components {
          */
         "toastTitle"?: string;
         /**
-          * Toast type
+          * Toast type, determining the status icon and left-side status strip color.
           * @default 'information'
          */
         "type": ToastType;
@@ -14557,7 +14557,7 @@ declare namespace LocalJSX {
          */
         "toastTitle"?: string;
         /**
-          * Toast type
+          * Toast type, determining the status icon and left-side status strip color.
           * @default 'information'
          */
         "type"?: ToastType;

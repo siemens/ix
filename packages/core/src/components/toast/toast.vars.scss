@@ -9,11 +9,29 @@
 
 @use 'tokens/system' as sys;
 
+$toast-status-sys: (
+  danger: sys.$si-sys-color-border-danger,
+  warning: sys.$si-sys-color-border-warning,
+  caution: sys.$si-sys-color-border-caution,
+  information: sys.$si-sys-color-border-information,
+  critical: sys.$si-sys-color-border-critical,
+  success: sys.$si-sys-color-border-success,
+  error: sys.$si-sys-color-border-danger,
+);
+
 :host {
   --ix-toast--background: #{sys.$si-sys-color-background-1};
   --ix-toast--border-color: rgba(0, 0, 0, 0);
   --ix-toast--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
   --ix-toast-timer-value--background: #{sys.$si-sys-color-border-3};
+  --ix-toast-status-color: transparent;
+  --ix-toast--strip-width: #{sys.$si-sys-sizing-border-width-emphasis};
+}
+
+@each $status, $color in $toast-status-sys {
+  :host([type='#{$status}']) {
+    --ix-toast-status-color: #{$color};
+  }
 }
 
 :host {
@@ -25,10 +43,12 @@
   --ix-toast--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-toast-body--min-height: #{sys.$si-sys-sizing-size-100};
   --ix-toast-body--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
-    #{sys.$si-sys-sizing-spacing-y-20};
+    calc(
+      #{sys.$si-sys-sizing-spacing-y-40} + var(--ix-toast-progress-bar--height)
+    );
   --ix-toast-icon--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
   --ix-toast-content--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-toast-title--margin: #{sys.$si-sys-sizing-spacing-y-20} 0;
+  --ix-toast-title--margin: 0;
   --ix-toast-action--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
   --ix-toast-close--opacity: 0.6;
   --ix-toast-progress-bar--height: #{sys.$si-sys-sizing-size-10};
