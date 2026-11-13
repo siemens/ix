@@ -1,18 +1,23 @@
 @use 'tokens/system' as sys;
 
 @use './layout-auto.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
-  margin: var(--ix-layout-auto--margin);
+  margin: cv.get-var('layout-auto--margin');
 
-  --ix-layout-grid-gap: var(--ix-layout-auto--layout-grid-gap);
+  @include cv.set-var(
+    'layout-grid--gap',
+    cv.get-var('layout-auto--gap'),
+    $external: true
+  );
 
   .container {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-    gap: var(--ix-layout-grid-gap);
+    gap: cv.get-var('layout-grid--gap', $external: true);
   }
 
   ::slotted(*) {

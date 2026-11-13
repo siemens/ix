@@ -7,8 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('card-content--padding');
 
 :host {
-  --ix-card-content-content-wrapper--gap: #{sys.$si-sys-sizing-spacing-y-40};
+  @include cv.define-vars(
+    (
+      'card-content-content-wrapper--gap': sys.$si-sys-sizing-spacing-y-40,
+    )
+  );
 }

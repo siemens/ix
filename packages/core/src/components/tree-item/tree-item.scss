@@ -11,11 +11,12 @@
 @use 'mixins/shadow-dom/component';
 
 @use './tree-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   align-items: center;
 
-  height: var(--ix-tree-item--height);
+  height: cv.get-var('tree-item--height');
   width: 100%;
 
   cursor: pointer;
@@ -25,7 +26,7 @@
   .tree-node-container {
     display: flex;
     align-items: center;
-    height: var(--ix-tree-item-tree-node-container--height);
+    height: cv.get-var('tree-item-tree-node-container--height');
     flex-grow: 1;
     align-items: center;
     outline: none;
@@ -33,9 +34,11 @@
     @include text-truncation.ellipsis;
 
     &:focus-visible {
-      outline: var(--ix-tree-item--outline-width--focus) solid
-        var(--ix-tree-item--outline-color--focus);
-      outline-offset: calc(-1 * var(--ix-tree-item--outline-width--focus));
+      outline: cv.get-var('tree-item--outline-width--focus') solid
+        cv.get-var('tree-item--outline-color--focus');
+      outline-offset: calc(
+        -1 * #{cv.get-var('tree-item--outline-width--focus')}
+      );
     }
 
     .tree-node-text {
@@ -47,23 +50,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--ix-tree-item-icon-toggle-container--icon-size);
-    height: var(--ix-tree-item-icon-toggle-container--icon-size);
-    min-width: var(--ix-tree-item-icon-toggle-container--icon-size);
+    width: cv.get-var('tree-item-icon-toggle-container-icon--size');
+    height: cv.get-var('tree-item-icon-toggle-container-icon--size');
+    min-width: cv.get-var('tree-item-icon-toggle-container-icon--size');
 
     .icon-toggle {
       display: flex;
       outline: none;
 
       &:focus-visible {
-        outline: var(--ix-tree-item--outline-width--focus) solid
-          var(--ix-tree-item--outline-color--focus);
-        outline-offset: calc(-1 * var(--ix-tree-item--outline-width--focus));
+        outline: cv.get-var('tree-item--outline-width--focus') solid
+          cv.get-var('tree-item--outline-color--focus');
+        outline-offset: calc(
+          -1 * #{cv.get-var('tree-item--outline-width--focus')}
+        );
       }
 
       ix-icon {
         transition: transform
-          var(--ix-tree-item-expand-icon--transition-duration) ease-in-out;
+          cv.get-var('tree-item-expand-icon--transition-duration') ease-in-out;
 
         &.icon-toggle-down {
           transform: rotate(90deg);
@@ -75,35 +80,35 @@
 
 :host(:not(.disabled):not(.selected).hover),
 :host(:not(.disabled):not(.selected):hover) {
-  background-color: var(--ix-tree-item--background--hover);
+  background-color: cv.get-var('tree-item--background--hover');
 }
 
 :host(:not(.disabled):not(.selected).active),
 :host(:not(.disabled):not(.selected):active) {
-  background-color: var(--ix-tree-item--background--active);
+  background-color: cv.get-var('tree-item--background--active');
 }
 
 :host(.selected) {
-  background-color: var(--ix-tree-item--background--selected);
+  background-color: cv.get-var('tree-item--background--selected');
 }
 
 :host(.selected.hover),
 :host(.selected:hover) {
-  background-color: var(--ix-tree-item--background--selected-hover);
+  background-color: cv.get-var('tree-item--background--selected--hover');
 }
 
 :host(.selected.active),
 :host(.selected:active) {
-  background-color: var(--ix-tree-item--background--selected-active);
+  background-color: cv.get-var('tree-item--background--selected--active');
 }
 
 :host(.disabled) {
-  opacity: var(--ix-tree-item--opacity);
+  opacity: cv.get-var('tree-item--opacity');
   pointer-events: none;
 }
 
 :host(:focus-visible) {
-  outline: var(--ix-tree-item--outline-width--focus) solid
-    var(--ix-tree-item--outline-color--focus);
-  outline-offset: calc(-1 * var(--ix-tree-item--outline-width--focus));
+  outline: cv.get-var('tree-item--outline-width--focus') solid
+    cv.get-var('tree-item--outline-color--focus');
+  outline-offset: calc(-1 * #{cv.get-var('tree-item--outline-width--focus')});
 }

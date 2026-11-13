@@ -19,10 +19,10 @@
 
 .styled {
   width: 7rem;
-  --ix-badge-max-width: 7rem;
+  --ix-badge--max-width: 7rem;
 }
 
 .styled-ellipsis-4 {
   width: 4rem;
-  --ix-badge-max-width: 4rem;
+  --ix-badge--max-width: 4rem;
 }

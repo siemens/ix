@@ -7,11 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-card-title--margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-card-title--margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-card-title--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-card-title-title-actions--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  @include cv.define-vars(
+    (
+      'card-title--margin-top': sys.$si-sys-sizing-spacing-y-20,
+      'card-title--margin-bottom': sys.$si-sys-sizing-spacing-y-20,
+      'card-title--gap': sys.$si-sys-sizing-spacing-x-60,
+      'card-title-title-actions--gap': sys.$si-sys-sizing-spacing-x-20,
+    )
+  );
 }

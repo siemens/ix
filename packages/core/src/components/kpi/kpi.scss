@@ -13,15 +13,16 @@
 @use 'mixins/shadow-dom/component';
 
 @use './kpi.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 $kpi-states: (warning, danger, caution, success, information, accent, critical);
 
 :host {
   display: flex;
   flex-grow: 1;
-  height: var(--ix-kpi--height);
-  border-radius: var(--ix-kpi--border-radius);
-  padding: var(--ix-kpi--padding);
+  height: cv.get-var('kpi--height');
+  border-radius: cv.get-var('kpi--border-radius');
+  padding: cv.get-var('kpi--padding');
   min-width: 0;
 
   @include component.ix-component;
@@ -34,24 +35,26 @@ $kpi-states: (warning, danger, caution, success, information, accent, critical);
     display: flex;
     height: 100%;
     width: 100%;
-    border-block-end: var(--ix-kpi-container--border-width) solid
-      var(--ix-kpi-container--border-block-end-color);
+    border-block-end: cv.get-var('kpi-container--border-width') solid
+      cv.get-var('kpi-container--border-block-end-color');
 
     @each $state in $kpi-states {
       &.#{$state} {
-        border-block-end-color: var(--ix-kpi-display--border-color--#{$state});
+        border-block-end-color: cv.get-var(
+          'kpi-display--border-color--#{$state}'
+        );
       }
     }
 
     .kpi-label {
       display: flex;
       align-items: center;
-      color: var(--ix-kpi-display-label--color);
+      color: cv.get-var('kpi-display-label--color');
       flex-grow: 1;
       flex-shrink: 9999;
 
       ix-icon {
-        margin-inline-end: var(--ix-kpi-icon--margin-inline-end);
+        margin-inline-end: cv.get-var('kpi-icon--margin-inline-end');
       }
     }
 
@@ -61,38 +64,38 @@ $kpi-states: (warning, danger, caution, success, information, accent, critical);
     }
 
     .kpi-value {
-      color: var(--ix-kpi-display-value--color);
+      color: cv.get-var('kpi-display-value--color');
 
       @include fonts.typography-h3;
     }
 
     .kpi-unit {
-      margin-inline-start: var(--ix-kpi-unit--margin-inline-start);
-      color: var(--ix-kpi-display-units--color);
+      margin-inline-start: cv.get-var('kpi-unit--margin-inline-start');
+      color: cv.get-var('kpi-display-units--color');
     }
 
     .kpi-label,
     .kpi-unit {
-      margin-block-start: var(--ix-kpi-label--margin-block-start);
+      margin-block-start: cv.get-var('kpi-label--margin-block-start');
     }
   }
 
   @include hover.hover {
-    background-color: var(--ix-kpi-display--background--hover);
+    background-color: cv.get-var('kpi-display--background--hover');
   }
 
   @include hover.active {
-    background-color: var(--ix-kpi-display--background--active);
+    background-color: cv.get-var('kpi-display--background--active');
   }
 }
 
 :host(:focus-visible) {
-  outline: var(--ix-kpi--outline-width--focus) solid
-    var(--ix-kpi--outline-color--focus);
+  outline: cv.get-var('kpi--outline-width--focus') solid
+    cv.get-var('kpi--outline-color--focus');
 }
 
 :host(.stacked) {
-  height: var(--ix-kpi-stacked--height);
+  height: cv.get-var('kpi--height--stacked');
 
   .kpi-container {
     justify-content: center;

@@ -7,12 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-datetime-picker-separator--background: #{sys.$si-sys-color-border-4};
+  @include cv.define-vars(
+    (
+      'datetime-picker-separator--background': sys.$si-sys-color-border-4,
+    )
+  );
 }
 
 :host {
-  --ix-datetime-picker-col-separator--border-width: #{sys.$si-sys-sizing-border-width-default};
+  @include cv.define-vars(
+    (
+      'datetime-picker-col-separator--border-width':
+        sys.$si-sys-sizing-border-width-default,
+    )
+  );
 }

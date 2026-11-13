@@ -7,9 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-field-label--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-field-label--margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
+  @include cv.define-vars(
+    (
+      'field-label--margin-top': sys.$si-sys-sizing-spacing-y-40,
+      'field-label--margin-bottom': sys.$si-sys-sizing-spacing-y-20,
+    )
+  );
 }

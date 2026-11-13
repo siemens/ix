@@ -7,7 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 $toast-status-sys: (
   danger: sys.$si-sys-color-border-danger,
@@ -20,36 +25,50 @@ $toast-status-sys: (
 );
 
 :host {
-  --ix-toast--background: #{sys.$si-sys-color-background-1};
-  --ix-toast--border-color: rgba(0, 0, 0, 0);
-  --ix-toast--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
-  --ix-toast-timer-value--background: #{sys.$si-sys-color-border-3};
-  --ix-toast-status-color: transparent;
-  --ix-toast--strip-width: #{sys.$si-sys-sizing-border-width-emphasis};
+  @include cv.define-vars(
+    (
+      'toast--background': sys.$si-sys-color-background-1,
+      'toast--border-color': rgba(0, 0, 0, 0),
+      'toast--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'toast-timer-value--background': sys.$si-sys-color-border-3,
+      'toast--status-color': transparent,
+      'toast--strip-width': sys.$si-sys-sizing-border-width-emphasis,
+    )
+  );
 }
 
 @each $status, $color in $toast-status-sys {
   :host([type='#{$status}']) {
-    --ix-toast-status-color: #{$color};
+    @include cv.set-var('toast--status-color', $color);
   }
 }
 
 :host {
-  --ix-toast--animation-duration: var(--theme-medium-time);
-  --ix-toast--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-toast--border-width: #{sys.$si-sys-sizing-border-width-none};
-  --ix-toast--min-width: #{sys.$si-sys-sizing-size-170};
-  --ix-toast--max-width: #{sys.$si-sys-sizing-size-170};
-  --ix-toast--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-toast-body--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-toast-body--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
-    calc(
-      #{sys.$si-sys-sizing-spacing-y-40} + var(--ix-toast-progress-bar--height)
-    );
-  --ix-toast-icon--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-toast-content--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-toast-title--margin: 0;
-  --ix-toast-action--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-toast-close--opacity: 0.6;
-  --ix-toast-progress-bar--height: #{sys.$si-sys-sizing-size-10};
+  @include cv.define-vars(
+    (
+      'toast--animation-duration': var(--theme-medium-time),
+      'toast--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'toast--border-width': sys.$si-sys-sizing-border-width-none,
+      'toast--min-width': sys.$si-sys-sizing-size-170,
+      'toast--max-width': sys.$si-sys-sizing-size-170,
+      'toast--min-height': sys.$si-sys-sizing-size-100,
+      'toast-body--min-height': sys.$si-sys-sizing-size-100,
+      'toast-icon--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20},
+      'toast-content--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20},
+      'toast-title--margin': 0,
+      'toast-action--margin-top': sys.$si-sys-sizing-spacing-y-40,
+      'toast-close--opacity': 0.6,
+      'toast-progress-bar--height': sys.$si-sys-sizing-size-10,
+    )
+  );
+  @include cv.define-vars(
+    (
+      'toast-body--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50}
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-40} + #{cv.get-var(
+              'toast-progress-bar--height'
+            )}
+        ),
+    )
+  );
 }

@@ -7,17 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-pagination-basic--padding: 0 #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-pagination-advanced--padding: 0 #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-pagination-page-selection--width: #{sys.$si-sys-sizing-size-110};
-  --ix-pagination-page-selection--margin: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pagination-item-count--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-pagination-item-count--width: #{sys.$si-sys-sizing-size-120};
-  --ix-pagination--min-width: #{sys.$si-sys-sizing-size-80};
-  --ix-pagination--height: #{sys.$si-sys-sizing-size-80};
-  --ix-pagination--padding: 0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pagination-button--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-10};
+  @include cv.define-vars(
+    (
+      'pagination-basic--padding': 0 #{sys.$si-sys-sizing-spacing-x-10},
+      'pagination-advanced--padding': 0 #{sys.$si-sys-sizing-spacing-x-50},
+      'pagination-page-selection--width': sys.$si-sys-sizing-size-110,
+      'pagination-page-selection--margin': 0 #{sys.$si-sys-sizing-spacing-x-40},
+      'pagination-item-count--margin-inline-start':
+        sys.$si-sys-sizing-spacing-x-80,
+      'pagination-item-count--width': sys.$si-sys-sizing-size-120,
+      'pagination--min-width': sys.$si-sys-sizing-size-80,
+      'pagination--height': sys.$si-sys-sizing-size-80,
+      'pagination--padding': 0 #{sys.$si-sys-sizing-spacing-x-40},
+      'pagination-button--margin-inline-start': sys.$si-sys-sizing-spacing-x-10,
+    )
+  );
 }

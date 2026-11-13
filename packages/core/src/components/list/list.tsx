@@ -30,9 +30,9 @@ import type {
 
 const listItemGap: Record<ListItemGap, string> = {
   none: '0',
-  sm: 'var(--ix-list--item-gap--sm)',
-  md: 'var(--ix-list--item-gap--md)',
-  lg: 'var(--ix-list--item-gap--lg)',
+  sm: 'var(--ix-list--gap--sm)',
+  md: 'var(--ix-list--gap--md)',
+  lg: 'var(--ix-list--gap--lg)',
 };
 
 const actionFocusableSelector = [
@@ -594,17 +594,17 @@ export class List {
     this.dragPlaceholder = placeholder;
 
     if (this.dragBehavior === 'dynamic') {
-      item.style.setProperty('--ix-list-drag-left', '0px');
-      item.style.setProperty('--ix-list-drag-top', '0px');
-      item.style.setProperty('--ix-list-drag-width', `${itemWidth}px`);
+      item.style.setProperty('--ix-list-drag--left', '0px');
+      item.style.setProperty('--ix-list-drag--top', '0px');
+      item.style.setProperty('--ix-list-drag--width', `${itemWidth}px`);
       item.classList.add('pointer-dragging');
 
       // Measure the local axes because transformed containing blocks can cross shadow boundaries.
       const origin = item.getBoundingClientRect();
-      item.style.setProperty('--ix-list-drag-left', '1px');
+      item.style.setProperty('--ix-list-drag--left', '1px');
       const localX = item.getBoundingClientRect();
-      item.style.setProperty('--ix-list-drag-left', '0px');
-      item.style.setProperty('--ix-list-drag-top', '1px');
+      item.style.setProperty('--ix-list-drag--left', '0px');
+      item.style.setProperty('--ix-list-drag--top', '1px');
       const localY = item.getBoundingClientRect();
 
       const xAxisX = localX.left - origin.left;
@@ -626,8 +626,8 @@ export class List {
         itemBounds.left - origin.left,
         itemBounds.top - origin.top
       );
-      item.style.setProperty('--ix-list-drag-left', `${initialPosition.x}px`);
-      item.style.setProperty('--ix-list-drag-top', `${initialPosition.y}px`);
+      item.style.setProperty('--ix-list-drag--left', `${initialPosition.x}px`);
+      item.style.setProperty('--ix-list-drag--top', `${initialPosition.y}px`);
     } else {
       this.movePlaceholder(clientY);
     }
@@ -688,7 +688,7 @@ export class List {
         Math.max(list.scrollHeight - 1, 0)
       );
       placeholder.style.setProperty(
-        '--ix-list-drag-separator-top',
+        '--ix-list-drag-separator--top',
         `${containedTop}px`
       );
     }
@@ -725,11 +725,11 @@ export class List {
     if (item) {
       item.classList.remove('pointer-dragging');
       this.setItemReorderState(item, false);
-      item.style.removeProperty('--ix-list-drag-left');
-      item.style.removeProperty('--ix-list-drag-top');
-      item.style.removeProperty('--ix-list-drag-width');
-      item.style.removeProperty('--ix-list-drag-x');
-      item.style.removeProperty('--ix-list-drag-y');
+      item.style.removeProperty('--ix-list-drag--left');
+      item.style.removeProperty('--ix-list-drag--top');
+      item.style.removeProperty('--ix-list-drag--width');
+      item.style.removeProperty('--ix-list-drag--x');
+      item.style.removeProperty('--ix-list-drag--y');
     }
     this.dragViewportToLocal = { xx: 1, xy: 0, yx: 0, yy: 1 };
     this.dragPlaceholder?.remove();
@@ -840,8 +840,8 @@ export class List {
         0,
         event.clientY - this.dragStartY
       );
-      item.style.setProperty('--ix-list-drag-x', `${dragOffset.x}px`);
-      item.style.setProperty('--ix-list-drag-y', `${dragOffset.y}px`);
+      item.style.setProperty('--ix-list-drag--x', `${dragOffset.x}px`);
+      item.style.setProperty('--ix-list-drag--y', `${dragOffset.y}px`);
     }
     this.movePlaceholder(event.clientY);
   }
@@ -1057,7 +1057,7 @@ export class List {
           draggable: this.draggable,
         }}
         style={{
-          '--ix-list-item-gap': listItemGap[this.itemGap],
+          '--ix-list--gap': listItemGap[this.itemGap],
         }}
       >
         <div class="list">

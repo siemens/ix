@@ -11,14 +11,15 @@
 @use 'mixins/shadow-dom/component';
 
 @use './tab-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 @mixin tab-border($position) {
   &::before {
     content: '';
     position: absolute;
-    background-color: var(--ix-tabs-indicator--background);
+    background-color: cv.get-var('tabs-indicator--background', $external: true);
     width: 100%;
-    height: var(--ix-tabs-indicator--height);
+    height: cv.get-var('tabs-indicator--height', $external: true);
     left: 0;
     bottom: 0;
   }
@@ -26,12 +27,13 @@
   &::after {
     content: '';
     position: absolute;
-    background-color: var(--ix-tabs-indicator--background--selected);
-    width: var(--ix-tab-active-indicator-width);
-    height: var(--ix-tabs-indicator--height);
+    background-color: cv.get-var(
+      'tabs-indicator--background--selected',
+      $external: true
+    );
+    height: cv.get-var('tabs-indicator--height', $external: true);
     left: 0;
     bottom: 0;
-    transform: translateX(var(--ix-tab-active-indicator-offset));
   }
 
   @if $position == 'top' {
@@ -54,17 +56,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font: var(--ix-tab-item--font);
-  background-color: var(--ix-tab-item--background);
-  color: var(--ix-tab-item--color);
+  font: cv.get-var('tab-item--font');
+  background-color: cv.get-var('tab-item--background');
+  color: cv.get-var('tab-item--color');
   touch-action: none; // Disable default touch behaviors for drag
 
-  height: var(--ix-tab-item--size-size);
-  min-height: var(--ix-tab-item--min-height);
-  max-height: var(--ix-tab-item--max-height);
+  height: cv.get-var('tab-item--size');
+  min-height: cv.get-var('tab-item--min-height');
+  max-height: cv.get-var('tab-item--max-height');
 
-  padding: var(--ix-tab-item--padding);
-  gap: var(--ix-tab-item--gap);
+  padding: cv.get-var('tab-item--padding');
+  gap: cv.get-var('tab-item--gap');
 
   @include component.ix-component;
 
@@ -87,49 +89,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: var(--ix-tab-item-circle--height);
-    width: var(--ix-tab-item-circle--width);
-    background-color: var(--ix-tab-item-animated-circle--background);
+    height: cv.get-var('tab-item-circle--height');
+    width: cv.get-var('tab-item-circle--width');
+    background-color: cv.get-var('tab-item-animated-circle--background');
     border-radius: 50%;
-    border: var(--ix-tab-item-circle--border-width) solid
-      var(--ix-tab-item-animated-circle--border-color);
-    color: var(--ix-tab-item-animated-icon--color);
+    border: cv.get-var('tab-item-circle--border-width') solid
+      cv.get-var('tab-item-animated-circle--border-color');
+    color: cv.get-var('tab-item-animated-icon--color');
     cursor: pointer;
 
     &:hover {
-      background-color: var(--ix-tab-item-animated-circle--background--hover);
+      background-color: cv.get-var(
+        'tab-item-animated-circle--background--hover'
+      );
     }
 
     &:active {
-      background-color: var(--ix-tab-item-animated-circle--background--active);
+      background-color: cv.get-var(
+        'tab-item-animated-circle--background--active'
+      );
     }
   }
 
   .counter {
     position: absolute;
     z-index: 1;
-    height: var(--ix-tab-item-counter--height);
+    height: cv.get-var('tab-item-counter--height');
     width: auto;
-    background-color: var(--ix-tab-item-pill--background);
-    border: var(--ix-tab-item-counter--border-width) solid
-      var(--ix-tab-item-pill--border-color);
-    border-radius: var(--ix-tab-item-counter--border-radius);
-    bottom: var(--ix-tab-item-counter--bottom);
+    background-color: cv.get-var('tab-item-pill--background');
+    border: cv.get-var('tab-item-counter--border-width') solid
+      cv.get-var('tab-item-pill--border-color');
+    border-radius: cv.get-var('tab-item-counter--border-radius');
+    bottom: cv.get-var('tab-item-counter--bottom');
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: var(--ix-tab-item-counter--padding-left);
-    padding-right: var(--ix-tab-item-counter--padding-right);
-    font: var(--ix-tab-item-pill--font);
-    color: var(--ix-tab-item-pill-outline--color);
+    padding-left: cv.get-var('tab-item-counter--padding-left');
+    padding-right: cv.get-var('tab-item-counter--padding-right');
+    font: cv.get-var('tab-item-pill--font');
+    color: cv.get-var('tab-item-pill--color--outline');
     cursor: pointer;
 
     &.selected {
-      border-color: var(--ix-tab-item-pill--border-color--selected);
+      border-color: cv.get-var('tab-item-pill--border-color--selected');
     }
 
     &.disabled {
-      border-color: var(--ix-tab-item-pill--border-color--disabled);
+      border-color: cv.get-var('tab-item-pill--border-color--disabled');
       cursor: default;
     }
   }
@@ -144,9 +150,9 @@
 }
 
 :host(.circle) {
-  height: var(--ix-tab-item-circle--height--circle);
-  min-height: var(--ix-tab-item-circle--min-height);
-  max-height: var(--ix-tab-item-circle--max-height);
+  height: cv.get-var('tab-item--height--rounded');
+  min-height: cv.get-var('tab-item-circle--min-height');
+  max-height: cv.get-var('tab-item-circle--max-height');
 }
 
 :host(.stretched) {
@@ -161,34 +167,38 @@
 }
 
 :host(.selected:not(.disabled)) {
-  background-color: var(--ix-tab-item--background--selected);
-  color: var(--ix-tab-item--color--selected);
+  background-color: cv.get-var('tab-item--background--selected');
+  color: cv.get-var('tab-item--color--selected');
 
   &::after {
     content: '';
     position: absolute;
     left: 0;
     width: 100%;
-    height: var(--ix-tab-item-indicator--height);
-    background-color: var(--ix-tab-item-indicator--background--selected);
+    height: cv.get-var('tab-item-indicator--height');
+    background-color: cv.get-var('tab-item-indicator--background--selected');
   }
 
   .circle {
-    background-color: var(--ix-tab-item-animated-circle--background--selected);
-    color: var(--ix-tab-item-animated-icon--color--selected);
-    border-color: var(--ix-tab-item-animated-circle--border-color--selected);
+    background-color: cv.get-var(
+      'tab-item-animated-circle--background--selected'
+    );
+    color: cv.get-var('tab-item-animated-icon--color--selected');
+    border-color: cv.get-var(
+      'tab-item-animated-circle--border-color--selected'
+    );
 
     &:hover {
-      background-color: var(
-        --ix-tab-item-animated-circle--background--selected
+      background-color: cv.get-var(
+        'tab-item-animated-circle--background--selected'
       );
     }
   }
 }
 
 :host(.selected.bottom:not(.disabled)) {
-  background-color: var(--ix-tab-item--background--selected);
-  color: var(--ix-tab-item--color--selected);
+  background-color: cv.get-var('tab-item--background--selected');
+  color: cv.get-var('tab-item--color--selected');
 
   &::after {
     bottom: 0px;
@@ -202,28 +212,32 @@
 }
 
 :host(:hover:not(.circle):not(.disabled)) {
-  background-color: var(--ix-tab-item--background--hover);
-  color: var(--ix-tab-item--color--hover);
+  background-color: cv.get-var('tab-item--background--hover');
+  color: cv.get-var('tab-item--color--hover');
 }
 
 :host(:active:not(.circle):not(.disabled)) {
-  background-color: var(--ix-tab-item--background--active);
-  color: var(--ix-tab-item--color--active);
+  background-color: cv.get-var('tab-item--background--active');
+  color: cv.get-var('tab-item--color--active');
 }
 
 :host(.disabled) {
   cursor: default;
-  color: var(--ix-tab-item--color--disabled);
-  background-color: var(--ix-tab-item--background--disabled);
+  color: cv.get-var('tab-item--color--disabled');
+  background-color: cv.get-var('tab-item--background--disabled');
   pointer-events: none;
 
   &::after {
-    background-color: var(--ix-tab-item-indicator--background--disabled);
+    background-color: cv.get-var('tab-item-indicator--background--disabled');
   }
 
   .circle {
-    background-color: var(--ix-tab-item-animated-circle--background--disabled);
-    border-color: var(--ix-tab-item-animated-circle--border-color--disabled);
+    background-color: cv.get-var(
+      'tab-item-animated-circle--background--disabled'
+    );
+    border-color: cv.get-var(
+      'tab-item-animated-circle--border-color--disabled'
+    );
     cursor: default;
   }
 }
@@ -232,33 +246,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--ix-tab-item-icon-only--padding);
+  padding: cv.get-var('tab-item-icon-only--padding');
 }
 
 :host(.small-tab) {
-  height: var(--ix-tab-item-small-tab--height);
-  min-height: var(--ix-tab-item-small-tab--min-height);
-  max-height: var(--ix-tab-item-small-tab--max-height);
-  padding: var(--ix-tab-item-small-tab--padding);
+  height: cv.get-var('tab-item--height--small');
+  min-height: cv.get-var('tab-item--min-height--small');
+  max-height: cv.get-var('tab-item--max-height--small');
+  padding: cv.get-var('tab-item--padding--small');
 }
 
 :host(.small-tab.icon) {
-  padding: var(--ix-tab-item-icon--padding);
+  padding: cv.get-var('tab-item-icon--padding');
 }
 
 :host(:not(.circle):focus-visible) {
-  outline-offset: calc(var(--ix-tab-item--outline-width--focus) * -1);
-  outline: var(--ix-tab-item--outline-width--focus) solid
-    var(--ix-tab-item--outline-color--focus);
+  outline-offset: calc(#{cv.get-var('tab-item--outline-width--focus')} * -1);
+  outline: cv.get-var('tab-item--outline-width--focus') solid
+    cv.get-var('tab-item--outline-color--focus');
 }
 
 :host(.circle:focus-visible) {
   outline: none;
 
   .circle {
-    outline-offset: var(--ix-tab-item-circle--outline-offset--focus);
-    outline: var(--ix-tab-item--outline-width--focus) solid
-      var(--ix-tab-item--outline-color--focus);
+    outline-offset: cv.get-var('tab-item-circle--outline-offset--focus');
+    outline: cv.get-var('tab-item--outline-width--focus') solid
+      cv.get-var('tab-item--outline-color--focus');
   }
 }
 

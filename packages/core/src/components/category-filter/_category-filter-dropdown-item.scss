@@ -9,87 +9,65 @@
 @use 'mixins/hover';
 
 @use './category-filter.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin dropdown-item {
   & {
     display: flex;
-    height: var(--ix-category-filter-dropdown-item--height);
+    height: cv.get-var('category-filter-dropdown-item--height');
     position: relative;
     align-items: center;
     cursor: pointer;
-    padding: var(--ix-category-filter-dropdown-item--padding);
-    color: var(
-      --ix-menu-item--color,
-      var(--ix-category-filter-dropdown-item--color)
-    );
+    padding: cv.get-var('category-filter-dropdown-item--padding');
+    color: cv.get-var('category-filter-dropdown-item--color');
     background-color: transparent;
   }
 
   &:focus-visible {
-    outline: var(--ix-category-filter-dropdown-item--outline-width--focus) solid
-      var(--ix-category-filter-dropdown-item--outline-color--focus);
-    outline-offset: var(
-      --ix-category-filter-dropdown-item--outline-offset--focus
+    outline: cv.get-var('category-filter-dropdown-item--outline-width--focus')
+      solid cv.get-var('category-filter-dropdown-item--outline-color--focus');
+    outline-offset: cv.get-var(
+      'category-filter-dropdown-item--outline-offset--focus'
     );
-    background-color: var(--ix-menu-item--background, transparent);
-    color: var(
-      --ix-menu-item--color--focus,
-      var(--ix-category-filter-dropdown-item--color--focus)
-    );
+    background-color: transparent;
+    color: cv.get-var('category-filter-dropdown-item--color--focus');
   }
 
   @include hover.hover {
-    color: var(
-      --ix-menu-item--color--hover,
-      var(--ix-category-filter-dropdown-item--color--hover)
-    );
-    background-color: var(
-      --ix-menu-item--background--hover,
-      var(--ix-category-filter-dropdown-item--background-color--hover)
+    color: cv.get-var('category-filter-dropdown-item--color--hover');
+    background-color: cv.get-var(
+      'category-filter-dropdown-item--background-color--hover'
     );
   }
 
   @include hover.active {
-    color: var(
-      --ix-menu-item--color--active,
-      var(--ix-category-filter-dropdown-item--color--active)
-    );
-    background-color: var(
-      --ix-menu-item--background--active,
-      var(--ix-category-filter-dropdown-item--background-color--active)
+    color: cv.get-var('category-filter-dropdown-item--color--active');
+    background-color: cv.get-var(
+      'category-filter-dropdown-item--background-color--active'
     );
   }
 
   &.disabled,
   &:disabled {
-    color: var(
-      --ix-menu-item--color--disabled,
-      var(--ix-category-filter-dropdown-item--color--disabled)
-    );
-    background-color: var(--ix-menu-item--background--disabled, transparent);
+    color: cv.get-var('category-filter-dropdown-item--color--disabled');
+    background-color: transparent;
   }
 
   > a,
   a:hover,
   a:active {
-    color: var(--ix-category-filter-a--color--active);
+    color: cv.get-var('category-filter-a--color--active');
   }
 
   > .glyph {
-    color: var(
-      --ix-menu-item-icon--color,
-      var(--ix-category-filter-glyph--color)
-    );
-    margin-inline-end: var(--ix-category-filter-glyph--margin-inline-end);
+    color: cv.get-var('category-filter-glyph--color');
+    margin-inline-end: cv.get-var('category-filter-glyph--margin-inline-end');
 
     &.disabled {
-      color: var(--ix-category-filter-glyph--color--disabled);
+      color: cv.get-var('category-filter-glyph--color--disabled');
     }
 
     &.glyph-single-check {
-      color: var(
-        --ix-menu-item-icon-check--color,
-        var(--ix-category-filter-glyph-single-check--color)
-      );
+      color: cv.get-var('category-filter-glyph-single-check--color');
     }
   }
 }

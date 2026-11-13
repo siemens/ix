@@ -8,6 +8,7 @@
  */
 
 @use './content-header.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   flex-direction: row;
@@ -20,7 +21,7 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    margin-right: var(--ix-content-header-title-group--margin-right);
+    margin-right: cv.get-var('content-header-title-group--margin-right');
 
     .headerText {
       min-width: 0;
@@ -40,7 +41,7 @@
       padding: 0;
 
       &.secondary {
-        padding: var(--ix-content-header-secondary--padding);
+        padding: cv.get-var('content-header--padding--secondary');
       }
 
       &.truncate {
@@ -63,13 +64,13 @@
         display: inline-flex;
         flex: 0 0 auto;
         align-self: flex-start;
-        margin-left: var(--ix-content-header-header-slot--margin-left);
+        margin-left: cv.get-var('content-header-header-slot--margin-left');
       }
     }
   }
 
   .backButton {
-    margin-right: var(--ix-content-header-back-button--margin-right);
+    margin-right: cv.get-var('content-header-back-button--margin-right');
   }
 
   .buttons {
@@ -80,14 +81,14 @@
     max-width: 100%;
 
     &.inline-secondary-actions {
-      column-gap: var(--ix-content-header-actions--gap);
+      column-gap: cv.get-var('content-header-actions--gap');
     }
   }
 
   .primaryActions,
   .secondaryActions {
     display: flex;
-    gap: var(--ix-content-header-actions--gap);
+    gap: cv.get-var('content-header-actions--gap');
   }
 
   .primaryActions {
@@ -112,6 +113,6 @@
   }
 
   .overflowButton {
-    margin-left: var(--ix-content-header-overflow-button--margin-left);
+    margin-left: cv.get-var('content-header-overflow-button--margin-left');
   }
 }

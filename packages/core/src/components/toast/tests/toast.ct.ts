@@ -219,14 +219,14 @@ regressionTest(
     const toast = page.getByRole('alert');
     const icon = toast.getByTestId('toast-icon');
     await expect(toast).toHaveAttribute('hydrated');
-    await expect(icon).toHaveJSProperty('color', '--ix-toast-status-color');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast--status-color');
     const initialColor = await icon.evaluate(
       (element) => getComputedStyle(element).color
     );
 
     await toast.evaluate((element) => {
       element.style.setProperty(
-        '--ix-toast-status-color',
+        '--ix-toast--status-color',
         'var(--si-sys-color-border-caution)'
       );
     });
@@ -277,7 +277,7 @@ regressionTest(
 
     await toast.evaluate((element) => {
       element.style.setProperty(
-        '--ix-toast-status-color',
+        '--ix-toast--status-color',
         'var(--si-sys-color-border-critical)'
       );
     });

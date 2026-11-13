@@ -7,23 +7,37 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-menu-expand-icon--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-menu-expand-icon--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-menu-expand-icon--color: #{sys.$si-sys-color-text-primary};
+  @include cv.define-vars(
+    (
+      'menu-expand-icon--background--active':
+        sys.$si-sys-color-background-selected,
+      'menu-expand-icon--background--hover': sys.$si-sys-color-background-hover,
+      'menu-expand-icon--color': sys.$si-sys-color-text-primary,
+    )
+  );
 }
 
 :host {
-  --ix-menu-expand-icon--transition-delay: var(--theme-default-time);
-  --ix-menu-expand-icon--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-menu-expand-icon--height: #{sys.$si-sys-sizing-size-80};
-  --ix-menu-expand-icon--width: #{sys.$si-sys-sizing-size-80};
-  --ix-menu-expand-icon-menu-expand-button--width: #{sys.$si-sys-sizing-size-80};
-  --ix-menu-expand-icon-line--x: 2px;
-  --ix-menu-expand-icon-line--transition-duration: 0.075s;
-  --ix-menu-expand-icon-line-1--y: 9px;
-  --ix-menu-expand-icon-line--x--expanded: 8;
-  --ix-menu-expand-icon-line-3--y: 9px;
+  @include cv.define-vars(
+    (
+      'menu-expand-icon--transition-delay': var(--theme-default-time),
+      'menu-expand-icon--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'menu-expand-icon--height': sys.$si-sys-sizing-size-80,
+      'menu-expand-icon--width': sys.$si-sys-sizing-size-80,
+      'menu-expand-icon-menu-expand-button--width': sys.$si-sys-sizing-size-80,
+      'menu-expand-icon-line--x': 2px,
+      'menu-expand-icon-line--transition-duration': 0.075s,
+      'menu-expand-icon-line-1--y': 9px,
+      'menu-expand-icon-line--x--expanded': 8,
+      'menu-expand-icon-line-3--y': 9px,
+    )
+  );
 }

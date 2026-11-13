@@ -7,16 +7,37 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('list--gap');
+@include cv.declare-var('list-drag--left');
+@include cv.declare-var('list-drag--top');
+@include cv.declare-var('list-drag--width');
+@include cv.declare-var('list-drag--x');
+@include cv.declare-var('list-drag--y');
+@include cv.declare-var('list-drag-separator--top');
 
 :host {
-  --ix-list--item-gap--sm: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-list--item-gap--md: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-list--item-gap--lg: #{sys.$si-sys-sizing-spacing-y-50};
-  --ix-list-drag--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
-  --ix-list-drag-placeholder--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-list-drag-placeholder--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-list-drag-placeholder--height--divider: #{sys.$si-sys-sizing-size-20};
-  --ix-list-drag-placeholder--border-color--divider: #{sys.$si-sys-color-border-2};
-  --ix-list-drag-placeholder--border-color--separator: #{sys.$si-sys-color-border-1};
+  @include cv.define-vars(
+    (
+      'list--gap--sm': sys.$si-sys-sizing-spacing-y-20,
+      'list--gap--md': sys.$si-sys-sizing-spacing-y-40,
+      'list--gap--lg': sys.$si-sys-sizing-spacing-y-50,
+      'list-drag--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'list-drag-placeholder--border-width':
+        sys.$si-sys-sizing-border-width-default,
+      'list-drag-placeholder--border-radius':
+        sys.$si-sys-sizing-border-radius-sm,
+      'list-drag-placeholder--height--divider': sys.$si-sys-sizing-size-20,
+      'list-drag-placeholder--border-color--divider': sys.$si-sys-color-border-2,
+      'list-drag-placeholder--border-color--separator':
+        sys.$si-sys-color-border-1,
+    )
+  );
 }

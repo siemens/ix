@@ -5,11 +5,12 @@
  */
 
 @use '../chat-user-message.vars';
+@use 'mixins/component-vars' as cv;
 
 @mixin animate-action() {
   opacity: 0;
-  transition: opacity var(--ix-chat-user-message-action--transition-duration)
-    ease-in-out;
+  transition: opacity
+    cv.get-var('chat-user-message-action--transition-duration') ease-in-out;
 }
 
 @mixin show-action() {

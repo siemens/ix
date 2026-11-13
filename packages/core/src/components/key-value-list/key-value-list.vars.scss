@@ -1,10 +1,24 @@
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-key-value-list-item--border-color: #{sys.$si-sys-color-border-4};
-  --ix-key-value-list-item--background--alternating: #{sys.$si-sys-color-background-1};
+  @include cv.define-vars(
+    (
+      'key-value-list-item--border-color': sys.$si-sys-color-border-4,
+      'key-value-list-item--background--alternating':
+        sys.$si-sys-color-background-1,
+    )
+  );
 }
 
 :host {
-  --ix-key-value-list--border-width: #{sys.$si-sys-sizing-border-width-default};
+  @include cv.define-vars(
+    (
+      'key-value-list--border-width': sys.$si-sys-sizing-border-width-default,
+    )
+  );
 }

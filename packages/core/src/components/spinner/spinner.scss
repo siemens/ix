@@ -10,10 +10,11 @@
 @use 'mixins/shadow-dom/component';
 
 @use './spinner.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin ix-spinner(
   $size-name: 'md',
-  $size: var(--ix-spinner-medium--size),
-  $track-size: var(--ix-spinner-track--border-width-emphasis)
+  $size: cv.get-var('spinner--size--md'),
+  $track-size: cv.get-var('spinner-track--border-width--emphasis')
 ) {
   :host {
     display: block;
@@ -31,7 +32,7 @@
     max-height: $size;
     border-radius: 100%;
     position: relative;
-    animation: rotate var(--ix-spinner--rotation-duration) linear infinite;
+    animation: rotate cv.get-var('spinner--rotation-duration') linear infinite;
 
     @keyframes rotate {
       100% {
@@ -91,8 +92,12 @@
     inset: 8.33%;
     border-radius: 100%;
     border: $track-size solid
-      var(--ix-button-color, var(--ix-spinner--border-color));
-    animation: clipMask var(--ix-spinner--mask-duration) linear infinite;
+      cv.get-var(
+        'button--color',
+        cv.get-var('spinner--border-color'),
+        $external: true
+      );
+    animation: clipMask cv.get-var('spinner--mask-duration') linear infinite;
   }
 
   .#{$size-name}:not(.hide-track)::before {
@@ -102,40 +107,40 @@
     inset: 8.33%;
     border-radius: 100%;
     //TODO(IX-3400): Replace track color with proper CSS variables when available
-    border: $track-size solid var(--ix-spinner-track--border-color);
+    border: $track-size solid cv.get-var('spinner-track--border-color');
   }
 
   .primary::after {
-    border-color: var(--ix-spinner-primary--border-color);
+    border-color: cv.get-var('spinner--border-color--primary');
   }
 
   .primary::before {
-    border-color: var(--ix-spinner-primary-track--border-color);
+    border-color: cv.get-var('spinner-track--border-color--primary');
   }
 }
 
 @include ix-spinner(
   $size-name: 'xxs',
-  $size: var(--ix-spinner-extra-extra-small--size),
-  $track-size: var(--ix-spinner-track--border-width-default)
+  $size: cv.get-var('spinner--size--xxs'),
+  $track-size: cv.get-var('spinner-track--border-width')
 );
 @include ix-spinner(
   $size-name: 'xs',
-  $size: var(--ix-spinner-extra-small--size),
-  $track-size: var(--ix-spinner-track--border-width-selected)
+  $size: cv.get-var('spinner--size--xs'),
+  $track-size: cv.get-var('spinner-track--border-width--selected')
 );
 @include ix-spinner(
   $size-name: 'sm',
-  $size: var(--ix-spinner-small--size),
-  $track-size: var(--ix-spinner-track--border-width-selected)
+  $size: cv.get-var('spinner--size--sm'),
+  $track-size: cv.get-var('spinner-track--border-width--selected')
 );
 @include ix-spinner(
   $size-name: 'md',
-  $size: var(--ix-spinner-medium--size),
-  $track-size: var(--ix-spinner-track--border-width-selected)
+  $size: cv.get-var('spinner--size--md'),
+  $track-size: cv.get-var('spinner-track--border-width--selected')
 );
 @include ix-spinner(
   $size-name: 'xxl',
-  $size: var(--ix-spinner-large--size),
-  $track-size: var(--ix-spinner-track--border-width-emphasis)
+  $size: cv.get-var('spinner--size--xxl'),
+  $track-size: cv.get-var('spinner-track--border-width--emphasis')
 );

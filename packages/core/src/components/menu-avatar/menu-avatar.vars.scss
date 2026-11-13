@@ -7,30 +7,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-menu-avatar-button--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-menu-avatar-button--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-menu-avatar-button--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-menu-avatar-button--color--active: #{sys.$si-sys-color-text-primary};
-  --ix-menu-avatar-button--color--hover: #{sys.$si-sys-color-text-primary};
-  --ix-menu-avatar-item-primary--color: #{sys.$si-sys-color-text-primary};
+  @include cv.define-vars(
+    (
+      'menu-avatar-button--outline-color--focus':
+        sys.$si-sys-color-effects-focus,
+      'menu-avatar-button--background--active':
+        sys.$si-sys-color-background-selected,
+      'menu-avatar-button--background--hover':
+        sys.$si-sys-color-background-hover,
+      'menu-avatar-button--color--active': sys.$si-sys-color-text-primary,
+      'menu-avatar-button--color--hover': sys.$si-sys-color-text-primary,
+      'menu-avatar-text--color--primary': sys.$si-sys-color-text-primary,
+    )
+  );
 }
 
 :host {
-  --ix-menu-avatar-button--transition-duration: var(--theme-default-time);
-  --ix-menu-avatar--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-menu-avatar--margin-right: #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-menu-avatar-avatar--height: #{sys.$si-sys-sizing-size-90};
-  --ix-menu-avatar-avatar--max-height: #{sys.$si-sys-sizing-size-90};
-  --ix-menu-avatar-avatar--padding-left: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-menu-avatar-avatar--margin-left: #{sys.$si-sys-sizing-spacing-x-30};
-  --ix-menu-avatar-avatar--margin-right: #{sys.$si-sys-sizing-spacing-x-30};
-  --ix-menu-avatar-avatar-name--margin-left: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-menu-avatar-avatar--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-menu-avatar--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
-  --ix-menu-avatar--outline-offset--focus: calc(
-    -1 * var(--ix-menu-avatar--outline-width--focus)
+  @include cv.define-vars(
+    (
+      'menu-avatar-button--transition-duration': var(--theme-default-time),
+      'menu-avatar--margin-bottom': sys.$si-sys-sizing-spacing-y-40,
+      'menu-avatar--margin-right': sys.$si-sys-sizing-spacing-x-50,
+      'menu-avatar-avatar--height': sys.$si-sys-sizing-size-90,
+      'menu-avatar-avatar--max-height': sys.$si-sys-sizing-size-90,
+      'menu-avatar-avatar--padding-left': sys.$si-sys-sizing-spacing-x-20,
+      'menu-avatar-avatar--margin-left': sys.$si-sys-sizing-spacing-x-30,
+      'menu-avatar-avatar--margin-right': sys.$si-sys-sizing-spacing-x-30,
+      'menu-avatar-avatar-name--margin-left': sys.$si-sys-sizing-spacing-x-60,
+      'menu-avatar-avatar--border-radius': sys.$si-sys-sizing-border-radius-full,
+      'menu-avatar--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
+  );
+  @include cv.define-vars(
+    (
+      'menu-avatar--outline-offset--focus':
+        calc(-1 * #{cv.get-var('menu-avatar--outline-width--focus')}),
+    )
   );
 }

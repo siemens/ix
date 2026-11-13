@@ -94,6 +94,14 @@ export class IconButton
   @Prop({ reflect: true }) inert = false;
 
   /**
+   * Show a dropdown indicator triangle in the bottom-right corner.
+   *
+   * @internal
+   * @since 6.0.0
+   */
+  @Prop() dropdownIndicator = false;
+
+  /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
   submitButtonElement?: HTMLButtonElement;
@@ -152,7 +160,13 @@ export class IconButton
       inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
-      extraClasses: this.getIconSizeClass(),
+      extraClasses: {
+        ...this.getIconSizeClass(),
+        'has-dropdown-indicator': this.dropdownIndicator,
+      },
+      afterContent: this.dropdownIndicator ? (
+        <span class="dropdown-indicator" aria-hidden="true"></span>
+      ) : undefined,
       tabIndex: this.hostElement.hasAttribute('tabindex')
         ? this.hostElement.tabIndex
         : undefined,

@@ -7,19 +7,31 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-textarea--background--invalid: #{sys.$si-sys-color-background-1};
-  --ix-textarea--background--invalid--hover: #{sys.$si-sys-color-background-4};
-  --ix-textarea--background--warning: #{sys.$si-sys-color-background-1};
-  --ix-textarea--background--warning--hover: #{sys.$si-sys-color-background-4};
-  --ix-textarea--border-color--info: #{sys.$si-sys-color-border-information};
-  --ix-textarea--border-color--info--active: #{sys.$si-sys-color-border-information};
-  --ix-textarea--border-color--info--hover: #{sys.$si-sys-color-border-information};
-  --ix-textarea--border-color--invalid: #{sys.$si-sys-color-border-danger};
-  --ix-textarea--border-color--invalid--active: #{sys.$si-sys-color-border-danger};
-  --ix-textarea--border-color--invalid--hover: #{sys.$si-sys-color-border-danger};
-  --ix-textarea--border-color--warning--active: #{sys.$si-sys-color-border-warning};
-  --ix-textarea--border-color--warning--hover: #{sys.$si-sys-color-border-warning};
+  @include cv.define-vars(
+    (
+      'textarea--background--invalid': sys.$si-sys-color-background-1,
+      'textarea--background--invalid--hover': sys.$si-sys-color-background-4,
+      'textarea--background--warning': sys.$si-sys-color-background-1,
+      'textarea--background--warning--hover': sys.$si-sys-color-background-4,
+      'textarea--border-color--info': sys.$si-sys-color-border-information,
+      'textarea--border-color--info--active':
+        sys.$si-sys-color-border-information,
+      'textarea--border-color--info--hover':
+        sys.$si-sys-color-border-information,
+      'textarea--border-color--invalid': sys.$si-sys-color-border-danger,
+      'textarea--border-color--invalid--active': sys.$si-sys-color-border-danger,
+      'textarea--border-color--invalid--hover': sys.$si-sys-color-border-danger,
+      'textarea--border-color--warning--active':
+        sys.$si-sys-color-border-warning,
+      'textarea--border-color--warning--hover': sys.$si-sys-color-border-warning,
+    )
+  );
 }

@@ -7,32 +7,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-expanding-search-button-search--outline-color--focus: var(
-    --focus--border-color
+  @include cv.define-vars(
+    (
+      'expanding-search-button-search--outline-color--focus':
+        var(--focus--border-color),
+      'expanding-search-button--border--active': #{sys.$si-sys-sizing-border-width-default}
+        solid #{sys.$si-sys-color-border-2},
+    )
   );
-  --ix-expanding-search-button--border--active: #{sys.$si-sys-sizing-border-width-default}
-    solid #{sys.$si-sys-color-border-2};
 }
 
 :host {
-  --ix-expanding-search-input-container--transition-duration: var(
-    --theme-medium-time
+  @include cv.define-vars(
+    (
+      'expanding-search-input-container--transition-duration':
+        var(--theme-medium-time),
+      'expanding-search-button--transition-duration': var(--theme-default-time),
+      'expanding-search--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'expanding-search-container--width': sys.$si-sys-sizing-size-150,
+      'expanding-search--height': cv.get-var('input--min-height'),
+      'expanding-search--width--collapsed': sys.$si-sys-sizing-size-80,
+      'expanding-search-button-search--max-width': sys.$si-sys-sizing-size-80,
+      'expanding-search-button-search--max-height': sys.$si-sys-sizing-size-80,
+      'expanding-search-button-search--margin-left--expanded':
+        sys.$si-sys-sizing-spacing-x-20,
+      'expanding-search-button-search--width--active':
+        sys.$si-sys-sizing-size-80,
+      'expanding-search-button-search--height--active':
+        sys.$si-sys-sizing-size-80,
+      'expanding-search-button-clear--margin-right':
+        sys.$si-sys-sizing-spacing-x-20,
+      'expanding-search-input--padding-left': sys.$si-sys-sizing-spacing-x-90,
+      'expanding-search-input--padding-right': sys.$si-sys-sizing-spacing-x-100,
+      'expanding-search--outline-width--focus':
+        sys.$si-sys-sizing-focus-ring-width,
+    )
   );
-  --ix-expanding-search-button--transition-duration: var(--theme-default-time);
-  --ix-expanding-search--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-expanding-search--container-width: #{sys.$si-sys-sizing-size-150};
-  --ix-expanding-search--height: var(--ix-input--min-height);
-  --ix-expanding-search-collapsed--width: #{sys.$si-sys-sizing-size-80};
-  --ix-expanding-search-button-search--max-width: #{sys.$si-sys-sizing-size-80};
-  --ix-expanding-search-button-search--max-height: #{sys.$si-sys-sizing-size-80};
-  --ix-expanding-search-button-search-expanded--margin-left: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-expanding-search-button-search-active--width: #{sys.$si-sys-sizing-size-80};
-  --ix-expanding-search-button-search-active--height: #{sys.$si-sys-sizing-size-80};
-  --ix-expanding-search-button-clear--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-expanding-search-input--padding-left: #{sys.$si-sys-sizing-spacing-x-90};
-  --ix-expanding-search-input--padding-right: #{sys.$si-sys-sizing-spacing-x-100};
-  --ix-expanding-search--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }

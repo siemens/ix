@@ -8,6 +8,7 @@
  */
 @use 'mixins/shadow-dom/component';
 @use './list.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: block;
@@ -23,7 +24,7 @@
     max-height: inherit;
     flex-direction: column;
     // variable set through component logic
-    gap: var(--ix-list-item-gap, 0);
+    gap: cv.get-var('list--gap', 0);
     overflow-y: auto;
   }
 
@@ -31,27 +32,30 @@
     display: block;
     flex: 0 0 auto;
     width: 100%;
-    border-radius: var(--ix-list-drag-placeholder--border-radius);
+    border-radius: cv.get-var('list-drag-placeholder--border-radius');
   }
 
   ::slotted(ix-list-item.pointer-dragging) {
     position: fixed;
     z-index: 1;
-    top: var(--ix-list-drag-top);
-    left: var(--ix-list-drag-left);
-    width: var(--ix-list-drag-width);
-    box-shadow: var(--ix-list-drag--box-shadow);
+    top: cv.get-var('list-drag--top');
+    left: cv.get-var('list-drag--left');
+    width: cv.get-var('list-drag--width');
+    box-shadow: cv.get-var('list-drag--box-shadow');
     cursor: grabbing;
     pointer-events: none;
-    transform: translate(var(--ix-list-drag-x, 0), var(--ix-list-drag-y, 0));
+    transform: translate(
+      #{cv.get-var('list-drag--x', 0)},
+      #{cv.get-var('list-drag--y', 0)}
+    );
   }
 }
 
 :host(.divider) {
   ::slotted(.ix-list-drag-placeholder) {
-    height: var(--ix-list-drag-placeholder--height--divider) !important;
-    border-top: var(--ix-list-drag-placeholder--border-width) solid
-      var(--ix-list-drag-placeholder--border-color--divider);
+    height: cv.get-var('list-drag-placeholder--height--divider') !important;
+    border-top: cv.get-var('list-drag-placeholder--border-width') solid
+      cv.get-var('list-drag-placeholder--border-color--divider');
     border-radius: 0;
   }
 }
@@ -60,13 +64,13 @@
   ::slotted(.ix-list-drag-placeholder.separator) {
     position: absolute;
     z-index: 1;
-    top: var(--ix-list-drag-separator-top, 0);
+    top: cv.get-var('list-drag-separator--top', 0);
     right: 0;
     left: 0;
     height: 0 !important;
     margin: 0;
-    border-top: var(--ix-list-drag-placeholder--border-width) solid
-      var(--ix-list-drag-placeholder--border-color--separator);
+    border-top: cv.get-var('list-drag-placeholder--border-width') solid
+      cv.get-var('list-drag-placeholder--border-color--separator');
     border-radius: 0;
   }
 }

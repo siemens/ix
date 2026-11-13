@@ -8,8 +8,9 @@
  */
 
 @use './modal.vars' as *;
+@use 'mixins/component-vars' as cv;
 ::backdrop {
-  background: var(--ix-modal-backdrop--background);
+  background: cv.get-var('modal-backdrop--background');
 }
 
 :focus-visible {
@@ -20,13 +21,19 @@
   display: none;
 
   dialog {
-    --ix-dialog-padding: var(--ix-modal--dialog-padding);
+    @include cv.set-var(
+      'dialog--padding',
+      cv.get-var('modal-dialog--padding'),
+      $external: true
+    );
 
     margin: 0;
-    padding: var(--ix-dialog-padding);
-    padding-top: calc(var(--ix-dialog-padding) + var(--ix-safe-area-inset-top));
+    padding: cv.get-var('dialog--padding', $external: true);
+    padding-top: calc(
+      #{cv.get-var('dialog--padding', $external: true)} + var(--ix-safe-area-inset-top)
+    );
     padding-bottom: calc(
-      var(--ix-dialog-padding) + var(--ix-safe-area-inset-bottom)
+      #{cv.get-var('dialog--padding', $external: true)} + var(--ix-safe-area-inset-bottom)
     );
     left: 50%;
   }
@@ -36,34 +43,34 @@
     flex-direction: column;
     position: fixed;
     border: none;
-    border-radius: var(--ix-modal--border-radius);
-    background: var(--ix-modal--background);
-    box-shadow: var(--ix-modal--box-shadow);
-    color: var(--ix-modal--color);
+    border-radius: cv.get-var('modal--border-radius');
+    background: cv.get-var('modal--background');
+    box-shadow: cv.get-var('modal--box-shadow');
+    color: cv.get-var('modal--color');
     overflow: visible;
-    max-height: var(--ix-modal--max-height);
+    max-height: cv.get-var('modal--max-height');
     pointer-events: all;
     overflow-wrap: break-word;
   }
 
   .modal-size-360 {
-    width: var(--ix-modal-extra-small--width);
+    width: cv.get-var('modal--width--360');
   }
 
   .modal-size-480 {
-    width: var(--ix-modal-small--width);
+    width: cv.get-var('modal--width--480');
   }
 
   .modal-size-600 {
-    width: var(--ix-modal-medium--width);
+    width: cv.get-var('modal--width--600');
   }
 
   .modal-size-720 {
-    width: var(--ix-modal-large--width);
+    width: cv.get-var('modal--width--720');
   }
 
   .modal-size-840 {
-    width: var(--ix-modal-extra-large--width);
+    width: cv.get-var('modal--width--840');
   }
 
   .modal-size-full-width {
@@ -77,26 +84,36 @@
     transform: none !important;
     box-shadow: none;
 
-    --ix-dialog-full-screen-height: calc(
-      var(--ix-safe-area-inset-top) + var(--ix-safe-area-inset-bottom)
+    @include cv.set-var(
+      'dialog--height--full-screen',
+      calc(var(--ix-safe-area-inset-top) + var(--ix-safe-area-inset-bottom)),
+      $external: true
     );
 
-    width: calc(100% - var(--ix-dialog-padding) * 2);
-    min-width: calc(100% - var(--ix-dialog-padding) * 2);
-    max-width: calc(100% - var(--ix-dialog-padding) * 2);
+    width: calc(100% - #{cv.get-var('dialog--padding', $external: true)} * 2);
+    min-width: calc(
+      100% - #{cv.get-var('dialog--padding', $external: true)} * 2
+    );
+    max-width: calc(
+      100% - #{cv.get-var('dialog--padding', $external: true)} * 2
+    );
 
     min-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% - (#{cv.get-var('dialog--padding', $external: true)} * 2) - #{cv.get-var(
+          'dialog--height--full-screen',
+          $external: true
+        )}
     );
     max-height: calc(
-      100% - (var(--ix-dialog-padding) * 2) -
-        var(--ix-dialog-full-screen-height)
+      100% - (#{cv.get-var('dialog--padding', $external: true)} * 2) - #{cv.get-var(
+          'dialog--height--full-screen',
+          $external: true
+        )}
     );
   }
 
   dialog.modal-size-full-screen::backdrop {
-    background: var(--ix-modal--background);
+    background: cv.get-var('modal--background');
   }
 
   .dialog-backdrop {
@@ -138,6 +155,6 @@
 :host(.with-icon) {
   ::slotted(ix-modal-footer),
   ::slotted(ix-modal-content) {
-    margin-left: var(--ix-modal-with-icon--margin-left);
+    margin-left: cv.get-var('modal-with-icon--margin-left');
   }
 }

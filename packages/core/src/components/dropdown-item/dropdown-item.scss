@@ -11,8 +11,9 @@
 @use 'mixins/hover';
 
 @use './dropdown-item.vars' as *;
-$itemPadding: var(--ix-dropdown-item--item-padding);
-$itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
+@use 'mixins/component-vars' as cv;
+$itemPadding: cv.get-var('dropdown-item--padding');
+$itemPaddingRight: cv.get-var('dropdown-item--padding-right');
 
 @mixin applyItemWidth($padding, $paddingRight) {
   width: calc(100% - #{$padding} - #{$paddingRight});
@@ -26,7 +27,7 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
   flex-direction: row;
 
   position: relative;
-  height: var(--ix-dropdown-item--height);
+  height: cv.get-var('dropdown-item--height');
   width: auto;
   overflow: hidden;
   cursor: pointer;
@@ -39,7 +40,7 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
     flex-direction: row;
     align-items: center;
     position: relative;
-    height: var(--ix-dropdown-item--inner-height);
+    height: cv.get-var('dropdown-item--inner-height');
     white-space: nowrap;
 
     @include applyItemWidth($itemPadding, $itemPaddingRight);
@@ -47,7 +48,7 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
 
   .dropdown-item.no-checked-field {
     @include applyItemWidth(
-      var(--ix-dropdown-item-no-checkmark--padding-inline-start),
+      cv.get-var('dropdown-item-no-checkmark--padding-inline-start'),
       $itemPaddingRight
     );
   }
@@ -58,20 +59,20 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
     justify-content: center;
     position: relative;
     height: 100%;
-    width: var(--ix-dropdown-item-checked--width);
-    min-width: var(--ix-dropdown-item-checked--min-width);
-    margin-right: var(--ix-dropdown-item-checked--margin-right);
+    width: cv.get-var('dropdown-item--width--checked');
+    min-width: cv.get-var('dropdown-item--min-width--checked');
+    margin-right: cv.get-var('dropdown-item--margin-right--checked');
 
-    color: var(--ix-dropdown-item-checkmark--color);
+    color: cv.get-var('dropdown-item-checkmark--color');
   }
 
   .dropdown-item-icon {
-    block-size: var(--ix-dropdown-item-icon--icon-size);
-    inline-size: var(--ix-dropdown-item-icon--icon-size);
-    margin-right: var(--ix-dropdown-item-icon--margin-right);
-    min-block-size: var(--ix-dropdown-item-icon--icon-size);
-    min-inline-size: var(--ix-dropdown-item-icon--icon-size);
-    color: var(--ix-dropdown-item-icon--color);
+    block-size: cv.get-var('dropdown-item-icon--size');
+    inline-size: cv.get-var('dropdown-item-icon--size');
+    margin-right: cv.get-var('dropdown-item-icon--margin-right');
+    min-block-size: cv.get-var('dropdown-item-icon--size');
+    min-inline-size: cv.get-var('dropdown-item-icon--size');
+    color: cv.get-var('dropdown-item-icon--color');
   }
 
   .dropdown-item-text {
@@ -98,8 +99,8 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
 
   .dropdown-item {
     @include applyItemWidth(
-      var(--ix-dropdown-item-icon-only--padding-inline),
-      var(--ix-dropdown-item-icon-only--padding-inline)
+      cv.get-var('dropdown-item-icon-only--padding-inline'),
+      cv.get-var('dropdown-item-icon-only--padding-inline')
     );
   }
 }
@@ -108,7 +109,7 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
   .dropdown-item {
     @include applyItemWidth(
       $itemPadding,
-      var(--ix-dropdown-item-submenu--padding-inline-end)
+      cv.get-var('dropdown-item-submenu--padding-inline-end')
     );
   }
 }
@@ -117,19 +118,19 @@ $itemPaddingRight: var(--ix-dropdown-item--item-padding-right);
 
 :host(.disabled) {
   pointer-events: none;
-  color: var(--ix-dropdown-item--color--disabled) !important;
+  color: cv.get-var('dropdown-item--color--disabled') !important;
 
   .dropdown-item-icon {
-    color: var(--ix-dropdown-item--color--disabled) !important;
+    color: cv.get-var('dropdown-item--color--disabled') !important;
   }
 }
 
 :host(:focus-visible),
 :host(.ix-focused),
 :host(.outline-visible) {
-  outline: var(--ix-dropdown-item--outline-width--focus) solid
-    var(--ix-dropdown-item--outline-color--focus);
-  outline-offset: var(--ix-dropdown-item--outline-offset--focus);
+  outline: cv.get-var('dropdown-item--outline-width--focus') solid
+    cv.get-var('dropdown-item--outline-color--focus');
+  outline-offset: cv.get-var('dropdown-item--outline-offset--focus');
 }
 
 :host([hidden]) {

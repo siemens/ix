@@ -12,8 +12,9 @@
 @use 'tokens/system' as sys;
 
 @use './message-bar.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
-  margin: var(--ix-message-bar--margin);
+  margin: cv.get-var('message-bar--margin');
 
   @include component.ix-component;
 
@@ -23,45 +24,45 @@
     align-items: flex-start;
     flex-wrap: nowrap;
     justify-content: space-between;
-    min-height: var(--ix-message-bar-message-container--min-height);
-    padding: var(--ix-message-bar-message-container--padding);
-    border-radius: var(--ix-message-bar--border-radius);
-    background-color: var(--ix-message-bar--background);
+    min-height: cv.get-var('message-bar-message-container--min-height');
+    padding: cv.get-var('message-bar-message-container--padding');
+    border-radius: cv.get-var('message-bar--border-radius');
+    background-color: cv.get-var('message-bar--background');
   }
 
   $message-types: (
-    'error': var(--ix-message-bar--border-color--error),
-    'danger': var(--ix-message-bar--border-color--danger),
-    'warning': var(--ix-message-bar--border-color--warning),
-    'caution': var(--ix-message-bar--border-color--caution),
-    'success': var(--ix-message-bar--border-color--success),
-    'information': var(--ix-message-bar--border-color--information),
-    'neutral': var(--ix-message-bar--border-color--neutral),
-    'accent': var(--ix-message-bar--border-color--accent),
-    'critical': var(--ix-message-bar--border-color--critical),
+    'error': cv.get-var('message-bar--border-color--error'),
+    'danger': cv.get-var('message-bar--border-color--danger'),
+    'warning': cv.get-var('message-bar--border-color--warning'),
+    'caution': cv.get-var('message-bar--border-color--caution'),
+    'success': cv.get-var('message-bar--border-color--success'),
+    'information': cv.get-var('message-bar--border-color--information'),
+    'neutral': cv.get-var('message-bar--border-color--neutral'),
+    'accent': cv.get-var('message-bar--border-color--accent'),
+    'critical': cv.get-var('message-bar--border-color--critical'),
   );
 
   @each $type, $color in $message-types {
     .#{$type} {
-      border: solid var(--ix-message-bar--border-width) $color;
+      border: solid cv.get-var('message-bar--border-width') $color;
     }
   }
 
   .message-content {
     flex-grow: 1;
     align-self: center;
-    min-height: var(--ix-message-bar-message-content--min-height);
-    padding: var(--ix-message-bar-message-content--padding);
+    min-height: cv.get-var('message-bar-message-content--min-height');
+    padding: cv.get-var('message-bar-message-content--padding');
     white-space: normal;
 
     @include fonts.typography-body-paragraph;
   }
 
   ix-icon {
-    block-size: var(--ix-message-bar-icon--icon-size);
-    inline-size: var(--ix-message-bar-icon--icon-size);
-    min-block-size: var(--ix-message-bar-icon--icon-size);
-    min-inline-size: var(--ix-message-bar-icon--icon-size);
+    block-size: cv.get-var('message-bar-icon--size');
+    inline-size: cv.get-var('message-bar-icon--size');
+    min-block-size: cv.get-var('message-bar-icon--size');
+    min-inline-size: cv.get-var('message-bar-icon--size');
     align-self: center;
   }
 

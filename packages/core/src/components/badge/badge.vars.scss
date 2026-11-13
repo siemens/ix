@@ -7,84 +7,106 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('badge--background--custom');
+@include cv.declare-var('badge--color--custom');
+@include cv.declare-var('badge--pulse-color');
 
 :host {
-  --ix-badge-accent-background: #{sys.$si-sys-color-background-accent};
-  --ix-badge-accent-border-color: #{sys.$si-sys-color-border-accent};
-  --ix-badge-accent-color: #{sys.$si-sys-color-text-accent};
-  --ix-badge-accent-contrast-color: #{sys.$si-sys-color-text-on-accent};
-  --ix-badge-danger-background: #{sys.$si-sys-color-background-danger};
-  --ix-badge-danger-border-color: #{sys.$si-sys-color-border-danger};
-  --ix-badge-danger-color: #{sys.$si-sys-color-text-danger};
-  --ix-badge-danger-contrast-color: #{sys.$si-sys-color-text-on-danger};
-  --ix-badge-critical-background: #{sys.$si-sys-color-background-critical};
-  --ix-badge-critical-border-color: #{sys.$si-sys-color-border-critical};
-  --ix-badge-critical-color: #{sys.$si-sys-color-text-critical};
-  --ix-badge-critical-contrast-color: #{sys.$si-sys-color-text-on-critical};
-  --ix-badge-warning-background: #{sys.$si-sys-color-background-warning};
-  --ix-badge-warning-border-color: #{sys.$si-sys-color-border-warning};
-  --ix-badge-warning-color: #{sys.$si-sys-color-text-warning};
-  --ix-badge-warning-contrast-color: #{sys.$si-sys-color-text-on-warning};
-  --ix-badge-caution-background: #{sys.$si-sys-color-background-caution};
-  --ix-badge-caution-border-color: #{sys.$si-sys-color-border-caution};
-  --ix-badge-caution-color: #{sys.$si-sys-color-text-caution};
-  --ix-badge-caution-contrast-color: #{sys.$si-sys-color-text-on-caution};
-  --ix-badge-information-background: #{sys.$si-sys-color-background-information};
-  --ix-badge-information-border-color: #{sys.$si-sys-color-border-information};
-  --ix-badge-information-color: #{sys.$si-sys-color-text-information};
-  --ix-badge-information-contrast-color: #{sys.$si-sys-color-text-on-information};
-  --ix-badge-success-background: #{sys.$si-sys-color-background-success};
-  --ix-badge-success-border-color: #{sys.$si-sys-color-border-success};
-  --ix-badge-success-color: #{sys.$si-sys-color-text-success};
-  --ix-badge-success-contrast-color: #{sys.$si-sys-color-text-on-success};
-  --ix-badge-neutral-background: #{sys.$si-sys-color-background-neutral};
-  --ix-badge-neutral-border-color: #{sys.$si-sys-color-border-neutral};
-  --ix-badge-neutral-color: #{sys.$si-sys-color-text-secondary};
-  --ix-badge-neutral-contrast-color: #{sys.$si-sys-color-text-on-neutral};
-
-  --ix-badge-outline-background: transparent;
-  --ix-badge-default-color: #{sys.$si-sys-color-text-primary};
-  --ix-badge-contrast-ring-color: #{sys.$si-sys-color-background-0};
-
-  --ix-badge-pulse-color: var(--ix-badge-accent-background);
+  @include cv.define-vars(
+    (
+      'badge--background--accent': sys.$si-sys-color-background-accent,
+      'badge--border-color--accent': sys.$si-sys-color-border-accent,
+      'badge--color--accent--contrast': sys.$si-sys-color-text-on-accent,
+      'badge--background--danger': sys.$si-sys-color-background-danger,
+      'badge--border-color--danger': sys.$si-sys-color-border-danger,
+      'badge--color--danger': sys.$si-sys-color-text-danger,
+      'badge--color--danger--contrast': sys.$si-sys-color-text-on-danger,
+      'badge--background--critical': sys.$si-sys-color-background-critical,
+      'badge--border-color--critical': sys.$si-sys-color-border-critical,
+      'badge--color--critical': sys.$si-sys-color-text-critical,
+      'badge--color--critical--contrast': sys.$si-sys-color-text-on-critical,
+      'badge--background--warning': sys.$si-sys-color-background-warning,
+      'badge--border-color--warning': sys.$si-sys-color-border-warning,
+      'badge--color--warning': sys.$si-sys-color-text-warning,
+      'badge--color--warning--contrast': sys.$si-sys-color-text-on-warning,
+      'badge--background--caution': sys.$si-sys-color-background-caution,
+      'badge--border-color--caution': sys.$si-sys-color-border-caution,
+      'badge--color--caution': sys.$si-sys-color-text-caution,
+      'badge--color--caution--contrast': sys.$si-sys-color-text-on-caution,
+      'badge--background--information': sys.$si-sys-color-background-information,
+      'badge--border-color--information': sys.$si-sys-color-border-information,
+      'badge--color--information': sys.$si-sys-color-text-information,
+      'badge--color--information--contrast':
+        sys.$si-sys-color-text-on-information,
+      'badge--background--success': sys.$si-sys-color-background-success,
+      'badge--border-color--success': sys.$si-sys-color-border-success,
+      'badge--color--success': sys.$si-sys-color-text-success,
+      'badge--color--success--contrast': sys.$si-sys-color-text-on-success,
+      'badge--background--neutral': sys.$si-sys-color-background-neutral,
+      'badge--border-color--neutral': sys.$si-sys-color-border-neutral,
+      'badge--color--neutral--contrast': sys.$si-sys-color-text-on-neutral,
+      'badge--background--outline': transparent,
+      'badge-default--color': sys.$si-sys-color-text-primary,
+      'badge-contrast-ring--color': sys.$si-sys-color-background-0,
+    )
+  );
 }
 
 :host {
-  --ix-badge-offset-x: 0rem;
-  --ix-badge-offset-y: 0rem;
-  --ix-badge-max-width: none;
-  --ix-badge-animation-duration: 2s;
-  --ix-badge-indicator--font: #{sys.$si-sys-typography-body-sbold};
-  --ix-badge-counter--font-weight: bold;
-  --ix-badge-label--font-weight: 400;
-  --ix-badge--line-height: #{sys.$si-sys-sizing-size-60};
-  --ix-badge-tooltip--font-size: 0.875rem;
-  --ix-badge-indicator--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-badge-indicator--border-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-badge-indicator--outline-width: #{sys.$si-sys-sizing-border-width-default};
-  --ix-badge-indicator--width: #{sys.$si-sys-sizing-size-40};
-  --ix-badge-indicator--height: #{sys.$si-sys-sizing-size-40};
-  --ix-badge-indicator--min-width: #{sys.$si-sys-sizing-size-40};
-  --ix-badge-indicator--min-height: #{sys.$si-sys-sizing-size-40};
-  --ix-badge--height: #{sys.$si-sys-sizing-size-60};
-  --ix-badge--min-width: #{sys.$si-sys-sizing-size-60};
-  --ix-badge--min-height: #{sys.$si-sys-sizing-size-60};
-  --ix-badge-indicator--padding-inline: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-badge-label--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-badge-indicator--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-badge-indicator-outline--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-badge-status-icon--width: #{sys.$si-sys-sizing-size-60};
-  --ix-badge-status-icon-stack-outline--icon-size: #{sys.$si-sys-sizing-size-60};
-  --ix-badge-status-icon--icon-size: #{sys.$si-sys-sizing-size-60};
-  --ix-badge-pulse-status--inset: 0;
-  --ix-badge-pulse-border--inset: 0;
-  --ix-badge-pulse-border--border-width--expanded: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-badge-pulse-border--inset--expanded: calc(
-    -1 * var(--ix-badge-pulse-border--border-width--expanded)
+  @include cv.define-vars(
+    (
+      'badge--offset-x': 0rem,
+      'badge--offset-y': 0rem,
+      'badge--max-width': none,
+      'badge--animation-duration': 2s,
+      'badge-indicator--font': sys.$si-sys-typography-body-sbold,
+      'badge-counter--font-weight': bold,
+      'badge-label--font-weight': 400,
+      'badge--line-height': sys.$si-sys-sizing-size-60,
+      'badge-tooltip--font-size': 0.875rem,
+      'badge-indicator--border-radius': sys.$si-sys-sizing-border-radius-full,
+      'badge-indicator--border-width': sys.$si-sys-sizing-border-width-default,
+      'badge-indicator--outline-width': sys.$si-sys-sizing-border-width-default,
+      'badge-indicator--width': sys.$si-sys-sizing-size-40,
+      'badge-indicator--height': sys.$si-sys-sizing-size-40,
+      'badge-indicator--min-width': sys.$si-sys-sizing-size-40,
+      'badge-indicator--min-height': sys.$si-sys-sizing-size-40,
+      'badge--height': sys.$si-sys-sizing-size-60,
+      'badge--min-width': sys.$si-sys-sizing-size-60,
+      'badge--min-height': sys.$si-sys-sizing-size-60,
+      'badge-indicator--padding-inline': sys.$si-sys-sizing-spacing-x-20,
+      'badge-label--padding-inline': sys.$si-sys-sizing-spacing-x-40,
+      'badge-indicator--gap': sys.$si-sys-sizing-spacing-x-20,
+      'badge-indicator--padding-inline--outline':
+        sys.$si-sys-sizing-spacing-x-40,
+      'badge-status-icon--width': sys.$si-sys-sizing-size-60,
+      'badge-status-icon-stack-icon--size--outline': sys.$si-sys-sizing-size-60,
+      'badge-status-icon--size': sys.$si-sys-sizing-size-60,
+      'badge-pulse-status--inset': 0,
+      'badge-pulse-border--inset': 0,
+      'badge-pulse-border--border-width--expanded':
+        sys.$si-sys-sizing-spacing-x-40,
+    )
   );
-  --ix-badge-pulse-border--border-width--end: #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-badge-pulse-border--inset--end: calc(
-    -1 * var(--ix-badge-pulse-border--border-width--end)
+  @include cv.define-vars(
+    (
+      'badge-pulse-border--inset--expanded':
+        calc(-1 * #{cv.get-var('badge-pulse-border--border-width--expanded')}),
+      'badge-pulse-border--border-width--end': sys.$si-sys-sizing-spacing-x-50,
+    )
+  );
+  @include cv.define-vars(
+    (
+      'badge-pulse-border--inset--end':
+        calc(-1 * #{cv.get-var('badge-pulse-border--border-width--end')}),
+    )
   );
 }

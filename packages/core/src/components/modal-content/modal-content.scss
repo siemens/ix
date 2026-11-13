@@ -11,11 +11,12 @@
 @use 'tokens/system' as sys;
 
 @use './modal-content.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
   overflow: auto;
-  padding: var(--ix-modal-content--padding);
+  padding: cv.get-var('modal-content--padding');
 
   @include fonts.typography-body-paragraph;
   @include component.ix-component;

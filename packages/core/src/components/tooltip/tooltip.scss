@@ -8,11 +8,12 @@
  */
 
 @use './tooltip.vars' as *;
+@use 'mixins/component-vars' as cv;
 .dialog {
   margin: 0;
   padding: 0;
   border: none;
-  max-width: var(--ix-tooltip-dialog--max-width);
+  max-width: cv.get-var('tooltip-dialog--max-width');
   width: max-content;
   background-color: transparent;
   overflow-wrap: break-word;
@@ -25,12 +26,12 @@
   position: relative;
   width: auto;
   height: fit-content;
-  background: var(--ix-tooltip--background);
-  color: var(--ix-tooltip--color);
-  padding: var(--ix-tooltip-container--padding);
+  background: cv.get-var('tooltip--background');
+  color: cv.get-var('tooltip--color');
+  padding: cv.get-var('tooltip-container--padding');
 
-  box-shadow: var(--ix-tooltip--box-shadow);
-  border-radius: var(--ix-tooltip-container--border-radius);
+  box-shadow: cv.get-var('tooltip--box-shadow');
+  border-radius: cv.get-var('tooltip-container--border-radius');
 }
 
 .content-wrapper {
@@ -41,15 +42,15 @@
   display: flex;
 
   ::slotted(ix-icon) {
-    margin: var(--ix-tooltip-icon--margin);
+    margin: cv.get-var('tooltip-icon--margin');
   }
 }
 
 .arrow,
 .arrow::before {
   position: absolute;
-  width: var(--ix-tooltip-arrow--width);
-  height: var(--ix-tooltip-arrow--height);
+  width: cv.get-var('tooltip-arrow--width');
+  height: cv.get-var('tooltip-arrow--height');
   background: inherit;
 }
 
@@ -61,5 +62,5 @@
   visibility: visible;
   content: '';
   transform: rotate(45deg);
-  background-color: var(--ix-tooltip--background);
+  background-color: cv.get-var('tooltip--background');
 }

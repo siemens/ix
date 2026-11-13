@@ -105,12 +105,12 @@ function badgeLabelPreview(): VNode {
             })
           )}
           {cell(
-            'alignLeft · --ix-badge-max-width: 2.5rem',
+            'alignLeft · --ix-badge--max-width: 2.5rem',
             labelBadge({
               variant: 'danger',
               label: "What's new",
               alignLeft: true,
-              hostStyle: { '--ix-badge-max-width': '2.5rem' },
+              hostStyle: { '--ix-badge--max-width': '2.5rem' },
             })
           )}
         </div>

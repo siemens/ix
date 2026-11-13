@@ -11,16 +11,17 @@
 @use 'mixins/fonts';
 
 @use './tile.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin set-height($height) {
   height: $height;
   min-height: $height;
   max-height: $height;
 }
 
-$heightSmall: var(--ix-tile--height-small);
-$heightMedium: var(--ix-tile--height-medium);
-$heightBig: var(--ix-tile--height-big);
-$width: var(--ix-tile--width);
+$heightSmall: cv.get-var('tile--height--small');
+$heightMedium: cv.get-var('tile--height--medium');
+$heightBig: cv.get-var('tile--height--big');
+$width: cv.get-var('tile--width');
 
 :host {
   min-width: $width;
@@ -29,12 +30,13 @@ $width: var(--ix-tile--width);
 
   display: flex;
   flex-direction: column;
-  border: var(--ix-tile--border-width) solid var(--ix-tile--border-color);
-  border-radius: var(--ix-tile--border-radius);
+  border: cv.get-var('tile--border-width') solid
+    cv.get-var('tile--border-color');
+  border-radius: cv.get-var('tile--border-radius');
 
-  background-color: var(--ix-tile--background);
-  color: var(--ix-tile--color);
-  box-shadow: var(--ix-tile--box-shadow);
+  background-color: cv.get-var('tile--background');
+  color: cv.get-var('tile--color');
+  box-shadow: cv.get-var('tile--box-shadow');
 
   // @each $key, $value in $color-map-status {
   //   &.tile-#{$key} {
@@ -56,7 +58,7 @@ $width: var(--ix-tile--width);
   .tile-subheader,
   .tile-content,
   .tile-footer {
-    padding: var(--ix-tile-footer--padding);
+    padding: cv.get-var('tile-footer--padding');
   }
 
   .tile-header,
@@ -66,20 +68,20 @@ $width: var(--ix-tile--width);
 
   .tile-header.has-content {
     display: flex;
-    height: var(--ix-tile-has-content--height);
-    max-height: var(--ix-tile-has-content--max-height);
-    padding-inline-end: var(--ix-tile-has-content--padding-inline-end);
+    height: cv.get-var('tile-has-content--height');
+    max-height: cv.get-var('tile-has-content--max-height');
+    padding-inline-end: cv.get-var('tile-has-content--padding-inline-end');
   }
 
   .tile-subheader {
-    color: var(--ix-tile-subheader--color);
+    color: cv.get-var('tile-subheader--color');
     flex-grow: 0;
   }
 
   .tile-footer.has-content {
-    border-block-start: var(--ix-tile-footer--border-width) solid
-      var(--ix-tile-footer--border-color);
-    height: var(--ix-tile-has-content--height);
+    border-block-start: cv.get-var('tile-footer--border-width') solid
+      cv.get-var('tile-footer--border-color');
+    height: cv.get-var('tile-has-content--height');
   }
 }
 

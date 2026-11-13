@@ -2,6 +2,7 @@
 @use 'mixins/shadow-dom/component';
 @use './info-page.vars' as *;
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
   @include component.ix-component;
@@ -10,7 +11,7 @@
   display: flex;
   width: 100%;
   min-height: 100%;
-  padding: var(--ix-info-page--padding);
+  padding: cv.get-var('info-page--padding');
 }
 
 .infoPage__content {
@@ -18,7 +19,7 @@
   flex: 1;
   flex-direction: column;
   align-items: center;
-  max-width: var(--ix-info-page-content--max-width);
+  max-width: cv.get-var('info-page-content--max-width');
   margin: auto;
   text-align: center;
 }
@@ -28,13 +29,13 @@
   align-items: end;
   justify-content: center;
   max-width: 100%;
-  margin-block-end: var(--ix-info-page-content-image--margin-block-end);
+  margin-block-end: cv.get-var('info-page-content-image--margin-block-end');
 
   ix-icon {
-    width: var(--ix-info-page-icon--size);
-    height: var(--ix-info-page-icon--size);
-    min-width: var(--ix-info-page-icon--size);
-    min-height: var(--ix-info-page-icon--size);
+    width: cv.get-var('info-page-icon--size');
+    height: cv.get-var('info-page-icon--size');
+    min-width: cv.get-var('info-page-icon--size');
+    min-height: cv.get-var('info-page-icon--size');
   }
 }
 
@@ -48,7 +49,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: var(--ix-info-page-content-message--max-width);
+  max-width: cv.get-var('info-page-content-message--max-width');
 }
 
 h1 {
@@ -56,16 +57,16 @@ h1 {
 }
 
 :host(:not(.infoPage--hasActions)) .content__message h1:last-child {
-  margin-block-end: var(--ix-info-page-content-message--margin-block-end);
+  margin-block-end: cv.get-var('info-page-content-message--margin-block-end');
 }
 
 .message__copy {
-  margin-block-start: var(--ix-info-page-message-copy--margin-block-start);
+  margin-block-start: cv.get-var('info-page-message-copy--margin-block-start');
 }
 
 .message__instructions {
-  margin-block-start: var(
-    --ix-info-page-message-instructions--margin-block-start
+  margin-block-start: cv.get-var(
+    'info-page-message-instructions--margin-block-start'
   );
 }
 
@@ -73,7 +74,9 @@ h1 {
   display: none;
   justify-content: center;
   width: 100%;
-  margin-block-start: var(--ix-info-page-content-action--margin-block-start);
+  margin-block-start: cv.get-var(
+    'info-page-content-action--margin-block-start'
+  );
 }
 
 :host(.infoPage--hasActions) .content__action {
@@ -84,11 +87,11 @@ slot[name='actions'] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--ix-info-page--gap);
+  gap: cv.get-var('info-page--gap');
 }
 
 @include break-points.media-breakpoint-match('sm') {
   :host {
-    padding: var(--ix-info-page--padding--mobile);
+    padding: cv.get-var('info-page--padding--mobile');
   }
 }

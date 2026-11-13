@@ -4,8 +4,17 @@
  * SPDX-License-Identifier: MIT
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
+@use 'mixins/component-vars' as cv;
+
 :host {
-  --ix-typography-weight-bold--font-weight: var(
-    --si-ref-typography-font-weight-bold
+  @include cv.define-vars(
+    (
+      'typography-weight-bold--font-weight':
+        var(--si-ref-typography-font-weight-bold),
+    )
   );
 }

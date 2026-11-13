@@ -7,34 +7,53 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-group-item--color: #{sys.$si-sys-color-text-primary};
-  --ix-group-item--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-group-item-subtitle--color: #{sys.$si-sys-color-text-secondary};
-  --ix-group-item--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-group-item--background--selected-hover: #{sys.$si-sys-color-background-hover};
-  --ix-group-item--background--selected-active: #{sys.$si-sys-color-background-selected};
-  --ix-group-item--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-group-item--background: #{sys.$si-sys-color-background-1};
-  --ix-group-item--border-color--active: rgba(0, 0, 0, 0);
-  --ix-group-item--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-group-item-indicator--background--selected: #{sys.$si-sys-color-background-accent-hover};
+  @include cv.define-vars(
+    (
+      'group-item--color': sys.$si-sys-color-text-primary,
+      'group-item--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'group-item-subtitle--color': sys.$si-sys-color-text-secondary,
+      'group-item--background--selected': sys.$si-sys-color-background-selected,
+      'group-item--background--selected--hover':
+        sys.$si-sys-color-background-hover,
+      'group-item--background--selected--active':
+        sys.$si-sys-color-background-selected,
+      'group-item--color--disabled': sys.$si-sys-color-text-disabled,
+      'group-item--background': sys.$si-sys-color-background-1,
+      'group-item--border-color--active': rgba(0, 0, 0, 0),
+      'group-item--border-color--hover': rgba(0, 0, 0, 0),
+      'group-item-indicator--background--selected':
+        sys.$si-sys-color-background-accent-hover,
+    )
+  );
 }
 
 :host {
-  --ix-group-item--font: #{sys.$si-sys-typography-body-paragraph};
-  --ix-group-item--min-height: #{sys.$si-sys-sizing-size-90};
-  --ix-group-item--height: #{sys.$si-sys-sizing-size-90};
-  --ix-group-item-group-footer--padding-left: #{sys.$si-sys-sizing-spacing-x-100};
-  --ix-group-item-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-group-item-group-entry-selection-indicator--width: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-group-item--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
-  --ix-group-item--outline-offset--focus: calc(
-    -1 * var(--ix-group-item--outline-width--focus)
+  @include cv.define-vars(
+    (
+      'group-item--font': sys.$si-sys-typography-body-paragraph,
+      'group-item--min-height': sys.$si-sys-sizing-size-90,
+      'group-item--height': sys.$si-sys-sizing-size-90,
+      'group-item-group-footer--padding-left': sys.$si-sys-sizing-spacing-x-100,
+      'group-item-icon--margin-right': sys.$si-sys-sizing-spacing-x-20,
+      'group-item-group-entry-selection-indicator--width':
+        sys.$si-sys-sizing-spacing-x-20,
+      'group-item--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
   );
-  --ix-group-item--border-top-width: calc(
-    #{sys.$si-sys-sizing-border-width-default} * 0.992
+  @include cv.define-vars(
+    (
+      'group-item--outline-offset--focus':
+        calc(-1 * #{cv.get-var('group-item--outline-width--focus')}),
+      'group-item--border-top-width':
+        calc(#{sys.$si-sys-sizing-border-width-default} * 0.992),
+    )
   );
 }

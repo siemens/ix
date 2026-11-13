@@ -7,13 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-dropdown-header--color: #{sys.$si-sys-color-text-secondary};
+  @include cv.define-vars(
+    (
+      'dropdown-header--color': sys.$si-sys-color-text-secondary,
+    )
+  );
 }
 
 :host {
-  --ix-dropdown-header--height: #{sys.$si-sys-sizing-size-90};
-  --ix-dropdown-header--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-60};
+  @include cv.define-vars(
+    (
+      'dropdown-header--height': sys.$si-sys-sizing-size-90,
+      'dropdown-header--padding': #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-60},
+    )
+  );
 }

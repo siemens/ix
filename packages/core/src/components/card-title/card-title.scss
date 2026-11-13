@@ -1,14 +1,15 @@
 @use 'tokens/system' as sys;
 
 @use './card-title.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  margin-top: var(--ix-card-title--margin-top);
-  margin-bottom: var(--ix-card-title--margin-bottom);
-  gap: var(--ix-card-title--gap);
+  margin-top: cv.get-var('card-title--margin-top');
+  margin-bottom: cv.get-var('card-title--margin-bottom');
+  gap: cv.get-var('card-title--gap');
 
   width: 100%;
 
@@ -16,7 +17,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    gap: var(--ix-card-title-title-actions--gap);
+    gap: cv.get-var('card-title-title-actions--gap');
     margin-left: auto;
     margin-right: 0;
   }

@@ -4,12 +4,21 @@
  * SPDX-License-Identifier: MIT
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-playground--gap: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-playground--max-width: 64rem;
-  --ix-playground--padding: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-playground-scenario--gap: #{sys.$si-sys-sizing-spacing-y-60};
-  --ix-playground--padding-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
+  @include cv.define-vars(
+    (
+      'playground--gap': sys.$si-sys-sizing-spacing-y-90,
+      'playground--max-width': 64rem,
+      'playground--padding': sys.$si-sys-sizing-spacing-y-90,
+      'playground-scenario--gap': sys.$si-sys-sizing-spacing-y-60,
+      'playground--padding-inline-start': sys.$si-sys-sizing-spacing-x-80,
+    )
+  );
 }

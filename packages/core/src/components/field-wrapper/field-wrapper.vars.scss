@@ -7,21 +7,36 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-field-wrapper-icon--color--info: #{sys.$si-sys-color-background-information};
-  --ix-field-wrapper-icon--color--invalid: #{sys.$si-sys-color-background-danger};
-  --ix-field-wrapper-icon--color--valid: #{sys.$si-sys-color-background-success};
-  --ix-field-wrapper-icon--color--warning: #{sys.$si-sys-color-background-warning};
+  @include cv.define-vars(
+    (
+      'field-wrapper-icon--color--info':
+        sys.$si-sys-color-background-information,
+      'field-wrapper-icon--color--invalid': sys.$si-sys-color-background-danger,
+      'field-wrapper-icon--color--valid': sys.$si-sys-color-background-success,
+      'field-wrapper-icon--color--warning': sys.$si-sys-color-background-warning,
+    )
+  );
 }
 
 :host {
-  --ix-field-wrapper-bottom-text--gap: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-field-wrapper-bottom-text--margin-right: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-field-wrapper-slot-wrapper--gap: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-field-wrapper-field-top--gap: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-field-wrapper-bottom-text--margin-top: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-field-wrapper-bottom-text--margin-bottom: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-field-wrapper-text-icon--margin: #{sys.$si-sys-sizing-spacing-y-10};
+  @include cv.define-vars(
+    (
+      'field-wrapper-bottom-text--gap': sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-bottom-text--margin-right': sys.$si-sys-sizing-spacing-x-20,
+      'field-wrapper-slot-wrapper--gap': sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-field-top--gap': sys.$si-sys-sizing-spacing-x-60,
+      'field-wrapper-bottom-text--margin-top': sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-bottom-text--margin-bottom':
+        sys.$si-sys-sizing-spacing-y-20,
+      'field-wrapper-text-icon--margin': sys.$si-sys-sizing-spacing-y-10,
+    )
+  );
 }

@@ -7,13 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-chat-attachment-attachment-chip--max-width: #{sys.$si-sys-sizing-size-170};
-  --ix-chat-attachment-status-content--gap: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-chat-attachment-status-content--margin-left: calc(
-    #{sys.$si-sys-sizing-spacing-x-10} * 1.5
+  @include cv.define-vars(
+    (
+      'chat-attachment-attachment-chip--max-width': sys.$si-sys-sizing-size-170,
+      'chat-attachment-status-content--gap': sys.$si-sys-sizing-spacing-x-40,
+      'chat-attachment-status-content--margin-left':
+        calc(#{sys.$si-sys-sizing-spacing-x-10} * 1.5),
+      'chat-attachment-has-remove-button--gap': sys.$si-sys-sizing-spacing-x-30,
+    )
   );
-  --ix-chat-attachment-has-remove-button--gap: #{sys.$si-sys-sizing-spacing-x-30};
 }

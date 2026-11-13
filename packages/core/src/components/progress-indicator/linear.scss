@@ -7,27 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use './progress-indicator-vars' as progress-vars;
+@use 'mixins/component-vars' as cv;
 
-@use './linear.vars' as *;
 @mixin linear {
   .linear-progress-container {
     width: 100%;
-    height: var(--ix-progress-indicator-height);
-    background-color: var(--ix-progress-indicator-track--background);
-    border-radius: var(
-      --ix-progress-indicator-linear-progress-container--border-radius
+    height: cv.get-var('progress-indicator--height');
+    background-color: cv.get-var('progress-indicator-track--background');
+    border-radius: cv.get-var(
+      'progress-indicator-linear-progress-container--border-radius'
     );
     overflow: hidden;
-    margin: var(
-      --ix-progress-indicator-margin,
-      var(--ix-progress-indicator-progress-container--margin)
-    );
+    margin: cv.get-var('progress-indicator--margin');
   }
 
   @each $state in progress-vars.$progress-indicator-states {
     .linear-progress-container.#{$state} {
-      background-color: var(
-        --ix-progress-indicator-track-#{$state}--background
+      background-color: cv.get-var(
+        'progress-indicator-track--background--#{$state}'
       );
     }
   }
@@ -40,8 +37,8 @@
 
   .progress-bar {
     height: 100%;
-    background-color: var(--ix-progress-indicator-color);
+    background-color: cv.get-var('progress-indicator--color');
     transition: width
-      var(--ix-progress-indicator-progress-bar--transition-duration) ease;
+      cv.get-var('progress-indicator-progress-bar--transition-duration') ease;
   }
 }

@@ -7,66 +7,111 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-slider-thumb--background--active: #{sys.$si-sys-color-background-accent-active};
-  --ix-slider-thumb--background--disabled: #{sys.$si-sys-color-background-disabled};
-  --ix-slider-thumb--background--hover: #{sys.$si-sys-color-background-accent-hover};
-  --ix-slider-thumb--background--info--active: #{sys.$si-sys-color-background-information-active};
-  --ix-slider-thumb--background--info--hover: #{sys.$si-sys-color-background-information-hover};
-  --ix-slider-thumb--background--info: #{sys.$si-sys-color-background-information};
-  --ix-slider-thumb--background--invalid--active: #{sys.$si-sys-color-background-danger-active};
-  --ix-slider-thumb--background--invalid--hover: #{sys.$si-sys-color-background-danger-hover};
-  --ix-slider-thumb--background--invalid: #{sys.$si-sys-color-background-danger};
-  --ix-slider-thumb--background--warning--active: #{sys.$si-sys-color-background-warning-active};
-  --ix-slider-thumb--background--warning--hover: #{sys.$si-sys-color-background-warning-hover};
-  --ix-slider-thumb--background--warning: #{sys.$si-sys-color-background-warning};
-  --ix-slider-thumb--background: #{sys.$si-sys-color-background-accent};
-  --ix-slider-thumb--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-slider-trace--background--active: #{sys.$si-sys-color-border-accent-active};
-  --ix-slider-trace--background--disabled: #{sys.$si-sys-color-border-disabled};
-  --ix-slider-trace--background--hover: #{sys.$si-sys-color-border-accent-hover};
-  --ix-slider-trace--background--info: #{sys.$si-sys-color-border-information};
-  --ix-slider-trace--background--invalid: #{sys.$si-sys-color-border-danger};
-  --ix-slider-trace--background--warning: #{sys.$si-sys-color-border-warning};
-  --ix-slider-trace--background: #{sys.$si-sys-color-border-accent};
-  --ix-slider-trace-marker--background--disabled: #{sys.$si-sys-color-background-disabled};
-  --ix-slider-trace-marker--background--info: #{sys.$si-sys-color-background-information};
-  --ix-slider-trace-marker--background--invalid: #{sys.$si-sys-color-background-danger};
-  --ix-slider-trace-marker--background--warning: #{sys.$si-sys-color-background-warning};
-  --ix-slider-trace-marker--background: #{sys.$si-sys-color-background-accent};
-  --ix-slider-track--background--disabled: #{sys.$si-sys-color-background-2};
-  --ix-slider-track--background: #{sys.$si-sys-color-border-4};
-  --ix-slider-track-marker--background--disabled: #{sys.$si-sys-color-background-disabled};
-  --ix-slider-track-marker--background: #{sys.$si-sys-color-border-2};
+  @include cv.define-vars(
+    (
+      'slider-thumb--background--active':
+        sys.$si-sys-color-background-accent-active,
+      'slider-thumb--background--disabled':
+        sys.$si-sys-color-background-disabled,
+      'slider-thumb--background--hover':
+        sys.$si-sys-color-background-accent-hover,
+      'slider-thumb--background--info--active':
+        sys.$si-sys-color-background-information-active,
+      'slider-thumb--background--info--hover':
+        sys.$si-sys-color-background-information-hover,
+      'slider-thumb--background--info': sys.$si-sys-color-background-information,
+      'slider-thumb--background--invalid--active':
+        sys.$si-sys-color-background-danger-active,
+      'slider-thumb--background--invalid--hover':
+        sys.$si-sys-color-background-danger-hover,
+      'slider-thumb--background--invalid': sys.$si-sys-color-background-danger,
+      'slider-thumb--background--warning--active':
+        sys.$si-sys-color-background-warning-active,
+      'slider-thumb--background--warning--hover':
+        sys.$si-sys-color-background-warning-hover,
+      'slider-thumb--background--warning': sys.$si-sys-color-background-warning,
+      'slider-thumb--background': sys.$si-sys-color-background-accent,
+      'slider-thumb--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'slider-trace--background--active': sys.$si-sys-color-border-accent-active,
+      'slider-trace--background--disabled': sys.$si-sys-color-border-disabled,
+      'slider-trace--background--hover': sys.$si-sys-color-border-accent-hover,
+      'slider-trace--background--info': sys.$si-sys-color-border-information,
+      'slider-trace--background--invalid': sys.$si-sys-color-border-danger,
+      'slider-trace--background--warning': sys.$si-sys-color-border-warning,
+      'slider-trace--background': sys.$si-sys-color-border-accent,
+      'slider-trace-marker--background--disabled':
+        sys.$si-sys-color-background-disabled,
+      'slider-trace-marker--background--info':
+        sys.$si-sys-color-background-information,
+      'slider-trace-marker--background--invalid':
+        sys.$si-sys-color-background-danger,
+      'slider-trace-marker--background--warning':
+        sys.$si-sys-color-background-warning,
+      'slider-trace-marker--background': sys.$si-sys-color-background-accent,
+      'slider-track--background--disabled': sys.$si-sys-color-background-2,
+      'slider-track--background': sys.$si-sys-color-border-4,
+      'slider-track-marker--background--disabled':
+        sys.$si-sys-color-background-disabled,
+      'slider-track-marker--background': sys.$si-sys-color-border-2,
+    )
+  );
 }
 
 :host {
-  --ix-slider-thumb--transition-duration: var(--theme-default-time);
-  --ix-slider--min-height: #{sys.$si-sys-sizing-size-80};
-  --ix-slider--thumb-size: #{sys.$si-sys-sizing-size-60};
-  --ix-slider--thumb-height: var(--ix-slider--thumb-size);
-  // The 20px circle is centered 7px in from each track end, so 3px paints outside the component.
-  --ix-slider-thumb--overhang: 3px;
-  --ix-slider-thumb--inset: calc(
-    (var(--ix-slider--thumb-size) - 2 * var(--ix-slider-thumb--overhang)) / 2
+  @include cv.define-vars(
+    (
+      'slider-thumb--transition-duration': var(--theme-default-time),
+      'slider--min-height': sys.$si-sys-sizing-size-80,
+      'slider-thumb--size': sys.$si-sys-sizing-size-60,
+      // The 20px circle is centered 7px in from each track end, so 3px paints outside the component.
+      'slider-thumb--overhang': 3px,
+      'slider--height': sys.$si-sys-sizing-size-80,
+      'slider-control--gap': sys.$si-sys-sizing-spacing-y-10,
+      'slider-label--margin-top': sys.$si-sys-sizing-spacing-y-40,
+      'slider-track--height': sys.$si-sys-sizing-size-20,
+      'slider-reference--width': sys.$si-sys-sizing-size-10,
+      'slider-reference--height': sys.$si-sys-sizing-size-50,
+      'slider--z-index': 10,
+      'slider--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+      'slider--outline-offset': sys.$si-sys-sizing-focus-ring-offset,
+      'slider-ticks--tick-size': calc(#{sys.$si-sys-sizing-size-50} * 0.375),
+      'slider-track--border-radius': sys.$si-sys-sizing-border-radius-xs,
+      'slider-thumb--border-radius': sys.$si-sys-sizing-border-radius-full,
+    )
   );
-  --ix-slider--height: #{sys.$si-sys-sizing-size-80};
-  --ix-slider-control--gap: #{sys.$si-sys-sizing-spacing-y-10};
-  --ix-slider-label--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-slider-input--margin-top: calc(
-    (var(--ix-slider-input--track-height) - var(--ix-slider--thumb-height)) / 2
+  @include cv.define-vars(
+    (
+      'slider-thumb--height': cv.get-var('slider-thumb--size'),
+      'slider-thumb--inset':
+        calc(
+          (
+              #{cv.get-var('slider-thumb--size')} - 2 * #{cv.get-var(
+                  'slider-thumb--overhang'
+                )}
+            ) / 2
+        ),
+      'slider-input-track--height': cv.get-var('slider-track--height'),
+      'slider-trace--height': cv.get-var('slider-track--height'),
+    )
   );
-  --ix-slider-trace--height: var(--ix-slider-track--height);
-  --ix-slider-reference--width: #{sys.$si-sys-sizing-size-10};
-  --ix-slider-reference--height: #{sys.$si-sys-sizing-size-50};
-  --ix-slider-input--track-height: var(--ix-slider-track--height);
-  --ix-slider--z-index: 10;
-  --ix-slider--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
-  --ix-slider--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-slider-ticks--tick-size: calc(#{sys.$si-sys-sizing-size-50} * 0.375);
-  --ix-slider-track--height: #{sys.$si-sys-sizing-size-20};
-  --ix-slider-track--border-radius: #{sys.$si-sys-sizing-border-radius-xs};
-  --ix-slider-thumb--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  @include cv.define-vars(
+    (
+      'slider-input--margin-top':
+        calc(
+          (
+              #{cv.get-var('slider-input-track--height')} - #{cv.get-var(
+                  'slider-thumb--height'
+                )}
+            ) / 2
+        ),
+    )
+  );
 }

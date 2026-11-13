@@ -557,6 +557,44 @@ regressionTest(
   }
 );
 
+regressionTest(
+  'icon-only renders the dropdown indicator in the button color',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-dropdown-button icon="checkboxes" variant="danger-primary">
+        <ix-dropdown-item label="Test"></ix-dropdown-item>
+      </ix-dropdown-button>
+      `,
+      { icons: { iconCheckboxes } }
+    );
+
+    const iconButton = page.locator('ix-dropdown-button ix-icon-button');
+    const button = iconButton.locator('button');
+    const indicator = button.locator('.dropdown-indicator');
+    await expect(indicator).toBeAttached();
+
+    const buttonColor = await button.evaluate(
+      (el) => getComputedStyle(el).color
+    );
+    await expect(indicator).toHaveCSS('border-bottom-color', buttonColor);
+
+    const buttonBox = await iconButton.boundingBox();
+    const indicatorBox = await indicator.boundingBox();
+    if (!buttonBox || !indicatorBox) {
+      throw new Error('Expected icon button and indicator to be rendered');
+    }
+    expect(indicatorBox.x + indicatorBox.width).toBeLessThanOrEqual(
+      buttonBox.x + buttonBox.width
+    );
+    expect(indicatorBox.y + indicatorBox.height).toBeLessThanOrEqual(
+      buttonBox.y + buttonBox.height
+    );
+    expect(indicatorBox.x).toBeGreaterThan(buttonBox.x + buttonBox.width / 2);
+    expect(indicatorBox.y).toBeGreaterThan(buttonBox.y + buttonBox.height / 2);
+  }
+);
+
 regressionTest('close behavior - outside', async ({ mount, page }) => {
   await mount(`
   <ix-dropdown-button close-behavior="outside" label="Open">

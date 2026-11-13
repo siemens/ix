@@ -10,16 +10,21 @@
 @use 'tokens/system' as sys;
 
 @use './dropdown-quick-actions.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-inline-start: var(--ix-dropdown-quick-actions--margin-inline-start);
-  margin-inline-end: var(--ix-dropdown-quick-actions--margin-inline-end);
-  margin-block-end: var(--ix-dropdown-quick-actions--margin-block-end);
+  margin-inline-start: cv.get-var(
+    'dropdown-quick-actions--margin-inline-start'
+  );
+  margin-inline-end: cv.get-var('dropdown-quick-actions--margin-inline-end');
+  margin-block-end: cv.get-var('dropdown-quick-actions--margin-block-end');
 
   slot::slotted(*) {
     display: flex;
-    margin-inline-end: var(--ix-dropdown-quick-actions-item--margin-inline-end);
+    margin-inline-end: cv.get-var(
+      'dropdown-quick-actions-item--margin-inline-end'
+    );
   }
 }

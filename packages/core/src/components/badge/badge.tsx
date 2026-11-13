@@ -61,7 +61,7 @@ const BADGE_DESCRIPTION_SLOT = 'description';
  * For `dot` and `status-icon`, provide a host `aria-label` and a naming role
  * (for example `role="img"`, or `role="status"` / `role="alert"` for a live region).
  *
- * Override max-width with `--ix-badge-max-width`.
+ * Override max-width with `--ix-badge--max-width`.
  *
  * @documentation https://ix.siemens.io/docs/components/badge/guide.md
  * @figma-main-component-id 138424:114072
@@ -150,7 +150,7 @@ export class Badge
 
   /**
    * Play the attention pulse animation.
-   * Override duration with `--ix-badge-animation-duration` (default `2s`).
+   * Override duration with `--ix-badge--animation-duration` (default `2s`).
    *
    * @since 5.2.0
    */
@@ -616,8 +616,8 @@ export class Badge
     const customHostStyle =
       hostVariant === 'custom'
         ? ({
-            '--ix-badge-custom-background': this.background,
-            '--ix-badge-custom-color': this.badgeColor,
+            '--ix-badge--background--custom': this.background,
+            '--ix-badge--color--custom': this.badgeColor,
           } as Record<string, string | undefined>)
         : undefined;
 
@@ -639,8 +639,8 @@ export class Badge
           ...customHostStyle,
           ...(this.hasAnchor
             ? {
-                '--ix-badge-offset-x': convertToRemString(offsets.x),
-                '--ix-badge-offset-y': convertToRemString(offsets.y),
+                '--ix-badge--offset-x': convertToRemString(offsets.x),
+                '--ix-badge--offset-y': convertToRemString(offsets.y),
               }
             : {}),
         }}

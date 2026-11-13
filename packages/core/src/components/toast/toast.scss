@@ -11,24 +11,26 @@
 @use 'mixins/fonts';
 
 @use './toast.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   flex-direction: column;
   position: relative;
-  min-width: var(--ix-toast--min-width);
-  max-width: var(--ix-toast--max-width);
-  min-height: var(--ix-toast--min-height);
+  min-width: cv.get-var('toast--min-width');
+  max-width: cv.get-var('toast--max-width');
+  min-height: cv.get-var('toast--min-height');
 
   pointer-events: all;
 
-  background-color: var(--ix-toast--background);
-  border: var(--ix-toast--border-width) solid var(--ix-toast--border-color);
-  border-radius: var(--ix-toast--border-radius);
-  box-shadow: var(--ix-toast--box-shadow);
+  background-color: cv.get-var('toast--background');
+  border: cv.get-var('toast--border-width') solid
+    cv.get-var('toast--border-color');
+  border-radius: cv.get-var('toast--border-radius');
+  box-shadow: cv.get-var('toast--box-shadow');
   overflow: hidden;
 
   animation-name: toast-fade-in;
-  animation-duration: var(--ix-toast--animation-duration);
+  animation-duration: cv.get-var('toast--animation-duration');
   animation-fill-mode: both;
 
   @include component.ix-component;
@@ -36,26 +38,26 @@
   .toast-body {
     display: flex;
     position: relative;
-    min-height: var(--ix-toast-body--min-height);
+    min-height: cv.get-var('toast-body--min-height');
     width: 100%;
     flex-grow: 1;
-    padding: var(--ix-toast-body--padding);
+    padding: cv.get-var('toast-body--padding');
 
     .toast-icon {
       display: flex;
       align-items: flex-start;
-      padding: var(--ix-toast-icon--padding);
+      padding: cv.get-var('toast-icon--padding');
     }
 
     .toast-content {
       overflow: hidden;
       min-width: 0;
       width: 100%;
-      padding: var(--ix-toast-content--padding);
+      padding: cv.get-var('toast-content--padding');
 
       .toast-title {
         min-width: 0;
-        margin: var(--ix-toast-title--margin);
+        margin: cv.get-var('toast-title--margin');
         overflow-wrap: break-word;
         word-break: break-word;
       }
@@ -69,7 +71,7 @@
       }
 
       .toast-action {
-        margin-top: var(--ix-toast-action--margin-top);
+        margin-top: cv.get-var('toast-action--margin-top');
 
         &--empty {
           margin-top: 0;
@@ -84,7 +86,7 @@
     pointer-events: all;
     margin-left: auto;
     margin-right: 0px;
-    opacity: var(--ix-toast-close--opacity);
+    opacity: cv.get-var('toast-close--opacity');
     &:hover {
       opacity: 1;
     }
@@ -93,9 +95,9 @@
   .toast-progress-bar {
     position: absolute;
     bottom: 0;
-    height: var(--ix-toast-progress-bar--height);
+    height: cv.get-var('toast-progress-bar--height');
     width: 100%;
-    background-color: var(--ix-toast-timer-value--background);
+    background-color: cv.get-var('toast-timer-value--background');
     transform-origin: left;
 
     &--animated {
@@ -119,12 +121,12 @@
   top: 0;
   bottom: 0;
   left: 0;
-  width: var(--ix-toast--strip-width);
-  border-radius: var(--ix-toast--border-radius) 0 0
-    var(--ix-toast--border-radius);
+  width: cv.get-var('toast--strip-width');
+  border-radius: cv.get-var('toast--border-radius') 0 0
+    cv.get-var('toast--border-radius');
   z-index: 1;
   pointer-events: none;
-  background-color: var(--ix-toast-status-color);
+  background-color: cv.get-var('toast--status-color');
 }
 
 :host(.toast-fade-out) {

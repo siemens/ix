@@ -7,13 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-content-header-title-group--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-content-header-header-slot--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-content-header-secondary--padding: #{sys.$si-sys-sizing-spacing-y-20} 0;
-  --ix-content-header-back-button--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-content-header-overflow-button--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-content-header-actions--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  @include cv.define-vars(
+    (
+      'content-header-title-group--margin-right':
+        sys.$si-sys-sizing-spacing-x-40,
+      'content-header-header-slot--margin-left': sys.$si-sys-sizing-spacing-x-40,
+      'content-header--padding--secondary': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'content-header-back-button--margin-right':
+        sys.$si-sys-sizing-spacing-x-40,
+      'content-header-overflow-button--margin-left':
+        sys.$si-sys-sizing-spacing-x-40,
+      'content-header-actions--gap': sys.$si-sys-sizing-spacing-x-20,
+    )
+  );
 }

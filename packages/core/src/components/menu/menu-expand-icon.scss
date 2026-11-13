@@ -11,6 +11,7 @@
 @use 'mixins/shadow-dom/component';
 
 @use './menu-expand-icon.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 @include button-mixin.btn;
 @include button-mixin.btn-variant(subtle-tertiary);
@@ -19,9 +20,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--ix-menu-expand-icon--height);
-  width: var(--ix-menu-expand-icon--width);
-  border-radius: var(--ix-menu-expand-icon--border-radius);
+  height: cv.get-var('menu-expand-icon--height');
+  width: cv.get-var('menu-expand-icon--width');
+  border-radius: cv.get-var('menu-expand-icon--border-radius');
   pointer-events: all;
 
   @include component.ix-component;
@@ -32,35 +33,35 @@
   }
 
   .line {
-    fill: var(--ix-menu-expand-icon--color);
+    fill: cv.get-var('menu-expand-icon--color');
     opacity: 1;
-    x: var(--ix-menu-expand-icon-line--x);
-    transition: x var(--ix-menu-expand-icon-line--transition-duration) ease-in
-        var(--ix-menu-expand-icon--transition-delay),
-      transform var(--ix-menu-expand-icon-line--transition-duration) ease-in-out
-        var(--ix-menu-expand-icon-line--transition-duration),
-      y var(--ix-menu-expand-icon-line--transition-duration) ease-in-out,
-      opacity var(--ix-menu-expand-icon-line--transition-duration) linear
-        var(--ix-menu-expand-icon-line--transition-duration);
+    x: cv.get-var('menu-expand-icon-line--x');
+    transition: x cv.get-var('menu-expand-icon-line--transition-duration')
+        ease-in cv.get-var('menu-expand-icon--transition-delay'),
+      transform cv.get-var('menu-expand-icon-line--transition-duration')
+        ease-in-out cv.get-var('menu-expand-icon-line--transition-duration'),
+      y cv.get-var('menu-expand-icon-line--transition-duration') ease-in-out,
+      opacity cv.get-var('menu-expand-icon-line--transition-duration') linear
+        cv.get-var('menu-expand-icon-line--transition-duration');
     transform-origin: center;
   }
 }
 
 @include hover.host-hover {
   .menu-expand-button {
-    background-color: var(--ix-menu-expand-icon--background--hover);
+    background-color: cv.get-var('menu-expand-icon--background--hover');
   }
 }
 
 .menu-expand-button {
-  width: var(--ix-menu-expand-icon-menu-expand-button--width);
+  width: cv.get-var('menu-expand-icon-menu-expand-button--width');
   padding: 0px !important;
   cursor: pointer;
 }
 
 @include hover.host-active {
   .menu-expand-button {
-    background-color: var(--ix-menu-expand-icon--background--active);
+    background-color: cv.get-var('menu-expand-icon--background--active');
   }
 }
 
@@ -68,17 +69,17 @@
   svg .line-1 {
     opacity: 1;
     transform: rotate(-45deg);
-    y: var(--ix-menu-expand-icon-line-1--y);
+    y: cv.get-var('menu-expand-icon-line-1--y');
   }
 
   svg .line-2 {
     opacity: 0;
-    x: var(--ix-menu-expand-icon-line--x--expanded);
+    x: cv.get-var('menu-expand-icon-line--x--expanded');
   }
 
   svg .line-3 {
     opacity: 1;
     transform: rotate(45deg);
-    y: var(--ix-menu-expand-icon-line-3--y);
+    y: cv.get-var('menu-expand-icon-line-3--y');
   }
 }

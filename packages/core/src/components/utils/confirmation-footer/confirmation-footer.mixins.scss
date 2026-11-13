@@ -8,6 +8,7 @@
  */
 
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 @mixin full-width {
   width: 100%;
@@ -20,12 +21,16 @@
 /// Styles of the `ConfirmationFooter` functional component.
 @mixin confirmation-footer {
   .confirmation-footer {
-    --ix-confirmation-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
+    @include cv.set-var(
+      'confirmation-footer--gap',
+      sys.$si-sys-sizing-spacing-x-40,
+      $external: true
+    );
 
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: var(--ix-confirmation-footer--gap);
+    gap: cv.get-var('confirmation-footer--gap', $external: true);
   }
 
   .confirmation-footer.layout-center {

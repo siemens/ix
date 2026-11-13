@@ -12,11 +12,12 @@
 @use 'mixins/text-truncation';
 
 @use './group-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
-  min-height: var(--ix-group-item--min-height);
-  height: var(--ix-group-item--height);
+  min-height: cv.get-var('group-item--min-height');
+  height: cv.get-var('group-item--height');
 
   @include component.ix-component;
 
@@ -29,17 +30,17 @@
     justify-content: flex-start;
     position: relative;
     outline: none;
-    background-color: var(--ix-group-item--background);
+    background-color: cv.get-var('group-item--background');
     border: none;
-    color: var(--ix-group-item--color);
+    color: cv.get-var('group-item--color');
     cursor: pointer;
 
-    padding-left: var(--ix-group-item-group-footer--padding-left);
+    padding-left: cv.get-var('group-item-group-footer--padding-left');
 
     &:focus-visible {
-      outline: var(--ix-group-item--outline-width--focus) solid
-        var(--ix-group-item--outline-color--focus);
-      outline-offset: var(--ix-group-item--outline-offset--focus);
+      outline: cv.get-var('group-item--outline-width--focus') solid
+        cv.get-var('group-item--outline-color--focus');
+      outline-offset: cv.get-var('group-item--outline-offset--focus');
     }
 
     &:disabled {
@@ -54,18 +55,18 @@
   }
 
   ix-icon {
-    margin-right: var(--ix-group-item-icon--margin-right);
+    margin-right: cv.get-var('group-item-icon--margin-right');
   }
 
   .group-entry-selection-indicator {
     position: absolute;
     left: 0;
     height: 100%;
-    width: var(--ix-group-item-group-entry-selection-indicator--width);
+    width: cv.get-var('group-item-group-entry-selection-indicator--width');
   }
 
   .group-entry-text {
-    font: var(--ix-group-item--font);
+    font: cv.get-var('group-item--font');
     @include text-truncation.ellipsis();
   }
 
@@ -74,46 +75,46 @@
     justify-content: flex-end;
     flex-grow: 1;
     white-space: nowrap;
-    color: var(--ix-group-item-subtitle--color);
+    color: cv.get-var('group-item-subtitle--color');
 
     &,
     span {
-      font: var(--ix-group-item--font);
+      font: cv.get-var('group-item--font');
       @include text-truncation.ellipsis;
     }
   }
 }
 
 :host(.selected) {
-  border-top-width: var(--ix-group-item--border-top-width) !important;
-  background-color: var(--ix-group-item--background--selected);
+  border-top-width: cv.get-var('group-item--border-top-width') !important;
+  background-color: cv.get-var('group-item--background--selected');
 
   .group-entry-selection-indicator {
-    background-color: var(--ix-group-item-indicator--background--selected);
+    background-color: cv.get-var('group-item-indicator--background--selected');
   }
 }
 
 :host(:not(.suppress-mouse-states):hover) {
-  background-color: var(--ix-group-item--background--selected-hover);
-  border-color: var(--ix-group-item--border-color--hover);
+  background-color: cv.get-var('group-item--background--selected--hover');
+  border-color: cv.get-var('group-item--border-color--hover');
 }
 
 :host(:not(.suppress-mouse-states).selected:hover) {
-  background-color: var(--ix-group-item--background--selected-hover);
+  background-color: cv.get-var('group-item--background--selected--hover');
 }
 
 :host(:not(.suppress-mouse-states):active):not(.suppress-mouse-states) {
-  background-color: var(--ix-group-item--background--selected-active);
-  border-color: var(--ix-group-item--border-color--active);
+  background-color: cv.get-var('group-item--background--selected--active');
+  border-color: cv.get-var('group-item--border-color--active');
 }
 
 :host(:not(.suppress-mouse-states).selected:active):not(
     .suppress-mouse-states
   ) {
-  background-color: var(--ix-group-item--background--selected-active);
+  background-color: cv.get-var('group-item--background--selected--active');
 }
 
 :host([disabled]) {
   pointer-events: none;
-  color: var(--ix-group-item--color--disabled);
+  color: cv.get-var('group-item--color--disabled');
 }

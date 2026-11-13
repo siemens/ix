@@ -9,6 +9,7 @@
 @use 'mixins/shadow-dom/component';
 
 @use './checkbox.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: inline-block;
   position: relative;
@@ -17,8 +18,8 @@
 
   .checkbox-button {
     position: relative;
-    height: var(--ix-checkbox-button--height);
-    width: var(--ix-checkbox-button--width);
+    height: cv.get-var('checkbox-button--height');
+    width: cv.get-var('checkbox-button--width');
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -29,8 +30,11 @@
       content: '';
       position: absolute;
       inset: calc(
-        (var(--ix-checkbox-button--height) - var(--ix-checkbox--target-size)) /
-          2
+        (
+            #{cv.get-var('checkbox-button--height')} - #{cv.get-var(
+                'checkbox--target-size'
+              )}
+          ) / 2
       );
     }
   }
@@ -44,18 +48,18 @@
     align-items: center;
     justify-content: center;
 
-    width: var(--ix-checkbox--width);
-    min-width: var(--ix-checkbox--min-width);
-    max-width: var(--ix-checkbox--max-width);
-    height: var(--ix-checkbox--height);
-    min-height: var(--ix-checkbox--min-height);
-    max-height: var(--ix-checkbox--max-height);
+    width: cv.get-var('checkbox--width');
+    min-width: cv.get-var('checkbox--min-width');
+    max-width: cv.get-var('checkbox--max-width');
+    height: cv.get-var('checkbox--height');
+    min-height: cv.get-var('checkbox--min-height');
+    max-height: cv.get-var('checkbox--max-height');
   }
 
   input[type='checkbox']:focus-visible + .checkbox-button .checkbox-control {
-    outline: var(--ix-checkbox--outline-width--focus) solid
-      var(--ix-checkbox--outline-color--focus);
-    outline-offset: var(--ix-checkbox--focus--outline-offset);
+    outline: cv.get-var('checkbox--outline-width--focus') solid
+      cv.get-var('checkbox--outline-color--focus');
+    outline-offset: cv.get-var('checkbox--outline-offset--focus');
   }
 
   input[type='checkbox'] {
@@ -73,7 +77,7 @@
 
     justify-content: flex-start;
     align-items: center;
-    gap: var(--ix-checkbox-label--gap);
+    gap: cv.get-var('checkbox-label--gap');
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -87,69 +91,69 @@
 @mixin checkbox-base() {
   :host {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color);
+      background-color: cv.get-var('checkbox--background--unchecked');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked');
     }
   }
 
   :host(:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--hover);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--hover);
+      background-color: cv.get-var('checkbox--background--unchecked--hover');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked--hover');
     }
   }
 
   :host(:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--active);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--active);
+      background-color: cv.get-var('checkbox--background--unchecked--active');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked--active');
     }
   }
 
   :host(.checked),
   :host(.indeterminate) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color);
+      background-color: cv.get-var('checkbox--background--checked');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked');
     }
   }
 
   :host(.checked:hover),
   :host(.indeterminate:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--hover);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--hover);
+      background-color: cv.get-var('checkbox--background--checked--hover');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked--hover');
     }
   }
 
   :host(.checked:active),
   :host(.indeterminate:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--active);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--active);
+      background-color: cv.get-var('checkbox--background--checked--active');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked--active');
     }
   }
 
   :host(.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--disabled);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--disabled);
+      background-color: cv.get-var('checkbox--background--unchecked--disabled');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked--disabled');
     }
   }
 
   :host(.checked.disabled),
   :host(.indeterminate.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--disabled);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--disabled);
+      background-color: cv.get-var('checkbox--background--checked--disabled');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked--disabled');
     }
   }
 }
@@ -158,92 +162,98 @@
   :host(#{$selector}) {
     .checkbox-control {
       @content;
-      background-color: var(--ix-checkbox-unchecked--background);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color);
+      background-color: cv.get-var('checkbox--background--unchecked');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked');
     }
   }
 
   :host(#{$selector}:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--hover);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--hover);
+      background-color: cv.get-var('checkbox--background--unchecked--hover');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked--hover');
     }
   }
 
   :host(#{$selector}:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--active);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--active);
+      background-color: cv.get-var('checkbox--background--unchecked--active');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked--active');
     }
   }
 
   :host(#{$selector}.checked),
   :host(#{$selector}.indeterminate) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color);
+      background-color: cv.get-var('checkbox--background--checked');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked');
     }
   }
 
   :host(#{$selector}.checked:hover),
   :host(#{$selector}.indeterminate:hover) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--hover);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--hover);
+      background-color: cv.get-var('checkbox--background--checked--hover');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked--hover');
     }
   }
 
   :host(#{$selector}.checked:active),
   :host(#{$selector}.indeterminate:active) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--active);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--active);
+      background-color: cv.get-var('checkbox--background--checked--active');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked--active');
     }
   }
 
   :host(#{$selector}.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-unchecked--background--disabled);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-unchecked--border-color--disabled);
+      background-color: cv.get-var('checkbox--background--unchecked--disabled');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--unchecked--disabled');
     }
   }
 
   :host(#{$selector}.checked.disabled),
   :host(#{$selector}.indeterminate.disabled) {
     .checkbox-control {
-      background-color: var(--ix-checkbox-checked--background--disabled);
-      border: var(--ix-checkbox--border-width) solid
-        var(--ix-checkbox-checked--border-color--disabled);
+      background-color: cv.get-var('checkbox--background--checked--disabled');
+      border: cv.get-var('checkbox--border-width') solid
+        cv.get-var('checkbox--border-color--checked--disabled');
     }
   }
 }
 
 @mixin define-checkbox-vars($state, $type) {
-  --ix-checkbox-#{$state}--background: var(
-    --ix-checkbox-#{$state}--background--#{$type}
+  @include cv.set-var(
+    'checkbox--background--#{$state}',
+    cv.get-var('checkbox--background--#{$type}--#{$state}')
   );
-  --ix-checkbox-#{$state}--background--hover: var(
-    --ix-checkbox-#{$state}--background--#{$type}--hover
+  @include cv.set-var(
+    'checkbox--background--#{$state}--hover',
+    cv.get-var('checkbox--background--#{$type}--#{$state}--hover')
   );
-  --ix-checkbox-#{$state}--background--active: var(
-    --ix-checkbox-#{$state}--background--#{$type}--active
+  @include cv.set-var(
+    'checkbox--background--#{$state}--active',
+    cv.get-var('checkbox--background--#{$type}--#{$state}--active')
   );
 
-  --ix-checkbox-#{$state}--border-color: var(
-    --ix-checkbox-#{$state}--border-color--#{$type}
+  @include cv.set-var(
+    'checkbox--border-color--#{$state}',
+    cv.get-var('checkbox--border-color--#{$type}--#{$state}')
   );
-  --ix-checkbox-#{$state}--border-color--hover: var(
-    --ix-checkbox-#{$state}--border-color--#{$type}--hover
+  @include cv.set-var(
+    'checkbox--border-color--#{$state}--hover',
+    cv.get-var('checkbox--border-color--#{$type}--#{$state}--hover')
   );
-  --ix-checkbox-#{$state}--border-color--active: var(
-    --ix-checkbox-#{$state}--border-color--#{$type}--active
+  @include cv.set-var(
+    'checkbox--border-color--#{$state}--active',
+    cv.get-var('checkbox--border-color--#{$type}--#{$state}--active')
   );
 }
 
@@ -251,25 +261,21 @@
 @include checkbox-variant($selector: '.ix-info') {
   @include define-checkbox-vars('unchecked', 'info');
   @include define-checkbox-vars('checked', 'info');
-  @include define-checkbox-vars('mixed', 'info');
 }
 
 @include checkbox-variant($selector: '.ix-warning') {
   @include define-checkbox-vars('unchecked', 'warning');
   @include define-checkbox-vars('checked', 'warning');
-  @include define-checkbox-vars('mixed', 'warning');
 }
 
 @include checkbox-variant($selector: '.ix-invalid--required') {
   @include define-checkbox-vars('unchecked', 'invalid');
   @include define-checkbox-vars('checked', 'invalid');
-  @include define-checkbox-vars('mixed', 'invalid');
 }
 
 @include checkbox-variant($selector: '.ix-invalid') {
   @include define-checkbox-vars('unchecked', 'invalid');
   @include define-checkbox-vars('checked', 'invalid');
-  @include define-checkbox-vars('mixed', 'invalid');
 }
 
 :host(.disabled) {
