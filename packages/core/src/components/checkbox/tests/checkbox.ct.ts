@@ -25,6 +25,80 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
   expect(results.violations).toEqual([]);
 });
 
+for (const state of [
+  '',
+  'checked',
+  'indeterminate',
+  'disabled',
+  'checked disabled',
+  'indeterminate disabled',
+]) {
+  regressionTest(
+    `border radius follows the xs token (${state || 'unchecked'})`,
+    async ({ mount, page }) => {
+      await mount(`<ix-checkbox label="Accept terms" ${state}></ix-checkbox>`);
+      const host = page.locator('ix-checkbox');
+      await expect(host).toHaveAttribute('hydrated');
+
+      const control = host.locator('.checkbox-control');
+      await expect(control).toHaveCSS('border-radius', '2px');
+
+      await host.evaluate((element) => {
+        element.style.setProperty('--si-sys-sizing-border-radius-xs', '5px');
+      });
+      await expect(control).toHaveCSS('border-radius', '5px');
+
+      if (!state.includes('disabled')) {
+        await page.keyboard.press('Tab');
+        await expect(page.getByRole('checkbox')).toBeFocused();
+        await expect(control).toHaveCSS('outline-style', 'solid');
+        await expect(control).toHaveCSS('border-radius', '5px');
+      }
+    }
+  );
+}
+
+regressionTest(
+  'native checkbox border and focus follow the xs token',
+  async ({ mount, page }) => {
+    await mount(`
+    <div>
+      <input class="ix-form-control" type="checkbox" id="accept">
+      <label for="accept">Accept terms</label>
+    </div>
+  `);
+    await page.addStyleTag({
+      url: 'http://localhost:8080/dist/siemens-ix/siemens-ix-legacy.css',
+    });
+    const label = page.getByText('Accept terms');
+    const checkbox = page.getByRole('checkbox', { name: 'Accept terms' });
+    const radius = () =>
+      label.evaluate(
+        (element) => getComputedStyle(element, '::before').borderRadius
+      );
+
+    await expect.poll(radius).toBe('2px');
+    await label.evaluate((element) => {
+      element.style.setProperty('--si-sys-sizing-border-radius-xs', '5px');
+    });
+    await page.keyboard.press('Tab');
+    await expect(checkbox).toBeFocused();
+    expect(
+      await label.evaluate(
+        (element) => getComputedStyle(element, '::before').outlineStyle
+      )
+    ).toBe('solid');
+    await expect.poll(radius).toBe('5px');
+    await page.keyboard.press('Space');
+    await expect(checkbox).toBeChecked();
+    await expect.poll(radius).toBe('5px');
+    await checkbox.evaluate((element: HTMLInputElement) => {
+      element.indeterminate = true;
+    });
+    await expect.poll(radius).toBe('5px');
+  }
+);
+
 regressionTest(`form-ready`, async ({ mount, page }) => {
   await mount(`<form><ix-checkbox name="my-field-name"></ix-checkbox></form>`);
 
