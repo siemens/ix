@@ -185,7 +185,7 @@
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.6.13",
-    "@siemens/ix-icons": "0.0.0-beta-20261021072559",
+    "@siemens/ix-icons": "3.7.1",
     "@stencil/core": "^4.43.5",
     "luxon": "^3.4.4"
   },
