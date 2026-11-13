@@ -1209,8 +1209,15 @@ export namespace Components {
      * Header area of a content page showing the title and page-level actions.
      * @documentation https://ix.siemens.io/docs/components/content-header/guide.md
      * @figma-main-component-id 4727:112521
+     * @since 6.0.0
      */
     interface IxContentHeader {
+        /**
+          * Accessible label for the secondary actions overflow menu.
+          * @since 6.0.0
+          * @default 'More actions'
+         */
+        "ariaLabelMoreActions": string;
         /**
           * Display a back button
           * @default false
@@ -4944,12 +4951,12 @@ export namespace Components {
          */
         "step": number;
         /**
-          * Show a trace line
+          * Color the track from **traceReference** to the current value, or from the minimum if they are equal. Show the reference marker only when it is between the minimum and maximum and differs from the value.
           * @default false
          */
         "trace": boolean;
         /**
-          * Define the start point of the trace line
+          * Start point of the trace segment when **trace** is enabled
           * @default 0
          */
         "traceReference": number;
@@ -6801,6 +6808,7 @@ declare global {
      * Header area of a content page showing the title and page-level actions.
      * @documentation https://ix.siemens.io/docs/components/content-header/guide.md
      * @figma-main-component-id 4727:112521
+     * @since 6.0.0
      */
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxContentHeaderElementEventMap>(type: K, listener: (this: HTMLIxContentHeaderElement, ev: IxContentHeaderCustomEvent<HTMLIxContentHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -9859,8 +9867,15 @@ declare namespace LocalJSX {
      * Header area of a content page showing the title and page-level actions.
      * @documentation https://ix.siemens.io/docs/components/content-header/guide.md
      * @figma-main-component-id 4727:112521
+     * @since 6.0.0
      */
     interface IxContentHeader {
+        /**
+          * Accessible label for the secondary actions overflow menu.
+          * @since 6.0.0
+          * @default 'More actions'
+         */
+        "ariaLabelMoreActions"?: string;
         /**
           * Display a back button
           * @default false
@@ -13776,12 +13791,12 @@ declare namespace LocalJSX {
          */
         "step"?: number;
         /**
-          * Show a trace line
+          * Color the track from **traceReference** to the current value, or from the minimum if they are equal. Show the reference marker only when it is between the minimum and maximum and differs from the value.
           * @default false
          */
         "trace"?: boolean;
         /**
-          * Define the start point of the trace line
+          * Start point of the trace segment when **trace** is enabled
           * @default 0
          */
         "traceReference"?: number;
@@ -15181,6 +15196,7 @@ declare namespace LocalJSX {
         "headerSubtitle": string | undefined;
         "textOverflow": ContentHeaderTextOverflow;
         "hasBackButton": boolean;
+        "ariaLabelMoreActions": string;
     }
     interface IxCssGridItemAttributes {
         "itemName": string;
@@ -16442,6 +16458,7 @@ declare module "@stencil/core" {
              * Header area of a content page showing the title and page-level actions.
              * @documentation https://ix.siemens.io/docs/components/content-header/guide.md
              * @figma-main-component-id 4727:112521
+             * @since 6.0.0
              */
             "ix-content-header": LocalJSX.IntrinsicElements["ix-content-header"] & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             /**
