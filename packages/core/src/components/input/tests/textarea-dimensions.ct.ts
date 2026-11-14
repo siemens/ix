@@ -196,7 +196,10 @@ regressionTest(
       `<ix-textarea textarea-width="400PX" textarea-height="200PX"></ix-textarea>`
     );
 
-    const textarea = page.locator('ix-textarea textarea');
+    const hostElement = page.locator('ix-textarea');
+    await expect(hostElement).toHaveAttribute('hydrated');
+
+    const textarea = hostElement.locator('textarea');
 
     await expect(textarea).toHaveCSS('width', '400px');
     await expect(textarea).toHaveCSS('height', '200px');
