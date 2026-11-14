@@ -190,6 +190,20 @@ regressionTest(
 );
 
 regressionTest(
+  'textarea dimensions - uppercase units',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-textarea textarea-width="400PX" textarea-height="200PX"></ix-textarea>`
+    );
+
+    const textarea = page.locator('ix-textarea textarea');
+
+    await expect(textarea).toHaveCSS('width', '400px');
+    await expect(textarea).toHaveCSS('height', '200px');
+  }
+);
+
+regressionTest(
   'textarea dimensions - invalid values fallback',
   async ({ mount, page }) => {
     await mount(
