@@ -358,6 +358,35 @@ regressionTest.describe('icon spacing', () => {
   );
 
   regressionTest(
+    'keeps observing text changes after the chip is reattached',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await chip.evaluate((element) => {
+        const parent = element.parentNode;
+        if (!parent) {
+          throw new Error('Expected a parent node');
+        }
+        element.remove();
+        parent.appendChild(element);
+      });
+      await expect(chip).toHaveAttribute('hydrated');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = 'Print';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+    }
+  );
+
+  regressionTest(
     'updates the icon gap when the same text node changes',
     async ({ mount, page }) => {
       await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });

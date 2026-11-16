@@ -135,11 +135,15 @@ export class Chip
     this.hasLabel = this.hostHasLabel();
   }
 
-  override componentDidLoad() {
-    super.componentDidLoad();
-    this.labelObserver = new MutationObserver(() => {
-      this.hasLabel = this.hostHasLabel();
-    });
+  override connectedCallback() {
+    super.connectedCallback();
+    this.hasLabel = this.hostHasLabel();
+
+    if (!this.labelObserver) {
+      this.labelObserver = new MutationObserver(() => {
+        this.hasLabel = this.hostHasLabel();
+      });
+    }
     this.labelObserver.observe(this.hostElement, {
       characterData: true,
       subtree: true,
