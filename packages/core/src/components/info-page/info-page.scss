@@ -59,13 +59,9 @@ h1 {
   margin-block-end: var(--ix-info-page-content-message--margin-block-end);
 }
 
-.message__copy {
-  margin-block-start: var(--ix-info-page-message-copy--margin-block-start);
-}
-
-.message__instructions {
+.message__description {
   margin-block-start: var(
-    --ix-info-page-message-instructions--margin-block-start
+    --ix-info-page-message-description--margin-block-start
   );
 }
 

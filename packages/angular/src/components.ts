@@ -1633,14 +1633,14 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 
 
 @ProxyCmp({
-  inputs: ['copyText', 'icon', 'iconColor', 'instructions', 'titleText']
+  inputs: ['description', 'icon', 'iconColor', 'titleText']
 })
 @Component({
   selector: 'ix-info-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['copyText', 'icon', 'iconColor', 'instructions', { name: 'titleText', required: true }],
+  inputs: ['description', 'icon', 'iconColor', { name: 'titleText', required: true }],
   standalone: false
 })
 export class IxInfoPage {

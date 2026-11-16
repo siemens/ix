@@ -51,18 +51,11 @@ export class InfoPage {
   @Prop() titleText!: string;
 
   /**
-   * Optional explanation of the topic and how it can be resolved.
+   * Optional description explaining the topic, e.g. its cause and how it can be resolved.
    *
    * @since 6.0.0
    */
-  @Prop() copyText?: string;
-
-  /**
-   * Optional instructions describing what the user should do next.
-   *
-   * @since 6.0.0
-   */
-  @Prop() instructions?: string;
+  @Prop() description?: string;
 
   private handleActionsSlotChange(event: Event) {
     const slot = event.target as HTMLSlotElement;
@@ -90,18 +83,12 @@ export class InfoPage {
               <ix-typography format="h1">{this.titleText}</ix-typography>
             </h1>
 
-            {this.copyText && (
-              <ix-typography class="message__copy" format="body-lg">
-                {this.copyText}
-              </ix-typography>
-            )}
-
-            {this.instructions && (
+            {this.description && (
               <ix-typography
-                class="message__instructions"
+                class="message__description"
                 text-color="secondary"
               >
-                {this.instructions}
+                {this.description}
               </ix-typography>
             )}
           </div>

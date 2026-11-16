@@ -1197,8 +1197,7 @@ export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEven
         icon: 'icon',
         iconColor: 'icon-color',
         titleText: 'title-text',
-        copyText: 'copy-text',
-        instructions: 'instructions'
+        description: 'description'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxInfoPage as StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage, 'titleText'>,
