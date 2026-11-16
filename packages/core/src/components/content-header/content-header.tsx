@@ -69,6 +69,7 @@ export class ContentHeader {
    * Ellipsis visually truncates the text without adding a tooltip.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Text wraps by default instead of truncating, set `ellipsis` to restore truncation
    */
   @Prop({ reflect: true }) textOverflow: ContentHeaderTextOverflow = 'wrap';
 

@@ -68,7 +68,6 @@ export class MenuAbout {
 
   /**
    * Active tab changed
-   * @since 3.0.0
    */
   @Event() tabChange!: EventEmitter<string>;
 

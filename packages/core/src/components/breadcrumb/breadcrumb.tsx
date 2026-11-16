@@ -82,7 +82,6 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

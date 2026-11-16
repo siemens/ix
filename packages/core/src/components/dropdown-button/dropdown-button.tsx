@@ -102,8 +102,6 @@ export class DropdownButton
    * ARIA label for the dropdown button.
    * Set as `aria-label` on the host, which is the interactive control.
    * The nested button is inert and is not exposed to assistive technology.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelDropdownButton?: string;
 
@@ -133,7 +131,6 @@ export class DropdownButton
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

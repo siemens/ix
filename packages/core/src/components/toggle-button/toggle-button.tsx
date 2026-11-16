@@ -73,7 +73,6 @@ export class ToggleButton
 
   /**
    * Icon name for the right side of the button
-   * @since 4.0.0
    */
   @Prop() iconRight?: string;
 

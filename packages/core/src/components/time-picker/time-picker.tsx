@@ -160,15 +160,11 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Hides the header of the picker.
-   *
-   * @since 3.2.0
    */
   @Prop() hideHeader: boolean = false;
 
   /**
    * Interval for hour selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) hourInterval: number = 1;
   @Watch('hourInterval')
@@ -180,8 +176,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Interval for minute selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) minuteInterval: number = 1;
   @Watch('minuteInterval')
@@ -193,8 +187,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Interval for second selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) secondInterval: number = 1;
   @Watch('secondInterval')
@@ -206,8 +198,6 @@ export class TimePicker extends Mixin(...DefaultMixins) {
 
   /**
    * Interval for millisecond selection.
-   *
-   * @since 3.2.0
    */
   @Prop({ mutable: true }) millisecondInterval: number = 100;
   @Watch('millisecondInterval')
@@ -372,6 +362,7 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    * Text of the time confirm button.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the removed `i18nConfirmTime` property
    */
   @Prop({ attribute: 'i18n-confirm' }) i18nConfirm = 'Confirm';
 
@@ -449,6 +440,8 @@ export class TimePicker extends Mixin(...DefaultMixins) {
    * not confirmed yet. When a pending time is discarded, it is emitted with
    * the confirmed time again, or the default time if none is confirmed, which
    * is also emitted on load. Use `timeSelect` for the applied time.
+   *
+   * @breaking-change 6.0.0 Emitted for every pick, the applied time is emitted with `timeSelect`
    */
   @Event() timeChange!: EventEmitter<string>;
 

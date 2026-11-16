@@ -142,8 +142,6 @@ export class DateDropdown
 
   /**
    * Shows week numbers displayed on the left side of the date picker
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -232,6 +230,7 @@ export class DateDropdown
    *
    * @deprecated The done button was removed. Without `requireConfirmation`
    * the dropdown closes once a complete date or range is selected.
+   * @breaking-change 6.0.0 The done button was removed, the property has no effect
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
@@ -272,7 +271,6 @@ export class DateDropdown
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -285,6 +283,8 @@ export class DateDropdown
    * range again.
    *
    * Use `dateSelect` to only receive applied ranges.
+   *
+   * @breaking-change 6.0.0 Emitted for every pick instead of on close, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;

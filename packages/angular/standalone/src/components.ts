@@ -198,7 +198,7 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
    */
   menuToggle: EventEmitter<IxApplicationHeaderCustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<IxApplicationHeaderCustomEvent<void>>;
 }
@@ -932,7 +932,7 @@ The event payload contains information about the selected date range.
 When a pending selection is discarded, it is emitted with the applied
 range again.
 
-Use `dateSelect` to only receive applied ranges.
+Use `dateSelect` to only receive applied ranges. @breaking-change 6.0.0 Emitted for every pick instead of on close, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   dateRangeChange: EventEmitter<IxDateDropdownCustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
   /**
@@ -975,7 +975,7 @@ import type { DateInputValidityState as IIxDateInputDateInputValidityState } fro
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
-   * Value change event. Emitted when the input value changes.
+   * Value change event. Emitted when the input value changes. @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
    */
   valueChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
   /**
@@ -983,7 +983,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<IxDateInputCustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Change event. Emitted when the date input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the date input loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
 }
@@ -1025,7 +1025,7 @@ formatted according to the `format` and `locale` properties.
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
 When a pending selection is discarded, it is emitted with the confirmed
-selection again. Use `dateSelect` to receive only the applied selection.
+selection again. Use `dateSelect` to receive only the applied selection. @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   dateChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -1034,7 +1034,7 @@ The `DateChangeEvent` contains `from` and `to` properties formatted according to
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 
 Emitted together with `dateChange`. @deprecated since 6.0.0, use `dateChange` instead, which carries the same
-`from`/`to` range. Will be removed in 7.0.0.
+`from`/`to` range. Will be removed in 7.0.0.,@breaking-change 6.0.0 Deprecated, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   dateRangeChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -1043,7 +1043,7 @@ button, or via the confirm button with `requireConfirmation`. With
 `singleSelection` and without `requireConfirmation` there is no button,
 so it is emitted together with `dateChange` when a date is picked.
 The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
-Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   dateSelect: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -1084,7 +1084,7 @@ import type { DateTimeInputValidityState as IIxDatetimeInputDateTimeInputValidit
 
 export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
-   * Emitted when the datetime value changes. Payload is in `format` or undefined
+   * Emitted when the datetime value changes. Payload is in `format` or undefined @breaking-change 6.0.0 Emit timing changed for picker selections
    */
   valueChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
   /**
@@ -1110,7 +1110,7 @@ Fires in two scenarios:
 Does NOT fire when:
 - The picker is opened/closed without changing the value
 - The input is blurred without modifying the value
-- The value is changed programmatically via the value property
+- The value is changed programmatically via the value property @breaking-change 6.0.0 Emitted once when the picker closes, or on Confirm with `requireConfirmation`
    */
   ixChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
 }
@@ -1167,7 +1167,7 @@ again. Use `dateSelect` for the applied selection.
   dateChange: EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
    * Datetime selection event. Emitted when the selection is applied via the
-done button, or via the confirm button with `requireConfirmation`.
+done button, or via the confirm button with `requireConfirmation`. @breaking-change 6.0.0 `from`, `to` and `time` are localized, use `isoFrom`, `isoTo` and `isoTime` for ISO 8601 values
    */
   dateSelect: EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
   /**
@@ -1544,7 +1544,7 @@ import type { IxFlipTileCustomEvent } from '@siemens/ix/components';
 
 export declare interface IxFlipTile extends Components.IxFlipTile {
   /**
-   * Event emitted when the index changes @since 3.0.0
+   * Event emitted when the index changes
    */
   toggle: EventEmitter<IxFlipTileCustomEvent<number>>;
 }
@@ -1811,7 +1811,7 @@ export declare interface IxInput extends Components.IxInput {
    */
   ixBlur: EventEmitter<IxInputCustomEvent<void>>;
   /**
-   * Event emitted when the text field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the text field loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxInputCustomEvent<string>>;
 }
@@ -2086,15 +2086,15 @@ export declare interface IxMenu extends Components.IxMenu {
    */
   mapExpandChange: EventEmitter<IxMenuCustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<IxMenuCustomEvent<void>>;
   /**
-   * Event emitted when the settings button is clicked @since 3.0.0
+   * Event emitted when the settings button is clicked
    */
   openSettings: EventEmitter<IxMenuCustomEvent<void>>;
   /**
-   * Event emitted when the about button is clicked @since 3.0.0
+   * Event emitted when the about button is clicked
    */
   openAbout: EventEmitter<IxMenuCustomEvent<void>>;
 }
@@ -2128,7 +2128,7 @@ import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/
 
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
-   * Active tab changed @since 3.0.0
+   * Active tab changed
    */
   tabChange: EventEmitter<IxMenuAboutCustomEvent<string>>;
   /**
@@ -2346,7 +2346,7 @@ import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@sieme
 
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
-   * Active tab changed @since 3.0.0
+   * Active tab changed
    */
   tabChange: EventEmitter<IxMenuSettingsCustomEvent<string>>;
   /**
@@ -2573,7 +2573,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    */
   ixBlur: EventEmitter<IxNumberInputCustomEvent<void>>;
   /**
-   * Event emitted when the input field loses focus and the value has changed @since 4.4.0
+   * Event emitted when the input field loses focus and the value has changed
    */
   ixChange: EventEmitter<IxNumberInputCustomEvent<number>>;
 }
@@ -3296,7 +3296,7 @@ export declare interface IxTextarea extends Components.IxTextarea {
    */
   ixBlur: EventEmitter<IxTextareaCustomEvent<void>>;
   /**
-   * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the textarea field loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxTextareaCustomEvent<string>>;
 }
@@ -3363,7 +3363,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   validityStateChange: EventEmitter<IxTimeInputCustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Change event. Emitted when the time input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the time input loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxTimeInputCustomEvent<string>>;
 }
@@ -3406,7 +3406,7 @@ Use it for the applied time.
    * Time change event. Emitted for every change made, also for a time that is
 not confirmed yet. When a pending time is discarded, it is emitted with
 the confirmed time again, or the default time if none is confirmed, which
-is also emitted on load. Use `timeSelect` for the applied time.
+is also emitted on load. Use `timeSelect` for the applied time. @breaking-change 6.0.0 Emitted for every pick, the applied time is emitted with `timeSelect`
    */
   timeChange: EventEmitter<IxTimePickerCustomEvent<string>>;
   /**

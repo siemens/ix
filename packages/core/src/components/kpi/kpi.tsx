@@ -42,6 +42,8 @@ export class Kpi {
    * Status of the KPI.
    * `neutral` and `accent` show no status icon.
    * Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
+   *
+   * @breaking-change 6.0.0 Status state values renamed
    */
   @Prop() state: KpiState = 'neutral';
 
