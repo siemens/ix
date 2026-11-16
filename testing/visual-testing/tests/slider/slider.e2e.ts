@@ -100,8 +100,16 @@ regressionTest('should show float steps', async ({ page, mount }) => {
   const slider = page.locator('ix-slider');
   await expect(slider).toHaveAttribute('hydrated');
 
-  await slider.hover();
-  await page.mouse.move(100, 0);
+  const thumb = slider.locator('.thumb');
+  const thumbBox = await thumb.boundingBox();
+  if (!thumbBox) {
+    throw new Error('Slider thumb is not visible');
+  }
+
+  await page.mouse.move(
+    thumbBox.x + thumbBox.width / 2,
+    thumbBox.y + thumbBox.height / 2
+  );
   await page.mouse.down();
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

@@ -60,9 +60,9 @@
   ix-icon {
     block-size: var(--ix-message-bar-icon--icon-size);
     inline-size: var(--ix-message-bar-icon--icon-size);
-    margin-top: var(--ix-message-bar-icon--margin-top);
     min-block-size: var(--ix-message-bar-icon--icon-size);
     min-inline-size: var(--ix-message-bar-icon--icon-size);
+    align-self: center;
   }
 
   .message-bar-hidden {
