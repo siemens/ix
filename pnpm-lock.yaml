@@ -199,6 +199,8 @@ overrides:
   cheerio: 1.0.0-rc.12
   rollup: npm:@rollup/wasm-node
   basic-ftp@<6.2.1: ^6.2.1
+  '@hono/node-server@<2.1.6': ^2.1.6
+  hono@<4.13.16: ^4.13.16
   libxmljs2: '-'
   xmlbuilder2: '-'
   postcss@>=8.0.0 <8.5.23: ^8.5.23
@@ -654,10 +656,10 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.68.2)
+        version: 16.0.3(@rollup/wasm-node@4.68.3)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.68.3)(tslib@2.9.1)(typescript@5.8.3)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -687,10 +689,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.68.2'
+        version: '@rollup/wasm-node@4.68.3'
       rollup-plugin-import-css:
         specifier: ^4.2.1
-        version: 4.2.1(@rollup/wasm-node@4.68.2)
+        version: 4.2.1(@rollup/wasm-node@4.68.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1011,10 +1013,10 @@ importers:
         version: 1.64.1
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
-        version: 16.0.3(@rollup/wasm-node@4.68.2)
+        version: 16.0.3(@rollup/wasm-node@4.68.3)
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@6.0.2)
+        version: 8.5.0(@rollup/wasm-node@4.68.3)(tslib@2.9.1)(typescript@6.0.2)
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -1032,13 +1034,13 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.68.2'
+        version: '@rollup/wasm-node@4.68.3'
       rollup-plugin-dts:
         specifier: ^6.4.1
-        version: 6.4.1(@rollup/wasm-node@4.68.2)(typescript@6.0.2)
+        version: 6.4.1(@rollup/wasm-node@4.68.3)(typescript@6.0.2)
       rollup-plugin-peer-deps-external:
         specifier: ^2.2.4
-        version: 2.2.4(@rollup/wasm-node@4.68.2)
+        version: 2.2.4(@rollup/wasm-node@4.68.3)
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
@@ -1063,7 +1065,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
-        version: 8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.8.1)(typescript@5.8.3)
+        version: 8.5.0(@rollup/wasm-node@4.68.3)(tslib@2.8.1)(typescript@5.8.3)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
@@ -1120,10 +1122,10 @@ importers:
         version: 6.1.3
       rollup:
         specifier: npm:@rollup/wasm-node
-        version: '@rollup/wasm-node@4.68.2'
+        version: '@rollup/wasm-node@4.68.3'
       rollup-plugin-preserve-directives:
         specifier: ^0.4.0
-        version: 0.4.0(@rollup/wasm-node@4.68.2)
+        version: 0.4.0(@rollup/wasm-node@4.68.3)
       shadow-dom-testing-library:
         specifier: ^1.11.2
         version: 1.11.2(@testing-library/dom@10.4.2)
@@ -3839,17 +3841,11 @@ packages:
   '@harperfast/extended-iterable@1.0.3':
     resolution: {integrity: sha512-sSAYhQca3rDWtQUHSAPeO7axFIUJOI6hn1gjRC5APVE1a90tuyT8f5WIgRsFhhWA7htNkju2veB9eWL6YHi/Lw==}
 
-  '@hono/node-server@2.1.3':
-    resolution: {integrity: sha512-TA//nWMqPhbfdfneACk6t5a9eqbS9lABEPyKn0/xZTah3H3U2XaVg85rJFl0/Fyit0I552YDHgXGVSf3GwqbUw==}
+  '@hono/node-server@2.1.8':
+    resolution: {integrity: sha512-jdf7FHh6A1lzjpHHQUgxsg2GeER2vMetnAOfeActzcoli6jamlK+NAwL6Dsr5Fl3BS3tYUQzCdtZjU8Qxv7bEA==}
     engines: {node: '>=20'}
     peerDependencies:
-      hono: ^4
-
-  '@hono/node-server@2.1.5':
-    resolution: {integrity: sha512-MgP/I06GdvsilDspMk/qmRzpk8LOUStP6jFAbSRi40W09DhoyUn+Mj7eyKICPqeYKybOjVFLVIAQzvu1bfIa7Q==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      hono: ^4 || ^5.0.0-0
+      hono: ^4.13.16
 
   '@hookform/resolvers@3.9.0':
     resolution: {integrity: sha512-bU0Gr4EepJ/EQsH/IwEzYLsT/PEj5C0ynLQ4m+GSHS+xKH4TfSelhluTgOaoc4kA5s7eCsQbM4wvZLzELmWzUg==}
@@ -4708,6 +4704,13 @@ packages:
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
+    engines: {node: ^22.20 || ^24.12 || >=25}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@napi-rs/lzma-linux-x64-gnu@1.5.3':
+    resolution: {integrity: sha512-cqF0sRTngwVgnH0y7OV/5zWKWZomMYY71t3gzjtmJou4oPoWQHjxmO1Jo5E3GqUg2bPk+Fp3DcRw1xLAeKs1cg==}
     engines: {node: ^22.20 || ^24.12 || >=25}
     cpu: [x64]
     os: [linux]
@@ -5817,8 +5820,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  '@rollup/wasm-node@4.68.2':
-    resolution: {integrity: sha512-OK7T631dhV4wT7VKFgTE36okpWwhFl/Gh9sHBasClr7LC53Y7g9qzFEygNVDxsTsiBxFcKhKOsx63u/MdW6JTQ==}
+  '@rollup/wasm-node@4.68.3':
+    resolution: {integrity: sha512-EwvxiJMWY4KKw+yZoCRGUoRj1Rh34sTSJ8tR8VtFlxzhDcWOSQEy6i2I2/dMAdxpbj5ibOCv+ng1nuC0zzsbvg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -9119,12 +9122,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hono@4.13.13:
-    resolution: {integrity: sha512-CQ46U0ZkAGmbT/4UxdzzGJpacP2IeKgY4a5/tOI9AABbpOMfK739wfDXmv1usCk+3RkKj1hQy4/fjhiwa2xlrA==}
-    engines: {node: '>=16.9.0'}
-
-  hono@4.13.14:
-    resolution: {integrity: sha512-yhRLQ21U6qa9Hsu2N7Qcbh8tE+WKEcoErjIo56LeSGiGXGp9sA7UpE86Ui9uexb61KakiGwuHMn2QdV7w6i6kQ==}
+  hono@4.13.18:
+    resolution: {integrity: sha512-H9q/E1XizaWstJxUW881dmLxEj+t/TrGGnyxINkm4+sK0qUwsMtFdo2BWI9Vs3cIS19MU6b6iCijoUoEf4f3DA==}
     engines: {node: '>=16.9.0'}
 
   hookable@6.1.2:
@@ -9295,6 +9294,7 @@ packages:
   image-size@0.5.5:
     resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please migrate to image-size@2.x
     hasBin: true
 
   immutable@5.1.9:
@@ -15935,13 +15935,9 @@ snapshots:
   '@harperfast/extended-iterable@1.0.3':
     optional: true
 
-  '@hono/node-server@2.1.3(hono@4.13.13)':
+  '@hono/node-server@2.1.8(hono@4.13.18)':
     dependencies:
-      hono: 4.13.13
-
-  '@hono/node-server@2.1.5(hono@4.13.14)':
-    dependencies:
-      hono: 4.13.14
+      hono: 4.13.18
 
   '@hookform/resolvers@3.9.0(react-hook-form@7.54.2(react@19.2.5))':
     dependencies:
@@ -17178,7 +17174,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.32.1(supports-color@8.1.1)(zod@4.6.6)':
     dependencies:
-      '@hono/node-server': 2.1.5(hono@4.13.14)
+      '@hono/node-server': 2.1.8(hono@4.13.18)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -17188,7 +17184,7 @@ snapshots:
       eventsource-parser: 3.1.1
       express: 5.3.0(supports-color@8.1.1)
       express-rate-limit: 8.7.2(express@5.3.0(supports-color@8.1.1))(supports-color@8.1.1)
-      hono: 4.13.14
+      hono: 4.13.18
       jose: 6.2.14
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.1
@@ -17200,7 +17196,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.32.2(supports-color@8.1.1)(zod@4.6.7)':
     dependencies:
-      '@hono/node-server': 2.1.3(hono@4.13.13)
+      '@hono/node-server': 2.1.8(hono@4.13.18)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -17210,7 +17206,7 @@ snapshots:
       eventsource-parser: 3.0.3
       express: 5.2.1(supports-color@8.1.1)
       express-rate-limit: 8.7.1(express@5.2.1(supports-color@8.1.1))(supports-color@8.1.1)
-      hono: 4.13.13
+      hono: 4.13.18
       jose: 6.2.12
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.0
@@ -17249,6 +17245,9 @@ snapshots:
     optional: true
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
+    optional: true
+
+  '@napi-rs/lzma-linux-x64-gnu@1.5.3':
     optional: true
 
   '@napi-rs/nice-android-arm-eabi@1.1.1':
@@ -17987,75 +17986,75 @@ snapshots:
 
   '@rollup/plugin-json@6.1.0':
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.68.2)
-      rollup: '@rollup/wasm-node@4.68.2'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.68.3)
+      rollup: '@rollup/wasm-node@4.68.3'
 
-  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.68.2)':
+  '@rollup/plugin-node-resolve@16.0.3(@rollup/wasm-node@4.68.3)':
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.68.2)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.68.3)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.11
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.8.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.3)(tslib@2.8.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.3)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.8.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@5.8.3)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.3)(tslib@2.9.1)(typescript@5.8.3)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.3)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       typescript: 5.8.3
     optionalDependencies:
       tslib: 2.9.1
 
-  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.2)(tslib@2.9.1)(typescript@6.0.2)':
+  '@rollup/plugin-typescript@8.5.0(@rollup/wasm-node@4.68.3)(tslib@2.9.1)(typescript@6.0.2)':
     dependencies:
-      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.2)
+      '@rollup/pluginutils': 3.1.0(@rollup/wasm-node@4.68.3)
       resolve: 1.22.11
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       typescript: 6.0.2
     optionalDependencies:
       tslib: 2.9.1
 
-  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.68.2)':
+  '@rollup/pluginutils@3.1.0(@rollup/wasm-node@4.68.3)':
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
   '@rollup/pluginutils@5.1.2':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 2.3.2
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
-  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.68.2)':
+  '@rollup/pluginutils@5.3.0(@rollup/wasm-node@4.68.3)':
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
-  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.68.2)':
+  '@rollup/pluginutils@5.4.0(@rollup/wasm-node@4.68.3)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.7
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
   '@rollup/rollup-darwin-arm64@4.44.0':
     optional: true
@@ -18088,11 +18087,11 @@ snapshots:
       '@napi-rs/lzma-linux-x64-gnu': 1.5.1
       fsevents: 2.3.3
 
-  '@rollup/wasm-node@4.68.2':
+  '@rollup/wasm-node@4.68.3':
     dependencies:
       '@types/estree': 1.0.10
     optionalDependencies:
-      '@napi-rs/lzma-linux-x64-gnu': 1.5.1
+      '@napi-rs/lzma-linux-x64-gnu': 1.5.3
       fsevents: 2.3.3
 
   '@schematics/angular@21.2.29(chokidar@5.0.0)':
@@ -22451,9 +22450,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hono@4.13.13: {}
-
-  hono@4.13.14: {}
+  hono@4.13.18: {}
 
   hookable@6.1.2: {}
 
@@ -24954,14 +24951,14 @@ snapshots:
       ora: 9.3.0
       piscina: 5.3.2
       postcss: 8.5.28
-      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.68.2)(typescript@5.9.3)
+      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.68.3)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.105.1
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.23))(@types/node@24.19.2)(typescript@5.9.3))
     transitivePeerDependencies:
       - supports-color
@@ -24986,14 +24983,14 @@ snapshots:
       ora: 9.3.0
       piscina: 5.3.2
       postcss: 8.5.28
-      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.68.2)(typescript@5.9.3)
+      rollup-plugin-dts: 6.4.1(@rollup/wasm-node@4.68.3)(typescript@5.9.3)
       rxjs: 7.8.2
       sass: 1.105.1
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tailwindcss: 3.4.17(ts-node@10.9.2(@swc/core@1.9.2(@swc/helpers@0.5.23))(@types/node@26.6.6)(typescript@5.9.3))
     transitivePeerDependencies:
       - supports-color
@@ -26494,42 +26491,42 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.68.2)(typescript@5.9.3):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.68.3)(typescript@5.9.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       typescript: 5.9.3
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.68.2)(typescript@6.0.2):
+  rollup-plugin-dts@6.4.1(@rollup/wasm-node@4.68.3)(typescript@6.0.2):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       typescript: 6.0.2
     optionalDependencies:
       '@babel/code-frame': 7.29.0
 
-  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.68.2):
+  rollup-plugin-import-css@4.2.1(@rollup/wasm-node@4.68.3):
     dependencies:
-      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.68.2)
-      rollup: '@rollup/wasm-node@4.68.2'
+      '@rollup/pluginutils': 5.4.0(@rollup/wasm-node@4.68.3)
+      rollup: '@rollup/wasm-node@4.68.3'
 
-  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.68.2):
+  rollup-plugin-peer-deps-external@2.2.4(@rollup/wasm-node@4.68.3):
     dependencies:
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
-  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.68.2):
+  rollup-plugin-preserve-directives@0.4.0(@rollup/wasm-node@4.68.3):
     dependencies:
-      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.68.2)
+      '@rollup/pluginutils': 5.3.0(@rollup/wasm-node@4.68.3)
       magic-string: 0.30.17
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
   rollup-plugin-react-scoped-css@1.1.0:
     dependencies:
@@ -26537,7 +26534,7 @@ snapshots:
       css-tree: 3.0.0
       escodegen: 2.1.0
       js-xxhash: 4.0.0
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
 
   router@2.2.0(supports-color@8.1.1):
     dependencies:
@@ -28098,7 +28095,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28118,7 +28115,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28138,7 +28135,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28158,7 +28155,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28178,7 +28175,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.19.2
@@ -28198,7 +28195,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6
@@ -28218,7 +28215,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
       postcss: 8.5.32
-      rollup: '@rollup/wasm-node@4.68.2'
+      rollup: '@rollup/wasm-node@4.68.3'
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.6.6
