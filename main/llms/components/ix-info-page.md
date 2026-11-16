@@ -16,10 +16,9 @@
 
 ## Properties
 
-- `copyText`; attr: `copy-text`; type: `string | undefined` - Optional explanation of the topic and how it can be resolved.
+- `description`; attr: `description`; type: `string | undefined` - Optional description explaining the topic, e.g. its cause and how it can be resolved.
 - `icon`; attr: `icon`; type: `string`; default: `iconWarning` - Icon displayed above the title.
 - `iconColor`; attr: `icon-color`; type: `string`; default: `'--si-sys-color-background-warning'` - Color of the default icon.
-- `instructions`; attr: `instructions`; type: `string | undefined` - Optional instructions describing what the user should do next.
 - `titleText`; attr: `title-text`; type: `string` - Short and concise title describing the topic.
 
 ## Events
