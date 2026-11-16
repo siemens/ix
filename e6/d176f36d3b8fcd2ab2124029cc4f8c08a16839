@@ -1,0 +1,16 @@
+packages/core/src/components/chip/chip.tsx
+  h_c5a773bf2fda8b 138-146
+packages/core/src/components/chip/test/chip.ct.ts
+  h_c5a773bf2fda8b 360-388
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "e6d176f36d3b8fcd2ab2124029cc4f8c08a16839",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
