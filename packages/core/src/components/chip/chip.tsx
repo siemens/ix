@@ -122,6 +122,8 @@ export class Chip
 
   @State() private hasLabel = false;
 
+  private labelObserver?: MutationObserver;
+
   private readonly containerElementRef = makeRef<HTMLElement>();
 
   override getIgnoredAriaAttributes(): A11yAttributeName[] {
@@ -131,6 +133,22 @@ export class Chip
   override componentWillLoad() {
     super.componentWillLoad();
     this.hasLabel = this.hostHasLabel();
+  }
+
+  override componentDidLoad() {
+    super.componentDidLoad();
+    this.labelObserver = new MutationObserver(() => {
+      this.hasLabel = this.hostHasLabel();
+    });
+    this.labelObserver.observe(this.hostElement, {
+      characterData: true,
+      subtree: true,
+    });
+  }
+
+  override disconnectedCallback() {
+    this.labelObserver?.disconnect();
+    super.disconnectedCallback();
   }
 
   private hostHasLabel() {

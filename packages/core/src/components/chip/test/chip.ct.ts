@@ -325,11 +325,10 @@ regressionTest.describe('icon spacing', () => {
     'treats whitespace-only text as icon-only',
     async ({ mount, page }) => {
       await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
 
-      await expect(page.locator('ix-chip .with-icon')).toHaveCSS(
-        'margin-right',
-        '0px'
-      );
+      await expect(chip.locator('.with-icon')).toHaveCSS('margin-right', '0px');
     }
   );
 
@@ -341,6 +340,7 @@ regressionTest.describe('icon spacing', () => {
         { icons }
       );
       const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
       const icon = chip.locator('.with-icon');
 
       await expect(icon).toHaveCSS('margin-right', '0px');
@@ -352,6 +352,36 @@ regressionTest.describe('icon spacing', () => {
 
       await chip.evaluate((element) => {
         element.textContent = '   ';
+      });
+      await expect(icon).toHaveCSS('margin-right', '0px');
+    }
+  );
+
+  regressionTest(
+    'updates the icon gap when the same text node changes',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await expect(icon).toHaveCSS('margin-right', '0px');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = 'Print';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = ' ';
       });
       await expect(icon).toHaveCSS('margin-right', '0px');
     }
