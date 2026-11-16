@@ -1,0 +1,22 @@
+.changeset/chip-icon-only-spacing.md
+  h_c5a773bf2fda8b 1-5
+packages/core/src/components/chip/chip.scss
+  h_c5a773bf2fda8b 120
+packages/core/src/components/chip/chip.tsx
+  h_c5a773bf2fda8b 20,29,123-124,133-146,149-152,267-272,285
+packages/core/src/components/chip/test/chip.ct.ts
+  h_c5a773bf2fda8b 10,320-359
+testing/visual-testing/tests/chip/chip.e2e.ts
+  h_c5a773bf2fda8b 11,26-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0c4f357d167255e3be61c76e0a8cb08f4bc8532c",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
