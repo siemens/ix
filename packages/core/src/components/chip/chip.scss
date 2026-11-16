@@ -117,7 +117,7 @@ $outline-border-width: var(--ix-chip--border-width--focus);
       min-width: 0;
     }
 
-    .with-icon {
+    .content-wrapper.has-label .with-icon {
       margin-right: var(--ix-chip-with-icon--margin-right);
     }
 
