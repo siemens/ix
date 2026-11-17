@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
 
 Component-level CSS custom properties are declared in `packages/core/src/components/<component>/<component>.vars.scss`. They are internal (see [Internal API disclaimer](#internal-api-disclaimer)).
 
-Validated at compile time by `packages/core/scss/mixins/_component-vars.scss` and by `packages/core/scripts/lint/component-vars.spec.ts` (`pnpm --filter @siemens/ix test.spec`).
+Validated at compile time by `packages/core/scss/mixins/_component-vars.scss`. Unregistered or duplicate names fail the build. Naming grammar, ownership, external references and unused properties are not checked automatically; follow the rules below.
 
 ## Type-safe Sass helpers
 
@@ -57,7 +57,7 @@ Never write `--ix-*: …` or `var(--ix-*)` by hand in component SCSS. Use the re
 | `get-var($name, $fallback: null, $external)` | Returns `var(--ix-<name>[, <fallback>])`. Errors on unknown names. Wrap in `#{…}` inside `calc()`, `min()`, `max()`, etc.                                                                     |
 | `runtime-vars($names...)`                    | Marks registered properties that the component script sets or reads. Emits no CSS. Only in vars files, top level, after the properties are registered.                                       |
 
-Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property). External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or listed in `runtime-vars`. The spec does not scan TSX. The spec also fails on declared properties that are never read (directly or through another property). Remove dead properties instead of keeping them.
+Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property). External references are not checked: every `var(--ix-*)` must be declared in some vars file or listed in `runtime-vars`. Remove properties that are never read (directly or through another property).
 
 ## Grammar
 

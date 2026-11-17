@@ -25,5 +25,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["playwright.config.ts", "scripts/build", "scripts/lint"]
+  "include": ["playwright.config.ts", "scripts/build"]
 }

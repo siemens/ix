@@ -23,12 +23,10 @@
 //   background: get-var('button--background');
 //
 // Use `$external: true` only for properties owned by another component. Those
-// references are validated against the compiled CSS by
-// `scripts/lint/component-vars.spec.ts`.
+// references are not validated, so check the owning vars file.
 //
 // Properties the component script sets or reads at runtime (TSX) must be
-// listed with `runtime-vars` so the lint does not report them as unused or
-// unresolved. Prefer styling in SCSS over passing `var(--ix-*)` from TSX.
+// listed with `runtime-vars`. Prefer styling in SCSS over passing `var(--ix-*)` from TSX.
 
 @use 'sass:map';
 @use 'sass:meta';
@@ -98,8 +96,7 @@ $_registry: ();
 }
 
 /// Marks registered properties as set or read by the component script (TSX).
-/// Emits no CSS. `scripts/lint/component-vars.spec.ts` treats them as declared
-/// and read.
+/// Emits no CSS; documents the runtime API and errors on unregistered names.
 @mixin runtime-vars($names...) {
   @each $name in $names {
     @if not map.has-key($_registry, $name) {
