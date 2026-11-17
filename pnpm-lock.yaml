@@ -1274,8 +1274,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/angular/dist
       '@siemens/ix-icons':
-        specifier: ^3.3.0
-        version: 3.7.0
+        specifier: 'catalog:'
+        version: 3.7.1
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -1308,8 +1308,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
       '@siemens/ix-icons':
-        specifier: ^3.3.0
-        version: 3.7.0
+        specifier: 'catalog:'
+        version: 3.7.1
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -5806,10 +5806,6 @@ packages:
 
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
-
-  '@siemens/ix-icons@3.7.0':
-    resolution: {integrity: sha512-1nk58wy/s+Snz0Fw1b80IM5fzz53wtDJ54yLmEfIX317LYQcp9Z0jU5V7MQvbiuJ0HLrPgwJe1kvTrn8z5S5Hg==}
-    engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@siemens/ix-icons@3.7.1':
     resolution: {integrity: sha512-tnswQGzAFi5fN3Unkem52AZLP/MobXbgPrEe1CKQ+Pa1O5qX23m6DctGFumuKxZxoKBeW/lnf3zt61AUXT8aRQ==}
@@ -18019,8 +18015,6 @@ snapshots:
   '@sideway/formula@3.0.1': {}
 
   '@sideway/pinpoint@2.0.0': {}
-
-  '@siemens/ix-icons@3.7.0': {}
 
   '@siemens/ix-icons@3.7.1': {}
 
