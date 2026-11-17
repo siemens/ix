@@ -139,6 +139,10 @@ export class Chip
     super.connectedCallback();
     this.hasLabel = this.hostHasLabel();
 
+    if (typeof MutationObserver === 'undefined') {
+      return;
+    }
+
     if (!this.labelObserver) {
       this.labelObserver = new MutationObserver(() => {
         this.hasLabel = this.hostHasLabel();
