@@ -174,8 +174,8 @@ catalogs:
       specifier: ^1.64.1
       version: 1.64.1
     '@siemens/ix-icons':
-      specifier: 0.0.0-beta-20261021072559
-      version: 0.0.0-beta-20261021072559
+      specifier: 3.7.1
+      version: 3.7.1
     '@types/node':
       specifier: ^24.19.2
       version: 24.19.2
@@ -295,7 +295,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -389,7 +389,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -457,7 +457,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       vite:
         specifier: 'catalog:'
         version: 7.3.7(@types/node@26.6.6)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(lightningcss@1.33.0)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
@@ -478,7 +478,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -569,7 +569,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -663,7 +663,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -704,8 +704,8 @@ importers:
         specifier: ~5.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 0.0.0-beta-20261021072559
-        version: 0.0.0-beta-20261021072559
+        specifier: ^3.7.1
+        version: 3.7.1
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -807,7 +807,7 @@ importers:
         version: 1.64.1
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@stencil-community/eslint-plugin':
         specifier: ^0.10.0
         version: 0.10.0(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.4.5))(eslint@9.39.3(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.4.5))(@typescript-eslint/parser@8.70.0(eslint@9.39.3(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@9.39.3(jiti@2.6.1)(supports-color@8.1.1)))(eslint@9.39.3(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.4.5)
@@ -1031,8 +1031,8 @@ importers:
         specifier: ~5.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 0.0.0-beta-20261021072559
-        version: 0.0.0-beta-20261021072559
+        specifier: ^3.7.1
+        version: 3.7.1
       '@stencil/react-output-target':
         specifier: ^1.6.5
         version: 1.6.5(@stencil/core@4.45.2)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1136,7 +1136,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@stencil/core':
         specifier: 4.45.2
         version: 4.45.2
@@ -1195,8 +1195,8 @@ importers:
         specifier: ~5.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: 0.0.0-beta-20261021072559
-        version: 0.0.0-beta-20261021072559
+        specifier: ^3.7.1
+        version: 3.7.1
       '@stencil/vue-output-target':
         specifier: ^0.14.6
         version: 0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))
@@ -1400,7 +1400,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1509,7 +1509,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       ag-grid-angular:
         specifier: ^33.1.1
         version: 33.3.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -1625,7 +1625,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       vite:
         specifier: 'catalog:'
         version: 7.3.7(@types/node@26.6.6)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(lightningcss@1.33.0)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.21.0)(yaml@2.9.1)
@@ -1698,7 +1698,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -1786,7 +1786,7 @@ importers:
         version: link:../../packages/core
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -1807,7 +1807,7 @@ importers:
         version: link:../../packages/echarts
       '@siemens/ix-icons':
         specifier: 'catalog:'
-        version: 0.0.0-beta-20261021072559
+        version: 3.7.1
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -5807,12 +5807,12 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@0.0.0-beta-20261021072559':
-    resolution: {integrity: sha512-LJIbmViqzjLDHFb9Pjqqw7Go7cHfs1EYWJLHpGM2ITEPXpp/uy+uSoa5ieLmITKQyde9KEfzyQ9Faq7nJZ4Xnw==}
-    engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
-
   '@siemens/ix-icons@3.7.0':
     resolution: {integrity: sha512-1nk58wy/s+Snz0Fw1b80IM5fzz53wtDJ54yLmEfIX317LYQcp9Z0jU5V7MQvbiuJ0HLrPgwJe1kvTrn8z5S5Hg==}
+    engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
+
+  '@siemens/ix-icons@3.7.1':
+    resolution: {integrity: sha512-tnswQGzAFi5fN3Unkem52AZLP/MobXbgPrEe1CKQ+Pa1O5qX23m6DctGFumuKxZxoKBeW/lnf3zt61AUXT8aRQ==}
     engines: {node: '>=22.19.x', pnpm: '>=10.x.x'}
 
   '@sigstore/bundle@4.0.0':
@@ -18020,9 +18020,9 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@0.0.0-beta-20261021072559': {}
-
   '@siemens/ix-icons@3.7.0': {}
+
+  '@siemens/ix-icons@3.7.1': {}
 
   '@sigstore/bundle@4.0.0':
     dependencies:
