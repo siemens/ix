@@ -47,7 +47,6 @@ import {
 export class Toast {
   /**
    * Toast type, determining the status icon and left-side status strip color.
-   * `base` uses the information icon in the primary text color without a status strip.
    * Defaults to `information`.
    */
   @Prop({ reflect: true }) type: ToastType = 'information';
@@ -136,7 +135,7 @@ export class Toast {
         name={icon}
         color={
           this.type === 'base'
-            ? '--si-sys-color-text-primary'
+            ? '--ix-toast-base-icon--color'
             : '--ix-toast-status-color'
         }
       />

@@ -27,7 +27,6 @@ export interface ToastConfig {
   action?: HTMLElement;
   /**
    * Type of the toast. Defaults to `information`.
-   * `base` uses the information icon in the primary text color without a left-side status strip.
    */
   type?: ToastType;
   /**

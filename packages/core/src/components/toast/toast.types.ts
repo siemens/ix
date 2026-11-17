@@ -10,9 +10,7 @@
 import type { StatusVariant } from '../utils/status.types';
 
 /**
- * Toast status values (shared status subset plus Figma `error`; no `accent` or `neutral`).
- * `base` uses the information icon in the primary text color without a left-side status strip.
- * Default is `information`.
+ * Toast type values.
  *
  * @since 6.0.0
  */

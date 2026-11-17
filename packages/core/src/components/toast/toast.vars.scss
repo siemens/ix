@@ -25,6 +25,7 @@ $toast-status-sys: (
   --ix-toast--box-shadow: #{sys.$si-sys-color-effects-shadow-40};
   --ix-toast-timer-value--background: #{sys.$si-sys-color-border-3};
   --ix-toast-status-color: transparent;
+  --ix-toast-base-icon--color: #{sys.$si-sys-color-text-primary};
   --ix-toast--strip-width: #{sys.$si-sys-sizing-border-width-emphasis};
 }
 

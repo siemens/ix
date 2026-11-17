@@ -97,7 +97,7 @@ regressionTest(
     const icon = toast.getByTestId('toast-icon');
     await expect(icon).toBeVisible();
     await expect(icon).toHaveJSProperty('name', iconInfo);
-    await expect(icon).toHaveJSProperty('color', '--si-sys-color-text-primary');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast-base-icon--color');
     await expect(icon).toHaveAttribute('aria-hidden', 'true');
     await expect(icon).toHaveCSS(
       'color',
@@ -177,7 +177,7 @@ regressionTest(
       element.icon = undefined;
     });
     await expect(icon).toHaveJSProperty('name', iconInfo);
-    await expect(icon).toHaveJSProperty('color', '--si-sys-color-text-primary');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast-base-icon--color');
     await expect(icon).toHaveCSS(
       'color',
       await toast
@@ -217,7 +217,7 @@ regressionTest(
       await expect(icon).toHaveJSProperty(
         'color',
         type === 'base'
-          ? '--si-sys-color-text-primary'
+          ? '--ix-toast-base-icon--color'
           : '--ix-toast-status-color'
       );
       expect(
@@ -803,7 +803,7 @@ regressionTest(
     );
     await expect(baseToast.getByTestId('toast-icon')).toHaveJSProperty(
       'color',
-      '--si-sys-color-text-primary'
+      '--ix-toast-base-icon--color'
     );
 
     await page.evaluate(async () => {

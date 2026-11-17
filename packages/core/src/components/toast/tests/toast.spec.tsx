@@ -24,7 +24,7 @@ describe('ix-toast base type', () => {
     expect(root.getAttribute('role')).toBe('alert');
     const icon = root.shadowRoot!.querySelector('ix-icon');
     expect(icon?.getAttribute('name')).toBe(iconInfo);
-    expect(icon?.getAttribute('color')).toBe('--si-sys-color-text-primary');
+    expect(icon?.getAttribute('color')).toBe('--ix-toast-base-icon--color');
     expect(icon?.getAttribute('aria-hidden')).toBe('true');
   });
 
@@ -60,7 +60,7 @@ describe('ix-toast base type', () => {
     await waitForChanges();
 
     expect(icon?.getAttribute('name')).toBe(iconInfo);
-    expect(icon?.getAttribute('color')).toBe('--si-sys-color-text-primary');
+    expect(icon?.getAttribute('color')).toBe('--ix-toast-base-icon--color');
   });
 
   it('omits the icon wrapper when the base icon is hidden', async () => {
@@ -95,7 +95,7 @@ describe('ix-toast base type', () => {
       expect(icon?.getAttribute('name')).toBe(iconInfo);
       expect(icon?.getAttribute('color')).toBe(
         type === 'base'
-          ? '--si-sys-color-text-primary'
+          ? '--ix-toast-base-icon--color'
           : '--ix-toast-status-color'
       );
     }
