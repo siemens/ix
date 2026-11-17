@@ -450,17 +450,17 @@ describe('component CSS custom property references', () => {
       read.add(name);
     }
   }
-  // Properties set or read at runtime from TSX (inline styles, setProperty,
-  // getPropertyValue).
-  const runtimeSources = findFiles(COMPONENTS_DIR, ['.tsx', '.ts']).filter(
-    (file) => !file.split(path.sep).includes('test')
-  );
-  for (const file of runtimeSources) {
-    for (const [match, name] of readFileSync(file, 'utf8').matchAll(
-      /(?:var\(\s*)?(--ix-[\w-]+)/g
+  // Properties the component script sets or reads, listed with
+  // `cv.runtime-vars(...)` in the vars files.
+  for (const file of scssSources) {
+    const source = stripComments(readFileSync(file, 'utf8'));
+    for (const [, args] of source.matchAll(
+      /cv\.runtime-vars\(([^;]*)\)\s*;/g
     )) {
-      if (!match.startsWith('var(')) declared.add(name);
-      read.add(name);
+      for (const [, name] of args.matchAll(/'([^']+)'/g)) {
+        declared.add(`--ix-${name}`);
+        read.add(`--ix-${name}`);
+      }
     }
   }
 

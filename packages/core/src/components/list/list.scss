@@ -23,7 +23,6 @@
     width: 100%;
     max-height: inherit;
     flex-direction: column;
-    // variable set through component logic
     gap: cv.get-var('list--gap', 0);
     overflow-y: auto;
   }
@@ -72,5 +71,11 @@
     border-top: cv.get-var('list-drag-placeholder--border-width') solid
       cv.get-var('list-drag-placeholder--border-color--separator');
     border-radius: 0;
+  }
+}
+
+@each $size in sm, md, lg {
+  :host([item-gap='#{$size}']) {
+    @include cv.set-var('list--gap', cv.get-var('list--gap--#{$size}'));
   }
 }

@@ -28,13 +28,6 @@ import type {
   ListItemVariant,
 } from '../list-item/list-item.types';
 
-const listItemGap: Record<ListItemGap, string> = {
-  none: '0',
-  sm: 'var(--ix-list--gap--sm)',
-  md: 'var(--ix-list--gap--md)',
-  lg: 'var(--ix-list--gap--lg)',
-};
-
 const actionFocusableSelector = [
   'button',
   'a[href]',
@@ -120,7 +113,7 @@ export class List {
    * Space between direct list items.
    * @since 6.0.0
    */
-  @Prop() itemGap: ListItemGap = 'sm';
+  @Prop({ reflect: true }) itemGap: ListItemGap = 'sm';
 
   /**
    * Default visual variant for list items that do not define their own variant.
@@ -1055,9 +1048,6 @@ export class List {
         class={{
           divider: this.divider,
           draggable: this.draggable,
-        }}
-        style={{
-          '--ix-list--gap': listItemGap[this.itemGap],
         }}
       >
         <div class="list">

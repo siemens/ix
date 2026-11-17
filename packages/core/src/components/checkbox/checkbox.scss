@@ -57,6 +57,14 @@
     max-height: cv.get-var('checkbox--max-height');
   }
 
+  rect.checkmark {
+    fill: cv.get-var('checkbox-checkmark--color');
+  }
+
+  path.checkmark {
+    stroke: cv.get-var('checkbox-checkmark--color');
+  }
+
   input[type='checkbox']:focus-visible + .checkbox-button .checkbox-control {
     outline: cv.get-var('checkbox--outline-width--focus') solid
       cv.get-var('checkbox--outline-color--focus');

@@ -113,3 +113,11 @@
     )
   );
 }
+
+// Set by badge.tsx from the `background`, `color` and offset props.
+@include cv.runtime-vars(
+  'badge--background--custom',
+  'badge--color--custom',
+  'badge--offset-x',
+  'badge--offset-y'
+);

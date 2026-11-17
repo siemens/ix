@@ -54,6 +54,7 @@ $kpi-states: (warning, danger, caution, success, information, accent, critical);
       flex-shrink: 9999;
 
       ix-icon {
+        color: cv.get-var('kpi-display-icon--color');
         margin-inline-end: cv.get-var('kpi-icon--margin-inline-end');
       }
     }

@@ -71,3 +71,6 @@
     )
   );
 }
+
+// Set by card-list.tsx from the scroll position.
+@include cv.runtime-vars('card-list--overflow');

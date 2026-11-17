@@ -41,3 +41,13 @@
     )
   );
 }
+
+// Set by list.tsx while dragging.
+@include cv.runtime-vars(
+  'list-drag--left',
+  'list-drag--top',
+  'list-drag--width',
+  'list-drag--x',
+  'list-drag--y',
+  'list-drag-separator--top'
+);

@@ -45,6 +45,16 @@
     }
   }
 
+  .circular-progress-container {
+    circle.track {
+      stroke: cv.get-var('progress-indicator-track--color');
+    }
+
+    circle.progress {
+      stroke: cv.get-var('progress-indicator--color');
+    }
+  }
+
   .slotted-container {
     height: 100%;
   }

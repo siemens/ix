@@ -47,6 +47,10 @@
       display: flex;
       align-items: flex-start;
       padding: cv.get-var('toast-icon--padding');
+
+      .status-icon {
+        color: cv.get-var('toast--status-color');
+      }
     }
 
     .toast-content {

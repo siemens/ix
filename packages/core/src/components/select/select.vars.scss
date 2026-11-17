@@ -14,9 +14,6 @@
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
 
-// Runtime properties without a default (set per state or from TSX).
-@include cv.declare-var('select-overflow-chip--fallback-width');
-
 :host {
   @include cv.define-vars(
     (
@@ -89,3 +86,10 @@
     )
   );
 }
+
+// Read by select.tsx to compute chip overflow.
+@include cv.runtime-vars(
+  'select-chip--margin-inline-end',
+  'select-overflow-chip-fallback--width',
+  'select-trigger--min-width'
+);

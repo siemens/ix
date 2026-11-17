@@ -20,10 +20,6 @@
 :host {
   display: inline-block;
   position: relative;
-  @include cv.set-var(
-    'select-overflow-chip--fallback-width',
-    cv.get-var('select-overflow-chip-fallback--width')
-  );
 
   min-height: cv.get-var('select--min-height');
   height: auto;

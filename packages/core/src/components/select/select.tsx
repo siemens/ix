@@ -1134,7 +1134,7 @@ export class Select
     const overflowChipWidth =
       this.overflowChipWidth ||
       overflowChip?.offsetWidth ||
-      this.getCssPixelValue('--ix-select-overflow-chip--fallback-width');
+      this.getCssPixelValue('--ix-select-overflow-chip-fallback--width');
 
     return (
       overflowChipWidth +

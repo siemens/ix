@@ -55,8 +55,9 @@ Never write `--ix-*: …` or `var(--ix-*)` by hand in component SCSS. Use the re
 | `declare-var($name)`                         | Registers a property without emitting CSS (runtime properties, state-only properties). Only in vars files, top level.                                                                         |
 | `set-var($name, $value, $external: false)`   | Overrides a registered property. Errors on unknown names.                                                                                                                                     |
 | `get-var($name, $fallback: null, $external)` | Returns `var(--ix-<name>[, <fallback>])`. Errors on unknown names. Wrap in `#{…}` inside `calc()`, `min()`, `max()`, etc.                                                                     |
+| `runtime-vars($names...)`                    | Marks registered properties that the component script sets or reads. Emits no CSS. Only in vars files, top level, after the properties are registered.                                       |
 
-Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property) or set at runtime from TSX. External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or set from TSX. The spec also fails on declared properties that are never read (directly or through another property). Remove dead properties instead of keeping them.
+Each component `styleUrl` compiles separately, so only names from vars files `@use`d by that compilation are known. Use `$external: true` only for properties owned by another component (for example, a parent styling a child's property). External references are checked by the lint spec against the compiled CSS of all components: every `var(--ix-*)` must be declared in some compiled CSS or listed in `runtime-vars`. The spec does not scan TSX. The spec also fails on declared properties that are never read (directly or through another property). Remove dead properties instead of keeping them.
 
 ## Grammar
 
@@ -111,6 +112,8 @@ Properties set at runtime (inline styles from TSX), passed from a parent to a ch
 
 - Never declare a property from itself (`--ix-a--b: var(--ix-a--b)` is a cycle). If a parent overrides a child's default, set the child's property directly on the child element. Styles from the outer tree win over the child's `:host` defaults.
 - If a runtime property has no default, register it with `cv.declare-var` in the vars file and set its value in the component SCSS (`cv.set-var`) or TSX.
+- List every property that TSX sets (inline style, `setProperty`) or reads (`getPropertyValue`) with `@include cv.runtime-vars(...)` in the vars file.
+- Do not pass `var(--ix-*)` names from TSX to attributes or props (for example, SVG `fill`, `ix-icon` `color`). Use a class or reflected attribute and apply the property in SCSS.
 
 ## Ownership
 

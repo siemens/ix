@@ -219,5 +219,29 @@
         color: cv.get-var('workflow-step--color--disabled');
       }
     }
+
+    .status-icon {
+      color: cv.get-var('workflow-step-icon-default--color');
+
+      @each $status in success, done, warning, error {
+        &.#{$status} {
+          color: cv.get-var('workflow-step-icon-#{$status}--color');
+        }
+      }
+    }
+
+    &.selected .status-icon {
+      &.open {
+        color: cv.get-var('workflow-step-icon-default--color--selected');
+      }
+
+      &.done {
+        color: cv.get-var('workflow-step-icon-done--color--selected');
+      }
+    }
+
+    &.disabled .iconWrapper .status-icon {
+      color: cv.get-var('workflow-step-icon-status--color--disabled');
+    }
   }
 }

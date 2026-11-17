@@ -22,9 +22,13 @@
 //   @include set-var('button--background', sys.$si-sys-color-secondary);
 //   background: get-var('button--background');
 //
-// Use `$external: true` only for properties owned by another component or set
-// at runtime (TSX). Those references are validated against the compiled CSS
-// by `scripts/lint/component-vars.spec.ts`.
+// Use `$external: true` only for properties owned by another component. Those
+// references are validated against the compiled CSS by
+// `scripts/lint/component-vars.spec.ts`.
+//
+// Properties the component script sets or reads at runtime (TSX) must be
+// listed with `runtime-vars` so the lint does not report them as unused or
+// unresolved. Prefer styling in SCSS over passing `var(--ix-*)` from TSX.
 
 @use 'sass:map';
 @use 'sass:meta';
@@ -39,7 +43,8 @@ $_registry: ();
 }
 
 /// Registers a component custom property without a default value. Use it for
-/// properties that are only set per state (`set-var`) or at runtime (TSX).
+/// properties that are only set per state (`set-var`) or at runtime (TSX, see
+/// `runtime-vars`).
 @mixin declare-var($name) {
   @if map.has-key($_registry, $name) {
     @error 'Component var --ix-#{$name} is already defined. Use set-var to override it.';
@@ -90,4 +95,15 @@ $_registry: ();
     @error 'Undefined component var --ix-#{$name}.';
   }
   @return _emit($name, $fallback);
+}
+
+/// Marks registered properties as set or read by the component script (TSX).
+/// Emits no CSS. `scripts/lint/component-vars.spec.ts` treats them as declared
+/// and read.
+@mixin runtime-vars($names...) {
+  @each $name in $names {
+    @if not map.has-key($_registry, $name) {
+      @error 'Undefined component var --ix-#{$name}. Define it with define-var or declare-var before runtime-vars.';
+    }
+  }
 }

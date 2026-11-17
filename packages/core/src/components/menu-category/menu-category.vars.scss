@@ -63,3 +63,6 @@
     )
   );
 }
+
+// Read by menu-category.tsx for the expand animation.
+@include cv.runtime-vars('menu-category-menu-items--padding--expanded');
