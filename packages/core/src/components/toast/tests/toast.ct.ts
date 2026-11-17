@@ -97,7 +97,7 @@ regressionTest(
     const icon = toast.getByTestId('toast-icon');
     await expect(icon).toBeVisible();
     await expect(icon).toHaveJSProperty('name', iconInfo);
-    await expect(icon).toHaveJSProperty('color', '--ix-toast-base-icon--color');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast-status-color');
     await expect(icon).toHaveAttribute('aria-hidden', 'true');
     await expect(icon).toHaveCSS(
       'color',
@@ -140,10 +140,7 @@ regressionTest(
     await toast.evaluate((element: HTMLIxToastElement, customIcon) => {
       element.icon = customIcon;
       element.iconColor = '--si-sys-color-border-success';
-      element.style.setProperty(
-        '--ix-toast-status-color',
-        'var(--si-sys-color-border-danger)'
-      );
+      element.style.setProperty('--ix-toast-status-color', 'rgb(1, 2, 3)');
     }, iconSuccess);
 
     const icon = toast.getByTestId('toast-icon');
@@ -177,12 +174,10 @@ regressionTest(
       element.icon = undefined;
     });
     await expect(icon).toHaveJSProperty('name', iconInfo);
-    await expect(icon).toHaveJSProperty('color', '--ix-toast-base-icon--color');
+    await expect(icon).toHaveJSProperty('color', '--ix-toast-status-color');
     await expect(icon).toHaveCSS(
       'color',
-      await toast
-        .locator('.toast-message')
-        .evaluate((element) => getComputedStyle(element).color)
+      'rgb(1, 2, 3)'
     );
   }
 );
@@ -214,12 +209,7 @@ regressionTest(
         'name',
         type === 'warning' ? iconWarning : iconInfo
       );
-      await expect(icon).toHaveJSProperty(
-        'color',
-        type === 'base'
-          ? '--ix-toast-base-icon--color'
-          : '--ix-toast-status-color'
-      );
+      await expect(icon).toHaveJSProperty('color', '--ix-toast-status-color');
       expect(
         await toast.evaluate(
           (element) => getComputedStyle(element, '::before').content
@@ -803,7 +793,7 @@ regressionTest(
     );
     await expect(baseToast.getByTestId('toast-icon')).toHaveJSProperty(
       'color',
-      '--ix-toast-base-icon--color'
+      '--ix-toast-status-color'
     );
 
     await page.evaluate(async () => {

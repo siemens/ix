@@ -133,11 +133,7 @@ export class Toast {
         data-testid="toast-icon"
         aria-hidden="true"
         name={icon}
-        color={
-          this.type === 'base'
-            ? '--ix-toast-base-icon--color'
-            : '--ix-toast-status-color'
-        }
+        color="--ix-toast-status-color"
       />
     );
   }
