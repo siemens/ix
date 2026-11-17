@@ -114,8 +114,6 @@ export class Select
   /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string = 'Clear selection';
 
@@ -257,7 +255,6 @@ export class Select
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

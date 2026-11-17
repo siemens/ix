@@ -57,15 +57,11 @@ export class MenuAvatar {
 
   /**
    * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
-   *
-   * @since 4.3.0.
    */
   @Prop() tooltipText?: string;
 
   /**
    * aria-label for the tooltip
-   *
-   * @since 4.3.0.
    */
   @Prop() ariaLabelTooltip?: string;
 
@@ -83,7 +79,6 @@ export class MenuAvatar {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

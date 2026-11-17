@@ -167,8 +167,6 @@ export class DatetimePicker
 
   /**
    * Top label of the time picker.
-   *
-   * @since 3.0.0
    */
   @Prop({ attribute: 'i18n-time' }) i18nTime: string = 'Time';
 
@@ -249,8 +247,6 @@ export class DatetimePicker
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -281,6 +277,8 @@ export class DatetimePicker
   /**
    * Datetime selection event. Emitted when the selection is applied via the
    * done button, or via the confirm button with `requireConfirmation`.
+   *
+   * @breaking-change 6.0.0 `from`, `to` and `time` are localized, use `isoFrom`, `isoTo` and `isoTime` for ISO 8601 values
    */
   @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 

@@ -5705,8 +5705,8 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "copyText",
-          "attribute": "copy-text",
+          "name": "description",
+          "attribute": "description",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
@@ -5733,16 +5733,6 @@
           "reflectToAttribute": false,
           "default": "'--si-sys-color-background-warning'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "instructions",
-          "attribute": "instructions",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         },

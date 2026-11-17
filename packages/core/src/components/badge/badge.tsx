@@ -104,6 +104,7 @@ export class Badge
    * Use `error` only with `status-icon` (other types map it to `danger`).
    *
    * @since 5.2.0
+   * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
    */
   @Prop({ reflect: true }) variant: BadgeVariant = 'accent';
 

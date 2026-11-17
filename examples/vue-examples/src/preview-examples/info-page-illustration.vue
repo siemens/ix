@@ -14,8 +14,7 @@ import { IxButton, IxInfoPage } from '@siemens/ix-vue';
 <template>
   <IxInfoPage
     title-text="Request timeout"
-    copy-text="The server took too long to respond."
-    instructions="Check your connection and try again."
+    description="The server took too long to respond. Check your connection and try again."
   >
     <svg
       slot="image"

@@ -78,7 +78,6 @@ export class Tree {
 
   /**
    * Enable to toggle items by click on the item
-   * @since 3.0.0
    */
   @Prop() toggleOnItemClick?: boolean;
 
