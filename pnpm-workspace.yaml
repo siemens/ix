@@ -35,9 +35,6 @@ overrides:
   rollup: 'npm:@rollup/wasm-node'
   # Security: basic-ftp 6 only adds FTP bounce protection (via puppeteer > get-uri)
   'basic-ftp@<6.2.1': ^6.2.1
-  # Security: patch vulnerabilities in the MCP SDK's Hono dependencies
-  '@hono/node-server@<2.1.6': ^2.1.6
-  'hono@<4.13.16': ^4.13.16
   # Security: optional XML peers of @cyclonedx/cyclonedx-library; the SBOM script only writes JSON
   libxmljs2: '-'
   xmlbuilder2: '-'
