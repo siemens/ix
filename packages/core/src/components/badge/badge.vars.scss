@@ -10,6 +10,9 @@
 // Internal: these CSS custom properties are implementation details of the
 // component, not a public API. They are not covered by semantic versioning and
 // can change or be removed in any release without notice.
+//
+// Exception: `--ix-badge--max-width` is documented in the badge JSDoc as a
+// supported consumer override. It is public API and follows semantic versioning.
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
