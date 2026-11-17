@@ -175,10 +175,7 @@ regressionTest(
     });
     await expect(icon).toHaveJSProperty('name', iconInfo);
     await expect(icon).toHaveJSProperty('color', '--ix-toast-status-color');
-    await expect(icon).toHaveCSS(
-      'color',
-      'rgb(1, 2, 3)'
-    );
+    await expect(icon).toHaveCSS('color', 'rgb(1, 2, 3)');
   }
 );
 
