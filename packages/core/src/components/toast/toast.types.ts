@@ -10,11 +10,10 @@
 import type { StatusVariant } from '../utils/status.types';
 
 /**
- * Toast status values (shared status subset plus Figma `error`; no `base`, `accent`, or `neutral`).
+ * Toast status values (shared status subset plus Figma `error`; no `accent` or `neutral`).
+ * `base` uses the information icon in the primary text color without a left-side status strip.
  * Default is `information`.
  *
  * @since 6.0.0
  */
-export type ToastType =
-  | Exclude<StatusVariant, 'base' | 'accent' | 'neutral'>
-  | 'error';
+export type ToastType = Exclude<StatusVariant, 'accent' | 'neutral'> | 'error';

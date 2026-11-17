@@ -47,6 +47,8 @@ import {
 export class Toast {
   /**
    * Toast type, determining the status icon and left-side status strip color.
+   * `base` uses the information icon in the primary text color without a status strip.
+   * Defaults to `information`.
    */
   @Prop({ reflect: true }) type: ToastType = 'information';
 
@@ -100,6 +102,7 @@ export class Toast {
   @Element() hostElement!: HTMLIxToastElement;
 
   private static readonly toastTypeIcons: Record<ToastType, string> = {
+    base: iconInfo,
     danger: iconAlarm,
     warning: iconWarning,
     caution: iconWarningRhomb,
@@ -123,7 +126,7 @@ export class Toast {
 
     const icon = Toast.toastTypeIcons[this.type];
     if (!icon) {
-      return '';
+      return null;
     }
 
     return (
@@ -131,7 +134,11 @@ export class Toast {
         data-testid="toast-icon"
         aria-hidden="true"
         name={icon}
-        color="--ix-toast-status-color"
+        color={
+          this.type === 'base'
+            ? '--si-sys-color-text-primary'
+            : '--ix-toast-status-color'
+        }
       />
     );
   }
@@ -206,6 +213,7 @@ export class Toast {
   }
 
   render() {
+    const icon = this.hideIcon ? null : this.getIcon();
     let progressBarStyle: Record<string, string>;
 
     const progressBarClass = ['toast-progress-bar'];
@@ -228,9 +236,9 @@ export class Toast {
             this.touched = true;
           }}
         >
-          {(this.type || this.icon) && !this.hideIcon ? (
+          {icon ? (
             <div class="toast-icon" aria-hidden="true">
-              {this.getIcon()}
+              {icon}
             </div>
           ) : null}
           <div class="toast-content">
