@@ -8,12 +8,13 @@
  */
 @use 'mixins/shadow-dom/component';
 @use './list-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: block;
   width: 100%;
   min-width: 0;
-  color: var(--ix-list-item--color);
+  color: cv.get-var('list-item--color');
   outline: none;
 
   @include component.ix-component;
@@ -23,22 +24,22 @@
     align-items: center;
     position: relative;
     width: 100%;
-    min-height: var(--ix-list-item--min-height);
-    padding: var(--ix-list-item--padding);
-    gap: var(--ix-list-item--gap);
+    min-height: cv.get-var('list-item--min-height');
+    padding: cv.get-var('list-item--padding');
+    gap: cv.get-var('list-item--gap');
     box-sizing: border-box;
-    border: var(--ix-list-item--border-width) solid transparent;
-    border-radius: var(--ix-list-item--border-radius);
-    background-color: var(--ix-list-item--background);
+    border: cv.get-var('list-item--border-width') solid transparent;
+    border-radius: cv.get-var('list-item--border-radius');
+    background-color: cv.get-var('list-item--background');
   }
 
   .primary-action {
     display: flex;
     align-items: center;
-    gap: var(--ix-list-item--gap);
+    gap: cv.get-var('list-item--gap');
     flex: 1 1 auto;
     min-width: 0;
-    min-height: var(--ix-list-item-primary-action--min-height);
+    min-height: cv.get-var('list-item-action--min-height--primary');
     padding: 0;
     border: 0;
     outline: 0;
@@ -48,21 +49,21 @@
   }
 
   .item-surface:has(> .primary-action:focus-visible) {
-    outline: var(--ix-list-item--outline-width--focus) solid
-      var(--ix-list-item--outline-color--focus);
-    outline-offset: var(--ix-list-item--outline-offset--focus);
+    outline: cv.get-var('list-item--outline-width--focus') solid
+      cv.get-var('list-item--outline-color--focus');
+    outline-offset: cv.get-var('list-item--outline-offset--focus');
   }
 
   .drag-gripper {
     display: none;
     order: -2;
     position: relative;
-    flex: 0 0 var(--ix-list-item-drag-gripper--width);
-    width: var(--ix-list-item-drag-gripper--width);
-    height: var(--ix-list-item-drag-gripper--height);
+    flex: 0 0 cv.get-var('list-item-drag-gripper--width');
+    width: cv.get-var('list-item-drag-gripper--width');
+    height: cv.get-var('list-item-drag-gripper--height');
     padding: 0;
     border: 0;
-    border-radius: var(--ix-list-item--border-radius);
+    border-radius: cv.get-var('list-item--border-radius');
     outline: 0;
     color: inherit;
     background: transparent;
@@ -70,14 +71,14 @@
     touch-action: none;
 
     &:focus-visible {
-      outline: var(--ix-list-item--outline-width--focus) solid
-        var(--ix-list-item--outline-color--focus);
-      outline-offset: var(--ix-list-item--outline-offset--focus);
+      outline: cv.get-var('list-item--outline-width--focus') solid
+        cv.get-var('list-item--outline-color--focus');
+      outline-offset: cv.get-var('list-item--outline-offset--focus');
     }
 
     ix-icon {
-      width: var(--ix-list-item-drag-gripper--icon-size);
-      height: var(--ix-list-item-drag-gripper--icon-size);
+      width: cv.get-var('list-item-drag-gripper-icon--size');
+      height: cv.get-var('list-item-drag-gripper-icon--size');
     }
   }
 
@@ -97,7 +98,7 @@
     display: flex;
     align-items: center;
     min-width: 0;
-    gap: var(--ix-list-item--gap);
+    gap: cv.get-var('list-item--gap');
   }
 
   [hidden] {
@@ -106,8 +107,8 @@
 
   .selection-checkbox {
     order: -1;
-    flex: 0 0 var(--ix-list-item-selection-checkbox--size);
-    margin-right: var(--ix-list-item-selection-checkbox--margin-right);
+    flex: 0 0 cv.get-var('list-item-selection-checkbox--size');
+    margin-right: cv.get-var('list-item-selection-checkbox--margin-right');
   }
 
   .item-icon {
@@ -129,13 +130,13 @@
   }
 
   .label {
-    font: var(--ix-list-item-label--font);
+    font: cv.get-var('list-item-label--font');
   }
 
   .description {
-    font: var(--ix-list-item-description--font);
+    font: cv.get-var('list-item-description--font');
 
-    color: var(--ix-list-item-description--color);
+    color: cv.get-var('list-item-description--color');
   }
 
   .action {
@@ -155,43 +156,43 @@
 
 :host([variant='outline']) {
   .item-surface {
-    border-color: var(--ix-list-item--border-color--outline);
+    border-color: cv.get-var('list-item--border-color--outline');
   }
 }
 
 :host([variant='filled']) {
   .item-surface {
-    background-color: var(--ix-list-item--background--filled);
+    background-color: cv.get-var('list-item--background--filled');
   }
 }
 
 :host(.selected) {
   .item-surface {
-    background-color: var(--ix-list-item--background--selected);
+    background-color: cv.get-var('list-item--background--selected');
   }
 }
 
 :host(.active:not(.disabled)) {
   .item-surface:hover {
-    background-color: var(--ix-list-item--background--hover);
+    background-color: cv.get-var('list-item--background--hover');
   }
 
   .item-surface:active:not(
       :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
     ) {
-    background-color: var(--ix-list-item--background--selected);
+    background-color: cv.get-var('list-item--background--selected');
   }
 }
 
 :host([variant='filled'].active:not(.disabled):not(.selected)) {
   .item-surface:hover {
-    background-color: var(--ix-list-item--background--hover);
+    background-color: cv.get-var('list-item--background--hover');
   }
 
   .item-surface:active:not(
       :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
     ) {
-    background-color: var(--ix-list-item--background--selected);
+    background-color: cv.get-var('list-item--background--selected');
   }
 }
 
@@ -200,13 +201,13 @@
   .item-surface:active:not(
       :has(.drag-gripper:active, .selection-checkbox:active, .action:active)
     ) {
-    background-color: var(--ix-list-item--background--hover);
+    background-color: cv.get-var('list-item--background--hover');
   }
 }
 
 :host([variant='ghost'].divider) {
   .item-surface {
-    border-bottom-color: var(--ix-list-item--border-color--divider);
+    border-bottom-color: cv.get-var('list-item--border-color--divider');
     border-radius: 0;
   }
 }
@@ -219,13 +220,13 @@
   }
 
   .item-surface {
-    padding-left: var(--ix-list-item--padding-left--draggable);
+    padding-left: cv.get-var('list-item--padding-left--draggable');
   }
 }
 
 :host(.dragging) {
   .item-surface {
-    background-color: var(--ix-list-item--background--selected);
+    background-color: cv.get-var('list-item--background--selected');
   }
 
   .drag-gripper {
@@ -247,7 +248,7 @@
 }
 
 :host(.disabled) {
-  color: var(--ix-list-item--color--disabled);
+  color: cv.get-var('list-item--color--disabled');
   cursor: default;
 
   .item-surface {
@@ -256,7 +257,7 @@
 
   .description,
   .label {
-    color: var(--ix-list-item--color--disabled);
+    color: cv.get-var('list-item--color--disabled');
   }
 }
 

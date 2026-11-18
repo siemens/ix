@@ -7,10 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-popover-footer--padding: #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50};
-  --ix-popover-footer--gap: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-popover-footer-footer-end--gap: #{sys.$si-sys-sizing-spacing-x-40};
+  @include cv.define-vars(
+    (
+      'popover-footer--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-50},
+      'popover-footer--gap': sys.$si-sys-sizing-spacing-x-40,
+      'popover-footer-footer-end--gap': sys.$si-sys-sizing-spacing-x-40,
+    )
+  );
 }

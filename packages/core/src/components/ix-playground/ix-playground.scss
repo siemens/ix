@@ -8,6 +8,7 @@
  */
 
 @use './ix-playground.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: block;
@@ -15,15 +16,15 @@
 
 .playground {
   display: grid;
-  gap: var(--ix-playground--gap);
-  max-width: var(--ix-playground--max-width);
-  padding: var(--ix-playground--padding);
+  gap: cv.get-var('playground--gap');
+  max-width: cv.get-var('playground--max-width');
+  padding: cv.get-var('playground--padding');
 }
 
 .playground header,
 .scenario {
   display: grid;
-  gap: var(--ix-playground-scenario--gap);
+  gap: cv.get-var('playground-scenario--gap');
 }
 
 .playground h1,
@@ -34,7 +35,7 @@
 }
 
 .playground ol {
-  padding-inline-start: var(--ix-playground--padding-inline-start);
+  padding-inline-start: cv.get-var('playground--padding-inline-start');
 }
 
 .scenario {

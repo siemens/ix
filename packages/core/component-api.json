@@ -6495,7 +6495,7 @@
           "attribute": "item-gap",
           "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",
           "mutable": false,
-          "reflectToAttribute": false,
+          "reflectToAttribute": true,
           "default": "'sm'",
           "optional": false,
           "required": false,

@@ -13,6 +13,7 @@
 @use 'tokens/system' as sys;
 
 @use './breadcrumb-item.vars' as *;
+@use 'mixins/component-vars' as cv;
 @include button-mixin.all-btn-variants;
 
 :host {
@@ -21,8 +22,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  margin-right: var(--ix-breadcrumb-item--margin-right);
-  max-width: var(--ix-breadcrumb-item--max-width);
+  margin-right: cv.get-var('breadcrumb-item--margin-right');
+  max-width: cv.get-var('breadcrumb-item--max-width');
   min-width: 0;
 
   @include component.ix-component;
@@ -35,14 +36,14 @@
     pointer-events: all;
     width: fit-content;
     padding-right: 0;
-    padding-left: var(--ix-breadcrumb-item-button--padding-left);
+    padding-left: cv.get-var('breadcrumb-item-button--padding-left');
   }
 
   .chevron {
     pointer-events: none;
-    margin-left: var(--ix-breadcrumb-item-chevron--margin-left);
+    margin-left: cv.get-var('breadcrumb-item-chevron--margin-left');
     margin-right: 0rem;
-    color: var(--ix-breadcrumb-item-separator--color);
+    color: cv.get-var('breadcrumb-item-separator--color');
   }
 
   ::slotted(a[href]) {
@@ -56,7 +57,7 @@
 
 :host(:last-child) {
   .btn:not(.dropdown-trigger) {
-    color: var(--ix-breadcrumb-item-current--color);
+    color: cv.get-var('breadcrumb-item-current--color');
   }
 }
 
@@ -64,7 +65,7 @@
   cursor: default;
 
   .btn {
-    padding-right: var(--ix-breadcrumb-item-button--padding-right);
+    padding-right: cv.get-var('breadcrumb-item-button--padding-right');
     pointer-events: none;
   }
 }

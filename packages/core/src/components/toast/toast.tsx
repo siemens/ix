@@ -130,8 +130,8 @@ export class Toast {
       <ix-icon
         data-testid="toast-icon"
         aria-hidden="true"
+        class="status-icon"
         name={icon}
-        color="--ix-toast-status-color"
       />
     );
   }

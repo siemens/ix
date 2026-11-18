@@ -11,11 +11,12 @@
 @use 'tokens/system' as sys;
 
 @use './popover-header.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
-  padding: var(--ix-popover-header--padding);
+  padding: cv.get-var('popover-header--padding');
   align-items: center;
-  gap: var(--ix-popover-header--gap);
+  gap: cv.get-var('popover-header--gap');
 
   @include component.ix-component;
 
@@ -26,28 +27,62 @@
   .additional-items {
     display: flex;
     align-items: center;
-    gap: var(--ix-popover-header-additional-items--gap);
+    gap: cv.get-var('popover-header-additional-items--gap');
   }
 
   .popover-close {
     align-self: flex-start;
-    border-radius: var(--ix-popover-header-close-button--border-radius);
+    border-radius: cv.get-var('popover-header-close-button--border-radius');
 
-    --ix-icon-button-color: var(--ix-popover-close--color);
-    --ix-button-tertiary--color: var(--ix-popover-close--color);
-    --ix-button-tertiary--color--hover: var(--ix-popover-close--color);
-    --ix-button-tertiary--color--active: var(--ix-popover-close--color);
-    --ix-button-tertiary--background: var(
-      --ix-popover-close-button--background
+    @include cv.set-var(
+      'icon-button--color',
+      cv.get-var('popover-close--color', $external: true),
+      $external: true
     );
-    --ix-button-tertiary--background--hover: var(
-      --ix-popover-close-button--background--hover
+    @include cv.set-var(
+      'button--color--tertiary',
+      cv.get-var('popover-close--color', $external: true),
+      $external: true
     );
-    --ix-button-tertiary--background--active: var(
-      --ix-popover-close-button--background--active
+    @include cv.set-var(
+      'button--color--tertiary--hover',
+      cv.get-var('popover-close--color', $external: true),
+      $external: true
     );
-    --ix-button-tertiary--border-color: transparent;
-    --ix-button-tertiary--border-color--hover: transparent;
-    --ix-button-tertiary--border-color--active: transparent;
+    @include cv.set-var(
+      'button--color--tertiary--active',
+      cv.get-var('popover-close--color', $external: true),
+      $external: true
+    );
+    @include cv.set-var(
+      'button--background--tertiary',
+      cv.get-var('popover-close-button--background', $external: true),
+      $external: true
+    );
+    @include cv.set-var(
+      'button--background--tertiary--hover',
+      cv.get-var('popover-close-button--background--hover', $external: true),
+      $external: true
+    );
+    @include cv.set-var(
+      'button--background--tertiary--active',
+      cv.get-var('popover-close-button--background--active', $external: true),
+      $external: true
+    );
+    @include cv.set-var(
+      'button--border-color--tertiary',
+      transparent,
+      $external: true
+    );
+    @include cv.set-var(
+      'button--border-color--tertiary--hover',
+      transparent,
+      $external: true
+    );
+    @include cv.set-var(
+      'button--border-color--tertiary--active',
+      transparent,
+      $external: true
+    );
   }
 }
