@@ -23,10 +23,10 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     type: theme,
   });
   page.goto = async (url: string, options) => {
-    const response = await originalGoto(
-      `http://localhost:5173/tests/${url}?theme=${theme}&colorSchema=${colorSchema}`,
-      options
-    );
+    const target = new URL(url, 'http://localhost:5173/tests/');
+    target.searchParams.set('theme', theme);
+    target.searchParams.set('colorSchema', colorSchema);
+    const response = await originalGoto(target.href, options);
     // Keep the pointer away from the page to avoid unintended hover states
     await page.mouse.move(9999, 9999);
     // Initial timeout for webKit to render Web Components
