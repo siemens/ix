@@ -605,7 +605,8 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
         headerTitle: 'header-title',
         headerSubtitle: 'header-subtitle',
         textOverflow: 'text-overflow',
-        hasBackButton: 'has-back-button'
+        hasBackButton: 'has-back-button',
+        ariaLabelMoreActions: 'aria-label-more-actions'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxContentHeader as StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents, Components.IxContentHeader>,
@@ -1161,7 +1162,8 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
-        inert: 'inert'
+        inert: 'inert',
+        dropdownIndicator: 'dropdown-indicator'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconButton as StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>,
@@ -1196,8 +1198,7 @@ export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEven
         icon: 'icon',
         iconColor: 'icon-color',
         titleText: 'title-text',
-        copyText: 'copy-text',
-        instructions: 'instructions'
+        description: 'description'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxInfoPage as StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage, 'titleText'>,

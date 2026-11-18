@@ -40,7 +40,7 @@ interface MessageTypeConfig {
 /**
  * Inline bar that displays a contextual message or notification.
  *
- * @documentation https://ix.siemens.io//docs/components/messagebar/code.md
+ * @documentation https://ix.siemens.io/docs/components/messagebar/code.md
  * @figma-main-component-id 103814:17693
  *
  * @slot - Message content.
@@ -53,6 +53,8 @@ interface MessageTypeConfig {
 export class MessageBar {
   /**
    * Specifies the type of the alert.
+   *
+   * @breaking-change 6.0.0 Type values renamed (`info` is now `information`)
    */
   @Prop() type: MessageBarType = 'information';
 

@@ -26,7 +26,7 @@ const linkIcons = {
 /**
  * Button styled as a hyperlink that navigates to a target.
  *
- * @documentation https://ix.siemens.io//docs/components/link-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/link-button/guide.md
  * @figma-main-component-id 107603:15976
  *
  * @slot - Link button label.

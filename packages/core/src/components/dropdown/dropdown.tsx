@@ -102,7 +102,7 @@ const createPointReference = ({
 /**
  * Floating overlay that displays a list of options or actions anchored to a trigger.
  *
- * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
+ * @documentation https://ix.siemens.io/docs/components/dropdown/guide.md
  * @figma-main-component-id 1233:32649
  *
  * @slot - Dropdown content.
@@ -187,15 +187,11 @@ export class Dropdown
 
   /**
    * Suppress automatic focus when the dropdown is shown
-   *
-   * @since 4.3.0
    */
   @Prop() disableFocusHandling = false;
 
   /**
    * Close dropdown when tabbing away, and do not trap focus inside dropdown
-   *
-   * @since 4.3.0
    */
   @Prop() disableFocusTrap = false;
 
@@ -203,7 +199,6 @@ export class Dropdown
    * Enable Popover API rendering for top-layer positioning.
    *
    * @default false in v5.x, will default to true in v6.0.0
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

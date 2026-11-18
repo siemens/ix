@@ -25,7 +25,7 @@ import {
 /**
  * Button that displays only an icon to trigger an action.
  *
- * @documentation https://ix.siemens.io//docs/components/icon-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/icon-button/guide.md
  * @figma-main-component-id 270:941
  */
 @Component({
@@ -62,12 +62,15 @@ export class IconButton
    * Defaults to `20`.
    *
    * @since 6.0.0 Size `20` is available
+   * @breaking-change 6.0.0 Default changed to `20`
    */
   @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
   /**
    * Icon color as a CSS custom property name, for example
    * `--si-sys-color-text-primary`.
+   *
+   * @breaking-change 6.0.0 Requires the full CSS custom property name
    */
   @Prop() iconColor?: string;
 
@@ -92,6 +95,14 @@ export class IconButton
    */
   // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop({ reflect: true }) inert = false;
+
+  /**
+   * Show a dropdown indicator triangle in the bottom-right corner.
+   *
+   * @internal
+   * @since 6.0.0
+   */
+  @Prop() dropdownIndicator = false;
 
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
@@ -152,7 +163,13 @@ export class IconButton
       inert: this.inert,
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
-      extraClasses: this.getIconSizeClass(),
+      extraClasses: {
+        ...this.getIconSizeClass(),
+        'has-dropdown-indicator': this.dropdownIndicator,
+      },
+      afterContent: this.dropdownIndicator ? (
+        <span class="dropdown-indicator" aria-hidden="true"></span>
+      ) : undefined,
       tabIndex: this.hostElement.hasAttribute('tabindex')
         ? this.hostElement.tabIndex
         : undefined,

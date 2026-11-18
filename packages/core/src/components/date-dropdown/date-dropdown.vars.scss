@@ -7,34 +7,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-date-dropdown-divider--border: #{sys.$si-sys-sizing-border-width-default}
-    solid #{sys.$si-sys-color-border-4};
-  --ix-date-dropdown--outline-color--focus: #{sys.$si-sys-color-effects-focus};
+  @include cv.define-vars(
+    (
+      'date-dropdown-divider--border': #{sys.$si-sys-sizing-border-width-default}
+        solid #{sys.$si-sys-color-border-4},
+      'date-dropdown--outline-color--focus': sys.$si-sys-color-effects-focus,
+    )
+  );
 }
 
 :host {
-  --ix-date-dropdown--focus--outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
-  --ix-date-dropdown-pull-right--padding: #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-date-dropdown-quick-selection--gap: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-date-dropdown-quick-selection--padding: #{sys.$si-sys-sizing-spacing-y-40}
-    #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-date-dropdown-button--min-width: #{sys.$si-sys-sizing-size-140};
-  --ix-date-dropdown-button--min-height: #{sys.$si-sys-sizing-size-80};
-  --ix-date-dropdown-button--max-height: #{sys.$si-sys-sizing-size-80};
-  --ix-date-dropdown-container--height: calc(
-    #{sys.$si-sys-sizing-size-90} * 10
+  @include cv.define-vars(
+    (
+      'date-dropdown--outline-offset--focus':
+        sys.$si-sys-sizing-focus-ring-offset,
+      'date-dropdown-pull-right--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60},
+      'date-dropdown-quick-selection--gap': sys.$si-sys-sizing-spacing-y-20,
+      'date-dropdown-quick-selection--padding': #{sys.$si-sys-sizing-spacing-y-40}
+        #{sys.$si-sys-sizing-spacing-x-40},
+      'date-dropdown-button--min-width': sys.$si-sys-sizing-size-140,
+      'date-dropdown-button--min-height': sys.$si-sys-sizing-size-80,
+      'date-dropdown-button--max-height': sys.$si-sys-sizing-size-80,
+      'date-dropdown-container--height':
+        calc(#{sys.$si-sys-sizing-size-90} * 10),
+      'date-dropdown-container--max-height':
+        calc(#{sys.$si-sys-sizing-size-90} * 10),
+      'date-dropdown-picker-wrapper--height':
+        calc(
+          #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-y-60}
+        ),
+      'date-dropdown-quick-selection--max-height':
+        calc(
+          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
+        ),
+      'date-dropdown--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
   );
-  --ix-date-dropdown-container--max-height: calc(
-    #{sys.$si-sys-sizing-size-90} * 10
-  );
-  --ix-date-dropdown-picker-wrapper--height: calc(
-    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-spacing-y-60}
-  );
-  --ix-date-dropdown-quick-selection--max-height: calc(
-    #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-90}
-  );
-  --ix-date-dropdown--outline-width--focus: #{sys.$si-sys-sizing-focus-ring-width};
 }

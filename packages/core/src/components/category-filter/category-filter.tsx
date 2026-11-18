@@ -35,7 +35,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 /**
  * Input for building and refining searches using category-based filter criteria.
  *
- * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
+ * @documentation https://ix.siemens.io/docs/components/category-filter/guide.md
  * @figma-main-component-id 1221:30316
  */
 @Component({
@@ -159,24 +159,18 @@ export class CategoryFilter {
   /**
    * ARIA label for the reset button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelResetButton?: string;
 
   /**
    * ARIA label for the operator button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelOperatorButton?: string;
 
   /**
    * ARIA label for the filter input
    * Will be set as aria-label on the nested HTML input element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelFilterInput?: string;
 
@@ -184,7 +178,6 @@ export class CategoryFilter {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

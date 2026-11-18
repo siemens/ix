@@ -31,8 +31,8 @@ export const Default: Story = {
   args: {
     iconColor: '--si-sys-color-background-warning',
     titleText: 'Report could not be generated',
-    copyText: 'An error occurred while generating the report.',
-    instructions: 'Contact your administrator for more information.',
+    description:
+      'An error occurred while generating the report. Contact your administrator for more information.',
   },
 };
 
@@ -43,8 +43,8 @@ export const WithIllustration: Story = {
   },
   args: {
     titleText: 'Explore Industrial Experience',
-    copyText: 'Build consistent industrial applications with IX components.',
-    instructions: 'Choose a component to get started.',
+    description:
+      'Build consistent industrial applications with IX components. Choose a component to get started.',
   },
   render: (args) =>
     genericRender('ix-info-page', args, [], (element) => {
@@ -64,8 +64,8 @@ export const WithAction: Story = {
   args: {
     iconColor: '--si-sys-color-background-warning',
     titleText: 'Invitation received',
-    copyText: 'You were invited to join Sample Co.',
-    instructions: 'Accept the invitation to continue.',
+    description:
+      'You were invited to join Sample Co. Accept the invitation to continue.',
   },
   render: (args) =>
     genericRender('ix-info-page', args, [], (element) => {

@@ -295,6 +295,8 @@ export async function revalidate(instance: object) {
 
 export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
+  /** Text controls defer error feedback until touched; pickers can validate eagerly. */
+  useTouchedForAria?: boolean;
 }) {
   return (proto: IxComponentInterface, methodName: string) => {
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
@@ -439,19 +441,19 @@ export function HookValidationLifecycle(options?: {
               return;
             }
 
-            // A missing required value is shown only once the field is touched
-            // (`ix-invalid--required`), so it is not announced before either
             const validByValidity =
               validityState.valid ||
               (!touched && isOnlyValueMissing(validityState));
             const consumerValid = consumerValidityCheck(host);
+            const showInternalError =
+              !validByValidity && (!options?.useTouchedForAria || !!touched);
             syncAriaInvalid(
               validationElement,
-              validByValidity && consumerValid
+              !showInternalError && consumerValid
             );
             syncAriaMessageReferences(
               validationElement,
-              !validByValidity || !consumerValid,
+              showInternalError || !consumerValid,
               messageElements
             );
           }

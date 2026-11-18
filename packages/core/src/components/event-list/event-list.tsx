@@ -15,7 +15,7 @@ import { animate, Easing } from '../utils/animate';
 /**
  * List that displays a sequence of events or status entries.
  *
- * @documentation https://ix.siemens.io//docs/components/event-list/code.md
+ * @documentation https://ix.siemens.io/docs/components/event-list/code.md
  * @figma-main-component-id 1433:43161
  *
  * @slot - Event list items.

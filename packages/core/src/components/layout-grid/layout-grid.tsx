@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 /**
  * Column-based grid layout for arranging content responsively.
  *
- * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+ * @documentation https://ix.siemens.io/docs/components/layout-grid/guide.md
  *
  * @slot - Layout content.
  */
@@ -44,8 +44,8 @@ export class LayoutGrid {
           'no-margin': this.noMargin,
         }}
         style={{
-          '--ix-layout-grid-columns': `${this.columns}`,
-          '--ix-layout-grid-gutter': `${this.gap}px`,
+          '--ix-layout-grid--columns': `${this.columns}`,
+          '--ix-layout-grid--gutter': `${this.gap}px`,
         }}
       >
         <slot></slot>

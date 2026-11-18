@@ -29,7 +29,7 @@ import {
 /**
  * Lets users select a single option from a set.
  *
- * @documentation https://ix.siemens.io//docs/components/radio/guide.md
+ * @documentation https://ix.siemens.io/docs/components/radio/guide.md
  * @figma-main-component-id 42365:44481
  * @form-ready
  *
@@ -72,8 +72,6 @@ export class Radio implements IxFormComponent<string> {
 
   /**
    * Requires the radio component and its group to be checked for the form to be submittable
-   *
-   * @since 3.0.0
    */
   @Prop({ reflect: true }) required: boolean = false;
 

@@ -66,7 +66,7 @@ let selectId = 0;
 /**
  * Dropdown control for selecting one or more options from a list.
  *
- * @documentation https://ix.siemens.io//docs/components/select/guide.md
+ * @documentation https://ix.siemens.io/docs/components/select/guide.md
  * @figma-main-component-id 42365:49989
  * @form-ready
  *
@@ -103,7 +103,7 @@ export class Select
 
   @Watch('required')
   onRequiredChange() {
-    void revalidate(this);
+    this.syncValidity();
   }
 
   /**
@@ -114,8 +114,6 @@ export class Select
   /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string = 'Clear selection';
 
@@ -257,7 +255,6 @@ export class Select
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -377,11 +374,30 @@ export class Select
     this.value = value;
     this.updateSelection();
     this.updateFormInternalValue(value);
+    this.syncValidity();
+  }
+
+  @Listen('invalid')
+  onInvalid(event: Event) {
+    event.preventDefault();
+    this.touched = true;
+    void revalidate(this);
+  }
+
+  private syncValidity() {
+    if (this.required && !this.disabled && !this.readonly && !this.hasValue()) {
+      const message = this.invalidText?.trim() ? this.invalidText : ' ';
+      this.formInternals.setValidity({ valueMissing: true }, message);
+    } else {
+      this.formInternals.setValidity({});
+    }
+    void revalidate(this);
   }
 
   @Watch('disabled')
   @Watch('readonly')
   watchDisabledReadonly() {
+    this.syncValidity();
     // Disabled/readonly hides the chip close button, changing chip widths, so
     // invalidate the measurement cache to force a re-measure on next render.
     this.chipWidths.clear();
@@ -399,7 +415,7 @@ export class Select
   /** @internal */
   @Method()
   async hasValidValue(): Promise<boolean> {
-    return this.required && !!this.hasValue();
+    return !this.required || this.disabled || this.readonly || this.hasValue();
   }
 
   private hasValue() {
@@ -587,6 +603,7 @@ export class Select
   override componentWillLoad() {
     this.updateSelection();
     this.updateFormInternalValue(this.value);
+    this.syncValidity();
   }
 
   override disconnectedCallback(): void {
@@ -1104,7 +1121,7 @@ export class Select
     const chip = this.chipElementRefs.get(value);
     const margin = chip
       ? this.getHorizontalMargin(chip)
-      : this.getCssPixelValue('--ix-select-chip-margin-inline-end');
+      : this.getCssPixelValue('--ix-select-chip--margin-inline-end');
 
     return (this.chipWidths.get(value) ?? 0) + margin;
   }
@@ -1114,13 +1131,13 @@ export class Select
     const overflowChipWidth =
       this.overflowChipWidth ||
       overflowChip?.offsetWidth ||
-      this.getCssPixelValue('--ix-select-overflow-chip-fallback-width');
+      this.getCssPixelValue('--ix-select-overflow-chip-fallback--width');
 
     return (
       overflowChipWidth +
       (overflowChip
         ? this.getHorizontalMargin(overflowChip)
-        : this.getCssPixelValue('--ix-select-chip-margin-inline-end'))
+        : this.getCssPixelValue('--ix-select-chip--margin-inline-end'))
     );
   }
 
@@ -1237,7 +1254,7 @@ export class Select
         : 0;
     const available =
       container.clientWidth -
-      this.getCssPixelValue('--ix-select-trigger-min-width') -
+      this.getCssPixelValue('--ix-select-trigger--min-width') -
       clearButtonWidth;
     if (this.canShowAllChips(values, available)) {
       this.applyOverflowState(null, []);

@@ -47,6 +47,7 @@
 
   .ix-form-control[type='checkbox'] + label:before {
     content: '';
+    border-radius: #{sys.$si-sys-sizing-border-radius-xs};
     width: $size;
     height: $size;
     min-width: $size;

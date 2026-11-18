@@ -35,7 +35,7 @@ import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
 /**
  * Displays hierarchical data as an expandable tree.
  *
- * @documentation https://ix.siemens.io//docs/components/tree/code.md
+ * @documentation https://ix.siemens.io/docs/components/tree/code.md
  * @slot - Tree items.
  */
 @Component({
@@ -78,7 +78,6 @@ export class Tree {
 
   /**
    * Enable to toggle items by click on the item
-   * @since 3.0.0
    */
   @Prop() toggleOnItemClick?: boolean;
 

@@ -47,6 +47,16 @@ for (const { tag, control } of components) {
       await expect(page.locator(tag)).toHaveAttribute('hydrated');
     });
 
+    regressionTest('accessibility', async ({ makeAxeBuilder }) => {
+      const results = await makeAxeBuilder().analyze();
+      expect(results.violations).toEqual([]);
+    });
+
+    regressionTest('renders', async ({ page }) => {
+      await expect(page.locator(tag)).toHaveAttribute('hydrated');
+      await expect(page.getByRole('textbox', { name: 'Search' })).toBeVisible();
+    });
+
     regressionTest(
       'resetting to the last rendered value in the same task as a keystroke updates the native control',
       async ({ page }) => {

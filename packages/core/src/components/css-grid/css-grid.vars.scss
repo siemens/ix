@@ -7,9 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-css-grid--row-gap: #{sys.$si-sys-sizing-spacing-y-80};
-  --ix-css-grid--column-gap: #{sys.$si-sys-sizing-spacing-x-80};
+  @include cv.define-vars(
+    (
+      'css-grid--row-gap': sys.$si-sys-sizing-spacing-y-80,
+      'css-grid--column-gap': sys.$si-sys-sizing-spacing-x-80,
+    )
+  );
 }

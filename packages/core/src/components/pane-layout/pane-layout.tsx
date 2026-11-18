@@ -25,7 +25,7 @@ import type { Disposable } from '../utils/typed-event';
 /**
  * Layout container that arranges collapsible panes around a content area.
  *
- * @documentation https://ix.siemens.io//docs/components/panes/guide.md
+ * @documentation https://ix.siemens.io/docs/components/panes/guide.md
  * @figma-main-component-id 19924:12291
  *
  * @slot left - Content displayed in the left pane.

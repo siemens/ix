@@ -7,60 +7,91 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('progress-indicator--color');
+@include cv.declare-var('progress-indicator--height');
+@include cv.declare-var('progress-indicator-track--color');
 
 :host {
-  --ix-progress-indicator-fill--background: #{sys.$si-sys-color-border-accent-hover};
-  --ix-progress-indicator-fill-error--background: #{sys.$si-sys-color-border-danger};
-  --ix-progress-indicator-fill-information--background: #{sys.$si-sys-color-border-information};
-  --ix-progress-indicator-fill-paused--background: #{sys.$si-sys-color-border-1};
-  --ix-progress-indicator-fill-success--background: #{sys.$si-sys-color-border-success};
-  --ix-progress-indicator-fill-warning--background: #{sys.$si-sys-color-border-warning};
-  --ix-progress-indicator-helper--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-helper-error--color: #{sys.$si-sys-color-text-danger};
-  --ix-progress-indicator-helper-icon--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-helper-icon-error--color: #{sys.$si-sys-color-border-danger};
-  --ix-progress-indicator-helper-icon-information--color: #{sys.$si-sys-color-border-information};
-  --ix-progress-indicator-helper-icon-paused--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-helper-icon-success--color: #{sys.$si-sys-color-border-success};
-  --ix-progress-indicator-helper-icon-warning--color: #{sys.$si-sys-color-border-warning};
-  --ix-progress-indicator-helper-information--color: #{sys.$si-sys-color-text-primary};
-  --ix-progress-indicator-helper-paused--color: #{sys.$si-sys-color-text-primary};
-  --ix-progress-indicator-helper-success--color: #{sys.$si-sys-color-text-primary};
-  --ix-progress-indicator-helper-warning--color: #{sys.$si-sys-color-text-primary};
-  --ix-progress-indicator-label--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-label-error--color: #{sys.$si-sys-color-text-danger};
-  --ix-progress-indicator-label-information--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-label-paused--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-label-success--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-label-warning--color: #{sys.$si-sys-color-text-secondary};
-  --ix-progress-indicator-track--background: #{sys.$si-sys-color-border-4};
-  --ix-progress-indicator-track-error--background: #{sys.$si-sys-color-background-danger-subtle};
-  --ix-progress-indicator-track-information--background: #{sys.$si-sys-color-background-information-subtle};
-  --ix-progress-indicator-track-paused--background: #{sys.$si-sys-color-border-4};
-  --ix-progress-indicator-track-success--background: #{sys.$si-sys-color-border-4};
-  --ix-progress-indicator-track-warning--background: #{sys.$si-sys-color-background-warning-subtle};
+  @include cv.define-vars(
+    (
+      'progress-indicator-fill--background':
+        sys.$si-sys-color-border-accent-hover,
+      'progress-indicator-fill--background--error':
+        sys.$si-sys-color-border-danger,
+      'progress-indicator-fill--background--information':
+        sys.$si-sys-color-border-information,
+      'progress-indicator-fill--background--paused': sys.$si-sys-color-border-1,
+      'progress-indicator-fill--background--success':
+        sys.$si-sys-color-border-success,
+      'progress-indicator-fill--background--warning':
+        sys.$si-sys-color-border-warning,
+      'progress-indicator-helper--color': sys.$si-sys-color-text-secondary,
+      'progress-indicator-helper--color--error': sys.$si-sys-color-text-danger,
+      'progress-indicator-helper-icon--color': sys.$si-sys-color-text-secondary,
+      'progress-indicator-helper-icon--color--error':
+        sys.$si-sys-color-border-danger,
+      'progress-indicator-helper-icon--color--information':
+        sys.$si-sys-color-border-information,
+      'progress-indicator-helper-icon--color--paused':
+        sys.$si-sys-color-text-secondary,
+      'progress-indicator-helper-icon--color--success':
+        sys.$si-sys-color-border-success,
+      'progress-indicator-helper-icon--color--warning':
+        sys.$si-sys-color-border-warning,
+      'progress-indicator-helper--color--information':
+        sys.$si-sys-color-text-primary,
+      'progress-indicator-helper--color--paused': sys.$si-sys-color-text-primary,
+      'progress-indicator-helper--color--success':
+        sys.$si-sys-color-text-primary,
+      'progress-indicator-helper--color--warning':
+        sys.$si-sys-color-text-primary,
+      'progress-indicator-track--background': sys.$si-sys-color-border-4,
+      'progress-indicator-track--background--error':
+        sys.$si-sys-color-background-danger-subtle,
+      'progress-indicator-track--background--information':
+        sys.$si-sys-color-background-information-subtle,
+      'progress-indicator-track--background--paused': sys.$si-sys-color-border-4,
+      'progress-indicator-track--background--success':
+        sys.$si-sys-color-border-4,
+      'progress-indicator-track--background--warning':
+        sys.$si-sys-color-background-warning-subtle,
+    )
+  );
 }
 
 :host {
-  --ix-progress-indicator--width: calc(
-    #{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-size-120}
+  @include cv.define-vars(
+    (
+      'progress-indicator--width':
+        calc(#{sys.$si-sys-sizing-size-170} + #{sys.$si-sys-sizing-size-120}),
+      'progress-indicator-progress-container--gap':
+        sys.$si-sys-sizing-spacing-x-20,
+      'progress-indicator-linear-progress-container--border-radius':
+        sys.$si-sys-sizing-border-radius-xs,
+      'progress-indicator-progress-bar--transition-duration': 0.3s,
+      'progress-indicator-label--margin': #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-20}
+        0,
+      'progress-indicator-helper-text--margin': #{sys.$si-sys-sizing-spacing-y-20}
+        0,
+      'progress-indicator-helper-text--gap': sys.$si-sys-sizing-spacing-x-20,
+      'progress-indicator-icon--margin': #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-10},
+      'progress-indicator--margin': #{sys.$si-sys-sizing-spacing-y-40} 0,
+      'progress-indicator--margin--xs': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'progress-indicator--margin--sm': #{sys.$si-sys-sizing-spacing-y-30} 0,
+      'progress-indicator-linear-slot--min-width': sys.$si-sys-sizing-size-80,
+      'progress-indicator--height--xs': sys.$si-sys-sizing-size-10,
+      'progress-indicator--height--sm': sys.$si-sys-sizing-size-20,
+      'progress-indicator--height--md': sys.$si-sys-sizing-size-30,
+      'progress-indicator--height--lg': sys.$si-sys-sizing-size-50,
+      'progress-indicator--height--xl': sys.$si-sys-sizing-size-70,
+    )
   );
-  --ix-progress-indicator-progress-container--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-progress-indicator-label--margin: #{sys.$si-sys-sizing-spacing-y-40} 0 #{sys.$si-sys-sizing-spacing-y-20}
-    0;
-  --ix-progress-indicator-helper-text--margin: #{sys.$si-sys-sizing-spacing-y-20}
-    0;
-  --ix-progress-indicator-helper-text--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-progress-indicator-icon--margin: #{sys.$si-sys-sizing-spacing-y-10} #{sys.$si-sys-sizing-spacing-x-10};
-  --ix-progress-indicator--margin: #{sys.$si-sys-sizing-spacing-y-40} 0;
-  --ix-progress-indicator-extra-small--margin: #{sys.$si-sys-sizing-spacing-y-20}
-    0;
-  --ix-progress-indicator-small--margin: #{sys.$si-sys-sizing-spacing-y-30} 0;
-  --ix-progress-indicator-linear-slot--min-width: #{sys.$si-sys-sizing-size-80};
-  --ix-progress-indicator-xs--height: #{sys.$si-sys-sizing-size-10};
-  --ix-progress-indicator-sm--height: #{sys.$si-sys-sizing-size-20};
-  --ix-progress-indicator-md--height: #{sys.$si-sys-sizing-size-30};
-  --ix-progress-indicator-lg--height: #{sys.$si-sys-sizing-size-50};
-  --ix-progress-indicator-xl--height: #{sys.$si-sys-sizing-size-70};
 }

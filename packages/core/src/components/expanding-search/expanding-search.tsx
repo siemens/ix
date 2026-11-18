@@ -23,7 +23,7 @@ import { IxButtonComponent } from '../button/button-component';
 /**
  * Search input that expands from an icon when activated.
  *
- * @documentation https://ix.siemens.io//docs/components/expanding-search/code.md
+ * @documentation https://ix.siemens.io/docs/components/expanding-search/code.md
  * @figma-main-component-id 680:9354
  */
 @Component({
@@ -62,24 +62,18 @@ export class ExpandingSearch
   /**
    * ARIA label for the search icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSearchIconButton?: string;
 
   /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string = 'Clear search';
 
   /**
    * ARIA label for the search input
    * Will be set as aria-label on the nested HTML input element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSearchInput?: string = 'Search input';
 

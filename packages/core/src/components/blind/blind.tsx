@@ -29,7 +29,7 @@ let sequentialInstanceId = 0;
 /**
  * Collapsible container that expands and collapses to show or hide its content.
  *
- * @documentation https://ix.siemens.io//docs/components/blind/guide.md
+ * @documentation https://ix.siemens.io/docs/components/blind/guide.md
  * @figma-main-component-id 388:3986
  *
  * @slot custom-header - Custom header content replacing the label and icon.
@@ -64,6 +64,8 @@ export class Blind {
 
   /**
    * Blind status variant
+   *
+   * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
    */
   @Prop() variant: StatusVariant = 'base';
 
@@ -74,6 +76,7 @@ export class Blind {
    * A non-base status shows a left status strip.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
    */
   @Prop() outline?: boolean;
 

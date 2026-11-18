@@ -26,7 +26,7 @@ const DEFAULT_SKIP_LINK_FOOTER_TARGET_ID = 'ix-application-footer';
 /**
  * Root container that sets up the overall application shell and layout.
  *
- * @documentation https://ix.siemens.io//docs/components/application/guide.md
+ * @documentation https://ix.siemens.io/docs/components/application/guide.md
  *
  * @slot application-header - Application header, typically an `ix-application-header`.
  * @slot menu - Application menu, typically an `ix-menu`.
@@ -92,6 +92,8 @@ export class Application {
    * Application `url`s are opened unchanged via `window.open()`. URL schemes such as
    * `javascript:` or `data:` are not rejected. Only configure trusted applications and do not
    * derive URLs from untrusted input.
+   *
+   * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
    */
   @Prop() appSwitchConfig?: AppSwitchConfiguration;
 

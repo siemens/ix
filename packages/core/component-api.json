@@ -2321,6 +2321,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "ariaLabelMoreActions",
+          "attribute": "aria-label-more-actions",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'More actions'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "hasBackButton",
           "attribute": "has-back-button",
           "type": "boolean",
@@ -2389,7 +2400,8 @@
       "cssProperties": [],
       "slots": [
         "default",
-        "header"
+        "header",
+        "secondary-actions"
       ],
       "cssParts": [],
       "cssStates": []
@@ -3076,6 +3088,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
@@ -5688,8 +5705,8 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "copyText",
-          "attribute": "copy-text",
+          "name": "description",
+          "attribute": "description",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
@@ -5716,16 +5733,6 @@
           "reflectToAttribute": false,
           "default": "'--si-sys-color-background-warning'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "instructions",
-          "attribute": "instructions",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -5963,6 +5970,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
@@ -6483,7 +6495,7 @@
           "attribute": "item-gap",
           "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",
           "mutable": false,
-          "reflectToAttribute": false,
+          "reflectToAttribute": true,
           "default": "'sm'",
           "optional": false,
           "required": false,
@@ -8137,6 +8149,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -8144,6 +8161,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],
@@ -10681,6 +10703,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -10688,6 +10715,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],

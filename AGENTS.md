@@ -110,6 +110,24 @@ Targeted commands:
 - Do not document generated implementation details as public API.
 - Ensure examples use supported imports, current component names, and realistic consumer code.
 
+### Component metadata (`@documentation`, `@figma-main-component-id`)
+
+- Every public component in `packages/core/src/components/**` must declare both JSDoc tags in its class-level comment (next to `@since`):
+
+  ```tsx
+  /**
+   * @documentation https://ix.siemens.io/docs/components/<component>/guide.md
+   * @figma-main-component-id <figma-node-id>
+   * @since <version>
+   */
+  ```
+
+- Add these tags when adding a new component, and keep them correct when renaming, splitting, or moving a component.
+- `@documentation` must point to the matching page on `ix.siemens.io`.
+- `@figma-main-component-id` must be the node ID of the main component in the IX Figma library.
+- If no documentation page or Figma main component exists yet, do not invent a value. Omit the tag and warn the developer explicitly (in the agent response and PR description) which tag is missing and why.
+- Internal components (`@internal`) are exempt.
+
 ## Changesets and release impact
 
 - Any user-facing change needs a changeset in `.changeset/`.
