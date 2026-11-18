@@ -10,9 +10,10 @@
 @use './button-mixin';
 
 @use './button.vars' as *;
+@use 'mixins/component-vars' as cv;
 @include button-mixin.btn;
 @include button-mixin.all-btn-variants;
 
 :host {
-  min-width: var(--ix-button--min-width);
+  min-width: cv.get-var('button--min-width');
 }

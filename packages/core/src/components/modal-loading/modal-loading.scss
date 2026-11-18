@@ -10,11 +10,12 @@
 @use 'tokens/system' as sys;
 
 @use './modal-loading.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: var(--ix-modal-loading--gap);
+  gap: cv.get-var('modal-loading--gap');
   overflow: hidden;
 
   .loading-text {

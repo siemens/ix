@@ -8,12 +8,13 @@
  */
 @use 'mixins/shadow-dom/component';
 @use './list-item-separator.vars' as *;
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: block;
   width: 100%;
-  border-bottom: var(--ix-list-item-separator--border-width) solid
-    var(--ix-list-item-separator--border-color);
+  border-bottom: cv.get-var('list-item-separator--border-width') solid
+    cv.get-var('list-item-separator--border-color');
 
   @include component.ix-component;
 }

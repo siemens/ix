@@ -7,11 +7,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('icon-button--color');
 
 :host {
-  --ix-icon-button-extra-small--size: #{sys.$si-sys-sizing-size-50};
-  --ix-icon-button-small--size: #{sys.$si-sys-sizing-size-70};
-  --ix-icon-button-large--size: #{sys.$si-sys-sizing-size-80};
-  --ix-icon-button-btn-oval--border-radius: #{sys.$si-sys-sizing-border-radius-full};
+  @include cv.define-vars(
+    (
+      'icon-button--size--12': sys.$si-sys-sizing-size-50,
+      'icon-button--size--16': sys.$si-sys-sizing-size-70,
+      'icon-button--size--32': sys.$si-sys-sizing-size-80,
+      'icon-button-btn-oval--border-radius':
+        sys.$si-sys-sizing-border-radius-full,
+      'icon-button-dropdown-indicator--size':
+        sys.$si-sys-sizing-border-width-emphasis,
+      'icon-button-dropdown-indicator--inset':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-10} * 1.5 - #{cv.get-var(
+              'button--border-width'
+            )}
+        ),
+    )
+  );
 }

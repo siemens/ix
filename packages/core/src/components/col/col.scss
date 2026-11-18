@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
+@use 'mixins/component-vars' as cv;
 
 :host {
   position: relative;
@@ -16,7 +17,7 @@
   max-width: 100%;
   min-height: 1px;
 
-  padding: calc(var(--ix-layout-grid-gutter) * 0.5);
+  padding: calc(#{cv.get-var('layout-grid--gutter', $external: true)} * 0.5);
 
   @include component.ix-component;
 }
