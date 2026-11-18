@@ -10,10 +10,11 @@
 @use 'mixins/shadow-dom/component';
 
 @use './breadcrumb.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   justify-content: flex-start;
-  height: var(--ix-breadcrumb--height);
+  height: cv.get-var('breadcrumb--height');
   align-items: center;
   background-color: transparent;
 
@@ -22,7 +23,7 @@
   .previous-button {
     width: auto;
     min-width: 0px;
-    margin-right: var(--ix-breadcrumb-previous-button--margin-right);
+    margin-right: cv.get-var('breadcrumb-previous-button--margin-right');
   }
 
   .crumb-dropdown {
@@ -37,15 +38,15 @@
     display: flex;
 
     .more-text-ellipsis {
-      width: var(--ix-breadcrumb-more-text-ellipsis--width);
+      width: cv.get-var('breadcrumb-more-text-ellipsis--width');
       display: inline-block;
-      font: var(--ix-breadcrumb-ellipsis--font);
+      font: cv.get-var('breadcrumb-ellipsis--font');
     }
 
     ix-icon {
       // line-height: unset; --> Note: 'line-height' can't be applied due to shadow DOM encapsulation at ix-icon
       // using padding-top to achieve same position as before
-      padding-top: var(--ix-breadcrumb-more-text-icon--padding-top);
+      padding-top: cv.get-var('breadcrumb-more-text-icon--padding-top');
     }
   }
 
@@ -56,8 +57,8 @@
   }
 
   .chevron {
-    margin-left: var(--ix-breadcrumb-chevron--margin-left);
+    margin-left: cv.get-var('breadcrumb-chevron--margin-left');
     margin-right: 0rem;
-    color: var(--ix-breadcrumb-separator--color);
+    color: cv.get-var('breadcrumb-separator--color');
   }
 }

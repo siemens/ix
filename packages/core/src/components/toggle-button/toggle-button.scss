@@ -12,24 +12,25 @@
 @use 'tokens/system' as sys;
 
 @use './toggle-button.vars' as *;
+@use 'mixins/component-vars' as cv;
 @include button-mixin.btn;
 @include button-mixin.all-btn-variants;
 
 :host {
   display: inline-block;
-  height: var(--ix-toggle-button--height);
+  height: cv.get-var('toggle-button--height');
   width: auto;
-  min-width: var(--ix-toggle-button--min-width);
+  min-width: cv.get-var('toggle-button--min-width');
   vertical-align: middle;
 
   @include component.ix-component;
 
   .icon,
   .icon-right {
-    block-size: var(--ix-toggle-button-icon-right--icon-size);
-    inline-size: var(--ix-toggle-button-icon-right--icon-size);
-    min-block-size: var(--ix-toggle-button-icon-right--icon-size);
-    min-inline-size: var(--ix-toggle-button-icon-right--icon-size);
+    block-size: cv.get-var('toggle-button-icon-right-icon--size');
+    inline-size: cv.get-var('toggle-button-icon-right-icon--size');
+    min-block-size: cv.get-var('toggle-button-icon-right-icon--size');
+    min-inline-size: cv.get-var('toggle-button-icon-right-icon--size');
   }
 
   .btn {

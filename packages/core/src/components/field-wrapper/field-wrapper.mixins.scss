@@ -8,34 +8,35 @@
  */
 
 @use './field-wrapper.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin helper-text {
   .bottom-text {
     display: flex;
     position: relative;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: var(--ix-field-wrapper-bottom-text--gap);
+    gap: cv.get-var('field-wrapper-bottom-text--gap');
 
-    margin-right: var(--ix-field-wrapper-bottom-text--margin-right);
+    margin-right: cv.get-var('field-wrapper-bottom-text--margin-right');
   }
 
   .text-icon {
-    margin: var(--ix-field-wrapper-text-icon--margin);
+    margin: cv.get-var('field-wrapper-text-icon--margin');
   }
 
   .text-icon.invalid {
-    color: var(--ix-field-wrapper-icon--color--invalid);
+    color: cv.get-var('field-wrapper-icon--color--invalid');
   }
 
   .text-icon.info {
-    color: var(--ix-field-wrapper-icon--color--info);
+    color: cv.get-var('field-wrapper-icon--color--info');
   }
 
   .text-icon.warning {
-    color: var(--ix-field-wrapper-icon--color--warning);
+    color: cv.get-var('field-wrapper-icon--color--warning');
   }
 
   .text-icon.valid {
-    color: var(--ix-field-wrapper-icon--color--valid);
+    color: cv.get-var('field-wrapper-icon--color--valid');
   }
 }
