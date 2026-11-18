@@ -10,37 +10,46 @@
 @use 'mixins/validation/form-component';
 
 @use './textarea.vars' as *;
+@use 'mixins/component-vars' as cv;
 @include input.input-field;
 
 @include form-component.host-valid;
 
 @include form-component.host-info {
   textarea {
-    border-color: var(--ix-textarea--border-color--info);
+    border-color: cv.get-var('textarea--border-color--info');
 
     &:hover {
-      border-color: var(--ix-textarea--border-color--info--hover) !important;
+      border-color: cv.get-var(
+        'textarea--border-color--info--hover'
+      ) !important;
     }
 
     &:active {
-      border-color: var(--ix-textarea--border-color--info--active) !important;
+      border-color: cv.get-var(
+        'textarea--border-color--info--active'
+      ) !important;
     }
   }
 }
 
 @include form-component.host-warning {
   textarea {
-    background-color: var(--ix-textarea--background--warning);
-    border-color: var(--ix-textarea--border-color--warning--active) !important;
+    background-color: cv.get-var('textarea--background--warning');
+    border-color: cv.get-var(
+      'textarea--border-color--warning--active'
+    ) !important;
 
     &:hover {
-      background-color: var(--ix-textarea--background--warning--hover);
-      border-color: var(--ix-textarea--border-color--warning--hover) !important;
+      background-color: cv.get-var('textarea--background--warning--hover');
+      border-color: cv.get-var(
+        'textarea--border-color--warning--hover'
+      ) !important;
     }
 
     &:active {
-      border-color: var(
-        --ix-textarea--border-color--warning--active
+      border-color: cv.get-var(
+        'textarea--border-color--warning--active'
       ) !important;
     }
   }
@@ -48,17 +57,19 @@
 
 @include form-component.host-invalid {
   textarea {
-    background-color: var(--ix-textarea--background--invalid);
-    border-color: var(--ix-textarea--border-color--invalid) !important;
+    background-color: cv.get-var('textarea--background--invalid');
+    border-color: cv.get-var('textarea--border-color--invalid') !important;
 
     &:hover {
-      background-color: var(--ix-textarea--background--invalid--hover);
-      border-color: var(--ix-textarea--border-color--invalid--hover) !important;
+      background-color: cv.get-var('textarea--background--invalid--hover');
+      border-color: cv.get-var(
+        'textarea--border-color--invalid--hover'
+      ) !important;
     }
 
     &:active {
-      border-color: var(
-        --ix-textarea--border-color--invalid--active
+      border-color: cv.get-var(
+        'textarea--border-color--invalid--active'
       ) !important;
     }
   }

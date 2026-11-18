@@ -12,6 +12,7 @@
 @use 'misc/common-variables' as vars;
 @use 'mixins/shadow-dom/component';
 @use 'mixins/fonts' as font-mixins;
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: block;
@@ -137,5 +138,5 @@
 }
 
 :host(.typography-weight-bold) {
-  font-weight: var(--ix-typography-weight-bold--font-weight) !important;
+  font-weight: cv.get-var('typography-weight-bold--font-weight') !important;
 }

@@ -11,24 +11,25 @@
 @use 'tokens/system' as sys;
 
 @use './toast-container.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   @include component.ix-component;
 
   display: block;
   position: fixed;
-  z-index: var(--ix-toast-container--z-index);
+  z-index: cv.get-var('toast-container--z-index');
 
   ::slotted(*:not(:last-child)) {
-    margin-block-end: var(--ix-toast-container--margin-block-end);
+    margin-block-end: cv.get-var('toast-container--margin-block-end');
   }
 }
 
 :host(.toast-container--top-right) {
-  right: var(--ix-toast-container-top-right--right);
-  top: var(--ix-toast-container-top-right--top);
+  right: cv.get-var('toast-container-top-right--right');
+  top: cv.get-var('toast-container-top-right--top');
 }
 
 :host(.toast-container--bottom-right) {
-  right: var(--ix-toast-container-bottom-right--right);
-  bottom: var(--ix-toast-container-bottom-right--bottom);
+  right: cv.get-var('toast-container-bottom-right--right');
+  bottom: cv.get-var('toast-container-bottom-right--bottom');
 }

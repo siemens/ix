@@ -195,20 +195,14 @@ export class Checkbox
         {this.indeterminate && (
           <Fragment>
             <rect width="18" height="18" fill="transparent" />
-            <rect
-              x="3"
-              y="8"
-              width="12"
-              height="2"
-              fill="var(--ix-checkbox-checkmark--color)"
-            />
+            <rect x="3" y="8" width="12" height="2" class="checkmark" />
           </Fragment>
         )}
 
         {this.checked && (
           <path
             d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
-            stroke="var(--ix-checkbox-checkmark--color)"
+            class="checkmark"
             stroke-width="2"
           />
         )}

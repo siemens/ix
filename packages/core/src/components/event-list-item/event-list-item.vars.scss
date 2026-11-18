@@ -7,58 +7,100 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'misc/common-variables' as vars;
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+
+// Runtime properties without a default (set per state or from TSX).
+@include cv.declare-var('event-list-item--background');
+@include cv.declare-var('event-list-item--background--active');
+@include cv.declare-var('event-list-item--background--disabled');
+@include cv.declare-var('event-list-item--background--hover');
+@include cv.declare-var('event-list-item--background--selected');
+@include cv.declare-var('event-list-item--border-color');
+@include cv.declare-var('event-list-item--border-color--active');
+@include cv.declare-var('event-list-item--border-color--disabled');
+@include cv.declare-var('event-list-item--border-color--hover');
+@include cv.declare-var('event-list-item--border-color--selected');
 
 :host {
-  --ix-event-list-item-empty-indicator--border: #{sys.$si-sys-sizing-border-width-default}
-    solid #{sys.$si-sys-color-border-4};
-  --ix-event-list-item-chevron--color: #{sys.$si-sys-color-text-secondary};
-  --ix-event-list-item-filled--background: #{sys.$si-sys-color-background-1};
-  --ix-event-list-item-filled--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-event-list-item-filled--background--disabled: #{sys.$si-sys-color-background-1};
-  --ix-event-list-item-filled--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-event-list-item-filled--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-event-list-item-filled--border-color: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border-color--active: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border-color--disabled: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border-color--hover: rgba(0, 0, 0, 0);
-  --ix-event-list-item-filled--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-event-list-item-outline--background: rgba(0, 0, 0, 0);
-  --ix-event-list-item-outline--background--active: #{sys.$si-sys-color-background-selected};
-  --ix-event-list-item-outline--background--disabled: rgba(0, 0, 0, 0);
-  --ix-event-list-item-outline--background--hover: #{sys.$si-sys-color-background-hover};
-  --ix-event-list-item-outline--background--selected: #{sys.$si-sys-color-background-selected};
-  --ix-event-list-item-outline--border-color: #{sys.$si-sys-color-border-3};
-  --ix-event-list-item-outline--border-color--active: #{sys.$si-sys-color-border-3};
-  --ix-event-list-item-outline--border-color--disabled: #{sys.$si-sys-color-border-4};
-  --ix-event-list-item-outline--border-color--hover: #{sys.$si-sys-color-border-3};
-  --ix-event-list-item-outline--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
+  @include cv.define-vars(
+    (
+      'event-list-item-empty-indicator--border': #{sys.$si-sys-sizing-border-width-default}
+        solid #{sys.$si-sys-color-border-4},
+      'event-list-item--background--filled': sys.$si-sys-color-background-1,
+      'event-list-item--background--filled--active':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--background--filled--disabled':
+        sys.$si-sys-color-background-1,
+      'event-list-item--background--filled--hover':
+        sys.$si-sys-color-background-hover,
+      'event-list-item--background--filled--selected':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--border-color--filled': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--active': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--disabled': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--hover': rgba(0, 0, 0, 0),
+      'event-list-item--border-color--filled--selected':
+        sys.$si-sys-color-border-accent-hover,
+      'event-list-item--background--outline': rgba(0, 0, 0, 0),
+      'event-list-item--background--outline--active':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--background--outline--disabled': rgba(0, 0, 0, 0),
+      'event-list-item--background--outline--hover':
+        sys.$si-sys-color-background-hover,
+      'event-list-item--background--outline--selected':
+        sys.$si-sys-color-background-selected,
+      'event-list-item--border-color--outline': sys.$si-sys-color-border-3,
+      'event-list-item--border-color--outline--active':
+        sys.$si-sys-color-border-3,
+      'event-list-item--border-color--outline--disabled':
+        sys.$si-sys-color-border-4,
+      'event-list-item--border-color--outline--hover':
+        sys.$si-sys-color-border-3,
+      'event-list-item--border-color--outline--selected':
+        sys.$si-sys-color-border-accent-hover,
+    )
+  );
 }
 
 :host {
-  --ix-event-list-item--transition-duration: var(--theme-default-time);
-  --ix-event-list-item-indicator--width: #{sys.$si-sys-sizing-size-30};
-  --ix-event-list-item-indicator-opacity--disabled: 0.3;
-  --ix-event-list-item--height: #{sys.$si-sys-sizing-size-90};
-  --ix-event-list-item--border-radius: #{vars.$default-border-radius};
-  --ix-event-list-item--margin-bottom: #{sys.$si-sys-sizing-spacing-y-40};
-  --ix-event-list-item-indicator--visual-width: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-event-list-item-indicator--max-width: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-event-list-item-indicator--min-width: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-event-list-item-indicator--border-top-left-radius: #{vars.$default-border-radius};
-  --ix-event-list-item-indicator--border-bottom-left-radius: #{vars.$default-border-radius};
-  --ix-event-list-item-container--width: calc(
-    100% -
-      (#{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40})
+  @include cv.define-vars(
+    (
+      'event-list-item--transition-duration': var(--theme-default-time),
+      'event-list-item--height': sys.$si-sys-sizing-size-90,
+      'event-list-item--border-radius': vars.$default-border-radius,
+      'event-list-item--margin-bottom': sys.$si-sys-sizing-spacing-y-40,
+      'event-list-item-indicator-visual--width': sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-indicator--max-width': sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-indicator--min-width': sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-indicator--border-top-left-radius':
+        vars.$default-border-radius,
+      'event-list-item-indicator--border-bottom-left-radius':
+        vars.$default-border-radius,
+      'event-list-item-container--width':
+        calc(
+          100% -
+            (
+              #{sys.$si-sys-sizing-spacing-x-60} + #{sys.$si-sys-sizing-spacing-x-40}
+            )
+        ),
+      'event-list-item-container--border-top-right-radius':
+        vars.$default-border-radius,
+      'event-list-item-container--border-bottom-right-radius':
+        vars.$default-border-radius,
+      'event-list-item-container--padding-left': sys.$si-sys-sizing-spacing-x-60,
+      'event-list-item-event-content--padding-inline-end':
+        sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-chevron-icon--margin-right':
+        sys.$si-sys-sizing-spacing-x-40,
+      'event-list-item-container--border-width':
+        calc(#{sys.$si-sys-sizing-border-width-default} * 0.992),
+      'event-list-item-chevron-icon--opacity': 0.6,
+    )
   );
-  --ix-event-list-item-container--border-top-right-radius: #{vars.$default-border-radius};
-  --ix-event-list-item-container--border-bottom-right-radius: #{vars.$default-border-radius};
-  --ix-event-list-item-container--padding-left: #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-event-list-item-event-content--padding-inline-end: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-event-list-item-chevron-icon--margin-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-event-list-item-container--border-width: calc(
-    #{sys.$si-sys-sizing-border-width-default} * 0.992
-  );
-  --ix-event-list-item-chevron-icon--opacity: 0.6;
 }

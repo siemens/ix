@@ -7,34 +7,57 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-message-bar--border-color--error: #{sys.$si-sys-color-border-danger};
-  --ix-message-bar--border-color--danger: #{sys.$si-sys-color-border-danger};
-  --ix-message-bar--border-color--warning: #{sys.$si-sys-color-border-warning};
-  --ix-message-bar--border-color--caution: #{sys.$si-sys-color-border-caution};
-  --ix-message-bar--border-color--success: #{sys.$si-sys-color-border-success};
-  --ix-message-bar--border-color--information: #{sys.$si-sys-color-border-information};
-  --ix-message-bar--border-color--neutral: #{sys.$si-sys-color-border-neutral};
-  --ix-message-bar--border-color--accent: #{sys.$si-sys-color-border-accent};
-  --ix-message-bar--border-color--critical: #{sys.$si-sys-color-border-critical};
-  --ix-message-bar--background: #{sys.$si-sys-color-background-accent-secondary};
+  @include cv.define-vars(
+    (
+      'message-bar--border-color--error': sys.$si-sys-color-border-danger,
+      'message-bar--border-color--danger': sys.$si-sys-color-border-danger,
+      'message-bar--border-color--warning': sys.$si-sys-color-border-warning,
+      'message-bar--border-color--caution': sys.$si-sys-color-border-caution,
+      'message-bar--border-color--success': sys.$si-sys-color-border-success,
+      'message-bar--border-color--information':
+        sys.$si-sys-color-border-information,
+      'message-bar--border-color--neutral': sys.$si-sys-color-border-neutral,
+      'message-bar--border-color--accent': sys.$si-sys-color-border-accent,
+      'message-bar--border-color--critical': sys.$si-sys-color-border-critical,
+      'message-bar--background': sys.$si-sys-color-background-accent-secondary,
+    )
+  );
 }
 
 :host {
-  --ix-message-bar--border-radius: #{sys.$si-sys-sizing-border-radius-sm};
-  --ix-message-bar--border-width: #{sys.$si-sys-sizing-border-width-selected};
-  --ix-message-bar--margin: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
-    0 #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-message-bar-message-container--min-height: #{sys.$si-sys-sizing-size-100};
-  --ix-message-bar-message-container--padding: calc(
-      #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
+  @include cv.define-vars(
+    (
+      'message-bar--border-radius': sys.$si-sys-sizing-border-radius-sm,
+      'message-bar--border-width': sys.$si-sys-sizing-border-width-selected,
+      'message-bar--margin': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40}
+        0 #{sys.$si-sys-sizing-spacing-x-40},
+      'message-bar-message-container--min-height': sys.$si-sys-sizing-size-100,
     )
-    #{sys.$si-sys-sizing-spacing-x-50} calc(
-      #{sys.$si-sys-sizing-spacing-y-50} - var(--ix-message-bar--border-width)
-    ) #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-message-bar-message-content--min-height: #{sys.$si-sys-sizing-size-60};
-  --ix-message-bar-message-content--padding: 0 #{sys.$si-sys-sizing-spacing-x-60};
-  --ix-message-bar-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
+  );
+  @include cv.define-vars(
+    (
+      'message-bar-message-container--padding':
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-50} - #{cv.get-var(
+              'message-bar--border-width'
+            )}
+        )
+        #{sys.$si-sys-sizing-spacing-x-50} calc(
+          #{sys.$si-sys-sizing-spacing-y-50} - #{cv.get-var(
+              'message-bar--border-width'
+            )}
+        ) #{sys.$si-sys-sizing-spacing-x-60},
+      'message-bar-message-content--min-height': sys.$si-sys-sizing-size-60,
+      'message-bar-message-content--padding': 0 #{sys.$si-sys-sizing-spacing-x-60},
+      'message-bar-icon--size': sys.$si-sys-sizing-icon-md,
+    )
+  );
 }

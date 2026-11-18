@@ -60,12 +60,7 @@ export class Kpi {
     }
 
     return (
-      <ix-icon
-        color="--ix-kpi-display-icon--color"
-        name={icon}
-        size="16"
-        aria-hidden={a11yBoolean(true)}
-      ></ix-icon>
+      <ix-icon name={icon} size="16" aria-hidden={a11yBoolean(true)}></ix-icon>
     );
   }
 

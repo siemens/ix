@@ -97,7 +97,7 @@ export class LayoutForm implements IxComponentInterface {
     this.updateMediaQueryList();
 
     let layoutColumns = 1;
-    let columnSpacing = 'var(--ix-layout-grid-gap)';
+    let columnSpacing = 'var(--ix-layout-grid--gap)';
 
     this.mediaQueryList.forEach((mediaQuery) => {
       if (mediaQuery.mediaQuery.matches) {

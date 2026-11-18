@@ -7,11 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+@use 'mixins/component-vars' as cv;
+
 :host {
   display: flex;
   flex-wrap: wrap;
-}
-
-:host(:not(:first-of-type)) {
-  margin-block-start: var(--ix-layout-grid-row-margin, 0);
 }
