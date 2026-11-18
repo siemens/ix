@@ -8,6 +8,7 @@
  */
 
 @use './popover.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   dialog.dialog {
     margin: 0;
@@ -18,10 +19,10 @@
     overflow: visible;
     position: fixed;
     inset: unset;
-    width: var(--ix-popover-dialog--width);
-    min-width: var(--ix-popover-dialog--min-width);
-    max-width: var(--ix-popover-dialog--max-width);
-    max-height: var(--ix-popover-dialog--max-height);
+    width: cv.get-var('popover-dialog--width');
+    min-width: cv.get-var('popover-dialog--min-width');
+    max-width: cv.get-var('popover-dialog--max-width');
+    max-height: cv.get-var('popover-dialog--max-height');
   }
 
   .popover-container {
@@ -29,13 +30,13 @@
     flex-direction: column;
     position: relative;
     width: 100%;
-    max-height: var(--ix-popover-container--max-height);
-    background: var(--ix-popover--background);
-    color: var(--ix-popover--color);
-    border: var(--ix-popover-container--border-width) solid
-      var(--ix-popover--border-color);
-    box-shadow: var(--ix-popover--box-shadow);
-    border-radius: var(--ix-popover--border-radius);
+    max-height: cv.get-var('popover-container--max-height');
+    background: cv.get-var('popover--background');
+    color: cv.get-var('popover--color');
+    border: cv.get-var('popover-container--border-width') solid
+      cv.get-var('popover--border-color');
+    box-shadow: cv.get-var('popover--box-shadow');
+    border-radius: cv.get-var('popover--border-radius');
     overflow: visible;
   }
 
@@ -48,14 +49,14 @@
 
   .popover-container:has(.spike) {
     box-shadow: none;
-    filter: var(--ix-popover--elevation-filter);
+    filter: cv.get-var('popover--elevation-filter');
   }
 
   .spike,
   .spike::before {
     position: absolute;
-    width: var(--ix-popover-spike--width);
-    height: var(--ix-popover-spike--height);
+    width: cv.get-var('popover-spike--width');
+    height: cv.get-var('popover-spike--height');
     background: inherit;
   }
 
@@ -69,6 +70,6 @@
     visibility: visible;
     content: '';
     transform: rotate(45deg);
-    background-color: var(--ix-popover--background);
+    background-color: cv.get-var('popover--background');
   }
 }
