@@ -24,7 +24,7 @@ describe('ix-toast base type', () => {
     expect(root.getAttribute('role')).toBe('alert');
     const icon = root.shadowRoot!.querySelector('ix-icon');
     expect(icon?.getAttribute('name')).toBe(iconInfo);
-    expect(icon?.getAttribute('color')).toBe('--ix-toast-status-color');
+    expect(icon?.getAttribute('color')).toBe('--ix-toast--status-color');
     expect(icon?.getAttribute('aria-hidden')).toBe('true');
   });
 
@@ -36,7 +36,7 @@ describe('ix-toast base type', () => {
     expect(root.getAttribute('type')).toBe('information');
     const icon = root.shadowRoot!.querySelector('ix-icon');
     expect(icon?.getAttribute('name')).toBe(iconInfo);
-    expect(icon?.getAttribute('color')).toBe('--ix-toast-status-color');
+    expect(icon?.getAttribute('color')).toBe('--ix-toast--status-color');
   });
 
   it('preserves custom icons and colors and restores the base defaults', async () => {
@@ -60,7 +60,7 @@ describe('ix-toast base type', () => {
     await waitForChanges();
 
     expect(icon?.getAttribute('name')).toBe(iconInfo);
-    expect(icon?.getAttribute('color')).toBe('--ix-toast-status-color');
+    expect(icon?.getAttribute('color')).toBe('--ix-toast--status-color');
   });
 
   it('omits the icon wrapper when the base icon is hidden', async () => {
@@ -93,7 +93,7 @@ describe('ix-toast base type', () => {
       expect(root.getAttribute('type')).toBe(type);
       const icon = root.shadowRoot!.querySelector('ix-icon');
       expect(icon?.getAttribute('name')).toBe(iconInfo);
-      expect(icon?.getAttribute('color')).toBe('--ix-toast-status-color');
+      expect(icon?.getAttribute('color')).toBe('--ix-toast--status-color');
     }
   });
 });
