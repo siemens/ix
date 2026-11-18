@@ -1,6 +1,6 @@
 # ix-badge
 
-> Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge-max-width`.
+> Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge--max-width`.
 
 - Web component: `<ix-badge>`
 - React: `IxBadge` from `@siemens/ix-react`
@@ -21,7 +21,7 @@
 - `background`; attr: `background`; type: `string | undefined` - Custom background or border color. Only has an effect when **variant** is `custom`.
 - `badgeColor`; attr: `badge-color`; type: `string | undefined` - Custom text color. Only has an effect when **variant** is `custom`.
 - `border`; attr: `border`; type: `boolean`; default: `false` - Add a high-contrast border on filled badges. Ignored when **outline** is `true` or **type** is `status-icon`.
-- `enableAnimation`; attr: `enable-animation`; type: `boolean`; default: `false` - Play the attention pulse animation. Override duration with `--ix-badge-animation-duration` (default `2s`).
+- `enableAnimation`; attr: `enable-animation`; type: `boolean`; default: `false` - Play the attention pulse animation. Override duration with `--ix-badge--animation-duration` (default `2s`).
 - `icon`; attr: `icon`; type: `string | undefined` - Leading icon name. Only has an effect when **type** is `label`.
 - `label`; attr: `label`; type: `string | undefined` - Visible text or count. Required for `label` and `counter`. Omit for `dot` and `status-icon`. Counters accept integers only (decimals truncated); values above 99 render as `99+`.
 - `offsetX`; attr: `offset-x`; type: `number`; default: `0` - Extra horizontal offset in pixels. Only has an effect when attached. Added to the type default.
