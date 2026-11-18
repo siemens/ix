@@ -12,13 +12,34 @@ var checkboxStyles = `/*
   height: 1rem;
   margin: 0;
   appearance: none;
-  border-radius: 4px;
+  border-radius: var(--si-sys-sizing-border-radius-xs);
   cursor: pointer;
 }
 
 .ag-checkbox-input-wrapper {
   width: 1.125rem;
   height: 1.125rem;
+  border-radius: var(--si-sys-sizing-border-radius-xs);
+}
+
+.ag-checkbox-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ag-checkbox-input-wrapper:focus-within,
+.ag-checkbox-input-wrapper:active {
+  box-shadow: none;
+}
+
+.ag-checkbox-input-wrapper:has(.ag-checkbox-input:focus-visible) {
+  outline: var(--si-sys-sizing-focus-ring-width) solid
+    var(--si-sys-color-effects-focus);
+  outline-offset: var(--si-sys-sizing-focus-ring-offset);
+}
+
+.ag-checkbox-input-wrapper::before {
+  border-radius: inherit;
 }
 
 .ag-checkbox-input-wrapper::after {
@@ -84,6 +105,7 @@ var headerStyles = "/*\n * SPDX-FileCopyrightText: 2025 Siemens AG\n *\n * SPDX-
 var tooltipStyles = "/*\n * SPDX-FileCopyrightText: 2025 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n.ag-tooltip {\n  box-shadow: var(--si-sys-color-effects-shadow-40) !important;\n}\n";
 var radioStyles = "/*\n * SPDX-FileCopyrightText: 2025 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n.ag-radio-button {\n  display: inline-flex;\n  position: relative;\n  align-items: center;\n  margin: 0 0.25rem;\n}\n\n.ag-radio-button-input-wrapper {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  width: 1.5rem;\n  height: 1.5rem;\n}\n\n.ag-radio-button-input {\n  appearance: none;\n  width: 1.125rem;\n  height: 1.125rem;\n  min-width: 1.125rem;\n  max-width: 1.125rem;\n  min-height: 1.125rem;\n  max-height: 1.125rem;\n  margin: 0;\n  border-radius: 100px;\n  cursor: pointer;\n  position: relative;\n\n  background-color: var(--si-sys-color-background-1);\n  border: 0.0625rem solid var(--si-sys-color-border-2);\n}\n\n.ag-radio-button-input:hover {\n  background-color: var(--si-sys-color-background-hover);\n  border: 0.0625rem solid var(--si-sys-color-border-2);\n}\n\n.ag-radio-button-input:active {\n  background-color: var(--si-sys-color-background-active);\n  border: 0.0625rem solid var(--si-sys-color-border-2);\n}\n\n.ag-radio-button-input:checked,\n.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input {\n  background-color: var(--si-sys-color-background-accent);\n  border: 0.0625rem solid rgba(0, 0, 0, 0);\n}\n\n.ag-radio-button-input:checked:hover,\n.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:hover {\n  background-color: var(--si-sys-color-background-accent-hover);\n  border: 0.0625rem solid rgba(0, 0, 0, 0);\n}\n\n.ag-radio-button-input:checked:active,\n.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:active {\n  background-color: var(--si-sys-color-background-accent-active);\n  border: 0.0625rem solid rgba(0, 0, 0, 0);\n}\n\n.ag-radio-button-input:checked::after,\n.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input::after {\n  content: '';\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  border-radius: 100px;\n  background-color: var(--si-sys-color-text-on-accent);\n  width: 0.5rem;\n  height: 0.5rem;\n}\n\n.ag-radio-button-input:disabled {\n  cursor: not-allowed;\n  pointer-events: none;\n  background-color: rgba(0, 0, 0, 0);\n  border: 0.0625rem solid var(--si-sys-color-text-disabled);\n}\n\n.ag-radio-button-input:checked:disabled,\n.ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:disabled {\n  background-color: var(--si-sys-color-text-disabled);\n  border: 0.0625rem solid rgba(0, 0, 0, 0);\n}\n\n.ag-radio-button-input:focus-visible {\n  outline: 0.0625rem solid var(--si-sys-color-effects-focus);\n  outline-offset: 0.125rem;\n}\n\n.ag-filter-condition {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.5rem 0;\n}\n";
 var inputStyles = "/*\n * SPDX-FileCopyrightText: 2025 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n.ag-input-field-input:focus,\n.ag-text-field-input:focus {\n  box-shadow: none !important;\n}\n\n.ag-picker-field-wrapper:focus-within {\n  box-shadow: none !important;\n}\n";
+var focusStyles = "/*\n * SPDX-FileCopyrightText: 2026 Siemens AG\n *\n * SPDX-License-Identifier: MIT\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n.ag-cell.ag-cell-focus:not(.ag-cell-range-selected):focus-within:not(\n    .ag-cell-inline-editing\n  ),\n.ag-header-cell:focus-visible,\n.ag-header-group-cell:focus-visible {\n  outline: var(--si-sys-sizing-focus-ring-width) solid\n    var(--si-sys-color-effects-focus);\n  /* Keep the ring inside clipped cells and headers. */\n  outline-offset: calc(-1 * var(--si-sys-sizing-focus-ring-width));\n  box-shadow: none;\n}\n";
 const aggridIxThemeParams = {
   "accentColor": `var(--si-sys-color-effects-focus)`,
   "advancedFilterBuilderButtonBarBorder": `var(--si-sys-sizing-border-width-default) solid var(--si-sys-color-border-3)`,
@@ -830,6 +852,10 @@ function createIxTheme(agModule, options) {
     feature: "inputCustomStyles",
     params: {},
     css: inputStyles
+  })).withPart(createPart2({
+    feature: "focusCustomStyles",
+    params: {},
+    css: focusStyles
   })).withPart(createPart2({
     feature: "iconOverrides",
     params: {},

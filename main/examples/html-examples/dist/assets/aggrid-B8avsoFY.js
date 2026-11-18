@@ -1,13 +1,11 @@
 import "./global-CCT5E9Rn.js";
-import { M as ModuleRegistry, A as AllCommunityModule, g as getIxTheme, c as createGrid, a as agGridCommunity } from "./main.esm-HsGK4YoE.js";
+import { M as ModuleRegistry, A as AllCommunityModule, g as getIxTheme, c as createGrid, a as agGridCommunity } from "./main.esm-ILqt0H_x.js";
 import "./init-BVq9bvXc.js";
 import "./index-CgUi6DzV-CdodJUXO.js";
 import "./preload-helper-UZRgTS1n.js";
 import "./index-DCCkv1ZQ-DZnlOMEt.js";
 ModuleRegistry.registerModules([AllCommunityModule]);
-const ixTheme = getIxTheme(agGridCommunity, {
-  stripedRows: true
-});
+const ixTheme = getIxTheme(agGridCommunity);
 const container = document.querySelector("#grid-container");
 const gridOptions = {
   theme: ixTheme,
