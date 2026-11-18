@@ -27,26 +27,38 @@ regressionTest.describe('list', () => {
   regressionTest('dragging', async ({ page }) => {
     await page.goto('list/basic');
     const items = page.locator('ix-list-item');
-    await expect(items.first()).toHaveAttribute('hydrated');
-    const gripperBounds = await items
-      .first()
+    const draggedItem = items.first();
+    await expect(draggedItem).toHaveAttribute('hydrated');
+    const gripperBounds = await draggedItem
       .locator('.drag-gripper')
       .boundingBox();
-    const targetBounds = await items.nth(2).boundingBox();
+    const itemBounds = await draggedItem.boundingBox();
+    const listBounds = await page.locator('ix-list').boundingBox();
 
     expect(gripperBounds).not.toBeNull();
-    expect(targetBounds).not.toBeNull();
+    expect(itemBounds).not.toBeNull();
+    expect(listBounds).not.toBeNull();
+    const grabOffsetY =
+      gripperBounds!.y + gripperBounds!.height / 2 - itemBounds!.y;
+    const listBottom = listBounds!.y + listBounds!.height;
     await page.mouse.move(
       gripperBounds!.x + gripperBounds!.width / 2,
       gripperBounds!.y + gripperBounds!.height / 2
     );
     await page.mouse.down();
     await page.mouse.move(
-      targetBounds!.x + targetBounds!.width / 2,
-      targetBounds!.y + targetBounds!.height / 2
+      gripperBounds!.x + gripperBounds!.width / 2,
+      listBottom + grabOffsetY + 24
     );
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(draggedItem).toHaveClass(/\bpointer-dragging\b/);
+    const draggedBounds = await draggedItem.boundingBox();
+    expect(draggedBounds).not.toBeNull();
+    expect(draggedBounds!.y).toBeGreaterThan(listBottom);
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
     await page.mouse.up();
   });
 });

@@ -12,6 +12,7 @@ export const IxContentHeader: StencilVueComponent<JSX.IxContentHeader> = /*@__PU
   'headerSubtitle',
   'textOverflow',
   'hasBackButton',
+  'ariaLabelMoreActions',
   'backButtonClick'
 ], [
   'backButtonClick'

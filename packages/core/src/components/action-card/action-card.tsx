@@ -27,6 +27,8 @@ import type { StatusVariant } from '../utils/status.types';
 export class IxActionCard {
   /**
    * Card status variant
+   *
+   * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
    */
   @Prop() variant: StatusVariant = 'base';
 
@@ -36,6 +38,7 @@ export class IxActionCard {
    * When `false`, uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
    */
   @Prop() outline?: boolean;
 
@@ -46,8 +49,6 @@ export class IxActionCard {
 
   /**
    * ARIA label for the icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelIcon?: string;
 
@@ -68,8 +69,6 @@ export class IxActionCard {
 
   /**
    * ARIA label for the card
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelCard?: string;
 
@@ -79,6 +78,7 @@ export class IxActionCard {
    * When `false`, the wrapping button is disabled.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `passive` property
    */
   @Prop() clickable?: boolean;
 

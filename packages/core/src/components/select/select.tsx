@@ -114,8 +114,6 @@ export class Select
   /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string = 'Clear selection';
 
@@ -257,7 +255,6 @@ export class Select
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -1124,7 +1121,7 @@ export class Select
     const chip = this.chipElementRefs.get(value);
     const margin = chip
       ? this.getHorizontalMargin(chip)
-      : this.getCssPixelValue('--ix-select-chip-margin-inline-end');
+      : this.getCssPixelValue('--ix-select-chip--margin-inline-end');
 
     return (this.chipWidths.get(value) ?? 0) + margin;
   }
@@ -1134,13 +1131,13 @@ export class Select
     const overflowChipWidth =
       this.overflowChipWidth ||
       overflowChip?.offsetWidth ||
-      this.getCssPixelValue('--ix-select-overflow-chip-fallback-width');
+      this.getCssPixelValue('--ix-select-overflow-chip-fallback--width');
 
     return (
       overflowChipWidth +
       (overflowChip
         ? this.getHorizontalMargin(overflowChip)
-        : this.getCssPixelValue('--ix-select-chip-margin-inline-end'))
+        : this.getCssPixelValue('--ix-select-chip--margin-inline-end'))
     );
   }
 
@@ -1257,7 +1254,7 @@ export class Select
         : 0;
     const available =
       container.clientWidth -
-      this.getCssPixelValue('--ix-select-trigger-min-width') -
+      this.getCssPixelValue('--ix-select-trigger--min-width') -
       clearButtonWidth;
     if (this.canShowAllChips(values, available)) {
       this.applyOverflowState(null, []);

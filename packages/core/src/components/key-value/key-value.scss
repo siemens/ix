@@ -1,16 +1,17 @@
 @use 'mixins/text-truncation';
 
 @use './key-value.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host(.keyValue) {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--ix-key-value--gap);
-  border-bottom: var(--ix-key-value--border-width) solid
-    var(--ix-key-value--border-color);
+  gap: cv.get-var('key-value--gap');
+  border-bottom: cv.get-var('key-value--border-width') solid
+    cv.get-var('key-value--border-color');
 
   .keyValue__icon {
-    padding: var(--ix-key-value-icon--padding);
+    padding: cv.get-var('key-value-icon--padding');
   }
 
   .keyValue__content {
@@ -27,7 +28,7 @@
     }
 
     .content__label {
-      color: var(--ix-key-value-label--color);
+      color: cv.get-var('key-value-label--color');
     }
 
     .content__value {
@@ -43,38 +44,38 @@
   // Forced colors paint transparent borders, so remove the border and keep its space
   @media (forced-colors: active) {
     border-bottom-style: none;
-    margin-bottom: var(--ix-key-value--border-width);
+    margin-bottom: cv.get-var('key-value--border-width');
   }
 }
 
 :host(.keyValue.keyValue--column) {
-  padding: var(--ix-key-value-column--padding);
+  padding: cv.get-var('key-value-column--padding');
 
   .keyValue__content {
     flex-direction: column;
 
     .content__label,
     .content__value:not(.has-customValue) {
-      padding: var(--ix-key-value-column-content--padding);
+      padding: cv.get-var('key-value-column-content--padding');
     }
   }
 }
 
 :host(.keyValue.keyValue--row) {
-  padding: var(--ix-key-value-row--padding);
+  padding: cv.get-var('key-value-row--padding');
 
   .keyValue__content {
     flex-direction: row;
-    gap: var(--ix-key-value-content--gap);
+    gap: cv.get-var('key-value-content--gap');
     align-items: center;
 
     .content__label,
     .content__value:not(.has-customValue) {
-      padding: var(--ix-key-value-row-content--padding);
+      padding: cv.get-var('key-value-row-content--padding');
     }
 
     .content__label {
-      min-width: var(--ix-key-value-content-label--min-width);
+      min-width: cv.get-var('key-value-content-label--min-width');
     }
   }
 }

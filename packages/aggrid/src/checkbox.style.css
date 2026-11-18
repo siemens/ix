@@ -12,13 +12,34 @@
   height: 1rem;
   margin: 0;
   appearance: none;
-  border-radius: 4px;
+  border-radius: var(--si-sys-sizing-border-radius-xs);
   cursor: pointer;
 }
 
 .ag-checkbox-input-wrapper {
   width: 1.125rem;
   height: 1.125rem;
+  border-radius: var(--si-sys-sizing-border-radius-xs);
+}
+
+.ag-checkbox-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ag-checkbox-input-wrapper:focus-within,
+.ag-checkbox-input-wrapper:active {
+  box-shadow: none;
+}
+
+.ag-checkbox-input-wrapper:has(.ag-checkbox-input:focus-visible) {
+  outline: var(--si-sys-sizing-focus-ring-width) solid
+    var(--si-sys-color-effects-focus);
+  outline-offset: var(--si-sys-sizing-focus-ring-offset);
+}
+
+.ag-checkbox-input-wrapper::before {
+  border-radius: inherit;
 }
 
 .ag-checkbox-input-wrapper::after {

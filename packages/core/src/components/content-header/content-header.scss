@@ -8,9 +8,11 @@
  */
 
 @use './content-header.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-start;
   padding: 0;
 
@@ -19,7 +21,7 @@
     flex-direction: column;
     flex: 1 1 0;
     min-width: 0;
-    margin-right: var(--ix-content-header-title-group--margin-right);
+    margin-right: cv.get-var('content-header-title-group--margin-right');
 
     .headerText {
       min-width: 0;
@@ -36,10 +38,10 @@
       font: inherit;
 
       margin: 0;
-      padding: var(--ix-content-header-primary--padding);
+      padding: cv.get-var('content-header--padding--primary');
 
       &.secondary {
-        padding: var(--ix-content-header-secondary--padding);
+        padding: cv.get-var('content-header--padding--secondary');
       }
 
       &.truncate {
@@ -62,16 +64,55 @@
         display: inline-flex;
         flex: 0 0 auto;
         align-self: flex-start;
-        margin-left: var(--ix-content-header-header-slot--margin-left);
+        margin-left: cv.get-var('content-header-header-slot--margin-left');
       }
     }
   }
 
   .backButton {
-    margin-right: var(--ix-content-header-back-button--margin-right);
+    margin-right: cv.get-var('content-header-back-button--margin-right');
   }
 
   .buttons {
     flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    &.inline-secondary-actions {
+      column-gap: cv.get-var('content-header-actions--gap');
+    }
+  }
+
+  .primaryActions,
+  .secondaryActions {
+    display: flex;
+    gap: cv.get-var('content-header-actions--gap');
+  }
+
+  .primaryActions {
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    ::slotted(*) {
+      max-width: 100%;
+    }
+  }
+
+  .secondaryActions {
+    width: max-content;
+
+    &.collapsed {
+      position: fixed;
+      top: 0;
+      right: 100%;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  .overflowButton {
+    margin-left: cv.get-var('content-header-overflow-button--margin-left');
   }
 }

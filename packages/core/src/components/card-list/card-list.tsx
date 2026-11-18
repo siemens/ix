@@ -98,8 +98,6 @@ export class CardList {
    * ARIA label for the card list's expand and collapse button.
    * Defaults to `Collapse card list` when expanded and `Expand card list` when
    * collapsed. A non-empty custom value overrides the label in both states.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelExpandButton?: string;
 
@@ -411,7 +409,7 @@ export class CardList {
       transparent 100%
     )`;
     return {
-      '--ix-card-list-overflow': maskLayer,
+      '--ix-card-list--overflow': maskLayer,
     };
   }
 

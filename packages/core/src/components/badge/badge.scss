@@ -9,6 +9,14 @@
 
 @use 'mixins/shadow-dom/component';
 @use './badge.vars' as *;
+@use 'mixins/component-vars' as cv;
+
+:host {
+  @include cv.set-var(
+    'badge--pulse-color',
+    cv.get-var('badge--background--accent')
+  );
+}
 
 $predefined-variants: danger, warning, caution, information, accent, critical,
   success, neutral;
@@ -38,9 +46,9 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border-radius: var(--ix-badge-indicator--border-radius);
-  font: var(--ix-badge-indicator--font);
-  max-width: var(--ix-badge-max-width);
+  border-radius: cv.get-var('badge-indicator--border-radius');
+  font: cv.get-var('badge-indicator--font');
+  max-width: cv.get-var('badge--max-width');
   z-index: 1;
   pointer-events: none;
   user-select: none;
@@ -76,13 +84,13 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 }
 
 :host(.attached.top-after) .indicator {
-  top: var(--ix-badge-offset-y);
-  inset-inline-end: var(--ix-badge-offset-x);
+  top: cv.get-var('badge--offset-y');
+  inset-inline-end: cv.get-var('badge--offset-x');
 }
 
 :host(.attached.bottom-after) .indicator {
-  bottom: var(--ix-badge-offset-y);
-  inset-inline-end: var(--ix-badge-offset-x);
+  bottom: cv.get-var('badge--offset-y');
+  inset-inline-end: cv.get-var('badge--offset-x');
 }
 
 :host([type='dot']:not(.attached)),
@@ -96,7 +104,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 /* Standalone host uses font-size: 0 for sizing; restore text for nested tooltip. */
 :host ix-tooltip {
-  font-size: var(--ix-badge-tooltip--font-size);
+  font-size: cv.get-var('badge-tooltip--font-size');
   line-height: normal;
 }
 
@@ -111,10 +119,10 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 }
 
 :host([type='dot']) .indicator {
-  width: var(--ix-badge-indicator--width);
-  height: var(--ix-badge-indicator--height);
-  min-width: var(--ix-badge-indicator--min-width);
-  min-height: var(--ix-badge-indicator--min-height);
+  width: cv.get-var('badge-indicator--width');
+  height: cv.get-var('badge-indicator--height');
+  min-width: cv.get-var('badge-indicator--min-width');
+  min-height: cv.get-var('badge-indicator--min-height');
   padding: 0;
   line-height: 0;
   font-size: 0;
@@ -123,23 +131,23 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 :host([type='counter']) .indicator,
 :host([type='label']) .indicator {
-  height: var(--ix-badge--height);
-  min-width: var(--ix-badge--min-width);
-  min-height: var(--ix-badge--min-height);
+  height: cv.get-var('badge--height');
+  min-width: cv.get-var('badge--min-width');
+  min-height: cv.get-var('badge--min-height');
   flex-shrink: 0;
 }
 
 :host([type='counter']) .indicator {
-  padding-inline: var(--ix-badge-indicator--padding-inline);
-  font-weight: var(--ix-badge-counter--font-weight);
-  line-height: var(--ix-badge--line-height);
+  padding-inline: cv.get-var('badge-indicator--padding-inline');
+  font-weight: cv.get-var('badge-counter--font-weight');
+  line-height: cv.get-var('badge--line-height');
 }
 
 :host([type='label']) .indicator {
-  padding-inline: var(--ix-badge-label--padding-inline);
-  gap: var(--ix-badge-indicator--gap);
-  font-weight: var(--ix-badge-label--font-weight);
-  line-height: var(--ix-badge--line-height);
+  padding-inline: cv.get-var('badge-label--padding-inline');
+  gap: cv.get-var('badge-indicator--gap');
+  font-weight: cv.get-var('badge-label--font-weight');
+  line-height: cv.get-var('badge--line-height');
 }
 
 :host([type='label']:not(.attached)) .indicator {
@@ -148,7 +156,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 }
 
 :host([type='label'].outline.with-icon) .indicator {
-  padding-inline: var(--ix-badge-indicator-outline--padding-inline);
+  padding-inline: cv.get-var('badge-indicator--padding-inline--outline');
 }
 
 :host([type='label'].align-left) .indicator {
@@ -161,7 +169,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 :host([type='counter']) .label,
 :host([type='label']) .label {
-  line-height: var(--ix-badge--line-height);
+  line-height: cv.get-var('badge--line-height');
 }
 
 /* Center digits optically (cap height) independent of font ascent/descent metrics. */
@@ -173,10 +181,10 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--ix-badge-status-icon--width);
-  height: var(--ix-badge--height);
-  min-width: var(--ix-badge--min-width);
-  min-height: var(--ix-badge--min-height);
+  width: cv.get-var('badge-status-icon--width');
+  height: cv.get-var('badge--height');
+  min-width: cv.get-var('badge--min-width');
+  min-height: cv.get-var('badge--min-height');
   padding: 0;
   line-height: 0;
   font-size: 0;
@@ -189,17 +197,17 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 :host([type='status-icon']:not(.outline)) .status-icon-stack {
   position: relative;
   display: block;
-  width: var(--ix-badge-status-icon-stack-outline--icon-size);
-  height: var(--ix-badge-status-icon-stack-outline--icon-size);
+  width: cv.get-var('badge-status-icon-stack-icon--size--outline');
+  height: cv.get-var('badge-status-icon-stack-icon--size--outline');
   flex-shrink: 0;
 }
 
 :host([type='status-icon']) .status-icon {
   flex-shrink: 0;
-  width: var(--ix-badge-status-icon--icon-size);
-  height: var(--ix-badge-status-icon--icon-size);
-  min-width: var(--ix-badge-status-icon--icon-size);
-  min-height: var(--ix-badge-status-icon--icon-size);
+  width: cv.get-var('badge-status-icon--size');
+  height: cv.get-var('badge-status-icon--size');
+  min-width: cv.get-var('badge-status-icon--size');
+  min-height: cv.get-var('badge-status-icon--size');
 }
 
 :host([type='status-icon']:not(.outline)) .status-icon-stack .status-icon {
@@ -209,96 +217,120 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 @each $variant in $status-icon-variants {
   :host([type='status-icon'].#{$variant}) {
-    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-color);
+    @include cv.set-var(
+      'badge--pulse-color',
+      cv.get-var('badge--color--#{$variant}')
+    );
 
     .status-icon:not(.status-icon-plate) {
-      color: var(--ix-badge-#{$variant}-color);
+      color: cv.get-var('badge--color--#{$variant}');
     }
   }
 }
 
 /* Error uses danger color tokens. */
 :host([type='status-icon'].error) {
-  --ix-badge-pulse-color: var(--ix-badge-danger-color);
+  @include cv.set-var('badge--pulse-color', cv.get-var('badge--color--danger'));
 
   .status-icon:not(.status-icon-plate) {
-    color: var(--ix-badge-danger-color);
+    color: cv.get-var('badge--color--danger');
   }
 }
 
 @each $variant in $status-icon-variants {
   :host([type='status-icon'].#{$variant}:not(.outline)) {
-    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-background);
+    @include cv.set-var(
+      'badge--pulse-color',
+      cv.get-var('badge--background--#{$variant}')
+    );
 
     .status-icon-glyph {
-      color: var(--ix-badge-#{$variant}-background);
+      color: cv.get-var('badge--background--#{$variant}');
     }
 
     .status-icon-plate {
-      color: var(--ix-badge-#{$variant}-contrast-color);
+      color: cv.get-var('badge--color--#{$variant}--contrast');
     }
   }
 }
 
 /* Filled error status icons use the danger color tokens. */
 :host([type='status-icon'].error:not(.outline)) {
-  --ix-badge-pulse-color: var(--ix-badge-danger-background);
+  @include cv.set-var(
+    'badge--pulse-color',
+    cv.get-var('badge--background--danger')
+  );
 
   .status-icon-glyph {
-    color: var(--ix-badge-danger-background);
+    color: cv.get-var('badge--background--danger');
   }
 
   .status-icon-plate {
-    color: var(--ix-badge-danger-contrast-color);
+    color: cv.get-var('badge--color--danger--contrast');
   }
 }
 
 @each $variant in $predefined-variants {
   :host(.#{$variant}:not(.outline):not([type='status-icon'])) {
-    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-background);
+    @include cv.set-var(
+      'badge--pulse-color',
+      cv.get-var('badge--background--#{$variant}')
+    );
 
     .indicator {
-      background-color: var(--ix-badge-#{$variant}-background);
-      color: var(--ix-badge-#{$variant}-contrast-color);
+      background-color: cv.get-var('badge--background--#{$variant}');
+      color: cv.get-var('badge--color--#{$variant}--contrast');
     }
   }
 
   :host(.#{$variant}.outline:not([type='status-icon'])) {
-    --ix-badge-pulse-color: var(--ix-badge-#{$variant}-border-color);
+    @include cv.set-var(
+      'badge--pulse-color',
+      cv.get-var('badge--border-color--#{$variant}')
+    );
 
     .indicator {
-      background-color: var(--ix-badge-outline-background);
-      color: var(--ix-badge-default-color);
-      border: var(--ix-badge-indicator--border-width)
+      background-color: cv.get-var('badge--background--outline');
+      color: cv.get-var('badge-default--color');
+      border: cv.get-var('badge-indicator--border-width')
         solid
-        var(--ix-badge-#{$variant}-border-color);
+        cv.get-var('badge--border-color--#{$variant}');
     }
   }
 }
 
 :host(.custom:not(.outline):not([type='status-icon'])) {
-  --ix-badge-pulse-color: var(--ix-badge-custom-background);
+  @include cv.set-var(
+    'badge--pulse-color',
+    cv.get-var('badge--background--custom')
+  );
 
   .indicator {
-    background-color: var(--ix-badge-custom-background);
-    color: var(--ix-badge-custom-color);
+    background-color: cv.get-var('badge--background--custom');
+    color: cv.get-var('badge--color--custom');
   }
 }
 
 :host(.custom.outline:not([type='status-icon'])) {
-  --ix-badge-pulse-color: var(--ix-badge-custom-background);
+  @include cv.set-var(
+    'badge--pulse-color',
+    cv.get-var('badge--background--custom')
+  );
 
   .indicator {
-    background-color: var(--ix-badge-outline-background);
-    border: var(--ix-badge-indicator--border-width) solid
-      var(--ix-badge-custom-background);
-    color: var(--ix-badge-custom-color, var(--ix-badge-default-color));
+    background-color: cv.get-var('badge--background--outline');
+    border: cv.get-var('badge-indicator--border-width') solid
+      cv.get-var('badge--background--custom');
+    color: cv.get-var(
+      'badge--color--custom',
+      cv.get-var('badge-default--color')
+    );
   }
 }
 
 :host(.border:not(.outline):not([type='status-icon'])) .indicator {
-  outline: var(--ix-badge-indicator--outline-width) solid
-    var(--ix-badge-contrast-ring-color);
+  outline: cv.get-var('badge-indicator--outline-width') solid
+    cv.get-var('badge-contrast-ring--color');
   outline-offset: 0;
 }
 
@@ -329,34 +361,34 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 :host([type='status-icon'].enable-animation) .indicator::after {
   content: '';
   position: absolute;
-  inset: var(--ix-badge-pulse-status--inset);
+  inset: cv.get-var('badge-pulse-status--inset');
   z-index: -1;
   pointer-events: none;
   border-radius: inherit;
-  background-color: var(--ix-badge-pulse-color);
+  background-color: cv.get-var('badge--pulse-color');
   transform: scale(0.521);
   transform-origin: center;
   opacity: 0;
-  animation: ix-badge-pulse-status var(--ix-badge-animation-duration) linear
-    infinite;
+  animation: ix-badge-pulse-status cv.get-var('badge--animation-duration')
+    linear infinite;
 }
 
 /* counter / label / dot pulse: expanding border ring. */
 :host(.enable-animation:not([type='status-icon'])) .indicator::after {
   content: '';
   position: absolute;
-  inset: var(--ix-badge-pulse-border--inset);
+  inset: cv.get-var('badge-pulse-border--inset');
   z-index: -1;
   pointer-events: none;
   box-sizing: border-box;
   background-color: transparent;
   border-style: solid;
-  border-color: var(--ix-badge-pulse-color);
+  border-color: cv.get-var('badge--pulse-color');
   border-width: 0;
   border-radius: inherit;
   opacity: 0;
-  animation: ix-badge-pulse-border var(--ix-badge-animation-duration) linear
-    infinite;
+  animation: ix-badge-pulse-border cv.get-var('badge--animation-duration')
+    linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -371,13 +403,13 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 @keyframes ix-badge-pulse-border {
   0% {
-    inset: var(--ix-badge-pulse-border--inset);
+    inset: cv.get-var('badge-pulse-border--inset');
     border-width: 0;
     opacity: 0;
   }
 
   5% {
-    inset: var(--ix-badge-pulse-border--inset);
+    inset: cv.get-var('badge-pulse-border--inset');
     border-width: 0;
     opacity: 0.5;
   }
@@ -388,19 +420,19 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
   80% {
     animation-timing-function: ease-out;
-    inset: var(--ix-badge-pulse-border--inset--expanded);
-    border-width: var(--ix-badge-pulse-border--border-width--expanded);
+    inset: cv.get-var('badge-pulse-border--inset--expanded');
+    border-width: cv.get-var('badge-pulse-border--border-width--expanded');
     opacity: 0.1;
   }
 
   90% {
-    inset: var(--ix-badge-pulse-border--inset--end);
-    border-width: var(--ix-badge-pulse-border--border-width--end);
+    inset: cv.get-var('badge-pulse-border--inset--end');
+    border-width: cv.get-var('badge-pulse-border--border-width--end');
     opacity: 0;
   }
 
   100% {
-    inset: var(--ix-badge-pulse-border--inset);
+    inset: cv.get-var('badge-pulse-border--inset');
     border-width: 0;
     opacity: 0;
   }

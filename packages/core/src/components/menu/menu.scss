@@ -11,7 +11,8 @@
 @use 'tokens/system' as sys;
 
 @use './menu.vars' as *;
-$menu-expanded-width: var(--ix-menu--expanded-width);
+@use 'mixins/component-vars' as cv;
+$menu-expanded-width: cv.get-var('menu--width--expanded');
 
 :host {
   display: flex;
@@ -19,7 +20,7 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
   position: absolute;
   height: 100%;
   min-height: min-content;
-  z-index: var(--ix-menu--z-index);
+  z-index: cv.get-var('menu--z-index');
   width: auto;
 
   bottom: 0;
@@ -41,9 +42,9 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     }
 
     &:focus-visible {
-      outline: var(--ix-menu--outline-width--focus) solid
-        var(--ix-menu-tabs--outline-color--focus);
-      outline-offset: var(--ix-menu-tabs--outline-offset);
+      outline: cv.get-var('menu--outline-width--focus') solid
+        cv.get-var('menu-tabs--outline-color--focus');
+      outline-offset: cv.get-var('menu-tabs--outline-offset');
     }
   }
 
@@ -59,7 +60,7 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     overflow: hidden;
     display: block;
     position: relative;
-    margin-bottom: var(--ix-menu-tabs-shadow-container--margin-bottom);
+    margin-bottom: cv.get-var('menu-tabs-shadow-container--margin-bottom');
     flex: 1 1 auto;
     min-height: 0;
   }
@@ -74,9 +75,9 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     }
 
     &:focus-visible {
-      outline: var(--ix-menu--outline-width--focus) solid
-        var(--ix-menu-navigation--outline-color--focus);
-      outline-offset: var(--ix-menu-navigation--outline-offset);
+      outline: cv.get-var('menu--outline-width--focus') solid
+        cv.get-var('menu-navigation--outline-color--focus');
+      outline-offset: cv.get-var('menu-navigation--outline-offset');
     }
   }
 
@@ -84,15 +85,15 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     opacity: 0;
     position: absolute;
     width: 100%;
-    height: var(--ix-menu-tabs-shadow--height);
+    height: cv.get-var('menu-tabs-shadow--height');
 
-    background-color: var(--ix-menu--background);
+    background-color: cv.get-var('menu--background');
     box-sizing: border-box;
-    box-shadow: var(--ix-menu-tabs-shadow--box-shadow);
+    box-shadow: cv.get-var('menu-tabs-shadow--box-shadow');
     pointer-events: none;
-    z-index: var(--ix-menu--z-index);
+    z-index: cv.get-var('menu--z-index');
 
-    transition: opacity var(--ix-menu-tabs-shadow--transition-duration);
+    transition: opacity cv.get-var('menu-tabs-shadow--transition-duration');
   }
 
   .tabs--shadow-top {
@@ -111,31 +112,29 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
     display: flex;
     flex-direction: column;
     position: relative;
-    width: var(--ix-menu--width);
+    width: cv.get-var('menu--width');
     height: 100%;
-    padding-block-end: var(--ix-menu--padding-block-end);
+    padding-block-end: cv.get-var('menu--padding-block-end');
     overflow: hidden;
 
-    padding-left: var(--ix-application-menu-safe-area-left, 0);
-
     &.expanded {
-      box-shadow: var(--ix-menu--box-shadow);
+      box-shadow: cv.get-var('menu--box-shadow');
     }
 
-    background-color: var(--ix-menu--background);
-    transition: width var(--ix-menu-panel--transition-duration) ease-in-out;
+    background-color: cv.get-var('menu--background');
+    transition: width cv.get-var('menu-panel--transition-duration') ease-in-out;
   }
 
   .menu-overlay {
     display: none;
     position: absolute;
-    width: var(--ix-menu-overlay--width);
+    width: cv.get-var('menu-overlay--width');
     height: 100%;
-    left: var(--ix-menu-overlay--left);
+    left: cv.get-var('menu-overlay--left');
     z-index: -1;
-    backdrop-filter: blur(var(--ix-menu-overlay--blur-radius));
-    background-color: var(--ix-menu-overlay--background);
-    transition: left var(--ix-menu-overlay--transition-duration) ease-in-out;
+    backdrop-filter: blur(cv.get-var('menu-overlay--blur-radius'));
+    background-color: cv.get-var('menu-overlay--background');
+    transition: left cv.get-var('menu-overlay--transition-duration') ease-in-out;
   }
 
   .menu-overlay.visible {
@@ -156,21 +155,21 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
   }
 
   .menu-avatar {
-    max-height: var(--ix-menu-avatar--max-height);
+    max-height: cv.get-var('menu-slotted-avatar--max-height');
   }
 
   .avatar {
-    margin-bottom: var(--ix-menu-avatar--margin-bottom);
+    margin-bottom: cv.get-var('menu-slotted-avatar--margin-bottom');
   }
 
   #cui-imprint {
     .cui-imprint-product-name {
-      margin-bottom: var(--ix-menu-cui-imprint-product-name--margin-bottom);
+      margin-bottom: cv.get-var('menu-cui-imprint-product-name--margin-bottom');
     }
 
     .cui-imprint-product-description {
-      margin-bottom: var(
-        --ix-menu-cui-imprint-product-description--margin-bottom
+      margin-bottom: cv.get-var(
+        'menu-cui-imprint-product-description--margin-bottom'
       );
     }
 
@@ -185,10 +184,10 @@ $menu-expanded-width: var(--ix-menu--expanded-width);
   }
 
   .menu-buttons {
-    margin: var(--ix-menu-buttons--margin);
+    margin: cv.get-var('menu-buttons--margin');
 
     &:not(:empty) {
-      margin-bottom: var(--ix-menu-empty--margin-bottom);
+      margin-bottom: cv.get-var('menu-empty--margin-bottom');
     }
   }
 }

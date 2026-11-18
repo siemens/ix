@@ -81,8 +81,6 @@ export class MenuCategory
 
   /**
    * Will be shown as tooltip text, if not provided menu text content will be used.
-   *
-   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 
@@ -522,7 +520,7 @@ export class MenuCategory
   private getMenuItemsExpandedPadding() {
     return (
       getComputedStyle(this.hostElement)
-        .getPropertyValue('--ix-menu-category-menu-items-expanded--padding')
+        .getPropertyValue('--ix-menu-category-menu-items--padding--expanded')
         .trim() || '0px'
     );
   }

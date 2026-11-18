@@ -48,7 +48,7 @@ export class FlipTile {
    *
    * Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
    *
-   * @since 4.0.0
+   * @breaking-change 6.0.0 Status variant values renamed
    */
   @Prop() variant: FlipTileVariant = 'filled';
 
@@ -64,21 +64,17 @@ export class FlipTile {
 
   /**
    * Index of the currently visible content
-   * @since 3.0.0
    */
   @Prop() index = 0;
 
   /**
    * ARIA label for the eye icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelEyeIconButton?: string;
 
   /**
    * Event emitted when the index changes
-   * @since 3.0.0
    */
   @Event() toggle!: EventEmitter<number>;
 

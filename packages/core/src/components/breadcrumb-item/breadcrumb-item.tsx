@@ -64,15 +64,11 @@ export class BreadcrumbItem
    * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
    * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
    * against an allowlist (for example `https:` and relative URLs).
-   *
-   * @since 4.0.0
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
-   *
-   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
@@ -85,8 +81,6 @@ export class BreadcrumbItem
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
-   *
-   * @since 4.0.0
    */
   @Prop() rel?: string;
 
