@@ -30,7 +30,7 @@ export default class Toast {
       'danger',
       'critical',
       'error',
-      'base'
+      'base',
     ];
 
     for (const type of toastTypes) {
