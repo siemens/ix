@@ -11,15 +11,16 @@
 @use 'tokens/system' as sys;
 
 @use './card-list.vars' as *;
+@use 'mixins/component-vars' as cv;
 
-$CardList__Title__Height: var(--ix-card-list-title--height);
+$CardList__Title__Height: cv.get-var('card-list-title--height');
 
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  margin: var(--ix-card-list--margin);
+  margin: cv.get-var('card-list--margin');
 
   @include component.ix-component;
 
@@ -29,7 +30,7 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     height: $CardList__Title__Height;
     align-items: center;
     width: 100%;
-    margin-bottom: var(--ix-card-list-title--margin-bottom);
+    margin-bottom: cv.get-var('card-list-title--margin-bottom');
 
     &__Label {
       overflow: hidden;
@@ -39,9 +40,9 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
   }
 
   .CardList__Title__Button {
-    margin-right: var(--ix-card-list-title-button--margin-right);
-    transition: var(--ix-card-list-title-button--transition-duration) transform
-      ease-in-out;
+    margin-right: cv.get-var('card-list-title-button--margin-right');
+    transition: cv.get-var('card-list-title-button--transition-duration')
+      transform ease-in-out;
   }
 
   .CardList__Title__Button__Collapsed {
@@ -60,8 +61,8 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     position: relative;
     height: calc(100% - #{$CardList__Title__Height});
     width: 100%;
-    gap: var(--ix-card-list-content--gap);
-    transition: var(--ix-card-list-content--transition-duration) ease-in-out;
+    gap: cv.get-var('card-list-content--gap');
+    transition: cv.get-var('card-list-content--transition-duration') ease-in-out;
     overflow: auto;
   }
 
@@ -93,7 +94,7 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     height: 100%;
     width: 100%;
     pointer-events: all;
-    mask-image: var(--ix-card-list-overflow, none);
+    mask-image: cv.get-var('card-list--overflow', none);
   }
 
   .Show__All__Card {
@@ -103,41 +104,57 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     align-self: center;
     justify-self: center;
 
-    max-width: var(--ix-card-list-show-all-card--max-width);
-    min-width: var(--ix-card-list-show-all-card--min-width);
-    width: var(--ix-card-list-show-all-card--width);
+    max-width: cv.get-var('card-list-show-all-card--max-width');
+    min-width: cv.get-var('card-list-show-all-card--min-width');
+    width: cv.get-var('card-list-show-all-card--width');
 
-    min-height: var(--ix-card-list-show-all-card--min-height);
-    max-height: var(--ix-card-list-show-all-card--max-height);
-    height: var(--ix-card-list-show-all-card--height);
+    min-height: cv.get-var('card-list-show-all-card--min-height');
+    max-height: cv.get-var('card-list-show-all-card--max-height');
+    height: cv.get-var('card-list-show-all-card--height');
 
-    --ix-card-border-color: var(--ix-card-list-show-all--border-color);
-    --ix-card-background: var(--ix-card-list-show-all--background);
-    color: var(--ix-card-list-show-all--color);
+    @include cv.set-var(
+      'card--border-color',
+      cv.get-var('card-list-show-all--border-color'),
+      $external: true
+    );
+    @include cv.set-var(
+      'card--background',
+      cv.get-var('card-list-show-all--background'),
+      $external: true
+    );
+    color: cv.get-var('card-list-show-all--color');
 
     /* End card owns padding; neutralize ix-card-content default inset */
     ix-card-content {
-      --ix-card-content--padding: 0;
+      @include cv.set-var('card-content--padding', 0, $external: true);
       height: 100%;
     }
 
     /* Beat ix-card :host(.clickable…) hover/active so End-card accent chrome wins */
     &.clickable:hover,
     &:hover {
-      --ix-card-background: var(--ix-card-list-show-all--background--hover);
-      color: var(--ix-card-list-show-all--color--hover);
+      @include cv.set-var(
+        'card--background',
+        cv.get-var('card-list-show-all--background--hover'),
+        $external: true
+      );
+      color: cv.get-var('card-list-show-all--color--hover');
     }
 
     &.clickable:active,
     &:active {
-      --ix-card-background: var(--ix-card-list-show-all--background--active);
-      color: var(--ix-card-list-show-all--color--hover);
+      @include cv.set-var(
+        'card--background',
+        cv.get-var('card-list-show-all--background--active'),
+        $external: true
+      );
+      color: cv.get-var('card-list-show-all--color--hover');
     }
 
     @include hover.focus-visible {
-      outline: var(--ix-card-list-show-all--outline-width--focus) solid
-        var(--ix-card-list-show-all--outline-color--focus);
-      outline-offset: var(--ix-card-list-show-all--focus-outline-offset);
+      outline: cv.get-var('card-list-show-all--outline-width--focus') solid
+        cv.get-var('card-list-show-all--outline-color--focus');
+      outline-offset: cv.get-var('card-list-show-all--outline-offset--focus');
     }
   }
 
@@ -157,10 +174,10 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
     display: flex;
     position: relative;
     flex-shrink: 0;
-    height: var(--ix-card-list-show-all-card-icon--icon-size);
-    width: var(--ix-card-list-show-all-card-icon--icon-size);
-    min-height: var(--ix-card-list-show-all-card-icon--icon-size);
-    min-width: var(--ix-card-list-show-all-card-icon--icon-size);
+    height: cv.get-var('card-list-show-all-card-icon--size');
+    width: cv.get-var('card-list-show-all-card-icon--size');
+    min-height: cv.get-var('card-list-show-all-card-icon--size');
+    min-width: cv.get-var('card-list-show-all-card-icon--size');
     justify-content: center;
     align-items: center;
   }
@@ -180,6 +197,6 @@ $CardList__Title__Height: var(--ix-card-list-title--height);
   }
 
   .CardList__Style__Flexbox__Scroll .Show__All__Card {
-    margin-bottom: var(--ix-card-list-show-all-card--margin-bottom);
+    margin-bottom: cv.get-var('card-list-show-all-card--margin-bottom');
   }
 }

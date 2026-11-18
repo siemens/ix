@@ -12,16 +12,17 @@
 @use './../chip/chip-mixin';
 
 @use './pill.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: inline-block;
   position: relative;
-  height: var(--ix-pill--height);
-  max-height: var(--ix-pill--max-height);
+  height: cv.get-var('pill--height');
+  max-height: cv.get-var('pill--max-height');
 
   @include component.ix-component;
 }
 
-@include chip-mixin.chip-container(false, var(--ix-pill--padding-inline));
+@include chip-mixin.chip-container(false, cv.get-var('pill--padding-inline'));
 
 :host {
   .container {
@@ -33,23 +34,23 @@
     }
 
     &.outline {
-      background-color: var(--ix-pill-outline--background);
+      background-color: cv.get-var('pill--background--outline');
       &.icon {
-        padding-left: var(--ix-pill-outline-icon--padding-left);
-        padding-right: var(--ix-pill-outline-icon--padding-right);
+        padding-left: cv.get-var('pill-icon--padding-left--outline');
+        padding-right: cv.get-var('pill-icon--padding-right--outline');
       }
     }
 
     &:not(.outline) {
       &.icon {
-        padding-left: var(--ix-pill-solid-icon--padding-left);
-        padding-right: var(--ix-pill-solid-icon--padding-right);
+        padding-left: cv.get-var('pill-solid-icon--padding-left');
+        padding-right: cv.get-var('pill-solid-icon--padding-right');
       }
     }
   }
 
   .with-gap {
-    gap: var(--ix-pill-with-gap--gap);
+    gap: cv.get-var('pill-with-gap--gap');
   }
 }
 

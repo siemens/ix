@@ -7,19 +7,32 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-pill-outline--background: #{sys.$si-sys-color-background-accent-secondary};
+  @include cv.define-vars(
+    (
+      'pill--background--outline': sys.$si-sys-color-background-accent-secondary,
+    )
+  );
 }
 
 :host {
-  --ix-pill--height: #{sys.$si-sys-sizing-size-60};
-  --ix-pill--max-height: #{sys.$si-sys-sizing-size-60};
-  --ix-pill--padding-inline: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pill-outline-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pill-outline-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pill-solid-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pill-solid-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-pill-with-gap--gap: #{sys.$si-sys-sizing-spacing-x-20};
+  @include cv.define-vars(
+    (
+      'pill--height': sys.$si-sys-sizing-size-60,
+      'pill--max-height': sys.$si-sys-sizing-size-60,
+      'pill--padding-inline': sys.$si-sys-sizing-spacing-x-40,
+      'pill-icon--padding-left--outline': sys.$si-sys-sizing-spacing-x-40,
+      'pill-icon--padding-right--outline': sys.$si-sys-sizing-spacing-x-40,
+      'pill-solid-icon--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'pill-solid-icon--padding-right': sys.$si-sys-sizing-spacing-x-40,
+      'pill-with-gap--gap': sys.$si-sys-sizing-spacing-x-20,
+    )
+  );
 }

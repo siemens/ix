@@ -145,7 +145,7 @@ export class Pill
         style={
           variant === 'custom'
             ? {
-                '--ix-icon-button-color': this.pillColor,
+                '--ix-icon-button--color': this.pillColor,
               }
             : {}
         }
