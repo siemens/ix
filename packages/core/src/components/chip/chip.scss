@@ -118,12 +118,8 @@ $outline-border-width: cv.get-var('chip--border-width--focus');
       min-width: 0;
     }
 
-    .with-icon {
-      margin-right: cv.get-var('chip-with-icon--margin-right');
-    }
-
     .content-wrapper.has-label .with-icon {
-      margin-right: var(--ix-chip-with-icon--margin-right);
+      margin-right: cv.get-var('chip-with-icon--margin-right');
     }
 
     .slot-container {
