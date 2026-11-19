@@ -8,7 +8,7 @@
  */
 import { expect } from '@playwright/test';
 import {
-  getFormValue,
+  expectFormValue,
   preventFormSubmission,
   regressionTest,
   test,
@@ -24,8 +24,7 @@ regressionTest('form-ready', async ({ mount, page }) => {
   const radio = page.locator('ix-radio');
   await radio.click();
 
-  const formData = await getFormValue(formElement, 'my-radio', page);
-  expect(formData).toBe('Test');
+  await expectFormValue(formElement, 'my-radio', 'Test');
 });
 
 regressionTest('form-ready with default value', async ({ mount, page }) => {
@@ -36,8 +35,7 @@ regressionTest('form-ready with default value', async ({ mount, page }) => {
   const radio = page.locator('ix-radio');
   await radio.click();
 
-  const formData = await getFormValue(formElement, 'my-radio', page);
-  expect(formData).toBe('on');
+  await expectFormValue(formElement, 'my-radio', 'on');
 });
 
 regressionTest(`form-ready default active`, async ({ mount, page }) => {
@@ -47,8 +45,7 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('on');
+  await expectFormValue(formElement, 'my-field-name', 'on');
 });
 
 regressionTest(`disabled = undefined`, async ({ mount, page }) => {

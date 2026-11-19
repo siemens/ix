@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator } from '@playwright/test';
-import { getFormValue, regressionTest } from '@utils/test';
+import { expectFormValue, regressionTest } from '@utils/test';
 
 const components = [
   { tag: 'ix-input', control: 'input' },
@@ -15,6 +15,7 @@ const components = [
 ] as const;
 
 const fieldName = 'my-field-name';
+const label = 'Search';
 
 // Keystroke and assignment must share a task; `fill`/`type` would render in between
 function typeThenSetValue(
@@ -42,7 +43,7 @@ for (const { tag, control } of components) {
   regressionTest.describe(`${tag} programmatic value`, () => {
     regressionTest.beforeEach(async ({ mount, page }) => {
       await mount(
-        `<form><${tag} name="${fieldName}" label="Search"></${tag}></form>`
+        `<form><${tag} name="${fieldName}" label="${label}"></${tag}></form>`
       );
       await expect(page.locator(tag)).toHaveAttribute('hydrated');
     });
@@ -54,7 +55,7 @@ for (const { tag, control } of components) {
 
     regressionTest('renders', async ({ page }) => {
       await expect(page.locator(tag)).toHaveAttribute('hydrated');
-      await expect(page.getByRole('textbox', { name: 'Search' })).toBeVisible();
+      await expect(page.getByRole('textbox', { name: label })).toBeVisible();
     });
 
     regressionTest(
@@ -65,10 +66,10 @@ for (const { tag, control } of components) {
         await typeThenSetValue(host, control, 'num_samples', '');
 
         await expect(host).toHaveAttribute('value', '');
-        await expect(host.locator(control)).toHaveValue('');
-        expect(await getFormValue(page.locator('form'), fieldName, page)).toBe(
+        await expect(page.getByRole('textbox', { name: label })).toHaveValue(
           ''
         );
+        await expectFormValue(page.locator('form'), fieldName, '');
       }
     );
 
@@ -79,10 +80,10 @@ for (const { tag, control } of components) {
 
         await typeThenSetValue(host, control, 'num_samples', 'other');
 
-        await expect(host.locator(control)).toHaveValue('other');
-        expect(await getFormValue(page.locator('form'), fieldName, page)).toBe(
+        await expect(page.getByRole('textbox', { name: label })).toHaveValue(
           'other'
         );
+        await expectFormValue(page.locator('form'), fieldName, 'other');
       }
     );
 
@@ -95,10 +96,10 @@ for (const { tag, control } of components) {
           element.value = 'programmatic';
         });
 
-        await expect(host.locator(control)).toHaveValue('programmatic');
-        expect(await getFormValue(page.locator('form'), fieldName, page)).toBe(
+        await expect(page.getByRole('textbox', { name: label })).toHaveValue(
           'programmatic'
         );
+        await expectFormValue(page.locator('form'), fieldName, 'programmatic');
       }
     );
 
@@ -106,15 +107,13 @@ for (const { tag, control } of components) {
       'typing keeps the native control, host value and form value in sync',
       async ({ page }) => {
         const host = page.locator(tag);
-        const native = host.locator(control);
+        const native = page.getByRole('textbox', { name: label });
 
         await native.pressSequentially('abc');
 
         await expect(native).toHaveValue('abc');
         await expect(host).toHaveAttribute('value', 'abc');
-        expect(await getFormValue(page.locator('form'), fieldName, page)).toBe(
-          'abc'
-        );
+        await expectFormValue(page.locator('form'), fieldName, 'abc');
       }
     );
   });
@@ -122,11 +121,11 @@ for (const { tag, control } of components) {
   regressionTest(
     `${tag} revalidates a touched field when the value is set programmatically`,
     async ({ mount, page }) => {
-      await mount(`<${tag} required value="abc"></${tag}>`);
+      await mount(`<${tag} label="${label}" required value="abc"></${tag}>`);
       const host = page.locator(tag);
       await expect(host).toHaveAttribute('hydrated');
 
-      const native = host.locator(control);
+      const native = page.getByRole('textbox', { name: label });
       await native.focus();
       await native.blur();
       await expect(host).not.toHaveClass(/ix-invalid--validity-invalid/);

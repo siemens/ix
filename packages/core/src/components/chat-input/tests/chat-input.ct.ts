@@ -9,7 +9,7 @@
 import { expect } from '@playwright/test';
 import { iconCircleStop, iconSendRightFilled } from '@siemens/ix-icons/icons';
 import {
-  getFormValue,
+  expectFormValue,
   preventFormSubmission,
   regressionTest,
 } from '@utils/test';
@@ -391,6 +391,5 @@ regressionTest(`form-ready - ix-chat-input`, async ({ mount, page }) => {
   await input.fill('Some prompt');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('Some prompt');
+  await expectFormValue(formElement, 'my-field-name', 'Some prompt');
 });
