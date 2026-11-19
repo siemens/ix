@@ -116,22 +116,32 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
 
   /**
    * Hidden items are rendered as dropdown items, which have no anchor of their own.
-   * Follow the item's link the same way the anchor of a visible item would.
+   * Follow the item's link the same way the anchor of a visible item would,
+   * including that a canceled click does not navigate.
    */
-  private navigateToItem(item: HTMLIxBreadcrumbItemElement) {
-    if (!item.href) {
+  private navigateToItem(item: HTMLIxBreadcrumbItemElement, event: Event) {
+    const { href } = item;
+    if (!href) {
       return;
     }
 
-    const anchor = document.createElement('a');
-    anchor.href = item.href;
-    anchor.target = item.target ?? '_self';
-    if (item.rel) {
-      anchor.rel = item.rel;
-    }
+    // Wait until the click has reached every listener, so an application
+    // can still cancel it with `preventDefault()`.
+    setTimeout(() => {
+      if (event.defaultPrevented) {
+        return;
+      }
 
-    // The anchor stays detached, so its click event does not reach any listeners on the page.
-    anchor.click();
+      const anchor = document.createElement('a');
+      anchor.href = href;
+      anchor.target = item.target ?? '_self';
+      if (item.rel) {
+        anchor.rel = item.rel;
+      }
+
+      // The anchor stays detached, so its click event does not reach any listeners on the page.
+      anchor.click();
+    });
   }
 
   override componentDidLoad() {
@@ -218,12 +228,12 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
                 return (
                   <ix-dropdown-item
                     label={label}
-                    onClick={() => {
+                    onClick={(event) => {
                       this.onItemClick({
                         breadcrumbKey: item.breadcrumbKey,
                         label,
                       });
-                      this.navigateToItem(item);
+                      this.navigateToItem(item, event);
                     }}
                     onItemClick={(event) => event.stopPropagation()}
                   ></ix-dropdown-item>

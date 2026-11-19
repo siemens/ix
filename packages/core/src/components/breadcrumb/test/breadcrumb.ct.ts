@@ -154,6 +154,34 @@ regressionTest.describe('hidden items with href', () => {
   );
 
   regressionTest(
+    'should not navigate when the application cancels the click',
+    async ({ mount, page }) => {
+      await mount(mountWithHiddenItems('href="#home"'));
+      const breadcrumb = page.locator('ix-breadcrumb');
+      await expect(breadcrumb).toHaveAttribute('hydrated');
+      const initialUrl = page.url();
+      const events = await recordEvents(breadcrumb, ['itemClick']);
+
+      const previousButton = await openPreviousItems(breadcrumb);
+      // A bubbling listener on the document, like a client-side router uses.
+      await page.evaluate(() =>
+        document.addEventListener('click', (event) => event.preventDefault())
+      );
+      await previousButton.getByRole('menuitem', { name: 'Home' }).click();
+
+      await expect.poll(events).toEqual([
+        {
+          type: 'itemClick',
+          detail: { breadcrumbKey: 'home', label: 'Home' },
+        },
+      ]);
+      // Let the deferred navigation check run before asserting the URL.
+      await page.evaluate(() => new Promise((resolve) => setTimeout(resolve)));
+      expect(page.url()).toBe(initialUrl);
+    }
+  );
+
+  regressionTest(
     'should only emit itemClick for a hidden item without href',
     async ({ mount, page }) => {
       await mount(mountWithHiddenItems('href="#home"'));
