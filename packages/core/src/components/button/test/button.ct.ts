@@ -63,6 +63,26 @@ regressionTest(
 );
 
 regressionTest(
+  'uses body paragraph sbold typography in default and compact density',
+  async ({ mount, page }) => {
+    await mount(`<ix-button>Content</ix-button>`);
+    const button = page.locator('ix-button');
+
+    await expect(button).toHaveCSS('font-weight', '600');
+    await expect(button).toHaveCSS('font-size', '14px');
+    await expect(button).toHaveCSS('line-height', '20px');
+
+    await page.locator('body').evaluate((body) => {
+      body.setAttribute('data-ix-density', 'compact');
+    });
+
+    await expect(button).toHaveCSS('font-weight', '600');
+    await expect(button).toHaveCSS('font-size', '12px');
+    await expect(button).toHaveCSS('line-height', '16px');
+  }
+);
+
+regressionTest(
   'uses density spacing tokens for button internals',
   async ({ mount, page }) => {
     await mount(
