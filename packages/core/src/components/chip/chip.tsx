@@ -17,6 +17,7 @@ import {
   Host,
   Mixin,
   Prop,
+  State,
 } from '@stencil/core';
 import { a11yBoolean, type A11yAttributeName } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
@@ -25,6 +26,7 @@ import {
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
+import { hasSlottedContent } from '../utils/shadow-dom';
 import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
 /**
@@ -118,6 +120,10 @@ export class Chip
    */
   @Event() closeChip!: EventEmitter;
 
+  @State() private hasLabel = false;
+
+  private labelObserver?: MutationObserver;
+
   private readonly containerElementRef = makeRef<HTMLElement>();
 
   override getIgnoredAriaAttributes(): A11yAttributeName[] {
@@ -126,7 +132,49 @@ export class Chip
 
   override componentWillLoad() {
     super.componentWillLoad();
+    this.hasLabel = this.hostHasLabel();
   }
+
+  override connectedCallback() {
+    super.connectedCallback();
+    this.hasLabel = this.hostHasLabel();
+
+    if (typeof MutationObserver === 'undefined') {
+      return;
+    }
+
+    if (!this.labelObserver) {
+      this.labelObserver = new MutationObserver(() => {
+        this.hasLabel = this.hostHasLabel();
+      });
+    }
+    this.labelObserver.observe(this.hostElement, {
+      characterData: true,
+      subtree: true,
+    });
+  }
+
+  override disconnectedCallback() {
+    this.labelObserver?.disconnect();
+    super.disconnectedCallback();
+  }
+
+  private hostHasLabel() {
+    return Array.from(this.hostElement.childNodes).some((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        return true;
+      }
+
+      return (
+        node.nodeType === Node.TEXT_NODE &&
+        (node.textContent ?? '').trim().length > 0
+      );
+    });
+  }
+
+  private handleSlotChange = (event: Event) => {
+    this.hasLabel = hasSlottedContent(event.target as HTMLSlotElement);
+  };
 
   private getTooltip() {
     if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
@@ -242,7 +290,12 @@ export class Chip
             disabled={this.inactive}
             style={customMainStyle}
           >
-            <div class="content-wrapper">
+            <div
+              class={{
+                'content-wrapper': true,
+                'has-label': this.hasLabel,
+              }}
+            >
               {this.icon && (
                 <ix-icon
                   class={{
@@ -255,7 +308,7 @@ export class Chip
                 />
               )}
               <span class="slot-container">
-                <slot></slot>
+                <slot onSlotchange={this.handleSlotChange}></slot>
               </span>
             </div>
           </button>

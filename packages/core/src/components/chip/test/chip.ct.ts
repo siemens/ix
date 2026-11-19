@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconPrint } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 declare global {
@@ -313,6 +314,105 @@ regressionTest.describe('tooltip', () => {
       const tooltip = chip.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/custom tooltip text/);
+    }
+  );
+});
+
+regressionTest.describe('icon spacing', () => {
+  const icons = { iconPrint };
+
+  regressionTest(
+    'treats whitespace-only text as icon-only',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+
+      await expect(chip.locator('.with-icon')).toHaveCSS('margin-right', '0px');
+    }
+  );
+
+  regressionTest(
+    'updates the icon gap when the label is added or removed',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-chip icon="print" aria-label="Print document"></ix-chip>`,
+        { icons }
+      );
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await expect(icon).toHaveCSS('margin-right', '0px');
+
+      await chip.evaluate((element) => {
+        element.textContent = 'Later';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+
+      await chip.evaluate((element) => {
+        element.textContent = '   ';
+      });
+      await expect(icon).toHaveCSS('margin-right', '0px');
+    }
+  );
+
+  regressionTest(
+    'keeps observing text changes after the chip is reattached',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await chip.evaluate((element) => {
+        const parent = element.parentNode;
+        if (!parent) {
+          throw new Error('Expected a parent node');
+        }
+        element.remove();
+        parent.appendChild(element);
+      });
+      await expect(chip).toHaveAttribute('hydrated');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = 'Print';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+    }
+  );
+
+  regressionTest(
+    'updates the icon gap when the same text node changes',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await expect(icon).toHaveCSS('margin-right', '0px');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = 'Print';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = ' ';
+      });
+      await expect(icon).toHaveCSS('margin-right', '0px');
     }
   );
 });
