@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { stencil } from '@utils/stencil-render';
 
 type Density = 'default' | 'compact';
-type Sizing = 'rem' | 'px';
+type Sizing = 'px' | 'rem';
 
 type Args = {
   htmlDensity: Density;
@@ -75,7 +75,7 @@ function Scope(
   props: {
     title: string;
     density?: Density;
-    sizing?: 'px';
+    sizing?: 'rem';
   },
   children: unknown
 ) {
@@ -160,11 +160,12 @@ export const NestedDensity: Story = {
 };
 
 /**
- * `data-ix-sizing="px"` switches the size, spacing, icon and avatar tokens
- * from `rem` to `px`. Change the base font size in the toolbar to see that
- * only the `rem` scope scales with the root font size.
+ * Size and spacing tokens use `px` by default. `data-ix-sizing="rem"`
+ * switches them to `rem`. Change the base font size in the toolbar to see
+ * that only the `rem` scope scales with the root font size. Icon and avatar
+ * tokens always use `rem`.
  */
-export const PxSizing: Story = {
+export const RemSizing: Story = {
   argTypes: {
     htmlDensity: { table: { disable: true } },
     htmlSizing: { table: { disable: true } },
@@ -172,15 +173,15 @@ export const PxSizing: Story = {
   render: withMeasurements((args) => {
     return stencil(() => (
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-        <Scope title="rem (default)">
+        <Scope title="px (default)">
           <Sample />
         </Scope>
-        <Scope title='data-ix-sizing="px"' sizing="px">
+        <Scope title='data-ix-sizing="rem"' sizing="rem">
           <Sample />
         </Scope>
         <Scope
-          title='data-ix-sizing="px" + data-ix-density="compact"'
-          sizing="px"
+          title='data-ix-sizing="rem" + data-ix-density="compact"'
+          sizing="rem"
           density="compact"
         >
           <Sample />
@@ -193,12 +194,12 @@ export const PxSizing: Story = {
 /**
  * Density and sizing set on the `<html>` element apply to the whole page.
  * Nested elements can still override the density. A nested density inside
- * a `data-ix-sizing="px"` scope keeps `px` sizing.
+ * a `data-ix-sizing="rem"` scope keeps `rem` sizing.
  */
 export const HtmlLevel: Story = {
   args: {
     htmlDensity: 'compact',
-    htmlSizing: 'px',
+    htmlSizing: 'rem',
   },
   argTypes: {
     htmlDensity: {
@@ -209,14 +210,14 @@ export const HtmlLevel: Story = {
     htmlSizing: {
       name: '<html> data-ix-sizing',
       control: { type: 'inline-radio' },
-      options: ['rem', 'px'],
+      options: ['px', 'rem'],
     },
   },
   render: withMeasurements((args) => {
     const html = document.documentElement;
     html.setAttribute('data-ix-density', args.htmlDensity);
-    if (args.htmlSizing === 'px') {
-      html.setAttribute('data-ix-sizing', 'px');
+    if (args.htmlSizing === 'rem') {
+      html.setAttribute('data-ix-sizing', 'rem');
     } else {
       html.removeAttribute('data-ix-sizing');
     }
@@ -225,7 +226,7 @@ export const HtmlLevel: Story = {
       <div style={scopeStyle}>
         <ix-typography format="h5" bold>
           {`<html data-ix-density="${args.htmlDensity}"${
-            args.htmlSizing === 'px' ? ' data-ix-sizing="px"' : ''
+            args.htmlSizing === 'rem' ? ' data-ix-sizing="rem"' : ''
           }>`}
         </ix-typography>
         <Sample />
@@ -236,7 +237,7 @@ export const HtmlLevel: Story = {
           <Scope title='data-ix-density="compact" (nested)' density="compact">
             <Sample />
           </Scope>
-          <Scope title='data-ix-sizing="px" (nested)' sizing="px">
+          <Scope title='data-ix-sizing="rem" (nested)' sizing="rem">
             <Sample />
           </Scope>
         </div>

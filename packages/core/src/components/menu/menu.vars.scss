@@ -30,7 +30,7 @@
 :host {
   @include cv.define-vars(
     (
-      'menu-overlay--blur-radius': 1rem,
+      'menu-overlay--blur-radius': 16px,
       'menu-tabs-shadow-container--margin-bottom':
         sys.$si-sys-sizing-spacing-y-50,
       'menu--z-index': var(--theme-z-index-sticky),
@@ -41,7 +41,7 @@
       'menu--width': sys.$si-sys-sizing-size-100,
       'menu--padding-block-end':
         calc(
-          #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0rem)
+          #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0px)
         ),
       'menu-overlay--width': calc(100vw - #{sys.$si-sys-sizing-size-100}),
       'menu-overlay--left': sys.$si-sys-sizing-size-100,

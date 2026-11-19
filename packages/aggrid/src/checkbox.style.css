@@ -8,8 +8,8 @@
  */
 
 .ag-checkbox-input {
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
   margin: 0;
   appearance: none;
   border-radius: var(--si-sys-sizing-border-radius-xs);
@@ -17,8 +17,8 @@
 }
 
 .ag-checkbox-input-wrapper {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: 18px;
+  height: 18px;
   border-radius: var(--si-sys-sizing-border-radius-xs);
 }
 
@@ -47,17 +47,17 @@
 }
 
 .ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate) {
-  border: 0.0625rem solid var(--si-sys-color-border-2);
+  border: 1px solid var(--si-sys-color-border-2);
 }
 
 .ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate):hover {
   background-color: var(--si-sys-color-background-hover);
-  border: 0.0625rem solid var(--si-sys-color-border-2);
+  border: 1px solid var(--si-sys-color-border-2);
 }
 
 .ag-checkbox-input-wrapper:not(.ag-checked):not(.ag-indeterminate):active {
   background-color: var(--si-sys-color-background-active);
-  border: 0.0625rem solid var(--si-sys-color-border-2);
+  border: 1px solid var(--si-sys-color-border-2);
 }
 
 .ag-checked {

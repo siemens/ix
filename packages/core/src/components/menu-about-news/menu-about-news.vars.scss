@@ -59,12 +59,12 @@
       'menu-about-news-desktop--z-index': 10000,
       'menu-about-news-banner-container--top':
         calc(#{sys.$si-sys-sizing-spacing-y-10} / 2),
-      'menu-about-news-svg--height': 3.625rem,
-      'menu-about-news-svg--width': 3rem,
-      'menu-about-news-arrow--width': 0.5rem,
-      'menu-about-news-arrow--height': 0.5rem,
-      'menu-about-news-arrow--transform': 0.8rem,
-      'menu-about-news--viewport-offset--mobile': 4.75rem,
+      'menu-about-news-svg--height': 58px,
+      'menu-about-news-svg--width': 48px,
+      'menu-about-news-arrow--width': 8px,
+      'menu-about-news-arrow--height': 8px,
+      'menu-about-news-arrow--transform': 12.8px,
+      'menu-about-news--viewport-offset--mobile': 76px,
     )
   );
   @include cv.define-vars(
@@ -78,7 +78,7 @@
     (
       'menu-about-news--width--mobile':
         calc(100% - 2 * #{cv.get-var('menu-about-news-side--inset--mobile')}),
-      'menu-about-news--max-width--mobile': 30rem,
+      'menu-about-news--max-width--mobile': 480px,
       'menu-about-news--bottom--mobile': sys.$si-sys-sizing-spacing-y-60,
     )
   );

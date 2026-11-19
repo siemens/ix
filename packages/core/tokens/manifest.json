@@ -3,7 +3,7 @@
   "contract": "siemens-ix-system-token-manifest",
   "provenance": {
     "tokenSourceVersion": "0.17.0",
-    "tokenBuildId": "c12f48091412169b18984aff035ebb14635a1eecdb8de05022ed657add496d7e"
+    "tokenBuildId": "64b9ed031624f7715db4fa29b211ae8e14c1607fc75203d293472e720d3f94b9"
   },
   "coverage": {
     "modes": [
@@ -4058,135 +4058,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-avatar-2xs",
-      "sourcePath": "si.sys.sizing.px.avatar.2xs",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-avatar-3xs",
-      "sourcePath": "si.sys.sizing.px.avatar.3xs",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-avatar-lg",
-      "sourcePath": "si.sys.sizing.px.avatar.lg",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-avatar-md",
-      "sourcePath": "si.sys.sizing.px.avatar.md",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-avatar-sm",
-      "sourcePath": "si.sys.sizing.px.avatar.sm",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-avatar-xl",
-      "sourcePath": "si.sys.sizing.px.avatar.xl",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-avatar-xs",
-      "sourcePath": "si.sys.sizing.px.avatar.xs",
-      "group": "sizing.px.avatar",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": []
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-icon-lg",
-      "sourcePath": "si.sys.sizing.px.icon.lg",
-      "group": "sizing.px.icon",
+      "name": "--si-sys-sizing-rem-size-10",
+      "sourcePath": "si.sys.sizing.rem.size.10",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4204,9 +4078,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-icon-md",
-      "sourcePath": "si.sys.sizing.px.icon.md",
-      "group": "sizing.px.icon",
+      "name": "--si-sys-sizing-rem-size-100",
+      "sourcePath": "si.sys.sizing.rem.size.100",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4224,9 +4098,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-icon-sm",
-      "sourcePath": "si.sys.sizing.px.icon.sm",
-      "group": "sizing.px.icon",
+      "name": "--si-sys-sizing-rem-size-110",
+      "sourcePath": "si.sys.sizing.rem.size.110",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4244,9 +4118,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-icon-xl",
-      "sourcePath": "si.sys.sizing.px.icon.xl",
-      "group": "sizing.px.icon",
+      "name": "--si-sys-sizing-rem-size-120",
+      "sourcePath": "si.sys.sizing.rem.size.120",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4264,9 +4138,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-icon-xxl",
-      "sourcePath": "si.sys.sizing.px.icon.xxl",
-      "group": "sizing.px.icon",
+      "name": "--si-sys-sizing-rem-size-130",
+      "sourcePath": "si.sys.sizing.rem.size.130",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4284,9 +4158,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-10",
-      "sourcePath": "si.sys.sizing.px.size.10",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-140",
+      "sourcePath": "si.sys.sizing.rem.size.140",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4304,9 +4178,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-100",
-      "sourcePath": "si.sys.sizing.px.size.100",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-150",
+      "sourcePath": "si.sys.sizing.rem.size.150",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4324,9 +4198,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-110",
-      "sourcePath": "si.sys.sizing.px.size.110",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-160",
+      "sourcePath": "si.sys.sizing.rem.size.160",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4344,9 +4218,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-120",
-      "sourcePath": "si.sys.sizing.px.size.120",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-170",
+      "sourcePath": "si.sys.sizing.rem.size.170",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4364,9 +4238,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-130",
-      "sourcePath": "si.sys.sizing.px.size.130",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-180",
+      "sourcePath": "si.sys.sizing.rem.size.180",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4384,9 +4258,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-140",
-      "sourcePath": "si.sys.sizing.px.size.140",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-190",
+      "sourcePath": "si.sys.sizing.rem.size.190",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4404,9 +4278,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-150",
-      "sourcePath": "si.sys.sizing.px.size.150",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-20",
+      "sourcePath": "si.sys.sizing.rem.size.20",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4424,9 +4298,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-160",
-      "sourcePath": "si.sys.sizing.px.size.160",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-200",
+      "sourcePath": "si.sys.sizing.rem.size.200",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4444,9 +4318,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-170",
-      "sourcePath": "si.sys.sizing.px.size.170",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-30",
+      "sourcePath": "si.sys.sizing.rem.size.30",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4464,9 +4338,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-180",
-      "sourcePath": "si.sys.sizing.px.size.180",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-40",
+      "sourcePath": "si.sys.sizing.rem.size.40",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4484,9 +4358,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-190",
-      "sourcePath": "si.sys.sizing.px.size.190",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-50",
+      "sourcePath": "si.sys.sizing.rem.size.50",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4504,9 +4378,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-20",
-      "sourcePath": "si.sys.sizing.px.size.20",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-60",
+      "sourcePath": "si.sys.sizing.rem.size.60",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4524,9 +4398,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-200",
-      "sourcePath": "si.sys.sizing.px.size.200",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-70",
+      "sourcePath": "si.sys.sizing.rem.size.70",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4544,9 +4418,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-30",
-      "sourcePath": "si.sys.sizing.px.size.30",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-80",
+      "sourcePath": "si.sys.sizing.rem.size.80",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4564,9 +4438,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-40",
-      "sourcePath": "si.sys.sizing.px.size.40",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-size-90",
+      "sourcePath": "si.sys.sizing.rem.size.90",
+      "group": "sizing.rem.size",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4584,9 +4458,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-50",
-      "sourcePath": "si.sys.sizing.px.size.50",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-spacing-x-10",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.10",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4604,9 +4478,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-60",
-      "sourcePath": "si.sys.sizing.px.size.60",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-spacing-x-100",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.100",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4624,9 +4498,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-70",
-      "sourcePath": "si.sys.sizing.px.size.70",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-spacing-x-110",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.110",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4644,9 +4518,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-80",
-      "sourcePath": "si.sys.sizing.px.size.80",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-spacing-x-120",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.120",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4664,9 +4538,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-size-90",
-      "sourcePath": "si.sys.sizing.px.size.90",
-      "group": "sizing.px.size",
+      "name": "--si-sys-sizing-rem-spacing-x-130",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.130",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4684,9 +4558,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-10",
-      "sourcePath": "si.sys.sizing.px.spacing-x.10",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-140",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.140",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4704,9 +4578,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-100",
-      "sourcePath": "si.sys.sizing.px.spacing-x.100",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-20",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.20",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4724,9 +4598,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-110",
-      "sourcePath": "si.sys.sizing.px.spacing-x.110",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-30",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.30",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4744,9 +4618,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-120",
-      "sourcePath": "si.sys.sizing.px.spacing-x.120",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-40",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.40",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4764,9 +4638,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-130",
-      "sourcePath": "si.sys.sizing.px.spacing-x.130",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-50",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.50",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4784,9 +4658,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-140",
-      "sourcePath": "si.sys.sizing.px.spacing-x.140",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-60",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.60",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4804,9 +4678,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-20",
-      "sourcePath": "si.sys.sizing.px.spacing-x.20",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-70",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.70",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4824,9 +4698,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-30",
-      "sourcePath": "si.sys.sizing.px.spacing-x.30",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-80",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.80",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4844,9 +4718,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-40",
-      "sourcePath": "si.sys.sizing.px.spacing-x.40",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-x-90",
+      "sourcePath": "si.sys.sizing.rem.spacing-x.90",
+      "group": "sizing.rem.spacing-x",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4864,9 +4738,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-50",
-      "sourcePath": "si.sys.sizing.px.spacing-x.50",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-y-10",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.10",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4884,9 +4758,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-60",
-      "sourcePath": "si.sys.sizing.px.spacing-x.60",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-y-100",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.100",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4904,9 +4778,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-70",
-      "sourcePath": "si.sys.sizing.px.spacing-x.70",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-y-110",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.110",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4924,9 +4798,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-80",
-      "sourcePath": "si.sys.sizing.px.spacing-x.80",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-y-120",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.120",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4944,9 +4818,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-x-90",
-      "sourcePath": "si.sys.sizing.px.spacing-x.90",
-      "group": "sizing.px.spacing-x",
+      "name": "--si-sys-sizing-rem-spacing-y-130",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.130",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4964,9 +4838,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-10",
-      "sourcePath": "si.sys.sizing.px.spacing-y.10",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-140",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.140",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -4984,9 +4858,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-100",
-      "sourcePath": "si.sys.sizing.px.spacing-y.100",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-20",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.20",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5004,9 +4878,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-110",
-      "sourcePath": "si.sys.sizing.px.spacing-y.110",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-30",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.30",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5024,9 +4898,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-120",
-      "sourcePath": "si.sys.sizing.px.spacing-y.120",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-40",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.40",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5044,9 +4918,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-130",
-      "sourcePath": "si.sys.sizing.px.spacing-y.130",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-50",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.50",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5064,9 +4938,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-140",
-      "sourcePath": "si.sys.sizing.px.spacing-y.140",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-60",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.60",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5084,9 +4958,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-20",
-      "sourcePath": "si.sys.sizing.px.spacing-y.20",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-70",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.70",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5104,9 +4978,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-30",
-      "sourcePath": "si.sys.sizing.px.spacing-y.30",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-80",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.80",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {
@@ -5124,109 +4998,9 @@
       }
     },
     {
-      "name": "--si-sys-sizing-px-spacing-y-40",
-      "sourcePath": "si.sys.sizing.px.spacing-y.40",
-      "group": "sizing.px.spacing-y",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": [
-          "compact"
-        ]
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-spacing-y-50",
-      "sourcePath": "si.sys.sizing.px.spacing-y.50",
-      "group": "sizing.px.spacing-y",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": [
-          "compact"
-        ]
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-spacing-y-60",
-      "sourcePath": "si.sys.sizing.px.spacing-y.60",
-      "group": "sizing.px.spacing-y",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": [
-          "compact"
-        ]
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-spacing-y-70",
-      "sourcePath": "si.sys.sizing.px.spacing-y.70",
-      "group": "sizing.px.spacing-y",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": [
-          "compact"
-        ]
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-spacing-y-80",
-      "sourcePath": "si.sys.sizing.px.spacing-y.80",
-      "group": "sizing.px.spacing-y",
-      "type": "sizing",
-      "sourceType": "dimension",
-      "applicability": {
-        "modes": [
-          "dark",
-          "light"
-        ],
-        "densities": [
-          "default",
-          "compact"
-        ],
-        "densityOverrides": [
-          "compact"
-        ]
-      }
-    },
-    {
-      "name": "--si-sys-sizing-px-spacing-y-90",
-      "sourcePath": "si.sys.sizing.px.spacing-y.90",
-      "group": "sizing.px.spacing-y",
+      "name": "--si-sys-sizing-rem-spacing-y-90",
+      "sourcePath": "si.sys.sizing.rem.spacing-y.90",
+      "group": "sizing.rem.spacing-y",
       "type": "sizing",
       "sourceType": "dimension",
       "applicability": {

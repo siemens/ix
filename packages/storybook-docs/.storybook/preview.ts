@@ -17,7 +17,7 @@ defineCustomElement();
 const additionalThemes: string[] = [];
 const colorSchemas = ['dark', 'light'] as const;
 const densities = ['default', 'compact'] as const;
-const sizings = ['rem', 'px'] as const;
+const sizings = ['px', 'rem'] as const;
 
 function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
@@ -93,7 +93,7 @@ const preview: Preview = {
     ixTheme: defaultTheme,
     ixColorSchema: 'dark',
     ixDensity: 'default',
-    ixSizing: 'rem',
+    ixSizing: 'px',
     ixFontSize: '',
   },
   parameters: {
@@ -139,8 +139,8 @@ const preview: Preview = {
       } else {
         document.documentElement.removeAttribute('data-ix-density');
       }
-      if (context.globals['ixSizing'] === 'px') {
-        document.documentElement.setAttribute('data-ix-sizing', 'px');
+      if (context.globals['ixSizing'] === 'rem') {
+        document.documentElement.setAttribute('data-ix-sizing', 'rem');
       } else {
         document.documentElement.removeAttribute('data-ix-sizing');
       }

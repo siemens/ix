@@ -70,132 +70,120 @@
   --si-sys-sizing-icon-xl: 2rem;
   // Hero icons, onboarding illustrations
   --si-sys-sizing-icon-xxl: 3rem;
-  --si-sys-sizing-px-avatar-2xs: 24px;
-  --si-sys-sizing-px-avatar-3xs: 20px;
-  --si-sys-sizing-px-avatar-lg: 56px;
-  --si-sys-sizing-px-avatar-md: 40px;
-  --si-sys-sizing-px-avatar-sm: 32px;
-  --si-sys-sizing-px-avatar-xl: 80px;
-  --si-sys-sizing-px-avatar-xs: 28px;
-  --si-sys-sizing-px-icon-lg: 24px;
-  --si-sys-sizing-px-icon-md: 20px;
-  --si-sys-sizing-px-icon-sm: 16px;
-  --si-sys-sizing-px-icon-xl: 32px;
-  --si-sys-sizing-px-icon-xxl: 48px;
-  --si-sys-sizing-px-size-10: 2px;
-  --si-sys-sizing-px-size-100: 48px;
-  --si-sys-sizing-px-size-110: 64px;
-  --si-sys-sizing-px-size-120: 80px;
-  --si-sys-sizing-px-size-130: 96px;
-  --si-sys-sizing-px-size-140: 120px;
-  --si-sys-sizing-px-size-150: 160px;
-  --si-sys-sizing-px-size-160: 240px;
-  --si-sys-sizing-px-size-170: 320px;
-  --si-sys-sizing-px-size-180: 480px;
-  --si-sys-sizing-px-size-190: 600px;
-  --si-sys-sizing-px-size-20: 4px;
-  --si-sys-sizing-px-size-200: 720px;
-  --si-sys-sizing-px-size-30: 8px;
-  --si-sys-sizing-px-size-40: 12px;
-  --si-sys-sizing-px-size-50: 16px;
-  --si-sys-sizing-px-size-60: 20px;
-  --si-sys-sizing-px-size-70: 24px;
-  --si-sys-sizing-px-size-80: 32px;
-  --si-sys-sizing-px-size-90: 40px;
-  --si-sys-sizing-px-spacing-x-10: 2px;
-  --si-sys-sizing-px-spacing-x-100: 40px;
-  --si-sys-sizing-px-spacing-x-110: 48px;
-  --si-sys-sizing-px-spacing-x-120: 64px;
-  --si-sys-sizing-px-spacing-x-130: 80px;
-  --si-sys-sizing-px-spacing-x-140: 96px;
-  --si-sys-sizing-px-spacing-x-20: 4px;
-  --si-sys-sizing-px-spacing-x-30: 6px;
-  --si-sys-sizing-px-spacing-x-40: 8px;
-  --si-sys-sizing-px-spacing-x-50: 12px;
-  --si-sys-sizing-px-spacing-x-60: 16px;
-  --si-sys-sizing-px-spacing-x-70: 20px;
-  --si-sys-sizing-px-spacing-x-80: 24px;
-  --si-sys-sizing-px-spacing-x-90: 32px;
-  --si-sys-sizing-px-spacing-y-10: 2px;
-  --si-sys-sizing-px-spacing-y-100: 40px;
-  --si-sys-sizing-px-spacing-y-110: 48px;
-  --si-sys-sizing-px-spacing-y-120: 64px;
-  --si-sys-sizing-px-spacing-y-130: 80px;
-  --si-sys-sizing-px-spacing-y-140: 96px;
-  --si-sys-sizing-px-spacing-y-20: 4px;
-  --si-sys-sizing-px-spacing-y-30: 6px;
-  --si-sys-sizing-px-spacing-y-40: 8px;
-  --si-sys-sizing-px-spacing-y-50: 12px;
-  --si-sys-sizing-px-spacing-y-60: 16px;
-  --si-sys-sizing-px-spacing-y-70: 20px;
-  --si-sys-sizing-px-spacing-y-80: 24px;
-  --si-sys-sizing-px-spacing-y-90: 32px;
+  --si-sys-sizing-rem-size-10: 0.125rem;
+  --si-sys-sizing-rem-size-100: 3rem;
+  --si-sys-sizing-rem-size-110: 4rem;
+  --si-sys-sizing-rem-size-120: 5rem;
+  --si-sys-sizing-rem-size-130: 6rem;
+  --si-sys-sizing-rem-size-140: 7.5rem;
+  --si-sys-sizing-rem-size-150: 10rem;
+  --si-sys-sizing-rem-size-160: 15rem;
+  --si-sys-sizing-rem-size-170: 20rem;
+  --si-sys-sizing-rem-size-180: 30rem;
+  --si-sys-sizing-rem-size-190: 37.5rem;
+  --si-sys-sizing-rem-size-20: 0.25rem;
+  --si-sys-sizing-rem-size-200: 45rem;
+  --si-sys-sizing-rem-size-30: 0.5rem;
+  --si-sys-sizing-rem-size-40: 0.75rem;
+  --si-sys-sizing-rem-size-50: 1rem;
+  --si-sys-sizing-rem-size-60: 1.25rem;
+  --si-sys-sizing-rem-size-70: 1.5rem;
+  --si-sys-sizing-rem-size-80: 2rem;
+  --si-sys-sizing-rem-size-90: 2.5rem;
+  --si-sys-sizing-rem-spacing-x-10: 0.125rem;
+  --si-sys-sizing-rem-spacing-x-100: 2.5rem;
+  --si-sys-sizing-rem-spacing-x-110: 3rem;
+  --si-sys-sizing-rem-spacing-x-120: 4rem;
+  --si-sys-sizing-rem-spacing-x-130: 5rem;
+  --si-sys-sizing-rem-spacing-x-140: 6rem;
+  --si-sys-sizing-rem-spacing-x-20: 0.25rem;
+  --si-sys-sizing-rem-spacing-x-30: 0.375rem;
+  --si-sys-sizing-rem-spacing-x-40: 0.5rem;
+  --si-sys-sizing-rem-spacing-x-50: 0.75rem;
+  --si-sys-sizing-rem-spacing-x-60: 1rem;
+  --si-sys-sizing-rem-spacing-x-70: 1.25rem;
+  --si-sys-sizing-rem-spacing-x-80: 1.5rem;
+  --si-sys-sizing-rem-spacing-x-90: 2rem;
+  --si-sys-sizing-rem-spacing-y-10: 0.125rem;
+  --si-sys-sizing-rem-spacing-y-100: 2.5rem;
+  --si-sys-sizing-rem-spacing-y-110: 3rem;
+  --si-sys-sizing-rem-spacing-y-120: 4rem;
+  --si-sys-sizing-rem-spacing-y-130: 5rem;
+  --si-sys-sizing-rem-spacing-y-140: 6rem;
+  --si-sys-sizing-rem-spacing-y-20: 0.25rem;
+  --si-sys-sizing-rem-spacing-y-30: 0.375rem;
+  --si-sys-sizing-rem-spacing-y-40: 0.5rem;
+  --si-sys-sizing-rem-spacing-y-50: 0.75rem;
+  --si-sys-sizing-rem-spacing-y-60: 1rem;
+  --si-sys-sizing-rem-spacing-y-70: 1.25rem;
+  --si-sys-sizing-rem-spacing-y-80: 1.5rem;
+  --si-sys-sizing-rem-spacing-y-90: 2rem;
   // Hairline. Active-state indicator bars and focus underlines.
-  --si-sys-sizing-size-10: 0.125rem;
+  --si-sys-sizing-size-10: 2px;
   // Minimum height of an extra large component. Toolbar height.
-  --si-sys-sizing-size-100: 3rem;
+  --si-sys-sizing-size-100: 48px;
   // Application header height. Tall toolbars.
-  --si-sys-sizing-size-110: 4rem;
+  --si-sys-sizing-size-110: 64px;
   // Minimum width of a button.
-  --si-sys-sizing-size-120: 5rem;
+  --si-sys-sizing-size-120: 80px;
   // Collapsed navigation rail width.
-  --si-sys-sizing-size-130: 6rem;
+  --si-sys-sizing-size-130: 96px;
   // Narrow fixed column — icon-only sidebars.
-  --si-sys-sizing-size-140: 7.5rem;
+  --si-sys-sizing-size-140: 120px;
   // Compact panel width. Minimum width of a dropdown or menu.
-  --si-sys-sizing-size-150: 10rem;
+  --si-sys-sizing-size-150: 160px;
   // Navigation sidebar width.
-  --si-sys-sizing-size-160: 15rem;
+  --si-sys-sizing-size-160: 240px;
   // Side panel and drawer width. Small dialog.
-  --si-sys-sizing-size-170: 20rem;
+  --si-sys-sizing-size-170: 320px;
   // Default dialog width.
-  --si-sys-sizing-size-180: 30rem;
+  --si-sys-sizing-size-180: 480px;
   // Large dialog width. Comfortable single-column reading measure.
-  --si-sys-sizing-size-190: 37.5rem;
+  --si-sys-sizing-size-190: 600px;
   // Smallest visual marker — status dots, unread indicators.
-  --si-sys-sizing-size-20: 0.25rem;
+  --si-sys-sizing-size-20: 4px;
   // Widest measure the system offers — extra large dialogs, maximum content width.
-  --si-sys-sizing-size-200: 45rem;
+  --si-sys-sizing-size-200: 720px;
   // Badge dots and collapsed-rail markers.
-  --si-sys-sizing-size-30: 0.5rem;
+  --si-sys-sizing-size-30: 8px;
   // Smallest inline indicator that still reads as a shape.
-  --si-sys-sizing-size-40: 0.75rem;
+  --si-sys-sizing-size-40: 12px;
   // Small square elements — checkbox glyph, compact icon well.
-  --si-sys-sizing-size-50: 1rem;
+  --si-sys-sizing-size-50: 16px;
   // Checkbox and radio hit area. Smallest inline avatar.
-  --si-sys-sizing-size-60: 1.25rem;
+  --si-sys-sizing-size-60: 20px;
   // Minimum height of a small component. Meets the WCAG 2.5.8 (AA) 24px minimum target size in Default — but this step is density-sensitive and drops to 20px in Compact, so do not rely on it for a standalone interactive element across densities.
-  --si-sys-sizing-size-70: 1.5rem;
+  --si-sys-sizing-size-70: 24px;
   // Minimum height of a default component.
-  --si-sys-sizing-size-80: 2rem;
+  --si-sys-sizing-size-80: 32px;
   // Minimum height of a large component.
-  --si-sys-sizing-size-90: 2.5rem;
-  --si-sys-sizing-spacing-x-10: 0.125rem;
-  --si-sys-sizing-spacing-x-100: 2.5rem;
-  --si-sys-sizing-spacing-x-110: 3rem;
-  --si-sys-sizing-spacing-x-120: 4rem;
-  --si-sys-sizing-spacing-x-130: 5rem;
-  --si-sys-sizing-spacing-x-140: 6rem;
-  --si-sys-sizing-spacing-x-20: 0.25rem;
-  --si-sys-sizing-spacing-x-30: 0.375rem;
-  --si-sys-sizing-spacing-x-40: 0.5rem;
-  --si-sys-sizing-spacing-x-50: 0.75rem;
-  --si-sys-sizing-spacing-x-60: 1rem;
-  --si-sys-sizing-spacing-x-70: 1.25rem;
-  --si-sys-sizing-spacing-x-80: 1.5rem;
-  --si-sys-sizing-spacing-x-90: 2rem;
-  --si-sys-sizing-spacing-y-10: 0.125rem;
-  --si-sys-sizing-spacing-y-100: 2.5rem;
-  --si-sys-sizing-spacing-y-110: 3rem;
-  --si-sys-sizing-spacing-y-120: 4rem;
-  --si-sys-sizing-spacing-y-130: 5rem;
-  --si-sys-sizing-spacing-y-140: 6rem;
-  --si-sys-sizing-spacing-y-20: 0.25rem;
-  --si-sys-sizing-spacing-y-30: 0.375rem;
-  --si-sys-sizing-spacing-y-40: 0.5rem;
-  --si-sys-sizing-spacing-y-50: 0.75rem;
-  --si-sys-sizing-spacing-y-60: 1rem;
-  --si-sys-sizing-spacing-y-70: 1.25rem;
-  --si-sys-sizing-spacing-y-80: 1.5rem;
-  --si-sys-sizing-spacing-y-90: 2rem;
+  --si-sys-sizing-size-90: 40px;
+  --si-sys-sizing-spacing-x-10: 2px;
+  --si-sys-sizing-spacing-x-100: 40px;
+  --si-sys-sizing-spacing-x-110: 48px;
+  --si-sys-sizing-spacing-x-120: 64px;
+  --si-sys-sizing-spacing-x-130: 80px;
+  --si-sys-sizing-spacing-x-140: 96px;
+  --si-sys-sizing-spacing-x-20: 4px;
+  --si-sys-sizing-spacing-x-30: 6px;
+  --si-sys-sizing-spacing-x-40: 8px;
+  --si-sys-sizing-spacing-x-50: 12px;
+  --si-sys-sizing-spacing-x-60: 16px;
+  --si-sys-sizing-spacing-x-70: 20px;
+  --si-sys-sizing-spacing-x-80: 24px;
+  --si-sys-sizing-spacing-x-90: 32px;
+  --si-sys-sizing-spacing-y-10: 2px;
+  --si-sys-sizing-spacing-y-100: 40px;
+  --si-sys-sizing-spacing-y-110: 48px;
+  --si-sys-sizing-spacing-y-120: 64px;
+  --si-sys-sizing-spacing-y-130: 80px;
+  --si-sys-sizing-spacing-y-140: 96px;
+  --si-sys-sizing-spacing-y-20: 4px;
+  --si-sys-sizing-spacing-y-30: 6px;
+  --si-sys-sizing-spacing-y-40: 8px;
+  --si-sys-sizing-spacing-y-50: 12px;
+  --si-sys-sizing-spacing-y-60: 16px;
+  --si-sys-sizing-spacing-y-70: 20px;
+  --si-sys-sizing-spacing-y-80: 24px;
+  --si-sys-sizing-spacing-y-90: 32px;
 }

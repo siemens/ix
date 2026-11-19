@@ -2445,7 +2445,8 @@ export namespace Components {
          */
         "compact": boolean;
         /**
-          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
+          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. Defaults to 'S'.
+          * @breaking-change 6.0.0 Numeric values are applied as pixels instead of being converted to rem
           * @default 'S'
          */
         "itemHeight": 'S' | 'L' | number;
@@ -2653,8 +2654,9 @@ export namespace Components {
          */
         "ariaLabelEyeIconButton"?: string;
         /**
-          * Height interpreted as REM
-          * @default 15.125
+          * Height in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 242
          */
         "height": number | 'auto';
         /**
@@ -2669,8 +2671,9 @@ export namespace Components {
          */
         "variant": FlipTileVariant;
         /**
-          * Width interpreted as REM
-          * @default 16
+          * Width in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 256
          */
         "width": number | 'auto';
     }
@@ -4680,11 +4683,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * The maximum width of the dropdown element with value and unit (e.g. "200px"). By default the maximum width of the dropdown element is set to 100%.
          */
         "dropdownMaxWidth"?: string;
         /**
-          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * The width of the dropdown element with value and unit (e.g. "200px").
          */
         "dropdownWidth"?: string;
         /**
@@ -11069,7 +11072,8 @@ declare namespace LocalJSX {
          */
         "compact"?: boolean;
         /**
-          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
+          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. Defaults to 'S'.
+          * @breaking-change 6.0.0 Numeric values are applied as pixels instead of being converted to rem
           * @default 'S'
          */
         "itemHeight"?: 'S' | 'L' | number;
@@ -11287,8 +11291,9 @@ declare namespace LocalJSX {
          */
         "ariaLabelEyeIconButton"?: string;
         /**
-          * Height interpreted as REM
-          * @default 15.125
+          * Height in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 242
          */
         "height"?: number | 'auto';
         /**
@@ -11307,8 +11312,9 @@ declare namespace LocalJSX {
          */
         "variant"?: FlipTileVariant;
         /**
-          * Width interpreted as REM
-          * @default 16
+          * Width in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 256
          */
         "width"?: number | 'auto';
     }
@@ -13430,11 +13436,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * The maximum width of the dropdown element with value and unit (e.g. "200px"). By default the maximum width of the dropdown element is set to 100%.
          */
         "dropdownMaxWidth"?: string;
         /**
-          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * The width of the dropdown element with value and unit (e.g. "200px").
          */
         "dropdownWidth"?: string;
         /**

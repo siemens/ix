@@ -18,7 +18,6 @@ import {
   shouldSuppressInternalValidation,
 } from '../utils/input';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
 
@@ -136,12 +135,12 @@ export function applyPaddingEnd(
     return;
   }
 
-  const padding = convertToRemString(width);
-  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 0.5rem)';
+  const padding = `${width}px`;
+  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 8px)';
 
   if (options.slotEnd) {
     inputElement.style.paddingRight = `calc(${padding} + ${basePadding} + ${
-      options.additionalPaddingRight ?? '0rem'
+      options.additionalPaddingRight ?? '0px'
     })`;
   } else {
     inputElement.style.paddingLeft = `calc(${padding} + ${basePadding})`;

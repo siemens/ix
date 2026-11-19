@@ -17,7 +17,7 @@
 @use './si-reference' as reference_variables;
 @use './density/default' as default_density;
 @use './density/compact' as compact_density;
-@use './density/sizing/px' as px_sizing;
+@use './density/sizing/rem' as rem_sizing;
 @use './dark/legacy' as dark_legacy;
 @use './dark/system' as dark_system;
 @use './light/legacy' as light_legacy;
@@ -36,8 +36,8 @@
   @include compact_density.setVars();
 }
 
-@mixin px-sizing {
-  @include px_sizing.setVars();
+@mixin rem-sizing {
+  @include rem_sizing.setVars();
 }
 
 // Density can be set on the themed element or on any descendant, and may be
@@ -53,14 +53,13 @@
     @include compact-density;
   }
 
-  // `data-ix-sizing='px'` switches rem sizing properties (size, spacing, icon,
-  // avatar) to their `--si-sys-sizing-px-*` values for the element and its
-  // descendants. Nested densities re-declare sizing, so they are remapped too.
-  &[data-ix-sizing='px'],
-  [data-ix-sizing='px'],
-  &[data-ix-sizing='px'] [data-ix-density],
-  [data-ix-sizing='px'] [data-ix-density] {
-    @include px-sizing;
+  // `data-ix-sizing='rem'` switches px size and spacing properties to their
+  // `--si-sys-sizing-rem-*` values for the element and its descendants. Nested densities re-declare sizing, so they are remapped too.
+  &[data-ix-sizing='rem'],
+  [data-ix-sizing='rem'],
+  &[data-ix-sizing='rem'] [data-ix-density],
+  [data-ix-sizing='rem'] [data-ix-density] {
+    @include rem-sizing;
   }
 }
 

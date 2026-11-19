@@ -170,7 +170,7 @@
     border-block-start: none !important;
     border-inline-start: none !important;
     border-inline-end: none !important;
-    border-radius: 0rem;
+    border-radius: 0px;
   }
 
   &:read-only,
@@ -192,7 +192,7 @@
     border-block-start: none !important;
     border-inline-start: none !important;
     border-inline-end: none !important;
-    border-radius: 0rem;
+    border-radius: 0px;
     color: cv.get-var('input--color--disabled');
     border-color: cv.get-var('input--border-color--disabled');
 

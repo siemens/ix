@@ -353,7 +353,7 @@ regressionTest.describe('ix-badge', () => {
           `<ix-badge label="1" offset-x="4" offset-y="-2"><button type="button">Action</button></ix-badge>`
         );
         const badge = new BadgePage(page);
-        await badge.expectOffsets('-0.375rem', '-0.75rem');
+        await badge.expectOffsets('-6px', '-12px');
       }
     );
 
@@ -367,7 +367,7 @@ regressionTest.describe('ix-badge', () => {
         `);
         const badge = new BadgePage(page);
         await badge.expectAttached();
-        await badge.expectOffsets('-0.375rem', '-0.375rem');
+        await badge.expectOffsets('-6px', '-6px');
       }
     );
 
@@ -406,7 +406,7 @@ regressionTest.describe('ix-badge', () => {
             document.documentElement.setAttribute('data-ix-density', value);
           }, density);
           await mount(
-            `<div style="padding: 2rem; display: inline-block"><ix-badge ${attrs} enable-animation></ix-badge></div>`
+            `<div style="padding: 32px; display: inline-block"><ix-badge ${attrs} enable-animation></ix-badge></div>`
           );
           const badge = new BadgePage(page);
 
@@ -826,7 +826,7 @@ regressionTest.describe('ix-badge', () => {
 
   regressionTest('accessibility', async ({ mount, makeAxeBuilder, page }) => {
     await mount(html`
-      <div style="display:flex;gap:1rem;align-items:center;">
+      <div style="display:flex;gap:16px;align-items:center;">
         <ix-badge label="3" variant="danger">
           <ix-button>Review changes</ix-button>
         </ix-badge>
