@@ -20,7 +20,8 @@
       'content-header-title-group--margin-right':
         sys.$si-sys-sizing-spacing-x-40,
       'content-header-header-slot--margin-left': sys.$si-sys-sizing-spacing-x-40,
-      'content-header--padding--secondary': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'content-header--padding--primary': #{sys.$si-sys-sizing-spacing-y-20} 0,
+      'content-header--padding--secondary': #{sys.$si-sys-sizing-spacing-y-30} 0,
       'content-header-back-button--margin-right':
         sys.$si-sys-sizing-spacing-x-40,
       'content-header-overflow-button--margin-left':

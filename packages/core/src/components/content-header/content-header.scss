@@ -38,7 +38,7 @@
       font: inherit;
 
       margin: 0;
-      padding: 0;
+      padding: cv.get-var('content-header--padding--primary');
 
       &.secondary {
         padding: cv.get-var('content-header--padding--secondary');
