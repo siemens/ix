@@ -8,6 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
+import { iconPrint } from '@siemens/ix-icons/icons';
 import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('chip', () => {
@@ -20,6 +21,22 @@ regressionTest.describe('chip', () => {
     await page.goto('chip/custom');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('icon-only', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="display:flex;align-items:center;gap:0.5rem;padding:0.5rem;width:fit-content">
+      <ix-chip icon="print" aria-label="Print document"></ix-chip>
+      <ix-chip icon="print">Print</ix-chip>
+    </div>`,
+    { icons: { iconPrint } }
+  );
+
+  await expect(page.locator('ix-chip').first()).toHaveAttribute('hydrated');
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });
 
 regressionTest('should show focus-visible outline', async ({ mount, page }) => {
