@@ -1,0 +1,18 @@
+.changeset/button-paragraph-sbold.md
+  h_c5a773bf2fda8b 1-5
+packages/core/src/components/button/button-mixin.scss
+  h_c5a773bf2fda8b 154
+packages/core/src/components/button/test/button.ct.ts
+  h_c5a773bf2fda8b 65-84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0be951df8e8b767d2e741a96477d2e4463cbf959",
+  "prompts": {},
+  "humans": {
+    "h_c5a773bf2fda8b": {
+      "author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
