@@ -15,7 +15,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Locator } from '@playwright/test';
-import { regressionTest, expect } from '@utils/test';
+import { regressionTest, expect, recordEvents } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
@@ -97,6 +97,83 @@ regressionTest('should show hidden items', async ({ mount, page }) => {
   await expect(dropdownElement).toBeVisible();
   await expect(dropdownItem1).toBeVisible();
   await expect(dropdownItem2).toBeVisible();
+});
+
+regressionTest.describe('hidden items with href', () => {
+  const mountWithHiddenItems = (homeAttributes: string) => `
+  <ix-breadcrumb visible-item-count="2">
+    <ix-breadcrumb-item label="Home" breadcrumb-key="home" ${homeAttributes}></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Products" breadcrumb-key="products"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Detail" breadcrumb-key="detail"></ix-breadcrumb-item>
+    <ix-breadcrumb-item label="Specs" breadcrumb-key="specs"></ix-breadcrumb-item>
+  </ix-breadcrumb>`;
+
+  const openPreviousItems = async (breadcrumb: Locator) => {
+    const previousButton = breadcrumb.getByRole('button', {
+      name: 'Show previous breadcrumb items',
+    });
+    await previousButton.click();
+    await expect(previousButton.locator('ix-dropdown')).toHaveClass(/show/);
+    return previousButton;
+  };
+
+  regressionTest(
+    'should emit itemClick and navigate to the href',
+    async ({ mount, page }) => {
+      await mount(mountWithHiddenItems('href="#home"'));
+      const breadcrumb = page.locator('ix-breadcrumb');
+      await expect(breadcrumb).toHaveAttribute('hydrated');
+      const events = await recordEvents(breadcrumb, ['itemClick']);
+
+      const previousButton = await openPreviousItems(breadcrumb);
+      await previousButton.getByRole('menuitem', { name: 'Home' }).click();
+
+      await expect(page).toHaveURL(/#home$/);
+      expect(await events()).toEqual([
+        { type: 'itemClick', detail: { breadcrumbKey: 'home', label: 'Home' } },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'should open the href in a new page when target is _blank',
+    async ({ mount, page }) => {
+      await mount(mountWithHiddenItems('href="#home" target="_blank"'));
+      const breadcrumb = page.locator('ix-breadcrumb');
+      await expect(breadcrumb).toHaveAttribute('hydrated');
+      const initialUrl = page.url();
+
+      const previousButton = await openPreviousItems(breadcrumb);
+      const popupPromise = page.waitForEvent('popup');
+      await previousButton.getByRole('menuitem', { name: 'Home' }).click();
+      const popup = await popupPromise;
+
+      await expect(popup).toHaveURL(/#home$/);
+      expect(page.url()).toBe(initialUrl);
+    }
+  );
+
+  regressionTest(
+    'should only emit itemClick for a hidden item without href',
+    async ({ mount, page }) => {
+      await mount(mountWithHiddenItems('href="#home"'));
+      const breadcrumb = page.locator('ix-breadcrumb');
+      await expect(breadcrumb).toHaveAttribute('hydrated');
+      const initialUrl = page.url();
+      const events = await recordEvents(breadcrumb, ['itemClick']);
+
+      const previousButton = await openPreviousItems(breadcrumb);
+      await previousButton.getByRole('menuitem', { name: 'Products' }).click();
+
+      await expect.poll(events).toEqual([
+        {
+          type: 'itemClick',
+          detail: { breadcrumbKey: 'products', label: 'Products' },
+        },
+      ]);
+      expect(page.url()).toBe(initialUrl);
+    }
+  );
 });
 
 regressionTest('should change label', async ({ mount, page }) => {
