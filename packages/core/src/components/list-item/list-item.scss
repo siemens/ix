@@ -58,9 +58,12 @@
     display: none;
     order: -2;
     position: relative;
-    flex: 0 0 cv.get-var('list-item-drag-gripper--width');
-    width: cv.get-var('list-item-drag-gripper--width');
-    height: cv.get-var('list-item-drag-gripper--height');
+    flex: 0 0 auto;
+    width: max(
+      #{cv.get-var('list-item-drag-gripper--width')},
+      #{cv.get-var('list-item-drag-gripper-icon--size')}
+    );
+    min-height: cv.get-var('list-item-drag-gripper--height');
     padding: 0;
     border: 0;
     border-radius: cv.get-var('list-item--border-radius');

@@ -22,6 +22,7 @@
   display: block;
   position: relative;
   max-width: cv.get-var('date-picker--max-width');
+  min-width: min-content;
 
   @include component.ix-component;
   @include confirmation-footer.confirmation-footer;
@@ -123,8 +124,8 @@
       border: cv.get-var('date-picker-calendar-item--border-width') solid
         cv.get-var('date-picker-day--background');
       color: cv.get-var('date-picker-day--color');
-      width: cv.get-var('date-picker-calendar-item--width');
-      height: cv.get-var('date-picker-calendar-item--height');
+      min-width: cv.get-var('date-picker-calendar-item--width');
+      min-height: cv.get-var('date-picker-calendar-item--height');
       cursor: pointer;
 
       &:focus-visible {
@@ -253,7 +254,7 @@
         border: none;
         background: none;
         cursor: initial;
-        width: cv.get-var('date-picker-week-number--width');
+        min-width: cv.get-var('date-picker-week-number--width');
       }
     }
   }

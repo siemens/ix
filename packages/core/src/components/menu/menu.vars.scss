@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/menu-rail';
 
 :host {
   @include cv.define-vars(
@@ -38,13 +39,13 @@
       'menu-panel--transition-duration': var(--theme-default-time),
       'menu-overlay--transition-duration': var(--theme-default-time),
       'menu--width--expanded': sys.$si-sys-sizing-size-160,
-      'menu--width': sys.$si-sys-sizing-size-100,
+      'menu--width': menu-rail.$width,
       'menu--padding-block-end':
         calc(
           #{sys.$si-sys-sizing-spacing-y-60} + var(--ix-safe-area-inset-bottom, 0px)
         ),
-      'menu-overlay--width': calc(100vw - #{sys.$si-sys-sizing-size-100}),
-      'menu-overlay--left': sys.$si-sys-sizing-size-100,
+      'menu-overlay--width': calc(100vw - #{menu-rail.$width}),
+      'menu-overlay--left': menu-rail.$width,
       'menu-slotted-avatar--max-height': sys.$si-sys-sizing-size-100,
       'menu-slotted-avatar--margin-bottom': sys.$si-sys-sizing-spacing-y-90,
       'menu-cui-imprint-product-name--margin-bottom':
@@ -52,7 +53,7 @@
       'menu-cui-imprint-product-description--margin-bottom':
         sys.$si-sys-sizing-spacing-y-90,
       'menu-buttons--margin': #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc((
-              #{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}
+              #{menu-rail.$width} - #{sys.$si-sys-sizing-size-80}
             ) / 2),
       'menu-empty--margin-bottom': sys.$si-sys-sizing-spacing-y-50,
       'menu--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
