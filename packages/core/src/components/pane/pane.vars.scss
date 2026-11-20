@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 // Runtime properties without a default (set per state or from TSX).
 @include cv.declare-var('pane--background');
@@ -58,6 +59,14 @@
       'pane-side-pane-content--height':
         calc(100% - #{sys.$si-sys-sizing-size-90}),
       'pane-overlay--z-index--mobile': 100,
+      // Collapsed bar = icon button + spacing, so it grows with rem content.
+      // Read from pane.tsx as animation targets.
+      'pane--size--collapsed':
+        calc(#{ib.icon-box-32()} + 2 * #{sys.$si-sys-sizing-spacing-y-20}),
+      'pane--size--collapsed--mobile':
+        calc(#{ib.icon-box-32()} + 2 * #{sys.$si-sys-sizing-spacing-y-40}),
+      'pane-title--padding-block--expanded': sys.$si-sys-sizing-spacing-y-40,
+      'pane-title--padding-inline--expanded': sys.$si-sys-sizing-spacing-x-40,
     )
   );
 }
