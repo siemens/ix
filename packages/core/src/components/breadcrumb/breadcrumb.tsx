@@ -121,7 +121,8 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
    * opens the link in another browsing context.
    */
   private navigateToItem(item: HTMLIxBreadcrumbItemElement, event: MouseEvent) {
-    const { href } = item;
+    // Read the link when the item is clicked, in case it changes before navigating.
+    const { href, target, rel } = item;
     if (!href) {
       return;
     }
@@ -138,9 +139,9 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
 
       const anchor = document.createElement('a');
       anchor.href = href;
-      anchor.target = opensNewContext ? '_blank' : (item.target ?? '_self');
-      if (item.rel) {
-        anchor.rel = item.rel;
+      anchor.target = opensNewContext ? '_blank' : (target ?? '_self');
+      if (rel) {
+        anchor.rel = rel;
       }
 
       // The anchor stays detached, so its click event does not reach any listeners on the page.
