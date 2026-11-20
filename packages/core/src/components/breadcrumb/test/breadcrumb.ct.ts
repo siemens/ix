@@ -150,8 +150,41 @@ regressionTest.describe('hidden items with href', () => {
 
       await expect(popup).toHaveURL(/#home$/);
       expect(page.url()).toBe(initialUrl);
+      await popup.close();
     }
   );
+
+  const clicksThatOpenAnotherContext: {
+    name: string;
+    options: Parameters<Locator['click']>[0];
+  }[] = [
+    { name: 'Ctrl/Cmd-click', options: { modifiers: ['ControlOrMeta'] } },
+    { name: 'Shift-click', options: { modifiers: ['Shift'] } },
+    { name: 'middle-click', options: { button: 'middle' } },
+  ];
+
+  for (const { name, options } of clicksThatOpenAnotherContext) {
+    regressionTest(
+      `should open the href in a new page on ${name}`,
+      async ({ mount, page }) => {
+        await mount(mountWithHiddenItems('href="#home"'));
+        const breadcrumb = page.locator('ix-breadcrumb');
+        await expect(breadcrumb).toHaveAttribute('hydrated');
+        const initialUrl = page.url();
+
+        const previousButton = await openPreviousItems(breadcrumb);
+        const popupPromise = page.waitForEvent('popup');
+        await previousButton
+          .getByRole('menuitem', { name: 'Home' })
+          .click(options);
+        const popup = await popupPromise;
+
+        await expect(popup).toHaveURL(/#home$/);
+        expect(page.url()).toBe(initialUrl);
+        await popup.close();
+      }
+    );
+  }
 
   regressionTest(
     'should not navigate when the application cancels the click',

@@ -116,10 +116,11 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
 
   /**
    * Hidden items are rendered as dropdown items, which have no anchor of their own.
-   * Follow the item's link the same way the anchor of a visible item would,
-   * including that a canceled click does not navigate.
+   * Follow the item's link the same way the anchor of a visible item would:
+   * a canceled click does not navigate, and a modifier click or a middle click
+   * opens the link in another browsing context.
    */
-  private navigateToItem(item: HTMLIxBreadcrumbItemElement, event: Event) {
+  private navigateToItem(item: HTMLIxBreadcrumbItemElement, event: MouseEvent) {
     const { href } = item;
     if (!href) {
       return;
@@ -132,9 +133,12 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
         return;
       }
 
+      const opensNewContext =
+        event.ctrlKey || event.metaKey || event.shiftKey || event.button === 1;
+
       const anchor = document.createElement('a');
       anchor.href = href;
-      anchor.target = item.target ?? '_self';
+      anchor.target = opensNewContext ? '_blank' : (item.target ?? '_self');
       if (item.rel) {
         anchor.rel = item.rel;
       }
@@ -234,6 +238,13 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
                         label,
                       });
                       this.navigateToItem(item, event);
+                    }}
+                    onAuxClick={(event) => {
+                      // A middle click opens the link in a new tab, like it
+                      // does on the anchor of a visible item.
+                      if (event.button === 1) {
+                        this.navigateToItem(item, event);
+                      }
                     }}
                     onItemClick={(event) => event.stopPropagation()}
                   ></ix-dropdown-item>
