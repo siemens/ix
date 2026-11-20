@@ -137,3 +137,29 @@ regressionTest(
     await expect(page.getByRole('tab', { name: 'Tab 1' })).toBeVisible();
   }
 );
+
+regressionTest(
+  'heading does not overlap tabs with increased root font size',
+  async ({ mount, page }) => {
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '32px';
+    });
+    await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+
+    await page.locator('#aboutAndLegal').click();
+
+    const heading = page.getByRole('heading', { level: 2 });
+    const tabs = page.locator('ix-menu-about ix-tabs');
+    await expect(tabs).toBeVisible();
+
+    const headingBox = (await heading.boundingBox())!;
+    const tabsBox = (await tabs.boundingBox())!;
+    expect(headingBox.y + headingBox.height).toBeLessThanOrEqual(tabsBox.y);
+  }
+);
