@@ -8,11 +8,32 @@
 -->
 
 <script setup lang="ts">
+import type { ToastType } from '@siemens/ix';
 import { IxButton, showToast } from '@siemens/ix-vue';
+
+async function showToastMessage() {
+  const toastTypes: ToastType[] = [
+    'information',
+    'success',
+    'caution',
+    'warning',
+    'danger',
+    'critical',
+    'error',
+    'base',
+  ];
+
+  for (const type of toastTypes) {
+    await showToast({
+      type,
+      title: 'Toast headline',
+      message: 'This is a toast test message!',
+      autoClose: false,
+    });
+  }
+}
 </script>
 
 <template>
-  <IxButton @click="showToast({ message: 'My toast message!' })">
-    Trigger toast
-  </IxButton>
+  <IxButton @click="showToastMessage">Trigger toast</IxButton>
 </template>

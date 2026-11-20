@@ -77,6 +77,162 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest(
+  'renders an accessible base toast with a neutral information icon and no status strip',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount('');
+    await page.evaluate(async () => {
+      await window.toast({
+        type: 'base',
+        title: 'Base toast',
+        message: 'This is a base notification',
+        autoClose: false,
+      });
+    });
+
+    const toast = page.getByRole('alert');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(toast).toHaveAttribute('type', 'base');
+    await expect(toast).toBeVisible();
+    await expect(toast).toContainText('This is a base notification');
+    const icon = toast.getByTestId('toast-icon');
+    await expect(icon).toBeVisible();
+    await expect(icon).toHaveJSProperty('name', iconInfo);
+    await expect(icon).toHaveClass(/status-icon/);
+    await expect(icon).toHaveAttribute('aria-hidden', 'true');
+    await expect(icon).toHaveCSS(
+      'color',
+      await toast
+        .locator('.toast-message')
+        .evaluate((element) => getComputedStyle(element).color)
+    );
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').content
+      )
+    ).toBe('none');
+    expect(await toast.boundingBox()).toMatchObject({ width: 320, height: 70 });
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+
+    await toast.getByRole('button', { name: 'Close toast' }).click();
+    await expect(toast).toHaveCount(0);
+  }
+);
+
+regressionTest(
+  'supports custom icons and hideIcon for base toasts without adding a status strip',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-toast type="base" toast-title="Base toast" prevent-auto-close>
+        Custom icon notification
+      </ix-toast>`,
+      { icons: { iconSuccess } }
+    );
+
+    const toast = page.getByRole('alert');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(toast.getByTestId('toast-icon')).toHaveJSProperty(
+      'name',
+      iconInfo
+    );
+
+    await toast.evaluate((element: HTMLIxToastElement, customIcon) => {
+      element.icon = customIcon;
+      element.iconColor = '--si-sys-color-border-success';
+      element.style.setProperty('--ix-toast--status-color', 'rgb(1, 2, 3)');
+    }, iconSuccess);
+
+    const icon = toast.getByTestId('toast-icon');
+    await expect(icon).toBeVisible();
+    await expect(icon).toHaveJSProperty('name', iconSuccess);
+    await expect(icon).toHaveJSProperty(
+      'color',
+      '--si-sys-color-border-success'
+    );
+    await expect(toast.locator('.toast-icon')).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
+    expect(
+      await toast.evaluate(
+        (element) => getComputedStyle(element, '::before').content
+      )
+    ).toBe('none');
+
+    await toast.evaluate((element: HTMLIxToastElement) => {
+      element.hideIcon = true;
+    });
+    await expect(toast.locator('.toast-icon')).toHaveCount(0);
+
+    await toast.evaluate((element: HTMLIxToastElement) => {
+      element.hideIcon = false;
+    });
+    await expect(icon).toBeVisible();
+
+    await toast.evaluate((element: HTMLIxToastElement) => {
+      element.icon = undefined;
+    });
+    await expect(icon).toHaveJSProperty('name', iconInfo);
+    await expect(icon).toHaveClass(/status-icon/);
+    await expect(icon).toHaveCSS('color', 'rgb(1, 2, 3)');
+  }
+);
+
+regressionTest(
+  'updates the icon color and status strip when switching to and from base',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toast toast-title="Toast headline" prevent-auto-close>
+        Lorem ipsum dolor sit amet
+      </ix-toast>
+    `);
+
+    const toast = page.getByRole('alert');
+    await expect(toast).toHaveAttribute('hydrated');
+    await expect(toast.getByTestId('toast-icon')).toHaveJSProperty(
+      'name',
+      iconInfo
+    );
+
+    for (const type of ['base', 'warning', 'base', 'information'] as const) {
+      await toast.evaluate((element: HTMLIxToastElement, type) => {
+        element.type = type;
+      }, type);
+      await expect(toast).toHaveAttribute('type', type);
+      const icon = toast.getByTestId('toast-icon');
+      await expect(icon).toBeVisible();
+      await expect(icon).toHaveJSProperty(
+        'name',
+        type === 'warning' ? iconWarning : iconInfo
+      );
+      await expect(icon).toHaveClass(/status-icon/);
+      expect(
+        await toast.evaluate(
+          (element) => getComputedStyle(element, '::before').content
+        )
+      ).toBe(type === 'base' ? 'none' : '""');
+      if (type === 'base') {
+        await expect(icon).toHaveCSS(
+          'color',
+          await toast
+            .locator('.toast-message')
+            .evaluate((element) => getComputedStyle(element).color)
+        );
+      } else {
+        expect(
+          await toast.evaluate(
+            (element) => getComputedStyle(element, '::before').backgroundColor
+          )
+        ).toBe(
+          await icon.evaluate((element) => getComputedStyle(element).color)
+        );
+      }
+    }
+  }
+);
+
+regressionTest(
   'clips the timer bar to the rounded toast corners',
   async ({ mount, page }) => {
     await mount(`
@@ -616,6 +772,24 @@ regressionTest(
   'exposes renamed and new toast helpers',
   async ({ mount, page }) => {
     await mount('');
+
+    await page.evaluate(async () => {
+      await window.toast.base({
+        type: 'warning',
+        message: 'base',
+        autoClose: false,
+      });
+    });
+    const baseToast = page.getByRole('alert').last();
+    await expect(baseToast).toHaveAttribute('hydrated');
+    await expect(baseToast).toHaveAttribute('type', 'base');
+    await expect(baseToast.getByTestId('toast-icon')).toHaveJSProperty(
+      'name',
+      iconInfo
+    );
+    await expect(baseToast.getByTestId('toast-icon')).toHaveClass(
+      /status-icon/
+    );
 
     await page.evaluate(async () => {
       await window.toast.information({
