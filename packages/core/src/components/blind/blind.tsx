@@ -30,7 +30,7 @@ let sequentialInstanceId = 0;
  * Collapsible container that expands and collapses to show or hide its content.
  *
  * @documentation https://ix.siemens.io/docs/components/blind/guide.md
- * @figma-main-component-id 388:3986
+ * @figma-main-component-id 162346:48011
  *
  * @slot custom-header - Custom header content replacing the label and icon.
  * @slot header-actions - Additional actions displayed in the header.

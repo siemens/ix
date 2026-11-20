@@ -13,7 +13,7 @@ import type { StatusVariant } from '../utils/status.types';
  * Flexible container that groups related content and actions.
  *
  * @documentation https://ix.siemens.io/docs/components/card/guide.md
- * @figma-main-component-id 104612:25530
+ * @figma-main-component-id 162440:171408
  *
  * @slot - Card content.
  * @slot card-accordion - Accordion content displayed at the bottom of the card.
