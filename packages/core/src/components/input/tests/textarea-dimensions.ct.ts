@@ -76,7 +76,7 @@ regressionTest(
   'textarea dimensions - rem units conversion',
   async ({ mount, page }) => {
     await mount(
-      `<ix-textarea textarea-width="20rem" textarea-height="10rem"></ix-textarea>`
+      `<ix-textarea textarea-width="320px" textarea-height="160px"></ix-textarea>`
     );
 
     const textarea = page.locator('ix-textarea textarea');

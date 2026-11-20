@@ -47,7 +47,7 @@ $input-end-container-inset: cv.get-var('input-end-container--inset');
 
   //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
   .end-container ::slotted(ix-icon-button.btn-icon-32) {
-    margin-right: calc(0rem - #{$input-end-container-inset});
+    margin-right: calc(0px - #{$input-end-container-inset});
   }
 }
 

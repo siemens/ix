@@ -131,6 +131,7 @@
 
   width: 100%;
   height: 100%;
+  min-height: inherit;
 
   padding: cv.get-var('button--padding');
 }
@@ -147,7 +148,9 @@
     );
 
     display: inline-block;
-    height: cv.get-var('button--height');
+    // fit-content grows with rem text but does not stretch in flex/grid parents
+    height: fit-content;
+    min-height: cv.get-var('button--min-height');
     vertical-align: middle;
     cursor: pointer;
 

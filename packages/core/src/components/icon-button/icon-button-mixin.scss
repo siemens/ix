@@ -73,4 +73,8 @@
   @include icon-button-size('12', cv.get-var('icon-button--size--12'));
   @include icon-button-size('16', cv.get-var('icon-button--size--16'));
   @include icon-button-size('32', cv.get-var('icon-button--size--32'));
+  @include icon-button-size(
+    '32.icon-24',
+    cv.get-var('icon-button--size--32-icon-24')
+  );
 }

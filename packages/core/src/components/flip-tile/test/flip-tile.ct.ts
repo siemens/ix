@@ -111,6 +111,25 @@ regressionTest('should change content', async ({ mount, page }) => {
   await expect(flipContentTwoElement).toBeVisible();
 });
 
+regressionTest(
+  'numeric width and height are pixels independent of the root font size',
+  async ({ mount, page }) => {
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '20px';
+    });
+    await mount(`
+      <ix-flip-tile width="200" height="150">
+        <ix-flip-tile-content>Example</ix-flip-tile-content>
+      </ix-flip-tile>
+    `);
+
+    const flipTile = page.locator('ix-flip-tile');
+    await expect(flipTile).toHaveAttribute('hydrated');
+    await expect(flipTile).toHaveCSS('width', '200px');
+    await expect(flipTile).toHaveCSS('height', '150px');
+  }
+);
+
 regressionTest('change index programmatically', async ({ mount, page }) => {
   await mount(`
     <ix-flip-tile>

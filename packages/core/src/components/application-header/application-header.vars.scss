@@ -41,17 +41,17 @@
       'application-header--padding-right':
         calc(
           #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
-            var(--ix-safe-area-inset-right, 0rem)
+            var(--ix-safe-area-inset-right, 0px)
         ),
       'application-header--padding-left':
         calc(
           #{sys.$si-sys-sizing-spacing-x-40} + #{sys.$si-sys-sizing-spacing-x-10} +
-            var(--ix-safe-area-inset-left, 0rem)
+            var(--ix-safe-area-inset-left, 0px)
         ),
       'application-header--padding-left--mobile':
         calc(
           (#{sys.$si-sys-sizing-size-100} - #{sys.$si-sys-sizing-size-80}) / 2 +
-            var(--ix-safe-area-inset-left, 0rem)
+            var(--ix-safe-area-inset-left, 0px)
         ),
       'application-header-right-side--min-height': sys.$si-sys-sizing-size-100,
       'application-header-app-icon--size': sys.$si-sys-sizing-size-80,

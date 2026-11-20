@@ -135,6 +135,7 @@ export class IconButton
         this.size === '24' ||
         this.size === DEFAULT_BUTTON_ICON_SIZE ||
         !this.size,
+      'icon-24': this.size === '24',
     };
   }
 

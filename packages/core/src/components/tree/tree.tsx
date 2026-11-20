@@ -161,7 +161,7 @@ export class Tree {
   }
 
   private updatePadding(element: HTMLElement, item: TreeItemVisual<unknown>) {
-    element.style.paddingLeft = item.level + 'rem';
+    element.style.paddingLeft = `${item.level * 16}px`;
   }
 
   private getVirtualizerOptions(

@@ -180,8 +180,13 @@ export class Pane {
   @State() private parentHeightPx = 0;
 
   private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
-  private static readonly collapsedPane = '40px';
-  private static readonly collapsedPaneMobile = '48px';
+  private static readonly collapsedPane = 'var(--ix-pane--size--collapsed)';
+  private static readonly collapsedPaneMobile =
+    'var(--ix-pane--size--collapsed--mobile)';
+  private static readonly titlePaddingBlock =
+    'var(--ix-pane-title--padding-block--expanded)';
+  private static readonly titlePaddingInline =
+    'var(--ix-pane-title--padding-inline--expanded)';
   private readonly animations: Map<string, AnimationControl> = new Map();
   private animationCounter = 0;
 
@@ -434,7 +439,7 @@ export class Pane {
           this.showContent = false;
           this.animateVerticalPadding('0px');
         } else {
-          this.animateVerticalPadding('8px');
+          this.animateVerticalPadding(Pane.titlePaddingInline);
         }
       },
       onComplete: () => {
@@ -455,7 +460,8 @@ export class Pane {
           this.showContent = false;
           if (!this.isMobile) this.animateHorizontalPadding('0px');
         } else {
-          if (!this.isMobile) this.animateHorizontalPadding('8px');
+          if (!this.isMobile)
+            this.animateHorizontalPadding(Pane.titlePaddingBlock);
         }
       },
       onComplete: () => {
@@ -681,10 +687,10 @@ export class Pane {
 
         if (this.isBottomTopPane) {
           this.hostElement.style.height = expandPaneSize;
-          this.animateHorizontalPadding('8px', 0);
+          this.animateHorizontalPadding(Pane.titlePaddingBlock, 0);
         } else {
           this.hostElement.style.width = expandPaneSize;
-          this.animateVerticalPadding('8px', 0);
+          this.animateVerticalPadding(Pane.titlePaddingInline, 0);
         }
       }
 

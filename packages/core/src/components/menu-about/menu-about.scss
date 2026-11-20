@@ -29,12 +29,17 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: cv.get-var('menu-about-about-header--height');
+    min-height: cv.get-var('menu-about-about-header--min-height');
     margin-bottom: cv.get-var('menu-about-about-header--margin-bottom');
 
     h2 {
       color: cv.get-var('menu-about-overlay-header--color');
-      margin-bottom: cv.get-var('menu-about-heading--margin-bottom');
+      // One line tall: the header grows with the heading's font size.
+      // Optical offset via margins without affecting the header height.
+      block-size: 1lh;
+      margin-block: cv.get-var('menu-about-heading--offset')
+        calc(-1 * #{cv.get-var('menu-about-heading--offset')});
+      margin-inline: 0;
 
       @include fonts.typography-h2;
     }

@@ -245,7 +245,7 @@ function generateSomeButtons(prefix: string, count: number, outline = false) {
     button.icon = 'star';
     button.innerText = `${prefix} Button ${i + 1}`;
     if (i !== count - 1) {
-      button.style.marginRight = '0.5rem';
+      button.style.marginRight = 'var(--si-sys-sizing-spacing-x-40)';
     }
     if (outline) {
       button.setAttribute('outline', 'true');
@@ -293,8 +293,8 @@ export const WindowControls: OverflowStory = {
     other.style.flexDirection = 'row';
     other.style.justifyContent = 'flex-end';
     other.style.alignItems = 'center';
-    other.style.paddingRight = '1rem';
-    other.style.gap = '0.5rem';
+    other.style.paddingRight = 'var(--si-sys-sizing-spacing-x-60)';
+    other.style.gap = 'var(--si-sys-sizing-spacing-x-40)';
 
     let button = document.createElement('ix-icon-button');
     button.variant = 'subtle-tertiary';

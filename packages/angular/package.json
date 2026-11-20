@@ -22,7 +22,7 @@
   "peerDependencies": {
     "@angular/core": ">=21.2.25",
     "@angular/forms": ">=21.2.25",
-    "@siemens/ix-icons": "0.0.0-beta-20261021072559"
+    "@siemens/ix-icons": "0.0.0-beta-20261120131425"
   },
   "devDependencies": {
     "@angular/animations": "^21.2.25",

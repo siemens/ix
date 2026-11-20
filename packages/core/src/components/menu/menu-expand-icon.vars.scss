@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/menu-rail';
 
 :host {
   @include cv.define-vars(
@@ -30,9 +31,9 @@
     (
       'menu-expand-icon--transition-delay': var(--theme-default-time),
       'menu-expand-icon--border-radius': sys.$si-sys-sizing-border-radius-xs,
-      'menu-expand-icon--height': sys.$si-sys-sizing-size-80,
-      'menu-expand-icon--width': sys.$si-sys-sizing-size-80,
-      'menu-expand-icon-menu-expand-button--width': sys.$si-sys-sizing-size-80,
+      // Sized like the menu item icons (rem), so it scales with the root font size
+      'menu-expand-icon--icon-size': menu-rail.$expand-icon-size,
+      'menu-expand-icon--size': menu-rail.$expand-button-size,
       'menu-expand-icon-line--x': 2px,
       'menu-expand-icon-line--transition-duration': 0.075s,
       'menu-expand-icon-line-1--y': 9px,

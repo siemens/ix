@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 // Runtime properties without a default (set per state or from TSX).
 @include cv.declare-var('card-list--overflow');
@@ -46,7 +47,7 @@
         sys.$si-sys-sizing-focus-ring-width,
       'card-list-show-all--outline-offset--focus':
         sys.$si-sys-sizing-focus-ring-offset,
-      'card-list-title--height': sys.$si-sys-sizing-size-80,
+      'card-list-title--height': ib.icon-box-32(),
       'card-list--margin': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40},
       'card-list-title--margin-bottom': sys.$si-sys-sizing-spacing-y-60,
       'card-list-title-button--margin-right': sys.$si-sys-sizing-spacing-x-60,
@@ -58,11 +59,11 @@
       'card-list-show-all-card--min-width': sys.$si-sys-sizing-size-150,
       'card-list-show-all-card--width': sys.$si-sys-sizing-size-150,
       'card-list-show-all-card--min-height': sys.$si-sys-sizing-size-150,
-      'card-list-show-all-card--max-height':
+      // Card border is drawn inside the show-all card's min-height
+      'card-list-show-all-card-content--min-height':
         calc(
-          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+          #{sys.$si-sys-sizing-size-150} - 2 * #{sys.$si-sys-sizing-border-width-default}
         ),
-      'card-list-show-all-card--height': sys.$si-sys-sizing-size-150,
       'card-list-show-all-card--margin-bottom':
         calc(
           #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}
