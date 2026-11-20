@@ -1,0 +1,19 @@
+packages/core/src/components/pane/test/panes.ct.ts
+  s_ce9648cbefc396::t_2ec363657e9449 87-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "74ae5fcf089998edad29f44cc0f91c5113cabb8f",
+  "prompts": {},
+  "sessions": {
+    "s_ce9648cbefc396": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "7efc699c-f542-4131-b8ff-84f78a6eb0a7",
+        "model": "unknown"
+      },
+      "human_author": "Alex Kaduk <o.kaduk@gmail.com>"
+    }
+  }
+}
