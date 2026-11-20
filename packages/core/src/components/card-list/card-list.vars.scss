@@ -58,11 +58,11 @@
       'card-list-show-all-card--min-width': sys.$si-sys-sizing-size-150,
       'card-list-show-all-card--width': sys.$si-sys-sizing-size-150,
       'card-list-show-all-card--min-height': sys.$si-sys-sizing-size-150,
-      'card-list-show-all-card--max-height':
+      // Card border is drawn inside the show-all card's min-height
+      'card-list-show-all-card-content--min-height':
         calc(
-          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-70}
+          #{sys.$si-sys-sizing-size-150} - 2 * #{sys.$si-sys-sizing-border-width-default}
         ),
-      'card-list-show-all-card--height': sys.$si-sys-sizing-size-150,
       'card-list-show-all-card--margin-bottom':
         calc(
           #{sys.$si-sys-sizing-spacing-y-100} - #{sys.$si-sys-sizing-spacing-y-10}

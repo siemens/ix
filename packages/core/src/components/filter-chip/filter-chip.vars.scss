@@ -48,7 +48,12 @@
       'filter-chip-hide-close-button--padding-right--readonly':
         sys.$si-sys-sizing-spacing-x-40,
       'filter-chip--border-width': sys.$si-sys-sizing-border-width-default,
-      'filter-chip--height': sys.$si-sys-sizing-size-70,
+      // Grows by the line height added above the default 16px (rem text, px box)
+      'filter-chip--height':
+        max(
+          #{sys.$si-sys-sizing-size-70},
+          calc(#{sys.$si-sys-sizing-size-70} + 1lh - 16px)
+        ),
       'filter-chip--border-radius': sys.$si-sys-sizing-spacing-x-90,
       'filter-chip-slot-container--line-height': sys.$si-sys-sizing-size-70,
       'filter-chip-icon--size': sys.$si-sys-sizing-size-70,

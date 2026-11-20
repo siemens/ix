@@ -51,8 +51,8 @@
       'group--min-width': sys.$si-sys-sizing-size-150,
       'group-header-selection-indicator--width': sys.$si-sys-sizing-spacing-x-20,
       'group-header-content--padding': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40},
-      'group-header-title--height': sys.$si-sys-sizing-size-70,
-      'group-subheader--height': sys.$si-sys-sizing-size-60,
+      'group-header-title--min-height': sys.$si-sys-sizing-size-70,
+      'group-subheader--min-height': sys.$si-sys-sizing-size-60,
       'group-expand-icon--padding': #{sys.$si-sys-sizing-spacing-y-10} calc(#{sys.$si-sys-sizing-spacing-x-60} *
             0.437),
       'group-button-expand-header--margin': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40},

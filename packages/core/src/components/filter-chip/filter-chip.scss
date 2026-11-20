@@ -30,7 +30,11 @@
 
   .slot-container {
     @include text-truncation.ellipsis;
-    line-height: cv.get-var('filter-chip-slot-container--line-height');
+    // Grow with the inherited rem line height at larger root font sizes
+    line-height: max(
+      #{cv.get-var('filter-chip-slot-container--line-height')},
+      1lh
+    );
     min-width: 0;
 
     :host-context(.disabled) {

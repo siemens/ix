@@ -82,7 +82,8 @@
       'tab-item--padding--small': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60},
       'tab-item-icon--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20},
       'tab-item-circle--border-width': sys.$si-sys-sizing-border-width-selected,
-      'tab-item-counter--height': 16px,
+      // Grows with the rem counter text at larger root font sizes
+      'tab-item-counter--height': max(16px, 1lh),
       'tab-item-counter--border-width': sys.$si-sys-sizing-border-width-default,
       'tab-item-counter--border-radius': sys.$si-sys-sizing-border-radius-full,
       'tab-item-counter--bottom': sys.$si-sys-sizing-spacing-y-30,

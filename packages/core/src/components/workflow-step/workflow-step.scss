@@ -13,7 +13,6 @@
 @use 'mixins/component-vars' as cv;
 :host(:not(.host-vertical)) {
   width: cv.get-var('workflow-step--width--horizontal');
-  height: cv.get-var('workflow-step--height');
   min-width: cv.get-var('workflow-step--min-width--horizontal');
   min-height: cv.get-var('workflow-step--min-height--horizontal');
   max-width: cv.get-var('workflow-step--max-width--horizontal');
