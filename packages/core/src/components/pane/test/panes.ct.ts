@@ -48,6 +48,63 @@ const paneLayoutMarkup = `
   </ix-pane-layout>
 `;
 
+regressionTest(
+  'expanded pane toggle aria-controls is valid',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="height: 100vh">
+        <ix-pane-layout>
+          <ix-pane slot="right" heading="Details" size="320px" expanded>
+            <p>Pane content</p>
+          </ix-pane>
+          <div slot="content">
+            <h1>Pane</h1>
+          </div>
+        </ix-pane-layout>
+      </div>
+    `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveAttribute('hydrated');
+
+    const toggle = page.getByRole('button', { name: 'Collapse pane' });
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect
+      .poll(() =>
+        toggle.evaluate((button: HTMLButtonElement) => {
+          const controlled = (
+            button as HTMLButtonElement & {
+              ariaControlsElements?: ReadonlyArray<Element> | null;
+            }
+          ).ariaControlsElements?.[0];
+          return controlled instanceof HTMLElement ? controlled.id : '';
+        })
+      )
+      .toBe('pane-right');
+
+    const iconButton = pane.locator('ix-icon-button');
+    const checkAxe = async () => {
+      const { violations } = await makeAxeBuilder()
+        .include('ix-pane')
+        .withRules(['aria-valid-attr-value', 'aria-allowed-attr'])
+        .analyze();
+      expect(violations).toEqual([]);
+    };
+
+    await expect(iconButton).not.toHaveAttribute('aria-expanded');
+    await checkAxe();
+
+    await toggle.click();
+
+    const collapsed = page.getByRole('button', { name: 'Expand pane' });
+    await expect(collapsed).toHaveAttribute('aria-expanded', 'false');
+    await expect(iconButton).not.toHaveAttribute('aria-expanded');
+    await checkAxe();
+  }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
   const pane = page.locator('ix-pane');

@@ -588,6 +588,36 @@ export class Pane {
     });
   }
 
+  componentDidRender() {
+    this.linkToggleToPane();
+  }
+
+  private linkToggleToPane() {
+    const iconButton =
+      this.hostElement.shadowRoot?.querySelector<HTMLIxIconButtonElement>(
+        '.title-icon'
+      );
+    const button = iconButton?.shadowRoot?.querySelector('button');
+    const region = this.hostElement.shadowRoot?.getElementById(
+      `pane-${this.composition}`
+    );
+    if (!button || !region) {
+      return;
+    }
+
+    button.setAttribute('aria-expanded', a11yBoolean(this.expanded));
+
+    const toggle = button as HTMLButtonElement & {
+      ariaControlsElements: ReadonlyArray<Element> | null;
+    };
+    const controlled = toggle.ariaControlsElements;
+    if (controlled?.length === 1 && controlled[0] === region) {
+      return;
+    }
+
+    toggle.ariaControlsElements = [region];
+  }
+
   private focusFirstSlottedElement() {
     const autofocusEl =
       this.hostElement.querySelector<HTMLElement>('[autofocus]');
@@ -764,7 +794,6 @@ export class Pane {
             !this.floating,
           'not-visible': this.hideOnCollapse && !this.expanded,
         }}
-        aria-expanded={a11yBoolean(this.expanded)}
       >
         <aside
           id={`pane-${this.composition}`}
@@ -805,7 +834,6 @@ export class Pane {
               }
               variant="subtle-tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
-              aria-controls={`pane-${this.composition}`}
               aria-label={paneButtonAriaLabel}
             />
             <div
