@@ -26,7 +26,7 @@ export interface ToastConfig {
    */
   action?: HTMLElement;
   /**
-   * Type of the toast
+   * Type of the toast. Defaults to `information`.
    */
   type?: ToastType;
   /**
@@ -90,6 +90,18 @@ function toast(config: ToastConfig): Promise<ShowToastResult> {
   const container = getToastContainer();
   return container.showToast(config);
 }
+
+/**
+ * Display a base toast with the information icon in the primary text color and no left-side status strip.
+ *
+ * @since 6.0.0
+ */
+toast.base = (config: ToastConfig) => {
+  return toast({
+    ...config,
+    type: 'base',
+  });
+};
 
 /**
  * Display a danger toast based on the provided configuration
