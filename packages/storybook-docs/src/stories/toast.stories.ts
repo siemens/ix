@@ -13,6 +13,7 @@ import { toast } from '@siemens/ix';
 type Element = ToastConfig;
 
 const toastTypes: NonNullable<ToastConfig['type']>[] = [
+  'base',
   'danger',
   'warning',
   'caution',
@@ -70,6 +71,15 @@ export const Danger: Story = {
     title: 'Danger Toast',
     message: 'This is a danger toast message.',
     type: 'danger',
+  },
+};
+
+export const Base: Story = {
+  args: {
+    ...Default.args,
+    title: 'Base Toast',
+    message: 'This toast has a neutral information icon and no status strip.',
+    type: 'base',
   },
 };
 

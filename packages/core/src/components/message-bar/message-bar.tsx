@@ -53,6 +53,8 @@ interface MessageTypeConfig {
 export class MessageBar {
   /**
    * Specifies the type of the alert.
+   *
+   * @breaking-change 6.0.0 Type values renamed (`info` is now `information`)
    */
   @Prop() type: MessageBarType = 'information';
 

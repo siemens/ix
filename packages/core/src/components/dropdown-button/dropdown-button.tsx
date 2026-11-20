@@ -102,8 +102,6 @@ export class DropdownButton
    * ARIA label for the dropdown button.
    * Set as `aria-label` on the host, which is the interactive control.
    * The nested button is inert and is not exposed to assistive technology.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelDropdownButton?: string;
 
@@ -133,7 +131,6 @@ export class DropdownButton
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -209,19 +206,6 @@ export class DropdownButton
       .replace(/\s+/g, ' ')
       .trim();
     return text || undefined;
-  }
-
-  private getTriangle() {
-    return (
-      <div
-        class={{
-          triangle: true,
-          [this.variant]: true,
-          hide: !this.isIconOnly(),
-          disabled: this.disabled,
-        }}
-      ></div>
-    );
   }
 
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
@@ -470,11 +454,11 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
+                dropdownIndicator={!hideChevron}
                 aria-hidden="true"
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
               ></ix-icon-button>
-              {!hideChevron && this.getTriangle()}
             </div>
           )}
         </div>

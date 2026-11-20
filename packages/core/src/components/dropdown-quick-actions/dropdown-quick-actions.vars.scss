@@ -7,11 +7,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-dropdown-quick-actions--margin-inline-start: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-dropdown-quick-actions--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-dropdown-quick-actions--margin-block-end: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-dropdown-quick-actions-item--margin-inline-end: #{sys.$si-sys-sizing-spacing-x-20};
+  @include cv.define-vars(
+    (
+      'dropdown-quick-actions--margin-inline-start':
+        sys.$si-sys-sizing-spacing-x-80,
+      'dropdown-quick-actions--margin-inline-end':
+        sys.$si-sys-sizing-spacing-x-80,
+      'dropdown-quick-actions--margin-block-end':
+        sys.$si-sys-sizing-spacing-y-20,
+      'dropdown-quick-actions-item--margin-inline-end':
+        sys.$si-sys-sizing-spacing-x-20,
+    )
+  );
 }

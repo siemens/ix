@@ -14,6 +14,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('toast', () => {
   regressionTest('headline and message', async ({ mount, page }) => {
     const types: ToastType[] = [
+      'base',
       'information',
       'success',
       'warning',

@@ -7,8 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-event-list-large-item--height: #{sys.$si-sys-sizing-size-130};
+  @include cv.define-vars(
+    (
+      'event-list-row--height--large': sys.$si-sys-sizing-size-130,
+    )
+  );
 }

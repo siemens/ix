@@ -186,7 +186,7 @@ Regeneration triggers on every `pnpm build` of core.
   component metadata, related-example mappings, and the central MiniSearch
   index.
 - Registry builds are parameterized by `REGISTRY_VERSION`, `REGISTRY_PATH_PREFIX`, and `REGISTRY_LATEST_TAG`; CI deploys the merged registry output to GitHub Pages.
-- `packages/cli` consumes the registry to initialize projects, add patterns/examples, search components, and expose MCP tools for code-generation clients.
+- `packages/cli` consumes the registry to initialize projects and install patterns.
 
 ### CLI responsibilities
 
@@ -194,15 +194,7 @@ Regeneration triggers on every `pnpm build` of core.
 - `ix init --target-folder <path>` creates `ix-patterns-lock.json`, which stores the target folder for installed patterns and tracks installed pattern names with their registry versions.
 - `ix add <patternName>` installs a registry pattern into the configured target folder. It resolves the requested registry tag (`latest` by default), detects React or Angular automatically unless `--framework react|angular` is passed, downloads the matching pattern variant files, applies optional token replacement via `--tokens`, and updates `ix-patterns-lock.json`.
 - `ix add <patternName> --dry-run` prints the installation plan without writing pattern files or updating configuration.
-- The CLI defaults to the public registry at `https://siemens.github.io/ix`, but both `add` and MCP server commands accept `--registry <url>` and `--tag <tag>` for testing versioned, branch, or local registry builds.
-
-### MCP integration
-
-- `ix mcp init --config vscode|cursor|claude` detects the current framework and writes MCP client configuration plus IX-specific generation instructions.
-- `ix mcp run-react` and `ix mcp run-angular` start stdio MCP servers backed by the selected registry and framework.
-- MCP tools expose registry-backed discovery for components, icons, examples, patterns, Figma mappings, setup guidance, and audit checks.
-- Pattern-specific MCP tools include `search_patterns` and `list_all_patterns`; their output points agents back to `ix add <patternName>` for installing copyable patterns into the host project.
-- Component/example MCP tools are backed by the central search index, generated component metadata, and registry example definitions, so generated code should use `get_component_details` and `search_examples` before composing IX UI.
+- The CLI defaults to the public registry at `https://siemens.github.io/ix`; `add` accepts `--registry <url>` and `--tag <tag>` for testing versioned, branch, or local registry builds.
 
 ---
 

@@ -5705,8 +5705,8 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "copyText",
-          "attribute": "copy-text",
+          "name": "description",
+          "attribute": "description",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
@@ -5733,16 +5733,6 @@
           "reflectToAttribute": false,
           "default": "'--si-sys-color-background-warning'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "instructions",
-          "attribute": "instructions",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -6505,7 +6495,7 @@
           "attribute": "item-gap",
           "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",
           "mutable": false,
-          "reflectToAttribute": false,
+          "reflectToAttribute": true,
           "default": "'sm'",
           "optional": false,
           "required": false,
@@ -11588,7 +11578,7 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
+          "type": "\"base\" | \"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
           "default": "'information'",

@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use './chat-ai-message.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
@@ -16,9 +17,9 @@
   align-items: flex-start;
   width: 100%;
   min-width: 0;
-  gap: var(--ix-chat-ai-message--gap);
+  gap: cv.get-var('chat-ai-message--gap');
   box-sizing: border-box;
-  color: var(--ix-chat-ai-message--color);
+  color: cv.get-var('chat-ai-message--color');
 
   @include component.ix-component;
 
@@ -28,8 +29,8 @@
     align-items: stretch;
     width: 100%;
     min-width: 0;
-    gap: var(--ix-chat-ai-message-message--gap);
-    font: var(--ix-chat-ai-message-message--font);
+    gap: cv.get-var('chat-ai-message-message--gap');
+    font: cv.get-var('chat-ai-message-message--font');
     overflow-wrap: anywhere;
   }
 
@@ -45,22 +46,22 @@
   .message ::slotted(h4),
   .message ::slotted(h5),
   .message ::slotted(h6) {
-    font: var(--ix-chat-ai-message-message--font);
-    font-weight: var(--ix-chat-ai-message-message--font-weight);
+    font: cv.get-var('chat-ai-message-message--font');
+    font-weight: cv.get-var('chat-ai-message-message--font-weight');
   }
 
   .meta {
     display: none;
     align-items: center;
-    gap: var(--ix-chat-ai-message-meta--gap);
+    gap: cv.get-var('chat-ai-message-meta--gap');
     width: 100%;
-    min-height: var(--ix-chat-ai-message-meta--min-height);
+    min-height: cv.get-var('chat-ai-message-meta--min-height');
   }
 
   .actions {
     display: none;
     align-items: center;
-    gap: var(--ix-chat-ai-message-actions--gap);
+    gap: cv.get-var('chat-ai-message-actions--gap');
   }
 
   .sources {
