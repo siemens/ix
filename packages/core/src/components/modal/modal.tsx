@@ -29,6 +29,7 @@ import { IxModalSize } from './modal.types';
  * Dialog overlay that presents content or requires user interaction on top of the page.
  *
  * @documentation https://ix.siemens.io/docs/components/modal/guide.md
+ * @figma-main-component-id 160960:19146
  *
  * @slot - Modal content.
  */

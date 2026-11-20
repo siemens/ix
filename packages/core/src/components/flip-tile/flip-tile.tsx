@@ -29,7 +29,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
  * Tile that flips between a front and back side to reveal additional content.
  *
  * @documentation https://ix.siemens.io/docs/components/flip/code.md
- * @figma-main-component-id 407:3446
+ * @figma-main-component-id 162362:111923
  *
  * @slot header - Header content.
  * @slot - Front-side content.
