@@ -594,6 +594,8 @@ export class Pane {
 
   componentDidRender() {
     this.linkToggleToPane();
+    // Icon button re-renders after this.
+    queueMicrotask(() => this.linkToggleToPane());
   }
 
   private linkToggleToPane() {
@@ -608,6 +610,8 @@ export class Pane {
     if (!button || !region) {
       return;
     }
+
+    button.setAttribute('aria-expanded', a11yBoolean(this.expanded));
 
     const toggle = button as HTMLButtonElement & {
       ariaControlsElements: ReadonlyArray<Element> | null;
@@ -836,7 +840,6 @@ export class Pane {
               }
               variant="subtle-tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
-              aria-expanded={a11yBoolean(this.expanded)}
               aria-label={paneButtonAriaLabel}
             />
             <div

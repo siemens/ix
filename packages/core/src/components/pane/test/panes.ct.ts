@@ -84,11 +84,24 @@ regressionTest(
       )
       .toBe('pane-right');
 
-    const { violations } = await makeAxeBuilder()
-      .include('ix-pane')
-      .withRules(['aria-valid-attr-value'])
-      .analyze();
-    expect(violations).toEqual([]);
+    const iconButton = pane.locator('ix-icon-button');
+    const checkAxe = async () => {
+      const { violations } = await makeAxeBuilder()
+        .include('ix-pane')
+        .withRules(['aria-valid-attr-value', 'aria-allowed-attr'])
+        .analyze();
+      expect(violations).toEqual([]);
+    };
+
+    await expect(iconButton).not.toHaveAttribute('aria-expanded');
+    await checkAxe();
+
+    await toggle.click();
+
+    const collapsed = page.getByRole('button', { name: 'Expand pane' });
+    await expect(collapsed).toHaveAttribute('aria-expanded', 'false');
+    await expect(iconButton).not.toHaveAttribute('aria-expanded');
+    await checkAxe();
   }
 );
 
