@@ -134,7 +134,6 @@ export class Toast {
         aria-hidden="true"
         class="status-icon"
         name={icon}
-        color="--ix-toast--status-color"
       />
     );
   }
