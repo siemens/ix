@@ -37,8 +37,6 @@
   ix-icon-button {
     width: cv.get-var('menu-expand-icon--size');
     height: cv.get-var('menu-expand-icon--size');
-    // ix-icon sizes itself with this token
-    --si-sys-sizing-size-60: #{cv.get-var('menu-expand-icon--icon-size')};
   }
 
   .line {
