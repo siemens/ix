@@ -119,7 +119,7 @@
   }
 }
 
-:host::before {
+:host(:not([type='base']))::before {
   content: '';
   position: absolute;
   top: 0;
