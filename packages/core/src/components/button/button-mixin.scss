@@ -151,7 +151,7 @@
     vertical-align: middle;
     cursor: pointer;
 
-    @include fonts.typography-body-sbold;
+    @include fonts.typography-body-paragraph-sbold;
     @include component.ix-component;
 
     button,
