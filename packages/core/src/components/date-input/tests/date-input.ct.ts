@@ -13,7 +13,7 @@ import {
   calendarDayCell,
   createDropdownPickerAccessor,
   formatDateTime,
-  getFormValue,
+  expectFormValue,
   mountHydrated,
   PENDING_SELECTION_DISMISSALS,
   preventFormSubmission,
@@ -119,7 +119,7 @@ for (const value of ['2026/02/08', 'invalid-date', '']) {
       expect(
         await input.evaluate((el: HTMLInputElement) => el.validity.valueMissing)
       ).toBe(true);
-      expect(await getFormValue(page.locator('form'), 'date', page)).toBeNull();
+      await expectFormValue(page.locator('form'), 'date', null);
       await expect
         .poll(() => events.evaluate((values) => values))
         .toEqual(['']);
@@ -990,8 +990,7 @@ regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await input.fill('2024/05/05');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('2024/05/05');
+  await expectFormValue(formElement, 'my-field-name', '2024/05/05');
 });
 
 regressionTest(
@@ -1006,8 +1005,7 @@ regressionTest(
     const componentValue = await page
       .locator('ix-date-input')
       .evaluate((el: HTMLIxDateInputElement) => el.value);
-    const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe(componentValue);
+    await expectFormValue(formElement, 'my-field-name', componentValue ?? null);
   }
 );
 

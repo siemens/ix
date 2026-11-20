@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import { expectFormValue, preventFormSubmission, test } from '@utils/test';
 import { selectController } from './select-controller';
 
 test('a test', async ({ mount, page }) => {
@@ -726,8 +726,7 @@ test('form-ready', async ({ mount, page }) => {
   const inputValue = await select.locator('input').inputValue();
   expect(inputValue).toEqual('Item 2');
 
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('2');
+  await expectFormValue(formElement, 'my-custom-entry', '2');
 });
 
 test('form-ready - with initial value', async ({ mount, page }) => {
@@ -743,8 +742,7 @@ test('form-ready - with initial value', async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   await preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('some other');
+  await expectFormValue(formElement, 'my-custom-entry', 'some other');
 });
 
 test('form-ready - programmatic value update', async ({ mount, page }) => {
@@ -767,8 +765,7 @@ test('form-ready - programmatic value update', async ({ mount, page }) => {
   });
 
   await expect(select.locator('input')).toHaveValue('Item 2');
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('2');
+  await expectFormValue(formElement, 'my-custom-entry', '2');
 });
 
 test('form-ready - cancelled value change keeps form value', async ({
@@ -794,8 +791,7 @@ test('form-ready - cancelled value change keeps form value', async ({
   await page.locator('[data-select-dropdown]').click();
   await page.locator('ix-select-item').nth(1).click();
 
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('1');
+  await expectFormValue(formElement, 'my-custom-entry', '1');
 });
 
 test.describe('Events', () => {
