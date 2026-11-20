@@ -53,7 +53,7 @@
       'menu-cui-imprint-product-description--margin-bottom':
         sys.$si-sys-sizing-spacing-y-90,
       'menu-buttons--margin': #{sys.$si-sys-sizing-spacing-y-50} 0 0 calc((
-              #{menu-rail.$width} - #{sys.$si-sys-sizing-size-80}
+              #{menu-rail.$width} - #{menu-rail.$expand-button-size}
             ) / 2),
       'menu-empty--margin-bottom': sys.$si-sys-sizing-spacing-y-50,
       'menu--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,

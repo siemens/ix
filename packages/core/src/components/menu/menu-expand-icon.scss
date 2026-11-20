@@ -20,8 +20,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: cv.get-var('menu-expand-icon--height');
-  width: cv.get-var('menu-expand-icon--width');
+  height: cv.get-var('menu-expand-icon--size');
+  width: cv.get-var('menu-expand-icon--size');
   border-radius: cv.get-var('menu-expand-icon--border-radius');
   pointer-events: all;
 
@@ -30,6 +30,15 @@
   svg {
     display: inline-block;
     vertical-align: middle;
+    width: cv.get-var('menu-expand-icon--icon-size');
+    height: cv.get-var('menu-expand-icon--icon-size');
+  }
+
+  ix-icon-button {
+    width: cv.get-var('menu-expand-icon--size');
+    height: cv.get-var('menu-expand-icon--size');
+    // ix-icon sizes itself with this token
+    --si-sys-sizing-size-60: #{cv.get-var('menu-expand-icon--icon-size')};
   }
 
   .line {
@@ -54,7 +63,7 @@
 }
 
 .menu-expand-button {
-  width: cv.get-var('menu-expand-icon-menu-expand-button--width');
+  width: cv.get-var('menu-expand-icon--size');
   padding: 0px !important;
   cursor: pointer;
 }

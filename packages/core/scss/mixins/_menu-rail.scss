@@ -16,3 +16,11 @@ $width: max(
   #{sys.$si-sys-sizing-size-100},
   calc(#{$icon-slot-width} + 2 * #{sys.$si-sys-sizing-spacing-x-50})
 );
+
+// Menu expand button: rem icon plus fixed px padding, never smaller than the
+// default button size.
+$expand-icon-size: sys.$si-sys-sizing-icon-md;
+$expand-button-size: max(
+  #{sys.$si-sys-sizing-size-80},
+  calc(#{$expand-icon-size} + 2 * #{sys.$si-sys-sizing-spacing-x-30})
+);
