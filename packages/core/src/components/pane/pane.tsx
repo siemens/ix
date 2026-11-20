@@ -588,14 +588,8 @@ export class Pane {
     });
   }
 
-  componentDidLoad() {
-    this.linkToggleToPane();
-  }
-
   componentDidRender() {
     this.linkToggleToPane();
-    // Icon button re-renders after this.
-    queueMicrotask(() => this.linkToggleToPane());
   }
 
   private linkToggleToPane() {
