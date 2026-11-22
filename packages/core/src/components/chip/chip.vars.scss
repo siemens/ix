@@ -21,42 +21,49 @@
 $chip-color-sys-values: (
   danger: (
     background: sys.$si-sys-color-background-danger,
+    border: sys.$si-sys-color-background-danger,
     hover: sys.$si-sys-color-background-danger-hover,
     active: sys.$si-sys-color-background-danger-active,
     contrast: sys.$si-sys-color-text-on-danger,
   ),
   critical: (
     background: sys.$si-sys-color-background-critical,
+    border: sys.$si-sys-color-background-critical,
     hover: sys.$si-sys-color-background-critical-hover,
     active: sys.$si-sys-color-background-critical-active,
     contrast: sys.$si-sys-color-text-on-critical,
   ),
   caution: (
     background: sys.$si-sys-color-background-caution,
+    border: sys.$si-sys-color-background-caution,
     hover: sys.$si-sys-color-background-caution-hover,
     active: sys.$si-sys-color-background-caution-active,
     contrast: sys.$si-sys-color-text-on-caution,
   ),
   information: (
     background: sys.$si-sys-color-background-information,
+    border: sys.$si-sys-color-background-information,
     hover: sys.$si-sys-color-background-information-hover,
     active: sys.$si-sys-color-background-information-active,
     contrast: sys.$si-sys-color-text-on-information,
   ),
   neutral: (
     background: sys.$si-sys-color-background-neutral,
+    border: sys.$si-sys-color-border-neutral,
     hover: sys.$si-sys-color-background-neutral-hover,
     active: sys.$si-sys-color-background-neutral-active,
     contrast: sys.$si-sys-color-text-on-neutral,
   ),
   success: (
     background: sys.$si-sys-color-background-success,
+    border: sys.$si-sys-color-background-success,
     hover: sys.$si-sys-color-background-success-hover,
     active: sys.$si-sys-color-background-success-active,
     contrast: sys.$si-sys-color-text-on-success,
   ),
   warning: (
     background: sys.$si-sys-color-background-warning,
+    border: sys.$si-sys-color-background-warning,
     hover: sys.$si-sys-color-background-warning-hover,
     active: sys.$si-sys-color-background-warning-active,
     contrast: sys.$si-sys-color-text-on-warning,
@@ -88,7 +95,7 @@ $chip-color-sys-values: (
         'chip--background--#{$color}--active':
           chip-color-sys-value($color, active),
         'chip--border-color--#{$color}':
-          chip-color-sys-value($color, background),
+          chip-color-sys-value($color, border),
       )
     );
     @if $color != 'warning' and $color != 'caution' {
@@ -133,10 +140,10 @@ $chip-color-sys-values: (
       'chip--border-color--accent--outline--hover':
         sys.$si-sys-color-border-accent-hover,
       'chip--color--accent--outline--active':
-        sys.$si-sys-color-border-accent-active,
+        sys.$si-sys-color-text-accent-active,
       'chip--color--accent--outline': sys.$si-sys-color-text-primary,
       'chip--color--accent--outline--hover':
-        sys.$si-sys-color-border-accent-hover,
+        sys.$si-sys-color-text-accent-hover,
     )
   );
 }

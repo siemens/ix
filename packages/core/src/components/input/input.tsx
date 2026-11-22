@@ -433,6 +433,7 @@ export class Input implements IxInputFieldComponent<string> {
               class="bottom-text"
               slot="bottom-right"
               textColor="secondary"
+              format="body-paragraph"
             >
               {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>

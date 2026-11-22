@@ -30,11 +30,11 @@
         sys.$si-sys-color-border-accent-active,
       'filter-chip--border-color--primary--outline--hover':
         sys.$si-sys-color-border-accent-hover,
-      'filter-chip--color--primary--outline': sys.$si-sys-color-border-accent,
+      'filter-chip--color--primary--outline': sys.$si-sys-color-text-accent,
       'filter-chip--color--primary--outline--active':
-        sys.$si-sys-color-border-accent-active,
+        sys.$si-sys-color-text-accent-active,
       'filter-chip--color--primary--outline--hover':
-        sys.$si-sys-color-border-accent-hover,
+        sys.$si-sys-color-text-accent-hover,
     )
   );
 }
@@ -49,7 +49,7 @@
         sys.$si-sys-sizing-spacing-x-40,
       'filter-chip--border-width': sys.$si-sys-sizing-border-width-default,
       'filter-chip--height': sys.$si-sys-sizing-size-70,
-      'filter-chip--border-radius': sys.$si-sys-sizing-spacing-x-90,
+      'filter-chip--border-radius': sys.$si-sys-sizing-border-radius-full,
       'filter-chip-slot-container--line-height': sys.$si-sys-sizing-size-70,
       'filter-chip-icon--size': sys.$si-sys-sizing-size-70,
     )

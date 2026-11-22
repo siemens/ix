@@ -67,3 +67,43 @@ regressionTest(
     expect(defaultPadding - compactPadding).toBeCloseTo(2, 0);
   }
 );
+
+regressionTest(
+  'character counter shares the helper text typography in both densities',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-input helper-text="Input helper" max-length="20"></ix-input>
+      <ix-textarea helper-text="Textarea helper" max-length="30"></ix-textarea>
+    `);
+
+    const pairs = [
+      [
+        page.locator('ix-typography', { hasText: 'Input helper' }),
+        page.getByText('0/20'),
+      ],
+      [
+        page.locator('ix-typography', { hasText: 'Textarea helper' }),
+        page.getByText('0/30'),
+      ],
+    ] as const;
+
+    const expectSameTypography = async (fontSize: string) => {
+      for (const [helper, counter] of pairs) {
+        await expect(helper).toHaveCSS('font-size', fontSize);
+        await expect(counter).toHaveCSS('font-size', fontSize);
+        const helperLineHeight = await helper.evaluate(
+          (element) => getComputedStyle(element).lineHeight
+        );
+        await expect(counter).toHaveCSS('line-height', helperLineHeight);
+      }
+    };
+
+    await expectSameTypography('14px');
+
+    await page.locator('body').evaluate((body) => {
+      body.setAttribute('data-ix-density', 'compact');
+    });
+
+    await expectSameTypography('12px');
+  }
+);

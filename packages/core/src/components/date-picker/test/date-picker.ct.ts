@@ -51,6 +51,9 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(days).toHaveCount(31);
   await expect(days.first()).toHaveCSS('font-size', '14px');
   await expect(days.first()).toHaveCSS('line-height', '16px');
+  await expect(
+    datePicker.getByRole('columnheader', { name: 'Monday' })
+  ).toHaveCSS('font-size', '14px');
 });
 
 regressionTest('translation', async ({ mount, page }) => {

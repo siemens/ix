@@ -18,7 +18,7 @@
   @include cv.define-vars(
     (
       'expanding-search-button-search--outline-color--focus':
-        var(--focus--border-color),
+        sys.$si-sys-color-effects-focus,
       'expanding-search-button--border--active': #{sys.$si-sys-sizing-border-width-default}
         solid #{sys.$si-sys-color-border-2},
     )
