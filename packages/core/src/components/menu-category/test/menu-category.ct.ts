@@ -545,6 +545,49 @@ test('should adjust height when items are added dynamically', async ({
 });
 
 regressionTest(
+  'should update active state of category after it is moved in the DOM',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-item id="home" active>Home</ix-menu-item>
+          <ix-menu-category label="Category label">
+            <ix-menu-item id="alarms">Alarms</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const category = page.locator('ix-menu-category');
+    await expect(category).toHaveAttribute('hydrated');
+
+    const categoryParent = category.locator('.category-parent');
+    const home = page.locator('#home');
+    const alarms = page.locator('#alarms');
+
+    await category.evaluate((element: HTMLIxMenuCategoryElement) => {
+      const parent = element.parentElement;
+      const nextSibling = element.nextSibling;
+      element.remove();
+      parent?.insertBefore(element, nextSibling);
+    });
+
+    await alarms.evaluate(
+      (item: HTMLIxMenuItemElement) => (item.active = true)
+    );
+    await home.evaluate((item: HTMLIxMenuItemElement) => (item.active = false));
+    await expect(categoryParent).toHaveClass(/\bactive\b/);
+
+    await alarms.evaluate(
+      (item: HTMLIxMenuItemElement) => (item.active = false)
+    );
+    await home.evaluate((item: HTMLIxMenuItemElement) => (item.active = true));
+    await expect(home).toHaveClass(/\bactive\b/);
+    await expect(categoryParent).not.toHaveClass(/\bactive\b/);
+  }
+);
+
+regressionTest(
   'should set tabindex=-1 on anchor wrappers inside category',
   async ({ mount, page }) => {
     await mount(`

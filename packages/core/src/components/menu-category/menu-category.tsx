@@ -471,6 +471,15 @@ export class MenuCategory
     }
   }
 
+  private observeNestedItems() {
+    this.observer?.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+      childList: true,
+      subtree: true,
+    });
+  }
+
   private isCategoryItemListVisible() {
     return this.menuExpand && (this.showItems || this.isNestedItemActive());
   }
@@ -488,17 +497,22 @@ export class MenuCategory
     this.showItems = this.isCategoryItemListVisible();
   }
 
+  override connectedCallback() {
+    super.connectedCallback();
+
+    // A reattached category does not run componentDidLoad again
+    if (this.observer) {
+      this.observeNestedItems();
+      this.onNestedItemsChanged();
+    }
+  }
+
   override componentDidLoad() {
     this.observer = createMutationObserver((mutations: MutationRecord[]) =>
       this.onNestedItemsChanged(mutations)
     );
 
-    this.observer.observe(this.hostElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-      childList: true,
-      subtree: true,
-    });
+    this.observeNestedItems();
 
     requestAnimationFrameNoNgZone(() => {
       this.onNestedItemsChanged();
