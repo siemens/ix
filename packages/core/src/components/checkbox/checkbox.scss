@@ -73,11 +73,11 @@
 
   input[type='checkbox'] {
     cursor: pointer;
-    height: 24px;
+    height: cv.get-var('checkbox--height');
     margin: 0;
     opacity: 0;
     position: absolute;
-    width: 24px;
+    width: cv.get-var('checkbox--width');
     z-index: 1;
   }
 

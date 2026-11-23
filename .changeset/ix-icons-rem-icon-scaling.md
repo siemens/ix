@@ -12,3 +12,5 @@ The collapsed bar of `ix-pane` (and the mobile minimum height inside `ix-pane-la
 The `ix-menu-about` header now grows with its heading instead of using a fixed height, so the heading no longer overlaps the tabs at larger root font sizes. The `ix-menu-about-news` banner, header offset and popover position now follow the banner icon and the menu rail width, so the popover no longer overlaps the menu or its own content.
 
 `ix-pill` and the text inside `ix-expanding-search` also grow with the root font size now, the legacy textarea without `rows` keeps room for two lines of text, the `ix-badge` tooltip text scales with the root font size again, and the `ix-push-card` title keeps its compact-density height.
+
+`ix-avatar` keeps its smaller size in compact density again, the hidden input of `ix-checkbox` now matches the visible box so it no longer overlaps neighbouring controls in rem sizing scopes, and the checked dot of the legacy radio button stays centered at larger line heights and in rem sizing scopes.
