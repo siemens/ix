@@ -113,7 +113,8 @@ textarea.ix-form-control {
     calc(8px - #{sys.$si-sys-sizing-border-width-default});
 
   &:not([rows]) {
-    height: 52px;
+    // Two text lines plus padding, so the rem text does not clip
+    height: max(52px, calc(2lh + 12px));
   }
 }
 

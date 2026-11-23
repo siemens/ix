@@ -70,3 +70,11 @@
     )
   );
 }
+
+// Read by pane.tsx as collapse and expand animation targets.
+@include cv.runtime-vars(
+  'pane--size--collapsed',
+  'pane--size--collapsed--mobile',
+  'pane-title--padding-block--expanded',
+  'pane-title--padding-inline--expanded'
+);

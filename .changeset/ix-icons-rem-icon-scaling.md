@@ -10,3 +10,5 @@ Update `@siemens/ix-icons` to `0.0.0-beta-20261120131425`. `ix-icon` sizes now u
 The collapsed bar of `ix-pane` (and the mobile minimum height inside `ix-pane-layout`) is now built from spacing tokens and the icon-button size instead of fixed 40px/48px values, so it grows with its content at larger root font sizes. In compact density the collapsed bar becomes correspondingly smaller.
 
 The `ix-menu-about` header now grows with its heading instead of using a fixed height, so the heading no longer overlaps the tabs at larger root font sizes. The `ix-menu-about-news` banner, header offset and popover position now follow the banner icon and the menu rail width, so the popover no longer overlaps the menu or its own content.
+
+`ix-pill` and the text inside `ix-expanding-search` also grow with the root font size now, the legacy textarea without `rows` keeps room for two lines of text, the `ix-badge` tooltip text scales with the root font size again, and the `ix-push-card` title keeps its compact-density height.

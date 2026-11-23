@@ -26,3 +26,6 @@
     )
   );
 }
+
+// Read by pane-layout.tsx as the mobile pane minimum height.
+@include cv.runtime-vars('pane-layout-pane--min-height--mobile');
