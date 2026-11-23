@@ -764,8 +764,11 @@ regressionTest(
       .toBeGreaterThan(40);
     const paneBox = await pane.boundingBox();
     const buttonBox = await button.boundingBox();
-    expect(buttonBox!.y + buttonBox!.height).toBeLessThanOrEqual(
-      paneBox!.y + paneBox!.height
+    if (!paneBox || !buttonBox) {
+      throw new Error('Pane or icon button is not rendered');
+    }
+    expect(buttonBox.y + buttonBox.height).toBeLessThanOrEqual(
+      paneBox.y + paneBox.height
     );
   }
 );

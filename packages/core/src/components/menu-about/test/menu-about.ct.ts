@@ -9,6 +9,27 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-about>
+          <ix-menu-about-item tab-key="tab-1" label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item tab-key="tab-2" label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+
+  await page.locator('#aboutAndLegal').click();
+  await expect(page.getByRole('tab', { name: 'Tab 1' })).toBeVisible();
+
+  // Known issue: the tab panel is rendered in the shadow root of
+  // ix-menu-about-item, so the tab's aria-controls id cannot resolve.
+  const results = await makeAxeBuilder()
+    .disableRules(['aria-valid-attr-value'])
+    .analyze();
+  expect(results.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
@@ -158,8 +179,11 @@ regressionTest(
     const tabs = page.locator('ix-menu-about ix-tabs');
     await expect(tabs).toBeVisible();
 
-    const headingBox = (await heading.boundingBox())!;
-    const tabsBox = (await tabs.boundingBox())!;
+    const headingBox = await heading.boundingBox();
+    const tabsBox = await tabs.boundingBox();
+    if (!headingBox || !tabsBox) {
+      throw new Error('Heading or tabs are not rendered');
+    }
     expect(headingBox.y + headingBox.height).toBeLessThanOrEqual(tabsBox.y);
   }
 );
